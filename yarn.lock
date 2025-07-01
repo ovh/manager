@@ -6695,7 +6695,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
+"@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
   integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
@@ -6708,14 +6708,6 @@
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
-
-"@ovh-ux/manager-tests-setup@^0.0.1":
-  version "0.2.0"
-
-"@ovh-ux/manager-tests-setup@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.1.0.tgz#d6924e90b7a463a586ff2a1c4c253205a02d12f1"
-  integrity sha512-YKVUnVwAQhpoZ2zwgxMxVB0iHzD5IO6/lnBEvdv3PqgqknCnfdqfXdCXLx794rfGnnfgu2+Eg5MALo+HkTh1gQ==
 
 "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
@@ -6835,19 +6827,6 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-components@^18.3.0":
-  version "18.6.3"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
-  integrity sha512-rByW67Fr1Rr+HZ7rNhGDA+mHBN3XQRF9Y3VhEwUcUf3OG5QnfS9NhduXWHweKOpzZUD7hbfoqh0tRolNALrOkw==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    mark.js "8.11.1"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
-
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -6866,11 +6845,6 @@
   version "18.6.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
-
-"@ovhcloud/ods-themes@^18.3.0":
-  version "18.6.3"
-  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.6.3.tgz#a8a6162a8d260de199c887b6e0fd903160f7b2e9"
-  integrity sha512-U+S/Kfki6aLchHf+rQiFggP9Zg/km4RV+zTWPbK1Ms76f2nT1RmHz1MhURhbRjv9iwdfKUeIKCcV8j73VAwOGA==
 
 "@ovhcloud/ods-themes@^18.4.1":
   version "18.4.1"
