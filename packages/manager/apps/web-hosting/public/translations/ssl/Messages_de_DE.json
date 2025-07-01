@@ -50,5 +50,8 @@
   "hosting_dashboard_ssl_regenerate_error": "Bei der Neuerstellung eines SSL-Zertifikats ist ein Fehler aufgetreten.",
   "web_hosting_export_label": "Export als CSV-Datei",
   "web_hosting_export_success": "Die Datei wurde erfolgreich erstellt. Wenn der Download nicht automatisch startet, können Sie die Datei manuell herunterladen.",
-  "web_hosting_export_download_manually": "Hier herunterladen"
+  "web_hosting_export_download_manually": "Hier herunterladen",
+  "san_ssl_title": "Mit dem SSL-Zertifikat verbundene Domains",
+  "san_ssl_message": "Aktuell sind {{n}} Domains mit dem Zertifikat {{domain}} verbunden:",
+  "san_ssl_copy": "Liste in die Zwischenablage kopieren"
 }
