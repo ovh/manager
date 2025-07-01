@@ -11,10 +11,11 @@ import {
   SOURCE_KEY_LENGTH,
 } from './installationStepSourceInformation.constants';
 import { getSourceFormData } from '@/utils/formStepData';
-import { isValidInput, isValidUrl } from '@/utils/formValidation';
+import { isValidInput } from '@/utils/formValidation';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { HandleInputChangeProps } from '@/types/formChange.type';
 import { TRACKING } from '@/tracking.constants';
+import { ENDPOINT_REGEX } from '@/constants/form.constants';
 
 export default function InstallationStepSourceInformation() {
   const { t } = useTranslation('installation');
@@ -88,12 +89,13 @@ export default function InstallationStepSourceInformation() {
           handleChange({
             e,
             error: t('common_helper_endpoint'),
-            isValid: isValidUrl(e.detail.value as string),
+            isValid: isValidInput(e),
           });
         }}
         value={values.endpoint}
         error={values.endpoint && errors.endpoint}
         helperText={t('common_helper_endpoint')}
+        validator={{ pattern: ENDPOINT_REGEX.source }}
       />
       <TextField
         key="accessKey"
