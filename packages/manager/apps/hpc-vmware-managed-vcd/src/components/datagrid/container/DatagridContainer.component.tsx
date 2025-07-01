@@ -1,13 +1,16 @@
 import {
   ChangelogButton,
   Datagrid,
+  DatagridColumn,
   ErrorBanner,
+  useColumnFilters,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { applyFilters, FilterComparator } from '@ovh-ux/manager-core-api';
 import Loading from '@/components/loading/Loading.component';
 import TDatagridRoute from '@/types/datagrid-route.type';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
@@ -23,8 +26,11 @@ export type TDatagridContainerProps = {
   title: string;
   isEmbedded?: boolean;
   queryKey: string[];
-  columns: any[];
+  columns: DatagridColumn<unknown>[];
   orderButton?: React.JSX.Element;
+  withFilter?: boolean;
+  columnsSearchable?: string;
+  mapper?: (args: unknown[]) => unknown[];
 };
 
 export default function DatagridContainer({
@@ -34,18 +40,22 @@ export default function DatagridContainer({
   route: { api, onboarding },
   columns,
   orderButton,
+  withFilter,
+  columnsSearchable,
+  mapper,
 }: Readonly<TDatagridContainerProps>) {
-  const [flattenData, setFlattenData] = useState<Record<string, unknown>[]>([]);
   const navigate = useNavigate();
   const listingQueryKey = [...queryKey, icebergListingQueryKey];
+  const { filters, addFilter, removeFilter } = useColumnFilters();
+  const [searchInput, setSearchInput] = useState('');
 
   const {
     data,
+    flattenData,
     fetchNextPage,
     hasNextPage,
     isError,
     isLoading,
-    error,
     status,
     sorting,
     setSorting,
@@ -70,8 +80,6 @@ export default function DatagridContainer({
     ) {
       navigate(onboarding);
     }
-    const flatten = data?.pages.map((page: any) => page.data).flat();
-    setFlattenData(flatten ?? []);
   }, [data]);
 
   if (isError) {
@@ -87,7 +95,7 @@ export default function DatagridContainer({
     );
   }
 
-  if (isLoading && !flattenData.length) {
+  if (isLoading && !flattenData?.length) {
     return (
       <div>
         <Loading />
@@ -115,10 +123,22 @@ export default function DatagridContainer({
       </div>
       {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
       <React.Suspense>
-        {flattenData.length && (
+        {flattenData?.length && (
           <Datagrid
             columns={columns}
-            items={flattenData}
+            items={applyFilters(
+              (mapper ? mapper?.(flattenData) : flattenData) ?? [],
+              !searchInput || searchInput.length === 0
+                ? filters
+                : [
+                    {
+                      key: columnsSearchable,
+                      value: searchInput,
+                      comparator: FilterComparator.Includes,
+                    },
+                    ...filters,
+                  ],
+            )}
             totalItems={0}
             onFetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage && !isLoading}
@@ -126,6 +146,16 @@ export default function DatagridContainer({
             onSortChange={setSorting}
             manualSorting={false}
             contentAlignLeft
+            filters={
+              withFilter
+                ? { filters, add: addFilter, remove: removeFilter }
+                : undefined
+            }
+            search={{
+              searchInput,
+              setSearchInput,
+              onSearch: () => {},
+            }}
           />
         )}
       </React.Suspense>
