@@ -11,12 +11,26 @@ import App from './App';
 
 import '@/vite-hmr.ts';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
+import {
+  UNIVERSE,
+  SUB_UNIVERSE,
+  APP_NAME,
+  LEVEL2,
+} from './configuration/tracking.constants';
 
+const trackingContext = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  pageTheme: UNIVERSE,
+  level2Config: LEVEL2,
+};
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   const region = context.environment.getRegion();
   try {

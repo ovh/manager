@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { flexRender } from '@tanstack/react-table';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   Button,
   Table,
@@ -11,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from '@datatr-ux/uxlib';
+import { TRACKING } from '@/configuration/tracking.constants';
 import { useDataTableContext } from './DataTableContext';
 
 export const MENU_COLUMN_ID = 'actions';
@@ -34,6 +36,7 @@ export function DataTable<TData>({
   };
 
   const headerGroups = table.getHeaderGroups();
+  const { trackClick } = useOvhTracking();
   return (
     <Table>
       <TableHeader className="border bg-[#f7f8f8]">
@@ -93,7 +96,16 @@ export function DataTable<TData>({
                   </TableCell>
                 )}
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="px-2 py-1">
+                  <TableCell
+                    key={cell.id}
+                    className="px-2 py-1 cursor-pointer"
+                    onClick={() => {
+                      const columnId = cell.column.id;
+                      trackClick(
+                        TRACKING.notebooksListing.DatagridClick(columnId),
+                      );
+                    }}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

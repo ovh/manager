@@ -3,10 +3,12 @@ import { Plus } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import ai from '@/types/AI';
 import { getColumns } from './NotebooksListColumns.component';
 import { getFilters } from './NotebookListFilters.component';
 import DataTable from '@/components/data-table';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
@@ -15,21 +17,25 @@ interface NotebooksListProps {
 export default function NotebooksList({ notebooks }: NotebooksListProps) {
   const { t } = useTranslation('ai-tools/notebooks');
   const navigate = useNavigate();
+  const { trackPage } = useOvhTracking();
 
+  const { trackClick } = useOvhTracking();
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
     onStartClicked: (notebook: ai.notebook.Notebook) => {
+      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('start'));
       navigate(`./start/${notebook.id}`);
     },
     onStopClicked: (notebook: ai.notebook.Notebook) => {
+      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('stop'));
       navigate(`./stop/${notebook.id}`);
     },
     onDeleteClicked: (notebook: ai.notebook.Notebook) => {
+      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('delete'));
       navigate(`./delete/${notebook.id}`);
     },
   });
 
   const notebooksFilters = getFilters();
-
   return (
     <DataTable.Provider
       columns={columns}
@@ -41,7 +47,10 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
         <DataTable.Action>
           <Button
             data-testid="create-notebook-button"
-            onClick={() => navigate('./new')}
+            onClick={() => {
+              trackClick(TRACKING.notebooksOnBoarding.createNewNotebookClick);
+              navigate('./new');
+            }}
           >
             <Plus className="size-6" />
             {t('createNewNotebook')}
