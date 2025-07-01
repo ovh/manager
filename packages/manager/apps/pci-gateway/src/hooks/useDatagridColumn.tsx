@@ -50,12 +50,7 @@ export const useDatagridColumn = (privateNetworkUrl: string) => {
     {
       id: 'networksConnected',
       cell: (props: Gateway) => (
-        <OsdsLink
-          href={privateNetworkUrl}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          {props.connectedNetworkCount}
-        </OsdsLink>
+        <DataGridTextCell>{props.connectedNetworkCount}</DataGridTextCell>
       ),
       label: t('pci_projects_project_public_gateway_networks_connected'),
     },
