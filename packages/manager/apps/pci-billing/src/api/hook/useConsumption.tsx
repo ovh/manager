@@ -11,9 +11,6 @@ import {
 const roundPrice = (num: number, fractionDigits = 2) =>
   Number(num.toFixed(fractionDigits));
 
-const sumPrices = <T,>(items: T[], key: string) =>
-  roundPrice(items?.reduce((sum, item) => sum + item[key], 0));
-
 const initMonthlyInstanceList = (data: TCurrentUsage) => {
   if (!data?.monthlyUsage) {
     return {
@@ -304,7 +301,9 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
     resources = reduceColdArchiveBillingInfo(resources);
   }
 
-  const totalPrice = sumPrices(resources, 'totalPrice');
+  const totalPrice = roundPrice(
+    resources.reduce((sum, item) => sum + item.totalPrice, 0),
+  );
 
   return {
     resources: resources || [],
@@ -401,6 +400,7 @@ export type TConsumptionDetail = {
   aiEndpoints: TResourceUsage[];
   notebooks: TResourceUsage[];
   aiDeploy: TResourceUsage[];
+  dataplatform: TResourceUsage[];
   coldArchive: TResourceUsage[];
   dataProcessing: TResourceUsage[];
   databases: TResourceUsage[];
@@ -418,6 +418,7 @@ export type TConsumptionDetail = {
       snapshot: number;
       volume: number;
       rancher: number;
+      dataplatform: number;
       bandwidth: number;
       privateRegistry: number;
       kubernetesLoadBalancer: number;
@@ -458,6 +459,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   aiEndpoints: [],
   coldArchive: [],
   dataProcessing: [],
+  dataplatform: [],
   databases: [],
   floatingIP: [],
   publicIP: [],
@@ -488,6 +490,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
       gateway: 0,
       octaviaLoadBalancer: 0,
       publicIP: 0,
+      dataplatform: 0,
     },
     monthly: {
       total: 0,
@@ -512,6 +515,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
     { type: 'octavia-loadbalancer', key: 'octaviaLoadBalancer' },
     { type: 'ai-app', key: 'aiDeploy' },
     { type: 'publicip', key: 'publicIP' },
+    { type: 'dataplatform', key: 'dataplatform' },
   ];
 
   const { resources, totals: hourlyTotals } = resourceMap.reduce(
@@ -548,6 +552,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
   const { volumeList, volumesTotalPrice } = initVolumeList(usage);
   const { bandwidthList, bandwidthTotalPrice } = initInstanceBandwidth(usage);
   const { rancherList, rancherTotalPrice } = initRancherList(usage);
+
   const totals = {
     hourly: {
       total: 0,

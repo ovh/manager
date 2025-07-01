@@ -19,6 +19,7 @@ describe('HourlyConsumption', () => {
     training: [],
     notebooks: [],
     rancher: [],
+    dataplatform: [],
     monthlyInstances: [],
     aiDeploy: [],
     dataProcessing: [],
@@ -30,6 +31,7 @@ describe('HourlyConsumption', () => {
     totals: {
       total: 10.5,
       hourly: {
+        dataplatform: 10.5,
         aiEndpoints: 10.5,
         instance: 10.5,
         snapshot: 5.25,
