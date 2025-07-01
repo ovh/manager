@@ -137,11 +137,9 @@ const ApiTerraformDialog = ({
                 data.additionalStorage,
             } as Disk;
           }
-
           serviceToTerraform(terraformService);
         },
         (error) => {
-          // TODO: Handle error
           console.error(error);
           toast({
             title: error,
@@ -191,7 +189,6 @@ const ApiTerraformDialog = ({
         setApiBodyContent(formattedApiBody);
       },
       (error) => {
-        // TODO: Handle error
         console.error(error);
       },
     )();
@@ -306,7 +303,7 @@ const ApiTerraformDialog = ({
                   }
                 ></Code>
               )}
-              <p>Plus d’informations sur les paramètres disponibles :</p>
+              <p>{t('pciDatabasesAddCommandParametersInfo')}</p>
               <Table>
                 <TableBody>
                   {Object.entries(terraformSchemaDescription).map(
