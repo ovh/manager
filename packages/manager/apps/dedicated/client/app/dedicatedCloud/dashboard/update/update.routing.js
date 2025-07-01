@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     views: {
       modal: {
-        component: 'ovhManagerPccDashboardUpdate',
+        component: 'ovhManagerPccDashboardUpdateVersion',
       },
     },
     layout: 'modal',
