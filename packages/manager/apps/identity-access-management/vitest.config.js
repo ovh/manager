@@ -9,7 +9,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: './src/setupTests.ts',
+      setupFiles: './src/setupTests.tsx',
       fileParallelism: false,
       maxWorkers: 1,
       pollOptions: {

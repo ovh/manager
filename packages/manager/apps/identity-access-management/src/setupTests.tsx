@@ -39,3 +39,29 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
     }),
   };
 });
+
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => ({
+  ...(await importOriginal()),
+  OdsCheckbox: ({
+    name,
+    inputId,
+    isDisabled,
+    isChecked,
+    onOdsChange,
+  }: {
+    name: string;
+    inputId: string;
+    isDisabled: boolean;
+    isChecked: boolean;
+    onOdsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  }) => (
+    <input
+      type="checkbox"
+      name={name}
+      id={inputId}
+      checked={isChecked}
+      disabled={isDisabled}
+      onChange={onOdsChange}
+    />
+  ),
+}));
