@@ -11,7 +11,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsButton,
   OdsIcon,
-  OdsSpinner,
   OdsText,
   OdsToggle,
   OdsTooltip,
@@ -21,15 +20,19 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
 import { urls } from '@/routes/routes.constant';
-import { useGetIpGameFirewall, useUpdateIpGameFirewall } from '@/data/hooks';
+import {
+  useIpGameFirewallRules,
+  useGetIpGameFirewall,
+  useUpdateIpGameFirewall,
+} from '@/data/hooks';
 import { fromIdToIp, ipFormatter } from '@/utils';
 import { IpGameFirewallStateEnum } from '@/data/api';
+import { RuleDatagrid } from './RuleDatagrid.component';
 
 export default function ConfigureGameFirewall() {
   const { id } = useParams();
@@ -50,12 +53,15 @@ export default function ConfigureGameFirewall() {
   const { addSuccess, addError } = useNotifications();
   const { isLoading, ipGameFirewall, isError, error } = useGetIpGameFirewall({
     ip: ipGroup,
-    enabled: true,
   });
   const firewallModeEnabled = ipGameFirewall?.[0]?.firewallModeEnabled;
   const ipOnGame = ipGameFirewall?.[0]?.ipOnGame;
   const isGameFirewallState = ipGameFirewall?.[0]?.state;
   const navigate = useNavigate();
+  const { error: rulesError, isError: isRulesError } = useIpGameFirewallRules({
+    ip: ipGroup,
+    ipOnGame,
+  });
 
   const closeConfirmationModal = () => {
     setIsStrategyConfirmationModalVisible(false);
@@ -101,10 +107,13 @@ export default function ConfigureGameFirewall() {
     },
   });
 
-  if (isError) {
+  if (isError || isRulesError) {
     return (
       <ErrorBanner
-        error={'response' in error ? { ...error.response, data: error } : error}
+        error={{
+          ...(error || rulesError)?.response,
+          data: error || rulesError,
+        }}
       />
     );
   }
@@ -161,13 +170,7 @@ export default function ConfigureGameFirewall() {
             />
           </div>
         </div>
-        {isLoading ? (
-          <div className="text-center">
-            <OdsSpinner size={ODS_SPINNER_SIZE.md} />
-          </div>
-        ) : (
-          'datagrid todo in next JIRA'
-        )}
+        <RuleDatagrid ip={ipGroup} ipOnGame={ipOnGame} />
       </BaseLayout>
       <Modal
         isOpen={isStrategyConfirmationModalVisible}
