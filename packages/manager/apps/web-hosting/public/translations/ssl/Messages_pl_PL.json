@@ -50,5 +50,8 @@
   "hosting_dashboard_ssl_regenerate_error": "Wystąpił błąd podczas ponownego generowania certyfikatu SSL.",
   "web_hosting_export_label": "Eksportuj w formacie CSV",
   "web_hosting_export_success": "Plik został poprawnie utworzony. Jeśli pobieranie się nie rozpoczyna, możesz pobrać plik ręcznie.",
-  "web_hosting_export_download_manually": "Pobierz tutaj"
+  "web_hosting_export_download_manually": "Pobierz tutaj",
+  "san_ssl_title": "Domeny powiązane z certyfikatem SSL",
+  "san_ssl_message": "Liczba domen przypisanych do certyfikatu {{domain}}: {{n}}",
+  "san_ssl_copy": "Skopiuj listę do schowka"
 }
