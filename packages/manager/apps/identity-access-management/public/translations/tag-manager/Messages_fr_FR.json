@@ -1,4 +1,22 @@
 {
   "title": "Tag manager",
-  "assignTag": "assigner un tag"
+  "description": "Créez des tags en vous basant sur des couples clé:valeur pour catégoriser vos ressources OVHcloud et appliquer des politiques",
+  "assignTags": "assigner des tags",
+  "assignToResources": "Assigner à des resources",
+  "tag": "Tag",
+  "assignedResources": "Resources assignées",
+  "tagType": "Type de Tag",
+  "tagType_custom": "Tag custom",
+  "tagType_custom_tooltip": "Créé et managé par vous",
+  "tagType_predefined": "Tag prédéfini",
+  "tagType_predefined_tooltip": "Créé par OVHcloud, assigné aux resources par vous",
+  "tagType_system": "Tag system",
+  "tagType_system_tooltip": "Créé et assigné automatiquement par OVHcloud à vos resources",
+  "showSystemTag": "Afficher les tags système",
+  "showUnassignedTag": "Afficher les tags non assignés",
+  "manageResources": "Configurer mes resources",
+  "actions": "Actions",
+  "quickFilters": "Filtres rapides",
+  "itemsCounter": "Displaying 1 - {{numberOfDisplayedItems}} of {{totalItems}} items",
+  "defaultError": "Une erreur est survenue lors du chargement de la page: {{error}}"
 }
