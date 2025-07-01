@@ -9,6 +9,7 @@ const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const SettingsPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 
 export default (
   <Route
@@ -22,6 +23,16 @@ export default (
       />
     }
   >
+    <Route
+      path={urls.listing}
+      Component={ListingPage}
+      handle={{
+        tracking: {
+          pageName: 'listing',
+          pageType: PageType.listing,
+        },
+      }}
+    />
     <Route path={urls.project} Component={MainPage}>
       <Route
         path={urls.home}
