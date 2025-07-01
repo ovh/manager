@@ -1,6 +1,10 @@
 import get from 'lodash/get';
 
-import { DICTIONNARY, TASK_STATUS } from '../pack-migration.constant';
+import {
+  DICTIONNARY,
+  TASK_STATUS,
+  TYPE_FTTH,
+} from '../pack-migration.constant';
 
 export default class TelecomPackMigrationMeetingCtrl {
   /* @ngInject */
@@ -31,6 +35,7 @@ export default class TelecomPackMigrationMeetingCtrl {
     this.showMeetingSlots = false;
     this.meetingSlots = {};
     this.noAvailableMeeting = false;
+    this.isPhoneCallAvailable = false;
 
     this.process = this.tucPackMigrationProcess.getMigrationProcess();
     this.buildingReference = this.process.selectedOffer.buildingReference;
@@ -43,7 +48,10 @@ export default class TelecomPackMigrationMeetingCtrl {
       .then((eligibility) => {
         if (eligibility.result) {
           const { eligibilityReference } = eligibility.result;
-          const productCode = eligibility.result.offers[0].product.code;
+          const eligOffer = eligibility.result.offers.filter(
+            (offer) => offer.product.type === TYPE_FTTH,
+          );
+          const productCode = eligOffer[0].product.code;
           this.process.selectedOffer.address =
             eligibility.result.endpoint.address;
           this.process.selectedOffer.productCode = productCode;
@@ -99,7 +107,7 @@ export default class TelecomPackMigrationMeetingCtrl {
               ptoReference,
             );
           }, 2000);
-        } else if (result) {
+        } else if (result && result.meetingSlots.length > 0) {
           this.meetingSlots.canBookFakeMeeting = result.canBookFakeMeeting;
           this.meetingSlots.slots = result.meetingSlots;
 
@@ -138,6 +146,7 @@ export default class TelecomPackMigrationMeetingCtrl {
           this.meetingSelectMessage = '';
         } else {
           this.noAvailableMeeting = true;
+          this.isPhoneCallAvailable = !!result.capacities.phoneCall;
         }
       })
       .catch((error) => {

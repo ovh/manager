@@ -293,5 +293,6 @@
   "pack_move_ont_shipping_addresses_error": "Ocorreu um erro aquando do carregamento dos seus contactos. {{error}}",
   "pack_move_confirm_temporary_pack_creation_line_1": "Durante a transição para a sua nova oferta, será criado um pack temporário para assegurar a continuidade do serviço.",
   "pack_move_confirm_temporary_pack_creation_line_2": "Este pack será automaticamente eliminado uma vez finalizada a encomenda de Fibra.",
-  "pack_move_confirm_temporary_pack_creation_line_3": "Não é necessária nenhuma ação de modificação ou de eliminação da sua parte : a passagem para o seu acesso Fibra será efetuada de forma totalmente automatizada."
+  "pack_move_confirm_temporary_pack_creation_line_3": "Não é necessária nenhuma ação de modificação ou de eliminação da sua parte : a passagem para o seu acesso Fibra será efetuada de forma totalmente automatizada.",
+  "pack_move_phone_call_for_new_meeting": "A marcação de consultas online não está disponível. Será contactado por telefone para lhe propor uma data e uma hora que lhe convém."
 }

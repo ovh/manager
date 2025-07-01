@@ -27,6 +27,7 @@ export const MODEM_OPTION_NAME = 'modem';
 export const GTR_NONE = 'none';
 export const OFFER_XDSL = 'xdsl';
 export const OFFER_FIBER = 'fiber';
+export const TYPE_FTTH = 'FTTH';
 
 export const GRT = 'grt';
 export const CONTEXT = {
@@ -88,4 +89,5 @@ export default {
   FIBER_PTO,
   DICTIONNARY,
   TASK_STATUS,
+  TYPE_FTTH,
 };

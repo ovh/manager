@@ -211,5 +211,6 @@
   "telecom_pack_migration_ont_shipping_addresses_error": "Wystąpił błąd podczas pobierania kontaktów. {{error}}",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "W trakcie przejścia na Twoją nową ofertę zostanie stworzony tymczasowy pakiet, który ma zapewnić ciągłość usługi",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Ten pakiet zostanie automatycznie usunięty po sfinalizowaniu zamówienia Fibre.",
-  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Nie musisz wykonywać żadnych czynności związanych z modyfikacją lub usuwaniem danych: migracja na dostęp światłowodowy zostanie wykonana w pełni automatycznie."
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Nie musisz wykonywać żadnych czynności związanych z modyfikacją lub usuwaniem danych: migracja na dostęp światłowodowy zostanie wykonana w pełni automatycznie.",
+  "telecom_pack_migration_phone_call_for_new_meeting": "Umówienie wizyty online jest niedostępne. Skontaktujemy się z Tobą telefonicznie, aby zaproponować Ci odpowiednią dla Ciebie datę i godzinę."
 }

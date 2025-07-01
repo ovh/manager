@@ -212,5 +212,6 @@
   "telecom_pack_migration_ont_shipping_addresses_error": "Une erreur est survenue lors du chargement de vos contacts. {{error}}",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durant la transition vers votre nouvelle offre, un pack temporaire sera créé pour assurer la continuité du service",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Ce pack sera automatiquement supprimé une fois votre commande Fibre finalisée.",
-  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Aucune action de modification ou de suppression de votre part n'est nécessaire : le passage vers votre accès Fibre se fera de manière entièrement automatisée."
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Aucune action de modification ou de suppression de votre part n'est nécessaire : le passage vers votre accès Fibre se fera de manière entièrement automatisée.",
+  "telecom_pack_migration_phone_call_for_new_meeting": "La prise de rendez-vous en ligne n'est pas disponible. Vous serez contacté par téléphone pour vous proposer une date et un créneau horaire qui vous conviennent."
 }
