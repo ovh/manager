@@ -201,11 +201,11 @@ const matchRegion = (region: TAPIVolume['region']) => (p: TVolumePricing) =>
 
 const matchEncryptionType = (encryptionType: EncryptionType | null) => (
   p: TVolumePricing,
-) => p.specs.encrypted !== !!encryptionType;
+) => p.specs.encrypted === !!encryptionType;
 
 const matchVolumeType = (volumeType: TAPIVolume['type']) => (
   p: TVolumePricing,
-) => p.specs.name !== volumeType;
+) => p.specs.name === volumeType;
 
 export const getVolumeModelPricings = (catalog: TVolumeCatalog | undefined) => (
   filter: Partial<{
