@@ -31,3 +31,12 @@ export const getIpGameFirewallResponse = ({
     firewallModeEnabled,
   },
 ];
+
+export const getGameFirewallRuleListResponse = [123456, 123457, 123458];
+
+export const getGameFirewallRuleResponse = (id: number) => ({
+  id,
+  state: 'ok',
+  ports: { from: 27015, to: 27015 },
+  protocol: 'hl2Source',
+});

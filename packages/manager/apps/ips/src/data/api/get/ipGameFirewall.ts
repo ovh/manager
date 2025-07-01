@@ -1,4 +1,9 @@
-import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  IcebergFetchResultV6,
+  fetchIcebergV6,
+  v6,
+} from '@ovh-ux/manager-core-api';
 
 export type GetIpGameFirewallParams = {
   /**  */
@@ -31,3 +36,51 @@ export const getIpGameFirewall = async (
     route: `/ip/${encodeURIComponent(params.ip)}/game`,
     page: 1,
   });
+
+export type GetGameFirewallRuleParams = {
+  ip: string;
+  ipOnGame: string;
+};
+
+export const getGameFirewallRuleQueryKey = (
+  params: GetGameFirewallRuleParams,
+) => [
+  `get/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
+    params.ipOnGame,
+  )}/rule`,
+];
+
+export const getGameFirewallRuleList = async (
+  params: GetGameFirewallRuleParams,
+): Promise<ApiResponse<number[]>> =>
+  v6.get<number[]>(
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
+      params.ipOnGame,
+    )}/rule`,
+  );
+
+export type GetGameFirewallRuleDetailsParams = GetGameFirewallRuleParams & {
+  ruleId: number;
+};
+
+export type RuleStatus = 'createRulePending' | 'deleteRulePending' | 'ok';
+
+export type IpGameFirewallRule = {
+  protocol: string;
+  state: RuleStatus;
+  id: number;
+  ports: { from: number; to: number };
+};
+
+export const getGameFirewallRuleDetailsQueryKey = (
+  params: GetGameFirewallRuleDetailsParams,
+) => [...getGameFirewallRuleQueryKey(params), params.ruleId];
+
+export const getGameFirewallRuleDetails = async (
+  params: GetGameFirewallRuleDetailsParams,
+): Promise<ApiResponse<IpGameFirewallRule>> =>
+  v6.get<IpGameFirewallRule>(
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
+      params.ipOnGame,
+    )}/rule/${params.ruleId}`,
+  );
