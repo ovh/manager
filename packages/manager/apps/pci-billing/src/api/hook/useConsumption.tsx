@@ -147,11 +147,16 @@ const initSnapshotList = (data: TCurrentUsage) => {
   };
 };
 
-const initRancherList = (data: TCurrentUsage) => {
+const initRancherList = (
+  data: TCurrentUsage,
+): {
+  rancherList: TResourceUsage[];
+  rancherTotalPrice: number;
+} => {
   if (!data.hourlyUsage.rancher.length) {
     return {
       rancherList: [],
-      snapshotsTotalPrice: 0,
+      rancherTotalPrice: 0,
     };
   }
 
