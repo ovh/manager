@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsDatepicker,
   OsdsText,
@@ -64,8 +64,12 @@ export default function MetricPage() {
 
   const localDatePicker = getLocaleForDatePicker();
 
+  const { trackPage } = useOvhTracking();
   useEffect(() => {
-    trackClick(TRACKING.metrics.gotometricsClick);
+    trackPage({
+      pageType: PageType.dashboard,
+      pageName: 'metrics',
+    });
   }, []);
 
   return (

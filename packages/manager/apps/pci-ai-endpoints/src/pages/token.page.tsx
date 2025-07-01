@@ -1,6 +1,6 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { useState, useMemo, useEffect } from 'react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsButton,
   OsdsIcon,
@@ -157,11 +157,13 @@ export default function TokenPage() {
     startIndex,
     startIndex + pagination.pageSize,
   );
-
+  const { trackPage } = useOvhTracking();
   useEffect(() => {
-    trackClick(TRACKING.apikey.gotoApikeyClick);
+    trackPage({
+      pageType: PageType.listing,
+      pageName: 'ai_notebooks',
+    });
   }, []);
-
   return (
     <>
       {availability && (
