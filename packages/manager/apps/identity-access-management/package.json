@@ -18,6 +18,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
+    "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
@@ -51,8 +52,5 @@
     "CA",
     "EU",
     "US"
-  ],
-  "universes": [
-    "Manager"
   ]
 }
