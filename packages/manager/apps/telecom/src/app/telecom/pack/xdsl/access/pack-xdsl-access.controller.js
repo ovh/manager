@@ -421,16 +421,9 @@ export default class XdslAccessCtrl {
 
               // Set modem profile
               this.modemProfile = this.$translate.instant(
-                `xdsl_details_modem_profile_${MODEM_PROFILE.standard}`,
+                'xdsl_details_modem_profile_detail',
+                { modemProfile: access.modemProfile },
               );
-              if (
-                access.provider === PROVIDER.bouygues &&
-                access.accessType === ACCESS_TYPE.ftth
-              ) {
-                this.modemProfile = this.$translate.instant(
-                  `xdsl_details_modem_profile_${MODEM_PROFILE.bouygues}`,
-                );
-              }
               if (
                 access.provider === PROVIDER.kosc &&
                 [ACCESS_TYPE.ftth, ACCESS_TYPE.vdsl].includes(
