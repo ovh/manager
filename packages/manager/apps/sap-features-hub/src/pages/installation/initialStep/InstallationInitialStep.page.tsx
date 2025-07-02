@@ -132,9 +132,8 @@ export default function InstallationInitialStep() {
       subtitle={t('service_subtitle')}
       submitLabel={t('service_cta')}
       serverErrorMessage={serverErrorMessage}
-      isSubmitDisabled={
-        !isStepValid || isValidationPending || !!serverErrorMessage
-      }
+      isSubmitDisabled={!isStepValid || !!serverErrorMessage}
+      isSubmitLoading={isValidationPending}
       onSubmit={() => {
         trackClick(TRACKING.installation.chooseDeployment);
         validate(formData);
