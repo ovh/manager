@@ -9,7 +9,7 @@ import { okmsMock } from '@/mocks/kms/okms.mock';
 import { serviceKeyMock } from '@/mocks/serviceKeys/serviceKeys.mock';
 import { labels } from '@/utils/tests/init.i18n';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
+import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const mockPageUrl = KMS_ROUTES_URLS.serviceKeyDashboard(

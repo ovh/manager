@@ -34,17 +34,19 @@ export default function DashboardPage() {
     'key-management-service/credential',
   ]);
   const navigate = useNavigate();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as {
+    okmsId: string;
+  };
   const {
     data: okms,
-    isLoading: isOkmsLoading,
-    isError: isOkmsError,
+    isPending: isOkmsLoading,
     error: okmsError,
   } = useOkmsById(okmsId);
 
   const {
     data: okmsService,
     isPending: isOkmsServiceLoading,
+    error: okmsServiceError,
   } = useServiceDetails({ resourceName: okmsId });
 
   const {
@@ -52,65 +54,49 @@ export default function DashboardPage() {
     isLoading: isFeatureAvailabilityLoading,
   } = useFeatureAvailability([KMS_FEATURES.LOGS]);
 
-  const tabsList: KmsTabProps[] = useMemo(
-    () =>
-      [
-        {
-          url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
-          content: (
-            <>{t('key-management-service/dashboard:general_informations')}</>
-          ),
-        },
-        {
-          url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
-          content: <>{SERVICE_KEYS_LABEL}</>,
-        },
-        {
-          url: KMS_ROUTES_URLS.credentialListing(okmsId),
-          content: (
-            <>{t('key-management-service/dashboard:access_certificates')}</>
-          ),
-        },
-        features?.[KMS_FEATURES.LOGS] && {
-          url: KMS_ROUTES_URLS.kmsLogs(okmsId),
-          content: (
-            <div className="flex gap-2">
-              {t('key-management-service/dashboard:logs')}{' '}
-              <OdsBadge
-                size="sm"
-                label="beta"
-                color="information"
-                className="font-normal"
-              />
-            </div>
-          ),
-        },
-      ].filter(Boolean),
-    [features, t, okmsId],
-  );
+  const tabsList: KmsTabProps[] = useMemo(() => {
+    const tabs: KmsTabProps[] = [
+      {
+        url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
+        content: (
+          <>{t('key-management-service/dashboard:general_informations')}</>
+        ),
+      },
+      {
+        url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
+        content: <>{SERVICE_KEYS_LABEL}</>,
+      },
+      {
+        url: KMS_ROUTES_URLS.credentialListing(okmsId),
+        content: (
+          <>{t('key-management-service/dashboard:access_certificates')}</>
+        ),
+      },
+    ];
+    if (features?.[KMS_FEATURES.LOGS]) {
+      tabs.push({
+        url: KMS_ROUTES_URLS.kmsLogs(okmsId),
+        content: (
+          <div className="flex gap-2">
+            {t('key-management-service/dashboard:logs')}{' '}
+            <OdsBadge
+              size="sm"
+              label="beta"
+              color="information"
+              className="font-normal"
+            />
+          </div>
+        ),
+      });
+    }
 
-  if (isOkmsServiceLoading || isOkmsLoading || isFeatureAvailabilityLoading) {
-    return <Loading />;
-  }
-
-  if (isOkmsError) {
-    return (
-      <ErrorBanner
-        error={okmsError.response}
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsResourceQueryKey(okmsId),
-          })
-        }
-      />
-    );
-  }
+    return tabs;
+  }, [features, t, okmsId]);
 
   // If the service information is not accessible, we fallback to the okms id
   const displayName = okmsService
     ? okmsService?.data?.resource.displayName
-    : okms?.data?.id;
+    : okmsId;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -143,6 +129,24 @@ export default function DashboardPage() {
       navigateTo: KMS_ROUTES_URLS.kmsLogs(okmsId),
     },
   ];
+
+  if (isOkmsServiceLoading || isOkmsLoading || isFeatureAvailabilityLoading) {
+    return <Loading />;
+  }
+
+  if (okmsServiceError || okmsError) {
+    return (
+      <ErrorBanner
+        error={okmsServiceError?.response || okmsError?.response || {}}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsResourceQueryKey(okmsId),
+          })
+        }
+      />
+    );
+  }
 
   const headerProps: HeadersProps = {
     title: displayName,

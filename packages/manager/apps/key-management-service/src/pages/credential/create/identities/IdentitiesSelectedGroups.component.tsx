@@ -43,6 +43,7 @@ const IdentitiesSelectedGroups = ({
       isSortable: false,
     },
   ];
+
   return (
     <IdentitiesSelectedBase
       title={t(

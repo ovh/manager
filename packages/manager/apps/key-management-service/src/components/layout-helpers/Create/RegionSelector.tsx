@@ -1,4 +1,4 @@
-import React, { useContext, Dispatch, SetStateAction, Suspense } from 'react';
+import React, { useContext, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsText,
@@ -29,8 +29,8 @@ import { CREATE_KMS_TEST_IDS } from '@/pages/create/createKms.constants';
 
 export type RegionSelectorProps = {
   setOrderInitiated: () => void;
-  selectRegion: Dispatch<SetStateAction<string>>;
-  selectedRegion: string | null;
+  selectRegion: (region: string) => void;
+  selectedRegion: string | undefined;
 };
 
 const RegionSelector = ({
@@ -131,12 +131,14 @@ const RegionSelector = ({
           color={ODS_BUTTON_COLOR.primary}
           isDisabled={!selectedRegion}
           onClick={() => {
-            trackClick({
-              location: PageLocation.funnel,
-              buttonType: ButtonType.link,
-              actionType: 'navigation',
-              actions: ['create_kms', 'confirm', selectedRegion],
-            });
+            if (selectedRegion) {
+              trackClick({
+                location: PageLocation.funnel,
+                buttonType: ButtonType.link,
+                actionType: 'navigation',
+                actions: ['create_kms', 'confirm', selectedRegion],
+              });
+            }
             setOrderInitiated();
           }}
           icon={ODS_ICON_NAME.externalLink}

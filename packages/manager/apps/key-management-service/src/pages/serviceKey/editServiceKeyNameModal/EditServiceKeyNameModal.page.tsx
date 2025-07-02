@@ -22,13 +22,16 @@ import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
 import Loading from '@/components/Loading/Loading';
 import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import {
-  ServiceKeyNameErrorsType,
+  ServiceKeyNameErrors,
   validateServiceKeyName,
 } from '@/utils/serviceKey/validateServiceKeyName';
-import { SERVICE_KEY_TEST_IDS } from '../ServiceKey.constants';
+import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
 
 export const EditServiceKeyNameModal = () => {
-  const { okmsId, keyId } = useParams();
+  const { okmsId, keyId } = useParams() as {
+    okmsId: string;
+    keyId: string;
+  };
   const { data, isLoading, error } = useOkmsServiceKeyById({ okmsId, keyId });
   const [serviceKeyName, setServiceKeyName] = useState(data?.data?.name || '');
   const serviceKeyNameError = validateServiceKeyName(serviceKeyName);
@@ -64,7 +67,7 @@ export const EditServiceKeyNameModal = () => {
     },
   });
 
-  const getErrorMessage = (err: ServiceKeyNameErrorsType) => {
+  const getErrorMessage = (err: ServiceKeyNameErrors | undefined) => {
     switch (err) {
       case 'REQUIRED':
         return t(
@@ -83,7 +86,9 @@ export const EditServiceKeyNameModal = () => {
   };
 
   React.useEffect(() => {
-    setServiceKeyName(data?.data?.name);
+    if (data?.data?.name) {
+      setServiceKeyName(data?.data?.name);
+    }
   }, [data]);
 
   if (error) return <div>{error.response.data.message}</div>;

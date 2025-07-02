@@ -12,7 +12,7 @@ import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 export default function Create() {
   const { t } = useTranslation('key-management-service/create');
   const [isOrderInitiated, setIsOrderInitiated] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState(undefined);
+  const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
 
   return (
     <div className="m-10">
@@ -32,14 +32,14 @@ export default function Create() {
       <OdsText className="block mb-5" preset={ODS_TEXT_PRESET.paragraph}>
         {t('key_management_service_create_subtitle')}
       </OdsText>
-      {!isOrderInitiated ? (
+      {isOrderInitiated && selectedRegion ? (
+        <OrderConfirmation region={selectedRegion} />
+      ) : (
         <RegionSelector
           setOrderInitiated={() => setIsOrderInitiated(true)}
           selectRegion={setSelectedRegion}
           selectedRegion={selectedRegion}
         />
-      ) : (
-        <OrderConfirmation region={selectedRegion} />
       )}
     </div>
   );

@@ -14,7 +14,8 @@
     "build": "tsc && vite build",
     "start": "tsc && vite",
     "test": "vitest run --reporter=verbose",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "lint:check": "eslint --ext .ts,.tsx . && tsc --noEmit"
   },
   "dependencies": {
     "@ovh-ux/logs-to-customer": "^1.5.3",
