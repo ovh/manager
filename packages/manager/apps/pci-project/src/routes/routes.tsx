@@ -5,11 +5,11 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
+const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const SettingsPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
-const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 
 export default (
   <Route

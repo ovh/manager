@@ -1,9 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
-  // OdsSpinner,
-  OdsText,
   OdsBadge,
   OdsBreadcrumb,
   OdsBreadcrumbItem,
@@ -14,20 +13,18 @@ import {
   Title,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+
 import Navigation from './Navigation.page';
-import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
+import FullPageSpinner from '@/components/FullPageSpinner';
 
 export default function ProjectHeader() {
   const { t } = useTranslation(['common', 'home', 'settings']);
-
-  const { data: project, isError } = useProject();
-
   const appHomeUrl = useProjectUrl('public-cloud') + urls.home;
+  const { data: project, isLoading, error } = useProject();
 
-  if (!project) return <NotFound />;
-  if (isError) return <OdsText>{t('error')}</OdsText>;
-  if (!project) return <OdsText>{t('project_not_found')}</OdsText>;
+  if (isLoading) return <FullPageSpinner />;
+  if (error) throw error;
 
   const projectDescription = project?.description;
 
@@ -38,9 +35,7 @@ export default function ProjectHeader() {
       'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
   };
 
-  return isError ? (
-    <NotFound />
-  ) : (
+  return (
     <BaseLayout
       breadcrumb={
         <OdsBreadcrumb>
