@@ -36,7 +36,7 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_instance_detail_title'),
       component: (
         <InstanceList
-          billingInstances={consumption?.hourlyInstances}
+          billingInstances={consumption.hourlyInstances}
           colNameLabel={t('cpbc_hourly_instance_col_name')}
           colTotalLabel={t('cpbc_hourly_instance_col_consumption')}
         />
@@ -45,29 +45,29 @@ export default function HourlyConsumption({
     {
       key: 'snapshot',
       title: t('cpbc_snapshot_detail_title'),
-      component: <SnapshotList snapshots={consumption?.snapshots} />,
+      component: <SnapshotList snapshots={consumption.snapshots} />,
     },
     {
       key: 'volume',
       title: t('cpbc_volume_detail_title'),
-      component: <VolumeList volumes={consumption?.volumes} />,
+      component: <VolumeList volumes={consumption.volumes} />,
     },
     {
       key: 'objectStorage',
       title: t('cpbc_object_storage_detail_title'),
-      component: <ObjectStorageList storages={consumption?.objectStorages} />,
+      component: <ObjectStorageList storages={consumption.objectStorages} />,
     },
 
     {
       key: 'archiveStorage',
       title: t('cpbc_archive_storage_detail_title'),
-      component: <ArchiveStorageList storages={consumption?.archiveStorages} />,
+      component: <ArchiveStorageList storages={consumption.archiveStorages} />,
       condition: !isTrustedZone,
     },
     {
       key: 'coldArchive',
       title: t('cpbc_cold_archive_detail_title'),
-      component: <ColdArchiveList coldArchives={consumption?.coldArchive} />,
+      component: <ColdArchiveList coldArchives={consumption.coldArchive} />,
       condition: !isTrustedZone,
     },
     {
@@ -75,7 +75,7 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_instance_trafic_title'),
       component: (
         <OutgoingTrafficList
-          instanceBandwidths={consumption?.bandwidthByRegions}
+          instanceBandwidths={consumption.bandwidthByRegions}
         />
       ),
     },
@@ -83,7 +83,7 @@ export default function HourlyConsumption({
       key: 'privateRegistry',
       title: t('cpbc_hourly_private_registry_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.privateRegistry} />
+        <ResourceUsageList resourcesUsage={consumption.privateRegistry} />
       ),
       condition: !isTrustedZone,
     },
@@ -103,7 +103,7 @@ export default function HourlyConsumption({
       title: PRODUCTS.KUBERNETES_LOAD_BALANCER,
       component: (
         <ResourceUsageList
-          resourcesUsage={consumption?.kubernetesLoadBalancer}
+          resourcesUsage={consumption.kubernetesLoadBalancer}
         />
       ),
       condition: !isTrustedZone,
@@ -111,7 +111,7 @@ export default function HourlyConsumption({
     {
       key: 'training',
       title: t('cpbc_hourly_training_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.training} />,
+      component: <ResourceUsageList resourcesUsage={consumption.training} />,
       condition: !isTrustedZone,
     },
     {
@@ -185,7 +185,7 @@ export default function HourlyConsumption({
         slot="summary"
         className="my-2"
       >
-        {`${title} (${consumption?.totals?.hourly?.[key]?.toFixed(2)} ${
+        {`${title} (${consumption.totals.hourly[key].toFixed(2)} ${
           currency.symbol
         })`}
       </OsdsText>
