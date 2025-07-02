@@ -1,4 +1,16 @@
 {
   "nasha_directory_order_label": "HA-NAS bestellen",
-  "nasha_directory_order_value": "HA-NAS bestellen"
+  "nasha_directory_order_value": "HA-NAS bestellen",
+  "nasha_directory_columns_header_serviceName": "Service-ID",
+  "nasha_directory_columns_header_canCreatePartition": "Erstellung einer Partition",
+  "nasha_directory_columns_header_canCreatePartition_true": "Autorisiert",
+  "nasha_directory_columns_header_canCreatePartition_false": "Nicht autorisiert",
+  "nasha_directory_columns_header_customName": "Name",
+  "nasha_directory_columns_header_datacenter": "Standort des Rechenzentrums",
+  "nasha_directory_columns_header_diskType": "Festplattentyp",
+  "nasha_directory_columns_header_monitored": "Überwacht",
+  "nasha_directory_columns_header_monitored_true": "Ja",
+  "nasha_directory_columns_header_monitored_false": "Nein",
+  "nasha_directory_columns_header_zpoolCapacity": "Zpool-Kapazität",
+  "nasha_directory_columns_header_zpoolSize": "Zpool-Größe"
 }

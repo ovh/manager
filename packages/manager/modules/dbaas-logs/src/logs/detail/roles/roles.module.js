@@ -10,6 +10,7 @@ import '@ovh-ux/ui-kit';
 import add from './add/add.module';
 import component from './roles.component';
 import editPermissions from './edit-permissions/edit-permissions.module';
+import enableIam from './enable-iam/enable-iam.module';
 import members from './members/members.module';
 import overview from './overview/overview.module';
 import routing from './roles.routing';
@@ -27,6 +28,7 @@ angular
     'ui.router',
     add,
     editPermissions,
+    enableIam,
     members,
     overview,
   ])

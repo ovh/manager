@@ -77,7 +77,9 @@
             data-disabled="ctrl.disableTabs"
             data-state-params="{ serviceName: ctrl.serivceName }"
             data-on-click="ctrl.trackClick(ctrl.TRACKING_HITS.ROLES)"
-            ><span data-translate="logs_tab_roles"></span>
+            ><span
+                data-translate="{{ ctrl.iamEnabled ? 'logs_tab_iam' : 'logs_tab_roles' }}"
+            ></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
 </header>

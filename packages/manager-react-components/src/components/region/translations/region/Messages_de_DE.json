@@ -29,5 +29,6 @@
   "region_us-west-lz-pao": "Nordamerika (USA – Westen – Palo Alto)",
   "region_us-west-lz-den": "Nordamerika (USA – Westen – Denver)",
   "region_us-east-lz-atl": "Nordamerika (USA – Osten – Atlanta)",
-  "region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)"
+  "region_eu-west-lz-mrs": "Europa (Frankreich – Marseille)",
+  "region_eu-south-mil": "Europa (Italien – Mailand)"
 }
