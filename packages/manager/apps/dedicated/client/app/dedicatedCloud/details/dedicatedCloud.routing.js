@@ -347,6 +347,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 NEW_PRODUCT_LINK.default
               : null,
           ),
+      isLogsDisabled: () => false,
       breadcrumb: /* @ngInject */ (serviceName, dedicatedCloudDescription) =>
         dedicatedCloudDescription.description || serviceName,
     },
