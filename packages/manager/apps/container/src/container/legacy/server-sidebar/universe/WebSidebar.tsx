@@ -25,9 +25,7 @@ export const webFeatures = [
   'emails:delegate',
   'emails',
   'exchange:web-dashboard',
-  'office',
   'office-reseller',
-  'sharepoint',
   'web:microsoft',
   'cloud-web',
   'cloud-database',
@@ -261,7 +259,7 @@ export default function WebSidebar() {
         label: t('sidebar_microsoft'),
         icon: getIcon('ms-Icon ms-Icon--WindowsLogo'),
         routeMatcher: new RegExp(
-          `^(/configuration)?/(exchange|office|sharepoint)`,
+          `^(/configuration)?/(exchange|web-office)`,
         ),
         subItems: [
           {
@@ -278,19 +276,6 @@ export default function WebSidebar() {
               const services = await loadServices('/email/exchange');
               return services.map((service) => ({
                 icon: getIcon('ms-Icon ms-Icon--ExchangeLogo'),
-                ...service,
-              }));
-            },
-          },
-          features.office && {
-            id: 'office',
-            label: t('sidebar_license_office'),
-            icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
-            routeMatcher: new RegExp(`/office`),
-            async loader() {
-              const services = await loadServices('/license/office');
-              return services.map((service) => ({
-                icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
                 ...service,
               }));
             },
