@@ -50,6 +50,7 @@ export default class PackInformationCtrl {
         this.isEngaged = moment(
           this.$scope.Pack.pack.informations.engagedUpTo,
         ).isAfter(moment());
+        this.canChangeOffer = this.$scope.Pack.pack.capabilities.canChangeOffer;
       })
       .catch((err) => {
         if (err.status !== 460 && err.status !== 403) {
