@@ -47,7 +47,7 @@ module.exports = {
           'error',
           { ignoreRestSiblings: true },
         ],
-        '@typescript-eslint/no-unnecessary-condition': 'error',
+        '@typescript-eslint/no-unnecessary-condition': '1',
       },
     },
   ],

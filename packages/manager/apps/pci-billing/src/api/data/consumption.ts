@@ -18,31 +18,8 @@ export type TQuantity = {
   value: number;
 };
 
-export type TPeriod = { from: string; to: string };
+type TPeriod = { from: string; to: string };
 
-export enum TConsumptionType {
-  dataplatform = 'dataplatform',
-  dataprocessing = 'dataprocessing',
-  aiendpoints = 'aiendpoints',
-  rancher = 'rancher',
-  instance = 'instance',
-  instanceoption = 'instanceoption',
-  snapshot = 'snapshot',
-  registry = 'registry',
-  loadbalancer = 'loadbalancer',
-  aiNotebook = 'ai-notebook',
-  aiServingEngine = 'ai-serving-engine',
-  aiTraining = 'ai-training',
-  aiEndpoints = 'ai-endpoints',
-  dataProcessingJob = 'data-processing-job',
-  databases = 'databases',
-  coldarchive = 'coldarchive',
-  floatingip = 'floatingip',
-  gateway = 'gateway',
-  octaviaLoadbalancer = 'octavia-loadbalancer',
-  aiApp = 'ai-app',
-  publicip = 'publicip',
-}
 
 export type TCurrentUsage = {
   hourlyUsage: {
