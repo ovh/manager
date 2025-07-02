@@ -158,9 +158,8 @@ export default function InstallationStepEnablement() {
         title={t('enablement_title')}
         subtitle={t('enablement_subtitle')}
         submitLabel={t('enablement_cta')}
-        isSubmitDisabled={
-          !isValid || !!serverErrorMessage || isValidationPending
-        }
+        isSubmitDisabled={!isValid || !!serverErrorMessage}
+        isSubmitLoading={isValidationPending}
         serverErrorMessage={serverErrorMessage}
         onSubmit={() => {
           trackClick(TRACKING.installation.startSAPDeployment);
