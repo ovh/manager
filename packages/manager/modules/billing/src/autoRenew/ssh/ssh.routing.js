@@ -23,8 +23,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_ssh_title'),
-      hideBreadcrumb: /* @ngInject */ (isAutorenewManagementAvailable) =>
-        !isAutorenewManagementAvailable,
     },
   });
 };
