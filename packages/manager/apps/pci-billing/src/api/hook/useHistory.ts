@@ -21,7 +21,7 @@ export const useUsageHistoryPeriod = (
     queryKey: [projectId, from, to, 'history', 'usage'],
     queryFn: async () => {
       const historyPeriod = await getUsageHistoryPeriod(projectId, from, to);
-      return historyPeriod?.length
+      return historyPeriod.length
         ? historyPeriod[0]
         : ({} as TUsageHistoryPeriod);
     },
@@ -43,7 +43,7 @@ export const useGetUsageHistory = (
         const currentUsage = await getCurrentUsage(projectId);
         monthlyDetails = currentUsage.monthlyUsage;
       } else if (
-        new Date(periodDetail.period.to).getUTCMonth() ===
+        new Date(periodDetail?.period.to).getUTCMonth() ===
         billingDate.getMonth()
       ) {
         monthlyDetails = historyUsage.monthlyUsage;
