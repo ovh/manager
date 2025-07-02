@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.2...@ovh-ux/manager-pci-kubernetes-app@0.26.3) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** update anti affinity max node pool quantity ([f7f6a68](https://github.com/ovh/manager/commit/f7f6a681d18c44fa2867f4c5f32a494342221068)), closes [#TAPC-4449](https://github.com/ovh/manager/issues/TAPC-4449) [#INC-0138944](https://github.com/ovh/manager/issues/INC-0138944)
+
+
+
+
+
 ## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.1...@ovh-ux/manager-pci-kubernetes-app@0.26.2) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
