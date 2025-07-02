@@ -36,13 +36,17 @@ export const kmsServicesMock: ServiceDetails = {
       priceInUcents: 0,
       pricingMode: 'default',
       pricingType: 'rental',
-      engagementConfiguration: null,
+      engagementConfiguration: {
+        defaultEndAction: 'REACTIVATE_ENGAGEMENT',
+        duration: '',
+        type: 'periodic',
+      },
     },
-    group: null,
+    group: { id: 1 },
     lifecycle: {
       current: {
         pendingActions: [],
-        terminationDate: null,
+        terminationDate: '',
         creationDate: '2024-06-17T12:30:24Z',
         state: 'active',
       },
@@ -61,7 +65,7 @@ export const kmsServicesMock: ServiceDetails = {
       },
     },
     engagement: null,
-    engagementRequest: null,
+    engagementRequest: { pricingMode: '', requestDate: '' },
   },
   resource: {
     displayName: 'testkms123k',
@@ -71,7 +75,7 @@ export const kmsServicesMock: ServiceDetails = {
       name: 'okms',
       description: 'OVHcloud KMS',
     },
-    resellingProvider: null,
+    resellingProvider: 'ovh.eu',
   },
   serviceId: 123456789,
   parentServiceId: null,

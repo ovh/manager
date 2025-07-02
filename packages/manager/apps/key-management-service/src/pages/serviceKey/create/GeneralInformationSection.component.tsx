@@ -8,28 +8,26 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import {
-  ServiceKeyNameErrorsType,
+  ServiceKeyNameErrors,
   validateServiceKeyName,
 } from '@/utils/serviceKey/validateServiceKeyName';
 
-export type GeneralInformationSectionProps = {
-  serviceKeyNameError?: ServiceKeyNameErrorsType;
-  setServiceKeyNameError?: React.Dispatch<
-    React.SetStateAction<ServiceKeyNameErrorsType>
-  >;
-  keyDisplayName: string;
-  setKeyDisplayName: React.Dispatch<React.SetStateAction<string>>;
+type GeneralInformationSectionProps = {
+  serviceKeyNameError: ServiceKeyNameErrors | undefined;
+  setServiceKeyNameError: (error: ServiceKeyNameErrors | undefined) => void;
+  keyDisplayName: string | undefined;
+  setKeyDisplayName: (displayName: string) => void;
 };
 
-export const GeneralInformationSection: React.FC<GeneralInformationSectionProps> = ({
+export const GeneralInformationSection = ({
   serviceKeyNameError,
   setServiceKeyNameError,
   keyDisplayName,
   setKeyDisplayName,
-}) => {
+}: GeneralInformationSectionProps) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const getErrorMessage = (error: ServiceKeyNameErrorsType) => {
+  const getErrorMessage = (error: ServiceKeyNameErrors | undefined) => {
     switch (error) {
       case 'REQUIRED':
         return t(
@@ -43,7 +41,7 @@ export const GeneralInformationSection: React.FC<GeneralInformationSectionProps>
         return t('key_management_service_service-keys_update_name_error_max');
 
       default:
-        return null;
+        return undefined;
     }
   };
 
@@ -79,8 +77,10 @@ export const GeneralInformationSection: React.FC<GeneralInformationSectionProps>
           )}
           value={keyDisplayName}
           onOdsChange={(e) => {
-            const newServiceKeyName = e.detail.value as string;
-            setServiceKeyNameError(validateServiceKeyName(newServiceKeyName));
+            const newServiceKeyName = e.detail.value?.toString() || '';
+            if (keyDisplayName) {
+              setServiceKeyNameError(validateServiceKeyName(newServiceKeyName));
+            }
             setKeyDisplayName(newServiceKeyName);
           }}
         />
