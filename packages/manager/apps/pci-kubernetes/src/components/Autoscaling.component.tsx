@@ -78,7 +78,7 @@ export function Autoscaling({
       setQuantity((q) => ({
         ...q,
         min: 0,
-        max: NODE_RANGE.MAX,
+        max: maxValue,
       }));
     }
   }, [isAutoscale]);

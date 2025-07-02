@@ -1,5 +1,4 @@
 import {
-  Links,
   StepComponent,
   Subtitle,
   useCatalogPrice,
@@ -13,7 +12,7 @@ import {
   TProductAvailabilityRegion,
 } from '@ovh-ux/manager-pci-common';
 import { Trans, useTranslation } from 'react-i18next';
-import { FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -33,20 +32,10 @@ import { StepsEnum, useNewGatewayStore } from '@/pages/add/useStore';
 import { RegionType } from '@/types/region';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 import { useDeployments } from '@/api/hooks/useDeployments/useDeployments';
+import { GuideLink } from '@/components/GuideLink';
 
 const isRegionWith3AZ = (regions: TProductAvailabilityRegion[]) =>
   regions.some((region) => region.type === RegionType['3AZ']);
-
-const GuideLink: FC<PropsWithChildren<{ href: string }>> = ({
-  children,
-  href,
-}) => (
-  <Links
-    label={children}
-    href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
-  />
-);
 
 /**
  *

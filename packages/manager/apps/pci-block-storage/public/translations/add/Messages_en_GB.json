@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}} GB/month",
   "pci_projects_project_storages_blocks_add_size_title": "Volume capacity",
-  "pci_projects_project_storages_blocks_add_size_help": "The maximum size depends on your available quota.",
+  "pci_projects_project_storages_blocks_add_size_help": "The maximum size depends on your available quota. <Link>Check my quota</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Volume name",
   "pci_projects_project_storages_blocks_add_submit_title": "Confirmation",
@@ -43,5 +43,6 @@
   "pci_projects_project_storages_blocks_add_type_addon_iops_dynamic": "{{iops}} IOPS/GB up to {{max}} IOPS{{separator}} ",
   "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "You need to use a multi-attach or clustered file system if you have multiple instances attached to your volumes. This configuration stops data from getting corrupted. For more information, <Link>refer to our guide on configuring multi-attach volumes</Link>",
   "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Explore the distinctive features offered by 3-AZ services.",
-  "pci_projects_project_storages_blocks_add_encryption_description": "Enable encryption to add a security layer to your volumes and ensure the confidentiality of your information."
+  "pci_projects_project_storages_blocks_add_encryption_description": "Enable encryption to add a security layer to your volumes and ensure the confidentiality of your information.",
+  "pci_projects_project_storages_blocks_add_error_quota_exceeded": "You no longer have any quota available for this location. To continue, <Link>increase your quotas</Link>"
 }
