@@ -93,12 +93,6 @@ export default class ServicesCtrl {
     this.currentCriteria = JSON.parse(JSON.stringify(this.criteria));
   }
 
-  descriptionOfHeading() {
-    return this.coreConfig.getRegion() !== 'US'
-      ? this.$translate.instant('billing_description')
-      : '';
-  }
-
   getCriterionTitle(type, value) {
     return `${this.$translate.instant(
       `billing_autorenew_criterion_${type}`,
