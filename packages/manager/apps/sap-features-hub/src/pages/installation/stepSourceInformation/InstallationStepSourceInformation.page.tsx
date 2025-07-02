@@ -77,9 +77,8 @@ export default function InstallationStepSourceInformation() {
       title={t('source_title')}
       subtitle={t('source_subtitle')}
       submitLabel={t('source_cta')}
-      isSubmitDisabled={
-        !isStepValid || !!serverErrorMessage || isValidationPending
-      }
+      isSubmitDisabled={!isStepValid || !!serverErrorMessage}
+      isSubmitLoading={isValidationPending}
       serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.defineOsConfig);

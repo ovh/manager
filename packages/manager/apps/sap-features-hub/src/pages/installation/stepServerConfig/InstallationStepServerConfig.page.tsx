@@ -285,9 +285,8 @@ export default function InstallationStepServerConfig() {
       <FormLayout
         title={t('server_config_title')}
         subtitle={t('server_config_subtitle')}
-        isSubmitDisabled={
-          !formState.isValid || !!serverErrorMessage || isValidationPending
-        }
+        isSubmitDisabled={!formState.isValid || !!serverErrorMessage}
+        isSubmitLoading={isValidationPending}
         submitLabel={t('server_config_cta')}
         serverErrorMessage={serverErrorMessage}
         onSubmit={handleSubmit(() => {

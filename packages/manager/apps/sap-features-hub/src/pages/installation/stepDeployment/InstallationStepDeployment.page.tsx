@@ -81,9 +81,8 @@ export default function InstallationStepDeployment() {
       title={t('deployment_title')}
       subtitle={t('deployment_subtitle')}
       submitLabel={t('deployment_cta')}
-      isSubmitDisabled={
-        !isStepValid || !!isValidationPending || !!serverErrorMessage
-      }
+      isSubmitDisabled={!isStepValid || !!serverErrorMessage}
+      isSubmitLoading={isValidationPending}
       serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.completeInformations);
