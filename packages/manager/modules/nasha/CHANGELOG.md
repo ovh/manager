@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.20.0...@ovh-ux/manager-nasha@2.20.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4126] ([d1317f8](https://github.com/ovh/manager/commit/d1317f830f22467714eca4059dbba62ce8ab7fb8))
+* **nasha-listing:** defining translations for the headers of the nas-ha's listing ([3d06b93](https://github.com/ovh/manager/commit/3d06b937bbe2bb6eae2be09c240c9d0ae3fa2b8e)), closes [#MANAGER-18178](https://github.com/ovh/manager/issues/MANAGER-18178)
+
+
+
+
+
 # [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.19.1...@ovh-ux/manager-nasha@2.20.0) (2025-05-12)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.29.0...@ovh-ux/manager-dbaas-logs@1.30.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **ldp:** fix guide links ([7f8cd94](https://github.com/ovh/manager/commit/7f8cd94374d9864f04e51934597dddeb90d91ab1)), closes [#MANAGER-18334](https://github.com/ovh/manager/issues/MANAGER-18334)
+
+
+### Features
+
+* **ldp:** enable iam ([84a354b](https://github.com/ovh/manager/commit/84a354b09dfb7e8d770064b4324a891535339bbf)), closes [#OB-5678](https://github.com/ovh/manager/issues/OB-5678)
+
+
+
+
+
 # [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.28.1...@ovh-ux/manager-dbaas-logs@1.29.0) (2025-05-13)
 
 

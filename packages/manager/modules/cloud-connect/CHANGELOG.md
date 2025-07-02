@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.3...@ovh-ux/manager-cloud-connect@1.22.4) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+* **occ.statistics:** display bgp road statitics with good params ([b5a41d5](https://github.com/ovh/manager/commit/b5a41d58f2438960c3b39b84cc34ea00d9bd38d2))
+
+
+
+
+
 ## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.2...@ovh-ux/manager-cloud-connect@1.22.3) (2025-06-20)
 
 
