@@ -13,14 +13,12 @@ const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretListing(mockOkmsId);
 
 const renderPage = async () => {
-  const { container } = await renderTestApp(mockPageUrl);
+  const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  expect(
-    await screen.findByText(labels.secretManager.common.secret_manager),
-  ).toBeVisible();
+  await assertTextVisibility(labels.secretManager.common.secret_manager);
 
-  return { container };
+  return results;
 };
 
 describe('Secrets listing test suite', () => {
