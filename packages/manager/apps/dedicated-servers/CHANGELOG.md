@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.6...@ovh-ux/manager-dedicated-servers-app@0.3.0) (2025-07-02)
+
+
+### Features
+
+* **dedicated-servers:** add tracking ([6a48cf6](https://github.com/ovh/manager/commit/6a48cf6bd5e7d12fd7874c69c02a3d156a68810e)), closes [#MANAGER-18249](https://github.com/ovh/manager/issues/MANAGER-18249)
+* **dedicated-servers:** update tracking ([abfc500](https://github.com/ovh/manager/commit/abfc5008005b34d6c05582958fa63b5b9c64503c)), closes [#MANAGER-18249](https://github.com/ovh/manager/issues/MANAGER-18249)
+
+
+
+
+
 ## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.5...@ovh-ux/manager-dedicated-servers-app@0.2.6) (2025-06-26)
 
 
