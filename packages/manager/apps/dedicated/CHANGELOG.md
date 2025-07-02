@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.44.5...@ovh-ux/manager-dedicated@20.45.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+* **dedicated.pcc:** fix update allowed networks ([9a99d88](https://github.com/ovh/manager/commit/9a99d8844b7d56d57da3cd1eda555b1dd3c70d77)), closes [#MANAGER-18913](https://github.com/ovh/manager/issues/MANAGER-18913)
+* **i18n:** add missing translations [CDS 4119] ([e18578b](https://github.com/ovh/manager/commit/e18578b032f6c6acfcf4cfa57b8057dc48b2c6e5))
+* **i18n:** add missing translations [CDS 4150] ([e93e704](https://github.com/ovh/manager/commit/e93e70479a324fc3e64ca2490f08bde40c3868dc))
+
+
+### Features
+
+* **dedicated-cloud.virtual-machines:** adding backup status and virtual machine properties ([f986c17](https://github.com/ovh/manager/commit/f986c179a9d46a1dae3560bfd312ab67ef812ba0)), closes [#MANAGER-18294](https://github.com/ovh/manager/issues/MANAGER-18294)
+* **dedicated.ip:** permanent mitigation eol ([2155c0d](https://github.com/ovh/manager/commit/2155c0dcf0c36682c879c618ddfa92b985fd5fe9)), closes [#MANAGER-18513](https://github.com/ovh/manager/issues/MANAGER-18513)
+
+
+
+
+
 ## [20.44.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.44.4...@ovh-ux/manager-dedicated@20.44.5) (2025-06-26)
 
 
