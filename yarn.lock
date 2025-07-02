@@ -6588,7 +6588,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
   integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
 
-"@ovh-ux/manager-core-api@^0.11.0", "@ovh-ux/manager-core-api@^0.11.1":
+"@ovh-ux/manager-core-api@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.11.1.tgz#182cc03bd8532dcc08c09f1df7d34bb7ed349efe"
   integrity sha512-RUXMD5Yp80ek7IjuKBTc3Qn/eJMVdbhsLJ/C4xOltHm2YcU5dy7FBDSUP6JCMrPV9J03w6aWIHPKsKs8fVRSuQ==
