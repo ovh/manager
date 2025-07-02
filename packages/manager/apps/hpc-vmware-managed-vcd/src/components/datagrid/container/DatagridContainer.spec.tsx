@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
@@ -29,7 +29,10 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComponents) => {
   return {
     ...module,
     useResourcesIcebergV2: vi.fn().mockReturnValue({
-      data: { pages: [{ data: [{ id: 'value for id' }] }] },
+      data: {
+        pages: [{ data: [{ id: 'value for id' }] }],
+      },
+      flattenData: [{ id: 'value for id' }],
       isLoading: false,
     }),
     useDatagridSearchParams: vi.fn().mockReturnValue({
@@ -41,10 +44,8 @@ vi.mock('@ovh-ux/manager-react-components', async (managerComponents) => {
       sorting: { desc: false, id: 'value for id' },
       setSorting: vi.fn(),
     }),
-    ChangelogButton: () => (
-      <div data-testid="changelog-button">Changelog Button</div>
-    ),
-    GuideButton: () => <div data-testid="guide-button">Guide Button</div>,
+    ChangelogButton: () => <button>Changelog Button</button>,
+    GuideButton: () => <button>Guide Button</button>,
   };
 });
 const shellContext = {
@@ -75,7 +76,7 @@ describe('DatagridContainer component unit test suite', () => {
     [false, 'pt-5'],
   ])(
     'should create datagrid container with right css when isEmbedded=%s',
-    (isEmbedded, css) => {
+    async (isEmbedded, css) => {
       // given
       const props: TDatagridContainerProps = {
         route: {
@@ -95,25 +96,36 @@ describe('DatagridContainer component unit test suite', () => {
       };
 
       // when
-      const { getByTestId, container, getByText } = renderComponent(props);
+      const { getByRole, queryAllByText, queryByRole } = renderComponent(props);
 
       // then
-      expect(getByTestId('header-id')).toHaveTextContent('title for id');
+      expect(getByRole('region', { name: props.title })).toHaveAttribute(
+        'class',
+        `px-10 ${css}`,
+      );
 
       // and
-      expect(container).toContainHTML(`class="px-10 ${css}"`);
+      await waitFor(() =>
+        expect(queryAllByText('value for id')[0]).toBeInTheDocument(),
+      );
 
-      // and
-      expect(getByText(props.title)).toBeDefined();
+      if (!isEmbedded) {
+        expect(getByRole('button', { name: 'Changelog Button' })).toBeVisible();
+        expect(getByRole('button', { name: 'Guide Button' })).toBeDefined();
+      }
 
-      // and
-      expect(getByText('value for id')).toBeDefined();
-
-      // and
-      if (!isEmbedded) expect(getByTestId('changelog-button')).toBeDefined();
-
-      // and
-      if (!isEmbedded) expect(getByTestId('guide-button')).toBeDefined();
+      if (isEmbedded) {
+        expect(
+          queryByRole('button', {
+            name: 'Changelog Button',
+          }),
+        ).not.toBeInTheDocument();
+        expect(
+          queryByRole('button', {
+            name: 'Guide Button',
+          }),
+        ).not.toBeInTheDocument();
+      }
     },
   );
 });

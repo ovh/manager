@@ -106,9 +106,10 @@ export default function DatagridContainer({
   const layoutCss = `px-10 pt-${isEmbedded ? '0' : '5'}`;
 
   return (
-    <div className={layoutCss}>
+    <section className={layoutCss} aria-labelledby="datagrid-title">
       <div className="flex items-center justify-between mt-4">
         <OdsText
+          id="datagrid-title"
           preset={isEmbedded ? 'heading-3' : 'heading-1'}
           className={isEmbedded ? '' : 'mb-8'}
         >
@@ -159,6 +160,6 @@ export default function DatagridContainer({
           />
         )}
       </React.Suspense>
-    </div>
+    </section>
   );
 }
