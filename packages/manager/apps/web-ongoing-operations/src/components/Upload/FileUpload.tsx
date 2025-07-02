@@ -4,8 +4,16 @@ import {
   OdsFileChangeEventDetail,
   OdsFileRejectedEventDetail,
   OdsFileUploadCustomEvent,
+  ODS_MESSAGE_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_COLOR,
 } from '@ovhcloud/ods-components';
-import { OdsFileUpload, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsFileUpload,
+  OdsText,
+  OdsMessage,
+  OdsLink,
+} from '@ovhcloud/ods-components/react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TArgument } from '@/types';
@@ -24,7 +32,7 @@ export default function FileUpload({
   const { t } = useTranslation('dashboard');
   const [uploadedFiles, setUploadedFiles] = useState<OdsFile[]>([]);
   const [errorUpload, setErrorUpload] = useState<string>('');
-  const { description, maximumSize, acceptedFormats } = argument;
+  const { description, maximumSize, acceptedFormats, template } = argument;
   const fileUploadFormat = useMemo(
     () =>
       acceptedFormats.map((acceptedFormat) => `.${acceptedFormat}`).join(', '),
@@ -34,9 +42,30 @@ export default function FileUpload({
 
   return (
     <div>
-      <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
-        <strong>{description}</strong>
-      </OdsText>
+      <div>
+        <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.span}>
+          <strong>{description}</strong>
+        </OdsText>
+        {template && (
+          <OdsMessage
+            color={ODS_MESSAGE_COLOR.information}
+            isDismissible={false}
+            className="mb-4"
+          >
+            <OdsText className="block">
+              {t('domain_operations_upload_file_template_1')}
+              <OdsLink
+                href={template}
+                label={t('domain_operations_upload_file_template_link')}
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+              {t('domain_operations_upload_file_template_2')}
+            </OdsText>
+          </OdsMessage>
+        )}
+      </div>
+
       <OdsFileUpload
         onOdsChange={(
           e: OdsFileUploadCustomEvent<OdsFileChangeEventDetail>,
