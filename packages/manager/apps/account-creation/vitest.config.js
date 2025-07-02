@@ -18,6 +18,10 @@ export default mergeConfig(
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
+        '@ovh-ux/manager-gcj-module': path.resolve(
+          __dirname,
+          '__mocks__/gcj-module.ts',
+        ),
       },
     },
   }),
