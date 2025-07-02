@@ -308,22 +308,6 @@ export default function InstallationStepServerConfig() {
         </RhfField>
         <Controller
           control={control}
-          name="thickDatastorePolicy"
-          render={({ field, fieldState }) => (
-            <RhfSelectField
-              field={field}
-              label={t('server_config_input_thick_storage')}
-              placeholder={t('select_label')}
-              options={storagePolicies}
-              optionValueKey="name"
-              isLoading={isLoadingQueries}
-              isDisabled={isLoadingQueries || isStoragePoliciesError}
-              error={fieldState.error && t('server_config_error_thick_storage')}
-            />
-          )}
-        />
-        <Controller
-          control={control}
           name="encryptPassword"
           render={({ field }) => (
             <RhfToggleField
@@ -361,6 +345,22 @@ export default function InstallationStepServerConfig() {
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isDatastoresError}
               error={fieldState.error && t('server_config_error_datastore')}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="thickDatastorePolicy"
+          render={({ field, fieldState }) => (
+            <RhfSelectField
+              field={field}
+              label={t('server_config_input_thick_storage')}
+              placeholder={t('select_label')}
+              options={storagePolicies}
+              optionValueKey="name"
+              isLoading={isLoadingQueries}
+              isDisabled={isLoadingQueries || isStoragePoliciesError}
+              error={fieldState.error && t('server_config_error_thick_storage')}
             />
           )}
         />
