@@ -14,7 +14,7 @@ import { isEqual } from 'lodash';
 import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
@@ -33,7 +33,8 @@ export type TUpdateInstanceFromCache = (
   queryClient: QueryClient,
   payload: {
     projectId: string;
-    instance: Pick<TInstanceDto, 'id'> & Partial<TInstanceDto>;
+    instance: Pick<TAggregatedInstanceDto, 'id'> &
+      Partial<TAggregatedInstanceDto>;
   },
 ) => void;
 
@@ -46,7 +47,9 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   queryClient: QueryClient,
   { projectId, instance },
 ) => {
-  const queries = queryClient.getQueriesData<InfiniteData<TInstanceDto[]>>({
+  const queries = queryClient.getQueriesData<
+    InfiniteData<TAggregatedInstanceDto[]>
+  >({
     predicate: listQueryKeyPredicate(projectId),
   });
 
@@ -71,7 +74,7 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
 
     if (!isPageModified) return;
 
-    queryClient.setQueryData<InfiniteData<TInstanceDto[], number>>(
+    queryClient.setQueryData<InfiniteData<TAggregatedInstanceDto[], number>>(
       queryKey,
       (prevData) => {
         if (!prevData) return undefined;
@@ -88,16 +91,16 @@ export const getInstanceById = (
   projectId: string,
   id: string | undefined,
   queryClient: QueryClient,
-): TInstanceDto | undefined => {
+): TAggregatedInstanceDto | undefined => {
   if (!id) return undefined;
 
-  const data = queryClient.getQueriesData<InfiniteData<TInstanceDto[], number>>(
-    {
-      predicate: listQueryKeyPredicate(projectId),
-    },
-  );
+  const data = queryClient.getQueriesData<
+    InfiniteData<TAggregatedInstanceDto[], number>
+  >({
+    predicate: listQueryKeyPredicate(projectId),
+  });
 
-  return data.reduce((acc: TInstanceDto | undefined, [, result]) => {
+  return data.reduce((acc: TAggregatedInstanceDto | undefined, [, result]) => {
     if (acc) return acc;
     if (result) {
       const foundInstance = result.pages.flat().find((elt) => elt.id === id);
@@ -243,7 +246,7 @@ export const useInstances = ({
         }),
       }),
     select: useCallback(
-      (rawData: InfiniteData<TInstanceDto[], number>) =>
+      (rawData: InfiniteData<TAggregatedInstanceDto[], number>) =>
         instancesSelector(rawData, limit, projectUrl),
       [limit, projectUrl],
     ),

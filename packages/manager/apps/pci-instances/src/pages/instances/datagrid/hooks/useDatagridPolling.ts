@@ -13,7 +13,7 @@ import {
 } from '@/data/hooks/instance/polling/useInstancesPolling';
 import { selectPollingDataForDatagrid } from '../view-models/selectPollingDataForDatagrid';
 
-export const getPartialDeletedInstanceDto = (id: string) =>
+const getPartialDeletedInstanceDto = (id: string) =>
   buildPartialInstanceDto({ id })
     .with('actions', [])
     .with('addresses', [])
@@ -22,12 +22,12 @@ export const getPartialDeletedInstanceDto = (id: string) =>
     .with('pendingTask', false)
     .build();
 
-export const getPartialInstanceDto = (instance: TInstance) =>
+const getPartialInstanceDto = (instance: TInstance) =>
   buildPartialInstanceDto({ id: instance.id })
     .with('actions', instance.actions)
-    .with('status', instance.state.status.label)
-    .with('pendingTask', instance.state.pendingTask)
-    .with('taskState', instance.state.taskState)
+    .with('status', instance.status)
+    .with('pendingTask', instance.task.isPending)
+    .with('taskState', instance.task.status)
     .build();
 
 export const useDatagridPolling = (pendingTasks: string[]) => {
@@ -39,15 +39,15 @@ export const useDatagridPolling = (pendingTasks: string[]) => {
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
       if (!instance) return;
-      const { state } = instance;
-      const isDeleted = !state.pendingTask && state.status.label === 'DELETED';
+      const { status, task } = instance;
+      const isDeleted = !task.isPending && status === 'DELETED';
       const deletedInstance = getPartialDeletedInstanceDto(instance.id);
       updateInstanceFromCache(queryClient, {
         projectId,
         instance: isDeleted ? deletedInstance : getPartialInstanceDto(instance),
       });
 
-      if (!state.pendingTask) {
+      if (!task.isPending) {
         clearNotifications();
         addSuccess(
           t(`pci_instances_actions_instance_success_message`, {
