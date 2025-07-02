@@ -42,7 +42,11 @@ export default function InstallationWizard() {
     uploadError: '',
     readError: '',
   });
-  const { setValues, setInitializationState } = useInstallationFormContext();
+  const {
+    setValues,
+    setInitializationState,
+    clearInstallationForm,
+  } = useInstallationFormContext();
   const { trackClick } = useOvhTracking();
 
   const closeModal = () => {
@@ -67,27 +71,34 @@ export default function InstallationWizard() {
     }
   };
 
+  const setFormDataWithUpload = () => {
+    setValues(upload.data);
+    setInitializationState((prev) => ({
+      ...prev,
+      isPrefilled: true,
+      prefilledData: {
+        serviceName: upload.data.serviceName,
+        datacenterId: upload.data.datacenterId,
+        clusterName: upload.data.clusterName,
+        applicationType: upload.data.applicationType,
+        applicationVersion: upload.data.applicationVersion,
+        deploymentType: upload.data.deploymentType,
+        network: upload.data.network,
+        thickDatastorePolicy: upload.data.thickDatastorePolicy,
+        applicationServerOva: upload.data.applicationServerOva,
+        applicationServerDatastore: upload.data.applicationServerDatastore,
+        hanaServerOva: upload.data.hanaServerOva,
+        hanaServerDatastore: upload.data.hanaServerDatastore,
+      },
+    }));
+  };
+
   const handleSubmit = () => {
-    if (upload.file && !upload.readError) {
-      setValues(upload.data);
-      setInitializationState((prev) => ({
-        ...prev,
-        isPrefilled: true,
-        prefilledData: {
-          serviceName: upload.data.serviceName,
-          datacenterId: upload.data.datacenterId,
-          clusterName: upload.data.clusterName,
-          applicationType: upload.data.applicationType,
-          applicationVersion: upload.data.applicationVersion,
-          deploymentType: upload.data.deploymentType,
-          network: upload.data.network,
-          thickDatastorePolicy: upload.data.thickDatastorePolicy,
-          applicationServerOva: upload.data.applicationServerOva,
-          applicationServerDatastore: upload.data.applicationServerDatastore,
-          hanaServerOva: upload.data.hanaServerOva,
-          hanaServerDatastore: upload.data.hanaServerDatastore,
-        },
-      }));
+    const isValidUpload = upload.file && !upload.readError;
+    if (isValidUpload) {
+      setFormDataWithUpload();
+    } else {
+      clearInstallationForm();
     }
     navigate(urls.installationInitialStep);
   };
