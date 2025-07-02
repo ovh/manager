@@ -55,7 +55,6 @@ export function useInstanceListColumns({
     instanceConsumption: TInstanceConsumptionDetail,
   ) =>
     !isMonthlyInstances &&
-    instanceConsumption.monthlyBilling === null &&
     !instanceConsumption.isDeleted &&
     instanceConsumption.monthlyPlan;
 
@@ -65,7 +64,7 @@ export function useInstanceListColumns({
       cell: (row: TInstanceConsumptionDetail) => (
         <OsdsPopover>
           <div slot="popover-trigger" className="cursor-pointer">
-            {row?.instanceName}
+            {row.instanceName}
           </div>
           <OsdsPopoverContent>
             <InstanceDetailPopover row={row} />
@@ -87,11 +86,11 @@ export function useInstanceListColumns({
       id: 'action',
       cell: (row: TInstanceConsumptionDetail) => (
         <div className="min-w-[16rem]">
-          {['ok', 'resized'].includes(row.monthlyBilling?.status) && (
+          {['ok', 'resized'].includes(row.monthlyBilling?.status ?? '') && (
             <DataGridTextCell>
               {t('cpbc_hourly_instance_monthly_billing_since', {
                 since: useFormattedDate({
-                  dateString: row.monthlyBilling.since,
+                  dateString: row.monthlyBilling?.since ?? '',
                   format: DateFormat.compact,
                 }),
               })}

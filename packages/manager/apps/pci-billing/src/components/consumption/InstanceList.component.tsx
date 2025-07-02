@@ -43,7 +43,7 @@ export default function InstanceList({
   const { t } = useTranslation('consumption/hourly-instance/instance');
 
   const { currency } = useContext(ShellContext).environment.getUser();
-  const { projectId } = useParams();
+  const { projectId = '' } = useParams();
   const { pagination, setPagination } = useDataGrid();
   const columns = useInstanceListColumns({
     colNameLabel,
@@ -91,9 +91,9 @@ export default function InstanceList({
             .replace(windowsStringPattern, '')
             .toUpperCase()
         : '',
-      monthlyPlan: catalog?.addons.find((addon) =>
+      monthlyPlan: catalog.addons.find((addon) =>
         addon.planCode.match(`${billingDetail.reference}.monthly`),
-      )?.blobs?.tags,
+      )?.blobs.tags,
     };
 
     const instance = instances.find(
@@ -133,7 +133,7 @@ export default function InstanceList({
   };
 
   useEffect(() => {
-    if (billingInstances && allInstances && allImages && projectCatalog) {
+    if (allInstances && allImages && projectCatalog) {
       const result = billingInstances.map((billingDetail) =>
         getInstanceConsumptionDetails(
           billingDetail,
@@ -143,8 +143,8 @@ export default function InstanceList({
         ),
       );
 
-      const sortedInstances = result?.sort((a, b) =>
-        a.instanceName.localeCompare(b.instanceName),
+      const sortedInstances = result.sort(
+        (a, b) => a.instanceName?.localeCompare(b.instanceName) ?? 0,
       );
 
       setInstanceConsumptionDetails(
@@ -170,7 +170,7 @@ export default function InstanceList({
     );
   }
 
-  if (!isPending && instanceConsumptionDetails.totalRows === 0) {
+  if (instanceConsumptionDetails.totalRows === 0) {
     return (
       <div className="my-3">
         <OsdsText
