@@ -1,6 +1,4 @@
 import { useParams, Outlet, redirect } from 'react-router-dom';
-import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
-import { useEffect } from 'react';
 import { POLLING } from '@/configuration/polling.constants';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import Guides from '@/components/guides/Guides.component';
@@ -63,14 +61,6 @@ export const Loader = async ({ params }: NotebooksProps) => {
 };
 
 const Notebooks = () => {
-  const { trackPage } = useOvhTracking();
-  useEffect(() => {
-    trackPage({
-      pageType: PageType.onboarding,
-      pageName: 'ai_notebooks',
-    });
-  }, []);
-
   const { projectId } = useParams();
   const { isQuantum, t } = useQuantum('ai-tools/notebooks');
   const { isUserActive } = useUserActivityContext();

@@ -4,7 +4,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
 import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
-import { useEffect } from 'react';
 import ai from '@/types/AI';
 import { getColumns } from './NotebooksListColumns.component';
 import { getFilters } from './NotebookListFilters.component';
@@ -19,12 +18,6 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
   const { t } = useTranslation('ai-tools/notebooks');
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  useEffect(() => {
-    trackPage({
-      pageType: PageType.listing,
-      pageName: 'ai_notebooks',
-    });
-  }, []);
 
   const { trackClick } = useOvhTracking();
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({

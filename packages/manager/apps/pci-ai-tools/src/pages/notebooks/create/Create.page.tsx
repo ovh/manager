@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
-import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
-import { useEffect } from 'react';
 import Guides from '@/components/guides/Guides.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { GuideSections } from '@/configuration/guide';
@@ -23,14 +21,6 @@ export function breadcrumb() {
 }
 
 const Notebook = () => {
-  const { trackPage } = useOvhTracking();
-  useEffect(() => {
-    trackPage({
-      pageType: PageType.funnel,
-      pageName: 'create_ai_notebooks',
-    });
-  }, []);
-
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
   const { isQuantum } = useQuantum();
