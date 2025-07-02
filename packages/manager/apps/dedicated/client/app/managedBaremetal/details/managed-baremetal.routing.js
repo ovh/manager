@@ -314,6 +314,7 @@ export default /* @ngInject */ ($stateProvider) => {
           : null,
       hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
         dedicatedCloudVCDMigrationState?.hasMigration,
+      isLogsDisabled: () => true,
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {
