@@ -158,12 +158,6 @@ export default function TokenPage() {
     startIndex + pagination.pageSize,
   );
   const { trackPage } = useOvhTracking();
-  useEffect(() => {
-    trackPage({
-      pageType: PageType.listing,
-      pageName: 'ai_notebooks',
-    });
-  }, []);
   return (
     <>
       {availability && (

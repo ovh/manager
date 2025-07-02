@@ -16,6 +16,19 @@ export const TRACKING: Record<
   Record<string, TrackingClickParams | any>
 > = {
   metrics: {
+    tabClick: (tabname: string): TrackingClickParams => {
+      return {
+        actions: [
+          UNIVERSE,
+          'ai_maching_learning',
+          APP_NAME,
+          'main-tabnav',
+          `${tabname}`,
+        ],
+        actionType: 'action',
+      };
+    },
+
     gotometricsClick: {
       actions: [
         `${UNIVERSE}`,

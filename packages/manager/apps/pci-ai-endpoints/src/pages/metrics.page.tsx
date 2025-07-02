@@ -65,12 +65,6 @@ export default function MetricPage() {
   const localDatePicker = getLocaleForDatePicker();
 
   const { trackPage } = useOvhTracking();
-  useEffect(() => {
-    trackPage({
-      pageType: PageType.dashboard,
-      pageName: 'metrics',
-    });
-  }, []);
 
   return (
     <>
