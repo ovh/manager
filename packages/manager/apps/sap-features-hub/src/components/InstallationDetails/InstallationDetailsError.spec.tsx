@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import installationTranslation from '../../../public/translations/dashboard/installation/Messages_fr_FR.json';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { useInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
 import {
   InstallationDetails,
   SAPInstallationStatus,
@@ -83,7 +83,7 @@ describe('computeProgressPercentage', () => {
 });
 
 vi.mock('@/hooks/installationDetails/useInstallationDetails', () => ({
-  useMockInstallationTaskDetails: vi.fn(),
+  useInstallationTaskDetails: vi.fn(),
 }));
 
 describe('InstallationDetailsError', () => {
@@ -91,7 +91,7 @@ describe('InstallationDetailsError', () => {
   const taskId = '123';
 
   it('renders nothing if status is not failure', () => {
-    (useMockInstallationTaskDetails as jest.Mock).mockReturnValue({
+    (useInstallationTaskDetails as jest.Mock).mockReturnValue({
       data: baseInstallation,
       isLoading: false,
       isError: false,
@@ -112,7 +112,7 @@ describe('InstallationDetailsError', () => {
       errorMessage: 'Test error',
       currentStep: 'stepKey',
     };
-    (useMockInstallationTaskDetails as jest.Mock).mockReturnValue({
+    (useInstallationTaskDetails as jest.Mock).mockReturnValue({
       data: installationInError,
       isLoading: false,
     });

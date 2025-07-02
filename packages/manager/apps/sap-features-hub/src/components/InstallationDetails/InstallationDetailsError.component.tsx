@@ -6,7 +6,7 @@ import {
   InstallationDetails,
   SAPInstallationStatus,
 } from '@/types/installation.type';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { useInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
 import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 
 export function getTranslationKeyOfStepInError(
@@ -44,7 +44,7 @@ export const InstallationDetailsError = ({
   const {
     data: installationTaskDetails,
     isLoading,
-  } = useMockInstallationTaskDetails({ serviceName, taskId });
+  } = useInstallationTaskDetails({ serviceName, taskId });
 
   const stepInError = useMemo(
     () => getTranslationKeyOfStepInError(installationTaskDetails),
@@ -60,7 +60,7 @@ export const InstallationDetailsError = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <OdsMessage color="critical">
+      <OdsMessage color="critical" isDismissible={false}>
         {t('dashboard_installation_error_message', {
           stepName: t(stepInError),
         })}
