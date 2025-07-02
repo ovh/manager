@@ -27,7 +27,7 @@ import { OkmsCredential } from '@/types/okmsCredential.type';
 const CredentialDatagrid = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { state } = useLocation();
 
   const {
@@ -102,8 +102,8 @@ const CredentialDatagrid = () => {
   return (
     <Datagrid
       columns={columns}
-      items={credentials.data || []}
-      totalItems={credentials.data.length}
+      items={credentials?.data || []}
+      totalItems={credentials?.data.length || 0}
       contentAlignLeft
     />
   );

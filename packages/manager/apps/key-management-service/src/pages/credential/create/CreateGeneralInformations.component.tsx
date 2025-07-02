@@ -52,7 +52,7 @@ const CreateGeneralInformations = ({
   nextStep,
 }: CreateGeneralInformationsProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 

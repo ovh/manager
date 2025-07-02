@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ActionMenu,
   Clipboard,
@@ -24,10 +24,8 @@ import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
-import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
-import { OkmsContext } from '@/pages/dashboard';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
@@ -66,10 +64,10 @@ export const DatagridCellRegion = (kms: OKMS) => {
 };
 
 export const DatagridCellStatus = (kms: OKMS) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+  const { data: OkmsServiceInfos, isPending, isError } = useServiceDetails({
     resourceName: kms.id,
   });
-  if (isLoading) {
+  if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
   if (isError) {
@@ -139,18 +137,15 @@ export const DatagridStatus = (props: OkmsAllServiceKeys) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
-export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  const okms = useContext(OkmsContext);
-  const { data: serviceKey, isPending } = useOkmsServiceKeyById({
-    okmsId: okms.id,
-    keyId: props.id,
-  });
-  const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
+export const DatagridServiceKeyActionMenu = (
+  serviceKey: OkmsAllServiceKeys,
+  okms: OKMS,
+) => {
+  const actionList = useServiceKeyActionsList(okms, serviceKey, true);
 
   return (
     <ActionMenu
-      id={`service-key-actions-${props.id}`}
-      isLoading={isPending}
+      id={`service-key-actions-${serviceKey.id}`}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ellipsisVertical}

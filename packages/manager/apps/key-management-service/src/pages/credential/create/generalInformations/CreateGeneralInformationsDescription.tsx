@@ -25,7 +25,7 @@ const CreateGeneralInformationsDescription = ({
   const { t } = useTranslation('key-management-service/credential');
 
   const getDescriptionErrorMessage = (
-    error: CredentialDescriptionErrorsType,
+    error: CredentialDescriptionErrorsType | undefined,
   ) => {
     switch (error) {
       case 'INVALID_CHARACTERS':
@@ -37,7 +37,7 @@ const CreateGeneralInformationsDescription = ({
           'key_management_service_credential_update_description_error_max',
         );
       default:
-        return null;
+        return undefined;
     }
   };
 
