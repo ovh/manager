@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.45.0...@ovh-ux/manager-dedicated@20.46.0) (2025-07-02)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([501f207](https://github.com/ovh/manager/commit/501f207b25fd732310d1f4edc3645c59485a5f0c)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+
+
+
+
+
 # [20.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.44.5...@ovh-ux/manager-dedicated@20.45.0) (2025-07-02)
 
 

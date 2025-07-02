@@ -22,6 +22,19 @@ export type TPeriod = { from: string; to: string };
 
 export type TCurrentUsage = {
   hourlyUsage: {
+    rancher: {
+      reference: string;
+      region: string;
+      details: {
+        quantity: TQuantity;
+        totalPrice: {
+          currencyCode: string;
+          priceInUcents: number;
+          text: string;
+          value: number;
+        };
+      }[];
+    }[];
     instance: {
       details: {
         instanceId: string;

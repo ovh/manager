@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -43,7 +43,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/react": "^18.2.79",

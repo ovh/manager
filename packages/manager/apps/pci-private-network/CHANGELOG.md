@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.20.1...@ovh-ux/manager-pci-private-network-app@0.21.0) (2025-07-02)
+
+
+### Features
+
+* **network:** add quota error message ([#17656](https://github.com/ovh/manager/issues/17656)) ([a3fff9d](https://github.com/ovh/manager/commit/a3fff9d5bcb10d4574ae65ffba3f3f95abecff95)), closes [#TAPC-4098](https://github.com/ovh/manager/issues/TAPC-4098)
+
+
+
+
+
 ## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.20.0...@ovh-ux/manager-pci-private-network-app@0.20.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
