@@ -52,7 +52,17 @@ yarn manager-cli migrations-status --type tests --format html
 
 yarn manager-cli migrations-status --type all --format html
 yarn manager-cli migrations-status --type all --format json`
-  }
+  },
+  'duplicated-translations': {
+    script: 'check-duplicated-translations',
+    isAppRequired: true,
+    description:
+      'Check for duplicate translations that already exist in the common module.',
+    help: `
+      #Check duplicated translations on zimbra app
+      yarn manager-cli duplicated-translations --app zimbra
+    `,
+  },
 };
 
 const validMigrationTypes = ['routes', 'tests', 'swc', 'all'];
