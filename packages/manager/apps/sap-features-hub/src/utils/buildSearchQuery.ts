@@ -1,3 +1,5 @@
+import { urls } from '@/routes/routes.constant';
+
 export const buildSearchQuery = (
   params: Record<string, string | number | boolean>,
 ): string => {
@@ -12,3 +14,14 @@ export const buildSearchQuery = (
     ? `?${new URLSearchParams(definedParams)}`
     : '';
 };
+
+export const buildViewInstallationRedirectUrl = ({
+  serviceName,
+  taskId,
+}: {
+  serviceName: string;
+  taskId: string;
+}) =>
+  serviceName && taskId
+    ? `${urls.installationReport}${buildSearchQuery({ serviceName, taskId })}`
+    : urls.listing;
