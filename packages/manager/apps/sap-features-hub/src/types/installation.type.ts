@@ -3,13 +3,17 @@ import { DeploymentType } from './sapCapabilities.type';
 
 export type TSAPInstallation = {
   startTime: string;
-  serviceName: string;
   sapHanaSid: string;
   sapSid: string;
   applicationVersion: string;
   applicationType: string;
   deploymentType: string;
   status: SAPInstallationStatus;
+  taskId: string;
+};
+
+export type TSAPInstallationWithService = TSAPInstallation & {
+  serviceName: string;
 };
 
 export enum SAPInstallationStatus {

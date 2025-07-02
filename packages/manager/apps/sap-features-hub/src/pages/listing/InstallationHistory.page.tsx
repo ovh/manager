@@ -13,7 +13,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { LABELS } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
-import { TSAPInstallation } from '@/types/installation.type';
+import { TSAPInstallationWithService } from '@/types/installation.type';
 import useInstallationHistory from '@/data/hooks/useInstallationHistory';
 import {
   ApplicationTypeCell,
@@ -41,7 +41,7 @@ export default function HistoryPage() {
     title: LABELS.SAP_HANA,
   };
 
-  const columns: DatagridColumn<TSAPInstallation>[] = [
+  const columns: DatagridColumn<TSAPInstallationWithService>[] = [
     {
       id: 'installationDate',
       label: t('sap_hub_history_installation_date'),
