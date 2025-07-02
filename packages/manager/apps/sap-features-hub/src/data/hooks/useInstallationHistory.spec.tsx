@@ -25,28 +25,10 @@ describe('useInstallationHistory hook tests suite', () => {
   } as UseQueryResult<VMwareService[]>);
 
   vi.mocked(getSAPInstallations).mockResolvedValueOnce({
-    data: [
-      {
-        serviceName: 'pcc1',
-        sapHanaSid: 'sid-1',
-      },
-      {
-        serviceName: 'pcc1',
-        sapHanaSid: 'sid-2',
-      },
-    ],
+    data: [{ sapHanaSid: 'sid-1' }, { sapHanaSid: 'sid-2' }],
   } as ApiResponse<TSAPInstallation[]>);
   vi.mocked(getSAPInstallations).mockResolvedValueOnce({
-    data: [
-      {
-        serviceName: 'pcc2',
-        sapHanaSid: 'sid-3',
-      },
-      {
-        serviceName: 'pcc2',
-        sapHanaSid: 'sid-4',
-      },
-    ],
+    data: [{ sapHanaSid: 'sid-3' }, { sapHanaSid: 'sid-4' }],
   } as ApiResponse<TSAPInstallation[]>);
 
   it('should render all passed installations in flat array', async () => {
