@@ -140,5 +140,8 @@
   "domain_operations_update_title": "Operation update for the {{t0}} domain",
   "domain_operations_nicOperation_ContactControlNotify": "Contact verification notification",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Sending the RDRP instruction manual",
-  "domain_operations_guides": "General information"
+  "domain_operations_guides": "General information",
+  "domain_operations_upload_file_template_1": "Only files following this ",
+  "domain_operations_upload_file_template_link": "document template",
+  "domain_operations_upload_file_template_2": " will be accepted."
 }
