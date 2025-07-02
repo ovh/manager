@@ -4,7 +4,6 @@ import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
-import { useReket } from '@ovh-ux/ovh-reket';
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
 import { links, tracking } from './constants';
@@ -13,6 +12,8 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
+import { Procedures } from '@/types/procedure';
+import { fetchProcedureStatus } from '@/api/procedure/procedure';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -31,7 +32,6 @@ const UserAccountMenu = ({
   const region = environment.getRegion();
   const { closeAccountSidebar } = useProductNavReshuffle();
   const [allLinks, setAllLinks] = useState<UserLink[]>(links);
-  const reketInstance = useReket();
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
@@ -78,12 +78,16 @@ const UserAccountMenu = ({
         'procedures:fraud',
       ]);
       if (featureAvailability['identity-documents']) {
-        const { status } = await reketInstance.get(`/me/procedure/identity`);
-        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
+        try {
+          const identityProcedure = await fetchProcedureStatus(Procedures.INDIA);
+          isIdentityDocumentsAvailable = identityProcedure?.status && ['required', 'open'].includes(identityProcedure.status);
+        } catch {}
       }
       if (featureAvailability['procedures:fraud']) {
-        const { status } = await reketInstance.get(`/me/procedure/fraud`);
-        setIsDocumentsVisible(['required', 'open'].includes(status));
+        try {
+          const fraudProcedure = await fetchProcedureStatus(Procedures.FRAUD);
+          setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure.status));
+        } catch {}
       }
 
       const myServicesIndex = links.indexOf(
