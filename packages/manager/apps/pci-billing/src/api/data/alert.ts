@@ -35,7 +35,7 @@ export const updateAlert = async (
   alertId: string,
   email: string,
   threshold: number,
-): Promise<TAlert> => {
+): Promise<null> => {
   await v6.put<null>(`/cloud/project/${projectId}/alerting/${alertId}`, {
     email,
     monthlyThreshold: threshold,

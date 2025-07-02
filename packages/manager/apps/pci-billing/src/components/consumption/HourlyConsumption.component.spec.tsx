@@ -29,6 +29,7 @@ describe('HourlyConsumption', () => {
     publicIP: [],
     gateway: [],
     octaviaLoadBalancer: [],
+    dataplatform: [],
     totals: {
       total: 10.5,
       hourly: {
@@ -55,6 +56,7 @@ describe('HourlyConsumption', () => {
         serving: 5.25,
         training: 7.75,
         total: 10.5,
+        dataplatform: 0,
       },
       monthly: {
         total: 10.5,
