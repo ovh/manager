@@ -140,5 +140,8 @@
   "domain_operations_update_key_document": "Documento",
   "domain_operations_nicOperation_ContactControlNotify": "Notificação de verificação do contacto",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Envio da notificação RDRP",
-  "domain_operations_guides": "Informações gerais"
+  "domain_operations_guides": "Informações gerais",
+  "domain_operations_upload_file_template_1": "Apenas os ficheiros que seguem este ",
+  "domain_operations_upload_file_template_link": "modelo de documento",
+  "domain_operations_upload_file_template_2": " serão aceites."
 }
