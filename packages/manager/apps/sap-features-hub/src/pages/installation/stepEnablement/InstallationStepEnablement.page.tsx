@@ -1,13 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  FieldValues,
-  FormProvider,
-  Path,
-  useForm,
-  UseFormRegister,
-  UseFormTrigger,
-} from 'react-hook-form';
+import { FormProvider, Path, useForm, UseFormTrigger } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';

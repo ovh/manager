@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Controller,
   FormProvider,
@@ -268,7 +268,7 @@ export default function InstallationStepServerConfig() {
         serverErrorMessage={serverErrorMessage}
         onSubmit={handleSubmit(() => {
           trackClick(TRACKING.installation.enableAdditionalFeatures);
-          validate(values);
+          validate(getValues() as ServerConfigForm);
         })}
         onPrevious={previousStep}
       >
