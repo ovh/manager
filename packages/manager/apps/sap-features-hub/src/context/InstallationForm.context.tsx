@@ -41,6 +41,7 @@ export type FormContextType = {
   setErrors: Dispatch<SetStateAction<InstallationFormErrors>>;
   initializationState: InitializationState;
   setInitializationState: Dispatch<SetStateAction<InitializationState>>;
+  clearInstallationForm: () => void;
 };
 
 type FormContextProviderProps = {
@@ -78,13 +79,20 @@ export const InstallationFormContextProvider: React.FC<FormContextProviderProps>
     defaultInitializationState,
   );
 
-  const contextValue = {
+  const clearInstallationForm = () => {
+    setValues(installationInitialValues);
+    setErrors(installationInitialErrors);
+    setInitializationState(defaultInitializationState);
+  };
+
+  const contextValue: FormContextType = {
     values,
     setValues,
     errors,
     setErrors,
     initializationState,
     setInitializationState,
+    clearInstallationForm,
   };
 
   return (
