@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.95.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.94.1...@ovh-ux/manager-pci@6.95.0) (2025-07-02)
+
+
+### Features
+
+* **pci-instance:** allow rescue mode for LZ region instance ([c57e0d7](https://github.com/ovh/manager/commit/c57e0d777f16d590ef53f8c0f6ef43bfb2d7e48d)), closes [#TAPC-3967](https://github.com/ovh/manager/issues/TAPC-3967)
+
+
+
+
+
 ## [6.94.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.94.0...@ovh-ux/manager-pci@6.94.1) (2025-06-26)
 
 

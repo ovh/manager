@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.18.1...@ovh-ux/manager-pci-block-storage-app@0.19.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** check when encryption is null ([97c7ef9](https://github.com/ovh/manager/commit/97c7ef9b0e9f664181b605e67cc82cdaef148dc7)), closes [#TAPC-4442](https://github.com/ovh/manager/issues/TAPC-4442)
+* **pci-block-storage:** invert match conditions ([fb70142](https://github.com/ovh/manager/commit/fb70142ff6e70e504535acf4ab5a0cd3f71a04af)), closes [#TAPC-4448](https://github.com/ovh/manager/issues/TAPC-4448)
+* **pci-block-storage:** rename to OVHcloud Managed Key ([5d32550](https://github.com/ovh/manager/commit/5d325508e0f0befcaa00fe1799c20cb890445b98)), closes [#TAPC-4454](https://github.com/ovh/manager/issues/TAPC-4454)
+* **pci-block-storage:** use volume type for pricing ([ba8dc7a](https://github.com/ovh/manager/commit/ba8dc7a470f5c38f7038c9499fe67f5176c664e9)), closes [#TAPC-4448](https://github.com/ovh/manager/issues/TAPC-4448)
+
+
+### Features
+
+* **block-storage:** add quota href on quantity field ([#17442](https://github.com/ovh/manager/issues/17442)) ([3d505ed](https://github.com/ovh/manager/commit/3d505ed97ec8651e2dd564f4b9681d4141dbb1d6)), closes [#TAPC-4096](https://github.com/ovh/manager/issues/TAPC-4096)
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.18.0...@ovh-ux/manager-pci-block-storage-app@0.18.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

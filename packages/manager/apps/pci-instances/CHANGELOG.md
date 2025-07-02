@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.2.1...@ovh-ux/manager-pci-instances-app@0.2.2) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-instances:** force refetch on window/tab focus [@listing](https://github.com/listing) page ([cab4a15](https://github.com/ovh/manager/commit/cab4a15c899852f444913b7b699fa2b1b4d0cbde)), closes [#TAPC-4405](https://github.com/ovh/manager/issues/TAPC-4405)
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.2.0...@ovh-ux/manager-pci-instances-app@0.2.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
