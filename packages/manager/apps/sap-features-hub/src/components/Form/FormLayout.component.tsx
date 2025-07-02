@@ -9,6 +9,7 @@ export type FormLayoutProps = {
   subtitle?: string | React.ReactNode;
   submitLabel: string;
   isSubmitDisabled?: boolean;
+  isSubmitLoading?: boolean;
   serverErrorMessage?: string;
   onPrevious?: () => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -20,6 +21,7 @@ export default function FormLayout({
   subtitle,
   submitLabel,
   isSubmitDisabled,
+  isSubmitLoading,
   serverErrorMessage,
   onPrevious,
   onSubmit,
@@ -58,6 +60,7 @@ export default function FormLayout({
         <OdsButton
           label={submitLabel}
           isDisabled={isSubmitDisabled}
+          isLoading={isSubmitLoading}
           type="submit"
           variant="default"
           data-testid={testIds.formSubmitCta}
