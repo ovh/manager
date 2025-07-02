@@ -7,7 +7,7 @@ import { RadioCard } from '@/components/RadioCard/RadioCard.component';
 type RegionSelectorProps = {
   regions: string[];
   selectedRegion: string;
-  setSelectedRegion: (value: React.SetStateAction<string>) => void;
+  setSelectedRegion: (region: string) => void;
 };
 
 export const RegionSelector = ({

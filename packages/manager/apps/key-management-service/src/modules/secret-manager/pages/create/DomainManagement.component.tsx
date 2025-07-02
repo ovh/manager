@@ -15,6 +15,14 @@ import { OKMS } from '@/types/okms.type';
 import { DomainSelector } from './DomainSelector.component';
 import { RegionSelector } from './RegionSelector.component';
 
+type GetRegionDomainListProps = {
+  domains: OKMS[];
+  region: string;
+};
+
+const getRegionDomainList = ({ domains, region }: GetRegionDomainListProps) =>
+  domains.filter((domain) => domain.region === region);
+
 type DomainManagementProps = {
   selectedDomainId: string;
   setSelectedDomainId: React.Dispatch<React.SetStateAction<string>>;
@@ -32,20 +40,25 @@ export const DomainManagement = ({
     isLoading: isLoadingOrderCatalog,
   } = useOrderCatalogOkms(environment.getUser().ovhSubsidiary);
 
+  const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
+
   const [selectedRegion, setSelectedRegion] = useState<string>();
   const [regionDomains, setRegionDomains] = useState<OKMS[]>([]);
 
   const {
-    data: domains,
+    data,
     error: okmsError,
     isLoading: isOkmsListLoading,
   } = useOkmsList();
+
+  const domains = data?.pages[0]?.data;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   // INITIAL REGION AND DOMAIN SELECTION
   // when the domain list is fetched and there's a domain id as a search param
-  // -> select the domain's Region
+  // -> select the query Domain's Region
+  // -> set the region's domain List
   // -> select the domain
   useEffect(() => {
     // domain from the secret list
@@ -55,49 +68,39 @@ export const DomainManagement = ({
 
     if (!domains || !domainIdSearchParam) return;
 
-    const currentDomain = domains.pages[0].data.find(
+    const domainFromSearchParam = domains.find(
       (domain) => domain.id === domainIdSearchParam,
     );
 
-    if (!currentDomain) {
+    if (!domainFromSearchParam) {
       setSearchParams({});
       return;
     }
 
-    setSelectedRegion(currentDomain.region);
+    setSelectedRegion(domainFromSearchParam.region);
     setSelectedDomainId(domainIdSearchParam);
+    setRegionDomains(
+      getRegionDomainList({ domains, region: domainFromSearchParam.region }),
+    );
   }, [domains, searchParams]);
 
-  // when a region is selected
-  // -> reset the region domain list
-  // -> select a domain if applicable
-  useEffect(() => {
-    if (!domains || !selectedRegion) return;
+  const handleRegionSelection = (region: string) => {
+    if (!domains) return;
 
-    // get the filtered domain list by region
-    const filteredDomainList = domains.pages[0].data.filter(
-      (domain) => domain.region === selectedRegion,
-    );
+    const filteredDomainList = getRegionDomainList({
+      domains,
+      region,
+    });
 
-    // reset the domain list
+    setSelectedRegion(region);
     setRegionDomains(filteredDomainList);
 
-    // if the filtered domain list is empty, reset the selected domain
     if (filteredDomainList.length === 0) {
       setSelectedDomainId(undefined);
       return;
     }
-
-    // find the selectedDomain in the filtered list
-    const selectedDomain = filteredDomainList.find(
-      (domain) => domain.id === selectedDomainId,
-    );
-
-    // if the selectedDomain is not in the list, select the first domain of the list
-    if (!selectedDomain) {
-      setSelectedDomainId(filteredDomainList[0].id);
-    }
-  }, [selectedRegion, domains]);
+    setSelectedDomainId(filteredDomainList[0].id);
+  };
 
   if (OrderCatalogError || okmsError) {
     const message = OrderCatalogError
@@ -121,9 +124,9 @@ export const DomainManagement = ({
     <div className="flex flex-col gap-5">
       <OdsText preset="heading-2">{t('region_section_title')}</OdsText>
       <RegionSelector
-        regions={orderCatalogOKMS.plans[0].configurations[0].values}
+        regions={regions}
         selectedRegion={selectedRegion}
-        setSelectedRegion={setSelectedRegion}
+        setSelectedRegion={handleRegionSelection}
       />
       <DomainSelector
         domains={regionDomains}
