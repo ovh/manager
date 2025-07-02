@@ -15,6 +15,7 @@
   "author": "OVH SAS",
   "main": "index.js",
   "scripts": {
+    "check-duplicated-translations": "node ./translations-checker/check-duplicated-translations.mjs",
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
