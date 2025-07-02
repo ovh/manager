@@ -141,7 +141,7 @@ export default function HourlyConsumption({
       key: 'dataProcessing',
       title: t('cpbc_hourly_data_processing_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.dataProcessing} />
+        <ResourceUsageList resourcesUsage={consumption.dataProcessing} />
       ),
       condition: !isTrustedZone,
     },
@@ -156,32 +156,32 @@ export default function HourlyConsumption({
     {
       key: 'databases',
       title: t('cpbc_hourly_databases_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.databases} />,
+      component: <ResourceUsageList resourcesUsage={consumption.databases} />,
       condition: !isTrustedZone,
     },
     {
       key: 'floatingIP',
       title: t('cpbc_hourly_floating_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.floatingIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.floatingIP} />,
       condition: !isTrustedZone,
     },
     {
       key: 'publicIP',
       title: t('cpbc_hourly_public_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.publicIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.publicIP} />,
       condition: !isTrustedZone,
     },
     {
       key: 'gateway',
       title: t('cpbc_hourly_gateway_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.gateway} />,
+      component: <ResourceUsageList resourcesUsage={consumption.gateway} />,
       condition: !isTrustedZone,
     },
     {
       key: 'octaviaLoadBalancer',
       title: PRODUCTS.OCTAVIA_LOAD_BALANCER,
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.octaviaLoadBalancer} />
+        <ResourceUsageList resourcesUsage={consumption.octaviaLoadBalancer} />
       ),
       condition: !isTrustedZone,
     },

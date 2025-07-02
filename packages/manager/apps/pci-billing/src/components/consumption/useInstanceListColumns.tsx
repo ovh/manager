@@ -35,7 +35,7 @@ export type TInstanceConsumptionDetail = {
   monthlyPlan: string[];
 };
 
-export type UseInstanceListColumnsProps = {
+type UseInstanceListColumnsProps = {
   colNameLabel: string;
   colTotalLabel: string;
   showAdditionalInstanceDetails?: boolean;

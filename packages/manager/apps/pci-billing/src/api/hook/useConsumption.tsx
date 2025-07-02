@@ -302,7 +302,7 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
       })),
     );
 
-  if (resourceType === 'coldarchive') {
+  if (resourceType === TConsumptionType.coldArchive) {
     resources = reduceColdArchiveBillingInfo(resources);
   }
 
@@ -415,31 +415,7 @@ export type TConsumptionDetail = {
   octaviaLoadBalancer: TResourceUsage[];
   totals: {
     total: number;
-    hourly: {
-      total: number;
-      instance: number;
-      objectStorage: number;
-      archiveStorage: number;
-      snapshot: number;
-      volume: number;
-      rancher: number;
-      dataplatform: number;
-      bandwidth: number;
-      privateRegistry: number;
-      kubernetesLoadBalancer: number;
-      notebooks: number;
-      coldArchive: number;
-      serving: number;
-      training: number;
-      aiEndpoints: number;
-      aiDeploy: number;
-      dataProcessing: number;
-      databases: number;
-      floatingIP: number;
-      gateway: number;
-      octaviaLoadBalancer: number;
-      publicIP: number;
-    };
+    hourly: Record<TConsumptionType, number>;
     monthly: {
       total: number;
       instance: number;
@@ -473,7 +449,6 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   totals: {
     total: 0,
     hourly: {
-      total: 0,
       instance: 0,
       objectStorage: 0,
       archiveStorage: 0,
@@ -516,7 +491,7 @@ export const getConsumptionDetails = (
     { type: TConsumptionType.aiEndpoints, key: 'aiEndpoints' },
     { type: TConsumptionType.dataProcessingJob, key: 'dataProcessing' },
     { type: TConsumptionType.databases, key: 'databases' },
-    { type: TConsumptionType.coldarchive, key: 'coldArchive' },
+    { type: TConsumptionType.coldArchive, key: 'coldArchive' },
     { type: TConsumptionType.floatingip, key: 'floatingIP' },
     { type: TConsumptionType.gateway, key: 'gateway' },
     { type: TConsumptionType.octaviaLoadbalancer, key: 'octaviaLoadBalancer' },
