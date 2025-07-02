@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.6.1...@ovh-ux/manager-web-ongoing-operations-app@1.7.0) (2025-07-02)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([501f207](https://github.com/ovh/manager/commit/501f207b25fd732310d1f4edc3645c59485a5f0c)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.6.0...@ovh-ux/manager-web-ongoing-operations-app@1.6.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

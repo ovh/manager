@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.39.0...@ovh-ux/manager-billing@0.40.0) (2025-07-02)
+
+
+### Features
+
+* **billing:** contract page optimisation part 2 ([11211db](https://github.com/ovh/manager/commit/11211db2a94cc0378592e3ebf1a57a37598e0627)), closes [#MANAGER-18420](https://github.com/ovh/manager/issues/MANAGER-18420)
+
+
+
+
+
 # [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.1...@ovh-ux/manager-billing@0.39.0) (2025-06-24)
 
 

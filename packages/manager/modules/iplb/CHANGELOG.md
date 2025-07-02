@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.3...@ovh-ux/manager-iplb@1.27.0) (2025-07-02)
+
+
+### Features
+
+* **dedicated:** ftc update delete iplb wording ([457b1e0](https://github.com/ovh/manager/commit/457b1e05d1089011638e3c76cd2f62770c2d574c)), closes [#MANAGER-18668](https://github.com/ovh/manager/issues/MANAGER-18668)
+
+
+
+
+
 ## [1.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.2...@ovh-ux/manager-iplb@1.26.3) (2025-06-23)
 
 
