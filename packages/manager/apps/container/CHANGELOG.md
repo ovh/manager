@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.138.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.2...@ovh-ux/manager-container-app@0.138.3) (2025-07-02)
+
+
+### Bug Fixes
+
+* **web:** clean angularjs office code ([645947c](https://github.com/ovh/manager/commit/645947c6891f279ac0471349009d8d447dcbf73c)), closes [#MANAGER-18620](https://github.com/ovh/manager/issues/MANAGER-18620)
+
+
+
+
+
 ## [0.138.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.1...@ovh-ux/manager-container-app@0.138.2) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

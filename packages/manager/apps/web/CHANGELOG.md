@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.14.1...@ovh-ux/manager-web@19.15.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 527] ([d848ed0](https://github.com/ovh/manager/commit/d848ed01b40b9a1d3744b5c61106b538437bf45d))
+* **web:** clean angularjs office code ([645947c](https://github.com/ovh/manager/commit/645947c6891f279ac0471349009d8d447dcbf73c)), closes [#MANAGER-18620](https://github.com/ovh/manager/issues/MANAGER-18620)
+
+
+### Features
+
+* **web.hosting:** add chart for hosting database ([818d59e](https://github.com/ovh/manager/commit/818d59e6d46d5e1e476647e6784c5fbdde8f1de9)), closes [#MANAGER-17885](https://github.com/ovh/manager/issues/MANAGER-17885)
+
+
+
+
+
 ## [19.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.14.0...@ovh-ux/manager-web@19.14.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.1...@ovh-ux/manager-zimbra-app@0.31.2) (2025-07-02)
+
+
+### Bug Fixes
+
+* **zimbra:** fix account upgrade redirection ([e68115c](https://github.com/ovh/manager/commit/e68115c8acabbb4684225e6f31896ef3fd6ad4b3)), closes [#MANAGER-18835](https://github.com/ovh/manager/issues/MANAGER-18835)
+
+
+
+
+
 ## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.0...@ovh-ux/manager-zimbra-app@0.31.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
