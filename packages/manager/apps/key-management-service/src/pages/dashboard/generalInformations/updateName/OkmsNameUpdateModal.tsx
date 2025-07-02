@@ -12,7 +12,7 @@ const OkmsNameUpdateModal = () => {
   const { t: tCredential } = useTranslation(
     'key-management-service/credential',
   );
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { data: okmsServiceInfos, isLoading } = useServiceDetails({
     resourceName: okmsId,
   });

@@ -23,13 +23,13 @@ import { OkmsCredential } from '@/types/okmsCredential.type';
 const CreateCredential = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
   const [step, setStep] = useState<number>(1);
-  const [name, setName] = useState<string>(null);
+  const [name, setName] = useState<string | null>(null);
   const [validity, setValidity] = useState<number>(30);
-  const [description, setDescription] = useState<string | null>();
+  const [description, setDescription] = useState<string | null>(null);
   const [csr, setCsr] = useState<string | null>(null);
   const [identityURNs, setIdentityURNs] = useState<string[]>([]);
   const [okmsCredential, setOkmsCredential] = useState<OkmsCredential>();
@@ -61,7 +61,7 @@ const CreateCredential = () => {
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName,
+      label: okms?.data?.iam?.displayName || '',
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -132,7 +132,7 @@ const CreateCredential = () => {
                 }
               />
             )}
-            {step === 3 && (
+            {step === 3 && okmsCredential && (
               <CreateCredentialConfirmation okmsCredential={okmsCredential} />
             )}
           </div>
