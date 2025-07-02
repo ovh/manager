@@ -1,4 +1,4 @@
-import { TInstanceDto2 } from '@/types/instance/api.type';
+import { TInstanceDto } from '@/types/instance/api.type';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 export const mockedInstance: TAggregatedInstance = {
@@ -27,7 +27,7 @@ export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
   region: '',
 };
 
-export const mockedInstanceDTO: TInstanceDto2 = {
+export const mockedInstanceDTO: TInstanceDto = {
   id: '54b49f74-9d56-4742-9618-89c136b0a443',
   name: 'b2-7-bhs1.preprod',
   status: 'SHUTOFF',

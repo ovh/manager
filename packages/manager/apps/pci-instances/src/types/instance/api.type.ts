@@ -3,34 +3,41 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
-  TInstancePriceType,
+  TPrice,
   TStatus,
+  TRegionType,
+  TSubnet,
+  TFlavorSpec,
+  TImage,
+  TBackup,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
 
-export type TInstanceAddressDto = {
+type TAggregatedInstanceAddressDto = {
   ip: string;
   version: number;
   type: TInstanceAddressTypeDto;
   gatewayIp: string;
 };
 
-export type TInstanceVolumeDto = {
+export type TAggregatedInstanceVolumeDto = {
   id: string;
   name: string;
 };
 
+type TInstanceActionNameDto = TActionName;
+type TInstanceActionGroupDto = TInstanceActionGroup;
+
 export type TInstanceActionDto = {
   name: TInstanceActionNameDto;
-  group: TInstanceActionGroup;
+  group: TInstanceActionGroupDto;
 };
 
-export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
 
-export type TInstanceDto = {
-  addresses: TInstanceAddressDto[];
+export type TAggregatedInstanceDto = {
+  addresses: TAggregatedInstanceAddressDto[];
   flavorId: string;
   flavorName: string;
   id: string;
@@ -39,7 +46,7 @@ export type TInstanceDto = {
   name: string;
   region: string;
   status: TInstanceStatusDto;
-  volumes: TInstanceVolumeDto[];
+  volumes: TAggregatedInstanceVolumeDto[];
   actions: TInstanceActionDto[];
   pendingTask: boolean;
   availabilityZone: string | null;
@@ -47,8 +54,8 @@ export type TInstanceDto = {
   isImageDeprecated: boolean;
 };
 
-export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &
-  Partial<TInstanceDto>;
+export type TPartialInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
+  Partial<TAggregatedInstanceDto>;
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
@@ -70,85 +77,61 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
  *
  */
 
-type TSubnetDto = {
-  id: string;
-  name: string;
-  gatewayIP: string;
-  network: {
-    id: string;
-    name: string;
-  };
-};
+type TInstanceSubnetDto = TSubnet;
 
-type TAddressDto = {
+type TInstanceAddressDto = {
   ip: string;
   version: number;
   type: TInstanceAddressTypeDto;
-  subnet?: TSubnetDto;
+  subnet?: TInstanceSubnetDto;
 };
 
-type TRegionType = 'region' | 'localzone' | 'region-3-az';
-
-export type TVolumeDto = {
+export type TInstanceVolumeDto = {
   id: string;
   name?: string;
   size?: number;
 };
 
-type TFlavorSpecDto = {
-  value: number;
-  unit: string;
-};
+type TInstanceRegionTypeDto = TRegionType;
 
-export type TFlavorDto = {
+type TInstanceFlavorSpecDto = TFlavorSpec;
+
+type TInstanceFlavorDto = {
   id: string;
   name: string;
   specs: {
-    vcores: TFlavorSpecDto;
-    ram: TFlavorSpecDto;
-    storage: TFlavorSpecDto;
+    vcores: TInstanceFlavorSpecDto;
+    ram: TInstanceFlavorSpecDto;
+    storage: TInstanceFlavorSpecDto;
     bandwidth: {
-      public: TFlavorSpecDto;
-      private: TFlavorSpecDto;
+      public: TInstanceFlavorSpecDto;
+      private: TInstanceFlavorSpecDto;
     };
   };
 };
 
-type TPriceTypeDto = TInstancePriceType;
+type TInstancePriceDto = TPrice;
 
-type TInstancePriceDto = {
-  type: TPriceTypeDto;
-  value: number;
-  status: 'enabled' | 'available' | 'eligible';
-};
+type TInstanceImageDto = TImage;
 
-type TImageDto = {
-  id: string;
-  name: string;
-  deprecated: boolean;
-};
+type TInstanceBackupDto = TBackup;
 
-type TBackupDto = {
-  count: number;
-  lastBackup: string;
-};
-
-export type TInstanceDto2 = {
+export type TInstanceDto = {
   id: string;
   name: string;
   region: string;
-  regionType: TRegionType;
+  regionType: TInstanceRegionTypeDto;
   availabilityZone: string | null;
   pendingTask: boolean;
   taskState: string;
   sshKey: string;
   login: string;
-  addresses: TAddressDto[];
+  addresses: TInstanceAddressDto[];
   status: TInstanceStatusDto;
   actions: TInstanceActionDto[];
-  volumes: TVolumeDto[];
-  flavor: TFlavorDto;
+  volumes: TInstanceVolumeDto[];
+  flavor: TInstanceFlavorDto;
   pricings: TInstancePriceDto[];
-  image?: TImageDto;
-  backups?: TBackupDto;
+  image?: TInstanceImageDto;
+  backups?: TInstanceBackupDto;
 };

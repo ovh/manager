@@ -1,4 +1,4 @@
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 
 export type TInstanceActionModalViewModel = {
   id: string;
@@ -10,7 +10,7 @@ export type TInstanceActionModalViewModel = {
 } | null;
 
 export const selectInstanceForActionModal = (
-  instance?: TInstanceDto,
+  instance?: TAggregatedInstanceDto,
 ): TInstanceActionModalViewModel => {
   if (!instance) return null;
   return {

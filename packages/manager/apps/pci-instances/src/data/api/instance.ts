@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
-  TInstanceDto,
+  TAggregatedInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
 import { mockedInstanceDTO } from '@/__mocks__/instance/constants';
@@ -38,7 +38,7 @@ export const getInstances = (
     searchField,
     searchValue,
   }: TRetrieveInstancesQueryParams,
-): Promise<TInstanceDto[]> =>
+): Promise<TAggregatedInstanceDto[]> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance`, {
       params: {
@@ -146,7 +146,7 @@ export const getInstance = ({
 }: {
   projectId: string;
   instanceId: string;
-}): Promise<TInstanceDto> =>
+}): Promise<TAggregatedInstanceDto> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
     .then((response) => response.data);
@@ -156,5 +156,3 @@ export const getInstancev2 = async (): Promise<TInstance> => {
     setTimeout(() => r(mapInstanceDtoToInstance(mockedInstanceDTO)), 2000),
   );
 };
-
-// Promise.resolve(mapInstanceDtoToInstance(mockedInstanceDTO));
