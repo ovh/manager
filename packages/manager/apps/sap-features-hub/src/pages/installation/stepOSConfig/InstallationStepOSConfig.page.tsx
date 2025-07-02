@@ -78,9 +78,8 @@ export default function InstallationStepOSConfig() {
       title={t('os_config_title')}
       subtitle={t('os_config_subtitle')}
       submitLabel={t('os_config_cta')}
-      isSubmitDisabled={
-        !!(!isStepValid || !!serverErrorMessage || isValidationPending)
-      }
+      isSubmitDisabled={!isStepValid || !!serverErrorMessage}
+      isSubmitLoading={isValidationPending}
       serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.virtualMachines);
