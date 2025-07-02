@@ -1,10 +1,15 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { COLD_ARCHIVE_GRID_DATA } from '@/constants';
+import {
+  COLD_ARCHIVE_GRID_DATA,
+  ResourceType,
+  getResourceDisplayKey,
+  ConsumptionKey,
+  RESOURCE_DISPLAY_NAMES,
+} from '@/constants';
 import queryClient from '@/queryClient';
 import {
   activateMonthlyBilling,
   getCurrentUsage,
-  TConsumptionType,
   TCurrentUsage,
   TQuantity,
 } from '../data/consumption';
@@ -325,7 +330,7 @@ const reduceColdArchiveBillingInfo = (
     };
   });
 
-const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
+const initResourceUsage = (data: TCurrentUsage, resourceType: ResourceType) => {
   let resources = data.resourcesUsage
     .filter((resource) => resource.type === resourceType)
     .flatMap((resource) => resource.resources)
@@ -336,7 +341,7 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
       })),
     );
 
-  if (resourceType === 'coldarchive') {
+  if (resourceType === ResourceType.COLD_ARCHIVE) {
     resources = reduceColdArchiveBillingInfo(resources);
   }
 
@@ -463,31 +468,7 @@ export type TConsumptionDetail = {
   octaviaLoadBalancer: TResourceUsage[];
   totals: {
     total: number;
-    hourly: {
-      total: number;
-      instance: number;
-      objectStorage: number;
-      archiveStorage: number;
-      snapshot: number;
-      volume: number;
-      rancher: number;
-      dataplatform: number;
-      bandwidth: number;
-      privateRegistry: number;
-      kubernetesLoadBalancer: number;
-      notebooks: number;
-      coldArchive: number;
-      serving: number;
-      training: number;
-      aiEndpoints: number;
-      aiDeploy: number;
-      dataProcessing: number;
-      databases: number;
-      floatingIP: number;
-      gateway: number;
-      octaviaLoadBalancer: number;
-      publicIP: number;
-    };
+    hourly: Partial<Record<ConsumptionKey, number>>;
     monthly: {
       total: number;
       instance: number;
@@ -523,29 +504,14 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   totals: {
     total: 0,
     hourly: {
-      total: 0,
-      instance: 0,
-      objectStorage: 0,
-      archiveStorage: 0,
-      snapshot: 0,
-      volume: 0,
-      rancher: 0,
-      bandwidth: 0,
-      privateRegistry: 0,
-      kubernetesLoadBalancer: 0,
-      notebooks: 0,
-      coldArchive: 0,
-      serving: 0,
-      training: 0,
-      aiDeploy: 0,
-      aiEndpoints: 0,
-      dataProcessing: 0,
-      databases: 0,
-      floatingIP: 0,
-      gateway: 0,
-      octaviaLoadBalancer: 0,
-      publicIP: 0,
-      dataplatform: 0,
+      ...Object.values(ResourceType).reduce(
+        (acc, key) => ({ ...acc, [key]: 0 }),
+        {} as Partial<Record<ConsumptionKey, number>>,
+      ),
+      ...Object.values(RESOURCE_DISPLAY_NAMES).reduce(
+        (acc, key) => ({ ...acc, [key]: 0 }),
+        {} as Partial<Record<ConsumptionKey, number>>,
+      ),
     },
     monthly: {
       total: 0,
@@ -558,26 +524,27 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
 export const getConsumptionDetails = (
   usage: TCurrentUsage,
 ): TConsumptionDetail => {
-  const resourceMap = [
-    { type: TConsumptionType.registry, key: 'privateRegistry' },
-    { type: TConsumptionType.loadbalancer, key: 'kubernetesLoadBalancer' },
-    { type: TConsumptionType.aiNotebook, key: 'notebooks' },
-    { type: TConsumptionType.aiServingEngine, key: 'serving' },
-    { type: TConsumptionType.aiTraining, key: 'training' },
-    { type: TConsumptionType.aiEndpoints, key: 'aiEndpoints' },
-    { type: TConsumptionType.dataProcessingJob, key: 'dataProcessing' },
-    { type: TConsumptionType.databases, key: 'databases' },
-    { type: TConsumptionType.coldarchive, key: 'coldArchive' },
-    { type: TConsumptionType.floatingip, key: 'floatingIP' },
-    { type: TConsumptionType.gateway, key: 'gateway' },
-    { type: TConsumptionType.octaviaLoadbalancer, key: 'octaviaLoadBalancer' },
-    { type: TConsumptionType.aiApp, key: 'aiDeploy' },
-    { type: TConsumptionType.publicip, key: 'publicIP' },
-    { type: TConsumptionType.dataplatform, key: 'dataplatform' },
+  const apiResourceTypes = [
+    ResourceType.REGISTRY,
+    ResourceType.LOADBALANCER,
+    ResourceType.AI_NOTEBOOK,
+    ResourceType.AI_SERVING_ENGINE,
+    ResourceType.AI_TRAINING,
+    ResourceType.AI_ENDPOINTS,
+    ResourceType.DATA_PROCESSING_JOB,
+    ResourceType.DATABASES,
+    ResourceType.COLD_ARCHIVE,
+    ResourceType.FLOATING_IP,
+    ResourceType.GATEWAY,
+    ResourceType.OCTAVIA_LOADBALANCER,
+    ResourceType.AI_APP,
+    ResourceType.PUBLIC_IP,
+    ResourceType.DATAPLATFORM,
   ];
 
-  const { resources, totals: hourlyTotals } = resourceMap.reduce(
-    (acc, { type, key }) => {
+  const { resources, totals: hourlyTotals } = apiResourceTypes.reduce(
+    (acc, type) => {
+      const key = getResourceDisplayKey(type);
       const { resources: result, totalPrice } = initResourceUsage(usage, type);
       acc.resources[key] = result;
       acc.totals[key] = totalPrice;
@@ -618,31 +585,16 @@ export const getConsumptionDetails = (
 
   const totals = {
     hourly: {
-      total: 0,
       ...hourlyTotals,
-      instance: hourlyInstanceTotalPrice,
-      objectStorage: objectStorageTotalPrice,
-      archiveStorage: archiveStorageTotalPrice,
-      snapshot: snapshotsTotalPrice,
-      volume: volumesTotalPrice,
-      rancher: rancherTotalPrice,
-      bandwidth: bandwidthTotalPrice,
-      privateRegistry: hourlyTotals.privateRegistry,
-      kubernetesLoadBalancer: hourlyTotals.kubernetesLoadBalancer,
-      notebooks: hourlyTotals.notebooks,
-      coldArchive: hourlyTotals.coldArchive,
-      serving: hourlyTotals.serving,
-      training: hourlyTotals.training,
-      aiDeploy: hourlyTotals.aiDeploy,
-      aiEndpoints: hourlyTotals.aiEndpoints,
-      dataProcessing: hourlyTotals.dataProcessing,
-      databases: hourlyTotals.databases,
-      floatingIP: hourlyTotals.floatingIP,
-      gateway: hourlyTotals.gateway,
-      octaviaLoadBalancer: hourlyTotals.octaviaLoadBalancer,
-      publicIP: hourlyTotals.publicIP,
-      dataplatform: hourlyTotals.dataplatform,
-    },
+      [ResourceType.INSTANCE]: hourlyInstanceTotalPrice,
+      [ResourceType.OBJECT_STORAGE]: objectStorageTotalPrice,
+      [ResourceType.ARCHIVE_STORAGE]: archiveStorageTotalPrice,
+      [ResourceType.SNAPSHOT]: snapshotsTotalPrice,
+      [ResourceType.VOLUME]: volumesTotalPrice,
+      [ResourceType.BANDWIDTH]: bandwidthTotalPrice,
+      [ResourceType.RANCHER]: rancherTotalPrice,
+      [ResourceType.TOTAL]: 0,
+    } as Partial<Record<ConsumptionKey, number>>,
     monthly: {
       total: monthlyInstanceTotalPrice + monthlySavingsPlanTotalPrice,
       instance: monthlyInstanceTotalPrice,
@@ -650,11 +602,13 @@ export const getConsumptionDetails = (
     },
   };
 
-  totals.hourly.total = roundPrice(
-    Object.values(totals.hourly).reduce((sum, price) => sum + price, 0),
+  totals.hourly[ResourceType.TOTAL] = roundPrice(
+    Object.entries(totals.hourly)
+      .filter(([key]) => key !== ResourceType.TOTAL)
+      .reduce((sum, [, price]) => sum + (price ?? 0), 0),
   );
 
-  const finalTotal = roundPrice(totals.hourly.total + totals.monthly.total);
+  const finalTotal = roundPrice((totals.hourly[ResourceType.TOTAL] ?? 0) + totals.monthly.total);
 
   return {
     hourlyInstances: hourlyInstanceList,
@@ -679,6 +633,7 @@ export const getConsumptionDetails = (
     gateway: resources.gateway,
     octaviaLoadBalancer: resources.octaviaLoadBalancer,
     publicIP: resources.publicIP,
+    dataplatform: resources.dataplatform,
     totals: {
       ...totals,
       total: finalTotal,

@@ -110,7 +110,7 @@ describe('AlertModalComponent', () => {
   it('should render modal with the right props', () => {
     renderComponent();
 
-    const call = (PciModal as Mock).mock.lastCall[0] as PciModalProps;
+    const call = (PciModal as Mock).mock.lastCall?.[0] as PciModalProps;
     expect(call.title).toBe('estimate | cpbea_estimate_alert_add_header_title');
     expect(call.onCancel).toBe(defaultProps.onClose);
     expect(call.onClose).toBe(defaultProps.onClose);
