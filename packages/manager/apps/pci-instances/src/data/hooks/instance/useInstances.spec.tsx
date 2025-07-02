@@ -6,19 +6,22 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useInstances, TUseInstancesQueryParams } from './useInstances';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import {
   TAggregatedInstance,
-  TInstanceStatus,
+  TAggregatedInstanceStatus,
 } from '@/types/instance/entity.type';
 
 // builders
 const instanceDtoBuilder = (
-  addresses: TInstanceDto['addresses'],
+  addresses: TAggregatedInstanceDto['addresses'],
   status: TInstanceStatusDto,
-): TInstanceDto => ({
+): TAggregatedInstanceDto => ({
   id: `fake-id`,
   name: `fake-instance-name`,
   flavorId: `fake-flavor-id`,
@@ -37,9 +40,9 @@ const instanceDtoBuilder = (
 });
 
 const instanceBuilder = (
-  instanceDto: TInstanceDto,
+  instanceDto: TAggregatedInstanceDto,
   addresses: TAggregatedInstance['addresses'],
-  status: TInstanceStatus,
+  status: TAggregatedInstanceStatus,
 ): TAggregatedInstance => ({
   ...instanceDto,
   addresses,
@@ -66,7 +69,7 @@ const initQueryClient = () => {
 // test data
 type Data = {
   queryParamaters: TUseInstancesQueryParams;
-  queryPayload?: TInstanceDto[];
+  queryPayload?: TAggregatedInstanceDto[];
   expectedInstances: TAggregatedInstance[];
   expectedQueryHasNext: boolean;
   expectedInstancesAfterRefetch: TAggregatedInstance[];
@@ -105,7 +108,10 @@ const fakeQueryParamaters4: TUseInstancesQueryParams = {
   ],
 };
 
-const fakeInstanceDto1: TInstanceDto = instanceDtoBuilder([], 'ACTIVE');
+const fakeInstanceDto1: TAggregatedInstanceDto = instanceDtoBuilder(
+  [],
+  'ACTIVE',
+);
 const fakeInstance1: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto1,
   new Map(),
@@ -115,7 +121,7 @@ const fakeInstance1: TAggregatedInstance = instanceBuilder(
   },
 );
 
-const fakeInstanceDto2: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto2: TAggregatedInstanceDto = instanceDtoBuilder(
   [{ type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 }],
   'ERROR',
 );
@@ -131,7 +137,7 @@ const fakeInstance2: TAggregatedInstance = instanceBuilder(
   { label: 'ERROR', severity: 'error' },
 );
 
-const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto3: TAggregatedInstanceDto = instanceDtoBuilder(
   [
     { type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
@@ -156,7 +162,7 @@ const fakeInstance3: TAggregatedInstance = instanceBuilder(
   { label: 'DELETING', severity: 'info' },
 );
 
-const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto4: TAggregatedInstanceDto = instanceDtoBuilder(
   [
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 7 },
