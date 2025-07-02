@@ -12,7 +12,7 @@ import {
   SAPInstallationStatus,
 } from '@/types/installation.type';
 import { InstallationStatus } from '@/components/InstallationStatus/InstallationStatus.component';
-import { useMockInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
+import { useInstallationTaskDetails } from '@/hooks/installationDetails/useInstallationDetails';
 import { TGetInstallationTaskParams } from '@/data/api/sapInstallations';
 
 export function computeProgressPercentage(installation?: InstallationDetails) {
@@ -95,7 +95,7 @@ export const InstallationDetailsProgress = ({
   const {
     data: installationTaskDetails,
     isLoading,
-  } = useMockInstallationTaskDetails({ serviceName, taskId });
+  } = useInstallationTaskDetails({ serviceName, taskId });
 
   const progressPercentage = useMemo(
     () => computeProgressPercentage(installationTaskDetails),
