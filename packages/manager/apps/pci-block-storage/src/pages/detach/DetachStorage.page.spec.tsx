@@ -1,4 +1,4 @@
-import { act, render, waitFor } from '@testing-library/react';
+import { act, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import {
@@ -14,6 +14,7 @@ import {
 } from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 vi.mock('@/api/hooks/useVolume', () => ({
   useVolume: vi
@@ -24,14 +25,11 @@ vi.mock('@/api/hooks/useVolume', () => ({
     .mockReturnValue({ isPending: false, detachVolume: vi.fn() }),
 }));
 
+vi.mock('react-router-dom');
+
 vi.mock('@/hooks/useSearchFormParams');
 
 vi.mock('@/api/hooks/useInstance');
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  useParams: vi.fn().mockReturnValue({ projectId: '1', volumeId: '1' }),
-}));
 
 afterEach(() => {
   vi.clearAllMocks();
@@ -46,7 +44,7 @@ describe('DetachStorage', () => {
       isPending: true,
     } as UseQueryResult<UseVolumeResult>);
 
-    const { getByTestId } = render(<DetachStorage />);
+    const { getByTestId } = renderWithMockedWrappers(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
   });
 
@@ -60,7 +58,7 @@ describe('DetachStorage', () => {
       isPending: false,
     } as UseQueryResult<UseVolumeResult>);
 
-    const { getByText } = render(<DetachStorage />);
+    const { getByText } = renderWithMockedWrappers(<DetachStorage />);
     await waitFor(() => {
       expect(
         getByText(
@@ -83,7 +81,9 @@ describe('DetachStorage', () => {
       isPending: false,
     } as UseQueryResult<TVolume>);
 
-    const { queryByText, getByText, getByTestId } = render(<DetachStorage />);
+    const { queryByText, getByText, getByTestId } = renderWithMockedWrappers(
+      <DetachStorage />,
+    );
     expect(
       queryByText(
         'pci_projects_project_storages_blocks_block_detach_detachvolume',

@@ -1,21 +1,24 @@
 import { useContext, useEffect } from 'react';
-import { useLocation, useRouteLoaderData } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useLocation, useMatches, useRouteLoaderData } from 'react-router-dom';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 const DISCOVERY_PLANCODE = 'project.discovery';
 
 export default function usePageTracking() {
+  const { shell } = useContext(ShellContext);
+  const matches = useMatches();
+  const { trackCurrentPage } = useOvhTracking();
   const location = useLocation();
   const project = useRouteLoaderData('public-gateway') as TProject;
-  const { setPciProjectMode, trackPage } = useContext(
-    ShellContext,
-  ).shell.tracking;
 
   useEffect(() => {
     if (project) {
-      setPciProjectMode({
+      shell.tracking.setPciProjectMode({
         projectId: project.project_id,
         isDiscoveryProject: project.planCode === DISCOVERY_PLANCODE,
       });
@@ -23,11 +26,11 @@ export default function usePageTracking() {
   }, [project]);
 
   useEffect(() => {
-    const pageId = location.pathname.split('/').pop();
-    const pageKey = pageId === 'blocks' ? '' : `::${pageId}`;
-    trackPage({
-      name: `${PAGE_PREFIX}::storages::blocks${pageKey}`,
-      level2: PCI_LEVEL2,
-    });
+    const match = matches.slice(-1);
+    defineCurrentPage(`app.{{appName}}-${match[0]?.id}`);
+  }, [location]);
+
+  useEffect(() => {
+    trackCurrentPage();
   }, [location]);
 }
