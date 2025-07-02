@@ -1,13 +1,12 @@
 import React from 'react';
 import { OdsDivider, OdsCard } from '@ovhcloud/ods-components/react';
 import { ODS_CARD_COLOR } from '@ovhcloud/ods-components';
-import { TileBlock } from './tile-block.component';
+import { TileBlock, TileBlockOptions } from './tile-block.component';
 
 export type DashboardTileBlockItem = {
   id: string;
-  label?: string;
   value: React.ReactNode;
-};
+} & TileBlockOptions;
 
 export type DashboardTileProps = {
   title?: string;
@@ -36,7 +35,11 @@ export const DashboardTile: React.FC<DashboardTileProps> = ({
       )}
       {items.map((item, index) => (
         <React.Fragment key={item.id}>
-          <TileBlock key={item.id} label={item.label}>
+          <TileBlock
+            key={item.id}
+            label={item.label}
+            labelTooltip={item.labelTooltip}
+          >
             {item.value}
           </TileBlock>
           {index < items.length - 1 && <OdsDivider spacing="24" />}
