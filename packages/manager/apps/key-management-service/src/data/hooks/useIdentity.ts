@@ -29,9 +29,9 @@ const useIdentityList = <T>(
   const {
     data: listData,
     isLoading: isListLoading,
+    isPending: isListPending,
     isError: isListError,
     error: listError,
-    isFetched,
   } = useQuery<ApiResponse<string[]>, ApiError>({
     queryKey: idsQueryKeyFn(),
     queryFn: idsQueryFn,
@@ -39,7 +39,7 @@ const useIdentityList = <T>(
 
   const detailsQueries = useQueries({
     queries:
-      isFetched && listData?.data.length > 0
+      !isListPending && !isListError
         ? listData.data.map(
             (id): UseQueryOptions<ApiResponse<T>, ApiError> => ({
               retry: false,
