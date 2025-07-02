@@ -1,15 +1,17 @@
 import {
-  TInstanceDto2,
+  TInstanceDto,
   TInstanceStatusDto,
   TVolumeDto,
 } from '@/types/instance/api.type';
 import {
-  TAddress2,
+  TAddress,
   TInstance,
   TInstanceAddressType,
   TInstanceStatus,
   TInstanceStatusSeverity,
-  TVolume2,
+  TVolume,
+  TRegion,
+  TInstanceState,
 } from '@/types/instance/entity.type';
 
 const getInstanceStatusSeverity = (
@@ -57,25 +59,25 @@ const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
   severity: getInstanceStatusSeverity(status),
 });
 
-const mapRegion = (instance: TInstanceDto2): TInstance['region'] => ({
+const mapRegion = (instance: TInstanceDto): TRegion => ({
   name: instance.region,
   type: instance.regionType,
   availabilityZone: instance.availabilityZone,
 });
 
-const mapState = (instance: TInstanceDto2): TInstance['state'] => ({
-  status: getInstanceStatus(instance.status),
+const mapStatus = (instance: TInstanceDto): TInstanceState => ({
+  ...getInstanceStatus(instance.status),
   pendingTask: instance.pendingTask,
   taskState: instance.taskState,
 });
 
-const mapVolumes = (volume: TVolumeDto): TVolume2 => ({
+const mapVolumes = (volume: TVolumeDto): TVolume => ({
   ...volume,
   name: volume.name ?? null,
   size: volume.size ?? null,
 });
 
-const mapInstanceAddresses = (instance: TInstanceDto2) =>
+const mapInstanceAddresses = (instance: TInstanceDto) =>
   instance.addresses.reduce((acc, { type, ...rest }) => {
     const foundAddresses = acc.get(type);
     if (foundAddresses) {
@@ -85,13 +87,13 @@ const mapInstanceAddresses = (instance: TInstanceDto2) =>
       return acc;
     }
     return acc.set(type, [{ ...rest, subnet: rest.subnet ?? null }]);
-  }, new Map<TInstanceAddressType, TAddress2[]>());
+  }, new Map<TInstanceAddressType, TAddress[]>());
 
-export const mapInstanceDtoToInstance = (dto: TInstanceDto2): TInstance => {
+export const mapInstanceDtoToInstance = (dto: TInstanceDto): TInstance => {
   return {
     ...dto,
     region: mapRegion(dto),
-    state: mapState(dto),
+    status: mapStatus(dto),
     volumes: dto.volumes.map(mapVolumes),
     backups: dto.backups ?? null,
     image: dto.image ?? null,

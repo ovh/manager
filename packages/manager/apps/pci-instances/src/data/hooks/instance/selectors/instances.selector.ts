@@ -1,7 +1,10 @@
 import { InfiniteData } from '@tanstack/react-query';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import {
-  TAddress,
+  TAggregatedInstanceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceAddress,
   TAggregatedInstance,
   TInstanceAction,
   TAggregatedInstanceActions,
@@ -155,7 +158,7 @@ const getActionHrefByName = (
   return { path: '', isExternal: false };
 };
 
-const mapInstanceAddresses = (instance: TInstanceDto) =>
+const mapInstanceAddresses = (instance: TAggregatedInstanceDto) =>
   instance.addresses.reduce((acc, { type, ...rest }) => {
     const foundAddresses = acc.get(type);
     if (foundAddresses) {
@@ -164,10 +167,10 @@ const mapInstanceAddresses = (instance: TInstanceDto) =>
       return acc;
     }
     return acc.set(type, [rest]);
-  }, new Map<TInstanceAddressType, TAddress[]>());
+  }, new Map<TInstanceAddressType, TAggregatedInstanceAddress[]>());
 
 const mapInstanceActions = (
-  instance: TInstanceDto,
+  instance: TAggregatedInstanceDto,
   projectUrl: string,
 ): TAggregatedInstanceActions =>
   instance.actions.reduce<TAggregatedInstanceActions>((acc, action) => {
@@ -183,7 +186,7 @@ const mapInstanceActions = (
   }, new Map() as TAggregatedInstanceActions);
 
 export const instancesSelector = (
-  { pages }: InfiniteData<TInstanceDto[], number>,
+  { pages }: InfiniteData<TAggregatedInstanceDto[], number>,
   limit: number,
   projectUrl: string,
 ): TAggregatedInstance[] =>

@@ -3,8 +3,13 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
-  TInstancePriceType,
+  TInstancePrice,
   TStatus,
+  TRegionType,
+  TSubnet,
+  TFlavorSpec,
+  TImage,
+  TBackup,
 } from './common.type';
 
 export type TInstanceAddressType = TAddressType;
@@ -19,13 +24,13 @@ export type TInstanceStatus = {
   severity: TInstanceStatusSeverity;
 };
 
-export type TAddress = {
+export type TAggregatedInstanceAddress = {
   ip: string;
   version: number;
   gatewayIp: string;
 };
 
-export type TVolume = {
+type TAggregatedInstanceVolume = {
   id: string;
   name: string;
 };
@@ -52,8 +57,8 @@ export type TAggregatedInstance = DeepReadonly<{
   region: string;
   imageId: string;
   imageName: string;
-  addresses: Map<TInstanceAddressType, TAddress[]>;
-  volumes: TVolume[];
+  addresses: Map<TInstanceAddressType, TAggregatedInstanceAddress[]>;
+  volumes: TAggregatedInstanceVolume[];
   actions: TAggregatedInstanceActions;
   pendingTask: boolean;
   availabilityZone: string | null;
@@ -70,22 +75,44 @@ export type TAggregatedInstance = DeepReadonly<{
  * REFACTOR
  */
 
-export type TVolume2 = {
+export type TVolume = {
   id: string;
   name: string | null;
   size: number | null;
 };
 
-export type TAddress2 = {
+export type TAddress = {
   ip: string;
   version: number;
-  subnet: {
-    id: string;
-    name: string;
-    gatewayIP: string;
-    network: {
-      id: string;
-      name: string;
+  subnet: TSubnet | null;
+};
+
+export type TRegion = {
+  name: string;
+  type: TRegionType;
+  availabilityZone: string | null;
+};
+
+export type TInstanceState = TInstanceStatus & {
+  pendingTask: boolean;
+  taskState: string | null;
+};
+
+type TAction = {
+  name: TActionName;
+  group: TInstanceActionGroup;
+};
+
+type TFlavor = {
+  id: string;
+  name: string;
+  specs: {
+    vcores: TFlavorSpec;
+    ram: TFlavorSpec;
+    storage: TFlavorSpec;
+    bandwidth: {
+      public: TFlavorSpec;
+      private: TFlavorSpec;
     };
   } | null;
 };
@@ -93,66 +120,15 @@ export type TAddress2 = {
 export type TInstance = {
   id: string;
   name: string;
-  region: {
-    name: string;
-    type: 'region' | 'localzone' | 'region-3-az';
-    availabilityZone: string | null;
-  };
-  state: {
-    status: TInstanceStatus;
-    pendingTask: boolean;
-    taskState: string | null;
-  };
-  actions: {
-    name: TActionName;
-    group: TInstanceActionGroup;
-  }[];
-  addresses: Map<TInstanceAddressType, TAddress2[]>;
-  volumes: TVolume2[];
-  flavor: {
-    id: string;
-    name: string;
-    specs: {
-      vcores: {
-        value: number;
-        unit: string;
-      };
-      ram: {
-        value: number;
-        unit: string;
-      };
-      storage: {
-        value: number;
-        unit: string;
-      };
-      bandwidth: {
-        public: {
-          value: number;
-          unit: string;
-        };
-        private: {
-          value: number;
-          unit: string;
-        };
-      };
-    } | null;
-  };
-  pricings:
-    | {
-        type: TInstancePriceType;
-        value: number;
-        status: 'enabled' | 'available' | 'eligible';
-      }[]
-    | null;
-  image: {
-    id: string;
-    name: string;
-    deprecated: boolean;
-  } | null;
-  backups: {
-    count: number;
-    lastBackup: string;
-  } | null;
+  region: TRegion;
+  status: TInstanceState;
+  actions: TAction[];
+  addresses: Map<TInstanceAddressType, TAddress[]>;
+  volumes: TVolume[];
+  flavor: TFlavor;
+  pricings: TInstancePrice[] | null;
+  image: TImage | null;
+  backups: TBackup | null;
   sshKey: string | null;
   login: string | null;
 };

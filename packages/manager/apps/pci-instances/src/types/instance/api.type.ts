@@ -3,8 +3,13 @@ import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
-  TInstancePriceType,
+  TInstancePrice,
   TStatus,
+  TRegionType,
+  TSubnet,
+  TFlavorSpec,
+  TImage,
+  TBackup,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
@@ -29,7 +34,7 @@ export type TInstanceActionDto = {
 export type TInstanceActionNameDto = TActionName;
 export type TInstanceStatusDto = TStatus;
 
-export type TInstanceDto = {
+export type TAggregatedInstanceDto = {
   addresses: TInstanceAddressDto[];
   flavorId: string;
   flavorName: string;
@@ -47,8 +52,8 @@ export type TInstanceDto = {
   isImageDeprecated: boolean;
 };
 
-export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &
-  Partial<TInstanceDto>;
+export type TPartialInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
+  Partial<TAggregatedInstanceDto>;
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
   limit: number;
@@ -70,15 +75,7 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
  *
  */
 
-type TSubnetDto = {
-  id: string;
-  name: string;
-  gatewayIP: string;
-  network: {
-    id: string;
-    name: string;
-  };
-};
+type TSubnetDto = TSubnet;
 
 type TAddressDto = {
   ip: string;
@@ -87,18 +84,13 @@ type TAddressDto = {
   subnet?: TSubnetDto;
 };
 
-type TRegionType = 'region' | 'localzone' | 'region-3-az';
-
 export type TVolumeDto = {
   id: string;
   name?: string;
   size?: number;
 };
 
-type TFlavorSpecDto = {
-  value: number;
-  unit: string;
-};
+type TFlavorSpecDto = TFlavorSpec;
 
 export type TFlavorDto = {
   id: string;
@@ -114,26 +106,13 @@ export type TFlavorDto = {
   };
 };
 
-type TPriceTypeDto = TInstancePriceType;
+type TInstancePriceDto = TInstancePrice;
 
-type TInstancePriceDto = {
-  type: TPriceTypeDto;
-  value: number;
-  status: 'enabled' | 'available' | 'eligible';
-};
+type TImageDto = TImage;
 
-type TImageDto = {
-  id: string;
-  name: string;
-  deprecated: boolean;
-};
+type TBackupDto = TBackup;
 
-type TBackupDto = {
-  count: number;
-  lastBackup: string;
-};
-
-export type TInstanceDto2 = {
+export type TInstanceDto = {
   id: string;
   name: string;
   region: string;
