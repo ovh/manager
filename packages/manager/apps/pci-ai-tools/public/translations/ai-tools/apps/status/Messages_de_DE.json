@@ -1,9 +1,9 @@
 {
   "status-DELETING": "Wird gelöscht",
   "status-DELETED": "Gelöscht",
-  "status-STOPPING": "Wird gelöscht",
+  "status-STOPPING": "Wird angehalten",
   "status-SCALING": "Skalierung",
-  "status-QUEUED": "In Wartestellung",
+  "status-QUEUED": "Ausstehend",
   "status-INITIALIZING": "Initialisierung",
   "status-FAILED": "Fehlgeschlagen",
   "status-ERROR": "Fehler",

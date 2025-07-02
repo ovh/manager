@@ -1,11 +1,11 @@
 {
-  "appProbeOffField": "Verfügbarkeitsprobe deaktiviert",
-  "appProbeOnField": "Verfügbarkeitsprobe aktiviert",
-  "pathFieldLabel": "Test-API-Endpunkt",
-  "pathFieldInfo": "Der API-Endpunkt der Verfügbarkeitsprobe. Muss den Status 2XX oder 3XX zurückgeben",
+  "appProbeOffField": "Monitoring-Sonde deaktiviert",
+  "appProbeOnField": "Monitoring-Sonde aktiviert",
+  "pathFieldLabel": "API-Endpoint der Sonde",
+  "pathFieldInfo": "API-Endpoint der Monitoring-Sonde Muss einen Status von 2XX oder 3XX zurückmelden",
   "formPathFormatError": "Bitte geben Sie ein gültiges Format ein (Ziffern, Buchstaben, ., /)",
   "portFieldLabel": "Port der Sonde",
-  "portFieldInfo": "Ermöglicht das Konfigurieren eines bestimmten Ports für diesen API-Pfad",
+  "portFieldInfo": "Hiermit können Sie einen bestimmten Port für diesen API-Zugriffspfad konfigurieren.",
   "formPortMinError": "Bitte geben Sie einen Wert größer oder gleich {{min}} ein.",
   "formPortMaxError": "Bitte geben Sie einen Wert kleiner oder gleich {{max}} ein."
 }
