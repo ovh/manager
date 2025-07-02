@@ -38,7 +38,9 @@ const CreateGeneralInformationsValidity = ({
     getDateFromDays(validity),
   );
 
-  const getValidityErrorMessage = (error: ValidityPeriodErrorsType) => {
+  const getValidityErrorMessage = (
+    error: ValidityPeriodErrorsType | undefined,
+  ) => {
     switch (error) {
       case 'MIN_PERIOD':
         return t(
@@ -49,7 +51,7 @@ const CreateGeneralInformationsValidity = ({
           'key_management_service_credential_update_validity_error_max_period',
         );
       default:
-        return null;
+        return undefined;
     }
   };
 
@@ -102,6 +104,7 @@ const CreateGeneralInformationsValidity = ({
             hasError={!!credentialValidityError}
             value={validityDatepicker}
             onOdsChange={(v) => {
+              if (!v.detail.value) return;
               setValidityDatepicker(v.detail.value);
             }}
             max={addDaysToDate(365)}

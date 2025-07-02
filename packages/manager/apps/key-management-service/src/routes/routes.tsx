@@ -29,7 +29,7 @@ const KmsRenameModal = React.lazy(() =>
 
 // Service Key
 const ServiceKeyDashboard = React.lazy(() =>
-  import('@/pages/serviceKey/ServiceKey.page'),
+  import('@/pages/serviceKey/dashboard/ServiceKeyDashboard.page'),
 );
 const ServiceKeyRenameModal = React.lazy(() =>
   import(
@@ -45,7 +45,7 @@ const ServiceKeyDeactivateModal = React.lazy(() =>
   ),
 );
 const ServiceKeyCreate = React.lazy(() =>
-  import('@/pages/serviceKey/CreateKey.page'),
+  import('@/pages/serviceKey/create/CreateKey.page'),
 );
 
 // Credentials

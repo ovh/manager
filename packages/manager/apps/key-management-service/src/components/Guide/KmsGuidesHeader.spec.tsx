@@ -55,12 +55,12 @@ describe('KMS Guides Header tests suite', () => {
 
   it('should display all guides when feature flipping is true', async () => {
     // setup
-    vi.mocked(useFeatureAvailability).mockReturnValue({
+    vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: true,
         [KMS_FEATURES.KMS_USAGE_GUIDE]: true,
       },
-    } as UseFeatureAvailabilityResult);
+    } as unknown) as UseFeatureAvailabilityResult);
 
     // act
     const { getByTestId } = renderComponent();
@@ -95,12 +95,12 @@ describe('KMS Guides Header tests suite', () => {
 
   it('should only display quick start guide when feature flipping is false', async () => {
     // setup
-    vi.mocked(useFeatureAvailability).mockReturnValue({
+    vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: {
         [KMS_FEATURES.KMIP_CONNECTION_GUIDE]: false,
         [KMS_FEATURES.KMS_USAGE_GUIDE]: false,
       },
-    } as UseFeatureAvailabilityResult);
+    } as unknown) as UseFeatureAvailabilityResult);
 
     // act
     const { getByTestId, queryByTestId } = renderComponent();

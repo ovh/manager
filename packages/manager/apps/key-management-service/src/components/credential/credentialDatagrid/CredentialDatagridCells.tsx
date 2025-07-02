@@ -124,7 +124,7 @@ export const DatagridCredentialCellActions = (
       id: 2,
       label: t('key_management_service_credential_delete'),
       iamActions: [kmsIamActions.credentialDelete],
-      urn: okms.iam.urn,
+      urn: okms?.iam.urn,
       onClick: () => {
         trackClick({
           location: PageLocation.datagrid,

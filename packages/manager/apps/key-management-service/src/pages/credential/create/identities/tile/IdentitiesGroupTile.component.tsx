@@ -37,7 +37,6 @@ const IdentitiesGroupTile = ({
 
   return (
     <IdentitiesBaseTile
-      urn={group.urn}
       title={group.name}
       updateCallback={updateGroupInList}
       isChecked={isChecked}

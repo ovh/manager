@@ -8,7 +8,10 @@ import { useDeleteOkmsCredential } from '@/data/hooks/useDeleteOkmsCredential';
 const DeleteCredentialPage = () => {
   const navigate = useNavigate();
   const { trackPage } = useOvhTracking();
-  const { okmsId, credentialId } = useParams();
+  const { okmsId, credentialId } = useParams() as {
+    okmsId: string;
+    credentialId: string;
+  };
   const { t } = useTranslation('key-management-service/credential');
 
   const { mutate, isPending } = useDeleteOkmsCredential({

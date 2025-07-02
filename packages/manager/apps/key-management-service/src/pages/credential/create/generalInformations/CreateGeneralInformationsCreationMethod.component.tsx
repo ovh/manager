@@ -34,14 +34,14 @@ const CreateGeneralInformationsCreationMethod = ({
   const { trackClick } = useOvhTracking();
 
   const getCreationMethodErrorMessage = (
-    error: CredentialCreationMethodErrorsType,
+    error: CredentialCreationMethodErrorsType | undefined,
   ) => {
     if (error === 'REQUIRED') {
       return t(
         'key_management_service_credential_update_custom_csr_error_required',
       );
     }
-    return null;
+    return undefined;
   };
 
   return (

@@ -28,9 +28,11 @@ describe('Credential general informations test suite', () => {
     await waitFor(() => {
       expect(screen.getByText(titleLabel)).toBeVisible();
       expect(screen.getAllByText(mockCredentialItem.name)[0]).toBeVisible();
-      expect(
-        screen.getAllByText(mockCredentialItem.description)[0],
-      ).toBeVisible();
+      if (mockCredentialItem.description) {
+        expect(
+          screen.getAllByText(mockCredentialItem.description)[0],
+        ).toBeVisible();
+      }
 
       const clipboardElement = container.querySelector(
         `[value="${mockCredentialItem.id}"]`,

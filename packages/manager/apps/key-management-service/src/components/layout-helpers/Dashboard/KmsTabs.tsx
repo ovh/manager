@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { OdsTabs, OdsTab, OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
@@ -50,16 +50,18 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
       onOdsTabsSelected={(event) => {
         const { id: url } = event.detail.target as HTMLElement;
 
-        const trackingTag = url.split('/').pop().length
+        const trackingTag = url.split('/').pop()?.length
           ? url.split('/').pop()
           : 'general-informations';
 
-        trackClick({
-          location: PageLocation.page,
-          buttonType: ButtonType.tab,
-          actionType: 'navigation',
-          actions: [trackingTag],
-        });
+        if (trackingTag) {
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.tab,
+            actionType: 'navigation',
+            actions: [trackingTag],
+          });
+        }
         navigate(url);
       }}
     >

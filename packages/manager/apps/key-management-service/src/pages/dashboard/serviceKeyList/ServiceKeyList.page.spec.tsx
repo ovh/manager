@@ -6,7 +6,7 @@ import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { serviceKeyMock } from '@/mocks/serviceKeys/serviceKeys.mock';
-import { CREATE_KEY_TEST_IDS } from '@/pages/serviceKey/CreateKey.constants';
+import { CREATE_KEY_TEST_IDS } from '@/pages/serviceKey/create/CreateKey.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 

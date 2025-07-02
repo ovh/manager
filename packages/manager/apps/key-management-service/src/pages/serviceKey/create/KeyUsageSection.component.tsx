@@ -18,8 +18,8 @@ import {
 import { ServiceKeyOperationCheckbox } from '@/components/serviceKey/create/serviceKeyOperationCheckbox';
 
 export type KeyUsageSectionProps = {
-  serviceKey: OkmsServiceKeyReference;
-  keyType: OkmsKeyTypes;
+  serviceKey: OkmsServiceKeyReference | undefined;
+  keyType: OkmsKeyTypes | undefined;
   keyOperations: OkmsServiceKeyOperations[][];
   setKeyOperations: React.Dispatch<
     React.SetStateAction<OkmsServiceKeyOperations[][]>

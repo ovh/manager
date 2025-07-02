@@ -47,15 +47,18 @@ const CredentialDashboard = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/credential');
   const location = useLocation();
-  const { okmsId, credentialId } = useParams();
+  const { okmsId, credentialId } = useParams() as {
+    okmsId: string;
+    credentialId: string;
+  };
 
-  const { data: okms, isLoading: isLoadingKms, error: errorKms } = useOkmsById(
+  const { data: okms, isPending: isLoadingKms, error: errorKms } = useOkmsById(
     okmsId,
   );
 
   const {
     data,
-    isLoading: isLoadingCredential,
+    isPending: isLoadingCredential,
     error: errorCredential,
   } = useOkmsCredentialById({
     okmsId,
@@ -67,7 +70,7 @@ const CredentialDashboard = () => {
   if (errorCredential || errorKms) {
     return (
       <ErrorBanner
-        error={errorKms?.response || errorCredential?.response}
+        error={errorCredential?.response || errorKms?.response || {}}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({

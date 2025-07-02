@@ -49,12 +49,27 @@ export default function Keys() {
   const { trackClick } = useOvhTracking();
 
   const { sorting, setSorting } = useDatagridSearchParams();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
     sorting,
     okmsId,
   });
   const { okms } = useOutletContext<KmsDashboardOutletContext>();
+
+  if (isLoading) return <Loading />;
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={error}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
+          })
+        }
+      />
+    );
 
   const columns = [
     {
@@ -90,21 +105,6 @@ export default function Keys() {
       label: '',
     },
   ];
-
-  if (isLoading) return <Loading />;
-
-  if (error)
-    return (
-      <ErrorBanner
-        error={error}
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
-          })
-        }
-      />
-    );
 
   return (
     <div className="flex flex-col gap-6">

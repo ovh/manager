@@ -9,7 +9,7 @@ export type OkmsServiceKeyOptions = {
 ALL SERVICE KEY TYPE
 */
 export type OkmsAllServiceKeys = OkmsServiceKeyBase & {
-  size?: OkmsServiceKeyTypeOctSize & OkmsServiceKeyTypeRSASize;
+  size?: OkmsServiceKeySize;
   curve?: OkmsServiceKeyTypeECCurve;
   operations: OkmsServiceKeyOperations[];
 };
@@ -23,9 +23,12 @@ export type OkmsServiceKeyBase = {
   name?: string;
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
-  keys?: any[];
+  keys?: OkmsServiceKeyObject;
   iam: IamObject;
 };
+
+// A JSON Web Key (JWK) object
+type OkmsServiceKeyObject = unknown[];
 
 /*
 KEY STATE
@@ -80,6 +83,12 @@ export type OkmsRSAServiceKey = OkmsServiceKeyBase & {
   operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify];
 };
 
+/* Size */
+
+export type OkmsServiceKeySize =
+  | OkmsServiceKeyTypeOctSize
+  | OkmsServiceKeyTypeRSASize;
+
 /* Elliptic Curve (EC) */
 
 export type OkmsServiceKeyTypeECCurve = 'P-256' | 'P-384' | 'P-521';
@@ -123,7 +132,7 @@ export type OkmsServiceKeyPostPayload = {
   name: string;
   context: string;
   curve?: OkmsServiceKeyTypeECCurve;
-  size?: OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeRSASize;
+  size?: OkmsServiceKeySize;
   operations: OkmsServiceKeyOperations[];
   type: OkmsKeyTypes;
 };

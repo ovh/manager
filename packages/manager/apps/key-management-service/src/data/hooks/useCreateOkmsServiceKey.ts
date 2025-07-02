@@ -10,21 +10,17 @@ import {
 
 export type CreateOkmsServiceKeyParams = {
   okmsId: string;
-  onSuccess: () => void;
-  onError: () => void;
 };
 
 export const useCreateOkmsServiceKey = ({
   okmsId,
-  onSuccess,
-  onError,
 }: CreateOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
   const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const { mutate: createKmsServiceKey, isPending } = useMutation({
+  const { mutateAsync: createKmsServiceKey, isPending } = useMutation({
     mutationFn: (data: OkmsServiceKeyPostPayload) =>
       createOkmsServiceKeyResource({ okmsId, data }),
     onSuccess: async () => {
@@ -33,7 +29,6 @@ export const useCreateOkmsServiceKey = ({
       });
       clearNotifications();
       addSuccess(t('key_management_service_service-keys_create_success'), true);
-      onSuccess?.();
     },
     onError: (result: ApiError) => {
       clearNotifications();
@@ -43,7 +38,6 @@ export const useCreateOkmsServiceKey = ({
         }),
         true,
       );
-      onError?.();
     },
   });
 

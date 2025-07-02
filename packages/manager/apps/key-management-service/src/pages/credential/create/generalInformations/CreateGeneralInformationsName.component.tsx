@@ -21,7 +21,7 @@ const CreateGeneralInformationsName = ({
 }: CreateGeneralInformationsNameProps) => {
   const { t } = useTranslation('key-management-service/credential');
 
-  const getNameErrorMessage = (error: CredentialNameErrorsType) => {
+  const getNameErrorMessage = (error: CredentialNameErrorsType | undefined) => {
     switch (error) {
       case 'REQUIRED':
         return t(
@@ -35,7 +35,7 @@ const CreateGeneralInformationsName = ({
         return t('key_management_service_credential_update_name_error_max');
 
       default:
-        return null;
+        return undefined;
     }
   };
 

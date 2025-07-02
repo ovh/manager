@@ -14,17 +14,19 @@ import {
   IdentityOauthClient,
 } from '@/types/identity.type';
 
-type IdentitiesSelectedBaseProps = {
+type IdentityType = IdentityUser | IdentityGroup | IdentityOauthClient;
+
+type IdentitiesSelectedBaseProps<T extends IdentityType> = {
   title: string;
   identityURNs: string[];
   addCallback: () => void;
   addButtonLabel: string;
   deleteCallback: () => void;
-  datagridColumns: DatagridColumn<unknown>[];
-  items: IdentityUser[] | IdentityGroup[] | IdentityOauthClient[];
+  datagridColumns: DatagridColumn<T>[];
+  items: T[];
 };
 
-const IdentitiesSelectedBase = ({
+function IdentitiesSelectedBase<T extends IdentityType>({
   title,
   identityURNs,
   addCallback,
@@ -32,7 +34,7 @@ const IdentitiesSelectedBase = ({
   deleteCallback,
   datagridColumns,
   items = [],
-}: IdentitiesSelectedBaseProps) => {
+}: IdentitiesSelectedBaseProps<T>) {
   const { t } = useTranslation('key-management-service/credential');
   return (
     <div className="grid gap-4">
@@ -67,6 +69,6 @@ const IdentitiesSelectedBase = ({
       />
     </div>
   );
-};
+}
 
 export default IdentitiesSelectedBase;

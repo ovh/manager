@@ -32,9 +32,9 @@ export const ProtectionLevelSection: React.FC = () => {
     );
 
     setPricingData({
-      price: addon?.pricings[0]?.price,
-      tax: addon?.pricings[0]?.tax,
-      intervalUnit: plan?.pricings[0]?.intervalUnit,
+      price: addon?.pricings[0]?.price || 0,
+      tax: addon?.pricings[0]?.tax || 0,
+      intervalUnit: plan?.pricings[0]?.intervalUnit || IntervalUnitType.none,
     });
   };
 

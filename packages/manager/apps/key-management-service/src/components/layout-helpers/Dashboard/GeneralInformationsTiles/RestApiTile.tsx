@@ -16,7 +16,7 @@ import { REST_ENDPOINT_LABEL, SWAGGER_UI_LABEL } from './RestApiTile.constants';
 import { DownloadKmsPublicCaLink } from '@/components/dashboard/downloadKmsPublicCaLink/DownloadKmsPublicCaLink';
 
 type RestApiTileProps = {
-  okmsData?: OKMS;
+  okmsData: OKMS;
 };
 
 const RestApiTile = ({ okmsData }: RestApiTileProps) => {

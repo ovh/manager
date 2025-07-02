@@ -35,7 +35,7 @@ describe('InformationsTile component tests suite', () => {
     },
   };
 
-  const serviceInfo: ServiceDetails = {
+  const serviceInfo = ({
     resource: {
       displayName: 'kms display name',
       name: 'name',
@@ -49,7 +49,7 @@ describe('InformationsTile component tests suite', () => {
     route: null,
     serviceId: null,
     tags: null,
-  };
+  } as unknown) as ServiceDetails;
 
   test('Should display information tile with only all mandatory data', async () => {
     const { container } = render(

@@ -45,9 +45,11 @@ const CredentialGeneralInformations = () => {
   const { t } = useTranslation('key-management-service/credential');
   const { trackClick } = useOvhTracking();
 
-  const { filename, href, isDisabled } = getDownloadCredentialParameters(
-    credential,
-  );
+  const {
+    filename,
+    href: downloadHref,
+    isDisabled,
+  } = getDownloadCredentialParameters(credential);
 
   const items: DashboardTileBlockItem[] = [
     {
@@ -95,14 +97,17 @@ const CredentialGeneralInformations = () => {
         <TileValueDate value={credential.expiredAt} options={dateFormat} />
       ),
     },
-    {
-      id: 'actions',
-      label: t('key_management_service_credential_dashboard_actions'),
-      value: (
-        <div className="flex items-center gap-4">
+  ];
+
+  items.push({
+    id: 'actions',
+    label: t('key_management_service_credential_dashboard_actions'),
+    value: (
+      <div className="flex items-center gap-4">
+        {downloadHref && (
           <OdsLink
             color={ODS_LINK_COLOR.primary}
-            href={href}
+            href={downloadHref}
             download={filename}
             isDisabled={isDisabled}
             onClick={() =>
@@ -116,28 +121,28 @@ const CredentialGeneralInformations = () => {
             label={t('key_management_service_credential_download')}
             icon={ODS_ICON_NAME.download}
           />
-          <ManagerButton
-            id="deleteAccessCertificate"
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_BUTTON_COLOR.critical}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            iamActions={[kmsIamActions.credentialDelete]}
-            onClick={() => {
-              trackClick({
-                location: PageLocation.page,
-                buttonType: ButtonType.button,
-                actionType: 'action',
-                actions: ['delete_access_certificate'],
-              });
-              navigate(KMS_ROUTES_URIS.credentialDelete);
-            }}
-            urn={okms.iam.urn}
-            label={t('key_management_service_credential_delete')}
-          />
-        </div>
-      ),
-    },
-  ];
+        )}
+        <ManagerButton
+          id="deleteAccessCertificate"
+          size={ODS_BUTTON_SIZE.sm}
+          color={ODS_BUTTON_COLOR.critical}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          iamActions={[kmsIamActions.credentialDelete]}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['delete_access_certificate'],
+            });
+            navigate(KMS_ROUTES_URIS.credentialDelete);
+          }}
+          urn={okms.iam.urn}
+          label={t('key_management_service_credential_delete')}
+        />
+      </div>
+    ),
+  });
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 break-words">
