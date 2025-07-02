@@ -94,6 +94,12 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
+        homeLink: /* @ngInject */ ($state) =>
+          $state.href('billing.autorenew.services', {}, { inherit: false }),
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('billing_title'),
+        defaultPaymentMean: /* @ngInject */ (ovhPaymentMethod) =>
+          ovhPaymentMethod.getDefaultPaymentMethod(),
       },
       !coreConfigProvider.isRegion('US')
         ? {
@@ -104,12 +110,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
                 { inherit: false },
               ),
 
-            homeLink: /* @ngInject */ ($state) =>
-              $state.href('billing.autorenew.services', {}, { inherit: false }),
-
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_title'),
-
             endStrategyEnum: /* @ngInject */ ($http) =>
               $http
                 .get('/services.json')
@@ -118,9 +118,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
                     data.models['services.billing.engagement.EndStrategyEnum']
                       ?.enum,
                 ),
-            /* @ngInject */
-            defaultPaymentMean: (ovhPaymentMethod) =>
-              ovhPaymentMethod.getDefaultPaymentMethod(),
           }
         : {},
     ),
@@ -133,18 +130,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         page_category: TRACKING_PAGE_CATEGORY,
       });
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('isAutorenewManagementAvailable')
-        .then((isAutorenewManagementAvailable) => {
-          if (!isAutorenewManagementAvailable) {
-            return 'billing.autorenew.ssh';
-          }
-          return transition.to()?.name === 'billing.autorenew'
-            ? 'billing.autorenew.services'
-            : null;
-        }),
+    redirectTo: () => 'billing.autorenew.services',
   });
 
   $stateProvider.state('billing.autorenew.service', {
