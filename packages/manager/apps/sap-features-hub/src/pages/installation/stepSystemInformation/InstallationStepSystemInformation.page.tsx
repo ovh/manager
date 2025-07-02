@@ -70,9 +70,8 @@ export default function InstallationStepSystemInformation() {
       title={t('system_title')}
       subtitle={t('system_subtitle')}
       submitLabel={t('system_cta')}
-      isSubmitDisabled={
-        !!(!isStepValid || isValidationPending || !!serverErrorMessage)
-      }
+      isSubmitDisabled={!isStepValid || !!serverErrorMessage}
+      isSubmitLoading={isValidationPending}
       serverErrorMessage={serverErrorMessage}
       onSubmit={() => {
         trackClick(TRACKING.installation.provideSources);
