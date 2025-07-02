@@ -20,6 +20,14 @@ export default class {
       this.setMessage(this.$translate.instant('common_expired'), 'danger');
     }
 
+    this.checkLogsAvailability();
+  }
+
+  checkLogsAvailability() {
+    if (this.isLogsDisabled) {
+      this.isLogsAvailable = false;
+      return;
+    }
     const logsFeature = 'hpc-vmware-vsphere:logs';
     this.ovhFeatureFlipping
       .checkFeatureAvailability(logsFeature)
