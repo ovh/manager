@@ -217,118 +217,113 @@ const ApiTerraformDialog = ({
                 {t('pciDatabasesAddCommandDialogTerraformTabTitle')}
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="api">
-              <ScrollArea className="max-h-[60vh] overflow-y-auto flex space-y-4">
-                <p>{t('pciDatabasesAddCommandDialogApiDescription')}</p>
-                <Trans
-                  t={t}
-                  i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
-                  components={{
-                    anchor: (
-                      <A
-                        target="_blank"
-                        href={getDocumentationUrl(
-                          LINKS.DB_ORDER_EQ_API,
-                          locale,
-                        )}
-                      ></A>
+            <TabsContent
+              value="api"
+              className="max-h-[60vh] overflow-auto space-y-4"
+            >
+              <p>{t('pciDatabasesAddCommandDialogApiDescription')}</p>
+              <Trans
+                t={t}
+                i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
+                components={{
+                  anchor: (
+                    <A
+                      target="_blank"
+                      href={getDocumentationUrl(LINKS.DB_ORDER_EQ_API, locale)}
+                    ></A>
+                  ),
+                }}
+              ></Trans>
+              <div>{t('pciDatabasesAddCommandDialogApiParameters')}</div>
+              <div className="inline-flex items-center gap-1 font-mono text-sm">
+                <span className="rounded bg-green-100 px-2 py-0.5 text-green-700 font-semibold">
+                  POST
+                </span>
+                <span
+                  className="bg-gray-100 px-2 py-0.5 rounded text-gray-800 break-all"
+                  data-testid="dialog-api-endpoint"
+                >
+                  {apiEndpoint}
+                </span>
+              </div>
+              <Code
+                className="h-dvh max-h-64 max-w-full"
+                code={JSON.stringify(apiBodyContent, null, 2)}
+                lang={JsonLanguage}
+                onCopied={() =>
+                  toast({
+                    title: t('pciDatabasesAddCommandCodeCopied'),
+                  })
+                }
+              ></Code>
+              <p>{t('pciDatabasesAddCommandParametersInfo')}</p>
+              <Table>
+                <TableBody>
+                  {Object.entries(apiSchemaDescription).map(
+                    ([key, value], index) => (
+                      <TableRow key={`infos-row-${index}`}>
+                        <TableCell key={`infos-key-${index}`}>{key}</TableCell>
+                        <TableCell key={`infos-value-${index}`}>
+                          {value}
+                        </TableCell>
+                      </TableRow>
                     ),
-                  }}
-                ></Trans>
-                <div>{t('pciDatabasesAddCommandDialogApiParameters')}</div>
-                <div className="inline-flex items-center gap-1 font-mono text-sm">
-                  <span className="rounded bg-green-100 px-2 py-0.5 text-green-700 font-semibold">
-                    POST
-                  </span>
-                  <span
-                    className="bg-gray-100 px-2 py-0.5 rounded text-gray-800 break-all"
-                    data-testid="dialog-api-endpoint"
-                  >
-                    {apiEndpoint}
-                  </span>
-                </div>
+                  )}
+                </TableBody>
+              </Table>
+            </TabsContent>
+            <TabsContent
+              value="terraform"
+              className="max-h-[60vh] overflow-auto space-y-4"
+            >
+              <p>{t('pciDatabasesAddCommandDialogTerraformDescription')}</p>
+              <Trans
+                t={t}
+                i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
+                components={{
+                  anchor: (
+                    <A
+                      target="_blank"
+                      href={getDocumentationUrl(
+                        LINKS.DB_ORDER_EQ_TERRAFORM,
+                        locale,
+                      )}
+                    ></A>
+                  ),
+                }}
+              ></Trans>
+              {!terraformData ? (
+                <Skeleton
+                  className="h-dvh max-h-64 w-full rounded-xl"
+                  data-testid="loading-skeleton"
+                />
+              ) : (
                 <Code
                   className="h-dvh max-h-64 max-w-full"
-                  code={JSON.stringify(apiBodyContent, null, 2)}
-                  lang={JsonLanguage}
+                  code={terraformData}
+                  lang={TerraformLanguage}
                   onCopied={() =>
                     toast({
                       title: t('pciDatabasesAddCommandCodeCopied'),
                     })
                   }
                 ></Code>
-                <p>{t('pciDatabasesAddCommandParametersInfo')}</p>
-                <Table>
-                  <TableBody>
-                    {Object.entries(apiSchemaDescription).map(
-                      ([key, value], index) => (
-                        <TableRow key={`infos-row-${index}`}>
-                          <TableCell key={`infos-key-${index}`}>
-                            {key}
-                          </TableCell>
-                          <TableCell key={`infos-value-${index}`}>
-                            {value}
-                          </TableCell>
-                        </TableRow>
-                      ),
-                    )}
-                  </TableBody>
-                </Table>
-              </ScrollArea>
-            </TabsContent>
-            <TabsContent value="terraform">
-              <ScrollArea className="max-h-[60vh] overflow-y-auto flex space-y-4">
-                <p>{t('pciDatabasesAddCommandDialogTerraformDescription')}</p>
-                <Trans
-                  t={t}
-                  i18nKey={'pciDatabasesAddCommandDialogDocumentationCta'}
-                  components={{
-                    anchor: (
-                      <A
-                        target="_blank"
-                        href={getDocumentationUrl(
-                          LINKS.DB_ORDER_EQ_TERRAFORM,
-                          locale,
-                        )}
-                      ></A>
+              )}
+              <p>{t('pciDatabasesAddCommandParametersInfo')}</p>
+              <Table>
+                <TableBody>
+                  {Object.entries(terraformSchemaDescription).map(
+                    ([key, value], index) => (
+                      <TableRow key={`infos-row-${index}`}>
+                        <TableCell key={`infos-key-${index}`}>{key}</TableCell>
+                        <TableCell key={`infos-value-${index}`}>
+                          {value}
+                        </TableCell>
+                      </TableRow>
                     ),
-                  }}
-                ></Trans>
-                {!terraformData ? (
-                  <Skeleton
-                    className="h-dvh max-h-64 w-full rounded-xl"
-                    data-testid="loading-skeleton"
-                  />
-                ) : (
-                  <Code
-                    className="h-dvh max-h-64 max-w-full p-2"
-                    code={terraformData}
-                    lang={TerraformLanguage}
-                    onCopied={() =>
-                      toast({
-                        title: t('pciDatabasesAddCommandCodeCopied'),
-                      })
-                    }
-                  ></Code>
-                )}
-                <p>{t('pciDatabasesAddCommandParametersInfo')}</p>
-                <Table>
-                  <TableBody>
-                    {Object.entries(terraformSchemaDescription).map(
-                      ([key, value], index) => (
-                        <TableRow key={`infos-row-${index}`}>
-                          <TableCell key={`infos-key-${index}`}>
-                            {key}
-                          </TableCell>
-                          <TableCell key={`infos-value-${index}`}>
-                            {value}
-                          </TableCell>
-                        </TableRow>
-                      ),
-                    )}
-                  </TableBody>
-                </Table>
-              </ScrollArea>
+                  )}
+                </TableBody>
+              </Table>
             </TabsContent>
           </Tabs>
           <Button
