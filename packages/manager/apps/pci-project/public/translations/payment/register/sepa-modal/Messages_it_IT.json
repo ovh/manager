@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Conti bancari zona SEPA",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "Ho capito",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Per realizzare un prelievo bancario è necessario essere in possesso di un conto bancario in un Paese appartenente all’area unica dei pagamenti in euro, la <strong>zona SEPA</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Se non disponi di un conto di questo tipo, ti invitiamo a scegliere un altro metodo di pagamento."
+}

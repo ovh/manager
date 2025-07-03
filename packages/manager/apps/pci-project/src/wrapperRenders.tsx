@@ -2,10 +2,9 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { vi } from 'vitest';
-import queryClient from './queryClient';
 
 export const shellContext = ({
   environment: {
@@ -28,6 +27,14 @@ export const shellContext = ({
 export const createWrapper = (
   contextValue: ShellContextType = shellContext,
 ) => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 300_000,
+      },
+    },
+  });
+
   const Wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider value={contextValue}>
