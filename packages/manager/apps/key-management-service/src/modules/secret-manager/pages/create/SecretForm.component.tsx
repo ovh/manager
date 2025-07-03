@@ -62,10 +62,6 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
     handleSubmit,
     formState: { isDirty, isValid, errors },
   } = useForm({
-    // defaultValues: {
-    //   path: 'a/test',
-    //   data: '{"a": "a"}',
-    // },
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
   });
