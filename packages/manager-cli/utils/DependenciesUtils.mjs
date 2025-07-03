@@ -56,7 +56,7 @@ export const writePackageJson = (appPath, pkg) => {
 export const satisfiesVersion = (required, actual) => {
   if (!actual || !required.startsWith('>=')) return false;
   const reqParts = required.replace('>=', '').split('.').map(Number);
-  const actParts = actual.split('.').map(Number);
+  const actParts = actual.replace(/[^0-9.]/g, '').split('.').map(Number);
   for (let i = 0; i < reqParts.length; i++) {
     if ((actParts[i] || 0) > reqParts[i]) return true;
     if ((actParts[i] || 0) < reqParts[i]) return false;
