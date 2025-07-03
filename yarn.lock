@@ -9681,7 +9681,7 @@
     lodash "^4.17.15"
     redent "^3.0.0"
 
-"@testing-library/jest-dom@6.5.0", "@testing-library/jest-dom@^6.5.0":
+"@testing-library/jest-dom@6.5.0":
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-6.5.0.tgz#50484da3f80fb222a853479f618a9ce5c47bfe54"
   integrity sha512-xGGHpBXYSHUUr6XsKBfs85TWlYKpTc37cSBBVrXcib2MkHLboWlkClhWF37JKlDb9KEq3dHs+f2xR7XJEWGBxA==
