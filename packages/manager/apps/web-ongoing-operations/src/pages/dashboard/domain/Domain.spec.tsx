@@ -62,7 +62,7 @@ describe('Domain datagrid', () => {
 
     const { getByTestId } = render(<Domain />, { wrapper });
     await waitFor(() => {
-      expect(getByTestId('domain')).toBeInTheDocument();
+      expect(getByTestId('datagrid')).toBeInTheDocument();
 
       const domainName = getByTestId('case-where-modal-cant-be-open.ovh');
       expect(domainName).toBeInTheDocument();
