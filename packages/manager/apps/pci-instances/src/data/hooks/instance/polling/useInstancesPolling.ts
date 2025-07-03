@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useCallback } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { getInstancev2 } from '@/data/api/instance';
+import { getInstance } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey, isApiErrorResponse } from '@/utils';
 import { TInstance } from '@/types/instance/entity.type';
@@ -29,6 +29,11 @@ export type TUseInstancesPolling = {
   data?: TInstance;
 };
 
+export type TPendingTask = {
+  instanceId: string;
+  region: string;
+};
+
 const defaultQueryOptions: TUseInstancesPollingQueryOptions = {
   refetchIntervalInBackground: true,
   gcTime: 0,
@@ -45,7 +50,7 @@ export const shouldRetryAfter404Error = (
     : failureCount < 3;
 
 export const useInstancesPolling = (
-  pendingTaskIds: string[],
+  pendingTasks: TPendingTask[],
   { onError, onSuccess }: TUseInstancesPollingCallbacks = {},
   options?: TUseInstancesPollingQueryOptions,
 ): TUseInstancesPolling[] => {
@@ -53,21 +58,26 @@ export const useInstancesPolling = (
   const queryOptions = options ?? {};
 
   const polledInstances = useQueries({
-    queries: pendingTaskIds.map((instanceId) => ({
-      queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
-      queryFn: () => getInstancev2(),
+    queries: pendingTasks.map(({ instanceId, region }) => ({
+      queryKey: instancesQueryKey(projectId, [
+        'region',
+        region,
+        'instance',
+        instanceId,
+      ]),
+      queryFn: () => getInstance({ projectId, region, instanceId }),
       ...defaultQueryOptions,
       ...queryOptions,
     })),
     combine: useCallback(
       (results: UseQueryResult<TInstance>[]) =>
         results.map(({ data, error, isLoading }, index) => ({
-          id: pendingTaskIds[index],
+          id: pendingTasks[index].instanceId,
           error,
           isLoading,
           data,
         })),
-      [pendingTaskIds],
+      [pendingTasks],
     ),
   });
 
