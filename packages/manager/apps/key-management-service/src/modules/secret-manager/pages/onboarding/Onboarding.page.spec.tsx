@@ -41,7 +41,7 @@ describe('Secret Manager onboarding test suite', () => {
 
     await assertTextVisibility(labels.secretManager.create.title);
     await assertTextVisibility(
-      labels.secretManager.create.region_section_title,
+      labels.secretManager.create.domain_section_title,
     );
   });
 });

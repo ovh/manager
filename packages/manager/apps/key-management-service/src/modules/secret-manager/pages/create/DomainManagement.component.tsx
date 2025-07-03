@@ -122,7 +122,7 @@ export const DomainManagement = ({
 
   return (
     <div className="flex flex-col gap-5">
-      <OdsText preset="heading-2">{t('region_section_title')}</OdsText>
+      <OdsText preset="heading-2">{t('domain_section_title')}</OdsText>
       <RegionSelector
         regions={regions}
         selectedRegion={selectedRegion}

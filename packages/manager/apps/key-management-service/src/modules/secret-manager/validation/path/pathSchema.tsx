@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+export const MIN_CHAR = 1;
+export const MAX_CHAR = 255;
 export const useSecretPathSchema = () => {
   // a secret path can't
   // - start with a '/'
@@ -12,9 +14,6 @@ export const useSecretPathSchema = () => {
   const PATH_ALLOWED_CHARACTER_REGEX = /^[\w.:/=@-]*$/;
 
   const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
-
-  const MIN_CHAR = 1;
-  const MAX_CHAR = 255;
 
   return z
     .string({ message: t('required_field', { ns: NAMESPACES.FORM }) })
@@ -33,25 +32,5 @@ export const useSecretPathSchema = () => {
     .max(
       MAX_CHAR,
       t('error_max_chars', { value: MAX_CHAR, ns: NAMESPACES.FORM }),
-    );
-};
-
-export const UseSecretValueSchema = () => {
-  const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
-
-  return z
-    .string({ message: t('required_field', { ns: NAMESPACES.FORM }) })
-    .refine(
-      (value) => {
-        try {
-          JSON.parse(value);
-          return true;
-        } catch (error) {
-          return false;
-        }
-      },
-      {
-        message: t('secret-manager/create:values_error_invalid_json'),
-      },
     );
 };

@@ -18,16 +18,21 @@ import {
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import {
-  useSecretPathSchema,
-  UseSecretValueSchema,
-} from '@secret-manager/validation/secretSchema';
-import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
 import { secretListQueryKey } from '@secret-manager/data/api/secrets';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
+import {
+  useSecretPathSchema,
+  useSecretDataSchema,
+} from '@secret-manager/validation';
+import {
+  DATA_INPUT_TEST_ID,
+  PATH_INPUT_TEST_ID,
+  SUBMIT_BTN_TEST_ID,
+} from '@secret-manager/utils/tests/secret.constant';
 
 type SecretFormProps = {
   domainId?: string;
@@ -53,8 +58,8 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
 
   /* Form */
   const pathSchema = useSecretPathSchema();
-  const valueSchema = UseSecretValueSchema();
-  const secretSchema = z.object({ path: pathSchema, data: valueSchema });
+  const dataSchema = useSecretDataSchema();
+  const secretSchema = z.object({ path: pathSchema, data: dataSchema });
   type SecretSchema = z.infer<typeof secretSchema>;
 
   const {
@@ -101,7 +106,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
       onSubmit={handleSubmit(handleConfirmClick)}
     >
       <div className="flex flex-col gap-5">
-        <OdsText preset="heading-2">{t('values_section_title')}</OdsText>
+        <OdsText preset="heading-2">{t('secret_section_title')}</OdsText>
         <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('path_title')}</OdsText>
           <Controller
@@ -110,17 +115,14 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
             render={({
               field: { name, value, onChange, onBlur },
             }): React.ReactElement => (
-              <OdsFormField
-                error={errors?.[name]?.message}
-                data-testid="secret-path-formField"
-              >
+              <OdsFormField error={errors?.[name]?.message}>
                 <OdsInput
                   id={name}
                   name={name}
                   value={value}
                   onOdsBlur={onBlur}
                   onOdsChange={onChange}
-                  data-testid="secret-path"
+                  data-testid={PATH_INPUT_TEST_ID}
                 />
                 <OdsText slot="helper" preset="caption">
                   {t('path_helper')}
@@ -130,19 +132,16 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('values_title')}</OdsText>
+          <OdsText preset="heading-4">{t('data_title')}</OdsText>
           <Controller
             name="data"
             control={control}
             render={({
               field: { name, value, onChange, onBlur },
             }): React.ReactElement => (
-              <OdsFormField
-                error={errors?.[name]?.message}
-                data-testid="secret-data-formField"
-              >
+              <OdsFormField error={errors?.[name]?.message}>
                 <label htmlFor={name} slot="label">
-                  {t('values_textarea_label')}
+                  {t('data_textarea_label')}
                 </label>
                 <OdsTextarea
                   id={name}
@@ -152,7 +151,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
                   onOdsChange={onChange}
                   isResizable
                   rows={12}
-                  data-testid="secret-data"
+                  data-testid={DATA_INPUT_TEST_ID}
                 />
               </OdsFormField>
             )}
@@ -179,7 +178,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           isDisabled={!isDirty || !isValid || !domainId}
           isLoading={isPending}
           label={t('create', { ns: NAMESPACES.ACTIONS })}
-          data-testid="secret-submit"
+          data-testid={SUBMIT_BTN_TEST_ID}
         />
       </div>
     </form>

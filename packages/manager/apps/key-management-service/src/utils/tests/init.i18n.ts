@@ -1,6 +1,7 @@
 import i18next, { i18n } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonDashboard from '../../../../../modules/common-translations/public/translations/dashboard/Messages_fr_FR.json';
+import commonForm from '../../../../../modules/common-translations/public/translations/form/Messages_fr_FR.json';
 import kmsCommon from '../../../public/translations/key-management-service/common/Messages_fr_FR.json';
 import create from '../../../public/translations/key-management-service/create/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/key-management-service/dashboard/Messages_fr_FR.json';
@@ -43,6 +44,7 @@ function addTranslations() {
       credentials,
     )
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
+    .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
     .addResources(defaultLocale, 'secret-manager/common', secretCommon)
     .addResources(defaultLocale, 'secret-manager/onboarding', secretOnboarding)
     .addResources(defaultLocale, 'secret-manager/create', secretCreate)
@@ -79,6 +81,7 @@ export const initTestI18n = () =>
 
 const commonLabels = {
   dashboard: commonDashboard,
+  form: commonForm,
 };
 
 const secretManagerLabels = {

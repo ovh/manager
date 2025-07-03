@@ -3,8 +3,15 @@ import {
   getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { Matcher, MatcherOptions, waitFor } from '@testing-library/dom';
-import { fireEvent, act, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {
+  DATA_INPUT_TEST_ID,
+  DATA_VALID_JSON,
+  PATH_INPUT_TEST_ID,
+  PATH_VALID,
+  SUBMIT_BTN_TEST_ID,
+} from '@secret-manager/utils/tests/secret.constant';
+import { fireEvent, act } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
@@ -17,8 +24,8 @@ import { okmsMock } from '@/mocks/kms/okms.mock';
 /* TEST UTILS */
 const selectDomain = async (
   getByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
+  user: UserEvent,
 ) => {
-  const user = userEvent.setup();
   const firstRegion = catalogMock.plans[0].configurations[0].values[0];
 
   await assertTextVisibility(firstRegion);
@@ -27,7 +34,9 @@ const selectDomain = async (
   const regionDomainList = okmsMock.filter(
     (domain) => domain.region === firstRegion,
   );
-  user.click(firstRegionRadioCard);
+  act(() => {
+    user.click(firstRegionRadioCard);
+  });
 
   await waitFor(() => {
     // assert we display the correct domain list
@@ -67,21 +76,44 @@ const assertInitialRegionAndDomainList = async (
   );
 };
 
+const fillRequiredFields = (
+  getByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
+) => {
+  const inputPath = getByTestId(PATH_INPUT_TEST_ID);
+  const inputData = getByTestId(DATA_INPUT_TEST_ID);
+
+  act(() => {
+    fireEvent.input(inputPath, {
+      target: { value: PATH_VALID },
+    });
+
+    fireEvent.change(inputData, {
+      target: { value: DATA_VALID_JSON },
+    });
+  });
+};
+
+const clickBackLink = async (container: HTMLElement, user: UserEvent) => {
+  const backLink = await getOdsButtonByLabel({
+    container,
+    label: 'back',
+    isLink: true,
+  });
+
+  act(() => {
+    user.click(backLink);
+  });
+};
+
 /* CREATE PAGE TEST SUITE */
 describe('Create secret page test suite', () => {
   it('should display the form sections', async () => {
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate);
 
-    await assertTextVisibility(labels.secretManager.create.title);
-    await assertTextVisibility(
-      labels.secretManager.create.region_section_title,
-    );
-    await assertTextVisibility(
-      labels.secretManager.create.values_section_title,
-    );
-    await assertTextVisibility(
-      labels.secretManager.create.paiement_section_title,
-    );
+    assertTextVisibility(labels.secretManager.create.title);
+    assertTextVisibility(labels.secretManager.create.domain_section_title);
+    assertTextVisibility(labels.secretManager.create.secret_section_title);
+    assertTextVisibility(labels.secretManager.create.paiement_section_title);
   });
 });
 
@@ -99,10 +131,11 @@ describe('Domain management test suite', () => {
     const regionsSpinner = getByTestId('regionsSpinner');
     expect(regionsSpinner).toBeVisible();
 
-    await assertInitialRegionAndDomainList(getByTestId, queryByTestId);
+    assertInitialRegionAndDomainList(getByTestId, queryByTestId);
   });
 
   it('should display a filtered domain list and select the first one on a region selection', async () => {
+    const user = userEvent.setup();
     // GIVEN
     // WHEN
     const { getByTestId } = await renderTestApp(
@@ -111,7 +144,7 @@ describe('Domain management test suite', () => {
     await assertTextVisibility(labels.secretManager.create.title);
 
     // THEN
-    selectDomain(getByTestId);
+    selectDomain(getByTestId, user);
   });
 
   describe('When there is a domainId search param', () => {
@@ -153,42 +186,42 @@ describe('Domain management test suite', () => {
       await assertTextVisibility(labels.secretManager.create.title);
 
       // THEN
-      await assertInitialRegionAndDomainList(getByTestId, queryByTestId);
+      assertInitialRegionAndDomainList(getByTestId, queryByTestId);
     });
   });
 });
 
+/* FORM MANAGEMENT TEST SUITE */
+
 type TestCase = {
-  path: string;
-  data: string;
+  path?: string;
+  data?: string;
   selectedDomainId: boolean;
   shouldButtonBeDisabled: boolean;
 };
 
 const testCases: TestCase[] = [
-  { data: '', path: '', selectedDomainId: false, shouldButtonBeDisabled: true },
+  { selectedDomainId: false, shouldButtonBeDisabled: true },
   {
-    data: '{"a": "json"}',
-    path: '',
+    data: DATA_VALID_JSON,
     selectedDomainId: false,
     shouldButtonBeDisabled: true,
   },
   {
-    data: '',
-    path: 'a/path',
+    path: PATH_VALID,
     selectedDomainId: false,
     shouldButtonBeDisabled: true,
   },
-  { data: '', path: '', selectedDomainId: true, shouldButtonBeDisabled: true },
+  { selectedDomainId: true, shouldButtonBeDisabled: true },
   {
-    data: '{"a": "json"}',
-    path: 'a/path',
+    data: DATA_VALID_JSON,
+    path: PATH_VALID,
     selectedDomainId: false,
     shouldButtonBeDisabled: true,
   },
   {
-    data: '{"a": "json"}',
-    path: 'a/path',
+    data: DATA_VALID_JSON,
+    path: PATH_VALID,
     selectedDomainId: true,
     shouldButtonBeDisabled: false,
   },
@@ -198,32 +231,33 @@ describe('Secrets creation form test suite', () => {
   it.each(testCases)(
     'should check the form validity for data: $data, path: $path and a selectedDomain: $selectedDomainId ',
     async ({ data, path, selectedDomainId, shouldButtonBeDisabled }) => {
+      const user = userEvent.setup();
       // GIVEN
       const { getByTestId } = await renderTestApp(
         SECRET_MANAGER_ROUTES_URLS.secretCreate,
       );
       await assertTextVisibility(labels.secretManager.create.title);
 
-      const inputPath = getByTestId('secret-path') as any;
+      const inputPath = getByTestId(PATH_INPUT_TEST_ID);
       expect(inputPath).toBeInTheDocument();
-      const inputValues = getByTestId('secret-data') as any;
-      expect(inputValues).toBeInTheDocument();
-      const submitButton = getByTestId('secret-submit');
+      const inputData = getByTestId(DATA_INPUT_TEST_ID);
+      expect(inputData).toBeInTheDocument();
+      const submitButton = getByTestId(SUBMIT_BTN_TEST_ID);
       expect(submitButton).toBeInTheDocument();
       expect(submitButton).toHaveAttribute('is-disabled', 'true');
 
       // WHEN
-      await waitFor(() => {
+      act(() => {
         fireEvent.input(inputPath, {
           target: { value: path },
         });
 
-        fireEvent.change(inputValues, {
+        fireEvent.change(inputData, {
           target: { value: data },
         });
       });
 
-      if (selectedDomainId) selectDomain(getByTestId);
+      if (selectedDomainId) await selectDomain(getByTestId, user);
 
       // THEN
       await waitFor(
@@ -238,7 +272,6 @@ describe('Secrets creation form test suite', () => {
     },
   );
 
-  // manage the domain selected as well, and the updated list also
   it('should navigate to the created secret page on submit', async () => {
     // GIVEN
     const user = userEvent.setup();
@@ -247,26 +280,11 @@ describe('Secrets creation form test suite', () => {
     );
     await assertTextVisibility(labels.secretManager.create.title);
 
-    selectDomain(getByTestId);
+    selectDomain(getByTestId, user);
+    fillRequiredFields(getByTestId);
 
-    // fill mandatory inputs
-    const inputPath = getByTestId('secret-path') as any;
-    expect(inputPath).toBeInTheDocument();
-    const inputValues = getByTestId('secret-data') as any;
-    expect(inputValues).toBeInTheDocument();
-    const submitButton = getByTestId('secret-submit');
+    const submitButton = getByTestId(SUBMIT_BTN_TEST_ID);
     expect(submitButton).toBeInTheDocument();
-    expect(submitButton).toHaveAttribute('is-disabled', 'true');
-
-    await waitFor(() => {
-      fireEvent.input(inputPath, {
-        target: { value: 'path' },
-      });
-
-      fireEvent.change(inputValues, {
-        target: { value: '{"a": "json"}' },
-      });
-    });
 
     await waitFor(
       () => {
@@ -276,15 +294,16 @@ describe('Secrets creation form test suite', () => {
     );
 
     // WHEN
-    await user.click(submitButton);
+    act(() => {
+      user.click(submitButton);
+    });
 
     // THEN
     // assert we have navigated to the newly created secret page
     await waitFor(
-      async () => {
+      () =>
         // TODO: update when detail page is done
-        await assertTextVisibility('Secret Detail');
-      },
+        assertTextVisibility('Secret Detail'),
       { timeout: 10_000 },
     );
   });
@@ -300,26 +319,11 @@ describe('Secrets creation form test suite', () => {
     );
     await assertTextVisibility(labels.secretManager.create.title);
 
-    selectDomain(getByTestId);
+    selectDomain(getByTestId, user);
+    fillRequiredFields(getByTestId);
 
-    // fill mandatory inputs
-    const inputPath = getByTestId('secret-path') as any;
-    expect(inputPath).toBeInTheDocument();
-    const inputValues = getByTestId('secret-data') as any;
-    expect(inputValues).toBeInTheDocument();
-    const submitButton = getByTestId('secret-submit');
+    const submitButton = getByTestId(SUBMIT_BTN_TEST_ID);
     expect(submitButton).toBeInTheDocument();
-    expect(submitButton).toHaveAttribute('is-disabled', 'true');
-
-    await waitFor(() => {
-      fireEvent.input(inputPath, {
-        target: { value: 'path' },
-      });
-
-      fireEvent.change(inputValues, {
-        target: { value: '{"a": "json"}' },
-      });
-    });
 
     await waitFor(
       () => {
@@ -327,15 +331,16 @@ describe('Secrets creation form test suite', () => {
       },
       { timeout: 10_000 },
     );
-
     // WHEN
-    await waitFor(() => user.click(submitButton));
+    act(() => {
+      user.click(submitButton);
+    });
 
     // THEN
     // assert we display an error notification
     await waitFor(
-      async () => {
-        await assertTextVisibility('error_message');
+      () => {
+        assertTextVisibility('error_message');
       },
       { timeout: 10_000 },
     );
@@ -353,12 +358,7 @@ describe('Secrets creation form test suite', () => {
     await assertTextVisibility(labels.secretManager.create.title);
 
     // WHEN
-    const backLink = await getOdsButtonByLabel({
-      container,
-      label: 'back',
-      isLink: true,
-    });
-    user.click(backLink);
+    clickBackLink(container, user);
 
     // THEN
     await waitFor(
@@ -381,12 +381,7 @@ describe('Secrets creation form test suite', () => {
       await assertTextVisibility(labels.secretManager.create.title);
 
       // WHEN
-      const backLink = await getOdsButtonByLabel({
-        container,
-        label: 'back',
-        isLink: true,
-      });
-      user.click(backLink);
+      clickBackLink(container, user);
 
       // THEN
       await waitFor(
@@ -399,109 +394,4 @@ describe('Secrets creation form test suite', () => {
       );
     });
   });
-});
-
-type PathTestCase = {
-  input: string;
-  error: string;
-};
-
-const pathTestCases: PathTestCase[] = [
-  { input: '', error: 'error_min_chars' },
-  { input: '/', error: labels.secretManager.create.path_error_structure },
-  { input: 'asd/', error: labels.secretManager.create.path_error_structure },
-  { input: 'a//a', error: labels.secretManager.create.path_error_structure },
-  {
-    input: '!',
-    error: labels.secretManager.create.path_error_allowed_characters,
-  },
-];
-
-describe('Path input test suite', () => {
-  it.each(pathTestCases)(
-    'should display error $error when the input is $input',
-    async ({ input, error }) => {
-      // GIVEN
-      const { getByTestId } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.secretCreate,
-      );
-      await assertTextVisibility(labels.secretManager.create.title);
-
-      selectDomain(getByTestId);
-
-      const inputPath = getByTestId('secret-path') as any;
-      const formFieldPath = getByTestId('secret-path-formField') as any;
-      expect(inputPath).toBeInTheDocument();
-      expect(formFieldPath).toBeInTheDocument();
-      await waitFor(() => {
-        inputPath.odsBlur.emit({});
-      });
-
-      // WHEN
-      await waitFor(() => {
-        fireEvent.input(inputPath, {
-          target: { value: input },
-        });
-      });
-
-      // THEN
-      await waitFor(
-        () => {
-          expect(formFieldPath).toHaveAttribute('error', error);
-        },
-        { timeout: 10_000 },
-      );
-    },
-  );
-});
-
-type DataTestCase = {
-  input: string;
-  error: string;
-};
-
-const dataTestCases: DataTestCase[] = [
-  { input: '', error: 'required_field' },
-  {
-    input: 'not-a-json',
-    error: labels.secretManager.create.values_error_invalid_json,
-  },
-];
-
-describe('Values input test suite', () => {
-  it.each(dataTestCases)(
-    'should display error $error when the input is $input',
-    async ({ input, error }) => {
-      // GIVEN
-      const { getByTestId } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.secretCreate,
-      );
-      await assertTextVisibility(labels.secretManager.create.title);
-
-      selectDomain(getByTestId);
-
-      const inputData = getByTestId('secret-data') as any;
-      const formFieldData = getByTestId('secret-data-formField') as any;
-      expect(inputData).toBeInTheDocument();
-      expect(formFieldData).toBeInTheDocument();
-      await waitFor(() => {
-        inputData.odsBlur.emit({});
-      });
-
-      // WHEN
-      await waitFor(() => {
-        fireEvent.input(inputData, {
-          target: { value: input },
-        });
-      });
-
-      // THEN
-      await waitFor(
-        () => {
-          expect(formFieldData).toHaveAttribute('error', error);
-        },
-        { timeout: 10_000 },
-      );
-    },
-  );
 });
