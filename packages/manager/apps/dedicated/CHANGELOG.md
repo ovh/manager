@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.46.0...@ovh-ux/manager-dedicated@20.47.0) (2025-07-03)
+
+
+### Features
+
+* **iplb:** add iplb configo federated module and route ([15378dd](https://github.com/ovh/manager/commit/15378dd20bc88e861e8cb35a53ed37db224dd613)), closes [#MANAGER-18704](https://github.com/ovh/manager/issues/MANAGER-18704)
+
+
+
+
+
 # [20.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.45.0...@ovh-ux/manager-dedicated@20.46.0) (2025-07-02)
 
 
