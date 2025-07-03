@@ -28,8 +28,8 @@ export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
 };
 
 export const mockedInstanceDTO: TInstanceDto = {
-  id: '54b49f74-9d56-4742-9618-89c136b0a443',
-  name: 'b2-7-bhs1.preprod',
+  id: '97ea2fb6-bd49-4e50-972d-c696297d17ae',
+  name: 'b3-8-bhs5',
   status: 'SHUTOFF',
   addresses: [
     {
@@ -87,7 +87,7 @@ export const mockedInstanceDTO: TInstanceDto = {
       size: 10,
     },
   ],
-  region: 'BHS1.PREPROD',
+  region: 'BHS5',
   availabilityZone: null,
   regionType: 'region',
   actions: [

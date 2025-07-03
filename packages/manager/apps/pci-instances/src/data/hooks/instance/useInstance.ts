@@ -1,23 +1,48 @@
+import { useMemo } from 'react';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { getInstance0 } from '@/data/api/instance';
+import { getInstance, TGetInstanceQueryParams } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { instancesQueryKey } from '@/utils';
+import { TInstance } from '@/types/instance/entity.type';
+import { DeepReadonly } from '@/types/utils.type';
 
 export type TUseInstanceQueryOptions = Pick<
-  UseQueryOptions<TAggregatedInstanceDto>,
+  UseQueryOptions<TInstance>,
   'enabled' | 'retry' | 'gcTime'
 >;
 
-export const useInstance = (
-  instanceId: string,
-  queryOptions: TUseInstanceQueryOptions,
-) => {
+type TUseInstanceArgs = DeepReadonly<{
+  region: string | null;
+  instanceId: string;
+  params?: TGetInstanceQueryParams;
+  queryOptions?: TUseInstanceQueryOptions;
+}>;
+
+export const useInstance = ({
+  region,
+  instanceId,
+  params,
+  queryOptions,
+}: TUseInstanceArgs) => {
   const projectId = useProjectId();
 
+  const paramsQueryKey = useMemo(() => {
+    if (!params) return [];
+    return Object.keys(params).filter(
+      (key): key is keyof TGetInstanceQueryParams =>
+        !!params[key as keyof TGetInstanceQueryParams],
+    );
+  }, [params]);
+
   return useQuery({
-    queryKey: instancesQueryKey(projectId, ['instance', instanceId]),
-    queryFn: () => getInstance0({ projectId, instanceId }),
+    queryKey: instancesQueryKey(projectId, [
+      'region',
+      String(region),
+      'instance',
+      instanceId,
+      ...paramsQueryKey,
+    ]),
+    queryFn: () => getInstance({ projectId, region, instanceId, params }),
     ...queryOptions,
   });
 };

@@ -140,33 +140,24 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
-export const getInstance0 = ({
-  projectId,
-  instanceId,
-}: {
-  projectId: string;
-  instanceId: string;
-}): Promise<TAggregatedInstanceDto> =>
-  v6
-    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
-    .then((response) => response.data);
+export type TGetInstanceQueryParams = Partial<{
+  withVolumes: boolean;
+  withBackups: boolean;
+  withNetworks: boolean;
+  withImage: boolean;
+}>;
 
-type TInstanceParams = {
+type TGetInstanceArgs = {
   projectId: string;
-  region: string;
   instanceId: string;
-  querySearch?: Partial<{
-    withVolumes: boolean;
-    withBackups: boolean;
-    withNetworks: boolean;
-    withImage: boolean;
-  }>;
+  region: string | null;
+  params?: TGetInstanceQueryParams;
 };
 
 export const getInstance = async (
   // it will be removed with mock data
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _params: TInstanceParams,
+  _args: TGetInstanceArgs,
 ): Promise<TInstance> => {
   return new Promise((r) =>
     setTimeout(() => r(mapInstanceDtoToInstance(mockedInstanceDTO)), 2000),

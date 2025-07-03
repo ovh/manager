@@ -5,8 +5,8 @@ import {
 
 export const buildPartialInstanceDto = (initial: TPartialInstanceDto) => ({
   with<K extends keyof TAggregatedInstanceDto>(
-    key: keyof TAggregatedInstanceDto,
-    value: TPartialInstanceDto[K],
+    key: K,
+    value: TAggregatedInstanceDto[K],
   ) {
     return buildPartialInstanceDto({ ...initial, [key]: value });
   },

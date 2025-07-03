@@ -23,7 +23,7 @@ const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
   const projectId = useProjectId();
-  const { instanceId } = useParams();
+  const { instanceId, regionId } = useParams();
   const { addError, addInfo } = useNotifications();
   const section = useActionSection();
 
@@ -32,7 +32,11 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const { instance, isLoading } = useInstanceActionModal(instanceId, section);
+  const { instance, isLoading } = useInstanceActionModal(
+    regionId,
+    instanceId,
+    section,
+  );
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
