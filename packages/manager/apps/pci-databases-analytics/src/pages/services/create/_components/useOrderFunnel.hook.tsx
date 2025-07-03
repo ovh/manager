@@ -18,7 +18,7 @@ import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
-import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
+import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.availability.Suggestion,
@@ -115,9 +115,19 @@ export function useOrderFunnel(
 
   const networksData = useVrack(projectId, region, network.networkId);
 
-  const [price, setPrice] = useState<Pricing>({
-    hourly: { price: 0, tax: 0 },
-    monthly: { price: 0, tax: 0 },
+  const [price, setPrice] = useState<ServicePricing>({
+    flavorPrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    servicePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    storagePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
   });
 
   // Create the list of available engines
@@ -212,7 +222,7 @@ export function useOrderFunnel(
         storagePricing: flavorObject.storage?.pricing,
         additionalStorage,
         storageMode: engineObject.storageMode,
-      }).servicePrice,
+      }),
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 

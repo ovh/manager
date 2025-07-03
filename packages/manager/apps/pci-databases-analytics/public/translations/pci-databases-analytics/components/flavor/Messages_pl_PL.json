@@ -3,8 +3,6 @@
   "tableHeadCores": "vCores",
   "tableHeadMemory": "Pamięć",
   "tableHeadStorage": "Dostępna przestrzeń dyskowa",
-  "tableHeadPrice-hourly": "Koszt/godz./węzeł (szacowany)",
-  "tableHeadPrice-monthly": "Koszt/m-c/węzeł (szacowany)",
   "tableCellStorageRange": "Od {{min}} do {{max}}",
   "flavorTag-new": "Nowość"
 }
