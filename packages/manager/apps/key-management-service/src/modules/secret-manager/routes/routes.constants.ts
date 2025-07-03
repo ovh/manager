@@ -14,6 +14,10 @@ const URLS = {
   secretListing: (domainId: string) => `/${URIS.root}/${domainId}`,
   secretDashboard: (domainId: string, secretPath: string) =>
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}`,
+  secretVersions: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
+      URIS.versions
+    }`,
 };
 
 export const SECRET_MANAGER_URL_PARAMS = {
