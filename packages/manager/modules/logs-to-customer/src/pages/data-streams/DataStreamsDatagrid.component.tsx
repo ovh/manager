@@ -124,6 +124,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
           nbSubscription={stream.nbSubscription}
           streamId={stream.streamId}
           serviceName={service.serviceName}
+          parentStreamId={stream.parentStreamId}
         />
       ),
       label: t('log_streams_colomn_subscriptions'),
