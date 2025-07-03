@@ -49,7 +49,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const id = fromIpToId(ipAddress);
   const { ipDetails, isLoading } = useGetIpdetails({ ip });
   const navigate = useNavigate();
-  const { t, t: tcommon } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const isAdmin = useContext(ShellContext)
     .environment?.getUser()
     .auth?.roles?.includes('ADMIN');
@@ -113,7 +113,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${tcommon('delete')} Additional IP`,
+        label: `${t('delete', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
@@ -125,7 +125,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${tcommon('delete')} Additional IP`,
+        label: `${t('delete', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
