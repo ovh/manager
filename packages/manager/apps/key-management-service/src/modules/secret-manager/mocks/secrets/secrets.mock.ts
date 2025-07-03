@@ -11,20 +11,20 @@ export const mockSecret1: Secret = {
   metadata: {
     casRequired: false,
     createdAt: '2023-01-15T08:30:45Z',
-    updatedAt: '2023-01-15T08:30:45Z',
+    updatedAt: '2023-01-15T20:30:45Z',
     currentVersion: 1,
     customMetadata: {
       environment: 'production',
       application: 'payment-service',
     },
-    deactivateVersionAfter: '2024-01-15T08:30:45Z',
+    deactivateVersionAfter: '10d10h10m10s',
     oldestVersion: 1,
     maxVersions: 5,
   },
   iam: {
     id: '1',
     displayName: 'api-key',
-    urn: 'urm:1',
+    urn: 'urn:1',
   },
 };
 
@@ -38,22 +38,22 @@ export const mockSecret2: Secret = {
   },
   metadata: {
     casRequired: true,
-    createdAt: '2022-11-10T09:45:12Z',
-    updatedAt: '2023-04-22T14:15:30Z',
+    createdAt: '2023-04-22T14:15:30Z',
+    updatedAt: '2023-04-22T19:15:30Z',
     currentVersion: 3,
     customMetadata: {
       environment: 'staging',
       application: 'user-database',
       owner: 'db-team',
     },
-    deactivateVersionAfter: '2024-04-22T14:15:30Z',
+    deactivateVersionAfter: '20d20h20m20s',
     oldestVersion: 1,
     maxVersions: 10,
   },
   iam: {
     id: '2',
     displayName: 'database-password',
-    urn: 'urm:2',
+    urn: 'urn:2',
   },
 };
 
