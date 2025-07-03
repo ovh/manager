@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.139.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.3...@ovh-ux/manager-container-app@0.139.0) (2025-07-02)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([501f207](https://github.com/ovh/manager/commit/501f207b25fd732310d1f4edc3645c59485a5f0c)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+* **container:** change display for us links on user account menu ([4e3d6e3](https://github.com/ovh/manager/commit/4e3d6e36b94a0cc6c84a6da4c4fbb8b3a37223a2)), closes [#MANAGER-18370](https://github.com/ovh/manager/issues/MANAGER-18370)
+
+
+
+
+
 ## [0.138.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.2...@ovh-ux/manager-container-app@0.138.3) (2025-07-02)
 
 

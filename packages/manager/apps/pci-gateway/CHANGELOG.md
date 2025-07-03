@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.22.1...@ovh-ux/manager-pci-gateway-app@0.23.0) (2025-07-02)
+
+
+### Features
+
+* **gateway:** improve quota message error ([#17654](https://github.com/ovh/manager/issues/17654)) ([02ce4bf](https://github.com/ovh/manager/commit/02ce4bf38d6f6614bdf9242da927673d02de40cd)), closes [#TAPC-4100](https://github.com/ovh/manager/issues/TAPC-4100)
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.22.0...@ovh-ux/manager-pci-gateway-app@0.22.1) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

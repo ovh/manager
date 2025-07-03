@@ -115,7 +115,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.startRescueInstance()"
-                    data-ng-if="$ctrl.instance.canBeHardRebooted() && !$ctrl.instance.isLocalZone"
+                    data-ng-if="$ctrl.instance.status === 'ACTIVE'"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_rescue_label"
@@ -123,7 +123,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.endRescueInstance()"
-                    data-ng-if="$ctrl.instance.status === 'RESCUE' && !$ctrl.instance.isLocalZone"
+                    data-ng-if="$ctrl.instance.status === 'RESCUE'"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"

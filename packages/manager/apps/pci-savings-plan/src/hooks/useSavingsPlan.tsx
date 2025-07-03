@@ -10,7 +10,7 @@ import {
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
 
-export const getSubscribedSavingsPlan = async (
+const getSubscribedSavingsPlan = async (
   serviceId: number,
 ): Promise<SavingsPlanService[]> => {
   const { data } = await v6.get<SavingsPlanService[]>(
@@ -19,7 +19,7 @@ export const getSubscribedSavingsPlan = async (
   return data;
 };
 
-export const postSubscribedSavingsPlanChangePeriod = async (
+const postSubscribedSavingsPlanChangePeriod = async (
   serviceId: number,
   savingsPlanId: string,
   periodEndAction: SavingsPlanPlanedChangeStatus,
@@ -33,7 +33,7 @@ export const postSubscribedSavingsPlanChangePeriod = async (
   return data;
 };
 
-export const putSubscribedSavingsPlanEditName = async (
+const putSubscribedSavingsPlanEditName = async (
   serviceId: number,
   savingsPlanId: string,
   displayName: string,
@@ -47,7 +47,7 @@ export const putSubscribedSavingsPlanEditName = async (
   return data;
 };
 
-export const getSavingsPlanContracts = async (
+const getSavingsPlanContracts = async (
   serviceId: number,
 ): Promise<SavingsPlanContract[]> => {
   const { data } = await v6.get<SavingsPlanContract[]>(
@@ -56,7 +56,7 @@ export const getSavingsPlanContracts = async (
   return data;
 };
 
-export const postSavingsPlan = async ({
+const postSavingsPlan = async ({
   serviceId,
   offerId,
   displayName,
@@ -96,7 +96,7 @@ export const useSavingsPlan = () => {
   });
 };
 
-export const getMutationKeySPChangePeriod = (
+const getMutationKeySPChangePeriod = (
   savingsPlanId: string,
   serviceId: number,
 ) => ['savings-plan', serviceId, 'change-period', savingsPlanId];
@@ -127,10 +127,12 @@ export const useSavingsPlanChangePeriod = ({
   });
 };
 
-export const getMutationKeySPEditName = (
-  savingsPlanId: string,
-  serviceId: number,
-) => ['savings-plan', serviceId, 'edit-name', savingsPlanId];
+const getMutationKeySPEditName = (savingsPlanId: string, serviceId: number) => [
+  'savings-plan',
+  serviceId,
+  'edit-name',
+  savingsPlanId,
+];
 
 export const getMutationKeyCreateSavingsPlan = (serviceId: number) => [
   'savings-plan',

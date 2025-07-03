@@ -9,7 +9,16 @@ import { COLD_ARCHIVE_FEE_TYPES } from '@/constants';
 import { TQuantity } from '@/api/data/consumption';
 import { TResourceUsage } from '@/api/hook/useConsumption';
 
-export function useResourceUsageListColumns() {
+export enum ResourcesColumn {
+  region = 'region',
+  type = 'type',
+  consumption = 'consumption',
+  price = 'price',
+}
+
+export function useResourceUsageListColumns({
+  disabledColumns,
+}: { disabledColumns?: ResourcesColumn[] } = {}) {
   const { t } = useTranslation('consumption/hourly-instance/resource-usage');
   const { currency } = useContext(ShellContext).environment.getUser();
   const { translateMicroRegion } = useTranslatedMicroRegions();
@@ -26,14 +35,14 @@ export function useResourceUsageListColumns() {
 
   return [
     {
-      id: 'region',
+      id: ResourcesColumn.region,
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>{translateMicroRegion(row?.region)}</DataGridTextCell>
       ),
       label: t('pci_billing_private_registry_region'),
     },
     {
-      id: 'type',
+      id: ResourcesColumn.type,
       cell: (row: TResourceUsage) => (
         <div>
           <DataGridTextCell>
@@ -48,7 +57,7 @@ export function useResourceUsageListColumns() {
       label: t('pci_billing_private_registry_type'),
     },
     {
-      id: 'consumption',
+      id: ResourcesColumn.consumption,
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
           {t('pci_billing_private_registry_consumption_value', {
@@ -59,7 +68,7 @@ export function useResourceUsageListColumns() {
       label: t('pci_billing_private_registry_consumption'),
     },
     {
-      id: 'price',
+      id: ResourcesColumn.price,
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
           {row?.totalPrice.toFixed(2)} {currency.symbol}
@@ -67,5 +76,5 @@ export function useResourceUsageListColumns() {
       ),
       label: t('pci_billing_private_registry_price'),
     },
-  ];
+  ].filter((column) => !disabledColumns?.includes(column.id));
 }

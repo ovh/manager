@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.10...@ovh-ux/manager-pci-volume-snapshot-app@0.5.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** use specs name instead of catalog name ([dd69f79](https://github.com/ovh/manager/commit/dd69f790dc4067c9972ceb0b04965700be2597df)), closes [#TAPC-4446](https://github.com/ovh/manager/issues/TAPC-4446)
+
+
+### Features
+
+* **pci-volume-snapshot:** remove actions when deleting snapshot ([4d884fa](https://github.com/ovh/manager/commit/4d884fa904fe196b6442bb511a5220a7744f7ddc)), closes [#TAPC-3499](https://github.com/ovh/manager/issues/TAPC-3499)
+
+
+
+
+
 ## [0.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.4.9...@ovh-ux/manager-pci-volume-snapshot-app@0.4.10) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

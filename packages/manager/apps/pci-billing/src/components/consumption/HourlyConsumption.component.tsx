@@ -14,6 +14,8 @@ import OutgoingTrafficList from './OutgoingTrafficList.component';
 import ResourceUsageList from './ResourceUsageList.component';
 import SnapshotList from './SnapshotList.component';
 import VolumeList from './VolumeList.component';
+import { ResourcesColumn } from './useResourceUsageListColumns';
+import AiEndpointList from './AiEndpointList.component';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -86,6 +88,17 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
+      key: 'rancher',
+      title: t('cpbc_hourly_rancher_title'),
+      component: (
+        <ResourceUsageList
+          resourcesUsage={consumption.rancher}
+          disabledColumns={[ResourcesColumn.region]}
+        />
+      ),
+      condition: !isTrustedZone,
+    },
+    {
       key: 'kubernetesLoadBalancer',
       title: PRODUCTS.KUBERNETES_LOAD_BALANCER,
       component: (
@@ -111,6 +124,11 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_ai_deploy_title'),
       component: <ResourceUsageList resourcesUsage={consumption?.aiDeploy} />,
       condition: !isTrustedZone,
+    },
+    {
+      key: 'aiEndpoints',
+      title: t('cpbc_hourly_ai_endpoints_title'),
+      component: <AiEndpointList resourcesUsage={consumption.aiEndpoints} />,
     },
     {
       key: 'dataProcessing',
