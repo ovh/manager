@@ -3,7 +3,8 @@ import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputComponent } from '@ovh-ux/manager-react-components';
+// import { TilesInputComponent } from '@ovh-ux/manager-react-components';
+import { TilesInputComponent } from '../../../../../manager-react-components/src';
 import {
   countries as allCountries,
   TCountry,
@@ -24,19 +25,14 @@ export default {
 const Template: any = (args) => {
   const [, updateArgs] = useArgs();
 
-  const handleInput = (country: TCountry) => {
-    try {
-      updateArgs({ value: country });
-    } catch (error) {
-      console.warn('Failed to update args:', error);
-    }
-  };
-
   return (
-    <TilesInputComponent<TCountry, string, { continent: string; key: string }>
-      {...args}
-      onInput={handleInput}
-    />
+    <>
+      <div className="bg-orange-100">coucou 2</div>
+      <TilesInputComponent<TCountry, string, { continent: string; key: string }>
+        {...args}
+        onInput={(country) => updateArgs({ value: country })}
+      />
+    </>
   );
 };
 
