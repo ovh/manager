@@ -1,0 +1,12 @@
+{
+  "activated": "Activé",
+  "back_to_list": "Retour à la liste des secrets",
+  "cas_with_description": "CAS (Check-And-Set Version Control)",
+  "deactivate_version_after": "Durée avant désactivation",
+  "deactivated": "Désactivé",
+  "general_information": "Informations générales",
+  "last_update": "Dernière mise à jour",
+  "maximum_number_of_versions": "Nombre maximum de versions",
+  "not_provided": "Non renseigné",
+  "settings": "Paramètres"
+}
