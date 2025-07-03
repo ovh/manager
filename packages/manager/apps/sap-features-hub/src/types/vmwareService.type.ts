@@ -1,9 +1,3 @@
-export type SwsResponse<T> = {
-  messages: string[];
-  state: string;
-  results: T[];
-};
-
 export type VMwareService = {
   displayName: string;
   advancedSecurity: boolean;
