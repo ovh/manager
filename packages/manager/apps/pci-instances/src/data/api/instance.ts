@@ -140,27 +140,18 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
-export const getInstance0 = ({
-  projectId,
-  instanceId,
-}: {
-  projectId: string;
-  instanceId: string;
-}): Promise<TAggregatedInstanceDto> =>
-  v6
-    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
-    .then((response) => response.data);
+export type TInstanceSearchParamsFilter = Partial<{
+  withVolumes: boolean;
+  withBackups: boolean;
+  withNetworks: boolean;
+  withImage: boolean;
+}>;
 
 type TInstanceParams = {
   projectId: string;
-  region: string;
   instanceId: string;
-  querySearch?: Partial<{
-    withVolumes: boolean;
-    withBackups: boolean;
-    withNetworks: boolean;
-    withImage: boolean;
-  }>;
+  region: string | null;
+  filter?: TInstanceSearchParamsFilter;
 };
 
 export const getInstance = async (
