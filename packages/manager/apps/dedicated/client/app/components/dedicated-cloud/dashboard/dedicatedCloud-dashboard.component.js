@@ -24,6 +24,7 @@ export default {
     onExecutionDateChange: '<',
     onMlSubscribe: '<',
     onTerminate: '<',
+    onDeactivateLogs: '<',
     onBasicOptionsUpgrade: '<',
     onCertificationUpgrade: '<',
     onConfigurationOnlyUpgrade: '<',
