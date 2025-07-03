@@ -11,7 +11,7 @@ import { TOperation } from '@/api/data/operation';
 export type TCreateNetworkWithGatewayParam = {
   projectId: string;
   regionName: string;
-  onError: (error: string) => void;
+  onError: (error: unknown) => void;
   onSuccess: (op: TOperation) => void;
 };
 
