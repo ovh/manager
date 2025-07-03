@@ -3,20 +3,42 @@ import {
   PageLocation,
   TrackingClickParams,
   PageType,
+  TrackingContextParams,
 } from '@ovh-ux/manager-react-shell-client';
-import { APP_NAME, SUB_UNIVERSE, UNIVERSE, LEVEL2 } from './pci.constant';
 
 export const PCI_LEVEL2 = '86';
 export const PAGE_PREFIX = 'PublicCloud::pci::projects::project';
 export const ACTION_PREFIX = `${PAGE_PREFIX}::ai-endpoints`;
 export const DISCOVERY_PLANCODE = 'project.discovery';
+export const LEVEL2 = {
+  EU: {
+    config: {
+      level2: '86',
+    },
+  },
+  CA: {
+    config: {
+      level2: '86',
+    },
+  },
+  US: {
+    config: {
+      level2: '86',
+    },
+  },
+};
+export const UNIVERSE = 'PublicCloud';
+export const SUB_UNIVERSE = 'ai_machine_learning';
+export const APP_NAME = 'ai_endpoints';
 
 export const TRACKING: Record<
   string,
-  Record<string, TrackingClickParams | any>
+  Record<string, TrackingClickParams | any | TrackingContextParams>
 > = {
   metrics: {
-    tabClick: (tabname: string): TrackingClickParams => {
+    tabClick: (
+      tabname: string,
+    ): TrackingClickParams | TrackingContextParams | any => {
       return {
         actions: [
           UNIVERSE,
@@ -26,6 +48,9 @@ export const TRACKING: Record<
           `${tabname}`,
         ],
         actionType: 'action',
+        appName: APP_NAME,
+        pageTheme: UNIVERSE,
+        level2: PCI_LEVEL2,
       };
     },
 
@@ -38,6 +63,9 @@ export const TRACKING: Record<
         'metrics',
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
   },
 
@@ -51,6 +79,9 @@ export const TRACKING: Record<
         `${PageType.listing}`,
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
     createNewApikeyClick: {
       actions: [
@@ -62,6 +93,9 @@ export const TRACKING: Record<
         `${APP_NAME}`,
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
     createNewApikeyPopUpShow: {
       actions: [
@@ -73,6 +107,9 @@ export const TRACKING: Record<
         `create_api-key`,
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
 
     confirmClick: {
@@ -85,6 +122,9 @@ export const TRACKING: Record<
         `confirm`,
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
     successCreatApikeyPopUpShown: {
       actions: [
@@ -96,6 +136,9 @@ export const TRACKING: Record<
         `create_api-key_success`,
       ],
       actionType: 'action',
+      appName: APP_NAME,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
     },
   },
 } as const;
