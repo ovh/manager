@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.27.0...@ovh-ux/manager-iplb@1.28.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 541] ([1863ef6](https://github.com/ovh/manager/commit/1863ef6a69f30e0ab47ed61212de3c403efd0657))
+
+
+### Features
+
+* **iplb-order:** adding a link to iplb order from the listing and onboarding page ([d6bd409](https://github.com/ovh/manager/commit/d6bd4090816e59568cf473111679d322af868f66)), closes [#MANAGER-18690](https://github.com/ovh/manager/issues/MANAGER-18690)
+* **iplb:** add iplb configo federated module and route ([15378dd](https://github.com/ovh/manager/commit/15378dd20bc88e861e8cb35a53ed37db224dd613)), closes [#MANAGER-18704](https://github.com/ovh/manager/issues/MANAGER-18704)
+
+
+
+
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.3...@ovh-ux/manager-iplb@1.27.0) (2025-07-02)
 
 
