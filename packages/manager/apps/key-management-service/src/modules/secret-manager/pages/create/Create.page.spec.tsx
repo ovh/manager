@@ -14,25 +14,36 @@ import { labels } from '@/utils/tests/init.i18n';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 
-/* CREATE PAGE TEST SUITE */
-describe('Create secret page test suite', () => {
-  it('should display the form sections', async () => {
-    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate);
+/* TEST UTILS */
+const selectDomain = async (
+  getByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
+) => {
+  const user = userEvent.setup();
+  const firstRegion = catalogMock.plans[0].configurations[0].values[0];
 
-    await assertTextVisibility(labels.secretManager.create.title);
-    await assertTextVisibility(
-      labels.secretManager.create.region_section_title,
-    );
-    await assertTextVisibility(
-      labels.secretManager.create.values_section_title,
-    );
-    await assertTextVisibility(
-      labels.secretManager.create.paiement_section_title,
-    );
+  await assertTextVisibility(firstRegion);
+
+  const firstRegionRadioCard = getByTestId(firstRegion);
+  const regionDomainList = okmsMock.filter(
+    (domain) => domain.region === firstRegion,
+  );
+  user.click(firstRegionRadioCard);
+
+  await waitFor(() => {
+    // assert we display the correct domain list
+    // assert that the first domain is selected
+    regionDomainList.forEach((domain, index) => {
+      assertTextVisibility(domain.iam.displayName);
+      const domainRadioCard = getByTestId(domain.id);
+      if (index === 0) {
+        expect(domainRadioCard).toBeChecked();
+        return;
+      }
+      expect(domainRadioCard).not.toBeChecked();
+    });
   });
-});
+};
 
-/* DOMAIN MANAGEMENT TEST SUITE */
 const assertInitialRegionAndDomainList = async (
   getByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
   queryByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
@@ -56,6 +67,25 @@ const assertInitialRegionAndDomainList = async (
   );
 };
 
+/* CREATE PAGE TEST SUITE */
+describe('Create secret page test suite', () => {
+  it('should display the form sections', async () => {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate);
+
+    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(
+      labels.secretManager.create.region_section_title,
+    );
+    await assertTextVisibility(
+      labels.secretManager.create.values_section_title,
+    );
+    await assertTextVisibility(
+      labels.secretManager.create.paiement_section_title,
+    );
+  });
+});
+
+/* DOMAIN MANAGEMENT TEST SUITE */
 describe('Domain management test suite', () => {
   it('should display the available region list', async () => {
     // GIVEN
@@ -73,39 +103,15 @@ describe('Domain management test suite', () => {
   });
 
   it('should display a filtered domain list and select the first one on a region selection', async () => {
-    const user = userEvent.setup();
-
     // GIVEN
+    // WHEN
     const { getByTestId } = await renderTestApp(
       SECRET_MANAGER_ROUTES_URLS.secretCreate,
     );
     await assertTextVisibility(labels.secretManager.create.title);
 
-    const firstRegion = catalogMock.plans[0].configurations[0].values[0];
-    const regionDomainList = okmsMock.filter(
-      (domain) => domain.region === firstRegion,
-    );
-
-    await assertTextVisibility(firstRegion);
-
-    // WHEN
-    const firstRegionRadioCard = getByTestId(firstRegion);
-    user.click(firstRegionRadioCard);
-
     // THEN
-    await waitFor(() => {
-      // assert we display the correct domain list
-      // assert that the first domain is selected
-      regionDomainList.forEach((domain, index) => {
-        assertTextVisibility(domain.iam.displayName);
-        const domainRadioCard = getByTestId(domain.id);
-        if (index === 0) {
-          expect(domainRadioCard).toBeChecked();
-          return;
-        }
-        expect(domainRadioCard).not.toBeChecked();
-      });
-    });
+    selectDomain(getByTestId);
   });
 
   describe('When there is a domainId search param', () => {
@@ -151,35 +157,6 @@ describe('Domain management test suite', () => {
     });
   });
 });
-
-const selectDomain = async (
-  getByTestId: (id: Matcher, options?: MatcherOptions) => HTMLElement,
-) => {
-  const user = userEvent.setup();
-  const firstRegion = catalogMock.plans[0].configurations[0].values[0];
-
-  await assertTextVisibility(firstRegion);
-
-  const firstRegionRadioCard = getByTestId(firstRegion);
-  const regionDomainList = okmsMock.filter(
-    (domain) => domain.region === firstRegion,
-  );
-  user.click(firstRegionRadioCard);
-
-  await waitFor(() => {
-    // assert we display the correct domain list
-    // assert that the first domain is selected
-    regionDomainList.forEach((domain, index) => {
-      assertTextVisibility(domain.iam.displayName);
-      const domainRadioCard = getByTestId(domain.id);
-      if (index === 0) {
-        expect(domainRadioCard).toBeChecked();
-        return;
-      }
-      expect(domainRadioCard).not.toBeChecked();
-    });
-  });
-};
 
 type TestCase = {
   path: string;
@@ -236,7 +213,7 @@ describe('Secrets creation form test suite', () => {
       expect(submitButton).toHaveAttribute('is-disabled', 'true');
 
       // WHEN
-      await act(() => {
+      await waitFor(() => {
         fireEvent.input(inputPath, {
           target: { value: path },
         });
@@ -270,7 +247,6 @@ describe('Secrets creation form test suite', () => {
     );
     await assertTextVisibility(labels.secretManager.create.title);
 
-    // select domain
     selectDomain(getByTestId);
 
     // fill mandatory inputs
@@ -282,7 +258,7 @@ describe('Secrets creation form test suite', () => {
     expect(submitButton).toBeInTheDocument();
     expect(submitButton).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    await waitFor(() => {
       fireEvent.input(inputPath, {
         target: { value: 'path' },
       });
@@ -313,7 +289,7 @@ describe('Secrets creation form test suite', () => {
     );
   });
 
-  it('should dispaly an error when the creation failed', async () => {
+  it('should display an error when the creation failed', async () => {
     // GIVEN
     const user = userEvent.setup();
     const { getByTestId } = await renderTestApp(
@@ -324,7 +300,6 @@ describe('Secrets creation form test suite', () => {
     );
     await assertTextVisibility(labels.secretManager.create.title);
 
-    // select domain
     selectDomain(getByTestId);
 
     // fill mandatory inputs
@@ -336,7 +311,7 @@ describe('Secrets creation form test suite', () => {
     expect(submitButton).toBeInTheDocument();
     expect(submitButton).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    await waitFor(() => {
       fireEvent.input(inputPath, {
         target: { value: 'path' },
       });
@@ -354,7 +329,7 @@ describe('Secrets creation form test suite', () => {
     );
 
     // WHEN
-    await act(() => user.click(submitButton));
+    await waitFor(() => user.click(submitButton));
 
     // THEN
     // assert we display an error notification
@@ -452,19 +427,18 @@ describe('Path input test suite', () => {
       );
       await assertTextVisibility(labels.secretManager.create.title);
 
-      // select domain
       selectDomain(getByTestId);
 
       const inputPath = getByTestId('secret-path') as any;
       const formFieldPath = getByTestId('secret-path-formField') as any;
       expect(inputPath).toBeInTheDocument();
       expect(formFieldPath).toBeInTheDocument();
-      await act(() => {
+      await waitFor(() => {
         inputPath.odsBlur.emit({});
       });
 
       // WHEN
-      await act(() => {
+      await waitFor(() => {
         fireEvent.input(inputPath, {
           target: { value: input },
         });
@@ -504,19 +478,18 @@ describe('Values input test suite', () => {
       );
       await assertTextVisibility(labels.secretManager.create.title);
 
-      // select domain
       selectDomain(getByTestId);
 
       const inputData = getByTestId('secret-data') as any;
       const formFieldData = getByTestId('secret-data-formField') as any;
       expect(inputData).toBeInTheDocument();
       expect(formFieldData).toBeInTheDocument();
-      await act(() => {
+      await waitFor(() => {
         inputData.odsBlur.emit({});
       });
 
       // WHEN
-      await act(() => {
+      await waitFor(() => {
         fireEvent.input(inputData, {
           target: { value: input },
         });
