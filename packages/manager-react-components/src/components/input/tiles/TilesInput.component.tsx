@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import isEqual from 'lodash.isequal';
 import { TabsComponent } from '../../container/tabs/Tabs.component';
+
 import {
   SimpleTilesInputComponent,
   TSimpleProps,
@@ -44,7 +45,7 @@ export const TilesInputComponent = function TilesInputComponent<
     const newGroups = new Map<G, T[]>();
     if (group && typeof group.by === 'function') {
       if (group.showAllTab) {
-        newGroups.set(undefined, [...items]);
+        newGroups.set('ALL' as G, [...items]);
       }
 
       items.forEach((item) => {
