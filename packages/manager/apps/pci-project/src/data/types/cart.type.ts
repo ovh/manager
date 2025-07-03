@@ -1,0 +1,96 @@
+export type Cart = {
+  cartId: string;
+  description: string;
+  expire: string;
+  items: Array<unknown>;
+  readonly: boolean;
+};
+
+export enum PlanCode {
+  CREDIT = 'credit',
+  CREDIT_DEFAULT = 'credit.default',
+  PROJECT = 'project',
+  PROJECT_2018 = 'project.2018',
+  PROJECT_DISCOVERY = 'project.discovery',
+  PROJECT_LEGACY = 'project.legacy',
+}
+
+export type CartProduct = {
+  planCode: PlanCode;
+  productName: string;
+  productType: string;
+  prices: CartProductPrice[];
+};
+
+export type CartProductPrice = {
+  capacities: string[];
+  description: string;
+  duration: string;
+  interval: number;
+  maximumQuantity: number;
+  maximumRepeat: number;
+  minimumQuantity: number;
+  minimumRepeat: number;
+  price: Price;
+  priceInUcents: number;
+  pricingMode: string;
+  pricingType: string;
+};
+
+export type OrderedProduct = {
+  cartId: string;
+  itemId: string;
+  productId: string;
+  configuration: unknown[];
+  duration: string;
+  options: unknown[];
+  prices: unknown[];
+  settings: unknown;
+};
+
+export type CartSummary = {
+  orderId: number | null;
+  url: string | null;
+  details: CartSummaryDetail[];
+  prices: {
+    originalWithoutTax: Price;
+    reduction: Price;
+    tax: Price;
+    withTax: Price;
+    withoutTax: Price;
+  };
+  contracts: Array<{
+    name: string;
+    url: string;
+    content: string;
+  }>;
+  projectItem?: { voucherConfiguration?: { value: string } };
+};
+
+export type CartSummaryDetail = {
+  cartItemId: number;
+  description: string;
+  detailType: string;
+  domain: string;
+  quantity: number;
+  reductions: unknown[];
+  originalTotalPrice: Price;
+  reductionTotalPrice: Price;
+  totalPrice: Price;
+  unitPrice: Price;
+};
+
+export type Price = {
+  value: number;
+  currencyCode: string;
+  text: string;
+};
+
+export type CartContract = {
+  name: string;
+  url: string;
+};
+
+export enum PaymentMean {
+  FIDELITY_ACCOUNT = 'fidelityAccount',
+}
