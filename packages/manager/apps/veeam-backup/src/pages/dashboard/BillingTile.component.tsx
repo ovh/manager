@@ -39,7 +39,11 @@ export const BillingTile: React.FC<BillingTileProps> = ({ id, backup }) => {
     value: isGoldOfferEnabled ? (
       <OfferProgress offer={goldOffer} id={id} />
     ) : (
-      <ActivateOfferGold id={id} status={goldOffer?.status} />
+      <ActivateOfferGold
+        id={id}
+        status={goldOffer?.status}
+        backupStatus={backup.resourceStatus}
+      />
     ),
   };
 

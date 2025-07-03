@@ -27,7 +27,7 @@ import { BillingTile } from './BillingTile.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
-import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_LINKS, CANCELED_VEEAM_BACKUP_STATUS } from '@/constants';
 import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function DashboardPage() {
@@ -51,7 +51,7 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       message={
         <>
-          {['DISABLED', 'DISABLING', 'REMOVED'].includes(
+          {CANCELED_VEEAM_BACKUP_STATUS.includes(
             data?.data?.resourceStatus,
           ) && (
             <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
