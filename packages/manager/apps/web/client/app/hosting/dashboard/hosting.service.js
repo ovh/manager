@@ -783,69 +783,46 @@ import union from 'lodash/union';
           });
       }
 
+      static formatPlanCode(planCode) {
+        if (/^CLOUDWEB_\d+$/.test(planCode)) {
+          return planCode.toLowerCase().replace(/_/g, '');
+        }
+
+        return planCode.toLowerCase().replace(/_/g, '-');
+      }
       /* -------------------------ORDER/HOSTING/WEB-------------------------*/
 
       /**
        * Get upgrade offer prices
        * @param {string} serviceName
-       * @param {string} offer
+       * @param {string} planCode
        */
-      getUpgradePrices(serviceName, offer) {
-        return this.OvhHttp.get(`/order/hosting/web/${serviceName}/upgrade`, {
-          rootPath: 'apiv6',
-          params: {
-            offer,
-          },
-        }).then((durations) => {
-          const durationsTab = [];
-          const defer = this.$q.defer();
-          defer.notify(durations);
-
-          const requests = map(durations, (duration) =>
-            this.OvhHttp.get(
-              `/order/hosting/web/${serviceName}/upgrade/${duration}`,
-              {
-                rootPath: 'apiv6',
-                params: {
-                  offer,
-                },
+      getUpgradePrices(serviceName, planCode) {
+        const normalizedPlanCode = Hosting.formatPlanCode(planCode);
+        return this.$http
+          .get(
+            `/order/upgrade/webHosting/${serviceName}/${normalizedPlanCode}`,
+            {
+              params: {
+                quantity: 1,
               },
-            ).then((durationDetails) => {
-              const details = angular.copy(durationDetails);
-              details.duration = duration;
-              durationsTab.push(details);
-              defer.notify(durationsTab);
-            }),
-          );
-
-          this.$q.all(requests).then(
-            () => {
-              defer.resolve(durationsTab);
             },
-            (error) => {
-              defer.reject(error);
-            },
-          );
-
-          return defer.promise;
-        });
+          )
+          .then(({ data }) => data);
       }
 
       /**
        * Order upgraded offer
        * @param {string} serviceName
-       * @param {string} offer
-       * @param {string} duration
-       * @param {string} startTime (optional)
+       * @param {string} planCode)
        */
-      orderUpgrade(serviceName, offer, duration, startTime = null) {
-        return this.OvhHttp.post(
-          `/order/hosting/web/${serviceName}/upgrade/${duration}`,
+      orderUpgrade(serviceName, planCode) {
+        const normalizedPlanCode = Hosting.formatPlanCode(planCode);
+        return this.$http.post(
+          `/order/upgrade/webHosting/${serviceName}/${normalizedPlanCode}`,
           {
-            rootPath: 'apiv6',
-            data: {
-              offer,
-              ...(startTime ? { startTime } : {}),
+            params: {
+              quantity: 1,
             },
           },
         );
