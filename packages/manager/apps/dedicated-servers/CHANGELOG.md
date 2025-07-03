@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.0...@ovh-ux/manager-dedicated-servers-app@0.3.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** add default links for order ([c84ec22](https://github.com/ovh/manager/commit/c84ec225695a79faf551e65dc8df223eb05b559f)), closes [#INC0139938](https://github.com/ovh/manager/issues/INC0139938)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.6...@ovh-ux/manager-dedicated-servers-app@0.3.0) (2025-07-02)
 
 
