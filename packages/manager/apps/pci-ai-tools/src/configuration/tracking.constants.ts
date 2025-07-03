@@ -4,14 +4,32 @@ import {
   TrackingClickParams,
   PageType,
 } from '@ovh-ux/manager-react-shell-client';
-import { APP_NAME, UNIVERSE } from './pci.constant';
 
 export const APP_TRACKING_PREFIX = 'PublicCloud::ai::notebooks';
 export const PCI_LEVEL2 = '86';
 export const PAGE_PREFIX = 'PublicCloud::pci::projects::project';
 export const ACTION_PREFIX = `${PAGE_PREFIX}::ai-endpoints`;
 export const DISCOVERY_PLANCODE = 'project.discovery';
-
+export const LEVEL2 = {
+  EU: {
+    config: {
+      level2: '86',
+    },
+  },
+  CA: {
+    config: {
+      level2: '86',
+    },
+  },
+  US: {
+    config: {
+      level2: '86',
+    },
+  },
+};
+export const UNIVERSE = 'PublicCloud';
+export const SUB_UNIVERSE = 'PublicCloud';
+export const APP_NAME = 'ai_notebooks';
 export const TRACKING: Record<
   string,
   Record<string, TrackingClickParams | any>

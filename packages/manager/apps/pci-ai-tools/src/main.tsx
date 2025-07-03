@@ -16,7 +16,7 @@ import {
   SUB_UNIVERSE,
   APP_NAME,
   LEVEL2,
-} from './configuration/pci.constant';
+} from './configuration/tracking.constants';
 
 const trackingContext = {
   chapter1: UNIVERSE,
