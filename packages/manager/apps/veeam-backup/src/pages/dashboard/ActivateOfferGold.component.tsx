@@ -6,16 +6,24 @@ import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { VeeamBackupOffer } from '@ovh-ux/manager-module-vcd-api';
+import {
+  VeeamBackupOffer,
+  ResourceStatus,
+} from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 import TEST_IDS from '@/utils/testIds.constants';
-import { OFFER_CREATING_STATUS } from '@/constants';
+import {
+  OFFER_CREATING_STATUS,
+  CANCELED_VEEAM_BACKUP_STATUS,
+} from '@/constants';
 
 export const ActivateOfferGold = ({
   id,
   status,
+  backupStatus,
 }: {
   id: string;
+  backupStatus: ResourceStatus;
   status?: VeeamBackupOffer['status'];
 }): JSX.Element => {
   const { t: tStatus } = useTranslation(NAMESPACES.STATUS);
@@ -35,6 +43,10 @@ export const ActivateOfferGold = ({
       <ActionMenu
         id={`action-gold-offer-${id}`}
         isCompact
+        isDisabled={
+          status === OFFER_CREATING_STATUS ||
+          CANCELED_VEEAM_BACKUP_STATUS.includes(backupStatus)
+        }
         variant={ODS_BUTTON_VARIANT.ghost}
         icon={ODS_ICON_NAME.ellipsisVertical}
         items={[
