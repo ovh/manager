@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './.storybook**/*.{js,jsx,ts,tsx,mdx}',
+    './.storybook/**/*.{js,jsx,ts,tsx,mdx}',
+    './stories/**/*.{js,jsx,ts,tsx,mdx}',
     '../manager-react-components/**/*.{js,jsx,ts,tsx,mdx}',
   ],
   theme: {

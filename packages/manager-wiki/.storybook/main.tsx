@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     '../introduction.mdx',
   ],
   addons: [
+    '@storybook/addon-postcss',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
