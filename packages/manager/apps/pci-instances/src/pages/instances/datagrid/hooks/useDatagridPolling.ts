@@ -9,6 +9,7 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { buildPartialInstanceDto } from '@/data/hooks/instance/builder/instanceDto.builder';
 import {
   shouldRetryAfter404Error,
+  TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
 import { selectPollingDataForDatagrid } from '../view-models/selectPollingDataForDatagrid';
@@ -30,7 +31,7 @@ const getPartialInstanceDto = (instance: TInstance) =>
     .with('taskState', instance.task.status)
     .build();
 
-export const useDatagridPolling = (pendingTasks: string[]) => {
+export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
   const queryClient = useQueryClient();
   const projectId = useProjectId();
   const { clearNotifications, addSuccess } = useNotifications();
