@@ -30,7 +30,7 @@ export type CreateSecretBody = {
 };
 export type CreateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 
-export type PostSecretProps = {
+export type PostSecretParams = {
   okmsId: string;
   data: CreateSecretBody;
 };
@@ -38,7 +38,7 @@ export type PostSecretProps = {
 export const createSecret = async ({
   okmsId,
   data: postData,
-}: PostSecretProps) => {
+}: PostSecretParams) => {
   const { data } = await apiClient.v2.post<CreateSecretResponse>(
     `okms/resource/${okmsId}/secret`,
     postData,

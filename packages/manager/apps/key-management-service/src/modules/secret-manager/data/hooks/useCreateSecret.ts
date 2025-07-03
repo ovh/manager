@@ -3,15 +3,15 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import {
   CreateSecretResponse,
   createSecret,
-  PostSecretProps,
+  PostSecretParams,
 } from '../api/secrets';
 
 export const useCreateSecret = (
   options: Partial<
-    UseMutationOptions<CreateSecretResponse, Error, PostSecretProps>
+    UseMutationOptions<CreateSecretResponse, Error, PostSecretParams>
   > = {},
 ) => {
-  return useMutation<CreateSecretResponse, ApiError, PostSecretProps>({
+  return useMutation<CreateSecretResponse, ApiError, PostSecretParams>({
     mutationFn: (params) => createSecret(params),
     ...(options ?? {}),
   });

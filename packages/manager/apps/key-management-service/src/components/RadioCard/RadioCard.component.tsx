@@ -60,7 +60,7 @@ export const RadioCard: FC<RadioCardProps> = ({
               {subTitle && <OdsText preset="span">{subTitle}</OdsText>}
             </div>
           </div>
-          <>{badges}</>
+          {badges}
         </div>
         {children}
       </div>

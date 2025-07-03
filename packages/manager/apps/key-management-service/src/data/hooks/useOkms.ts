@@ -19,12 +19,12 @@ export const useOkmsById = (okmsId: string) => {
   });
 };
 
-type UseOkmsListProps = {
+type UseOkmsListParams = {
   pageSize?: number;
 };
 
-export const useOkmsList = (props: UseOkmsListProps = {}) => {
-  const { pageSize = 100 } = props;
+export const useOkmsList = (params: UseOkmsListParams = {}) => {
+  const { pageSize = 100 } = params;
 
   return useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',

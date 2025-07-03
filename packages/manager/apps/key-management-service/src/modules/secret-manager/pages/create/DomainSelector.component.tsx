@@ -56,11 +56,9 @@ export const DomainSelector = ({
             title={domain.iam.displayName}
             badges={<DomainStatus id={domain.id} />}
           >
-            {domain.iam.tags !== null &&
-              domain.iam.tags !== undefined &&
-              Object.entries(domain.iam.tags).length !== 0 && (
-                <TagsList tags={domain.iam.tags} lineNumber={10} />
-              )}
+            {domain.iam.tags && Object.keys(domain.iam.tags).length > 0 && (
+              <TagsList tags={domain.iam.tags} lineNumber={10} />
+            )}
           </RadioCard>
         ))}
       </div>

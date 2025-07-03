@@ -112,9 +112,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           <Controller
             name="path"
             control={control}
-            render={({
-              field: { name, value, onChange, onBlur },
-            }): React.ReactElement => (
+            render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField error={errors?.[name]?.message}>
                 <OdsInput
                   id={name}
@@ -136,9 +134,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           <Controller
             name="data"
             control={control}
-            render={({
-              field: { name, value, onChange, onBlur },
-            }): React.ReactElement => (
+            render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField error={errors?.[name]?.message}>
                 <label htmlFor={name} slot="label">
                   {t('data_textarea_label')}

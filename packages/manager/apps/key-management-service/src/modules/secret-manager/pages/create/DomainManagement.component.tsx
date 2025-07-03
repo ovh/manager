@@ -3,6 +3,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
+import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsMessage,
@@ -14,14 +15,6 @@ import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { OKMS } from '@/types/okms.type';
 import { DomainSelector } from './DomainSelector.component';
 import { RegionSelector } from './RegionSelector.component';
-
-type GetRegionDomainListProps = {
-  domains: OKMS[];
-  region: string;
-};
-
-const getRegionDomainList = ({ domains, region }: GetRegionDomainListProps) =>
-  domains.filter((domain) => domain.region === region);
 
 type DomainManagementProps = {
   selectedDomainId: string;
@@ -42,7 +35,7 @@ export const DomainManagement = ({
 
   const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
 
-  const [selectedRegion, setSelectedRegion] = useState<string>();
+  const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
   const [regionDomains, setRegionDomains] = useState<OKMS[]>([]);
 
   const {
@@ -80,19 +73,20 @@ export const DomainManagement = ({
     setSelectedRegion(domainFromSearchParam.region);
     setSelectedDomainId(domainIdSearchParam);
     setRegionDomains(
-      getRegionDomainList({ domains, region: domainFromSearchParam.region }),
+      filterDomainsByRegion({ domains, region: domainFromSearchParam.region }),
     );
   }, [domains, searchParams]);
 
   const handleRegionSelection = (region: string) => {
+    setSelectedRegion(region);
+
     if (!domains) return;
 
-    const filteredDomainList = getRegionDomainList({
+    const filteredDomainList = filterDomainsByRegion({
       domains,
       region,
     });
 
-    setSelectedRegion(region);
     setRegionDomains(filteredDomainList);
 
     if (filteredDomainList.length === 0) {
