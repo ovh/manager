@@ -44,17 +44,19 @@ export default function TerminateByoip() {
           className="block mb-4"
           isDismissible={false}
         >
-          <Trans
-            t={t}
-            i18nKey={
-              region !== 'US'
-                ? 'listingTerminateByoip_info1'
-                : 'listingTerminateByoip_info2'
-            }
-            components={{
-              Link: <HandleLinkNavigation />,
-            }}
-          />
+          <OdsText>
+            <Trans
+              t={t}
+              i18nKey={
+                region !== 'US'
+                  ? 'listingTerminateByoip_info1'
+                  : 'listingTerminateByoip_info2'
+              }
+              components={{
+                Link: <HandleLinkNavigation />,
+              }}
+            />
+          </OdsText>
         </OdsMessage>
       </OdsText>
     </OdsModal>
