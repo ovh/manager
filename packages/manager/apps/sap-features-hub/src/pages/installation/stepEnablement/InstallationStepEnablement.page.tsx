@@ -53,15 +53,12 @@ export default function InstallationStepEnablement() {
     clearMessage: clearServerErrorMessage,
   } = useStateMessage();
 
-  const defaultValues = useMemo(
-    () => ({
-      hasBackup: !!formValues.bucketBackint,
-      bucketBackint: formValues.bucketBackint ?? undefined,
-      hasLogsInLdpOvh: !!formValues.logsDataPlatform,
-      logsDataPlatform: formValues.logsDataPlatform ?? undefined,
-    }),
-    [formValues],
-  );
+  const defaultValues = {
+    hasBackup: !!formValues.bucketBackint,
+    bucketBackint: formValues.bucketBackint ?? undefined,
+    hasLogsInLdpOvh: !!formValues.logsDataPlatform,
+    logsDataPlatform: formValues.logsDataPlatform ?? undefined,
+  };
 
   const {
     getValues,
@@ -101,7 +98,7 @@ export default function InstallationStepEnablement() {
     if (defaultValues.logsDataPlatform) {
       triggerFilledInputOfForm('logsDataPlatform');
     }
-  }, [defaultValues]);
+  }, []);
 
   const { isValid } = formState;
 

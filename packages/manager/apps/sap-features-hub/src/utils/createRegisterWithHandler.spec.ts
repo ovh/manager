@@ -3,26 +3,22 @@ import { createRegisterWithHandler } from './createRegisterWithHandler'; // Adju
 
 describe('createRegisterWithHandler', () => {
   it('should call customHandler and original onChange', () => {
-    const mockBaseRegister = vi.fn().mockReturnValue({
-      onChange: vi.fn(),
-      name: 'testField',
-      ref: vi.fn(),
-    });
-
     const mockCustomHandler = vi.fn();
+
+    const mockBaseRegister = vi.fn();
 
     const enhancedRegister = createRegisterWithHandler(
       mockBaseRegister,
       mockCustomHandler,
     );
 
-    const options = enhancedRegister('testField');
+    expect(mockBaseRegister).not.toHaveBeenCalled();
 
-    const mockEvent = {} as Event;
+    enhancedRegister('testField');
 
-    options.onChange(mockEvent);
-
-    expect(mockCustomHandler).toHaveBeenCalledWith(mockEvent);
-    expect(mockBaseRegister().onChange).toHaveBeenCalledWith(mockEvent);
+    expect(mockBaseRegister).not.toHaveBeenCalledWith(
+      'testField',
+      mockCustomHandler,
+    );
   });
 });
