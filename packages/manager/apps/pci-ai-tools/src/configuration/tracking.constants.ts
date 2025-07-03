@@ -28,7 +28,7 @@ export const LEVEL2 = {
   },
 };
 export const UNIVERSE = 'PublicCloud';
-export const SUB_UNIVERSE = 'PublicCloud';
+export const SUB_UNIVERSE = 'ai_machine_learning';
 export const APP_NAME = 'ai_notebooks';
 export const TRACKING: Record<
   string,
@@ -36,21 +36,12 @@ export const TRACKING: Record<
 > = {
   notebooksOnBoarding: {
     onBoarding: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${APP_NAME}`,
-        `${PageType.onboarding}`,
-      ],
+      actions: [`${APP_NAME}`, `${PageType.onboarding}`],
       actionType: 'action',
     },
 
     createNewNotebookClick: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${PageLocation.page}`,
         `${ButtonType.button}`,
         `create_ai_notebooks`,
@@ -60,9 +51,6 @@ export const TRACKING: Record<
 
     findOutMoreClick: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${PageLocation.tile}`,
         `${ButtonType.button}`,
         `documentation-title`,
@@ -73,13 +61,7 @@ export const TRACKING: Record<
 
   notebooksListing: {
     onBoarding: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${APP_NAME}`,
-        `${PageType.listing}`,
-      ],
+      actions: [`${APP_NAME}`, `${PageType.listing}`],
       actionType: 'action',
     },
 
@@ -102,15 +84,7 @@ export const TRACKING: Record<
 
     DatagridClick: (columnName: string): TrackingClickParams => {
       return {
-        location: PageLocation.datagrid,
-        buttonType: ButtonType.button,
-        actions: [
-          UNIVERSE,
-          'ai_maching_learning',
-          APP_NAME,
-          ButtonType.link,
-          `details_${columnName}`,
-        ],
+        actions: [ButtonType.link, `details_${columnName}`],
         actionType: 'action',
       };
     },
@@ -118,22 +92,12 @@ export const TRACKING: Record<
 
   notebooksFunnel: {
     onBoarding: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${APP_NAME}`,
-        `${PageType.funnel}`,
-        'create_ai_notebooks',
-      ],
+      actions: [`${APP_NAME}`, `${PageType.funnel}`, 'create_ai_notebooks'],
       actionType: 'action',
     },
 
     locationClick: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${PageType.funnel}`,
         `${ButtonType.button}`,
         'advanced-configuration_ai_notebooks',
@@ -143,9 +107,6 @@ export const TRACKING: Record<
 
     orderClick: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${PageType.funnel}`,
         `${ButtonType.button}`,
         'create_ai_notebooks_confirm',
@@ -157,9 +118,6 @@ export const TRACKING: Record<
   notebooksBanner: {
     bannerDisplayedSuccess: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${APP_NAME}`,
         `${PageType.bannerInfo}`,
         'create_ai_notebooks_success',
@@ -169,9 +127,6 @@ export const TRACKING: Record<
 
     bannerDisplayedError: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${APP_NAME}`,
         `${PageType.bannerError}`,
         'create_ai_notebooks_err',
