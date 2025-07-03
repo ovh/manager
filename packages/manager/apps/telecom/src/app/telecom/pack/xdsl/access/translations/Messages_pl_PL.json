@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "Trwa przetwarzanie dyspozycji zmiany wysyłki e-maili.",
   "xdsl_detail_mail_sending_update_succeed": "Dyspozycja zmiany wysyłki została przyjęta. Trwa jej przetwarzanie.",
   "xdsl_detail_mail_sending_update_failed": "Wystąpił błąd podczas zmiany wysyłki e-maili. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Dowiedz się więcej"
+  "xdsl_detail_mail_sending_guide": "Dowiedz się więcej",
+  "xdsl_details_modem_profile_detail": "Profil {{ modemProfile }}"
 }

@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "O pedido de alteração do envio de e-mail está em curso de tratamento, queira aguardar.",
   "xdsl_detail_mail_sending_update_succeed": "O pedido de alteração do envio foi efetuado com sucesso, estando o seu tratamento em curso.",
   "xdsl_detail_mail_sending_update_failed": "Ocorreu um erro aquando da alteração do envio de e-mail. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Saber mais"
+  "xdsl_detail_mail_sending_guide": "Saber mais",
+  "xdsl_details_modem_profile_detail": "Perfil {{ modemProfile }}"
 }
