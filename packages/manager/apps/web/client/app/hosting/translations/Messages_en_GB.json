@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Order a web hosting plan",
   "hostings_order_sql": "Order a database",
   "hostings_guides_title": "Guides",
-  "hosting_guides_general_information": "General information"
+  "hosting_guides_general_information": "General information",
+  "hosting_datagrid_description": "Create your web project in minutes. Launch your blog, business website, or online store using our flexible hosting plans, perfect for any project.",
+  "hosting_databgrid_column_display_name": "Service custom name",
+  "hosting_databgrid_column_offer": "Service plan",
+  "hosting_databgrid_column_state": "Status",
+  "hosting_databgrid_column_resource_type": "Resource type",
+  "hosting_databgrid_column_datacenter": "Location",
+  "hosting_databgrid_column_service_name": "Service name"
 }

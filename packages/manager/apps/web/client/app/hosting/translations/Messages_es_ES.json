@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Contratar un alojamiento",
   "hostings_order_sql": "Contratar una base de datos",
   "hostings_guides_title": "Guías",
-  "hosting_guides_general_information": "Información general"
+  "hosting_guides_general_information": "Información general",
+  "hosting_datagrid_description": "¡Cree su proyecto web en cuestión de minutos! Publique su blog, su sitio web profesional o su tienda online con nuestros alojamientos escalables para todos sus proyectos.",
+  "hosting_databgrid_column_display_name": "Nombre personalizado del servicio",
+  "hosting_databgrid_column_offer": "Plan",
+  "hosting_databgrid_column_state": "Estado",
+  "hosting_databgrid_column_resource_type": "Tipo de recurso",
+  "hosting_databgrid_column_datacenter": "Localización",
+  "hosting_databgrid_column_service_name": "Nombre del servicio"
 }

@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Ordinare un hosting",
   "hostings_order_sql": "Ordinare un database",
   "hostings_guides_title": "Guide",
-  "hosting_guides_general_information": "Informazioni generali"
+  "hosting_guides_general_information": "Informazioni generali",
+  "hosting_datagrid_description": "Crea il tuo progetto web in pochi minuti. Pubblica il tuo blog, sito Internet professionale o e-commerce con i nostri hosting scalabili, su misura per i tuoi progetti.",
+  "hosting_databgrid_column_display_name": "Nome personalizzato del servizio",
+  "hosting_databgrid_column_offer": "Piano",
+  "hosting_databgrid_column_state": "Stato",
+  "hosting_databgrid_column_resource_type": "Tipo di risorsa",
+  "hosting_databgrid_column_datacenter": "Localizzazione",
+  "hosting_databgrid_column_service_name": "Nome del servizio"
 }

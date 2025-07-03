@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Zamów hosting",
   "hostings_order_sql": "Zamów bazę danych",
   "hostings_guides_title": "Przewodniki",
-  "hosting_guides_general_information": "Informacje ogólne"
+  "hosting_guides_general_information": "Informacje ogólne",
+  "hosting_datagrid_description": "Stwórz Twój projekt internetowy w kilka minut. Opublikuj blog, stronę WWW lub sklep internetowy, korzystając z naszego skalowalnego hostingu dostosowanego do Twoich potrzeb.",
+  "hosting_databgrid_column_display_name": "Spersonalizowana nazwa usługi",
+  "hosting_databgrid_column_offer": "Pakiet",
+  "hosting_databgrid_column_state": "Status",
+  "hosting_databgrid_column_resource_type": "Rodzaj zasobów",
+  "hosting_databgrid_column_datacenter": "Lokalizacja",
+  "hosting_databgrid_column_service_name": "Nazwa usługi"
 }
