@@ -1,138 +1,130 @@
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
 import { wizardPageName } from '@/tracking.constants';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+const LayoutPage = React.lazy(() => import('@/pages/layout'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard'));
+const GeneralInformationsPage = React.lazy(() =>
+  import('@/pages/dashboard/general-informations'),
+);
+const InstallationHistoryPage = React.lazy(() =>
+  import('@/pages/listing/InstallationHistory.page'),
+);
+const InstallationDetailsPage = React.lazy(() =>
+  import('@/pages/dashboard/installationDetails/InstallationDetails.page'),
+);
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding'));
+const InstallationDashboardPage = React.lazy(() =>
+  import('@/pages/installation/InstallationDashboard.page'),
+);
+const WizardPage = React.lazy(() =>
+  import('@/pages/installation/wizardStep/InstallationWizard.page'),
+);
+const InitialStepPage = React.lazy(() =>
+  import('@/pages/installation/initialStep/InstallationInitialStep.page'),
+);
+const StepIdPage = React.lazy(() =>
+  import('@/pages/installation/formStep/FormStep.page'),
+);
 
-export const Routes: any = [
-  {
-    path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/layout')),
-    children: [
-      {
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard')),
-        children: [
-          {
-            id: 'dashboard',
-            path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/dashboard/general-informations'),
-            ),
-            handle: {
-              tracking: {
-                pageName: '',
-                pageType: PageType.dashboard,
-              },
-            },
-          },
-        ],
-      },
-      {
-        id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() =>
-          import('@/pages/listing/InstallationHistory.page'),
-        ),
-        handle: {
+export default (
+  <Route
+    path={urls.root}
+    Component={LayoutPage}
+    id={'root'}
+    errorElement={
+      <ErrorBoundary
+        redirectionApp="sap-features-hub"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
+    }
+  >
+    <Route path={urls.dashboard} Component={DashboardPage}>
+      <Route
+        id={'dashboard'}
+        path={''}
+        Component={GeneralInformationsPage}
+        handle={{
           tracking: {
-            pageName: 'history',
-            pageType: PageType.listing,
-          },
-        },
-      },
-      {
-        id: 'dashboard.installationDashboard',
-        path: urls.installationReport,
-        ...lazyRouteConfig(() =>
-          import(
-            '@/pages/dashboard/installationDetails/InstallationDetails.page'
-          ),
-        ),
-        handle: {
-          tracking: {
-            pageName: 'history-detail',
+            pageName: '',
             pageType: PageType.dashboard,
           },
+        }}
+      />
+    </Route>
+    <Route
+      id={'listing'}
+      path={urls.listing}
+      Component={InstallationHistoryPage}
+      handle={{
+        tracking: {
+          pageName: 'history',
+          pageType: PageType.listing,
         },
-      },
-      {
-        id: 'onboarding',
-        path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding')),
-        handle: {
+      }}
+    />
+    <Route
+      id={'dashboard.installationDashboard'}
+      path={urls.installationReport}
+      Component={InstallationDetailsPage}
+      handle={{
+        tracking: {
+          pageName: 'history-detail',
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      id={'onboarding'}
+      path={urls.onboarding}
+      Component={OnboardingPage}
+      handle={{
+        tracking: {
+          pageName: 'onboarding',
+          pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route path={urls.installationWizard} Component={InstallationDashboardPage}>
+      <Route
+        id={'wizard'}
+        path={''}
+        Component={WizardPage}
+        handle={{
           tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
+            pageName: wizardPageName,
+            pageType: PageType.popup,
           },
-        },
-      },
-      {
-        path: urls.installationWizard,
-        ...lazyRouteConfig(() =>
-          import('@/pages/installation/InstallationDashboard.page'),
-        ),
-        children: [
-          {
-            id: 'wizard',
-            path: '',
-            ...lazyRouteConfig(() =>
-              import('@/pages/installation/wizardStep/InstallationWizard.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: wizardPageName,
-                pageType: PageType.popup,
-              },
-            },
+        }}
+      />
+      <Route
+        id={'initialStep'}
+        path={urls.installationInitialStep}
+        Component={InitialStepPage}
+        handle={{
+          tracking: {
+            pageName: wizardPageName,
+            pageType: PageType.funnel,
           },
-          {
-            id: 'initialStep',
-            path: urls.installationInitialStep,
-            ...lazyRouteConfig(() =>
-              import(
-                '@/pages/installation/initialStep/InstallationInitialStep.page'
-              ),
-            ),
-            handle: {
-              tracking: {
-                pageName: wizardPageName,
-                pageType: PageType.funnel,
-              },
-            },
+        }}
+      />
+      <Route
+        id={'stepId'}
+        path={urls.installationStep}
+        Component={StepIdPage}
+        handle={{
+          tracking: {
+            pageName: wizardPageName,
+            pageType: PageType.funnel,
           },
-          {
-            id: 'stepId',
-            path: urls.installationStep,
-            ...lazyRouteConfig(() =>
-              import('@/pages/installation/formStep/FormStep.page'),
-            ),
-            handle: {
-              tracking: {
-                pageName: wizardPageName,
-                pageType: PageType.funnel,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
+        }}
+      />
+    </Route>
+    <Route path={'*'} element={<NotFound />} />
+  </Route>
+);
