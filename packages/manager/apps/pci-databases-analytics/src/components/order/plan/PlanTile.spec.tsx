@@ -11,25 +11,6 @@ import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funn
 import { Plan } from '@/types/orderFunnel';
 
 describe('PlanTile component', () => {
-  beforeEach(() => {
-    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
-      return {
-        useGetCatalog: vi.fn(() => ({
-          isSuccess: true,
-          data: {
-            locale: {
-              currencyCode: 'EUR',
-            },
-          },
-        })),
-      };
-    });
-    vi.mock('@/hooks/useLocale', () => {
-      return {
-        useLocale: vi.fn(() => 'fr_FR'),
-      };
-    });
-  });
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -51,14 +32,7 @@ describe('PlanTile component', () => {
         maximum: { unit: 'GB', value: 300 },
       },
     };
-    render(
-      <PlanTile
-        plan={fullPlan}
-        selected={false}
-        onChange={onChange}
-        showMonthlyPrice={true}
-      />,
-    );
+    render(<PlanTile plan={fullPlan} selected={false} onChange={onChange} />);
     await waitFor(() => {
       const BadgeTestId = `plan-tile-badge-${fullPlan.tags[0]}`;
       expect(
@@ -71,7 +45,6 @@ describe('PlanTile component', () => {
       expect(screen.getByTestId('plan-tile-cpu-range')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-storage-range')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-nodes-range')).toBeInTheDocument();
-      expect(screen.getByTestId('plan-tile-price')).toBeInTheDocument();
     });
   });
 
@@ -84,14 +57,7 @@ describe('PlanTile component', () => {
         minimum: 0,
       },
     };
-    render(
-      <PlanTile
-        plan={noNodesPlan}
-        selected={true}
-        onChange={onChange}
-        showMonthlyPrice={true}
-      />,
-    );
+    render(<PlanTile plan={noNodesPlan} selected={true} onChange={onChange} />);
     await waitFor(() => {
       expect(screen.queryByTestId('plan-tile-ram')).toBeNull();
       expect(screen.queryByTestId('plan-tile-cpu')).toBeNull();
@@ -121,14 +87,7 @@ describe('PlanTile component', () => {
         maximum: 1,
       },
     };
-    render(
-      <PlanTile
-        plan={noRangePlan}
-        selected={true}
-        onChange={onChange}
-        showMonthlyPrice={false}
-      />,
-    );
+    render(<PlanTile plan={noRangePlan} selected={true} onChange={onChange} />);
     await waitFor(() => {
       expect(screen.getByTestId('plan-tile-ram-spec')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-cpu-spec')).toBeInTheDocument();
@@ -144,7 +103,6 @@ describe('PlanTile component', () => {
         plan={mockedBasicOrderFunnelPlan}
         selected={false}
         onChange={onChange}
-        showMonthlyPrice={false}
       />,
     );
     act(() => {
