@@ -1,11 +1,11 @@
 {
-  "billing_confirm_termination_resiliate": "Meine Dienstleistung {{ serviceName }} kündigen",
+  "billing_confirm_termination_resiliate": "Dienstleistung kündigen",
   "billing_confirm_termination_information_text_US": "Sobald Sie bestätigen, wird Ihre Dienstleistung gekündigt. Dies führt zum automatischen, sofortigen und unumkehrbaren Löschen aller Daten, die mit dieser Dienstleistung in Verbindung stehen (einschließlich ihrer Backups). Bevor Sie nun die Kündigung bestätigen, obliegt es Ihnen, alle notwendigen Maßnahmen zur Sicherung Ihrer Daten zu treffen. OVHcloud lehnt jede Verantwortung dafür ab.",
-  "billing_confirm_termination_information_text": "Bitte beachten Sie: Wenn Sie die Kündigung bestätigen, werden alle Daten in Verbindung mit diesem Dienst und alle Backups <strong>unwiderruflich gelöscht</strong>.  Es obliegt Ihnen, alle notwendigen Maßnahmen zur Sicherung Ihrer Daten zu treffen, bevor Sie die Kündigung Ihrer Dienstleistung bestätigen. Wenn Sie diesen Vorgang begonnen haben, können Sie ihn nicht anhalten. OVHcloud lehnt in diesem Fall jede Verantwortung für Datenverlust ab.",
+  "billing_confirm_termination_information_text": "Wenn Sie die Kündigung Ihrer Dienstleistung bestätigen, beachten Sie bitte, dass die Kündigung sofort wirksam wird und dass <strong>alle Daten in Verbindung mit dieser Dienstleistung und alle Backups endgültig gelöscht</strong> werden. Es liegt in Ihrer Verantwortung, alle notwendigen Maßnahmen zur Sicherung Ihrer Daten zu ergreifen, bevor Sie die Kündigung Ihrer Dienstleistung bestätigen. Sobald der Vorgang gestartet wurde, kann er nicht mehr gestoppt werden. OVHcloud lehnt in diesem Fall jede Verantwortung für Datenverlust ab.",
   "billing_confirm_termination_question_reason": "Sie haben sich dafür entschlossen, Ihre Dienstleistung zu kündigen. Bitte helfen Sie uns, besser zu werden. Würden Sie dafür bitte den Hauptgrund Ihrer Kündigung angeben?",
   "billing_confirm_termination_question_future_use": "Was sind Ihre weiteren Pläne?",
   "billing_confirm_termination_question_commentary": "Gerne können Sie weitere Gründe für die Kündigung dieses Dienstes angeben.",
-  "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "Die Qualität der Dienstleistung (Pannen, Störungen) entspricht nicht meinen Erwartungen.",
+  "billing_confirm_termination_reason_LACK_OF_PERFORMANCES": "Ich bin mit der Leistung des Produkts nicht zufrieden.",
   "billing_confirm_termination_reason_NOT_NEEDED_ANYMORE": "Dieses Produkt/diese Dienstleistung war mit einem Projekt verbunden, das nun beendet ist/sich weiterentwickelt hat.",
   "billing_confirm_termination_reason_TOO_EXPENSIVE": "Die Preise sind zu hoch.",
   "billing_confirm_termination_reason_TOO_HARD_TO_USE": "Der Online-Support (Kundendienst, Anleitungen, Chat) hat es mir nicht ermöglicht, meine Dienstleistungen angemessen zu verwalten.",
@@ -20,5 +20,9 @@
   "billing_confirm_termination_future_use_SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": "Einen ähnlichen Dienst bei einem Mitbewerber abonnieren.",
   "billing_confirm_termination_terminate": "Bestätigen",
   "billing_confirm_termination_success": "Ihre Dienstleistung wurde gekündigt. Sie erhalten in den nächsten Minuten eine Bestätigung per E-Mail. Für weitere Fragen und Informationen steht Ihnen unser Team gerne zur Verfügung.",
-  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}"
+  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}",
+  "billing_confirm_termination_head_sentence": "Sie haben sich entschieden, Ihren Dienst {{ serviceName }} zu kündigen, und es tut uns leid, dass Sie uns verlassen.",
+  "billing_confirm_termination_question_commentary_reason": "Bitte teilen Sie uns den genauen Grund Ihrer Wahl mit",
+  "billing_confirm_termination_reason_OTHER": "Andere (bitte angeben)",
+  "billing_confirm_termination_future_use_OTHER": "Andere (bitte angeben)"
 }

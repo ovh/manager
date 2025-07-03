@@ -2,13 +2,17 @@
 </oui-back-button>
 
 <oui-header
-    data-heading="{{:: 'billing_confirm_termination_resiliate' | translate:{
-        serviceName: $ctrl.service.domain
-    } }}"
+    data-heading="{{:: 'billing_confirm_termination_resiliate' | translate}}"
 ></oui-header>
 
 <div class="container-fluid mt-3">
     <div class="mt-3" data-ovh-alert></div>
+
+    <div
+        data-ng-bind-html="'billing_confirm_termination_head_sentence' | translate:{
+      serviceName: $ctrl.service.domain
+  }"
+    ></div>
 
     <oui-message data-type="warning" data-ng-if="$ctrl.hasSpecialConditions()"
         ><span
@@ -19,7 +23,7 @@
     <form name="terminationForm" novalidate class="mt-3">
         <oui-field
             data-ng-repeat="question in $ctrl.questions track by question.question"
-            data-label="{{:: 'billing_confirm_termination_question_' + question.question  | translate}}"
+            data-label="{{:: (question.question === 'commentary_future_use' ? '' : 'billing_confirm_termination_question_' + question.question) | translate}}"
         >
             <oui-radio-group
                 data-ng-if="question.type === 'enum'"
@@ -38,6 +42,7 @@
             </oui-radio-group>
             <oui-textarea
                 data-ng-if="question.type === 'text'"
+                data-disabled="$ctrl.shouldDisabledTextarea(question)"
                 data-model="$ctrl.model[question.question]"
                 name="{{ question.question }}"
                 data-required="question.mandatory"
@@ -46,7 +51,7 @@
         </oui-field>
 
         <oui-message
-            data-type="warning"
+            data-type="info"
             data-ng-if="!$ctrl.hasSpecialConditions()"
             class="mb-4"
         >
