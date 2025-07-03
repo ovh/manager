@@ -48,12 +48,6 @@ export const createNetworkWithGateway = async (
   newNetwork: TNewNetworkWithGateway,
 ) => {
   const url = `/cloud/project/${projectId}/region/${regionName}/network`;
-
-  try {
-    const { data } = await v6.post(url, newNetwork);
-    return data;
-  } catch (e) {
-    const error = e as AxiosError;
-    throw new Error((error.response.data as { message: string })?.message);
-  }
+  const { data } = await v6.post(url, newNetwork);
+  return data;
 };
