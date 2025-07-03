@@ -3,8 +3,6 @@
   "tableHeadCores": "vCores",
   "tableHeadMemory": "Memoria",
   "tableHeadStorage": "Almacenamiento útil",
-  "tableHeadPrice-hourly": "Precio/hora por nodo (estimado)",
-  "tableHeadPrice-monthly": "Precio/mes por nodo (estimado)",
   "tableCellStorageRange": "De {{min}} a {{max}}",
   "flavorTag-new": "Novedad"
 }

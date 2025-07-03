@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@datatr-ux/uxlib';
-import Price from '@/components/price/Price.component';
 import RadioTile from '@/components/radio-tile/RadioTile.component';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
@@ -11,16 +10,12 @@ export const PlanTile = ({
   plan,
   selected,
   onChange,
-  showMonthlyPrice = false,
 }: {
   plan: Plan;
   selected: boolean;
   onChange: (newPlan: string) => void;
-  showMonthlyPrice: boolean;
 }) => {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
-  const { t: tPricing } = useTranslation('pricing');
-  const pricingUnit = showMonthlyPrice ? 'monthly' : 'hourly';
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
   );
@@ -62,22 +57,6 @@ export const PlanTile = ({
           <PlanTile.Nodes nodes={plan.nodes} />
           {plan.backups && <span>{t('backupsSpec')}</span>}
           {hasPrivateNetwork && <span>{t('privateNetworkSpec')}</span>}
-        </div>
-        <div>
-          <RadioTile.Separator />
-          <p className="text-sm">
-            <span data-testid="plan-tile-price">{t('priceStartingFrom')} </span>
-            <Price
-              priceInUcents={
-                plan.minPricing[pricingUnit].price * plan.nodes.minimum
-              }
-              taxInUcents={
-                plan.minPricing[pricingUnit].tax * plan.nodes.minimum
-              }
-              decimals={showMonthlyPrice ? 2 : 3}
-            />
-            <b> {tPricing(`pricing_unit_${pricingUnit}`)}</b>
-          </p>
         </div>
       </div>
     </RadioTile>

@@ -5,5 +5,11 @@
   "pricing_button_monthly": "Abonament miesięczny",
   "pricing_unit_hourly": "/godz.",
   "pricing_unit_monthly": "/m-c",
-  "pricing_label": "Cena"
+  "pricing_label": "Cena",
+  "freeBetaLabel": "Darmowe testy beta",
+  "freeBetaPopover": "Usługa jest bezpłatna w fazie beta i będzie płatna po przejściu na wyższą dostępność.",
+  "pricing_instance_label": "Instancja",
+  "pricing_storage_label": "Storage",
+  "total_hour_label": "Razem na godzinę",
+  "estimated_month_label": "Miesięcznie (szacowane)"
 }

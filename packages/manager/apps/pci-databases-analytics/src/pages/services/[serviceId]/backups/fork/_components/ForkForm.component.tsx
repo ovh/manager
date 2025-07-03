@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar as CalendarIcon } from 'lucide-react';
@@ -30,6 +29,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   TimePicker,
+  Separator,
 } from '@datatr-ux/uxlib';
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
@@ -40,7 +40,6 @@ import {
   ServiceCreationWithEngine,
   useAddService,
 } from '@/hooks/api/database/service/useAddService.hook';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.components';
@@ -81,7 +80,6 @@ const ForkForm = ({
     catalog,
     backups,
   );
-  const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation(
@@ -89,6 +87,7 @@ const ForkForm = ({
   );
   const { projectId } = useServiceData();
   const dateLocale = useDateFnsLocale();
+
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -372,7 +371,6 @@ const ForkForm = ({
                       onChange={(newPlan) =>
                         model.form.setValue('plan', newPlan)
                       }
-                      showMonthlyPrice={showMonthlyPrice}
                     />
                   </FormControl>
                   <FormMessage />
@@ -416,15 +414,16 @@ const ForkForm = ({
                   </FormLabel>
                   <p>{t('fieldFlavorDescription')}</p>
                   <FormControl>
-                    <FlavorsSelect
-                      {...field}
-                      showMonthlyPrice={showMonthlyPrice}
-                      flavors={model.lists.flavors}
-                      value={field.value}
-                      onChange={(newFlavor) =>
-                        model.form.setValue('flavor', newFlavor)
-                      }
-                    />
+                    {model.result.availability && (
+                      <FlavorsSelect
+                        {...field}
+                        flavors={model.lists.flavors}
+                        value={field.value}
+                        onChange={(newFlavor) =>
+                          model.form.setValue('flavor', newFlavor)
+                        }
+                      />
+                    )}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -556,14 +555,13 @@ const ForkForm = ({
               order={model.result}
               onSectionClicked={(section) => scrollToDiv(section)}
             />
-            <PriceUnitSwitch
-              showMonthly={showMonthlyPrice}
-              onChange={(newPriceUnit) => setShowMonthlyPrice(newPriceUnit)}
-            />
-            <OrderPrice
-              showMonthly={showMonthlyPrice}
-              prices={model.result.price}
-            />
+            <Separator className="my-2" />
+            {model.result.availability && (
+              <OrderPrice
+                availability={model.result.availability}
+                prices={model.result.price}
+              />
+            )}
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button

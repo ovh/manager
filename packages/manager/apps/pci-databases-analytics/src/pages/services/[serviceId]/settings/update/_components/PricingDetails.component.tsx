@@ -23,13 +23,14 @@ const PricingDetails = ({
       <PopoverTrigger>
         <HelpCircle className="w-4" />
       </PopoverTrigger>
-      <PopoverContent className="w-auto">
+      <PopoverContent className="w-auto" side="top">
         <p>
           {t('pricingDetailsNodes')}&nbsp;<span>{service.nodes.length}</span>
         </p>
         <p>
           {t('pricingDetailsFlavor')}&nbsp;
           <Price
+            className="inline"
             priceInUcents={
               pricing.flavorPrice[showMonthly ? 'monthly' : 'hourly'].price
             }
@@ -42,6 +43,7 @@ const PricingDetails = ({
         <p>
           {t('pricingDetailsStorage')}&nbsp;
           <Price
+            className="inline"
             priceInUcents={
               pricing.storagePrice[showMonthly ? 'monthly' : 'hourly'].price
             }

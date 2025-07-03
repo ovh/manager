@@ -1,18 +1,12 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
+import { mockedAvailabilitiesFlavorBis } from '@/__tests__/helpers/mocks/updateMock';
+import { mockedServicePrice } from '@/__tests__/helpers/mocks/servicePrice';
+import * as database from '@/types/cloud/project/database';
+import { ServicePricing } from '@/lib/pricingHelper';
 
 describe('OrderPrice component', () => {
-  const mockedPrices = {
-    hourly: {
-      price: 1000500,
-      tax: 1005000,
-    },
-    monthly: {
-      price: 1000050000,
-      tax: 1000500000,
-    },
-  };
   beforeEach(() => {
     vi.mock('react-i18next', () => ({
       useTranslation: () => ({
@@ -45,20 +39,53 @@ describe('OrderPrice component', () => {
   });
 
   it('should display Price component', async () => {
-    render(<OrderPrice showMonthly={false} prices={mockedPrices} />);
+    render(
+      <OrderPrice
+        prices={mockedServicePrice}
+        availability={mockedAvailabilitiesFlavorBis}
+      />,
+    );
     await waitFor(() => {
       expect(screen.getByTestId('order-price-container')).toBeInTheDocument();
-      expect(screen.getByTestId('pricing-ht')).toBeInTheDocument();
-      expect(screen.getByTestId('pricing-ttc')).toBeInTheDocument();
     });
   });
   it('should display Price component with montly values', async () => {
-    render(<OrderPrice showMonthly={true} prices={mockedPrices} />);
+    render(
+      <OrderPrice
+        availability={mockedAvailabilitiesFlavorBis}
+        prices={mockedServicePrice}
+      />,
+    );
     await waitFor(() => {
       expect(screen.getByTestId('order-price-container')).toBeInTheDocument();
-      expect(screen.getByTestId('pricing-ht')).toBeInTheDocument();
-      expect(screen.getByText('pricing_ht 10,00 €')).toBeInTheDocument();
-      expect(screen.getByText('(pricing_ttc 20,01 €)')).toBeInTheDocument();
+      expect(screen.getByText('pricing_ht 10 €')).toBeInTheDocument();
+      expect(screen.getByText('(pricing_ttc 20 €)')).toBeInTheDocument();
+    });
+  });
+
+  it('should display Price component with FreeBetaInfo', async () => {
+    const betaAvailabity: database.Availability = {
+      ...mockedAvailabilitiesFlavorBis,
+      lifecycle: {
+        ...mockedAvailabilitiesFlavorBis.lifecycle,
+        status: database.availability.StatusEnum.BETA,
+      },
+    };
+    const servicePricing: ServicePricing = {
+      ...mockedServicePrice,
+      servicePrice: {
+        ...mockedServicePrice.servicePrice,
+        hourly: {
+          price: 0,
+          tax: 0,
+        },
+      },
+    };
+    render(
+      <OrderPrice prices={servicePricing} availability={betaAvailabity} />,
+    );
+    await waitFor(() => {
+      expect(screen.getByTestId('free-beta-container')).toBeInTheDocument();
     });
   });
 });

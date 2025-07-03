@@ -9,7 +9,6 @@ import {
   TableRow,
   Badge,
 } from '@datatr-ux/uxlib';
-import Price from '@/components/price/Price.component';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
@@ -19,15 +18,12 @@ interface FlavorsSelectProps {
   flavors: Flavor[];
   value: string;
   onChange: (newFlavor: string) => void;
-  showMonthlyPrice?: boolean;
   className?: string;
 }
 
 const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
-  ({ flavors, value, onChange, showMonthlyPrice = false, className }, ref) => {
+  ({ flavors, value, onChange, className }, ref) => {
     const { t } = useTranslation('pci-databases-analytics/components/flavor');
-    const priceUnit = showMonthlyPrice ? 'monthly' : 'hourly';
-    const decimals = showMonthlyPrice ? 2 : 3;
 
     const Storage = ({ flavor }: { flavor: Flavor }) => {
       const { storage } = flavor;
@@ -79,9 +75,6 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
             <TableHead className="font-bold text-base text-[#4d5592]">
               {t('tableHeadStorage')}
             </TableHead>
-            <TableHead className="font-bold text-base text-[#4d5592]">
-              {t(`tableHeadPrice-${priceUnit}`)}
-            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody data-testid="flavor-select-table-body">
@@ -131,13 +124,6 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               </TableCell>
               <TableCell className="text-[#4d5592] border border-primary-100">
                 <Storage flavor={flavor} />
-              </TableCell>
-              <TableCell className="text-[#4d5592] border border-primary-100">
-                <Price
-                  priceInUcents={flavor.pricing[priceUnit].price}
-                  taxInUcents={flavor.pricing[priceUnit].tax}
-                  decimals={decimals}
-                />
               </TableCell>
             </TableRow>
           ))}
