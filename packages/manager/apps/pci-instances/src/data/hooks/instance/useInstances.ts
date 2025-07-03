@@ -84,8 +84,10 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   });
 };
 
-const getPendingTaskIds = (data?: TAggregatedInstance[]): string[] =>
-  data?.filter(({ pendingTask }) => pendingTask).map(({ id }) => id) ?? [];
+const getPendingTasks = (data?: TAggregatedInstance[]) =>
+  data
+    ?.filter(({ pendingTask }) => pendingTask)
+    .map(({ id, region }) => ({ instanceId: id, region })) ?? [];
 
 export const getInstanceById = (
   projectId: string,
@@ -256,7 +258,7 @@ export const useInstances = ({
   return {
     data,
     hasInconsistency: getInconsistency(data),
-    pendingTasks: getPendingTaskIds(data),
+    pendingTasks: getPendingTasks(data),
     refresh,
     ...rest,
   };
