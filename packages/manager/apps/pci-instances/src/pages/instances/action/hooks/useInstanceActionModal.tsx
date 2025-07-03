@@ -40,6 +40,7 @@ export type TUseInstanceActionModal = {
 };
 
 export const useInstanceActionModal = (
+  region: string | undefined,
   instanceId: string | undefined,
   section: TSectionType | null,
 ): TUseInstanceActionModal => {
@@ -54,10 +55,14 @@ export const useInstanceActionModal = (
     [instanceId, projectId, queryClient],
   );
 
-  const { data, isLoading, error } = useInstance(instanceId ?? '', {
-    enabled: !!instanceId && !aggregatedInstance,
-    retry: 1,
-    gcTime: 0,
+  const { data, isLoading, error } = useInstance({
+    region: region ?? null,
+    instanceId: instanceId ?? '',
+    queryOptions: {
+      enabled: !!instanceId && !aggregatedInstance,
+      retry: 1,
+      gcTime: 0,
+    },
   });
 
   const instance = useMemo(() => aggregatedInstance ?? data, [

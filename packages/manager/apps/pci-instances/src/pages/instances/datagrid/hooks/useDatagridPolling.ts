@@ -28,7 +28,7 @@ const getPartialInstanceDto = (instance: TInstance) =>
     .with('actions', instance.actions)
     .with('status', instance.status)
     .with('pendingTask', instance.task.isPending)
-    .with('taskState', instance.task.status)
+    .with('taskState', instance.task.status ?? '')
     .build();
 
 export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
