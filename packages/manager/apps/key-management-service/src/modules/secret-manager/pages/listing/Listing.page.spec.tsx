@@ -1,7 +1,7 @@
 import { screen, act } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
-  assertTextVisibility,
+  WAIT_FOR_DEFAULT_OPTIONS,
   getOdsButtonByLabel,
 } from '@ovh-ux/manager-core-test-utils';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
@@ -54,7 +54,11 @@ describe('Secrets listing test suite', () => {
 
     await act(() => user.click(secretPageLink));
 
-    // TODO: Update the text when the detail page is implemented
-    await assertTextVisibility('Secret Detail');
+    const dashboardPageLabels = await screen.findAllByText(
+      labels.secretManager.dashboard.general_information,
+      {},
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+    expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 });
