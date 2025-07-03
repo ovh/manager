@@ -12,10 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "coverage": "vitest run --coverage",
+    "coverage": "manager-test run --coverage",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.5.3",
@@ -45,19 +45,13 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.4.9",
+    "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.10.1",
-    "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.1",
-    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react": "^4.3.0",
-    "@vitest/coverage-v8": "^2.1.9",
     "autoprefixer": "^10.4.17",
     "msw": "2.1.7",
-    "typescript": "^4.3.2",
-    "vitest": "^2.1.9"
+    "typescript": "^5.1.6"
   },
   "regions": [
     "CA",
