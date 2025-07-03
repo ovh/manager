@@ -11,6 +11,5 @@
   "nodeSpecRange": "Od {{min}} do {{max}} węzłów",
   "storageSpec": "{{storage}} przestrzeni dyskowej",
   "storageSpecRange": "Od {{min}} do {{max}} przestrzeni dyskowej",
-  "priceStartingFrom": "Od",
   "planTag-new": "Nowość"
 }

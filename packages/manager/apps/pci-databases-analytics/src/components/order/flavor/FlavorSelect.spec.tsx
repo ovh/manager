@@ -39,7 +39,6 @@ describe('FlavorsSelect component', () => {
       <FlavorsSelect
         flavors={[mockedBasicOrderFunnelFlavor]}
         onChange={onChange}
-        showMonthlyPrice={true}
         value=""
       />,
     );
@@ -69,7 +68,6 @@ describe('FlavorsSelect component', () => {
       <FlavorsSelect
         flavors={[flavorWithFixedStorage]}
         onChange={onChange}
-        showMonthlyPrice={true}
         value=""
       />,
     );
@@ -95,7 +93,6 @@ describe('FlavorsSelect component', () => {
       <FlavorsSelect
         flavors={[flavorWithStorage]}
         onChange={onChange}
-        showMonthlyPrice={true}
         value=""
       />,
     );
@@ -116,7 +113,6 @@ describe('FlavorsSelect component', () => {
       <FlavorsSelect
         flavors={[mockedBasicOrderFunnelFlavor]}
         onChange={onChange}
-        showMonthlyPrice={true}
         value=""
       />,
     );

@@ -1,32 +1,28 @@
 import { useTranslation } from 'react-i18next';
-import Price from '@/components/price/Price.component';
-import { Pricing } from '@/lib/pricingHelper';
+import { ServicePricing } from '@/lib/pricingHelper';
+import * as database from '@/types/cloud/project/database';
+import FreeBetaPricing from '../../price/FreeBetaPricing.component';
+import OfferPricing from './OfferPricing.component';
 
 interface OrderPriceProps {
-  showMonthly: boolean;
-  prices: Pricing;
+  availability: database.Availability;
+  prices: ServicePricing;
 }
-const OrderPrice = ({ showMonthly, prices }: OrderPriceProps) => {
+const OrderPrice = ({ availability, prices }: OrderPriceProps) => {
   const { t } = useTranslation('pricing');
-  const decimals = showMonthly ? 2 : 3;
-  const unit = showMonthly ? 'monthly' : 'hourly';
-  const price = prices[unit];
+  const isFreeBeta =
+    prices.servicePrice.hourly.price === 0 &&
+    availability.lifecycle.status === 'BETA';
+
   return (
-    <div
-      data-testid="order-price-container"
-      className="flex justify-between items-baseline gap-2"
-    >
-      <span>{t('pricing_label')}</span>
-      <div className="inline-block">
-        <Price
-          decimals={decimals}
-          priceInUcents={price.price}
-          taxInUcents={price.tax}
-        />{' '}
-        <span className="font">{t(`pricing_unit_${unit}`)}</span>
-      </div>
+    <div data-testid="order-price-container">
+      <p className="font-bold">{t('pricing_label')}</p>
+      {isFreeBeta ? (
+        <FreeBetaPricing popoverSide="left" />
+      ) : (
+        <OfferPricing prices={prices} />
+      )}
     </div>
   );
 };
-
 export default OrderPrice;

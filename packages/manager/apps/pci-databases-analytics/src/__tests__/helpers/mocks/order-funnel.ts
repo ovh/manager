@@ -118,7 +118,6 @@ export const mockedBasicOrderFunnelPlan: Plan = {
     minimum: 1,
     maximum: 3,
   },
-  minPricing: mockedPricing,
   order: 1,
   default: false,
   networks: [database.NetworkTypeEnum.private],

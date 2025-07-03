@@ -79,9 +79,5 @@ describe('createTree function', () => {
       value: 0,
     });
     expect(flavor.vcores).toEqual(0);
-
-    // Check pricing
-    expect(flavor.pricing.hourly.price).toEqual(1);
-    expect(flavor.pricing.monthly.price).toEqual(1);
   });
 });
