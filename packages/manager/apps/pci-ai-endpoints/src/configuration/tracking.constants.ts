@@ -40,13 +40,7 @@ export const TRACKING: Record<
       tabname: string,
     ): TrackingClickParams | TrackingContextParams | any => {
       return {
-        actions: [
-          UNIVERSE,
-          'ai_maching_learning',
-          APP_NAME,
-          'main-tabnav',
-          `${tabname}`,
-        ],
+        actions: ['main-tabnav', `${tabname}`],
         actionType: 'action',
         appName: APP_NAME,
         pageTheme: UNIVERSE,
@@ -55,13 +49,7 @@ export const TRACKING: Record<
     },
 
     gotometricsClick: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${PageType.dashboard}`,
-        'metrics',
-      ],
+      actions: [`${PageType.dashboard}`, 'metrics'],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
@@ -71,13 +59,7 @@ export const TRACKING: Record<
 
   apikey: {
     gotoApikeyClick: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${APP_NAME}`,
-        `${PageType.listing}`,
-      ],
+      actions: [`${APP_NAME}`, `${PageType.listing}`],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
@@ -85,8 +67,6 @@ export const TRACKING: Record<
     },
     createNewApikeyClick: {
       actions: [
-        `${UNIVERSE}`,
-        `${APP_NAME}`,
         PageLocation.page,
         `${ButtonType.button}`,
         'create_api-key',
@@ -98,14 +78,7 @@ export const TRACKING: Record<
       level2: PCI_LEVEL2,
     },
     createNewApikeyPopUpShow: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${APP_NAME}`,
-        `${PageLocation.popup}`,
-        `create_api-key`,
-      ],
+      actions: [`${APP_NAME}`, `${PageLocation.popup}`, `create_api-key`],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
@@ -113,14 +86,7 @@ export const TRACKING: Record<
     },
 
     confirmClick: {
-      actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
-        `${PageLocation.popup}`,
-        `create_api-key`,
-        `confirm`,
-      ],
+      actions: [`${PageLocation.popup}`, `create_api-key`, `confirm`],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
@@ -128,9 +94,6 @@ export const TRACKING: Record<
     },
     successCreatApikeyPopUpShown: {
       actions: [
-        `${UNIVERSE}`,
-        'ai_maching_learning',
-        `${APP_NAME}`,
         `${APP_NAME}`,
         `${PageLocation.popup}`,
         `create_api-key_success`,
