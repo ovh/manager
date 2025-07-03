@@ -9,7 +9,7 @@ export const useVMwareDatacentres = (serviceName: string) =>
   useQuery({
     queryKey: ['vmwareServices', serviceName, 'datacentres'],
     queryFn: () => getVMwareDatacentres(serviceName),
-    select: (res) => res.data.results,
+    select: (res) => res.data,
     enabled: !!serviceName,
   });
 

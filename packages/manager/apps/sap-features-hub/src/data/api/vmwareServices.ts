@@ -1,7 +1,11 @@
-import apiClient, { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
+import apiClient, {
+  ApiResponse,
+  fetchIcebergV6,
+  IcebergFetchResultV6,
+  v6,
+} from '@ovh-ux/manager-core-api';
 import {
   DatacentrePortGroup,
-  SwsResponse,
   VMwareDatacentre,
   VMwareDatacentreCluster,
   VMwareService,
@@ -44,8 +48,8 @@ export const getVMwareStoragePolicy = async (
 
 export const getVMwareDatacentres = async (
   serviceName: string,
-): Promise<ApiResponse<SwsResponse<VMwareDatacentre>>> =>
-  apiClient.aapi.get(getVMwareDatacentreRoute(serviceName));
+): Promise<IcebergFetchResultV6<VMwareDatacentre>> =>
+  fetchIcebergV6({ route: getVMwareDatacentreRoute(serviceName) });
 
 export const getClusterIds = async ({
   serviceName,

@@ -8,7 +8,7 @@ export const VMWARE_SERVICES_ROUTE =
   '/service?type=/dedicatedCloud&subType=EPCC&external=false';
 
 export const getVMwareDatacentreRoute = (serviceName: string) =>
-  `/sws/dedicatedCloud/${serviceName}/datacenters-summary`;
+  `/dedicatedCloud/${serviceName}/datacenter`;
 
 export const getVMwareSAPInstallationsRoute = (serviceName: string) =>
   `/dedicatedCloud/${serviceName}/sap`;
