@@ -13,6 +13,7 @@ import credentials from '../../../public/translations/key-management-service/cre
 import terminate from '../../../public/translations/key-management-service/terminate/Messages_fr_FR.json';
 import secretCommon from '../../../public/translations/secret-manager/common/Messages_fr_FR.json';
 import secretOnboarding from '../../../public/translations/secret-manager/onboarding/Messages_fr_FR.json';
+import secretDashboard from '../../../public/translations/secret-manager/dashboard/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -44,6 +45,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, 'secret-manager/common', secretCommon)
     .addResources(defaultLocale, 'secret-manager/onboarding', secretOnboarding)
+    .addResources(defaultLocale, 'secret-manager/dashboard', secretDashboard)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -82,6 +84,7 @@ const commonLabels = {
 const secretManagerLabels = {
   common: secretCommon,
   onboarding: secretOnboarding,
+  dashboard: secretDashboard,
 };
 
 export const labels = {

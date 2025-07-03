@@ -5,13 +5,26 @@ import {
   SecretVersionDataField,
 } from '@secret-manager/types/secret.type';
 
-// LIST Secret
-export const secretListQueryKey = (okmsId: string) => [
-  'secrets',
-  'list',
-  okmsId,
-];
+export const secretQueryKeys = {
+  list: (okmsId: string) => ['secret', okmsId],
+  detail: (okmsId: string, secretPath: string) => [
+    ...secretQueryKeys.list(okmsId),
+    secretPath,
+  ],
+};
 
+// GET Secret
+export const getSecret = async (
+  okmsId: string,
+  secretPath: string,
+): Promise<Secret> => {
+  const { data } = await apiClient.v2.get<Secret>(
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
+  );
+  return data;
+};
+
+// LIST Secret
 export const getSecretList = async (okmsId: string) => {
   const { data } = await apiClient.v2.get<Secret[]>(
     `okms/resource/${okmsId}/secret`,

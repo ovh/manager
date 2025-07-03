@@ -17,8 +17,16 @@ const Onboarding = React.lazy(() =>
 const SecretListing = React.lazy(() =>
   import('@/modules/secret-manager/pages/listing/Listing.page'),
 );
-const SecretDetail = React.lazy(() =>
-  import('@/modules/secret-manager/pages/Detail.page'),
+const SecretDashboard = React.lazy(() =>
+  import('@/modules/secret-manager/pages/dashboard/Dashboard.page'),
+);
+const SecretGeneralInformation = React.lazy(() =>
+  import(
+    '@/modules/secret-manager/pages/dashboard/generalInformation/GeneralInformation.page'
+  ),
+);
+const SecretVersions = React.lazy(() =>
+  import('@/modules/secret-manager/pages/dashboard/versions/Versions.page'),
 );
 const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/Create.page'),
@@ -47,8 +55,14 @@ export default (
       <Route index Component={SecretListing} />
       <Route
         path={SECRET_MANAGER_URL_PARAMS.secretPath}
-        Component={SecretDetail}
-      />
+        Component={SecretDashboard}
+      >
+        <Route index Component={SecretGeneralInformation} />
+        <Route
+          path={SECRET_MANAGER_ROUTES_URIS.versions}
+          Component={SecretVersions}
+        />
+      </Route>
     </Route>
     <Route path={'*'} element={<NotFound />} />
   </Route>

@@ -1,5 +1,7 @@
 {
-  "secret_manager": "Secret Manager",
   "path": "Path",
-  "version": "Version"
+  "secret_manager": "Secret Manager",
+  "urn": "URN",
+  "version": "Version",
+  "versions": "Versions"
 }
