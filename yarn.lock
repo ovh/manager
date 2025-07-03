@@ -6709,6 +6709,11 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
+"@ovh-ux/manager-tests-setup@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.1.0.tgz#d6924e90b7a463a586ff2a1c4c253205a02d12f1"
+  integrity sha512-YKVUnVwAQhpoZ2zwgxMxVB0iHzD5IO6/lnBEvdv3PqgqknCnfdqfXdCXLx794rfGnnfgu2+Eg5MALo+HkTh1gQ==
+
 "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.2.0.tgz#63f3ec12e420e73072656d3cec5e7b2c4c7c15e5"
