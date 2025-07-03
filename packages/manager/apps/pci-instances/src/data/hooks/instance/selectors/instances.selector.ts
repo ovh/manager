@@ -1,15 +1,26 @@
 import { InfiniteData } from '@tanstack/react-query';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import {
+  TInstanceActionDto,
+  TInstanceDetailDto,
+  TInstanceDto,
+  TInstanceNetworkAddressDto,
+  TInstancePriceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
 import {
   TAddress,
   TInstance,
   TInstanceAction,
   TInstanceActions,
   TInstanceAddressType,
+  TInstanceDetail,
+  TInstancePrice,
   TInstanceStatus,
   TInstanceStatusSeverity,
+  TNetwork,
 } from '@/types/instance/entity.type';
 import { TActionName } from '@/types/instance/common.type';
+import { TBaseAction } from '@/types/instance/action/action.type';
 
 const getInstanceStatusSeverity = (
   status: TInstanceStatusDto,
@@ -65,7 +76,7 @@ const getActionHrefByName = (
   { region, id }: Pick<TInstance, 'id' | 'region'>,
 ): TInstanceAction['link'] => {
   if (name === 'details') {
-    return { path: id, isExternal: false };
+    return { path: `region/${region}/instance/${id}`, isExternal: false };
   }
 
   if (name === 'edit') {
@@ -194,3 +205,135 @@ export const instancesSelector = (
       actions: mapInstanceActions(instanceDto, projectUrl),
       taskState: getInstanceTaskState(instanceDto.taskState),
     }));
+
+const isEditionEnabled = (actions: TInstanceActionDto[]) =>
+  actions.some(({ name }) => name === 'edit');
+
+const getNetworkActionHref = (
+  dedicatedUrl: string,
+  projectId: string,
+  ip: string,
+): TBaseAction[] => {
+  const ipParams = `ip=${ip}&ipBlock=${ip}`;
+
+  const actions = [
+    {
+      label: 'pci_instances_actions_instance_network_change_dns',
+      path: dedicatedUrl,
+    },
+    {
+      label: 'pci_instances_actions_instance_network_activate_mitigation',
+      path: `${dedicatedUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
+    },
+    {
+      label: 'pci_instances_actions_instance_network_firewall_settings',
+      path: `${dedicatedUrl}?action=toggleFirewall&${ipParams}`,
+    },
+  ];
+
+  return actions.map(({ label, path }) => ({
+    label,
+    link: {
+      path,
+      isExternal: true,
+      target: 'blank',
+    },
+  }));
+};
+
+const mapInstanceNetworks = (
+  networks: TInstanceNetworkAddressDto[],
+  dedicatedUrl: string,
+  projectId: string,
+) =>
+  networks.reduce((acc, { type, ip, version, subnet }) => {
+    const section = type === 'floating' ? 'public' : type;
+    const foundNetwork = acc.get(section);
+    const network: TNetwork = {
+      id: subnet.network.id,
+      ip,
+      version,
+      name: subnet.network.name,
+      gatewayIp: subnet.gatewayIP,
+      flag:
+        type === 'floating'
+          ? `pci_instances_dashboard_network_floating_title`
+          : undefined,
+      actions:
+        type !== 'private'
+          ? getNetworkActionHref(dedicatedUrl, projectId, ip)
+          : [],
+    };
+
+    if (!foundNetwork) {
+      return acc.set(type, [network]);
+    }
+    foundNetwork.push(network);
+    return acc;
+  }, new Map<TInstanceAddressType, TNetwork[]>());
+
+// TODO: verify if needed to sync for routing (this will redirect action in the listing page)
+const mapInstanceDashboardActions = (
+  instance: TInstanceDto,
+  projectUrl: string,
+) => {
+  const filteredAction = instance.actions.filter(
+    ({ name }) =>
+      !['delete', 'activate_monthly_billing', 'details'].includes(name),
+  );
+
+  const actions = mapInstanceActions(
+    { ...instance, actions: filteredAction },
+    projectUrl,
+  );
+
+  return new Map(
+    Array.from(actions.entries()).map(([group, item]) => {
+      const updatedActions = item.map((action) => ({
+        ...action,
+        link: {
+          ...action.link,
+          path: action.link.isExternal
+            ? action.link.path
+            : `../${action.link.path}`,
+        },
+      }));
+      return [group, updatedActions];
+    }),
+  );
+};
+
+// we will not display savingplans for now
+const mapInstancePricings = (pricings: TInstancePriceDto[]): TInstancePrice[] =>
+  pricings
+    .filter(({ type }) => type !== 'savingplans')
+    .map((pricing) => ({
+      type: pricing.type,
+      value: pricing.value,
+      label:
+        pricing.type === 'licence'
+          ? 'pci_instances_dashboard_licence_price_label'
+          : 'pci_instances_dashboard_instance_price_label',
+    }));
+
+export const getInstanceDetail = (
+  instanceDto: TInstanceDetailDto,
+  dedicatedUrl: string,
+  projectId: string,
+): TInstanceDetail => ({
+  ...instanceDto,
+  flavorName: instanceDto.flavor.name,
+  // TODO: get the unit from api
+  flavorRam: `${instanceDto.flavor.specs.ram}`,
+  flavorCpu: `${instanceDto.flavor.specs.cpu}`,
+  actions: mapInstanceDashboardActions(instanceDto as any, dedicatedUrl), // TODO: fix type after refactor TAPC-4385
+  storage: `${instanceDto.flavor.specs.storage}`,
+  publicBandwidth: `${instanceDto.flavor.specs.bandwidth.public}`,
+  imageName: instanceDto.image.name,
+  networks: mapInstanceNetworks(instanceDto.addresses, dedicatedUrl, projectId),
+  sshLogin: instanceDto.login,
+  status: getInstanceStatus(instanceDto.status),
+  prices: mapInstancePricings(instanceDto.prices),
+  isEditionEnabled: isEditionEnabled(instanceDto.actions),
+  standaloneActions: ['activate_monthly_billing', 'delete'],
+});

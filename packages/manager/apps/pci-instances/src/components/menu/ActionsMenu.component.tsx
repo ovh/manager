@@ -59,7 +59,7 @@ export const ActionsMenu = ({ items }: TActionsMenuProps) => {
       >
         <Button
           data-testid="actions-menu-button"
-          className="size-9 p-0 text-primary border-primary border bg-background font-semibold hover:bg-primary-100 rounded-8 data-[state=open]:bg-[--ods-color-primary-100] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="size-9 p-0 text-primary bg-background font-semibold hover:bg-primary-100 data-[state=open]:bg-[--ods-color-primary-100] focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
         >
           <OsdsIcon
             name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
