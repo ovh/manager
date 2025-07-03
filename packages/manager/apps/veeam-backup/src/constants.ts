@@ -11,3 +11,9 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
 
 export const OFFER_CREATING_STATUS = 'CREATING';
 export const GOLD_OFFER_LABEL = 'Gold';
+
+export const CANCELED_VEEAM_BACKUP_STATUS = [
+  'DISABLED',
+  'REMOVED',
+  'DISABLING',
+];
