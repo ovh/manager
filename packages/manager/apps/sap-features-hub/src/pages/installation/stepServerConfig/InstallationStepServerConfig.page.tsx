@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import {
   Controller,
+  ControllerRenderProps,
+  FieldValues,
   FormProvider,
   useFieldArray,
   useForm,
@@ -191,6 +193,16 @@ export default function InstallationStepServerConfig() {
     clearServerErrorMessage,
   );
 
+  const fieldWithHandler = <TFieldName extends string>(
+    field: ControllerRenderProps<FieldValues, TFieldName>,
+  ) => ({
+    ...field,
+    onChange: (...params: unknown[]) => {
+      field.onChange(...params);
+      clearServerErrorMessage();
+    },
+  });
+
   const {
     mutate: validate,
     isPending: isValidationPending,
@@ -272,11 +284,11 @@ export default function InstallationStepServerConfig() {
         onPrevious={previousStep}
       >
         <Controller
-          control={control}
           name="network"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_vmware_ports')}
               placeholder={t('select_label')}
               options={portGroup}
@@ -306,11 +318,11 @@ export default function InstallationStepServerConfig() {
           <RhfField.HelperAuto />
         </RhfField>
         <Controller
-          control={control}
           name="encryptPassword"
+          control={control}
           render={({ field }) => (
             <RhfToggleField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_toggle_password_encryption')}
               tooltip={t('server_config_tooltip_password_encryption')}
             />
@@ -318,11 +330,11 @@ export default function InstallationStepServerConfig() {
         />
         <OdsText preset="heading-3">{LABELS.SAP_HANA}</OdsText>
         <Controller
-          control={control}
           name="hanaServerOva"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={ovaTemplates}
@@ -333,11 +345,11 @@ export default function InstallationStepServerConfig() {
           )}
         />
         <Controller
-          control={control}
           name="hanaServerDatastore"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
@@ -348,11 +360,11 @@ export default function InstallationStepServerConfig() {
           )}
         />
         <Controller
-          control={control}
           name="thickDatastorePolicy"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_thick_storage')}
               placeholder={t('select_label')}
               options={storagePolicies}
@@ -467,11 +479,11 @@ export default function InstallationStepServerConfig() {
           {t('server_config_applications_servers')}
         </OdsText>
         <Controller
-          control={control}
           name="applicationServerOva"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
               placeholder={t('select_label')}
               options={ovaTemplates}
@@ -482,11 +494,11 @@ export default function InstallationStepServerConfig() {
           )}
         />
         <Controller
-          control={control}
           name="applicationServerDatastore"
+          control={control}
           render={({ field, fieldState }) => (
             <RhfSelectField
-              field={field}
+              field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
               placeholder={t('select_label')}
               options={datastoreNames}
@@ -522,11 +534,11 @@ export default function InstallationStepServerConfig() {
                 />
               </RhfField>
               <Controller
-                control={control}
                 name={`applicationServers.${index}.role`}
+                control={control}
                 render={({ field }) => (
                   <RhfSelectField
-                    field={field}
+                    field={fieldWithHandler(field)}
                     label={t('role')}
                     placeholder={t('select_label')}
                     options={Array.from(APPLICATION_SERVER_ROLES)}

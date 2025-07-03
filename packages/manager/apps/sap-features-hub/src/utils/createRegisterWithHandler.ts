@@ -11,13 +11,12 @@ import { FieldValues, UseFormRegister } from 'react-hook-form';
 export const createRegisterWithHandler = <TFieldValues extends FieldValues>(
   baseRegister: UseFormRegister<TFieldValues>,
   customHandler: (event: Event) => void,
-): UseFormRegister<TFieldValues> => (...params) => {
-  const { onChange, ...baseOptions } = baseRegister(...params);
-  return {
-    ...baseOptions,
-    onChange: (event: Event) => {
+): UseFormRegister<TFieldValues> => (name, options = {}) => {
+  return baseRegister(name, {
+    ...options,
+    onChange: (event) => {
+      options?.onChange?.(event);
       customHandler(event);
-      return onChange(event);
     },
-  };
+  });
 };
