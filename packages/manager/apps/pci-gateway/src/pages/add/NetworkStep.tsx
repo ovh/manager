@@ -128,12 +128,33 @@ export const NetworkStep = (): JSX.Element => {
       });
     },
     onError: (error) => {
-      addError(
-        t(
-          'pci_projects_project_public_gateways_add_modal_add_private_network_error',
-          { message: error },
-        ),
-      );
+      if (isApiCustomError(error) && isMaxQuotaReachedError(error)) {
+        addError(
+          <Trans
+            ns="add"
+            i18nKey="pci_projects_project_public_gateways_quota_error"
+            components={{
+              Link: (
+                <GuideLink
+                  href={`${hrefProject}/quota`}
+                  isTargetBlank={false}
+                />
+              ),
+            }}
+          />,
+        );
+      } else {
+        addError(
+          t(
+            'pci_projects_project_public_gateways_add_modal_add_private_network_error',
+            {
+              message: isApiCustomError(error)
+                ? error.response?.data.message
+                : 'Unknown error',
+            },
+          ),
+        );
+      }
     },
   });
 
