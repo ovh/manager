@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.0...@ovh-ux/manager-account@0.14.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **container:** fix redirection to contacts ([afffff0](https://github.com/ovh/manager/commit/afffff03811fca200cdd31487e2b0cf2d2bbf113)), closes [#MANAGER-18915](https://github.com/ovh/manager/issues/MANAGER-18915)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.2...@ovh-ux/manager-account@0.14.0) (2025-07-02)
 
 
