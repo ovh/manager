@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.2...@ovh-ux/manager-react-components@2.30.0) (2025-07-04)
+
+### Bug Fixes
+
+- **mrc.datagrid:** fix flex alignment ([5d1e9d7](https://github.com/ovh/manager/commit/5d1e9d7104985ef927f6f92b8226180dc6afd90d)), closes [#MANAGER-15793](https://github.com/ovh/manager/issues/MANAGER-15793)
+
+### Features
+
+- **core:** refactor api update iceberg header request ([258f02e](https://github.com/ovh/manager/commit/258f02e2f8dad8766866ef4882faccf58c08bc0d)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add test for useIcebergV2 filter and search ([d26717c](https://github.com/ovh/manager/commit/d26717cd0774d94d7758cf8e24fcd4db7917d277)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **mrc:** add onClick props to PciGuideHeader ([65fbd3b](https://github.com/ovh/manager/commit/65fbd3b7baa0db8b2afd8a70d609390a211dda91)), closes [#DTCORE-3308](https://github.com/ovh/manager/issues/DTCORE-3308)
+
 ## [2.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.1...@ovh-ux/manager-react-components@2.29.2) (2025-07-02)
 
 ### Bug Fixes
