@@ -39,7 +39,9 @@
             tracking-category="$ctrl.trackingCategory"
         >
         </ovh-manager-auto-renew-payment-method>
-        <ovh-manager-auto-renew-tips></ovh-manager-auto-renew-tips>
+        <ovh-manager-auto-renew-tips
+            data-ng-if="!$ctrl.isUSRegion"
+        ></ovh-manager-auto-renew-tips>
     </div>
 
     <oui-datagrid
