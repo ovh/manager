@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.13.0...@ovh-ux/manager-core-api@0.14.0) (2025-07-04)
+
+
+### Features
+
+* **core:** refactor api update iceberg header request ([258f02e](https://github.com/ovh/manager/commit/258f02e2f8dad8766866ef4882faccf58c08bc0d)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+* **core:** update iceberg api client for v2 ([7973f2f](https://github.com/ovh/manager/commit/7973f2f7d9622b87e1bedbcfcbc431c90684715f)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+* **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.12.1...@ovh-ux/manager-core-api@0.13.0) (2025-06-20)
 
 
