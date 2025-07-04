@@ -42,5 +42,5 @@
   "pci_projects_project_network_private_create_subnet": "Configura la tua sottorete",
   "pci_projects_project_network_private_gateway_options": "Opzioni gateway di rete",
   "pci_projects_project_network_private_3az_guide_description": "Per maggiori informazioni sulle specifiche dei servizi 3-AZ e su come utilizzarli per progettare un'infrastruttura resiliente, <Link>clicca qui</Link>",
-  "pci_projects_project_network_private_create_error_quota_exceeded": "Non sono disponibili quote in questa localizzazione. Per continuare, <Link>aumenta le quote</Link>"
+  "pci_projects_project_network_private_create_error_quota_exceeded": "Non disponi più di quota disponibile in questa localizzazione. Per continuare, <Link>aumenta le tue quote</Link>"
 }
