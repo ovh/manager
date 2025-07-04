@@ -24,7 +24,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: () => vi.fn(),
+    useHref: vi.fn((link) => link),
     useSearchParams: vi.fn(),
   };
 });
@@ -48,42 +48,33 @@ const renderSecretForm = async (domainId?: string) => {
 
 const DOMAIN_ID = 'a1c3e7f8-5fc5-4c4e-8eac-60076ac25c00';
 
-type TestCase = {
-  path?: string;
-  data?: string;
-  selectedDomainId?: string;
-  shouldButtonBeDisabled: boolean;
-};
-
-const testCases: TestCase[] = [
-  { shouldButtonBeDisabled: true },
-  {
-    data: DATA_VALID_JSON,
-
-    shouldButtonBeDisabled: true,
-  },
-  {
-    path: PATH_VALID,
-
-    shouldButtonBeDisabled: true,
-  },
-  { selectedDomainId: DOMAIN_ID, shouldButtonBeDisabled: true },
-  {
-    data: DATA_VALID_JSON,
-    path: PATH_VALID,
-
-    shouldButtonBeDisabled: true,
-  },
-  {
-    data: DATA_VALID_JSON,
-    path: PATH_VALID,
-    selectedDomainId: DOMAIN_ID,
-    shouldButtonBeDisabled: false,
-  },
-];
-
 describe('Secrets creation form test suite', () => {
-  it.each(testCases)(
+  it.each([
+    { shouldButtonBeDisabled: true },
+    {
+      data: DATA_VALID_JSON,
+
+      shouldButtonBeDisabled: true,
+    },
+    {
+      path: PATH_VALID,
+
+      shouldButtonBeDisabled: true,
+    },
+    { selectedDomainId: DOMAIN_ID, shouldButtonBeDisabled: true },
+    {
+      data: DATA_VALID_JSON,
+      path: PATH_VALID,
+
+      shouldButtonBeDisabled: true,
+    },
+    {
+      data: DATA_VALID_JSON,
+      path: PATH_VALID,
+      selectedDomainId: DOMAIN_ID,
+      shouldButtonBeDisabled: false,
+    },
+  ])(
     'should check the form validity for data: $data, path: $path and a selectedDomain: $selectedDomainId ',
     async ({ data, path, selectedDomainId, shouldButtonBeDisabled }) => {
       // GIVEN

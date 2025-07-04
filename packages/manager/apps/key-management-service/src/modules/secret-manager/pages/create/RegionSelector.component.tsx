@@ -21,7 +21,7 @@ export const RegionSelector = ({
     <div className="flex flex-col gap-3">
       <OdsText preset="heading-4">{t('region_selector_title')}</OdsText>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
-        {regions.map((region) => (
+        {regions?.map((region) => (
           <RadioCard
             id={region}
             onChange={(event) => setSelectedRegion(event.target.value)}

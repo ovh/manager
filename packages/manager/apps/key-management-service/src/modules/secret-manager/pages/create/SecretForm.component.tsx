@@ -3,13 +3,9 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Links,
-  LinkType,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   OdsButton,
   OdsFormField,
@@ -17,10 +13,7 @@ import {
   OdsText,
   OdsTextarea,
 } from '@ovhcloud/ods-components/react';
-import {
-  SECRET_MANAGER_ROUTES_URLS,
-  SECRET_MANAGER_SEARCH_PARAMS,
-} from '@secret-manager/routes/routes.constants';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { secretListQueryKey } from '@secret-manager/data/api/secrets';
 import { useQueryClient } from '@tanstack/react-query';
 import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
@@ -33,6 +26,7 @@ import {
   PATH_INPUT_TEST_ID,
   SUBMIT_BTN_TEST_ID,
 } from '@secret-manager/utils/tests/secret.constant';
+import { BackLink } from './BackLink.component';
 
 type SecretFormProps = {
   domainId?: string;
@@ -47,14 +41,6 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
   const navigate = useNavigate();
   const { addError } = useNotifications();
   const queryClient = useQueryClient();
-
-  /* domain from the secret list */
-  const [searchParams] = useSearchParams();
-  const backDomainId = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.domainId);
-
-  const backLink = backDomainId
-    ? useHref(SECRET_MANAGER_ROUTES_URLS.secretListing(backDomainId))
-    : useHref(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot);
 
   /* Form */
   const pathSchema = useSecretPathSchema();
@@ -164,11 +150,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
         <OdsText preset="heading-2">{t('paiement_section_title')}</OdsText>
       </div>
       <div className="flex justify-between items-center py-3">
-        <Links
-          label={t('back', { ns: NAMESPACES.ACTIONS })}
-          type={LinkType.back}
-          href={backLink}
-        />
+        <BackLink />
         <OdsButton
           type="submit"
           isDisabled={!isDirty || !isValid || !domainId}
