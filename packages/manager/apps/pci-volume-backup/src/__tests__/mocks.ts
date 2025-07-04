@@ -12,6 +12,7 @@ export const MOCKED_INSTANCE_ID = 'instance-id';
 export const MOCKED_REGION_NAME = 'region-name';
 export const MOCKED_VOLUME_BACKUP_ID = 'backup-id';
 export const MOCKED_VOLUME_NAME = 'volume-name';
+export const MOCKED_VOLUME_TYPE = 'classic';
 
 export const MOCKED_VOLUME: TVolume = {
   id: MOCKED_VOLUME_ID,
@@ -26,7 +27,7 @@ export const MOCKED_VOLUME: TVolume = {
   planCode: 'volume-plan-code',
   regionName: MOCKED_REGION_NAME,
   statusGroup: 'volume-status-group',
-  type: 'classic',
+  type: 'high-speed',
 };
 
 export const MOCKED_BACKUP = {
