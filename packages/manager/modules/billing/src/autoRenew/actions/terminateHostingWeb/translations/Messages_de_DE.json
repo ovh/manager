@@ -7,5 +7,6 @@
   "autorenew_hosting_dashboard_close_service_warning": "Beim Löschen eines Hostings werden automatisch alle zugehörigen Daten unwiderruflich gelöscht. Das Löschen des Hostings bedeutet keine Garantie zur Rückerstattung.",
   "autorenew_hosting_dashboard_close_service_desc1": "Sie erhalten in Kürze eine E-Mail mit Informationen zur Schließung Ihres Hostings von uns und können die Löschung dann sofort bestätigen.",
   "autorenew_hosting_dashboard_close_confirm": "Bestätigen",
-  "autorenew_hosting_dashboard_close_cancel": "Abbrechen"
+  "autorenew_hosting_dashboard_close_cancel": "Abbrechen",
+  "autorenew_hosting_dashboard_close_service_success_skip_retention_period": "Ihre Anfrage zur endgültigen Löschung Ihres Hostings wurde registriert."
 }

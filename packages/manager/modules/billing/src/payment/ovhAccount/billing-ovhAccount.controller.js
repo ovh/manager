@@ -201,7 +201,7 @@ export default /* @ngInject */ (
 
   // TODO: Pass this through resolve when controller is refactored
   $scope.askForRefund = (accountId, movementId) =>
-    $state.go('app.account.billing.payment.ovhaccount.refund', {
+    $state.go('billing.payment.ovhaccount.refund', {
       accountId,
       movementId,
     });

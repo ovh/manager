@@ -16,7 +16,7 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Wystąpił błąd podczas rezygnacji z LDP. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX": "Rezygnacja z usługi Nutanix została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX": "Rezygnacja z usługi Nutanix została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "Wystąpił błąd podczas rezygnacji z usługi Nutanix. {{error}}",
+  "autorenew_agora_terminate_service_error_NUTANIX": "Wystąpił błąd podczas składania rezygnacji z usługi Nutanix. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Rezygnacja z węzła „{{serviceName}}” została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "Rezygnacja z węzła „{{serviceName}}” została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",

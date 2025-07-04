@@ -16,7 +16,7 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Se ha producido un error al solicitar la baja de su LDP. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX": "La solicitud de baja de su servicio Nutanix se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX": "La solicitud de baja de su servicio Nutanix se ha enviado correctamente. Le hemos enviado un correo de confirmación.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "Se ha producido un error al solicitar la baja de su Nutanix. {{error}}",
+  "autorenew_agora_terminate_service_error_NUTANIX": "Se ha producido un error al solicitar la baja de su servicio Nutanix. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La baja del nodo «{{serviceName}}» se ha registrado correctamente. Recibirá un correo electrónico con los detalles del procedimiento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "La eliminación del nodo «{{serviceName}}» se ha registrado correctamente. Le hemos enviado un correo de confirmación.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "No se ha enviado la solicitud de baja: {{error}}",
