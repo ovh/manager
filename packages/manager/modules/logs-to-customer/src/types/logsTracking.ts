@@ -10,6 +10,7 @@ const logActionNames = [
   'select_kind_logs_access',
   'go_back_logs_access',
   'go_to_detail_logs_access',
+  'go_to_order_logs',
 ] as const;
 
 export type LogsActionName = typeof logActionNames[number];

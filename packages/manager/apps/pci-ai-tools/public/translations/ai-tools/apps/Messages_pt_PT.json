@@ -1,17 +1,17 @@
 {
   "title": "AI Deploy",
   "createNewApp": "Implementar uma app",
-  "tableHeaderName": "Name",
+  "tableHeaderName": "Nome",
   "tableHeaderImage": "Imagem",
-  "tableHeaderLocation": "Area",
+  "tableHeaderLocation": "Região",
   "tableHeaderResources": "Recursos",
   "tableHeaderReplicas": "Réplicas",
   "tableHeaderUpdateDate": "Data de atualização",
   "tableHeaderStatus": "Estado",
   "tableActionManage": "Gerir",
-  "tableActionStart": "Começar",
+  "tableActionStart": "Iniciar",
   "tableActionStop": "Parar",
-  "tableActionDelete": "Suprimir",
+  "tableActionDelete": "Eliminar",
   "tableImagePartner": "Imagem fornecida por {{partner}}",
   "tableReplic": "{{rep }} réplicas"
 }

@@ -1,16 +1,16 @@
 {
-  "fieldScalingDesc1": "Wählen Sie die Bereitstellungsstrategie, die am besten zu Ihrer App passt: Sie können die Anzahl der Replikas, auf denen Ihre App bereitgestellt wird, fest festlegen oder ein Mindest- und ein Höchstmaß an Replikas für Ihre Deployments angeben, um deren Leistung dynamisch zu optimieren und Sie über die Autoscaling-Option an die Anzahl der Anfragen anzupassen.",
-  "scalingLink": "Weitere Informationen zu Skalierungsrichtlinien",
+  "fieldScalingDesc1": "Wählen Sie die optimale Deployment-Strategie für Ihre App: Entscheiden Sie sich entweder für eine feste Anzahl an Replikas, auf denen Ihre App eingerichtet wird, oder geben Sie eine Mindest- und eine Höchstzahl an Replikas für Ihre Deployments an. So optimieren Sie ihre Leistung dynamisch und mit der Autoscaling-Option je nach Anzahl der Anfragen.",
+  "scalingLink": "Weitere Informationen zu Skalierungsstrategien",
   "scalingStratActiveLabel": "Autoscaling aktiviert",
   "noScalingStratActiveLabel": "Autoscaling deaktiviert",
-  "replicasInputLabel": "Anzahl der Replikas, auf denen Ihre App eingerichtet wird",
-  "haInfoHelper": "Bereitstellung auf mindestens 2 Replikas für hohe Verfügbarkeit",
-  "replicasMinInputLabel": "Minimale Anzahl an Replikas",
-  "replicasMaxInputLabel": "Maximale Anzahl an Replikas",
+  "replicasInputLabel": "Anzahl der Replikas, auf denen Ihre App deployt wird",
+  "haInfoHelper": "Deployen Sie Ihre App für Hochverfügbarkeit auf mindestens 2 Replikas",
+  "replicasMinInputLabel": "Mindestanzahl an Replikas",
+  "replicasMaxInputLabel": "Höchstzahl an Replikas",
   "resourceTypeLabel": "Überwachte Metrik",
-  "resourceTypeInfo": "Eine Metrik, die als Auslöser für Autoscaling fungiert.",
+  "resourceTypeInfo": "Metrik für das Auslösen von Autoscaling.",
   "treshholderTargetLabel": "Schwellenwert (%)",
-  "treshholderTargetInfo": "Der Wert der Metrik in Prozent.",
-  "scalingBillingInfo": "Bitte beachten Sie, dass die Anzahl der gewählten Replikas die Anzahl der aufgenommenen Ressourcen entsprechend erhöht.",
-  "errorFormMinMaxRepField": "Das Minimum der Replikas muss kleiner als das Maximum der Replikas sein"
+  "treshholderTargetInfo": "Wert der Metrik in %",
+  "scalingBillingInfo": "Bitte beachten Sie, dass die ausgewählte Anzahl an Replikas die Anzahl der bezogenen Ressourcen entsprechend erhöht.",
+  "errorFormMinMaxRepField": "Die Mindestanzahl an Replikas muss kleiner als die Höchstzahl an Replikas sein"
 }
