@@ -10,6 +10,9 @@ import {
 } from '@/container/nav-reshuffle/sidebar/utils';
 import navigationRoot from '@/container/nav-reshuffle/sidebar/navigation-tree/root';
 import { useShell } from '@/context';
+import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
 
 export interface SubTreeSectionProps {
   node?: Node;
@@ -51,15 +54,19 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
     <>
       {node.children ? (
         <ul
-          className={`mt-3 pb-2 ${style.subtree_section}`}
+          className='mt-3 pb-2'
           role="group"
           aria-label={t(node.translation)}
           data-testid={`subtree-section-ul-${node.id}`}
         >
           <li className="px-3">
-            <h2 className={style.subtree_section_title}>
+            <OsdsText
+              className={style.subtree_section_title}
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            >
               {t(node.translation)}
-            </h2>
+            </OsdsText>
           </li>
 
           {node.children
@@ -71,9 +78,9 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                 role="menuitem"
                 className={`${
                   childNode.id === selectedNode?.id
-                    ? style.subtree_submenu_items_selected
-                    : style.subtree_submenu_items
-                }`}
+                  ? style.subtree_submenu_items_selected
+                  : style.subtree_submenu_items
+                  }`}
               >
                 <SidebarLink
                   linkParams={{
@@ -88,6 +95,8 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
                 {childNode.separator && <hr role="separator" />}
               </li>
             ))}
+
+          <OsdsDivider separator color={ODS_THEME_COLOR_INTENT.primary} className='px-3' size={ODS_DIVIDER_SIZE.four} />
         </ul>
       ) : (
         <div
