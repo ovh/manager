@@ -11,7 +11,7 @@ export const getDefaultApplicationServers = (
   deploymentType: DeploymentType,
 ): ApplicationServer[] => {
   switch (deploymentType) {
-    case 'High Availability':
+    case 'High-Availability':
       return [
         createApplicationServer({ role: SERVER_ROLE.scs }),
         createApplicationServer({ role: SERVER_ROLE.ers }),
@@ -39,7 +39,7 @@ export const isDefaultApplicationServer = ({
   const deployments: Record<DeploymentType, number[]> = {
     Standard: [0],
     Distributed: [0, 1],
-    'High Availability': [0, 1, 2, 3],
+    'High-Availability': [0, 1, 2, 3],
   };
 
   return deployments[deploymentType]?.includes(serverIndex) ?? false;
@@ -67,7 +67,7 @@ export const isValidApplicationServerList = ({
 }): boolean => {
   if (!vms || !vms.length) return false;
   switch (deploymentType) {
-    case 'High Availability':
+    case 'High-Availability':
       if (vms.length < 3) return false;
       return (
         vms[0].role === SERVER_ROLE.scs &&
