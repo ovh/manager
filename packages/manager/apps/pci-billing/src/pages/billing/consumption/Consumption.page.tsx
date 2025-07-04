@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
@@ -26,7 +26,7 @@ import { useGeTCurrentUsage } from '@/api/hook/useConsumption';
 export default function Consumption() {
   const { t } = useTranslation('consumption');
 
-  const { projectId } = useParams();
+  const { projectId = '' } = useParams();
   const { currency } = useContext(ShellContext).environment.getUser();
 
   const { data: availability } = useFeatureAvailability([
@@ -36,11 +36,12 @@ export default function Consumption() {
 
   const { data: consumption, isPending, error } = useGeTCurrentUsage(projectId);
 
-  const isTrustedZone = availability?.[TRUSTED_ZONE];
+  const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
 
-  const monthlyTotal = `${consumption?.totals?.monthly?.total?.toFixed(2) ||
-    0} ${currency.symbol}`;
-  const hourlyTotal = `${consumption?.totals?.hourly?.total?.toFixed(2) || 0} ${
+  const monthlyTotal = `${consumption?.totals.monthly.total.toFixed(2) || 0} ${
+    currency.symbol
+  }`;
+  const hourlyTotal = `${consumption?.totals.hourly.total.toFixed(2) || 0} ${
     currency.symbol
   }`;
 
@@ -69,7 +70,9 @@ export default function Consumption() {
               className="my-6"
             >
               {t('cpb_error_message')}{' '}
-              {(error as ApiError).response?.data?.message || error.message}
+              {isApiCustomError(error)
+                ? error.response?.data.message
+                : error.message}
             </OsdsMessage>
           )}
           <div className="flex items-start flex-col xl:flex-row gap-7">

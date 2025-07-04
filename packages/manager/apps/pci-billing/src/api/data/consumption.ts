@@ -18,7 +18,38 @@ export type TQuantity = {
   value: number;
 };
 
-export type TPeriod = { from: string; to: string };
+type TPeriod = { from: string; to: string };
+
+export enum TConsumptionType {
+  instance = 'instance',
+  snapshot = 'snapshot',
+  volume = 'volume',
+  objectStorage = 'objectStorage',
+  archiveStorage = 'archiveStorage',
+  coldArchive = 'coldArchive',
+  bandwidth = 'bandwidth',
+  privateRegistry = 'privateRegistry',
+  kubernetesLoadBalancer = 'kubernetesLoadBalancer',
+  training = 'training',
+  notebooks = 'notebooks',
+  rancher = 'rancher',
+  dataplatform = 'dataplatform',
+  registry = 'registry',
+  loadbalancer = 'loadbalancer',
+  aiNotebook = 'ai-notebook',
+  aiServingEngine = 'ai-serving-engine',
+  aiTraining = 'ai-training',
+  aiEndpoints = 'ai-endpoints',
+  dataProcessingJob = 'data-processing-job',
+  databases = 'databases',
+  floatingip = 'floatingip',
+  gateway = 'gateway',
+  octaviaLoadbalancer = 'octavia-loadbalancer',
+  aiApp = 'ai-app',
+  publicip = 'publicip',
+  aiDeploy = 'ai-deploy',
+  dataProcessing = 'dataProcessing',
+}
 
 export type TCurrentUsage = {
   hourlyUsage: {
