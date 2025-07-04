@@ -82,5 +82,6 @@
   "kube_add_plan_content_standard_3AZ_banner": "Das Standard-Angebot ist in 3-AZ Regionen noch nicht verfügbar. Wenn Sie dieses Angebot nutzen möchten, wählen Sie bitte die 1-AZ-Bereitstellung aus.",
   "kube_add_plan_content_standard_very_soon": "Demnächst verfügbar",
   "kube_add_plan_subtitle": "Wählen Sie das passende Angebot für Ihre Anforderungen aus. Profitieren Sie von einer breiten Auswahl an Instanzen für Ihre Kubernetes-Nodes, die nutzungsbasiert oder im Abo mit Vertragsbindung abgerechnet werden.",
-  "kubernetes_add_deployment_mode_card_beta": "Beta"
+  "kubernetes_add_deployment_mode_card_beta": "Beta",
+  "kube_add_node_pool_name_title": "Node-Pool benennen"
 }
