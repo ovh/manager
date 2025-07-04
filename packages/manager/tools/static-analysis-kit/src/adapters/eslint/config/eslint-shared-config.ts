@@ -11,7 +11,7 @@ import { reactEslintConfig } from '../rules/eslint-react';
 import { tanStackQueryEslintConfig } from '../rules/eslint-tanstack';
 import { vitestEslintConfig } from '../rules/eslint-tests';
 
-import { complexityEslintConfig } from '../rules/eslint-complexity';
+import { complexityJsxTsxConfig, complexityTsJsConfig } from '../rules/eslint-complexity';
 import { prettierEslintConfig } from '../rules/eslint-prettier';
 import { importEslintConfig } from '../rules/eslint-imports';
 import { checkFileEslintConfig } from '../rules/eslint-naming-conventions';
@@ -51,7 +51,8 @@ export const eslintSharedConfig: Linter.FlatConfig[] = [
 
   // Testing and complexity constraints
   vitestEslintConfig,
-  complexityEslintConfig,
+  complexityJsxTsxConfig,
+  complexityTsJsConfig,
 
   // Formatter (should go last to avoid conflict)
   prettierEslintConfig,

@@ -1,7 +1,6 @@
 /**
  * Blocklist specific filename patterns.
  * Keys are globs to match filenames; values are examples of the preferred format.
- * Used by `check-file/filename-blocklist`.
  */
 export const filenameBlocklist: Record<string, string> = {
   '**/*.model.ts': '*.models.ts',
@@ -9,35 +8,70 @@ export const filenameBlocklist: Record<string, string> = {
 };
 
 /**
- * Enforces that certain files reside in specific folders.
- * Keys are file patterns; values are expected folder globs.
- * Used by `check-file/folder-match-with-fex`.
+ * Folder placement enforcement for specific file types.
  */
-export const folderMatchWithFex: Record<string, string> = {
+export const folderMatchWithFex: Record<string, string | string[]> = {
+  // Translation files must live under public/translations/<namespace>/
+  'Messages_*.json': [
+    // µ-apps
+    'public/translations/*/',
+
+    // manager-react-components package support
+    'src/components/*/translations/',
+  ],
+
+  // Spec/test files
+  '*.spec.{js,jsx,ts,tsx}': '**/*/',
   '*.test.{js,jsx,ts,tsx}': '**/__tests__/',
-  '*.styled.{jsx,tsx}': '**/components/',
+
+  // Components
+  '*.component.{js,jsx,ts,tsx}': 'src/components/*/',
+
+  // Styled components
+  '*.styled.{js,jsx,ts,tsx}': 'src/components/*/',
+
+  // Pages and subroutes
+  '*.page.{js,jsx,ts,tsx}': 'src/pages/**/',
+  '*.layout.{js,jsx,ts,tsx}': 'src/pages/**/',
+  '*.modal.{js,jsx,ts,tsx}': 'src/pages/**/',
+
+  // Custom hooks
+  'use*.{ts,tsx}': [
+    'src/hooks/*/',
+    'src/data/hooks/*/',
+  ],
+
+  // Constants
+  '*.constants.{ts,js}': 'src/**/',
+
+  // Types
+  '*.type.ts': ['src/types/', 'src/**/'],
+  '*.interface.ts': ['src/types/', 'src/**/'],
 };
 
 /**
- * Enforces naming conventions for different file types.
- * Keys are file globs; values are casing styles like `PASCAL_CASE`, `CAMEL_CASE`, or `KEBAB_CASE`.
- * Used by `check-file/filename-naming-convention`.
+ * Naming conventions per file type.
  */
 export const filenameNamingConvention: Record<string, 'PASCAL_CASE' | 'CAMEL_CASE' | 'KEBAB_CASE'> = {
   '**/*.component.{js,ts,jsx,tsx}': 'PASCAL_CASE',
+  '**/*.styled.{js,ts,jsx,tsx}': 'PASCAL_CASE',
   '**/*.page.{js,ts,jsx,tsx}': 'PASCAL_CASE',
-  '**/*.hook.ts': 'CAMEL_CASE',
+  '**/*.modal.{js,ts,jsx,tsx}': 'PASCAL_CASE',
+  '**/*.layout.{js,ts,jsx,tsx}': 'PASCAL_CASE',
+
+  '**/*.hook.{ts,tsx}': 'CAMEL_CASE',
   '**/*.test.{ts,tsx}': 'CAMEL_CASE',
   '**/*.spec.{ts,tsx}': 'CAMEL_CASE',
+
+  '**/*.type.ts': 'KEBAB_CASE',
+  '**/*.interface.ts': 'KEBAB_CASE',
+  '**/*.constants.{ts,js}': 'KEBAB_CASE',
   '**/*.ts': 'KEBAB_CASE',
 };
 
 /**
- * Enforces naming conventions for specific folders.
- * Keys are folder globs; values are expected casing styles.
- * Used by `check-file/folder-naming-convention`.
+ * Folder naming convention (everything = kebab-case)
  */
-export const folderNamingConvention: Record<string, 'PASCAL_CASE' | 'CAMEL_CASE'> = {
-  'src/components/*/': 'PASCAL_CASE',
-  'src/!(components)/**/!(__tests__)/': 'CAMEL_CASE',
+export const folderNamingConvention: Record<string, 'KEBAB_CASE'> = {
+  '**/': 'KEBAB_CASE',
 };

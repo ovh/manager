@@ -1,43 +1,71 @@
 import { Linter } from 'eslint';
 import { complexityRules } from '../../../configs/complexity-config';
-import { jsTsFiles } from '../../../configs/file-globs-config';
+import { jsxTsxFiles, jsTsFiles } from '../../../configs/file-globs-config';
 
 /**
- * Complexity-related ESLint rules configuration.
- *
- * Enforces boundaries on code complexity to ensure maintainability and readability.
- * Includes rules for cyclomatic complexity, nested blocks, parameters,
- * lines per function, and overall file length.
- *
- * Applies to all JavaScript and TypeScript files.
- *
- * @see https://eslint.org/docs/latest/rules/
+ * Shared complexity rules applied across all file types
  */
-export const complexityEslintConfig: Linter.FlatConfig = {
-  files: [jsTsFiles],
+const sharedComplexityRules: Linter.RulesRecord = {
+  /** Maximum nesting depth of blocks */
+  'max-depth': ['warn', complexityRules.maxDepth],
+
+  /** Maximum number of function parameters */
+  'max-params': ['warn', complexityRules.maxParams],
+
+  /** Maximum number of nested callbacks */
+  'max-nested-callbacks': ['warn', complexityRules.maxCallbacks],
+};
+
+/**
+ * Complexity rules for TSX/JSX files
+ */
+export const complexityJsxTsxConfig: Linter.FlatConfig = {
+  files: [jsxTsxFiles],
   rules: {
-    /** Cyclomatic complexity: limits number of decision points in a function */
-    'complexity': ['warn', complexityRules.maxStatements],
+    ...sharedComplexityRules,
 
-    /** Maximum nesting depth of blocks */
-    'max-depth': ['warn', complexityRules.maxDepth],
+    /** Cyclomatic complexity */
+    'complexity': ['warn', complexityRules.statements.tsxJsx],
 
-    /** Maximum number of function parameters */
-    'max-params': ['warn', complexityRules.maxParams],
-
-    /** Maximum number of nested callbacks */
-    'max-nested-callbacks': ['warn', complexityRules.maxCallbacks],
-
-    /** Maximum lines per file, ignoring blank lines and comments */
+    /** Max lines per file */
     'max-lines': ['warn', {
       max: complexityRules.maxLines,
       skipBlankLines: true,
       skipComments: true,
     }],
 
-    /** Maximum lines per function, ignoring blank lines, comments, and IIFEs */
+    /** Max lines per function */
     'max-lines-per-function': ['warn', {
-      max: complexityRules.maxLinesPerFunction,
+      max: complexityRules.linesPerFunction.tsxJsx,
+      skipBlankLines: true,
+      skipComments: true,
+      IIFEs: true,
+    }],
+  },
+};
+
+/**
+ * Complexity rules for TS/JS files
+ */
+export const complexityTsJsConfig: Linter.FlatConfig = {
+  files: [jsTsFiles],
+  ignores: [jsxTsxFiles],
+  rules: {
+    ...sharedComplexityRules,
+
+    /** Cyclomatic complexity */
+    'complexity': ['warn', complexityRules.statements.tsJs],
+
+    /** Max lines per file */
+    'max-lines': ['warn', {
+      max: complexityRules.maxLines,
+      skipBlankLines: true,
+      skipComments: true,
+    }],
+
+    /** Max lines per function */
+    'max-lines-per-function': ['warn', {
+      max: complexityRules.linesPerFunction.tsJs,
       skipBlankLines: true,
       skipComments: true,
       IIFEs: true,
