@@ -1,11 +1,9 @@
 import { useEffect, Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
+import { usePageTracking } from '@ovh-ux/manager-react-shell-client';
 import UserProvider from '@/context/user/user.provider';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import ReassuranceWording from '@/components/reassuranceWording/ReassuranceWording.component';
 import sideBackground from '@/assets/side_background.svg?url';
 import Header from '@/components/header/Header.component';
@@ -14,9 +12,8 @@ import Footer from '@/components/footer/Footer.component';
 export default function Layout() {
   const location = useLocation();
   const matches = useMatches();
-  const { trackCurrentPage } = useOvhTracking();
-
-  useRouteSynchro();
+  const { trackPage } = useTrackingContext();
+  const pageTracking = usePageTracking();
 
   useEffect(() => {
     const match = matches.slice(-1);
@@ -24,7 +21,7 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
-    trackCurrentPage();
+    trackPage(pageTracking);
   }, [location]);
 
   return (
