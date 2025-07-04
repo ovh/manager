@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Country, LegalForm, Subsidiary } from '@ovh-ux/manager-config';
+import { Country, LegalForm, Subsidiary, User } from '@ovh-ux/manager-config';
 import userContext from '@/context/user/user.context';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useMe } from '@/data/hooks/useMe';
@@ -13,8 +13,9 @@ type Props = {
 
 export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
+  const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
-  // We will need to add states for country and language to prefill the /info form
+  // We will need to add states for language to prefill the /details form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
     undefined,
@@ -42,6 +43,15 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       }
     }
   }, [isFetched]);
+
+  useEffect(() => {
+    // TODO: add currency to dependencies (MANAGER-17334)
+    setUser({
+      ...(me || {}),
+      legalform: legalForm,
+      country,
+    } as User);
+  }, [legalForm, country]);
 
   const setCompany = (company: Company) => {
     setOrganisation(company.name);
