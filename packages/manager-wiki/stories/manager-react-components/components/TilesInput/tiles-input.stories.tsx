@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useArgs } from '@storybook/manager-api';
+import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputComponent } from '@ovh-ux/manager-react-components';
+import { TilesInputComponent } from '../../../../../manager-react-components/src';
 import {
   countries as allCountries,
   TCountry,
@@ -25,10 +25,13 @@ const Template: any = (args) => {
   const [, updateArgs] = useArgs();
 
   return (
-    <TilesInputComponent<TCountry, string, { continent: string; key: string }>
-      {...args}
-      onInput={(country) => updateArgs({ value: country })}
-    />
+    <>
+      <div className="bg-orange-100">coucou 2</div>
+      <TilesInputComponent<TCountry, string, { continent: string; key: string }>
+        {...args}
+        onInput={(country) => updateArgs({ value: country })}
+      />
+    </>
   );
 };
 

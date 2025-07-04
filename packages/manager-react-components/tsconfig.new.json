@@ -5,6 +5,7 @@
   },
   "include": [
     // Add you components migrated here
+    "./src/components/container/Tabs.Component.tsx"
   ],
   "exclude": [
     "./src/hooks/*",
