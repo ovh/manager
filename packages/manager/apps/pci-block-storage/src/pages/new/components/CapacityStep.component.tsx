@@ -21,13 +21,15 @@ import {
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { TRegion } from '@/api/data/regions';
-import { useVolumePricing } from '@/api/hooks/useCatalog';
+import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
+import ExternalLink from '@/components/ExternalLink';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
@@ -35,7 +37,7 @@ export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wro
 interface CapacityStepProps {
   projectId: string;
   region: TRegion;
-  volumeType: string;
+  volumeType: TVolumeModel['name'];
   encryptionType: EncryptionType | null;
   step: StepState;
   onSubmit: (volumeCapacity: number) => void;
@@ -69,6 +71,9 @@ export function CapacityStep({
     data: regionQuotas,
     isLoading: isRegionQuotaLoading,
   } = useRegionsQuota(projectId, region.name);
+  const projectUrl = useProjectUrl('public-cloud');
+  const quotaUrl = `${projectUrl}/quota`;
+
   const isCapacityValid =
     volumeCapacity >= VOLUME_MIN_SIZE && volumeCapacity <= maxSize;
 
@@ -228,7 +233,13 @@ export function CapacityStep({
               : ODS_THEME_COLOR_INTENT.error
           }
         >
-          {t('pci_projects_project_storages_blocks_add_size_help')}
+          <Trans
+            t={t}
+            i18nKey="pci_projects_project_storages_blocks_add_size_help"
+            components={{
+              Link: <ExternalLink href={quotaUrl} />,
+            }}
+          />
         </OsdsText>
       </div>
       {isCapacityValid && !step.isLocked && (

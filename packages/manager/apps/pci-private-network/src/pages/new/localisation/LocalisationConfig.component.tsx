@@ -1,11 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
-import { Links, Subtitle } from '@ovh-ux/manager-react-components';
+import { Subtitle } from '@ovh-ux/manager-react-components';
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   RegionSelector,
@@ -23,6 +22,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
+import GuideLink from '@/components/GuideLink/GuideLink.component';
 
 const REGION_3AZ_TYPE = 'region-3-az';
 
@@ -35,17 +35,6 @@ const isRegionWith3AZ = (regions: TRegion[]) =>
   regions.some(
     (region) => region.type === REGION_3AZ_TYPE && isNetworkUp(region.services),
   );
-
-const GuideLink = ({
-  children,
-  href,
-}: Readonly<{ href: string; children?: string }>) => (
-  <Links
-    label={children}
-    href={href}
-    target={OdsHTMLAnchorElementTarget._blank}
-  />
-);
 
 const LocalisationConfig: React.FC = () => {
   const { t } = useTranslation('new');

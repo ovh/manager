@@ -14,6 +14,7 @@ export const REGION_TO_COUNTRY = {
   'eu-west-gra': 'fr',
   'eu-west-sbg': 'fr',
   'eu-west-lim': 'de',
+  'eu-south-mil': 'it',
   'eu-central-waw': 'pl',
   'eu-west-eri': 'gb',
   'us-east-vin': 'us',

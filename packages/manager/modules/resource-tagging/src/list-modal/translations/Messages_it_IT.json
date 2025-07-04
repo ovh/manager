@@ -1,0 +1,6 @@
+{
+  "manager_components_resource_tagging_list_modal_title": "Tag: {{resourceName}}",
+  "manager_components_resource_tagging_list_modal_search": "Cercare",
+  "manager_components_resource_tagging_list_modal_cancel": "Indietro",
+  "manager_components_resource_tagging_list_modal_edit": "Gestire i tag"
+}

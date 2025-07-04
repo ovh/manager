@@ -223,6 +223,7 @@ export const useInstances = ({
     queryKey,
     retry: false,
     initialPageParam: 0,
+    refetchOnWindowFocus: 'always',
     getNextPageParam: (lastPage, _allPages, lastPageParam) =>
       lastPage.length > limit ? lastPageParam + 1 : null,
     queryFn: ({ pageParam }) =>

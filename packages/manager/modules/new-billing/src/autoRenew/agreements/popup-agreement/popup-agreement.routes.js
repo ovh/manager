@@ -1,25 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.agreements.popup-agreement', {
-    url: '/popup-agreement',
+    url: '/popup-agreement?id',
     views: {
       modal: {
         component: 'billingAutorenewPopupAgreement',
       },
     },
-    params: {
-      agreements: null,
-    },
     layout: 'modal',
     translations: { value: ['.'], format: 'json' },
     resolve: {
-      agreements: /* @ngInject */ (
-        $transition$,
-        UserAccountServicesAgreements,
-      ) =>
-        $transition$.params().agreements ||
-        UserAccountServicesAgreements.getToValidate().then(
-          (result) => result.list.results,
-        ),
       goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
@@ -43,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
       breadcrumb: () => null,
     },
   });

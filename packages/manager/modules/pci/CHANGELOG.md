@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.95.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.94.1...@ovh-ux/manager-pci@6.95.0) (2025-07-02)
+
+
+### Features
+
+* **pci-instance:** allow rescue mode for LZ region instance ([c57e0d7](https://github.com/ovh/manager/commit/c57e0d777f16d590ef53f8c0f6ef43bfb2d7e48d)), closes [#TAPC-3967](https://github.com/ovh/manager/issues/TAPC-3967)
+
+
+
+
+
+## [6.94.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.94.0...@ovh-ux/manager-pci@6.94.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4135] ([f70f9c1](https://github.com/ovh/manager/commit/f70f9c1fe40dd8963b39457c8ad73e358a20e2d3))
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+* **i18n:** add missing translations [CDS 4142] ([39f8337](https://github.com/ovh/manager/commit/39f833708d981b1aeba3d0c2aa49bfa3ff7c4345))
+
+
+
+
+
 # [6.94.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.93.2...@ovh-ux/manager-pci@6.94.0) (2025-06-23)
 
 

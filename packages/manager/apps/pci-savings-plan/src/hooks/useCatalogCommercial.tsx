@@ -26,7 +26,7 @@ const getCatalogCommercial = async <T,>({
   return data;
 };
 
-export const getCommercialOffers = async ({
+const getCommercialOffers = async ({
   productCode,
   serviceId,
 }: {
@@ -40,7 +40,7 @@ export const getCommercialOffers = async ({
   return data.offers;
 };
 
-export const getTechnicalInfo = async ({
+const getTechnicalInfo = async ({
   productCode,
   merchant,
 }: {
@@ -53,7 +53,7 @@ export const getTechnicalInfo = async ({
   });
 };
 
-export const useTechnicalInfo = ({
+const useTechnicalInfo = ({
   productCode,
 }: {
   productCode: InstanceTechnicalName;

@@ -9,6 +9,7 @@
   "iplb_listing_header_state": "Statut",
   "iplb_listing_header_vrackEligibility": "Éligible à vRack",
   "iplb_listing_header_vrackName": "Nom du vRack",
+  "iplb_order_button": "Commander",
   "iplb_terminate_service": "Supprimer mon service",
   "iplb_terminate_service_warning": "Veuillez confirmer la suppression de votre service",
   "iplb_terminate_service_success": "Votre demande de suppression de votre service a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",

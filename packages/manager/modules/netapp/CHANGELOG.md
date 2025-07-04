@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.5...@ovh-ux/manager-netapp@2.13.6) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+
+
+
+
+
 ## [2.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.4...@ovh-ux/manager-netapp@2.13.5) (2025-06-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

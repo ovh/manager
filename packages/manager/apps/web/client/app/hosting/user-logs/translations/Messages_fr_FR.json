@@ -20,5 +20,6 @@
   "hosting_user_logs_table_popover_modify": "Modifier",
   "hosting_user_logs_table_popover_update_password": "Changer le mot de passe",
   "hosting_user_logs_table_popover_delete": "Supprimer",
-  "hosting_user_logs_dashboard_infra_stats": "Statistiques de l'infrastructure"
+  "hosting_user_logs_dashboard_infra_stats": "Statistiques de l'infrastructure",
+  "hosting_user_logs_dashboard_databases_stats": "Statistiques des bases de données"
 }

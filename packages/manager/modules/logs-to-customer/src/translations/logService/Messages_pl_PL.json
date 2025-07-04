@@ -1,4 +1,6 @@
 {
   "log_service_displayname_tile_label": "Nazwa wyświetlana",
-  "log_service_username_tile_label": "Użytkownik"
+  "log_service_username_tile_label": "Użytkownik",
+  "log_service_create": "Załóż konto",
+  "log_service_no_service_description": "Aby włączyć ten transfer, najpierw utwórz konto Logs Data Platform i pierwszy strumień danych."
 }

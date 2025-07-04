@@ -205,15 +205,15 @@ describe('Vrack Services subnets page test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.deleteModal.deleteModalDescription,
+      text: labels.subnets.modalDeleteSubnetHeadline,
     });
 
-    const submitButton = await getButtonByLabel({
+    const deleteButton = await getButtonByLabel({
       container,
-      value: labels.deleteModal.deleteModalDeleteButton,
+      value: labels.actions.delete,
     });
-    await assertEnabled(submitButton);
-    await waitFor(() => userEvent.click(submitButton));
+    await assertEnabled(deleteButton);
+    await waitFor(() => userEvent.click(deleteButton));
 
     await assertModalVisibility({ container, isVisible: false });
   });

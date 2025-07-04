@@ -3,7 +3,7 @@ import template from './popup-agreement.html';
 
 export default {
   bindings: {
-    agreements: '<',
+    agreementId: '<',
     goBack: '<',
   },
   controller,

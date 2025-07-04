@@ -4,6 +4,7 @@ import {
   PaginationState,
 } from '@ovh-ux/manager-react-components';
 import { TFunction } from 'i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolume } from '@/api/hooks/useVolume';
 import {
   AddVolumeProps,
@@ -11,6 +12,11 @@ import {
   TUpdateVolumeProps,
 } from '@/api/data/volume';
 import { TVolumeCatalog } from '@/api/data/catalog';
+import {
+  getPricingSpecsFromModelPricings,
+  getVolumeModelPricings,
+  TModelPrice,
+} from '@/api/select/catalog';
 
 export const sortResults = (
   items: TVolume[],
@@ -179,6 +185,39 @@ export const mapVolumeEncryption = <V extends TAPIVolume>(
       ),
       encryptionType: encrypted ? EncryptionType.OMK : null,
       encrypted,
+    };
+  };
+};
+
+export type TVolumePricing =
+  | TModelPrice
+  | {
+      [P in keyof TModelPrice]?: undefined;
+    };
+export const mapVolumePricing = <V extends TAPIVolume>(
+  catalogData: TVolumeCatalog | undefined,
+  formatCatalogPrice: (price: number) => string,
+  t: TFunction<['add', 'common', typeof NAMESPACES.BYTES]>,
+  capacity?: number,
+) => {
+  const getPricings = getVolumeModelPricings(catalogData);
+
+  return (volume: V): V & TVolumePricing => {
+    const volumePricings = getPricings({
+      region: volume.region,
+      volumeType: volume.type,
+    });
+
+    if (!volumePricings.length) return volume;
+
+    return {
+      ...volume,
+      ...getPricingSpecsFromModelPricings(
+        volumePricings,
+        formatCatalogPrice,
+        t,
+        capacity ?? volume.size,
+      ),
     };
   };
 };

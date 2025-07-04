@@ -1072,6 +1072,8 @@
   "hosting_tab_STATISTICS_type_STATEMENT": "Requêtes SQL",
   "hosting_tab_STATISTICS_type_STATEMENT_MEAN_TIME": "Temps de réponse SQL",
   "hosting_tab_STATISTICS_type_IN_FTP_COMMANDS": "Commandes FTP",
+  "hosting_tab_STATISTICS_type_allowed": "Requêtes autorisées",
+  "hosting_tab_STATISTICS_type_denied": "Requêtes refusées",
   "hosting_tab_STATISTICS_db": "Base de Données",
   "hosting_tab_STATISTICS_period": "Période",
   "hosting_tab_STATISTICS_period_DAILY": "Journée",

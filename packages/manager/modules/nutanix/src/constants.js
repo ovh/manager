@@ -1,4 +1,4 @@
-export const PRODUCT_ID = 'nutanixPreprod';
+export const PRODUCT_ID = 'nutanix';
 export const DEFAULT_OS_NODE_NUTANIX = 'none_64.en';
 
 export const NOT_SUBSCRIBED = 'notSubscribed';

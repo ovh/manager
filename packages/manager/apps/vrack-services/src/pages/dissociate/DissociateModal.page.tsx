@@ -26,6 +26,7 @@ import {
   useDissociateVrack,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
@@ -42,7 +43,10 @@ export default function DissociateModal() {
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { data: vs } = useVrackService();
   const navigate = useNavigate();
-  const { t } = useTranslation('vrack-services/dissociate');
+  const { t } = useTranslation([
+    'vrack-services/dissociate',
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const closeModal = () => {
     trackClick({
@@ -120,7 +124,7 @@ export default function DissociateModal() {
         type="button"
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_BUTTON_COLOR.critical}
-        label={t('modalDissociateCancelButton')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={closeModal}
       />
       <OdsButton
@@ -136,7 +140,7 @@ export default function DissociateModal() {
           });
           dissociateVs();
         }}
-        label={t('modalDissociateConfirmButton')}
+        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
       />
     </OdsModal>
   );

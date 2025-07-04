@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.2...@ovh-ux/manager-pci-ai-tools-app@1.8.3) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.1...@ovh-ux/manager-pci-ai-tools-app@1.8.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4135] ([f70f9c1](https://github.com/ovh/manager/commit/f70f9c1fe40dd8963b39457c8ad73e358a20e2d3))
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+* **i18n:** add missing translations [CDS 4142] ([39f8337](https://github.com/ovh/manager/commit/39f833708d981b1aeba3d0c2aa49bfa3ff7c4345))
+
+
+
+
+
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.0...@ovh-ux/manager-pci-ai-tools-app@1.8.1) (2025-06-25)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:us:** remove hardcoded GRA call to Framework to make it dynamic ([31e0a16](https://github.com/ovh/manager/commit/31e0a16a798a1d75d24b2a203aea05951e67eb9c)), closes [#DATATR-2324](https://github.com/ovh/manager/issues/DATATR-2324)
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.7.1...@ovh-ux/manager-pci-ai-tools-app@1.8.0) (2025-06-23)
 
 

@@ -1,4 +1,4 @@
-const COMMIT_TYPES = ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'sync', 'release'];
+const COMMIT_TYPES = ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test', 'sync', 'release', 'merge'];
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],

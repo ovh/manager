@@ -84,27 +84,31 @@ describe('ListingPage', () => {
     vi.mocked(useArchiveRegion).mockReturnValue('BHS');
   });
 
-  it('should match snapshot when is loading false', async () => {
+  it('should find text when is loading false', async () => {
     vi.mocked(usePaginatedArchive).mockReturnValue({
       paginatedArchives: mockPaginatedArchives,
       allArchives: mockArchives,
       isPending: false,
     } as ReturnType<typeof usePaginatedArchive>);
 
-    const { container } = render(<ListingPage />);
+    const { getAllByText } = render(<ListingPage />);
 
-    expect(container).toMatchSnapshot();
+    expect(
+      getAllByText(
+        'containers:pci_projects_project_storages_containers_storedObjects_label',
+      ),
+    ).toBeDefined();
   });
 
-  it('should match snapshot when is loading true', async () => {
+  it('should find loading when is loading true', async () => {
     vi.mocked(usePaginatedArchive).mockReturnValue({
       paginatedArchives: {},
       allArchives: [],
       isPending: true,
     } as ReturnType<typeof usePaginatedArchive>);
 
-    const { container } = render(<ListingPage />);
+    const { getByTestId } = render(<ListingPage />);
 
-    expect(container).toMatchSnapshot();
+    expect(getByTestId('redirectionGuard_spinner')).toBeInTheDocument();
   });
 });

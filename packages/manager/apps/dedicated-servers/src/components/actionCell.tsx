@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   useOvhTracking,
   ShellContext,
+  ButtonType,
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import {
@@ -33,6 +34,15 @@ export const ActionCell = (server: DedicatedServer) => {
           variant="ghost"
           label={t('action-goDetails')}
           onClick={() => {
+            trackClick({
+              actionType: 'action',
+              actions: [
+                'datagrid',
+                ButtonType.button,
+                'details_dedicated-server',
+                `${server.region}_${server.commercialRange}`,
+              ],
+            });
             shell.navigation.navigateTo(
               'dedicated',
               `#/server/${server.name}`,

@@ -1,3 +1,5 @@
+import { ZimbraPlanCodes } from '../type';
+
 export const ServiceBillingState = {
   CANCELED: 'CANCELED',
   CANCELATION_PLANNED: 'CANCELATION_PLANNED',
@@ -10,6 +12,7 @@ export type SlotService = {
   id: number;
   nextBillingDate?: string;
   state: keyof typeof ServiceBillingState;
+  planCode?: ZimbraPlanCodes;
 };
 
 export const SlotServiceTerminationPolicy = {

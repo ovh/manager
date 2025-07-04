@@ -218,5 +218,8 @@
   "sidebar_web_hosting_websites": "Sitios web",
   "sidebar_pci_quantum": "Quantum",
   "sidebar_pci_quantum_emulators": "Emuladores",
-  "sidebar_skip_to_the_main_content": "Vaya al contenido principal"
+  "sidebar_skip_to_the_main_content": "Vaya al contenido principal",
+  "sidebar_public_networking": "Red pública",
+  "sidebar_private_networking": "Red privada",
+  "sidebar_network_services": "Servicios de red"
 }

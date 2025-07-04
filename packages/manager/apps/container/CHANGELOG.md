@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.139.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.3...@ovh-ux/manager-container-app@0.139.0) (2025-07-02)
+
+
+### Features
+
+* **account:** cleanup code after slicing /dedicated ([501f207](https://github.com/ovh/manager/commit/501f207b25fd732310d1f4edc3645c59485a5f0c)), closes [#MANAGER-17277](https://github.com/ovh/manager/issues/MANAGER-17277)
+* **container:** change display for us links on user account menu ([4e3d6e3](https://github.com/ovh/manager/commit/4e3d6e36b94a0cc6c84a6da4c4fbb8b3a37223a2)), closes [#MANAGER-18370](https://github.com/ovh/manager/issues/MANAGER-18370)
+
+
+
+
+
+## [0.138.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.2...@ovh-ux/manager-container-app@0.138.3) (2025-07-02)
+
+
+### Bug Fixes
+
+* **web:** clean angularjs office code ([645947c](https://github.com/ovh/manager/commit/645947c6891f279ac0471349009d8d447dcbf73c)), closes [#MANAGER-18620](https://github.com/ovh/manager/issues/MANAGER-18620)
+
+
+
+
+
+## [0.138.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.1...@ovh-ux/manager-container-app@0.138.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.138.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.138.0...@ovh-ux/manager-container-app@0.138.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+
+
+
+
+
+# [0.138.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.137.2...@ovh-ux/manager-container-app@0.138.0) (2025-06-24)
+
+
+### Bug Fixes
+
+* **container:** rename translation cookie folder to consent-policy ([59138f0](https://github.com/ovh/manager/commit/59138f04e4632651af0e1901930253af8e1c0960)), closes [#MANAGER-18676](https://github.com/ovh/manager/issues/MANAGER-18676)
+
+
+### Features
+
+* **container:** network reorder the products & add categories ([8fb6799](https://github.com/ovh/manager/commit/8fb67990a457d4513fe042e2f8506db91788ad55)), closes [#MANAGER-18343](https://github.com/ovh/manager/issues/MANAGER-18343)
+
+
+
+
+
 ## [0.137.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.137.1...@ovh-ux/manager-container-app@0.137.2) (2025-06-23)
 
 

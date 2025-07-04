@@ -15,5 +15,6 @@
   "iplb_listing_header_sslConfiguration": "Konfiguracja SSL",
   "iplb_listing_header_state": "Status",
   "iplb_listing_header_vrackEligibility": "Kompatybilność z vRack",
-  "iplb_listing_header_vrackName": "Nazwa sieci vRack"
+  "iplb_listing_header_vrackName": "Nazwa sieci vRack",
+  "iplb_order_button": "Zamów"
 }

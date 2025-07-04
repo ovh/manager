@@ -208,6 +208,8 @@ export default /* @ngInject */ ($stateProvider) => {
               : logs.logs,
           }))
           .catch(() => null),
+      databaseIds: /* @ngInject */ (HostingDatabase, serviceName) =>
+        HostingDatabase.getDatabaseIds(serviceName),
       userLogsToken: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getUserLogsToken(serviceName, {
           params: {

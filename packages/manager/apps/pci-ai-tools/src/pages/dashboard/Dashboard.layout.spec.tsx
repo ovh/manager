@@ -13,6 +13,10 @@ import {
   mockedFramework,
   mockedFrameworkBis,
 } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
+import {
+  mockedCapabilitiesRegionBHS,
+  mockedCapabilitiesRegionGRA,
+} from '@/__tests__/helpers/mocks/capabilities/region';
 
 describe('Dashboard Layout', () => {
   beforeEach(() => {
@@ -31,6 +35,10 @@ describe('Dashboard Layout', () => {
       getNotebooks: vi.fn(),
     }));
     vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
+      getRegions: vi.fn(() => [
+        mockedCapabilitiesRegionBHS,
+        mockedCapabilitiesRegionGRA,
+      ]),
       getFramework: vi.fn(() => [mockedFramework, mockedFrameworkBis]),
     }));
   });

@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Cancel my subscription"
+  "vrack_listing_action_delete": "Cancel my subscription",
+  "vrack_listing_columns_header_serviceName": "Service",
+  "vrack_listing_columns_header_description": "Description",
+  "vrack_listing_columns_header_name": "Name",
+  "vrack_listing_columns_header_state": "State"
 }

@@ -20,6 +20,12 @@ export default class LogsOsdCtrl {
     this.$window = $window;
   }
 
+  $onInit() {
+    this.columnsParameters = [
+      { name: 'isEditable', hidden: this.service.isIamEnabled },
+    ];
+  }
+
   loadOsds({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((criterion) => {
       const name = criterion.property || 'name';
