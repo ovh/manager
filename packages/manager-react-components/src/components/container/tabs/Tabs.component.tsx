@@ -25,7 +25,7 @@ export function TabsComponent<Item>({
       <Tabs
         onValueChange={(value) => {
           setSelectedTabsItem(value?.value);
-          onChange(value as Item);
+          onChange?.(value as Item);
         }}
         value={selectedTabsItem}
       >
