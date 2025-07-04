@@ -1,4 +1,4 @@
-import { TOngoingOperations, TArgument } from '@/types';
+import { TArgument } from '@/types';
 
 export const uploadArgument: { data: TArgument[] } = {
   data: [
