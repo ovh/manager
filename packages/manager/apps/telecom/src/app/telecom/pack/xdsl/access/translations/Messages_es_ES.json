@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "La solicitud de modificación del envío de correo está siendo tratada. Espere, por favor.",
   "xdsl_detail_mail_sending_update_succeed": "La solicitud de modificación del envío de correo se ha enviado correctamente y está siendo tratada.",
   "xdsl_detail_mail_sending_update_failed": "Se ha producido un error al modificar el envío de correo. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Más información"
+  "xdsl_detail_mail_sending_guide": "Más información",
+  "xdsl_details_modem_profile_detail": "Perfil {{ modemProfile }}"
 }
