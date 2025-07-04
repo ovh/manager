@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import './index.scss';
 import {
   Datagrid,
   useResourcesIcebergV6,
-  useDataGrid,
-  ColumnSort,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -29,13 +26,11 @@ export default function ServerListing() {
     'tags',
   ]);
   const { t } = useTranslation('dedicated-servers');
-  const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
-    desc: false,
-  });
   const {
     flattenData,
     isError,
+    sorting,
+    setSorting,
     error,
     totalCount,
     hasNextPage,
@@ -50,25 +45,6 @@ export default function ServerListing() {
   });
   const { error: errorListing, data: dedicatedServer } = useDedicatedServer();
 
-  const sortServersListing = (
-    colSorting: ColumnSort,
-    originalList: DedicatedServer[] = [],
-  ) => {
-    const serverList = [...originalList];
-    serverList.sort((s1, s2) => {
-      const key = colSorting.id as keyof DedicatedServer;
-      if (key.toString() === 'displayName') {
-        return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
-      }
-      if (key && Object.keys(s1).includes(key as string)) {
-        return (s1[key].toString() || '').localeCompare(s2[key].toString());
-      }
-      return 0;
-    });
-
-    return colSorting?.desc ? serverList.reverse() : serverList;
-  };
-
   return (
     <>
       {(isError || errorListing) && (
@@ -81,14 +57,11 @@ export default function ServerListing() {
           route={urls.onboarding}
         >
           <React.Suspense>
-            {flattenData && (
+            {
               <div>
                 <Datagrid
                   columns={getColumns(t)}
-                  items={sortServersListing(
-                    sorting,
-                    (flattenData as unknown) as DedicatedServer[],
-                  )}
+                  items={flattenData}
                   totalItems={totalCount || 0}
                   hasNextPage={hasNextPage && !isLoading}
                   onFetchNextPage={fetchNextPage}
@@ -103,7 +76,7 @@ export default function ServerListing() {
                   resourceType="dedicatedServer"
                 />
               </div>
-            )}
+            }
           </React.Suspense>
         </RedirectionGuard>
       )}

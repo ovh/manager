@@ -6,15 +6,16 @@ import { DedicatedServer } from '@/data/types/server.type';
 
 export const MonitoringStatusChip = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
-  const color = !server.monitoring
-    ? ODS_BADGE_COLOR.warning
-    : ODS_BADGE_COLOR.success;
+  const color =
+    server.monitoring && !server.noIntervention
+      ? ODS_BADGE_COLOR.success
+      : ODS_BADGE_COLOR.warning;
   const getMonitoringStatusLabel = (
     _monitoring: boolean,
     _noIntervention: boolean,
   ) => {
     if (!_monitoring) return 'disabled';
-    return _noIntervention ? 'proactive' : 'no-proactive';
+    return _noIntervention ? 'no-proactive' : 'proactive';
   };
 
   return (
