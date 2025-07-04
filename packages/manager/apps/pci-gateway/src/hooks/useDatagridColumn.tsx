@@ -3,7 +3,7 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -13,7 +13,7 @@ import { Gateway } from '@/interface';
 import PrivateIPs from '@/components/list/PrivateIPs.component';
 import Actions from '@/components/list/Actions.component';
 
-export const useDatagridColumn = (privateNetworkUrl: string) => {
+export const useDatagridColumn = () => {
   const { t } = useTranslation('common');
   const columns: DatagridColumn<Gateway>[] = [
     {

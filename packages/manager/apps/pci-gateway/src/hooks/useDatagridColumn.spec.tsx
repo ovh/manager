@@ -5,7 +5,7 @@ import { Gateway, Interface } from '@/interface';
 
 describe('useDatagridColumn', () => {
   it('renders name cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const nameCell = result.current[0].cell({
       name: 'testName',
       id: 'testId',
@@ -15,7 +15,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders region cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const regionCell = result.current[1].cell({
       region: 'testRegion',
     } as Gateway);
@@ -23,7 +23,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders networksConnected cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const networksConnectedCell = result.current[2].cell({
       connectedNetworkCount: 2,
     } as Gateway);
@@ -31,7 +31,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders formattedIps cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const formattedIpsCell = result.current[3].cell({
       formattedIps: 'testIps',
     } as Gateway);
@@ -39,7 +39,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders flavour cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const flavourCell = result.current[4].cell({
       model: 'testModel',
     } as Gateway);
@@ -47,7 +47,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders status cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const statusCell = result.current[5].cell({
       status: 'testStatus',
     } as Gateway);
@@ -55,7 +55,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders privateIPs cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const interfaces: Interface[] = [
       {
         id: 'test-id',
@@ -77,7 +77,7 @@ describe('useDatagridColumn', () => {
   });
 
   it('renders actions cell correctly', () => {
-    const { result } = renderHook(() => useDatagridColumn('projectId'));
+    const { result } = renderHook(() => useDatagridColumn());
     const actionsCell = result.current[7].cell({ id: 'testId' } as Gateway);
     expect(actionsCell.props.children.props.gateway).toStrictEqual({
       id: 'testId',
