@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.2.2...@ovh-ux/manager-wiki@0.3.0) (2025-07-04)
+
+
+### Features
+
+* **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.2.1...@ovh-ux/manager-wiki@0.2.2) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki
