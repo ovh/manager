@@ -20,6 +20,11 @@ export const ADDITIONAL_DISK = {
   HAS_NO_OPTION: 'Does not have option',
 };
 
+export const ZONE_TYPE = {
+  LOCALZONE: 'localzone',
+};
+
 export default {
   ADDITIONAL_DISK,
+  ZONE_TYPE,
 };
