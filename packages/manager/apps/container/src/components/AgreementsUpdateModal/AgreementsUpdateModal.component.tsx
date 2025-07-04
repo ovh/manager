@@ -31,14 +31,8 @@ export default function AgreementsUpdateModal() {
   const environment = shell.getPlugin('environment').getEnvironment();
   const navigation = shell.getPlugin('navigation');
 
-  // TODO: simplify this once new-billing is fully open to the public
-  const isNewBillingAvailable = Boolean(
-    environment.getApplicationURL('new-billing'),
-  );
-  const billingAppName = isNewBillingAvailable ? 'new-billing' : 'dedicated';
-  const billingAppPath = `#/${
-    isNewBillingAvailable ? '' : 'billing/'
-  }autorenew/agreements`;
+  const billingAppName = 'billing';
+  const billingAppPath = `#/autorenew/agreements`;
   const myContractsLink = navigation.getURL(billingAppName, billingAppPath);
 
   const { t } = useTranslation('agreements-update-modal');

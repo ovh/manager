@@ -3,7 +3,7 @@
     data-on-success="$ctrl.onSuccess()"
     data-on-error="$ctrl.onError(error)"
     data-service-type="HOSTING_WEB"
-    data-terminate-service="$ctrl.terminateHosting()"
+    data-terminate-service="$ctrl.skipRetentionPeriod ? $ctrl.terminateHostingSkipRetentionPeriod() : $ctrl.terminateHosting()"
     data-go-back="$ctrl.goBack()"
 >
     <oui-message data-type="warning">
@@ -11,6 +11,9 @@
             data-translate="autorenew_hosting_dashboard_close_service_warning"
         ></span>
     </oui-message>
-    <p data-translate="autorenew_hosting_dashboard_close_service_desc1"></p>
+    <p
+        data-ng-if="!$ctrl.skipRetentionPeriod"
+        data-translate="autorenew_hosting_dashboard_close_service_desc1"
+    ></p>
     <p data-translate="autorenew_hosting_dashboard_close_service_question"></p>
 </billing-autorenew-terminate>

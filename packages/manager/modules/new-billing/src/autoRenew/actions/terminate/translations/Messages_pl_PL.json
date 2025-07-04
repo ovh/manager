@@ -1,7 +1,0 @@
-{
-  "billing_terminate_cancel_button": "Nie",
-  "billing_terminate_delete_button": "Tak",
-  "billing_terminate_description": "Rezygnacja z usługi spowoduje trwałe usunięcie wszystkich powiązanych z nią danych. Czy chcesz  zrezygnować z usługi?",
-  "billing_terminate_headline": "Zakończyć {{serviceType}}?",
-  "billing_terminate_headline_service": "Usługa"
-}

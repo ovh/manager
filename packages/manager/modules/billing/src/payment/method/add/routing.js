@@ -3,21 +3,21 @@ import component from './component';
 import { PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID } from './constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-  const name = 'app.account.billing.payment.method.add';
+  const name = 'billing.payment.method.add';
 
   $stateProvider.state(name, {
     url: '/add?callbackUrl&status&redirectResult&paymentMethodId&transactionId',
     views: {
-      '@app.account.billing.payment': {
+      '@billing.payment': {
         component: component.name,
       },
-      'bankAccount@app.account.billing.payment.method.add': {
+      'bankAccount@billing.payment.method.add': {
         component: 'paymentMethodAddBankAccountView',
       },
-      'bankAccountOwner@app.account.billing.payment.method.add': {
+      'bankAccountOwner@billing.payment.method.add': {
         component: 'paymentMethodAddLegacyBillingAddressView',
       },
-      'billingContact@app.account.billing.payment.method.add': {
+      'billingContact@billing.payment.method.add': {
         component: 'paymentMethodAddBillingContactView',
       },
     },
@@ -130,25 +130,37 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $transition$,
         $injector,
         $translate,
+        $state,
         goPaymentList,
         RedirectionService,
         OVH_PAYMENT_METHOD_TYPE,
-      ) => (paymentMethod, selectedPaymentMethodType) => {
+      ) => (selectedPaymentMethodType, isDefault) => {
         const { callbackUrl } = $transition$.params();
         if (callbackUrl && RedirectionService.validate(callbackUrl)) {
           window.location.href = callbackUrl;
           return callbackUrl;
         }
 
+        let message = $translate.instant(
+          selectedPaymentMethodType?.paymentType ===
+            OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
+            ? 'billing_payment_method_add_sepa_success'
+            : 'billing_payment_method_add_status_success',
+        );
+        if (isDefault) {
+          const autorenewLink = $state.href('billing.autorenew', {
+            filters: JSON.stringify({ status: 'manual' }),
+          });
+          message = `${message}<br>${$translate.instant(
+            'billing_payment_method_add_default_info_auto_renew',
+            { autorenewLink },
+          )}`;
+        }
+
         return goPaymentList(
           {
             type: 'success',
-            text: $translate.instant(
-              selectedPaymentMethodType?.paymentType ===
-                OVH_PAYMENT_METHOD_TYPE.BANK_ACCOUNT
-                ? 'billing_payment_method_add_sepa_success'
-                : 'billing_payment_method_add_status_success',
-            ),
+            text: message,
           },
           get($transition$.params(), 'from', null),
         );

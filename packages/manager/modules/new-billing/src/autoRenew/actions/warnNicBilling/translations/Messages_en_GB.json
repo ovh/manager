@@ -1,5 +1,0 @@
-{
-  "autorenew_service_warn_nic_billing_title": "Important information",
-  "autorenew_service_warn_nic_billing_ok": "OK",
-  "autorenew_service_debt_nic_billing": "To pay for this service, log in to your billing account {{ nicBilling }}."
-}

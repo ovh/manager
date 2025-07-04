@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.payment.credits.add', {
+  $stateProvider.state('billing.payment.credits.add', {
     url: '/add',
     layout: 'modal',
     views: {

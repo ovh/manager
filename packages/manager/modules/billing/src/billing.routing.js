@@ -6,17 +6,17 @@ import {
 } from './constants/guides-header.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing', {
-    url: '/billing',
-    abstract: true,
+  $stateProvider.state('billing', {
+    url: '',
     translations: { value: ['.'], format: 'json' },
+    redirectTo: 'billing.main',
     template,
     controller,
     resolve: {
       denyEnterprise: ($q, $state, currentUser) => {
         if (
           currentUser.isEnterprise &&
-          $state.transition.to().name !== 'app.account.billing.autorenew.ssh'
+          $state.transition.to().name !== 'billing.autorenew.ssh'
         ) {
           return $q.reject({
             status: 403,
@@ -27,8 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return false;
       },
-      goToOrders: /* @ngInject */ ($state) => () =>
-        $state.go('app.account.billing.orders'),
+      goToOrders: /* @ngInject */ ($state) => () => $state.go('billing.orders'),
 
       guides: /* @ngInject */ (guidesObjectLevelOne) => {
         return {
@@ -76,6 +75,8 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      currentUser: /* @ngInject */ (BillingUser) => BillingUser.getUser(),
+      breadcrumb: () => null,
     },
   });
 };

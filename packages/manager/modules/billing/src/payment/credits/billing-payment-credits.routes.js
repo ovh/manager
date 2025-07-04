@@ -2,7 +2,7 @@ import controller from './billing-credits.controller';
 import template from './billing-credits.html';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.account.billing.payment.credits';
+  const name = 'billing.payment.credits';
   $stateProvider.state(name, {
     url: '/credits',
     template,
@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const reload = message && type === 'success';
 
         const promise = $state.go(
-          'app.account.billing.payment.credits',
+          'billing.payment.credits',
           {},
           {
             reload,
@@ -37,7 +37,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       addVoucherLink: /* @ngInject */ ($state) =>
-        $state.href('app.account.billing.payment.credits.add'),
+        $state.href('billing.payment.credits.add'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_credits'),
     },

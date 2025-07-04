@@ -3,7 +3,7 @@ import template from './billing-main-pay-as-you-go.html';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.isRegion('US')) {
-    $stateProvider.state('app.account.billing.main.pay-as-you-go', {
+    $stateProvider.state('billing.main.pay-as-you-go', {
       url: '/payAsYouGo',
       controller,
       controllerAs: '$ctrl',

@@ -16,7 +16,7 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Si è verificato un errore durante la richiesta di disattivazione del tuo LDP: {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX": "La tua richiesta di disattivazione di Nutanix è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX": "La tua richiesta di disattivazione di Nutanix è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "Si è verificato un errore durante la richiesta di disattivazione del tuo Nutanix. {{error}}",
+  "autorenew_agora_terminate_service_error_NUTANIX": "Si è verificato un errore durante la richiesta di disattivazione del tuo Nutanix: {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "La disattivazione del nodo \"{{serviceName}}\" è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "La disattivazione del nodo \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",

@@ -1,5 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.payDebt', {
+  $stateProvider.state('billing.autorenew.payDebtRedirection', {
+    url: '/pay-debt?serviceName',
+    redirectTo: 'billing.autorenew.services.payDebt',
+  });
+
+  $stateProvider.state('billing.autorenew.services.payDebt', {
     url: '/pay-debt?serviceName',
     views: {
       modal: {
@@ -19,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
           chapter3: 'billing',
         });
 
-        $state.go('app.account.billing.main.history');
+        $state.go('billing.main.history');
       },
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,

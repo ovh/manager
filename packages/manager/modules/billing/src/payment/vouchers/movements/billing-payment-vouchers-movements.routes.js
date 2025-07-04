@@ -2,7 +2,7 @@ import controller from './billing-vouchers-movements.controller';
 import template from './billing-vouchers-movements.html';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  const name = 'app.account.billing.payment.vouchers.movement';
+  const name = 'billing.payment.vouchers.movement';
 
   $stateProvider.state(name, {
     url: '/:voucherAccountId',

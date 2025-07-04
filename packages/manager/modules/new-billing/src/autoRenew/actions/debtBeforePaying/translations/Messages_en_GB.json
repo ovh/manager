@@ -1,7 +1,0 @@
-{
-  "autorenew_service_debt_before_paying_title": "Important information",
-  "autorenew_service_debt_before_paying_1": "Before you subscribe for a new period, please settle the outstanding amount on your account.",
-  "autorenew_service_debt_before_paying_2": "Please go to the Billing section to pay the invoice for the <strong>{{service}}</strong> service.",
-  "autorenew_service_debt_before_paying_settle": "Pay",
-  "autorenew_service_debt_before_paying_cancel": "Cancel"
-}

@@ -3,7 +3,7 @@ import template from './legacy/termination-legacy.html';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
   if (coreConfigProvider.isRegion('US')) {
-    $stateProvider.state('app.account.billing.confirmTerminate', {
+    $stateProvider.state('billing.confirmTerminate', {
       url: '/confirmTerminate?id&token',
       template,
       controller,
@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           .getAsync('hasAgoraTermination')
           .then((hasAgoraTermination) => {
             return hasAgoraTermination
-              ? 'app.account.billing.confirmTerminateAgora'
+              ? 'billing.confirmTerminateAgora'
               : false;
           });
       },
@@ -31,7 +31,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
     });
 
     // temporary state to enable agora resiliation on US side
-    $stateProvider.state('app.account.billing.confirmTerminateAgora', {
+    $stateProvider.state('billing.confirmTerminateAgora', {
       url: '/confirm-terminate?id&token',
       component: 'billingConfirmTermination',
       redirectTo: (transition) => {
@@ -39,9 +39,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         return injector
           .getAsync('hasAgoraTermination')
           .then((hasAgoraTermination) => {
-            return !hasAgoraTermination
-              ? 'app.account.billing.confirmTerminate'
-              : false;
+            return !hasAgoraTermination ? 'billing.confirmTerminate' : false;
           });
       },
       resolve: {
@@ -66,7 +64,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       },
     });
   } else {
-    $stateProvider.state('app.account.billing.confirmTerminate', {
+    $stateProvider.state('billing.confirmTerminate', {
       url: '/confirmTerminate?id&token',
       component: 'billingConfirmTermination',
       resolve: {
