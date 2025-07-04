@@ -82,5 +82,6 @@
   "kube_add_plan_content_standard_3AZ_banner": "La oferta Standard todavía no está disponible en las regiones 3-AZ. Si desea disfrutar de esta oferta, seleccione un despliegue en 1-AZ.",
   "kube_add_plan_content_standard_very_soon": "Próximamente disponible",
   "kube_add_plan_subtitle": "Elija el plan que mejor se adapta a sus necesidades. Disfrute de una gran variedad de instancias utilizadas como nodos Kubernetes, con facturación por consumo o con compromiso de permanencia.",
-  "kubernetes_add_deployment_mode_card_beta": "Beta"
+  "kubernetes_add_deployment_mode_card_beta": "Beta",
+  "kube_add_node_pool_name_title": "Asigne un nombre al pool de nodos"
 }

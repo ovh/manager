@@ -40,6 +40,7 @@
   "kubernetes_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
   "kube_add_node_pool_config_title": "Configuration générale",
   "kube_add_node_pool_name_label": "Nom du pool de nœuds",
+  "kube_add_node_pool_name_title": "Nommez votre pool de nœuds",
   "kube_add_node_pool_creating": "Création d'un pool de nœuds",
   "kube_add_node_pool_success": "Le pool de nœuds '{{nodePoolName}}' a été créé avec succès",
   "kube_add_node_pool_error": "Impossible de créer le pool de nœuds '{{ nodePoolName }}' : {{ message }}",
