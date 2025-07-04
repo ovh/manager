@@ -1,6 +1,6 @@
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
+  assertTextVisibility,
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
@@ -14,19 +14,9 @@ describe('Secret Manager onboarding test suite', () => {
       SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
     );
 
-    const labelsToTest = [
-      labels.secretManager.common.secret_manager,
-      labels.secretManager.onboarding.description_1,
-      labels.secretManager.onboarding.description_2,
-    ];
-
-    const checkAllLabelsPromises = labelsToTest.map(async (label) => {
-      expect(
-        await screen.findByText(label, {}, WAIT_FOR_DEFAULT_OPTIONS),
-      ).toBeVisible();
-    });
-
-    await Promise.all(checkAllLabelsPromises);
+    await assertTextVisibility(labels.secretManager.common.secret_manager);
+    await assertTextVisibility(labels.secretManager.onboarding.description_1);
+    await assertTextVisibility(labels.secretManager.onboarding.description_2);
 
     getOdsButtonByLabel({
       container,
@@ -49,13 +39,9 @@ describe('Secret Manager onboarding test suite', () => {
 
     await user.click(button);
 
-    expect(
-      await screen.findByText(
-        // TODO: replace this with a real label when the page is available
-        'Create Secret',
-        {},
-        WAIT_FOR_DEFAULT_OPTIONS,
-      ),
-    ).toBeVisible();
+    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(
+      labels.secretManager.create.domain_section_title,
+    );
   });
 });

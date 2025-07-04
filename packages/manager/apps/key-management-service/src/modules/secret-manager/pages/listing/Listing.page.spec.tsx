@@ -13,14 +13,12 @@ const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretListing(mockOkmsId);
 
 const renderPage = async () => {
-  const { container } = await renderTestApp(mockPageUrl);
+  const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  expect(
-    await screen.findByText(labels.secretManager.common.secret_manager),
-  ).toBeVisible();
+  await assertTextVisibility(labels.secretManager.common.secret_manager);
 
-  return { container };
+  return results;
 };
 
 describe('Secrets listing test suite', () => {
@@ -56,5 +54,22 @@ describe('Secrets listing test suite', () => {
 
     // TODO: Update the text when the detail page is implemented
     await assertTextVisibility('Secret Detail');
+  });
+
+  it('should navigate to create a secret page on click on datagrid CTA', async () => {
+    const user = userEvent.setup();
+    const { container } = await renderPage();
+
+    const createSecretButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.create_secret,
+    });
+
+    await act(() => user.click(createSecretButton));
+
+    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(
+      labels.secretManager.create.domain_section_title,
+    );
   });
 });
