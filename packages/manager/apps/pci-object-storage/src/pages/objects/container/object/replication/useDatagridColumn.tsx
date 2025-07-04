@@ -3,11 +3,8 @@ import {
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-
-import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
-import { useHref } from 'react-router-dom';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { useMemo } from 'react';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
@@ -25,6 +22,7 @@ export type TIndexedBackupConfiguration = {
     storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
   };
   deleteMarkerReplication: 'enabled' | 'disabled';
+  filter?: { prefix: string; tags: { [key: string]: string } };
   index?: string;
 };
 
@@ -37,15 +35,7 @@ export const useDatagridColumn = () => {
       cell: (props: TIndexedBackupConfiguration) => {
         const { id } = props;
 
-        return (
-          <div className="flex flex-col max-w-40">
-            <DataGridTextCell>
-              <span className="block overflow-hidden text-ellipsis whitespace-nowrap">
-                {id}
-              </span>
-            </DataGridTextCell>
-          </div>
-        );
+        return <DestinationNameCell destination={{ id }} />;
       },
       label: t(
         'pci_projects_project_storages_containers_replication_list_data_grid_name',

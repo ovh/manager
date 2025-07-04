@@ -386,13 +386,24 @@ export default function ObjectPage() {
             {tContainer(
               'pci_projects_project_storages_containers_container_add_replication_rules_info',
             )}
+            &nbsp;
             <Links
-              className="ml-4"
+              href={manageReplicationsHref}
+              label={tContainer(
+                'pci_projects_project_storages_containers_container_add_replication_rules_info_link',
+              )}
+            />
+            &nbsp;
+            {tContainer(
+              'pci_projects_project_storages_containers_container_add_replication_rules_info_2',
+            )}
+            &nbsp;
+            <Links
               href={REPLICATION_LINK}
               target="_blank"
               type={LinkType.external}
-              label={tAdd(
-                'pci_projects_project_storages_containers_add_replication_rules_info_link',
+              label={tContainer(
+                'pci_projects_project_storages_containers_container_add_replication_rules_info_link_2',
               )}
             />
           </OdsText>
