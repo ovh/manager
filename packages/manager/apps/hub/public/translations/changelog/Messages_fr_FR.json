@@ -32,5 +32,7 @@
   "changelog_private_cloud_product_list": "(VMware, Nutanix, SAP, Zerto Veeam ou HYCU)",
   "changelog_infra_product_list": "(serveurs dédiés, fonctionnalités réseau transverses et NAS-HA ou EFS)",
   "changelog_private_cloud_product_list_us": "(VMware, Nutanix, Zerto Veeam ou HYCU)",
-  "changelog_infra_product_list_us": "(serveurs dédiés, fonctionnalités réseau transverses)"
+  "changelog_infra_product_list_us": "(serveurs dédiés, fonctionnalités réseau transverses)",
+  "datagrid_tab_title_hosting": "20 derniers éléments du changelog Hosting, Telco & Collaboration",
+  "datagrid_tab_title_cloud": "20 derniers éléments du changelog Cloud"
 }
