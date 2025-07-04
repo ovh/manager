@@ -2,13 +2,13 @@ import React from 'react';
 import {
   DashboardTile,
   DashboardTileBlockItem,
-  useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsClipboard } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Secret } from '@secret-manager/types/secret.type';
+import { useFormatDate } from '@/common/hooks/useFormatDate';
 
 type InformationTileProps = {
   secret: Secret;
@@ -20,7 +20,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
     'secret-manager/dashboard',
     NAMESPACES.DASHBOARD,
   ]);
-  const formatDate = useFormatDate();
+  const { formatDate } = useFormatDate();
 
   const items: DashboardTileBlockItem[] = [
     {
@@ -40,10 +40,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
       value: (
         <OdsText preset={ODS_TEXT_PRESET.span}>
-          {formatDate({
-            date: secret.metadata.createdAt,
-            format: 'Pp',
-          })}
+          {formatDate(secret.metadata.createdAt)}
         </OdsText>
       ),
     },
@@ -52,10 +49,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       label: t('secret-manager/dashboard:last_update'),
       value: (
         <OdsText preset={ODS_TEXT_PRESET.span}>
-          {formatDate({
-            date: secret.metadata.updatedAt,
-            format: 'Pp',
-          })}
+          {formatDate(secret.metadata.updatedAt)}
         </OdsText>
       ),
     },

@@ -36,7 +36,6 @@ describe('Secrets dashboard test suite', () => {
       labels.secretManager.common.path,
       labels.secretManager.common.urn,
       labels.secretManager.dashboard.last_update,
-      '15/01/2023, 09:30',
       // settings tile
       labels.secretManager.dashboard.settings,
       mockSecret.metadata.deactivateVersionAfter,
