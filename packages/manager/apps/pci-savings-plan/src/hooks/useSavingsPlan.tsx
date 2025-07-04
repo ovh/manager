@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useServices } from './useService';
 import {
   UseSavingsPlanParams,
   SavingsPlanContract,
@@ -9,7 +8,7 @@ import {
   SavingsPlanService,
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
-import { useProjectId } from './useProject';
+import { useParam, useProjectId } from './useProject';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -79,17 +78,12 @@ const postSavingsPlan = async ({
   return data;
 };
 
-export const useServiceId = () => {
-  const projectId = useProjectId();
-  const { data: services } = useServices({
-    projectId,
-  });
+export const useServiceId = (): number => {
+  const { serviceId } = useRouteLoaderData('savings-plan') as {
+    serviceId: number;
+  };
 
-  if (!services || services.length === 0) {
-    throw new Error('No services found');
-  }
-
-  return services[0];
+  return serviceId;
 };
 
 export const useSavingsPlan = () => {
@@ -205,12 +199,4 @@ export const useSavingsPlanContract = () => {
   });
 };
 
-export const useSavingsPlanId = (): string => {
-  const { savingsPlanId } = useParams();
-
-  if (!savingsPlanId) {
-    throw new Error('Missing ProjectId');
-  }
-
-  return savingsPlanId;
-};
+export const useSavingsPlanId = (): string => useParam('savingsPlanId');

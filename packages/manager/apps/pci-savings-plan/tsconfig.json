@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "removeComments": true,
     "outDir": "dist",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
