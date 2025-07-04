@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Country, LegalForm, Subsidiary } from '@ovh-ux/manager-config';
 import userContext from '@/context/user/user.context';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
