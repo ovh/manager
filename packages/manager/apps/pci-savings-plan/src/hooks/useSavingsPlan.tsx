@@ -9,6 +9,7 @@ import {
   SavingsPlanService,
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
+import { useProjectId } from './useProject';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -79,11 +80,16 @@ const postSavingsPlan = async ({
 };
 
 export const useServiceId = () => {
-  const { projectId } = useParams();
+  const projectId = useProjectId();
   const { data: services } = useServices({
     projectId,
   });
-  return services?.[0];
+
+  if (!services || services.length === 0) {
+    throw new Error('No services found');
+  }
+
+  return services[0];
 };
 
 export const useSavingsPlan = () => {
@@ -164,7 +170,7 @@ export const useSavingsPlanCreate = (
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
   const navigate = useNavigate();
-  const { projectId } = useParams();
+  const projectId = useProjectId();
 
   return useMutation({
     onSuccess: async (res) => {
@@ -197,4 +203,14 @@ export const useSavingsPlanContract = () => {
     queryKey: ['contracts', serviceId],
     queryFn: () => getSavingsPlanContracts(serviceId),
   });
+};
+
+export const useSavingsPlanId = (): string => {
+  const { savingsPlanId } = useParams();
+
+  if (!savingsPlanId) {
+    throw new Error('Missing ProjectId');
+  }
+
+  return savingsPlanId;
 };

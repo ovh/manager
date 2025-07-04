@@ -6,9 +6,8 @@ const getServices = async (projectId: string): Promise<number[]> => {
   return data;
 };
 
-export const useServices = ({ projectId }: { projectId: string }) => {
-  return useQuery({
+export const useServices = ({ projectId }: { projectId: string }) =>
+  useQuery({
     queryKey: ['services', projectId],
     queryFn: () => getServices(projectId),
   });
-};

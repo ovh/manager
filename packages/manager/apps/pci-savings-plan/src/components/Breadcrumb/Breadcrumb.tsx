@@ -8,6 +8,7 @@ import {
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
+import { useProjectId } from '@/hooks/useProject';
 
 const getPageName = (location: string, t: (key: string) => string) => {
   if (location.includes('new')) {
@@ -22,7 +23,7 @@ const getPageName = (location: string, t: (key: string) => string) => {
 };
 
 const Breadcrumb: React.FC = () => {
-  const { projectId } = useParams();
+  const projectId = useProjectId();
   const { t } = useTranslation('listing');
   const { data: project } = useProject();
   const location = useLocation();

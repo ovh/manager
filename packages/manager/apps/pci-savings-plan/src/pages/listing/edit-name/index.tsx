@@ -5,14 +5,18 @@ import {
   UpdateNameModal,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { useSavingsPlan, useSavingsPlanEditName } from '@/hooks/useSavingsPlan';
+import {
+  useSavingsPlan,
+  useSavingsPlanEditName,
+  useSavingsPlanId,
+} from '@/hooks/useSavingsPlan';
 import { REGEX } from '@/utils/savingsPlan';
 
 const EditNameChildren = () => {
   const { t } = useTranslation(['edit-name', 'listing', 'create']);
 
   const navigate = useNavigate();
-  const { savingsPlanId } = useParams();
+  const savingsPlanId = useSavingsPlanId();
   const { addSuccess } = useNotifications();
 
   const { data: savingsPlan } = useSavingsPlan();
