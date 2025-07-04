@@ -33,6 +33,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import {
   postZimbraPlatformMailingList,
@@ -88,7 +89,12 @@ export const languages = ['FR', 'EN', 'ES'] as const;
 
 export const MailingListForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['mailing-lists/form', 'common']);
+  const { t } = useTranslation([
+    'mailing-lists/form',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, mailingListId } = useParams();
@@ -245,7 +251,7 @@ export const MailingListForm = () => {
           : t('zimbra_mailinglist_edit_header')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t('common:form_mandatory_fields')}
+        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
       <Controller
         control={control}
@@ -493,7 +499,7 @@ export const MailingListForm = () => {
         isDisabled={!isDirty || !isValid}
         isLoading={isSending}
         data-testid="confirm-btn"
-        label={t('common:confirm')}
+        label={t(`${NAMESPACES.ACTIONS}:confirm`)}
       />
     </form>
   );
