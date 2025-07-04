@@ -1,0 +1,15 @@
+{
+  "list": [
+    {
+      "name": "Environment:Production",
+      "count": 2,
+      "type": "predefined"
+    }
+  ],
+  "groupByKeys": [
+    {
+      "key": "Environment",
+      "values": "Production"
+    }
+  ]
+}

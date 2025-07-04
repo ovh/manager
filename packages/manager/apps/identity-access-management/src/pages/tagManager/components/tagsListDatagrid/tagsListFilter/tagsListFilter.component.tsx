@@ -49,7 +49,7 @@ export default function TagsListFilter() {
               name="show-system"
               inputId="show-system"
               className="mr-4"
-              onClick={() => toggleSystemCheck()}
+              onOdsChange={() => toggleSystemCheck()}
               isChecked={isShowSystemChecked}
             />
             <label htmlFor="show-system">
@@ -61,7 +61,7 @@ export default function TagsListFilter() {
               name="show-unassigned"
               inputId="show-unassigned"
               className="mr-4"
-              onClick={() => toggleUnassignedResources()}
+              onOdsChange={() => toggleUnassignedResources()}
               isChecked={isShowUnassignedResourcesChecked}
             />
             <label htmlFor="show-unassigned">
