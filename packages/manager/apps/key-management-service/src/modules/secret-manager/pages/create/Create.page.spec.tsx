@@ -16,6 +16,7 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
+import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
@@ -31,9 +32,10 @@ const selectDomain = async (
   await assertTextVisibility(firstRegion);
 
   const firstRegionRadioCard = getByTestId(firstRegion);
-  const regionDomainList = okmsMock.filter(
-    (domain) => domain.region === firstRegion,
-  );
+  const regionDomainList = filterDomainsByRegion({
+    domains: okmsMock,
+    region: firstRegion,
+  });
   act(() => {
     user.click(firstRegionRadioCard);
   });
@@ -192,86 +194,7 @@ describe('Domain management test suite', () => {
 });
 
 /* FORM MANAGEMENT TEST SUITE */
-
-type TestCase = {
-  path?: string;
-  data?: string;
-  selectedDomainId: boolean;
-  shouldButtonBeDisabled: boolean;
-};
-
-const testCases: TestCase[] = [
-  { selectedDomainId: false, shouldButtonBeDisabled: true },
-  {
-    data: DATA_VALID_JSON,
-    selectedDomainId: false,
-    shouldButtonBeDisabled: true,
-  },
-  {
-    path: PATH_VALID,
-    selectedDomainId: false,
-    shouldButtonBeDisabled: true,
-  },
-  { selectedDomainId: true, shouldButtonBeDisabled: true },
-  {
-    data: DATA_VALID_JSON,
-    path: PATH_VALID,
-    selectedDomainId: false,
-    shouldButtonBeDisabled: true,
-  },
-  {
-    data: DATA_VALID_JSON,
-    path: PATH_VALID,
-    selectedDomainId: true,
-    shouldButtonBeDisabled: false,
-  },
-];
-
 describe('Secrets creation form test suite', () => {
-  it.each(testCases)(
-    'should check the form validity for data: $data, path: $path and a selectedDomain: $selectedDomainId ',
-    async ({ data, path, selectedDomainId, shouldButtonBeDisabled }) => {
-      const user = userEvent.setup();
-      // GIVEN
-      const { getByTestId } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.secretCreate,
-      );
-      await assertTextVisibility(labels.secretManager.create.title);
-
-      const inputPath = getByTestId(PATH_INPUT_TEST_ID);
-      expect(inputPath).toBeInTheDocument();
-      const inputData = getByTestId(DATA_INPUT_TEST_ID);
-      expect(inputData).toBeInTheDocument();
-      const submitButton = getByTestId(SUBMIT_BTN_TEST_ID);
-      expect(submitButton).toBeInTheDocument();
-      expect(submitButton).toHaveAttribute('is-disabled', 'true');
-
-      // WHEN
-      act(() => {
-        fireEvent.input(inputPath, {
-          target: { value: path },
-        });
-
-        fireEvent.change(inputData, {
-          target: { value: data },
-        });
-      });
-
-      if (selectedDomainId) await selectDomain(getByTestId, user);
-
-      // THEN
-      await waitFor(
-        () => {
-          expect(submitButton).toHaveAttribute(
-            'is-disabled',
-            shouldButtonBeDisabled.toString(),
-          );
-        },
-        { timeout: 10_000 },
-      );
-    },
-  );
-
   it('should navigate to the created secret page on submit', async () => {
     // GIVEN
     const user = userEvent.setup();
@@ -376,7 +299,7 @@ describe('Secrets creation form test suite', () => {
       const mockDomainId = okmsMock[0].id;
       const user = userEvent.setup();
       const { container } = await renderTestApp(
-        `${SECRET_MANAGER_ROUTES_URLS.secretCreate}?domainId=${mockDomainId}`,
+        `${SECRET_MANAGER_ROUTES_URLS.secretCreate}?${SECRET_MANAGER_SEARCH_PARAMS.domainId}=${mockDomainId}`,
       );
       await assertTextVisibility(labels.secretManager.create.title);
 

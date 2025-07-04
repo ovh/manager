@@ -67,6 +67,8 @@ export const DomainManagement = ({
 
     if (!domainFromSearchParam) {
       setSearchParams({});
+      setSelectedRegion(undefined);
+      setSelectedDomainId(undefined);
       return;
     }
 
