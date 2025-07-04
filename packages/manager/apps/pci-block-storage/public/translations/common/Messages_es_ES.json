@@ -19,11 +19,11 @@
   "pci_projects_project_storages_blocks_delete_label": "Eliminar",
   "pci_projects_project_storages_blocks_add_label": "Crear un volumen",
   "pci_projects_project_storages_blocks_new": "Novedad",
-  "pci_projects_project_storages_blocks_status_NONE": "Ninguno",
-  "pci_projects_project_storages_blocks_coming_soon": "Próximamente",
-  "pci_projects_project_storages_blocks_encrypted_label": "Encriptación",
+  "pci_projects_project_storages_blocks_status_NONE": "Ninguno/a",
+  "pci_projects_project_storages_blocks_coming_soon": "Próximamente disponible",
+  "pci_projects_project_storages_blocks_encrypted_label": "Cifrado",
   "pci_projects_project_storages_blocks_encryption_available": "Cifrado disponible",
   "pci_projects_project_storages_blocks_encryption_unavailable": "Cifrado no disponible",
-  "pci_projects_project_storages_blocks_guaranteed": "garantizado",
+  "pci_projects_project_storages_blocks_guaranteed": "garantizada",
   "pci_projects_project_storages_blocks_up_to": "hasta"
 }
