@@ -18,14 +18,7 @@ import { usePlatform } from '@/data/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/data/api';
 import { BadgeStatus } from '@/components';
-
-export type RedirectionItem = {
-  id: string;
-  from: string;
-  to: string;
-  organization: string;
-  status: keyof typeof ResourceStatus;
-};
+import { RedirectionItem } from './Redirections.types';
 
 const items: RedirectionItem[] = [
   {
