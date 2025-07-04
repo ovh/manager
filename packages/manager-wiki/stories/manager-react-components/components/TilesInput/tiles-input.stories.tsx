@@ -3,12 +3,11 @@ import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-// import { TilesInputComponent } from '@ovh-ux/manager-react-components';
-import { TilesInputComponent } from '../../../../../manager-react-components/src';
+import { TilesInputComponent } from '@ovh-ux/manager-react-components';
 import {
   countries as allCountries,
   TCountry,
-} from '../../../../../manager-react-components/src/__mocks__/tiles-input';
+} from '@ovh-ux/manager-react-components/src/__mocks__/tiles-input';
 
 export default {
   title: 'Manager React Components/Components/TilesInput',
@@ -57,7 +56,7 @@ export const DemoStack = Template.bind({});
 DemoStack.args = {
   ...commonArgs,
   stack: {
-    by: (country: TCountry) => country.language,
+    by: (country: TCountry) => country?.language,
     label: (language: string, countries: TCountry[]) => {
       return (
         <OdsText
@@ -76,17 +75,10 @@ export const DemoGroup = Template.bind({});
 DemoGroup.args = {
   ...commonArgs,
   group: {
-    by: (country: TCountry) => country.continent,
-    label: (group: string, countries: TCountry[], selected: boolean) => (
-      <div
-        className={clsx(
-          selected && 'font-bold',
-          'whitespace-nowrap px-2 text-lg',
-        )}
-      >
-        <OdsText>
-          {group === undefined ? 'All countries' : countries[0].continent}
-        </OdsText>
+    by: (country: TCountry) => country?.continent,
+    label: (group: string) => (
+      <div className={clsx('font-bold', 'whitespace-nowrap px-2 text-lg')}>
+        <OdsText>{group}</OdsText>
       </div>
     ),
     showAllTab: true,
@@ -99,30 +91,25 @@ DemoGroupStack.args = {
   ...commonArgs,
   group: {
     by: (country: TCountry) => country.continent,
-    label: (group: string, countries: TCountry[], selected: boolean) => (
-      <div
-        className={clsx(
-          selected && 'font-bold text-[--ods-color-text]',
-          'text-[--ods-color-primary-500] whitespace-nowrap px-2 text-lg',
-        )}
-      >
-        <OdsText>
-          {group === undefined ? 'All countries' : countries[0].continent}
-        </OdsText>
+    label: (group: string) => (
+      <div className={clsx('font-bold', 'whitespace-nowrap px-2 text-lg')}>
+        <OdsText>{group}</OdsText>
       </div>
     ),
     showAllTab: true,
   },
+
   stack: {
     by: (country: TCountry) => country?.language,
     label: (language: string, countries: TCountry[]) => {
       return (
-        <OdsText preset="span" className="text-center w-full">
-          {`${language} (${countries?.length})`}
-        </OdsText>
+        <OdsText
+          preset="span"
+          className="text-center w-full"
+        >{`${language} (${countries.length})`}</OdsText>
       );
     },
     title: (language: string, countries: TCountry[]) =>
-      `Countries of ${language}(${countries?.length}):`,
+      `Countries of ${language}(${countries.length}):`,
   },
 };
