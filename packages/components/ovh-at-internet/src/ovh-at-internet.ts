@@ -83,7 +83,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       currency: params.currencyCode,
       residential_country: params.countryCode,
       user_id: params.visitorId,
-      user_category: capitalize(params.legalform),
+      user_category: capitalize(params.legalform || ''),
       page_category: params.page_category,
       complete_page_name: params.complete_page_name,
       page_theme: params.page_theme,
