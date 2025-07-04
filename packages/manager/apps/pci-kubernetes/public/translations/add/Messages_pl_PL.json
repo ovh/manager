@@ -82,5 +82,6 @@
   "kube_add_plan_content_standard_3AZ_banner": "Oferta Standard nie jest jeszcze dostępna w regionach 3-AZ. Jeśli chcesz skorzystać z tej oferty, wybierz wdrożenie w trybie 1-AZ.",
   "kube_add_plan_content_standard_very_soon": "Dostępne wkrótce",
   "kube_add_plan_subtitle": "Wybierz pakiet dostosowany do Twoich potrzeb. Korzystaj z szerokiej gamy instancji używanych jako węzły Kubernetes, fakturowanych według zużycia lub na podstawie umowy terminowej.",
-  "kubernetes_add_deployment_mode_card_beta": "Wersja beta"
+  "kubernetes_add_deployment_mode_card_beta": "Wersja beta",
+  "kube_add_node_pool_name_title": "Nazwij pulę węzłów"
 }
