@@ -9,7 +9,10 @@ import { useInstances, TUseInstancesQueryParams } from './useInstances';
 import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TInstance, TInstanceStatus } from '@/types/instance/entity.type';
+import {
+  TAggregatedInstance,
+  TInstanceStatus,
+} from '@/types/instance/entity.type';
 
 // builders
 const instanceDtoBuilder = (
@@ -35,9 +38,9 @@ const instanceDtoBuilder = (
 
 const instanceBuilder = (
   instanceDto: TInstanceDto,
-  addresses: TInstance['addresses'],
+  addresses: TAggregatedInstance['addresses'],
   status: TInstanceStatus,
-): TInstance => ({
+): TAggregatedInstance => ({
   ...instanceDto,
   addresses,
   status,
@@ -64,9 +67,9 @@ const initQueryClient = () => {
 type Data = {
   queryParamaters: TUseInstancesQueryParams;
   queryPayload?: TInstanceDto[];
-  expectedInstances: TInstance[];
+  expectedInstances: TAggregatedInstance[];
   expectedQueryHasNext: boolean;
-  expectedInstancesAfterRefetch: TInstance[];
+  expectedInstancesAfterRefetch: TAggregatedInstance[];
   expectedQueryKey: string[];
 };
 
@@ -103,16 +106,20 @@ const fakeQueryParamaters4: TUseInstancesQueryParams = {
 };
 
 const fakeInstanceDto1: TInstanceDto = instanceDtoBuilder([], 'ACTIVE');
-const fakeInstance1: TInstance = instanceBuilder(fakeInstanceDto1, new Map(), {
-  label: 'ACTIVE',
-  severity: 'success',
-});
+const fakeInstance1: TAggregatedInstance = instanceBuilder(
+  fakeInstanceDto1,
+  new Map(),
+  {
+    label: 'ACTIVE',
+    severity: 'success',
+  },
+);
 
 const fakeInstanceDto2: TInstanceDto = instanceDtoBuilder(
   [{ type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 }],
   'ERROR',
 );
-const fakeInstance2: TInstance = instanceBuilder(
+const fakeInstance2: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto2,
   new Map().set('private', [
     {
@@ -132,7 +139,7 @@ const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
   ],
   'DELETING',
 );
-const fakeInstance3: TInstance = instanceBuilder(
+const fakeInstance3: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto3,
   new Map()
     .set('private', [
@@ -156,7 +163,7 @@ const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
   ],
   'BUILD',
 );
-const fakeInstance4: TInstance = instanceBuilder(
+const fakeInstance4: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto4,
   new Map().set('public', [
     {
