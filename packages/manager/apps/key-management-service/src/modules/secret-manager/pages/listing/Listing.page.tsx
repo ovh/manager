@@ -1,9 +1,14 @@
 import React from 'react';
-import { BaseLayout, Datagrid } from '@ovh-ux/manager-react-components';
-import { useParams } from 'react-router-dom';
+import {
+  BaseLayout,
+  Datagrid,
+  ErrorBanner,
+} from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
   DatagridCellPath,
   DatagridCellVersion,
@@ -13,8 +18,9 @@ import { SecretListingPageParams } from './listing.type';
 
 export default function SecretListingPage() {
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
+  const navigate = useNavigate();
   const { domainId } = useParams<SecretListingPageParams>();
-  const { data: secrets, isPending } = useSecretList(domainId);
+  const { data: secrets, isPending, error, refetch } = useSecretList(domainId);
 
   const columns = [
     {
@@ -33,6 +39,17 @@ export default function SecretListingPage() {
       label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
     },
   ];
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={error.response}
+        onRedirectHome={() =>
+          navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding)
+        }
+        onReloadPage={refetch}
+      />
+    );
 
   return (
     <BaseLayout header={{ title: t('secret_manager') }}>
