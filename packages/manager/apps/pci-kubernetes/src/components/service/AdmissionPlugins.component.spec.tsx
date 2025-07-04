@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import AdmissionPlugins from './AdmissionPlugins.component';
 
 const navigate = vi.fn();
