@@ -7,9 +7,8 @@ import { hashCode } from '../../../../utils';
 const uniqBy = function uniqBy<I, U>(items: I[], cb: (item: I) => U): I[] {
   return [
     ...items
-      .reduce((map: Map<U, I>, item?: I) => {
+      .reduce((map: Map<U, I>, item: I) => {
         if (!map.has(cb(item))) map.set(cb(item), item);
-
         return map;
       }, new Map())
       .values(),
@@ -18,16 +17,19 @@ const uniqBy = function uniqBy<I, U>(items: I[], cb: (item: I) => U): I[] {
 
 const stackItems = function stackItems<I, U>(
   items: I[],
-  cb: (item: I) => U,
-): Map<U, I[]> {
-  const stacks = new Map<U, I[]>();
+  cb?: (item: I) => U,
+): Map<U | undefined, I[]> {
+  const stacks = new Map<U | undefined, I[]>();
 
   if (cb) {
     const uniques = uniqBy<I, U>(items, cb);
     uniques.forEach((unique) => {
       const key = cb(unique);
       stacks.set(key, []);
-      stacks.get(key).push(...items.filter((item) => isEqual(key, cb(item))));
+      const stackItem = stacks.get(key);
+      if (stackItem) {
+        stackItem.push(...items.filter((item) => isEqual(key, cb(item))));
+      }
     });
   } else {
     stacks.set(undefined, items);
@@ -56,8 +58,8 @@ export type TSimpleProps<T, S = void> = {
 };
 
 type IState<T, S> = {
-  stacks: Map<S, T[]>;
-  selectedStack: S;
+  stacks: Map<S | undefined, T[]>;
+  selectedStack: S | undefined;
   activeClass: string;
   inactiveClass: string;
 };
@@ -91,14 +93,23 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   const is = {
     stack: {
       checked: useCallback(
-        (s: S) =>
-          state.stacks?.get(s)?.length > 1
+        (s: S | undefined) => {
+          if (s === undefined) return false;
+          const stackItem = state.stacks?.get(s);
+          return stackItem && stackItem.length > 1
             ? isEqual(state.selectedStack, s)
-            : isEqual(state.stacks.get(s)[0], value),
+            : stackItem &&
+                stackItem.length === 1 &&
+                isEqual(stackItem[0], value);
+        },
         [state.stacks, state.selectedStack, value],
       ),
       singleton: useCallback(
-        (s: S) => state.stacks.get(s)?.length === 1,
+        (s: S | undefined) => {
+          if (s === undefined) return false;
+          const stackItem = state.stacks.get(s);
+          return stackItem?.length === 1;
+        },
         [state.stacks],
       ),
     },
@@ -122,53 +133,60 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
 
   // Warn parent on stack change
   useEffect(() => {
-    if (typeof stack?.onChange === 'function') {
+    if (
+      typeof stack?.onChange === 'function' &&
+      state.selectedStack !== undefined
+    ) {
       stack.onChange(state.selectedStack);
     }
-  }, [state.selectedStack]);
+  }, [state.selectedStack, stack?.onChange]);
 
   // Update selected stack from value
   useEffect(() => {
-    if (stack) {
-      set.selectedStack(value ? stack.by(value) : undefined);
+    if (stack && value) {
+      set.selectedStack(stack.by(value));
     }
-  }, [value]);
+  }, [value, stack]);
 
   // Update value from selected stack
   useEffect(() => {
-    if (
-      stack &&
-      state.stacks.get(state.selectedStack)?.length &&
-      !isEqual(state.selectedStack, stack.by(value))
-    ) {
-      set.value(state.stacks.get(state.selectedStack)[0]);
+    if (stack && state.selectedStack !== undefined && value) {
+      const stackItem = state.stacks.get(state.selectedStack);
+      if (stackItem?.length && !isEqual(state.selectedStack, stack.by(value))) {
+        set.value(stackItem[0]);
+      }
     }
-  }, [state.selectedStack]);
+  }, [state.selectedStack, state.stacks, stack, value]);
 
   return (
     <div id={typeof id === 'function' ? id() : id}>
       <ul className="simple-tiles-input-ul grid gap-6 list-none p-6 m-0 grid-cols-1 md:grid-cols-3">
         {stack
-          ? [...state.stacks.keys()].map((key) => (
-              <li className="w-full px-1" key={hashCode(key)}>
-                <OdsCard
-                  onClick={() =>
-                    is.stack.singleton(key)
-                      ? set.value(state.stacks.get(key)[0])
-                      : set.selectedStack(key)
-                  }
-                  className={`${clsx(
-                    is.stack.checked(key)
-                      ? state.activeClass
-                      : state.inactiveClass,
-                  )} w-full px-[24px] py-[16px]`}
-                >
-                  {is.stack.singleton(key)
-                    ? label(state.stacks.get(key)[0])
-                    : stack?.label(key, state.stacks.get(key))}
-                </OdsCard>
-              </li>
-            ))
+          ? [...state.stacks.keys()].map((key) => {
+              const stackItem = state.stacks.get(key);
+              if (!stackItem) return null;
+
+              return (
+                <li className="w-full px-1" key={hashCode(key)}>
+                  <OdsCard
+                    onClick={() =>
+                      is.stack.singleton(key)
+                        ? set.value(stackItem[0])
+                        : key !== undefined && set.selectedStack(key)
+                    }
+                    className={`${clsx(
+                      is.stack.checked(key)
+                        ? state.activeClass
+                        : state.inactiveClass,
+                    )} w-full px-[24px] py-[16px]`}
+                  >
+                    {is.stack.singleton(key)
+                      ? label(stackItem[0])
+                      : key !== undefined && stack?.label(key, stackItem)}
+                  </OdsCard>
+                </li>
+              );
+            })
           : items.map((item: T) => (
               <li className="w-full px-1" key={hashCode(item)}>
                 <OdsCard
@@ -184,20 +202,23 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
               </li>
             ))}
       </ul>
-      {state.selectedStack &&
-        state.stacks.get(state.selectedStack)?.length > 1 && (
+      {state.selectedStack !== undefined &&
+        (() => {
+          const selectedStackItems = state.stacks.get(state.selectedStack);
+          return selectedStackItems && selectedStackItems.length > 1;
+        })() && (
           <>
             <div className="mt-6 ml-8">
               <span className="text-[--ods-color-heading] leading-[22px] font-bold">
-                {stack.title(
+                {stack?.title(
                   state.selectedStack,
-                  state.stacks.get(state.selectedStack),
+                  state.stacks.get(state.selectedStack) || [],
                 )}
               </span>
             </div>
             <SimpleTilesInputComponent
               value={value}
-              items={state.stacks.get(state.selectedStack)}
+              items={state.stacks.get(state.selectedStack) || []}
               label={label}
               onInput={onInput}
               tileClass={tileClass}
