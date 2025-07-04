@@ -58,4 +58,36 @@ export type TInstanceActionGroup =
   | 'lifecycle'
   | 'shelve';
 
-export type TInstancePriceType = 'hour' | 'month' | 'licence' | 'savingplans';
+export type TPrice = {
+  type: 'hour' | 'month' | 'licence' | 'savingplans';
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
+};
+
+export type TRegionType = 'region' | 'localzone' | 'region-3-az';
+
+export type TSubnet = {
+  id: string;
+  name: string;
+  gatewayIP: string;
+  network: {
+    id: string;
+    name: string;
+  };
+};
+
+export type TFlavorSpec = {
+  value: number;
+  unit: string;
+};
+
+export type TImage = {
+  id: string;
+  name: string;
+  deprecated: boolean;
+};
+
+export type TBackup = {
+  count: number;
+  lastBackup: string;
+};
