@@ -12,6 +12,12 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+vi.mock('@/context/tracking/useTracking', () => ({
+  useTrackingContext: () => ({
+    setUser: vi.fn(),
+  }),
+}));
+
 const renderComponent = () =>
   render(
     <UserProvider>
