@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import isEqual from 'lodash.isequal';
-import { TabsComponent } from '../../container/tabs/Tabs.component';
+import { TabsComponent } from '../../tabs/Tabs.component';
 
 import {
   SimpleTilesInputComponent,

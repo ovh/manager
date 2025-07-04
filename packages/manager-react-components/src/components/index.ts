@@ -4,6 +4,7 @@ export * from './breadcrumb/breadcrumb.component';
 
 export * from './clipboard/clipboard.component';
 export * from './container';
+export * from './tabs/Tabs.component';
 export * from './input';
 
 export * from './content';
