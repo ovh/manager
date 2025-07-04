@@ -49,6 +49,7 @@ export default class ServicesCtrl {
       ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR
       : null;
 
+    this.isUSRegion = this.coreConfig.isRegion('US');
     this.selectedServices = [];
 
     this.nicBillingFilter = this.nicBilling || this.$translate.instant(NIC_ALL);
