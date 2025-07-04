@@ -18,7 +18,7 @@ import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { useServiceData } from '../../../Service.context';
 import { ForkInitialValue } from '../Fork.page';
-import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
+import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 const getSuggestedItemOrDefault = (
@@ -172,9 +172,19 @@ export function useFork(
 
   const networksData = useVrack(projectId, region, network.networkId);
 
-  const [price, setPrice] = useState<Pricing>({
-    hourly: { price: 0, tax: 0 },
-    monthly: { price: 0, tax: 0 },
+  const [price, setPrice] = useState<ServicePricing>({
+    flavorPrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    servicePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    storagePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
   });
 
   // Create the list of available engines
@@ -269,7 +279,7 @@ export function useFork(
         storagePricing: flavorObject.storage?.pricing,
         additionalStorage,
         storageMode: engineObject.storageMode,
-      }).servicePrice,
+      }),
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 

@@ -7,12 +7,11 @@ interface PlansSelectProps {
   plans: Plan[];
   value: string;
   onChange: (newPlan: string) => void;
-  showMonthlyPrice?: boolean;
   className?: string;
 }
 
 const PlansSelect = React.forwardRef<HTMLInputElement, PlansSelectProps>(
-  ({ plans, value, onChange, showMonthlyPrice = false, className }, ref) => {
+  ({ plans, value, onChange, className }, ref) => {
     return (
       <div
         data-testid="plans-select-container"
@@ -24,7 +23,6 @@ const PlansSelect = React.forwardRef<HTMLInputElement, PlansSelectProps>(
       >
         {plans.map((plan) => (
           <PlanTile
-            showMonthlyPrice={showMonthlyPrice}
             key={plan.name}
             plan={plan}
             selected={value === plan.name}

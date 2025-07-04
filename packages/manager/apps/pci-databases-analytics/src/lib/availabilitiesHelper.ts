@@ -4,11 +4,7 @@ import * as database from '@/types/cloud/project/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { compareStorage } from './bytesHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
-import {
-  PRICING_APAC_SUFFIX,
-  PRICING_PREFIX,
-  PRICING_SUFFIX,
-} from '@/configuration/pricing.constants';
+import { PRICING_PREFIX } from '@/configuration/pricing.constants';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -239,23 +235,9 @@ const mapFlavor = (
   return treeFlavor;
 };
 
-// handle plan code with or without .apac
-const getPlanCodeFromString = (planCode: string) => {
-  const hasApac = planCode.includes(`.${PRICING_APAC_SUFFIX}`);
-  const normalizedPlanCode = hasApac
-    ? planCode.replace(`.${PRICING_APAC_SUFFIX}`, '')
-    : planCode;
-
-  return (consumption: string) =>
-    `${PRICING_PREFIX}.${normalizedPlanCode}.${consumption}${
-      hasApac ? `.${PRICING_APAC_SUFFIX}` : ''
-    }`;
-};
-
 const setPrices = (
   availability: database.Availability,
   catalog: order.publicOrder.Catalog,
-  plan: Plan,
   flavor: Flavor,
 ) => {
   // Default pricing if not found in the catalog
@@ -265,9 +247,6 @@ const setPrices = (
   } as order.publicOrder.Pricing;
 
   const hasStorage = flavor.storage?.step;
-  const isNewPricingFormat = availability.planCode.includes(
-    '.hour.consumption',
-  );
 
   let hourlyPricing = defaultPricing;
   let monthlyPricing = defaultPricing;
@@ -278,50 +257,28 @@ const setPrices = (
     catalog.addons.find((addon) => addon.planCode === pricingPlanCode)
       ?.pricings?.[0] || defaultPricing;
 
-  // new format
-  if (isNewPricingFormat) {
-    hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
-    monthlyPricing = findPricing(
-      `${PRICING_PREFIX}.${availability.planCode.replace(
+  hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
+  monthlyPricing = findPricing(
+    `${PRICING_PREFIX}.${availability.planCode.replace(
+      '.hour.consumption',
+      '.month.consumption',
+    )}`,
+  );
+  if (hasStorage) {
+    hourlyStoragePricing = findPricing(
+      `${PRICING_PREFIX}.${availability.planCodeStorage}`,
+    );
+    monthlyStoragePricing = findPricing(
+      `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
         '.hour.consumption',
         '.month.consumption',
       )}`,
     );
-    if (hasStorage) {
-      hourlyStoragePricing = findPricing(
-        `${PRICING_PREFIX}.${availability.planCodeStorage}`,
-      );
-      monthlyStoragePricing = findPricing(
-        `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
-          '.hour.consumption',
-          '.month.consumption',
-        )}`,
-      );
-    }
-  } else {
-    const planCode = getPlanCodeFromString(availability.planCode);
-    const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);
-
-    // Extract pricing for hourly and monthly consumption
-    hourlyPricing = findPricing(planCode(PRICING_SUFFIX.HOUR));
-    monthlyPricing = findPricing(planCode(PRICING_SUFFIX.MONTH));
-
-    if (hasStorage) {
-      hourlyStoragePricing = findPricing(planCodeStorage(PRICING_SUFFIX.HOUR));
-      monthlyStoragePricing = findPricing(
-        planCodeStorage(PRICING_SUFFIX.MONTH),
-      );
-    }
   }
 
   // Assign extracted pricing to the flavor
   flavor.pricing.hourly = hourlyPricing;
   flavor.pricing.monthly = monthlyPricing;
-
-  // Update plan's minimum pricing if needed
-  if (!plan.minPricing || plan.minPricing.hourly.price > hourlyPricing.price) {
-    plan.minPricing = { hourly: hourlyPricing, monthly: monthlyPricing };
-  }
 
   // Handle storage pricing if flavor has storage with step
   if (hasStorage) {
@@ -371,7 +328,7 @@ export function createTree(
     );
     treeRegion.flavors.sort((a, b) => a.order - b.order);
     // Set prices
-    setPrices(curr, catalog, treePlan, treeFlavor);
+    setPrices(curr, catalog, treeFlavor);
     return acc;
   }, [] as Engine[]);
   // sanitize: if default version returned from suggestions by api does not exist,

@@ -19,5 +19,6 @@
   "cpbc_cold_archive_detail_title": "Cold Archive",
   "cpbc_hourly_public_ip_title": "IP publiczne",
   "cpbc_hourly_rancher_title": "Managed Rancher Service",
-  "cpbc_hourly_ai_endpoints_title": "AI Endpoints"
+  "cpbc_hourly_ai_endpoints_title": "AI Endpoints",
+  "cpbc_hourly_data_platform_title": "Data Platform"
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, ArrowRight } from 'lucide-react';
@@ -18,6 +17,7 @@ import {
   useToast,
   Alert,
   AlertDescription,
+  Separator,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import { order } from '@/types/catalog';
@@ -29,7 +29,6 @@ import {
   ServiceCreationWithEngine,
   useAddService,
 } from '@/hooks/api/database/service/useAddService.hook';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import EnginesSelect from '@/components/order/engine/EngineSelect.component';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
@@ -65,10 +64,10 @@ const OrderFunnel = ({
     catalog,
   );
   const projectData = usePciProject();
-  const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
+
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -225,7 +224,6 @@ const OrderFunnel = ({
                         onChange={(newPlan) =>
                           model.form.setValue('plan', newPlan)
                         }
-                        showMonthlyPrice={showMonthlyPrice}
                       />
                     </FormControl>
                     <FormMessage />
@@ -269,15 +267,16 @@ const OrderFunnel = ({
                     </FormLabel>
                     <p>{t('fieldFlavorDescription')}</p>
                     <FormControl>
-                      <FlavorsSelect
-                        {...field}
-                        showMonthlyPrice={showMonthlyPrice}
-                        flavors={model.lists.flavors}
-                        value={field.value}
-                        onChange={(newFlavor) =>
-                          model.form.setValue('flavor', newFlavor)
-                        }
-                      />
+                      {model.result.availability && (
+                        <FlavorsSelect
+                          {...field}
+                          flavors={model.lists.flavors}
+                          value={field.value}
+                          onChange={(newFlavor) =>
+                            model.form.setValue('flavor', newFlavor)
+                          }
+                        />
+                      )}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -412,14 +411,13 @@ const OrderFunnel = ({
                 order={model.result}
                 onSectionClicked={(section) => scrollToDiv(section)}
               />
-              <PriceUnitSwitch
-                showMonthly={showMonthlyPrice}
-                onChange={(newPriceUnit) => setShowMonthlyPrice(newPriceUnit)}
-              />
-              <OrderPrice
-                showMonthly={showMonthlyPrice}
-                prices={model.result.price}
-              />
+              <Separator className="my-2" />
+              {model.result.availability && (
+                <OrderPrice
+                  availability={model.result.availability}
+                  prices={model.result.price}
+                />
+              )}
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button
