@@ -260,7 +260,7 @@ export default function NewPage(): JSX.Element {
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
-        title={t('add:kubernetes_add_name_title')}
+        title={t('add:kube_add_node_pool_name_title')}
         isOpen={store.steps.get(StepsEnum.NAME).isOpen}
         isChecked={store.steps.get(StepsEnum.NAME).isChecked}
         isLocked={store.steps.get(StepsEnum.NAME).isLocked}
@@ -302,7 +302,7 @@ export default function NewPage(): JSX.Element {
             className="mt-4"
             size={ODS_TEXT_SIZE._100}
           >
-            {t('add:kube_add_node_pool_name_label')}
+            {t('add:kubernetes_add_name')}
           </OsdsText>
           <OsdsInput
             data-testid="name-input"
@@ -312,6 +312,7 @@ export default function NewPage(): JSX.Element {
             onOdsValueChange={handleValueChange}
             type={ODS_INPUT_TYPE.text}
             error={store.name.hasError}
+            placeholder={t('add:kubernetes_add_nodepool_name_placeholder')}
             className="border"
           />
         </OsdsFormField>
