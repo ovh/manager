@@ -26,15 +26,19 @@ export default class MoveMeetingCtrl {
     this.meetingSlots = {};
 
     this.noMeetingAvailable = false;
+    this.isPhoneCallAvailable = false;
 
     this.loading = true;
     this.meetings = [];
     this.installationType = this.selected.buildingDetails
       ? DICTIONNARY[this.selected.buildingDetails.selectedPto]
       : '';
-    this.ptoReference = this.selected.buildingDetails.ptoReference
-      ? this.selected.buildingDetails.ptoReference
-      : '';
+
+    this.ptoReference =
+      this.selected.buildingDetails &&
+      this.selected.buildingDetails.ptoReference
+        ? this.selected.buildingDetails.ptoReference
+        : '';
 
     return this.searchMeetings(
       this.eligibilityReference,
@@ -67,7 +71,7 @@ export default class MoveMeetingCtrl {
               ptoReference,
             );
           }, 2000);
-        } else if (result) {
+        } else if (result && result.meetingSlots.length > 0) {
           this.meetingSlots.canBookFakeMeeting = result.canBookFakeMeeting;
           this.meetingSlots.slots = result.meetingSlots;
 
@@ -106,6 +110,7 @@ export default class MoveMeetingCtrl {
           this.meetingSelectMessage = '';
         } else {
           this.noMeetingAvailable = true;
+          this.isPhoneCallAvailable = !!result.capacities.phoneCall;
         }
       })
       .catch((error) => {
