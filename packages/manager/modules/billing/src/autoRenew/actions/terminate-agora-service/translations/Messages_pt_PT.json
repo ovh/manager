@@ -16,7 +16,7 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Ocorreu um erro aquando do pedido de rescisão do seu LDP. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX": "O seu pedido de rescisão do Nutanix foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX": "O seu pedido de rescisão do Nutanix foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "Ocorreu um erro aquando do pedido de rescisão da sua Nutanix. {{error}}",
+  "autorenew_agora_terminate_service_error_NUTANIX": "Ocorreu um erro aquando do pedido de rescisão do seu Nutanix. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX_NODE": "O cancelamento do nó \"{{serviceName}}\" foi registado. Receberá um e-mail com os detalhes do procedimento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "O cancelamento do nó \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "O seu pedido de cancelamento não foi registado: {{error}}",

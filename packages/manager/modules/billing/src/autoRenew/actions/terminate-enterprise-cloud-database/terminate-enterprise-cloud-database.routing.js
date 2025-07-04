@@ -1,6 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.account.billing.autorenew.terminateEnterpriseCloudDatabase',
+    'billing.autorenew.terminateEnterpriseCloudDatabaseRedirection',
+    {
+      url: '/delete-enterprise-cloud-database?serviceId',
+      redirectTo: 'billing.autorenew.services.terminateEnterpriseCloudDatabase',
+    },
+  );
+
+  $stateProvider.state(
+    'billing.autorenew.services.terminateEnterpriseCloudDatabase',
     {
       url: '/delete-enterprise-cloud-database?serviceId',
       views: {
