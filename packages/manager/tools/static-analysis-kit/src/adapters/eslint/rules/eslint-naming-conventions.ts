@@ -13,27 +13,36 @@ export const checkFileEslintConfig: Linter.FlatConfig[] = [
       'check-file': checkFile,
     },
     rules: {
-      // Prevent use of index files (e.g., index.tsx)
       'check-file/no-index': 'error',
-
-      // Disallow bad filename suffixes
       'check-file/filename-blocklist': ['error', filenameBlocklist],
 
-      // Enforce folder location based on file name
       'check-file/folder-match-with-fex': [
         'error',
         folderMatchWithFex,
         {
           errorMessage:
-            'The folder of the file "{{ target }}" does not match the "{{ pattern }}" pattern. See µ-app folder structure guidelines.',
+            'The folder of the file "{{ target }}" does not match the expected pattern "{{ pattern }}". See µ-app structure guidelines.',
         },
       ],
 
-      // Enforce file casing (PascalCase, kebab-case, etc.)
-      'check-file/filename-naming-convention': ['error', filenameNamingConvention],
+      'check-file/filename-naming-convention': [
+        'error',
+        filenameNamingConvention,
+        {
+          ignoreMiddleExtensions: true,
+          errorMessage:
+            'The filename "{{ target }}" does not match the naming convention "{{ pattern }}". Please check contribute.md.',
+        },
+      ],
 
-      // Enforce kebab-case folders across the board
-      'check-file/folder-naming-convention': ['error', folderNamingConvention],
+      'check-file/folder-naming-convention': [
+        'error',
+        folderNamingConvention,
+        {
+          errorMessage:
+            'Folder "{{ target }}" must follow the "{{ pattern }}" naming convention. See µ-app guidelines.',
+        },
+      ],
     },
   },
 ];
