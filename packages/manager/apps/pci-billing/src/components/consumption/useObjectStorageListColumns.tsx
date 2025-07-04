@@ -31,6 +31,18 @@ export function useObjectStorageListColumns() {
 
   return [
     {
+      id: 'bucketName',
+      cell: (row: TStorage) => (
+        <DataGridTextCell>{row.bucketName}</DataGridTextCell>
+      ),
+      label: t('cpbc_object_storage_col_bucket_name'),
+    },
+    {
+      id: 'type',
+      cell: (row: TStorage) => <DataGridTextCell>{row.type}</DataGridTextCell>,
+      label: t('cpbc_object_storage_col_type'),
+    },
+    {
       id: 'location',
       cell: (row: TStorage) => (
         <DataGridTextCell>{translateMicroRegion(row.region)}</DataGridTextCell>
@@ -68,6 +80,19 @@ export function useObjectStorageListColumns() {
         </div>
       ),
       label: t('cpbc_object_storage_col_output_traffic'),
+    },
+    {
+      id: 'retrievalFees',
+      cell: (row: TStorage) => (
+        <div className="flex gap-2">
+          <DataGridTextCell>
+            {`${(row.retrievalFees.totalPrice.value || 0).toFixed(2)} ${
+              currency.symbol
+            }`}
+          </DataGridTextCell>
+        </div>
+      ),
+      label: t('cpbc_object_storage_col_retrieval_fees'),
     },
   ];
 }

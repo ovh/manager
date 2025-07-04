@@ -367,6 +367,12 @@ export type TStorage = {
     quantity: TQuantity;
     totalPrice: number;
   };
+  retrievalFees: {
+    quantity: TQuantity;
+    totalPrice: {
+      value: number;
+    };
+  };
   region: string;
   stored: {
     quantity: TQuantity;
