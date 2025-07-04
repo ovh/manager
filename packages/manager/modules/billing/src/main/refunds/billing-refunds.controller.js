@@ -30,8 +30,8 @@ export default /* @ngInject */ function BillingRefundsController(
   };
 
   this.prepaidAccountLink = coreURLBuilder.buildURL(
-    'dedicated',
-    '#/billing/payment/ovhaccount',
+    'new-billing',
+    '/payment/ovhaccount',
   );
 
   this.sortHistoryResult = ({ predicate, reverse }) => {

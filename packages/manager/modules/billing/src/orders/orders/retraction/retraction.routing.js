@@ -2,7 +2,7 @@ import template from './billing-orders-retraction.html';
 import controller from './billing-orders-retraction.controller';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.account.billing.orders.order.retract', {
+  $stateProvider.state('billing.orders.order.retract', {
     url: '/retract',
     template,
     controller,

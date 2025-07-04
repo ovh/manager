@@ -22,5 +22,7 @@
   "billing_services_actions_menu_commit_cancel": "Anuluj zamówienie usługi z opcją umowy terminowej",
   "billing_services_actions_menu_resiliate_my_engagement": "Rezygnacja z umowy terminowej",
   "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Usuń licencję HYCU",
-  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Usuń trwale hosting i powiązane z nim dane"
+  "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Usuń trwale hosting i powiązane z nim dane",
+  "billing_services_actions_menu_restore": "Przywróć usługę",
+  "billing_services_actions_menu_restore_label": "Przywróć usługę: {{serviceName}} (Nowe okno)"
 }

@@ -42,7 +42,6 @@ vi.mock('@ovh-ux/ovh-reket');
 vi.mock('@ovh-ux/manager-react-components', async () => ({
   useFeatureAvailability: vi.fn().mockReturnValue([]),
   fetchFeatureAvailabilityData: vi.fn().mockReturnValue({
-    'new-billing': true,
     'identity-documents': false,
     'procedures:fraud': false,
   }),
@@ -243,7 +242,7 @@ describe('Header.component', () => {
     );
 
     it.each([
-      ['new-billing', true, 'https://mockedurl.mock/new-billing'],
+      ['billing', true, 'https://mockedurl.mock/billing'],
       ['account', true, 'https://mockedurl.mock/account']
     ])(
       'should render all expected links in the document for %s feature being %s',

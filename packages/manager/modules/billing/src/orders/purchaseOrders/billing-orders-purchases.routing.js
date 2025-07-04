@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DATE_FORMAT_MOMENT } from './billing-orders-purchases.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const stateParent = 'app.account.billing.orders.purchases';
+  const stateParent = 'billing.orders.purchases';
 
   $stateProvider.state(stateParent, {
     url: '/purchases?filter',
@@ -86,7 +86,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       updateFilterParam: /* @ngInject */ ($state) => (filter) =>
         $state.go(
-          'app.account.billing.orders.purchases',
+          'billing.orders.purchases',
           {
             filter,
           },
