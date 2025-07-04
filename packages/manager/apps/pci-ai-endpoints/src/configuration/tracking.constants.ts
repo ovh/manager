@@ -86,7 +86,12 @@ export const TRACKING: Record<
     },
 
     confirmClick: {
-      actions: [`${PageLocation.popup}`, `create_api-key`, `confirm`],
+      actions: [
+        `${PageLocation.popup}`,
+        `${ButtonType.button}`,
+        `create_api-key`,
+        `confirm`,
+      ],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
