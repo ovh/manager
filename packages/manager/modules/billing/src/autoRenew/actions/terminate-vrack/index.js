@@ -17,7 +17,12 @@ angular
   ])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('billing.autorenew.terminateVrack', {
+      $stateProvider.state('billing.autorenew.terminateVrackRedirection', {
+        url: '/terminate-vrack?service&serviceType',
+        redirectTo: 'billing.autorenew.services.terminateVrack',
+      });
+
+      $stateProvider.state('billing.autorenew.services.terminateVrack', {
         url: '/terminate-vrack?service&serviceType',
         views: {
           modal: {

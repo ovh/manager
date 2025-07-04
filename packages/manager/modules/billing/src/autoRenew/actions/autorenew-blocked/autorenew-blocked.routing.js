@@ -1,6 +1,14 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.account.billing.autorenew.configure-renew-impossible',
+    'billing.autorenew.configure-renew-impossibleRedirection',
+    {
+      url: '/configure-renew-impossible',
+      redirectTo: 'billing.autorenew.services.configure-renew-impossible',
+    },
+  );
+
+  $stateProvider.state(
+    'billing.autorenew.services.configure-renew-impossible',
     {
       url: '/configure-renew-impossible',
       views: {
@@ -17,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
               'dedicated::account::billing::autorenew::configure-renew-impossible::go-to-agreements',
             type: 'action',
           });
-          return $state.go('app.account.billing.autorenew.agreements');
+          return $state.go('billing.autorenew.agreements');
         },
         breadcrumb: () => null,
       },

@@ -4,14 +4,14 @@ import set from 'lodash/set';
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.account.billing.payment.method.action.default';
+  const name = 'billing.payment.method.action.default';
 
   $stateProvider.state(name, {
     url: '/default',
     component: component.name,
     layout: 'ouiModal',
     resolve: {
-      redirectTo: () => 'app.account.billing.payment.method',
+      redirectTo: () => 'billing.payment.method',
 
       loaders: () => ({
         save: false,

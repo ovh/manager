@@ -1,9 +1,15 @@
 import kebabCase from 'lodash/kebabCase';
 import get from 'lodash/get';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
+import { SERVICE_TYPES_USING_V6_SERVICES } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.cancel-resiliation', {
+  $stateProvider.state('billing.autorenew.cancel-resiliationRedirection', {
+    url: '/cancel-resiliation?serviceId&serviceType',
+    redirectTo: 'billing.autorenew.services.cancel-resiliation',
+  });
+
+  $stateProvider.state('billing.autorenew.services.cancel-resiliation', {
     url: '/cancel-resiliation?serviceId&serviceType',
     views: {
       modal: {
@@ -35,6 +41,10 @@ export default /* @ngInject */ ($stateProvider) => {
           ? setReactivateEngagementStrategy()
           : $q.when(0)
         ).then(() => {
+          if (SERVICE_TYPES_USING_V6_SERVICES.includes(service.serviceType)) {
+            return BillingAutoRenew.updateRenew(service);
+          }
+
           service.cancelResiliation();
           return BillingAutoRenew.updateService({
             serviceId: service.serviceId,
@@ -58,6 +68,14 @@ export default /* @ngInject */ ($stateProvider) => {
               .catch({ engagement: null })
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
+      endStrategies: /* @ngInject */ (endStrategyEnum) =>
+        endStrategyEnum.reduce(
+          (object, strategy) => ({
+            ...object,
+            [strategy]: strategy,
+          }),
+          {},
+        ),
       hasEndRuleStrategies: /* @ngInject */ (engagement, endStrategies) =>
         engagement &&
         engagement.endRule &&
@@ -70,11 +88,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceType,
       service: /* @ngInject */ (BillingAutoRenew, serviceId, serviceType) =>
         BillingAutoRenew.findService({ resourceName: serviceId, serviceType }),
-      fetchRenewInfos: /* @ngInject */ ($http, service) =>
-        $http
+      fetchRenewInfos: /* @ngInject */ ($http, service) => {
+        if (SERVICE_TYPES_USING_V6_SERVICES.includes(service.serviceType)) {
+          return Promise.resolve(service);
+        }
+
+        return $http
           .get(`${service.route.url}/serviceInfos`)
           .then(({ data }) => data)
-          .then(({ renew }) => Object.assign(service, { renew })),
+          .then(({ renew }) => Object.assign(service, { renew }));
+      },
       setReactivateEngagementStrategy: /* @ngInject */ (
         BillingService,
         endStrategies,
