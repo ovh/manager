@@ -96,15 +96,6 @@ export const TRACKING: Record<
       actionType: 'action',
     },
 
-    locationClick: {
-      actions: [
-        `${PageType.funnel}`,
-        `${ButtonType.button}`,
-        'advanced-configuration_ai_notebooks',
-      ],
-      actionType: 'action',
-    },
-
     orderClick: {
       actions: [
         `${PageType.funnel}`,

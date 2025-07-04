@@ -222,7 +222,6 @@ const OrderFunnel = ({
                           regions={model.lists.regions}
                           value={field.value}
                           onChange={(newRegion) => {
-                            trackClick(TRACKING.notebooksFunnel.locationClick);
                             model.form.setValue('region', newRegion);
                             model.form.setValue('volumes', []);
                           }}
