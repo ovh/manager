@@ -3,7 +3,17 @@ import kebabCase from 'lodash/kebabCase';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.update', {
     url: '/update?serviceId&serviceType',
-    component: 'billingAutorenewUpdate',
+    redirectTo: 'billing.autorenew.services.update',
+  });
+
+  $stateProvider.state('billing.autorenew.services.update', {
+    url: '/update?serviceId&serviceType',
+    views: {
+      modal: {
+        component: 'billingAutorenewUpdate',
+      },
+    },
+    layout: 'modal',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -24,7 +34,7 @@ export default /* @ngInject */ ($stateProvider) => {
       addPaymentMean: /* @ngInject */ ($state) => () =>
         $state.go('billing.payment.method.add'),
       /* @ngInject */
-      autorenewAgreements: (BillingAutoRenew) =>
+      autoRenewAgreements: (BillingAutoRenew) =>
         BillingAutoRenew.getAutorenewAgreements(),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>

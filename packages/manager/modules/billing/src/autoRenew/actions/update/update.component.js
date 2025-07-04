@@ -4,7 +4,7 @@ import template from './update.html';
 export default {
   bindings: {
     addPaymentMean: '<',
-    autorenewAgreements: '<',
+    autoRenewAgreements: '<',
     defaultPaymentMean: '<',
     goBack: '<',
     service: '<',
