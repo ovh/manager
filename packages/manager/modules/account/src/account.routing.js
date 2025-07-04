@@ -25,7 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return $q.resolve(false);
         },
-        kycStatus: /* @ngInject */ (getKycStatus) => getKycStatus(),
         currentUser: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
         rootState: () => 'app.configuration',
         breadcrumb: () => null,
