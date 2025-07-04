@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_ICON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
 
 type ChatDialogProps = {
   url: string;
@@ -12,6 +13,8 @@ type ChatDialogProps = {
   title: string;
   chatIFrame: React.MutableRefObject<HTMLIFrameElement>;
   showHeader?: boolean;
+  onClose?: () => void;
+  onReduce?: () => void;
 };
 
 /**
@@ -23,8 +26,11 @@ export default function ChatDialog({
   title,
   chatIFrame,
   showHeader = true,
+  onClose,
+  onReduce
 }: Readonly<ChatDialogProps>): JSX.Element {
   const chatDialog = useRef(null);
+  const { t } = useTranslation('livechat');
 
   useEffect(() => {
     if (chatDialog.current) {
@@ -65,10 +71,11 @@ export default function ChatDialog({
       )}
       {showHeader && (
         <div
-          className="sr-only xl:not-sr-only xl:h-16 xl:rounded-t-lg xl:flex justify-center items-center"
+          className="p-1 xl:rounded-t-lg flex justify-center items-center"
           style={{
             background:
               'radial-gradient(circle at bottom left, #000e9c, #00185e)',
+              height: '62px',
           }}
         >
           <OsdsText
@@ -82,6 +89,27 @@ export default function ChatDialog({
           </OsdsText>
         </div>
       )}
+      {/* Header overlay for chat interactions (reduce chat, close chat) */}
+      <div className='absolute top-0 right-0 p-2 h-[62px] flex items-center justify-end'>
+        {onReduce && <OsdsButton circle size={ODS_BUTTON_SIZE.sm} color={ODS_THEME_COLOR_INTENT.primary} onClick={onReduce} variant={ODS_BUTTON_VARIANT.ghost} contrasted>
+          <OsdsIcon
+            name={ODS_ICON_NAME.CHEVRON_DOWN}
+            size={ODS_ICON_SIZE.sm}
+            data-testid="live-chat-dialog-reduce-button"
+            aria-label={t('livechat_reduce')}
+            contrasted
+          />
+        </OsdsButton>}
+        {onClose &&  <OsdsButton circle size={ODS_BUTTON_SIZE.sm} color={ODS_THEME_COLOR_INTENT.primary} onClick={onClose} variant={ODS_BUTTON_VARIANT.ghost} contrasted>
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOSE}
+            size={ODS_ICON_SIZE.sm}
+            data-testid="live-chat-dialog-close-button"
+            aria-label={t('livechat_close')}
+            contrasted
+          />
+        </OsdsButton>}
+      </div>
       <iframe
         ref={chatIFrame}
         id="livechat-iframe"

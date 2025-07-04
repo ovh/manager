@@ -137,9 +137,7 @@ describe('LiveChat.component', {}, () => {
     );
     const { getByTestId } = render(<LiveChat closeLiveChat={closeLiveChat} />);
 
-    expect(getByTestId('live-chat-mobile-reduce-button')).toHaveClass(
-      'xl:hidden',
-    );
+    expect(getByTestId('live-chat-dialog-reduce-button')).toBeInTheDocument();
     expect(getByTestId('live-chat-desktop-reduce-button')).toHaveClass(
       'hidden xl:flex',
     );
