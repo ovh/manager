@@ -12,5 +12,12 @@
   "hostings_offer_performance_3": "Performance 3",
   "hostings_offer_performance_4": "Performance 4",
   "hosting_offer_changing_datavis_tool": "L'outil de visualisation des statistiques de votre hébergement web évolue et est temporairement indisponible. <a href=\"{{url}}\" target=\"_blank\">Consultez la page de maintenance</a> poursuivre la progression des travaux.",
-  "hosting_guides_general_information": "Informations générales"
+  "hosting_guides_general_information": "Informations générales",
+  "hosting_datagrid_description": "Créez votre projet web en quelques minutes. Publiez votre blog, votre site internet professionnel ou votre boutique en ligne avec nos hébergements évolutifs taillés pour tous vos projets.",
+  "hosting_databgrid_column_display_name": "Nom personnalisé du service",
+  "hosting_databgrid_column_offer": "Offre",
+  "hosting_databgrid_column_state": "Statut",
+  "hosting_databgrid_column_resource_type": "Type de ressource",
+  "hosting_databgrid_column_datacenter": "Localisation",
+  "hosting_databgrid_column_service_name": "Nom du service"
 }
