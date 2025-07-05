@@ -1,3 +1,11 @@
+<oui-message
+    class="mb-3"
+    data-ng-if="!$ctrl.dedicatedCloud.spla"
+    data-type="info"
+>
+    <span data-translate="vitualmachine_spla_disabled_information"></span>
+</oui-message>
+
 <div class="dedicatedCloud-datacenter-virtualmachines">
     <h2 data-translate="dedicatedCloud_tab_virtualmachine"></h2>
     <div class="text-center" data-ng-if="$ctrl.loading">
@@ -136,6 +144,7 @@
                 <oui-action-menu-item
                     data-ng-if="!$row.license && $row.allowEditLicense"
                     data-on-click="$ctrl.goToSetLicense($row)"
+                    data-disabled="!$ctrl.dedicatedCloud.spla"
                     ><span
                         data-translate="virtualmachine_action_activate_license"
                     >
