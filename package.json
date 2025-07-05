@@ -23,6 +23,7 @@
       "packages/manager/core/tests-setup",
       "packages/manager/modules/*",
       "packages/manager/tools/*",
+      "packages/manager/tools/static-analysis-kit",
       "packages/manager-cli",
       "packages/manager-react-components",
       "packages/manager-wiki"
