@@ -15,6 +15,7 @@ export default {
     terminateNode: '<',
     handleSuccess: '<',
     handleError: '<',
+    commercialRange: '<',
   },
   controller,
   template,

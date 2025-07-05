@@ -1,3 +1,7 @@
+import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+  PREFIX_TRACKING_NUTANIX_POPUP,
+} from '../../../../constants';
 import { NUTANIX_MULTIPLE_NODES_ORDER_FEATURE } from '../../../constants';
 import NodeExpressOrderLinkGenerator from '../../../node-express-order-link-generator';
 
@@ -44,6 +48,10 @@ export default /* @ngInject */ ($stateProvider) => {
               NUTANIX_MULTIPLE_NODES_ORDER_FEATURE,
             ),
           ),
+    },
+    atInternet: {
+      rename: `${PREFIX_TRACKING_NUTANIX_POPUP}::general-information::order-nodes`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     },
   });
 };
