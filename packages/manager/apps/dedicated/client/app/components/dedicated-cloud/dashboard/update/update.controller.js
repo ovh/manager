@@ -11,14 +11,6 @@ export default class {
     this.OvhApiMe = OvhApiMe;
   }
 
-  $onInit() {
-    this.hasSufficientRights =
-      this.currentUser.nichandle ===
-        this.currentService.serviceInfos.contactAdmin ||
-      this.currentUser.nichandle ===
-        this.currentService.serviceInfos.contactTech;
-  }
-
   getDisplayName(softwareVersion) {
     const solution = {
       displayName: this.$translate.instant(
