@@ -7,10 +7,12 @@ import {
   useVrackService,
   useVrackServicesList,
 } from '@ovh-ux/manager-network-common';
-import { DashboardLayout } from '@/components/layout-helpers';
+import {
+  DashboardLayout,
+  DashboardTabItemProps,
+} from '@/components/layout-helpers';
 import NotFound from '@/pages/not-found/404.page';
 import { urls } from '@/routes/routes.constants';
-import { DashboardTabItemProps } from '@/components/layout-helpers/layout-helpers.type';
 
 export default function DashboardWrapper() {
   const { t } = useTranslation('vrack-services/dashboard');
