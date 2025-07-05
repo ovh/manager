@@ -7,6 +7,7 @@ export const TRACKING_HITS = {
   ALIAS_TAB: `${TRACKING_TAB_PREFIX}::alias_ldp`,
   OPENSEARCH_DASHBOARDS: `${TRACKING_TAB_PREFIX}::opensearch-dashboard_ldp`,
   ROLES: `${TRACKING_TAB_PREFIX}::roles_ldp`,
+  IAM: `${TRACKING_TAB_PREFIX}::iam_ldp`,
   DATA_STREAM: `${TRACKING_TAB_PREFIX}::data-stream_ldp`,
   INDEX_TAB: `${TRACKING_TAB_PREFIX}::index_ldp`,
 };

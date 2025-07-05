@@ -1,9 +1,18 @@
+const redirectTo = (transition) =>
+  transition
+    .injector()
+    .getAsync('service')
+    .then(({ isIamEnabled }) =>
+      isIamEnabled ? 'dbaas-logs.detail.iam-policies' : false,
+    );
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs.detail.roles', {
     url: '/roles',
     views: {
       logsContent: 'dbaasLogsDetailRoles',
     },
+    redirectTo,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dbaas_logs_roles'),
