@@ -6,5 +6,6 @@
   "service_state_toDelete": "Zu löschen",
   "service_state_toSuspend": "Auszusetzen",
   "service_state_enabled": "Aktiviert",
-  "service_state_disabled": "Deaktiviert"
+  "service_state_disabled": "Deaktiviert",
+  "service_state_draft": "Zu konfigurieren"
 }
