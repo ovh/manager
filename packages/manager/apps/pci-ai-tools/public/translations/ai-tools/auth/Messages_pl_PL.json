@@ -8,6 +8,6 @@
   "formActiveUserToastSuccessTitle": "Gotowe",
   "formActiveUserToastSuccessDescription": "Twój projekt został uruchomiony",
   "authQuantumActivateProjectButton": "Aktywuj projekt kwantowy",
-  "authQuantumDescription": "Aby móc korzystać z usług kwantowych OVHcloud, należy się uwierzytelnić przed utworzeniem pierwszego emulatora.",
-  "quantumTitle": "Emulatory Kwantowe"
+  "authQuantumDescription": "Aby móc korzystać z usług kwantowych OVHcloud, zaloguj się przed utworzeniem pierwszego emulatora.",
+  "quantumTitle": "Emulatory kwantowe"
 }
