@@ -2,7 +2,10 @@ import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import {
+  DatagridColumn,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -69,7 +72,7 @@ export default function ComputeListingPage() {
       cell: ActionDeleteCell,
       isSortable: false,
     },
-  ];
+  ] as DatagridColumn<unknown>[];
 
   return (
     <>
