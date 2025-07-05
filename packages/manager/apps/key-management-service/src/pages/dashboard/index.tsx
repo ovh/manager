@@ -91,7 +91,7 @@ export default function DashboardPage() {
           ),
         },
       ].filter(Boolean),
-    [features, t],
+    [features, t, okmsId],
   );
 
   const breadcrumbItems: BreadcrumbItem[] = [
