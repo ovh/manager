@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMatches } from 'react-router-dom';
 import {
   OdsBreadcrumb,
@@ -18,6 +19,25 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
 ) => {
   const { t } = useTranslation(namespace);
   const matches = useMatches();
+  const { shell } = useContext(ShellContext);
+  const [href, setHref] = React.useState('');
+
+  React.useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const response = await shell.navigation.getURL('web', '/hosting', {});
+        setHref(response as string);
+      } catch (error) {
+        setHref('#');
+      }
+    };
+    fetchUrl();
+  }, []);
+
+  const rootItem = {
+    label: t('hosting'),
+    href,
+  };
 
   const items = useMemo(
     () =>
@@ -45,7 +65,7 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
 
   return (
     <OdsBreadcrumb data-testid="breadcrumb">
-      {items.map((item, index) => (
+      {[rootItem, ...items].map((item, index) => (
         <OdsBreadcrumbItem
           {...item}
           color={ODS_LINK_COLOR.primary}
