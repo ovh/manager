@@ -39,7 +39,7 @@ export default function SectigoModal() {
 
   return (
     <Modal
-      onOdsClose={closeModal}
+      onDismiss={closeModal}
       isOpen
       heading={t('order_ssl_certificate')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}

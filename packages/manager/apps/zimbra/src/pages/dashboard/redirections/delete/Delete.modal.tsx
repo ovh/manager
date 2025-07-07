@@ -10,10 +10,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@/components';
 import { useGenerateUrl } from '@/hooks';
 import {
   CANCEL,
@@ -97,22 +96,17 @@ export const DeleteOrganizationModal = () => {
 
   return (
     <Modal
+      type={ODS_MODAL_COLOR.critical}
+      heading={t('common:delete_redirection')}
       isOpen
-      color={ODS_MODAL_COLOR.critical}
-      title={t('common:delete_redirection')}
-      onClose={onClose}
-      secondaryButton={{
-        testid: 'cancel-btn',
-        label: t(`${NAMESPACES.ACTIONS}:cancel`),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'delete-btn',
-        label: t(`${NAMESPACES.ACTIONS}:delete`),
-        onClick: handleConfirmClick,
-        isLoading: isSending,
-      }}
-      isDismissible
+      onDismiss={onClose}
+      primaryLabel={t('common:delete')}
+      onPrimaryButtonClick={handleConfirmClick}
+      isPrimaryButtonLoading={isSending}
+      primaryButtonTestId="delete-btn"
+      secondaryLabel={t('common:cancel')}
+      onSecondaryButtonClick={handleCancelClick}
+      secondaryButtonTestId="cancel-btn"
     >
       <>
         <OdsText
