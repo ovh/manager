@@ -1,3 +1,4 @@
+import fs from 'fs';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi, expect, beforeEach } from 'vitest';
@@ -6,6 +7,11 @@ import { useTrustedZoneBanner } from '@ovh-ux/manager-pci-common';
 import Listing from './Listing';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { createWrapper } from '@/wrapperRenders';
+import { getDatagridColumns } from './datagrid-columns';
+
+vi.mock('./datagrid-columns', () => ({
+  getDatagridColumns: vi.fn(),
+}));
 
 vi.mock('@/hooks/useRedirectAfterProjectSelection', () => ({
   __esModule: true,
@@ -24,6 +30,19 @@ vi.mock('@/components/ManagerBannerText', () => ({
 
 const wrapper = createWrapper();
 
+const baseResourcesV6Mock = {
+  flattenData: undefined,
+  isError: false,
+  totalCount: 0,
+  hasNextPage: false,
+  fetchNextPage: vi.fn(),
+  isLoading: true,
+  setSorting: vi.fn(),
+  search: undefined,
+  sorting: undefined,
+  filters: undefined,
+};
+
 describe('listing page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -36,18 +55,9 @@ describe('listing page', () => {
     });
   });
 
-  it('displays loading spinner while main request are loading', () => {
+  it('displays datagrid skeleton while main request is loading', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
-      flattenData: undefined,
-      isError: false,
-      totalCount: 0,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-      isLoading: true,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      ...baseResourcesV6Mock,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -55,10 +65,18 @@ describe('listing page', () => {
       isLoading: false,
     });
 
+    vi.mocked(getDatagridColumns).mockReturnValue([
+      {
+        id: 'description',
+        label: 'Description',
+        cell: () => <div>Description</div>,
+      },
+    ]);
+
     render(<Listing />, { wrapper });
 
-    expect(screen.getByTestId('listing-spinner-container')).toBeInTheDocument();
-    expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
+    expect(screen.getByTestId('datagrid')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-row')).toBeInTheDocument();
   });
 
   it('displays error banner when there is an error', () => {
@@ -69,17 +87,10 @@ describe('listing page', () => {
     };
 
     vi.mocked(useResourcesV6).mockReturnValue(({
-      flattenData: undefined,
+      ...baseResourcesV6Mock,
       isError: true,
       error: errorMock,
-      totalCount: 0,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -94,16 +105,10 @@ describe('listing page', () => {
 
   it('displays datagrid when data is loaded', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -122,16 +127,10 @@ describe('listing page', () => {
 
   it('displays create project button when trusted zone is not visible and not loading', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -147,16 +146,10 @@ describe('listing page', () => {
 
   it('does not display create project button when trusted zone is visible', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -171,16 +164,10 @@ describe('listing page', () => {
 
   it('does not display create project button when trusted zone is loading', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -201,16 +188,10 @@ describe('listing page', () => {
     });
 
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -227,16 +208,8 @@ describe('listing page', () => {
 
   it('passes correct props to useResourcesV6', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
-      flattenData: [],
-      isError: false,
-      totalCount: 0,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
+      ...baseResourcesV6Mock,
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -260,16 +233,10 @@ describe('listing page', () => {
 
   it('renders with Suspense wrapper around Datagrid', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
@@ -284,16 +251,10 @@ describe('listing page', () => {
 
   it('passes TopbarCTA component to Datagrid', () => {
     vi.mocked(useResourcesV6).mockReturnValue(({
+      ...baseResourcesV6Mock,
       flattenData: [{ id: '1', name: 'Test Project' }],
-      isError: false,
-      totalCount: 1,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
       isLoading: false,
-      setSorting: vi.fn(),
-      search: undefined,
-      sorting: undefined,
-      filters: undefined,
+      totalCount: 1,
     } as unknown) as ReturnType<typeof useResourcesV6>);
 
     vi.mocked(useTrustedZoneBanner).mockReturnValue({
