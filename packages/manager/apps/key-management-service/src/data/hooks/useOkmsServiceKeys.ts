@@ -10,14 +10,14 @@ import {
   sortOkmsServiceKey,
 } from '../api/okmsServiceKey';
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsServiceKeyOptions,
 } from '@/types/okmsServiceKey.type';
 
 /* Service Key List */
 
 export const useAllOkmsServiceKeys = (okmsId: string) => {
-  return useQuery<{ data: OkmsAllServiceKeys[] }, ApiError>({
+  return useQuery<{ data: OkmsServiceKey[] }, ApiError>({
     queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
     queryFn: () => getListingOkmsServiceKey(okmsId),
     retry: false,
@@ -53,7 +53,7 @@ export const useOkmsServiceKeyById = ({
   okmsId: string;
   keyId: string;
 }) => {
-  return useQuery<{ data: OkmsAllServiceKeys }, ErrorResponse>({
+  return useQuery<{ data: OkmsServiceKey }, ErrorResponse>({
     queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
     queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),
     retry: false,
