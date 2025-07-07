@@ -305,6 +305,12 @@ export default class {
             serviceName: this.serviceName,
           }),
       },
+      upgrade: {
+        text: this.$translate.instant('vps_tab_veeam_upgrade_offer'),
+      },
+      downgrade: {
+        text: this.$translate.instant('vps_tab_veeam_downgrade_offer'),
+      },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
       },
@@ -315,9 +321,22 @@ export default class {
     }
   }
 
+  hasUpgradeVeeamAvailable() {
+    return this.VpsService.autoBackupUpgradeAvailable(this.serviceName)
+      .then((data) => !!data.upgradeAvailable)
+      .catch(() => false);
+  }
+
   backupList() {
-    this.VpsService.getTabVeeam(this.serviceName, 'available').then(
-      (backups) => {
+    this.$q
+      .all({
+        automatedBackupInfo: this.VpsService.getVeeamInfo(this.serviceName),
+        backups: this.VpsService.getTabVeeam(this.serviceName, 'available'),
+        hasUpgradeVeeamAvailable: this.hasUpgradeVeeamAvailable(),
+      })
+      .then(({ automatedBackupInfo, backups, hasUpgradeVeeamAvailable }) => {
+        this.isPremiumBackup = automatedBackupInfo.rotation > 1;
+        this.canUpgradeOrDowngradeVeeam = hasUpgradeVeeamAvailable;
         this.lastBackup =
           backups[0] &&
           `${this.$translate.instant(
@@ -325,8 +344,7 @@ export default class {
           )} ${moment(backups[0])
             .utc()
             .format('LLL')}`;
-      },
-    );
+      });
   }
 
   initOptionsActions() {
