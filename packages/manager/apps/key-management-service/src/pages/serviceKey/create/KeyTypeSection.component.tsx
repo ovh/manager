@@ -19,7 +19,7 @@ import {
 import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
-  OkmsServiceKeyTypeECCurve,
+  OkmsServiceKeyCurve,
   OkmsServiceKeySize,
 } from '@/types/okmsServiceKey.type';
 import { useOkmsServiceKeyReference } from '@/data/hooks/useOkmsReferenceServiceKey';
@@ -33,8 +33,8 @@ export type KeyTypeSectionProps = {
   setKeyType: (keyType: OkmsKeyTypes | undefined) => void;
   keySize: OkmsServiceKeySize | undefined;
   setKeySize: (keySize: OkmsServiceKeySize | undefined) => void;
-  keyCurve: OkmsServiceKeyTypeECCurve | undefined;
-  setKeyCurve: (keyCurve: OkmsServiceKeyTypeECCurve | undefined) => void;
+  keyCurve: OkmsServiceKeyCurve | undefined;
+  setKeyCurve: (keyCurve: OkmsServiceKeyCurve | undefined) => void;
 };
 
 export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
@@ -176,8 +176,7 @@ export const KeyTypeSection: React.FC<KeyTypeSectionProps> = ({
             name="keyCurve"
             value={keyCurve}
             onOdsChange={(event) => {
-              const newKeyCurve = event.detail
-                .value as OkmsServiceKeyTypeECCurve;
+              const newKeyCurve = event.detail.value as OkmsServiceKeyCurve;
               if (newKeyCurve) setKeyCurve(newKeyCurve);
             }}
           >

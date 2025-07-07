@@ -16,7 +16,7 @@ import {
   PageLocation,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsKeyTypes,
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
@@ -25,7 +25,7 @@ import { OKMS } from '@/types/okms.type';
 
 type ServiceKeyStateActionsProps = {
   okms: OKMS;
-  okmsKey: OkmsAllServiceKeys;
+  okmsKey: OkmsServiceKey;
 };
 
 const ActionsIcons = [

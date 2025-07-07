@@ -8,10 +8,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { ServiceKeyOperations } from '@/components/serviceKey/serviceKeyOperations/serviceKeyOperations.component';
 import { ServiceKeyType } from '@/components/serviceKey/serviceKeyType/serviceKeyType.component';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 
 type CryptoPropertiesTileProps = {
-  serviceKey: OkmsAllServiceKeys;
+  serviceKey: OkmsServiceKey;
 };
 
 export const CryptoPropertiesTile = ({

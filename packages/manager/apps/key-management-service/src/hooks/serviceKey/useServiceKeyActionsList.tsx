@@ -15,7 +15,7 @@ import { useDeleteOkmsServiceKey } from '@/data/hooks/useDeleteOkmsServiceKey';
 import { useUpdateOkmsServiceKey } from '@/data/hooks/useUpdateOkmsServiceKey';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsKeyTypes,
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
@@ -24,7 +24,7 @@ import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 const useServiceKeyActionsList = (
   okms: OKMS,
-  okmsKey: OkmsAllServiceKeys,
+  okmsKey: OkmsServiceKey,
   isListMode?: boolean,
 ) => {
   const { t } = useTranslation('key-management-service/serviceKeys');

@@ -1,7 +1,7 @@
 import {
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
-  OkmsServiceKeyTypeECCurve,
+  OkmsServiceKeyCurve,
   OkmsServiceKeyTypeOctSize,
   OkmsServiceKeyTypeRSASize,
 } from './okmsServiceKey.type';
@@ -13,7 +13,7 @@ export type OkmsServiceKeyReferenceSize = {
 
 export type OkmsServiceKeyReferenceCurve = {
   default: boolean;
-  value: OkmsServiceKeyTypeECCurve;
+  value: OkmsServiceKeyCurve;
 };
 
 export type OkmsServiceKeyReferenceOperations = {
