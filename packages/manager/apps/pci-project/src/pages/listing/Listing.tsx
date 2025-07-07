@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
+import { useHref, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -19,8 +20,6 @@ import {
   PciTrustedZoneBanner,
   useTrustedZoneBanner,
 } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Outlet } from 'react-router-dom';
 import { getDatagridColumns } from './datagrid-columns';
 import {
   getProjectsWithServices,
@@ -28,7 +27,7 @@ import {
 } from '@/data/api/projects-with-services';
 import ManagerBannerText from '@/components/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
-import { BASE_PROJECT_PATH } from '@/constants';
+import { urls } from '@/routes/routes.constant';
 
 type ErrorResponse = {
   response?: {
@@ -39,9 +38,7 @@ type ErrorResponse = {
 
 export default function Listing() {
   const { t } = useTranslation('listing');
-  const {
-    shell: { navigation },
-  } = useContext(ShellContext);
+  const projectPath = useHref(`${urls.root}/${urls.project}`);
 
   const {
     redirectUrl,
@@ -53,11 +50,8 @@ export default function Listing() {
     if (isRedirectRequired) {
       return redirectUrl(projectId);
     }
-    return navigation
-      .getURL('public-cloud', BASE_PROJECT_PATH, {
-        projectId,
-      })
-      .then((url) => url as string);
+
+    return Promise.resolve(projectPath.replace(':projectId', projectId));
   };
 
   const columns = getDatagridColumns(t, getProjectUrl);
@@ -106,22 +100,11 @@ export default function Listing() {
     return <ErrorBanner error={errorObj} />;
   }
 
-  if (isLoading && !flattenData) {
-    return (
-      <div
-        className="flex justify-center"
-        data-testid="listing-spinner-container"
-      >
-        <OdsSpinner />
-      </div>
-    );
-  }
-
   const header = {
     title: t('pci_projects'),
   };
 
-  const TopbarCTA = () => (
+  const TopBarCTA = (
     <div>
       {!isTrustedZoneLoading && !isTrustedZone && (
         <OdsButton
@@ -142,7 +125,7 @@ export default function Listing() {
         <PciTrustedZoneBanner />
       </div>
 
-      <React.Suspense>
+      <Suspense>
         {columns && (
           <Datagrid
             columns={columns}
@@ -155,10 +138,10 @@ export default function Listing() {
             isLoading={isLoading}
             filters={filters}
             search={search}
-            topbar={<TopbarCTA />}
+            topbar={TopBarCTA}
           />
         )}
-      </React.Suspense>
+      </Suspense>
 
       <Outlet />
     </BaseLayout>

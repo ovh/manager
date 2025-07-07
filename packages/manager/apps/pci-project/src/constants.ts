@@ -1,3 +1,5 @@
+import { urls } from '@/routes/routes.constant';
+
 export const FEATURE_AVAILABILITY = {
   SAVINGS_PLAN: 'pci-savings-plan',
   DATABASES_ANALYTICS: 'pci-databases-analytics',
@@ -24,7 +26,7 @@ export type TFeatureState = {
   };
 };
 
-export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
+export const BASE_PROJECT_PATH = `#${urls.root}/${urls.project}`;
 
 export const PCI_FEATURES_STATES: TFeatureState = {
   DATAPLATFORM: {
