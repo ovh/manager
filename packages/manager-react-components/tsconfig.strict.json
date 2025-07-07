@@ -22,7 +22,8 @@
     "./src/components/service-state-badge/*",
     "./src/components/badge/*",
     "./src/hooks/services/services.type.ts",
-    "./src/enumTypes/*"
+    "./src/enumTypes/*",
+    "./src/components/step/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
