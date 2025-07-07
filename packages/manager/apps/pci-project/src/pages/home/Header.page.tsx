@@ -45,7 +45,7 @@ export default function ProjectHeader() {
     >
       <header className="flex items-center justify-between w-full">
         <div className="flex items-center gap-4">
-          <Title className="">{projectDescription}</Title>
+          <Title>{projectDescription}</Title>
           <OdsBadge className="mb-7" label={t('common:discovery_mode')} />
         </div>
         <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />
