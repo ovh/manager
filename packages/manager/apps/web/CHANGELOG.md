@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.15.1...@ovh-ux/manager-web@19.16.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **web.zone:** check if mailing list tab is available ([4d717b3](https://github.com/ovh/manager/commit/4d717b32bc14781bd27c518e0df22ca037ce71fa)), closes [#MANAGER-18899](https://github.com/ovh/manager/issues/MANAGER-18899)
+
+
+### Features
+
+* **web.private-database:** add and update translate for datacenter name ([5c6e121](https://github.com/ovh/manager/commit/5c6e121820f3b12e29350d5c5bc0438efc250fd9)), closes [#MANAGER-17622](https://github.com/ovh/manager/issues/MANAGER-17622)
+
+
+
+
+
 ## [19.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.15.0...@ovh-ux/manager-web@19.15.1) (2025-07-04)
 
 
