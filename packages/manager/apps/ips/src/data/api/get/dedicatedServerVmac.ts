@@ -1,4 +1,8 @@
-import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import apiClient, {
+  ApiResponse,
+  IcebergFetchResultV6,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 
 export type GetDedicatedServerVmacParams = {
   serviceName: string;
@@ -8,6 +12,12 @@ export enum MacAddressTypeEnum {
   OVH = 'ovh',
   VMWARE = 'vmware',
 }
+
+export type VirtualMac = {
+  type: string;
+  vmacName: string;
+  vmac: string;
+};
 
 export type DedicatedServerVmacType = {
   macAddress: string;
@@ -29,3 +39,13 @@ export const getdedicatedServerVmac = async (
     )}/virtualMac`,
     page: 1,
   });
+
+export type ServerModelsType = {
+  data: any;
+};
+
+export const getServerModelsQueryKey = () => [`get/dedicated/server.json`];
+
+export const getServerModels = async (): Promise<ApiResponse<
+  ServerModelsType
+>> => apiClient.v6.get<ServerModelsType>(`/dedicated/server.json`);
