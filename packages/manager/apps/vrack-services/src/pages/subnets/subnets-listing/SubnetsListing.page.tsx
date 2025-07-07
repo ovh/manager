@@ -15,10 +15,11 @@ import { SubnetDatagrid } from './SubnetDatagrid.component';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 import { urls } from '@/routes/routes.constants';
 import { hasSubnet } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function SubnetsListing() {
   const { id } = useParams();
-  const { t } = useTranslation('vrack-services/subnets');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();
 
   const { data: vs } = useVrackService();

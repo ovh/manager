@@ -11,6 +11,7 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type SubnetsActionCellProps = {
   vs: VrackServicesWithIAM;
@@ -22,7 +23,7 @@ export const SubnetsActionCell: React.FC<SubnetsActionCellProps> = ({
   cidr,
 }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation('vrack-services/subnets');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const { trackClick } = useOvhTracking();
   const disabled = !isEditable(vs);
 
