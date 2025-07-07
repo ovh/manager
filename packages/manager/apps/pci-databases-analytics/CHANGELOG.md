@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.3...@ovh-ux/manager-pci-databases-analytics-app@1.23.0) (2025-07-07)
+
+
+### Features
+
+* **pci-databases-analytics:** change pricing for beta offer and remove old pricing format ([490ee92](https://github.com/ovh/manager/commit/490ee9237f88afdb41898fdb4a36de83c9125d0b)), closes [#DATATR-2234](https://github.com/ovh/manager/issues/DATATR-2234) [#DATATR-2284](https://github.com/ovh/manager/issues/DATATR-2284)
+
+
+
+
+
 ## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.2...@ovh-ux/manager-pci-databases-analytics-app@1.22.3) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
