@@ -5,6 +5,7 @@
   },
   "include": [
     // Add you components migrated here
+    "./src/components/wrap/Wrap.component.tsx"
   ],
   "exclude": [
     "./src/hooks/*",
