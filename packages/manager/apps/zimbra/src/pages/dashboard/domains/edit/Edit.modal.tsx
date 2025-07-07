@@ -12,7 +12,7 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import {
@@ -27,7 +27,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomain, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { getZimbraPlatformDomainsQueryKey, putZimbraDomain } from '@/data/api';
-import { Modal } from '@/components';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constants';
 import { EditDomainSchema, editDomainSchema } from '@/utils';
@@ -141,25 +140,20 @@ export const EditDomainModal = () => {
 
   return (
     <Modal
-      title={t('common:edit_domain')}
-      color={ODS_MODAL_COLOR.information}
-      onClose={onClose}
+      heading={t('common:edit_domain')}
+      type={ODS_MODAL_COLOR.information}
+      onDismiss={onClose}
       isOpen
-      isDismissible
       isLoading={isLoadingDomain || isLoadingOrganizations}
       ref={modalRef}
-      primaryButton={{
-        label: t(`${NAMESPACES.ACTIONS}:confirm`),
-        onClick: handleSubmit(handleConfirmClick),
-        isDisabled: !isDirty || !isValid,
-        isLoading: isSending,
-        testid: 'edit-btn',
-      }}
-      secondaryButton={{
-        label: t(`${NAMESPACES.ACTIONS}:cancel`),
-        onClick: handleCancelClick,
-        testid: 'cancel-btn',
-      }}
+      primaryLabel={t('common:confirm')}
+      primaryButtonTestId="edit-btn"
+      isPrimaryButtonLoading={isSending}
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
+      secondaryLabel={t('common:cancel')}
+      secondaryButtonTestId="cancel-btn"
+      onSecondaryButtonClick={handleCancelClick}
     >
       <form
         className="flex flex-col gap-4"
