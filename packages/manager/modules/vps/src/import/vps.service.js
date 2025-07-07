@@ -1444,4 +1444,43 @@ export default /* @ngInject */ function VpsService(
       .then(({ data }) => data?.resource?.product?.name.includes('-resell'))
       .catch(() => false);
   };
+
+  this.autoBackupUpgradeAvailable = function autoBackupUpgradeAvailable(
+    serviceName,
+  ) {
+    return $http
+      .get(`/services`, {
+        params: { resourceName: `${serviceName}-autobackup` },
+      })
+      .then(({ data }) => {
+        return data.length > 0
+          ? $http
+              .get(`/services/${data[0]}/upgrade`)
+              .then(({ data: upgradeAvailable }) => ({
+                serviceOptionId: data[0],
+                upgradeAvailable: upgradeAvailable?.[0],
+              }))
+          : null;
+      });
+  };
+
+  this.servicesUpgradeSimulate = function servicesUpgradeSimulate(
+    serviceId,
+    planCode,
+    params,
+  ) {
+    return $http
+      .post(`/services/${serviceId}/upgrade/${planCode}/simulate`, params)
+      .then(({ data }) => data);
+  };
+
+  this.servicesUpgradeExecute = function servicesUpgradeExecute(
+    serviceId,
+    planCode,
+    params,
+  ) {
+    return $http
+      .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
+      .then(({ data }) => data);
+  };
 }

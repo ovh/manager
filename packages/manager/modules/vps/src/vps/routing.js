@@ -59,7 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return tabSummary.ftpBackup?.optionActivated || !isVpsNewRange;
       },
       isVpsNewRange: /* @ngInject */ (stateVps) =>
-        stateVps.model.version === NEW_RANGE_VERSION &&
+        NEW_RANGE_VERSION.includes(stateVps.model.version) &&
         !~stateVps.model.name.indexOf(RANGES.BESTVALUE),
       plan: /* @ngInject */ (serviceInfo) => ({
         ...serviceInfo,
