@@ -7,7 +7,7 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -18,7 +18,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useAccount } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { Modal } from '@/components';
 import {
   deleteZimbraPlatformAccount,
   getZimbraPlatformListQueryKey,
@@ -100,22 +99,17 @@ export const DeleteEmailAccountModal = () => {
 
   return (
     <Modal
-      title={t('common:delete_email_account')}
-      color={ODS_MODAL_COLOR.critical}
-      onClose={onClose}
+      heading={t('common:delete_email_account')}
+      type={ODS_MODAL_COLOR.critical}
+      onDismiss={onClose}
       isLoading={isLoading}
-      isDismissible
       isOpen
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        label: t('common:delete'),
-        onClick: step === 1 ? () => setStep(2) : handleDeleteClick,
-        isLoading: step === 1 ? false : isSending,
-        testid: 'primary-btn',
-      }}
+      primaryLabel={t('common:delete')}
+      isPrimaryButtonLoading={step === 1 ? false : isSending}
+      onPrimaryButtonClick={step === 1 ? () => setStep(2) : handleDeleteClick}
+      primaryButtonTestId="primary-btn"
+      secondaryLabel={t('common:cancel')}
+      onSecondaryButtonClick={handleCancelClick}
     >
       <>
         {step === 1 && (
