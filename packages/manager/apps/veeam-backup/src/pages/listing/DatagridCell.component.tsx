@@ -1,57 +1,54 @@
 import React from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { useNavigate } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 import {
   ActionMenu,
   DataGridTextCell,
-  DateFormat,
   LinkType,
   Links,
   Region,
-  useFormattedDate,
+  useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
-  VeeamBackup,
   getOrganizationDisplayName,
-  getOrganizationIdFromBackup,
   useOrganization,
-  getVeeamBackupDisplayName,
-  getRegionNameFromAzName,
 } from '@ovh-ux/manager-module-vcd-api';
 import { vcdOrganizationAppName } from '@/veeam-backup.config';
 import { urls } from '@/routes/routes.constant';
 import TEST_IDS from '@/utils/testIds.constants';
+import { VeeamBackupDatagrid } from './Listing.page';
 
-export const DisplayNameCell = (backup: VeeamBackup): JSX.Element => {
-  const navigate = useNavigate();
+export const DisplayNameCell = ({
+  id,
+  name,
+}: VeeamBackupDatagrid): JSX.Element => {
+  const href = useHref(urls.dashboard.replace(':id', id));
   return (
     <DataGridTextCell>
       <OdsLink
-        label={getVeeamBackupDisplayName(backup)}
-        onClick={() => navigate(urls.dashboard.replace(':id', backup.id))}
-        href={undefined}
+        label={name}
+        href={href}
         data-testid={TEST_IDS.listingBackupLink}
       />
     </DataGridTextCell>
   );
 };
 
-export const OvhRefCell = ({ id }: VeeamBackup) => (
+export const OvhRefCell = ({ id }: VeeamBackupDatagrid) => (
   <DataGridTextCell>{id}</DataGridTextCell>
 );
 
 export const OrganizationCell = ({
   withLink,
   className,
-  ...backup
-}: VeeamBackup & {
+  organizationId,
+}: Pick<VeeamBackupDatagrid, 'organizationId'> & {
   className?: string;
   withLink?: boolean;
 }): JSX.Element => {
-  const organizationId = getOrganizationIdFromBackup(backup);
   const { isLoading, data } = useOrganization(organizationId);
   const { shell } = React.useContext(ShellContext);
   const [href, setHref] = React.useState('');
@@ -72,7 +69,7 @@ export const OrganizationCell = ({
   return withLink ? (
     <Links
       className={className}
-      href={href}
+      href={(href as string) ?? ''}
       type={LinkType.next}
       label={value}
     />
@@ -81,33 +78,40 @@ export const OrganizationCell = ({
   );
 };
 
-export const RegionCell = ({ currentState }: VeeamBackup): JSX.Element => (
+export const RegionCell = ({ location }: VeeamBackupDatagrid): JSX.Element => (
+  <DataGridTextCell>{location}</DataGridTextCell>
+);
+
+export const LocationCell = ({
+  location,
+}: VeeamBackupDatagrid): JSX.Element => (
   <DataGridTextCell>
-    {getRegionNameFromAzName(currentState.azName)}
+    <Region mode="region" name={location} />
   </DataGridTextCell>
 );
 
-export const LocationCell = ({ currentState }: VeeamBackup): JSX.Element => (
-  <DataGridTextCell>
-    <Region mode="region" name={getRegionNameFromAzName(currentState.azName)} />
-  </DataGridTextCell>
-);
-
-export const CreatedAtCell = ({ createdAt }: VeeamBackup): JSX.Element => {
-  const date = useFormattedDate({
-    dateString: createdAt,
-    format: DateFormat.compact,
-  });
-  return <DataGridTextCell>{date}</DataGridTextCell>;
+export const CreatedAtCell = ({
+  createdAt,
+}: VeeamBackupDatagrid): JSX.Element => {
+  const formatDate = useFormatDate();
+  return (
+    <DataGridTextCell>
+      {formatDate({ date: createdAt, format: 'P' })}
+    </DataGridTextCell>
+  );
 };
 
-export const ActionCell = (backup: VeeamBackup): JSX.Element => {
+export const ActionCell = ({
+  id,
+  iam,
+  resourceStatus,
+}: VeeamBackupDatagrid): JSX.Element => {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
 
   return (
     <ActionMenu
-      id={`backup_menu_${backup.id}`}
+      id={`backup_menu_${id}`}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       items={[
@@ -115,13 +119,13 @@ export const ActionCell = (backup: VeeamBackup): JSX.Element => {
           id: 1,
           label: t('delete_action'),
           color: ODS_BUTTON_COLOR.critical,
-          isDisabled: backup.resourceStatus !== 'READY',
-          urn: backup.iam.urn,
+          isDisabled: resourceStatus !== 'READY',
+          urn: iam.urn,
           // Not implemented yet in IAM
           iamActions: [
             /* iamActions.terminateService */
           ],
-          onClick: () => navigate(urls.deleteVeeam.replace(':id', backup.id)),
+          onClick: () => navigate(urls.deleteVeeam.replace(':id', id)),
         },
       ]}
     />

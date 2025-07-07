@@ -19,7 +19,9 @@ const colorByStatus: { [s in ResourceStatus]: OdsBadgeColor } = {
 export const BackupStatusBadge = ({
   resourceStatus,
   className,
-}: VeeamBackup & { className?: string }): JSX.Element => {
+}: Pick<VeeamBackup, 'resourceStatus'> & {
+  className?: string;
+}): JSX.Element => {
   const { t } = useTranslation('veeam-backup');
 
   return (

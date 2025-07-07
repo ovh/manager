@@ -12,6 +12,7 @@ import {
   HeadersProps,
 } from '@ovh-ux/manager-react-components';
 import {
+  getOrganizationIdFromBackup,
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
   useVeeamBackup,
@@ -91,7 +92,7 @@ export default function DashboardPage() {
                     <OrganizationCell
                       className="mt-4"
                       withLink
-                      {...data?.data}
+                      organizationId={getOrganizationIdFromBackup(data?.data)}
                     />
                   ),
                 },
