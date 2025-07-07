@@ -1,45 +1,143 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { StepComponent } from '@ovh-ux/manager-react-components';
+import { Step, StepProps } from '@ovh-ux/manager-react-components';
 
-const meta: Meta = {
-  title: 'Manager React Components/Components/Step',
-  component: StepComponent,
-  parameters: {
-    docs: {
-      description: {
-        component: 'This is an interactive step component.',
-      },
+const renderComponent = ({
+  order,
+  title,
+  subtitle,
+  open,
+  checked,
+  locked,
+  next,
+  edit,
+  skip,
+}) => {
+  return (
+    <Step
+      order={order}
+      title={title}
+      subtitle={subtitle}
+      open={open}
+      checked={checked}
+      locked={locked}
+      next={next}
+      edit={edit}
+      skip={skip}
+    >
+      <OdsText preset="span">Hello world!!!!</OdsText>
+    </Step>
+  );
+};
+
+export const Default = {
+  args: {
+    order: 1,
+    title: 'Title',
+    subtitle: '',
+    open: true,
+    checked: false,
+    locked: false,
+    next: {
+      action: (_id: string) => {},
+      label: 'Next',
+      disabled: false,
+    },
+    edit: {
+      action: (_id: string) => {},
+      label: 'Edit',
+      disabled: false,
     },
   },
 };
 
-export default meta;
+const StepStory: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+};
 
-const Template: any = (args) => (
-  <StepComponent {...args}>
-    <OdsText preset="span">Hello world</OdsText>
-  </StepComponent>
-);
-
-export const Demo = Template.bind({});
-
-Demo.args = {
-  order: 1,
-  title: 'Title',
-  subtitle: '',
-  isOpen: true,
-  isChecked: false,
-  isLocked: false,
-  next: {
-    action: (_id: string) => {},
-    label: 'Next',
-    isDisabled: false,
-  },
-  edit: {
-    action: (_id: string) => {},
-    label: 'Edit',
-    isDisabled: false,
+export const Checked: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    checked: true,
   },
 };
+
+export const CheckedAndLocked: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    checked: true,
+    locked: true,
+  },
+};
+
+export const CheckedAndLockedWithoutEdit: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    checked: true,
+    locked: true,
+    edit: {
+      action: (_id: string) => {},
+      label: 'Edit',
+      disabled: true,
+    },
+  },
+};
+
+export const Closed: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    checked: true,
+    open: false,
+    locked: true,
+  },
+};
+
+export const UncheckedAndClosed: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    checked: false,
+    open: false,
+    locked: true,
+  },
+};
+
+export const NextButtonDisabled: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    next: {
+      action: (_id: string) => {},
+      label: 'Next',
+      disabled: true,
+    },
+  },
+};
+
+export const Skip: Meta<StepProps> = {
+  title: 'Manager React Components/Components/Step',
+  render: renderComponent,
+  args: {
+    ...Default.args,
+    skip: {
+      action: (_id: string) => {},
+      label: 'Skip',
+      disabled: false,
+      hint: '(Optional)',
+    },
+  },
+};
+
+export default StepStory;
