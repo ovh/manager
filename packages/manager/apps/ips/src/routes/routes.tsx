@@ -95,6 +95,19 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                id: subRoutes.addVirtualMac,
+                path: urls.addVirtualMac,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/addVirtualMac/addVirtualMac.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-add-virtual-mac',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
