@@ -14,7 +14,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
-import Navigation from './Navigation.page';
+import Navigation from './Navigation.component';
 import { urls } from '@/routes/routes.constant';
 import FullPageSpinner from '@/components/FullPageSpinner';
 
