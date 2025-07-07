@@ -8,12 +8,12 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OrganizationItem } from './Organizations.page';
 import { useGenerateUrl } from '@/hooks';
 import { usePlatform } from '@/data/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/data/api';
 import { DELETE_ORGANIZATION, EDIT_ORGANIZATION } from '@/tracking.constants';
+import { OrganizationItem } from './Organizations.types';
 
 interface ActionButtonOrganizationProps {
   item: OrganizationItem;

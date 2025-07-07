@@ -128,7 +128,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
 
   if (
     availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
-    item?.service?.planCode === ZimbraPlanCodes.ZIMBRA_STARTER &&
+    item?.service?.planCode !== ZimbraPlanCodes.ZIMBRA_PRO &&
     proCount < MAX_PRO_ACCOUNTS
   ) {
     actionItems.push({

@@ -11,12 +11,12 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { AliasItem } from './Aliases.page';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ResourceStatus } from '@/data/api';
 import { EMAIL_ACCOUNT_DELETE_ALIAS } from '@/tracking.constants';
+import { AliasItem } from './Aliases.types';
 
 interface ActionButtonAliasAccountProps {
   item: AliasItem;
