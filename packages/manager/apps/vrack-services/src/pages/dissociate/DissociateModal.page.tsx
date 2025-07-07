@@ -31,6 +31,7 @@ import { MessagesContext } from '@/components/feedback-messages/Messages.context
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,
@@ -44,7 +45,7 @@ export default function DissociateModal() {
   const { data: vs } = useVrackService();
   const navigate = useNavigate();
   const { t } = useTranslation([
-    'vrack-services/dissociate',
+    TRANSLATION_NAMESPACES.dissociate,
     NAMESPACES.ACTIONS,
   ]);
   const { trackClick, trackPage } = useOvhTracking();

@@ -34,6 +34,7 @@ import { DeliveringMessages } from '@/components/feedback-messages/DeliveringMes
 import { MessagesContext } from './feedback-messages/Messages.context';
 import { LoadingText } from './LoadingText.component';
 import { OrderSubmitModalContent } from './OrderSubmitModalContent.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const trackingParams = {
   location: PageLocation.popup,
@@ -46,7 +47,7 @@ export type CreateVrackProps = {
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation([
-    'vrack-services/create-vrack',
+    TRANSLATION_NAMESPACES.createVrack,
     NAMESPACES.ACTIONS,
   ]);
   const queryClient = useQueryClient();

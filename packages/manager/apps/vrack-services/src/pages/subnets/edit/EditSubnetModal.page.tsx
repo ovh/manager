@@ -41,6 +41,7 @@ import {
   getSubnetFromCidr,
   isValidVlanNumber,
 } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sharedTrackingParams = {
   location: PageLocation.popup,
@@ -50,7 +51,10 @@ const sharedTrackingParams = {
 export default function EditSubnetModal() {
   const { id, cidr } = useParams();
   const subnetCidr = cidr?.replace('_', '/');
-  const { t } = useTranslation(['vrack-services/subnets', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.subnets,
+    NAMESPACES.ACTIONS,
+  ]);
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackClick, trackPage } = useOvhTracking();
   const [newCidr, setNewCidr] = React.useState('');

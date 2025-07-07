@@ -8,3 +8,17 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
   'feature-request':
     'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
+
+export const TRANSLATION_NAMESPACES = {
+  regionSelector: 'region-selector',
+  associate: 'vrack-services/associate',
+  create: 'vrack-services/create',
+  createVrack: 'vrack-services/create-vrack',
+  dashboard: 'vrack-services/dashboard',
+  dissociate: 'vrack-services/dissociate',
+  endpoints: 'vrack-services/endpoints',
+  listing: 'vrack-services/listing',
+  onboarding: 'vrack-services/onboarding',
+  subnets: 'vrack-services/subnets',
+  common: 'vrack-services',
+};

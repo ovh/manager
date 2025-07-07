@@ -8,6 +8,7 @@ import {
   isRegionInUs,
   isRegionInAp,
 } from './region-selector.utils';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type RegionTabsProps = {
   regionList?: string[];
@@ -28,7 +29,7 @@ export const RegionTabs: React.FC<RegionTabsProps> = ({
   setApFilter,
   removeFilter,
 }) => {
-  const { t } = useTranslation('region-selector');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.regionSelector);
   const hasEu = regionList.some(isRegionInEu);
   const hasCa = regionList.some(isRegionInCa);
   const hasUs = regionList.some(isRegionInUs);

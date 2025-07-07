@@ -9,10 +9,11 @@ import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
 import { RegionFormField } from './RegionFormField.component';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { urls } from '@/routes/routes.constants';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function CreateVrackServicesPage() {
   const [selectedRegion, setSelectedRegion] = React.useState('');
-  const { t } = useTranslation('vrack-services/create');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.create);
   const navigate = useNavigate();
   const { data: features, isSuccess } = useFeatureAvailability([
     'vrack-services:order',

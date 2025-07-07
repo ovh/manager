@@ -36,10 +36,10 @@ import { DeliveringMessages } from '@/components/feedback-messages/DeliveringMes
 import { betaVrackServicesLimit } from './listing.constants';
 import { urls } from '@/routes/routes.constants';
 import { SuccessMessages } from '@/components/feedback-messages/SuccessMessage.component';
-import { CHANGELOG_LINKS } from '@/utils/constants';
+import { CHANGELOG_LINKS, TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function Listing() {
-  const { t } = useTranslation('vrack-services/listing');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { state } = useLocation();

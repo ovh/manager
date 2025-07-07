@@ -29,6 +29,7 @@ import { useCreateVrackServicesCart } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
 import { OrderSubmitModalContent } from '@/components/OrderSubmitModalContent.component';
 import { urls } from '@/routes/routes.constants';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const trackingParams: TrackingClickParams = {
   buttonType: ButtonType.button,
@@ -40,7 +41,10 @@ export default function CreateConfirmModal() {
     boolean
   >(false);
   const [hasVrackOrderAsked, setHasVrackOrderAsked] = useState<boolean>(false);
-  const { t } = useTranslation(['vrack-services/create', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.create,
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
   const { region } = useParams();
   const { environment } = React.useContext(ShellContext);

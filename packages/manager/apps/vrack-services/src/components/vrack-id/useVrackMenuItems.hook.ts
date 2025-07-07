@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type UseVrackMenuItemsParams = {
   vs: VrackServicesWithIAM;
@@ -19,7 +20,7 @@ export const useVrackMenuItems = ({
   vs,
   isListing,
 }: UseVrackMenuItemsParams): ActionMenuItem[] => {
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const { trackClick } = useOvhTracking();
   const editable = isEditable(vs);
   const navigate = useNavigate();

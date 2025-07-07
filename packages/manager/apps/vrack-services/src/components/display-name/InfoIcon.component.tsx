@@ -16,6 +16,7 @@ import {
   VrackServicesWithIAM,
 } from '@ovh-ux/manager-network-common';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type InfoInconProps = {
   className?: string;
@@ -23,7 +24,7 @@ export type InfoInconProps = {
 };
 
 export const InfoIcon: React.FC<InfoInconProps> = ({ className, vs }) => {
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const displayName = getDisplayName(vs);
 
   if (vs.resourceStatus === VrackServicesResourceStatus.READY) {

@@ -6,9 +6,10 @@ import { PageLayout, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 import { hasSubnet, isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function EndpointsOnboarding() {
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { data: vrackServices } = useVrackService();
   const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 
