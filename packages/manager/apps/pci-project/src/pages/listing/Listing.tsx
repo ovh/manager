@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useHref, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -125,7 +125,7 @@ export default function Listing() {
         <PciTrustedZoneBanner />
       </div>
 
-      <React.Suspense>
+      <Suspense>
         {columns && (
           <Datagrid
             columns={columns}
@@ -138,10 +138,10 @@ export default function Listing() {
             isLoading={isLoading}
             filters={filters}
             search={search}
-            topbar={<TopbarCTA />}
+            topbar={TopBarCTA}
           />
         )}
-      </React.Suspense>
+      </Suspense>
 
       <Outlet />
     </BaseLayout>
