@@ -41,7 +41,6 @@
     "@ovhcloud/ods-components": "^18.6.3",
     "@ovhcloud/ods-themes": "^18.6.3",
     "@tanstack/react-query": "^5.51.21",
-    "axios": "^1.1.2",
     "clsx": "^1.2.1",
     "element-internals-polyfill": "^3.0.0",
     "i18next": "^23.8.2",
