@@ -12,13 +12,14 @@ import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { EndpointItem } from './useEndpointList.hook';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export const ActionCell: React.FC<{
   vs: VrackServicesWithIAM;
   endpoint: EndpointItem;
 }> = ({ vs, endpoint }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { trackClick } = useOvhTracking();
   const disabled = !isEditable(vs);
   return (
