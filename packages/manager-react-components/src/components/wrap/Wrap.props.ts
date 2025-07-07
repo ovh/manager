@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface WrapComponentProps {
+export interface WrapProps {
   children: React.ReactNode;
   preset?: WrapPreset;
   className?: string;

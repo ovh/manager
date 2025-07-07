@@ -1,17 +1,15 @@
 import { Text } from '@ovhcloud/ods-react';
-import { WrapComponentProps, WrapPreset } from './Wrap.props';
+import { WrapProps, WrapPreset } from './Wrap.props';
 
-const Wrap = ({
+export const Wrap = ({
   children,
   preset = WrapPreset.title,
   className = '',
   ...props
-}: WrapComponentProps) => {
+}: WrapProps) => {
   return (
     <Text preset={preset} className={className} {...props}>
       {children}
     </Text>
   );
 };
-
-export default Wrap;

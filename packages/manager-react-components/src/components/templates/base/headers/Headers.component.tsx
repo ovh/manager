@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '../../../typography';
+import { Wrap, WrapPreset } from '../../../wrap';
 import { HeadersProps } from './Headers.props';
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -9,7 +9,11 @@ export const Headers: React.FC<HeadersProps> = ({
 }) => {
   return (
     <header className="flex items-start justify-between">
-      {title && <Title data-testid="title">{title}</Title>}
+      {title && (
+        <Wrap preset={WrapPreset.title} data-testid="title">
+          {title}
+        </Wrap>
+      )}
       {(guideButton || changelogButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
