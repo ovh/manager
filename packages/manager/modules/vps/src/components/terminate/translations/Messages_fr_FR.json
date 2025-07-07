@@ -5,5 +5,14 @@
   "vps_additional_disk_terminate_action_terminate_success": "Votre demande de résiliation de disque additionnel a bien été prise en compte et sera effective prochainement.",
   "vps_additional_disk_terminate_action_terminate_error": "Une erreur est survenue lors de la résiliation de l'option.",
   "vps_additional_disk_terminate_action_terminate": "Résilier",
-  "vps_additional_disk_terminate_action_cancel": "Annuler"
+  "vps_additional_disk_terminate_action_cancel": "Annuler",
+  "vps_downgrade_option_title_automatedbackup": "Revenir à l'option standard",
+  "vps_downgrade_option_info1_automatedbackup": "Le retour à l'option standard entraînera lors du prochain backup la suppression des anciens backups.",
+  "vps_downgrade_option_info2_P1M": "mois",
+  "vps_downgrade_option_info2_P1Y": "an",
+  "vps_downgrade_option_info2_PXM": "{{amount}} mois",
+  "vps_downgrade_option_info2_PXY": "{{amount}} ans",
+  "vps_downgrade_option_info2": "Le service sera facturé mensuellement au prix de <strong>{{ price }} HT</strong>/{{duration}}.",
+  "vps_downgrade_option_order_success": "Afin de finaliser votre commande, veuillez suivre les instructions décrites dans le nouvel onglet qui s'est ouvert. Si aucun nouvel onglet ne s'est ouvert, veuillez cliquer sur <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ce lien</a>.",
+  "vps_downgrade_option_order_fail": "Une erreur est survenue lors de la demande de modification d'offre. {{ error }}"
 }
