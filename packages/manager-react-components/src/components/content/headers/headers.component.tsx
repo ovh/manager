@@ -1,6 +1,7 @@
 import React from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Title, Subtitle } from '../../typography';
+import { WrapPreset } from '../../wrap/Wrap.props';
+import Wrap from '../../wrap/Wrap.component';
 
 export interface HeadersProps {
   title?: string;
@@ -20,8 +21,12 @@ export const Headers: React.FC<HeadersProps> = ({
   return (
     <div className="flex items-start justify-between">
       <div>
-        {title && <Title>{title}</Title>}
-        {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
+        {title && <Wrap preset={WrapPreset.title}>{title}</Wrap>}
+        {subtitle && (
+          <Wrap preset={WrapPreset.subtitle} className="block mb-6">
+            {subtitle}
+          </Wrap>
+        )}
         {description && (
           <OdsText className="mb-[16px]" preset="span">
             {description}
