@@ -14,8 +14,11 @@ export default class AutorenewCtrl {
   }
 
   descriptionOfHeading() {
-    return this.coreConfig.getRegion() !== 'US'
-      ? this.$translate.instant('billing_description')
-      : '';
+    const region = this.coreConfig.getRegion();
+    const description = this.$translate.instant('billing_description');
+    if (region === 'US') return description;
+
+    const details = this.$translate.instant('billing_description_details');
+    return `${description} ${details}`;
   }
 }
