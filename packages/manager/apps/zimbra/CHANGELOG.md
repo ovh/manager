@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.3...@ovh-ux/manager-zimbra-app@0.31.4) (2025-07-07)
+
+
+### Bug Fixes
+
+* **zimbra:** show upgrade button only for non-pro ([d04bc66](https://github.com/ovh/manager/commit/d04bc6600a37bc8ceb3812f22a9aab8d77eed7a1)), closes [#MANAGER-18954](https://github.com/ovh/manager/issues/MANAGER-18954)
+
+
+
+
+
 ## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.2...@ovh-ux/manager-zimbra-app@0.31.3) (2025-07-04)
 
 
