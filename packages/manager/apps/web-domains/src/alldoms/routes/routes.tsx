@@ -2,7 +2,6 @@ import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
-import NotFound from '@/alldoms/pages/404';
 import { urls } from '@/alldoms/routes/routes.constant';
 
 const LayoutPage = React.lazy(() => import('@/alldoms/pages/layout'));
@@ -23,11 +22,10 @@ const AllDomCancelTerminatePage = React.lazy(() =>
 
 export default (
   <>
-    <Route path={'/'} element={<Navigate to={urls.alldomsRoot} replace />} />
     <Route
       path={urls.alldomsRoot}
       Component={LayoutPage}
-      id="root"
+      id="alldom-root"
       errorElement={
         <ErrorBoundary
           redirectionApp="web-domains-alldoms-backup"
@@ -82,6 +80,5 @@ export default (
         ></Route>
       </Route>
     </Route>
-    <Route path="*" element={<NotFound />} />
   </>
 );
