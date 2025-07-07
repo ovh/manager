@@ -23,7 +23,7 @@ import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
-  OkmsServiceKeyTypeECCurve,
+  OkmsServiceKeyCurve,
   OkmsServiceKeySize,
 } from '@/types/okmsServiceKey.type';
 import { ServiceKeyNameErrors } from '@/utils/serviceKey/validateServiceKeyName';
@@ -63,9 +63,7 @@ export default function CreateKey() {
   const [key, setKey] = useState<OkmsServiceKeyReference | undefined>();
   const [keyType, setKeyType] = useState<OkmsKeyTypes | undefined>();
   const [keySize, setKeySize] = useState<OkmsServiceKeySize | undefined>();
-  const [keyCurve, setKeyCurve] = useState<
-    OkmsServiceKeyTypeECCurve | undefined
-  >();
+  const [keyCurve, setKeyCurve] = useState<OkmsServiceKeyCurve | undefined>();
   const [keyOperations, setKeyOperations] = useState<
     OkmsServiceKeyOperations[][]
   >([[]]);
