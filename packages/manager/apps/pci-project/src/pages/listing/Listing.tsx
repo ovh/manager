@@ -28,7 +28,6 @@ import {
 import ManagerBannerText from '@/components/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { urls } from '@/routes/routes.constant';
-import FullPageSpinner from '@/components/FullPageSpinner';
 
 type ErrorResponse = {
   response?: {
@@ -99,10 +98,6 @@ export default function Listing() {
       status: response?.status,
     };
     return <ErrorBanner error={errorObj} />;
-  }
-
-  if (isLoading) {
-    return <FullPageSpinner data-testid="listing-spinner-container" />;
   }
 
   const header = {

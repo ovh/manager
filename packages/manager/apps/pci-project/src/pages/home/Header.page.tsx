@@ -6,6 +6,7 @@ import {
   OdsBadge,
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
@@ -16,14 +17,12 @@ import {
 
 import Navigation from './Navigation.component';
 import { urls } from '@/routes/routes.constant';
-import FullPageSpinner from '@/components/FullPageSpinner';
 
 export default function ProjectHeader() {
   const { t } = useTranslation(['common', 'home', 'settings']);
   const appHomeUrl = useProjectUrl('public-cloud') + urls.home;
   const { data: project, isLoading, error } = useProject();
 
-  if (isLoading) return <FullPageSpinner />;
   if (error) throw error;
 
   const projectDescription = project?.description;
@@ -38,14 +37,22 @@ export default function ProjectHeader() {
   return (
     <BaseLayout
       breadcrumb={
-        <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={appHomeUrl} label={projectDescription} />
-        </OdsBreadcrumb>
+        isLoading ? (
+          <OdsSkeleton className="w-48 h-6" />
+        ) : (
+          <OdsBreadcrumb>
+            <OdsBreadcrumbItem href={appHomeUrl} label={projectDescription} />
+          </OdsBreadcrumb>
+        )
       }
     >
       <header className="flex items-center justify-between w-full">
         <div className="flex items-center gap-4">
-          <Title>{projectDescription}</Title>
+          {isLoading ? (
+            <OdsSkeleton className="w-48 h-6" />
+          ) : (
+            <Title>{projectDescription}</Title>
+          )}
           <OdsBadge className="mb-7" label={t('common:discovery_mode')} />
         </div>
         <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />
