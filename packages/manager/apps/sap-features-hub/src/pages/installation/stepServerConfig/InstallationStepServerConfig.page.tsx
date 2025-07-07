@@ -21,7 +21,11 @@ import { LABELS } from '@/utils/label.constants';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { RhfSelectField } from '@/components/Fields/RhfSelectField.component';
 import { RhfToggleField } from '@/components/Fields/RhfToggleField.component';
-import { ServerConfigForm } from '@/types/form.type';
+import {
+  DeploymentForm,
+  InitializationForm,
+  ServerConfigForm,
+} from '@/types/form.type';
 import { FormAccordion } from '@/components/Form/FormAccordion.component';
 import { getServerConfigFormData } from '@/utils/formStepData';
 import { SERVER_CONFIG_LIMITS } from './installationStepServerConfig.constants';
@@ -207,7 +211,15 @@ export default function InstallationStepServerConfig() {
     mutate: validate,
     isPending: isValidationPending,
   } = useStepValidation({
-    mapper: mapFormServerConfigToStructured,
+    mapper: (
+      params: ServerConfigForm &
+        Pick<InitializationForm, 'datacenterId'> &
+        Pick<DeploymentForm, 'deploymentType'>,
+    ) => ({
+      ...mapFormServerConfigToStructured(params),
+      datacenterId: params.datacenterId,
+      deploymentType: params.deploymentType,
+    }),
     serviceName,
     onSuccess: () => {
       nextStep();
@@ -279,7 +291,11 @@ export default function InstallationStepServerConfig() {
         serverErrorMessage={serverErrorMessage}
         onSubmit={handleSubmit(() => {
           trackClick(TRACKING.installation.enableAdditionalFeatures);
-          validate(getValues() as ServerConfigForm);
+          validate({
+            ...(getValues() as ServerConfigForm),
+            deploymentType: values.deploymentType,
+            datacenterId: values.datacenterId,
+          });
         })}
         onPrevious={previousStep}
       >

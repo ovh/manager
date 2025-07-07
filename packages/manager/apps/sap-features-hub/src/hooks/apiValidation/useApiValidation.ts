@@ -20,7 +20,9 @@ export type UseApiValidationStepInitialParams<
     | EnablementForm
     | InitializationForm
     | DeploymentForm
-    | ServerConfigForm
+    | (ServerConfigForm &
+        Pick<InitializationForm, 'datacenterId'> &
+        Pick<DeploymentForm, 'deploymentType'>)
     | OSConfigForm
     | SystemForm
     | SourceForm
