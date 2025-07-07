@@ -3,6 +3,7 @@ import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { DetailedOrder } from '@ovh-ux/manager-module-order';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type DeliveringMessagesProps = {
   messageKey: string;
@@ -13,7 +14,7 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
   messageKey,
   orders = [],
 }) => {
-  const { t, i18n } = useTranslation('vrack-services');
+  const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.common);
 
   return orders.length === 0 ? (
     <></>

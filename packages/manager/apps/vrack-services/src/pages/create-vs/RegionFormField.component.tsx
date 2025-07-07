@@ -4,6 +4,7 @@ import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
 import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type RegionFormFieldProps = {
   selectedRegion: string;
@@ -14,7 +15,7 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
   selectedRegion,
   setSelectedRegion,
 }) => {
-  const { t } = useTranslation('vrack-services/create');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.create);
   const { data, isLoading: isRegionLoading } = useVrackServicesRegion();
 
   return (

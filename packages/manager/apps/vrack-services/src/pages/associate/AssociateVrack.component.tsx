@@ -29,6 +29,7 @@ import { MessagesContext } from '@/components/feedback-messages/Messages.context
 import { LoadingText } from '@/components/LoadingText.component';
 import { PageName } from '@/utils/tracking';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type AssociateVrackProps = {
   vrackList: string[];
@@ -41,7 +42,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
 }) => {
   const { id } = useParams();
   const { t } = useTranslation([
-    'vrack-services/associate',
+    TRANSLATION_NAMESPACES.associate,
     NAMESPACES.ACTIONS,
   ]);
   const { addSuccessMessage } = React.useContext(MessagesContext);

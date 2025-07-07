@@ -6,6 +6,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { urls } from '@/routes/routes.constants';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type BreadcrumbProps = {
   items?: { label: string; href?: string }[];
@@ -17,7 +18,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   overviewUrl,
 }) => {
   const { id } = useParams();
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const navigate = useNavigate();
 
   return (

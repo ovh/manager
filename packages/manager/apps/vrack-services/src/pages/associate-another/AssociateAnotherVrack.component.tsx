@@ -32,6 +32,7 @@ import { LoadingText } from '@/components/LoadingText.component';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type AssociateAnotherVrackProps = {
   vrackList: string[];
@@ -47,8 +48,8 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
   const queryClient = useQueryClient();
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { t } = useTranslation([
-    'vrack-services/associate',
-    'vrack-services/dissociate',
+    TRANSLATION_NAMESPACES.associate,
+    TRANSLATION_NAMESPACES.dissociate,
     NAMESPACES.ACTIONS,
   ]);
   const [selectedVrack, setSelectedVrack] = React.useState('');
@@ -128,7 +129,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
       {isDissociateSuccess && (
         <SuccessMessage
           message={t('vrackServicesDissociateSuccess', {
-            ns: 'vrack-services/dissociate',
+            ns: TRANSLATION_NAMESPACES.dissociate,
             vs: getDisplayName(vs),
             vrack: vrackId,
           })}
@@ -141,7 +142,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
             isAssociatePending
               ? t('addVrackServicesToVrack')
               : t('removeVrackServicesFromVrack', {
-                  ns: 'vrack-services/dissociate',
+                  ns: TRANSLATION_NAMESPACES.dissociate,
                 })
           }
         />
