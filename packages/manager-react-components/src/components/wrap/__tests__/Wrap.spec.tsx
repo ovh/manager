@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import Wrap from '../Wrap.component';
+import { Wrap } from '../Wrap.component';
 import { WrapPreset } from '../Wrap.props';
 
 vi.mock('@ovhcloud/ods-react', () => ({

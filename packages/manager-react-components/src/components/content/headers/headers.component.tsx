@@ -1,7 +1,7 @@
 import React from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { WrapPreset } from '../../wrap/Wrap.props';
-import Wrap from '../../wrap/Wrap.component';
+import { Wrap } from '../../wrap';
 
 export interface HeadersProps {
   title?: string;

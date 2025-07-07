@@ -2,8 +2,8 @@ import React from 'react';
 import { Headers, HeadersProps } from '../../content';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { LinkType, Links } from '../../typography';
-import Wrap from '../../wrap/Wrap.component';
-import { WrapPreset } from '../../wrap';
+import { Wrap } from '../../wrap';
+import { WrapPreset } from '../../wrap/Wrap.props';
 import { PageLayout } from '../layout/layout.component';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
