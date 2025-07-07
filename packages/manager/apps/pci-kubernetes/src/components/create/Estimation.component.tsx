@@ -23,7 +23,7 @@ type EstimationProps = {
 const Estimation = ({ nodePools, plan }: EstimationProps) => {
   const { t } = useTranslation('node-pool');
 
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4, {
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
     exclVat: true,
   });
   const showSavingPlan = useSavingsPlanAvailable();
