@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import Routes from './routes/routes';
 import queryClient from './queryClient';
+import FullPageSpinner from './components/FullPageSpinner';
 
 function App() {
   const { shell } = useContext(ShellContext);
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<span>Loading routes ...</span>}>
+      <Suspense fallback={<FullPageSpinner />}>
         <RouterProvider router={router} />
       </Suspense>
       <ReactQueryDevtools />
