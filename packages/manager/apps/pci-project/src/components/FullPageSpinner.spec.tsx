@@ -29,4 +29,18 @@ describe('FullPageSpinner', () => {
     render(<FullPageSpinner spinnerProps={{ size: 'lg' }} />);
     expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
   });
+
+  it('should have role="alert" and aria-busy="true"', () => {
+    render(<FullPageSpinner />);
+    const container = screen.getByTestId('full-page-spinner');
+    expect(container).toHaveAttribute('role', 'alert');
+    expect(container).toHaveAttribute('aria-busy', 'true');
+  });
+
+  it('should merge custom className with defaults', () => {
+    render(<FullPageSpinner className="foo" />);
+    const container = screen.getByTestId('full-page-spinner');
+    expect(container.className).toMatch(/flex/);
+    expect(container.className).toMatch(/foo/);
+  });
 });
