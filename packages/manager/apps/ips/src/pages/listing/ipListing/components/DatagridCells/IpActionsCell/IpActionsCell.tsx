@@ -14,12 +14,41 @@ import {
   useGetGameMitigation,
   useIpHasForcedMitigation,
   useIpHasServicesAttached,
+  useGetIpVmacWithIp,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
   ip: string;
   parentIpGroup?: string;
 };
+/* 
+  list of category and path map in order to check if the ip is attached to that category
+  categoryAndPathMapping = [
+        {
+            category: "CLOUD",
+            path: "/cloud/project",
+        },{
+            category: "VRACK",
+            path: "/vrack",
+        },{
+            category: "DEDICATED",
+            path: "/dedicated/server"
+        },{
+            category: "HOUSING",
+            path: "/dedicated/housing",
+        },{
+            category: "PRIVATE_CLOUD",
+            path: "/dedicatedCloud"
+        },{
+            category: "VPS",
+            path: "/vps",
+        },{
+            category: "IP_LOAD_BALANCING",
+            path: "/ipLoadbalancing",
+        }
+    ];
+
+*/
 
 /*
   6 use cases possible:
@@ -44,6 +73,7 @@ export type IpActionsCellParams = {
 export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const { shell } = React.useContext(ShellContext);
   const [vrackPage, setVrackPage] = React.useState('');
+  const [isVmacAlreadyExist, setIsVmacAlreadyExist] = React.useState(false);
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
@@ -54,7 +84,10 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     .environment?.getUser()
     .auth?.roles?.includes('ADMIN');
 
-  const gameMitigationDetails = useGetGameMitigation({ ip: ipAddress });
+  const gameMitigationDetails = useGetGameMitigation({
+    ip: ipAddress,
+    enabled: true,
+  });
 
   const { hasForcedMitigation } = useIpHasForcedMitigation({
     ip,
@@ -75,6 +108,25 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     category: 'HOUSING',
     serviceName: ipDetails?.routedTo?.serviceName,
   });
+
+  const {
+    hasServiceAttached: hasDedicatedServiceAttachedToIp,
+  } = useIpHasServicesAttached({
+    path: '/dedicated/server',
+    category: 'DEDICATED',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
+
+  const { vmacsWithIp } = useGetIpVmacWithIp({
+    serviceName: ipDetails?.routedTo?.serviceName,
+    enabled: !!ipDetails,
+  });
+
+  React.useEffect(() => {
+    if (vmacsWithIp.length) {
+      setIsVmacAlreadyExist(true);
+    }
+  }, [vmacsWithIp]);
 
   React.useEffect(() => {
     const fetchUrl = async () => {
@@ -130,7 +182,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
       },
-    {
+    !parentIpGroup && {
       id: 2,
       label: ipDetails?.description
         ? t('listingActionEditDescription')
@@ -163,6 +215,15 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         id: 5,
         label: t('listingActionManageSubnetInVrack'),
         onClick: () => goToVrackPage(),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.ADDITIONAL && {
+        id: 6,
+        label: t('listingActionAddVirtualMac'),
+        onClick: () =>
+          navigate(urls.addVirtualMac.replace(urlDynamicParts.id, id)),
+        isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist,
       },
   ].filter(Boolean);
 
