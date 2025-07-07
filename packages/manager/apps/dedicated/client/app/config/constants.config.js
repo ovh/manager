@@ -2376,9 +2376,9 @@ const links = {
   },
   vmware: {
     changelog:
-      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
+      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Managed+VMware+vSphere',
     roadmap:
-      'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=VMware+on+OVHcloud',
+      'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Managed+VMware+vSphere',
     'feature-request':
       'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
   },
