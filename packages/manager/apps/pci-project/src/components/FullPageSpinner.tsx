@@ -1,12 +1,12 @@
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import { ComponentProps, HTMLAttributes, memo } from 'react';
 
-interface FullPageSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface FullPageSpinnerProps extends HTMLAttributes<HTMLDivElement> {
   'data-testid'?: string;
-  spinnerProps?: React.ComponentProps<typeof OdsSpinner>;
+  spinnerProps?: ComponentProps<typeof OdsSpinner>;
 }
 
-export default function FullPageSpinner({
+export default memo(function FullPageSpinner({
   'data-testid': dataTestId = 'full-page-spinner',
   spinnerProps,
   className = '',
@@ -14,11 +14,18 @@ export default function FullPageSpinner({
 }: FullPageSpinnerProps) {
   return (
     <div
+      {...containerProps}
       className={`flex items-center justify-center w-full h-full min-h-screen ${className}`}
       data-testid={dataTestId}
-      {...containerProps}
+      role="alert"
+      aria-live="polite"
+      aria-busy="true"
     >
-      <OdsSpinner {...spinnerProps} />
+      <OdsSpinner
+        role="status"
+        aria-label={spinnerProps?.['aria-label'] || 'Loading'}
+        {...spinnerProps}
+      />
     </div>
   );
-}
+});
