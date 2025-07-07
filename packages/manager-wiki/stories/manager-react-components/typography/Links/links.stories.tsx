@@ -1,6 +1,10 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Links, LinksProps, LinkType } from '@ovh-ux/manager-react-components';
+import {
+  Links,
+  LinksProps,
+  LinkType,
+} from '../../../../../manager-react-components/src/lib';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 const backLink: LinksProps = {
