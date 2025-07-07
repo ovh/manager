@@ -4,3 +4,4 @@ export * from './useIpv6Availability';
 export * from './useServiceList';
 export * from './useGetProductService';
 export * from './useGetGameMitigation';
+export * from './useGetServerModels';
