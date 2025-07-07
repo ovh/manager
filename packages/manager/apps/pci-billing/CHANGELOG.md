@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.1...@ovh-ux/manager-pci-billing-app@0.8.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 552] ([6776c93](https://github.com/ovh/manager/commit/6776c93bcbbbf91627401e3a4ca5f8241136a3d0)), closes [#TAPC-4222](https://github.com/ovh/manager/issues/TAPC-4222)
+
+
+### Features
+
+* **billing:** add dataplatform ([d524bfc](https://github.com/ovh/manager/commit/d524bfc95772ba7017fe37b3eef0a09b935585ff)), closes [#TAPC-4222](https://github.com/ovh/manager/issues/TAPC-4222)
+
+
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.0...@ovh-ux/manager-pci-billing-app@0.7.1) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-billing-app

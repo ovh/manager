@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.5.1...@ovh-ux/manager-pci-volume-snapshot-app@0.5.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* **pci-volume-snapshot:** redirect to volume snapshot creation ([49d0665](https://github.com/ovh/manager/commit/49d0665958b0d11d9da85e1d0d1f3b1b12fbc5e5)), closes [#TAPC-3002](https://github.com/ovh/manager/issues/TAPC-3002)
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.5.0...@ovh-ux/manager-pci-volume-snapshot-app@0.5.1) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

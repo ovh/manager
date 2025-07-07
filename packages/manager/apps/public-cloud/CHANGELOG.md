@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.25...@ovh-ux/manager-public-cloud@7.3.0) (2025-07-07)
+
+
+### Features
+
+* **public-cloud:** update ai deploy deeplink following react migration ([#17887](https://github.com/ovh/manager/issues/17887)) ([ae070b6](https://github.com/ovh/manager/commit/ae070b6d25686a0d3bd4555e662da65eddd121cb)), closes [#DATATR-2348](https://github.com/ovh/manager/issues/DATATR-2348)
+
+
+
+
+
 ## [7.2.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.24...@ovh-ux/manager-public-cloud@7.2.25) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
