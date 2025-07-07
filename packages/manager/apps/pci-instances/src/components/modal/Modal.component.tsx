@@ -5,12 +5,14 @@ import {
   DialogHeader,
   DialogFooter,
   DialogClose,
+  DialogTitle,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { useId } from 'react';
+import { Fragment, PropsWithChildren, useId } from 'react';
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
@@ -27,13 +29,16 @@ const Modal = ({
   isPending,
   handleInstanceAction,
   variant = 'primary',
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  wrapper: Wrapper = Fragment,
 }: {
   title: string;
   onModalClose: () => void;
   children: React.ReactNode;
   isPending: boolean;
-  handleInstanceAction: () => void;
+  handleInstanceAction?: () => void;
   variant?: TModalVariant;
+  wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
 }) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const id = useId();
@@ -52,35 +57,40 @@ const Modal = ({
               : 'bg-[--ods-color-primary-100]',
           )}
         />
-        <div id={id} className="p-6 pt-0">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_TEXT_SIZE._400}
-            hue={ODS_TEXT_COLOR_HUE._800}
-            level={ODS_TEXT_LEVEL.heading}
-          >
-            {title}
-          </OsdsText>
-          {children}
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
-          <DialogClose asChild>
+        <Wrapper>
+          <div id={id} className="p-6 pt-0">
+            {/* Title has wrong style but it is required for a11y */}
+            <DialogTitle className={'sr-only'}>{title}</DialogTitle>
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_TEXT_SIZE._400}
+              hue={ODS_TEXT_COLOR_HUE._800}
+              level={ODS_TEXT_LEVEL.heading}
+            >
+              {title}
+            </OsdsText>
+            {children}
+          </div>
+          <DialogFooter className="flex justify-end p-6 pt-0">
+            <DialogClose asChild>
+              <OsdsButton
+                disabled={isPending || undefined}
+                variant={ODS_BUTTON_VARIANT.ghost}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              >
+                {t('cancel')}
+              </OsdsButton>
+            </DialogClose>
             <OsdsButton
               disabled={isPending || undefined}
-              variant={ODS_BUTTON_VARIANT.ghost}
+              type={ODS_BUTTON_TYPE.submit}
+              onClick={handleInstanceAction}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
-              {t('cancel')}
+              {t('confirm')}
             </OsdsButton>
-          </DialogClose>
-          <OsdsButton
-            disabled={isPending || undefined}
-            onClick={handleInstanceAction}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t('confirm')}
-          </OsdsButton>
-        </DialogFooter>
+          </DialogFooter>
+        </Wrapper>
       </DialogContent>
     </Dialog>
   );

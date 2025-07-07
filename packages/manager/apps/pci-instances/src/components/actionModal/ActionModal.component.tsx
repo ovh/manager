@@ -8,12 +8,13 @@ import { TInstanceDto } from '@/types/instance/api.type';
 export type TActionModalProps = PropsWithChildren<{
   title: string;
   isPending: boolean;
-  handleInstanceAction: () => void;
+  handleInstanceAction?: () => void;
   onModalClose: () => void;
   instance?: TInstanceDto;
   section: TSectionType;
   variant?: TModalVariant;
   isLoading: boolean;
+  wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
 }>;
 
 export const ActionModal = ({
@@ -26,6 +27,7 @@ export const ActionModal = ({
   section,
   variant,
   isLoading,
+  wrapper,
 }: TActionModalProps) => (
   <Modal
     title={title}
@@ -33,6 +35,7 @@ export const ActionModal = ({
     handleInstanceAction={handleInstanceAction}
     onModalClose={onModalClose}
     variant={variant}
+    wrapper={wrapper}
   >
     {isPending ? (
       <div className="pt-8">
