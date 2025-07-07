@@ -126,7 +126,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     };
 
     this.USER_ACCOUNT_INFOS_LINK = this.coreURLBuilder.buildURL(
-      'dedicated',
+      'account',
       '#/useraccount/infos',
     );
 
@@ -196,7 +196,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
 
   goToContactManagementEdit(domain) {
     this.$window.top.location.href = this.coreURLBuilder.buildURL(
-      'dedicated',
+      'account',
       '#/contacts/services/edit',
       {
         serviceName: domain,
@@ -287,7 +287,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
 
   linkToOwnerPage(ownerId, domain) {
     return this.coreURLBuilder.buildURL(
-      'dedicated',
+      'account',
       `#/contact/${domain}/${ownerId}`,
     );
   }

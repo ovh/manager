@@ -25,7 +25,7 @@ export default function ActionMeContactComponent({
 }: ActionMeContactComponentProps) {
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
-  const { data: dedicatedUrl } = useNavigationGetUrl(['dedicated', '', {}]);
+  const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
   const { data: serviceInfo, isLoading } = useGetDomainInformation(domainName);
 
@@ -41,7 +41,7 @@ export default function ActionMeContactComponent({
 
   let url = `${webUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
   if ([domainIncomingTransfer, domainCreate].includes(operationName)) {
-    url = `${dedicatedUrl}/contact/${value}/${
+    url = `${accountUrl}/contact/${value}/${
       fields.length ? getNicParams(fields) : ''
     }`;
   }

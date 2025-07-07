@@ -63,7 +63,7 @@ export default class PrivateDatabaseCtrl {
     this.isExpired = false;
 
     this.contactManagementLink = this.coreConfig.isRegion('EU')
-      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+      ? this.coreURLBuilder.buildURL('account', '#/contacts/services', {
           serviceName: this.productId,
         })
       : '';
