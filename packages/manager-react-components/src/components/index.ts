@@ -2,6 +2,8 @@ export * from './action-banner';
 export * from './redirection-guard';
 export * from './breadcrumb/breadcrumb.component';
 
+export * from './step';
+
 export * from './clipboard/clipboard.component';
 export * from './container';
 export * from './input';
