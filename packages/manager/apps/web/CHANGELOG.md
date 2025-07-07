@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.16.0...@ovh-ux/manager-web@19.17.0) (2025-07-07)
+
+
+### Features
+
+* **dashboard:** increased customer visibility when an error is detected on DNS update ([0f023e6](https://github.com/ovh/manager/commit/0f023e67f11e6e20fc135472597e63e6a081d1fd)), closes [#MANAGER-18331](https://github.com/ovh/manager/issues/MANAGER-18331)
+
+
+
+
+
 # [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.15.1...@ovh-ux/manager-web@19.16.0) (2025-07-07)
 
 
