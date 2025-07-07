@@ -1,0 +1,12 @@
+{
+  "addVirtualMacTitle": "Ajouter une MAC virtuelle",
+  "addVirtualMacNew": "Créer une nouvelle MAC virtuelle",
+  "addVirtualMacExisting": "Utiliser une MAC virtuelle existante",
+  "addVirtualMacType": "Type",
+  "addVirtualMacField": "MAC virtuelle",
+  "addVirtualMacMachinename": "Nom de la machine virtuelle",
+  "addVirtualMacAddNewSuccess": "Une nouvelle MAC virtuelle a été générée et sera disponible sur l'IP {{t0}} dans quelques minutes.",
+  "addVirtualMacAddNewFailure": "Une erreur est survenue lors de la génération d'une nouvelle MAC virtuelle sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
+  "addVirtualMacAddExistingSuccess": "L'IP {{t0}} sera associée à la MAC virtuelle existante d'ici quelques minutes.",
+  "addVirtualMacAddExistingFailure": "Une erreur est survenue lors de l'association d'une MAC virtuelle existante sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}"
+}
