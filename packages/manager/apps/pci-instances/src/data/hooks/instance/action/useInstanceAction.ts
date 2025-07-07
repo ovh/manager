@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useCallback } from 'react';
+import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 import {
   deleteInstance,
   shelveInstance,
@@ -82,6 +83,10 @@ const useInstanceAction = <
 type TBackupMutationFnVariables = {
   instance: { id: string };
   snapshotName: string;
+  distantSnapshot?: {
+    name: string;
+    region: string;
+  };
 };
 
 export const useInstanceBackupAction = (
@@ -91,24 +96,48 @@ export const useInstanceBackupAction = (
     unknown,
     TBackupMutationFnVariables
   > = {},
-) =>
-  useInstanceAction<TBackupMutationFnVariables, null>({
+) => {
+  const { data: productAvailability } = useProductAvailability(projectId, {
+    addonFamily: 'snapshot',
+  });
+
+  return useInstanceAction<TBackupMutationFnVariables, null>({
     projectId,
     region,
     mutationKeySuffix: 'backup',
     mutationFn: useCallback(
-      ({ instance, snapshotName }) => {
+      async ({ instance, snapshotName, distantSnapshot }) => {
         const { id } = instance;
+        if (
+          distantSnapshot &&
+          productAvailability?.plans.find(
+            (p) =>
+              p.code.startsWith('snapshot.consumption') &&
+              p.regions.some(
+                (r) => r.name === distantSnapshot.region && !r.enabled,
+              ),
+          )
+        ) {
+          await enableRegion({ projectId, region: distantSnapshot.region });
+        }
+
         return backupInstance({
           projectId,
           instanceId: id,
           snapshotName,
+          ...(distantSnapshot
+            ? {
+                distantSnapshotName: distantSnapshot.name,
+                distantRegionName: distantSnapshot.region,
+              }
+            : {}),
         });
       },
-      [projectId],
+      [projectId, productAvailability],
     ),
     callbacks,
   });
+};
 
 type TRescueMutationFnVariables = {
   instance: { id: string };
