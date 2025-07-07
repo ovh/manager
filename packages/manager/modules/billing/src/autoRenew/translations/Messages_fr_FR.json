@@ -1,6 +1,7 @@
 {
   "billing_title": "Mes offres et services",
-  "billing_description": "Bienvenue dans votre section gestion des services. Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
+  "billing_description": "Bienvenue dans votre section gestion des services.",
+  "billing_description_details": "Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
   "billing_home_title": "Tous les services",
   "billing_agreements_title": "Contrats",
   "billing_ssh_title": "Clés SSH",
