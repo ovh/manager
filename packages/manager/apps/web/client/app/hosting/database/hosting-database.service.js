@@ -569,5 +569,13 @@ angular.module('services').service(
         },
       );
     }
+
+    getExtraSqlPerso(serviceName) {
+      return this.iceberg(`/hosting/web/${serviceName}/extraSqlPerso`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute()
+        .$promise.then(({ data }) => data);
+    }
   },
 );

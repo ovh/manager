@@ -7,7 +7,11 @@ import {
   BANNER_GUIDE_LINK,
   STARTER_OFFERS,
 } from './hosting-database.constants';
-import { DATABASES_TRACKING } from '../hosting.constants';
+import {
+  DATABASES_TRACKING,
+  SQL_PERSO,
+  EXTRA_SQL_PERSO,
+} from '../hosting.constants';
 
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
@@ -22,6 +26,7 @@ angular.module('App').controller(
       $translate,
       atInternet,
       Alerter,
+      coreURLBuilder,
       coreConfig,
       Hosting,
       HostingDatabase,
@@ -36,6 +41,7 @@ angular.module('App').controller(
       this.$translate = $translate;
       this.atInternet = atInternet;
       this.alerter = Alerter;
+      this.coreURLBuilder = coreURLBuilder;
       this.hostingService = Hosting;
       this.hostingDatabaseService = HostingDatabase;
       this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
@@ -54,6 +60,7 @@ angular.module('App').controller(
         details: [],
       };
       this.hasResult = false;
+      this.canAddDatabase = false;
       this.loading = {
         databases: false,
         init: true,
@@ -98,6 +105,7 @@ angular.module('App').controller(
 
       return this.loadDatabases()
         .then(() => this.loadOrderPublicCapabilities())
+        .then(() => this.loadExtraSqlPerso())
         .finally(() => {
           this.loading.init = false;
           this.loading.databases = false;
@@ -116,6 +124,38 @@ angular.module('App').controller(
         })
         .finally(() => {
           this.loading.orderCapabilities = true;
+        });
+    }
+
+    loadExtraSqlPerso() {
+      return this.hostingDatabaseService
+        .getExtraSqlPerso(this.hosting.serviceName)
+        .then((result) => {
+          const sqlPerso = result?.find((item) => item?.name === SQL_PERSO);
+          const sqlPersoDelta =
+            sqlPerso?.database && sqlPerso?.usage
+              ? sqlPerso?.database - sqlPerso?.usage?.length
+              : 0;
+          this.emptySqlPerso = Array.from(
+            { length: sqlPersoDelta },
+            (_, i) => i,
+          );
+          this.extraSqlPerso = result?.filter(
+            (item) => item?.name === EXTRA_SQL_PERSO,
+          );
+
+          this.extraSqlPersoDelta = this.extraSqlPerso
+            ?.map((item) =>
+              item?.database && item?.usage
+                ? item?.database - item?.usage?.length
+                : 0,
+            )
+            ?.reduce((accumulator, current) => accumulator + current, 0);
+
+          this.emptyExtraSqlPerso = Array.from(
+            { length: this.extraSqlPersoDelta },
+            (_, i) => i,
+          );
         });
     }
 
@@ -289,6 +329,22 @@ angular.module('App').controller(
       this.$scope.setAction('database/copy/hosting-database-copy', {
         currentDatabaseName: element.name,
         serviceName: this.hosting.serviceName,
+      });
+    }
+
+    canTerminate(element) {
+      return this.extraSqlPerso?.find((item) => {
+        return item?.usage?.includes(element?.name);
+      });
+    }
+
+    onTerminateDatabaseUrl(element) {
+      const selectedItem = this.extraSqlPerso?.find((item) =>
+        item?.usage?.includes(element.name),
+      );
+      return this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
+        selectedType: 'HOSTING_WEB_EXTRA_SQL_PERSO',
+        searchText: selectedItem?.serviceName,
       });
     }
 
