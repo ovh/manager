@@ -40,27 +40,25 @@ export const ActivateOfferGold = ({
         }
       />
 
-      <ActionMenu
-        id={`action-gold-offer-${id}`}
-        isCompact
-        isDisabled={
-          status === OFFER_CREATING_STATUS ||
-          CANCELED_VEEAM_BACKUP_STATUS.includes(backupStatus)
-        }
-        variant={ODS_BUTTON_VARIANT.ghost}
-        icon={ODS_ICON_NAME.ellipsisVertical}
-        items={[
-          {
-            'data-testid': TEST_IDS.activateGoldOfferAction,
-            id: 1,
-            label: tAction('activate'),
-            isDisabled: status === OFFER_CREATING_STATUS,
-            onClick: () => {
-              navigate(urls.activateVeeamBackupOffer.replace(':id', id));
-            },
-          },
-        ]}
-      />
+      {status !== OFFER_CREATING_STATUS &&
+        !CANCELED_VEEAM_BACKUP_STATUS.includes(backupStatus) && (
+          <ActionMenu
+            id={`action-gold-offer-${id}`}
+            isCompact
+            variant={ODS_BUTTON_VARIANT.ghost}
+            icon={ODS_ICON_NAME.ellipsisVertical}
+            items={[
+              {
+                'data-testid': TEST_IDS.activateGoldOfferAction,
+                id: 1,
+                label: tAction('activate'),
+                onClick: () => {
+                  navigate(urls.activateVeeamBackupOffer.replace(':id', id));
+                },
+              },
+            ]}
+          />
+        )}
     </div>
   );
 };
