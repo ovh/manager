@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Wrap from '../../../../../manager-react-components/src/components/wrap/Wrap.component';
-import { WrapPreset } from '../../../../../manager-react-components/src/components/wrap/Wrap.props';
+import {
+  Wrap,
+  WrapPreset,
+} from '../../../../../manager-react-components/src/components/wrap';
 
 const meta: Meta<typeof Wrap> = {
   title: 'Manager React Components/Components/Wrap',

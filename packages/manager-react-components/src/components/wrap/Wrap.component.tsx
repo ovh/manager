@@ -1,7 +1,7 @@
 import { Text } from '@ovhcloud/ods-react';
 import { WrapComponentProps, WrapPreset } from './Wrap.props';
 
-const Wrap = ({
+export const Wrap = ({
   children,
   preset = WrapPreset.title,
   className = '',
@@ -13,5 +13,3 @@ const Wrap = ({
     </Text>
   );
 };
-
-export default Wrap;
