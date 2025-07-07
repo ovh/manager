@@ -1,0 +1,14 @@
+{
+  "title": "Noms de domaine",
+  "domain_table_header_serviceName": "Nom de domaine",
+  "domain_tab_name_general_information": "Informations générales",
+  "domain_tab_name_dns_zone": "Zone DNS",
+  "domain_tab_name_dns_server": "Serveurs DNS",
+  "domain_tab_name_redirection": "Redirection",
+  "domain_tab_name_dynhost": "DynHost",
+  "domain_tab_name_host": "Hosts",
+  "domain_tab_name_ds_records": "DS Records",
+  "domain_tab_name_contact_management": "Gestion des contacts",
+  "domain_back_to_service_list": "Retour à la liste de services",
+  "domain_guide_button_label": "Guide d'utilisation"
+}
