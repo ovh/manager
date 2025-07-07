@@ -7,7 +7,7 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import Routes from '@/alldoms/routes/routes';
+import routes from '@/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
 
 function App() {
   const { shell } = useContext(ShellContext);
-  const routes = createHashRouter(createRoutesFromElements(Routes));
+  const allRoutes = createHashRouter(createRoutesFromElements(routes));
 
   useEffect(() => {
     shell.ux.hidePreloader();
@@ -28,7 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense>
-        <RouterProvider router={routes} />
+        <RouterProvider router={allRoutes} />
       </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>

@@ -10,10 +10,16 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
+      setupFiles: [],
       coverage: {
-        exclude: [...defaultExcludedFiles],
+        exclude: [...defaultExcludedFiles, 'src/pages/layout.tsx'],
       },
       setupFiles: 'src/alldoms/setupTests.tsx',
+      server: {
+        deps: {
+          inline: ['@ovhcloud/ods-react'],
+        },
+      },
     },
     resolve: {
       alias: {

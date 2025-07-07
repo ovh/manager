@@ -6,4 +6,5 @@ export default {
   },
   rootLabel: 'web-domains',
   alldomLabel: 'alldoms',
+  domainLabel: 'domain',
 };
