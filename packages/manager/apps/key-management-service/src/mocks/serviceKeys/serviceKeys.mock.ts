@@ -1,11 +1,11 @@
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
 
-export const serviceKeyMock: OkmsAllServiceKeys[] = [
+export const serviceKeyMock: OkmsServiceKey[] = [
   {
     name: 'ServiceKeyTest',
     createdAt: '2024-10-23T15:24:23Z',
@@ -26,7 +26,7 @@ export const serviceKeyMock: OkmsAllServiceKeys[] = [
   },
 ];
 
-export const createdKeyMock: OkmsAllServiceKeys = {
+export const createdKeyMock: OkmsServiceKey = {
   name: 'New Key',
   createdAt: '2024-10-23T15:24:23Z',
   id: '4575b0-3bde-4b8d-a8c0-928ba2ceb8ed',

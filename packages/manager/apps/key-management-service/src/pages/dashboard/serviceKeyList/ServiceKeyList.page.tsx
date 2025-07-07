@@ -35,7 +35,7 @@ import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -94,7 +94,7 @@ export default function Keys() {
     },
     {
       id: 'action',
-      cell: (serviceKey: OkmsAllServiceKeys) =>
+      cell: (serviceKey: OkmsServiceKey) =>
         DatagridServiceKeyActionMenu(serviceKey, okms),
 
       isSortable: false,
