@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, Suspense } from 'react';
+import { useEffect, useContext, Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
