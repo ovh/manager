@@ -3,6 +3,7 @@ export * from './redirection-guard';
 export * from './breadcrumb';
 
 export * from './clipboard';
+export * from './step';
 export * from './container';
 export * from './input';
 
