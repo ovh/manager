@@ -14,6 +14,7 @@ export default class VpsVeeamOrderCtrl {
     OvhApiOrder,
     stateVps,
     RedirectionService,
+    VpsService,
   ) {
     // dependencies injections
     this.$q = $q;
@@ -26,6 +27,7 @@ export default class VpsVeeamOrderCtrl {
     this.OvhApiOrder = OvhApiOrder;
     this.stateVps = stateVps;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
+    this.VpsService = VpsService;
 
     // other attributes used in view
     this.veeamOption = null;
@@ -37,18 +39,18 @@ export default class VpsVeeamOrderCtrl {
     };
   }
 
+  static findRenewCapacity(option) {
+    return option.find(({ capacities }) => capacities.includes('renew'));
+  }
+
   static getVeeamMonthlyPrice(option) {
-    const price = find(option.prices, ({ capacities }) =>
-      capacities.includes('renew'),
-    );
+    const price = VpsVeeamOrderCtrl.findRenewCapacity(option.prices);
     return get(price, 'price');
   }
 
   // Returns human readable duration for any given monthly or yearly duration option
   getVeeamDuration(option) {
-    const price = find(option.prices, ({ capacities }) =>
-      capacities.includes('renew'),
-    );
+    const price = VpsVeeamOrderCtrl.findRenewCapacity(option.prices);
     const duration = price?.duration;
     if (duration === 'P1M' || duration === 'P1Y') {
       return this.$translate.instant(
@@ -77,8 +79,8 @@ export default class VpsVeeamOrderCtrl {
       type: 'action',
     });
 
-    const priceOptions = find(this.veeamOption.prices, ({ capacities }) =>
-      capacities.includes('renew'),
+    const priceOptions = VpsVeeamOrderCtrl.findRenewCapacity(
+      this.veeamOption.prices,
     );
     const expressParams = {
       productId: 'vps',
@@ -106,16 +108,7 @@ export default class VpsVeeamOrderCtrl {
     return this.$onInit();
   }
 
-  /* -----  End of EVENTS  ------ */
-
-  /* =====================================
-  =            INITIALIZATION            =
-  ====================================== */
-
-  $onInit() {
-    this.loading.init = true;
-    this.hasInitError = false;
-
+  orderOption() {
     return this.OvhApiOrder.CartServiceOption()
       .Vps()
       .v6()
@@ -152,6 +145,83 @@ export default class VpsVeeamOrderCtrl {
       .finally(() => {
         this.loading.init = false;
       });
+  }
+
+  async onVeeamUpgradeStepperFinish() {
+    this.loading.init = true;
+    this.model.agree = false;
+    this.atInternet.trackClick({
+      name: 'vps::detail::veeam::order::confirm',
+      type: 'action',
+    });
+
+    const { duration, pricingMode } = VpsVeeamOrderCtrl.findRenewCapacity(
+      this.veeamOption.prices,
+    );
+
+    const {
+      order: { url },
+    } = await this.VpsService.servicesUpgradeExecute(
+      this.serviceOptionId,
+      this.veeamOption.planCode,
+      { quantity: 1, duration, pricingMode },
+    );
+
+    this.$window.open(url, '_blank', 'noopener');
+    this.CucCloudMessage.success({
+      textHtml: this.$translate.instant(
+        'vps_configuration_veeam_order_success',
+        {
+          url,
+        },
+      ),
+    });
+
+    return this.$onInit();
+  }
+
+  upgradeOption() {
+    this.VpsService.autoBackupUpgradeAvailable(this.stateVps.name)
+      .then((data) => {
+        this.veeamOption = data.upgradeAvailable;
+        this.serviceOptionId = data.serviceOptionId;
+        const { duration, pricingMode } = VpsVeeamOrderCtrl.findRenewCapacity(
+          this.veeamOption.prices,
+        );
+        return this.VpsService.servicesUpgradeSimulate(
+          this.serviceOptionId,
+          this.veeamOption.planCode,
+          { quantity: 1, duration, pricingMode },
+        ).then(({ order: { contracts } }) => {
+          this.contracts = contracts;
+        });
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          [
+            this.$translate.instant('vps_configuration_veeam_order_load_error'),
+            error?.data?.message,
+          ].join(' '),
+        );
+      })
+      .finally(() => {
+        this.loading.init = false;
+      });
+  }
+
+  /* -----  End of EVENTS  ------ */
+
+  /* =====================================
+  =            INITIALIZATION            =
+  ====================================== */
+
+  $onInit() {
+    this.loading.init = true;
+    this.hasInitError = false;
+
+    this.VpsService.getVeeamInfo(this.stateVps.name)
+      .then(() => this.upgradeOption())
+      .catch(() => this.orderOption());
   }
 
   /* -----  End of INITIALIZATION  ------ */
