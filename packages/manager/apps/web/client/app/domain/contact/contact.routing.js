@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       contactsManagementUrl: /* @ngInject */ (coreURLBuilder, $transition$) =>
-        coreURLBuilder.buildURL('dedicated', '#/contacts/services/edit', {
+        coreURLBuilder.buildURL('account', '#/contacts/services/edit', {
           serviceName: $transition$.params().productId,
           category: PRODUCT_TYPE,
           service: $transition$.params().productId,
