@@ -22,7 +22,7 @@
     /* Type Declarations */
     "skipLibCheck": true,
 
-    /* Advanced Options */
+    /* Custom Types */
     "types": ["node"],
     "typeRoots": ["./src/adapters/eslint/types", "./node_modules/@types"]
   },

@@ -10,7 +10,7 @@ export const jsxTsxFiles = '**/*.{jsx,tsx}';
 export const jsTsFiles = '**/*.{js,jsx,ts,tsx}';
 export const jsFilesLoose = '**/*.{js,jsx}';
 
-export const cssFiles = '**/*.css';
+export const cssFiles = '**/*.{scss,css}';
 export const htmlFiles = '**/*.html';
 
 export const storyFiles = '**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)';

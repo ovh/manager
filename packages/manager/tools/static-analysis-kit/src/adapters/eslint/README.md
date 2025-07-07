@@ -174,6 +174,8 @@ To lint using the shared ESLint configuration.
 
 BSD-3-Clause — © OVH SAS
 
+---
+
 ## 🔧 Usage Options
 
 ### Option 1: Use the Full Shared Config
@@ -215,16 +217,33 @@ The package includes a dedicated CLI tool `manager-lint` with Flat Config suppor
 
 ## 📁 File Naming Conventions
 
-| Purpose        | Pattern                           | Format               |
-|----------------|-----------------------------------|----------------------|
-| Component      | `*.component.tsx`                 | `PASCAL_CASE`        |
-| Hook           | `*.hook.ts`                       | `CAMEL_CASE`         |
-| Test           | `*.spec.ts`, `*.test.ts`          | `CAMEL_CASE`         |
-| Constants      | `*.constants.ts`                  | `KEBAB_CASE`         |
-| Types          | `*.type.ts`, `*.interface.ts`     | `KEBAB_CASE`         |
-| Translations   | `Messages_en_GB.json`             | `SCREAMING_SNAKE_CASE` |
-| Styles         | `*.css`, `*.scss`                 | `KEBAB_CASE`         |
-| Configs        | `*.config.ts`, `vite.config.ts`   | `KEBAB_CASE`         |
+| Purpose        | Pattern                         | Format               |
+|----------------|---------------------------------|----------------------|
+| Component      | `*.component.tsx`               | `PASCAL_CASE`        |
+| Hook           | `use*.ts`, `use*.tsx`           | `PASCAL_CASE`        |
+| Hook Test      | `use*.spec.ts`, `use*.test.ts`  | `CAMEL_CASE`         |
+| Test           | `*.spec.tsx`, `*.test.tsx`      | `PASCAL_CASE`        |
+| Constants      | `*.constants.ts`                | `PASCAL_CASE`        |
+| Types          | `*.type.ts`, `*.interface.ts`   | `PASCAL_CASE`        |
+| Translations   | `Messages_en_GB.json`           | `SCREAMING_SNAKE_CASE` |
+| Styles         | `*.css`, `*.scss`               | `KEBAB_CASE`         |
+| Configs        | `*.config.ts`, `vite.config.ts` | `KEBAB_CASE`         |
+
+---
+
+## 🧼 React Best Practices
+
+### 📛 One Component per File
+
+We enforce **a single React component per file** to encourage modularity and readability.
+
+This is implemented using:
+
+```json
+"react/no-multi-comp": ["error", { "ignoreStateless": false }]
+```
+
+This ensures both class and functional components are defined one per file.
 
 ---
 
@@ -238,4 +257,3 @@ The package includes a dedicated CLI tool `manager-lint` with Flat Config suppor
 | `complexity`              | Cyclomatic complexity   | 10–15 (context-based)|
 | `max-lines`               | Per file                | 300 lines           |
 | `max-lines-per-function`  | Function body           | 50–80 lines         |
-

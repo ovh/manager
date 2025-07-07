@@ -15,9 +15,9 @@ export const folderMatchWithFex: Record<string, string> = {
   'public/translations/*/Messages_*.json': 'public/translations/**/',
   'src/components/**/translations/Messages_*.json': 'src/components/**/translations/',
 
-  // ─────────── COMPONENTS ───────────
-  '**/*.component.{js,jsx,ts,tsx}': 'src/components/**/',
-  '**/*.styled.{js,jsx,ts,tsx}': 'src/components/**/',
+  // ─────────── COMPONENTS (allowed in components/ or pages/) ───────────
+  'src/components/**/*.component.{js,jsx,ts,tsx}': 'src/components/**/',
+  'src/pages/**/*.component.{js,jsx,ts,tsx}': 'src/pages/**/',
 
   // ─────────── PAGES ───────────
   '**/*.page.{js,jsx,ts,tsx}': 'src/pages/**/',
@@ -28,18 +28,28 @@ export const folderMatchWithFex: Record<string, string> = {
   'src/hooks/**/use*.{ts,tsx}': 'src/hooks/**/',
   'src/data/hooks/**/use*.{ts,tsx}': 'src/data/hooks/**/',
 
-  // ─────────── CONSTANTS ───────────
-  '**/*.constants.{ts,js}': 'src/**/',
-
   // ─────────── TESTS ───────────
   '**/*.test.{ts,tsx}': '**/__tests__/',
-  '**/*.spec.{ts,tsx}': 'src/**/',
+  '**/*.spec.{ts,tsx}': '**/__tests__/',
+
+  // ─────────── CONSTANTS ───────────
+  '**/*.constants.{ts,js}': 'src/**/',
 
   // ─────────── TYPES & INTERFACES ───────────
   '**/*.type.ts': 'src/**/',
   '**/*.interface.ts': 'src/**/',
+
+  // ─────────── ROUTES ───────────
+  'src/routes/routes.{ts,tsx}': 'src/routes/',
+  'src/routes/routes.constants.ts': 'src/routes/',
+
+  // ─────────── ASSETS ───────────
+  'public/assets/**/*.{png,jpg,jpeg,json,svg,webp,gif}': 'public/assets/**/',
 };
 
+/**
+ * Naming conventions by file type.
+ */
 type CaseStyle =
   | 'PASCAL_CASE'
   | 'CAMEL_CASE'
@@ -58,25 +68,37 @@ export const filenameNamingConvention: Record<string, CaseStyle> = {
   '**/*.layout.{js,ts,jsx,tsx}': 'PASCAL_CASE',
   '**/*.modal.{js,ts,jsx,tsx}': 'PASCAL_CASE',
   '**/*.page.{js,ts,jsx,tsx}': 'PASCAL_CASE',
-  '**/*.styled.{js,ts,jsx,tsx}': 'PASCAL_CASE',
-
-  // ───── HOOKS & TESTS ─────
-  '**/*.hook.{ts,tsx}': 'CAMEL_CASE',
-  '**/*.test.{ts,tsx}': 'PASCAL_CASE',     // Adjusted!
-  '**/*.spec.{ts,tsx}': 'PASCAL_CASE',     // Adjusted!
-
-  // ───── TRANSLATIONS ─────
-  '**/Messages_[a-z][a-z]_[A-Z][A-Z].json': 'SCREAMING_SNAKE_CASE',
-
-  // ───── TYPES & CONSTANTS ─────
-  '**/*.constants.{ts,js}': 'KEBAB_CASE',
-  '**/*.type.ts': 'KEBAB_CASE',
-  '**/*.interface.ts': 'KEBAB_CASE',
 
   // ───── CORE FILES ─────
   '**/App.tsx': 'PASCAL_CASE',
   '**/ErrorBoundary.tsx': 'PASCAL_CASE',
   '**/queryClient.ts': 'CAMEL_CASE',
+
+  // ───── GENERAL TESTS ─────
+  '**/*.test.{ts,tsx}': 'PASCAL_CASE',
+  '**/*.spec.{ts,tsx}': 'PASCAL_CASE',
+
+  // ───── HOOKS ─────
+  'src/hooks/**/use*.{ts,tsx}': 'PASCAL_CASE',
+  'src/data/hooks/**/use*.{ts,tsx}': 'PASCAL_CASE',
+
+  // ───── HOOKS TESTS ─────
+  'src/hooks/**/use*.spec.{ts,tsx}': 'CAMEL_CASE',
+  'src/hooks/**/use*.test.{ts,tsx}': 'CAMEL_CASE',
+  'src/data/hooks/**/use*.spec.{ts,tsx}': 'CAMEL_CASE',
+  'src/data/hooks/**/use*.test.{ts,tsx}': 'CAMEL_CASE',
+
+  // ───── STYLES ─────
+  '**/*.scss': 'KEBAB_CASE',
+  '**/*.css': 'KEBAB_CASE',
+
+  // ───── TRANSLATIONS ─────
+  '**/Messages_[a-z][a-z]_[A-Z][A-Z].json': 'SCREAMING_SNAKE_CASE',
+
+  // ───── TYPES & CONSTANTS ─────
+  '**/*.constants.{ts,js}': 'PASCAL_CASE',
+  '**/*.type.ts': 'PASCAL_CASE',
+  '**/*.interface.ts': 'PASCAL_CASE',
 
   // ───── BOOTSTRAP & CONFIGS ─────
   '**/routes.{ts,tsx}': 'KEBAB_CASE',
@@ -87,10 +109,6 @@ export const filenameNamingConvention: Record<string, CaseStyle> = {
   '**/*.config.{js,ts,mjs,cjs}': 'KEBAB_CASE',
   '**/*.setup.{js,ts}': 'KEBAB_CASE',
   '**/*.env.{js,ts}': 'KEBAB_CASE',
-
-  // ───── STYLES ─────
-  '**/*.scss': 'KEBAB_CASE',
-  '**/*.css': 'KEBAB_CASE',
 };
 
 /**
