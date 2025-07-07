@@ -24,9 +24,10 @@ import {
   getIamResourceQueryKey,
   getIamResource,
 } from '@/data/api/get/iamResource';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function EndpointCreatePage() {
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { id } = useParams();
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const [serviceType, setServiceType] = React.useState<string | undefined>(

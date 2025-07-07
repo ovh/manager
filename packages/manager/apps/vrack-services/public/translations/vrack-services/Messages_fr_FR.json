@@ -10,7 +10,6 @@
   "orderStatus-documentsRequested": "Document requis",
   "orderStatus-notPaid": "Paiement requis",
   "orderStatus-unknown": "Inconnu",
-  "action-goDetails": "Aller au détail",
   "action-editDisplayName": "Modifier le nom",
   "associateVrackButtonLabel": "Associer à un vRack",
   "vrackActionDissociate": "Dissocier",
@@ -24,6 +23,5 @@
   "vrackServicesNotReadyInfoMessage": "vRack Services {{displayName}} a une opération en cours",
   "vrackServicesInErrorMessage": "vRack Services {{displayName}} est en erreur",
   "modalSubmitOrderWaitMessage": "Veuillez patienter...",
-  "modalConfirmContractsCheckboxLabel": "J'ai pris connaissance et j'accepte les termes des contrats suivants :",
   "modalError": "L'erreur suivante est survenue : {{error}}."
 }
