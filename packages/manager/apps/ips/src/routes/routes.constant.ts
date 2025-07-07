@@ -12,6 +12,7 @@ export const subRoutes = {
   upsertDescription: 'upsert-description',
   configureGameFirewall: 'game-firewall',
   configureEdgeNetworkFirewall: 'edge-network-firewall',
+  addVirtualMac: 'add-virtual-mac',
 };
 
 export const urlDynamicParts = {
@@ -29,6 +30,7 @@ export const urls = {
   listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
   upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
   configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
+  addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.addVirtualMac}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
