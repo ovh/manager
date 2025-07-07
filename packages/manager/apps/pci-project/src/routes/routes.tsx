@@ -4,25 +4,23 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
-const LayoutPage = lazy(() => import('@/pages/layout'));
+const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
-const DashboardPage = lazy(() => import('@/pages/dashboard'));
-const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
-);
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
+const MainPage = lazy(() => import('@/pages/home/Header.page'));
+const HomePage = lazy(() => import('@/pages/home/Home.page'));
+const SettingsPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
 export default (
   <Route
-    path="/pci/projects"
+    path={urls.root}
     Component={LayoutPage}
     errorElement={
       <ErrorBoundary
         isPreloaderHide={true}
         isRouteShellSync={true}
-        redirectionApp="project"
+        redirectionApp="pci-project"
       />
     }
   >
@@ -47,24 +45,24 @@ export default (
         }}
       />
     </Route>
-    <Route path={urls.dashboard} Component={DashboardPage}>
+    <Route path={urls.project} Component={MainPage}>
       <Route
-        path=""
-        Component={GeneralInfosPage}
+        path={urls.home}
+        Component={HomePage}
         handle={{
           tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
+            pageName: 'home',
+            pageType: PageType.dashboard, // TODO: check if it's correct
           },
         }}
       />
       <Route
-        path={urls.tab2}
-        Component={Tab2Page}
+        path={urls.edit}
+        Component={SettingsPage}
         handle={{
           tracking: {
-            pageName: 'tab2',
-            pageType: PageType.dashboard,
+            pageName: 'settings',
+            pageType: PageType.dashboard, // TODO: check if it's correct
           },
         }}
       />
