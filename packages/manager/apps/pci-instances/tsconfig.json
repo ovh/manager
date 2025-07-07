@@ -1,6 +1,7 @@
 {
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "baseUrl": ".",
     "moduleResolution": "bundler",
     "paths": {
