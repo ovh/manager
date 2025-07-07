@@ -86,7 +86,7 @@ export function useObjectStorageListColumns() {
       cell: (row: TStorage) => (
         <div className="flex gap-2">
           <DataGridTextCell>
-            {`${(row.retrievalFees.totalPrice.value || 0).toFixed(2)} ${
+            {`${row.retrievalFees.totalPrice.value.toFixed(2)} ${
               currency.symbol
             }`}
           </DataGridTextCell>

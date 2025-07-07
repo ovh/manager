@@ -7,5 +7,8 @@
   "cpbc_object_storage_consumption_info_part2": "Su consumo es de exactamente {{amount}} GiB hora.",
   "cpbc_object_storage_output_traffic_info_part1": "Cada gigabyte saliente (independientemente del destino) tiene un coste de",
   "cpbc_object_storage_output_traffic_info_part2": ". Ha consumido {{amount}} GiB en el período indicado. El tráfico entrante nunca se factura.",
-  "cpb_error_message": "¡Vaya! No se ha podido cargar toda la información."
+  "cpb_error_message": "¡Vaya! No se ha podido cargar toda la información.",
+  "cpbc_object_storage_col_bucket_name": "Nombre del bucket",
+  "cpbc_object_storage_col_type": "Plan",
+  "cpbc_object_storage_col_retrieval_fees": "Gastos de extracción de datos"
 }
