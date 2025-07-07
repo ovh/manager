@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.7.1...@ovh-ux/manager-web-ongoing-operations-app@1.8.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** document upload, make visible template file ([#17914](https://github.com/ovh/manager/issues/17914)) ([647ca3e](https://github.com/ovh/manager/commit/647ca3ea2b7916b9eff89e6b57a2c73f826db8f9)), closes [#MANAGER-18956](https://github.com/ovh/manager/issues/MANAGER-18956)
+
+
+### Features
+
+* **ongoing-operation:** add button to redirect to DNS update form ([3b9d734](https://github.com/ovh/manager/commit/3b9d7342bd56a1b2d29511924e8126f08dfebc36)), closes [#MANAGER-18582](https://github.com/ovh/manager/issues/MANAGER-18582)
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.7.0...@ovh-ux/manager-web-ongoing-operations-app@1.7.1) (2025-07-04)
 
 
