@@ -26,12 +26,12 @@ import { URN_LABEL } from '@/constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 import { OKMS } from '@/types/okms.type';
 
 type GeneralInformationTileProps = {
   kms: OKMS;
-  serviceKey: OkmsAllServiceKeys;
+  serviceKey: OkmsServiceKey;
 };
 
 export const GeneralInformationTile = ({
