@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.48.1...@ovh-ux/manager-vps@2.49.0) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue on upscale funnel ([8a24091](https://github.com/ovh/manager/commit/8a24091d1123f777657dcc59e6579c96732ab288)), closes [#MANAGER-18856](https://github.com/ovh/manager/issues/MANAGER-18856)
+
+
+### Features
+
+* **dedicated.vps:** hide error message on listing page when a vps is expired ([6e397d1](https://github.com/ovh/manager/commit/6e397d12fad6c4048a38109b8b4f9071ec0e399f)), closes [#MANAGER-18613](https://github.com/ovh/manager/issues/MANAGER-18613)
+
+
+
+
+
 ## [2.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.48.0...@ovh-ux/manager-vps@2.48.1) (2025-06-12)
 
 
