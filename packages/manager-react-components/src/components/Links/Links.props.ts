@@ -1,3 +1,4 @@
+import React from 'react';
 export enum LinkType {
   back = 'back',
   next = 'next',
@@ -21,4 +22,9 @@ export interface LinksProps {
   isIamTrigger?: boolean;
   disabledIamCheck?: boolean;
   disabled?: boolean;
+}
+
+export interface LinkIconsProps {
+  type?: LinkType;
+  children: React.ReactNode;
 }

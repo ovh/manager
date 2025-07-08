@@ -9,8 +9,17 @@ import {
   TOOLTIP_POSITION,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { LinkType, LinksProps } from './Links.props';
+import { LinkType, LinksProps, LinkIconsProps } from './Links.props';
 import { useAuthorizationIam } from '../../hooks';
+
+const LinkIcons: React.FC<LinkIconsProps> = ({ type, children }) => (
+  <>
+    {type === LinkType.back && <Icon name="arrow-left" />}
+    {children}
+    {type === LinkType.external && <Icon name="external-link" />}
+    {type === LinkType.next && <Icon name="arrow-right" />}
+  </>
+);
 
 export const Links: React.FC<LinksProps> = ({
   children,
@@ -32,15 +41,8 @@ export const Links: React.FC<LinksProps> = ({
     urn,
     !disabledIamCheck,
   );
-  const renderLinkContent = () => (
-    <>
-      {type === LinkType.back && <Icon name="arrow-left" />}
-      {children}
-      {type === LinkType.external && <Icon name="external-link" />}
-      {type === LinkType.next && <Icon name="arrow-right" />}
-    </>
-  );
 
+  // Fonction utilitaire pour obtenir les props du lien
   const getLinkProps = (isDisabled = false) => ({
     className,
     href,
@@ -49,22 +51,42 @@ export const Links: React.FC<LinksProps> = ({
     ...props,
   });
 
-  if (isAuthorized || iamActions === undefined) {
-    return <Link {...getLinkProps()}>{renderLinkContent()}</Link>;
-  }
+  // Fonction utilitaire pour rendre le contenu du lien
+  const renderLinkContent = () => (
+    <Link {...getLinkProps()}>
+      <LinkIcons type={type}>{children}</LinkIcons>
+    </Link>
+  );
 
-  if (!displayTooltip) {
-    return <Link {...getLinkProps(true)}>{renderLinkContent()}</Link>;
-  }
+  // Fonction utilitaire pour rendre le lien désactivé
+  const renderDisabledLink = () => (
+    <Link {...getLinkProps(true)}>
+      <LinkIcons type={type}>{children}</LinkIcons>
+    </Link>
+  );
 
-  return (
+  // Fonction utilitaire pour rendre le lien avec tooltip
+  const renderLinkWithTooltip = () => (
     <Tooltip position={TOOLTIP_POSITION.bottom}>
       <TooltipTrigger asChild>
-        <Link {...getLinkProps(true)}>{renderLinkContent()}</Link>
+        <Link {...getLinkProps(true)}>
+          <LinkIcons type={type}>{children}</LinkIcons>
+        </Link>
       </TooltipTrigger>
       <TooltipContent>{t('iam_actions_message')}</TooltipContent>
     </Tooltip>
   );
+
+  // Logique principale de rendu
+  if (isAuthorized || iamActions === undefined) {
+    return renderLinkContent();
+  }
+
+  if (!displayTooltip) {
+    return renderDisabledLink();
+  }
+
+  return renderLinkWithTooltip();
 };
 
 export default Links;
