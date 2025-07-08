@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { formatPricingInfo } from '@/utils/formatter/formatter';
 
-export type PricingByDurationType = ReturnType<typeof formatPricingInfo>;
+export type TPricingByDuration = ReturnType<typeof formatPricingInfo>;
 
 export const useDefaultOfferId = (
-  pricingByDuration: PricingByDurationType[],
+  pricingByDuration: TPricingByDuration[],
 ): [
   string | undefined,
   React.Dispatch<React.SetStateAction<string | undefined>>,
