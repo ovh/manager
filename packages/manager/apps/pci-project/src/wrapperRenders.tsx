@@ -10,7 +10,7 @@ import queryClient from './queryClient';
 
 export const shellContext = ({
   environment: {
-    getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
+    getUser: () => ({ ovhSubsidiary: 'FR' }),
     getRegion: () => 'EU',
   },
   shell: {
