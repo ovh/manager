@@ -1,16 +1,24 @@
 #!/usr/bin/env node
-import { execSync } from 'child_process';
+import { execSync, spawn } from 'child_process';
 import { existsSync, mkdirSync, promises as fs } from 'fs';
 import os from 'os';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { registerCleanupOnSignals, safeUnlink } from './utils/cleanup-utils.mjs';
 
-const version = '10.11.1';
-const targetDir = path.resolve('./target/pnpm');
-const pnpmPath = path.join(targetDir, 'pnpm');
-const INSTALL_SCRIPT = path.resolve('./scripts/pnpm-migration/pnpm-install-dependencies.mjs');
-const REFRESH_FLAG = path.resolve('.yarn-refreshed');
+// Proper __dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// Config & Paths
+const version = '10.11.1';
+const repoRoot = path.resolve(__dirname, '../..');
+const targetDir = path.resolve(repoRoot, 'target/pnpm');
+const pnpmPath = path.join(targetDir, 'pnpm');
+const INSTALL_SCRIPT = path.resolve(repoRoot, 'scripts/pnpm-migration/pnpm-install-app-dependencies.mjs');
+const REFRESH_FLAG = path.resolve(repoRoot, '.yarn-refreshed');
+
+// Cleanup handler
 registerCleanupOnSignals(() => {
   safeUnlink(REFRESH_FLAG);
 });
@@ -28,7 +36,7 @@ async function markYarnRefreshed() {
 // 🧹 Cleanup flag manually
 async function clearYarnRefreshFlag() {
   if (existsSync(REFRESH_FLAG)) {
-    await fs.unlink(REFRESH_FLAG).catch(() => {});
+    await safeUnlink(REFRESH_FLAG);
     console.log('🧹 Yarn refresh flag cleared. Ready for next cycle.');
     process.exit(0);
   }
@@ -91,20 +99,49 @@ function runInstallDependencies() {
   }
 }
 
-// 🔁 Refresh Yarn
+// 🔁 Refresh Yarn using spawn for signal-safe handling
 function refreshYarn() {
-  console.log('🔁 Refreshing Yarn (force reinstall)...');
-  try {
-    execSync('yarn install --force', { stdio: 'inherit' });
-    console.log('✅ Yarn refresh complete.');
-  } catch (err) {
-    console.warn('⚠️ Yarn refresh failed:', err.message);
-  }
+  return new Promise((resolve, reject) => {
+    console.log('🔁 Refreshing Yarn (force reinstall)...');
+
+    const child = spawn('yarn', ['install', '--force'], {
+      stdio: 'inherit',
+      shell: true,
+    });
+
+    const handleSignal = (signal) => {
+      console.log(`\n🛑 Received ${signal}, forwarding to Yarn...`);
+      child.kill(signal);
+    };
+
+    process.on('SIGINT', handleSignal);
+    process.on('SIGTERM', handleSignal);
+
+    child.on('exit', async (code) => {
+      process.off('SIGINT', handleSignal);
+      process.off('SIGTERM', handleSignal);
+
+      if (code === 0) {
+        console.log('✅ Yarn refresh complete.');
+        resolve();
+      } else {
+        console.warn(`⚠️ Yarn refresh failed with exit code ${code}`);
+        await safeUnlink(REFRESH_FLAG);
+        reject(new Error(`yarn exited with code ${code}`));
+      }
+    });
+
+    child.on('error', async (err) => {
+      console.error('❌ Failed to start Yarn:', err.message);
+      await safeUnlink(REFRESH_FLAG);
+      reject(err);
+    });
+  });
 }
 
 // 🔁 Main logic
 (async () => {
-  await clearYarnRefreshFlag(); // always clear before install if exists
+  await clearYarnRefreshFlag(); // Always clear stale flag first
 
   if (!existsSync(pnpmPath)) {
     installPnpm();
@@ -118,7 +155,11 @@ function refreshYarn() {
   if (!hasYarnBeenRefreshed()) {
     await markYarnRefreshed();
     console.log('🔁 First pass done. Re-running yarn install...');
-    refreshYarn();
-    process.exit(0);
+    try {
+      await refreshYarn();
+      process.exit(0);
+    } catch {
+      process.exit(1);
+    }
   }
 })();
