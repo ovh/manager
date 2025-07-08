@@ -1,13 +1,68 @@
-import { PageLayout } from '@ovh-ux/manager-react-components';
-import { FC } from 'react';
+import {
+  ChangelogButton,
+  PageLayout,
+  PciGuidesHeader,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
+import { FC, useMemo } from 'react';
+import { Outlet, useResolvedPath, useRouteLoaderData } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TProject } from '@ovh-ux/manager-pci-common';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { GoBack } from '@/components/navigation/GoBack.component';
+import TabsPanel from '@/components/tab/TabsPanel.component';
 import InstanceWrapper from './InstanceWrapper.page';
+import { CHANGELOG_LINKS } from '@/constants';
 
-const Instance: FC = () => (
-  <InstanceWrapper>
-    <PageLayout>
-      <GoBack />
-    </PageLayout>
-  </InstanceWrapper>
-);
+const Instance: FC = () => {
+  const { t } = useTranslation('dashboard');
+  const project = useRouteLoaderData('root') as TProject;
+
+  const dashboardPath = useResolvedPath('');
+  const vncPath = useResolvedPath('vnc');
+
+  const tabs = useMemo(
+    () => [
+      {
+        label: t('pci_instances_dashboard_tab_info_title'),
+        to: dashboardPath.pathname,
+      },
+      {
+        label: t('pci_instances_dashboard_tab_vnc_title'),
+        to: vncPath.pathname,
+      },
+    ],
+    [],
+  );
+
+  return (
+    <InstanceWrapper>
+      <PageLayout>
+        <Breadcrumb
+          projectLabel={project.description ?? ''}
+          items={[{ label: '' }]}
+        />
+        <div className="header mt-8">
+          <div className="flex items-center justify-between">
+            <div className="flex-[0.8]">{/* instance name */}</div>
+            <div className="flex gap-x-3">
+              <ChangelogButton links={CHANGELOG_LINKS} />
+              <PciGuidesHeader category="instances" />
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 mb-8">
+          <Notifications />
+        </div>
+        <GoBack />
+        <div className="mt-8">
+          <TabsPanel tabs={tabs} />
+        </div>
+        <div className="mt-8">
+          <Outlet />
+        </div>
+      </PageLayout>
+    </InstanceWrapper>
+  );
+};
 export default Instance;

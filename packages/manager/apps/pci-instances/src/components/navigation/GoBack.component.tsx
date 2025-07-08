@@ -10,7 +10,7 @@ export const GoBack: FC = () => {
   const backHref = useHref('..');
   return (
     <OsdsLink
-      className="mt-12 mb-3"
+      className="my-3"
       color={ODS_THEME_COLOR_INTENT.primary}
       href={backHref}
     >

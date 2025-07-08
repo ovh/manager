@@ -72,7 +72,7 @@ const getActionHrefByName = (
   { region, id }: Pick<TAggregatedInstance, 'id' | 'region'>,
 ): TAggregatedInstanceAction['link'] => {
   if (name === 'details') {
-    return { path: id, isExternal: false };
+    return { path: `${id}?region=${region}`, isExternal: false };
   }
 
   if (name === 'edit') {
