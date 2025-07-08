@@ -23,7 +23,7 @@
   "pci_projects_project_storages_blocks_coming_soon": "Coming soon",
   "pci_projects_project_storages_blocks_encrypted_label": "Encryption",
   "pci_projects_project_storages_blocks_encryption_available": "Encryption available",
-  "pci_projects_project_storages_blocks_encryption_unavailable": "Encryption unavailable",
+  "pci_projects_project_storages_blocks_encryption_unavailable": "Encryption not available",
   "pci_projects_project_storages_blocks_guaranteed": "guaranteed",
   "pci_projects_project_storages_blocks_up_to": "up to"
 }
