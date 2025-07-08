@@ -96,6 +96,10 @@ export const mockedInstanceDTO: TInstanceDto = {
       group: 'details',
     },
     {
+      name: 'edit',
+      group: 'details',
+    },
+    {
       name: 'assign_floating_ip',
       group: 'details',
     },
