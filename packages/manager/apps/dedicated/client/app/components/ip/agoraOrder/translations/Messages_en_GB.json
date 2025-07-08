@@ -91,5 +91,6 @@
   "ip_agora_ipv6_no_services_link": " Create a vRack ",
   "ip_agora_ipv4_localisation_not_available": "Geolocation information cannot be changed for only one IP address.",
   "ip_agora_ipv6_location_eu-south-mil": "Europe (Italy - Milan)",
-  "ip_region_eu-south-mil": "Europe (Italy - Milan)"
+  "ip_region_eu-south-mil": "Europe (Italy - Milan)",
+  "ip_agora_ip_region_apac_bandwidth_limit_explaination": "(*) The default public bandwidth (free) for routing network traffic to vRack in Asia-Pacific regions is capped at 100 Mbps."
 }

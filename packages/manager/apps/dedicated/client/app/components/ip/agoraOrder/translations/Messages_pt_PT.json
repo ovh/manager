@@ -91,5 +91,6 @@
   "ip_agora_ipv6_no_services_link": " Criar uma vRack",
   "ip_agora_ipv4_localisation_not_available": "As informações de geolocalização não podem ser alteradas para um único endereço IP.",
   "ip_agora_ipv6_location_eu-south-mil": "Europa (Itália - Milão)",
-  "ip_region_eu-south-mil": "Europa (Itália - Milão)"
+  "ip_region_eu-south-mil": "Europa (Itália - Milão)",
+  "ip_agora_ip_region_apac_bandwidth_limit_explaination": "(*) A opção de largura de banda pública predefinida (gratuita) que permite encaminhar o tráfego de rede para o vRack nas regiões Ásia-Pacífico está limitada a 100 Mbps."
 }
