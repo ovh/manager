@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import { ResourceStatus } from '@/data/api';
 
 export type BadgeStatusProps = {
@@ -11,11 +10,11 @@ export type BadgeStatusProps = {
 const getStatusColor = (status: string) => {
   switch (status) {
     case ResourceStatus.READY:
-      return ODS_BADGE_COLOR.success;
+      return BADGE_COLOR.success;
     case ResourceStatus.ERROR:
-      return ODS_BADGE_COLOR.critical;
+      return BADGE_COLOR.critical;
     default:
-      return ODS_BADGE_COLOR.information;
+      return BADGE_COLOR.information;
   }
 };
 
@@ -25,11 +24,9 @@ export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
   ]);
 
   return (
-    <OdsBadge
-      data-testid={props['data-testid']}
-      color={statusColor}
-      label={props.status}
-    />
+    <Badge data-testid={props['data-testid']} color={statusColor}>
+      {props.status}
+    </Badge>
   );
 };
 

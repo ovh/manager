@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { OdsDivider } from '@ovhcloud/ods-components/react';
+import { Divider } from '@ovhcloud/ods-react';
 import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useOrganization, usePlatform } from '@/data/hooks';
@@ -95,7 +95,7 @@ export const GeneralInformations = () => {
               <div className={`mb-4 ${!isFirst ? 'mt-4' : ''}`}>
                 <GuideLink label={t(key)} guide={value} />
               </div>
-              {!isLast && <OdsDivider />}
+              {!isLast && <Divider />}
             </div>
           );
         }),
