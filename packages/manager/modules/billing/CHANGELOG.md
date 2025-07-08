@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.40.1...@ovh-ux/manager-billing@0.41.0) (2025-07-08)
+
+
+### Features
+
+* **dedicated.ip:** add ftc delete modal for failover tab ([0875ad2](https://github.com/ovh/manager/commit/0875ad271e19bb29c8c0c993e926b9abfdd7ecd9)), closes [#MANAGER-17886](https://github.com/ovh/manager/issues/MANAGER-17886)
+* **dedicated.ip:** use ftc cancellation modal ([def9d57](https://github.com/ovh/manager/commit/def9d5729a6ede817a8f0ba777361c6c1952990f)), closes [#MANAGER-17886](https://github.com/ovh/manager/issues/MANAGER-17886)
+
+
+
+
+
 ## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.40.0...@ovh-ux/manager-billing@0.40.1) (2025-07-04)
 
 
