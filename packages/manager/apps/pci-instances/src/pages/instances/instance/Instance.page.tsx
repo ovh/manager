@@ -7,19 +7,27 @@ import {
 import { FC, useMemo } from 'react';
 import { Outlet, useResolvedPath, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { TProject } from '@ovh-ux/manager-pci-common';
+import { TProject, useParam } from '@ovh-ux/manager-pci-common';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { GoBack } from '@/components/navigation/GoBack.component';
 import TabsPanel from '@/components/tab/TabsPanel.component';
 import InstanceWrapper from './InstanceWrapper.page';
 import { CHANGELOG_LINKS } from '@/constants';
+import InstanceName from './dashboard/components/InstanceName.component';
+import { useDashboard } from './dashboard/hooks/useDashboard';
+import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
 
 const Instance: FC = () => {
   const { t } = useTranslation('dashboard');
   const project = useRouteLoaderData('root') as TProject;
-
+  const { instanceId, regionId } = useParam('regionId', 'instanceId');
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath('vnc');
+
+  const { instance, isPending: isInstanceLoading } = useDashboard({
+    region: regionId,
+    instanceId,
+  });
 
   const tabs = useMemo(
     () => [
@@ -40,11 +48,17 @@ const Instance: FC = () => {
       <PageLayout>
         <Breadcrumb
           projectLabel={project.description ?? ''}
-          items={[{ label: '' }]}
+          items={[{ label: instance?.name ?? '' }]}
         />
         <div className="header mt-8">
           <div className="flex items-center justify-between">
-            <div className="flex-[0.8]">{/* instance name */}</div>
+            <div className="flex-[0.8]">
+              <LoadingCell isLoading={isInstanceLoading}>
+                {instance && (
+                  <InstanceName instance={instance} region={regionId} />
+                )}
+              </LoadingCell>
+            </div>
             <div className="flex gap-x-3">
               <ChangelogButton links={CHANGELOG_LINKS} />
               <PciGuidesHeader category="instances" />
