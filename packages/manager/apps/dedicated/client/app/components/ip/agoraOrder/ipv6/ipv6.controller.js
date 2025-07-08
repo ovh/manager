@@ -6,6 +6,8 @@ import {
   IP_TYPE_TITLE,
   TRACKING_PREFIX,
   FUNNEL_TRACKING_PREFIX,
+  ASIAN_PACIFIC_DATACENTERS,
+  PRODUCT_TYPES,
 } from '../ip-ip-agoraOrder.constant';
 
 import { FLAGS, ACTIONS_SUFFIX } from './ipv6.constant';
@@ -39,6 +41,7 @@ export default class AgoraIpV6OrderController {
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.loading = {};
     this.ADDITIONAL_IP = ADDITIONAL_IP;
+    this.ASIAN_PACIFIC_DATACENTERS = ASIAN_PACIFIC_DATACENTERS;
     this.type = IP_TYPE_TITLE.IPv6;
     this.ovhManagerRegionService = ovhManagerRegionService;
   }
@@ -145,7 +148,9 @@ export default class AgoraIpV6OrderController {
   }
 
   loadRegions() {
-    this.trackClick(`select_service::next_${this.model.selectedService}`);
+    this.trackClick(
+      `select_service::next_${this.model.selectedService?.serviceName}`,
+    );
 
     this.catalogByLocation = this.ipv6RegionsWithPlan.map(
       ({ regionId, plan }) => {
@@ -168,6 +173,22 @@ export default class AgoraIpV6OrderController {
     );
   }
 
+  isAPACRegion(region) {
+    const isVrack =
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName;
+    return (
+      isVrack && this.ASIAN_PACIFIC_DATACENTERS.includes(region.datacenter)
+    );
+  }
+
+  getRegionLabelDisplay(region) {
+    return this.isAPACRegion(region) ? `${region.location} *` : region.location;
+  }
+
+  hasAPACRegionInCatalog() {
+    return this.catalogByLocation?.some((region) => this.isAPACRegion(region));
+  }
+
   redirectToPaymentPage() {
     this.trackSelectRegion(
       this.model.selectedPlan.location.replaceAll(' ', '-'),
@@ -181,12 +202,12 @@ export default class AgoraIpV6OrderController {
       duration: 'P1M',
       planCode,
       quantity: 1,
-      destination: this.model.selectedService,
+      destination: this.model.selectedService?.serviceName,
     });
 
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::confirm::ipv6_${
-        this.model.selectedService
+        this.model.selectedService?.serviceName
       }_${this.model.selectedPlan.location.replaceAll(' ', '-')}__free`,
       type: 'action',
       level2: 57,
@@ -229,7 +250,7 @@ export default class AgoraIpV6OrderController {
     );
     this.atInternet.trackClick({
       name: `${FUNNEL_TRACKING_PREFIX}button::add_additional_ip::cancel::ipv6_${
-        this.model.selectedService
+        this.model.selectedService?.serviceName
       }_${this.model.selectedPlan.location.replaceAll(' ', '-')}_free`,
       type: 'action',
       level2: 57,

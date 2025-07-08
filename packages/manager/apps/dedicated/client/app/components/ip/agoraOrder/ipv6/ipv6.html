@@ -67,7 +67,6 @@
                             data-items="$ctrl.services"
                             data-match="displayName"
                             data-model="$ctrl.model.selectedService"
-                            data-value-property="serviceName"
                             data-name="service"
                             data-placeholder="{{:: 'global_select' | translate}}"
                             data-searchable
@@ -121,7 +120,7 @@
                         class="d-inline-block col-md-6 col-xl-3 my-3"
                         data-name="plan"
                         data-ng-repeat="plan in $ctrl.catalogByLocation track by plan.regionId"
-                        data-label="{{ plan.location }}"
+                        data-label="{{ $ctrl.getRegionLabelDisplay(plan) }}"
                         data-description="{{ plan.regionId }}"
                         data-variant="light"
                         data-picture="{{ ::plan.icon }}"
@@ -132,6 +131,10 @@
                     >
                     </oui-select-picker>
                 </div>
+                <div
+                    data-ng-if="$ctrl.hasAPACRegionInCatalog()"
+                    data-translate="ip_agora_ip_region_apac_bandwidth_limit_explaination"
+                ></div>
             </div>
         </oui-step-form>
     </oui-stepper>

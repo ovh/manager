@@ -80,7 +80,7 @@
                     class="d-inline-block col-md-6 col-xl-3 my-3"
                     data-name="region"
                     data-ng-repeat="region in $ctrl.catalogByLocation track by region.regionName"
-                    data-label="{{ region.location }}"
+                    data-label="{{ $ctrl.getRegionLabelDisplay(region)}}"
                     data-description="{{ region.regionName }}"
                     data-variant="light"
                     data-picture="{{ ::region.icon }}"
@@ -89,6 +89,10 @@
                 >
                 </oui-select-picker>
             </div>
+            <div
+                data-ng-if="$ctrl.hasAPACRegionInCatalog()"
+                data-translate="ip_agora_ip_region_apac_bandwidth_limit_explaination"
+            ></div>
         </oui-step-form>
 
         <!-- Choice your solution -->

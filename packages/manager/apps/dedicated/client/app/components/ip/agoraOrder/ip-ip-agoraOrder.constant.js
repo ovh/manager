@@ -19,6 +19,31 @@ export const IP_FAILOVER_PLANCODE = {
   US: 'ip-failover-arin',
 };
 
+export const PRODUCT_TYPES = {
+  dedicatedServer: {
+    apiTypeName: 'SERVER',
+    typeName: 'DEDICATED',
+  },
+  privateCloud: {
+    apiTypeName: 'DEDICATED_CLOUD',
+    typeName: 'PRIVATE_CLOUD',
+  },
+  vps: {
+    apiTypeName: 'VPS',
+    typeName: 'VPS',
+  },
+  parking: {
+    apiTypeName: 'parking',
+    typeName: 'parking',
+  },
+  vrack: {
+    apiTypeName: 'VRACK',
+    typeName: 'VRACK',
+  },
+};
+
+export const ASIAN_PACIFIC_DATACENTERS = ['SYD', 'YNM', 'SGP'];
+
 export default {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
@@ -28,4 +53,6 @@ export default {
   DASHBOARD_STATE_NAME,
   IP_TYPE,
   ALERT_ID,
+  PRODUCT_TYPES,
+  ASIAN_PACIFIC_DATACENTERS,
 };
