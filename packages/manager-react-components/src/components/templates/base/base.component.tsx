@@ -1,5 +1,5 @@
 import React from 'react';
-import { Headers, HeadersProps } from '../../content';
+import { Headers, HeadersProps } from './headers';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { LinkType, Links, Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
