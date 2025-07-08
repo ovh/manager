@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.17.0...@ovh-ux/manager-web@19.18.0) (2025-07-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4136] ([6e93849](https://github.com/ovh/manager/commit/6e938490a45196eefc6a0c66ad7cee999bf47154))
+
+
+### Features
+
+* **web-hosting:** add banner on multisite ([d6f3fa9](https://github.com/ovh/manager/commit/d6f3fa971152f9824ce360c684929e509691bec9)), closes [#MANAGER-17759](https://github.com/ovh/manager/issues/MANAGER-17759)
+* **web-hosting:** create react layout and tabs ([896e051](https://github.com/ovh/manager/commit/896e0516504252dc555d9768bd596433a4b95179)), closes [#MANAGER-17888](https://github.com/ovh/manager/issues/MANAGER-17888)
+* **web-hosting:** delete ssl section on general informations ([d23c82a](https://github.com/ovh/manager/commit/d23c82a23e8f2dfc2def38b6c0ee75299c55976c)), closes [#MANAGER-17755](https://github.com/ovh/manager/issues/MANAGER-17755)
+* **web-hosting:** enable ssl by default on multisite ([b16bf8a](https://github.com/ovh/manager/commit/b16bf8a3e75c464e4b6f47be7b060993ccec79ab)), closes [#MANAGER-17846](https://github.com/ovh/manager/issues/MANAGER-17846)
+* **web-hosting:** remove ssl column on multisite ([57a5113](https://github.com/ovh/manager/commit/57a5113a82726d70727f4022e93d3d2893b11e3e)), closes [#MANAGER-17757](https://github.com/ovh/manager/issues/MANAGER-17757)
+* **web-hosting:** replace actions on multisite ([fa3df60](https://github.com/ovh/manager/commit/fa3df60fd0fd47ffb4597dff66f3f7fd4fc9df42)), closes [#MANAGER-17845](https://github.com/ovh/manager/issues/MANAGER-17845)
+
+
+
+
+
 # [19.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.16.0...@ovh-ux/manager-web@19.17.0) (2025-07-07)
 
 
