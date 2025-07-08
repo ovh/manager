@@ -143,12 +143,10 @@ export const getColumns = ({
           <div>
             {gpu > 0 ? (
               <div className="flex gap-2 items-center">
-                <Zap className="size-4 shrink-0" />
                 <span>{`${gpu} GPU ${gpuModel}`}</span>
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <Cpu className="size-4 shrink-0" />
                 <span>{`${cpu} CPU`}</span>
               </div>
             )}
@@ -180,12 +178,10 @@ export const getColumns = ({
           <div>
             {unsecureHttp ? (
               <div className="flex gap-2 items-center">
-                <Globe className="size-4 inline mr-2" />
                 {t('networkPublicTitle')}
               </div>
             ) : (
               <div className="flex gap-2 items-center">
-                <LockKeyhole className="size-4 inline mr-2" />
                 {t('networkSecureTitle')}
               </div>
             )}

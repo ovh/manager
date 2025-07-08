@@ -98,7 +98,6 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       {order.flavor && (
         <div>
           <div className="flex items-center pl-4 gap-2">
-            <Cpu className="size-4" />
             <span>
               {t('summaryFieldFlavorCores', {
                 count:
@@ -107,7 +106,6 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             </span>
           </div>
           <div className="flex items-center pl-4 gap-2">
-            <MemoryStick className="size-4" />
             <span>
               {t('summaryFieldFlavorMemory', {
                 memory: bytesConverter(
@@ -120,7 +118,6 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             </span>
           </div>
           <div className="flex items-center pl-4 gap-2">
-            <HardDrive className="size-4" />
             <span>
               {t('summaryFieldStorage', {
                 disk: bytesConverter(
@@ -133,7 +130,6 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
             </span>
           </div>
           <div className="flex items-center pl-4 gap-2">
-            <Globe className="size-4" />
             <span>
               {t('summaryFieldNetwork', {
                 network: bytesConverter(
@@ -173,7 +169,6 @@ const ImageDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
       )}
       {order.version && (
         <div className="flex items-center pl-4 gap-2">
-          <Hash className="size-4" />
           <span>{order.version}</span>
         </div>
       )}
@@ -283,12 +278,10 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         {order.unsecureHttp ? (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPublicLabel')}</span>
-            <Globe className="size-4" />
           </div>
         ) : (
           <div className="flex flex-row gap-2 items-center">
             <span>{t('summaryFieldPrivateLabel')}</span>
-            <LockKeyhole className="size-4" />
           </div>
         )}
       </div>

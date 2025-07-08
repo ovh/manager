@@ -111,11 +111,6 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               </td>
               <TableCell className="text-[#4d5592] border capitalize">
                 <div className="flex gap-2 w-full items-center">
-                  {flavor.type === ai.capabilities.FlavorTypeEnum.cpu ? (
-                    <Cpu className="size-4" />
-                  ) : (
-                    <Zap className="size-4" />
-                  )}
                   <span>{flavor.id}</span>
                 </div>
               </TableCell>

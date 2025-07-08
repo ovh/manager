@@ -40,7 +40,6 @@ const ResourcesSpec = ({
           <div className="flex flex-col">
             <div className="flex flex-row gap-2 items-center">
               <h5>{t('powerTitleSection')}</h5>
-              <Zap className="size-4" />
             </div>
             <span className="uppercase">
               {`${resources.gpu} x ${resources.flavor}`}
@@ -57,7 +56,6 @@ const ResourcesSpec = ({
           <div className="flex flex-col">
             <div className="flex flex-row gap-2 items-center">
               <h5>{t('powerTitleSection')}</h5>
-              <Cpu className="size-4" />
             </div>
             <span className="uppercase">
               {`${resources.cpu} x ${resources.flavor}`}
