@@ -23,6 +23,7 @@ import CreateGeneralInformationsDescription from './generalInformations/CreateGe
 import CreateGeneralInformationsValidity from './generalInformations/CreateGeneralInformationsValidity';
 import CreateGeneralInformationsCreationMethod from './generalInformations/CreateGeneralInformationsCreationMethod.component';
 import { validateCredentialCreationMethod } from '@/utils/credential/validateCredentialCreationMethod';
+import { CertificateType } from '@/types/okmsCredential.type';
 
 type CreateGeneralInformationsProps = {
   name: string | null;
@@ -33,6 +34,8 @@ type CreateGeneralInformationsProps = {
   setDescription: (description: string | null) => void;
   csr: string | null;
   setCsr: (csr: string | null) => void;
+  certificateType: CertificateType | null;
+  setCertificateType: (certificateType: CertificateType | null) => void;
   isCustomCsr: boolean;
   setIsCustomCsr: (isCustomCsr: boolean) => void;
   nextStep: () => void;
@@ -47,6 +50,8 @@ const CreateGeneralInformations = ({
   setDescription,
   csr,
   setCsr,
+  certificateType,
+  setCertificateType,
   isCustomCsr,
   setIsCustomCsr,
   nextStep,
@@ -64,6 +69,9 @@ const CreateGeneralInformations = ({
   useEffect(() => {
     if (!isCustomCsr) {
       setCsr(null);
+      setCertificateType('EC');
+    } else {
+      setCertificateType(null);
     }
   }, [isCustomCsr]);
 
@@ -96,6 +104,8 @@ const CreateGeneralInformations = ({
           <CreateGeneralInformationsCreationMethod
             csr={csr}
             setCsr={setCsr}
+            certificateType={certificateType}
+            setCertificateType={setCertificateType}
             isCustomCsr={isCustomCsr}
             setIsCustomCsr={setIsCustomCsr}
             credentialCreationMethodError={credentialCreationMethodError}
