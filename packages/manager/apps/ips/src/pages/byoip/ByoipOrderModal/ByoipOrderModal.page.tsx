@@ -33,7 +33,7 @@ interface DeclarationItem {
 export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   isOpen = true,
 }) => {
-  const { t, t: tcommon } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
+  const { t } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
 
   const {
@@ -127,7 +127,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
           variant={ODS_BUTTON_VARIANT.ghost}
-          label={tcommon('cancel')}
+          label={t('cancel', { ns: NAMESPACES.ACTIONS })}
           onClick={() => {
             startTransition(() => {
               navigate(urls.listing);
@@ -137,7 +137,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
         <OdsButton
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
-          label={tcommon('confirm')}
+          label={t('confirm', { ns: NAMESPACES.ACTIONS })}
           isDisabled={!declaratiosChecked}
           onClick={() => {
             const payload: ByoipPayloadParams = {
