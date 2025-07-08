@@ -5,21 +5,17 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { subRoutes } from '@/routes/routes.constant';
-import { MessageOptions } from '@/context/Message.context';
 
 export default function OrganizationActions({ id }: VCDOrganization) {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
-  const messageOptions: MessageOptions = {
-    isDismissible: true,
-  };
 
   const items: ActionMenuItem[] = [
     {
       id: 1,
       label: t('terminate'),
       onClick: () => {
-        navigate(`${subRoutes.terminate}/${id}`, { state: { messageOptions } });
+        navigate(`${subRoutes.terminate}/${id}`);
       },
       'data-testid': `terminate-cta-${id}`,
     },
