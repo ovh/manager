@@ -6,18 +6,28 @@ const redirectTo = (transition) =>
     .injector()
     .get('$q')
     .all([
-      transition.injector().getAsync('logsAvailability'),
       transition.injector().getAsync('auditLogsAvailability'),
+      transition.injector().getAsync('activityLogsAvailability'),
+      transition.injector().getAsync('accessPolicyLogsAvailability'),
     ])
-    .then(([logsAvailability, auditLogsAvailability]) => {
-      let state = 'iam.logs.audit';
-      if (!logsAvailability) {
-        state = 'iam';
-      } else if (!auditLogsAvailability) {
-        state = 'iam.logs.access-policy';
-      }
-      return state;
-    });
+    .then(
+      ([
+        auditLogsAvailability,
+        activityLogsAvailability,
+        accessPolicyLogsAvailability,
+      ]) => {
+        if (accessPolicyLogsAvailability) {
+          return 'iam.logs.access-policy';
+        }
+        if (activityLogsAvailability) {
+          return 'iam.logs.activity';
+        }
+        if (auditLogsAvailability) {
+          return 'iam.logs.audit';
+        }
+        return 'iam';
+      },
+    );
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.logs', {

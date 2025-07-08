@@ -50,10 +50,6 @@ export interface Plan {
     minimum: number;
     maximum: number;
   };
-  minPricing?: {
-    hourly?: order.publicOrder.Pricing;
-    monthly?: order.publicOrder.Pricing;
-  };
   order: number;
   default: boolean;
   networks: database.NetworkTypeEnum[];

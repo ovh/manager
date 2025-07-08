@@ -78,7 +78,6 @@ import * as dateFnsLocales from 'date-fns/locale';
 import emailDomain from '@ovh-ux/manager-email-domain';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
-import office from '@ovh-ux/manager-office';
 import '@ovh-ux/manager-filters';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 
@@ -187,7 +186,6 @@ export default async (containerEl, shellClient) => {
         'ovhManagerFilters',
         emailpro,
         exchange,
-        office,
         changelogButton,
         domain,
         domainDnsZone,

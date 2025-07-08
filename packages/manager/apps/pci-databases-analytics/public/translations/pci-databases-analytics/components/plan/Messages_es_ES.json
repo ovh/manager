@@ -11,6 +11,5 @@
   "nodeSpecRange": "De {{min}} a {{max}} nodos",
   "storageSpec": "{{storage}} de almacenamiento",
   "storageSpecRange": "De {{min}} a {{max}} de almacenamiento",
-  "priceStartingFrom": "Desde",
   "planTag-new": "Novedad"
 }

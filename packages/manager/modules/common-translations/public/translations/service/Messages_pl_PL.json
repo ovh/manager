@@ -4,5 +4,8 @@
   "service_state_suspended": "Zawieszona",
   "service_state_toActivate": "Do aktywacji",
   "service_state_toDelete": "Do usunięcia",
-  "service_state_toSuspend": "Do zawieszenia"
+  "service_state_toSuspend": "Do zawieszenia",
+  "service_state_enabled": "Włączony",
+  "service_state_disabled": "Wyłączone",
+  "service_state_draft": "Wymagana konfiguracja"
 }

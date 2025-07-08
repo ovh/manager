@@ -12,6 +12,7 @@ import {
 
 const allowByoipFeatureName = 'ip:byoip';
 const allowDeleteByoipService = 'ip:deleteByoipService';
+const allowPermanentMitigation = 'ip:permanentMitigation';
 
 export const listRouting = {
   reloadOnSearch: false,
@@ -75,6 +76,12 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((hasAnyIp) => `app.ip.${hasAnyIp ? 'dashboard' : 'onboarding'}`);
     },
     resolve: {
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          allowDeleteByoipService,
+          allowByoipFeatureName,
+          allowPermanentMitigation,
+        ]),
       fetchFirstIp: /* @ngInject */ ($http) => (params = '') =>
         $http
           .get(`/ip${params ? `?${params}` : ''}`)
@@ -140,16 +147,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.ip.organisation'),
       goToVrack: /* @ngInject */ ($state) => (vrackId) =>
         $state.go('vrack.dashboard', { vrackId }),
-      isByoipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(allowByoipFeatureName)
-          .then((feature) => feature.isFeatureAvailable(allowByoipFeatureName)),
-      isDeleteByoipServiceAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(allowDeleteByoipService)
-          .then((feature) =>
-            feature.isFeatureAvailable(allowDeleteByoipService),
-          ),
+      isByoipAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(allowByoipFeatureName),
+      isDeleteByoipServiceAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(allowDeleteByoipService),
+      isPermanentMitigationAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(allowPermanentMitigation),
       goToByoipConfiguration: /* @ngInject */ ($state) => () => {
         return $state.go('app.ip.byoip');
       },

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.40.0...@ovh-ux/manager-billing@0.40.1) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4144] ([58a9c30](https://github.com/ovh/manager/commit/58a9c30077ab937e5dff4b16d707c840e9c202a6))
+* **i18n:** add missing translations [CDS 4148] ([a9398e8](https://github.com/ovh/manager/commit/a9398e8e404133deca51e04f43d8383a37c29db1))
+* **i18n:** add missing translations [CDS 4156] ([676a856](https://github.com/ovh/manager/commit/676a856bce80395f1b844ff0715f89eb555450e6))
+
+
+
+
+
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.39.0...@ovh-ux/manager-billing@0.40.0) (2025-07-02)
+
+
+### Features
+
+* **billing:** contract page optimisation part 2 ([11211db](https://github.com/ovh/manager/commit/11211db2a94cc0378592e3ebf1a57a37598e0627)), closes [#MANAGER-18420](https://github.com/ovh/manager/issues/MANAGER-18420)
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.1...@ovh-ux/manager-billing@0.39.0) (2025-06-24)
+
+
+### Features
+
+* **billing:** rename zimbra service name on services page ([216e472](https://github.com/ovh/manager/commit/216e472733f56c4a3cf2cc368d53c6f72e18aec3)), closes [#MANAGER-17342](https://github.com/ovh/manager/issues/MANAGER-17342)
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.38.0...@ovh-ux/manager-billing@0.38.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([351f285](https://github.com/ovh/manager/commit/351f285c817dc6c659aa18f227852c14710208ba))
+
+
+
+
+
 # [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.3...@ovh-ux/manager-billing@0.38.0) (2025-06-10)
 
 

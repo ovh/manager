@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.13...@ovh-ux/manager-web-office-app@0.3.14) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.12...@ovh-ux/manager-web-office-app@0.3.13) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.11...@ovh-ux/manager-web-office-app@0.3.12) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.10...@ovh-ux/manager-web-office-app@0.3.11) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.9...@ovh-ux/manager-web-office-app@0.3.10) (2025-06-17)
+
+
+### Bug Fixes
+
+* **web-office:** add the tracking ([912501e](https://github.com/ovh/manager/commit/912501e28d98127956084b37f03ef677f978fd9b)), closes [#MANAGER-16498](https://github.com/ovh/manager/issues/MANAGER-16498)
+* **web-office:** change the datagrid loading ([6af5b92](https://github.com/ovh/manager/commit/6af5b929584c0a5cdbe0853c16761c7fb4b2f53a)), closes [#MANAGER-17357](https://github.com/ovh/manager/issues/MANAGER-17357)
+* **web-office:** update router and vitest config ([2e32d77](https://github.com/ovh/manager/commit/2e32d7760a13f29d974ab236b6e515dfebf561da)), closes [#MANAGER-18503](https://github.com/ovh/manager/issues/MANAGER-18503)
+
+
+
+
+
 ## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.8...@ovh-ux/manager-web-office-app@0.3.9) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

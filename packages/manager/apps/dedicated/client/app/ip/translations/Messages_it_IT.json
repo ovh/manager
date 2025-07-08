@@ -779,5 +779,6 @@
   "ip_guide_link_additional_ip": "Configurare un Additional IP",
   "ip_guide_link_ip_alias": "Configurare un indirizzo IP come alias",
   "ip_guide_link_ip_proxmox": "Configurare un Additional IP su Proxmox VE",
-  "ip_guide_link_floating_ip": "Concetti - Additional IP o Floating IP su Public Cloud"
+  "ip_guide_link_floating_ip": "Concetti - Additional IP o Floating IP su Public Cloud",
+  "ip_permanent_mitigation_EOL": "ATTENZIONE: la funzionalità “Scrubbing Center: permanente” è giunta alla fine del suo ciclo di vita (EOL) e sarà disattivata definitivamente l'8 settembre 2025."
 }

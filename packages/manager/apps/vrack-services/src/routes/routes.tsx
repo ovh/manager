@@ -290,18 +290,6 @@ export const getRoutes = (): RouteObject[] => {
                     routeConfig({
                       pageImport: () =>
                         import(
-                          '@/pages/endpoints/edit/EditEndpointDisplayName.page'
-                        ),
-                      path: urls.endpointsEdit,
-                      currentPage: 'vrack-services.endpoints.listing.edit',
-                      tracking: {
-                        pageType: PageType.popup,
-                        pageName: PageName.editEndpoints,
-                      },
-                    }),
-                    routeConfig({
-                      pageImport: () =>
-                        import(
                           '@/pages/endpoints/delete/EndpointDeleteModal.page'
                         ),
                       path: urls.endpointsDelete,

@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "HTTP-Port ändern",
+  "updateHttpPortDesc1": "Sie können den Port Ihrer Anwendung aktualisieren. Die aktuelle Konfiguration bleibt für die anderen Elemente erhalten, z. B. für den HTTP-Endpoint oder Ihre Deployment-Strategie.",
+  "updateHttpPortDesc2": "Es können Latenzzeiten für Ihre verschiedenen Replikas entstehen.",
+  "fieldHttpPortLabel": "HTTP-Port",
+  "httpPortInfo": "Geben Sie den neuen HTTP-Port an, den Sie für das Deployment Ihrer Anwendung nutzen möchten.",
+  "updatePortButtonCancel": "Abbrechen",
+  "updatePortButtonConfirm": "Ändern",
+  "updatePortToastErrorTitle": "Es ist ein Fehler aufgetreten",
+  "updatePortToastSuccessTitle": "Erfolg",
+  "updatePortToastSuccessDescription": "HTTP-Port wurde aktualisiert"
+}

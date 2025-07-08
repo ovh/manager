@@ -1,3 +1,4 @@
+import React from 'react';
 import { vi } from 'vitest';
 import { ResponsiveContainerProps } from 'recharts';
 import {
@@ -43,6 +44,40 @@ vi.mock('axios', async (importActual) => {
   };
 
   return mockAxios;
+});
+
+const mocksWebOfficeUrl = vi.hoisted(() => ({
+  shell: {
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('test-url'),
+    },
+  },
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
+  const actual = await importActual<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
+  return {
+    ...actual,
+    ShellContext: React.createContext(mocksWebOfficeUrl),
+    useContext: React.useContext,
+    useOvhTracking: vi.fn(() => {
+      return {
+        trackClick: vi.fn(),
+        trackPage: vi.fn(),
+        trackCurrentPage: vi.fn(),
+      };
+    }),
+    PageLocation: {
+      page: 'page',
+      tile: 'tile',
+    },
+    ButtonType: {
+      button: 'button',
+      externalLink: 'externalLink',
+    },
+  };
 });
 
 vi.mock('@/hooks', async (importActual) => {

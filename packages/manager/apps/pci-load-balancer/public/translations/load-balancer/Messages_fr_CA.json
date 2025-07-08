@@ -10,6 +10,7 @@
   "octavia_load_balancer": "Load Balancer",
   "octavia_load_balancers": "Load Balancers",
   "octavia_load_balancer_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}",
+  "octavia_load_balancer_quota_creation_error": "Vous n'avez plus de quota disponible sur cette localisation. Pour continuer, <Link>augmentez vos quotas</Link>",
   "octavia_load_balancers_title": "Load Balancers",
   "octavia_load_balancers_add_button": "Ajouter un Load Balancer",
   "octavia_load_balancer_name": "Nom",

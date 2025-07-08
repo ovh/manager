@@ -202,5 +202,9 @@
   "sidebar_security_operations": "Opérations",
   "sidebar_security_identity": "Sécurité",
   "sidebar_zimbra": "Zimbra Mail",
-  "sidebar_create_ticket": "Créer un ticket"
+  "sidebar_create_ticket": "Créer un ticket",
+  "sidebar_skip_to_the_main_content": "Allez au contenu principal",
+  "sidebar_public_networking": "Réseau public",
+  "sidebar_private_networking": "Réseau privé",
+  "sidebar_network_services": "Services réseau"
 }

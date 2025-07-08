@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { Routes } from './routes/routes';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import Routes from '@/routes/routes';
 import { MessageContextProvider } from './context/Message.context';
+import Loading from './components/loading/Loading.component';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +19,14 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const router = createHashRouter(Routes);
+  const routes = createHashRouter(createRoutesFromElements(Routes));
 
   return (
     <QueryClientProvider client={queryClient}>
       <MessageContextProvider>
-        <RouterProvider router={router} />
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={routes} />
+        </Suspense>
       </MessageContextProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>

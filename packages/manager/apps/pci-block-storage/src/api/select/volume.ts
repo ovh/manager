@@ -1,7 +1,22 @@
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import {
+  ColumnSort,
+  getMacroRegion,
+  PaginationState,
+} from '@ovh-ux/manager-react-components';
+import { TFunction } from 'i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TVolume } from '@/api/hooks/useVolume';
-import { TAPIVolume } from '@/api/data/volume';
+import {
+  AddVolumeProps,
+  TAPIVolume,
+  TUpdateVolumeProps,
+} from '@/api/data/volume';
 import { TVolumeCatalog } from '@/api/data/catalog';
+import {
+  getPricingSpecsFromModelPricings,
+  getVolumeModelPricings,
+  TModelPrice,
+} from '@/api/select/catalog';
 
 export const sortResults = (
   items: TVolume[],
@@ -42,9 +57,29 @@ export const paginateResults = <T>(
   totalRows: items.length,
 });
 
+export type TVolumeRegion = { regionName: string };
+export const mapVolumeRegion = <V extends TAPIVolume>(
+  t: TFunction<['region']>,
+) => (volume: V): V & TVolumeRegion => ({
+  ...volume,
+  regionName: t(
+    `region:manager_components_region_${getMacroRegion(volume.region)}_micro`,
+    {
+      micro:
+        volume.availabilityZone && volume.availabilityZone !== 'any'
+          ? volume.availabilityZone
+          : volume.region,
+    },
+  ),
+});
+
+export type TVolumeStatus = {
+  statusGroup: string;
+  statusLabel: string;
+};
 export const mapVolumeStatus = <V extends TAPIVolume>(
-  volume: V,
-): V & { statusGroup: string } => {
+  t: TFunction<['common']>,
+) => (volume: V): V & TVolumeStatus => {
   let statusGroup = '';
   if (['available', 'in-use'].includes(volume.status)) {
     statusGroup = 'ACTIVE';
@@ -74,25 +109,35 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
   return {
     ...volume,
     statusGroup,
+    statusLabel: t('common:pci_projects_project_storages_blocks_status', {
+      context: statusGroup,
+      defaultValue: volume.status,
+    }),
   };
 };
 
-export type WithAttach<V extends TAPIVolume> = V & {
+const getVolumePricing = (catalog?: TVolumeCatalog) => {
+  const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
+
+  return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
+    catalogPricing.find(
+      (p) => p.specs.name === volume.type && p.regions.includes(volume.region),
+    );
+};
+
+export type TVolumeAttach = {
   canAttachInstance: boolean;
   canDetachInstance: boolean;
   maxAttachedInstances: number;
 };
 
-export const mapVolumeAttach = (catalog?: TVolumeCatalog) => {
-  const catalogPricing = new Map(
-    catalog?.models.map((m) => [
-      m.name,
-      new Map(m.pricings.flatMap((p) => p.regions.map((r) => [r, p]))),
-    ]),
-  );
+export const mapVolumeAttach = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => {
+  const getPricing = getVolumePricing(catalog);
 
-  return <V extends TAPIVolume>(volume: V): WithAttach<V> => {
-    const pricing = catalogPricing.get(volume.type)?.get(volume.region);
+  return (volume: V): V & TVolumeAttach => {
+    const pricing = getPricing(volume);
 
     const maxAttachedInstances = pricing?.specs.maxAttachedInstances || 1;
 
@@ -104,3 +149,138 @@ export const mapVolumeAttach = (catalog?: TVolumeCatalog) => {
     };
   };
 };
+
+export const enum EncryptionType {
+  OMK = 'OMK',
+  CMK = 'CMK',
+}
+
+export type TVolumeEncryption = {
+  encryptionStatus: string;
+  encrypted: boolean | null;
+  encryptionType: EncryptionType | null;
+};
+export const mapVolumeEncryption = <V extends TAPIVolume>(
+  t: TFunction<['common']>,
+  catalog?: TVolumeCatalog,
+) => {
+  const getPrice = getVolumePricing(catalog);
+
+  return (volume: V): V & TVolumeEncryption => {
+    const encrypted = getPrice(volume)?.specs.encrypted ?? null;
+
+    let encryptionStatusContext = 'UNKNOWN';
+    if (encrypted !== null) {
+      encryptionStatusContext = encrypted ? 'ACTIVE' : 'NONE';
+    }
+
+    return {
+      ...volume,
+      encryptionStatus: t(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: encryptionStatusContext,
+          defaultValue: encryptionStatusContext,
+        },
+      ),
+      encryptionType: encrypted ? EncryptionType.OMK : null,
+      encrypted,
+    };
+  };
+};
+
+export type TVolumePricing =
+  | TModelPrice
+  | {
+      [P in keyof TModelPrice]?: undefined;
+    };
+export const mapVolumePricing = <V extends TAPIVolume>(
+  catalogData: TVolumeCatalog | undefined,
+  formatCatalogPrice: (price: number) => string,
+  t: TFunction<['add', 'common', typeof NAMESPACES.BYTES]>,
+  capacity?: number,
+) => {
+  const getPricings = getVolumeModelPricings(catalogData);
+
+  return (volume: V): V & TVolumePricing => {
+    const volumePricings = getPricings({
+      region: volume.region,
+      volumeType: volume.type,
+    });
+
+    if (!volumePricings.length) return volume;
+
+    return {
+      ...volume,
+      ...getPricingSpecsFromModelPricings(
+        volumePricings,
+        formatCatalogPrice,
+        t,
+        capacity ?? volume.size,
+      ),
+    };
+  };
+};
+
+export type TVolumeToAdd = {
+  name: string;
+  region: string;
+  size: number;
+  type: string;
+  encryptionType: EncryptionType | null;
+  availabilityZone: string | null;
+};
+
+export const mapVolumeToAdd = (projectId: string, catalog: TVolumeCatalog) => ({
+  name,
+  region,
+  size,
+  type,
+  availabilityZone,
+  encryptionType,
+}: TVolumeToAdd): AddVolumeProps => {
+  const pricing = catalog.models
+    .find((m) => m.name === type)
+    .pricings.find(
+      (p) =>
+        p.regions.includes(region) && p.specs.encrypted === !!encryptionType,
+    );
+
+  return {
+    projectId,
+    name,
+    region,
+    size,
+    type: pricing.specs.name,
+    availabilityZone,
+  };
+};
+
+export type TVolumeToEdit = {
+  projectId: string;
+  volumeToEdit: {
+    name: string;
+    size: number;
+    bootable: boolean;
+  };
+  originalVolume: TVolume;
+};
+
+export const mapVolumeToEdit = ({
+  projectId,
+  volumeToEdit: { name, size, bootable },
+  originalVolume,
+}: TVolumeToEdit): TUpdateVolumeProps => ({
+  projectId,
+  volumeToUpdate: {
+    name,
+    size,
+    bootable,
+  },
+  originalVolume: {
+    id: originalVolume.id,
+    name: originalVolume.name,
+    bootable: originalVolume.bootable,
+    size: originalVolume.size,
+  },
+});

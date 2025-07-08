@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.2...@ovh-ux/manager-pci-savings-plan-app@1.17.3) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.1...@ovh-ux/manager-pci-savings-plan-app@1.17.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.0...@ovh-ux/manager-pci-savings-plan-app@1.17.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.2...@ovh-ux/manager-pci-savings-plan-app@1.17.0) (2025-06-23)
+
+
+### Features
+
+* **pci.svp:** wording svp ([#16156](https://github.com/ovh/manager/issues/16156)) ([10aac20](https://github.com/ovh/manager/commit/10aac20d6b19ef6fdce9110f7290e9ed7398ea4a)), closes [#TAPC-2510](https://github.com/ovh/manager/issues/TAPC-2510)
+
+
+
+
+
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.1...@ovh-ux/manager-pci-savings-plan-app@1.16.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.0...@ovh-ux/manager-pci-savings-plan-app@1.16.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.7...@ovh-ux/manager-pci-savings-plan-app@1.16.0) (2025-06-17)
+
+
+### Features
+
+* **pci.savings-plan:** add colors ([1b34584](https://github.com/ovh/manager/commit/1b34584b043f68e61aca321fe3c38cceedb7c73c)), closes [#TAPC-4094](https://github.com/ovh/manager/issues/TAPC-4094)
+
+
+
+
+
 ## [1.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.6...@ovh-ux/manager-pci-savings-plan-app@1.15.7) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

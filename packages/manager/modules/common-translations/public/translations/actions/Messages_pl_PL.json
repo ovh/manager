@@ -46,5 +46,8 @@
   "modify_name": "Zmień nazwę",
   "modify_name_success": "Nazwa została zmodyfikowana",
   "retry": "Spróbuj ponownie",
-  "start": "Zacznij"
+  "start": "Zacznij",
+  "renew": "Odnów",
+  "restore": "Przywróć",
+  "see_details": "Przejdź do szczegółów"
 }

@@ -1,10 +1,10 @@
-export enum TaskStatus {
-  DONE = 'DONE',
-  ERROR = 'ERROR',
-  PENDING = 'PENDING',
-  RUNNING = 'RUNNING',
-  SCHEDULED = 'SCHEDULED',
-}
+export const TaskStatus = {
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+  PENDING: 'PENDING',
+  RUNNING: 'RUNNING',
+  SCHEDULED: 'SCHEDULED',
+} as const;
 
 export type TaskErrorMessage = {
   message: string;
@@ -12,7 +12,7 @@ export type TaskErrorMessage = {
 
 export type TaskProgressStatus = {
   name: string;
-  status: TaskStatus;
+  status: keyof typeof TaskStatus;
 };
 
 export type TaskType = {
@@ -24,7 +24,7 @@ export type TaskType = {
   message: string;
   progress: TaskProgressStatus[];
   startedAt: string;
-  status: TaskStatus;
+  status: keyof typeof TaskStatus;
   type: string;
   updatedAt: string;
 };

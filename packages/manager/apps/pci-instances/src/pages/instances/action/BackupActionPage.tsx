@@ -22,7 +22,7 @@ const BackupActionPage = ({
   isLoading,
 }: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
-  const locale = i18n?.language?.replace('_', '-');
+  const locale = i18n.language.replace('_', '-');
   const defaultSnapshotName = useMemo(
     () =>
       `${instance?.name} ${new Date().toLocaleDateString(locale, {
@@ -73,6 +73,7 @@ const BackupActionPage = ({
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSnapshotName(e.target.value)
           }
+          autoFocus
         />
         {!!price && !isBackupLoading && (
           <p className="text-sm font-medium">

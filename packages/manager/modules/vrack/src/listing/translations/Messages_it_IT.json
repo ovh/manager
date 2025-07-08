@@ -1,3 +1,7 @@
 {
-  "vrack_listing_action_delete": "Disattivare il servizio"
+  "vrack_listing_action_delete": "Disattivare il servizio",
+  "vrack_listing_columns_header_serviceName": "Servizio",
+  "vrack_listing_columns_header_description": "Descrizione",
+  "vrack_listing_columns_header_name": "Cognome",
+  "vrack_listing_columns_header_state": "Stato"
 }

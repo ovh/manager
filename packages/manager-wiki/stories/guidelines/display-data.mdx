@@ -1,0 +1,156 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Data displaying" />
+
+# Displaying data in React apps
+
+This guide provides best practices for displaying different types of data in React applications, ensuring consistency and proper formatting across the platform.
+
+## How to display price
+
+### Price Component
+
+Use the `Price` component from `@ovh-ux/manager-react-components` for displaying prices, [here](?path=/docs/manager-react-components-components-price--technical-information) the documentation.
+
+```tsx
+import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/manager-react-components';
+
+// Basic usage
+<Price 
+  value={3948000000} 
+  ovhSubsidiary={OvhSubsidiary.FR} 
+  locale="fr-FR" 
+/>
+
+// With tax information
+<Price 
+  value={3948000000} 
+  tax={789600000}
+  ovhSubsidiary={OvhSubsidiary.FR} 
+  locale="fr-FR" 
+/>
+
+// With interval unit
+<Price 
+  value={3948000000} 
+  intervalUnit={IntervalUnitType.month}
+  ovhSubsidiary={OvhSubsidiary.FR} 
+  locale="fr-FR" 
+/>
+
+// Complete example with all props
+<Price 
+  value={3948000000} 
+  tax={789600000}
+  intervalUnit={IntervalUnitType.month}
+  isConvertIntervalUnit={true}
+  ovhSubsidiary={OvhSubsidiary.FR} 
+  locale="fr-FR" 
+/>
+```
+
+## How to display date
+
+### Date Formatting Hook
+
+Use the `useFormatDate` hook from `@ovh-ux/manager-react-components` for displaying dates.
+The hook leverages date-fns for formatting dates in a localized and customizable way,  [here](?path=/docs/manager-react-components-hooks-useformatdate-documentation--technical-information) the documentation.
+
+Here some examples :
+
+```tsx
+import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+// Basic usage with default format (PP)
+const formatDate = useFormatDate({ date: '2024-09-14T09:21:21.943Z' });
+<OdsText>{formatDate}</OdsText> // Displays "14 Sep 2024"
+
+// With invalid date handling
+const formatDate = useFormatDate({ 
+  date: 'invalid-date',
+  invalidDateDisplayLabel: 'Date inconnue' 
+});
+<OdsText>{formatDate}</OdsText> // Displays "Date inconnue"
+
+// Example with a component
+const DateDisplay = ({ date, format = 'PP' }) => {
+  const formattedDate = useFormatDate({ date, format });
+  return <OdsText>{formattedDate}</OdsText>;
+};
+
+// Usage
+<DateDisplay date="2024-09-14T09:21:21.943Z" />
+<DateDisplay date="2024-09-14T09:21:21.943Z" format="PPpp" />
+`````
+
+## How to display storage capacity
+
+### Storage Component
+
+Use the `Storage` component from `@ovh-ux/manager-react-components` for displaying storage values:
+
+```tsx
+import { Storage } from '@ovh-ux/manager-react-components';
+
+// Basic usage
+<Storage value={1024} />
+
+// With unit
+<Storage 
+  value={1024} 
+  unit="GB" 
+/>
+
+// With precision
+<Storage 
+  value={1024} 
+  unit="GB" 
+  precision={2} 
+/>
+```
+
+## Common Patterns
+
+### Loading States
+
+```tsx
+import { Skeleton } from '@ovhcloud/ods-components/react';
+
+// Loading state for price
+<Skeleton width="100px" height="24px" />
+
+// Loading state for date
+<Skeleton width="120px" height="24px" />
+
+// Loading state for storage
+<Skeleton width="80px" height="24px" />
+```
+
+## Code Review Checklist
+
+- [ ] Use appropriate components from `@ovh-ux/manager-react-components`
+- [ ] Implement proper loading states
+- [ ] Handle error cases
+- [ ] Follow formatting guidelines
+- [ ] Consider localization
+- [ ] Test with different values
+- [ ] Verify accessibility
+- [ ] Check responsive behavior
+
+## Reference
+
+### External Resources
+
+#### Date Handling
+- [Moment.js Documentation](https://momentjs.com/docs/)
+- [Date-fns Documentation](https://date-fns.org/)
+- [Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
+
+#### Number Formatting
+- [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat)
+- [Currency Codes](https://www.currency-iso.org/en/home/tables/table-a1.html)
+
+#### Storage Units
+- [Binary Prefixes](https://en.wikipedia.org/wiki/Binary_prefix)
+- [SI Units](https://www.bipm.org/en/measurement-units/)

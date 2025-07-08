@@ -9,6 +9,7 @@ import { links as constantLinks } from './user-account-menu/constants';
 import UserAccountMenuButton from './user-account-menu/Button';
 import HeaderComponent from './index';
 import UserAccountMenu from './user-account-menu/Content';
+import { UserLink } from './user-account-menu/UserLink';
 
 /**
  * Mocked Data
@@ -42,7 +43,6 @@ vi.mock('@ovh-ux/manager-react-components', async () => ({
   useFeatureAvailability: vi.fn().mockReturnValue([]),
   fetchFeatureAvailabilityData: vi.fn().mockReturnValue({
     'new-billing': true,
-    'new-account': true,
     'identity-documents': false,
     'procedures:fraud': false,
   }),
@@ -138,7 +138,8 @@ describe('Header.component', () => {
     }));
 
     await act(async () => {
-      render(<HeaderComponent />);
+      const iframeRef = { current: document.createElement("iframe")};
+      render(<HeaderComponent iframeRef={iframeRef} />);
     });
 
     await waitFor(() => {
@@ -161,7 +162,8 @@ describe('Header.component', () => {
     async (_, legalForm) => {
       mockedUser.legalform = legalForm;
       await act(async () => {
-        render(<HeaderComponent />);
+        const iframeRef = { current: document.createElement("iframe")};
+        render(<HeaderComponent iframeRef={iframeRef} />);
       });
       if (legalForm === LEGAL_FORMS.CORPORATION) {
         expect(screen.getByText(/Testcompany/)).toBeInTheDocument();
@@ -213,7 +215,7 @@ describe('Header.component', () => {
           }
         });
 
-        constantLinks.forEach((link) => {
+        constantLinks.filter((link: UserLink) => !link.region || link.region.includes(mockedRegion)).forEach((link) => {
           const linkElement = screen.getByText(link.i18nKey);
           expect(linkElement).toBeInTheDocument();
           expect(linkElement.closest('a').getAttribute('aria-label')).toBe(
@@ -242,7 +244,7 @@ describe('Header.component', () => {
 
     it.each([
       ['new-billing', true, 'https://mockedurl.mock/new-billing'],
-      ['new-account', true, 'https://mockedurl.mock/new-account']
+      ['account', true, 'https://mockedurl.mock/account']
     ])(
       'should render all expected links in the document for %s feature being %s',
       async (feature, isEnabled, specialUrl) => {

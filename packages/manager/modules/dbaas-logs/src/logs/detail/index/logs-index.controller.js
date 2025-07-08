@@ -25,6 +25,12 @@ export default class LogsIndexCtrl {
     this.bytes = $filter('bytes');
   }
 
+  $onInit() {
+    this.columnsParameters = [
+      { name: 'isEditable', hidden: this.service.isIamEnabled },
+    ];
+  }
+
   loadIndices({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((criterion) => {
       const name = criterion.property || 'name';

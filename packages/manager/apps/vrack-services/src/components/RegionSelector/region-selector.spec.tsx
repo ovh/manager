@@ -17,6 +17,7 @@ const regionList = [
   'eu-west-rbx',
   'eu-west-sbg',
   'eu-west-lim',
+  'eu-south-mil',
   'eu-central-waw',
   'eu-west-eri',
   'us-east-vin',
@@ -67,7 +68,7 @@ describe('RegionSelector component', () => {
   });
 
   it.each([
-    { label: 'region-selector-eu-filter', cardNb: 16 },
+    { label: 'region-selector-eu-filter', cardNb: 17 },
     { label: 'region-selector-ca-filter', cardNb: 2 },
     { label: 'region-selector-us-filter', cardNb: 10 },
     { label: 'region-selector-ap-filter', cardNb: 3 },

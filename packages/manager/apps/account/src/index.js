@@ -12,7 +12,7 @@ import { initShellClient } from '@ovh-ux/shell';
 
 defineApplicationVersion(__VERSION__);
 
-initShellClient('new-account').then(async (shellClient) => {
+initShellClient('account').then(async (shellClient) => {
   if (!isTopLevelApplication()) {
     shellClient.ux.startProgress();
   }

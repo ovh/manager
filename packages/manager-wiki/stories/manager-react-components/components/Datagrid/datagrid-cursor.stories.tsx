@@ -264,6 +264,7 @@ Topbar.args = {
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
     status: `Status #${i}`,
+    anotherStatus: `AnotherStatus #${i}`,
   })),
   columns: columnsSearchAndFilters,
   search: {
@@ -338,11 +339,15 @@ WithDatagridSubComponent.args = {
               label: 'sub component label',
               price: 10,
               status: '',
+              anotherStatus: '',
+              iam: {} as IamObject,
             },
             {
               label: 'sub component label #2',
               price: 100,
               status: '',
+              anotherStatus: '',
+              iam: {} as IamObject,
             },
           ]}
           totalItems={2}

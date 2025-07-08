@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.3...@ovh-ux/manager-new-billing@0.42.0) (2025-07-02)
+
+
+### Features
+
+* **billing:** contract page optimisation part 2 ([11211db](https://github.com/ovh/manager/commit/11211db2a94cc0378592e3ebf1a57a37598e0627)), closes [#MANAGER-18420](https://github.com/ovh/manager/issues/MANAGER-18420)
+* **billing:** myservices show contracts tab for us ([3170ae9](https://github.com/ovh/manager/commit/3170ae91b1accd41e35d778ad1c7a91391e9a2f2)), closes [#MANAGER-18444](https://github.com/ovh/manager/issues/MANAGER-18444)
+
+
+
+
+
+## [0.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.2...@ovh-ux/manager-new-billing@0.41.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([351f285](https://github.com/ovh/manager/commit/351f285c817dc6c659aa18f227852c14710208ba))
+
+
+
+
+
 ## [0.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.1...@ovh-ux/manager-new-billing@0.41.2) (2025-06-11)
 
 

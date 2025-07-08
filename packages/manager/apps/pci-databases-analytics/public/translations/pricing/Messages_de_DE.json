@@ -5,5 +5,11 @@
   "pricing_button_monthly": "Monatlich",
   "pricing_unit_hourly": "/Stunde",
   "pricing_unit_monthly": "/Monat",
-  "pricing_label": "Preis"
+  "pricing_label": "Preis",
+  "freeBetaLabel": "Kostenlose Beta",
+  "freeBetaPopover": "Der Dienst ist während der Betaphase kostenlos und wird nach der Umstellung auf die allgemeine Verfügbarkeit kostenpflichtig.",
+  "pricing_instance_label": "Instanz",
+  "pricing_storage_label": "Storage",
+  "total_hour_label": "Summe pro Stunde",
+  "estimated_month_label": "Monatlich (geschätzt)"
 }

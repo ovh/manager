@@ -1,4 +1,16 @@
 {
   "nasha_directory_order_label": "Order a HA-NAS",
-  "nasha_directory_order_value": "Order a HA-NAS"
+  "nasha_directory_order_value": "Order a HA-NAS",
+  "nasha_directory_columns_header_serviceName": "Service ID",
+  "nasha_directory_columns_header_canCreatePartition": "Partition creation",
+  "nasha_directory_columns_header_canCreatePartition_true": "Allowed",
+  "nasha_directory_columns_header_canCreatePartition_false": "Not allowed",
+  "nasha_directory_columns_header_customName": "Name",
+  "nasha_directory_columns_header_datacenter": "Datacentre location",
+  "nasha_directory_columns_header_diskType": "Disk type",
+  "nasha_directory_columns_header_monitored": "Monitored",
+  "nasha_directory_columns_header_monitored_true": "Yes",
+  "nasha_directory_columns_header_monitored_false": "No",
+  "nasha_directory_columns_header_zpoolCapacity": "Zpool capacity",
+  "nasha_directory_columns_header_zpoolSize": "Zpool size"
 }

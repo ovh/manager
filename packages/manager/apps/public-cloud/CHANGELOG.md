@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.25...@ovh-ux/manager-public-cloud@7.3.0) (2025-07-07)
+
+
+### Features
+
+* **public-cloud:** update ai deploy deeplink following react migration ([#17887](https://github.com/ovh/manager/issues/17887)) ([ae070b6](https://github.com/ovh/manager/commit/ae070b6d25686a0d3bd4555e662da65eddd121cb)), closes [#DATATR-2348](https://github.com/ovh/manager/issues/DATATR-2348)
+
+
+
+
+
+## [7.2.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.24...@ovh-ux/manager-public-cloud@7.2.25) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.23...@ovh-ux/manager-public-cloud@7.2.24) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.22...@ovh-ux/manager-public-cloud@7.2.23) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.21...@ovh-ux/manager-public-cloud@7.2.22) (2025-06-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.20...@ovh-ux/manager-public-cloud@7.2.21) (2025-06-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.19...@ovh-ux/manager-public-cloud@7.2.20) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.18...@ovh-ux/manager-public-cloud@7.2.19) (2025-06-19)
+
+
+### Bug Fixes
+
+* **pci-instances:** deploy pci-instances with angularjs app ([#17346](https://github.com/ovh/manager/issues/17346)) ([f20db4c](https://github.com/ovh/manager/commit/f20db4c1ac5c614fbbc21da5f6c8fceda55a534a)), closes [#TAPC-4135](https://github.com/ovh/manager/issues/TAPC-4135)
+
+
+
+
+
+## [7.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.17...@ovh-ux/manager-public-cloud@7.2.18) (2025-06-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.2.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.16...@ovh-ux/manager-public-cloud@7.2.17) (2025-06-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.2.15...@ovh-ux/manager-public-cloud@7.2.16) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

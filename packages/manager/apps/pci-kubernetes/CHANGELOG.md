@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.3...@ovh-ux/manager-pci-kubernetes-app@0.26.4) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4153] ([16d9603](https://github.com/ovh/manager/commit/16d96031daa8ef51d7ad9d3030f9b5174b4caf9d))
+* **i18n:** add missing translations [CDS 4156] ([676a856](https://github.com/ovh/manager/commit/676a856bce80395f1b844ff0715f89eb555450e6))
+
+
+
+
+
+## [0.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.2...@ovh-ux/manager-pci-kubernetes-app@0.26.3) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** update anti affinity max node pool quantity ([f7f6a68](https://github.com/ovh/manager/commit/f7f6a681d18c44fa2867f4c5f32a494342221068)), closes [#TAPC-4449](https://github.com/ovh/manager/issues/TAPC-4449) [#INC-0138944](https://github.com/ovh/manager/issues/INC-0138944)
+
+
+
+
+
+## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.1...@ovh-ux/manager-pci-kubernetes-app@0.26.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.0...@ovh-ux/manager-pci-kubernetes-app@0.26.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4135] ([f70f9c1](https://github.com/ovh/manager/commit/f70f9c1fe40dd8963b39457c8ad73e358a20e2d3))
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+* **i18n:** add missing translations [CDS 4142] ([39f8337](https://github.com/ovh/manager/commit/39f833708d981b1aeba3d0c2aa49bfa3ff7c4345))
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.2...@ovh-ux/manager-pci-kubernetes-app@0.26.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci-kubernetes:** update nodepool name input regex ([0569919](https://github.com/ovh/manager/commit/056991967e4c755c8d07174cf56b06b05148341f)), closes [#TAPC-4074](https://github.com/ovh/manager/issues/TAPC-4074)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.1...@ovh-ux/manager-pci-kubernetes-app@0.25.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.25.0...@ovh-ux/manager-pci-kubernetes-app@0.25.1) (2025-06-20)
+
+
+### Bug Fixes
+
+* fix issue with new subsidiary type ([ae64695](https://github.com/ovh/manager/commit/ae6469540f442231c25869ebca1b0955730347e9)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.6...@ovh-ux/manager-pci-kubernetes-app@0.25.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** reset min max node when turning autoscale off ([e986e94](https://github.com/ovh/manager/commit/e986e94d97055a1379a16a92f682cf2e9e4a4b43)), closes [#TAPC-4277](https://github.com/ovh/manager/issues/TAPC-4277)
+* **pci-kubernetes:** scaling and flavor when toggling create cluster ([#17582](https://github.com/ovh/manager/issues/17582)) ([256cd8e](https://github.com/ovh/manager/commit/256cd8e9720c27afc99293ffef82b4b748deb07e)), closes [#TAPC-4320](https://github.com/ovh/manager/issues/TAPC-4320)
+
+
+### Features
+
+* **pci-kubernetes:** add deployment mode on kube list ([ccebf36](https://github.com/ovh/manager/commit/ccebf36dd2f5fe507ccb9563b108cb467d88cd8d)), closes [#TAPC-3167](https://github.com/ovh/manager/issues/TAPC-3167)
+* **pci-kubernetes:** allow region enabling on cluster ([c909331](https://github.com/ovh/manager/commit/c9093310428877b2aa3423f75f1bfa2ec17cff3c)), closes [#TAPC-3439](https://github.com/ovh/manager/issues/TAPC-3439)
+
+
+
+
+
 ## [0.24.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.24.5...@ovh-ux/manager-pci-kubernetes-app@0.24.6) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

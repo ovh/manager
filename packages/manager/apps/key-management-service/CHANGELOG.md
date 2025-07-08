@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.31.1...@ovh-ux/manager-key-management-service-app@0.31.2) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4144] ([58a9c30](https://github.com/ovh/manager/commit/58a9c30077ab937e5dff4b16d707c840e9c202a6))
+* **i18n:** add missing translations [CDS 4153] ([16d9603](https://github.com/ovh/manager/commit/16d96031daa8ef51d7ad9d3030f9b5174b4caf9d))
+
+
+
+
+
+## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.31.0...@ovh-ux/manager-key-management-service-app@0.31.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.30.9...@ovh-ux/manager-key-management-service-app@0.31.0) (2025-06-24)
+
+
+### Features
+
+* **kms:** ftc kms modal ([5d6ef82](https://github.com/ovh/manager/commit/5d6ef826ccc3a5aa546d8d33575aa1b7dbe595c3)), closes [#MANAGER-17656](https://github.com/ovh/manager/issues/MANAGER-17656)
+
+
+
+
+
+## [0.30.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.30.8...@ovh-ux/manager-key-management-service-app@0.30.9) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+## [0.30.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.30.7...@ovh-ux/manager-key-management-service-app@0.30.8) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
 ## [0.30.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.30.6...@ovh-ux/manager-key-management-service-app@0.30.7) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

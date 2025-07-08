@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "Modifier le port HTTP",
+  "updateHttpPortDesc1": "Vous pouvez mettre à jour le port de votre application. Vous conservez votre configuration actuelle sur les autres éléments, tel que votre point de terminaison HTTP ou votre stratégie de déploiement.",
+  "updateHttpPortDesc2": "Il peut y avoir un temps de latence sur vos différentes réplicas.",
+  "fieldHttpPortLabel": "Port HTTP",
+  "httpPortInfo": "Renseigner le nouveau port HTTP sur lequel vous souhaitez déployer votre app.",
+  "updatePortButtonCancel": "Annuler",
+  "updatePortButtonConfirm": "Modifier",
+  "updatePortToastErrorTitle": "Une erreur est survenue",
+  "updatePortToastSuccessTitle": "Succés",
+  "updatePortToastSuccessDescription": "Le port http a été mis à jour"
+}

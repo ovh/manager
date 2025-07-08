@@ -51,7 +51,7 @@
   "cloud_connect_pop_port_lock": "Bloqueio da porta",
   "cloud_connect_pop_port_id": "ID Port",
   "cloud_connect_pop_optic_status": "Estados óticos",
-  "cloud_connect_pop_optic_description": "Verificado a cada 5 minutos",
+  "cloud_connect_pop_optic_description": "(Verificado a cada 5 minutos)",
   "cloud_connect_pop_configuration_status": "Estado da configuração",
   "cloud_connect_dc_title": "Configuração AZ",
   "cloud_connect_dc_add_button": "Adicionar uma configuração",
@@ -117,6 +117,7 @@
   "cloud_connect_region_us-west-lz-den": "América do Norte (US - West - Denver)",
   "cloud_connect_region_us-east-lz-atl": "América do Norte (US - East - Atlanta)",
   "cloud_connect_region_eu-west-lz-mrs": "Europa (França - Marselha)",
+  "cloud_connect_region_eu-south-mil": "Europa (Itália - Milão)",
   "cloud_connect_general_informations": "Informações gerais",
   "cloud_connect_pop_unconfigured": "Não configurado",
   "cloud_connect_pop_link_status": "Estado do link",
@@ -130,5 +131,6 @@
   "cloud_connect_old_48_h_status": "Este estado tem mais de 48 horas e pode já não estar atualizado.",
   "cloud_connect_pop_add_button": "Configurar a porta",
   "cloud_connect_dc_status": "Estado da configuração",
-  "cloud_connect_dc_config_title": "Configuração {{dcName}}"
+  "cloud_connect_dc_config_title": "Configuração {{dcName}}",
+  "cloud_connect_specifications": "Especificações"
 }

@@ -6,5 +6,5 @@
   "pci_projects_project_kubernetes_details_service_name_custom": "Spersonalizowana nazwa",
   "pci_projects_project_kubernetes_details_service_name_success": "Nazwa klastra została zaktualizowana.",
   "pci_projects_project_kubernetes_details_service_name_error": "Wystąpił błąd podczas zmiany nazwy klastra: {{message}}.",
-  "pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error": "Nazwa musi zaczynać się od znaku alfabetycznego, kończyć znakiem alfanumerycznym, a jedynymi dozwolonymi znakami specjalnymi są myślniki i znaki podkreślenia."
+  "pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error": "Nazwa klastra musi zawierać od 2 do 64 znaków, zaczynać się od litery, kończyć znakiem alfanumerycznym i składać wyłącznie z liter, cyfr, myślników i podkreśleń."
 }

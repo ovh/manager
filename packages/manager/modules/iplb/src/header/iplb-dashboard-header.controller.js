@@ -1,4 +1,4 @@
-import { IPLB_GUIDES } from '../iplb.constant';
+import { FEATURES, IPLB_GUIDES } from '../iplb.constants';
 
 export default class IpLoadBalancerDashboardHeaderCtrl {
   /* @ngInject */
@@ -10,6 +10,7 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     IpLoadBalancerHomeService,
     constants,
     coreConfig,
+    features,
   ) {
     this.$injector = $injector;
     this.$stateParams = $stateParams;
@@ -19,6 +20,7 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
     this.serviceName = $stateParams.serviceName;
     this.constants = constants;
     this.coreConfig = coreConfig;
+    this.features = features;
 
     //  No error handling since we don't want to break anything for a title.
     this.configuration = this.CucControllerHelper.request.getHashLoader({
@@ -39,6 +41,8 @@ export default class IpLoadBalancerDashboardHeaderCtrl {
   $onInit() {
     this.user = this.coreConfig.getUser();
     this.initGuides();
+    this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
+    this.BETA = 'Beta';
   }
 
   initGuides() {

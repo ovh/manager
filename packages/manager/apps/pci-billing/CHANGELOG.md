@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.1...@ovh-ux/manager-pci-billing-app@0.8.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 552] ([6776c93](https://github.com/ovh/manager/commit/6776c93bcbbbf91627401e3a4ca5f8241136a3d0)), closes [#TAPC-4222](https://github.com/ovh/manager/issues/TAPC-4222)
+
+
+### Features
+
+* **billing:** add dataplatform ([d524bfc](https://github.com/ovh/manager/commit/d524bfc95772ba7017fe37b3eef0a09b935585ff)), closes [#TAPC-4222](https://github.com/ovh/manager/issues/TAPC-4222)
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.0...@ovh-ux/manager-pci-billing-app@0.7.1) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.6.1...@ovh-ux/manager-pci-billing-app@0.7.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **billing:** wrong total price on rancher ([a4acdca](https://github.com/ovh/manager/commit/a4acdcaaca9baa4aa007f1848589314435c4624f)), closes [#TAPC-2562](https://github.com/ovh/manager/issues/TAPC-2562)
+
+
+### Features
+
+* **billing:** add rancher in billing ([#17774](https://github.com/ovh/manager/issues/17774)) ([6e40fb1](https://github.com/ovh/manager/commit/6e40fb107256c586f523ce962e3dac4bcaeec4d4)), closes [#TAPC-2562](https://github.com/ovh/manager/issues/TAPC-2562)
+* **billing:** ai endpoint on billing ([#17818](https://github.com/ovh/manager/issues/17818)) ([c3309d6](https://github.com/ovh/manager/commit/c3309d6f3b4910b4379196fa30a1722c5054e8bd)), closes [#TAPC-4174](https://github.com/ovh/manager/issues/TAPC-4174)
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.6.0...@ovh-ux/manager-pci-billing-app@0.6.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.5.7...@ovh-ux/manager-pci-billing-app@0.6.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.5.6...@ovh-ux/manager-pci-billing-app@0.5.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.5.5...@ovh-ux/manager-pci-billing-app@0.5.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
 ## [0.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.5.4...@ovh-ux/manager-pci-billing-app@0.5.5) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-billing-app

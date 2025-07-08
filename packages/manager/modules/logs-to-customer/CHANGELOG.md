@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.6...@ovh-ux/logs-to-customer@1.5.0) (2025-07-04)
+
+
+### Features
+
+* **logs:** no service use-case ([c139b85](https://github.com/ovh/manager/commit/c139b859167c57798412210a8977fcd0bfd590fd)), closes [#MANAGER-18166](https://github.com/ovh/manager/issues/MANAGER-18166)
+
+
+
+
+
+## [1.4.6](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.5...@ovh-ux/logs-to-customer@1.4.6) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.4...@ovh-ux/logs-to-customer@1.4.5) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.3...@ovh-ux/logs-to-customer@1.4.4) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
 ## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.4.2...@ovh-ux/logs-to-customer@1.4.3) (2025-06-12)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

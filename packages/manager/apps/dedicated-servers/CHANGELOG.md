@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.1...@ovh-ux/manager-dedicated-servers-app@0.3.2) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4144] ([58a9c30](https://github.com/ovh/manager/commit/58a9c30077ab937e5dff4b16d707c840e9c202a6))
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.0...@ovh-ux/manager-dedicated-servers-app@0.3.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** add default links for order ([c84ec22](https://github.com/ovh/manager/commit/c84ec225695a79faf551e65dc8df223eb05b559f)), closes [#INC0139938](https://github.com/ovh/manager/issues/INC0139938)
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.6...@ovh-ux/manager-dedicated-servers-app@0.3.0) (2025-07-02)
+
+
+### Features
+
+* **dedicated-servers:** add tracking ([6a48cf6](https://github.com/ovh/manager/commit/6a48cf6bd5e7d12fd7874c69c02a3d156a68810e)), closes [#MANAGER-18249](https://github.com/ovh/manager/issues/MANAGER-18249)
+* **dedicated-servers:** update tracking ([abfc500](https://github.com/ovh/manager/commit/abfc5008005b34d6c05582958fa63b5b9c64503c)), closes [#MANAGER-18249](https://github.com/ovh/manager/issues/MANAGER-18249)
+
+
+
+
+
+## [0.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.5...@ovh-ux/manager-dedicated-servers-app@0.2.6) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4135] ([f70f9c1](https://github.com/ovh/manager/commit/f70f9c1fe40dd8963b39457c8ad73e358a20e2d3))
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* **i18n:** add missing translations [CDS 4138] ([114657a](https://github.com/ovh/manager/commit/114657a7191b1e4e73dd11acdd183075ac15938b))
+
+
+
+
+
+## [0.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.4...@ovh-ux/manager-dedicated-servers-app@0.2.5) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.3...@ovh-ux/manager-dedicated-servers-app@0.2.4) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4113] ([be9c942](https://github.com/ovh/manager/commit/be9c9421f3e293cf914ad00f2f2c25f4da791efc))
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.2.2...@ovh-ux/manager-dedicated-servers-app@0.2.3) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
