@@ -59,7 +59,7 @@
   "source_error_check": "Erreur concernant les informations de conteneur fournies : {{error}}",
   "os_config_summary": "Configurations OS",
   "os_config_title": "Spécifiez les configurations OS",
-  "os_config_subtitle": "Saisissez les informations et configurations optionnelles de votre OS correspondant à vos besoins",
+  "os_config_subtitle": "Saisissez les informations et configurations optionnelles de votre OS correspondant à vos besoins.",
   "os_config_input_domain": "Nom de domaine",
   "os_config_helper_domain": "Merci de renseigner un nom de domaine valide",
   "os_config_input_suse": "Clé de licence SUSE",
