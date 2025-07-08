@@ -18,7 +18,7 @@ import { useCreateOkmsCredential } from '@/data/hooks/useCreateOkmsCredential';
 import CreateGeneralInformations from '@/pages/credential/create/CreateGeneralInformations.component';
 import CreateAddIdentities from '@/pages/credential/create/CreateAddIdentities.component';
 import CreateCredentialConfirmation from '@/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
-import { OkmsCredential } from '@/types/okmsCredential.type';
+import { CertificateType, OkmsCredential } from '@/types/okmsCredential.type';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
@@ -31,6 +31,10 @@ const CreateCredential = () => {
   const [validity, setValidity] = useState<number>(30);
   const [description, setDescription] = useState<string | null>(null);
   const [csr, setCsr] = useState<string | null>(null);
+  const [
+    certificateType,
+    setCertificateType,
+  ] = useState<CertificateType | null>(null);
   const [identityURNs, setIdentityURNs] = useState<string[]>([]);
   const [okmsCredential, setOkmsCredential] = useState<OkmsCredential>();
   const [isCustomCsr, setIsCustomCsr] = useState<boolean>(false);
@@ -111,6 +115,8 @@ const CreateCredential = () => {
                 setDescription={setDescription}
                 csr={csr}
                 setCsr={setCsr}
+                certificateType={certificateType}
+                setCertificateType={setCertificateType}
                 isCustomCsr={isCustomCsr}
                 setIsCustomCsr={setIsCustomCsr}
                 nextStep={() => setStep(2)}
@@ -127,7 +133,8 @@ const CreateCredential = () => {
                     identityURNs,
                     description,
                     validity,
-                    ...(csr ? { csr } : {}),
+                    ...(csr && { csr }),
+                    ...(certificateType && { certificateType }),
                   })
                 }
               />
