@@ -19,6 +19,8 @@ export const IP_FAILOVER_PLANCODE = {
   US: 'ip-failover-arin',
 };
 
+export const ASIAN_PACIFIC_DATACENTERS = ['SYD', 'YNM', 'SGP'];
+
 export default {
   ADDITIONAL_IP,
   TRACKING_PREFIX,
@@ -28,4 +30,5 @@ export default {
   DASHBOARD_STATE_NAME,
   IP_TYPE,
   ALERT_ID,
+  ASIAN_PACIFIC_DATACENTERS,
 };

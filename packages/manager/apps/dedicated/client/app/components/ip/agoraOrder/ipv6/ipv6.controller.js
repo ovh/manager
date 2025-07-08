@@ -6,6 +6,7 @@ import {
   IP_TYPE_TITLE,
   TRACKING_PREFIX,
   FUNNEL_TRACKING_PREFIX,
+  ASIAN_PACIFIC_DATACENTERS,
 } from '../ip-ip-agoraOrder.constant';
 
 import { FLAGS, ACTIONS_SUFFIX } from './ipv6.constant';
@@ -39,6 +40,7 @@ export default class AgoraIpV6OrderController {
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.loading = {};
     this.ADDITIONAL_IP = ADDITIONAL_IP;
+    this.ASIAN_PACIFIC_DATACENTERS = ASIAN_PACIFIC_DATACENTERS;
     this.type = IP_TYPE_TITLE.IPv6;
     this.ovhManagerRegionService = ovhManagerRegionService;
   }
@@ -166,6 +168,18 @@ export default class AgoraIpV6OrderController {
         };
       },
     );
+  }
+
+  isAPACRegion(region) {
+    return this.ASIAN_PACIFIC_DATACENTERS.includes(region.datacenter);
+  }
+
+  getRegionLabelDisplay(region) {
+    return this.isAPACRegion(region) ? `${region.location} *` : region.location;
+  }
+
+  hasAPACRegionInCatalog() {
+    return this.catalogByLocation.some((region) => this.isAPACRegion(region));
   }
 
   redirectToPaymentPage() {
