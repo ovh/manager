@@ -12,6 +12,7 @@ export type OkmsCredential = {
   identityURNs: string[];
   status: OkmsCredentialStatus;
   privateKeyPEM?: string;
+  certificateType: CertificateType;
 };
 
 /*
@@ -25,10 +26,13 @@ export enum OkmsCredentialStatus {
   ready = 'READY',
 }
 
+export type CertificateType = 'EC' | 'RSA';
+
 export type OkmsCredentialCreation = {
   name: string;
   identityURNs: string[];
   description?: string | null;
   validity?: number;
   csr?: string;
+  certificateType?: CertificateType;
 };
