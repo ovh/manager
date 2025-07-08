@@ -55,6 +55,7 @@ yarn manager-cli migrations-status --type all --format json`
   },
   'pkg-manager-migrate': {
     script: 'pkg-manager-migrate',
+    isAppRequired: true,
     description: 'Migrate a specific app to a new package manager (e.g., pnpm)',
     help: `
 # Migrate an app from Yarn to PNPM

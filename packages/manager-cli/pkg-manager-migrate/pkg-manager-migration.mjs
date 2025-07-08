@@ -3,7 +3,7 @@
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
 const args = process.argv.slice(2);
-console.log({args})
+
 // Extract app name (first positional argument)
 const appName = args[0];
 
