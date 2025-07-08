@@ -2,10 +2,9 @@ import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
 import { render, waitFor, fireEvent } from '@testing-library/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AssignTagButton, { AssignTagButtonProps } from './assignTagsButton';
-import { getButtonByIcon } from '@/test-utils/uiTestHelpers';
+import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 
 const queryClient = new QueryClient();
 
@@ -25,12 +24,12 @@ describe('AssignTagButton Component', async () => {
       onClick: onclickMock,
     });
 
-    const button = await getButtonByIcon({
+    const button = await getButtonByLabel({
       container,
-      iconName: ODS_ICON_NAME.plus,
+      label: 'assignTags',
     });
 
-    await waitFor(() => fireEvent.click(button));
+    fireEvent.click(button);
 
     expect(onclickMock).toHaveBeenCalled();
   });

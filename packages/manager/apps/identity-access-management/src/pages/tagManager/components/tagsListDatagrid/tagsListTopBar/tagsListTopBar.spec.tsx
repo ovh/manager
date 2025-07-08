@@ -1,7 +1,7 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import TagsListTopbar from './tagsListTopbar.component';
@@ -35,7 +35,7 @@ describe('TagListTopBar Component', async () => {
       label: 'assignTags',
     });
 
-    await waitFor(() => fireEvent.click(assignButton));
+    fireEvent.click(assignButton);
 
     // Todo: Finish this test when assign action is done
   });

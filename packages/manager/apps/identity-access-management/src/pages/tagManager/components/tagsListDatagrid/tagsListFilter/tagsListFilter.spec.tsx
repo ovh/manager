@@ -1,7 +1,7 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import TagsListFilter from './tagsListFilter.component';
 import { TagManagerContext } from '@/pages/tagManager/tagsManagerContext';
@@ -40,10 +40,10 @@ describe('TagsListFilter Component', async () => {
       label: 'quickFilters',
     });
 
-    await waitFor(() => fireEvent.click(filterButton));
+    fireEvent.click(filterButton);
 
     const systemCheckbox = getByText('showSystemTag');
-    await waitFor(() => fireEvent.click(systemCheckbox));
+    fireEvent.click(systemCheckbox);
 
     expect(toggleSystemCheckMock).toHaveBeenCalled();
     expect(isShowSystemChecked).toBe(true);
@@ -56,10 +56,10 @@ describe('TagsListFilter Component', async () => {
       label: 'quickFilters',
     });
 
-    await waitFor(() => fireEvent.click(filterButton));
+    fireEvent.click(filterButton);
 
     const unassignedCheckbox = getByText('showUnassignedTag');
-    await waitFor(() => fireEvent.click(unassignedCheckbox));
+    fireEvent.click(unassignedCheckbox);
 
     expect(toggleUnassignedResources).toHaveBeenCalled();
     expect(isShowUnassignedResourcesChecked).toBe(true);

@@ -6,19 +6,24 @@ export type SortTagsParams = {
   desc: boolean;
 };
 
+export const sortString = (stringA: unknown, stringB: unknown) => {
+  return stringA.toString().localeCompare(stringB.toString());
+};
+
+export const sortNumber = (numberA: unknown, numberB: unknown) => {
+  return Number(numberA) - Number(numberB);
+};
+
 export const sortTags = ({ tags, columnId, desc }: SortTagsParams) => {
   return tags.sort((tagA, tagB) => {
     if (typeof tagA[columnId] === 'string') {
-      if (desc)
-        return tagB[columnId]
-          .toString()
-          .localeCompare(tagA[columnId].toString());
-      return tagA[columnId].toString().localeCompare(tagB[columnId].toString());
+      if (desc) return sortString(tagB[columnId], tagA[columnId]);
+      return sortString(tagA[columnId], tagB[columnId]);
     }
 
     if (typeof tagA[columnId] === 'number') {
-      if (desc) return Number(tagB[columnId]) - Number(tagA[columnId]);
-      return Number(tagA[columnId]) - Number(tagB[columnId]);
+      if (desc) return sortNumber(tagB[columnId], tagA[columnId]);
+      return sortNumber(tagA[columnId], tagB[columnId]);
     }
 
     return 0;

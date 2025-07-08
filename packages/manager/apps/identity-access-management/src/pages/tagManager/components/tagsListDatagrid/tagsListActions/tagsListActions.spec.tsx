@@ -1,7 +1,7 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it } from 'vitest';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { getButtonByIcon, getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import TagsListActions from './tagsListActions.component';
@@ -19,19 +19,20 @@ describe('TagListActionsCell Component', async () => {
       count: 1,
       type: TagType.CUSTOM_TAG,
     });
+
     const menuButton = await getButtonByIcon({
       container,
       iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
-    await waitFor(() => fireEvent.click(menuButton));
+    fireEvent.click(menuButton);
 
     const assignButton = await getButtonByLabel({
       container,
       label: 'assignToResources',
     });
 
-    await waitFor(() => fireEvent.click(assignButton));
+    fireEvent.click(assignButton);
 
     // Todo: Finish this test when assign action is done
   });
@@ -47,14 +48,14 @@ describe('TagListActionsCell Component', async () => {
       iconName: ODS_ICON_NAME.ellipsisVertical,
     });
 
-    await waitFor(() => fireEvent.click(menuButton));
+    fireEvent.click(menuButton);
 
     const manageResourcesButton = await getButtonByLabel({
       container,
       label: 'manageResources',
     });
 
-    await waitFor(() => fireEvent.click(manageResourcesButton));
+    fireEvent.click(manageResourcesButton);
 
     // Todo: Finish this test when manage resources action is done
   });
