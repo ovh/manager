@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.139.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.139.1...@ovh-ux/manager-container-app@0.139.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* **container:** fix menu route matcher for vmware datacentres ([5758e8c](https://github.com/ovh/manager/commit/5758e8c5026c4c33a59c2437ebed9441745a2caf)), closes [#MANAGER-17989](https://github.com/ovh/manager/issues/MANAGER-17989)
+
+
+
+
+
 ## [0.139.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.139.0...@ovh-ux/manager-container-app@0.139.1) (2025-07-04)
 
 
