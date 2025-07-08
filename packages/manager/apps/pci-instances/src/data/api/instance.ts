@@ -21,12 +21,15 @@ type TInstanceAction =
   | 'snapshot'
   | 'activeMonthlyBilling';
 
+const instanceUrl = (projectId: string, instanceId: string) =>
+  `/cloud/project/${projectId}/instance/${instanceId}`;
+
 const instanceActionUrl = (
   projectId: string,
   instanceId: string,
   action: TInstanceAction,
 ): string => {
-  const basePathname = `/cloud/project/${projectId}/instance/${instanceId}`;
+  const basePathname = instanceUrl(projectId, instanceId);
   return action === 'delete' ? basePathname : `${basePathname}/${action}`;
 };
 
@@ -172,3 +175,18 @@ export const getInstance = async ({
     .then((response: AxiosResponse<TInstanceDto>) =>
       mapDtoToInstance(response.data),
     );
+
+type TUpdateInstanceName = {
+  projectId: string;
+  instanceId: string;
+  instanceName: string;
+};
+
+export const updateInstanceName = ({
+  projectId,
+  instanceId,
+  instanceName,
+}: TUpdateInstanceName): Promise<null> =>
+  v6.put(instanceUrl(projectId, instanceId), {
+    instanceName,
+  });
