@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.47.1...@ovh-ux/manager-dedicated@20.48.0) (2025-07-08)
+
+
+### Features
+
+* **dedicated.ip:** add ftc delete modal for failover tab ([0875ad2](https://github.com/ovh/manager/commit/0875ad271e19bb29c8c0c993e926b9abfdd7ecd9)), closes [#MANAGER-17886](https://github.com/ovh/manager/issues/MANAGER-17886)
+* **dedicated.iplb:** enable logs for ip load balancer ([8894135](https://github.com/ovh/manager/commit/88941357d37301f3928e22e552fa071529499400)), closes [#MANAGER-18530](https://github.com/ovh/manager/issues/MANAGER-18530)
+* **dedicated.ip:** use ftc cancellation modal ([def9d57](https://github.com/ovh/manager/commit/def9d5729a6ede817a8f0ba777361c6c1952990f)), closes [#MANAGER-17886](https://github.com/ovh/manager/issues/MANAGER-17886)
+* **dedicated.pcc:** disable vm licence activation when spla is disabled ([9567779](https://github.com/ovh/manager/commit/9567779ba064cad2f3a82bd64f6c942ca4d43709)), closes [#MANAGER-17989](https://github.com/ovh/manager/issues/MANAGER-17989)
+
+
+
+
+
 ## [20.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.47.0...@ovh-ux/manager-dedicated@20.47.1) (2025-07-04)
 
 
