@@ -1,6 +1,5 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
 import { ActionMenuItem } from '@ovh-ux/manager-react-components';
