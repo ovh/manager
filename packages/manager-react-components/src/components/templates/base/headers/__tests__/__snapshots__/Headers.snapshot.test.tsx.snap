@@ -1,0 +1,190 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Headers component > renders header with actions correctly 1`] = `
+<div>
+  <header
+    class="flex items-start justify-between"
+  >
+    <div
+      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    >
+      Example for header with actions 
+    </div>
+    <div
+      class="flex flex-wrap justify-end items-center"
+    >
+      <div
+        class="w-min"
+        id="navigation-action-trigger-1"
+      >
+        <ods-button
+          aria-label="common_actions"
+          data-testid="navigation-action-trigger-action"
+          icon="chevron-down"
+          id="1"
+          is-disabled="false"
+          is-loading="false"
+          label="common_actions"
+          size="sm"
+          slot="menu-title"
+          variant="outline"
+        />
+      </div>
+      <ods-popover
+        class="py-[8px] px-0 w-max"
+        data-testid="navigation-action-trigger-action-popover"
+        trigger-id="navigation-action-trigger-1"
+        with-arrow="true"
+      >
+        <div
+          class="flex flex-col"
+        >
+          <a
+            href="https://www.ovh.com"
+            target="_blank"
+          >
+            <ods-button
+              class="menu-item-button w-full"
+              display-tooltip="false"
+              href="https://www.ovh.com"
+              label="Action 1"
+              size="sm"
+              target="_blank"
+              variant="ghost"
+            />
+          </a>
+          <a
+            href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
+            target="_blank"
+          >
+            <ods-button
+              class="menu-item-button w-full"
+              display-tooltip="false"
+              href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
+              label="Action 2"
+              size="sm"
+              target="_blank"
+              variant="ghost"
+            />
+          </a>
+        </div>
+      </ods-popover>
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Headers component > renders header with header buttons correctly 1`] = `
+<div>
+  <header
+    class="flex items-start justify-between"
+  >
+    <div
+      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    >
+      Example for header with header buttons
+    </div>
+    <div
+      class="flex flex-wrap justify-end items-center"
+    >
+      <div
+        id="navigation-menu-changelog-trigger"
+      >
+        <ods-button
+          class="whitespace-nowrap"
+          label="mrc_changelog_header"
+          size="sm"
+          slot="menu-title"
+          variant="ghost"
+        />
+      </div>
+      <ods-popover
+        position="bottom"
+        trigger-id="navigation-menu-changelog-trigger"
+        with-arrow="true"
+      >
+        <div>
+          <ods-link
+            color="primary"
+            href="https://ovh.com/"
+            icon="external-link"
+            label="mrc_changelog_changelog"
+            rel="external"
+            target="_blank"
+          />
+        </div>
+        <div>
+          <ods-link
+            color="primary"
+            href="https://ovh.com/"
+            icon="external-link"
+            label="mrc_changelog_roadmap"
+            rel="external"
+            target="_blank"
+          />
+        </div>
+        <div>
+          <ods-link
+            color="primary"
+            href="https://ovh.com/"
+            icon="external-link"
+            label="mrc_changelog_feature-request"
+            rel="external"
+            target="_blank"
+          />
+        </div>
+      </ods-popover>
+      <div
+        id="navigation-menu-guide-trigger"
+      >
+        <ods-button
+          class="block"
+          icon="book"
+          label="user_account_guides_header"
+          size="sm"
+          slot="menu-title"
+          variant="ghost"
+        />
+      </div>
+      <ods-popover
+        position="bottom"
+        trigger-id="navigation-menu-guide-trigger"
+        with-arrow="true"
+      >
+        <div
+          class="flex flex-col gap-2 py-1"
+        >
+          <ods-link
+            color="primary"
+            href="https://www.ovh.com"
+            icon="external-link"
+            label="ovh.com"
+            target="_blank"
+          />
+          <ods-link
+            color="primary"
+            href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
+            icon="external-link"
+            label="Guides OVH"
+            target="_blank"
+          />
+        </div>
+      </ods-popover>
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Headers component > renders header with title 1`] = `
+<div>
+  <header
+    class="flex items-start justify-between"
+  >
+    <div
+      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    >
+      Example for header
+    </div>
+  </header>
+</div>
+`;
