@@ -26,7 +26,6 @@ export * from './notifications/useNotifications';
 export * from './filters';
 
 export * from './ManagerButton/ManagerButton';
-export * from './ManagerLink/ManagerLink.component';
 export * from './ManagerText/ManagerText';
 
 export * from './ServiceStateBadge/ServiceStateBadge.component';
