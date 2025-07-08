@@ -1,4 +1,5 @@
-import { existsSync, readdirSync, readFileSync, copyFileSync } from 'fs';
+#!/usr/bin/env node
+import { existsSync, readdirSync, readFileSync } from 'fs';
 import fs from 'fs/promises';
 import { basename, resolve, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -6,6 +7,8 @@ import concurrently from 'concurrently';
 import execa from 'execa';
 import inquirer from 'inquirer';
 import inquirerSearchList from 'inquirer-search-list';
+import { createTempBackup, restoreFromTempBackup } from './utils/temp-package-backup-utils.mjs';
+import { registerCleanupOnSignals } from './utils/cleanup-utils.mjs';
 
 // -- Proper __dirname setup for ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -14,55 +17,8 @@ const __dirname = dirname(__filename);
 // -- Paths
 const repoRoot = resolve(__dirname, '..', '..');
 const packageJsonPath = join(repoRoot, 'package.json');
-const packageOriginalBackupPath = join(__dirname, 'package-original-backup.json');
-const packageYarnBackupPath = join(__dirname, 'package-yarn-backup.json');
 
-// -- Restore helpers
-function fileExists(p) {
-  return existsSync(p);
-}
-
-function restorePackage(fromPath, toPath, label) {
-  if (fileExists(fromPath)) {
-    copyFileSync(fromPath, toPath);
-    console.log(`✅ Restored ${label}: ${basename(fromPath)} → ${basename(toPath)}`);
-  } else {
-    console.warn(`⚠️ Skipped ${label}: ${basename(fromPath)} not found`);
-  }
-}
-
-function beforeStart() {
-  console.log('🔧 Restoring Yarn-compatible package.json...');
-  restorePackage(packageOriginalBackupPath, packageJsonPath, 'original package.json');
-}
-
-function afterStart() {
-  console.log('\n🧼 Restoring PNPM-compatible package.json...');
-  restorePackage(packageYarnBackupPath, packageJsonPath, 'yarn-backed package.json');
-}
-
-function registerExitHandlers() {
-  const cleanupAndExit = () => {
-    afterStart();
-    process.exit(0);
-  };
-
-  process.on('SIGINT', () => {
-    console.log('\n🛑 Caught SIGINT (Ctrl+C)');
-    cleanupAndExit();
-  });
-
-  process.on('SIGTERM', () => {
-    console.log('\n🛑 Caught SIGTERM');
-    cleanupAndExit();
-  });
-
-  process.on('exit', () => {
-    cleanupAndExit();
-  });
-}
-
-// === Workspace logic ===
+// -- Workspace logic
 const applicationsWorkspace = 'packages/manager/apps';
 const containerPackageName = '@ovh-ux/manager-container-app';
 
@@ -143,8 +99,9 @@ async function getApplicationId(packageName) {
 inquirer.registerPrompt('search-list', inquirerSearchList);
 
 async function main() {
-  beforeStart();
-  registerExitHandlers(); // ensure cleanup on all exits
+  console.log('🔧 Preparing Yarn-compatible environment...');
+  createTempBackup();
+  registerCleanupOnSignals(restoreFromTempBackup);
 
   try {
     const { packageName, region = 'EU', container = false } = await inquirer.prompt(questions);
@@ -166,7 +123,7 @@ async function main() {
         ],
         {
           raw: true,
-          successCondition: 'first', // Wait until all complete or interrupt
+          successCondition: 'first',
         }
       );
     } else {
@@ -185,6 +142,8 @@ async function main() {
     }
   } catch (err) {
     console.error('❌ Failed to start application:', err);
+  } finally {
+    restoreFromTempBackup();
   }
 }
 

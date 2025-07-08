@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
-import { existsSync, readFileSync, writeFileSync, unlinkSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 import path from 'path';
+import { safeUnlink, registerCleanupOnSignals } from './utils/cleanup-utils.mjs';
 
 // CLI args
 const args = process.argv.slice(2);
@@ -18,18 +19,8 @@ const specialOverridesPath = path.resolve('./scripts/pnpm-migration/settings/spe
 // Load version overrides
 const SPECIAL_VERSION_OVERRIDES = JSON.parse(readFileSync(specialOverridesPath, 'utf-8'));
 
+// Track workspace files for cleanup
 const createdWorkspaceFiles = new Set();
-
-function buildPnpmDependenciesGraph() {
-  console.log('🧠 Building dependency map using yarn.lock...');
-  execSync('node ./scripts/pnpm-migration/pnpm-build-dependencies-graph.mjs', { stdio: 'inherit' });
-
-  if (!existsSync(depsPath)) {
-    console.error('❌ Failed to generate pnpm-dependencies.json');
-    process.exit(1);
-  }
-  console.log('✅ Dependency map ready.');
-}
 
 function writeTemporaryWorkspaceYaml(appPath, allDeps, packageDeps) {
   const overrides = {};
@@ -67,26 +58,29 @@ function writeTemporaryWorkspaceYaml(appPath, allDeps, packageDeps) {
 
 function deleteTemporaryWorkspaceYaml(p) {
   if (existsSync(p)) {
-    unlinkSync(p);
+    safeUnlink(p);
     createdWorkspaceFiles.delete(p);
-    console.log(`🧹 Deleted temporary workspace file: ${p}`);
   }
 }
 
 function cleanupAllWorkspaceFiles() {
-  for (const p of createdWorkspaceFiles) deleteTemporaryWorkspaceYaml(p);
+  for (const p of createdWorkspaceFiles) {
+    deleteTemporaryWorkspaceYaml(p);
+  }
 }
 
-process.on('SIGINT', () => {
-  console.log('\n🛑 Caught SIGINT (Ctrl+C). Cleaning up...');
-  cleanupAllWorkspaceFiles();
-  process.exit(1);
-});
-process.on('SIGTERM', () => {
-  console.log('\n🛑 Caught SIGTERM. Cleaning up...');
-  cleanupAllWorkspaceFiles();
-  process.exit(1);
-});
+registerCleanupOnSignals(cleanupAllWorkspaceFiles);
+
+function buildPnpmDependenciesGraph() {
+  console.log('🧠 Building dependency map using yarn.lock...');
+  execSync('node ./scripts/pnpm-migration/pnpm-build-dependencies-graph.mjs', { stdio: 'inherit' });
+
+  if (!existsSync(depsPath)) {
+    console.error('❌ Failed to generate pnpm-dependencies.json');
+    process.exit(1);
+  }
+  console.log('✅ Dependency map ready.');
+}
 
 function feedLocalPnpmStore() {
   console.log('📦 Feeding PNPM store with internal packages...');
@@ -138,7 +132,12 @@ function feedLocalPnpmStore() {
         try {
           execSync(`${pnpmPath} fetch ${pkg}@${version} ${pnpmOptions}`, { stdio: 'inherit' });
         } catch (err) {
-          console.error(`❌ Failed to fetch ${pkg}@${version}:`, err.message);
+          const msg = err.message || '';
+          if (/403|unauthorized|not found|forbidden/i.test(msg)) {
+            console.error(`🔒 Access denied fetching ${pkg}@${version}`);
+          } else {
+            console.error(`❌ Failed to fetch ${pkg}@${version}:`, msg);
+          }
           process.exit(1);
         }
       }

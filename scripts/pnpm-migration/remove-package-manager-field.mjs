@@ -1,11 +1,13 @@
+#!/usr/bin/env node
 import fs from 'fs';
+import { registerCleanupOnSignals } from './utils/cleanup-utils.mjs';
 
 const pkgPath = './package.json';
 const backupPath = './.packageManagerBackup.json';
 
 let originalPkg = null;
 
-// Register cleanup on exit
+// Safe restore on crash
 function restoreIfCrashed() {
   if (originalPkg) {
     fs.writeFileSync(pkgPath, JSON.stringify(originalPkg, null, 2));
@@ -13,13 +15,7 @@ function restoreIfCrashed() {
   }
 }
 
-process.on('SIGINT', restoreIfCrashed);
-process.on('SIGTERM', restoreIfCrashed);
-process.on('uncaughtException', (err) => {
-  console.error('🔥 uncaughtException:', err);
-  restoreIfCrashed();
-  process.exit(1);
-});
+registerCleanupOnSignals(restoreIfCrashed);
 
 try {
   const raw = fs.readFileSync(pkgPath, 'utf-8');
@@ -41,8 +37,7 @@ try {
   fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
   console.log('🧹 packageManager field removed for PNPM install');
 
-  // Clear rollback snapshot — safe to exit
-  originalPkg = null;
+  originalPkg = null; // success, no need to restore
 } catch (err) {
   console.error('❌ Failed to remove packageManager:', err);
   restoreIfCrashed();

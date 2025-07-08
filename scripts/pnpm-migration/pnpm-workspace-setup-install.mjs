@@ -3,12 +3,17 @@ import { execSync } from 'child_process';
 import { existsSync, mkdirSync, promises as fs } from 'fs';
 import os from 'os';
 import path from 'path';
+import { registerCleanupOnSignals, safeUnlink } from './utils/cleanup-utils.mjs';
 
 const version = '10.11.1';
 const targetDir = path.resolve('./target/pnpm');
 const pnpmPath = path.join(targetDir, 'pnpm');
 const INSTALL_SCRIPT = path.resolve('./scripts/pnpm-migration/pnpm-install-dependencies.mjs');
 const REFRESH_FLAG = path.resolve('.yarn-refreshed');
+
+registerCleanupOnSignals(() => {
+  safeUnlink(REFRESH_FLAG);
+});
 
 // ✅ Check if Yarn refresh already happened
 function hasYarnBeenRefreshed() {
@@ -20,7 +25,7 @@ async function markYarnRefreshed() {
   await fs.writeFile(REFRESH_FLAG, 'ok\n');
 }
 
-// 🧹 Cleanup flag on second run
+// 🧹 Cleanup flag manually
 async function clearYarnRefreshFlag() {
   if (existsSync(REFRESH_FLAG)) {
     await fs.unlink(REFRESH_FLAG).catch(() => {});
@@ -28,16 +33,6 @@ async function clearYarnRefreshFlag() {
     process.exit(0);
   }
 }
-
-// Safe cleanup on interrupt signals
-process.on('SIGINT', () => {
-  console.log('\n🛑 Caught SIGINT. Cleaning up...');
-  clearYarnRefreshFlag();
-});
-process.on('SIGTERM', () => {
-  console.log('\n🛑 Caught SIGTERM. Cleaning up...');
-  clearYarnRefreshFlag();
-});
 
 // ⬇️ Download and install PNPM binary directly into targetDir
 function installPnpm() {
@@ -107,9 +102,9 @@ function refreshYarn() {
   }
 }
 
-// 🔁 Main
+// 🔁 Main logic
 (async () => {
-  await clearYarnRefreshFlag();
+  await clearYarnRefreshFlag(); // always clear before install if exists
 
   if (!existsSync(pnpmPath)) {
     installPnpm();

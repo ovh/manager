@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
 import path from 'path';
+import { registerCleanupOnSignals } from './utils/cleanup-utils.mjs';
 
 // CLI args handling
 const args = process.argv.slice(2).filter(Boolean);
@@ -27,7 +28,11 @@ function runSubScript(name, scriptPath) {
   }
 }
 
-// Main logic with delay before each install
+// Ensure cleanup runs if interrupted during either sub-process
+registerCleanupOnSignals(() => {
+  console.log('🧼 Cleanup triggered. If any sub-process left state behind, handle it downstream.');
+});
+
 async function main() {
   const delayMs = 2000;
 

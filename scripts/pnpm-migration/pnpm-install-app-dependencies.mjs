@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import { safeUnlink, registerCleanupOnSignals } from './utils/cleanup-utils.mjs';
 
 // Paths
 const ROOT_DIR = path.resolve('.');
@@ -76,28 +77,11 @@ function createWorkspaceYaml(appPath, allDeps) {
 
 function cleanupAllWorkspaceFiles() {
   for (const filePath of createdWorkspaceFiles) {
-    try {
-      if (existsSync(filePath)) {
-        unlinkSync(filePath);
-        console.log(`🧹 Removed temporary ${filePath}`);
-      }
-    } catch (err) {
-      console.warn(`⚠️ Failed to remove ${filePath}:`, err.message);
-    }
+    safeUnlink(filePath);
   }
 }
 
-// Handle signals to clean up on interrupt
-process.on('SIGINT', () => {
-  console.log('\n🛑 Caught SIGINT (Ctrl+C). Cleaning up...');
-  cleanupAllWorkspaceFiles();
-  process.exit(1);
-});
-process.on('SIGTERM', () => {
-  console.log('\n🛑 Caught SIGTERM. Cleaning up...');
-  cleanupAllWorkspaceFiles();
-  process.exit(1);
-});
+registerCleanupOnSignals(cleanupAllWorkspaceFiles);
 
 function installPnpmApps() {
   console.log('📦 Installing PNPM-managed apps with temporary workspace overrides...');

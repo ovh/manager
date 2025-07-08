@@ -79,7 +79,6 @@
       "packages/manager/apps/web-hosting",
       "packages/manager/apps/web-office",
       "packages/manager/apps/web-ongoing-operations",
-      "packages/manager/apps/zimbra",
       "packages/components/*",
       "packages/manager/core/api",
       "packages/manager/core/application",
@@ -221,6 +220,5 @@
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"
-  },
-  "packageManager": "yarn@1.22.22"
+  }
 }

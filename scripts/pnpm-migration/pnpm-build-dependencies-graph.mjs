@@ -1,7 +1,9 @@
+#!/usr/bin/env node
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import pkg from '@yarnpkg/lockfile';
+import { registerCleanupOnSignals, safeUnlink } from './utils/cleanup-utils.mjs'; // ✅ Added
 
 const { parse } = pkg;
 const __filename = fileURLToPath(import.meta.url);
@@ -18,6 +20,11 @@ const PACKAGE_DIRS = [
   'packages/components',
   'packages/manager-react-components',
 ].map(sub => path.join(ROOT_DIR, sub));
+
+// ✅ Ensure cleanup if interrupted before writing complete JSON
+registerCleanupOnSignals(() => {
+  safeUnlink(OUTPUT_FILE);
+});
 
 function readJSON(filepath) {
   return JSON.parse(readFileSync(filepath, 'utf-8'));
