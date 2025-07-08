@@ -6,5 +6,5 @@
   "pci_projects_project_kubernetes_details_service_name_custom": "Custom name",
   "pci_projects_project_kubernetes_details_service_name_success": "The cluster name has been updated.",
   "pci_projects_project_kubernetes_details_service_name_error": "An error has occurred renaming the cluster: {{message}}}",
-  "pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error": "The cluster name must contain between 2 and 64 characters, start with a letter, end with an alphanumeric character and only contain letters, numbers, dashes or underscores."
+  "pci_projects_project_kubernetes_details_service_name_input_pattern_validation_error": "Cluster names must be 2 to 64 characters long, begin with a letter, end with an alphanumeric character, and contain only letters, numbers, hyphens, or underscores."
 }
