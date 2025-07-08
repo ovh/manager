@@ -8,7 +8,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMessageContext } from '@/context/Message.context';
 
@@ -19,9 +19,6 @@ export default function TerminateOrganization() {
   const { t } = useTranslation('terminate');
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { addSuccess } = useMessageContext();
-  const {
-    state: { messageOptions },
-  } = useLocation();
 
   const closeModal = () => {
     navigate('..');
@@ -38,7 +35,7 @@ export default function TerminateOrganization() {
         : 'terminate_managed_vcd_success';
     addSuccess({
       content: t(messageKey, { service: id }),
-      ...messageOptions,
+      isDismissible: true,
     });
     closeModal();
   };
