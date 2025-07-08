@@ -1,0 +1,105 @@
+import { vitest, vi } from 'vitest';
+import { render } from '@testing-library/react';
+import { Headers } from '../Headers.component';
+import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
+import { useAuthorizationIam } from '../../../../../hooks/iam';
+import {
+  GuideButton,
+  ActionMenu,
+  ChangelogButton,
+} from '../../../../navigation';
+
+const header = () => <Headers title="Example for header" />;
+
+const headerWithHeaderButtons = () => (
+  <Headers
+    title="Example for header with header buttons"
+    guideButton={
+      <GuideButton
+        items={[
+          {
+            id: 1,
+            href: 'https://www.ovh.com',
+            target: '_blank',
+            label: 'ovh.com',
+          },
+          {
+            id: 2,
+            href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
+            target: '_blank',
+            label: 'Guides OVH',
+          },
+        ]}
+      />
+    }
+    changelogButton={
+      <ChangelogButton
+        links={{
+          changelog: 'https://ovh.com/',
+          roadmap: 'https://ovh.com/',
+          'feature-request': 'https://ovh.com/',
+        }}
+      />
+    }
+  />
+);
+
+const headerWithActions = () => (
+  <Headers
+    title="Example for header with actions "
+    guideButton={
+      <ActionMenu
+        id="1"
+        items={[
+          {
+            id: 1,
+            href: 'https://www.ovh.com',
+            target: '_blank',
+            label: 'Action 1',
+          },
+          {
+            id: 2,
+            href: 'https://help.ovhcloud.com/csm/fr-documentation?id=kb_home',
+            target: '_blank',
+            label: 'Action 2',
+          },
+        ]}
+      />
+    }
+  />
+);
+
+vitest.mock('../../../../../hooks/iam');
+vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({
+    trackClick: vi.fn(),
+  }),
+}));
+
+const mockedHook =
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+
+describe('Headers component', () => {
+  beforeEach(() => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: true,
+      isFetched: true,
+    });
+  });
+
+  it('renders header with title', async () => {
+    const { container } = render(header());
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders header with header buttons correctly', async () => {
+    const { container } = render(headerWithHeaderButtons());
+    expect(container).toMatchSnapshot();
+  });
+
+  it('renders header with actions correctly', async () => {
+    const { container } = render(headerWithActions());
+    expect(container).toMatchSnapshot();
+  });
+});
