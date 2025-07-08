@@ -1,0 +1,65 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  OdsCheckbox,
+  OdsFormField,
+  OdsLink,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { HDS_INFO } from '@/constants';
+
+type HdsOptionProps = {
+  isChecked: boolean;
+  onCheckChanged: (isChecked: boolean) => void;
+  isValidForCertification: boolean;
+  isAlreadyCertifiedProject?: boolean;
+};
+
+export default function HdsOption({
+  isChecked,
+  onCheckChanged,
+  isValidForCertification,
+  isAlreadyCertifiedProject = false,
+}: HdsOptionProps) {
+  const { t } = useTranslation('hds');
+
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+
+  const hdsInfoLink =
+    HDS_INFO[ovhSubsidiary as OvhSubsidiary] || HDS_INFO.DEFAULT || '';
+
+  const isHdsDisabled = isAlreadyCertifiedProject || !isValidForCertification;
+
+  return (
+    <div className="flex flex-col gap-5">
+      <OdsText preset="paragraph">
+        {t('pci_projects_project_edit_hds_description')}
+      </OdsText>
+
+      <OdsLink
+        icon="external-link"
+        target="_blank"
+        href={hdsInfoLink}
+        label={t('pci_projects_hds_description_link')}
+      />
+
+      <OdsFormField className="flex flex-row items-center">
+        <OdsCheckbox
+          name="isHds"
+          inputId="is-hds"
+          isChecked={isChecked}
+          isDisabled={isHdsDisabled}
+          onOdsChange={(event) => onCheckChanged(event.detail.checked)}
+          data-testid="hds-checkbox"
+        />
+        <label className="ml-4 cursor-pointer" htmlFor="is-hds">
+          <OdsText preset="paragraph">
+            {t('pci_projects_hds_description')}
+          </OdsText>
+        </label>
+      </OdsFormField>
+    </div>
+  );
+}
