@@ -34,6 +34,7 @@ import {
   REGION_TO_DATACENTER,
   SERVER_REGION,
   ORGANISATION_GROUP,
+  ASIAN_PACIFIC_DATACENTERS,
 } from './ipv4.constant';
 
 export default class AgoraIpV4OrderController {
@@ -70,6 +71,7 @@ export default class AgoraIpV4OrderController {
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
+    this.ASIAN_PACIFIC_DATACENTERS = ASIAN_PACIFIC_DATACENTERS;
     this.region = coreConfig.getRegion();
     this.type = IP_TYPE_TITLE.IPv4;
     this.ovhManagerRegionService = ovhManagerRegionService;
@@ -123,6 +125,18 @@ export default class AgoraIpV4OrderController {
         price.capacities.includes(capacity),
       ),
     );
+  }
+
+  isAPACRegion(region) {
+    return this.ASIAN_PACIFIC_DATACENTERS.includes(region.datacenter);
+  }
+
+  getRegionLabelDisplay(region) {
+    return this.isAPACRegion(region) ? `${region.location} *` : region.location;
+  }
+
+  hasAPACRegionInCatalog() {
+    return this.catalogByLocation.some((region) => this.isAPACRegion(region));
   }
 
   loadServices() {

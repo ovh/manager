@@ -115,6 +115,8 @@ export const DATACENTER_TO_REGION = {
   MIL: 'eu-south-mil',
 };
 
+export const ASIAN_PACIFIC_DATACENTERS = ['SYD', 'YNM', 'SGP'];
+
 export const IP_LOCATION_GROUPS_BASED_ON_DATACENTER = [
   {
     labels: ['APAC/CANADA', 'CANADA - ASIA'],
