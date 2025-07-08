@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 
 export const OrderButtonSection: React.FC = () => {
-  const { t: tcommon } = useTranslation(NAMESPACES?.ACTIONS);
+  const { t } = useTranslation([NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
 
   return (
@@ -19,14 +19,14 @@ export const OrderButtonSection: React.FC = () => {
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
-        label={tcommon('next')}
+        label={t('next', { ns: NAMESPACES.ACTIONS })}
         onClick={() => navigate(urls.byoipOrderModal)}
       />
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
         variant={ODS_BUTTON_VARIANT.ghost}
-        label={tcommon('cancel')}
+        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={() => navigate(urls.listing)}
       />
     </div>
