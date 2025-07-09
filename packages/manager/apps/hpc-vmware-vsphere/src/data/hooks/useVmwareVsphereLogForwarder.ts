@@ -1,5 +1,9 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  UseMutationOptions,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   postDedicatedCloudServiceLogForwarderEnable,
   postDedicatedCloudServiceLogForwarderEnableQueryKey,
@@ -7,23 +11,25 @@ import {
 import { LogForwarder } from '@/types/logForwarder';
 import { getDedicatedCloudDatacenterListQueryKey } from '../api/hpc-vmware-vsphere-datacenter';
 
-export function useEnableLogForwarder(serviceName?: string) {
+export function useEnableLogForwarder(
+  serviceName?: string,
+  mutationOptions: Partial<
+    UseMutationOptions<ApiResponse<LogForwarder>, ApiError, void>
+  > = {},
+) {
   const queryClient = useQueryClient();
-  const {
-    mutate: enableLogsForwarder,
-    isPending: updateIsPending,
-  } = useMutation<ApiResponse<LogForwarder>, ApiError, void>({
+
+  return useMutation<ApiResponse<LogForwarder>, ApiError, void>({
     mutationKey: postDedicatedCloudServiceLogForwarderEnableQueryKey(
       serviceName,
     ),
-    mutationFn: async () =>
-      postDedicatedCloudServiceLogForwarderEnable(serviceName),
-    onSuccess: async () => {
+    mutationFn: () => postDedicatedCloudServiceLogForwarderEnable(serviceName),
+    onSuccess: async (...params) => {
+      await mutationOptions.onSuccess?.(...params);
       await queryClient.invalidateQueries({
         queryKey: getDedicatedCloudDatacenterListQueryKey,
       });
     },
+    ...mutationOptions,
   });
-
-  return { enableLogsForwarder, updateIsPending };
 }
