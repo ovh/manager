@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import {
   DataGridTextCell,
@@ -19,6 +19,8 @@ import { urls } from '@/routes/routes.constant';
 import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import OrganizationActions from './OrganizationActions.component';
+import { MessageList } from '@/components/message/MessageList.component';
 
 /* ========= datagrid cells ========== */
 const DatagridIdCell = (vdcOrg: VCDOrganization) => {
@@ -99,17 +101,25 @@ export default function Listing() {
       cell: DatagridWebInterfaceCell,
       label: t('managed_vcd_listing_web_interface_url'),
     },
+    {
+      id: 'actions',
+      cell: OrganizationActions,
+    },
   ];
 
   return (
-    <DatagridContainer
-      title={MANAGED_VCD_LABEL}
-      queryKey={vcdOrganizationListQueryKey}
-      route={{
-        api: VCD_ORGANIZATION_ROUTE,
-        onboarding: urls.onboarding,
-      }}
-      columns={columns}
-    />
+    <>
+      <MessageList className="px-10" />
+      <DatagridContainer
+        title={MANAGED_VCD_LABEL}
+        queryKey={vcdOrganizationListQueryKey}
+        route={{
+          api: VCD_ORGANIZATION_ROUTE,
+          onboarding: urls.onboarding,
+        }}
+        columns={columns}
+      />
+      <Outlet />
+    </>
   );
 }

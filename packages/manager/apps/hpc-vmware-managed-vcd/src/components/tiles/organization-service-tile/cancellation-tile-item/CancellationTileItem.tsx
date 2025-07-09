@@ -1,21 +1,21 @@
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { OdsBadge, OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+import { subRoutes } from '@/routes/routes.constant';
 
 export default function CancellationTileItem() {
   const { t } = useTranslation('dashboard');
+  const navigate = useNavigate();
 
   return (
     <div className="flex items-center gap-x-3">
-      <OdsBadge label={t('managed_vcd_dashboard_coming_soon')} />
-
-      <OdsIcon
-        id="cancellation-tooltip-trigger"
-        className="color-disabled cursor-pointer"
-        name="circle-question"
+      <OdsButton
+        label={t('managed_vcd_dashboard_service_cancellation')}
+        variant="ghost"
+        iconAlignment="right"
+        onClick={() => navigate(subRoutes.terminate)}
+        icon="chevron-right"
       />
-      <OdsTooltip triggerId="cancellation-tooltip-trigger">
-        {t('managed_vcd_dashboard_cancellation_tooltip')}
-      </OdsTooltip>
     </div>
   );
 }
