@@ -55,10 +55,13 @@ export default class ovhManagerResourceTaggingAssignModalController {
   }
 
   $postLink() {
+    console.log('$postLink');
     this.addTagForm[TAG_ASSIGN_FORM.KEY].$setValidity('pattern', false);
     this.addTagForm[TAG_ASSIGN_FORM.VALUE].$setValidity('pattern', false);
     this.$timeout(() => {
+      console.log('$timeout');
       this.$element.on('odsChange', (evt) => {
+        console.log('$onchange');
         this.updateModel(evt);
       });
     });
