@@ -104,7 +104,7 @@ export type TInstancePriceDto = {
   includeVat: boolean;
   price: {
     currencyCode: string;
-    priceInUCents: number;
+    priceInUcents: number;
     text: string;
     value: number;
   };
