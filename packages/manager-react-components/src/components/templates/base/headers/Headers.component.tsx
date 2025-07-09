@@ -4,7 +4,7 @@ import { HeadersProps } from './Headers.props';
 
 export const Headers: React.FC<HeadersProps> = ({
   title,
-  guideButton,
+  GuideMenu,
   changelogButton,
 }) => {
   return (
@@ -14,10 +14,10 @@ export const Headers: React.FC<HeadersProps> = ({
           {title}
         </Text>
       )}
-      {(guideButton || changelogButton) && (
+      {(GuideMenu || changelogButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
-          {guideButton}
+          {GuideMenu}
         </div>
       )}
     </header>
