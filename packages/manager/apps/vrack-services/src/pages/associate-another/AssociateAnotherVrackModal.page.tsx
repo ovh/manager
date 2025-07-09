@@ -44,6 +44,7 @@ export default function AssociateAnotherVrackModal() {
 
   if (!id) {
     closeModal();
+    return <></>;
   }
 
   return (

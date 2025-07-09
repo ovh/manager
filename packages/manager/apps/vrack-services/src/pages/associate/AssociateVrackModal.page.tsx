@@ -50,6 +50,7 @@ export default function AssociateVrackModal() {
 
   if (!id) {
     closeModal();
+    return <></>;
   }
 
   return (

@@ -86,6 +86,7 @@ export default function DissociateModal() {
 
   if (!id || !vrackId) {
     closeModal();
+    return <></>;
   }
 
   return (
