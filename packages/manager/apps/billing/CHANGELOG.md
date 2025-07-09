@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.3.3...@ovh-ux/manager-billing-app@0.4.0) (2025-07-09)
+
+
+### Features
+
+* **billing:** cleanup code after slicing /dedicated ([ecc2e5c](https://github.com/ovh/manager/commit/ecc2e5c82cf799653ff9372e57241e3e3ad87b38)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.3.2...@ovh-ux/manager-billing-app@0.3.3) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app
