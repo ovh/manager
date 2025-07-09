@@ -2,15 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TDomainsInfo } from '@/alldoms/types';
 import DomainDatagridColumnRegisteredStatus from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnRegisteredStatus';
-import DomainDatagridColumnState from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnState';
-import {
-  DomainProtectionStateEnum,
-  DomainRegistrationStateEnum,
-  Gender,
-} from '@/alldoms/enum/service.enum';
+import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
 import DomainDatagridColumnDate from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDate';
 import DomainDatagridColumnDomain from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDomain';
-import DomainDatagridColumnDnsServer from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDnsServer';
+import DomainDatagridColumnRenewMode from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnRenewMode';
 
 export const useDomainDatagridColumns = () => {
   const { t } = useTranslation('allDom');
@@ -32,47 +27,16 @@ export const useDomainDatagridColumns = () => {
       label: t('allDom_domain_table_header_status'),
     },
     {
-      id: 'dns_server',
+      id: 'domain_renew_mode',
       cell: (props: TDomainsInfo) => {
         return props.registrationStatus ===
           DomainRegistrationStateEnum.Registered ? (
-          <DomainDatagridColumnDnsServer nameServers={props.nameServers} />
+          <DomainDatagridColumnRenewMode serviceName={props.name} />
         ) : (
           <p>-</p>
         );
       },
-      label: t('allDom_domain_table_header_dns_server'),
-    },
-    {
-      id: 'transfert_protection',
-      cell: (props: TDomainsInfo) => {
-        return props.registrationStatus ===
-          DomainRegistrationStateEnum.Registered ? (
-          <DomainDatagridColumnState
-            valueToVerify={props.protectionState}
-            correspondingEnum={DomainProtectionStateEnum.Protected}
-          />
-        ) : (
-          <p>-</p>
-        );
-      },
-      label: t('allDom_domain_table_header_transfert_protection'),
-    },
-    {
-      id: 'dnssec',
-      cell: (props: TDomainsInfo) => {
-        return props.registrationStatus ===
-          DomainRegistrationStateEnum.Registered ? (
-          <DomainDatagridColumnState
-            valueToVerify={props.dnssecActivated}
-            correspondingEnum={true}
-            gender={Gender.Masc}
-          />
-        ) : (
-          <p>-</p>
-        );
-      },
-      label: t('allDom_domain_table_header_dnssec'),
+      label: t('allDom_table_header_renewMode'),
     },
     {
       id: 'expiration_date',

@@ -1,10 +1,13 @@
 import { useQueries } from '@tanstack/react-query';
 import {
   getAllDomResource,
-  getAllDomService,
+  getServiceInformation,
 } from '@/alldoms/data/api/web-domains';
 import { findContact } from '@/alldoms/utils/utils';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import {
+  ServiceInfoContactEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
 
 interface UseGetDatagridServiceInfoProps {
   readonly serviceName: string;
@@ -17,7 +20,7 @@ export const useGetAllDom = ({
     queries: [
       {
         queryKey: ['serviceInfo', serviceName],
-        queryFn: () => getAllDomService(serviceName),
+        queryFn: () => getServiceInformation(serviceName, ServiceRoutes.AllDom),
       },
       {
         queryKey: ['domainAttached', serviceName],
