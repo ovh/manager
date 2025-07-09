@@ -21,6 +21,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getOfficeTenantUsageStatisticsQueryKey,
   getOfficeUsageStatistics,
@@ -45,7 +46,7 @@ const periodOptions = [
   Period.LAST_12,
 ];
 export default function Consumption() {
-  const { t } = useTranslation(['dashboard/consumption']);
+  const { t } = useTranslation(['dashboard/consumption', NAMESPACES.DASHBOARD]);
 
   const [selectedPeriod, setSelectedPeriod] = useState('current');
   const [lineChartShow, setLineChartShow] = useState({
@@ -168,7 +169,7 @@ export default function Consumption() {
     <>
       <OdsFormField className="w-full md:w-1/4">
         <label slot="label" htmlFor="period-select">
-          {t('usage_period')}
+          {t(`${NAMESPACES.DASHBOARD}:period`)}
         </label>
         <OdsSelect
           id="period-select"
@@ -179,7 +180,7 @@ export default function Consumption() {
         >
           {periodOptions.map((period) => (
             <option key={period} value={period}>
-              {t(`usage_period_${period}`)}
+              {t(`${NAMESPACES.DASHBOARD}:period_${period}`)}
             </option>
           ))}
         </OdsSelect>
@@ -216,7 +217,7 @@ export default function Consumption() {
             <XAxis dataKey="date" tickFormatter={(tick) => tick} />
             <YAxis
               label={{
-                value: t('common:license_number'),
+                value: t(`${NAMESPACES.DASHBOARD}:period`),
                 angle: -90,
                 position: 'insideLeft',
               }}
