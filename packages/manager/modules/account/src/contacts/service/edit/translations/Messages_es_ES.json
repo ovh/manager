@@ -11,5 +11,8 @@
   "account_contacts_service_edit_warn_debt": "No es posible modificar el contacto de facturación, ya que hay una factura pendiente de pago para este servicio. Es necesario abonar previamente el importe pendiente para poder realizar el cambio.",
   "account_contacts_service_edit_pay": "Abonar la factura",
   "account_contacts_service_edit_warn_contact_billing": "No es posible modificar el contacto de facturación, ya que hay una factura pendiente de pago para este servicio. Contacte con el actual contacto de facturación {{ nicBilling }} para que realice el cambio.",
-  "account_contacts_service_edit_description_trusted": "Modificar los contactos del servicio {{ serviceName }} en la zona de confianza (Trusted Zone)."
+  "account_contacts_service_edit_description_trusted": "Modificar los contactos del servicio {{ serviceName }} en la zona de confianza (Trusted Zone).",
+  "account_contacts_service_edit_replicate_label": "Replicar este cambio de contacto en el servicio {{type}} asociado.",
+  "account_contacts_service_edit_replicate_type_DOMAIN": "Dominio",
+  "account_contacts_service_edit_replicate_type_ZONE": "DNS"
 }
