@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { useQueryClient } from '@tanstack/react-query';
 import { useVmwareVsphereCompatibilityMatrix } from '@/data/hooks/useVmwareVsphereCompatibilityMatrix';
 import { useVmwareVsphereDatacenter } from '@/data/hooks/useVmwareVsphereDatacenter';
 import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
@@ -9,6 +11,8 @@ import LogsUpgrade from './LogsUpgrade.component';
 import LogsActivationInProgress from './LogsActivationInProgress.component';
 import { getVmwareStatus } from '@/utils/getVmwareStatus';
 import { VMWareStatus } from '@/types/vsphere';
+import { urls } from '@/routes/routes.constant';
+import { getDedicatedCloudDatacenterListQueryKey } from '@/data/api/hpc-vmware-vsphere-datacenter';
 
 type LogsOnboardingProps = {
   children: React.ReactNode;
@@ -17,6 +21,8 @@ type LogsOnboardingProps = {
 const FORWARDER_VALID_STATE = ['creating', 'pending', 'toCreate', 'updating'];
 
 const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { serviceName } = useParams();
   const { data: vmwareVsphere, isLoading: isLoadingVsphere } = useVmwareVsphere(
     serviceName,
@@ -24,6 +30,8 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
   const {
     data: datacenter,
     isLoading: isLoadingVsphereDatacenter,
+    error: datacenterError,
+    isError: isDatacenterError,
   } = useVmwareVsphereDatacenter(serviceName);
   const {
     data: compatibilityMatrix,
@@ -51,6 +59,20 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }, [compatibilityMatrix]);
 
+  if (isDatacenterError) {
+    return (
+      <ErrorBanner
+        error={datacenterError.response}
+        onRedirectHome={() => navigate(urls.root)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getDedicatedCloudDatacenterListQueryKey,
+          })
+        }
+      />
+    );
+  }
+
   if (
     isLoadingVsphere ||
     isLoadingVsphereDatacenter ||
@@ -76,7 +98,11 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     currentStatus === VMWareStatus.PREMIER
   ) {
     return (
-      <LogsActivation currentStatus={currentStatus} serviceName={serviceName} />
+      <LogsActivation
+        currentStatus={currentStatus}
+        serviceName={serviceName}
+        datacenterId={datacenter?.datacenterId}
+      />
     );
   }
 
