@@ -1,0 +1,18 @@
+{
+  "pci_projects_onboarding_title": "¡Bienvenido/a al ecosistema Public Cloud!",
+  "pci_projects_onboarding_description1": "Al crear un proyecto Public Cloud, tendrá acceso a diversos recursos disponibles bajo demanda para su aplicación. Incluimos a continuación algunos ejemplos.",
+  "pci_projects_onboarding_description2": "Puede, por ejemplo, activar bases de datos SQL o NoSQL, probar su aplicación en un clúster Kubernetes, utilizar herramientas de inteligencia artificial durante unas horas o incluso automatizar el despliegue de sus servidores cloud con Terraform.",
+  "pci_projects_onboarding_contracts_agreements_label": "He leído y acepto los términos y condiciones de los siguientes contratos: ",
+  "pci_projects_onboarding_create_project": "Descubrir el universo Public Cloud",
+  "pci_projects_onboarding_us_title": "Una plataforma abierta y reversible de Public Cloud",
+  "pci_projects_onboarding_us_description1": "¿Es aficionado a la cultura DevOps y las prácticas «cloud-ready» y explota su infraestructura utilizando las API y herramientas de orquestación? ¿Busca soluciones preinstaladas o «as a service» flexibles y con facturación por consumo para poder centrarse en su actividad y acelerar la producción?",
+  "pci_projects_onboarding_us_description2": "En este espacio encontrará una gran variedad de servicios para desarrollar sus proyectos de innovación. Con el cloud de OVHcloud podrá concentrarse en sus tareas de gran valor añadido.",
+  "pci_projects_onboarding_us_description3": "Organice sus arquitecturas en proyectos, segmentando sus despliegues en la nube según su ámbito operativo o funcional. Por ejemplo, puede crear un proyecto para el entorno de desarrollo y otro para el entorno de producción. También es posible segmentar según el tipo de aplicación, con un proyecto para back-office y otro para e-commerce.",
+  "pci_projects_onboarding_us_create_project": "Cree su primer proyecto de Public Cloud de OVHcloud",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_1": "¿Necesita más información o quiere hacer un pedido?",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Si lo desea, uno de nuestros asesores puede llamarle de forma gratuita",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "¿Necesita más información o quiere hacer un pedido?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Si lo desea, uno de nuestros asesores puede llamarle de forma gratuita",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Según la normativa vigente, es necesario verificar su identidad para crear un proyecto Public Cloud. Nuestro equipo está analizando el tratamiento de sus documentos. Para más información, puede consultar ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Mis solicitudes de asistencia"
+}
