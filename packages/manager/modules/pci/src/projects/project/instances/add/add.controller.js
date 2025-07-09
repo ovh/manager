@@ -27,16 +27,14 @@ import {
   AVAILABLE_SUBNET,
   BANDWIDTH_OUT,
   FILTER_PRIVATE_NETWORK_BAREMETAL,
-  FLAVORS_BAREMETAL,
   FLOATING_IP_AVAILABILITY_INFO_LINK,
   INSTANCE_MODES_ENUM,
   INSTANCE_READ_MORE_GUIDE,
-  PUBLIC_NETWORK,
-  PUBLIC_NETWORK_BAREMETAL,
   URL_MODEL,
   WINDOWS_PRIVATE_MODE_LICENSE_GUIDE,
   PRIVATE_NETWORK_MODE,
   LOCAL_PRIVATE_NETWORK_MODE,
+  PUBLIC_NETWORK_MODE,
 } from './add.constants';
 
 import {
@@ -202,16 +200,6 @@ export default class PciInstancesAddController {
       schedule: null,
       price: null,
     };
-    this.addInstanceSuccessMessage =
-      this.addInstanceSuccessMessage ||
-      'pci_projects_project_instances_add_success_message';
-
-    this.addInstance3azSuccessMessage =
-      this.addInstance3azSuccessMessage ||
-      'pci_projects_project_instances_3az_add_success_message';
-    this.addInstancesSuccessMessage =
-      this.addInstancesSuccessMessage ||
-      'pci_projects_project_instances_add_success_multiple_message';
 
     this.availableLocalPrivateNetworks = [this.defaultPrivateNetwork];
     this.modes = this.instanceModeEnum.map(({ mode }) => {
@@ -809,21 +797,24 @@ export default class PciInstancesAddController {
 
   onImageChange() {
     this.displaySelectedImage = true;
+
     if (this.model.image.isBackup()) {
       this.instance.imageId = this.model.image.id;
+      this.instance.imageRegionName = this.model.image.region;
     } else {
       this.instance.imageId = this.model.image.getIdByRegion(
         this.instance.region,
       );
+      this.instance.imageRegionName = this.instance.region;
     }
 
     this.onFlexChange(false);
 
     if (!this.isLinuxImageType()) {
       this.model.sshKey = null;
-      this.instance.sshKeyId = null;
+      this.instance.sshKey = null;
     } else {
-      this.instance.sshKeyId = get(this.model.sshKey, 'id');
+      this.instance.sshKey = this.model.sshKey;
     }
 
     this.trackAddInstance([
@@ -1220,33 +1211,7 @@ export default class PciInstancesAddController {
     }
   }
 
-  getPrivateNetworkOnChange() {
-    if (get(this.selectedPrivateNetwork, 'id')) {
-      this.instance.networks = [
-        {
-          networkId: get(this.selectedPrivateNetwork, 'id'),
-        },
-      ];
-      if (!this.isPrivateMode() && !this.isLocalPrivateMode()) {
-        this.instance.networks = [
-          ...this.instance.networks,
-          {
-            networkId: this.publicNetwork.find((network) => {
-              if (FLAVORS_BAREMETAL.test(this.flavor.type)) {
-                return network.name === PUBLIC_NETWORK_BAREMETAL;
-              }
-              return network.name === PUBLIC_NETWORK;
-            })?.id,
-          },
-        ];
-      }
-    } else {
-      this.instance.networks = [];
-    }
-  }
-
   onPrivateNetworkChange(modelValue) {
-    this.getPrivateNetworkOnChange();
     if (
       modelValue &&
       modelValue.subnet &&
@@ -1505,15 +1470,7 @@ export default class PciInstancesAddController {
   }
 
   onCreateFormStepperSubmit() {
-    if (this.isPrivateMode()) {
-      this.confirmPrivateInstanceCreation = true;
-      return null;
-    }
     return this.create();
-  }
-
-  onCancelCreateInstanceConfirmation() {
-    this.confirmPrivateInstanceCreation = false;
   }
 
   create() {
@@ -1522,52 +1479,6 @@ export default class PciInstancesAddController {
 
     if (!this.isLinuxImageType()) {
       this.instance.userData = null;
-    }
-    if (this.isLocalPrivateMode()) {
-      const publicNetworkAlreadyExist = this.instance?.networks?.some(
-        (instanceNetwork) => {
-          return this.publicNetwork?.find(
-            (network) => network.id === instanceNetwork.networkId,
-          );
-        },
-      );
-
-      if (
-        this.isLocalPrivateModeLocalZone &&
-        this.isCreatingNewPrivateNetwork &&
-        this.privateNetworkName
-      ) {
-        this.instance.networks = [
-          ...(this.instance.networks || []),
-          {
-            networkId: this.availableLocalPrivateNetworks.find(({ name }) => {
-              return name === this.privateNetworkName;
-            })?.id,
-          },
-        ];
-      }
-
-      if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
-        // if attach check box is ticked, add public network if not added one
-        this.instance.networks = [
-          ...(this.instance.networks || []),
-          {
-            networkId: this.publicNetwork?.find(
-              (network) => network.name === PUBLIC_NETWORK,
-            )?.id,
-          },
-        ];
-      }
-      if (!this.isAttachPublicNetwork && publicNetworkAlreadyExist) {
-        // if attach check box is not ticked, remove public network if already added one
-        this.instance.networks = this.instance?.networks?.filter(
-          (instanceNetwork) => {
-            return !this.publicNetwork?.find(
-              (network) => network.id === instanceNetwork.networkId,
-            );
-          },
-        );
-      }
     }
 
     if (
@@ -1587,108 +1498,76 @@ export default class PciInstancesAddController {
       this.instance.availabilityZone = this.model.threeAzRegion.zone;
     }
 
-    // @TODO: GS Use post /cloud/project/{serviceName}/region/{regionName}/instance
-    // for local zone instance creation
+    const network = {
+      private:
+        this.isPrivateMode() || this.isLocalPrivateMode()
+          ? {
+              floatingIp: this.selectedFloatingIP?.id
+                ? {
+                    id: this.selectedFloatingIP.id,
+                  }
+                : null,
+              floatingIpCreate:
+                !!this.selectedFloatingIP && !this.selectedFloatingIP.id
+                  ? {
+                      description: '',
+                    }
+                  : null,
+              gatewayCreate:
+                this.subnetGateways?.length === 0 && this.isAttachFloatingIP
+                  ? {
+                      model: this.defaultGateway.size,
+                      name: getAutoGeneratedName(
+                        `gateway-${this.model.datacenter.name.toLowerCase()}`,
+                      ),
+                    }
+                  : null,
+              ip: null,
+
+              network: {
+                id: this.selectedPrivateNetwork.regions.find(
+                  (r) => r.region === this.instance.region,
+                ).openstackId,
+                subnetId: this.selectedPrivateNetwork.subnet?.[0]?.id,
+              },
+            }
+          : null,
+      public:
+        this.selectedMode.name === PUBLIC_NETWORK_MODE ||
+        this.isAttachPublicNetwork,
+    };
 
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
-      this.instance,
+      this.instance.region,
+      { ...this.instance, network },
       this.model.number,
-      this.isPrivateMode(),
     )
-      .then((result) => {
-        const availabilityZone =
-          result.availabilityZone ?? this.instance.availabilityZone;
-        let message;
-        if (this.model.number === 1) {
-          if (availabilityZone) {
-            message = this.$translate.instant(
-              this.addInstance3azSuccessMessage,
-              {
-                instance: this.instance.name,
-                zone: availabilityZone,
-              },
-            );
-          } else {
-            message = this.$translate.instant(this.addInstanceSuccessMessage, {
-              instance: this.instance.name,
-            });
-          }
-        } else {
-          message = this.$translate.instant(this.addInstancesSuccessMessage);
+      .then(() => {
+        let messageType = null;
+        if (
+          this.model.image.isBackup() &&
+          !this.model.image.isAvailableInRegion(this.instance.region)
+        ) {
+          messageType = 'distant_backup';
+        } else if (this.isPrivateMode()) {
+          messageType = 'private_network';
         }
 
-        if (Array.isArray(result) && result.length > 1) {
-          return this.goBack(message, 'success');
-        }
-        const { id: instanceId, ipAddresses: ips } = result;
-
-        if (!this.isPrivateMode()) {
-          return this.goBack(message, 'success');
-        }
-        if (this.subnetGateways?.length === 0 && this.isAttachFloatingIP) {
-          return this.createGateway(instanceId, ips, message);
-        }
-        return this.onCreateInstanceSuccess(instanceId, ips, message);
+        return this.goBack(
+          this.$translate.instant(
+            `pci_projects_project_instances_add_success_message${
+              messageType ? `_${messageType}` : ''
+            }`,
+          ),
+          'success',
+        );
       })
       .catch((error) => {
         this.createInstanceError(error);
       })
       .finally(() => {
-        if (!this.isPrivateMode()) {
-          this.isLoading = false;
-        } else {
-          this.confirmPrivateInstanceCreation = false;
-        }
-      });
-  }
-
-  onCreateInstanceSuccess(instanceId, ips, message) {
-    const filteredIp = ips.find(({ version: ipv4 }) => ipv4 === 4);
-    if (this.isAttachFloatingIP && filteredIp) {
-      if (this.isCreateFloatingIPClicked && !this.selectedFloatingIP.id) {
-        return this.createAndAttachFloatingIp(
-          instanceId,
-          filteredIp.ip,
-          message,
-        );
-      }
-      if (this.selectedFloatingIP) {
-        return this.associateFloatingIp(
-          instanceId,
-          this.selectedFloatingIP.id,
-          filteredIp.ip,
-          message,
-        );
-      }
-    }
-    return this.goBack(message, 'success');
-  }
-
-  createGateway(instanceId, ips, message) {
-    this.gatewayName = getAutoGeneratedName(
-      `gateway-${this.model.datacenter.name.toLowerCase()}`,
-    );
-
-    this.selectedGatewaySize = this.defaultGateway.size;
-    this.gatewayModel = {
-      name: this.gatewayName,
-      model: this.selectedGatewaySize,
-    };
-    const network = this.selectedPrivateNetwork.regions.find(
-      (networkRegion) => networkRegion.region === this.model.datacenter.name,
-    );
-    return this.PciProjectsProjectInstanceService.createGateway(
-      this.projectId,
-      this.model.datacenter.name,
-      network.openstackId,
-      this.selectedPrivateNetwork?.subnet[0]?.id,
-      this.gatewayModel,
-    )
-      .then(() => this.onCreateInstanceSuccess(instanceId, ips, message))
-      .catch((err) => {
         this.isLoading = false;
-        return this.handleError(err);
       });
   }
 
@@ -1730,47 +1609,6 @@ export default class PciInstancesAddController {
       ),
       'pci.projects.project.instances.add-instance',
     );
-  }
-
-  createAndAttachFloatingIp(instanceId, ip, message) {
-    this.isLoading = true;
-    this.floatingIpModel = {
-      ip,
-    };
-    return this.PciProjectsProjectInstanceService.createAndAttachFloatingIp(
-      this.projectId,
-      this.model.datacenter.name,
-      instanceId,
-      this.floatingIpModel,
-    )
-      .then(() => this.goBack(message, 'success'))
-      .catch((err) => {
-        this.handleError(err);
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
-  }
-
-  associateFloatingIp(instanceId, floatingIpId, ip, message) {
-    this.isLoading = true;
-    this.floatingIpModel = {
-      floatingIpId,
-      ip,
-    };
-    return this.PciProjectsProjectInstanceService.associateFloatingIp(
-      this.projectId,
-      this.model.datacenter.name,
-      instanceId,
-      this.floatingIpModel,
-    )
-      .then(() => this.goBack(message, 'success'))
-      .catch((err) => {
-        this.handleError(err);
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
   }
 
   cancel() {
@@ -1836,12 +1674,16 @@ export default class PciInstancesAddController {
     this.isAddingPrivateNetwork = true;
 
     return this.createPrivateNetwork()
-      .then(() => {
+      .then((networkId) => {
         return this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
           this.projectId,
           this.model.datacenter.name,
         ).then((networks) => {
           this.availableLocalPrivateNetworks = networks;
+          this.selectedPrivateNetwork = networks.find(
+            (n) => n.id === networkId,
+          );
+          this.isCreatingNewPrivateNetwork = false;
           return this.getLocalPrivateNetworkSubnet()
             .then(() => {
               this.CucCloudMessage.success(

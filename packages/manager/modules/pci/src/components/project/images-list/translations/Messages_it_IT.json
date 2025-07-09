@@ -29,5 +29,7 @@
   "pci_project_instances_distribution_baremetal_ubuntu": "Ubuntu",
   "pci_project_instances_distribution_baremetal_windows_server_2012": "Windows Server 2012",
   "pci_project_instances_distribution_baremetal_windows_server_2016": "Windows Server 2016",
-  "pci_project_instances_distribution_baremetal_windows_other": "Altre distribuzioni Windows"
+  "pci_project_instances_distribution_baremetal_windows_other": "Altre distribuzioni Windows",
+  "pci_project_instances_shapshots_local": "Backup locale",
+  "pci_project_instances_shapshots_distant": "Backup remoto"
 }

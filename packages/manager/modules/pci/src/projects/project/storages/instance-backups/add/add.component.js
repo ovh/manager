@@ -8,7 +8,6 @@ export default {
     excludeCategories: '<',
     backup: '<',
     goBack: '<',
-    publicNetworks: '<',
     privateNetworks: '<',
     projectId: '<',
     quota: '<',
