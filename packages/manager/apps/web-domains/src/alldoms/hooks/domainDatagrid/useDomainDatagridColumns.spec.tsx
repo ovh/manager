@@ -19,16 +19,14 @@ describe('Datagrid columns', () => {
   const { result } = renderHook(() => useDomainDatagridColumns());
   const columns = result.current;
   it('should return the correct number of column', () => {
-    expect(columns).toHaveLength(6);
+    expect(columns).toHaveLength(4);
   });
 
   it('should return the good labels', () => {
     const tests: Record<string, string> = {
       domainName: 'allDom_domain_table_header_domain_name',
       status: 'allDom_domain_table_header_status',
-      dns_server: 'allDom_domain_table_header_dns_server',
-      transfert_protection: 'allDom_domain_table_header_transfert_protection',
-      dnssec: 'allDom_domain_table_header_dnssec',
+      domain_renew_mode: 'allDom_table_header_renewMode',
       expiration_date: 'allDom_domain_table_header_expiration_date',
     };
 
