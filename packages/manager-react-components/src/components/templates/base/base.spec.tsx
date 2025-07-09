@@ -8,10 +8,10 @@ import {
   OdsTable,
   OdsBadge,
 } from '@ovhcloud/ods-components/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { BaseLayout } from './base.component';
-import { GuideButton, GuideItem } from '../../navigation';
+import { GuideButton, GuideItem } from '../../guide-button';
 import { Notifications } from '../../notifications/Notifications.component';
 import { queryClient } from '../../../utils/test.provider';
 
