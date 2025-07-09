@@ -3,6 +3,7 @@ import {
   GUIDELINK,
   TRACKING_PREFIX,
   TRACKING_CONTEXT,
+  FEATURES,
 } from './cloud-connect.constants';
 import { getCloudConnectOrderUrl } from './cloud-connect.order';
 
@@ -12,10 +13,12 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/cloud-connect',
       template: '<div ui-view></div>',
       resolve: {
-        user: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().get().$promise,
+        user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
         guideUrl: /* @ngInject */ (user) =>
           GUIDELINK[user.ovhSubsidiary] || GUIDELINK.GB,
         breadcrumb: () => 'OVHcloud Connect',
+        features: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability(Object.values(FEATURES)),
       },
     })
     .state('cloud-connect.index', {

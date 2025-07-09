@@ -7,6 +7,7 @@ import ovhLogToCustomerSelectKinds from './select-kinds';
 import tiles from './tiles/component';
 
 import '@uirouter/angularjs';
+import { DATA_PLATFORM_GUIDE } from './constants';
 
 const moduleName = 'ovhManagerLogToCustomer';
 
@@ -19,6 +20,7 @@ angular
     ovhLogToCustomerSelectKinds,
   ])
   .component('logTile', tiles)
+  .constant('DATA_PLATFORM_GUIDE', DATA_PLATFORM_GUIDE)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
