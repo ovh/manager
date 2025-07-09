@@ -9,7 +9,7 @@ import {
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const name = 'app.account.billing.payment.method';
+  const name = 'billing.payment.method';
   const allowDefaultChoiceForFirstPaymentMethodFeatureName =
     'billing:allowDefaultChoiceForFirstPaymentMethod';
 
@@ -30,12 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToSplitPaymentAction: /* @ngInject */ ($state, splitPayment) => () =>
         splitPayment.canBeDeactivated
-          ? $state.go(
-              'app.account.billing.payment.method.deactivateSplitPayment',
-            )
-          : $state.go(
-              'app.account.billing.payment.method.activateSplitPayment',
-            ),
+          ? $state.go('billing.payment.method.deactivateSplitPayment')
+          : $state.go('billing.payment.method.activateSplitPayment'),
 
       paymentMethods: /* @ngInject */ (
         OVH_PAYMENT_MEAN_STATUS,
@@ -169,7 +165,7 @@ export default /* @ngInject */ ($stateProvider) => {
   // add an abstract state that will handle actions on payment method
   $stateProvider.state(`${name}.action`, {
     url: '/{paymentMethodId:int}',
-    redirectTo: 'app.account.billing.payment.method',
+    redirectTo: 'billing.payment.method',
     resolve: {
       paymentMethod: /* @ngInject */ ($transition$, paymentMethods) =>
         find(paymentMethods, {

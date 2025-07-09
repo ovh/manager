@@ -2,12 +2,12 @@ import kebabCase from 'lodash/kebabCase';
 import { BillingService } from '@ovh-ux/manager-models';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.delete', {
+  $stateProvider.state('billing.autorenew.delete', {
     url: '/delete?serviceId&serviceType',
     component: 'billingConfirmTermination',
     resolve: {
       cancelResiliationUrl: /* @ngInject */ ($state, serviceId) =>
-        $state.href('app.account.billing.autorenew.cancelResiliation', {
+        $state.href('billing.autorenew.cancelResiliation', {
           serviceId,
         }),
       engagement: /* @ngInject */ ($http, service) =>

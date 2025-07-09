@@ -36,6 +36,6 @@ export default class BillingPaymentDetailsCtrl {
   }
 
   paymentsHref() {
-    return this.$state.href('app.account.billing.main.payments');
+    return this.$state.href('billing.main.payments');
   }
 }

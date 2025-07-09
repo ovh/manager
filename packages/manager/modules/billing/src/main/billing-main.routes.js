@@ -2,12 +2,12 @@ import controller from './billing-main.controller';
 import template from './billing-main.html';
 
 export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
-  $stateProvider.state('app.account.billing.main', {
+  $stateProvider.state('billing.main', {
     url: '',
     template,
     controller,
     controllerAs: '$ctrl',
-    redirectTo: 'app.account.billing.main.history',
+    redirectTo: 'billing.main.history',
     resolve: {
       isPayAsYouGoAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
