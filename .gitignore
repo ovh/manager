@@ -21,3 +21,5 @@ coverage
 **/migration-status-reports/**
 .ide-config
 _out
+CLAUDE.md
+.mcp.json
