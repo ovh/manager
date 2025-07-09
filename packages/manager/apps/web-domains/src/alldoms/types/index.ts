@@ -65,15 +65,6 @@ export interface TDomainsInfo {
   registrationStatus: DomainRegistrationStateEnum;
   expiresAt?: string;
   extension?: string;
-  mainState?: string;
-  protectionState?: string;
-  suspensionState?: string;
-  nameServers:
-    | {
-        nameServer: string;
-      }[]
-    | null;
-  dnssecActivated: boolean | null;
 }
 
 export interface UpdateAllDomProps {
