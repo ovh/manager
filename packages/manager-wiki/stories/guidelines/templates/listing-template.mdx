@@ -161,7 +161,7 @@ Here You can find a code exemple :
 import {
   BaseLayout,
   ChangelogButton,
-  GuideButton
+  GuideMenu,
 } from '@ovh-ux/manager-react-components';
 
 const guideItems = [
@@ -183,7 +183,7 @@ return (
   <BaseLayout
     header={{
       changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-      headerButton: <GuideButton items={guideItems} />
+      headerButton: <GuideMenu items={guideItems} />
     }}
   >
 )
