@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
@@ -9,6 +10,8 @@ import { getDedicatedCloudDatacenterListQueryKey } from '../api/hpc-vmware-vsphe
 
 export function useEnableLogForwarder(serviceName?: string) {
   const queryClient = useQueryClient();
+  const [taskId, setTaskId] = useState<number | null>(null);
+
   const {
     mutate: enableLogsForwarder,
     isPending: updateIsPending,
@@ -16,14 +19,19 @@ export function useEnableLogForwarder(serviceName?: string) {
     mutationKey: postDedicatedCloudServiceLogForwarderEnableQueryKey(
       serviceName,
     ),
-    mutationFn: async () =>
-      postDedicatedCloudServiceLogForwarderEnable(serviceName),
-    onSuccess: async () => {
+    mutationFn: () => postDedicatedCloudServiceLogForwarderEnable(serviceName),
+    onSuccess: async (data) => {
+      setTaskId(data.data.taskId);
+
       await queryClient.invalidateQueries({
         queryKey: getDedicatedCloudDatacenterListQueryKey,
       });
     },
   });
 
-  return { enableLogsForwarder, updateIsPending };
+  return {
+    enableLogsForwarder,
+    updateIsPending,
+    taskId,
+  };
 }

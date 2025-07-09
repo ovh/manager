@@ -5,11 +5,13 @@ import {
   getDedicatedCloudServiceDatacenter,
   getDedicatedCloudServiceDatacenterQueryKey,
 } from '../api/hpc-vmware-vsphere-datacenter';
+import { Datacenter } from '@/types/datacenter';
+import { ErrorResponse } from '@/types/api';
 
 export function useVmwareVsphereDatacenter(serviceName?: string) {
   const queryClient = useQueryClient();
 
-  return useQuery({
+  return useQuery<Datacenter, ErrorResponse>({
     queryKey: ['combined-datacenter', serviceName],
     queryFn: async () => {
       const idsResponse = await queryClient.fetchQuery({

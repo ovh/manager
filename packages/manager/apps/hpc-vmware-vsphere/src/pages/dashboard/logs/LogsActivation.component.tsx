@@ -13,22 +13,31 @@ import { useEnableLogForwarder } from '@/data/hooks/useVmwareVsphereLogForwarder
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { LANDING_URL } from '@/hooks/guide/guidesLinks.constants';
 import { VMWareStatus } from '@/types/vsphere';
+import { useVmwareDedicatedCloudTask } from '@/data/hooks/useVmwareDedicatedCloudTask';
+import LogsActivationInProgress from './LogsActivationInProgress.component';
 
 type LogsActivationProps = {
   currentStatus: VMWareStatus;
   serviceName: string;
+  datacenterId?: number;
 };
 
 const LogsActivation = ({
   currentStatus,
   serviceName,
+  datacenterId,
 }: LogsActivationProps) => {
   const { t } = useTranslation('onboarding');
   const { addInfo } = useNotifications();
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [isUserTrusted, setIsUserTrusted] = useState(false);
-  const { enableLogsForwarder } = useEnableLogForwarder(serviceName);
+  const { enableLogsForwarder, taskId } = useEnableLogForwarder(serviceName);
+  const { data: taskData } = useVmwareDedicatedCloudTask(
+    serviceName,
+    datacenterId,
+    taskId,
+  );
   const guides = useGuideUtils(LANDING_URL);
   const getSNC = async () => {
     const env = await environment.getEnvironment();
@@ -55,6 +64,10 @@ const LogsActivation = ({
       );
     }
   }, [currentStatus]);
+
+  if (taskData && !['done', 'error', 'canceled'].includes(taskData?.data.state))
+    return <LogsActivationInProgress />;
+
   return (
     <OnboardingLayout
       title={t('logs_onboarding_default_title')}
