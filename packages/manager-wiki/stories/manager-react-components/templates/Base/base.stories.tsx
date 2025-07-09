@@ -11,8 +11,8 @@ import {
 import {
   DashboardTile,
   BaseLayout,
-  GuideButton,
-  GuideItem,
+  GuideMenu,
+  GuideMenuItem,
   DashboardGridLayout,
   ActionMenu,
   ChangelogLinks,
@@ -22,7 +22,7 @@ import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
 
 import { withRouter } from 'storybook-addon-react-router-v6';
 
-const guideItems: GuideItem[] = [
+const guideItems: GuideMenuItem[] = [
   {
     id: 1,
     href: 'https://www.ovh.com',
@@ -105,7 +105,7 @@ export const listingTemplateProps = {
   ),
   header: {
     title: 'Vrack Services',
-    guideButton: <GuideButton items={guideItems} />,
+    GuideMenu: <GuideMenu items={guideItems} />,
     changelogButton: (
       <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
     ),
@@ -133,7 +133,7 @@ const dashboardTemplateProps = {
   ),
   header: {
     title: 'Vrack Services',
-    guideButton: <GuideButton items={guideItems} />,
+    GuideMenu: <GuideMenu items={guideItems} />,
     changelogButton: (
       <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
     ),

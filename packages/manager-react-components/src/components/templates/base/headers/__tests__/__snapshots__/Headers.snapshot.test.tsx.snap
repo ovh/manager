@@ -154,54 +154,25 @@ exports[`Headers component > renders header with header buttons correctly 1`] = 
           </a>
         </div>
       </ods-popover>
-      <div
-        id="navigation-menu-guide-trigger"
+      <button
+        aria-controls="popover::r0::content"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        aria-label="user_account_guides_header"
+        class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+        data-part="trigger"
+        data-scope="popover"
+        data-state="closed"
+        dir="ltr"
+        id="popover::r0::trigger"
+        type="button"
       >
-        <ods-button
-          class="block"
-          icon="book"
-          label="user_account_guides_header"
-          size="sm"
-          slot="menu-title"
-          variant="ghost"
+        <span
+          aria-hidden="true"
+          class="_icon_i4xp0_2 _icon--book_i4xp0_52"
         />
-      </div>
-      <ods-popover
-        position="bottom"
-        trigger-id="navigation-menu-guide-trigger"
-        with-arrow="true"
-      >
-        <div
-          class="flex flex-col gap-2 py-1"
-        >
-          <a
-            class="_link_udbet_2 _link--no-text_udbet_29"
-            href="https://www.ovh.com"
-            label="ovh.com"
-            target="_blank"
-          >
-            <span>
-              ​
-            </span>
-            <span
-              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
-            />
-          </a>
-          <a
-            class="_link_udbet_2 _link--no-text_udbet_29"
-            href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
-            label="Guides OVH"
-            target="_blank"
-          >
-            <span>
-              ​
-            </span>
-            <span
-              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
-            />
-          </a>
-        </div>
-      </ods-popover>
+        user_account_guides_header
+      </button>
     </div>
   </header>
 </div>
