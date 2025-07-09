@@ -1,0 +1,18 @@
+{
+  "pci_projects_onboarding_title": "Bem-vindo ao ecossistema Public Cloud",
+  "pci_projects_onboarding_description1": "Ao criar um projeto Public Cloud, beneficiará de um acesso a vários recursos disponíveis a pedido, para a sua aplicação. Aqui estão alguns exemplos.",
+  "pci_projects_onboarding_description2": "Pode: iniciar bases de dados SQL ou NoSQL, testar a sua aplicação num cluster Kubernetes, utilizar ferramentas de inteligência artificial durante algumas horas ou ainda automatizar a implementação dos seus servidores Cloud com o Terraform.",
+  "pci_projects_onboarding_contracts_agreements_label": "Tomei conhecimento e aceito os termos dos seguintes contratos: ",
+  "pci_projects_onboarding_create_project": "Descobrir o universo Public Cloud",
+  "pci_projects_onboarding_us_title": "A sua plataforma aberta e reversível de Public Cloud.",
+  "pci_projects_onboarding_us_description1": "Se é adepto da cultura devops e das práticas «cloud ready», explore a sua infraestrutura através das API e das ferramentas de orquestração. Procura soluções pré-instaladas ou «as-a-service», faturadas consoante a utilização e flexíveis, de forma a poder concentrar-se no seu negócio e assim acelerar a sua produção.",
+  "pci_projects_onboarding_us_description2": "Neste espaço, poderá usufruir de uma vasta gama de serviços para desenvolver a sua inovação. Estes serviços permitem-lhe concentrar-se nas suas atividades de maior valor acrescentado, baseando-se na cloud da OVHcloud.",
+  "pci_projects_onboarding_us_description3": "Ao estruturar as suas arquiteturas por projeto, tem a possibilidade de segmentar as suas implementações cloud segundo os domínios profissionais ou operacionais que lhe correspondem. Pode, por exemplo, criar um projeto para o seu ambiente de desenvolvimento e outro para o seu ambiente de produção. Também é possível efetuar uma segmentação consoante o tipo de aplicação, com um projeto «back-office» e um projeto «e-commerce».",
+  "pci_projects_onboarding_us_create_project": "Crie o seu primeiro projeto Public Cloud da OVH",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Deseja obter mais informações ou efetuar uma encomenda?",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Um conselheiro da OVHcloud liga-lhe gratuitamente",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Deseja obter mais informações ou efetuar uma encomenda?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Um conselheiro da OVHcloud liga-lhe gratuitamente",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Deseja criar um projeto Public Cloud: a regulamentação em vigor requer uma verificação da sua identidade. O tratamento dos seus documentos está a ser analisado pela nossa equipa. Para mais informações, pode consultar ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Os meus pedidos de assistência"
+}
