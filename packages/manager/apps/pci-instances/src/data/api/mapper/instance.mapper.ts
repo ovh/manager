@@ -36,7 +36,7 @@ const mapVolume = (volume: TInstanceVolumeDto): TInstanceVolume => ({
 const mapPricing = (pricingDto: TInstancePriceDto): TInstancePrice => ({
   ...pricingDto,
   currencyCode: pricingDto.price.currencyCode,
-  priceInUCents: pricingDto.price.priceInUCents,
+  priceInUcents: pricingDto.price.priceInUcents,
   text: pricingDto.price.text,
   value: pricingDto.price.value,
 });
