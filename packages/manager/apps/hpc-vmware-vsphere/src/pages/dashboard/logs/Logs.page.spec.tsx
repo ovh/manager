@@ -21,12 +21,14 @@ import { TVMwareVSphere } from '@/types/vsphere';
 import LogsPage from './Logs.page';
 import { SecurityOption } from '@/types/compatibilityMatrix';
 import { Datacenter } from '@/types/datacenter';
+import { DedicatedCloudTask } from '@/types/datacloud';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module = await importOriginal<typeof import('react-router-dom')>();
   return {
     ...module,
     useParams: () => ({ serviceName: 'pcc-xxx' }),
+    useNavigate: () => vi.fn(),
   };
 });
 
@@ -48,6 +50,13 @@ vi.mock('@/data/hooks/useVmwareVsphereCompatibilityMatrix', () => ({
     ({
       data: { data: [{ name: 'logForwarder', state: 'delivered' }] },
     } as UseQueryResult<ApiResponse<SecurityOption[]>>),
+}));
+
+vi.mock('@/data/hooks/getDedicatedCloudServiceTask', () => ({
+  getDedicatedCloudServiceTask: () =>
+    ({
+      data: { data: { taskId: 12345, state: 'delivered' } },
+    } as UseQueryResult<ApiResponse<DedicatedCloudTask>>),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
