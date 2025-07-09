@@ -18,14 +18,7 @@ export function LoadBalancerLogsProvider({
   return (
     <LogProvider
       logsApiURL={`/cloud/project/${projectId}/region/${region}/loadbalancing/loadbalancer/${loadBalancerId}/log`}
-      logsKeys={[
-        'client_ip',
-        'http_verb',
-        'http_request',
-        'http_version_num',
-        'http_status_int',
-        'bytes_uploaded_int',
-      ]}
+      logsKeys={['message']}
       logsKind="haproxy"
       logsGuideURL={
         DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT
