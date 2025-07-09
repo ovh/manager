@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { useContext, useEffect, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -13,13 +14,19 @@ import { useEnableLogForwarder } from '@/data/hooks/useVmwareVsphereLogForwarder
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { LANDING_URL } from '@/hooks/guide/guidesLinks.constants';
 import { VMWareStatus } from '@/types/vsphere';
+import { getDedicatedCloudServiceDatacenterQueryKey } from '@/data/api/hpc-vmware-vsphere-datacenter';
+import { useVmwareDedicatedCloudTask } from '@/data/hooks/useVmwareDedicatedCloudTask';
+import LogsActivationInProgress from './LogsActivationInProgress.component';
+import { getDedicatedCloudServiceCompatibilityMatrixQueryKey } from '@/data/api/hpc-vmware-vsphere-compatibilityMatrix';
 
 type LogsActivationProps = {
+  datacenterId: number;
   currentStatus: VMWareStatus;
   serviceName: string;
 };
 
 const LogsActivation = ({
+  datacenterId,
   currentStatus,
   serviceName,
 }: LogsActivationProps) => {
@@ -28,13 +35,42 @@ const LogsActivation = ({
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [isUserTrusted, setIsUserTrusted] = useState(false);
-  const { enableLogsForwarder } = useEnableLogForwarder(serviceName);
+  const [taskId, setTaskId] = useState<number | null>(null);
+  const {
+    mutate: enableLogForwarder,
+    isPending: isEnableLogForwarderPending,
+  } = useEnableLogForwarder(serviceName, {
+    onSuccess: (data) => {
+      setTaskId(data.data?.taskId);
+    },
+  });
+  const { data: taskData } = useVmwareDedicatedCloudTask(serviceName, taskId);
   const guides = useGuideUtils(LANDING_URL);
   const getSNC = async () => {
     const env = await environment.getEnvironment();
     const { isTrusted } = env.getUser();
     setIsUserTrusted(isTrusted);
   };
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (
+      taskData &&
+      ['done', 'error', 'canceled'].includes(taskData?.data.state)
+    ) {
+      queryClient.invalidateQueries({
+        queryKey: getDedicatedCloudServiceDatacenterQueryKey(
+          serviceName,
+          datacenterId,
+        ),
+      });
+      queryClient.invalidateQueries({
+        queryKey: getDedicatedCloudServiceCompatibilityMatrixQueryKey(
+          serviceName,
+        ),
+      });
+    }
+  }, [taskData]);
 
   useEffect(() => {
     getSNC();
@@ -55,6 +91,14 @@ const LogsActivation = ({
       );
     }
   }, [currentStatus]);
+
+  if (
+    (taskData &&
+      !['done', 'error', 'canceled'].includes(taskData?.data.state)) ||
+    isEnableLogForwarderPending
+  )
+    return <LogsActivationInProgress />;
+
   return (
     <OnboardingLayout
       title={t('logs_onboarding_default_title')}
@@ -71,7 +115,7 @@ const LogsActivation = ({
                   : t('logs_onboarding_primary_cta_activate')
               }
               onClick={() => {
-                enableLogsForwarder();
+                enableLogForwarder();
               }}
               isDisabled={currentStatus === VMWareStatus.MIGRATING}
             ></OdsButton>
