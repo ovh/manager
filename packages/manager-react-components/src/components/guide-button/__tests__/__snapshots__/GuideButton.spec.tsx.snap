@@ -1,0 +1,219 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GuideButton > Snapshots > should match snapshot with default props 1`] = `
+<div>
+  <div
+    data-position="bottom"
+    data-testid="popover"
+  >
+    <div
+      data-as-child="true"
+      data-testid="popover-trigger"
+    >
+      <button
+        data-loading="false"
+        data-testid="guide-button"
+        variant="ghost"
+      >
+        <span
+          data-name="book"
+          data-testid="icon"
+        />
+        Guides
+      </button>
+    </div>
+    <div
+      data-testid="popover-content"
+    >
+      <div
+        class="flex flex-col gap-2 py-1"
+      >
+        <ods-link
+          color="primary"
+          href="https://help.ovhcloud.com/guides"
+          icon="external-link"
+          label="OVH Guides"
+          target="_blank"
+        />
+        <ods-link
+          color="primary"
+          href="https://docs.ovh.com"
+          icon="external-link"
+          label="Documentation"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GuideButton > Snapshots > should match snapshot with empty items 1`] = `
+<div>
+  <div
+    data-position="bottom"
+    data-testid="popover"
+  >
+    <div
+      data-as-child="true"
+      data-testid="popover-trigger"
+    >
+      <button
+        data-loading="false"
+        data-testid="guide-button"
+        variant="ghost"
+      >
+        <span
+          data-name="book"
+          data-testid="icon"
+        />
+        Guides
+      </button>
+    </div>
+    <div
+      data-testid="popover-content"
+    >
+      <div
+        class="flex flex-col gap-2 py-1"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GuideButton > Snapshots > should match snapshot with loading state 1`] = `
+<div>
+  <div
+    data-position="bottom"
+    data-testid="popover"
+  >
+    <div
+      data-as-child="true"
+      data-testid="popover-trigger"
+    >
+      <button
+        data-loading="true"
+        data-testid="guide-button"
+        variant="ghost"
+      >
+        <span
+          data-name="book"
+          data-testid="icon"
+        />
+        Guides
+      </button>
+    </div>
+    <div
+      data-testid="popover-content"
+    >
+      <div
+        class="flex flex-col gap-2 py-1"
+      >
+        <ods-link
+          color="primary"
+          href="https://help.ovhcloud.com/guides"
+          icon="external-link"
+          label="OVH Guides"
+          target="_blank"
+        />
+        <ods-link
+          color="primary"
+          href="https://docs.ovh.com"
+          icon="external-link"
+          label="Documentation"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GuideButton > Snapshots > should match snapshot with multiple items 1`] = `
+<div>
+  <div
+    data-position="bottom"
+    data-testid="popover"
+  >
+    <div
+      data-as-child="true"
+      data-testid="popover-trigger"
+    >
+      <button
+        data-loading="false"
+        data-testid="guide-button"
+        variant="ghost"
+      >
+        <span
+          data-name="book"
+          data-testid="icon"
+        />
+        Guides
+      </button>
+    </div>
+    <div
+      data-testid="popover-content"
+    >
+      <div
+        class="flex flex-col gap-2 py-1"
+      >
+        <ods-link
+          color="primary"
+          href="https://help.ovhcloud.com/guides"
+          icon="external-link"
+          label="OVH Guides"
+          target="_blank"
+        />
+        <ods-link
+          color="primary"
+          href="https://docs.ovh.com"
+          icon="external-link"
+          label="Documentation"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`GuideButton > Snapshots > should match snapshot with single item 1`] = `
+<div>
+  <div
+    data-position="bottom"
+    data-testid="popover"
+  >
+    <div
+      data-as-child="true"
+      data-testid="popover-trigger"
+    >
+      <button
+        data-loading="false"
+        data-testid="guide-button"
+        variant="ghost"
+      >
+        <span
+          data-name="book"
+          data-testid="icon"
+        />
+        Guides
+      </button>
+    </div>
+    <div
+      data-testid="popover-content"
+    >
+      <div
+        class="flex flex-col gap-2 py-1"
+      >
+        <ods-link
+          color="primary"
+          href="https://help.ovhcloud.com/guides"
+          icon="external-link"
+          label="OVH Guides"
+          target="_blank"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
