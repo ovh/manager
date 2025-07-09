@@ -110,13 +110,19 @@ export const backupInstance = ({
   projectId,
   instanceId,
   snapshotName,
+  distantSnapshotName,
+  disantRegion,
 }: {
   projectId: string;
   instanceId: string;
   snapshotName: string;
+  distantSnapshotName?: string;
+  disantRegion?: string;
 }): Promise<null> =>
   v6.post(instanceActionUrl(projectId, instanceId, 'snapshot'), {
     snapshotName,
+    distantSnapshotName,
+    disantRegion,
   });
 
 export const reinstallInstance = (
