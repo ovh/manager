@@ -19,5 +19,7 @@ coverage
 .DS_Store
 .xtmrc.yaml
 **/migration-status-reports/**
+CLAUDE.md
+.mcp.json
 .ide-config
 _out
