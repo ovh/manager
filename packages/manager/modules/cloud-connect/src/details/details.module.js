@@ -10,6 +10,7 @@ import tasks from './tasks';
 import diagnostics from './diagnostics';
 import statistics from './statistics';
 import notifications from './components/notifications';
+import logs from './logs';
 
 const moduleName = 'ovhCloudConnectDetails';
 
@@ -23,6 +24,7 @@ angular
     diagnostics,
     statistics,
     notifications,
+    logs,
   ])
   .config(routing)
   .component('cloudConnectDetails', component)
