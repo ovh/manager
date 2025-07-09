@@ -3,14 +3,13 @@ import { describe, expect } from 'vitest';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { render } from '@/utils/test.provider';
 import { OfficeServiceState } from './OfficeServiceState.component';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 describe('OfficeServiceState component', () => {
   it('Badge for ok status', async () => {
     const { getByTestId } = render(<OfficeServiceState state={'ok'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_ok);
+    expect(badge).toHaveAttribute('label', 'ok');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.success);
   });
@@ -21,10 +20,7 @@ describe('OfficeServiceState component', () => {
     );
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute(
-      'label',
-      commonTranslation.state_autorenewInProgress,
-    );
+    expect(badge).toHaveAttribute('label', 'autorenewInProgress');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
@@ -33,7 +29,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'expired'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_expired);
+    expect(badge).toHaveAttribute('label', 'expired');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
@@ -42,7 +38,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'inCreation'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_inCreation);
+    expect(badge).toHaveAttribute('label', 'inCreation');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
@@ -50,7 +46,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'creating'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_inCreation);
+    expect(badge).toHaveAttribute('label', 'inCreation');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
@@ -60,10 +56,7 @@ describe('OfficeServiceState component', () => {
     );
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute(
-      'label',
-      commonTranslation.state_inMaintenance,
-    );
+    expect(badge).toHaveAttribute('label', 'inMaintenance');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
@@ -71,7 +64,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'unPaid'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_unPaid);
+    expect(badge).toHaveAttribute('label', 'unPaid');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
@@ -79,7 +72,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'suspended'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_suspended);
+    expect(badge).toHaveAttribute('label', 'suspended');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
@@ -87,7 +80,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'suspending'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_suspending);
+    expect(badge).toHaveAttribute('label', 'suspending');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
@@ -95,7 +88,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={'deleting'} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_deleting);
+    expect(badge).toHaveAttribute('label', 'deleting');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
@@ -105,7 +98,7 @@ describe('OfficeServiceState component', () => {
     );
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state_pendingDebt);
+    expect(badge).toHaveAttribute('label', 'pendingDebt');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
@@ -113,7 +106,7 @@ describe('OfficeServiceState component', () => {
     const { getByTestId } = render(<OfficeServiceState state={''} />);
     const badge = getByTestId('badge-status');
 
-    expect(badge).toHaveAttribute('label', commonTranslation.state);
+    expect(badge).toHaveAttribute('label', '');
 
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.neutral);
   });

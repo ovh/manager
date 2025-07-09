@@ -9,12 +9,17 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import onboardingImgSrc from './onboarding-img.png';
 import { GUIDES_LIST } from '@/guides.constants';
 import { GO_TO, ORDER_OFFICE } from '@/tracking.constants';
 
 export default function Onboarding() {
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation([
+    'onboarding',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.ONBOARDING,
+  ]);
   const { trackClick } = useOvhTracking();
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
@@ -31,7 +36,7 @@ export default function Onboarding() {
           {t('web_office_onboarding_description')}
         </OdsText>
       }
-      orderButtonLabel={t('web_office_onboarding_order')}
+      orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
       onOrderButtonClick={() => {
         trackClick({
           location: PageLocation.page,
@@ -59,7 +64,7 @@ export default function Onboarding() {
           texts={{
             title: t(`web_office_onboarding_guide${value}_title`),
             description: t(`web_office_onboarding_guide${value}_description`),
-            category: t('web_office_onboarding_tutorial'),
+            category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
           }}
           onClick={() => {
             trackClick({

@@ -13,6 +13,7 @@ import {
   ODS_INPUT_TYPE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
@@ -39,11 +40,17 @@ import {
 import { getOfficePrice, getOfficePriceQueryKey } from '@/data/api/price';
 import { OfficeUserEnum } from '@/data/api/order/type';
 import { UserOrderParamsType } from '@/data/api/api.type';
-import { POST_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
+import { zForm } from '@/utils/formSchemas.utils';
 import { CANCEL, CONFIRM, ORDER_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalOrderUsers() {
-  const { t } = useTranslation(['dashboard/users/order-users', 'common']);
+  const { t } = useTranslation([
+    'dashboard/users/order-users',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -90,7 +97,7 @@ export default function ModalOrderUsers() {
       usageLocation: ovhSubsidiary,
     },
     mode: 'onBlur',
-    resolver: zodResolver(POST_USERS_FORM_SCHEMA),
+    resolver: zodResolver(zForm(t).POST_USERS_FORM_SCHEMA),
   });
 
   const selectedlicenseType = watch('licence');
@@ -160,13 +167,13 @@ export default function ModalOrderUsers() {
 
   return (
     <Modal
-      heading={t('common:users_order_users')}
+      heading={t(`${NAMESPACES.ACTIONS}:order_users`)}
       type={ODS_MODAL_COLOR.information}
       isOpen={true}
-      secondaryLabel={t('common:cta_cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       onDismiss={handleCancelClick}
-      primaryLabel={t('common:cta_confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       isPrimaryButtonDisabled={!isDirty || !isValid}
       onPrimaryButtonClick={handleSubmit(handleSaveClick)}
     >
@@ -175,7 +182,7 @@ export default function ModalOrderUsers() {
         onSubmit={handleSubmit(handleSaveClick)}
       >
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:common_field_label_mandatory')}
+          {t(`${NAMESPACES.FORM}:label_mandatory`)}
         </OdsText>
         <div className="flex flex-wrap sm:flex-nowrap gap-5">
           <Controller
@@ -187,7 +194,7 @@ export default function ModalOrderUsers() {
                 error={errors?.firstName?.message as string}
                 className="w-full"
               >
-                <label slot="label">{t('common:firstname')}*</label>
+                <label slot="label">{t(`${NAMESPACES.FORM}:firstname`)}*</label>
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="firstName"
@@ -206,7 +213,7 @@ export default function ModalOrderUsers() {
                 error={errors?.lastName?.message as string}
                 className="w-full"
               >
-                <label slot="label">{t('common:lastname')}*</label>
+                <label slot="label">{t(`${NAMESPACES.FORM}:lastname`)}*</label>
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name="lastName"
@@ -218,7 +225,7 @@ export default function ModalOrderUsers() {
           />
         </div>
         <OdsFormField error={errors?.login?.message as string}>
-          <label slot="label">{t('common:login')}*</label>
+          <label slot="label">{t(`${NAMESPACES.FORM}:firstname`)}*</label>
           <div className="flex flex-wrap sm:flex-nowrap gap-5">
             <Controller
               name="login"
@@ -260,7 +267,9 @@ export default function ModalOrderUsers() {
         </OdsText>
         <div className="flex w-full">
           <OdsFormField className="w-full">
-            <label slot="label">{t('dashboard_users_order_users_type')}*</label>
+            <label slot="label">
+              {t(`${NAMESPACES.DASHBOARD}:licence_type`)}*
+            </label>
             <Controller
               name="licence"
               control={control}
@@ -268,9 +277,7 @@ export default function ModalOrderUsers() {
               render={({ field }) => (
                 <OdsSelect
                   name="licence"
-                  placeholder={t(
-                    'dashboard_users_order_users_type_placeholder',
-                  )}
+                  placeholder={t(`${NAMESPACES.ACTIONS}:select`)}
                   data-testid="input-licence"
                   onOdsChange={(event) => field.onChange(event.target.value)}
                 >
@@ -286,7 +293,7 @@ export default function ModalOrderUsers() {
         </div>
         {officePrice?.value && (
           <OdsFormField className="w-full">
-            <label slot="label">{t('dashboard_users_order_users_price')}</label>
+            <label slot="label">{t(`${NAMESPACES.FORM}:price`)}</label>
             <Price
               value={officePrice?.value}
               ovhSubsidiary={ovhSubsidiary as OvhSubsidiary}

@@ -1,6 +1,4 @@
 {
-  "dashboard_users_table_firstName": "Prénom",
-  "dashboard_users_table_lastName": " Nom",
   "dashboard_users_table_activationEmail": "Email d'activation",
   "dashboard_users_table_licences": "Licences",
   "dashboard_users_table_status": "Statut",
@@ -11,8 +9,5 @@
   "dashboard_users_status_updating": "Mise à jour",
   "dashboard_users_status_deleting": "En suppression",
   "dashboard_users_status_ok": "Créé",
-  "dashboard_users_status_unconfigured": "Non configuré",
-  "dashboard_users_action_user_change_password": "Modifier le mot de passe",
-  "dashboard_users_action_user_edit": "Éditer le compte",
-  "dashboard_users_action_user_delete": "Supprimer le compte"
+  "dashboard_users_status_unconfigured": "Non configuré"
 }

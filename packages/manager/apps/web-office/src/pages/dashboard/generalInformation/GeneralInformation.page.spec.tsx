@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { describe, expect, vi } from 'vitest';
 import { useParams } from 'react-router-dom';
@@ -19,9 +20,7 @@ describe('GeneralInformation page', () => {
 
     const { findByText } = render(<GeneralInformation />);
 
-    expect(
-      await findByText(commonTranslation.general_informations),
-    ).toBeVisible();
+    expect(await findByText('general_information')).toBeVisible();
 
     expect(
       screen.getByText(commonTranslation.displayName).closest('dt').nextSibling
@@ -32,24 +31,20 @@ describe('GeneralInformation page', () => {
         .textContent,
     ).toBe(licensesMock[0].serviceName);
     expect(
-      screen.getByText(commonTranslation.serviceType).closest('dt').nextSibling
-        .textContent,
+      screen.getByText('service_type').closest('dt').nextSibling.textContent,
     ).toBe(commonTranslation.payAsYouGo);
 
     expect(
-      screen.getByText(commonTranslation.license_number).closest('dt')
-        .nextSibling.textContent,
+      screen.getByText('license_number').closest('dt').nextSibling.textContent,
     ).toBe('officeBusiness : 1officeProPlus : 2');
 
     expect(
-      screen.getByText(commonTranslation.creation_date).closest('dt')
-        .nextSibling.textContent,
+      screen.getByText('creation_date').closest('dt').nextSibling.textContent,
     ).toBe('15 January 2023');
 
     expect(
-      screen.getByText(commonTranslation.status).closest('dt').nextSibling
-        .firstChild,
-    ).toHaveAttribute('label', commonTranslation.state_ok);
+      screen.getByText('status').closest('dt').nextSibling.firstChild,
+    ).toHaveAttribute('label', 'ok');
   });
 
   it('Page for prepaid', async () => {
@@ -59,9 +54,7 @@ describe('GeneralInformation page', () => {
 
     const { findByText } = render(<GeneralInformation />);
 
-    expect(
-      await findByText(commonTranslation.general_informations),
-    ).toBeVisible();
+    expect(await findByText('general_information')).toBeVisible();
 
     expect(
       screen.getByText(commonTranslation.displayName).closest('dt').nextSibling
@@ -72,25 +65,20 @@ describe('GeneralInformation page', () => {
         .textContent,
     ).toBe(parentTenantMock.serviceName);
     expect(
-      screen.getByText(commonTranslation.serviceType).closest('dt').nextSibling
-        .textContent,
+      screen.getByText('service_type').closest('dt').nextSibling.textContent,
     ).toBe(commonTranslation.prepaid);
     expect(
-      screen.getByText(commonTranslation.license_number).closest('dt')
-        .nextSibling.textContent,
+      screen.getByText('license_number').closest('dt').nextSibling.textContent,
     ).toBe('officeProPlus : 1');
 
     expect(
-      screen.getByText(commonTranslation.creation_date).closest('dt')
-        .nextSibling.textContent,
+      screen.getByText('creation_date').closest('dt').nextSibling.textContent,
     ).toBe('15 January 2023');
     expect(
-      screen.getByText(commonTranslation.status).closest('dt').nextSibling
-        .firstChild,
-    ).toHaveAttribute('label', commonTranslation.state_ok);
+      screen.getByText('status').closest('dt').nextSibling.firstChild,
+    ).toHaveAttribute('label', 'ok');
     expect(
-      screen.getByText(commonTranslation.renew_date).closest('dt').nextSibling
-        .textContent,
+      screen.getByText('renew_date').closest('dt').nextSibling.textContent,
     ).toBe('15 January 2025');
   });
 
@@ -102,12 +90,9 @@ describe('GeneralInformation page', () => {
     vi.mocked(getOfficeUsers).mockReturnValue([]);
 
     const { findByText } = render(<GeneralInformation />);
-
-    expect(await findByText(commonTranslation.statistics)).toBeVisible();
-
+    expect(await findByText('statistics')).toBeVisible();
     expect(
-      screen.getByText(commonTranslation.license_number).closest('dt')
-        .nextSibling.textContent,
+      screen.getByText('license_number').closest('dt').nextSibling.textContent,
     ).toBe(commonTranslation.noAccountOffer);
   });
 });

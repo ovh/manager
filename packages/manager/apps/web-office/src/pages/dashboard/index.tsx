@@ -14,6 +14,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { GUIDES_LIST } from '@/guides.constants';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { urls } from '@/routes/routes.constants';
@@ -36,7 +37,7 @@ export default function DashboardPage() {
   const { trackClick } = useOvhTracking();
   const { data } = useParentTenant();
   const serviceName = data?.serviceName;
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
   const { notifications } = useNotifications();
   const basePath = useResolvedPath('').pathname;
   const context = useContext(ShellContext);
@@ -49,7 +50,7 @@ export default function DashboardPage() {
   const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general-information',
-      title: t('general_informations'),
+      title: t(`${NAMESPACES.DASHBOARD}:general_information`),
       to: basePath,
       pathMatchers: computePathMatchers([urls.generalInformation]),
     },

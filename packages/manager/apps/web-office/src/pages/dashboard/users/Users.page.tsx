@@ -22,6 +22,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { UserNativeType } from '@/data/api/users/type';
 import { useGenerateUrl } from '@/hooks';
 import { useLicenseDetail, useUsers } from '@/data/hooks';
@@ -32,7 +33,13 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { ORDER_OFFICE } from '@/tracking.constants';
 
 export default function Users() {
-  const { t } = useTranslation(['dashboard/users', 'common']);
+  const { t } = useTranslation([
+    'dashboard/users',
+    'common',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.FORM,
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
   const { data: dataUsers, isLoading: isLoadingUsers } = useUsers();
 
@@ -83,14 +90,14 @@ export default function Users() {
       cell: (item: UserNativeType) => (
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.firstName}</OdsText>
       ),
-      label: 'dashboard_users_table_firstName',
+      label: `${NAMESPACES.FORM}:firstname`,
     },
     {
       id: 'lastName',
       cell: (item: UserNativeType) => (
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.lastName}</OdsText>
       ),
-      label: 'dashboard_users_table_lastName',
+      label: `${NAMESPACES.FORM}:lastname`,
       enableHiding: true,
     },
     {
@@ -185,7 +192,7 @@ export default function Users() {
             <ManagerButton
               id={dataLicenceDetail.id}
               data-testid="users-order-button"
-              label={t('common:users_order_users')}
+              label={t(`${NAMESPACES.ACTIONS}:order_users`)}
               urn={dataLicenceDetail?.iam.urn}
               onClick={onOrderUsers}
               variant={ODS_BUTTON_VARIANT.outline}
