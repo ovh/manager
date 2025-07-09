@@ -5,6 +5,8 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import App from './App';
 import './index.scss';
 import './vite-hmr';

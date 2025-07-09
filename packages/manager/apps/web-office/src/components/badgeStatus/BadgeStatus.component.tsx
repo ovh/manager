@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { UserStateEnum } from '@/data/api/api.type';
 
 export type BadgeStatusProps = {
@@ -23,16 +24,21 @@ const getStatusColor = (status: string) => {
 };
 
 export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
-  const { t } = useTranslation('dashboard/users');
+  const { t } = useTranslation(['dashboard/users', NAMESPACES.STATUS]);
   const statusColor = useMemo(() => getStatusColor(props.itemStatus), [
     props.itemStatus,
   ]);
+
+  const labelKey =
+    props.itemStatus === UserStateEnum.OK
+      ? `dashboard_users_status_${props.itemStatus}`
+      : `${NAMESPACES.STATUS}:${props.itemStatus}`;
 
   return (
     <OdsBadge
       data-testid={props['data-testid']}
       color={statusColor}
-      label={t(`dashboard_users_status_${props.itemStatus}`)}
+      label={t(labelKey)}
     />
   );
 };
