@@ -448,9 +448,8 @@ const OrderFunnel = ({
               </Button>
               {isApiTerraformDialogOpen && (
                 <ApiTerraformDialog
-                  opened={isApiTerraformDialogOpen}
                   onRequestClose={() => setApiTerraformDialogOpen(false)}
-                  dialogData={dialogData}
+                  dialogData={model.result}
                 ></ApiTerraformDialog>
               )}
             </CardFooter>

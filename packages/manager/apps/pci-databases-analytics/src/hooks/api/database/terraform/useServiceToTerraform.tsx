@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { CdbError } from '@/data/api/database';
-import { serviceToTerraform } from '@/data/api/database/terraform';
+import { serviceToTerraform } from '@/data/api/database/terraform.api';
 import { ServiceRequest } from '@/types/terraform/cloud/database';
-import { Response } from '@/types/terraform/cloud';
+import { Response as TerraformResponse } from '@/types/terraform/cloud';
 
 export interface TuseServiceToTerraform {
   onError: (cause: CdbError) => void;
-  onSuccess: (terraformData: Response) => void;
+  onSuccess: (terraformData: TerraformResponse) => void;
 }
 export function useServiceToTerraform({
   onError,

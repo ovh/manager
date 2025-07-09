@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Button,
   Code,
@@ -7,7 +8,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  ScrollArea,
   Skeleton,
   Table,
   TableBody,
@@ -26,7 +26,6 @@ import {
 import A from '@/components/links/A.component';
 import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
 import { useOrderFunnel } from './useOrderFunnel.hook';
-import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { ServiceCreationWithEngine } from '@/hooks/api/database/service/useAddService.hook';
 import { useLocale } from '@/hooks/useLocale';
 
@@ -35,29 +34,22 @@ import * as database from '@/types/cloud/project/database';
 import { Disk } from '@/types/cloud/project/database/service/Disk';
 import { LINKS, getDocumentationUrl } from '@/configuration/documentation';
 
-type OrderFunnelModel = ReturnType<typeof useOrderFunnel>;
+type OrderFunnelResult = ReturnType<typeof useOrderFunnel>['result'];
 
 const ApiTerraformDialog = ({
-  opened,
   onRequestClose,
   dialogData,
 }: {
-  opened: boolean;
   onRequestClose: () => void;
-  dialogData: OrderFunnelModel;
+  dialogData: OrderFunnelResult;
 }) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
-  const projectData = usePciProject();
+  const { projectId } = useParams();
   const locale = useLocale();
   const { toast } = useToast();
 
-  const [apiBodyContent, setApiBodyContent] = useState<{ [key: string]: any }>(
-    {},
-  );
-  const [apiEndpoint, setApiEndpoint] = useState<string>('');
-
   // API and Terraform schemas description
-  const [apiSchemaDescription] = useState<{ [key: string]: any }>({
+  const apiSchemaDescription = {
     description: t('pciDatabasesAddCommandParametersInfoApiDescription'),
     'nodesPattern.flavor': t(
       'pciDatabasesAddCommandParametersInfoApiNetworkId',
@@ -69,8 +61,8 @@ const ApiTerraformDialog = ({
     'disk.size': t('pciDatabasesAddCommandParametersInfoApiNodesPatternRegion'),
     networkId: t('pciDatabasesAddCommandParametersInfoApiPlan'),
     subnetId: t('pciDatabasesAddCommandParametersInfoApiVersion'),
-  });
-  const [terraformSchemaDescription] = useState<{ [key: string]: any }>({
+  };
+  const terraformSchemaDescription = {
     service_name: t('pciDatabasesAddCommandParametersInfoTerraformServiceName'),
     description: t('pciDatabasesAddCommandParametersInfoTerraformDescription'),
     engine: t('pciDatabasesAddCommandParametersInfoTerraformEngine'),
@@ -88,15 +80,21 @@ const ApiTerraformDialog = ({
     'nodes.subnet_id': t(
       'pciDatabasesAddCommandParametersInfoTerraformNodesSubnetId',
     ),
-  });
+  };
 
-  const [terraformData, setTerraformData] = useState<
-    TTerraform.cloud.Response['resource'] | null
-  >('');
+  const [
+    terraformData,
+    setTerraformData,
+  ] = useState<TTerraform.cloud.Response | null>(null);
   const { serviceToTerraform } = useServiceToTerraform({
-    onError: () => {},
+    onError: () => {
+      toast({
+        title: t('pciDatabasesAddCommandDialogTerraformFetchError'),
+        variant: 'destructive',
+      });
+    },
     onSuccess: (data) => {
-      setTerraformData(data?.resource);
+      setTerraformData(data);
     },
   });
 
@@ -106,98 +104,74 @@ const ApiTerraformDialog = ({
     setCurrentTab(tab);
     if (tab === 'terraform' && !terraformData) {
       // Handle Terraform data
-      dialogData.form.handleSubmit(
-        (data) => {
-          const nodesList: TTerraform.cloud.database.service.Node[] = [];
-          // Add nodes to nodesList depending on data.nbNodes
-          for (let i = 0; i < data.nbNodes; i += 1) {
-            nodesList.push({
-              flavor: data.flavor,
-              region: data.region,
-            });
-          }
+      const nodesList: TTerraform.cloud.database.service.Node[] = [];
+      // Add nodes to nodesList depending on data.nbNodes
+      for (let i = 0; i < dialogData.nodes; i += 1) {
+        nodesList.push({
+          flavor: dialogData.availability.flavor,
+          region: dialogData.availability.region,
+        });
+      }
 
-          const terraformService: TTerraform.cloud.database.ServiceRequest = {
-            body: {
-              description: data.name,
-              nodesList,
-              plan: data.plan,
-              version: `${data.engineWithVersion.version}`,
-              ipRestrictions: data.ipRestrictions,
-            },
-            pathParams: {
-              engine: data.engineWithVersion
-                .engine as TTerraform.cloud.database.EngineEnum,
-              serviceName: projectData.data?.project_id,
-            },
-          };
-          if (dialogData.result.flavor.storage) {
-            terraformService.body.disk = {
-              size:
-                dialogData.result.flavor.storage.minimum.value +
-                data.additionalStorage,
-            } as Disk;
-          }
-          serviceToTerraform(terraformService);
+      const terraformService: TTerraform.cloud.database.ServiceRequest = {
+        body: {
+          description: dialogData.name,
+          nodesList,
+          plan: dialogData.availability.plan,
+          version: `${dialogData.availability.version}`,
+          ipRestrictions: dialogData.ipRestrictions,
         },
-        (error) => {
-          console.error(error);
-          toast({
-            title: error,
-            variant: 'destructive',
-          });
+        pathParams: {
+          engine: dialogData.availability
+            .engine as TTerraform.cloud.database.EngineEnum,
+          serviceName: projectId,
         },
-      )();
+      };
+      if (dialogData.flavor.storage) {
+        terraformService.body.disk = {
+          size:
+            dialogData.flavor.storage.minimum.value +
+            dialogData.additionalStorage,
+        } as Disk;
+      }
+      serviceToTerraform(terraformService);
     }
   };
 
-  useEffect(() => {
-    // Validate form data
-    dialogData.form.handleSubmit(
-      (data) => {
-        // API
-        const apiBody: ServiceCreationWithEngine = {
-          description: data.name,
-          engine: data.engineWithVersion.engine as database.EngineEnum,
-          nodesPattern: {
-            flavor: data.flavor,
-            number: data.nbNodes,
-            region: data.region,
-          },
-          plan: data.plan,
-          version: data.engineWithVersion.version,
-          ipRestrictions: data.ipRestrictions,
-        };
-        if (data.network.type === database.NetworkTypeEnum.private) {
-          const networkOpenstackId = dialogData.result.network.network.regions.find(
-            (r) => r.region.includes(data.region),
-          ).openstackId;
-          apiBody.networkId = networkOpenstackId;
-          apiBody.subnetId = data.network.subnetId;
-        }
-        if (dialogData.result.flavor.storage) {
-          apiBody.disk = {
-            size:
-              dialogData.result.flavor.storage.minimum.value +
-              data.additionalStorage,
-          } as database.service.Disk;
-        }
-        // Destructure body to extract engine and keep the rest
-        const { engine, ...formattedApiBody } = apiBody;
-        setApiEndpoint(
-          `/cloud/project/${projectData.data?.project_id}/database/${engine}`,
-        );
-        setApiBodyContent(formattedApiBody);
-      },
-      (error) => {
-        console.error(error);
-      },
-    )();
-  }, []);
+  // Fill API configuration
+  const apiBody: ServiceCreationWithEngine = {
+    description: dialogData.name,
+    engine: dialogData.availability.engine as database.EngineEnum,
+    nodesPattern: {
+      flavor: dialogData.availability.flavor,
+      number: dialogData.nodes,
+      region: dialogData.availability.region,
+    },
+    plan: dialogData.availability.plan,
+    version: dialogData.availability.version,
+    ipRestrictions: dialogData.ipRestrictions,
+  };
+  if (dialogData.network.type === database.NetworkTypeEnum.private) {
+    const networkOpenstackId = dialogData.network.network.regions.find((r) =>
+      r.region.includes(dialogData.availability.region),
+    ).openstackId;
+    apiBody.networkId = networkOpenstackId;
+    apiBody.subnetId = dialogData.network.subnet.id;
+  }
+  if (dialogData.flavor.storage) {
+    apiBody.disk = {
+      size:
+        dialogData.flavor.storage.minimum.value + dialogData.additionalStorage,
+    } as database.service.Disk;
+  }
+  // Destructure body to extract engine and keep the rest
+  const { engine, ...formattedApiBody } = apiBody;
+  const apiEndpoint = `/cloud/project/${projectId}/database/${engine}`;
+  const apiBodyContent = formattedApiBody;
 
   return (
     <>
-      <Dialog open={opened} onOpenChange={onRequestClose}>
+      <Dialog open={true} onOpenChange={onRequestClose}>
         <DialogContent className="fixed left-1/2 top-1/2 max-h-[80vh] w-[90vw] max-w-xl -translate-x-1/2 -translate-y-1/2 p-4">
           <DialogHeader>
             <DialogTitle>
@@ -300,7 +274,7 @@ const ApiTerraformDialog = ({
               ) : (
                 <Code
                   className="h-dvh max-h-64 max-w-full"
-                  code={terraformData}
+                  code={terraformData.resource}
                   lang={TerraformLanguage}
                   onCopied={() =>
                     toast({

@@ -55,6 +55,7 @@
   "successCreatingService": "Votre service a été crée avec succès",
   "pciDatabasesAddCommandDialogApiTabTitle": "API",
   "pciDatabasesAddCommandDialogTerraformTabTitle": "Terraform",
+  "pciDatabasesAddCommandDialogTerraformFetchError": "Impossible de récupérer les informations Terraform",
   "pciDatabasesAddCommandDialogClose": "Fermer",
   "pciDatabasesAddCommandDialogEquivalentOrder": "Commande équivalente",
   "pciDatabasesAddCommandDialogApiDescription": "La commande suivante vous permet de créer votre service grâce à notre API.",
