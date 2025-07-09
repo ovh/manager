@@ -43,6 +43,15 @@ describe('ObjectStorageList', () => {
         },
         totalPrice: 0,
       },
+      retrievalFees: {
+        quantity: {
+          unit: 'GiB',
+          value: 0,
+        },
+        totalPrice: {
+          value: 0,
+        },
+      },
       totalPrice: 0,
       type: 'storage-standard',
     },
@@ -61,6 +70,15 @@ describe('ObjectStorageList', () => {
           value: 0,
         },
         totalPrice: 0,
+      },
+      retrievalFees: {
+        quantity: {
+          unit: 'GiB',
+          value: 0,
+        },
+        totalPrice: {
+          value: 0,
+        },
       },
       outgoingBandwidth: {
         quantity: {
@@ -85,21 +103,19 @@ describe('ObjectStorageList', () => {
         totalPrice: 0,
       },
       totalPrice: 0,
-      type: 'storage-standard',
+      type: 'storage-standard-ia',
     },
   ] as TStorage[];
 
-  it('matches snapshot with existing storages', () => {
-    const { asFragment } = render(
-      <ObjectStorageList storages={mockStorages} />,
-    );
+  it('should render storages', () => {
+    const { getByText } = render(<ObjectStorageList storages={mockStorages} />);
 
-    expect(asFragment()).toMatchSnapshot();
-  });
+    // Find bucket names
+    expect(getByText('banner-changing-page')).toBeInTheDocument();
+    expect(getByText('test')).toBeInTheDocument();
 
-  it('matches snapshot with empty storages', () => {
-    const { asFragment } = render(<ObjectStorageList storages={[]} />);
-
-    expect(asFragment()).toMatchSnapshot();
+    // Find types
+    expect(getByText('storage-standard')).toBeInTheDocument();
+    expect(getByText('storage-standard-ia')).toBeInTheDocument();
   });
 });

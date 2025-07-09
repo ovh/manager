@@ -7,5 +7,8 @@
   "cpbc_object_storage_consumption_info_part2": "Ihr Verbrauch entspricht genau {{amount}} GiB-Stunden.",
   "cpbc_object_storage_output_traffic_info_part1": "Jedes ausgehende Gigabyte (unabhängig vom Ziel) kostet",
   "cpbc_object_storage_output_traffic_info_part2": ". Sie haben im angegebenen Zeitraum {{amount}} GiB verbraucht. Der eingehende Traffic wird nie abgerechnet.",
-  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen."
+  "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen.",
+  "cpbc_object_storage_col_bucket_name": "Bucket-Name",
+  "cpbc_object_storage_col_type": "Angebot",
+  "cpbc_object_storage_col_retrieval_fees": "Gebühren für Datenabruf"
 }
