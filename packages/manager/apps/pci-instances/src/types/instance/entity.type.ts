@@ -100,7 +100,7 @@ export type TInstanceAction = {
 
 type TInstanceFlavorSpec = TFlavorSpec;
 
-type TInstanceFlavor = {
+export type TInstanceFlavor = {
   id: string;
   name: string;
   specs: {
