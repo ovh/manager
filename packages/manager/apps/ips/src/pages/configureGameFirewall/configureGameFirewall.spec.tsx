@@ -56,7 +56,7 @@ describe('Configure game firewall page', () => {
     );
   });
 
-  it('disable actions when game firewall has an ongoing update', async () => {
+  it('disable toggle when game firewall has an ongoing update', async () => {
     const { container } = await renderTest({
       initialRoute: urls.configureGameFirewall.replace(
         urlDynamicParts.id,
@@ -69,11 +69,11 @@ describe('Configure game firewall page', () => {
       },
     });
 
-    await getButtonByIcon({
+    const toggleElement = await getToggleByName({
       container,
-      iconName: ODS_ICON_NAME.plus,
-      disabled: true,
+      name: 'strategy-default-deny',
     });
+    expect(toggleElement).toHaveAttribute('disabled', '');
   });
 
   it('display a success message when deny strategy is updated successfully', async () => {
