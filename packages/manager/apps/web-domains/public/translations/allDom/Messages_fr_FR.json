@@ -43,6 +43,7 @@
   "allDom_domain_table_header_expiration_date": "Date d'expiration",
   "allDom_domain_table_registration_status_registered": "Enregistré",
   "allDom_domain_table_registration_status_unregistered": "Non enregistré",
+  "allDom_modal_table_status_domain_unregistered": "Votre domaine n'est pas enregistré",
   "allDom_detail_page_manuel_renew_warning": "Votre pack expirera le {{t0}}. Les domaines non résiliés inclus dans celui-ci seront <strong>renouvelés gratuitement jusqu'à l'expiration définitive de votre pack</strong>. Au-delà de cette date, vos domaines non résiliés seront facturés individuellement.",
   "allDom_detail_page_manuel_renew_warning_link": "Annuler la résiliation du pack",
   "allDom_status_automatic": "Automatique",
