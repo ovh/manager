@@ -34,6 +34,7 @@ export function useTrackAction() {
   return (trackingName: string) => {
     trackClick({
       type: 'action',
+      page_theme: 'PublicCloud',
       name: trackingName,
       level2: PCI_LEVEL2,
     });
@@ -77,6 +78,7 @@ export function useTrackPageAuto() {
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
     trackPage({
+      page_theme: 'PublicCloud',
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
     });

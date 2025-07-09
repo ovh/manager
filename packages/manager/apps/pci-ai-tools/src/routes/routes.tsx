@@ -35,7 +35,6 @@ export default [
       },
       {
         path: 'quantum/auth',
-        // change ID to feat Tracking team need
         id: 'quantum-auth',
         ...lazyRouteConfig(() => import('@/pages/auth-quantum/Auth.page')),
       },
@@ -201,7 +200,7 @@ export default [
             children: [
               {
                 path: '',
-                id: 'notebooks',
+                id: 'notebooks.listing',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/Notebooks.page'),
                 ),
@@ -231,21 +230,21 @@ export default [
               },
               {
                 path: 'onboarding',
-                id: 'onboarding-notebooks',
+                id: 'notebooks.onboarding',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/onboarding/Onboarding.page'),
                 ),
               },
               {
                 path: 'new',
-                id: 'notebooks.create',
+                id: 'notebooks.funnel',
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/create/Create.page'),
                 ),
                 children: [
                   {
                     path: 'add-sshkey',
-                    id: 'notebooks.create.add-sshkey',
+                    id: 'notebooks.funnel.popup.add-sshkey',
                     ...lazyRouteConfig(() =>
                       import('@/pages/_components/AddSSHKey.modal'),
                     ),
@@ -345,7 +344,7 @@ export default [
                     children: [
                       {
                         path: 'add-public-git',
-                        id: 'notebooks.notebook.public-git.add',
+                        id: 'notebooks.notebook.public-git.popup.add',
                         ...lazyRouteConfig(() =>
                           import(
                             '@/pages/notebooks/[notebookId]/public-git/addVolume/AddVolume.modal'
