@@ -437,6 +437,16 @@
                 </button>
             </div>
         </pci-project-images-list>
+
+        <oui-message
+            data-ng-if="$ctrl.model.image && $ctrl.model.image.region !== $ctrl.model.datacenter.name"
+            data-type="warning"
+        >
+            <p
+                data-translate="pci_projects_project_instances_add_image_distant_warning"
+            ></p>
+        </oui-message>
+
         <oui-spinner data-ng-if="$ctrl.isAddingNewRegion" data-size="s" />
 
         <pci-project-instance-ssh-keys
