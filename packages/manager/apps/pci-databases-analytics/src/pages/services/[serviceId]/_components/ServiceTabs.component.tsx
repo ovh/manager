@@ -12,8 +12,8 @@ import { useGetIntegrations } from '@/hooks/api/database/integration/useGetInteg
 import { useGetNamespaces } from '@/hooks/api/database/namespace/useGetNamespaces.hook';
 import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
 import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
-import { useServiceData } from '../Service.context';
 import { useGetConnectors } from '@/hooks/api/database/connector/useGetConnectors.hook';
+import { useGetReplications } from '@/hooks/api/database/replication/useGetReplications.hook';
 
 interface ServiceTabsProps {
   service: database.Service;
@@ -81,6 +81,15 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       enabled: !!service.capabilities.currentQueries?.read,
     },
   );
+  const { data: replications } = useGetReplications(
+    projectId,
+    service.engine,
+    service.id,
+    {
+      refetchInterval: isUserActive && POLLING.REPLICATIONS,
+      enabled: !!service.capabilities.currentQueries?.read,
+    },
+  );
   const { data: patterns } = useGetPatterns(
     projectId,
     service.engine,
@@ -143,6 +152,12 @@ const ServiceTabs = ({ service }: ServiceTabsProps) => {
       label: t('IntegrationsTab'),
       count: integrations?.length,
       disabled: !service.capabilities.integrations.read,
+    },
+    service.capabilities.replication && {
+      href: 'replications',
+      label: t('ReplicationsTab'),
+      count: replications?.length,
+      disabled: !service.capabilities.replication.read,
     },
     service.capabilities.patterns && {
       href: 'indexPatterns',

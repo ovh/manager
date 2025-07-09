@@ -20,7 +20,7 @@ const PrometheusTargets = ({ prometheusData }: PrometheusTargetsProps) => {
   const promData = prometheusData as database.service.PrometheusEndpoint;
   useEffect(() => {
     if (selectedHost === '' && promData && 'targets' in promData)
-      setSelectedHost(promData.targets[0].host);
+      setSelectedHost(promData.targets[0]?.host);
   }, [promData]);
   const target = promData?.targets.find((ta) => ta.host === selectedHost);
 

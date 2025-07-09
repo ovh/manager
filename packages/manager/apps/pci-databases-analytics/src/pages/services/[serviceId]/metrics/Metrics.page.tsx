@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Separator,
 } from '@datatr-ux/uxlib';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../Service.context';
@@ -58,25 +59,21 @@ const Metrics = () => {
         database.service.capability.StateEnum.enabled && (
         <PrometheusConfigTile />
       )}
+      <Separator className="!my-5" />
       {metricsQuery.isSuccess ? (
         <>
           <div className="flex w-full justify-between mb-2">
-            <div className="flex">
-              {metricPeriods.map((periodValue, index) => (
-                <Button
+            <div className="bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]">
+              {metricPeriods.map((periodValue) => (
+                <button
+                  data-state={period === periodValue ? 'active' : 'inactive'}
                   data-testid="manage-period-button"
-                  mode={period === periodValue ? 'default' : 'outline'}
                   key={periodValue}
                   onClick={() => setPeriod(periodValue)}
-                  size={'sm'}
-                  className={cn('rounded-none border-r-0', {
-                    'rounded-l-md': index === 0,
-                    'rounded-r-md border-r-2':
-                      index === metricPeriods.length - 1,
-                  })}
+                  className="data-[state=active]:bg-primary dark:data-[state=active]:text-white focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
                 >
                   {t(`interval-${periodValue}`)}
-                </Button>
+                </button>
               ))}
             </div>
             <div
