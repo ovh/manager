@@ -8,7 +8,6 @@ export default {
     catalogEndpoint: '<',
     excludeCategories: '<',
     goBack: '<',
-    imageEditMessage: '<',
     imageEditSuccessMessage: '<',
     instance: '<',
     hasComingSoonFlavorTag: '<',
