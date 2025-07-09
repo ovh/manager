@@ -12,5 +12,6 @@
   "dedicatedCloud_list_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
   "dedicatedCloud_list_softwareSolution_definition_displayName_AZURE": "Azure",
   "dedicatedCloud_list_softwareSolution_definition_displayName_VCSA": "vCSA",
-  "dedicatedCloud_list_popover_details": "Details"
+  "dedicatedCloud_list_popover_details": "Details",
+  "dedicatedCloud_list_popover_delete": "Cancel"
 }

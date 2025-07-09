@@ -66,4 +66,52 @@ export default /* @ngInject */ ($stateProvider) => {
       hideBreadcrumb: () => true,
     },
   });
+  $stateProvider.state('app.dedicatedCloud.index.terminate', {
+    url: 'terminate/:productId',
+    layout: 'modal',
+    views: {
+      modal: {
+        component: 'dedicatedCloudTerminate',
+      },
+    },
+    resolve: {
+      goBack: /* @ngInject */ ($state, $stateParams, $timeout, setMessage) => (
+        message,
+        type = 'success',
+      ) => {
+        const promise = $state.go('app.dedicatedCloud.index', $stateParams);
+        if (message) {
+          promise.then(() => $timeout(() => setMessage(message, type)));
+        }
+      },
+
+      setMessage: /* @ngInject */ (Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        Alerter.set(`alert-${type}`, message, null, 'dedicatedCloud');
+      },
+
+      serviceInfos: /* @ngInject */ ($http, $stateParams) =>
+        $http
+          .get(`/dedicatedCloud/${$stateParams.productId}/serviceInfos`)
+          .then(({ data }) => data),
+      canDeleteAtExpiration: /* @ngInject */ (
+        currentUser,
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('dedicated-cloud:deleteAtExpiration')
+          .then(
+            (featureAvailability) =>
+              featureAvailability.isFeatureAvailable(
+                'dedicated-cloud:deleteAtExpiration',
+              ) && !currentUser.isEnterprise,
+          ),
+      serviceName: /* @ngInject */ (productId) => productId,
+      productId: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      breadcrumb: () => null,
+    },
+  });
 };
