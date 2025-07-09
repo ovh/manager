@@ -11,7 +11,7 @@ import {
 import { QueryClientProvider } from '@tanstack/react-query';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { BaseLayout } from './base.component';
-import { GuideButton, GuideItem } from '../../guide-button';
+import { GuideMenu, GuideMenuItem } from '../../guide-menu';
 import { Notifications } from '../../notifications/Notifications.component';
 import { queryClient } from '../../../utils/test.provider';
 
@@ -38,7 +38,7 @@ const listingTmpltProps = {
   header: {
     title: 'Vrack Services',
     headerButton: (
-      <GuideButton
+      <GuideMenu
         items={
           [
             {
@@ -53,7 +53,7 @@ const listingTmpltProps = {
               target: '_blank',
               label: 'Guides OVH',
             },
-          ] as GuideItem[]
+          ] as GuideMenuItem[]
         }
       />
     ),
