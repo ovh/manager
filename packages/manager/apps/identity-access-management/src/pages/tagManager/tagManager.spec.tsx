@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import '@testing-library/jest-dom';
 import { describe, it, vi } from 'vitest';
 import { OdsCheckbox } from '@ovhcloud/ods-components/react';
