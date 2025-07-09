@@ -27,6 +27,8 @@ export const useGetIpGameFirewall = ({
       staleTime: Number.POSITIVE_INFINITY,
       retry: false,
       refetchInterval: (query) =>
+        // Array can be empty and will trigger the refresh indefinitly
+        query.state.data?.data?.[0]?.state &&
         query.state.data?.data?.[0]?.state !== IpGameFirewallStateEnum.OK
           ? refetchInterval
           : undefined,
