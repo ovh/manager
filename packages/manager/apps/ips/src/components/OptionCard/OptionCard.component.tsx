@@ -69,7 +69,6 @@ export const OptionCard: React.FC<OptionCardProps> = ({
         </OdsText>
       )}
       {children && <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />}
-      <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />
       {isLoading ? (
         <div className="text-center">
           <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
