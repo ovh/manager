@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   getDefaultProject,
@@ -101,8 +101,8 @@ describe('useProjects hooks', () => {
       });
 
       // Wait for the query to resolve
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 0));
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
       });
 
       expect(result.current.data).toEqual(mockDefaultProject);
@@ -123,8 +123,8 @@ describe('useProjects hooks', () => {
       );
 
       // Wait for the query to resolve
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 0));
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
       });
 
       expect(result.current.data).toBe(true);
@@ -143,8 +143,8 @@ describe('useProjects hooks', () => {
       );
 
       // Wait for the query to resolve
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 0));
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
       });
 
       expect(result.current.data).toBe(false);
@@ -160,8 +160,8 @@ describe('useProjects hooks', () => {
       });
 
       // Wait for the query to resolve
-      await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 0));
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
       });
 
       expect(result.current.data).toBe(false);

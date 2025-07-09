@@ -1,6 +1,12 @@
 import { TProjectStatus } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { useHref } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { removeProject } from '@/data/api/projects';
@@ -134,9 +140,11 @@ describe('Actions Component', () => {
     });
   });
 
-  it('should render action menu with correct items for active project', () => {
-    render(<Actions projectWithService={mockProject} />, {
-      wrapper: createWrapper(),
+  it('should render action menu with correct items for active project', async () => {
+    await act(async () => {
+      render(<Actions projectWithService={mockProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     expect(screen.getByTestId('action-menu')).toBeInTheDocument();
@@ -170,13 +178,17 @@ describe('Actions Component', () => {
       aggregatedStatus: 'creating' as TAggregatedStatus,
     };
 
-    render(<Actions projectWithService={creatingProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={creatingProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     const deleteMenuItem = screen.getByTestId('action-item-2');
 
-    await fireEvent.click(deleteMenuItem);
+    await act(async () => {
+      await fireEvent.click(deleteMenuItem);
+    });
 
     await waitFor(() => {
       expect(removeProject).toHaveBeenCalledWith({
@@ -188,40 +200,46 @@ describe('Actions Component', () => {
     });
   });
 
-  it('should not show delete option for suspended project', () => {
+  it('should not show delete option for suspended project', async () => {
     const suspendedProject = {
       ...mockProject,
       status: 'suspended' as TProjectStatus,
     };
 
-    render(<Actions projectWithService={suspendedProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={suspendedProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     expect(screen.queryByTestId('action-item-2')).not.toBeInTheDocument();
   });
 
-  it('should not show delete option for project with pending debt', () => {
+  it('should not show delete option for project with pending debt', async () => {
     const projectWithDebt = {
       ...mockProject,
       isUnpaid: true,
     };
 
-    render(<Actions projectWithService={projectWithDebt} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={projectWithDebt} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     expect(screen.queryByTestId('action-item-2')).not.toBeInTheDocument();
   });
 
-  it('should show set ad default project option when project is not default', () => {
+  it('should show set ad default project option when project is not default', async () => {
     const nonDefaultProject = {
       ...mockProject,
       isDefault: false,
     };
 
-    render(<Actions projectWithService={nonDefaultProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={nonDefaultProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     const setAsDefaultButton = screen.getByTestId('action-item-3');
@@ -231,14 +249,16 @@ describe('Actions Component', () => {
     );
   });
 
-  it('should not show set ad default project option when project is already default', () => {
+  it('should not show set ad default project option when project is already default', async () => {
     const defaultProject = {
       ...mockProject,
       isDefault: true,
     };
 
-    render(<Actions projectWithService={defaultProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={defaultProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     expect(screen.queryByTestId('action-item-3')).not.toBeInTheDocument();
@@ -250,13 +270,17 @@ describe('Actions Component', () => {
       isDefault: false,
     };
 
-    render(<Actions projectWithService={nonDefaultProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={nonDefaultProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     const setAsDefaultButton = screen.getByTestId('action-item-3');
 
-    await fireEvent.click(setAsDefaultButton);
+    await act(async () => {
+      await fireEvent.click(setAsDefaultButton);
+    });
 
     expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
   });
@@ -293,13 +317,17 @@ describe('Actions Component', () => {
       submittedAt: 0,
     });
 
-    render(<Actions projectWithService={nonDefaultProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={nonDefaultProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     const setAsDefaultButton = screen.getByTestId('action-item-3');
 
-    await fireEvent.click(setAsDefaultButton);
+    await act(async () => {
+      await fireEvent.click(setAsDefaultButton);
+    });
 
     expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
     expect(mockOnSuccess).toHaveBeenCalled();
@@ -339,13 +367,17 @@ describe('Actions Component', () => {
       submittedAt: 0,
     });
 
-    render(<Actions projectWithService={nonDefaultProject} />, {
-      wrapper: createWrapper(),
+    await act(async () => {
+      render(<Actions projectWithService={nonDefaultProject} />, {
+        wrapper: createWrapper(),
+      });
     });
 
     const setAsDefaultButton = screen.getByTestId('action-item-3');
 
-    await fireEvent.click(setAsDefaultButton);
+    await act(async () => {
+      await fireEvent.click(setAsDefaultButton);
+    });
 
     expect(mockSetAsDefaultProject).toHaveBeenCalledWith('test-project-id');
     expect(mockOnError).toHaveBeenCalledWith(mockError);
