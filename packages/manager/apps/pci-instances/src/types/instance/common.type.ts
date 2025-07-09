@@ -63,7 +63,7 @@ export type TPrice = {
   status: 'enabled' | 'available' | 'eligible';
   value: number;
   text: string;
-  priceInUCents: number;
+  priceInUcents: number;
   currencyCode: string;
   includeVat: boolean;
 };

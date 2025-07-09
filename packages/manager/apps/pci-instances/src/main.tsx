@@ -8,6 +8,7 @@ import {
 import '@ovhcloud/ods-themes/default';
 import '@/vite-hmr';
 import App from './App';
+import '@ovh-ux/manager-pci-common/dist/style.css';
 import './index.scss';
 
 const init = async (
