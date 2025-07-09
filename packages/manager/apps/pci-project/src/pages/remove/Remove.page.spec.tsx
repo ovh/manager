@@ -47,6 +47,12 @@ vi.mock('@/data/hooks/useProjects', () => ({
   }),
 }));
 
+// Mock window.open to avoid jsdom errors
+Object.defineProperty(window, 'open', {
+  value: vi.fn(),
+  writable: true,
+});
+
 describe('RemovePage', () => {
   const mockNavigate = vi.fn();
   const mockAddSuccess = vi.fn();
