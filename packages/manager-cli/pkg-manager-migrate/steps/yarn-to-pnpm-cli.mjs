@@ -3,6 +3,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import readline from 'readline';
 
 // Setup __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -15,12 +16,12 @@ console.log('📁 Using repoRoot:', repoRoot);
 const appRelativePath = (appName) => `packages/manager/apps/${appName}`;
 const packageJsonPath = path.join(repoRoot, 'package.json');
 const excludeYarnAppsPath = path.join(repoRoot, 'scripts/pnpm-migration/settings/exclude-yarn-apps.json');
-const yarnBackupPath = path.join(repoRoot, 'scripts/pnpm-migration/package-yarn-backup.json');
 
 // Input
 const appName = process.argv[2];
 const isDryRun = process.argv.includes('--dry-run');
 const appPath = appRelativePath(appName);
+const appFullPath = path.join(repoRoot, appPath);
 
 // Helpers
 async function readJson(filePath) {
@@ -38,10 +39,38 @@ function logChange(label, details) {
   console.log(details);
 }
 
+async function confirmAction(message) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(`${message} [y/N]: `, (answer) => {
+      rl.close();
+      resolve(answer.trim().toLowerCase() === 'y');
+    });
+  });
+}
+
+// Step 0: Sanity check
+async function validateAppPath() {
+  try {
+    await fs.access(appFullPath);
+  } catch {
+    throw new Error(`❌ App path does not exist: ${appPath}`);
+  }
+}
+
 // Step 1: Remove from root package.json
 async function updateRootPackageJson() {
   const pkg = await readJson(packageJsonPath);
-  const oldPackages = pkg.workspaces?.packages || [];
+
+  if (!pkg.workspaces?.packages || !Array.isArray(pkg.workspaces.packages)) {
+    throw new Error('❌ Invalid or missing "workspaces.packages" in package.json');
+  }
+
+  const oldPackages = pkg.workspaces.packages;
 
   if (!oldPackages.includes(appPath)) {
     console.log(`✅ App "${appPath}" already removed from root workspaces.`);
@@ -51,6 +80,13 @@ async function updateRootPackageJson() {
   const newPackages = oldPackages.filter((entry) => entry !== appPath);
 
   if (!isDryRun) {
+    const confirmed = await confirmAction(
+      `Are you sure you want to remove "${appPath}" from root workspaces?`
+    );
+    if (!confirmed) {
+      console.log('❌ Aborting as per user input.');
+      process.exit(1);
+    }
     pkg.workspaces.packages = newPackages;
     await writeJson(packageJsonPath, pkg);
   }
@@ -61,6 +97,10 @@ async function updateRootPackageJson() {
 // Step 2: Append to exclude-yarn-apps.json
 async function updateExcludeYarnApps() {
   const data = await readJson(excludeYarnAppsPath);
+  if (!Array.isArray(data)) {
+    throw new Error(`❌ File ${excludeYarnAppsPath} does not contain a valid array`);
+  }
+
   const apps = new Set(data);
 
   if (!apps.has(appPath)) {
@@ -74,37 +114,19 @@ async function updateExcludeYarnApps() {
   }
 }
 
-// Step 3: Remove from backup
-async function updateYarnBackupPackage() {
-  const backup = await readJson(yarnBackupPath);
-
-  if (!backup.workspaces) backup.workspaces = {};
-  if (!Array.isArray(backup.workspaces.packages)) backup.workspaces.packages = [];
-
-  const oldPackages = backup.workspaces.packages;
-
-  if (!oldPackages.includes(appPath)) {
-    console.log(`✅ "${appPath}" already removed from yarn backup.`);
-    return;
-  }
-
-  const newPackages = oldPackages.filter((entry) => entry !== appPath);
-
-  if (!isDryRun) {
-    backup.workspaces.packages = newPackages;
-    await writeJson(yarnBackupPath, backup);
-  }
-
-  logChange('Updated package-yarn-backup.json', `❌ Removed workspace: "${appPath}"`);
-}
-
 // Entry point
 async function migrateAppToPnpm(appName) {
   console.log(`\n🚀 Migrating "${appPath}" from Yarn to PNPM...`);
-  await updateRootPackageJson();
-  await updateExcludeYarnApps();
-  await updateYarnBackupPackage();
-  console.log('\n✅ Migration logic completed.\n');
+
+  try {
+    await validateAppPath();
+    await updateRootPackageJson();
+    await updateExcludeYarnApps();
+    console.log('\n✅ Migration logic completed.\n');
+  } catch (err) {
+    console.error('❌ Migration failed:', err.message);
+    process.exit(1);
+  }
 }
 
 // Run
@@ -113,7 +135,4 @@ if (!appName) {
   process.exit(1);
 }
 
-migrateAppToPnpm(appName).catch((err) => {
-  console.error('❌ Migration script failed:', err);
-  process.exit(1);
-});
+migrateAppToPnpm(appName);
