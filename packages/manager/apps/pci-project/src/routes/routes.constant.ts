@@ -5,5 +5,7 @@ export const urls = {
   home: '',
   edit: 'edit',
   onboarding: 'onboarding',
+  creation: 'new',
+  creating: 'creating/:orderId/:voucherCode',
   remove: 'remove',
 };
