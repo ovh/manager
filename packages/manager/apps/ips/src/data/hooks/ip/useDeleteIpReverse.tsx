@@ -1,7 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { deleteIpReverse, getIpReverseQueryKey } from '@/data/api';
+import {
+  deleteIpReverse,
+  getIcebergIpReverseQueryKey,
+  getIpReverseQueryKey,
+} from '@/data/api';
 import { ipFormatter } from '@/utils';
 
 export type UseDeleteIpReverseParams = {
@@ -34,7 +38,9 @@ export const useDeleteIpReverse = ({
       });
       // Invalidate for iceberg query also
       await queryClient.invalidateQueries({
-        queryKey: getIpReverseQueryKey({ ip }),
+        queryKey: getIcebergIpReverseQueryKey({
+          ip: ipGroup || ip,
+        }),
       });
       onSuccess?.(data);
     },
