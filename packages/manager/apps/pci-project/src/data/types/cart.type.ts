@@ -1,3 +1,89 @@
+export type Cart = {
+  cartId: string;
+  description: string;
+  expire: string;
+  items: Array<unknown>;
+  readonly: boolean;
+};
+
+export enum PlanCode {
+  CREDIT = 'credit',
+  CREDIT_DEFAULT = 'credit.default',
+  PROJECT = 'project',
+  PROJECT_2018 = 'project.2018',
+  PROJECT_DISCOVERY = 'project.discovery',
+  PROJECT_LEGACY = 'project.legacy',
+}
+
+export type CartProduct = {
+  planCode: PlanCode;
+  productName: string;
+  productType: string;
+  prices: CartProductPrice[];
+};
+
+export type CartProductPrice = {
+  capacities: string[];
+  description: string;
+  duration: string;
+  interval: number;
+  maximumQuantity: number;
+  maximumRepeat: number;
+  minimumQuantity: number;
+  minimumRepeat: number;
+  price: Price;
+  priceInUcents: number;
+  pricingMode: string;
+  pricingType: string;
+};
+
+export type OrderedProduct = {
+  cartId: string;
+  itemId: string;
+  productId: string;
+  configuration: unknown[];
+  duration: string;
+  options: unknown[];
+  prices: unknown[];
+  settings: unknown;
+};
+
+export type CartProductOption = {
+  exclusive: boolean;
+  family: string;
+  mandatory: boolean;
+  planCode: string;
+  prices: CartProductPrice[];
+  productName: string;
+  productType: CartProductType;
+};
+
+export enum CartProductType {
+  CLOUD_SERVICE = 'cloud_service',
+  DELIVERY = 'delivery',
+  DEPOSIT = 'deposit',
+  DOMAIN = 'domain',
+  IMPLEMENTATION_SERVICES = 'implementation_services',
+  SAAS_LICENSE = 'saas_license',
+  SHIPPING = 'shipping',
+  STORAGE = 'storage',
+}
+
+export type CartSummary = {
+  orderId: number | null;
+  url: string | null;
+  details: CartDetail[];
+  prices: {
+    originalWithoutTax: Price;
+    reduction: Price;
+    tax: Price;
+    withTax: Price;
+    withoutTax: Price;
+  };
+  contracts: CartContract[];
+  projectItem?: { voucherConfiguration?: { value: string } };
+};
+
 export type CartDetail = {
   cartItemId: number;
   description: string;
@@ -20,19 +106,9 @@ export type Price = {
 export type CartContract = {
   name: string;
   url: string;
-  content: string;
+  content?: string;
 };
 
-export type CartSummary = {
-  orderId: number | null;
-  url: string | null;
-  details: CartDetail[];
-  prices: {
-    originalWithoutTax: Price;
-    reduction: Price;
-    tax: Price;
-    withTax: Price;
-    withoutTax: Price;
-  };
-  contracts: CartContract[];
-};
+export enum PaymentMean {
+  FIDELITY_ACCOUNT = 'fidelityAccount',
+}
