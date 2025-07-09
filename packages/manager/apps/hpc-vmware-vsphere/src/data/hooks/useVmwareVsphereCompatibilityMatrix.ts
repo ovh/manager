@@ -20,6 +20,17 @@ export function useVmwareVsphereCompatibilityMatrix(
     queryKey: getDedicatedCloudServiceCompatibilityMatrixQueryKey(serviceName),
     queryFn: () => getDedicatedCloudServiceCompatibilityMatrix(serviceName),
     enabled: !!serviceName,
+    refetchInterval: (query) => {
+      const refetchOptions = query.state.data?.data ?? [];
+
+      const isLogForwarderDelivered = refetchOptions.some(
+        (refetchOption) =>
+          refetchOption.name === 'logForwarder' &&
+          refetchOption.state === 'delivered',
+      );
+
+      return !isLogForwarderDelivered && 30_000;
+    },
     ...options,
   });
 }

@@ -1,15 +1,4 @@
-export type TaskState =
-  | 'canceled'
-  | 'doing'
-  | 'done'
-  | 'error'
-  | 'fixing'
-  | 'toCancel'
-  | 'toCreate'
-  | 'todo'
-  | 'unknown'
-  | 'waitingForChilds'
-  | 'waitingTodo';
+import { TaskState } from './datacloud';
 
 export interface LogForwarder {
   createdBy: string | null;
