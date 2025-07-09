@@ -109,7 +109,7 @@ export type TInstanceAction = {
 
 type TInstanceFlavorSpec = TFlavorSpec;
 
-type TInstanceFlavor = {
+export type TInstanceFlavor = {
   id: string;
   name: string;
   specs: {
@@ -123,7 +123,7 @@ type TInstanceFlavor = {
   } | null;
 };
 
-type TInstancePrice = TPrice;
+export type TInstancePrice = TPrice;
 
 type TInstanceImageDto = TImage;
 
