@@ -9,5 +9,11 @@
   "pci_projects_project_instances_instance_backup_error_backup": "Ocorreu um erro durante a criação do backup {{ backup }}: {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "A cópia de segurança só inclui o seu disco de raiz (sistema operativo). Não será feito nenhum backup dos dados armazenados nos seus dispositivos NVMe. Utilize as suas próprias ferramentas para o fazer.",
   "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "O preço indicado corresponde ao preço do serviço. O custo adicional relativo ao Trusted Zone é adicionado à faturação mensal global.",
-  "pci_projects_project_instances_instance_backup_warning_message_baremetal": "Para poder criar o backup, a sua instância será interrompida e entrará em modo rescue. Depois de efetuar o backup, a instância será reiniciada. A duração desta operação poderá variar em função do tamanho dos discos."
+  "pci_projects_project_instances_instance_backup_warning_message_baremetal": "Para poder criar o backup, a sua instância será interrompida e entrará em modo rescue. Depois de efetuar o backup, a instância será reiniciada. A duração desta operação poderá variar em função do tamanho dos discos.",
+  "pci_projects_project_instances_instance_backup_distant_label": "Adicionar um backup remoto (opcional)",
+  "pci_projects_project_instances_instance_backup_distant_name_label": "Nome do backup remoto",
+  "pci_projects_project_instances_instance_backup_distant_region_label": "Selecione uma localização",
+  "pci_projects_project_instances_instance_backup_distant_region_price": "Cada backup será faturado: {{ price }}/mês + IVA por GB",
+  "pci_projects_project_instances_instance_backup_region_enable_warning": "A localização escolhida não está ativada. Ao clicar em \"Confirmar\", será adicionado ao seu projeto.",
+  "pci_projects_project_instances_instance_backup_with_distant_success_message": "O backup {{ backup }} está em processo de criação. Uma vez criado este backup local, procederemos à criação do backup remoto designado {{ distantName }}. Para visualizar o estado e os detalhes da operação, aceda à página “Instance Backup”. Se o backup não for apresentado imediatamente, não hesite em atualizar a página para obter a lista mais recente."
 }
