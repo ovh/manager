@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.42.0...@ovh-ux/manager-billing@0.43.0) (2025-07-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([a451936](https://github.com/ovh/manager/commit/a451936dbf4dfde3f4c6762a4e4345d59d923422)), closes [#MANAGER-16119](https://github.com/ovh/manager/issues/MANAGER-16119)
+* **billing:** cleanup code after slicing /dedicated ([ecc2e5c](https://github.com/ovh/manager/commit/ecc2e5c82cf799653ff9372e57241e3e3ad87b38)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
 # [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.3...@ovh-ux/manager-new-billing@0.42.0) (2025-07-02)
 
 
