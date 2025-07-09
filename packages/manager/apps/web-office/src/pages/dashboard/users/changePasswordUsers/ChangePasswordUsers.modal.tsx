@@ -24,14 +24,20 @@ import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { postUsersPassword } from '@/data/api/users';
-import { CHANGE_PASSWORD_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
+import { zForm } from '@/utils/formSchemas.utils';
 import { UserChangePasswordType } from '@/data/api/api.type';
 import { CANCEL, CONFIRM, EDIT_PASSWORD } from '@/tracking.constants';
 
 export default function ModalChangePasswordUsers() {
-  const { t } = useTranslation(['dashboard/users/change-password', 'common']);
+  const { t } = useTranslation([
+    'dashboard/users/change-password',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -57,7 +63,7 @@ export default function ModalChangePasswordUsers() {
       email: isAutomatic ? emailUser : '',
     },
     mode: 'onChange',
-    resolver: zodResolver(CHANGE_PASSWORD_USERS_FORM_SCHEMA),
+    resolver: zodResolver(zForm(t).CHANGE_PASSWORD_USERS_FORM_SCHEMA),
   });
 
   const { mutate: editPassword, isPending: isSending } = useMutation({
@@ -118,20 +124,20 @@ export default function ModalChangePasswordUsers() {
 
   return (
     <Modal
-      heading={t('dashboard_users_change_password_title')}
+      heading={t(`${NAMESPACES.ACTIONS}:change_password`)}
       type={ODS_MODAL_COLOR.information}
       isOpen={true}
-      secondaryLabel={t('common:cta_cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       onDismiss={handleCancelClick}
-      primaryLabel={t('common:cta_confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       isPrimaryButtonDisabled={!isValid}
       onPrimaryButtonClick={handleSubmit(handleSaveClick)}
       isPrimaryButtonLoading={isSending}
     >
       <form className="flex flex-col" onSubmit={handleSubmit(handleSaveClick)}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
-          {t('common:common_field_label_mandatory')}
+          {t(`${NAMESPACES.FORM}:label_mandatory`)}
         </OdsText>
         <OdsFormField>
           <span>
@@ -225,11 +231,11 @@ export default function ModalChangePasswordUsers() {
               )}
             />
             <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mt-6">
-              <div>{t('dashboard_users_change_password_helper1')}</div>
+              <div>{t(`${NAMESPACES.FORM}:change_password_helper1`)}</div>
               <ul className="mt-0">
-                <li>{t('dashboard_users_change_password_helper2')}</li>
-                <li>{t('dashboard_users_change_password_helper3')}</li>
-                <li>{t('dashboard_users_change_password_helper4')}</li>
+                <li>{t(`${NAMESPACES.FORM}:min_chars`, { value: 8 })}</li>
+                <li>{t(`${NAMESPACES.FORM}:max_chars`, { value: 16 })}</li>
+                <li>{t(`${NAMESPACES.FORM}:change_password_helper2`)}</li>
               </ul>
             </OdsText>
           </>

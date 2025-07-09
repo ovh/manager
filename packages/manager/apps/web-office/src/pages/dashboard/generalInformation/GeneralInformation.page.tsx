@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { format } from 'date-fns';
 import { DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
 import {
@@ -24,7 +25,12 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { OfficeServiceState } from '@/components/officeServiceState/OfficeServiceState.component';
 
 export default function GeneralInformation() {
-  const { t } = useTranslation(['dashboard/general-information', 'common']);
+  const { t } = useTranslation([
+    'dashboard/general-information',
+    'common',
+    NAMESPACES.STATUS,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { serviceName } = useParams();
   const navigate = useNavigate();
   const locale = useDateFnsLocale();
@@ -100,7 +106,7 @@ export default function GeneralInformation() {
       },
       {
         id: 'servicetype',
-        label: t('common:serviceType'),
+        label: t(`${NAMESPACES.DASHBOARD}:service_type`),
         value: (
           <>
             {!isLoadingLicenseDetail && (
@@ -119,7 +125,7 @@ export default function GeneralInformation() {
     return [
       {
         id: 'license_number',
-        label: t('common:license_number'),
+        label: t(`${NAMESPACES.DASHBOARD}:license_number`),
         value: (
           <div className="flex flex-col">
             {!isLoadingUsers &&
@@ -170,7 +176,7 @@ export default function GeneralInformation() {
     return [
       {
         id: 'creation_date',
-        label: t('common:creation_date'),
+        label: t(`${NAMESPACES.DASHBOARD}:creation_date`),
         value: (
           <>
             {!isLoadingServiceInfos && (
@@ -186,7 +192,7 @@ export default function GeneralInformation() {
       },
       {
         id: 'status',
-        label: t('common:status'),
+        label: t(`${NAMESPACES.STATUS}:status`),
         value: (
           <>
             {!isLoadingServiceInfos && (
@@ -200,7 +206,7 @@ export default function GeneralInformation() {
         ? [
             {
               id: 'renew_date',
-              label: t('common:renew_date'),
+              label: t(`${NAMESPACES.DASHBOARD}:renew_date`),
               value: (
                 <>
                   {!isLoadingServiceInfos && (
@@ -224,7 +230,7 @@ export default function GeneralInformation() {
       <div className="p-3">
         <DashboardTile
           data-testid="general_informations"
-          title={t('common:general_informations')}
+          title={t(`${NAMESPACES.DASHBOARD}:general_information`)}
           items={itemsGeneralInfos}
         />
         <Outlet />
@@ -232,14 +238,14 @@ export default function GeneralInformation() {
       <div className="p-3">
         <DashboardTile
           data-testid="statistics"
-          title={t('common:statistics')}
+          title={t(`${NAMESPACES.DASHBOARD}:statistics`)}
           items={itemsStatistics}
         />
       </div>
       <div className="p-3">
         <DashboardTile
           data-testid="my_offer"
-          title={t('common:my_offer')}
+          title={t(`${NAMESPACES.DASHBOARD}:my_offer`)}
           items={itemsBillingInfos}
         />
       </div>
