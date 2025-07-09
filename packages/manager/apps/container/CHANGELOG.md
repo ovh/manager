@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.140.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.139.2...@ovh-ux/manager-container-app@0.140.0) (2025-07-09)
+
+
+### Bug Fixes
+
+* **container:** change hycu icon path after SVGR update ([ba41d3c](https://github.com/ovh/manager/commit/ba41d3c8d11b13cba9f9edfc19b9407b49324a09)), closes [#MANAGER-18846](https://github.com/ovh/manager/issues/MANAGER-18846)
+
+
+### Features
+
+* **billing:** cleanup code after slicing /dedicated ([ecc2e5c](https://github.com/ovh/manager/commit/ecc2e5c82cf799653ff9372e57241e3e3ad87b38)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+* **container:** definitive removal of octavia load balancer in menu ([a210e21](https://github.com/ovh/manager/commit/a210e21685c9ac1965a48572ffd43f47c8a91422)), closes [#MANAGER-18784](https://github.com/ovh/manager/issues/MANAGER-18784)
+
+
+
+
+
 ## [0.139.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.139.1...@ovh-ux/manager-container-app@0.139.2) (2025-07-08)
 
 
