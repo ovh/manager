@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { DEBT_ALL } from './edit.constants';
+import { DEBT_ALL, REPLICABLE_SERVICE_TYPES } from './edit.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('account.contacts.services.edit', {
@@ -38,6 +38,23 @@ export default /* @ngInject */ ($stateProvider) => {
       categoryType: /* @ngInject */ ($transition$) =>
         $transition$.params().categoryType,
       breadcrumb: () => null,
+      relatedReplicableService: /* @ngInject */ (
+        categoryType,
+        serviceName,
+        services,
+        getServiceInfos,
+      ) => {
+        if (!REPLICABLE_SERVICE_TYPES.includes(categoryType)) return null;
+
+        const related = services.find(
+          ({ serviceName: name, category }) =>
+            name === serviceName &&
+            category !== categoryType &&
+            REPLICABLE_SERVICE_TYPES.includes(category),
+        );
+
+        return related ? getServiceInfos(related) : null;
+      },
     },
   });
 };
