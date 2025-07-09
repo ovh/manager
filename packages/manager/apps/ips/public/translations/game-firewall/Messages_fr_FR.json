@@ -4,6 +4,7 @@
   "description": "Ceci est la page de configuration de la protection DDoS GAME pour l'adresse IP sélectionnée. Plusieurs règles de pare-feu peuvent être configurées pour protéger au mieux toutes les applications hébergées sur l'adresse IP sélectionnée.",
   "subDescription": "Astuce : vous pouvez choisir « autre » protocole pour autoriser un trafic arbitraire vers un ou plusieurs ports spécifiques. Nous suggérons d'appliquer la politique « Refus par défaut » qui supprimera le trafic sur tous les autres ports (non définis) pour une meilleure protection.",
   "apply_deny_strategy_switch_label": "Appliquer la stratégie « Refus par défaut »",
+  "max_rules_reached_tooltip": "Vous avez atteint la limite de règles autorisées",
   "deny_strategy_tooltip": "Bloquez tout le trafic qui ne correspond à aucune des règles suivantes.",
   "disable_deny_strategy_modal_title": "Désactivation de la stratégie « Refus par défaut »",
   "disable_deny_strategy_modal_description": "Ce faisant, les seuls jeux protégés seront ceux correspondant à des règles définies. Tout autre trafic pourra atteindre l'IP sélectionnée sans aucune protection. Voulez-vous continuer?",
@@ -11,10 +12,19 @@
   "enable_deny_strategy_modal_title": "Activation de la stratégie « Refus par défaut »",
   "default_deny_strategy_enabled_success_message": "La politique par défaut de protection DDoS du GAME a changé en quelques instants.",
   "default_deny_strategy_disabled_success_message": "La politique par défaut de protection DDoS du GAME va être désactivée dans quelques instants.",
+  "add_rule_success_message": "La règle de firewall va être ajoutée",
+  "delete_rule_success_message": "La règle de firewall va être supprimée",
   "gameProtocolColumnLabel": "Protocole de jeu",
   "startPortColumnLabel": "Port de démarrage (plage)",
   "endPortColumnLabel": "Port final (plage)",
   "ok-status": "Protégé",
   "deleteRulePending-status": "En cours de suppression",
-  "createRulePending-status": "En cours de création"
+  "createRulePending-status": "En cours de création",
+  "confirmDeleteRuleHeading": "Suppression d'une règle",
+  "confirmDeleteRuleDescription": "Voulez-vous vraiment supprimer la règle du protocole {{protocol}} ({{port}}) ?",
+  "add_rule_modal_title": "Ajout d'une règle",
+  "missingPortError": "La saisie des ports est obligatoire",
+  "startPortGreaterThanEndPortError": "Le port de démarrage est plus grand que le port final",
+  "portRangeError": "Veuillez renseigner une valeur entre 1 et 65535",
+  "conflictingRuleError": "Le port (ou la plage de ports) est en conflit avec une autre règle"
 }

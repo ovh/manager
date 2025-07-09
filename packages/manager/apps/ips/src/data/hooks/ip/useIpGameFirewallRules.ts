@@ -50,6 +50,8 @@ export const useIpGameFirewallRules = ({
       ruleListQuery.error || ruleQueries?.find((query) => query.error)?.error,
     isLoading:
       ruleListQuery.isLoading || ruleQueries?.some((query) => query.isLoading),
-    data: ruleQueries?.map((query) => query?.data?.data),
+    data: ruleQueries
+      ?.map((query) => query?.data?.data)
+      .sort((a, b) => a.protocol.localeCompare(b.protocol)),
   };
 };
