@@ -2,6 +2,6 @@ import React from 'react';
 
 export type HeadersProps = {
   title?: string;
-  guideButton?: React.ReactElement;
+  GuideMenu?: React.ReactElement;
   changelogButton?: React.ReactElement;
 };
