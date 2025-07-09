@@ -45,8 +45,10 @@
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query-devtools": "^5.51.21",
+    "@testing-library/jest-dom": "^6.6.3",
     "msw": "2.1.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
