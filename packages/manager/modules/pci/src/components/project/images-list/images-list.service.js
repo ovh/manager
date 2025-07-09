@@ -1,4 +1,3 @@
-import filter from 'lodash/filter';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
@@ -8,6 +7,10 @@ import uniq from 'lodash/uniq';
 
 import Image from './images.class';
 import { IMAGES_REGEX, REGEX_PREFIX_BAREMETAL } from './images.constants';
+import {
+  ONE_AZ_REGION,
+  THREE_AZ_REGION,
+} from '../../../projects/project/project.constants';
 
 function getDistribution(name, type) {
   const os = IMAGES_REGEX[type];
@@ -96,12 +99,35 @@ export default class ImagesList {
       );
   }
 
-  static getCompatibleImages(images, region, flavorType) {
-    return filter(
-      images,
-      (image) =>
-        image.isAvailableInRegion(region) &&
-        image.isCompatibleWithFlavor(flavorType),
+  // eslint-disable-next-line class-methods-use-this
+  isImageCompatible(
+    image,
+    targetRegionName,
+    flavorType,
+    osTypes,
+    snapshotsPlans,
+  ) {
+    if (image.isBackup()) {
+      const targetRegion = snapshotsPlans
+        .flatMap((p) => p.regions)
+        .find((r) => r.name === targetRegionName);
+
+      if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(targetRegion.type))
+        return false;
+
+      const imageRegion = snapshotsPlans
+        .find((p) => p.code === image.planCode)
+        .regions.find((r) => r.name === image.region);
+
+      if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(imageRegion.type))
+        return false;
+    } else if (!image.isAvailableInRegion(targetRegionName)) {
+      return false;
+    }
+
+    return (
+      image.isCompatibleWithFlavor(flavorType) &&
+      image.isCompatibleWithOsTypes(osTypes)
     );
   }
 }
