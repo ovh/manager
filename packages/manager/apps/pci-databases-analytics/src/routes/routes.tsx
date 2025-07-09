@@ -378,6 +378,44 @@ export default [
             ],
           },
           {
+            path: 'replications',
+            id: 'service.{service.engine}.replications',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/replications/Replications.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.replications.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/add/AddReplication.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.replications.edit',
+                path: 'edit/:replicationId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/edit/EditReplication.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.replications.delete',
+                path: 'delete/:replicationId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/delete/DeleteReplication.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
             path: 'metrics',
             id: 'service.{service.engine}.metrics',
             ...lazyRouteConfig(() =>
