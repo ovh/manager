@@ -10,7 +10,9 @@ const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
 const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const SettingsPage = lazy(() => import('@/pages/home/edit/Edit.page'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const CreationPage = lazy(() => import('@/pages/creation/Creation.page'));
+const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
 
 export default (
   <Route
@@ -45,6 +47,24 @@ export default (
         }}
       />
     </Route>
+    <Route
+      path={urls.creation}
+      Component={CreationPage}
+      handle={{
+        tracking: {
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.creating}
+      Component={CreatingPage}
+      handle={{
+        tracking: {
+          pageType: PageType.funnel,
+        },
+      }}
+    />
     <Route path={urls.project} Component={MainPage}>
       <Route
         path={urls.home}
