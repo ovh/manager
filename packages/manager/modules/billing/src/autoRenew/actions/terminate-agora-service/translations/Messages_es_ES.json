@@ -25,5 +25,5 @@
   "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "No se ha enviado la solicitud de baja: {{error}}",
   "autorenew_agora_terminate_service_success_IP": "La cancelación de su Additional IP «{{serviceName}}» se ha registrado correctamente. Recibirá un correo electrónico con los detalles del procedimiento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_IP": "La cancelación de su Additional IP «{{serviceName}}» se ha registrado correctamente. Le hemos enviado un correo de confirmación.",
-  "autorenew_agora_terminate_service_error_IP": "No se ha enviado la solicitud de baja: {{error}}"
+  "autorenew_agora_terminate_service_error_IP": "Se ha producido un error al enviar la solicitud de eliminación: {{error}}"
 }
