@@ -1,11 +1,14 @@
 import { useQueries } from '@tanstack/react-query';
 import {
   getAllDomResource,
-  getAllDomService,
+  getServiceInformation,
 } from '@/alldoms/data/api/web-domains';
 import { TServiceDetail, TServiceProperty } from '@/alldoms/types';
 import { findContact } from '@/alldoms/utils/utils';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import {
+  ServiceInfoContactEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
 
 interface UseGetDatagridServiceInfoListProps {
   readonly allDomList: TServiceProperty[];
@@ -19,7 +22,7 @@ export const useGetAllDoms = ({
       queryKey: ['serviceInfoList', allDom.name],
       queryFn: async () => {
         const [serviceInfo, allDomResource] = await Promise.all([
-          getAllDomService(allDom.name),
+          getServiceInformation(allDom.name, ServiceRoutes.AllDom),
           getAllDomResource(allDom.name),
         ]);
 

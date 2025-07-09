@@ -1,0 +1,51 @@
+import { OdsBadge, OdsSpinner } from '@ovhcloud/ods-components/react';
+import React from 'react';
+import { ODS_BADGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
+import {
+  ServiceInfoRenewMode,
+  ServiceInfoUpdateEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
+import { useGetServiceInformation } from '@/alldoms/hooks/data/query';
+
+interface DomainDatagridColumnRenewModeProps {
+  readonly serviceName: string;
+}
+
+export default function DomainDatagridColumnRenewMode({
+  serviceName,
+}: DomainDatagridColumnRenewModeProps) {
+  const { t } = useTranslation('allDom');
+  const { data, isLoading } = useGetServiceInformation(
+    serviceName,
+    ServiceRoutes.Domain,
+  );
+
+  if (isLoading) {
+    return <OdsSpinner size={ODS_SPINNER_SIZE.xs} />;
+  }
+
+  const { mode } = data.billing.renew.current;
+  const { actions } = data.billing.lifecycle.capacities;
+
+  if (actions[0] === ServiceInfoUpdateEnum.TerminateAtExpirationDate) {
+    return (
+      <OdsBadge
+        label={t(`allDom_table_status_terminate`)}
+        color={ODS_BADGE_COLOR.critical}
+      />
+    );
+  }
+
+  return (
+    <OdsBadge
+      label={t(`allDom_table_status_${mode}`)}
+      color={
+        mode === ServiceInfoRenewMode.Automatic
+          ? ODS_BADGE_COLOR.success
+          : ODS_BADGE_COLOR.warning
+      }
+    />
+  );
+}

@@ -1,3 +1,8 @@
+export enum ServiceRoutes {
+  Domain = '/domain',
+  AllDom = '/allDom',
+}
+
 export enum ServiceInfoType {
   French = 'FRENCH',
   FrenchInternational = 'FRENCH+INTERNATIONAL',
@@ -24,16 +29,6 @@ export enum ServiceInfoContactEnum {
 export enum DomainRegistrationStateEnum {
   Registered = 'REGISTERED',
   Unregistered = 'UNREGISTERED',
-}
-
-export enum DomainProtectionStateEnum {
-  Protected = 'PROTECTED',
-  NotProtected = 'NOT_PROTECTED',
-}
-
-export enum Gender {
-  Masc = 'masc',
-  Fem = 'fem',
 }
 
 export enum ActionEnum {

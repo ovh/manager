@@ -21,11 +21,12 @@ export const getAllDomList = async (): Promise<string[]> => {
 /**
  *  : Get this AllDom properties
  */
-export const getAllDomService = async (
+export const getServiceInformation = async (
   serviceName: string,
+  serviceRoutes: string,
 ): Promise<TServiceInfo> => {
   const { data: serviceNameId } = await v6.get(
-    `/services?resourceName=${serviceName}`,
+    `/services?resourceName=${serviceName}&routes=${serviceRoutes}`,
   );
 
   const { data } = await v6.get(`/services/${serviceNameId}`);
