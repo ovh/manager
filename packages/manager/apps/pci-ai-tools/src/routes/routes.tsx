@@ -35,6 +35,7 @@ export default [
       },
       {
         path: 'quantum/auth',
+        // change ID to feat Tracking team need
         id: 'quantum-auth',
         ...lazyRouteConfig(() => import('@/pages/auth-quantum/Auth.page')),
       },

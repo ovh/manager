@@ -38,7 +38,6 @@ import {
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import ai from '@/types/AI';
 import { useModale } from '@/hooks/useModale';
@@ -54,7 +53,6 @@ import EditorsSelect from '@/components/order/editor/EditorSelect.component';
 import PrivacyRadioInput from '@/components/order/privacy-radio/PrivacyRadio.component';
 import { NotebookSuggestions, PrivacyEnum } from '@/types/orderFunnel';
 import VolumeForm from '@/components/order/volumes/VolumesForm.component';
-import { TRACKING } from '@/configuration/tracking.constants';
 import LabelsForm from '@/components/labels/LabelsForm.component';
 import SshKeyForm from '@/components/order/configuration/SshKeyForm.component';
 import OrderSummary from './OrderSummary.component';
@@ -87,13 +85,11 @@ const OrderFunnel = ({
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
 
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
-      trackClick(TRACKING.notebooksBanner.bannerDisplayedError);
       toast({
         title: t('errorCreatingNotebook'),
         variant: 'destructive',
@@ -101,7 +97,6 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (notebook) => {
-      trackClick(TRACKING.notebooksBanner.bannerDisplayedSuccess);
       toast({
         title: t('successCreatingNotebookTitle'),
         description: t('successCreatingNotebookDescription'),
@@ -135,7 +130,6 @@ const OrderFunnel = ({
       const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
         model.result,
       );
-      trackClick(TRACKING.notebooksFunnel.orderClick);
       addNotebook(notebookInfos);
     },
     (error) => {

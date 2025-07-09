@@ -35,6 +35,8 @@ import {
   isRunningNotebook,
   isStoppedNotebook,
 } from '@/lib/statusHelper';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -50,6 +52,7 @@ export const getColumns = ({
   const navigate = useNavigate();
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
+  const track = useTrackAction();
   const columns: ColumnDef<ai.notebook.Notebook>[] = [
     {
       id: 'name/id',
@@ -261,6 +264,9 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.notebooks.listing.stopNotebooksDataGridClick(),
+                  );
                   onStopClicked(row.original);
                 }}
               >

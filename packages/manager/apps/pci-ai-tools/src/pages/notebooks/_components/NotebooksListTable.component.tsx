@@ -3,12 +3,12 @@ import { Plus } from 'lucide-react';
 import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
-import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import ai from '@/types/AI';
 import { getColumns } from './NotebooksListColumns.component';
 import { getFilters } from './NotebookListFilters.component';
 import DataTable from '@/components/data-table';
 import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
@@ -17,20 +17,16 @@ interface NotebooksListProps {
 export default function NotebooksList({ notebooks }: NotebooksListProps) {
   const { t } = useTranslation('ai-tools/notebooks');
   const navigate = useNavigate();
-  const { trackPage } = useOvhTracking();
+  const track = useTrackAction();
 
-  const { trackClick } = useOvhTracking();
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
     onStartClicked: (notebook: ai.notebook.Notebook) => {
-      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('start'));
       navigate(`./start/${notebook.id}`);
     },
     onStopClicked: (notebook: ai.notebook.Notebook) => {
-      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('stop'));
       navigate(`./stop/${notebook.id}`);
     },
     onDeleteClicked: (notebook: ai.notebook.Notebook) => {
-      trackClick(TRACKING.notebooksListing.ellipsisChoiceClick('delete'));
       navigate(`./delete/${notebook.id}`);
     },
   });
@@ -48,7 +44,7 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
           <Button
             data-testid="create-notebook-button"
             onClick={() => {
-              trackClick(TRACKING.notebooksOnBoarding.createNewNotebookClick);
+              track(TRACKING.notebooks.listing.createNotebooksClick());
               navigate('./new');
             }}
           >
