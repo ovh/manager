@@ -3,19 +3,16 @@ import { render } from '@testing-library/react';
 import { Headers } from '../Headers.component';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../../../hooks/iam';
-import {
-  GuideButton,
-  ActionMenu,
-  ChangelogButton,
-} from '../../../../navigation';
+import { ActionMenu, ChangelogButton } from '../../../../navigation';
+import { GuideMenu } from '../../../../guide-menu';
 
 const header = () => <Headers title="Example for header" />;
 
 const headerWithHeaderButtons = () => (
   <Headers
     title="Example for header with header buttons"
-    guideButton={
-      <GuideButton
+    GuideMenu={
+      <GuideMenu
         items={[
           {
             id: 1,
@@ -47,7 +44,7 @@ const headerWithHeaderButtons = () => (
 const headerWithActions = () => (
   <Headers
     title="Example for header with actions "
-    guideButton={
+    GuideMenu={
       <ActionMenu
         id="1"
         items={[

@@ -4,16 +4,16 @@ import { HeadersProps } from './Headers.props';
 
 export const Headers: React.FC<HeadersProps> = ({
   title,
-  guideButton,
+  GuideMenu,
   changelogButton,
 }) => {
   return (
     <header className="flex items-start justify-between">
       {title && <Title data-testid="title">{title}</Title>}
-      {(guideButton || changelogButton) && (
+      {(GuideMenu || changelogButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
-          {guideButton}
+          {GuideMenu}
         </div>
       )}
     </header>
