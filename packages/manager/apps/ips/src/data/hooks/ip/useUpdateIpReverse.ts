@@ -3,6 +3,7 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   IpReverseResponseType,
+  getIcebergIpReverseQueryKey,
   getIpReverseQueryKey,
   updateIpReverse,
 } from '@/data/api';
@@ -42,7 +43,9 @@ export const useUpdateIpReverse = ({
       });
       // Invalidate for iceberg query also
       await queryClient.invalidateQueries({
-        queryKey: getIpReverseQueryKey({ ip }),
+        queryKey: getIcebergIpReverseQueryKey({
+          ip: ipGroup || ip,
+        }),
       });
       onSuccess?.(data);
     },
