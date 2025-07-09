@@ -2,6 +2,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
 import { Containers } from '@/types/orderFunnel';
+import { AxiosResponseType } from '@/types/AxiosType';
 
 interface DatastoresProps extends PCIAi {
   region: string;
@@ -63,11 +64,15 @@ export const editDatastore = async ({
     )
     .then((res) => res.data as ai.DataStore);
 
-export const deleteDatastore = async ({
+export const deleteDatastore: ({
   projectId,
   region,
   alias,
-}: DatastoreProps) =>
+}: DatastoreProps) => Promise<AxiosResponseType<void>> = async ({
+  projectId,
+  region,
+  alias,
+}) =>
   apiClient.v6.delete(
     `/cloud/project/${projectId}/ai/data/region/${region}/alias/${alias}`,
   );

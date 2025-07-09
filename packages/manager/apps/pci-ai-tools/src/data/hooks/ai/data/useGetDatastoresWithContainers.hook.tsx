@@ -55,7 +55,7 @@ export const useGetDatastoresWithContainers = (
   }, [containersQueries]);
   const dataStoresWithContainers: DataStoresWithContainers[] = containersQueries.flatMap(
     (container) => {
-      return container.data || [];
+      return (container.data || []) as DataStoresWithContainers[];
     },
   );
 

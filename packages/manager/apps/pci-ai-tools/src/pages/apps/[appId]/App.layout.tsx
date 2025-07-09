@@ -18,7 +18,9 @@ interface AppLayoutProps {
   request: Request;
 }
 // try to fetch the service data, redirect to service page if it fails
-export const Loader = async ({ params }: AppLayoutProps) => {
+export const Loader = async ({
+  params,
+}: AppLayoutProps): Promise<null | Response> => {
   const { projectId, appId } = params;
   return queryClient
     .fetchQuery({
@@ -26,8 +28,9 @@ export const Loader = async ({ params }: AppLayoutProps) => {
       queryFn: () => getApp({ projectId, appId }),
     })
     .then(
-      () => null,
-      () => redirect(`/pci/projects/${projectId}/ai/notebooks/deploy`),
+      (): null => null,
+      (): Response =>
+        redirect(`/pci/projects/${projectId}/ai/notebooks/deploy`),
     );
 };
 

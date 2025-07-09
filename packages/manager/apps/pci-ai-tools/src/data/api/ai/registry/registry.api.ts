@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
+import { AxiosResponseType } from '@/types/AxiosType';
 
 export const getRegistries = async ({ projectId }: PCIAi) =>
   apiClient.v6
@@ -36,8 +37,12 @@ export const editRegistry = async ({
 export interface DeleteRegistryProps extends PCIAi {
   registryId: string;
 }
-export const deleteRegistry = async ({
+
+export const deleteRegistry: ({
   projectId,
   registryId,
-}: DeleteRegistryProps) =>
+}: DeleteRegistryProps) => Promise<AxiosResponseType<void>> = async ({
+  projectId,
+  registryId,
+}) =>
   apiClient.v6.delete(`/cloud/project/${projectId}/ai/registry/${registryId}`);

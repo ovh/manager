@@ -18,7 +18,9 @@ interface NotebookLayoutProps {
   request: Request;
 }
 // try to fetch the service data, redirect to service page if it fails
-export const Loader = async ({ params }: NotebookLayoutProps) => {
+export const Loader = async ({
+  params,
+}: NotebookLayoutProps): Promise<null | Response> => {
   const { projectId, notebookId } = params;
   return queryClient
     .fetchQuery({
@@ -26,8 +28,8 @@ export const Loader = async ({ params }: NotebookLayoutProps) => {
       queryFn: () => getNotebook({ projectId, notebookId }),
     })
     .then(
-      () => null,
-      () => redirect(`/pci/projects/${projectId}/ai-ml/notebooks`),
+      (): null => null,
+      (): Response => redirect(`/pci/projects/${projectId}/ai-ml/notebooks`),
     );
 };
 

@@ -15,7 +15,7 @@
     "build": "tsc",
     "dev": "tsc",
     "prepare": "tsc",
-    "test": "manager-test",
+    "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {

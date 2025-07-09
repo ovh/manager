@@ -37,6 +37,7 @@
       "packages/manager/apps/overthebox",
       "packages/manager/apps/pci",
       "packages/manager/apps/pci-ai-endpoints",
+      "packages/manager/apps/pci-ai-tools",
       "packages/manager/apps/pci-billing",
       "packages/manager/apps/pci-block-storage",
       "packages/manager/apps/pci-cold-archive",
