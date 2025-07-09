@@ -32,6 +32,9 @@ export const TRACKING_GO_TO_TAB_PREFIX = 'main-tabnav::go-to-tab::';
 
 export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
 
+export const TRACKING_VIRTUAL_MACHINE_TAB =
+  'datacenter::details::virtual-machine';
+
 export default {
   DEDICATED_CLOUD_DATACENTER,
   COMMERCIAL_RANGE_NAME_EOL,
