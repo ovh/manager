@@ -4,7 +4,7 @@
   "pci_projects_project_instances_instance_edit_sshKey_label": "Chiave SSH",
   "pci_projects_project_instances_instance_edit_privateNetwork_label": "Reti private associate",
   "pci_projects_project_instances_instance_edit_reboot_message": "Durante il processo, sarà necessario eseguire il riavvio del server. La macchina non sarà quindi disponibile per alcuni secondi.",
-  "pci_projects_project_instances_instance_edit_reinstall_message": "Tutti i dati verranno eliminati.",
+  "pci_projects_project_instances_instance_edit_reinstall_message": "Ti ricordiamo che tutti i tuoi dati saranno eliminati e il server si riavvierà durante l’operazione. La macchina non sarà quindi disponibile per alcuni secondi.",
   "pci_projects_project_instances_instance_edit_name_label": "Nome dell'istanza",
   "pci_projects_project_instances_instance_edit_name_help": "Può contenere esclusivamente numeri, lettere, underscore, trattini o punti.",
   "pci_projects_project_instances_instance_edit_name_submit_label": "Modifica il nome",
@@ -13,7 +13,7 @@
   "pci_projects_project_instances_instance_edit_image_label": "Immagine",
   "pci_projects_project_instances_instance_edit_image_not_available": "Disponibile per un’altra Region",
   "pci_projects_project_instances_instance_edit_image_submit_label": "Modifica l’immagine",
-  "pci_projects_project_instances_instance_edit_image_success_message": "L’immagine dell’istanza {{ instance }} è stata aggiornata.",
+  "pci_projects_project_instances_instance_edit_image_success_message": "L'operazione di aggiornamento dell'immagine dell'istanza {{ instance }} è in corso",
   "pci_projects_project_instances_instance_edit_image_error_put": "Si è verificato un errore durante l’aggiornamento dell'immagine dell’istanza {{ instance }}: {{ message }}",
   "pci_projects_project_instances_instance_edit_flavor_label": "Modello",
   "pci_projects_project_instances_instance_edit_flavor_not_available": "Disponibile per un’altra Region",
@@ -37,5 +37,6 @@
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1": "La fatturazione mensile non è disponibile sulle nuove istanze (B3, C3, R3).",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2": "La migrazione dalla vecchia generazione verso la nuova gamma implica quindi il passaggio obbligatorio alla fatturazione oraria.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "L’importo della fatturazione mensile dovrà comunque essere pagato per il mese in corso.",
-  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Visualizza i prezzi"
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Visualizza i prezzi",
+  "pci_projects_project_instances_instance_edit_reinstall_message_distant": "Ti ricordiamo che tutti i tuoi dati saranno eliminati e il server si riavvierà durante l’operazione. Il ripristino dell'immagine della tua istanza da un backup remoto comporta tempi di elaborazione più lunghi, in base alle dimensioni dell'immagine e della Region. Per poter essere ripristinata, questa immagine remota verrà copiata localmente e sarà fatturata come un backup locale, alla tariffa abituale."
 }
