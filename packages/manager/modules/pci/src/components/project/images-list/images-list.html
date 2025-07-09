@@ -116,15 +116,16 @@
             </oui-tabs-item>
 
             <oui-tabs-item
-                data-id="snapshots"
-                data-ng-if="$ctrl.snapshots.length > 0"
-                data-heading="{{:: 'pci_project_instances_shapshots' | translate }}"
-                data-on-active="$ctrl.onTabChange({ tab: 'snapshots' })"
+                data-ng-repeat="(localisation, snapshots) in $ctrl.snapshots track by localisation"
+                data-id="snapshots-{{localisation}}"
+                data-ng-if="snapshots.length > 0 && (localisation !== 'distant' || $ctrl.distantBackupAvailability)"
+                data-heading="{{:: 'pci_project_instances_shapshots_' + localisation | translate }}"
+                data-on-active="$ctrl.onTabChange({ tab: 'snapshots-' + localisation })"
             >
                 <div class="container-fluid px-0">
                     <div class="row">
                         <oui-select-picker
-                            data-ng-repeat="snapshot in $ctrl.snapshots track by snapshot.id"
+                            data-ng-repeat="snapshot in snapshots track by snapshot.id"
                             class="d-inline-block col-md-6 col-xl-4 my-3"
                             data-name="{{:: snapshot.id }}"
                             data-label="{{:: snapshot.name }}"
@@ -143,7 +144,7 @@
                         </oui-select-picker>
                     </div>
                     <oui-checkbox
-                        data-ng-if="$ctrl.unavailableSnapshotsPresent"
+                        data-ng-if="$ctrl.unavailableSnapshotsPresent[localisation]"
                         data-model="$ctrl.showNonAvailable"
                     >
                         <span

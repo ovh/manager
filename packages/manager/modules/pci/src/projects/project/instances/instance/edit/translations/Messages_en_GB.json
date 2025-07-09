@@ -4,7 +4,7 @@
   "pci_projects_project_instances_instance_edit_sshKey_label": "SSH key",
   "pci_projects_project_instances_instance_edit_privateNetwork_label": "Private networks attached",
   "pci_projects_project_instances_instance_edit_reboot_message": "The server will need to reboot during this operation. It will be unavailable for a few seconds.",
-  "pci_projects_project_instances_instance_edit_reinstall_message": "All of the data stored on it will be deleted.",
+  "pci_projects_project_instances_instance_edit_reinstall_message": "Please note that all of your data will be deleted, and the server will reboot during the operation. It will be unavailable for a few seconds.",
   "pci_projects_project_instances_instance_edit_name_label": "Instance name",
   "pci_projects_project_instances_instance_edit_name_help": "May contain numbers, letters, underscores, dashes and full stops only.",
   "pci_projects_project_instances_instance_edit_name_submit_label": "Change the name",
@@ -37,5 +37,6 @@
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1": "Monthly billing is not available for new instances (B3, C3, R3).",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2": "Migrating from the previous to the latest generation will result in an automatic switch to hourly billing.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "Your payment for the current month’s billing is still due.",
-  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "View prices"
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "View prices",
+  "pci_projects_project_instances_instance_edit_reinstall_message_distant": "Please note that all of your data will be deleted, and the server will reboot during the operation. Restoring your instance’s image from a remote backup will result in a longer processing delay, depending on the size of the image and the remote region. In order to be restored, this remote image will be copied locally and it will be invoiced as a local backup at the usual rate."
 }
