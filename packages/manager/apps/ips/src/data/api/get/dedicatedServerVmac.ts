@@ -68,16 +68,18 @@ type ModelDescription = {
   namespace: string;
   description: string;
   generics?: string[];
-  properties: Record<string, ModelProperty>;
+  properties?: Record<string, ModelProperty>;
+  enumType?: string;
+  enum?: string[];
 };
 
 type ModelsType = Record<string, ModelDescription>;
 export type ServerModelsType = {
-  apiVersion: string;
-  apis: ApiEntry[];
-  basePath: string;
+  apiVersion?: string;
+  apis?: ApiEntry[];
+  basePath?: string;
   models: ModelsType;
-  resourcePath: string;
+  resourcePath?: string;
 };
 
 export const getServerModelsQueryKey = () => [`get/dedicated/server.json`];
