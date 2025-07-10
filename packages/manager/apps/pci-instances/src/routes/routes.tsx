@@ -91,7 +91,7 @@ const instanceActionLegacyRoutes: RouteObject[] = instanceActionsSections.map(
   }),
 );
 
-const instanceActionRoutes = instanceActionsSections.map((section) => ({
+const instancesActionsRoutes = instanceActionsSections.map((section) => ({
   path: `${REGION_PATH}/${INSTANCE_PATH}/${section}`,
   ...lazyRouteConfig(() =>
     import('@/pages/instances/action/InstanceAction.page'),
@@ -103,6 +103,13 @@ const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
     path: section,
   }),
 );
+
+const instanceActionsRoutes = instanceActionsSections.map((section) => ({
+  path: section,
+  ...lazyRouteConfig(() =>
+    import('@/pages/instances/action/InstanceAction.page'),
+  ),
+}));
 
 const routes: RouteObject[] = [
   {
@@ -119,7 +126,7 @@ const routes: RouteObject[] = [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: [...instanceActionLegacyRoutes, ...instanceActionRoutes],
+        children: [...instanceActionLegacyRoutes, ...instancesActionsRoutes],
       },
       {
         path: SECTIONS.onboarding,
@@ -149,6 +156,7 @@ const routes: RouteObject[] = [
             ...lazyRouteConfig(() =>
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
+            children: [...instanceActionsRoutes],
           },
         ],
       },
