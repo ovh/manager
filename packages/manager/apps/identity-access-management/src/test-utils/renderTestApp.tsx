@@ -20,6 +20,7 @@ import {
   getIamTagsMocks,
 } from '@/mocks/iam-tags/iam-tags.handler';
 import { APP_NAME } from '../tracking.constant';
+import { getIamReferenceResourceTypeMock } from '@/mocks/iam-resource/iam-tags.handler';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -32,6 +33,7 @@ export const renderTestApp = async (
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
       ...getIamTagsMocks(mockParams),
+      ...getIamReferenceResourceTypeMock(),
     ]),
   );
 
