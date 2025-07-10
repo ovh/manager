@@ -129,21 +129,24 @@ export default function PlanStep({
       >
         {tUpgrade('private_registry_upgrade_plan_description')}
       </OsdsText>
-      {isPending && (
-        <div className="mt-5">
-          <OsdsSpinner inline />
-        </div>
-      )}
-      {!isPending && store.state.region && (
-        <PlanChooser
-          plan={store.state.plan}
-          plans={
-            capabilities.find((c) => c.regionName === store.state.region.name)
-              .plans
-          }
-          onInput={(value) => store.set.plan(value)}
-        />
-      )}
+      <>
+        {isPending && (
+          <div className="mt-5">
+            <OsdsSpinner inline />
+          </div>
+        )}
+        {!isPending && store.state.region && (
+          <PlanChooser
+            plan={store.state.plan}
+            plans={
+              capabilities?.find(
+                (c) => c.regionName === store.state.region.name,
+              )?.plans
+            }
+            onInput={(value) => store.set.plan(value)}
+          />
+        )}
+      </>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
