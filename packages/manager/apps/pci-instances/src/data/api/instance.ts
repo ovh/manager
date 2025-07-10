@@ -1,8 +1,11 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
-  TInstanceDto,
+  TAggregatedInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
+import { mockedInstanceDTO } from '@/__mocks__/instance/constants';
+import { mapInstanceDtoToInstance } from './mapper/instance.mapper';
+import { TInstance } from '@/types/instance/entity.type';
 
 type TInstanceAction =
   | 'delete'
@@ -35,7 +38,7 @@ export const getInstances = (
     searchField,
     searchValue,
   }: TRetrieveInstancesQueryParams,
-): Promise<TInstanceDto[]> =>
+): Promise<TAggregatedInstanceDto[]> =>
   v6
     .get(`/cloud/project/${projectId}/aggregated/instance`, {
       params: {
@@ -137,13 +140,26 @@ export const activateMonthlyBilling = (
     serviceName: projectId,
   });
 
-export const getInstance = ({
-  projectId,
-  instanceId,
-}: {
+export type TGetInstanceQueryParams = Partial<{
+  withVolumes: boolean;
+  withBackups: boolean;
+  withNetworks: boolean;
+  withImage: boolean;
+}>;
+
+type TGetInstanceArgs = {
   projectId: string;
   instanceId: string;
-}): Promise<TInstanceDto> =>
-  v6
-    .get(`/cloud/project/${projectId}/aggregated/instance/${instanceId}`)
-    .then((response) => response.data);
+  region: string | null;
+  params?: TGetInstanceQueryParams;
+};
+
+export const getInstance = async (
+  // it will be removed with mock data
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _args: TGetInstanceArgs,
+): Promise<TInstance> => {
+  return new Promise((r) =>
+    setTimeout(() => r(mapInstanceDtoToInstance(mockedInstanceDTO)), 2000),
+  );
+};

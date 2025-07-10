@@ -1,11 +1,17 @@
 import { describe, test } from 'vitest';
 import { buildPartialInstanceDto } from './instanceDto.builder';
-import { TInstanceDto, TPartialInstanceDto } from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceDto,
+  TPartialInstanceDto,
+} from '@/types/instance/api.type';
 
 type Data = {
   desc: string;
   initial: TPartialInstanceDto;
-  steps: [keyof TInstanceDto, TInstanceDto[keyof TInstanceDto]][];
+  steps: [
+    keyof TAggregatedInstanceDto,
+    TAggregatedInstanceDto[keyof TAggregatedInstanceDto],
+  ][];
   expected: TPartialInstanceDto;
 };
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useBaseInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
-import { TInstanceDto } from '@/types/instance/api.type';
 import ActionModal from '@/components/actionModal/ActionModal.component';
+import { TInstanceActionModalViewModel } from './view-models/selectInstanceForActionModal';
 
 type BaseInstanceActionSection =
   | 'delete'
@@ -21,7 +21,7 @@ export type TBaseInstanceActionPageProps = {
   onError: (error: unknown) => void;
   onSuccess: () => void;
   onModalClose: () => void;
-  instance?: TInstanceDto;
+  instance: TInstanceActionModalViewModel;
   isLoading: boolean;
 };
 
