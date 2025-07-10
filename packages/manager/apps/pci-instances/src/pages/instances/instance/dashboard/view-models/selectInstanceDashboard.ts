@@ -3,6 +3,7 @@ import { TActionName } from '@/types/instance/common.type';
 import {
   TInstance,
   TInstanceAction,
+  TInstanceAddresses,
   TInstanceFlavor,
   TInstancePrice,
   TInstanceRegion,
@@ -41,6 +42,7 @@ export type TInstanceDashboardViewModel = {
   name: string;
   flavor: TFlavor;
   region: TInstanceRegion;
+  addresses: TInstanceAddresses;
   pricings: TPrice[];
   status: {
     label: TInstanceStatus;
@@ -192,6 +194,7 @@ export const selectInstanceDashboard = (
     name: instance.name,
     flavor: mapFlavor(instance.flavor),
     region: instance.region,
+    addresses: instance.addresses,
     pricings: mapPricings(instance.pricings || []),
     task: instance.task,
     status: getInstanceStatus(instance.status),
