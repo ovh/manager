@@ -31,6 +31,7 @@ const InstanceGeneralInfoBlock: FC = () => {
   const hrefBillingMonthlyActivate = useHref(
     `../${instanceId}/billing/monthly/activate`,
   );
+  const hrefDeleteInstance = useHref(`../${instanceId}/delete`);
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region: regionId,
@@ -154,11 +155,16 @@ const InstanceGeneralInfoBlock: FC = () => {
           </OsdsText>
         </div>
       </DashboardTileBlock>
-      <LoadingCell isLoading={isInstanceLoading}>
-        <OsdsLink color={ODS_THEME_COLOR_INTENT.error}>
-          {t('list:pci_instances_list_action_delete')}
-        </OsdsLink>
-      </LoadingCell>
+      {instance?.isDeleteEnabled && (
+        <LoadingCell isLoading={isInstanceLoading}>
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.error}
+            href={hrefDeleteInstance}
+          >
+            {t('list:pci_instances_list_action_delete')}
+          </OsdsLink>
+        </LoadingCell>
+      )}
     </DashboardCardLayout>
   );
 };
