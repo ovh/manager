@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Para verificar su forma de pago, por favor, <strong>introduzca a continuación las seis primeras cifras de su tarjeta bancaria:</strong>",
+  "pci_project_new_payment_challenge_paypal": "Para verificar su forma de pago, conéctese a su cuenta de PayPal.",
+  "pci_project_new_payment_challenge_bank_account": "Para verificar su forma de pago, introduzca su número IBAN a continuación:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "No ha sido posible verificar su forma de pago. Por favor, vuelva a intentarlo."
+}
