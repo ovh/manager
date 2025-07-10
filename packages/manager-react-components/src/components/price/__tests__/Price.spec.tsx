@@ -1,8 +1,29 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-import Price from './price.component';
-import { render } from '../../../utils/test.provider';
+import { vitest } from 'vitest';
+import { screen, render } from '@testing-library/react';
+import Price from '../Price.component';
 import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
+
+vitest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+// Mock sub-components
+vitest.mock('../price-text', async () => {
+  const PriceText = ({
+    price = '',
+    label = '',
+    intervalUnitText = '',
+  }: any) => <span>{`${price} ${label} ${intervalUnitText} `}</span>;
+  return {
+    PRICE_TEXT_PRESET: {
+      WITH_TAX: 'with-tax',
+    },
+    PriceText,
+  };
+});
 
 describe('Price component', () => {
   const renderPriceComponent = (props: React.ComponentProps<typeof Price>) => {
@@ -15,7 +36,7 @@ describe('Price component', () => {
     intervalUnit: IntervalUnitType.month,
   };
   const priceDefault = '39,48 €';
-  const priceHtMonth = '39,48 €HT/mois';
+  const priceHtMonth = '39,48 € price_ht_label price_per_month';
   const priceTTC = '47,38 €';
   const taxNumber = 789600000;
   const localeFr = 'fr-FR';
@@ -27,37 +48,37 @@ describe('Price component', () => {
       locale: localeFr,
     };
     renderPriceComponent(props);
-    const priceElement = screen.getByText('Inclus');
-    expect(priceElement.parentElement).toHaveTextContent('Inclus');
+    const priceElement = screen.getByText('price_free');
+    expect(priceElement.parentElement).toHaveTextContent('price_free');
   });
 
   it('renders a price with locale of the form xx_XX correctly', () => {
     const props = { ...baseProps, locale: 'fr_FR' };
     renderPriceComponent(props);
-    const priceElement = screen.getByText(priceDefault);
-    expect(priceElement.parentElement).toHaveTextContent(priceHtMonth);
+    const priceElement = screen.getByText(priceDefault, { exact: false });
+    expect(priceElement).toHaveTextContent(priceHtMonth);
   });
 
   it('renders a price for HT correctly', () => {
     const props = { ...baseProps, locale: localeFr };
     renderPriceComponent(props);
-    const priceElement = screen.getByText(priceDefault);
-    expect(priceElement.parentElement).toHaveTextContent(priceHtMonth);
+    const priceElement = screen.getByText(priceDefault, { exact: false });
+    expect(priceElement).toHaveTextContent(priceHtMonth);
   });
 
   it('if I have a bad local I want it in French', () => {
     const props = { ...baseProps, locale: 'toto' };
     renderPriceComponent(props);
-    const priceElement = screen.getByText(priceDefault);
-    expect(priceElement.parentElement).toHaveTextContent(priceHtMonth);
+    const priceElement = screen.getByText(priceDefault, { exact: false });
+    expect(priceElement).toHaveTextContent(priceHtMonth);
   });
 
   it('renders a price FR for TTC correctly', () => {
     const props = { ...baseProps, locale: localeFr, tax: taxNumber };
     renderPriceComponent(props);
-    const priceElement = screen.getByText(priceDefault);
+    const priceElement = screen.getByText(priceDefault, { exact: false });
     expect(priceElement.parentElement).toHaveTextContent(
-      `${priceDefault}HT/mois(${priceTTC}TTC)`,
+      `${priceDefault} price_ht_label price_per_month ${priceTTC} price_ttc_label`,
     );
   });
 
@@ -68,8 +89,8 @@ describe('Price component', () => {
       ovhSubsidiary: OvhSubsidiary.US,
     };
     renderPriceComponent(props);
-    const priceElementTTC = screen.getByText('$39.48');
-    expect(priceElementTTC.parentElement).toHaveTextContent('$39.48');
+    const priceElementTTC = screen.getByText('$39.48', { exact: false });
+    expect(priceElementTTC).toHaveTextContent('$39.48');
   });
 
   it('renders a price ASIA correctly with convert unit month', () => {
@@ -81,9 +102,9 @@ describe('Price component', () => {
       tax: taxNumber,
     };
     renderPriceComponent(props);
-    const priceElementTTC = screen.getByText('$3.29');
+    const priceElementTTC = screen.getByText('$3.29', { exact: false });
     expect(priceElementTTC.parentElement).toHaveTextContent(
-      '$3.29ex. GST/mois($3.95incl. GST)',
+      '$3.29 price_gst_excl_label price_per_month $3.95 price_gst_incl_label',
     );
   });
   it('renders a price ASIA correctly with convert unit month excl gst', () => {
@@ -94,9 +115,9 @@ describe('Price component', () => {
       isConvertIntervalUnit: true,
     };
     renderPriceComponent(props);
-    const priceElementTTC = screen.getByText('$3.29');
-    expect(priceElementTTC.parentElement).toHaveTextContent(
-      '$3.29ex. GST/mois',
+    const priceElementTTC = screen.getByText('$3.29', { exact: false });
+    expect(priceElementTTC).toHaveTextContent(
+      '$3.29 price_gst_excl_label price_per_month',
     );
   });
 
@@ -108,7 +129,7 @@ describe('Price component', () => {
       tax: taxNumber,
     };
     renderPriceComponent(props);
-    const priceElementTTC = screen.getByText(priceTTC);
-    expect(priceElementTTC.parentElement).toHaveTextContent(priceTTC);
+    const priceElementTTC = screen.getByText(priceTTC, { exact: false });
+    expect(priceElementTTC).toHaveTextContent(priceTTC);
   });
 });
