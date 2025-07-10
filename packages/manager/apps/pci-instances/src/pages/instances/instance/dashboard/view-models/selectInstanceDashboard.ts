@@ -9,6 +9,7 @@ import {
   TInstanceStatus,
   TInstanceStatusSeverity,
   TInstanceTaskStatus,
+  TInstanceVolume,
 } from '@/types/instance/entity.type';
 
 type TPrice = {
@@ -21,6 +22,8 @@ type TFlavor = {
   name: string;
   ram: string;
   cpu: string;
+  storage: string;
+  publicBandwidth: string;
 };
 
 type TAction = {
@@ -44,6 +47,10 @@ export type TInstanceDashboardViewModel = {
     severity: TInstanceStatusSeverity;
   };
   task: TInstanceTaskStatus;
+  image: string;
+  volumes: TInstanceVolume[];
+  sshKey: string | null;
+  login: string | null;
   actions: TInstanceActions;
   canActivateMonthlyBilling: boolean;
   isDeleteEnabled: boolean;
@@ -57,6 +64,10 @@ const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
   name,
   ram: specs ? `${specs.ram.value} ${specs.ram.unit}` : '-',
   cpu: specs ? `${specs.cpu.value} ${specs.cpu.unit}` : '-',
+  storage: specs ? `${specs.storage.value} ${specs.storage.unit}` : '-',
+  publicBandwidth: specs
+    ? `${specs.bandwidth.public.value} ${specs.bandwidth.public.unit}`
+    : '-',
 });
 
 const mapPricings = (pricings: TInstancePrice[]) =>
@@ -184,6 +195,10 @@ export const selectInstanceDashboard = (
     pricings: mapPricings(instance.pricings || []),
     task: instance.task,
     status: getInstanceStatus(instance.status),
+    image: instance.image?.name ?? '',
+    volumes: instance.volumes ?? [],
+    sshKey: instance.sshKey,
+    login: instance.login,
     actions: mapActions(instance, projectUrl),
     canActivateMonthlyBilling: canActivateMonthlyBilling(instance.actions),
     isDeleteEnabled: canDeleteInstance(instance.actions),
