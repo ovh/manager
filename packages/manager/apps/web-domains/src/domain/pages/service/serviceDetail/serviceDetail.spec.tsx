@@ -12,8 +12,8 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(),
 }));
 
-vi.mock('@/domain/pages/domainTabs/domainTabDns', () => ({
-  default: () => <div>DomainDnsTab</div>,
+vi.mock('@/domain/pages/domainTabs/dns/dnsConfiguration', () => ({
+  default: () => <div>DnsConfigurationTab</div>,
 }));
 
 describe('Domain detail', () => {
