@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryObj } from '@storybook/react';
-import { TagsModal } from '../../../../../manager-react-components/src/components/tags-modal/tags-modal.component';
+import { TagsModal } from '../../../../../manager-react-components/src/components/tags/tags-modal/tags-modal.component';
 
 const managerTagsModal = {
   title: 'Manager React Components/Components/TagsModal',

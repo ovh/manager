@@ -79,10 +79,10 @@ describe('TagsModal', () => {
     const modal = container.querySelector('ods-modal');
     expect(modal.getBoundingClientRect().width).toBeGreaterThan(20);
 
-    const backButton = container.querySelector('ods-button[label="back"]');
+    const backButton = screen.getByTestId('tags-modal-back-button');
     fireEvent.click(backButton);
     expect(onCancel).toHaveBeenCalledOnce();
-    const editButton = container.querySelector('ods-button[label="edit_tags"]');
+    const editButton = screen.getByTestId('tags-modal-manage-tags');
     fireEvent.click(editButton);
     expect(onEditTags).toHaveBeenCalledTimes(1);
   });
