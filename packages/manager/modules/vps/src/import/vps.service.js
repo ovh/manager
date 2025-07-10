@@ -48,6 +48,44 @@ export default /* @ngInject */ function VpsService(
     tabVeeamChanged: 'vps.tabs.veeam.changed',
   };
 
+  this.getVpsList = function getVpsList() {
+    return iceberg(swsVpsProxypass)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  };
+
+  this.vpsRenewPrice = function vpsRenewPrice(serviceName) {
+    return this.getServiceInfos(serviceName).then(({ serviceId }) =>
+      $http
+        .get(`/service/${serviceId}/renew`, {
+          params: {
+            includeOptions: true,
+          },
+        })
+        .then(({ data }) => data[0]),
+    );
+  };
+
+  this.getMigration2020 = function getMigration2020(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/migration2020`)
+      .then(({ data }) => data);
+  };
+
+  this.postMigration2020 = function getMigration2020(serviceName, plan) {
+    return $http
+      .post(`/vps/${serviceName}/migration2020`, { plan })
+      .then(({ data }) => data);
+  };
+
+  this.putMigration2020 = function getMigration2020(serviceName, date) {
+    return $http
+      .put(`/vps/${serviceName}/migration2020`, { date })
+      .then(({ data }) => data);
+  };
+
   this.getTaskInProgress = function getTaskInProgress(serviceName, type) {
     let result = null;
     return this.getSelectedVps(serviceName)
