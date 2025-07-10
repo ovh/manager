@@ -7,14 +7,18 @@ import HdsSection from './HdsSection';
 import { createWrapper } from '@/wrapperRenders';
 import * as useHdsModule from './useHds';
 import * as useCartModule from '@/data/hooks/useCart';
-import { Cart, CartSummary, TCheckoutResponse } from '@/data/types/cart.type';
+import { Cart, CartSummary, PaymentMean } from '@/data/types/cart.type';
 import { TCartServiceOption } from '@/data/types/service.type';
+import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
 
 vi.mock('./useHds', () => ({
   useIsAlreadyHdsCertifiedProject: vi.fn(),
   useGetHdsCartServiceOption: vi.fn(),
   usePrepareHdsCart: vi.fn(),
-  useCheckoutAndPayCart: vi.fn(),
+}));
+
+vi.mock('@/hooks/useCheckout/useCheckout', () => ({
+  useCheckoutWithFidelityAccount: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/useCart', () => ({
@@ -62,9 +66,9 @@ function mockQueryResult<T>(data: T) {
 }
 
 type HdsMutationResult = UseMutationResult<
-  TCheckoutResponse,
+  CartSummary,
   ApiError,
-  { cartId: string; paymentMean?: string },
+  { cartId: string; paymentMean?: PaymentMean },
   unknown
 >;
 
@@ -92,7 +96,7 @@ const mockCart: Cart = {
   cartId: 'cart-1',
   description: '',
   expire: '',
-  readOnly: false,
+  readonly: false,
 };
 
 const mockCartSummary: CartSummary = {
@@ -141,7 +145,7 @@ describe('HdsSection', () => {
     vi.mocked(useCartModule.useGetCartSummary).mockReturnValue(
       mockQueryResult<CartSummary>(mockCartSummary),
     );
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult(),
     );
 
@@ -166,7 +170,7 @@ describe('HdsSection', () => {
     vi.mocked(useCartModule.useGetCartSummary).mockReturnValue(
       mockQueryResult<CartSummary>(mockCartSummary),
     );
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult(),
     );
 
@@ -191,7 +195,7 @@ describe('HdsSection', () => {
     vi.mocked(useCartModule.useGetCartSummary).mockReturnValue(
       mockQueryResult<CartSummary>(mockCartSummaryWithContracts),
     );
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult(),
     );
 
@@ -221,7 +225,7 @@ describe('HdsSection', () => {
     vi.mocked(useCartModule.useGetCartSummary).mockReturnValue(
       mockQueryResult<CartSummary>(mockCartSummaryWithContracts),
     );
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult(),
     );
 
@@ -264,7 +268,7 @@ describe('HdsSection', () => {
       mockQueryResult<CartSummary>(mockCartSummaryWithContracts),
     );
     const mutate = vi.fn();
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult({ mutate, isPending: true }),
     );
 
@@ -308,7 +312,7 @@ describe('HdsSection', () => {
         undefined,
       ) as unknown) as UseQueryResult<CartSummary, Error>,
     );
-    vi.mocked(useHdsModule.useCheckoutAndPayCart).mockReturnValue(
+    vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
       mockMutationResult(),
     );
 
