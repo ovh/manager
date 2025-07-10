@@ -14,6 +14,17 @@ export default /* @ngInject */ ($stateProvider) => {
       params: {
         selectedDrpType: null,
       },
+      redirectTo: (transition) => {
+        return transition
+          .injector()
+          .getAsync('isZertoOnPremise')
+          .then((isZertoOnPremise) => {
+            return (
+              isZertoOnPremise &&
+              'app.managedBaremetal.details.datacenters.datacenter.drp.listing'
+            );
+          });
+      },
       resolve: {
         datacenterHosts: /* @ngInject */ ($stateParams, DedicatedCloud) =>
           DedicatedCloud.getHosts(
@@ -134,6 +145,13 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('managed_baremetal_datacenters_datacenter_drp'),
+        zertoState: /* @ngInject */ (
+          dedicatedCloudDrp,
+          serviceName,
+          datacenterId,
+        ) => dedicatedCloudDrp.getDrpState({ serviceName, datacenterId }),
+        isZertoOnPremise: /* @ngInject */ (zertoState) =>
+          zertoState.drpType === 'onPremise',
       },
     },
   );
