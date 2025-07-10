@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.30.0...@ovh-ux/manager-react-components@2.31.0) (2025-07-10)
+
+### Features
+
+- add aria label on action menu ([11d986c](https://github.com/ovh/manager/commit/11d986c10a69c1c779a27a2ce2a6f81b5c4bf919)), closes [#18041](https://github.com/ovh/manager/issues/18041)
+
 # [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.2...@ovh-ux/manager-react-components@2.30.0) (2025-07-04)
 
 ### Bug Fixes
