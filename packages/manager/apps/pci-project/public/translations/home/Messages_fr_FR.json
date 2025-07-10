@@ -12,5 +12,10 @@
   "network": "Network",
   "manage_vrack": "Gérer les réseaux privés (vRack)",
   "database": "Database",
-  "create_database": "Créer une base de données"
+  "create_database": "Créer une base de données",
+  "others": "Autres",
+  "create_ai_notebook": "Créer un projet AI Notebook",
+  "create_load_balancer": "Créer un load balancer",
+  "billing": "Facturation",
+  "quotas": "Quotas"
 }
