@@ -74,8 +74,9 @@ export function useTrackPageAuto() {
     const { tracking } = match.handle as {
       tracking?: { id: string; category?: string };
     };
-    if (!tracking?.id) return;
-    let injectedTrackingKey = `${prefix}::${tracking.id}`;
+    const { id } = match;
+    const suffix = tracking.id || id || location.pathname.split('/').pop();
+    let injectedTrackingKey = `${prefix}::${suffix}`;
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
