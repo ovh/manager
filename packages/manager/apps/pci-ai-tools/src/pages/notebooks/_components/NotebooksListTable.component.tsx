@@ -7,6 +7,8 @@ import ai from '@/types/AI';
 import { getColumns } from './NotebooksListColumns.component';
 import { getFilters } from './NotebookListFilters.component';
 import DataTable from '@/components/data-table';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface NotebooksListProps {
   notebooks: ai.notebook.Notebook[];
@@ -14,6 +16,7 @@ interface NotebooksListProps {
 
 export default function NotebooksList({ notebooks }: NotebooksListProps) {
   const { t } = useTranslation('ai-tools/notebooks');
+  const track = useTrackAction();
   const navigate = useNavigate();
 
   const columns: ColumnDef<ai.notebook.Notebook>[] = getColumns({
@@ -41,7 +44,10 @@ export default function NotebooksList({ notebooks }: NotebooksListProps) {
         <DataTable.Action>
           <Button
             data-testid="create-notebook-button"
-            onClick={() => navigate('./new')}
+            onClick={() => {
+              track(TRACKING.notebooks.listing.createNotebooksClick());
+              navigate('./new');
+            }}
           >
             <Plus className="size-6" />
             {t('createNewNotebook')}

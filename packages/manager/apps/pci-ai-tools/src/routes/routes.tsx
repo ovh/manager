@@ -1,3 +1,4 @@
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import NotFound from '../pages/404.page';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
@@ -201,6 +202,12 @@ export default [
               {
                 path: '',
                 id: 'notebooks',
+                handle: {
+                  tracking: {
+                    id: 'ai_notebooks.listing',
+                    category: 'listing',
+                  },
+                },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/Notebooks.page'),
                 ),
@@ -208,6 +215,12 @@ export default [
                   {
                     path: 'start/:notebookId',
                     id: 'notebooks.start',
+                    handle: {
+                      tracking: {
+                        id: 'ai_notebooks.popup.start',
+                        category: 'listing',
+                      },
+                    },
                     ...lazyRouteConfig(() =>
                       import('@/pages/notebooks/start/Start.modal'),
                     ),
@@ -231,6 +244,12 @@ export default [
               {
                 path: 'onboarding',
                 id: 'onboarding-notebooks',
+                handle: {
+                  tracking: {
+                    id: 'ai_notebooks.onboarding',
+                    category: 'onboarding',
+                  },
+                },
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/onboarding/Onboarding.page'),
                 ),
@@ -241,10 +260,28 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/notebooks/create/Create.page'),
                 ),
+                handle: {
+                  tracking: {
+                    id: 'ai_notebooks.funnel',
+                    category: 'funnel',
+                  },
+                  breadcrumb: () => (
+                    <BreadcrumbItem
+                      translationKey="breadcrumb"
+                      namespace="ai-tools/notebooks/create"
+                    />
+                  ),
+                },
                 children: [
                   {
                     path: 'add-sshkey',
                     id: 'notebooks.create.add-sshkey',
+                    handle: {
+                      tracking: {
+                        id: 'ai_notebooks.funnel.popup.add-sshkey',
+                        category: 'funnel',
+                      },
+                    },
                     ...lazyRouteConfig(() =>
                       import('@/pages/_components/AddSSHKey.modal'),
                     ),
@@ -260,6 +297,12 @@ export default [
                   {
                     path: '',
                     id: 'notebooks.notebook.dashboard',
+                    handle: {
+                      tracking: {
+                        id: 'ai_notebooks.notebook.dashboard',
+                        category: 'dashboard',
+                      },
+                    },
                     ...lazyRouteConfig(() =>
                       import(
                         '@/pages/notebooks/[notebookId]/dashboard/Dashboard.page'
@@ -438,6 +481,18 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/jobs/create/Create.page'),
                 ),
+                handle: {
+                  tracking: {
+                    id: 'ai_training.funnel',
+                    category: 'funnel',
+                  },
+                  breadcrumb: () => (
+                    <BreadcrumbItem
+                      translationKey={`breadcrumb`}
+                      namespace="ai-tools/jobs/create"
+                    />
+                  ),
+                },
                 children: [
                   {
                     path: 'add-sshkey',
@@ -562,6 +617,18 @@ export default [
                 ...lazyRouteConfig(() =>
                   import('@/pages/apps/create/Create.page'),
                 ),
+                handle: {
+                  tracking: {
+                    id: 'ai_deploy.funnel',
+                    category: 'funnel',
+                  },
+                  breadcrumb: () => (
+                    <BreadcrumbItem
+                      translationKey={`breadcrumb`}
+                      namespace="ai-tools/apps/create"
+                    />
+                  ),
+                },
               },
               {
                 path: ':appId',
