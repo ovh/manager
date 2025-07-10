@@ -2,7 +2,7 @@
   "activated": "Activé",
   "back_to_list": "Retour à la liste des secrets",
   "cas_with_description": "CAS (Check-And-Set Version Control)",
-  "deactivate_version_after": "Durée avant désactivation",
+  "deactivate_version_after": "Durée d'expiration d’une version",
   "deactivated": "Désactivé",
   "general_information": "Informations générales",
   "last_update": "Dernière mise à jour",
