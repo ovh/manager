@@ -1,0 +1,90 @@
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
+import {
+  FormField,
+  FormFieldLabel,
+  Clipboard,
+  ClipboardControl,
+  ClipboardTrigger,
+} from '@ovhcloud/ods-react';
+import StatusChip from '@/components/statusChip/StatusChip.component';
+import {
+  BaseActionsMenu,
+  TActionsMenuItem,
+} from '@/components/menu/ActionsMenu.component';
+import { TInstanceAddress } from '@/types/instance/entity.type';
+
+type TNetworkItemProps = {
+  address: TInstanceAddress;
+  isFloatingIp?: boolean;
+  actions?: TActionsMenuItem[];
+};
+
+const IPAddressItem: FC<{
+  label: string;
+  value: string;
+  actions?: TActionsMenuItem[];
+}> = ({ label, value, actions }) => (
+  <div className="my-4 flex items-end w-full">
+    <FormField className="flex-grow">
+      <FormFieldLabel>{label}</FormFieldLabel>
+      <Clipboard value={value}>
+        <ClipboardControl className="w-full" />
+        <ClipboardTrigger />
+      </Clipboard>
+    </FormField>
+    <div className="w-[40px] flex-shrink-0">
+      {actions && <BaseActionsMenu items={actions} />}
+    </div>
+  </div>
+);
+
+const NetworkItem: FC<TNetworkItemProps> = ({
+  address,
+  actions,
+  isFloatingIp,
+}) => {
+  const { t } = useTranslation('dashboard');
+
+  return (
+    <section className="my-5">
+      <div className="flex items-center gap-x-4">
+        <OsdsText
+          size={ODS_TEXT_SIZE._400}
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          hue={ODS_THEME_COLOR_HUE._800}
+        >
+          {address.subnet?.network.name}
+        </OsdsText>
+        {isFloatingIp && (
+          <StatusChip
+            status={{
+              label: t('pci_instances_dashboard_network_floating_title'),
+              severity: 'warning',
+            }}
+          />
+        )}
+      </div>
+      <IPAddressItem
+        label={t(`pci_instances_dashboard_network_ipv${address.version}`)}
+        value={address.ip}
+        actions={actions}
+      />
+      {address.subnet?.gatewayIP && (
+        <IPAddressItem
+          label={t('pci_instances_dashboard_network_gateway')}
+          value={address.subnet.gatewayIP}
+        />
+      )}
+    </section>
+  );
+};
+
+export default NetworkItem;
