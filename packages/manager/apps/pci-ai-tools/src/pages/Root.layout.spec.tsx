@@ -15,6 +15,26 @@ describe('Notebooks Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 
+    vi.mock('react-router-dom', async (importOriginal) => {
+      const mod = await importOriginal<typeof import('react-router-dom')>();
+      return {
+        ...mod,
+        // garde le reste des exports si besoin, sinon mocke juste ce dont tu as besoin
+        useMatches: () => [
+          {
+            id: '0',
+            pathname: '/',
+            handle: {
+              tracking: {
+                id: 'layout',
+              },
+            },
+          },
+        ],
+        // si tu utilises d'autres exports, tu peux les mocker ici aussi
+      };
+    });
+
     vi.mock('@/data/api/project/project.api', () => {
       return {
         getProject: vi.fn(() => ({
