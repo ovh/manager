@@ -16,6 +16,7 @@ import DatagridItemsCounter from '@/components/datagridItemsCounter/DatagridItem
 import { useGetIamTags } from '@/data/hooks/useGetIamTags';
 import { TagManagerContext } from '../../tagsManagerContext';
 import { SortTagsParams, sortTags } from './utils/sortTags';
+import TagSelectCell from './tagSelectCell/TagSelectCell.component';
 
 const PAGE_SIZE = 10;
 
@@ -134,6 +135,7 @@ export default function TagsListDatagrid() {
         isLoading={isLoading}
         numberOfLoadingRows={10}
         onSortChange={sortItems}
+        bulkSelectId="name"
       />
       <DatagridItemsCounter
         currentPage={page}

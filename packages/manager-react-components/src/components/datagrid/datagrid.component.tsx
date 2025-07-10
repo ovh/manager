@@ -36,6 +36,7 @@ import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.constants';
 import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
+import { IndeterminateCheckbox } from './indeterminate-checkbox.component';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
@@ -151,6 +152,8 @@ export interface DatagridProps<T> {
   tableLayoutFixed?: boolean;
   /** To use if tag column is present and filter is enabled. This allows to fetch all tags from iam only for this resource type */
   resourceType?: string;
+  /** Enable bulk select on the datagrid */
+  bulkSelectId?: string;
 }
 
 export const Datagrid = <T,>({
@@ -182,6 +185,7 @@ export const Datagrid = <T,>({
   hideHeader,
   tableLayoutFixed,
   resourceType,
+  bulkSelectId,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -192,6 +196,22 @@ export const Datagrid = <T,>({
 
   const table = useReactTable({
     columns: [
+      ...(bulkSelectId
+        ? [
+            {
+              id: 'select',
+              cell: ({ row }: { row: Row<T> }) => (
+                <IndeterminateCheckbox
+                  id={row[bulkSelectId]}
+                  name="select"
+                  label="select"
+                  onChange={() => row.getToggleSelectedHandler()}
+                  isChecked={row.getIsSelected()}
+                />
+              ),
+            },
+          ]
+        : []),
       ...(getRowCanExpand && renderSubComponent
         ? [
             {
