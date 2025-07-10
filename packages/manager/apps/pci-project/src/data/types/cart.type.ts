@@ -2,8 +2,8 @@ export type Cart = {
   cartId: string;
   description: string;
   expire: string;
-  items: Array<unknown>;
-  readonly: boolean;
+  items?: Array<unknown>;
+  readonly: boolean | undefined;
 };
 
 export enum PlanCode {
@@ -82,7 +82,7 @@ export type CartSummary = {
   };
   contracts: CartContract[];
   projectItem?: { voucherConfiguration?: { value: string } };
-  readOnly: boolean;
+  readonly?: boolean;
 };
 
 export type CartDetail = {
@@ -137,18 +137,4 @@ export type AddOptionToCartResponse = {
   offerId: string | null;
   options: unknown[];
   productId: string;
-};
-
-export type TCheckoutResponse = {
-  contracts: CartContract[];
-  prices: {
-    originalWithoutTax: Price;
-    reduction: Price;
-    tax: Price;
-    withTax: Price;
-    withoutTax: Price;
-  };
-  details: CartDetail[];
-  orderId: number;
-  url: string;
 };
