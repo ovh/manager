@@ -138,8 +138,9 @@ export default function PlanStep({
         <PlanChooser
           plan={store.state.plan}
           plans={
-            capabilities.find((c) => c.regionName === store.state.region.name)
-              .plans
+            (capabilities || []).find(
+              (c) => c.regionName === store.state.region.name,
+            ).plans
           }
           onInput={(value) => store.set.plan(value)}
         />
