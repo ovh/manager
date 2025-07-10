@@ -24,9 +24,14 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   };
 });
 
-vi.mock('@/domain/utils/utils', () => ({
-  getLanguageKey: vi.fn(),
-}));
+vi.mock(import('@/domain/utils/utils'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    getLanguageKey: vi.fn(),
+    computeDnsDetails: vi.fn(),
+  };
+});
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),

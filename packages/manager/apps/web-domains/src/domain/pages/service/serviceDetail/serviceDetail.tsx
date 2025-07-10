@@ -42,6 +42,7 @@ export default function ServiceDetail() {
   const {
     domainResourceError,
     isFetchingDomainResource,
+    domainResource,
   } = useGetDomainResource(serviceName);
 
   if (isFetchingDomainResource) {
@@ -68,7 +69,7 @@ export default function ServiceDetail() {
         />
       }
       header={header}
-      tabs={<ServiceDetailsTabs />}
+      tabs={<ServiceDetailsTabs domainResource={domainResource} />}
       backLinkLabel={t('domain_back_to_service_list')}
       onClickReturn={() => {
         navigate(urls.domainRoot, { replace: true });
