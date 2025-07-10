@@ -6,7 +6,7 @@ import map from 'lodash/map';
 import 'moment';
 import { RANGES } from '../upscale/upscale.constants';
 import {
-  ADD_DOMAIN_LINK,
+  ADD_DOMAIN_LINK_SUFFIX_URL,
   VPS_RANGE_COMPARE_LINKS,
   COMMIT_IMPRESSION_TRACKING_DATA,
   DASHBOARD_FEATURES,
@@ -34,6 +34,7 @@ export default class {
     VpsService,
     VpsHelperService,
     VpsUpgradeService,
+    RedirectionService,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -48,10 +49,11 @@ export default class {
     this.VpsService = VpsService;
     this.VpsHelperService = VpsHelperService;
     this.VpsUpgradeService = VpsUpgradeService;
-    this.ADD_DOMAIN_LINK = ADD_DOMAIN_LINK;
+    this.ADD_DOMAIN_LINK = `${RedirectionService.getURL(
+      'order',
+    )}${ADD_DOMAIN_LINK_SUFFIX_URL}`;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
-
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 

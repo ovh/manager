@@ -8,9 +8,8 @@ export const DASHBOARD_FEATURES = {
 };
 export const SERVICE_TYPE = 'vps';
 
-export const ADD_DOMAIN_LINK =
-  'https://www.ovh.com/fr/order/webcloud/#/webCloud/domain/select?selection=~()';
-
+export const ADD_DOMAIN_LINK_SUFFIX_URL =
+  'webcloud/#/webCloud/domain/select?selection=~()';
 export const NEW_RANGE_VERSION = '2019v1';
 
 export const VPS_STATES = {
@@ -92,6 +91,7 @@ export const VPS_MIGRATION_FAQ_LINKS = {
 };
 
 export default {
+  ADD_DOMAIN_LINK_SUFFIX_URL,
   DASHBOARD_FEATURES,
   MIGRATION_STATUS,
   NEW_RANGE_VERSION,
