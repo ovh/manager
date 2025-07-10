@@ -1,12 +1,17 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { IamTagListItem } from '@/data/api/get-iam-tags';
-import TagsListDatagrid from './tagsListDatagrid.component';
-import { TagManagerContext } from '../../tagsManagerContext';
+import TagsListDatagrid from './TagsListDatagrid.component';
+import {
+  TagManagerContextProvider,
+  TagManagerContextType,
+  useTagManagerContext,
+} from '../../TagManagerContext';
 import tagsList from '../../../../mocks/iam-tags/getIamTags.json';
+import { getOdsCheckbox } from '@/test-utils/uiTestHelpers';
 
 /** MOCKS */
 const queryClient = new QueryClient();
@@ -32,6 +37,11 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => ({
   useNotifications: useNotificationsMock,
 }));
 
+vi.mock('../../TagManagerContext', async (importOriginal) => ({
+  ...(await importOriginal()),
+  useTagManagerContext: vi.fn(),
+}));
+
 vi.mock('@/data/hooks/useGetIamTags', () => ({
   useGetIamTags: useGetIamTagsMock,
 }));
@@ -45,19 +55,28 @@ vi.mock('./tagsListActions/tagsListActions.component', () => ({
 }));
 
 /** RENDER */
-const renderComponent = () => {
+const renderComponent = ({
+  isShowSystemChecked,
+  isShowUnassignedResourcesChecked,
+  selectedTagsList,
+  setSelectedTagsList,
+  toggleSystemCheck,
+  toggleUnassignedResources,
+}: Partial<TagManagerContextType>) => {
+  vi.mocked(useTagManagerContext).mockReturnValue({
+    selectedTagsList: selectedTagsList || [],
+    setSelectedTagsList: setSelectedTagsList || vi.fn(),
+    isShowSystemChecked: !!isShowSystemChecked,
+    isShowUnassignedResourcesChecked: !!isShowUnassignedResourcesChecked,
+    toggleSystemCheck: toggleSystemCheck || vi.fn(),
+    toggleUnassignedResources: toggleUnassignedResources || vi.fn(),
+  });
+
   return render(
     <QueryClientProvider client={queryClient}>
-      <TagManagerContext.Provider
-        value={{
-          toggleSystemCheck: vi.fn(),
-          isShowSystemChecked: false,
-          toggleUnassignedResources: vi.fn(),
-          isShowUnassignedResourcesChecked: false,
-        }}
-      >
+      <TagManagerContextProvider>
         <TagsListDatagrid />
-      </TagManagerContext.Provider>
+      </TagManagerContextProvider>
     </QueryClientProvider>,
   );
 };
@@ -70,7 +89,7 @@ describe('TagsListDatagrid Component', async () => {
       error: undefined,
       isError: undefined,
     });
-    const { getByText } = renderComponent();
+    const { getByText } = renderComponent({});
 
     expect(getByText('common_pagination_no_results')).toBeInTheDocument();
   });
@@ -82,11 +101,33 @@ describe('TagsListDatagrid Component', async () => {
       error: undefined,
       isError: undefined,
     });
-    const { getByText, getAllByText } = renderComponent();
+    const { getByText, getAllByText } = renderComponent({});
 
     expect(getByText('Environment:Production')).toBeInTheDocument();
     expect(getAllByText('2').length).not.toBe(0);
-    expect(getAllByText('predefined').length).not.toBe(0);
+    expect(getAllByText('tagType_predefined').length).not.toBe(0);
+  });
+
+  it('Should bulk select tags', async () => {
+    const setSelectedTagsListMock = vi.fn();
+
+    useGetIamTagsMock.mockReturnValue({
+      tags: tagsList,
+      isLoading: false,
+      error: undefined,
+      isError: undefined,
+    });
+    const { container } = renderComponent({
+      setSelectedTagsList: setSelectedTagsListMock,
+    });
+
+    const bulkCheckbox = await getOdsCheckbox({ container });
+
+    fireEvent.click(bulkCheckbox);
+
+    waitFor(() => {
+      expect(setSelectedTagsListMock).toHaveBeenCalledWith(tagsList.list);
+    });
   });
 
   it('Should display error', async () => {
@@ -103,7 +144,7 @@ describe('TagsListDatagrid Component', async () => {
       isError: true,
     });
 
-    renderComponent();
+    renderComponent({});
 
     expect(addError).toHaveBeenCalledWith(
       '@ovh-ux/manager-common-translations/error:error_message',

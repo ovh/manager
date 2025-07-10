@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DataGridTextCell,
   Datagrid,
@@ -8,13 +8,13 @@ import {
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import TagsListTopbar from './tagsListTopBar/tagsListTopbar.component';
+import TagsListTopbar from './tagsListTopBar/TagsListTopbar.component';
 import { IamTagListItem } from '@/data/api/get-iam-tags';
-import TagTypeCell from './tagTypeCell/tagTypeCell.component';
-import TagsListActions from './tagsListActions/tagsListActions.component';
+import TagTypeCell from './tagTypeCell/TagTypeCell.component';
+import TagsListActions from './tagsListActions/TagsListActions.component';
 import DatagridItemsCounter from '@/components/datagridItemsCounter/DatagridItemsCounter.component';
 import { useGetIamTags } from '@/data/hooks/useGetIamTags';
-import { TagManagerContext } from '../../tagsManagerContext';
+import { useTagManagerContext } from '../../TagManagerContext';
 import { SortTagsParams, sortTags } from './utils/sortTags';
 
 const PAGE_SIZE = 10;
@@ -31,14 +31,17 @@ export default function TagsListDatagrid() {
   const [paginatedTagList, setPaginatedTagList] = useState<IamTagListItem[]>(
     [],
   );
+  const [rowSelection, setRowSelection] = useState({});
   const [page, setPage] = useState(1);
   const { t } = useTranslation(['tag-manager', NAMESPACES.ERROR]);
   const { addError } = useNotifications();
-  const { isShowSystemChecked, isShowUnassignedResourcesChecked } = useContext(
-    TagManagerContext,
-  );
+  const {
+    isShowSystemChecked,
+    isShowUnassignedResourcesChecked,
+    setSelectedTagsList,
+  } = useTagManagerContext();
 
-  const columns: DatagridColumn<unknown>[] = [
+  const columns: DatagridColumn<IamTagListItem>[] = [
     {
       id: 'name',
       cell: (item: IamTagListItem) => (
@@ -117,6 +120,12 @@ export default function TagsListDatagrid() {
     setPaginatedTagList(sorted.slice(0, PAGE_SIZE * page));
   };
 
+  const getRowId = (item: IamTagListItem) => item.name;
+
+  const onRowSelectionChange = (selectedRows: IamTagListItem[]) => {
+    setSelectedTagsList(selectedRows);
+  };
+
   return (
     <>
       <Datagrid
@@ -134,6 +143,12 @@ export default function TagsListDatagrid() {
         isLoading={isLoading}
         numberOfLoadingRows={10}
         onSortChange={sortItems}
+        rowSelection={{
+          rowSelection,
+          setRowSelection,
+          onRowSelectionChange,
+        }}
+        getRowId={getRowId}
       />
       <DatagridItemsCounter
         currentPage={page}
