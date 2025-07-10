@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
@@ -119,6 +120,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
     {
       paymentMethodId: 2,
@@ -137,6 +139,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
     {
       paymentMethodId: 3,
@@ -155,6 +158,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
   ];
 
@@ -170,6 +174,12 @@ describe('RegisterPaymentMethod', () => {
     eligibility: mockEligibility,
     handlePaymentMethodChange: vi.fn(),
     handleSetAsDefaultChange: vi.fn(),
+    paymentHandler: React.createRef(),
+    cartId: 'cart-123',
+    itemId: 1,
+    onPaymentSubmit: vi.fn(),
+    onPaymentError: vi.fn(),
+    handleValidityChange: vi.fn(),
   };
 
   beforeEach(() => {
@@ -497,7 +507,7 @@ describe('RegisterPaymentMethod', () => {
   describe('Default callback functions', () => {
     it('should work with default callback functions', () => {
       const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod eligibility={mockEligibility} />, {
+      render(<RegisterPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
       });
 
@@ -627,6 +637,7 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: true,
           registerableWithTransaction: false,
+          paymentMethodId: 0,
         },
       ];
 
@@ -661,6 +672,7 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: false,
           registerableWithTransaction: false,
+          paymentMethodId: 0,
         },
       ];
 

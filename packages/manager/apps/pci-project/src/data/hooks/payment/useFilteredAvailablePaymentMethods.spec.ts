@@ -66,6 +66,7 @@ const CREDIT_PAYMENT_METHOD: TAvailablePaymentMethod = {
     key: 'pci_project_new_payment_method_add_credit',
     ns: 'payment/add',
   },
+  paymentMethodId: 0,
 };
 
 const PREFERRED_PAYMENT_METHOD_ORDER = [
@@ -102,6 +103,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
     {
       paymentMethodId: 3,
@@ -120,6 +122,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
     {
       paymentMethodId: 4,
@@ -138,6 +141,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
   ];
 

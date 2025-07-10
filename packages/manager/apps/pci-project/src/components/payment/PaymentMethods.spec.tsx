@@ -248,6 +248,7 @@ describe('PaymentMethods', () => {
     cartId: 'cart-123',
     itemId: 123,
     onPaymentSubmit: vi.fn(),
+    onPaymentError: vi.fn(),
     ...overrides,
   });
 

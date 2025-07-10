@@ -7129,15 +7129,26 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
   integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
 
+<<<<<<< HEAD
 "@ovh-ux/manager-common-translations@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.14.0.tgz#f219a240c191276df509ef57d18f060e70e310b0"
   integrity sha512-HJB947C0gOdpO+9N46Hb51NJjsd53CnYG2/5MT9zcoVBdx9pUTUjMwONBO3wJRJbEgg3lSXtZOvrrK+zI/6ySA==
 
+=======
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
 "@ovh-ux/manager-common-translations@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.8.0.tgz#5040220f362df2e1f97f3db5f9cbd69fb4514bab"
   integrity sha512-MOc802UJTHIA/pW3zT12JuHC/TEldwyjm1lQq658LKhyBmEtJgFtp91aY3qdxjh2VwfAlj2GvJ7ZSIy5VN0OhQ==
+<<<<<<< HEAD
+
+"@ovh-ux/manager-common-translations@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
+  integrity sha512-UJ/8hLplbB9qi+Nh4NoJO62PG0ZMBx9gZLJOsT83m1uL7trknY8ZOEuH5p3YWJwSbRc6G4mEHEwwsoG5w/zwiw==
+=======
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
 
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
@@ -7269,10 +7280,37 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 "@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.1.tgz#5b55d7c0ca746ebf3858840cbcffaf15cc8d9084"
   integrity sha512-4pxHJE/3vWLEcYl2dVmXURQsuf6VHlZeRKWprXSf7fP+V5SjfRDLfA2kPvT9rh/mk5LXa7+xZXY2t48+FenuHg==
+=======
+"@ovh-ux/manager-react-components@^2.37.0":
+  version "2.37.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.37.0.tgz#7929a1b1672cc13a9905eebf024993a526d747f1"
+  integrity sha512-wu/eoBe5mgAls0x4/Yw/tGRe6zQ5+/4mwk5Moa7npXey4bHS4IIJgXVA2R6cA8zxUSRgK2o7+Dxbyh5tHoj1fA==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.56.1"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
+=======
+>>>>>>> 9d51174713 (feat(pci-project ): add papal payment method for project creation)
+"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
+  integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
+>>>>>>> a6a3f34bfc (refactor(pci-project): bump mrc from v2.32.0 to v2.37.0 and fix deprecated (#18731))
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
@@ -7402,18 +7440,19 @@
     vanillajs-datepicker "1.3.4"
 
 "@ovhcloud/ods-components@^18.6.3":
+<<<<<<< HEAD
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
   integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
+=======
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
   dependencies:
     "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    mark.js "8.11.1"
-    tom-select "2.3.1"
-    tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
+<<<<<<< HEAD
 "@ovhcloud/ods-react@^19.0.1":
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.0.1.tgz#9e96bbda80645e5cb1a85518ee6c1ad90a3f0b39"
@@ -7423,8 +7462,9 @@
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
+=======
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
-  version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
   integrity sha512-RfDWcw1SESylSsnsy4umwMyuIzXn0FHo8/LHLOCLtxmBSIq326Kp2GoLPIQUs+56E+cBlA4f+mkaDdwPgHcIJA==
   dependencies:
@@ -7434,8 +7474,6 @@
   version "17.2.2"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.2.tgz#12029b0e1c129f47a98ffd4f2002d7968182922a"
   integrity sha512-0Fr6ZJ10btgkGAXJDun5tftlV1gYFevB7piQiYT4kFjfVXmxmpSw9A1nusPHiZfmV+Dnzv3/+SVxpYK/uccYXw==
-  dependencies:
-    "@ovhcloud/ods-common-theming" "17.2.2"
 
 "@ovhcloud/ods-themes@18.6.2", "@ovhcloud/ods-themes@^18.6.2":
   version "18.6.2"
@@ -7448,6 +7486,7 @@
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
 
 "@ovhcloud/ods-themes@^18.6.3":
+<<<<<<< HEAD
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
@@ -7456,6 +7495,11 @@
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.0.1.tgz#2d31d9eb97fc7a4f3c220354ef4d4d17bacb2b1a"
   integrity sha512-OeVEwshdex36zZqFhVFix/kbb/4+ggRQXeMbAJwe17RrOVWC+YvuuHlgutSCbGZqi5gujdWv4c7lJ9qWUvqRvA==
+=======
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.3.tgz#a8a6162a8d260de199c887b6e0fd903160f7b2e9"
+  integrity sha512-U+S/Kfki6aLchHf+rQiFggP9Zg/km4RV+zTWPbK1Ms76f2nT1RmHz1MhURhbRjv9iwdfKUeIKCcV8j73VAwOGA==
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -11339,6 +11383,17 @@
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.8.tgz#7545ba4fc3c003d6c756f651f3bf163d8f0f29ba"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+"@types/uuid@^8.3.0":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
+
+>>>>>>> 8b325a8380 (feat(pci-project): handle payment challenge)
+=======
+>>>>>>> a6a3f34bfc (refactor(pci-project): bump mrc from v2.32.0 to v2.37.0 and fix deprecated (#18731))
 "@types/validator@^13.15.2":
   version "13.15.2"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.15.2.tgz#ee533a20ab977df36917a454754c7e0df4aa6f8f"
@@ -11347,14 +11402,6 @@
 "@types/warning@^3.0.0":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/warning/-/warning-3.0.3.tgz#d1884c8cc4a426d1ac117ca2611bf333834c6798"
-  integrity sha512-D1XC7WK8K+zZEveUPY+cf4+kgauk8N4eHr/XIHXGlGYkHLud6hK9lYfZk1ry1TNh798cZUCgb6MqGEG8DkJt6Q==
-
-"@types/web-bluetooth@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz#f066abfcd1cbe66267cdbbf0de010d8a41b41597"
-  integrity sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==
-
-"@types/which@^2.0.1":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@types/which/-/which-2.0.2.tgz#54541d02d6b1daee5ec01ac0d1b37cecf37db1ae"
   integrity sha512-113D3mDkZDjo+EeUEHCFy0qniNc1ZpecGiAU7WSo7YDoSzolZIQKpYFHrPpjkB2nuyahcKfrmLXeQlh7gqJYdw==

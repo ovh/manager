@@ -43,6 +43,7 @@ const mockAvailablePaymentMethods: FetchResultV6<TAvailablePaymentMethod> = {
         key: 'ovh_payment_type_credit_card',
         ns: 'payment/register/payment-types',
       },
+      paymentMethodId: 0,
     },
     {
       paymentMethodId: 2,
@@ -64,6 +65,7 @@ const mockAvailablePaymentMethods: FetchResultV6<TAvailablePaymentMethod> = {
         key: 'ovh_payment_type_paypal',
         ns: 'payment/register/payment-types',
       },
+      paymentMethodId: 0,
     },
   ],
 };

@@ -129,6 +129,7 @@ describe('CreditPaymentMethodIntegration', () => {
     integration: TPaymentMethodIntegration.COMPONENT,
     paymentSubType: null,
     paymentType: TPaymentMethodType.CREDIT,
+    paymentMethodId: 0,
   };
 
   const mockMinimumCredit: ProjectPrice = {
@@ -156,6 +157,7 @@ describe('CreditPaymentMethodIntegration', () => {
     cartId: 'cart-123',
     itemId: 1,
     handleCustomSubmitButton: mockHandleCustomSubmitButton,
+    onPaymentError: vi.fn(),
   };
 
   beforeEach(() => {
