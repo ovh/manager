@@ -4,7 +4,7 @@ import { describe, it } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { getButtonByIcon, getButtonByLabel } from '@/test-utils/uiTestHelpers';
-import TagsListActions from './tagsListActions.component';
+import TagsListActions from './TagsListActions.component';
 import { IamTagListItem, TagType } from '@/data/api/get-iam-tags';
 
 /** RENDER */
@@ -33,8 +33,6 @@ describe('TagListActionsCell Component', async () => {
     });
 
     fireEvent.click(assignButton);
-
-    // Todo: Finish this test when assign action is done
   });
 
   it('Should display action menu with manage resources button', async () => {

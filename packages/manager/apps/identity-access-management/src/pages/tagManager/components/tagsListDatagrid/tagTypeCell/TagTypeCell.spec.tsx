@@ -2,7 +2,7 @@ import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
-import TagTypeCell from './tagTypeCell.component';
+import TagTypeCell from './TagTypeCell.component';
 import { IamTagListItem, TagType } from '@/data/api/get-iam-tags';
 
 /** RENDER */

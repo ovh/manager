@@ -1,4 +1,8 @@
-import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import {
+  ApiResponse,
+  apiClient,
+  fetchIcebergV2,
+} from '@ovh-ux/manager-core-api';
 
 export type GetiamResourceListParams = {
   /** Pagination cursor */
@@ -132,34 +136,28 @@ export type IamResource = {
   id: string;
   name: string;
   owner: string;
-  tags: Record<string, string>;
+  tags?: Record<string, string>;
   type: IamResourceType;
   urn: string;
 };
 
-export const getiamResourceListQueryKey = ['get/iam/resource'];
+export const getIamResourcetypeQueryKey = ['get/iam/reference/resource/type'];
 
-/**
- *  : List all resources
- */
-export const getiamResourceList = async (
-  params: GetiamResourceListParams,
-): Promise<ApiResponse<IamResource[]>> =>
-  apiClient.v2.get('/iam/resource', { data: params });
-
-export type GetiamResourceResourceUrnParams = {
-  /** ResourceURN */
-  resourceURN: string;
+export const getIamResourceType = () => {
+  return apiClient.v2.get<string[]>('/iam/reference/resource/type');
 };
 
-export const getiamResourceResourceURNQueryKey = (
-  params: GetiamResourceResourceUrnParams,
-) => [`get/iam/resource/${params.resourceURN}`];
-
-/**
- *  : Retrieve a resource
- */
-export const getiamResourceResourceURN = async (
-  params: GetiamResourceResourceUrnParams,
-): Promise<ApiResponse<IamResource>> =>
-  apiClient.v2.get(`/iam/resource/${params.resourceURN}`);
+export const putIamResource = async ({
+  resource,
+  tags,
+}: {
+  resource: IamResource;
+  tags: Record<string, string>;
+}): Promise<ApiResponse<IamResource>> => {
+  return apiClient.v2.put(`/iam/resource/${resource.urn}`, {
+    tags: {
+      ...resource.tags,
+      ...tags,
+    },
+  });
+};
