@@ -18,6 +18,8 @@ import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import JobStatusBadge from './JobStatusBadge.component';
 import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface JobsListColumnsProps {
   onRestartClicked: (job: ai.job.Job) => void;
@@ -31,6 +33,7 @@ export const getColumns = ({
   onDeleteClicked,
 }: JobsListColumnsProps) => {
   const navigate = useNavigate();
+  const track = useTrackAction();
   const { t } = useTranslation('ai-tools/jobs');
   const { t: tRegions } = useTranslation('regions');
   const columns: ColumnDef<ai.job.Job>[] = [
@@ -42,11 +45,21 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       accessorFn: (row) => `${row.spec.name}-${row.id}`,
-      cell: ({ row }) => {
+      cell: ({ row, column }) => {
         const { id, spec } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
-            <Link to={id}>{spec.name}</Link>
+            <Link
+              onClick={() => {
+                track(
+                  TRACKING.training.listing.DatagridLinkClick(column.id),
+                  'listing',
+                );
+              }}
+              to={id}
+            >
+              {spec.name}
+            </Link>
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
         );
@@ -164,7 +177,13 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="job-action-manage-button"
                 variant="primary"
-                onClick={() => navigate(`./${row.original.id}`)}
+                onClick={() => {
+                  track(
+                    TRACKING.training.listing.manageTrainingDataGridClick(),
+                    'listing',
+                  );
+                  navigate(`./${row.original.id}`);
+                }}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
@@ -172,6 +191,10 @@ export const getColumns = ({
                 data-testid="job-action-restart-button"
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.training.listing.restartTrainingDataGridClick(),
+                    'listing',
+                  );
                   onRestartClicked(row.original);
                 }}
               >
@@ -182,6 +205,10 @@ export const getColumns = ({
                 disabled={!isRunningJob(job.status.state)}
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.training.listing.stopTrainingDataGridClick(),
+                    'listing',
+                  );
                   onStopClicked(row.original);
                 }}
               >
@@ -193,6 +220,10 @@ export const getColumns = ({
                 variant="destructive"
                 disabled={!isStoppedJob(job.status.state)}
                 onClick={() => {
+                  track(
+                    TRACKING.training.listing.deleteTrainingDataGridClick(),
+                    'listing',
+                  );
                   onDeleteClicked(row.original);
                 }}
               >
