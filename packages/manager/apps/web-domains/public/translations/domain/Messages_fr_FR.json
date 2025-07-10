@@ -10,5 +10,9 @@
   "domain_tab_name_ds_records": "DS Records",
   "domain_tab_name_contact_management": "Gestion des contacts",
   "domain_back_to_service_list": "Retour à la liste de services",
-  "domain_guide_button_label": "Guide d'utilisation"
+  "domain_guide_button_label": "Guide d'utilisation",
+  "domain_dns_table_header_serviceName": "Serveurs DNS",
+  "domain_dns_table_header_ip": "IP associé",
+  "domain_dns_table_header_status": "Status",
+  "domain_dns_table_header_type": "Type de serveurs DNS"
 }
