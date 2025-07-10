@@ -33,6 +33,7 @@ interface DNSConfiguration {
   maxDNS: number;
   minDNS: number;
   nameServers: TNameServerWithType[];
+  dnssecSupported: boolean;
 }
 
 interface Task {

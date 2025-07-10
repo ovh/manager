@@ -17,6 +17,10 @@ const OnboardingPage = React.lazy(() =>
   import('@/domain/pages/onboarding/onboarding'),
 );
 
+const AnycastOrderPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/dns/anycastOrder'),
+);
+
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -29,7 +33,6 @@ function RedirectToDefaultTab() {
 
 export default (
   <>
-    <Route path={'/'} element={<Navigate to={urls.domainRoot} replace />} />
     <Route
       path={urls.domainRoot}
       Component={LayoutPage}
@@ -76,7 +79,7 @@ export default (
         <Route path={urls.domainTabDnssec} Component={Outlet} />
         <Route path={urls.domainTabContactManagement} Component={Outlet} />
       </Route>
-
+      <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}
@@ -89,5 +92,6 @@ export default (
         }}
       />
     </Route>
+    <Route path="/" element={<Navigate to={urls.domainRoot} replace />} />
   </>
 );
