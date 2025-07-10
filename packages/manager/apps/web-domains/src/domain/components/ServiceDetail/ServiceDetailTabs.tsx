@@ -1,10 +1,24 @@
-import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import {
+  Tab,
+  TabContent,
+  TabList,
+  Tabs,
+  TabsValueChangeEvent,
+} from '@ovhcloud/ods-react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ServiceDetailTabsProps } from '@/domain/constants/serviceDetail';
+import DomainTabDns from '@/domain/pages/domainTabs/domainTabDns';
+import { TDomainResource } from '@/domain/types/domainResource';
 
-export default function ServiceDetailsTabs() {
+interface ServiceDetailsTabsProps {
+  readonly domainResource: TDomainResource;
+}
+
+export default function ServiceDetailsTabs({
+  domainResource,
+}: ServiceDetailsTabsProps) {
   const { t } = useTranslation(['domain']);
   const location = useLocation();
   const [value, setValue] = useState('');
@@ -32,6 +46,9 @@ export default function ServiceDetailsTabs() {
           );
         })}
       </TabList>
+      <TabContent value="dns">
+        <DomainTabDns domainResource={domainResource} />
+      </TabContent>
     </Tabs>
   );
 }
