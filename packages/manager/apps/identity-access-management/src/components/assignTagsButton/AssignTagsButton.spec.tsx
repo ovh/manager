@@ -1,9 +1,11 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import AssignTagButton, { AssignTagButtonProps } from './assignTagsButton';
+import AssignTagButton, {
+  AssignTagButtonProps,
+} from './AssignTagsButton.component';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 
 const queryClient = new QueryClient();

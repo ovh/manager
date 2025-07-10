@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React from 'react';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -12,7 +12,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TagManagerContext } from '../../../tagsManagerContext';
+import { useTagManagerContext } from '../../../TagManagerContext';
 
 export default function TagsListFilter() {
   const { t } = useTranslation('tag-manager');
@@ -21,7 +21,7 @@ export default function TagsListFilter() {
     isShowUnassignedResourcesChecked,
     toggleSystemCheck,
     toggleUnassignedResources,
-  } = useContext(TagManagerContext);
+  } = useTagManagerContext();
 
   return (
     <>
