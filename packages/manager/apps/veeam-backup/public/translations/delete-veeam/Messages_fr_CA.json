@@ -1,4 +1,4 @@
 {
-  "terminate_veeam_backup_success": "Votre demande de résiliation a bien été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
-  "terminate_veeam_backup_success_us": "Votre demande de résiliation a bien été prise en compte. Un e-mail de confirmation vous a été envoyé."
+  "terminate_veeam_backup_success": "La demande de résiliation de votre service \"{{serviceName}}\" a bien été prise en compte. Vous allez recevoir un e-mail pour la valider.",
+  "terminate_veeam_backup_success_us": "La demande de résiliation de votre service \"{{serviceName}}\" a bien été prise en compte. Un e-mail de confirmation vous a été envoyé"
 }
