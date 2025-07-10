@@ -40,8 +40,44 @@ export const getdedicatedServerVmac = async (
     page: 1,
   });
 
+type ApiStatus = {
+  description: string;
+  value: string;
+};
+
+type ApiOperation = {
+  apiStatus: ApiStatus;
+  httpMethod: string;
+};
+
+type ApiEntry = {
+  path: string;
+  description: string;
+  operations: ApiOperation[];
+};
+
+type ModelProperty = {
+  type: string;
+  canBeNull: boolean;
+  readOnly: boolean;
+  required: boolean;
+};
+
+type ModelDescription = {
+  id: string;
+  namespace: string;
+  description: string;
+  generics?: string[];
+  properties: Record<string, ModelProperty>;
+};
+
+type ModelsType = Record<string, ModelDescription>;
 export type ServerModelsType = {
-  data: any;
+  apiVersion: string;
+  apis: ApiEntry[];
+  basePath: string;
+  models: ModelsType;
+  resourcePath: string;
 };
 
 export const getServerModelsQueryKey = () => [`get/dedicated/server.json`];
