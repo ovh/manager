@@ -6,6 +6,7 @@ function Link({
   className,
   disabled,
   children,
+  onClick,
   to,
   ...props
 }: LinkProps & { disabled?: boolean }) {
@@ -24,6 +25,7 @@ function Link({
       className={combinedClassName}
       {...props}
       onClick={(e) => {
+        onClick?.(e);
         if (disabled) {
           e.preventDefault();
         } else {
