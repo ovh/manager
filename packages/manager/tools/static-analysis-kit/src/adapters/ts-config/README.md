@@ -53,11 +53,11 @@ A stricter variant enabling full type-safety:
 
 Each environment has two variants: `standard` (base rules) and `strict` (stricter rules).
 
-| Purpose | Standard Config | Strict Config |
-|--------|------------------|---------------|
-| React App | `tsconfig/react` | `tsconfig/react-strict` |
-| Node Scripts | `tsconfig/node` | `tsconfig/node-strict` |
-| Unit Tests | `tsconfig/test` | `tsconfig/test-strict` |
+| Purpose     | Standard Config                          | Strict Config                          |
+|-------------|-------------------------------------------|-----------------------------------------|
+| React App   | `tsconfig/react`                         | `tsconfig/react-strict`                |
+| Node Scripts| `tsconfig/node`                          | `tsconfig/node-strict`                 |
+| Unit Tests  | `tsconfig/test`                          | `tsconfig/test-strict`                 |
 
 These extend the appropriate base config and add contextual settings (e.g. `dom` lib for React, `node` lib for backend).
 
@@ -116,3 +116,38 @@ All configurations benefit from:
 - JSON module resolution
 - Local path mapping (`@/*`, `@/public/*`)
 - Out-of-the-box support for Vite
+
+
+---
+
+## ⚙️ Per-App Customization
+
+To ensure consistency while enabling per-app customization, applications may override the following:
+
+- `compilerOptions.paths`
+- `compilerOptions.outDir`
+- `compilerOptions.allowImportingTsExtensions` (only if required)
+- `compilerOptions.allowJs` (only if required)
+- `compilerOptions.resolveJsonModule` (only if required)
+- `compilerOptions.noImplicitAny` (only if required)
+- `include`
+- `exclude`
+
+---
+
+## ✅ Allowed Overrides for µ-Apps
+
+To ensure consistency while enabling per-app customization, applications may override the following:
+
+- `compilerOptions.paths`
+- `compilerOptions.outDir`
+- `compilerOptions.allowImportingTsExtensions` (only if required)
+- `include`
+- `exclude`
+
+Apps **must not** redefine:
+
+- `target`, `module`, `jsx`, `strict`, `lib`, etc.
+- Any `strict`-level rules overridden by the base config
+
+This policy ensures a reliable shared base while supporting edge-case requirements per project.

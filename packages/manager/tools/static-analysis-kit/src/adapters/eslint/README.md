@@ -55,7 +55,7 @@ This document provides a full breakdown of all ESLint plugins, rules, and conven
 |-----------------------------------|-------------|
 | `@typescript-eslint/eslint-plugin`| TypeScript lint rules |
 | `@typescript-eslint/parser`       | TS parser for ESLint |
-| `typescript-eslint`               | TypeScript rule tooling |
+| `@typescript-eslint/utils`        | TypeScript rule tooling |
 | `@types/eslint`, `@types/node`    | Type support |
 
 ---
@@ -110,20 +110,22 @@ This document provides a full breakdown of all ESLint plugins, rules, and conven
 
 Available in `src/adapters/eslint/rules/`:
 
-- `eslint-a11y.ts`
-- `eslint-complexity.ts`
-- `eslint-css.ts`
-- `eslint-html.ts`
-- `eslint-imports.ts`
-- `eslint-javascript.ts`
-- `eslint-naming-conventions.ts`
-- `eslint-prettier.ts`
-- `eslint-react.ts`
-- `eslint-storybook.ts`
-- `eslint-tailwind-jsx.ts`
-- `eslint-tanstack.ts`
-- `eslint-tests.ts`
-- `eslint-typescript.ts`
+| Module                         | Purpose                          |
+|--------------------------------|----------------------------------|
+| `eslint-a11y.ts`               | Accessibility rules              |
+| `eslint-complexity.ts`         | Code complexity constraints      |
+| `eslint-css.ts`                | Linting for stylesheets          |
+| `eslint-html.ts`               | HTML linting rules               |
+| `eslint-imports.ts`            | Import rules and conventions     |
+| `eslint-javascript.ts`         | Generic JavaScript rules         |
+| `eslint-naming-conventions.ts` | Folder/file naming enforcement   |
+| `eslint-prettier.ts`           | Prettier integration             |
+| `eslint-react.ts`              | React conventions and structure  |
+| `eslint-storybook.ts`          | Storybook-specific lint rules    |
+| `eslint-tailwind-jsx.ts`       | Tailwind inside JSX              |
+| `eslint-tanstack.ts`           | Linting for TanStack Query usage|
+| `eslint-tests.ts`              | Testing rules (e.g., Vitest)     |
+| `eslint-typescript.ts`         | TypeScript-specific rules        |
 
 ---
 
@@ -282,7 +284,7 @@ With Flat Config enabled, use the following script definitions:
 
 ### 📛 One Component per File
 
-We enforce **a single React component per file** to encourage modularity and readability:
+We enforce **one React component per file** to encourage modularity and readability:
 
 ```json
 "react/no-multi-comp": ["error", { "ignoreStateless": false }]
@@ -300,6 +302,13 @@ We enforce **a single React component per file** to encourage modularity and rea
 | `complexity`             | Cyclomatic complexity | 10–15 (context-based)   |
 | `max-lines`              | Per file              | 300 lines               |
 | `max-lines-per-function` | Function body         | 50–80 lines             |
+
+---
+
+## 📎 Related Links
+
+- [TypeScript Config Guide](./README_tsconfig_static_analysis_kit.md)
+- [Monorepo Guidelines](https://github.com/ovh/manager/tree/master/packages/manager)
 
 ---
 

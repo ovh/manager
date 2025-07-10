@@ -8,6 +8,8 @@ export const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
 
 export const UNIT_TEST_CONFIG_VERSION = 'latest';
 
+export const TS_EXCLUDED_DEPENDENCIES = /^(typescript(-eslint)?|tslib|ts-node|tsconfig)/;
+
 export const REQUIRED_DEP_VERSIONS = {
   '@ovh-ux/manager-vite-config': '>=0.9.4',
   vite: '>=6.0.7',
