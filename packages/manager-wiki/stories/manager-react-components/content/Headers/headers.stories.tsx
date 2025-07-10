@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import {
   Headers,
   HeadersProps,
@@ -73,12 +74,23 @@ const HeadingWithHeaderButtons: HeadersProps = {
   ),
 };
 
+const HeadingWithBadge: HeadersProps = {
+  title: 'Example for header with header buttons',
+  badge: {
+    color: ODS_BADGE_COLOR.information,
+    size: ODS_BADGE_SIZE.md,
+    label: 'Discovery Project',
+  },
+  description: 'description for subheader',
+};
+
 export const header = () => <Headers {...Heading} />;
 export const subHeader = () => <Headers {...SubHeading} />;
 export const headerWithHeaderButtons = () => (
   <Headers {...HeadingWithHeaderButtons} />
 );
 export const headerWithActions = () => <Headers {...HeadingWithActionButton} />;
+export const headerWithBadge = () => <Headers {...HeadingWithBadge} />;
 
 const meta: Meta = {
   decorators: [withRouter],
