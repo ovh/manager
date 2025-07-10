@@ -1,10 +1,13 @@
+import { TRegionType } from '@ovh-ux/manager-pci-common';
 import { DeepReadonly } from '../utils.type';
 import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
   TStatus,
+  TInstancePriceType,
 } from './common.type';
+import { TBaseAction } from './action/action.type';
 
 export type TInstanceAddressType = TAddressType;
 
@@ -21,7 +24,7 @@ export type TInstanceStatus = {
 export type TAddress = {
   ip: string;
   version: number;
-  gatewayIp: string;
+  gatewayIp?: string;
 };
 
 export type TVolume = {
@@ -56,3 +59,46 @@ export type TInstance = DeepReadonly<{
   taskState: string | null;
   isImageDeprecated: boolean;
 }>;
+
+export type TNetwork = TAddress & {
+  id: string;
+  name: string;
+  actions: TBaseAction[];
+  flag?: string;
+};
+
+export type TInstancePrice = {
+  type: TInstancePriceType;
+  value: number;
+  label: string;
+};
+
+export type TInstanceDetail = DeepReadonly<{
+  id: string;
+  name: string;
+  flavorName: string;
+  flavorRam: string;
+  flavorCpu: string;
+  storage: string;
+  publicBandwidth: string;
+  status: TInstanceStatus;
+  region: string;
+  regionType: TRegionType;
+  imageName: string;
+  networks: Map<TInstanceAddressType, TNetwork[]>;
+  volumes: TVolume[];
+  pendingTask: boolean;
+  availabilityZone: string | null;
+  actions: TInstanceActions;
+  prices: TInstancePrice[];
+  taskState: string | null;
+  sshKey: string;
+  sshLogin: string;
+  isEditionEnabled: boolean;
+  standaloneActions: TInstanceActionName[];
+}>;
+
+export type TInstanceDetailContextType = {
+  data: TInstanceDetail;
+  isLoading: boolean;
+};
