@@ -8,17 +8,7 @@ import { useGetSuggestions } from '@/data/hooks/ai/notebook/useGetSuggestions.ho
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useQuantum } from '@/hooks/useQuantum.hook';
-
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem
-      translationKey="breadcrumb"
-      namespace="ai-tools/notebooks/create"
-    />
-  );
-}
 
 const Notebook = () => {
   const { t } = useTranslation('ai-tools/notebooks/create');

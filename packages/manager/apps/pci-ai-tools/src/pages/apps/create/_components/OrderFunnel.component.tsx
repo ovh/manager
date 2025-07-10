@@ -49,6 +49,8 @@ import { useAddApp } from '@/data/hooks/ai/app/useAddApp.hook';
 import { useSignPartnerContract } from '@/data/hooks/ai/partner/useSignPartnerContract.hook';
 import { useGetCommand } from '@/data/hooks/ai/app/useGetCommand.hook';
 import { PartnerApp } from '@/data/api/ai/partner/partner.api';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
 
 interface OrderAppsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -65,6 +67,7 @@ const OrderFunnel = ({
   const { t } = useTranslation('ai-tools/apps/create');
   const { projectId } = useParams();
   const [isPartnerSelected, setIsPartnerSelected] = useState(false);
+  const trackAction = useTrackAction();
   const [showAdvancedConfiguration, setShowAdvancedConfiguration] = useState(
     false,
   );
@@ -75,12 +78,20 @@ const OrderFunnel = ({
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
-
+  const trackBanner = useTrackBanner();
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
 
   const { addApp, isPending: isPendingAddApp } = useAddApp({
     onError: (err) => {
+      trackBanner(
+        TRACKING.deploy.banner.errorBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+        ),
+        'banner',
+      );
       toast({
         title: t('errorCreatingApp'),
         variant: 'destructive',
@@ -88,6 +99,14 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (app) => {
+      trackBanner(
+        TRACKING.deploy.banner.successBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+        ),
+        'banner',
+      );
       toast({
         title: t('successCreatingAppTitle'),
         description: t('successCreatingAppDescription'),
@@ -178,6 +197,17 @@ const OrderFunnel = ({
         const appInfo: ai.app.AppSpecInput = getAppSpec(
           model.result,
           model.lists.appImages,
+        );
+
+        trackAction(
+          TRACKING.deploy.funnel.createDeployConfirmClick(
+            model.result.region.id,
+            model.result.flavor.type,
+            model.result.unsecureHttp
+              ? PrivacyEnum.public
+              : PrivacyEnum.private,
+          ),
+          'funnel',
         );
         addApp(appInfo);
       }
@@ -502,6 +532,10 @@ const OrderFunnel = ({
                     mode="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl"
                     onClick={() => {
+                      trackAction(
+                        TRACKING.deploy.funnel.advancedConfigurationClick(),
+                        'funnel',
+                      );
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
                   >
