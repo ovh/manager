@@ -6,6 +6,9 @@ import {
   getAppImages,
   getEditor,
   getFramework,
+  getQpuFlavors,
+  getQpuFlavor,
+  getQpuRegions,
 } from './capabilities.api';
 
 describe('Capabilities functions', () => {
@@ -20,6 +23,22 @@ describe('Capabilities functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/capabilities/region',
+      {
+        headers: {
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': '50000',
+        },
+      },
+    );
+  });
+
+  it('should call getQpuRegions', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getQpuRegions({
+      projectId: 'projectId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/quantum/capabilities/region',
       {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -69,7 +88,30 @@ describe('Capabilities functions', () => {
       region: 'region',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework',
+      '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework?type=undefined',
+    );
+  });
+
+  it('should call getQpuFlavors', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getQpuFlavors({
+      projectId: 'projectId',
+      region: 'regionId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/quantum/capabilities/region/regionId/qpu',
+    );
+  });
+
+  it('should call getQpuFlavor', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getQpuFlavor({
+      projectId: 'projectId',
+      region: 'regionId',
+      qpuFlavorId: 'flavorId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/quantum/capabilities/region/regionId/qpu/flavorId',
     );
   });
 });
