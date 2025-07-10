@@ -8,11 +8,11 @@ import { useGetCartSummary } from '@/data/hooks/useCart';
 import HdsOption from '@/components/hds-option/HdsOption';
 import Contracts from '@/components/contracts/Contracts';
 import {
-  useCheckoutAndPayCart,
   useGetHdsCartServiceOption,
   useIsAlreadyHdsCertifiedProject,
   usePrepareHdsCart,
 } from './useHds';
+import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
 
 export default function HdsSection({ project }: { project: TProject }) {
   const { t } = useTranslation('hds');
@@ -25,7 +25,7 @@ export default function HdsSection({ project }: { project: TProject }) {
 
   const {
     data: isAlreadyHdsCertifiedProject,
-  } = useIsAlreadyHdsCertifiedProject(project?.project_id);
+  } = useIsAlreadyHdsCertifiedProject(project.project_id);
 
   const isContractsDisplayed = isHDSChecked && !isHdsCertifiedProject;
 
@@ -62,7 +62,7 @@ export default function HdsSection({ project }: { project: TProject }) {
   const {
     mutate: checkoutCart,
     isPending: isCheckoutCartPending,
-  } = useCheckoutAndPayCart({
+  } = useCheckoutWithFidelityAccount({
     onSuccess: () => {
       setIsHdsCertifiedProject(true);
       setIsContractsChecked(false);

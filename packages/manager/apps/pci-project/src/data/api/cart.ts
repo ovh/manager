@@ -1,16 +1,14 @@
-import { AxiosError } from 'axios';
 import { v6 } from '@ovh-ux/manager-core-api';
+import { AxiosError } from 'axios';
 
 import {
-  Cart,
-  PlanCode,
-  CartProduct,
-  OrderedProduct,
-  CartSummary,
-  PaymentMean,
-  CartProductOption,
   AddOptionToCartResponse,
-  TCheckoutResponse,
+  Cart,
+  CartProduct,
+  CartProductOption,
+  CartSummary,
+  OrderedProduct,
+  PlanCode,
 } from '@/data/types/cart.type';
 
 export const getPublicCloudOptions = async (
@@ -67,18 +65,6 @@ export const orderCloudProject = async (
   return orderedProduct;
 };
 
-// export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
-//   const { data: summary } = await v6.post<CartSummary>(
-//     `order/cart/${cartId}/checkout`,
-//   );
-//   if (summary.prices.withTax.value === 0) {
-//     await v6.post(`me/order/${summary.orderId}/payWithRegisteredPaymentMean`, {
-//       paymentMean: PaymentMean.FIDELITY_ACCOUNT,
-//     });
-//   }
-//   return summary;
-// };
-
 /**
  * Creates a new order cart depending on the given OVH subsidiary.
  *
@@ -100,7 +86,7 @@ export const createCart = async (ovhSubsidiary: string): Promise<Cart> => {
  * @returns {Promise<void>} The assigned cart's ID as a string.
  */
 export const assignCart = async (cartId: string): Promise<void> => {
-  await v6.post(`/order/cart/${cartId}/assign`);
+  await v6.post(`/order/cart/${cartId}/assign`, { cartId });
 };
 
 /**
@@ -130,10 +116,8 @@ export const addOptionToCart = async (
   return data;
 };
 
-export const checkoutCart = async (
-  cartId: string,
-): Promise<TCheckoutResponse> => {
-  const { data } = await v6.post<TCheckoutResponse>(
+export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
+  const { data } = await v6.post<CartSummary>(
     `/order/cart/${cartId}/checkout`,
     {
       cartId,
@@ -142,18 +126,6 @@ export const checkoutCart = async (
 
   return data;
 };
-
-// export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
-//   const { data: summary } = await v6.post<CartSummary>(
-//     `order/cart/${cartId}/checkout`,
-//   );
-//   if (summary.prices.withTax.value === 0) {
-//     await v6.post(`me/order/${summary.orderId}/payWithRegisteredPaymentMean`, {
-//       paymentMean: PaymentMean.FIDELITY_ACCOUNT,
-//     });
-//   }
-//   return summary;
-// };
 
 /**
  * Retrieves the summary of a specified cart.
