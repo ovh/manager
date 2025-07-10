@@ -37,7 +37,7 @@ import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import ServiceKeyStateActions from '@/components/serviceKey/serviceKeyStateActions/ServiceKeyStateActions.component';
-import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { okmsQueryKeys } from '@/data/api/okms';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKey.constants';
 import { SERVICE_KEYS_LABEL, URN_LABEL } from '@/constants';
@@ -74,7 +74,7 @@ export default function Key() {
         onReloadPage={() =>
           queryClient.refetchQueries({
             queryKey: okmsError
-              ? getOkmsResourceQueryKey(okmsId)
+              ? okmsQueryKeys.detail(okmsId)
               : getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
           })
         }
