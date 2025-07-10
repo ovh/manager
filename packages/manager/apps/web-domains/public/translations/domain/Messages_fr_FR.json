@@ -10,6 +10,7 @@
   "domain_tab_name_ds_records": "DS Records",
   "domain_tab_name_contact_management": "Gestion des contacts",
   "domain_back_to_service_list": "Retour à la liste de services",
+  "domain_back_to_service_details": "Retour aux informations générales",
   "domain_guide_button_label": "Guide d'utilisation",
   "domain_dns_table_header_serviceName": "Serveurs DNS",
   "domain_dns_table_header_ip": "IP associée",
@@ -27,5 +28,11 @@
   "domain_dns_tab_button_order_anycast": "Commander DNS Anycast",
   "domain_tab_DNS_error_warning": "Une erreur a été détectée lors de la mise à jour de vos DNS. Veuillez les corriger s'il vous plaît.",
   "domain_tab_DNS_information_message": "Pour vous assurer du bon fonctionnement de votre configuration, vous pouvez utiliser ",
-  "domain_tab_DNS_information_link": "cet outil de vérification DNS."
+  "domain_tab_DNS_information_link": "cet outil de vérification DNS.",
+  "domain_tab_DNS_anycast_order_activate_zone": "Activer votre zone DNS",
+  "domain_tab_DNS_anycast_order_activate_zone_message": "Vous devez activer votre zone DNS pour pouvoir utiliser un DNS Anycast",
+  "domain_tab_DNS_anycast_order_include": "Inclus",
+  "domain_tab_DNS_anycast_order": "Commander un DNS Anycast",
+  "domain_tab_DNS_anycast_order_description": "Commander un DNS Anycast permet de sécuriser et d'accélérer la résolution des noms de domaine en utilisant un réseau mondial de serveurs DNS.",
+  "domain_tab_DNS_anycast_order_description_expiration": "DNS Anycast sera automatiquement renouvelé pour <Price /> jusqu'à expiration de votre zone DNS."
 }
