@@ -5,16 +5,7 @@
 >
     <h2 id="zerto-datagrid-title" data-ng-bind="$ctrl.ZERTO"></h2>
 
-    <div class="text-center" data-ng-if="$ctrl.isLoading">
-        <oui-spinner></oui-spinner>
-    </div>
-
-    <oui-datagrid
-        data-ng-if="!$ctrl.isLoading"
-        rows="$ctrl.zertoMultiSite"
-        data-page-size="25"
-        class="mt-5"
-    >
+    <oui-datagrid rows="$ctrl.zertoMultiSites" data-page-size="25" class="mt-5">
         <oui-datagrid-topbar>
             <oui-button data-on-click=""
                 ><span
@@ -51,7 +42,11 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column>
-            <oui-button size="s" variant="link" disabled="$ctrl.disabled">
+            <oui-button
+                size="s"
+                variant="link"
+                data-on-click="$ctrl.openDeleteSiteModal($row.id)"
+            >
                 <span class="oui-icon oui-icon-bin"></span>
             </oui-button>
         </oui-datagrid-column>
