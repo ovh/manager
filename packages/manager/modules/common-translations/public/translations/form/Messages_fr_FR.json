@@ -15,5 +15,16 @@
   "error_min_chars": "Veuillez saisir un minimum de {{ value }} caractères.",
   "error_max_chars": "Veuillez saisir un maximum de {{ value }} caractères.",
   "error_between_min_max_chars": "Le champ doit contenir entre {{ min }} et {{ max }} caractères.",
-  "error_pattern": "Veuillez saisir un format valide."
+  "error_pattern": "Veuillez saisir un format valide.",
+  "error_password": "Mot de passe invalide",
+  "error_confirm_password": "Les mots de passe doivent être identiques.",
+  "label_mandatory": "Les champs mentionnés avec un astérisque * sont obligatoires.",
+  "lastname": "Nom",
+  "firstname": "Prénom",
+  "login": "Identifiant",
+  "change_password_label_password": "Nouveau mot de passe",
+  "change_password_label_confirm_password": "Confirmation du nouveau mot de passe",
+  "change_password_helper1": "Attention, le mot de passe doit respecter les conditions suivantes :",
+  "change_password_helper2": "Au moins 1 lettre minuscule, 1 lettre majuscule, 1 chiffre ou 1 caractère spécial",
+  "price": "Prix"
 }
