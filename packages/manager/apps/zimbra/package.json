@@ -13,6 +13,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
+    "build:loose": "tsc --project ./tsconfig.loose.json && vite build",
+    "build:strict": "tsc --project ./tsconfig.strict.json && vite build",
     "start": "tsc && vite",
     "lint": "manager-lint --config eslint.config.mjs ./src",
     "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
@@ -54,7 +56,7 @@
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@ovh-ux/manager-static-analysis-kit": "^0.0.1",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19"

@@ -6,7 +6,7 @@ export default {
     ...tsBaseConfig.compilerOptions,
     module: "ESNext",
     moduleResolution: "NodeNext",
-    types: ["vitest/globals", "vite/client", "node"],
+    types: ["vitest/globals", "vite/client", "node", "@testing-library/jest-dom"],
     jsx: "react-jsx"
   },
   include: [

@@ -9,7 +9,7 @@ This document provides a full breakdown of all ESLint plugins, rules, and conven
 ```json
 {
   "name": "@ovh-ux/manager-static-analysis-kit",
-  "version": "0.0.1",
+  "version": "x.x.x",
   "description": "A modular, extensible, and future-ready toolkit for defining, adapting, and sharing static analysis rules across projects in the `manager` monorepo."
 }
 ```
@@ -220,7 +220,7 @@ The package includes a dedicated CLI tool `manager-lint` with Flat Config suppor
 | Purpose        | Pattern                         | Format               |
 |----------------|---------------------------------|----------------------|
 | Component      | `*.component.tsx`               | `PASCAL_CASE`        |
-| Hook           | `use*.ts`, `use*.tsx`           | `PASCAL_CASE`        |
+| Hook           | `use*.ts`, `use*.tsx`           | `CAMEL_CASE`        |
 | Hook Test      | `use*.spec.ts`, `use*.test.ts`  | `CAMEL_CASE`         |
 | Test           | `*.spec.tsx`, `*.test.tsx`      | `PASCAL_CASE`        |
 | Constants      | `*.constants.ts`                | `PASCAL_CASE`        |

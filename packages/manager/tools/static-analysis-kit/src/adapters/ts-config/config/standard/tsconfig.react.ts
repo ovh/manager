@@ -6,7 +6,7 @@ export default {
     ...tsBaseConfig.compilerOptions,
     module: "ESNext",
     moduleResolution: "bundler",
-    lib: ["DOM", "DOM.Iterable", "ES2020"],
+    lib: ["DOM", "DOM.Iterable", "ES2021"],
     jsx: "react-jsx",
     isolatedModules: true,
     noEmit: true,

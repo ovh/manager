@@ -83,10 +83,10 @@ export const filenameNamingConvention: Record<string, CaseStyle> = {
   'src/data/hooks/**/use*.{ts,tsx}': 'PASCAL_CASE',
 
   // ───── HOOKS TESTS ─────
-  'src/hooks/**/use*.spec.{ts,tsx}': 'CAMEL_CASE',
-  'src/hooks/**/use*.test.{ts,tsx}': 'CAMEL_CASE',
-  'src/data/hooks/**/use*.spec.{ts,tsx}': 'CAMEL_CASE',
-  'src/data/hooks/**/use*.test.{ts,tsx}': 'CAMEL_CASE',
+  'src/hooks/**/use*.spec.{ts,tsx}': 'PASCAL_CASE',
+  'src/hooks/**/use*.test.{ts,tsx}': 'PASCAL_CASE',
+  'src/data/hooks/**/use*.spec.{ts,tsx}': 'PASCAL_CASE',
+  'src/data/hooks/**/use*.test.{ts,tsx}': 'PASCAL_CASE',
 
   // ───── STYLES ─────
   '**/*.scss': 'KEBAB_CASE',

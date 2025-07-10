@@ -35,7 +35,7 @@ import { checkFileEslintConfig } from '../rules/eslint-naming-conventions';
  */
 export const eslintSharedConfig: Linter.FlatConfig[] = [
   // Core language support
- // htmlEslintConfig,
+  htmlEslintConfig,
   javascriptEslintConfig,
   typescriptEslintConfig,
   cssEslintConfig,
