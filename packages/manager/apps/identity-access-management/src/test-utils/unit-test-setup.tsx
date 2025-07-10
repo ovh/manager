@@ -23,7 +23,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...original,
     useSearchParams: () => [{ get: (str: string) => str }],
-    useNavigate: vi.fn(),
+    useNavigate: () => vi.fn(),
     useLocation: vi.fn().mockReturnValue({
       pathname: 'pathname',
     }),

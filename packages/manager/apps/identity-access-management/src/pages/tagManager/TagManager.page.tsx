@@ -5,8 +5,8 @@ import {
   HeadersProps,
   Notifications,
 } from '@ovh-ux/manager-react-components';
-import TagsListDatagrid from './components/tagsListDatagrid/tagsListDatagrid.component';
-import { TagManagerContextProvider } from './tagsManagerContext';
+import TagsListDatagrid from './components/tagsListDatagrid/TagsListDatagrid.component';
+import { TagManagerContextProvider } from './TagManagerContext';
 
 export default function TagManager() {
   const { t } = useTranslation('tag-manager');
