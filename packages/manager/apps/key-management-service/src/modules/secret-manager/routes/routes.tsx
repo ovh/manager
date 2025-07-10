@@ -14,6 +14,9 @@ const Root = React.lazy(() =>
 const Onboarding = React.lazy(() =>
   import('@/modules/secret-manager/pages/onboarding/Onboarding.page'),
 );
+const SecretDomains = React.lazy(() =>
+  import('@/modules/secret-manager/pages/domains/Domains.page'),
+);
 const SecretListing = React.lazy(() =>
   import('@/modules/secret-manager/pages/listing/Listing.page'),
 );
@@ -51,6 +54,10 @@ export default (
       Component={Onboarding}
     />
     <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={SecretCreate} />
+    <Route
+      path={`${SECRET_MANAGER_ROUTES_URIS.region}/${SECRET_MANAGER_URL_PARAMS.region}`}
+      Component={SecretDomains}
+    />
     <Route path={SECRET_MANAGER_URL_PARAMS.domainId}>
       <Route index Component={SecretListing} />
       <Route
