@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerManagedBaremetalDatacenterDrpListingLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedCloud.details.datacenter.details.drp.listing.**',
+      'app.managedBaremetal.details.datacenters.datacenter.drp.listing.**',
       {
         url: '/listing',
         lazyLoad: ($transition$) => {

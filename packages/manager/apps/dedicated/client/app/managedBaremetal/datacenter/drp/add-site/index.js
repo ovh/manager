@@ -1,22 +1,20 @@
 import angular from 'angular';
-
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName =
-  'ovhManagerManagedBaremetalDatacenterDrpDeleteSiteModuleLazyLoading';
+const moduleName = 'ovhManagerManagedBaremetalDatacenterDrpAddSiteLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.details.datacenters.datacenter.drp.listing.deleteSite.**',
+      'app.managedBaremetal.details.datacenters.datacenter.drp.addSite.**',
       {
-        url: '/delete-site/:siteId',
+        url: '/add-site',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-          return import('./delete-site.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
+          return import(
+            './dedicatedCloud-datacenter-drp-add-site.module'
+          ).then((mod) => $ocLazyLoad.inject(mod.default || mod));
         },
       },
     );
