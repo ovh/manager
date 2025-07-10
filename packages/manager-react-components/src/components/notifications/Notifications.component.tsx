@@ -1,12 +1,16 @@
 import React, { useEffect, useState, FC } from 'react';
 import { useLocation } from 'react-router-dom';
-import { OdsNotification } from './ods-notification';
+import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
 import { useNotifications } from './useNotifications';
+import { NotificationType, Notification } from './Notifications.type';
+import { NotificationProps } from './Notifications.props';
 
-interface NotificationProps {
-  /** Clear notifications once they have been displayed (on location changes) */
-  clearAfterRead?: boolean;
-}
+const NOTIFICATION_TYPE_MAP = {
+  [NotificationType.Success]: MESSAGE_COLOR.success,
+  [NotificationType.Error]: MESSAGE_COLOR.critical,
+  [NotificationType.Warning]: MESSAGE_COLOR.warning,
+  [NotificationType.Info]: MESSAGE_COLOR.information,
+};
 
 /**
  * This component display the list of notifications. It acts
@@ -22,7 +26,8 @@ export const Notifications: FC<NotificationProps> = ({
 }) => {
   const location = useLocation();
   const [originLocation] = useState(location);
-  const { notifications, clearNotifications } = useNotifications();
+  const { notifications, clearNotifications, clearNotification } =
+    useNotifications();
 
   useEffect(() => {
     if (clearAfterRead && originLocation.pathname !== location.pathname)
@@ -31,8 +36,16 @@ export const Notifications: FC<NotificationProps> = ({
 
   return (
     <>
-      {notifications.map((notification) => (
-        <OdsNotification key={notification.uid} notification={notification} />
+      {notifications.map((notification: Notification) => (
+        <Message
+          key={notification.uid}
+          className="mb-2 w-full"
+          color={NOTIFICATION_TYPE_MAP[notification.type]}
+          onRemove={() => clearNotification(notification.uid)}
+          dismissible={notification.dismissible ?? true}
+        >
+          {notification.content}
+        </Message>
       ))}
     </>
   );
