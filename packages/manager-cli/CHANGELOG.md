@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.3.0...@ovh-ux/manager-cli@0.4.0) (2025-07-10)
+
+
+### Bug Fixes
+
+* **manager-cli:** include caret version in compare versions function ([ea9b862](https://github.com/ovh/manager/commit/ea9b86270ebc38f2f2b39bec12cf3a1df2dcd253))
+
+
+### Features
+
+* **manager-cli:** add check duplicated translations script ([b2dde52](https://github.com/ovh/manager/commit/b2dde527e19f090c5e0f733cd3a861173ae4e9eb)), closes [#MANAGER-17403](https://github.com/ovh/manager/issues/MANAGER-17403)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.2.0...@ovh-ux/manager-cli@0.3.0) (2025-06-26)
 
 
