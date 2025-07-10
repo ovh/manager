@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Notifications component - Snapshot Testing > should list notifications 1`] = `
+<div>
+  <div
+    class="_message_udq9t_2 _message--success_udq9t_25 _message--default_udq9t_9 mb-2 w-full"
+  >
+    Notification-1
+  </div>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 mb-2 w-full"
+  >
+    Notification-2
+  </div>
+  <div
+    class="_message_udq9t_2 _message--information_udq9t_13 _message--default_udq9t_9 mb-2 w-full"
+  >
+    Notification-3
+  </div>
+  <div
+    class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9 mb-2 w-full"
+  >
+    Notification-4
+  </div>
+</div>
+`;
