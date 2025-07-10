@@ -83,7 +83,7 @@ describe('GeneralInformationSection', () => {
       isPending: false,
     } as unknown) as EditMutation);
 
-    const { container } = render(
+    render(
       <GeneralInformationSection
         isDiscovery={false}
         project={{ ...mockProject, description: '' }}
@@ -93,10 +93,11 @@ describe('GeneralInformationSection', () => {
       },
     );
 
-    const formField = container.querySelector('ods-form-field.w-full');
+    const formFields = screen.getAllByTestId('ods-form-field');
     const button = screen.getByTestId('button_edit-project');
 
-    expect(formField).toHaveAttribute('error', 'error_required_field');
+    // Check the first form field (description field) has the error
+    expect(formFields[0]).toHaveAttribute('error', 'error_required_field');
     expect(button).toHaveAttribute('is-disabled', 'true');
   });
 

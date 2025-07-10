@@ -79,7 +79,7 @@ const createMockEligibilityResult = (
     fetchStatus: isLoading ? ('fetching' as const) : ('idle' as const),
   };
 
-  return baseResult as MockEligibilityResult;
+  return (baseResult as unknown) as MockEligibilityResult;
 };
 
 const createMockPaymentMethodsResult = (
@@ -118,7 +118,7 @@ const createMockPaymentMethodsResult = (
     fetchStatus: isLoading ? ('fetching' as const) : ('idle' as const),
   };
 
-  return baseResult as MockPaymentMethodsResult;
+  return (baseResult as unknown) as MockPaymentMethodsResult;
 };
 
 // Create mock function at the top level
@@ -248,6 +248,7 @@ describe('PaymentMethods', () => {
     cartId: 'cart-123',
     itemId: 123,
     onPaymentSubmit: vi.fn(),
+    onPaymentError: vi.fn(),
     ...overrides,
   });
 
