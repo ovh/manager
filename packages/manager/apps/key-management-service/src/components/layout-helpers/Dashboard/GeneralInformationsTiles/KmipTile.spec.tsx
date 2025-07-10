@@ -35,6 +35,7 @@ describe('KmipTile component tests suite', () => {
     swaggerEndpoint: 'https://swagger-endpoint',
     kmipObjectCount: 1,
     serviceKeyCount: 2,
+    secretCount: 3,
     iam: {
       displayName: 'name',
       id: 'id',
