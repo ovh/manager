@@ -199,6 +199,7 @@ describe('PaymentMethods', () => {
   const createMockProps = (overrides = {}): PaymentMethodsProps => ({
     handlePaymentMethodChange: vi.fn(),
     handleSetAsDefaultChange: vi.fn(),
+    paymentMethodHandler: React.createRef(),
     ...overrides,
   });
 
@@ -411,7 +412,7 @@ describe('PaymentMethods', () => {
 
     const { container } = render(
       <Wrapper>
-        <PaymentMethods />
+        <PaymentMethods paymentMethodHandler={React.createRef()} />
       </Wrapper>,
     );
 

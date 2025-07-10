@@ -47,3 +47,9 @@ export type TEligibility = {
   paymentMethodsAuthorized: TEligibilityPaymentMethod[];
   voucher: TEligibilityVoucher | null;
 };
+
+export const isChallengePaymentMethodRequired = (
+  eligibility: TEligibility,
+): boolean => {
+  return eligibility.actionsRequired.includes('challengePaymentMethod');
+};
