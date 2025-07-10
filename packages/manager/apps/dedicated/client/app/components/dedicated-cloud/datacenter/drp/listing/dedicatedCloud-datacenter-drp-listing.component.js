@@ -6,6 +6,7 @@ export default {
     goBackToDashboard: '<',
     openDeleteSiteModal: '<',
     zertoMultiSites: '<',
+    goToAddSite: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterDrpListing',

@@ -19,8 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
             Alerter.success(message, 'managedBaremetal_dashboard_alert'),
           ),
         handleError: /* @ngInject */ (Alerter, goBack) => (message) => {
-          goBack();
           Alerter.error(message, 'managedBaremetal_dashboard_alert');
+          goBack();
         },
         deleteSite: /* @ngInject */ (
           managedBaremetalZerto,
