@@ -1,22 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { useGetSuggestions } from '@/data/hooks/ai/app/useGetSuggestions.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
-
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem
-      translationKey={`breadcrumb`}
-      namespace="ai-tools/apps/create"
-    />
-  );
-}
 
 const App = () => {
   const { t } = useTranslation('ai-tools/apps/create');
