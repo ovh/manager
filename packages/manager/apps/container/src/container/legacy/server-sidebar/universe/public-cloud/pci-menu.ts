@@ -52,6 +52,7 @@ export const features = [
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
+  'pci-quantum-qpu',
 ];
 
 export function getPciProjectMenu(
@@ -411,21 +412,30 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'pci-quantum-emulators',
+      'pci-quantum-qpu',
     )
   ) {
     pciMenu.push({
       id: 'quantum',
       title: 'Quantum',
       subItems: [
-        {
+        isFeaturesAvailable('pci-quantum-emulators') &&  {
           id: 'pci-quantum-emulators',
           title: 'Emulators',
-          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/ai-ml/quantum/notebooks`,
           ),
         },
+        isFeaturesAvailable('pci-quantum-qpu') &&  {
+           id: 'pci-quantum-qpu',
+           title: 'QPUs',
+           badge: 'new',
+           href: getURL(
+             'public-cloud',
+             `#/pci/projects/${projectId}/ai-ml/quantum/qpu`,
+           ),
+         },
       ],
     });
   }
