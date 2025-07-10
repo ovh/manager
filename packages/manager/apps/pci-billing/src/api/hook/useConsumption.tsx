@@ -4,6 +4,7 @@ import queryClient from '@/queryClient';
 import {
   activateMonthlyBilling,
   getCurrentUsage,
+  TConsumptionType,
   TCurrentUsage,
   TQuantity,
 } from '../data/consumption';
@@ -12,14 +13,15 @@ const roundPrice = (num: number, fractionDigits = 2) =>
   Number(num.toFixed(fractionDigits));
 
 const initMonthlyInstanceList = (data: TCurrentUsage) => {
-  if (!data?.monthlyUsage) {
+  const { instance: instanceData } = data.monthlyUsage;
+  if (!instanceData.length) {
     return {
       monthlyInstanceList: [],
       monthlyInstanceTotalPrice: 0,
     };
   }
 
-  const monthlyInstanceList = data.monthlyUsage.instance.flatMap((instance) =>
+  const monthlyInstanceList = instanceData.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -42,11 +44,12 @@ const initMonthlyInstanceList = (data: TCurrentUsage) => {
 };
 
 const initHourlyInstanceList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { instance: instanceData } = data.hourlyUsage;
+  if (!instanceData.length) {
     return { hourlyInstanceList: [], hourlyInstanceTotalPrice: 0 };
   }
 
-  const hourlyInstanceList = data.hourlyUsage.instance.flatMap((instance) =>
+  const hourlyInstanceList = instanceData.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -69,14 +72,15 @@ const initHourlyInstanceList = (data: TCurrentUsage) => {
 };
 
 const initObjectStorageList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { storage: storageData } = data.hourlyUsage;
+  if (!storageData.length) {
     return {
       objectStorageList: [],
       objectStorageTotalPrice: 0,
     };
   }
 
-  const objectStorageList = data.hourlyUsage.storage?.filter(
+  const objectStorageList = storageData.filter(
     (storage) => storage.type !== 'pca',
   );
 
@@ -94,14 +98,15 @@ const initObjectStorageList = (data: TCurrentUsage) => {
 };
 
 const initArchiveStorageList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { storage: storageData } = data.hourlyUsage;
+  if (!storageData.length) {
     return {
       archiveStorageList: [],
       archiveStorageTotalPrice: 0,
     };
   }
 
-  const archiveStorageList = data.hourlyUsage.storage?.filter(
+  const archiveStorageList = storageData.filter(
     (storage) => storage.type === 'pca',
   );
 
@@ -119,21 +124,22 @@ const initArchiveStorageList = (data: TCurrentUsage) => {
 };
 
 const initSnapshotList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { snapshot } = data.hourlyUsage;
+  if (!snapshot.length) {
     return {
       snapshotList: [],
       snapshotsTotalPrice: 0,
     };
   }
 
-  const snapshotList = data.hourlyUsage.snapshot.map((snapshot) => ({
-    ...snapshot,
-    totalPrice: roundPrice(snapshot.totalPrice),
+  const snapshotList = snapshot.map((snap) => ({
+    ...snap,
+    totalPrice: roundPrice(snap.totalPrice),
   }));
 
   const snapshotsTotalPrice = roundPrice(
     data.hourlyUsage.snapshot.reduce(
-      (sum, snapshot) => sum + roundPrice(snapshot.totalPrice),
+      (sum, snap) => sum + roundPrice(snap.totalPrice),
       0,
     ),
   );
@@ -179,7 +185,7 @@ const initRancherList = (
 };
 
 const initVolumeList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  if (!data.hourlyUsage.volume.length) {
     return {
       volumeList: [],
       volumesTotalPrice: 0,
@@ -209,28 +215,27 @@ const initVolumeList = (data: TCurrentUsage) => {
 };
 
 const initInstanceBandwidth = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { instanceBandwidth } = data.hourlyUsage;
+  if (!instanceBandwidth.length) {
     return {
       bandwidthList: [],
       bandwidthTotalPrice: 0,
     };
   }
 
-  const bandwidthList = data.hourlyUsage.instanceBandwidth.map(
-    (bandwidthByRegion) => ({
-      ...bandwidthByRegion,
-      outgoingBandwidth: {
-        ...bandwidthByRegion.outgoingBandwidth,
-        totalPrice: roundPrice(bandwidthByRegion.outgoingBandwidth.totalPrice),
-        quantity: {
-          ...bandwidthByRegion.outgoingBandwidth.quantity,
-          value: roundPrice(
-            bandwidthByRegion.outgoingBandwidth.quantity.value || 0,
-          ),
-        },
+  const bandwidthList = instanceBandwidth.map((bandwidthByRegion) => ({
+    ...bandwidthByRegion,
+    outgoingBandwidth: {
+      ...bandwidthByRegion.outgoingBandwidth,
+      totalPrice: roundPrice(bandwidthByRegion.outgoingBandwidth.totalPrice),
+      quantity: {
+        ...bandwidthByRegion.outgoingBandwidth.quantity,
+        value: roundPrice(
+          bandwidthByRegion.outgoingBandwidth.quantity.value || 0,
+        ),
       },
-    }),
-  );
+    },
+  }));
 
   const bandwidthTotalPrice = roundPrice(
     bandwidthList.reduce(
@@ -251,7 +256,7 @@ const sumColdArchiveTotalPriceByName = (
 ) =>
   coldArchives.reduce((sum, object) => {
     if (object.name === name) {
-      return sum + object?.totalPrice;
+      return sum + object.totalPrice;
     }
     return sum;
   }, 0);
@@ -262,7 +267,7 @@ const sumColdArchiveBillingQuantitiesByName = (
 ) =>
   coldArchives.reduce((sum, object) => {
     if (object.name === name) {
-      return sum + object?.quantity?.value;
+      return sum + object.quantity.value;
     }
     return sum;
   }, 0);
@@ -287,17 +292,17 @@ const reduceColdArchiveBillingInfo = (
   });
 
 const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
-  let resources = (data?.resourcesUsage || [])
+  let resources = data.resourcesUsage
     .filter((resource) => resource.type === resourceType)
-    .flatMap((resource) => resource.resources || [])
+    .flatMap((resource) => resource.resources)
     .flatMap((resourceDetail) =>
-      (resourceDetail.components || []).map((resourceComponent) => ({
+      resourceDetail.components.map((resourceComponent) => ({
         ...resourceComponent,
         region: resourceDetail.region,
       })),
     );
 
-  if (resourceType === 'coldarchive') {
+  if (resourceType === TConsumptionType.coldArchive) {
     resources = reduceColdArchiveBillingInfo(resources);
   }
 
@@ -306,7 +311,7 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
   );
 
   return {
-    resources: resources || [],
+    resources,
     totalPrice: totalPrice || 0,
   };
 };
@@ -410,31 +415,7 @@ export type TConsumptionDetail = {
   octaviaLoadBalancer: TResourceUsage[];
   totals: {
     total: number;
-    hourly: {
-      total: number;
-      instance: number;
-      objectStorage: number;
-      archiveStorage: number;
-      snapshot: number;
-      volume: number;
-      rancher: number;
-      dataplatform: number;
-      bandwidth: number;
-      privateRegistry: number;
-      kubernetesLoadBalancer: number;
-      notebooks: number;
-      coldArchive: number;
-      serving: number;
-      training: number;
-      aiEndpoints: number;
-      aiDeploy: number;
-      dataProcessing: number;
-      databases: number;
-      floatingIP: number;
-      gateway: number;
-      octaviaLoadBalancer: number;
-      publicIP: number;
-    };
+    hourly: Record<TConsumptionType, number>;
     monthly: {
       total: number;
       instance: number;
@@ -468,7 +449,6 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   totals: {
     total: 0,
     hourly: {
-      total: 0,
       instance: 0,
       objectStorage: 0,
       archiveStorage: 0,
@@ -499,23 +479,25 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   },
 });
 
-export const getConsumptionDetails = (usage: TCurrentUsage) => {
+export const getConsumptionDetails = (
+  usage: TCurrentUsage,
+): TConsumptionDetail => {
   const resourceMap = [
-    { type: 'registry', key: 'privateRegistry' },
-    { type: 'loadbalancer', key: 'kubernetesLoadBalancer' },
-    { type: 'ai-notebook', key: 'notebooks' },
-    { type: 'ai-serving-engine', key: 'serving' },
-    { type: 'ai-training', key: 'training' },
-    { type: 'ai-endpoints', key: 'aiEndpoints' },
-    { type: 'data-processing-job', key: 'dataProcessing' },
-    { type: 'databases', key: 'databases' },
-    { type: 'coldarchive', key: 'coldArchive' },
-    { type: 'floatingip', key: 'floatingIP' },
-    { type: 'gateway', key: 'gateway' },
-    { type: 'octavia-loadbalancer', key: 'octaviaLoadBalancer' },
-    { type: 'ai-app', key: 'aiDeploy' },
-    { type: 'publicip', key: 'publicIP' },
-    { type: 'dataplatform', key: 'dataplatform' },
+    { type: TConsumptionType.registry, key: 'privateRegistry' },
+    { type: TConsumptionType.loadbalancer, key: 'kubernetesLoadBalancer' },
+    { type: TConsumptionType.aiNotebook, key: 'notebooks' },
+    { type: TConsumptionType.aiServingEngine, key: 'serving' },
+    { type: TConsumptionType.aiTraining, key: 'training' },
+    { type: TConsumptionType.aiEndpoints, key: 'aiEndpoints' },
+    { type: TConsumptionType.dataProcessingJob, key: 'dataProcessing' },
+    { type: TConsumptionType.databases, key: 'databases' },
+    { type: TConsumptionType.coldArchive, key: 'coldArchive' },
+    { type: TConsumptionType.floatingip, key: 'floatingIP' },
+    { type: TConsumptionType.gateway, key: 'gateway' },
+    { type: TConsumptionType.octaviaLoadbalancer, key: 'octaviaLoadBalancer' },
+    { type: TConsumptionType.aiApp, key: 'aiDeploy' },
+    { type: TConsumptionType.publicip, key: 'publicIP' },
+    { type: TConsumptionType.dataplatform, key: 'dataplatform' },
   ];
 
   const { resources, totals: hourlyTotals } = resourceMap.reduce(
@@ -564,6 +546,21 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
       volume: volumesTotalPrice,
       bandwidth: bandwidthTotalPrice,
       rancher: rancherTotalPrice,
+      privateRegistry: hourlyTotals.privateRegistry,
+      kubernetesLoadBalancer: hourlyTotals.kubernetesLoadBalancer,
+      notebooks: hourlyTotals.notebooks,
+      coldArchive: hourlyTotals.coldArchive,
+      serving: hourlyTotals.serving,
+      training: hourlyTotals.training,
+      aiDeploy: hourlyTotals.aiDeploy,
+      aiEndpoints: hourlyTotals.aiEndpoints,
+      dataProcessing: hourlyTotals.dataProcessing,
+      databases: hourlyTotals.databases,
+      floatingIP: hourlyTotals.floatingIP,
+      gateway: hourlyTotals.gateway,
+      octaviaLoadBalancer: hourlyTotals.octaviaLoadBalancer,
+      publicIP: hourlyTotals.publicIP,
+      dataplatform: hourlyTotals.dataplatform,
     },
     monthly: {
       total: monthlyInstanceTotalPrice,
@@ -586,12 +583,24 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
     rancher: rancherList,
     volumes: volumeList,
     bandwidthByRegions: bandwidthList,
-    ...resources,
+    privateRegistry: resources.privateRegistry,
+    kubernetesLoadBalancer: resources.kubernetesLoadBalancer,
+    training: resources.training,
+    aiEndpoints: resources.aiEndpoints,
+    aiDeploy: resources.aiDeploy,
+    notebooks: resources.notebooks,
+    coldArchive: resources.coldArchive,
+    dataProcessing: resources.dataProcessing,
+    databases: resources.databases,
+    floatingIP: resources.floatingIP,
+    gateway: resources.gateway,
+    octaviaLoadBalancer: resources.octaviaLoadBalancer,
+    publicIP: resources.publicIP,
     totals: {
       ...totals,
       total: finalTotal,
     },
-  } as TConsumptionDetail;
+  };
 };
 
 export const useGeTCurrentUsage = (projectId: string) =>

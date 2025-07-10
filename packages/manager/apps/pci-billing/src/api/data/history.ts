@@ -22,7 +22,7 @@ export const getUsageHistoryPeriod = async (
   return data;
 };
 
-export type THistoryUsage = TCurrentUsage;
+type THistoryUsage = TCurrentUsage;
 
 export const getUsageHistory = async (
   projectId: string,

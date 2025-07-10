@@ -28,7 +28,7 @@ import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 export default function History() {
   const { t } = useTranslation('history');
 
-  const { projectId } = useParams();
+  const { projectId = '' } = useParams();
   const { billingDate, prevMonthDate, translationValues } = useComputeDate();
 
   const {
@@ -50,7 +50,7 @@ export default function History() {
     TRUSTED_ZONE,
   ]);
 
-  const isTrustedZone = availability?.[TRUSTED_ZONE];
+  const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
   const isPostPaidUsageBilling = availability?.[PCI_FEATURES_BILLING_POST_PAID];
 
   return (
@@ -66,8 +66,8 @@ export default function History() {
       ) : (
         <>
           <HistoryResume
-            totalPrice={consumption?.totals.total}
-            isPostPaidUsageBilling={isPostPaidUsageBilling}
+            totalPrice={consumption?.totals.total ?? 0}
+            isPostPaidUsageBilling={isPostPaidUsageBilling ?? false}
           />
 
           <div className="flex items-start flex-col xl:flex-row gap-7">
@@ -93,7 +93,9 @@ export default function History() {
                   )}
                 </OsdsText>
 
-                <MonthlyConsumption consumption={consumption} />
+                {consumption && (
+                  <MonthlyConsumption consumption={consumption} />
+                )}
               </div>
             </OsdsTile>
 
@@ -112,10 +114,12 @@ export default function History() {
                   {t('cpbhd_hourly_header', { ...translationValues })}
                 </OsdsText>
 
-                <HourlyConsumption
-                  consumption={consumption}
-                  isTrustedZone={isTrustedZone}
-                />
+                {consumption && (
+                  <HourlyConsumption
+                    consumption={consumption}
+                    isTrustedZone={isTrustedZone}
+                  />
+                )}
               </div>
             </OsdsTile>
           </div>
