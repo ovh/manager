@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useGetIpVmac, useGetIpdetails } from '@/data/hooks/ip';
+import { useGetIpdetails, useGetIpVmacWithIp } from '@/data/hooks';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -37,7 +37,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
     isVmacEnabled(ipDetails);
 
   // get vmacs if ip is routed to a dedicated server
-  const { vmacs, isLoading, error } = useGetIpVmac({
+  const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
     serviceName: ipDetails?.routedTo?.serviceName,
     enabled,
   });
@@ -46,14 +46,13 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
     <SkeletonCell
       isLoading={isLoading || isIpDetailsLoading}
       enabled={!isGroup}
-      error={error}
     >
       {!enabled && null}
-      {enabled && !vmacs?.length && <>-</>}
+      {enabled && !vmacsWithIp?.length && <>-</>}
       {enabled &&
-        vmacs?.map((vmac) => (
-          <div key={vmac.macAddress}>{vmac.macAddress}</div>
-        ))}
+        vmacsWithIp
+          ?.filter((vmac) => vmac.ip?.includes(ipFormatter(ip).ip))
+          .map((vmac) => <div key={vmac.macAddress}>{vmac.macAddress}</div>)}
     </SkeletonCell>
   );
 };
