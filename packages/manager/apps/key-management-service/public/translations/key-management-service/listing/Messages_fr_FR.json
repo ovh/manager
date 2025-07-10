@@ -3,6 +3,7 @@
   "key_management_service_listing_name_cell": "Nom",
   "key_management_service_listing_id_cell": "ID",
   "key_management_service_listing_kmip_cell": "KMIP",
+  "key_management_service_listing_secret_cell": "Secrets",
   "key_management_service_listing_region_cell": "Région",
   "key_management_service_listing_status_cell": "Statut",
   "key_management_service_listing_clipboard_success_label": "Copié",
