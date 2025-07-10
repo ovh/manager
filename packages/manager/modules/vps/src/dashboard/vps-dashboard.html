@@ -62,6 +62,38 @@
 <oui-message data-ng-if="$ctrl.vpsMigrationTaskInError" data-type="error">
     <p data-translate="vps_dashboard_migration_in_error"></p>
 </oui-message>
+<oui-message
+    data-ng-if="$ctrl.migration2020.position || $ctrl.migration2020.date"
+    class="mb-3"
+    data-type="info"
+>
+    <strong
+        data-ng-if="$ctrl.migration2020.position"
+        data-translate="vps_dashboard_migration_2020_info_queue_part_1"
+        data-translate-values="{ position: $ctrl.migration2020.position }"
+    ></strong>
+    <p
+        data-ng-if="$ctrl.migration2020.position"
+        data-translate="vps_dashboard_migration_2020_info_queue_part_2"
+        class="mb-0"
+    ></p>
+    <strong
+        data-ng-if="$ctrl.migration2020.date"
+        data-translate="vps_dashboard_migration_2020_info_with_date_part_1"
+        data-translate-values="{
+            vpsName: $ctrl.serviceName,
+            date: $ctrl.migration2020.date,
+            time: $ctrl.migration2020.date
+        }"
+        class="d-block"
+    ></strong>
+    <p
+        data-ng-if="$ctrl.migration2020.date"
+        data-translate="vps_dashboard_migration_2020_info_with_date_part_2"
+        data-translate-values="{ url: $ctrl.forceOutperform2020Href() }"
+        class="mb-0"
+    ></p>
+</oui-message>
 
 <section>
     <div class="row d-lg-flex mb-3">

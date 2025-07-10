@@ -51,6 +51,8 @@ export default {
     trackPage: '<',
     isSecondaryDnsAvailable: '<',
     isLocalzone: '<',
+    migration2020: '<',
+    forceOutperform2020Href: '<',
   },
   controller,
   name: 'ovhManagerVpsDashboard',
