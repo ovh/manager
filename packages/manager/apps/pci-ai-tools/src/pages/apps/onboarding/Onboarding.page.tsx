@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@datatr-ux/uxlib';
 import Guides from '@/components/guides/Guides.component';
 import Link from '@/components/links/Link.component';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 import onboardingImgSrc from '@/../public/assets/serving.png';
 import OnboardingTile from '../../../components/onboarding-tile/OnboardingTile.component';
 import { GUIDES, appGuidesSections, getGuideUrl } from '@/configuration/guide';
@@ -10,7 +12,7 @@ import { useLocale } from '@/hooks/useLocale';
 const Onboarding = () => {
   const { t } = useTranslation('ai-tools/apps/onboarding');
   const locale = useLocale();
-
+  const track = useTrackAction();
   return (
     <div
       data-testid="onbaording-container"
@@ -28,6 +30,9 @@ const Onboarding = () => {
       </div>
       <Button data-testid="create-app-link" asChild>
         <Link
+          onClick={() => {
+            track(TRACKING.deploy.onboarding.createDeployClick(), 'onboarding');
+          }}
           to="../new"
           className="hover:no-underline hover:text-primary-foreground"
         >
