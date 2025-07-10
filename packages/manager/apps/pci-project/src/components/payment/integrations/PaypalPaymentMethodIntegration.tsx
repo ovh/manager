@@ -1,7 +1,7 @@
 import React, { useEffect, useImperativeHandle, useMemo } from 'react';
 import { TCart } from '@/data/types/payment/cart.type';
 import {
-  TPaymentMethod,
+  TAvailablePaymentMethod,
   TPaymentMethodIntegrationRef,
   TRegisterPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
@@ -14,7 +14,7 @@ interface PaypalPaymentMethodIntegrationProps {
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
   paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
   isSetAsDefault?: boolean;
-  onError?: (error: Error) => void;
+  onPaymentError?: (error: string | undefined) => void;
   onPaymentSubmit: ({
     paymentMethodId,
     skipRegistration,
@@ -28,7 +28,7 @@ interface PaypalPaymentMethodIntegrationProps {
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
-  onError,
+  onPaymentError,
   onPaymentSubmit,
   handleValidityChange,
   isSetAsDefault,
@@ -39,7 +39,7 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
   // Payment logic management
   const { handlePayment, handleAuthorize, handleError } = usePayPalPayment({
     onPaymentSubmit,
-    onError,
+    onError: (err) => onPaymentError && onPaymentError(err.message),
   });
 
   // PayPal button configuration
@@ -74,8 +74,11 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
   useImperativeHandle(
     paymentHandler,
     () => ({
-      registerPaymentMethod: async (
-        _paymentMethod: TPaymentMethod,
+      submitPayment: async () => {
+        return { continueProcessing: true };
+      },
+      onPaymentMethodRegistered: async (
+        _paymentMethod: TAvailablePaymentMethod,
         _cart: TCart,
         registerPaymentMethod?: TRegisterPaymentMethod,
       ) => {
