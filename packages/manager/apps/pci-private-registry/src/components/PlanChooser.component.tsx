@@ -4,8 +4,8 @@ import { TRegistryPlan } from '@/api/data/registry';
 
 export type TPlanChooserProps = {
   plan: TRegistryPlan;
-  plans: TRegistryPlan[];
   onInput: (value: TRegistryPlan) => void;
+  plans?: TRegistryPlan[];
 };
 
 export default function PlanChooser({
