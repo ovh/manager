@@ -2,22 +2,13 @@ import {
   OvhSubsidiary,
   IntervalUnitType,
   OVH_CURRENCY_BY_SUBSIDIARY,
-} from '../../../enumTypes';
-
-export interface PriceProps {
-  /** The price value to display */
-  value: number;
-  /** The tax value to display */
-  tax?: number;
-  /** The interval unit for the price (day, month, year) */
-  intervalUnit?: IntervalUnitType;
-  /** The OVH subsidiary to determine price format */
-  ovhSubsidiary: OvhSubsidiary;
-  /** Whether to convert the price based on interval unit */
-  isConvertIntervalUnit?: boolean;
-  /** The locale for price formatting */
-  locale: string;
-}
+} from '../../enumTypes';
+import {
+  ASIAN_FORMAT_SUBSIDIARIES,
+  GERMAN_FORMAT_SUBSIDIARIES,
+  FRENCH_FORMAT_SUBSIDIARIES,
+  US_FORMAT_SUBSIDIARIES,
+} from './Price.constants';
 
 export const getPrice = (value: number, tax?: number): number => {
   const valueWithTax = tax ? value + tax : value;
@@ -58,4 +49,20 @@ export const getPriceTextFormatted = (
       maximumFractionDigits: 2,
     }).format(priceValue);
   }
+};
+
+export const checkAsianFormat = (subsidiary: string) => {
+  return ASIAN_FORMAT_SUBSIDIARIES.includes(subsidiary);
+};
+
+export const checkGermanFormat = (subsidiary: string) => {
+  return GERMAN_FORMAT_SUBSIDIARIES.includes(subsidiary);
+};
+
+export const checkFranceFormat = (subsidiary: string) => {
+  return FRENCH_FORMAT_SUBSIDIARIES.includes(subsidiary);
+};
+
+export const checkUSFormat = (subsidiary: string) => {
+  return US_FORMAT_SUBSIDIARIES.includes(subsidiary);
 };
