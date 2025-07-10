@@ -5,12 +5,7 @@ import {
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { FC, useMemo } from 'react';
-import {
-  Outlet,
-  useParams,
-  useResolvedPath,
-  useRouteLoaderData,
-} from 'react-router-dom';
+import { Outlet, useResolvedPath, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
@@ -21,14 +16,12 @@ import { CHANGELOG_LINKS } from '@/constants';
 import InstanceName from './dashboard/components/InstanceName.component';
 import { useDashboard } from './dashboard/hooks/useDashboard';
 import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
+import { useParams } from '@/hooks/params/useParams';
 
 const Instance: FC = () => {
   const { t } = useTranslation('dashboard');
   const project = useRouteLoaderData('root') as TProject;
-  const { instanceId, regionId } = useParams() as {
-    instanceId: string;
-    regionId: string;
-  };
+  const { instanceId, regionId } = useParams('instanceId', 'regionId');
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath('vnc');
 

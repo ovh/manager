@@ -143,6 +143,14 @@ const routes: RouteObject[] = [
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/instances/instance/dashboard/Dashboard.page'),
+            ),
+          },
+        ],
       },
       {
         path: SECTIONS.edit,
