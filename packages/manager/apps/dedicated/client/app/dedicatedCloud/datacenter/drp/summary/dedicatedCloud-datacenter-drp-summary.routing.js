@@ -11,6 +11,17 @@ export default /* @ngInject */ ($stateProvider) => {
       params: {
         drpInformations: {},
       },
+      redirectTo: (transition) => {
+        return transition
+          .injector()
+          .getAsync('isZertoOnPremise')
+          .then((isZertoOnPremise) => {
+            return (
+              !isZertoOnPremise &&
+              'app.dedicatedCloud.details.datacenter.details.drp.listing'
+            );
+          });
+      },
       resolve: {
         goToDeleteDrpModal: /* @ngInject */ ($state) => () =>
           $state.go(
