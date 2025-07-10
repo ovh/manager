@@ -22,26 +22,31 @@ const Instance: FC = () => {
   const project = useRouteLoaderData('root') as TProject;
   const { instanceId, regionId } = useParam('regionId', 'instanceId');
   const dashboardPath = useResolvedPath('');
-  const vncPath = useResolvedPath('vnc');
+  const vncPath = useResolvedPath(`../${instanceId}/vnc`); // vnc will be redirect to the legacy page until migration done
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region: regionId,
     instanceId,
   });
 
-  const tabs = useMemo(
-    () => [
+  const tabs = useMemo(() => {
+    const defaultTab = [
       {
         label: t('pci_instances_dashboard_tab_info_title'),
         to: dashboardPath.pathname,
       },
-      {
-        label: t('pci_instances_dashboard_tab_vnc_title'),
-        to: vncPath.pathname,
-      },
-    ],
-    [],
-  );
+    ];
+
+    return instance?.isEditEnabled
+      ? [
+          ...defaultTab,
+          {
+            label: t('pci_instances_dashboard_tab_vnc_title'),
+            to: vncPath.pathname,
+          },
+        ]
+      : defaultTab;
+  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isEditEnabled]);
 
   return (
     <InstanceWrapper>
