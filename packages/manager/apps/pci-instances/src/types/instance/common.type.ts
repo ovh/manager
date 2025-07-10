@@ -96,3 +96,10 @@ export type TBackup = {
   name: string;
   createdAt: string;
 };
+
+export type TSeverity = 'success' | 'error' | 'warning' | 'info';
+
+export type TStatusSeverity = {
+  label: TStatus;
+  severity: TSeverity;
+};
