@@ -12,6 +12,8 @@ export default {
     terminateOptions: '<',
     validateTermination: '<',
     vps: '<',
+    migration2020: '<',
+    goToOutperform: '<',
   },
   controller,
   name: 'ovhManagerVpsTerminate',
