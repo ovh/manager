@@ -20,7 +20,7 @@
   "virtualmachine_backup_state_disabling": "Disattivazione in corso",
   "virtualmachine_backup_state_enabling": "Attivazione in corso",
   "virtualmachine_backup_state_error": "Errore",
-  "virtualmachine_backup_state_migrating": "Migrazione in corso...",
+  "virtualmachine_backup_state_migrating": "Migrazione in corso.",
   "virtualmachine_backup_state_pending": "In attesa",
   "virtualmachine_backup_state_removed": "Eliminato",
   "virtualmachine_backup_state_stopping": "Arresto in corso...",
