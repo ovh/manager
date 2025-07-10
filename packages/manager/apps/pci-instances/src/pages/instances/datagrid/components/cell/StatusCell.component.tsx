@@ -2,14 +2,14 @@ import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
+import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
 import StatusChip, {
   TStatusChipStatus,
 } from '@/components/statusChip/StatusChip.component';
-import { TInstance } from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 type TStatusCellProps = {
-  instance: TInstance;
+  instance: TAggregatedInstance;
   isLoading: boolean;
   isPolling: boolean;
 };

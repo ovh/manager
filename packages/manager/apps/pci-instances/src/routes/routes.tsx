@@ -3,6 +3,7 @@ import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
 import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
+import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -51,7 +52,7 @@ export const INSTANCE_PATH = 'instance/:instanceId';
 export const SECTIONS = {
   onboarding: 'onboarding',
   new: 'new',
-  instance: ':instanceId',
+  instanceLegacy: ':instanceId',
   delete: 'delete',
   stop: 'stop',
   start: 'start',
@@ -97,6 +98,12 @@ const instanceActionRoutes = instanceActionsSections.map((section) => ({
   ),
 }));
 
+const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
+  (section) => ({
+    path: section,
+  }),
+);
+
 const routes: RouteObject[] = [
   {
     path: '/',
@@ -127,7 +134,12 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: SECTIONS.instance,
+        path: SECTIONS.instanceLegacy,
+        children: [...instanceLegacyRoutes],
+        loader: instanceLegacyRedirectionLoader,
+      },
+      {
+        path: 'region/:regionId/instance/:instanceId',
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),
