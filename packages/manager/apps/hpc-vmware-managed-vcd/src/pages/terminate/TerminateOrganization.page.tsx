@@ -2,8 +2,6 @@ import { useContext } from 'react';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 import {
-  ButtonType,
-  PageLocation,
   PageType,
   ShellContext,
   useOvhTracking,
@@ -11,6 +9,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useMessageContext } from '@/context/Message.context';
+import { TERMINATE_TRACKING_KEY, TRACKING } from '@/tracking.constants';
 
 export default function TerminateOrganization() {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ export default function TerminateOrganization() {
   const onSuccess = () => {
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_managed-vcd_success',
+      pageName: `${TERMINATE_TRACKING_KEY}_success`,
     });
     const messageKey =
       ovhSubsidiary === 'US'
@@ -39,34 +38,34 @@ export default function TerminateOrganization() {
     });
     closeModal();
   };
+
   const onError = () => {
     trackPage({
       pageType: PageType.bannerError,
-      pageName: 'delete_managed_vcd_error',
+      pageName: `${TERMINATE_TRACKING_KEY}_error`,
     });
   };
+
+  const onMutate = () => {
+    trackPage({
+      pageType: PageType.bannerInfo,
+      pageName: `${TERMINATE_TRACKING_KEY}_pending`,
+    });
+  };
+
   const { terminateService, isPending, error, isError } = useDeleteService({
     onSuccess,
     onError,
+    onMutate,
   });
 
   const closeHandler = () => {
-    trackClick({
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actionType: 'exit',
-      actions: ['delete_managed-vcd', 'cancel'],
-    });
+    trackClick(TRACKING.terminate.modalCancel);
     closeModal();
   };
 
   const confirmHandler = () => {
-    trackClick({
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: ['delete_managed-vcd', 'confirm'],
-    });
+    trackClick(TRACKING.terminate.modalConfirm);
     terminateService({ resourceName: id });
   };
 

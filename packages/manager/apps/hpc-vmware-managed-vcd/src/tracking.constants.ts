@@ -25,6 +25,7 @@ export const UNIVERSE = 'Enterprise';
 export const SUB_UNIVERSE = 'HostedPrivatedCloud';
 export const APP_NAME_TRACKING = 'managed-vcd';
 export const APP_NAME = 'hpc-vmware-managed-vcd';
+export const TERMINATE_TRACKING_KEY = 'delete_managed-vcd';
 
 type GetTrackingParams = (param: string | string[]) => TrackingClickParams;
 type AppTracking = Record<
@@ -125,6 +126,32 @@ export const TRACKING = defineTrackingConfig({
       buttonType: ButtonType.button,
       actionType: 'action',
       actions: ['datacenter_add_storage', 'cancel'],
+    },
+  },
+  terminate: {
+    fromListing: {
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TERMINATE_TRACKING_KEY],
+    },
+    fromDashboard: {
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TERMINATE_TRACKING_KEY],
+    },
+    modalCancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'exit',
+      actions: [TERMINATE_TRACKING_KEY, 'cancel'],
+    },
+    modalConfirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [TERMINATE_TRACKING_KEY, 'confirm'],
     },
   },
 });

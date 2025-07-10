@@ -16,6 +16,8 @@ const TEST_IDS = {
   backupBadgeStatus: 'backup-badge-status',
   backupBadgeError: 'backup-badge-error',
   backupBadgeNone: 'backup-badge-none',
+  terminateCta: 'terminate-cta',
+  terminateIdCta: (id: string) => `terminate-cta-${id}`,
 } as const;
 
 export default TEST_IDS;
