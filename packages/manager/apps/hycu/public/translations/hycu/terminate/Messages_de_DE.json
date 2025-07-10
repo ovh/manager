@@ -4,7 +4,7 @@
   "hycu_terminate_input_label": "Bestätigungswort: ",
   "hycu_terminate_cancel_label": "Abbrechen",
   "hycu_terminate_confirm_label": "Kündigen",
-  "hycu_terminate_success_message": "Ihre Kündigungsanfrage für {{serviceName}} wurde registriert. Sie erhalten eine E-Mail zur Bestätigung.",
+  "hycu_terminate_success_message": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Sie werden eine E-Mail erhalten, um diese zu bestätigen.",
   "hycu_terminate_error_message": "Es ist ein Fehler aufgetreten: {{error}}.",
-  "hycu_terminate_success_message_us": "Ihre Kündigungsanfrage wurde registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet."
+  "hycu_terminate_success_message_us": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet."
 }

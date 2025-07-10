@@ -4,7 +4,7 @@
   "hycu_terminate_input_label": "Confirmation word: ",
   "hycu_terminate_cancel_label": "Cancel",
   "hycu_terminate_confirm_label": "Terminate",
-  "hycu_terminate_success_message": "Your termination request for {{serviceName}} has been processed. You will receive an email to confirm your request.",
+  "hycu_terminate_success_message": "The cancellation request for the \"{{serviceName}}\" service has been processed. You’ll receive an email to confirm it.",
   "hycu_terminate_error_message": "An error has occurred: {{error}}.",
-  "hycu_terminate_success_message_us": "Your cancellation request has been processed. A confirmation email has been sent to you."
+  "hycu_terminate_success_message_us": "The cancellation request for the \"{{serviceName}}\" service has been processed. A confirmation email has been sent to you."
 }
