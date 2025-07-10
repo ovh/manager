@@ -4,8 +4,8 @@ import template from './dedicatedCloud-datacenter-drp-listing.html';
 export default {
   bindings: {
     goBackToDashboard: '<',
-    datacenterId: '<',
-    serviceName: '<',
+    openDeleteSiteModal: '<',
+    zertoMultiSites: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterDrpListing',
