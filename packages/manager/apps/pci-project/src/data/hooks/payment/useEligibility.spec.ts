@@ -1,9 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useEligibility, eligibilityQueryKey } from './useEligibility';
 import { getEligibility } from '@/data/api/payment/eligibility';
 import { createWrapper } from '@/wrapperRenders';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibilityRequiredAction,
+  TEligibility,
+  TEligibilityPaymentMethod,
+} from '@/data/types/payment/eligibility.type';
 
 vi.mock('@/data/api/payment/eligibility', () => ({
   getEligibility: vi.fn(),
@@ -18,17 +23,20 @@ describe('useEligibility', () => {
 
   it('should return eligibility data when API call succeeds', async () => {
     const mockEligibility: TEligibility | undefined = {
-      actionsRequired: ['addPaymentMethod'],
+      actionsRequired: [TEligibilityRequiredAction.ADD_PAYMENT_METHOD],
       minimumCredit: {
-        currencyCode: 'EUR',
+        currencyCode: CurrencyCode.EUR,
         priceInUcents: 1000,
         text: '10.00 EUR',
         value: 10,
       },
-      paymentMethodsAuthorized: ['creditCard', 'paypal'],
+      paymentMethodsAuthorized: [
+        TEligibilityPaymentMethod.CREDIT_CARD,
+        TEligibilityPaymentMethod.PAYPAL,
+      ],
       voucher: {
         credit: {
-          currencyCode: 'EUR',
+          currencyCode: CurrencyCode.EUR,
           priceInUcents: 500,
           text: '5.00 EUR',
           value: 5,
@@ -64,7 +72,7 @@ describe('useEligibility', () => {
     const mockEligibility: TEligibility | undefined = {
       actionsRequired: [],
       minimumCredit: null,
-      paymentMethodsAuthorized: ['bankAccount'],
+      paymentMethodsAuthorized: [TEligibilityPaymentMethod.BANK_ACCOUNT],
       voucher: null,
     };
 

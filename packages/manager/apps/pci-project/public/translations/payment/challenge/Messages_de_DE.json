@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Um Ihr Zahlungsmittel zu überprüfen, <strong>geben Sie bitte gegenüber die ersten 6 Stellen Ihrer Kreditkarte ein :</strong>",
+  "pci_project_new_payment_challenge_paypal": "Um Ihr Zahlungsmittel zu überprüfen, melden Sie sich bitte bei Ihrem PayPal-Konto an.",
+  "pci_project_new_payment_challenge_bank_account": "Um Ihr Zahlungsmittel zu überprüfen, geben Sie bitte unten Ihre IBAN ein:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "Ihr Zahlungsmittel konnte nicht bestätigt werden. Bitte versuchen Sie es erneut."
+}

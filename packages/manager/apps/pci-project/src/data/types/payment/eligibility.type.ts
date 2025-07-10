@@ -1,49 +1,36 @@
-export type TEligibiilityRequiredAction =
-  | 'addPaymentMethod'
-  | 'askIncreaseProjectsQuota'
-  | 'challengePaymentMethod'
-  | 'verifyPaypal';
+import { CurrencyCode } from '@ovh-ux/manager-react-components';
 
-export type TEligibilityCurrencyCode =
-  | 'AUD'
-  | 'CAD'
-  | 'CZK'
-  | 'EUR'
-  | 'GBP'
-  | 'INR'
-  | 'LTL'
-  | 'MAD'
-  | 'N/A'
-  | 'PLN'
-  | 'SGD'
-  | 'TND'
-  | 'USD'
-  | 'XOF'
-  | 'points';
+export enum TEligibilityRequiredAction {
+  ADD_PAYMENT_METHOD = 'addPaymentMethod',
+  ASK_INCREASE_PROJECTS_QUOTA = 'askIncreaseProjectsQuota',
+  CHALLENGE_PAYMENT_METHOD = 'challengePaymentMethod',
+  VERIFY_PAYPAL = 'verifyPaypal',
+}
 
-export type TEligibilityCredit = {
-  currencyCode: TEligibilityCurrencyCode;
+export enum TEligibilityPaymentMethod {
+  BANK_ACCOUNT = 'bankAccount',
+  CREDIT = 'credit',
+  CREDIT_CARD = 'creditCard',
+  PAYPAL = 'paypal',
+  RUPAY = 'rupay',
+  SEPA_DIRECT_DEBIT = 'sepaDirectDebit',
+}
+
+export type ProjectPrice = {
+  currencyCode: CurrencyCode;
   priceInUcents: number | null;
   text: string;
   value: number;
 };
 
-export type TEligibilityPaymentMethod =
-  | 'bankAccount'
-  | 'credit'
-  | 'creditCard'
-  | 'paypal'
-  | 'rupay'
-  | 'sepaDirectDebit';
-
 export type TEligibilityVoucher = {
-  credit: TEligibilityCredit;
+  credit: ProjectPrice;
   paymentMethodRequired: boolean;
 };
 
 export type TEligibility = {
-  actionsRequired: TEligibiilityRequiredAction[];
-  minimumCredit: TEligibilityCredit | null;
+  actionsRequired: TEligibilityRequiredAction[];
+  minimumCredit: ProjectPrice | null;
   paymentMethodsAuthorized: TEligibilityPaymentMethod[];
   voucher: TEligibilityVoucher | null;
 };
