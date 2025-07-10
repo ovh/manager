@@ -43,7 +43,7 @@ This document provides a full breakdown of all ESLint plugins, rules, and conven
 |------------------------------------|-------------|
 | `prettier`                         | Formatter |
 | `eslint-plugin-prettier`           | Runs Prettier as a lint rule |
-| `eslint-config-prettier`          | Disables ESLint rules conflicting with Prettier |
+| `eslint-config-prettier`           | Disables ESLint rules conflicting with Prettier |
 | `@trivago/prettier-plugin-sort-imports` | Sorts imports automatically |
 | `prettier-plugin-tailwindcss`      | Sorts Tailwind classes |
 
@@ -160,25 +160,17 @@ Available in `src/adapters/eslint/rules/`:
 }
 ```
 
-You can run:
+To lint your codebase:
 
 ```bash
 yarn manager-lint path/to/package
 ```
 
-To lint using the shared ESLint configuration.
-
----
-
-## 📜 License
-
-BSD-3-Clause — © OVH SAS
-
 ---
 
 ## 🔧 Usage Options
 
-### Option 1: Use the Full Shared Config
+### ✅ Option 1: Full Shared Config
 
 ```ts
 import { eslintSharedConfig } from '@ovh-ux/manager-static-analysis-kit';
@@ -186,15 +178,70 @@ import { eslintSharedConfig } from '@ovh-ux/manager-static-analysis-kit';
 export default eslintSharedConfig;
 ```
 
-### Option 2: Use Granular Configs
+### 🔀 Option 2: Progressive Adoption
+
+```ts
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
+import { complexityJsxTsxConfig, complexityTsJsConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
+import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
+import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
+import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
+import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
+import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
+import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
+import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
+
+export default [
+  javascriptEslintConfig,
+  typescriptEslintConfig,
+  reactEslintConfig,
+  a11yEslintConfig,
+  htmlEslintConfig,
+  cssEslintConfig,
+  tailwindJsxConfig,
+  tanStackQueryEslintConfig,
+  ...importEslintConfig,
+  ...checkFileEslintConfig,
+  vitestEslintConfig,
+  prettierEslintConfig,
+  complexityJsxTsxConfig,
+  complexityTsJsConfig,
+];
+```
+
+### ❌ Option 3: Override or Disable Rules
 
 ```ts
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 
 export default [
-  ...typescriptEslintConfig,
-  ...a11yEslintConfig,
+  {
+    ...typescriptEslintConfig,
+    rules: {
+      ...typescriptEslintConfig.rules,
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/await-thenable': 'off'
+    },
+  },
+];
+```
+
+**Disable all rules:**
+
+```ts
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+
+export default [
+  {
+    ...typescriptEslintConfig,
+    rules: {},
+  },
 ];
 ```
 
@@ -202,7 +249,7 @@ export default [
 
 ## 🚀 CLI Support
 
-The package includes a dedicated CLI tool `manager-lint` with Flat Config support:
+With Flat Config enabled, use the following script definitions:
 
 ```json
 {
@@ -220,7 +267,7 @@ The package includes a dedicated CLI tool `manager-lint` with Flat Config suppor
 | Purpose        | Pattern                         | Format               |
 |----------------|---------------------------------|----------------------|
 | Component      | `*.component.tsx`               | `PASCAL_CASE`        |
-| Hook           | `use*.ts`, `use*.tsx`           | `CAMEL_CASE`        |
+| Hook           | `use*.ts`, `use*.tsx`           | `CAMEL_CASE`         |
 | Hook Test      | `use*.spec.ts`, `use*.test.ts`  | `CAMEL_CASE`         |
 | Test           | `*.spec.tsx`, `*.test.tsx`      | `PASCAL_CASE`        |
 | Constants      | `*.constants.ts`                | `PASCAL_CASE`        |
@@ -235,25 +282,27 @@ The package includes a dedicated CLI tool `manager-lint` with Flat Config suppor
 
 ### 📛 One Component per File
 
-We enforce **a single React component per file** to encourage modularity and readability.
-
-This is implemented using:
+We enforce **a single React component per file** to encourage modularity and readability:
 
 ```json
 "react/no-multi-comp": ["error", { "ignoreStateless": false }]
 ```
 
-This ensures both class and functional components are defined one per file.
-
 ---
 
 ## 📊 Complexity Rules Summary
 
-| Rule                       | Target                  | Limit               |
-|----------------------------|-------------------------|---------------------|
-| `max-depth`               | Any block               | 4 levels            |
-| `max-params`              | Function parameters     | 4 parameters        |
-| `max-nested-callbacks`    | Callbacks               | 3 levels            |
-| `complexity`              | Cyclomatic complexity   | 10–15 (context-based)|
-| `max-lines`               | Per file                | 300 lines           |
-| `max-lines-per-function`  | Function body           | 50–80 lines         |
+| Rule                      | Target                | Limit                  |
+|---------------------------|------------------------|-------------------------|
+| `max-depth`              | Any block             | 4 levels                |
+| `max-params`             | Function parameters   | 4 parameters            |
+| `max-nested-callbacks`   | Callbacks             | 3 levels                |
+| `complexity`             | Cyclomatic complexity | 10–15 (context-based)   |
+| `max-lines`              | Per file              | 300 lines               |
+| `max-lines-per-function` | Function body         | 50–80 lines             |
+
+---
+
+## 📜 License
+
+BSD-3-Clause — © OVH SAS
