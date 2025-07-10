@@ -38,7 +38,8 @@ type CreditPaymentMethodIntegrationProps = {
   paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
   cartId: string;
   itemId: number;
-  handleCustomSubmitButton?: (btn: string) => void;
+  handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
+  onPaymentError: (err: string | undefined) => void;
 };
 
 const getAmountToPriceFormat = (
@@ -140,7 +141,10 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
     paymentHandler,
     () => {
       return {
-        registerPaymentMethod: async () => {
+        submitPayment: async () => {
+          return { continueProcessing: true };
+        },
+        onPaymentMethodRegistered: async () => {
           if (creditAddonOption && creditAddonOption.prices.length > 0) {
             const amount = selectCustomAmount
               ? creditCustomAmount
