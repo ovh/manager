@@ -30,6 +30,7 @@ export type PaymentStepProps = {
     paymentMethodId?: number;
     skipRegistration?: boolean;
   }) => Promise<unknown>;
+  onPaymentError: (err: string | undefined) => void;
 };
 
 type PaymentForm = {
@@ -45,6 +46,7 @@ export default function PaymentStep({
   paymentHandler,
   handleCustomSubmitButton,
   onPaymentSubmit,
+  onPaymentError,
 }: PaymentStepProps) {
   const [searchParams] = useSearchParams();
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
@@ -100,6 +102,7 @@ export default function PaymentStep({
         handlePaymentMethodChange={onPaymentMethodChange}
         handleSetAsDefaultChange={onSetAsDefaultChange}
         onPaymentSubmit={onPaymentSubmit}
+        onPaymentError={onPaymentError}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (

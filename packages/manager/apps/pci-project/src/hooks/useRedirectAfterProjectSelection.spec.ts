@@ -177,7 +177,7 @@ describe('useRedirectAfterProjectSelection', () => {
     renderHookWithWrapper();
 
     await waitFor(() => {
-      expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
+      expect(shellContext.shell?.navigation.navigateTo).toHaveBeenCalledWith(
         'public-cloud',
         '/test-path',
         {
@@ -197,7 +197,7 @@ describe('useRedirectAfterProjectSelection', () => {
 
     result.current.redirect('test-project-id');
 
-    expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
+    expect(shellContext.shell?.navigation.navigateTo).toHaveBeenCalledWith(
       'public-cloud',
       '/test-path',
       {
@@ -231,7 +231,7 @@ describe('useRedirectAfterProjectSelection', () => {
 
     result.current.redirect('test-project-id');
 
-    expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
+    expect(shellContext.shell?.navigation.navigateTo).toHaveBeenCalledWith(
       'public-cloud',
       '/test-path',
       {
@@ -302,7 +302,9 @@ describe('useRedirectAfterProjectSelection', () => {
       const mockGetURL = vi
         .fn()
         .mockResolvedValue('/public-cloud/test-path?projectId=test-project-id');
-      shellContext.shell.navigation.getURL = mockGetURL;
+      if (shellContext.shell) {
+        shellContext.shell.navigation.getURL = mockGetURL;
+      }
 
       const { result } = renderHookWithWrapper();
 
@@ -340,7 +342,9 @@ describe('useRedirectAfterProjectSelection', () => {
         .mockResolvedValue(
           '/public-cloud/test-path?key=value&projectId=test-project-id',
         );
-      shellContext.shell.navigation.getURL = mockGetURL;
+      if (shellContext.shell) {
+        shellContext.shell.navigation.getURL = mockGetURL;
+      }
 
       const { result } = renderHookWithWrapper();
 

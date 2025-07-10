@@ -57,7 +57,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
     ...actual,
     useHref: vi.fn(),
     useNavigate: vi.fn(),
-    useSearchParams: vi.fn(),
+    useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
   };
 });
 
@@ -244,11 +244,13 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       inputId,
       name,
       onClick,
+      isChecked,
       ...props
     }: {
       inputId: string;
       name: string;
       onClick?: () => void;
+      isChecked?: boolean;
     }) => (
       <input
         type="radio"
@@ -256,9 +258,338 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         name={name}
         data-testid="ods-radio"
         onClick={onClick}
+        checked={isChecked}
         {...props}
       />
     ),
+    OdsInput: React.forwardRef<
+      HTMLInputElement,
+      {
+        value?: string;
+        name?: string;
+        onOdsChange?: (event: { detail: { value: string } }) => void;
+        isDisabled?: boolean;
+        isReadonly?: boolean;
+        hasError?: boolean;
+        maxlength?: string;
+        [key: string]: unknown;
+      }
+    >(
+      (
+        {
+          value,
+          onOdsChange,
+          name,
+          isDisabled,
+          isReadonly,
+          hasError,
+          maxlength,
+          ...props
+        },
+        ref,
+      ) => {
+        const [internalValue, setInternalValue] = React.useState(value || '');
+        const elementRef = React.useRef<HTMLElement | null>(null);
+
+        React.useEffect(() => {
+          setInternalValue(value || '');
+        }, [value]);
+
+        React.useEffect(() => {
+          const element = elementRef.current;
+          if (!element) return undefined;
+
+          // Mock the internals property for form control integration
+          (element as HTMLElement & {
+            internals?: Record<string, unknown>;
+          }).internals = {
+            setFormValue: vi.fn(),
+            setValidity: vi.fn(),
+            checkValidity: vi.fn(() => true),
+            reportValidity: vi.fn(() => true),
+          };
+
+          const handleOdsChange = (event: CustomEvent) => {
+            const newValue = event.detail.value;
+            setInternalValue(newValue);
+            if (onOdsChange) {
+              onOdsChange({ detail: { value: newValue } });
+            }
+          };
+
+          element.addEventListener(
+            'odsChange',
+            handleOdsChange as EventListener,
+          );
+          return () => {
+            element.removeEventListener(
+              'odsChange',
+              handleOdsChange as EventListener,
+            );
+          };
+        }, [onOdsChange]);
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const newValue = e.target.value;
+          setInternalValue(newValue);
+          if (onOdsChange) {
+            onOdsChange({ detail: { value: newValue } });
+          }
+        };
+
+        // Create a component that can be found by querySelector('ods-input')
+        const Component = 'ods-input' as React.ElementType;
+        return (
+          <Component
+            ref={(el: HTMLElement) => {
+              // eslint-disable-next-line no-param-reassign
+              elementRef.current = el;
+              if (ref) {
+                if (typeof ref === 'function') {
+                  ref(el as HTMLInputElement);
+                } else {
+                  // eslint-disable-next-line no-param-reassign
+                  ref.current = el as HTMLInputElement;
+                }
+              }
+            }}
+            data-testid="ods-input"
+            name={name}
+            value={internalValue}
+            is-disabled={isDisabled?.toString()}
+            is-readonly={isReadonly?.toString()}
+            has-error={hasError?.toString()}
+            maxlength={maxlength}
+            onInput={handleChange}
+            onChange={handleChange}
+            {...props}
+          />
+        );
+      },
+    ),
+    OdsButton: ({
+      label,
+      onClick,
+      className,
+      isDisabled,
+      isLoading,
+      color,
+      size,
+      ...props
+    }: {
+      label: string;
+      onClick?: () => void;
+      className?: string;
+      isDisabled?: boolean;
+      isLoading?: boolean;
+      color?: string;
+      size?: string;
+    }) => {
+      const Component = 'ods-button' as React.ElementType;
+      return (
+        <Component
+          className={className}
+          onClick={onClick}
+          data-testid="ods-button"
+          label={label}
+          is-disabled={isDisabled?.toString()}
+          is-loading={isLoading?.toString()}
+          color={color}
+          size={size}
+          {...props}
+        >
+          {label}
+        </Component>
+      );
+    },
+    OdsCheckbox: React.forwardRef<
+      HTMLInputElement,
+      {
+        inputId: string;
+        name?: string;
+        isChecked?: boolean;
+        isDisabled?: boolean;
+        className?: string;
+        children?: React.ReactNode;
+        onClick?: () => void;
+        onOdsChange?: (event: { detail: { checked: boolean } }) => void;
+        [key: string]: unknown;
+      }
+    >(
+      (
+        {
+          inputId,
+          name,
+          isChecked,
+          isDisabled,
+          className,
+          children,
+          onClick,
+          onOdsChange,
+          ...props
+        },
+        ref,
+      ) => {
+        const [internalChecked, setInternalChecked] = React.useState(
+          isChecked || false,
+        );
+        const elementRef = React.useRef<HTMLElement | null>(null);
+
+        React.useEffect(() => {
+          setInternalChecked(isChecked || false);
+        }, [isChecked]);
+
+        React.useEffect(() => {
+          const element = elementRef.current;
+          if (!element) return undefined;
+
+          const handleOdsChange = (event: CustomEvent) => {
+            const newChecked = event.detail.checked;
+            setInternalChecked(newChecked);
+            if (onOdsChange) {
+              onOdsChange({ detail: { checked: newChecked } });
+            }
+          };
+
+          element.addEventListener(
+            'odsChange',
+            handleOdsChange as EventListener,
+          );
+          return () => {
+            element.removeEventListener(
+              'odsChange',
+              handleOdsChange as EventListener,
+            );
+          };
+        }, [onOdsChange]);
+
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const newChecked = e.target.checked;
+          setInternalChecked(newChecked);
+          if (onOdsChange) {
+            onOdsChange({ detail: { checked: newChecked } });
+          }
+          if (onClick) {
+            onClick();
+          }
+        };
+
+        const Component = 'ods-checkbox' as React.ElementType;
+        const {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          className: unusedClassName,
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          class: unusedClass,
+          ...restProps
+        } = props;
+        return (
+          <Component
+            ref={(el: HTMLElement) => {
+              // eslint-disable-next-line no-param-reassign
+              elementRef.current = el;
+              if (ref) {
+                if (typeof ref === 'function') {
+                  ref(el as HTMLInputElement);
+                } else {
+                  // eslint-disable-next-line no-param-reassign
+                  ref.current = el as HTMLInputElement;
+                }
+              }
+            }}
+            data-testid="ods-checkbox"
+            input-id={inputId}
+            name={name}
+            is-checked={internalChecked?.toString()}
+            is-disabled={isDisabled?.toString()}
+            is-required={(props['is-required'] || props.isRequired)?.toString()}
+            class={
+              `${className || ''} ${props.class || ''}`.trim() || undefined
+            }
+            onClick={onClick}
+            onChange={handleChange}
+            {...restProps}
+          >
+            {children}
+          </Component>
+        );
+      },
+    ),
+    OdsFormField: ({
+      children,
+      error,
+      className,
+      ...props
+    }: {
+      children: React.ReactNode;
+      error?: string;
+      className?: string;
+    }) => {
+      const Component = 'ods-form-field' as React.ElementType;
+      return (
+        <Component
+          data-testid="ods-form-field"
+          className={className}
+          error={error}
+          {...props}
+        >
+          {children}
+        </Component>
+      );
+    },
+    OdsDivider: ({
+      color,
+      spacing,
+      ...props
+    }: {
+      color?: string;
+      spacing?: string;
+    }) => {
+      const Component = 'ods-divider' as React.ElementType;
+      return (
+        <Component
+          data-testid="ods-divider"
+          color={color}
+          spacing={spacing}
+          {...props}
+        />
+      );
+    },
+    OdsAccordion: ({
+      children,
+      className,
+      ...props
+    }: {
+      children: React.ReactNode;
+      className?: string;
+    }) => {
+      const Component = 'ods-accordion' as React.ElementType;
+      return (
+        <Component data-testid="ods-accordion" className={className} {...props}>
+          {children}
+        </Component>
+      );
+    },
+    OdsSkeleton: ({
+      width,
+      height,
+      className,
+      ...props
+    }: {
+      width?: string;
+      height?: string;
+      className?: string;
+    }) => {
+      const Component = 'ods-skeleton' as React.ElementType;
+      return (
+        <Component
+          data-testid="ods-skeleton"
+          className={className}
+          width={width}
+          height={height}
+          {...props}
+        />
+      );
+    },
   };
 });
 
@@ -271,5 +602,108 @@ vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
       delete: vi.fn(),
       post: vi.fn(),
     },
+    navigation: {
+      getURL: vi.fn().mockResolvedValue('mocked-url'),
+    },
   };
 });
+
+// Mock the ShellContext to provide navigation and other shell functionality
+const mockGetURL = vi.fn().mockResolvedValue('mocked-url');
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...actual,
+    ShellContext: React.createContext({
+      shell: {
+        navigation: {
+          getURL: mockGetURL,
+        },
+      },
+    }),
+    useOvhTracking: () => ({
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    }),
+  };
+});
+
+// Mock payment method integrations to prevent component rendering issues
+vi.mock(
+  '@/components/payment/integrations/PaypalPaymentMethodIntegration',
+  () => ({
+    default: ({
+      handleValidityChange,
+    }: {
+      handleValidityChange: (valid: boolean) => void;
+    }) => {
+      React.useEffect(() => {
+        handleValidityChange?.(true);
+      }, [handleValidityChange]);
+      return null;
+    },
+  }),
+);
+
+vi.mock(
+  '@/components/payment/integrations/CreditCardPaymentMethodIntegration',
+  () => ({
+    default: ({
+      handleValidityChange,
+    }: {
+      handleValidityChange: (valid: boolean) => void;
+    }) => {
+      React.useEffect(() => {
+        handleValidityChange?.(true);
+      }, [handleValidityChange]);
+      return null;
+    },
+  }),
+);
+
+vi.mock(
+  '@/components/payment/integrations/RedirectPaymentMethodIntegration',
+  () => ({
+    default: ({
+      handleValidityChange,
+      handleCustomSubmitButton,
+    }: {
+      handleValidityChange: (valid: boolean) => void;
+      handleCustomSubmitButton?: (btn: string) => void;
+    }) => {
+      React.useEffect(() => {
+        handleValidityChange?.(true);
+        if (handleCustomSubmitButton) {
+          handleCustomSubmitButton(
+            'pci_project_new_payment_btn_continue_sepa_direct_debit',
+          );
+        }
+      }, [handleValidityChange, handleCustomSubmitButton]);
+      return null;
+    },
+  }),
+);
+
+vi.mock(
+  '@/components/payment/integrations/BankAccountPaymentMethodIntegration',
+  () => ({
+    default: ({
+      handleValidityChange,
+      handleCustomSubmitButton,
+    }: {
+      handleValidityChange: (valid: boolean) => void;
+      handleCustomSubmitButton?: (btn: string) => void;
+    }) => {
+      React.useEffect(() => {
+        handleValidityChange?.(true);
+        if (handleCustomSubmitButton) {
+          handleCustomSubmitButton(
+            'pci_project_new_payment_btn_continue_bank_account',
+          );
+        }
+      }, [handleValidityChange, handleCustomSubmitButton]);
+      return null;
+    },
+  }),
+);

@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
@@ -170,6 +171,12 @@ describe('RegisterPaymentMethod', () => {
     eligibility: mockEligibility,
     handlePaymentMethodChange: vi.fn(),
     handleSetAsDefaultChange: vi.fn(),
+    paymentHandler: React.createRef(),
+    cartId: 'cart-123',
+    itemId: 1,
+    onPaymentSubmit: vi.fn(),
+    onPaymentError: vi.fn(),
+    handleValidityChange: vi.fn(),
   };
 
   beforeEach(() => {
@@ -181,7 +188,7 @@ describe('RegisterPaymentMethod', () => {
       isLoading: false,
     });
 
-    vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+    vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue(({
       data: { data: mockAvailablePaymentMethods },
       error: null,
       isError: false,
@@ -206,7 +213,7 @@ describe('RegisterPaymentMethod', () => {
       isRefetching: false,
       isStale: false,
       refetch: vi.fn(),
-    });
+    } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
   });
 
   describe('Loading states', () => {
@@ -223,7 +230,7 @@ describe('RegisterPaymentMethod', () => {
     });
 
     it('should render spinner when payment methods are loading', () => {
-      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue(({
         data: undefined,
         error: null,
         isError: false,
@@ -248,7 +255,7 @@ describe('RegisterPaymentMethod', () => {
         isRefetching: false,
         isStale: false,
         refetch: vi.fn(),
-      });
+      } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
       const Wrapper = createWrapper(mockShellContext);
       render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
@@ -497,7 +504,7 @@ describe('RegisterPaymentMethod', () => {
   describe('Default callback functions', () => {
     it('should work with default callback functions', () => {
       const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod eligibility={mockEligibility} />, {
+      render(<RegisterPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
       });
 

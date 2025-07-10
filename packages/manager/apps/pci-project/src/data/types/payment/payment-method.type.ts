@@ -115,9 +115,17 @@ export type TPaymentCallbackRegisterReturnType = {
   paymentMethod?: TRegisterPaymentMethod;
 } & TPaymentCallbackReturnType;
 
+export type TPaymentCallbackSubmitReturnType = {
+  registerPostData?: Record<string, unknown>;
+} & TPaymentCallbackReturnType;
+
 export type TPaymentMethodIntegrationRef = {
-  registerPaymentMethod?: (
-    paymentMethod: TPaymentMethod,
+  submitPayment?: (
+    paymentMethod: TAvailablePaymentMethod,
+    cart: TCart,
+  ) => Promise<TPaymentCallbackSubmitReturnType>;
+  onPaymentMethodRegistered?: (
+    paymentMethod: TAvailablePaymentMethod,
     cart: TCart,
     registerPaymentMethod?: TRegisterPaymentMethod,
   ) => Promise<TPaymentCallbackRegisterReturnType>;
@@ -137,7 +145,7 @@ export type TPaymentMethodIntegrationRef = {
 
 export type TPaymentMethodRegisterRef = {
   registerPaymentMethod?: (
-    paymentMethod: TPaymentMethod,
+    paymentMethod: TAvailablePaymentMethod,
     cart: TCart,
   ) => Promise<TPaymentCallbackRegisterReturnType>;
   checkPaymentMethod?: (

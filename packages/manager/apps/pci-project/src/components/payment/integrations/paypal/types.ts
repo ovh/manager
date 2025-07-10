@@ -41,9 +41,3 @@ export interface PaymentData {
   paymentMethodId: number;
   formSessionId: string;
 }
-
-declare global {
-  interface Window {
-    paypal?: PayPalSDK;
-  }
-}
