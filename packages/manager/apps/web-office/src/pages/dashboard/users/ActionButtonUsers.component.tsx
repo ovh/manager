@@ -8,6 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { UserStateEnum } from '@/data/api/api.type';
 import { UserNativeType } from '@/data/api/users/type';
@@ -28,7 +29,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
   usersItem,
   licenceDetail,
 }) => {
-  const { t } = useTranslation('dashboard/users');
+  const { t } = useTranslation(['dashboard/users', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const hrefDeleteUsers = useGenerateUrl('./delete', 'path', {
@@ -78,7 +79,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
     {
       id: 1,
       onclick: handleEditUserClick,
-      label: t('dashboard_users_action_user_edit'),
+      label: t(`${NAMESPACES.ACTIONS}:edit_account`),
       urn: licenceDetail.iam.urn,
       iamActions: [
         ...(!licenceDetail.tenantServiceName
@@ -91,7 +92,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
           {
             id: 2,
             onclick: handlePasswordChangeClick,
-            label: t('dashboard_users_action_user_change_password'),
+            label: t(`${NAMESPACES.ACTIONS}:change_password`),
             urn: licenceDetail.iam.urn,
             iamActions: [
               ...(!licenceDetail.tenantServiceName
@@ -106,7 +107,7 @@ const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
           {
             id: 3,
             onclick: handleDeleteUserClick,
-            label: t('dashboard_users_action_user_delete'),
+            label: t(`${NAMESPACES.ACTIONS}:delete_account`),
             urn: licenceDetail.iam.urn,
             iamActions: [
               ...(!licenceDetail.tenantServiceName
