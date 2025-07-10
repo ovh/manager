@@ -5,6 +5,7 @@ import onPremiseConfiguration from './configuration/onPremise';
 import ovhConfiguration from './configuration/ovh';
 import routing from './dedicatedCloud-datacenter-drp.routing';
 import summary from './summary';
+import listing from './listing';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenterDrpModule';
 
@@ -14,6 +15,7 @@ angular
     onPremiseConfiguration,
     ovhConfiguration,
     summary,
+    listing,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

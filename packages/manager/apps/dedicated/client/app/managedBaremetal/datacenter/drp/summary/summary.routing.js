@@ -11,6 +11,15 @@ export default /* @ngInject */ ($stateProvider) => {
       params: {
         drpInformations: {},
       },
+      redirectTo: (transition) =>
+        transition
+          .injector()
+          .getAsync('isZertoOnPremise')
+          .then(
+            (isZertoOnPremise) =>
+              isZertoOnPremise &&
+              'app.managedBaremetal.details.datacenters.datacenter.drp.listing',
+          ),
       resolve: {
         goToDeleteDrpModal: /* @ngInject */ ($state) => () =>
           $state.go(
