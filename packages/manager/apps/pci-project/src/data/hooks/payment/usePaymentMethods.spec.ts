@@ -1,7 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { usePaymentMethods, paymentMethodQueryKey } from './usePaymentMethods';
+import {
+  usePaymentMethods,
+  useAddPaymentMethod,
+  useFinalizePaymentMethod,
+  paymentMethodQueryKey,
+} from './usePaymentMethods';
 import { createWrapper } from '@/wrapperRenders';
 import {
   TPaymentMethodIntegration,
@@ -113,5 +118,93 @@ describe('usePaymentMethods', () => {
     // Verify the query key structure matches what we expect
     const expectedQueryKey = paymentMethodQueryKey(params);
     expect(expectedQueryKey).toEqual(['payment', 'methods', params]);
+  });
+});
+
+describe('useAddPaymentMethod', () => {
+  const mockOnSuccess = vi.fn();
+  const mockOnError = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should return mutation with default callbacks', () => {
+    const { result } = renderHook(() => useAddPaymentMethod(), {
+      wrapper: createWrapper(),
+    });
+
+    expect(result.current).toHaveProperty('mutateAsync');
+    expect(result.current).toHaveProperty('isPending');
+    expect(result.current).toHaveProperty('error');
+  });
+
+  it('should return mutation with custom callbacks', () => {
+    const { result } = renderHook(
+      () =>
+        useAddPaymentMethod({
+          onSuccess: mockOnSuccess,
+          onError: mockOnError,
+        }),
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    expect(result.current).toHaveProperty('mutateAsync');
+    expect(result.current).toHaveProperty('isPending');
+    expect(result.current).toHaveProperty('error');
+  });
+
+  it('should handle empty options object', () => {
+    const { result } = renderHook(() => useAddPaymentMethod({}), {
+      wrapper: createWrapper(),
+    });
+
+    expect(result.current).toHaveProperty('mutateAsync');
+  });
+});
+
+describe('useFinalizePaymentMethod', () => {
+  const mockOnSuccess = vi.fn();
+  const mockOnError = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should return mutation with default callbacks', () => {
+    const { result } = renderHook(() => useFinalizePaymentMethod(), {
+      wrapper: createWrapper(),
+    });
+
+    expect(result.current).toHaveProperty('mutateAsync');
+    expect(result.current).toHaveProperty('isPending');
+    expect(result.current).toHaveProperty('error');
+  });
+
+  it('should return mutation with custom callbacks', () => {
+    const { result } = renderHook(
+      () =>
+        useFinalizePaymentMethod({
+          onSuccess: mockOnSuccess,
+          onError: mockOnError,
+        }),
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    expect(result.current).toHaveProperty('mutateAsync');
+    expect(result.current).toHaveProperty('isPending');
+    expect(result.current).toHaveProperty('error');
+  });
+
+  it('should handle empty options object', () => {
+    const { result } = renderHook(() => useFinalizePaymentMethod({}), {
+      wrapper: createWrapper(),
+    });
+
+    expect(result.current).toHaveProperty('mutateAsync');
   });
 });

@@ -52,6 +52,22 @@ export const addPaymentMethod = async (
   return data;
 };
 
+export type TPaymentDetails = {
+  transactionId: number;
+  details: string;
+};
+
+export const addPaymentDetails = async (
+  paymentMethodId: number,
+  params: TPaymentDetails,
+): Promise<TRegisterPaymentMethod> => {
+  const { data } = await v6.post(
+    `/me/payment/method/${paymentMethodId}/details`,
+    params,
+  );
+  return data;
+};
+
 export const finalizePaymentMethod = async (
   paymentMethodId: number,
   params: TPaymentMethodFinalizationParams,
