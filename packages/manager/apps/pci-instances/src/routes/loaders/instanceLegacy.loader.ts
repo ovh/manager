@@ -17,7 +17,7 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
   const section = getPathMatch<TSectionType>(pathname, actionSectionRegex);
 
   if (section) {
-    return redirect(`${instancePageUrl}/${section}`);
+    return redirect(`${instancePageUrl}/action/${section}`);
   }
 
   return redirect(instancePageUrl);
