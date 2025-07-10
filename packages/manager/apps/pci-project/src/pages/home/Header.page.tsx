@@ -19,7 +19,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 
-import { useTabs } from '@/hooks/tabs/useTabs';
+import { useTabs } from '@/hooks/useTabs/useTabs';
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 
 export default function ProjectHeader() {
