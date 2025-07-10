@@ -4,9 +4,12 @@ import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import DiscoveryGuard from './DiscoveryGuard.component';
 import { createWrapper, shellContext } from '@/wrapperRenders';
-import { PaymentMethod, TEligibility } from '@/data/types/eligibility.type';
+import {
+  TEligibilityPaymentMethod,
+  TEligibility,
+} from '@/data/types/payment/eligibility.type';
 import { PlanCode } from '@/data/types/cart.type';
-import { useEligibility } from '@/data/hooks/useEligibility';
+import { useEligibility } from '@/data/hooks/payment/useEligibility';
 import useActiveProjects from '@/data/hooks/useActiveProjects';
 import { TProjectWithService } from '@/data/types/project.type';
 
@@ -34,7 +37,7 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   };
 });
 
-vi.mock('@/data/hooks/useEligibility', () => ({
+vi.mock('@/data/hooks/payment/useEligibility', () => ({
   useEligibility: vi.fn(),
 }));
 vi.mock('@/data/hooks/useActiveProjects', () => ({
@@ -153,7 +156,9 @@ describe('DiscoveryGuard', () => {
 
   it('redirects to project creation if CREDIT is available', async () => {
     vi.mocked(useEligibility).mockReturnValue(
-      mockEligibility({ paymentMethodsAuthorized: [PaymentMethod.CREDIT] }),
+      mockEligibility({
+        paymentMethodsAuthorized: [TEligibilityPaymentMethod.CREDIT],
+      }),
     );
     vi.mocked(useActiveProjects).mockReturnValue({
       activeProjects: [],

@@ -13,7 +13,11 @@ import { createWrapper } from '@/wrapperRenders';
 import SetAsDefaultPaymentMethod, {
   SetAsDefaultPaymentMethodProps,
 } from './SetAsDefaultPaymentMethod';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityPaymentMethod,
+  TEligibilityRequiredAction,
+} from '@/data/types/payment/eligibility.type';
 import {
   TAvailablePaymentMethod,
   TPaymentMethodType,
@@ -35,9 +39,12 @@ describe('SetAsDefaultPaymentMethod', () => {
   const createMockEligibility = (
     overrides: Partial<TEligibility> = {},
   ): TEligibility => ({
-    actionsRequired: ['addPaymentMethod'],
+    actionsRequired: [TEligibilityRequiredAction.ADD_PAYMENT_METHOD],
     minimumCredit: null,
-    paymentMethodsAuthorized: ['creditCard', 'paypal'],
+    paymentMethodsAuthorized: [
+      TEligibilityPaymentMethod.CREDIT_CARD,
+      TEligibilityPaymentMethod.PAYPAL,
+    ],
     voucher: null,
     ...overrides,
   });
@@ -101,7 +108,9 @@ describe('SetAsDefaultPaymentMethod', () => {
         <SetAsDefaultPaymentMethod
           {...defaultProps}
           eligibility={createMockEligibility({
-            actionsRequired: ['challengePaymentMethod'],
+            actionsRequired: [
+              TEligibilityRequiredAction.CHALLENGE_PAYMENT_METHOD,
+            ],
           })}
         />,
         { wrapper: Wrapper },
@@ -396,7 +405,10 @@ describe('SetAsDefaultPaymentMethod', () => {
         <SetAsDefaultPaymentMethod
           {...defaultProps}
           eligibility={createMockEligibility({
-            actionsRequired: ['verifyPaypal', 'challengePaymentMethod'],
+            actionsRequired: [
+              TEligibilityRequiredAction.VERIFY_PAYPAL,
+              TEligibilityRequiredAction.CHALLENGE_PAYMENT_METHOD,
+            ],
           })}
         />,
         { wrapper: Wrapper },
@@ -413,7 +425,10 @@ describe('SetAsDefaultPaymentMethod', () => {
         <SetAsDefaultPaymentMethod
           {...defaultProps}
           eligibility={createMockEligibility({
-            actionsRequired: ['addPaymentMethod', 'verifyPaypal'],
+            actionsRequired: [
+              TEligibilityRequiredAction.ADD_PAYMENT_METHOD,
+              TEligibilityRequiredAction.VERIFY_PAYPAL,
+            ],
           })}
         />,
         { wrapper: Wrapper },
