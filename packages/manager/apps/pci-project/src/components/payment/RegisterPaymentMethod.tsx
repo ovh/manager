@@ -19,17 +19,32 @@ import { useFilteredAvailablePaymentMethods } from '@/data/hooks/payment/useFilt
 import PaymentIcon from './PaymentIcon';
 import {
   TAvailablePaymentMethod,
+  TPaymentMethodRegisterRef,
   TPaymentMethodType,
 } from '@/data/types/payment/payment-method.type';
 import SetAsDefaultPaymentMethod from './SetAsDefaultPaymentMethod';
 import ExplanationTexts from './ExplanationTexts';
 import SepaInformationModal from './SepaInformationModal';
+import PaymentMethodIntegration from './integrations/PaymentMethodIntegration';
 
 export type RegisterPaymentMethodProps = {
   eligibility: TEligibility;
   handlePaymentMethodChange?: (method: TAvailablePaymentMethod) => void;
   handleSetAsDefaultChange?: (value: boolean) => void;
   preselectedPaymentType?: string | null;
+  paymentHandler: React.Ref<TPaymentMethodRegisterRef>;
+  cartId: string;
+  itemId: number;
+  handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
+  onPaymentSubmit: ({
+    paymentMethodId,
+    skipRegistration,
+  }: {
+    paymentMethodId?: number;
+    skipRegistration?: boolean;
+  }) => Promise<unknown>;
+  onPaymentError: (err: string | undefined) => void;
+  handleValidityChange: (isValid: boolean) => void;
 };
 
 const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
@@ -37,6 +52,13 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
   handlePaymentMethodChange = () => {},
   handleSetAsDefaultChange = () => {},
   preselectedPaymentType,
+  paymentHandler,
+  cartId,
+  itemId,
+  handleCustomSubmitButton,
+  onPaymentSubmit,
+  onPaymentError,
+  handleValidityChange,
 }) => {
   const { t } = useTranslation([
     'payment/add',
@@ -184,6 +206,22 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
         isSetAsDefault={isSetAsDefault}
         handleSetAsDefaultChange={onHandleSetAsDefaultChange}
       />
+
+      <div className="mb-6">
+        <PaymentMethodIntegration
+          paymentMethod={selectedPaymentMethod}
+          handleValidityChange={handleValidityChange}
+          eligibility={eligibility}
+          paymentHandler={paymentHandler}
+          cartId={cartId}
+          itemId={itemId}
+          handleCustomSubmitButton={handleCustomSubmitButton}
+          onPaymentSubmit={onPaymentSubmit}
+          onPaymentError={onPaymentError}
+          isSetAsDefault={isSetAsDefault}
+          features={features}
+        />
+      </div>
 
       {selectedPaymentMethod?.paymentType ===
         TPaymentMethodType.SEPA_DIRECT_DEBIT && (

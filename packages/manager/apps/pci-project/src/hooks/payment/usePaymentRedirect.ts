@@ -17,13 +17,16 @@ export const usePaymentRedirect = (
     const status = searchParams.get('paymentStatus');
     const paymentMethodId = searchParams.get('paymentMethodId');
 
-    if (!isEnabled || !status || !paymentMethodId || isCalled) return;
+    if (!isEnabled || !status || isCalled) return;
 
     setIsCalled(true);
 
     if (['cancel', 'error', 'failure'].includes(status)) {
       onPaymentError();
     } else if (['success', 'pending'].includes(status)) {
+      if (!paymentMethodId) {
+        return;
+      }
       onPaymentSuccess(Number(paymentMethodId));
     }
   }, [searchParams, isCalled, onPaymentError, onPaymentSuccess, isEnabled]);

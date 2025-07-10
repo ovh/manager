@@ -55,7 +55,7 @@ describe('PaypalExplanationTexts', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockUsePaypalChargeAmount.mockReturnValue({
+    mockUsePaypalChargeAmount.mockReturnValue(({
       data: 5,
       isLoading: false,
       isPending: false,
@@ -80,7 +80,7 @@ describe('PaypalExplanationTexts', () => {
       isRefetching: false,
       isStale: false,
       isPaused: false,
-    });
+    } as unknown) as ReturnType<typeof usePaypalChargeAmount>);
 
     mockUsePricing.mockReturnValue({
       formatPrice: vi.fn(() => '5.00 USD'),
@@ -104,7 +104,7 @@ describe('PaypalExplanationTexts', () => {
   });
 
   it('should show loading spinner when data is loading', () => {
-    mockUsePaypalChargeAmount.mockReturnValue({
+    mockUsePaypalChargeAmount.mockReturnValue(({
       data: undefined,
       isLoading: true,
       isPending: true,
@@ -129,7 +129,7 @@ describe('PaypalExplanationTexts', () => {
       isRefetching: false,
       isStale: false,
       isPaused: false,
-    });
+    } as unknown) as ReturnType<typeof usePaypalChargeAmount>);
 
     const mockFeatures = createMockFeatures();
     const mockShellContext = createMockShellContext();
@@ -239,7 +239,7 @@ describe('PaypalExplanationTexts', () => {
   });
 
   it('should handle when amount is 0', () => {
-    mockUsePaypalChargeAmount.mockReturnValue({
+    mockUsePaypalChargeAmount.mockReturnValue(({
       data: 0,
       isLoading: false,
       isPending: false,
@@ -264,7 +264,7 @@ describe('PaypalExplanationTexts', () => {
       isRefetching: false,
       isStale: false,
       isPaused: false,
-    });
+    } as unknown) as ReturnType<typeof usePaypalChargeAmount>);
 
     const mockFeatures = createMockFeatures({ PAYPAL_CHARGE: true });
     const mockShellContext = createMockShellContext();

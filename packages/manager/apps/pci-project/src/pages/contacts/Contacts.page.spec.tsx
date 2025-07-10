@@ -56,6 +56,17 @@ vi.mock('@/hooks/useParam', () => ({
   useParam: vi.fn().mockReturnValue('p-1'),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...actual,
+    useOvhTracking: () => ({
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    }),
+  };
+});
+
 const wrapper = createWrapper();
 
 const projectMock = { project_id: 'p-1', description: 'My project' } as any;

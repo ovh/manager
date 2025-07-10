@@ -21,7 +21,9 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
 
   useEffect(() => {
     function setupPayPalButton() {
-      if (!isSDKReady || !containerRef.current || !window.paypal?.Button) {
+      const paypalSdk = ((window as unknown) as Record<string, unknown>)
+        .paypal as Record<string, unknown>;
+      if (!isSDKReady || !containerRef.current || !paypalSdk?.Button) {
         return;
       }
 
@@ -33,7 +35,8 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
         ...config,
       };
 
-      window.paypal.Button.render(finalConfig, containerRef.current);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (paypalSdk.Button as any).render(finalConfig, containerRef.current);
     }
 
     setupPayPalButton();
