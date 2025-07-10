@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/listing',
       views: {
-        'pccDatacenterView@app.dedicatedCloud.details.datacenter.details': {
+        'pccDatacenterView@app.managedBaremetal.details.datacenters.datacenter': {
           component: 'dedicatedCloudDatacenterDrpListing',
         },
       },
@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
         ) => (siteId) =>
           $state.go(
-            'app.managedBaremetal.details.datacenter.details.drp.listing.deleteSite',
+            'app.managedBaremetal.details.datacenters.datacenter.drp.listing.deleteSite',
             { serviceName, datacenterId, siteId },
           ),
         zertoMultiSites: /* @ngInject */ (
@@ -34,14 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
           datacenterId,
         ) =>
-          dedicatedCloudDrp
-            .getZertoMultiSite({
-              serviceName,
-              datacenterId,
-            })
-            .then(({ data }) => {
-              return data;
-            }),
+          dedicatedCloudDrp.getZertoMultiSite({
+            serviceName,
+            datacenterId,
+          }),
       },
     },
   );
