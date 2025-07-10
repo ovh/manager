@@ -7,7 +7,7 @@
   "main": "./dist/code-analysis.js",
   "types": "./dist/code-analysis.d.ts",
   "bin": {
-    "manager-lint": "./bin/lint.js"
+    "manager-lint": "./bin/lint-cli.js"
   },
   "exports": {
     ".": {
