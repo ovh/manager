@@ -2,7 +2,6 @@ import '@/domain/setupTests';
 import React from 'react';
 import { render, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
-import DomainTabDns from './domainTabDns';
 import {
   dnsDatagridMock,
   dnsDatagridMockError,
@@ -11,6 +10,7 @@ import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { wrapper } from '@/domain/utils/test.provider';
 import { computeDnsDetails } from '@/domain/utils/utils';
 import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDnsDatagridColumns';
+import DnsConfigurationTab from './dnsConfiguration';
 
 vi.mock('@/domain/utils/utils', () => ({
   computeDnsDetails: vi.fn(),
@@ -44,7 +44,7 @@ describe('DomainTabDnsWithError', () => {
 
   it('should display the content of DNS datagrid', () => {
     const { getByTestId, getAllByTestId } = render(
-      <DomainTabDns domainResource={serviceInfoDetail} />,
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
     expect(getByTestId('datagrid')).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe('DomainTabDnsWithError', () => {
 
   it('should show a warning message when a DNS has ERROR status', () => {
     const { getByText, container } = render(
-      <DomainTabDns domainResource={serviceInfoDetail} />,
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
     expect(getByText('domain_tab_DNS_error_warning')).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe('DomainTabDnsWithError', () => {
     (computeDnsDetails as jest.Mock).mockReturnValue(dnsDatagridMockError);
 
     const { getAllByTestId } = render(
-      <DomainTabDns domainResource={serviceInfoDetail} />,
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
 
@@ -90,7 +90,7 @@ describe('DomainTabDns', () => {
 
   it('should not render a warning message when no DNS has ERROR status', () => {
     const { queryByText } = render(
-      <DomainTabDns domainResource={serviceInfoDetail} />,
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
     expect(queryByText('domain_tab_DNS_error_warning')).not.toBeInTheDocument();
@@ -98,7 +98,7 @@ describe('DomainTabDns', () => {
 
   it('should render DNS in the expected order', () => {
     const { getAllByTestId } = render(
-      <DomainTabDns domainResource={serviceInfoDetail} />,
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
       { wrapper },
     );
 

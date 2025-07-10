@@ -13,6 +13,7 @@ export const serviceList: TDomainResource[] = [
       suspensionState: 'NOT_SUSPENDED',
       additionalStates: [],
       dnsConfiguration: {
+        dnssecSupported: true,
         minDNS: 2,
         maxDNS: 8,
         hostSupported: true,
