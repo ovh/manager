@@ -156,5 +156,147 @@ describe('useCart hooks', () => {
 
       expect(result.current).toEqual(mockQueryResult);
     });
+
+    it('should test the select function logic', () => {
+      // Mock the query function and selector to test the select logic
+      const mockCloudOptions = [
+        {
+          planCode: 'credit.default',
+          family: 'addon',
+          prices: [
+            {
+              price: { value: 10, currencyCode: 'EUR', text: '10.00 €' },
+              duration: 'P1M',
+              pricingMode: 'default',
+            },
+          ],
+        },
+        {
+          planCode: 'other.option',
+          family: 'addon',
+          prices: [
+            {
+              price: { value: 20, currencyCode: 'EUR', text: '20.00 €' },
+              duration: 'P1M',
+              pricingMode: 'default',
+            },
+          ],
+        },
+      ];
+
+      let capturedSelector:
+        | ((data: typeof mockCloudOptions) => unknown)
+        | undefined;
+
+      mockUseQuery.mockImplementation((options) => {
+        capturedSelector = options.select;
+        return {
+          data: undefined,
+          isLoading: false,
+          error: null,
+          isError: false,
+        } as never;
+      });
+
+      renderHook(() => useGetCreditAddonOption('cart-123'), {
+        wrapper: createWrapper(),
+      });
+
+      // Test the selector function
+      if (capturedSelector) {
+        const result = capturedSelector(mockCloudOptions);
+        expect(result).toEqual(mockCloudOptions[0]); // Should return the credit option
+      }
+    });
+
+    it('should handle cloud options without matching credit option', () => {
+      const mockCloudOptions = [
+        {
+          planCode: 'other.option',
+          family: 'addon',
+          prices: [
+            {
+              price: { value: 20, currencyCode: 'EUR', text: '20.00 €' },
+              duration: 'P1M',
+              pricingMode: 'default',
+            },
+          ],
+        },
+      ];
+
+      let capturedSelector:
+        | ((data: typeof mockCloudOptions) => unknown)
+        | undefined;
+
+      mockUseQuery.mockImplementation((options) => {
+        capturedSelector = options.select;
+        return {
+          data: undefined,
+          isLoading: false,
+          error: null,
+          isError: false,
+        } as never;
+      });
+
+      renderHook(() => useGetCreditAddonOption('cart-123'), {
+        wrapper: createWrapper(),
+      });
+
+      // Test the selector function with no matching credit option
+      if (capturedSelector) {
+        const result = capturedSelector(mockCloudOptions);
+        expect(result).toBeUndefined();
+      }
+    });
+
+    it('should handle empty cloud options', () => {
+      const mockCloudOptions: unknown[] = [];
+
+      let capturedSelector:
+        | ((data: typeof mockCloudOptions) => unknown)
+        | undefined;
+
+      mockUseQuery.mockImplementation((options) => {
+        capturedSelector = options.select;
+        return {
+          data: undefined,
+          isLoading: false,
+          error: null,
+          isError: false,
+        } as never;
+      });
+
+      renderHook(() => useGetCreditAddonOption('cart-123'), {
+        wrapper: createWrapper(),
+      });
+
+      // Test the selector function with empty options
+      if (capturedSelector) {
+        const result = capturedSelector(mockCloudOptions);
+        expect(result).toBeUndefined();
+      }
+    });
+
+    it('should use correct query key format', () => {
+      mockUseQuery.mockReturnValue({
+        data: undefined,
+        isLoading: false,
+        error: null,
+        isError: false,
+      } as never);
+
+      renderHook(() => useGetCreditAddonOption('my-cart-456'), {
+        wrapper: createWrapper(),
+      });
+
+      expect(mockUseQuery).toHaveBeenCalledWith({
+        queryKey: [
+          'order/cart/my-cart-456/cloud/options?planCode=project.2018',
+        ],
+        queryFn: expect.any(Function),
+        select: expect.any(Function),
+        enabled: true,
+      });
+    });
   });
 });

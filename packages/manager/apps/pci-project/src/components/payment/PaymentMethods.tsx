@@ -12,16 +12,16 @@ import {
 } from '@/data/hooks/payment/usePaymentMethods';
 import RegisterPaymentMethod from './RegisterPaymentMethod';
 import {
+  TAvailablePaymentMethod,
   TPaymentCallbackRegisterReturnType,
   TPaymentCallbackReturnType,
   TPaymentMethod,
-  TPaymentMethodIntegrationRef,
+  TPaymentMethodRegisterRef,
 } from '@/data/types/payment/payment-method.type';
 import PaymentMethodChallenge, {
   TPaymentMethodChallengeRef,
 } from './PaymentMethodChallenge';
 import queryClient from '@/queryClient';
-import PaymentMethodIntegration from './integrations/PaymentMethodIntegration';
 import { TCart } from '@/data/types/payment/cart.type';
 
 export type TPaymentMethodError =
@@ -44,6 +44,7 @@ export type PaymentMethodsProps = {
     paymentMethodId?: number;
     skipRegistration?: boolean;
   }) => Promise<unknown>;
+  onPaymentError: (err: string | undefined) => void;
 };
 
 export type TPaymentMethodRef = {
@@ -138,6 +139,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   handleCustomSubmitButton,
   preselectedPaymentType,
   onPaymentSubmit,
+  onPaymentError,
 }) => {
   const {
     data: eligibility,
@@ -212,7 +214,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   ]);
 
   const paymentChallengeRef = React.useRef<TPaymentMethodChallengeRef>(null);
-  const paymentHandlerRef = React.useRef<TPaymentMethodIntegrationRef>(null);
+  const paymentHandlerRef = React.useRef<TPaymentMethodRegisterRef>(null);
 
   useImperativeHandle(
     paymentMethodHandler,
@@ -243,15 +245,6 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
                 throw new Error('challenge_retry');
               default:
                 // The challenge was successful, we can continue the submission
-                if (
-                  paymentHandlerRef.current &&
-                  paymentHandlerRef.current.registerPaymentMethod
-                ) {
-                  return paymentHandlerRef.current.registerPaymentMethod(
-                    selectedPaymentMethod,
-                    cart,
-                  );
-                }
                 return { continueProcessing: true };
             }
           } else if (
@@ -260,7 +253,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             needsIntegration
           ) {
             return paymentHandlerRef.current.registerPaymentMethod(
-              selectedPaymentMethod,
+              selectedPaymentMethod as TAvailablePaymentMethod,
               cart,
             );
           }
@@ -337,6 +330,15 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
           handlePaymentMethodChange={onHandlePaymentMethodChange}
           handleSetAsDefaultChange={onHandleSetAsDefaultChange}
           preselectedPaymentType={preselectedPaymentType}
+          handleValidityChange={(valid) =>
+            setIsPaymentMethodIntegrationValid(valid)
+          }
+          paymentHandler={paymentHandlerRef}
+          cartId={cartId}
+          itemId={itemId}
+          handleCustomSubmitButton={handleCustomSubmitButton}
+          onPaymentSubmit={onPaymentSubmit}
+          onPaymentError={onPaymentError}
         />
       )}
       <PaymentMethodChallenge
@@ -345,23 +347,6 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         paymentMethod={defaultPaymentMethod}
         handleValidityChange={(valid) => setIsChallengeValid(valid)}
       />
-      {!defaultPaymentMethod && (
-        <div className="mb-6">
-          <PaymentMethodIntegration
-            paymentMethod={selectedPaymentMethod}
-            handleValidityChange={(valid) =>
-              setIsPaymentMethodIntegrationValid(valid)
-            }
-            eligibility={eligibility}
-            paymentHandler={paymentHandlerRef}
-            cartId={cartId}
-            itemId={itemId}
-            handleCustomSubmitButton={handleCustomSubmitButton}
-            onPaymentSubmit={onPaymentSubmit}
-            isSetAsDefault={isSetAsDefault}
-          />
-        </div>
-      )}
     </div>
   );
 };

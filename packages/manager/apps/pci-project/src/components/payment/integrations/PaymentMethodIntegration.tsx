@@ -1,6 +1,7 @@
 import React, { useCallback, useImperativeHandle } from 'react';
 import {
-  TPaymentMethod,
+  TAvailablePaymentMethod,
+  TPaymentMethodIntegration,
   TPaymentMethodIntegrationRef,
   TPaymentMethodRegisterRef,
   TPaymentMethodStatus,
@@ -14,7 +15,9 @@ import { useAddPaymentMethod } from '@/data/hooks/payment/usePaymentMethods';
 import { getPaymentMethod } from '@/data/api/payment/payment-method';
 import { PAYMENT_METHOD_ENSURE_VALIDITY_TIMEOUT } from '@/payment/constants';
 import BankAccountPaymentMethodIntegration from './BankAccountPaymentMethodIntegration';
-import SepaPaymentMethodIntegration from './SepaPaymentMethodIntegration';
+import CreditCardPaymentMethodIntegration from './CreditCardPaymentMethodIntegration';
+import RedirectPaymentMethodIntegration from './RedirectPaymentMethodIntegration';
+import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 /**
  * Polls a payment method to check if it becomes valid within a timeout period.
@@ -72,7 +75,8 @@ const addParamsSeparator = (url: string) => {
 };
 
 type PaymentMethodIntegrationProps = {
-  paymentMethod?: TPaymentMethod | null;
+  paymentMethod?: TAvailablePaymentMethod | null;
+  features: TPaymentFeaturesState;
   handleValidityChange: (isValid: boolean) => void;
   eligibility: TEligibility;
   paymentHandler: React.Ref<TPaymentMethodRegisterRef>;
@@ -87,6 +91,7 @@ type PaymentMethodIntegrationProps = {
     paymentMethodId?: number;
     skipRegistration?: boolean;
   }) => Promise<unknown>;
+  onPaymentError: (err: string | undefined) => void;
 };
 
 const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
@@ -98,6 +103,8 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
   itemId,
   handleCustomSubmitButton,
   onPaymentSubmit,
+  onPaymentError,
+  features,
   isSetAsDefault = false,
 }) => {
   const paymentHandlerRef = React.useRef<TPaymentMethodIntegrationRef>(null);
@@ -134,9 +141,29 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
     () => {
       return {
         registerPaymentMethod: async (
-          paymentMethodToRegister: TPaymentMethod,
+          paymentMethodToRegister: TAvailablePaymentMethod,
           cart: TCart,
         ) => {
+          let additionalRegisterParams = {};
+
+          if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.submitPayment
+          ) {
+            const resultSubmit = await paymentHandlerRef.current.submitPayment(
+              paymentMethodToRegister,
+              cart,
+            );
+
+            if (!resultSubmit.continueProcessing) {
+              return resultSubmit;
+            }
+
+            if (resultSubmit.registerPostData) {
+              additionalRegisterParams = resultSubmit.registerPostData;
+            }
+          }
+
           const registerPaymentMethod = await addPaymentMethod({
             paymentType: paymentMethodToRegister.paymentType,
             default: true,
@@ -144,15 +171,16 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
             callbackUrl: generateCallbackUrls(
               paymentMethodToRegister.paymentType,
             ),
+            ...additionalRegisterParams,
           });
 
           if (
             paymentHandlerRef.current &&
-            paymentHandlerRef.current.registerPaymentMethod
+            paymentHandlerRef.current.onPaymentMethodRegistered
           ) {
             return {
               paymentMethod: registerPaymentMethod,
-              ...(await paymentHandlerRef.current.registerPaymentMethod(
+              ...(await paymentHandlerRef.current.onPaymentMethodRegistered(
                 paymentMethodToRegister,
                 cart,
                 registerPaymentMethod,
@@ -165,19 +193,24 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           };
         },
         checkPaymentMethod: async (cart: TCart, paymentMethodId?: number) => {
-          if (paymentMethodId) {
-            await pollCheckDefaultPaymentMethod(paymentMethodId);
-          }
-
           if (
             paymentHandlerRef.current &&
             paymentHandlerRef.current.checkPaymentMethod
           ) {
-            return paymentHandlerRef.current.checkPaymentMethod(
+            const resultSubmit = await paymentHandlerRef.current.checkPaymentMethod(
               cart,
               paymentMethodId,
             );
+
+            if (!resultSubmit.continueProcessing) {
+              return resultSubmit;
+            }
           }
+
+          if (paymentMethodId) {
+            await pollCheckDefaultPaymentMethod(paymentMethodId);
+          }
+
           return { continueProcessing: true };
         },
         onCheckoutRetrieved: async (cart: TCart, paymentMethodId?: number) => {
@@ -220,6 +253,7 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           cartId={cartId}
           itemId={itemId}
           handleCustomSubmitButton={handleCustomSubmitButton}
+          onPaymentError={onPaymentError}
         />
       );
 
@@ -229,10 +263,38 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           paymentHandler={paymentHandlerRef}
           handleCustomSubmitButton={handleCustomSubmitButton}
           onPaymentSubmit={onPaymentSubmit}
+          onPaymentError={onPaymentError}
           handleValidityChange={handleValidityChange}
           isSetAsDefault={isSetAsDefault}
         />
       );
+
+    case TPaymentMethodType.CREDIT_CARD:
+    case TPaymentMethodType.RUPAY:
+      switch (paymentMethod.integration) {
+        case TPaymentMethodIntegration.REDIRECT:
+          return (
+            <RedirectPaymentMethodIntegration
+              paymentHandler={paymentHandlerRef}
+              handleCustomSubmitButton={handleCustomSubmitButton}
+              handleValidityChange={handleValidityChange}
+              paymentMethod={paymentMethod}
+            />
+          );
+
+        default:
+          return (
+            <CreditCardPaymentMethodIntegration
+              paymentHandler={paymentHandlerRef}
+              handleCustomSubmitButton={handleCustomSubmitButton}
+              onPaymentSubmit={onPaymentSubmit}
+              onPaymentError={onPaymentError}
+              handleValidityChange={handleValidityChange}
+              features={features}
+              paymentMethod={paymentMethod}
+            />
+          );
+      }
 
     case TPaymentMethodType.BANK_ACCOUNT:
       return (
@@ -245,10 +307,11 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
 
     case TPaymentMethodType.SEPA_DIRECT_DEBIT:
       return (
-        <SepaPaymentMethodIntegration
+        <RedirectPaymentMethodIntegration
           paymentHandler={paymentHandlerRef}
           handleCustomSubmitButton={handleCustomSubmitButton}
           handleValidityChange={handleValidityChange}
+          paymentMethod={paymentMethod}
         />
       );
 

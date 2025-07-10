@@ -19,7 +19,10 @@ export const shellContext = ({
         if (app === 'dedicated' && path === '#/billing/history') {
           return Promise.resolve('https://billing-url');
         }
-        return Promise.resolve('');
+        if (app === 'dedicated' && path === '#/contacts/services') {
+          return Promise.resolve('https://contacts-url');
+        }
+        return Promise.resolve('https://mocked-url');
       }),
     },
   },
