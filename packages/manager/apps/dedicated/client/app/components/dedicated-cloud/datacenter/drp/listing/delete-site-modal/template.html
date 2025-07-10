@@ -1,0 +1,17 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'dedicatedCloud_datacenter_drp_delete_site_confirm' | translate }}"
+    data-loading="$ctrl.isLoading"
+    data-primary-disabled="$ctrl.confirmPoweroffForm.$invalid"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dedicatedCloud_datacenter_drp_delete_site_cancel' | translate }}"
+    data-heading="{{:: 'dedicatedCloud_datacenter_drp_delete_site_title' | translate }}"
+>
+    <form name="$ctrl.confirmPoweroffForm" novalidate>
+        <p
+            data-translate="dedicatedCloud_datacenter_drp_delete_site_confirmation"
+            data-translate-values="{ siteLabel: $ctrl.zertoSite.label}"
+        ></p>
+    </form>
+</oui-modal>
