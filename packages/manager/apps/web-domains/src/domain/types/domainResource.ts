@@ -1,63 +1,44 @@
-type DomainState =
-  | 'DELETED'
-  | 'EXPIRED'
-  | 'OK'
-  | 'PENDING_CREATE'
-  | 'PENDING_DELETE'
-  | 'PENDING_INTERNAL_TRANSFER'
-  | 'PENDING_OUTGOING_TRANSFER'
-  | 'RESTORABLE'
-  | 'TO_DELETE';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import {
+  AdditionalDomainStateEnum,
+  DomainStateEnum,
+} from '@/domain/enum/domainState.enum';
+import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
+import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
+import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 
-type AdditionalDomainState = 'DISPUTE' | 'TECHNICAL_SUSPENDED';
-
-type DnsConfigurationType =
-  | 'ANYCAST'
-  | 'DEDICATED'
-  | 'EMPTY'
-  | 'EXTERNAL'
-  | 'HOLD'
-  | 'HOSTING'
-  | 'MIXED'
-  | 'PARKING';
-
-type ProtectionState = 'PROTECTED' | 'UNPROTECTED';
-
-type SuspensionState = 'NOT_SUSPENDED' | 'SUSPENDED';
-
-type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED';
-
-type ResourceStatus =
-  | 'CREATING'
-  | 'DELETING'
-  | 'ERROR'
-  | 'READY'
-  | 'SUSPENDED'
-  | 'UPDATING';
-
-interface NameServer {
+export interface TNameServer {
   ipv4?: string | null;
   ipv6?: string | null;
   nameServer: string;
 }
 
-interface NameServerWithType extends NameServer {
-  nameServerType: DnsConfigurationType;
+export interface TNameServerWithType extends TNameServer {
+  nameServerType: keyof typeof DnsConfigurationTypeEnum;
+}
+
+export interface TDatagridDnsDetails {
+  name: string;
+  ip: string;
+  status: string;
+  type: keyof typeof PublicNameServerTypeEnum;
 }
 
 interface DNSConfiguration {
-  configurationType: DnsConfigurationType;
+  configurationType: keyof typeof DnsConfigurationTypeEnum;
   glueRecordIPv6Supported: boolean;
   hostSupported: boolean;
   maxDNS: number;
   minDNS: number;
-  nameServers: NameServerWithType[];
+  nameServers: TNameServerWithType[];
 }
 
 interface Task {
   id: string; // UUID
   link: string;
-  status: TaskStatus;
+  status: keyof typeof TaskStatusEnum;
   type: string;
 }
 
@@ -71,21 +52,21 @@ interface IAMResource {
 export interface TDomainResource {
   checksum: string;
   currentState: {
-    additionalStates: AdditionalDomainState[];
+    additionalStates: keyof typeof AdditionalDomainStateEnum[] | [];
     dnsConfiguration: DNSConfiguration;
     extension: string;
-    mainState: DomainState;
+    mainState: keyof typeof DomainStateEnum;
     name: string;
-    protectionState: ProtectionState;
-    suspensionState: SuspensionState;
+    protectionState: keyof typeof ProtectionStateEnum;
+    suspensionState: keyof typeof SuspensionStateEnum;
   };
   currentTasks: Task[];
   iam: IAMResource | null;
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: keyof typeof ResourceStatusEnum;
   targetSpec?: {
     dnsConfiguration?: {
-      nameServers: NameServer[];
+      nameServers: TNameServer[];
     };
   };
 }
