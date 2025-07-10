@@ -91,3 +91,10 @@ export type TBackup = {
   count: number;
   lastBackup: string;
 };
+
+export type TSeverity = 'success' | 'error' | 'warning' | 'info';
+
+export type TStatusSeverity = {
+  label: TStatus;
+  severity: TSeverity;
+};

@@ -17,6 +17,8 @@ import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { useParams } from '@/hooks/params/useParams';
+import { useDashboardPolling } from '../hooks/useDashboardPolling';
+import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -28,6 +30,11 @@ const InstanceGeneralInfoBlock: FC = () => {
     region: regionId,
     instanceId,
   });
+
+  const pendingTask = instance?.task.isPending
+    ? { region: regionId, instanceId }
+    : null;
+  const polling = useDashboardPolling(pendingTask);
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_info_title')}>
@@ -57,6 +64,16 @@ const InstanceGeneralInfoBlock: FC = () => {
           </div>
         </LoadingCell>
       </TileBlock>
+      {instance && (
+        <TileBlock label={t('list:pci_instances_list_column_status')}>
+          <TaskStatus
+            isLoading={isInstanceLoading}
+            isPolling={polling.length > 0}
+            taskState={instance.task.status}
+            status={instance.status}
+          />
+        </TileBlock>
+      )}
       <TileBlock label={t('list:pci_instances_list_column_region')}>
         <LoadingCell isLoading={isInstanceLoading}>
           <OsdsText
