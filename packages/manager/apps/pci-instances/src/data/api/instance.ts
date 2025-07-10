@@ -190,3 +190,18 @@ export const updateInstanceName = ({
   v6.put(instanceUrl(projectId, instanceId), {
     instanceName,
   });
+
+type TAttachNetworkArgs = {
+  projectId: string;
+  instanceId: string;
+  networkId: string;
+};
+
+export const attachNetwork = ({
+  projectId,
+  instanceId,
+  networkId,
+}: TAttachNetworkArgs): Promise<unknown> =>
+  v6.post(`/cloud/project/${projectId}/instance/${instanceId}/interface`, {
+    networkId,
+  });
