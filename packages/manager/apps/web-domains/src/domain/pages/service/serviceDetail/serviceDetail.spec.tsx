@@ -12,6 +12,10 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(),
 }));
 
+vi.mock('@/domain/pages/domainTabs/domainTabDns', () => ({
+  default: () => <div>DomainDnsTab</div>,
+}));
+
 describe('Domain detail', () => {
   it('displays loading spinner while main request are loading', async () => {
     (useGetDomainResource as jest.Mock).mockReturnValue({
@@ -25,7 +29,7 @@ describe('Domain detail', () => {
 
   it('display the information of Domain', async () => {
     (useGetDomainResource as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+      domainResource: serviceInfoDetail,
       isFetchingDomainResource: false,
     });
 
