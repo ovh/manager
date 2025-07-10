@@ -13,6 +13,29 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useRouteLoaderData: () => ({
+      serviceId: 1,
+    }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+
+  return {
+    ...mod,
+    useCatalogPrice: vi
+      .fn()
+      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
+  };
+});
+
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
   const actual = await import('@ovh-ux/manager-react-shell-client');
   return {
