@@ -22,6 +22,7 @@ import {
 } from './DashboardTile.component';
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -143,18 +144,21 @@ const InstanceGeneralInfoBlock: FC = () => {
           )}
         </div>
       </DashboardTileBlock>
-      <DashboardTileBlock isLoading={isInstanceLoading}>
-        <div className="flex justify-between items-center">
-          <OsdsText
-            className="my-4"
-            size={ODS_TEXT_SIZE._100}
-            level={ODS_TEXT_LEVEL.subheading}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          >
-            {t('pci_instances_dashboard_all_actions')}
-          </OsdsText>
-        </div>
-      </DashboardTileBlock>
+      {instance && (
+        <TileBlock>
+          <div className="flex justify-between items-center">
+            <OsdsText
+              className="my-4"
+              size={ODS_TEXT_SIZE._100}
+              level={ODS_TEXT_LEVEL.subheading}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            >
+              {t('pci_instances_dashboard_all_actions')}
+            </OsdsText>
+            <ActionsMenu items={instance.actions} />
+          </div>
+        </TileBlock>
+      )}
       {instance?.isDeleteEnabled && (
         <LoadingCell isLoading={isInstanceLoading}>
           <OsdsLink
