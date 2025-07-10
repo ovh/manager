@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.0...@ovh-ux/manager-pci-gateway-app@0.24.1) (2025-07-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4166] ([cd0badf](https://github.com/ovh/manager/commit/cd0badfa9d93d0bbeff624cca1dfc11c39a9238c))
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.23.1...@ovh-ux/manager-pci-gateway-app@0.24.0) (2025-07-07)
 
 

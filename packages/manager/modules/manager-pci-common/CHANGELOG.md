@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.9...@ovh-ux/manager-pci-common@2.6.10) (2025-07-10)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** add undefined type to the project on isDiscoveryProject ([a8a8446](https://github.com/ovh/manager/commit/a8a8446a856c905f2f89d4de41b0e39f48e646c9)), closes [#17727](https://github.com/ovh/manager/issues/17727)
+
+
+
+
+
 ## [2.6.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.8...@ovh-ux/manager-pci-common@2.6.9) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

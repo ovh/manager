@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.9.1...@ovh-ux/manager-common-translations@0.10.0) (2025-07-10)
+
+
+### Bug Fixes
+
+* **common-translations:** add missing prefix ([e530424](https://github.com/ovh/manager/commit/e53042487ee0661536c98893caf19940cd2f2eb5)), closes [#MANAGER-17549](https://github.com/ovh/manager/issues/MANAGER-17549)
+
+
+### Features
+
+* **common-translations:** add new translations ([6ecbf35](https://github.com/ovh/manager/commit/6ecbf35214100935d6cd9409fc8f0195be7eca02)), closes [#MANAGER-17549](https://github.com/ovh/manager/issues/MANAGER-17549)
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.9.0...@ovh-ux/manager-common-translations@0.9.1) (2025-06-20)
 
 

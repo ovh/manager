@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.3.0...@ovh-ux/manager-wiki@0.4.0) (2025-07-10)
+
+
+### Bug Fixes
+
+* **manager-wiki:** update tailwind configuration ([f3b1e52](https://github.com/ovh/manager/commit/f3b1e52ec3540251a110bf626c1f76e9ff92ff92)), closes [#MANAGER-18947](https://github.com/ovh/manager/issues/MANAGER-18947)
+
+
+### Features
+
+* **manager-react-components:** udpate tiles input stories ([ea7a7ff](https://github.com/ovh/manager/commit/ea7a7ff8f5fbd85125432ff0c9c6a9bd6f361c95)), closes [#MANAGER-18947](https://github.com/ovh/manager/issues/MANAGER-18947)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.2.2...@ovh-ux/manager-wiki@0.3.0) (2025-07-04)
 
 
