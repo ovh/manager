@@ -25,23 +25,22 @@ describe('ApiTerraformDialog', () => {
     additionalStorage: 0,
   };
 
-  const mockSubmit = vi.fn((onSuccess) => onSuccess(mockFormData));
   const onRequestClose = vi.fn();
 
   const dialogDataMock = {
-    form: {
-      handleSubmit: (success: any, error?: any) => () => mockSubmit(success),
-    },
-    result: {
-      flavor: {
-        storage: {
-          minimum: { value: 50 },
-        },
+    availability: {
+      availability: {
+        engine: 'postgresql',
       },
+    },
+    flavor: {
+      storage: {
+        minimum: { value: 50 },
+      },
+    },
+    network: {
       network: {
-        network: {
-          regions: [{ region: 'GRA', openstackId: 'os-123' }],
-        },
+        regions: [{ region: 'GRA', openstackId: 'os-123' }],
       },
     },
   };
@@ -59,7 +58,7 @@ describe('ApiTerraformDialog', () => {
 
   vi.mock('@/hooks/api/project/usePciProject.hook', () => ({
     default: () => ({
-      data: { project_id: 'projectId' },
+      data: { project_id: projectId },
     }),
   }));
 
@@ -86,7 +85,6 @@ describe('ApiTerraformDialog', () => {
   it('should close the dialog on footer close button click', async () => {
     render(
       <ApiTerraformDialog
-        opened={true}
         onRequestClose={onRequestClose}
         dialogData={dialogDataMock as any}
       />,
