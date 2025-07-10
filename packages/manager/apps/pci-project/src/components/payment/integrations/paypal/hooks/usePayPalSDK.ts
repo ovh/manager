@@ -17,7 +17,7 @@ export const usePayPalSDK = (): UsePayPalSDKReturn => {
     setScriptLoaded(false);
 
     // Check if PayPal is already available
-    if (window.paypal) {
+    if (((window as unknown) as Record<string, unknown>).paypal) {
       setScriptLoaded(true);
       return;
     }
@@ -29,7 +29,7 @@ export const usePayPalSDK = (): UsePayPalSDKReturn => {
     script.async = true;
 
     script.onload = () => {
-      if (window.paypal) {
+      if (((window as unknown) as Record<string, unknown>).paypal) {
         setScriptLoaded(true);
       }
     };
