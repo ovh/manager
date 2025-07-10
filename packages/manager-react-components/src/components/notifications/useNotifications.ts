@@ -1,37 +1,6 @@
 import { ReactNode } from 'react';
 import { create } from 'zustand';
-
-export enum NotificationType {
-  Success = 'success',
-  Error = 'error',
-  Info = 'info',
-  Warning = 'warning',
-}
-
-export interface Notification {
-  /** unique notification identifier */
-  uid: number;
-  content: ReactNode;
-  type: NotificationType;
-  dismissable?: boolean;
-  creationTimestamp?: number;
-}
-
-export interface NotificationState {
-  uid: number;
-  notifications: Notification[];
-  addNotification: (
-    content: ReactNode,
-    type: NotificationType,
-    dismissable?: boolean,
-  ) => void;
-  addSuccess: (content: ReactNode, dismissable?: boolean) => void;
-  addError: (content: ReactNode, dismissable?: boolean) => void;
-  addWarning: (content: ReactNode, dismissable?: boolean) => void;
-  addInfo: (content: ReactNode, dismissable?: boolean) => void;
-  clearNotification: (uid: number) => void;
-  clearNotifications: () => void;
-}
+import { NotificationType, NotificationState } from './Notifications.type';
 
 export const NOTIFICATION_MINIMAL_DISPLAY_TIME = 1000;
 
@@ -41,7 +10,7 @@ export const useNotifications = create<NotificationState>((set, get) => ({
   addNotification: (
     content: ReactNode,
     type: NotificationType,
-    dismissable = false,
+    dismissible = false,
   ) =>
     set((state) => ({
       uid: state.uid + 1,
@@ -51,19 +20,19 @@ export const useNotifications = create<NotificationState>((set, get) => ({
           uid: state.uid,
           content,
           type,
-          dismissable,
+          dismissible,
           creationTimestamp: Date.now(),
         },
       ],
     })),
-  addSuccess: (content: ReactNode, dismissable = false) =>
-    get().addNotification(content, NotificationType.Success, dismissable),
-  addError: (content: ReactNode, dismissable = false) =>
-    get().addNotification(content, NotificationType.Error, dismissable),
-  addWarning: (content: ReactNode, dismissable = false) =>
-    get().addNotification(content, NotificationType.Warning, dismissable),
-  addInfo: (content: ReactNode, dismissable = false) =>
-    get().addNotification(content, NotificationType.Info, dismissable),
+  addSuccess: (content: ReactNode, dismissible = true) =>
+    get().addNotification(content, NotificationType.Success, dismissible),
+  addError: (content: ReactNode, dismissible = true) =>
+    get().addNotification(content, NotificationType.Error, dismissible),
+  addWarning: (content: ReactNode, dismissible = true) =>
+    get().addNotification(content, NotificationType.Warning, dismissible),
+  addInfo: (content: ReactNode, dismissible = true) =>
+    get().addNotification(content, NotificationType.Info, dismissible),
   clearNotification: (toRemoveUid: number) =>
     set((state) => ({
       notifications: state.notifications.filter(

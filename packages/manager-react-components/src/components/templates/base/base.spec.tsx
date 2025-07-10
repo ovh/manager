@@ -1,19 +1,22 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { vitest } from 'vitest';
+import { render } from '@testing-library/react';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
-  OdsTab,
-  OdsTabs,
   OdsTable,
   OdsBadge,
 } from '@ovhcloud/ods-components/react';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
-import { render } from '../../../utils/test.provider';
 import { BaseLayout } from './base.component';
 import { GuideButton, GuideItem } from '../../navigation';
-import OdsNotification from '../../notifications/ods-notification';
-import { NotificationType } from '../../notifications/useNotifications';
+import { Notifications } from '../../notifications/Notifications.component';
+
+// Mock react-router-dom's useLocation
+vitest.mock('react-router-dom', () => ({
+  useLocation: vitest.fn(),
+}));
 
 const listingTmpltProps = {
   breadcrumb: (
@@ -47,15 +50,7 @@ const listingTmpltProps = {
   },
   description:
     'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  message: (
-    <OdsNotification
-      notification={{
-        uid: 87879789,
-        content: 'Votre service a été créé avec succès',
-        type: NotificationType.Success,
-      }}
-    />
-  ),
+  message: <Notifications />,
   children: (
     <OdsTable>
       <table>
@@ -110,6 +105,11 @@ const listingTmpltProps = {
 };
 
 describe('BaseLayout component', () => {
+  beforeEach(() => {
+    vitest.clearAllMocks();
+    (useLocation as any).mockReturnValue({ pathname: '/home' });
+  });
+
   it('renders base component correctly', async () => {
     render(<BaseLayout {...listingTmpltProps} />);
     await waitFor(() => {
