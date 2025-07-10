@@ -10,6 +10,7 @@
   "ip_agora_ipv4_localisation_not_available": "Les informations de géolocalisation ne peuvent être modifiées pour une seule adresse IP.",
   "ip_agora_ipv4_localisation_title": "Géolocalisation de l'adresse IP",
   "ip_agora_ipv4_localisation_description": "Pour modifier la géolocalisation de votre adresse IP, merci de choisir un pays dans la liste déroulante.",
+  "ip_agora_ipv4_region_apac_bandwidth_limit_explaination": "( * ) L'option de bande passante publique par défaut (gratuite) qui permet d'acheminer le trafic réseau vers le vRack dans les régions Asie-Pacifique est limitée à 100 Mbit/s.",
   "ipv4_select_placeholder": "Selectionner une taille",
   "license_dashboard_title": "Commander une IP",
   "ipv4Block_description": "Bloc d'adresse IPv4. Les tailles de bloc disponibles varient en fonction du service associé.",
