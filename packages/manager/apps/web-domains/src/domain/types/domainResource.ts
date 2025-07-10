@@ -1,3 +1,5 @@
+import { DNS_TYPES } from '../constants/serviceDetail';
+
 type DomainState =
   | 'DELETED'
   | 'EXPIRED'
@@ -35,14 +37,25 @@ type ResourceStatus =
   | 'SUSPENDED'
   | 'UPDATING';
 
-interface NameServer {
+export type NameServerStatus = 'ENABLED' | 'DELETING' | 'ACTIVATING' | 'ERROR';
+
+export type NameServerType = typeof DNS_TYPES[number];
+
+export interface TNameServer {
   ipv4?: string | null;
   ipv6?: string | null;
   nameServer: string;
 }
 
-interface NameServerWithType extends NameServer {
+export interface TNameServerWithType extends TNameServer {
   nameServerType: DnsConfigurationType;
+}
+
+export interface TDatagridDnsDetails {
+  name: string;
+  ip: string;
+  status: string;
+  type: NameServerType;
 }
 
 interface DNSConfiguration {
@@ -51,7 +64,7 @@ interface DNSConfiguration {
   hostSupported: boolean;
   maxDNS: number;
   minDNS: number;
-  nameServers: NameServerWithType[];
+  nameServers: TNameServerWithType[];
 }
 
 interface Task {
@@ -85,7 +98,7 @@ export interface TDomainResource {
   resourceStatus: ResourceStatus;
   targetSpec?: {
     dnsConfiguration?: {
-      nameServers: NameServer[];
+      nameServers: TNameServer[];
     };
   };
 }

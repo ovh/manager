@@ -1,5 +1,6 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
+import { NameServerStatus } from '../types/domainResource';
 
 export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   {
@@ -52,3 +53,5 @@ export const changelogLinks: ChangelogLinks = {
   'feature-request':
     'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
+
+export const DNS_TYPES = ['EXTERNAL', 'ANYCAST', 'STANDARD', 'DEDICATED'];
