@@ -9,7 +9,7 @@
   "pci_projects_project_storages_blocks_size_label": "Rozmiar",
   "pci_projects_project_storages_blocks_attachedTo_label": "Podłączona instancja",
   "pci_projects_project_storages_blocks_status_label": "Status",
-  "pci_projects_project_storages_blocks_status_ACTIVE": "Aktywny",
+  "pci_projects_project_storages_blocks_status_ACTIVE": "Aktywna",
   "pci_projects_project_storages_blocks_status_PENDING": "PENDING",
   "pci_projects_project_storages_blocks_status_ERROR": "Błąd",
   "pci_projects_project_storages_blocks_edit_label": "Edytuj",
@@ -22,8 +22,8 @@
   "pci_projects_project_storages_blocks_status_NONE": "Brak",
   "pci_projects_project_storages_blocks_coming_soon": "Dostępne wkrótce",
   "pci_projects_project_storages_blocks_encrypted_label": "Szyfrowanie",
-  "pci_projects_project_storages_blocks_encryption_available": "Dostępne szyfrowanie",
+  "pci_projects_project_storages_blocks_encryption_available": "Szyfrowanie dostępne",
   "pci_projects_project_storages_blocks_encryption_unavailable": "Szyfrowanie niedostępne",
-  "pci_projects_project_storages_blocks_guaranteed": "- zasoby gwarantowane",
-  "pci_projects_project_storages_blocks_up_to": "aż do"
+  "pci_projects_project_storages_blocks_guaranteed": "o gwarantowanej przepustowości",
+  "pci_projects_project_storages_blocks_up_to": "do"
 }
