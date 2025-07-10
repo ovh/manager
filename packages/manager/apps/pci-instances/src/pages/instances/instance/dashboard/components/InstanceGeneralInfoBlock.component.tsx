@@ -25,6 +25,7 @@ const InstanceGeneralInfoBlock: FC = () => {
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { regionId, instanceId } = useParams('regionId', 'instanceId');
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
+  const hrefBillingMonthlyActivate = useHref('action/billing/monthly/activate');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region: regionId,
@@ -131,12 +132,15 @@ const InstanceGeneralInfoBlock: FC = () => {
                 </div>
               ))}
             </div>
-            <Links
-              label={t(
-                'actions:pci_instances_actions_billing_monthly_activate_instance_title',
-              )}
-              type={LinkType.next}
-            />
+            {instance?.canActivateMonthlyBilling && (
+              <Links
+                label={t(
+                  'actions:pci_instances_actions_billing_monthly_activate_instance_title',
+                )}
+                type={LinkType.next}
+                href={hrefBillingMonthlyActivate}
+              />
+            )}
           </div>
         </LoadingCell>
       </TileBlock>
