@@ -11,7 +11,6 @@ import {
   AddOptionToCartResponse,
   Cart,
   CartSummary,
-  TCheckoutResponse,
 } from '@/data/types/cart.type';
 
 const mockedV6Post = vi.mocked(v6.post);
@@ -28,7 +27,7 @@ describe('cart API', () => {
         cartId: 'cart-1',
         description: 'Test cart',
         expire: '2024-12-31T23:59:59Z',
-        readOnly: false,
+        readonly: false,
       };
       mockedV6Post.mockResolvedValue({ data: mockCart });
 
@@ -53,7 +52,9 @@ describe('cart API', () => {
 
       await assignCart('cart-1');
 
-      expect(mockedV6Post).toHaveBeenCalledWith('/order/cart/cart-1/assign');
+      expect(mockedV6Post).toHaveBeenCalledWith('/order/cart/cart-1/assign', {
+        cartId: 'cart-1',
+      });
     });
 
     it('should throw error when API call fails', async () => {
@@ -126,7 +127,7 @@ describe('cart API', () => {
 
   describe('checkoutCart', () => {
     it('should call v6.post with correct endpoint and payload', async () => {
-      const mockResponse: TCheckoutResponse = {
+      const mockResponse: CartSummary = {
         contracts: [],
         prices: {
           originalWithoutTax: {
