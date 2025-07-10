@@ -19,6 +19,7 @@ import { useDashboard } from '../hooks/useDashboard';
 import { useParams } from '@/hooks/params/useParams';
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -145,8 +146,8 @@ const InstanceGeneralInfoBlock: FC = () => {
           </div>
         </LoadingCell>
       </TileBlock>
-      <TileBlock>
-        <LoadingCell isLoading={isInstanceLoading}>
+      {instance && (
+        <TileBlock>
           <div className="flex justify-between items-center">
             <OsdsText
               className="my-4"
@@ -156,9 +157,10 @@ const InstanceGeneralInfoBlock: FC = () => {
             >
               {t('pci_instances_dashboard_all_actions')}
             </OsdsText>
+            <ActionsMenu items={instance.actions} />
           </div>
-        </LoadingCell>
-      </TileBlock>
+        </TileBlock>
+      )}
       {instance?.isDeleteEnabled && (
         <LoadingCell isLoading={isInstanceLoading}>
           <OsdsLink
