@@ -10,5 +10,22 @@
   "domain_tab_name_ds_records": "DS Records",
   "domain_tab_name_contact_management": "Gestion des contacts",
   "domain_back_to_service_list": "Retour à la liste de services",
-  "domain_guide_button_label": "Guide d'utilisation"
+  "domain_guide_button_label": "Guide d'utilisation",
+  "domain_dns_table_header_serviceName": "Serveurs DNS",
+  "domain_dns_table_header_ip": "IP associée",
+  "domain_dns_table_header_status": "Statut",
+  "domain_dns_table_header_type": "Type de serveurs DNS",
+  "domain_dns_table_state_deleting": "En cours de suppression",
+  "domain_dns_table_state_activating": "En cours d'activation",
+  "domain_dns_table_state_enabled": "Actif",
+  "domain_dns_table_state_error": "En erreur",
+  "domain_dns_table_type_external": "Personnalisé",
+  "domain_dns_table_type_standard": "Standard",
+  "domain_dns_table_type_dedicated": "Secondaire",
+  "domain_dns_table_type_standard_tooltip": "Mettez à niveau vers une offre Anycast pour de meilleures performances.",
+  "domain_dns_tab_button_modify_dns": "Modifier les DNS",
+  "domain_dns_tab_button_order_anycast": "Commander DNS Anycast",
+  "domain_tab_DNS_error_warning": "Une erreur a été détectée lors de la mise à jour de vos DNS. Veuillez les corriger s'il vous plaît.",
+  "domain_tab_DNS_information_message": "Pour vous assurer du bon fonctionnement de votre configuration, vous pouvez utiliser ",
+  "domain_tab_DNS_information_link": "cet outil de vérification DNS."
 }
