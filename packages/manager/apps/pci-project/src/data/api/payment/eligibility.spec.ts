@@ -1,7 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getEligibility } from './eligibility';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityPaymentMethod,
+  TEligibilityRequiredAction,
+} from '@/data/types/payment/eligibility.type';
 
 vi.mock('@ovh-ux/manager-core-api');
 
@@ -17,7 +22,7 @@ describe('eligibility API', () => {
       const mockEligibility: TEligibility = {
         actionsRequired: [],
         minimumCredit: null,
-        paymentMethodsAuthorized: ['creditCard'],
+        paymentMethodsAuthorized: [TEligibilityPaymentMethod.CREDIT_CARD],
         voucher: null,
       };
 
@@ -30,17 +35,23 @@ describe('eligibility API', () => {
 
     it('should return eligibility data with required actions', async () => {
       const mockEligibility: TEligibility = {
-        actionsRequired: ['addPaymentMethod', 'challengePaymentMethod'],
+        actionsRequired: [
+          TEligibilityRequiredAction.ADD_PAYMENT_METHOD,
+          TEligibilityRequiredAction.CHALLENGE_PAYMENT_METHOD,
+        ],
         minimumCredit: {
-          currencyCode: 'EUR',
+          currencyCode: CurrencyCode.EUR,
           priceInUcents: 1000,
           text: '10.00 EUR',
           value: 10,
         },
-        paymentMethodsAuthorized: ['creditCard', 'paypal'],
+        paymentMethodsAuthorized: [
+          TEligibilityPaymentMethod.CREDIT_CARD,
+          TEligibilityPaymentMethod.PAYPAL,
+        ],
         voucher: {
           credit: {
-            currencyCode: 'EUR',
+            currencyCode: CurrencyCode.EUR,
             priceInUcents: 500,
             text: '5.00 EUR',
             value: 5,
@@ -80,24 +91,24 @@ describe('eligibility API', () => {
 
     it('should return eligibility with all payment methods', async () => {
       const mockEligibility: TEligibility = {
-        actionsRequired: ['verifyPaypal'],
+        actionsRequired: [TEligibilityRequiredAction.VERIFY_PAYPAL],
         minimumCredit: {
-          currencyCode: 'USD',
+          currencyCode: CurrencyCode.USD,
           priceInUcents: 2000,
           text: '20.00 USD',
           value: 20,
         },
         paymentMethodsAuthorized: [
-          'bankAccount',
-          'credit',
-          'creditCard',
-          'paypal',
-          'rupay',
-          'sepaDirectDebit',
+          TEligibilityPaymentMethod.BANK_ACCOUNT,
+          TEligibilityPaymentMethod.CREDIT,
+          TEligibilityPaymentMethod.CREDIT_CARD,
+          TEligibilityPaymentMethod.PAYPAL,
+          TEligibilityPaymentMethod.RUPAY,
+          TEligibilityPaymentMethod.SEPA_DIRECT_DEBIT,
         ],
         voucher: {
           credit: {
-            currencyCode: 'points',
+            currencyCode: CurrencyCode.points,
             priceInUcents: null,
             text: '100 points',
             value: 100,

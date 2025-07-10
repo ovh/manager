@@ -7124,10 +7124,10 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/manager-common-translations@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
-  integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
+"@ovh-ux/manager-common-translations@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
+  integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
 
 "@ovh-ux/manager-common-translations@^0.14.0":
   version "0.14.0"
@@ -7264,10 +7264,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.1.tgz#5b55d7c0ca746ebf3858840cbcffaf15cc8d9084"
-  integrity sha512-4pxHJE/3vWLEcYl2dVmXURQsuf6VHlZeRKWprXSf7fP+V5SjfRDLfA2kPvT9rh/mk5LXa7+xZXY2t48+FenuHg==
+"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
+  integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
@@ -7396,6 +7396,19 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
+"@ovhcloud/ods-components@^18.6.3":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
+  integrity sha512-rByW67Fr1Rr+HZ7rNhGDA+mHBN3XQRF9Y3VhEwUcUf3OG5QnfS9NhduXWHweKOpzZUD7hbfoqh0tRolNALrOkw==
+  dependencies:
+    "@floating-ui/dom" "1.6.11"
+    "@stencil/core" "4.16.0"
+    google-libphonenumber "3.2.35"
+    mark.js "8.11.1"
+    tom-select "2.3.1"
+    tslib "2.6.3"
+    vanillajs-datepicker "1.3.4"
+
 "@ovhcloud/ods-react@^19.0.1":
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.0.1.tgz#9e96bbda80645e5cb1a85518ee6c1ad90a3f0b39"
@@ -7433,6 +7446,11 @@
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.0.1.tgz#2d31d9eb97fc7a4f3c220354ef4d4d17bacb2b1a"
   integrity sha512-OeVEwshdex36zZqFhVFix/kbb/4+ggRQXeMbAJwe17RrOVWC+YvuuHlgutSCbGZqi5gujdWv4c7lJ9qWUvqRvA==
+
+"@ovhcloud/ods-themes@^18.6.3":
+  version "18.6.3"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.3.tgz#a8a6162a8d260de199c887b6e0fd903160f7b2e9"
+  integrity sha512-U+S/Kfki6aLchHf+rQiFggP9Zg/km4RV+zTWPbK1Ms76f2nT1RmHz1MhURhbRjv9iwdfKUeIKCcV8j73VAwOGA==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -11315,6 +11333,16 @@
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.8.tgz#7545ba4fc3c003d6c756f651f3bf163d8f0f29ba"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
+
+"@types/uuid@^8.3.0":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
+
+"@types/validator@^13.15.2":
+  version "13.15.2"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.15.2.tgz#ee533a20ab977df36917a454754c7e0df4aa6f8f"
+  integrity sha512-y7pa/oEJJ4iGYBxOpfAKn5b9+xuihvzDVnC/OSvlVnGxVg0pOqmjiMafiJ1KVNQEaPZf9HsEp5icEwGg8uIe5Q==
 
 "@types/warning@^3.0.0":
   version "3.0.3"
@@ -32176,6 +32204,11 @@ validator-js@^0.2.1:
   integrity sha512-Ca4V9xWQbxg3gqSZaH24mNPOIks90J6UVeejvhDffQSvfRUuPZJFQmrzzU3mU9GwgbWLBnap0MBdEx94fg96DQ==
   dependencies:
     underscore "*"
+
+validator@^13.15.15:
+  version "13.15.15"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-13.15.15.tgz#246594be5671dc09daa35caec5689fcd18c6e7e4"
+  integrity sha512-BgWVbCI72aIQy937xbawcs+hrVaN/CZ2UwutgaJ36hGqRrLNM+f5LUT/YPRbo8IV/ASeFzXszezV+y2+rq3l8A==
 
 validator@^13.7.0:
   version "13.11.0"
