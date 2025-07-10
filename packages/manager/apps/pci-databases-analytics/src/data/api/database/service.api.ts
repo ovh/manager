@@ -61,6 +61,10 @@ export interface EditService extends ServiceData {
       backups?: Pick<database.service.Backup, 'time'>;
     } & {
       aclsEnabled?: boolean;
+    } & {
+      restApi?: boolean;
+    } & {
+      schemaRegistry?: boolean;
     }
   >;
 }
