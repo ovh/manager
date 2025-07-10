@@ -34,23 +34,26 @@ export function useTrackAction() {
   return (trackingName: string) => {
     trackClick({
       type: 'action',
+      page_theme: 'PublicCloud',
       name: trackingName,
       level2: PCI_LEVEL2,
     });
   };
 }
 
-// Fire a page tracking event when landing on the page
-export function useTrackPage(pageTracking: string) {
+// Fire a page manual tracking event as page.display for toast and banner
+export function useTrackBanner() {
   useProjectModeTracking();
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
-  useEffect(() => {
+
+  return (trackingName: string) => {
     trackPage({
-      name: pageTracking,
+      page_theme: 'PublicCloud',
+      name: trackingName,
       level2: PCI_LEVEL2,
     });
-  }, []);
+  };
 }
 
 export function useTrackPageAuto() {
@@ -68,17 +71,19 @@ export function useTrackPageAuto() {
   useEffect(() => {
     if (hasTrackedRef.current) return;
     const prefix = APP_TRACKING_PREFIX;
-    const { id } = match;
-    const routerTrackingKey = (match?.handle as { tracking: string })?.tracking;
-    const suffix =
-      routerTrackingKey || id || location.pathname.split('/').pop();
-    let injectedTrackingKey = `${prefix}::${suffix}`;
+    const { tracking } = match.handle as {
+      tracking?: { id: string; category?: string };
+    };
+    if (!tracking?.id) return;
+    let injectedTrackingKey = `${prefix}::${tracking.id}`;
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
     trackPage({
+      page_theme: 'PublicCloud',
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
+      page_category: tracking.category || undefined,
     });
     hasTrackedRef.current = true;
   }, [location.pathname, params.serviceId]);
