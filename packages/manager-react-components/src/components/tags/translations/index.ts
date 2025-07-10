@@ -10,14 +10,14 @@ import pl_PL from './Messages_pl_PL.json';
 import pt_PT from './Messages_pt_PT.json';
 
 function addTranslations() {
-  i18next.addResources('de_DE', 'tags-modal', de_DE);
-  i18next.addResources('en_GB', 'tags-modal', en_GB);
-  i18next.addResources('es_ES', 'tags-modal', es_ES);
-  i18next.addResources('fr_CA', 'tags-modal', fr_CA);
-  i18next.addResources('fr_FR', 'tags-modal', fr_FR);
-  i18next.addResources('it_IT', 'tags-modal', it_IT);
-  i18next.addResources('pl_PL', 'tags-modal', pl_PL);
-  i18next.addResources('pt_PT', 'tags-modal', pt_PT);
+  i18next.addResources('de_DE', 'tags', de_DE);
+  i18next.addResources('en_GB', 'tags', en_GB);
+  i18next.addResources('es_ES', 'tags', es_ES);
+  i18next.addResources('fr_CA', 'tags', fr_CA);
+  i18next.addResources('fr_FR', 'tags', fr_FR);
+  i18next.addResources('it_IT', 'tags', it_IT);
+  i18next.addResources('pl_PL', 'tags', pl_PL);
+  i18next.addResources('pt_PT', 'tags', pt_PT);
 }
 
 if (i18next.isInitialized) {

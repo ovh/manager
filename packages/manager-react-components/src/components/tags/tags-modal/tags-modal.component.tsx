@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { TagsList } from '../tags-list';
-import './translations';
+import '../translations';
 
 export interface TagsModalProps {
   displayName: string;
@@ -36,7 +36,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
     },
     ref: Ref<HTMLOdsModalElement>,
   ) => {
-    const { t } = useTranslation('tags-modal');
+    const { t } = useTranslation('tags');
     const [search, setSearch] = useState('');
     const [results, setResults] = useState<{ [key: string]: string }>(tags);
 
@@ -89,6 +89,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
         </div>
         <OdsButton
           variant={ODS_BUTTON_VARIANT.ghost}
+          data-testid="tags-modal-back-button"
           slot="actions"
           color={'primary'}
           onClick={onCancel}
@@ -98,10 +99,11 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
         />
 
         <OdsButton
+          data-testid="tags-modal-manage-tags"
           slot="actions"
           color={'primary'}
           onClick={onEditTags}
-          label={t('edit_tags')}
+          label={t('manage_tags')}
           className="mt-4"
           type="button"
         />
