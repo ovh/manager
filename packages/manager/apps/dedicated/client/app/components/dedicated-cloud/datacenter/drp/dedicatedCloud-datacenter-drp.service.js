@@ -106,12 +106,12 @@ class DedicatedCloudDatacenterDrpService {
       );
   }
 
-  getDrpState(serviceInformations) {
+  getDrpState({ serviceName, datacenterId }) {
     return this.$http
       .get(
-        `/dedicatedCloud/${serviceInformations.serviceName}/datacenter/${serviceInformations.datacenterId}/disasterRecovery/zerto/status`,
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/status`,
       )
-      .then(({ data: state }) => ({ ...state, ...serviceInformations }));
+      .then(({ data }) => data);
   }
 
   getDefaultLocalVraNetwork(serviceInformations) {
@@ -623,6 +623,12 @@ class DedicatedCloudDatacenterDrpService {
 
   static isDrpInValidState(state) {
     return state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
+  }
+
+  getZertoMultiSite({ serviceName, datacenterId }) {
+    return this.$http.get(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`,
+    );
   }
 }
 
