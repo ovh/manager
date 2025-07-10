@@ -9,7 +9,7 @@ type RemoveSectionProps = {
 };
 
 export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
-  const { t } = useTranslation(['edit']);
+  const { t } = useTranslation('edit');
 
   const { projectId } = useParams();
   const navigate = useNavigate();

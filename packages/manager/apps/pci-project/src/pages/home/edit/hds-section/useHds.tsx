@@ -142,38 +142,3 @@ export const usePrepareHdsCart = ({
     enabled,
   });
 };
-
-export const useCheckoutAndPayCart = ({
-  onSuccess,
-  onError,
-}: {
-  onSuccess: () => void;
-  onError: (error: ApiError) => void;
-}) =>
-  useMutation({
-    mutationFn: async ({
-      cartId,
-      paymentMean,
-    }: {
-      cartId: string;
-      paymentMean?: string;
-    }) => {
-      const checkoutResponse = await checkoutCart(cartId);
-
-      let finalPaymentMean = 'fidelityAccount';
-      if (checkoutResponse.prices.withTax.value > 0) {
-        if (!paymentMean) {
-          throw new Error('A payment method is required for this order.');
-        }
-        finalPaymentMean = paymentMean;
-      }
-
-      await payWithRegisteredPaymentMean(checkoutResponse.orderId, {
-        paymentMean: finalPaymentMean,
-      });
-
-      return checkoutResponse;
-    },
-    onSuccess,
-    onError,
-  });

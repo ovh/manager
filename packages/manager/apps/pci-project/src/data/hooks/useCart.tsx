@@ -1,21 +1,14 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useQuery } from '@tanstack/react-query';
 import {
-  attachCartIdToCart,
+  assignCart,
   attachConfigurationToCartItem,
-  checkoutCart,
-  orderCloudProject,
-  createEmptyCart,
-  getPublicCloudOptions,
+  createCart,
   getCartSummary,
+  getPublicCloudOptions,
+  orderCloudProject,
 } from '@/data/api/cart';
 
-import {
-  Cart,
-  PlanCode,
-  CartContract,
-  CartSummary,
-} from '@/data/types/cart.type';
+import { Cart, CartContract, PlanCode } from '@/data/types/cart.type';
 
 export const useCreateCart = (
   ovhSubsidiary: string,
@@ -25,11 +18,11 @@ export const useCreateCart = (
   return useQuery<Cart>({
     queryKey: ['new-cart', planCode],
     queryFn: async () => {
-      const cart = await createEmptyCart(ovhSubsidiary);
+      const cart = await createCart(ovhSubsidiary);
       const { cartId } = cart;
 
       // Attach cartId on cart (NOTE: Note sure why or if it's still needed)
-      await attachCartIdToCart(cartId);
+      await assignCart(cartId);
 
       // NOTE: I'm not sure this API call is useful either
       await getPublicCloudOptions(cartId, planCode);
@@ -68,26 +61,6 @@ export const useContractAgreements = (cartId: string | null) => {
       return contracts;
     },
   });
-};
-
-export type TUseFinalizeCartInterface = {
-  onSuccess: (summary: CartSummary) => void;
-  onError: (error: ApiError) => void;
-};
-
-export const useFinalizeCart = ({
-  onError,
-  onSuccess,
-}: TUseFinalizeCartInterface) => {
-  const mutation = useMutation({
-    mutationFn: (cartId: string) => checkoutCart(cartId),
-    onError,
-    onSuccess: (summary: CartSummary) => onSuccess(summary),
-  });
-  return {
-    finalizeCart: (cartId: string) => mutation.mutate(cartId),
-    ...mutation,
-  };
 };
 
 export const getCartSummaryQueryKey = (cartId?: string) => [
