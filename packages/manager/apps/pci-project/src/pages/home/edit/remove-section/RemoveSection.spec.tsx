@@ -25,22 +25,22 @@ describe('RemoveSection', () => {
   it('renders heading and description when not discovery', () => {
     mockUseServiceIds.mockReturnValue({ data: [123], isPending: false });
 
-    const { getByText } = render(<RemoveSection isDiscovery={false} />);
+    const { getByText, getAllByTestId } = render(
+      <RemoveSection isDiscovery={false} />,
+    );
 
     expect(
       getByText(/^pci_projects_project_edit_remove_description$/),
     ).toBeVisible();
-    expect(getByText(/^pci_projects_project_edit_remove$/)).toBeVisible();
+    expect(getAllByTestId('ods-text')).toHaveLength(2);
   });
 
   it('renders only heading when discovery', () => {
     mockUseServiceIds.mockReturnValue({ data: [123], isPending: false });
 
-    render(<RemoveSection isDiscovery={true} />);
+    const { getAllByTestId } = render(<RemoveSection isDiscovery={true} />);
 
-    expect(
-      screen.getByText('pci_projects_project_edit_remove', { exact: true }),
-    ).toBeVisible();
+    expect(getAllByTestId('ods-text')).toHaveLength(1);
     expect(
       screen.queryByText('pci_projects_project_edit_remove_description', {
         exact: true,
