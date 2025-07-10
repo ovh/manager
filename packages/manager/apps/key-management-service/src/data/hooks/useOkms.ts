@@ -19,9 +19,16 @@ export const useOkmsById = (okmsId: string) => {
   });
 };
 
-export const useOkmsList = ({ pageSize }: { pageSize?: number }) =>
-  useResourcesIcebergV2<OKMS>({
+type UseOkmsListParams = {
+  pageSize?: number;
+};
+
+export const useOkmsList = (params: UseOkmsListParams = {}) => {
+  const { pageSize = 100 } = params;
+
+  return useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
     queryKey: getOkmsServicesResourceListQueryKey,
     pageSize,
   });
+};

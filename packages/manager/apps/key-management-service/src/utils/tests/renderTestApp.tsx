@@ -10,13 +10,21 @@ import {
   getServicesMocks,
   GetServicesMocksParams,
 } from '@ovh-ux/manager-module-common-api';
+
 import { render, waitFor, screen } from '@testing-library/react';
 import {
   getAuthenticationMocks,
   toMswHandlers,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { TestApp } from './TestApp';
+import {
+  createSecretsMock,
+  CreateSecretsMockParams,
+  getSecretMock,
+  GetSecretMockParams,
+  getSecretsMock,
+  GetSecretsMockParams,
+} from '@secret-manager/mocks/secrets/secrets.handler';
 import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
@@ -50,6 +58,7 @@ import {
 } from '@/mocks/reference/reference.handler';
 import { getIdentityUserIds } from '@/mocks/identity/identityUserIds.handler';
 import { getIdentityUsers } from '@/mocks/identity/identityUsers.handler';
+import { TestApp } from './TestApp';
 
 let context: ShellContextType;
 let i18nValue: i18n;
@@ -65,7 +74,10 @@ export const renderTestApp = async (
     GetReferenceMockParams &
     GetIamAuthorizationMockParams &
     DeleteCredentialsMockParams &
-    CreateCredentialsMockParams = {},
+    CreateCredentialsMockParams &
+    GetSecretsMockParams &
+    GetSecretMockParams &
+    CreateSecretsMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
@@ -82,6 +94,9 @@ export const renderTestApp = async (
       ...deleteCredentialMock(mockParams),
       ...getIdentityUserIds(),
       ...getIdentityUsers(),
+      ...getSecretsMock(mockParams),
+      ...getSecretMock(mockParams),
+      ...createSecretsMock(mockParams),
     ]),
   );
 
