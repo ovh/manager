@@ -25,8 +25,6 @@ export * from './notifications';
 
 export * from './price';
 
-export * from './price';
-
 export * from './filters';
 
 export * from './button';
