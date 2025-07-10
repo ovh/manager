@@ -21,6 +21,8 @@ export default mergeConfig(
         exclude: [
           'src/**/*.type.*',
           'src/**/*constants.ts',
+          'src/**/*constant.ts',
+          'pci-project.config.ts',
           'src/vite-*.ts',
           'src/App.tsx',
           'src/i18n.ts',
