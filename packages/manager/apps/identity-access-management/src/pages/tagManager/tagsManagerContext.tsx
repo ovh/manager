@@ -4,12 +4,15 @@ import React, {
   PropsWithChildren,
   createContext,
 } from 'react';
+import { IamTagListItem } from '@/data/api/get-iam-tags';
 
 export type TagManagerContextType = {
   isShowSystemChecked: boolean;
   toggleSystemCheck: () => void;
   isShowUnassignedResourcesChecked: boolean;
   toggleUnassignedResources: () => void;
+  setSelectedTagsList: (tag: IamTagListItem[]) => void;
+  selectedTagsList: IamTagListItem[];
 };
 
 export const TagManagerContext = createContext<TagManagerContextType | null>(
@@ -25,6 +28,10 @@ export const TagManagerContextProvider = ({ children }: PropsWithChildren) => {
     setIsShowUnassignedResourcesChecked,
   ] = useState<boolean>(false);
 
+  const [selectedTagsList, setSelectedTagsList] = useState<IamTagListItem[]>(
+    [],
+  );
+
   const tagManagerContext = useMemo(
     () => ({
       isShowSystemChecked,
@@ -35,8 +42,14 @@ export const TagManagerContextProvider = ({ children }: PropsWithChildren) => {
       toggleUnassignedResources: () => {
         setIsShowUnassignedResourcesChecked(!isShowUnassignedResourcesChecked);
       },
+      selectedTagsList,
+      setSelectedTagsList,
     }),
-    [isShowSystemChecked, isShowUnassignedResourcesChecked],
+    [
+      isShowSystemChecked,
+      isShowUnassignedResourcesChecked,
+      JSON.stringify(selectedTagsList),
+    ],
   );
 
   return (
