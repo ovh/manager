@@ -25,6 +25,7 @@
     "@ovh-ux/manager-config": "^8.6.1",
     "@ovh-ux/manager-core-api": "^0.16.0",
     "@ovh-ux/manager-core-utils": "^0.4.1",
+    "@ovh-ux/manager-module-order": "^0.10.3",
     "@ovh-ux/manager-react-components": "^2.40.4",
     "@ovh-ux/manager-react-core-application": "^0.12.3",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
@@ -38,6 +39,7 @@
     "clsx": "^1.2.1",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2",
+    "jsurl": "^0.1.5",
     "punycode": "2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -49,7 +51,7 @@
     "@ovh-ux/manager-static-analysis-kit": "^0.8.0",
     "@ovh-ux/manager-tests-setup": "latest",
     "typescript": "^5.8.3",
-    "@tanstack/react-query-devtools": "^5.81.2",
+    "@tanstack/react-query-devtools": "^5.83.0",
     "vite": "^5.2.13"
   },
   "regions": [

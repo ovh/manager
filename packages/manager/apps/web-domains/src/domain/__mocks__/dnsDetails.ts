@@ -27,6 +27,7 @@ export const baseDomainResource: TDomainResource = {
       maxDNS: 2,
       minDNS: 2,
       nameServers: [],
+      dnssecSupported: true,
     },
     extension: 'com',
     mainState: 'OK',
