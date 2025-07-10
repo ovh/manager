@@ -8,6 +8,7 @@ import {
   Clipboard,
   Links,
   LinkType,
+  TileBlock,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType, useParam } from '@ovh-ux/manager-pci-common';
@@ -19,6 +20,8 @@ import {
   DashboardTileBlock,
   DashboardTileText,
 } from './DashboardTile.component';
+import { useDashboardPolling } from '../hooks/useDashboardPolling';
+import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -29,6 +32,12 @@ const InstanceGeneralInfoBlock: FC = () => {
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region: regionId,
     instanceId,
+  });
+
+  const polling = useDashboardPolling({
+    region: regionId,
+    instanceId,
+    taskStatus: instance?.task,
   });
 
   return (
@@ -61,6 +70,16 @@ const InstanceGeneralInfoBlock: FC = () => {
           )}
         </div>
       </DashboardTileBlock>
+      {instance && (
+        <TileBlock label={t('list:pci_instances_list_column_status')}>
+          <TaskStatus
+            isLoading={isInstanceLoading}
+            isPolling={polling.length > 0}
+            taskState={instance.task.status}
+            status={instance.status}
+          />
+        </TileBlock>
+      )}
       <DashboardTileBlock
         label={t('list:pci_instances_list_column_region')}
         isLoading={isInstanceLoading}
