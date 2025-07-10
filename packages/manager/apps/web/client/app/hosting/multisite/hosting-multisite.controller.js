@@ -121,20 +121,19 @@ angular
         records,
         recommendedIps,
       }) {
-        return Object.entries(records).reduce(
-          (acc, [key, { type }]) => ({
+        return Object.entries(records).reduce((acc, [key, { type }]) => {
+          const keyName = `recommended${RECORD_TYPE_TO_IP_TYPE[type]}`;
+          const recommendedList = recommendedIps[keyName] || [];
+          return {
             ...acc,
             [type]: {
               ip: key,
-              status: recommendedIps[
-                `recommended${RECORD_TYPE_TO_IP_TYPE[type]}`
-              ].includes(key),
-              recommendedIps:
-                recommendedIps[`recommended${RECORD_TYPE_TO_IP_TYPE[type]}`],
+              status:
+                Array.isArray(recommendedList) && recommendedList.includes(key),
+              recommendedIps: recommendedList,
             },
-          }),
-          {},
-        );
+          };
+        }, {});
       };
 
       $scope.getDiagnosticBadge = function getDiagnosticBadge(
@@ -142,7 +141,7 @@ angular
         recordType,
       ) {
         return DIAGNOSTIC_BADGE_STATE[
-          $scope.diagnosticStatus(digStatus[recordType]?.status)
+          $scope.diagnosticStatus(digStatus?.[recordType]?.status)
         ];
       };
 
@@ -152,11 +151,11 @@ angular
       ) {
         return $translate.instant(
           `hosting_tab_DOMAINS_diagnostique_tooltip_${$scope.diagnosticStatus(
-            digStatus[recordType]?.status,
+            digStatus?.[recordType]?.status,
           )}`,
           {
-            domainName: digStatus.domain,
-            ip: digStatus[recordType]?.ip,
+            domainName: digStatus?.domain,
+            ip: digStatus?.[recordType]?.ip,
           },
         );
       };
@@ -265,14 +264,16 @@ angular
           )
           .then((digStatus) => {
             $scope.domains.list.results = $scope.domains.list.results.map(
-              (domain) => ({
-                ...domain,
-                digStatus: digStatus.find(
+              (domain) => {
+                const status = digStatus.find(
                   ({ domain: digDomain }) => domain.name === digDomain,
-                ),
-              }),
+                );
+                return {
+                  ...domain,
+                  digStatus: status || {},
+                };
+              },
             );
-
             return !$scope.hosting.multipleSSL
               ? hostingSSLCertificate.retrievingLinkedDomains(
                   $stateParams.productId,
