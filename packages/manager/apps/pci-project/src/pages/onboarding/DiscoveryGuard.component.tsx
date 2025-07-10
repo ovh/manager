@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
-import { useEligibility } from '@/data/hooks/useEligibility';
-import { PaymentMethod } from '@/data/types/eligibility.type';
+import { useEligibility } from '@/data/hooks/payment/useEligibility';
+import { TEligibilityPaymentMethod } from '@/data/types/payment/eligibility.type';
 import useActiveProjects from '@/data/hooks/useActiveProjects';
 import { PlanCode } from '@/data/types/cart.type';
 import { TProjectWithService } from '@/data/types/project.type';
@@ -41,7 +41,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     if (!eligibility) return false;
     if (isEligibilityError) return false;
     const hasCreditAvailable = eligibility.paymentMethodsAuthorized.includes(
-      PaymentMethod.CREDIT,
+      TEligibilityPaymentMethod.CREDIT,
     );
     return hasCreditAvailable;
   }, [eligibility, isEligibilityError]);

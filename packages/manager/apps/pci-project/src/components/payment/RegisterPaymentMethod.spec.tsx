@@ -9,7 +9,11 @@ import { createWrapper } from '@/wrapperRenders';
 import RegisterPaymentMethod, {
   RegisterPaymentMethodProps,
 } from './RegisterPaymentMethod';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityPaymentMethod,
+  TEligibilityRequiredAction,
+} from '@/data/types/payment/eligibility.type';
 import {
   TAvailablePaymentMethod,
   TPaymentMethodType,
@@ -78,9 +82,13 @@ vi.mock('./SepaInformationModal', () => ({
 
 describe('RegisterPaymentMethod', () => {
   const mockEligibility: TEligibility = {
-    actionsRequired: ['addPaymentMethod'],
+    actionsRequired: [TEligibilityRequiredAction.ADD_PAYMENT_METHOD],
     minimumCredit: null,
-    paymentMethodsAuthorized: ['creditCard', 'paypal', 'sepaDirectDebit'],
+    paymentMethodsAuthorized: [
+      TEligibilityPaymentMethod.CREDIT_CARD,
+      TEligibilityPaymentMethod.PAYPAL,
+      TEligibilityPaymentMethod.SEPA_DIRECT_DEBIT,
+    ],
     voucher: null,
   };
 
