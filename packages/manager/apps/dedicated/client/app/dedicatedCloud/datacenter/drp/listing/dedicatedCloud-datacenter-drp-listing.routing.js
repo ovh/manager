@@ -34,14 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName,
           datacenterId,
         ) =>
-          dedicatedCloudDrp
-            .getZertoMultiSite({
-              serviceName,
-              datacenterId,
-            })
-            .then(({ data }) => {
-              return data;
-            }),
+          dedicatedCloudDrp.getZertoMultiSite({
+            serviceName,
+            datacenterId,
+          }),
       },
     },
   );
