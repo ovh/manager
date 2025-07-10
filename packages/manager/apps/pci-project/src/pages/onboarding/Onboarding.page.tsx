@@ -15,11 +15,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import DiscoveryGuard from '@/pages/onboarding/DiscoveryGuard.component';
 
-import {
-  useContractAgreements,
-  useCreateCart,
-  useFinalizeCart,
-} from '@/data/hooks/useCart';
+import { useContractAgreements, useCreateCart } from '@/data/hooks/useCart';
 import { CartSummary, PlanCode } from '@/data/types/cart.type';
 
 import { INDIAN_KYC_SUPPORT_LINK } from '@/constants';
@@ -28,6 +24,7 @@ import { urls } from '@/routes/routes.constant';
 import onboardingImage from '../../../public/assets/onboarding.png';
 import onboardingUsImage from '../../../public/assets/onboarding-us.png';
 import ItalyAgreements from '@/components/ItalyAgreements';
+import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
 
 export default function OnboardingPage() {
   const { t } = useTranslation('onboarding');
@@ -53,7 +50,10 @@ export default function OnboardingPage() {
     isLoading: isContractsLoading,
   } = useContractAgreements(cart?.cartId ?? null);
 
-  const { finalizeCart, isPending: isFinalizationPending } = useFinalizeCart({
+  const {
+    mutate: finalizeCart,
+    isPending: isFinalizationPending,
+  } = useCheckoutWithFidelityAccount({
     onSuccess(summary: CartSummary) {
       const vouchercode =
         summary?.projectItem?.voucherConfiguration?.value || '';
@@ -62,7 +62,6 @@ export default function OnboardingPage() {
         .replace(':voucherCode', vouchercode);
       navigate(`../${creatingUrl}`);
     },
-    onError() {},
   });
 
   const isContractAgreementDisabled =
@@ -76,7 +75,8 @@ export default function OnboardingPage() {
     if (isProjectCreationDisabled || !cart || !cart.cartId) {
       return;
     }
-    finalizeCart(cart.cartId);
+
+    finalizeCart({ cartId: cart.cartId });
   };
 
   const goToProjectCreation = () => {
