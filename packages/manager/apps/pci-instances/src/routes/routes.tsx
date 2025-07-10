@@ -106,8 +106,9 @@ const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
   }),
 );
 
+// TODO: add it the same way as the other actions
 const instanceActionsRoutes = instanceActionsSections.map((section) => ({
-  path: section,
+  path: `action/${section}`,
   ...lazyRouteConfig(() =>
     import('@/pages/instances/action/InstanceAction.page'),
   ),
@@ -158,7 +159,18 @@ const routes: RouteObject[] = [
             ...lazyRouteConfig(() =>
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
-            children: [...instanceActionsRoutes],
+            children: [
+              ...instanceActionsRoutes,
+              {
+                // TODO: add it the same way as the other actions
+                path: 'network/private/attach',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/instances/instance/dashboard/action/AttachNetwork.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
