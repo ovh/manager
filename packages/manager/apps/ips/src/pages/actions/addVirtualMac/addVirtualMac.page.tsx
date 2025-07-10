@@ -10,6 +10,7 @@ import {
   OdsSelect,
   OdsRadio,
   OdsInput,
+  OdsLink,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_VARIANT,
@@ -25,18 +26,19 @@ import {
 } from '@/data/hooks';
 import { useGetIpdetails, useGetIpVmac } from '@/data/hooks/ip';
 import { VirtualMac } from '@/data/api';
-import { fromIdToIp, ipFormatter } from '@/utils';
+import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
 import { isVmacEnabled } from '@/pages/listing/ipListing/components/DatagridCells/enableCellsUtils';
 
 export default function AddVirtualMacModal() {
   const { t } = useTranslation(['virtual-mac', NAMESPACES.ACTIONS, 'error']);
-  const [createNewVmac, setCreateNewVmac] = useState(true);
+  const [createNewVirtualMac, setCreateNewVirtualMac] = useState(true);
   const [types, setTypes] = useState([]);
   const [selectedType, setSelectedType] = useState('');
   const [macAddress, setMacAddress] = useState('');
   const [virtualMachineName, setVirtualMachineName] = useState('');
   const [serviceName, setServiceName] = React.useState('');
+  const { links } = useGuideUtils();
   const navigate = useNavigate();
   const { id } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
@@ -134,7 +136,7 @@ export default function AddVirtualMacModal() {
 
   // If its new vmac creation selection call addVirtualMacToIp function or else addIpToVirtualMac
   const onSubmit = () =>
-    createNewVmac ? addVirtualMacToIp() : addIpToVirtualMac();
+    createNewVirtualMac ? addVirtualMacToIp() : addIpToVirtualMac();
 
   const cancel = () => navigate('..');
 
@@ -150,49 +152,57 @@ export default function AddVirtualMacModal() {
           <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
             {t('addVirtualMacTitle')}
           </OdsText>
-          {/* Radio Option 1:  For creating new vmac */
-          vmacs && (
-            <OdsFormField>
-              <div className="flex gap-4">
-                <OdsRadio
-                  name="radio-vmac"
-                  inputId="radio-vmac-true"
-                  isChecked={createNewVmac}
-                  onOdsChange={() => {
-                    setCreateNewVmac(!createNewVmac);
-                  }}
-                />
-                <label htmlFor="radio-vmac-true">
-                  <OdsText preset="span">{t('addVirtualMacNew')}</OdsText>
-                </label>
+          {vmacs &&
+            (vmacs.length === 0 ? (
+              <div>
+                <OdsText preset="span">
+                  {t('addVirtualMacNewInfo')}
+                  <OdsLink
+                    className="inline"
+                    href={links.virtualMacLink}
+                    target="_blank"
+                    label={t('addVirtualMacNewInfoGuide')}
+                  />
+                </OdsText>
               </div>
-            </OdsFormField>
-          )}
-          {/* Radio Option 2: For using existing vmac */
-          vmacs && (
-            <OdsFormField>
-              <div className="flex gap-4">
-                <OdsRadio
-                  name="radio-vmac"
-                  inputId="radio-vmac-true"
-                  isChecked={!createNewVmac}
-                  onOdsChange={() => {
-                    setCreateNewVmac(!createNewVmac);
-                  }}
-                />
-                <label htmlFor="radio-vmac-true">
-                  <OdsText preset="span">{t('addVirtualMacExisting')}</OdsText>
-                </label>
-              </div>
-            </OdsFormField>
-          )}
+            ) : (
+              /* Radio Option 1:  For creating new vmac */
+              /* Radio Option 2: For using existing vmac */
+              <OdsFormField>
+                <div className="flex gap-4 mb-2">
+                  <OdsRadio
+                    name="radio-vmac"
+                    inputId="radio-vmac-new"
+                    isChecked={createNewVirtualMac}
+                    onOdsChange={() => setCreateNewVirtualMac(true)}
+                  />
+                  <label htmlFor="radio-vmac-new">
+                    <OdsText preset="span">{t('addVirtualMacNew')}</OdsText>
+                  </label>
+                </div>
+                <div className="flex gap-4">
+                  {' '}
+                  <OdsRadio
+                    name="radio-vmac"
+                    inputId="radio-vmac-existing"
+                    isChecked={!createNewVirtualMac}
+                    onOdsChange={() => setCreateNewVirtualMac(false)}
+                  />
+                  <label htmlFor="radio-vmac-existing">
+                    <OdsText preset="span">
+                      {t('addVirtualMacExisting')}
+                    </OdsText>
+                  </label>
+                </div>
+              </OdsFormField>
+            ))}
           <form
             className="flex flex-col gap-2"
             onSubmit={handleSubmit(onSubmit)}
           >
             {/* New vmac type selection for Option 1 */}
-            {createNewVmac && (
-              <div className="mt-8">
+            {createNewVirtualMac && (
+              <div className="mt-6">
                 <Controller
                   control={control}
                   name="type"
@@ -212,7 +222,7 @@ export default function AddVirtualMacModal() {
                             setSelectedType(event.detail.value)
                           }
                         >
-                          {types.map((type) => (
+                          {types?.map((type) => (
                             <option value={type} key={type}>
                               {type}
                             </option>
@@ -231,8 +241,8 @@ export default function AddVirtualMacModal() {
               </div>
             )}
             {/* Existing vmac selection for Option 2 */}
-            {!createNewVmac && (
-              <div className="mt-8">
+            {!createNewVirtualMac && (
+              <div className="mt-6">
                 <Controller
                   control={control}
                   name="vmac"
@@ -252,7 +262,7 @@ export default function AddVirtualMacModal() {
                             setMacAddress(event.detail.value)
                           }
                         >
-                          {vmacs.map((vmac) => (
+                          {vmacs?.map((vmac) => (
                             <option
                               value={vmac.macAddress}
                               key={vmac.macAddress}
