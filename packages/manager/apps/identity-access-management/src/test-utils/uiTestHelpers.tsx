@@ -31,7 +31,7 @@ export const getButtonByIcon = async ({
 export const getButtonByLabel = async ({
   container,
   label,
-  disabled,
+  disabled = false,
   nth = 0,
 }: {
   container: HTMLElement;
@@ -44,8 +44,34 @@ export const getButtonByLabel = async ({
   )?.[nth] as HTMLElement;
 
   expect(button).toBeDefined();
-  if (disabled) expect(button).toHaveAttribute('disabled');
-  else expect(button).not.toHaveAttribute('disabled');
+
+  const disabledAttribute = button.getAttribute('is-disabled') === 'true';
+
+  if (disabled) expect(disabledAttribute).toBeTruthy();
+  else expect(disabledAttribute).toBeFalsy();
 
   return button;
+};
+
+export const getOdsCheckbox = async ({
+  container,
+  disabled,
+  nth = 0,
+}: {
+  container: HTMLElement;
+  disabled?: boolean;
+  nth?: number;
+}) => {
+  const checkbox: HTMLOdsCheckboxElement = Array.from(
+    container.querySelectorAll('ods-checkbox'),
+  )?.[nth] as HTMLOdsCheckboxElement;
+
+  expect(checkbox).toBeDefined();
+
+  const disabledAttribute = checkbox.getAttribute('is-disabled') === 'true';
+
+  if (disabled) expect(disabledAttribute).toBeTruthy();
+  else expect(disabledAttribute).toBeFalsy();
+
+  return checkbox;
 };

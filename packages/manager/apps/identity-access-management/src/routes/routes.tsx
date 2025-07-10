@@ -5,9 +5,9 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
-const TagManager = lazy(() => import('@/pages/tagManager/tagManager.page'));
+const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
 const AssignTag = lazy(() =>
-  import('@/pages/tagManager/assignTag/assignTag.page'),
+  import('@/pages/tagManager/assignTag/AssignTag.page'),
 );
 
 export default (

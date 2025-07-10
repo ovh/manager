@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import routes from '@/routes/routes';
-import Loading from '@/components/Loading';
+import Loading from '@/components/Loading.component';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute: string }) {
   const router = createMemoryRouter(createRoutesFromElements(routes), {
