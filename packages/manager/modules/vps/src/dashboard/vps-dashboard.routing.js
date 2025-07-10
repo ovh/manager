@@ -146,6 +146,11 @@ export default /* @ngInject */ ($stateProvider) => {
       getUpscaleHref: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.upscale'),
 
+      forceOutperform2020Href: /* @ngInject */ ($state, serviceName) => () =>
+        $state.href('vps.detail.dashboard.force-outperform-2020', {
+          serviceName,
+        }),
+
       goToUpgrade: /* @ngInject */ ($state, stateVps) => (upgradeType) => {
         let from = 0;
         if (upgradeType === 'memory') {
