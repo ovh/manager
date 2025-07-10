@@ -2,30 +2,40 @@ import React, { useEffect, useImperativeHandle } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TCart } from '@/data/types/payment/cart.type';
 import {
-  TPaymentMethod,
+  TAvailablePaymentMethod,
   TPaymentMethodIntegrationRef,
+  TPaymentMethodType,
   TRegisterPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
 
-interface SepaPaymentMethodIntegrationProps {
+interface RedirectPaymentMethodIntegrationProps {
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
   paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
   handleValidityChange: (isValid: boolean) => void;
+  paymentMethod: TAvailablePaymentMethod;
 }
 
-const SepaPaymentMethodIntegration: React.FC<SepaPaymentMethodIntegrationProps> = ({
+const RedirectPaymentMethodIntegration: React.FC<RedirectPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
   handleValidityChange,
+  paymentMethod,
 }) => {
-  const { t } = useTranslation(['new/payment']);
+  const { t } = useTranslation([
+    'new/payment',
+    'payment/integrations/redirect',
+  ]);
 
   useEffect(() => {
     if (handleCustomSubmitButton) {
       handleCustomSubmitButton(
-        t('pci_project_new_payment_btn_continue_sepa_direct_debit', {
-          ns: 'new/payment',
-        }),
+        paymentMethod.paymentType === TPaymentMethodType.SEPA_DIRECT_DEBIT
+          ? t('pci_project_new_payment_btn_continue_sepa_direct_debit', {
+              ns: 'new/payment',
+            })
+          : t('ovh_payment_method_integration_redirect_button_text', {
+              ns: 'payment/integrations/redirect',
+            }),
       );
     }
   }, []);
@@ -38,8 +48,11 @@ const SepaPaymentMethodIntegration: React.FC<SepaPaymentMethodIntegrationProps> 
     paymentHandler,
     () => {
       return {
-        registerPaymentMethod: async (
-          _paymentMethod: TPaymentMethod,
+        submitPayment: async () => {
+          return { continueProcessing: true };
+        },
+        onPaymentMethodRegistered: async (
+          _paymentMethod: TAvailablePaymentMethod,
           _cart: TCart,
           registerPaymentMethod?: TRegisterPaymentMethod,
         ) => {
@@ -70,4 +83,4 @@ const SepaPaymentMethodIntegration: React.FC<SepaPaymentMethodIntegrationProps> 
   return null;
 };
 
-export default SepaPaymentMethodIntegration;
+export default RedirectPaymentMethodIntegration;

@@ -77,6 +77,7 @@ describe('PaymentStep', () => {
     paymentHandler: { current: null },
     handleCustomSubmitButton: vi.fn(),
     onPaymentSubmit: vi.fn(),
+    onPaymentError: vi.fn(),
   };
 
   const mockStartupProgramAmountText = '100.00 €';
