@@ -4,7 +4,7 @@
   "hycu_terminate_input_label": "Parola di conferma: ",
   "hycu_terminate_cancel_label": "Annullare",
   "hycu_terminate_confirm_label": "Disattivare",
-  "hycu_terminate_success_message": "La richiesta di disattivazione per {{serviceName}} è stata presa in carico, riceverai un’email per confermarla.",
+  "hycu_terminate_success_message": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Riceverai un’email per confermarla.",
   "hycu_terminate_error_message": "Si è verificato un errore: {{error}}.",
-  "hycu_terminate_success_message_us": "La tua richiesta di disattivazione è stata presa in carico. Ti abbiamo inviato un'email di conferma."
+  "hycu_terminate_success_message_us": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma."
 }
