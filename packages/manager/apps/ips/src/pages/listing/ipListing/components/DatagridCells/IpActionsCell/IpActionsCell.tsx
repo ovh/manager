@@ -119,7 +119,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
 
   const { vmacsWithIp } = useGetIpVmacWithIp({
     serviceName: ipDetails?.routedTo?.serviceName,
-    enabled: !!ipDetails,
+    enabled: !!ipDetails && hasDedicatedServiceAttachedToIp,
   });
 
   React.useEffect(() => {
@@ -165,7 +165,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${t('delete', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
@@ -177,7 +177,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${t('delete', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
