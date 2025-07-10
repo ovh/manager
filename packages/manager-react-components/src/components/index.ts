@@ -19,8 +19,7 @@ export * from './datagrid/clipboard-cell.component';
 
 export * from './guides-header';
 
-export * from './notifications/notifications.component';
-export * from './notifications/useNotifications';
+export * from './notifications';
 
 export * from './price';
 
