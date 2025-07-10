@@ -164,6 +164,52 @@ const URL_LIST: { [guideName: string]: GuideLinks } = {
     WS: 'https://www.ovhcloud.com/es/network/byoip/',
     DEFAULT: 'https://www.ovhcloud.com/en-gb/network/byoip/',
   },
+  virtualMacLink: {
+    DE:
+      'https://help.ovhcloud.com/csm/de-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0030832',
+    NL:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043806',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043800',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043806',
+    IT:
+      'https://help.ovhcloud.com/csm/it-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043803',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043805',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043802',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043792',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043793',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043804',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043809',
+    IN:
+      'https://help.ovhcloud.com/csm/en-in-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0067960',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043804',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043804',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043804',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043798',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043794',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043796',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/4967769032083-Assigning-a-Virtual-MAC-to-an-Additional-IP',
+    WE:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043806',
+    WS:
+      'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043806',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0043793',
+  },
 };
 
 export const CHANGELOG_LINKS: ChangelogLinks = {
