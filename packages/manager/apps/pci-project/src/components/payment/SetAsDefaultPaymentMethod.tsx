@@ -7,7 +7,10 @@ import {
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityRequiredAction,
+} from '@/data/types/payment/eligibility.type';
 import { TAvailablePaymentMethod } from '@/data/types/payment/payment-method.type';
 
 export type SetAsDefaultPaymentMethodProps = {
@@ -29,7 +32,7 @@ const SetAsDefaultPaymentMethod: React.FC<SetAsDefaultPaymentMethodProps> = ({
   const { environment } = useContext(ShellContext);
   const { ovhSubsidiary } = environment?.getUser();
   const forceSetAsDefaultChoice = eligibility.actionsRequired.includes(
-    'addPaymentMethod',
+    TEligibilityRequiredAction.ADD_PAYMENT_METHOD,
   );
   const isPaymentMethodRegisterable = !!selectedPaymentMethod?.registerable;
   const isInUSRegion = ovhSubsidiary === 'US';

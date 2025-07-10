@@ -5,7 +5,10 @@ import {
   TPaymentMethodType,
   TPaymentMethodIntegration,
 } from '@/data/types/payment/payment-method.type';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityPaymentMethod,
+} from '@/data/types/payment/eligibility.type';
 import { TPaymentFeaturesState } from './usePaymentFeatureAvailabilities';
 import { useAvailablePaymentMethods } from './useAvailablePaymentMethods';
 import { useFilteredAvailablePaymentMethods } from './useFilteredAvailablePaymentMethods';
@@ -137,7 +140,10 @@ describe('useFilteredAvailablePaymentMethods', () => {
   const mockEligibility: TEligibility = {
     actionsRequired: [],
     minimumCredit: null,
-    paymentMethodsAuthorized: ['creditCard', 'paypal'],
+    paymentMethodsAuthorized: [
+      TEligibilityPaymentMethod.CREDIT_CARD,
+      TEligibilityPaymentMethod.PAYPAL,
+    ],
     voucher: null,
   };
 
@@ -193,7 +199,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       ...mockEligibility,
       paymentMethodsAuthorized: [
         ...mockEligibility.paymentMethodsAuthorized,
-        'sepaDirectDebit',
+        TEligibilityPaymentMethod.SEPA_DIRECT_DEBIT,
       ],
     };
 
@@ -233,7 +239,11 @@ describe('useFilteredAvailablePaymentMethods', () => {
     const eligibilityWithCredit: TEligibility = {
       actionsRequired: [],
       minimumCredit: null,
-      paymentMethodsAuthorized: ['creditCard', 'paypal', 'credit'],
+      paymentMethodsAuthorized: [
+        TEligibilityPaymentMethod.CREDIT_CARD,
+        TEligibilityPaymentMethod.PAYPAL,
+        TEligibilityPaymentMethod.CREDIT,
+      ],
       voucher: null,
     };
 

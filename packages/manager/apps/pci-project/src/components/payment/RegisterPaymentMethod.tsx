@@ -67,14 +67,12 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
     return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
 
-  const internalHandlePaymentMethodChange = (
-    method: TAvailablePaymentMethod,
-  ) => {
+  const onHandlePaymentMethodChange = (method: TAvailablePaymentMethod) => {
     setSelectedPaymentMethod(method);
     handlePaymentMethodChange(method);
   };
 
-  const internalHandleSetAsDefaultChange = (value: boolean) => {
+  const onHandleSetAsDefaultChange = (value: boolean) => {
     setIsSetAsDefault(value);
     handleSetAsDefaultChange(value);
   };
@@ -123,7 +121,7 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
               <OdsRadio
                 inputId={`payment-method-${method.paymentType}`}
                 name="payment-method"
-                onClick={() => internalHandlePaymentMethodChange(method)}
+                onClick={() => onHandlePaymentMethodChange(method)}
               />
 
               <PaymentIcon icon={method.icon} />
@@ -159,7 +157,7 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
         selectedPaymentMethod={selectedPaymentMethod}
         availablePaymentMethods={availablePaymentMethods}
         isSetAsDefault={isSetAsDefault}
-        handleSetAsDefaultChange={internalHandleSetAsDefaultChange}
+        handleSetAsDefaultChange={onHandleSetAsDefaultChange}
       />
 
       {selectedPaymentMethod?.paymentType ===
