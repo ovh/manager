@@ -29,10 +29,18 @@ ods-text.disabled::part(text) {
   position: relative;
   min-height: 90vh;
 }
+
 .onboarding-us-img {
   z-index: -1;
   position: absolute;
   top: 8vh;
   right: -20vw;
   width: 70vw;
+}
+
+.challenge-credit-card {
+  height: 129px;
+  width: 208px;
+  position: relative;
+  background-image: url('./assets/cb.png');
 }

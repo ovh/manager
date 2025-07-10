@@ -1,9 +1,13 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import userEvent from '@testing-library/user-event';
 import { UseQueryResult } from '@tanstack/react-query';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import PaymentMethods, { PaymentMethodsProps } from './PaymentMethods';
+import PaymentMethods, {
+  PaymentMethodsProps,
+  TPaymentMethodRef,
+} from './PaymentMethods';
 import { createWrapper } from '@/wrapperRenders';
 import {
   TPaymentMethod,
@@ -12,9 +16,23 @@ import {
   TPaymentMethodStatus,
   TUserPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
-import { TEligibility } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibility,
+  TEligibilityPaymentMethod,
+} from '@/data/types/payment/eligibility.type';
 import { useEligibility } from '@/data/hooks/payment/useEligibility';
 import { usePaymentMethods } from '@/data/hooks/payment/usePaymentMethods';
+import { usePaymentChallenge } from '@/data/hooks/payment/usePaymentChallenge';
+import queryClient from '@/queryClient';
+
+// Mock queryClient
+vi.mock('@/queryClient', () => ({
+  default: {
+    invalidateQueries: vi.fn(),
+  },
+}));
+
+const mockQueryClient = vi.mocked(queryClient);
 
 // Type definitions for mock return values
 type MockEligibilityResult = UseQueryResult<TEligibility | undefined, Error>;
@@ -132,10 +150,12 @@ const createMockUserPaymentMethod = (overrides = {}): TUserPaymentMethod => ({
 // Mock the hooks
 vi.mock('@/data/hooks/payment/useEligibility', () => ({
   useEligibility: vi.fn(),
+  eligibilityQueryKey: vi.fn(() => ['cloud', 'eligibility']),
 }));
 
 vi.mock('@/data/hooks/payment/usePaymentMethods', () => ({
   usePaymentMethods: vi.fn(),
+  paymentMathodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
 }));
 
 // Mock the child components
@@ -184,12 +204,28 @@ vi.mock('./RegisterPaymentMethod', () => ({
   ),
 }));
 
+// Mock dependencies for PaymentMethodChallenge
+vi.mock('@/data/hooks/payment/usePaymentChallenge', () => ({
+  usePaymentChallenge: vi.fn(() => ({
+    mutate: vi.fn(),
+  })),
+}));
+
+vi.mock('react-i18next', () => ({
+  useTranslation: vi.fn(() => ({
+    t: (key: string) => key,
+  })),
+}));
+
 describe('PaymentMethods', () => {
   const mockUseEligibility = vi.mocked(useEligibility);
   const mockUsePaymentMethods = vi.mocked(usePaymentMethods);
 
   const createMockEligibility = (overrides = {}): TEligibility => ({
-    paymentMethodsAuthorized: ['creditCard', 'paypal'],
+    paymentMethodsAuthorized: [
+      TEligibilityPaymentMethod.CREDIT_CARD,
+      TEligibilityPaymentMethod.PAYPAL,
+    ],
     actionsRequired: [],
     minimumCredit: null,
     voucher: null,
@@ -199,6 +235,8 @@ describe('PaymentMethods', () => {
   const createMockProps = (overrides = {}): PaymentMethodsProps => ({
     handlePaymentMethodChange: vi.fn(),
     handleSetAsDefaultChange: vi.fn(),
+    handleValidityChange: vi.fn(),
+    paymentMethodHandler: React.createRef(),
     ...overrides,
   });
 
@@ -206,6 +244,7 @@ describe('PaymentMethods', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockQueryClient.invalidateQueries.mockClear();
   });
 
   it('should render component without crashing', () => {
@@ -411,7 +450,7 @@ describe('PaymentMethods', () => {
 
     const { container } = render(
       <Wrapper>
-        <PaymentMethods />
+        <PaymentMethods paymentMethodHandler={React.createRef()} />
       </Wrapper>,
     );
 
@@ -459,5 +498,461 @@ describe('PaymentMethods', () => {
     );
 
     expect(screen.getByTestId('register-payment-method')).toBeInTheDocument();
+  });
+
+  describe('Payment Method Challenge', () => {
+    it('should render PaymentMethodChallenge when handlePaymentMethodChallenge is true', () => {
+      const mockEligibility = createMockEligibility({
+        actionsRequired: ['challengePaymentMethod'],
+      });
+      const mockPaymentMethod = createMockUserPaymentMethod({
+        paymentType: TPaymentMethodType.CREDIT_CARD,
+        default: true,
+      });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      // Mock both default payment methods query (used by PaymentMethods) and general query (used in test)
+      mockUsePaymentMethods.mockImplementation((params) => {
+        if (params?.default) {
+          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+        }
+        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+      });
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({ handlePaymentMethodChallenge: true })}
+          />
+        </Wrapper>,
+      );
+
+      // Check that the challenge component is rendered by looking for challenge elements
+      expect(screen.getByPlaceholderText('XXXX XX')).toBeInTheDocument();
+      expect(screen.getByDisplayValue('')).toBeInTheDocument(); // The challenge input
+    });
+
+    it('should not render PaymentMethodChallenge when handlePaymentMethodChallenge is false', () => {
+      const mockEligibility = createMockEligibility({
+        actionsRequired: ['challengePaymentMethod'],
+      });
+      const mockPaymentMethod = createMockUserPaymentMethod({
+        paymentType: TPaymentMethodType.CREDIT_CARD,
+        default: true,
+      });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockImplementation((params) => {
+        if (params?.default) {
+          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+        }
+        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+      });
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({ handlePaymentMethodChallenge: false })}
+          />
+        </Wrapper>,
+      );
+
+      // Challenge component should not be rendered when disabled
+      expect(screen.queryByPlaceholderText('XXXX XX')).not.toBeInTheDocument();
+    });
+
+    it('should handle challenge validity changes and call handleValidityChange', async () => {
+      const user = userEvent.setup();
+      const mockHandleValidityChange = vi.fn();
+      const mockEligibility = createMockEligibility({
+        actionsRequired: ['challengePaymentMethod'],
+      });
+      const mockPaymentMethod = createMockUserPaymentMethod({
+        default: true,
+        paymentType: TPaymentMethodType.CREDIT_CARD,
+      });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockImplementation((params) => {
+        if (params?.default) {
+          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+        }
+        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+      });
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              handleValidityChange: mockHandleValidityChange,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      // Initially should be invalid (payment method exists and is default, but challenge input is empty)
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
+      });
+
+      // Type a valid challenge value (6 digits for credit card)
+      const challengeInput = screen.getByPlaceholderText('XXXX XX');
+      await user.type(challengeInput, '123456');
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(true);
+      });
+
+      // Clear the input to make it invalid again
+      await user.clear(challengeInput);
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
+      });
+    });
+
+    it('should call handleValidityChange with false when no payment method is selected', async () => {
+      const mockHandleValidityChange = vi.fn();
+      const mockEligibility = createMockEligibility();
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              handleValidityChange: mockHandleValidityChange,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
+      });
+    });
+  });
+
+  describe('Payment Method Submission', () => {
+    it('should submit payment method successfully when challenge passes', async () => {
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
+      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              paymentMethodHandler: paymentMethodRef,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(paymentMethodRef.current).toBeTruthy();
+      });
+
+      if (!paymentMethodRef.current) {
+        throw new Error('Payment method ref is null');
+      }
+
+      const result = await paymentMethodRef.current.submitPaymentMethod();
+      expect(result).toBe(true);
+    });
+
+    it('should handle challenge retry error', async () => {
+      const mockEligibility = createMockEligibility({
+        actionsRequired: ['challengePaymentMethod'],
+      });
+      const mockPaymentMethod = createMockUserPaymentMethod({
+        default: true,
+        paymentType: TPaymentMethodType.CREDIT_CARD,
+      });
+      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
+
+      // Mock the challenge hook to return retry status
+      const mockChallengeMutate = vi.fn();
+      const mockUsePaymentChallenge = vi.mocked(usePaymentChallenge);
+      mockUsePaymentChallenge.mockReturnValue(({
+        mutate: mockChallengeMutate,
+      } as unknown) as ReturnType<typeof usePaymentChallenge>);
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockImplementation((params) => {
+        if (params?.default) {
+          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+        }
+        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+      });
+
+      const { getByPlaceholderText } = render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              paymentMethodHandler: paymentMethodRef,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(paymentMethodRef.current).toBeTruthy();
+        expect(getByPlaceholderText('XXXX XX')).toBeInTheDocument();
+      });
+
+      if (!paymentMethodRef.current) {
+        throw new Error('Payment method ref is null');
+      }
+
+      // Mock the challenge mutate to call onSuccess with 'retry' status
+      mockChallengeMutate.mockImplementation((_, { onSuccess }) => {
+        onSuccess('retry');
+      });
+
+      await expect(
+        paymentMethodRef.current.submitPaymentMethod(),
+      ).rejects.toThrow('challenge_retry');
+    });
+
+    it('should handle payment method deactivated error and invalidate queries', async () => {
+      const mockEligibility = createMockEligibility({
+        actionsRequired: ['challengePaymentMethod'],
+      });
+      const mockPaymentMethod = createMockUserPaymentMethod({
+        default: true,
+        paymentType: TPaymentMethodType.CREDIT_CARD,
+      });
+      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
+
+      // Mock the challenge hook to return deactivated status
+      const mockChallengeMutate = vi.fn();
+      const mockUsePaymentChallenge = vi.mocked(usePaymentChallenge);
+      mockUsePaymentChallenge.mockReturnValue(({
+        mutate: mockChallengeMutate,
+      } as unknown) as ReturnType<typeof usePaymentChallenge>);
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockImplementation((params) => {
+        if (params?.default) {
+          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+        }
+        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
+      });
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              paymentMethodHandler: paymentMethodRef,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(paymentMethodRef.current).toBeTruthy();
+      });
+
+      if (!paymentMethodRef.current) {
+        throw new Error('Payment method ref is null');
+      }
+
+      // Mock the challenge mutate to call onSuccess with 'deactivated' status
+      mockChallengeMutate.mockImplementation((_, { onSuccess }) => {
+        onSuccess('deactivated');
+      });
+
+      await expect(
+        paymentMethodRef.current.submitPaymentMethod(),
+      ).rejects.toThrow('payment_method_deactivated');
+
+      // Should invalidate both payment methods and eligibility queries
+      expect(mockQueryClient.invalidateQueries).toHaveBeenCalledTimes(2);
+    });
+
+    it('should resolve immediately when handlePaymentMethodChallenge is false', async () => {
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
+      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              paymentMethodHandler: paymentMethodRef,
+              handlePaymentMethodChallenge: false,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(paymentMethodRef.current).toBeTruthy();
+      });
+
+      if (!paymentMethodRef.current) {
+        throw new Error('Payment method ref is null');
+      }
+
+      const result = await paymentMethodRef.current.submitPaymentMethod();
+      expect(result).toBe(true);
+    });
+
+    it('should handle submission when no payment method challenge handler exists', async () => {
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
+      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              paymentMethodHandler: paymentMethodRef,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(paymentMethodRef.current).toBeTruthy();
+      });
+
+      if (!paymentMethodRef.current) {
+        throw new Error('Payment method ref is null');
+      }
+
+      // This should work even if the challenge ref is not properly set
+      const result = await paymentMethodRef.current.submitPaymentMethod();
+      expect(result).toBe(true);
+    });
+  });
+
+  describe('Validity Logic', () => {
+    it('should be valid when payment method is selected, default, and challenge is valid', async () => {
+      const mockHandleValidityChange = vi.fn();
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              handleValidityChange: mockHandleValidityChange,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(true);
+      });
+    });
+
+    it('should be invalid when payment method is not default', async () => {
+      const mockHandleValidityChange = vi.fn();
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: false });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              handleValidityChange: mockHandleValidityChange,
+              handlePaymentMethodChallenge: true,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
+      });
+    });
+
+    it('should be valid when challenge is disabled and payment method conditions are met', async () => {
+      const mockHandleValidityChange = vi.fn();
+      const mockEligibility = createMockEligibility();
+      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
+
+      mockUseEligibility.mockReturnValue(
+        createMockEligibilityResult(mockEligibility),
+      );
+      mockUsePaymentMethods.mockReturnValue(
+        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
+      );
+
+      render(
+        <Wrapper>
+          <PaymentMethods
+            {...createMockProps({
+              handleValidityChange: mockHandleValidityChange,
+              handlePaymentMethodChallenge: false,
+            })}
+          />
+        </Wrapper>,
+      );
+
+      await waitFor(() => {
+        expect(mockHandleValidityChange).toHaveBeenCalledWith(true);
+      });
+    });
   });
 });
