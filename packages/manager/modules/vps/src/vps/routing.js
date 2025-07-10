@@ -129,7 +129,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       vps: /* @ngInject */ (serviceName, VpsService) =>
         VpsService.getSelectedVps(serviceName),
-
+      migration2020: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.getMigration2020(serviceName),
       catalog: /* @ngInject */ (connectedUser, VpsService) =>
         VpsService.getCatalog(connectedUser.ovhSubsidiary),
 
