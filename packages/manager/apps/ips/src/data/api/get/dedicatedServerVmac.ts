@@ -24,6 +24,12 @@ export type DedicatedServerVmacType = {
   type: MacAddressTypeEnum;
 };
 
+export type DedicatedServerVmacWithIpType = {
+  macAddress: string;
+  type: MacAddressTypeEnum;
+  ip?: string;
+};
+
 export const getdedicatedServerVmacQueryKey = (
   params: GetDedicatedServerVmacParams,
 ) => [

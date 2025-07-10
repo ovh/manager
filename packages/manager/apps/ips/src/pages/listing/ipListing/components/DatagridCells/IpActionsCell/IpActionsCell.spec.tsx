@@ -23,10 +23,15 @@ const useIpHasServicesAttachedMock = vi.hoisted(() =>
   vi.fn(() => ({ hasServiceAttached: true })),
 );
 
+const useGetIpVmacWithIpMock = vi.hoisted(() =>
+  vi.fn(() => ({ vmacsWithIp: [] })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
   useIpHasServicesAttached: useIpHasServicesAttachedMock,
+  useGetIpVmacWithIp: useGetIpVmacWithIpMock,
 }));
 
 /** RENDER */
