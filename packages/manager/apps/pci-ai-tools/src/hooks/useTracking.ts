@@ -47,10 +47,11 @@ export function useTrackBanner() {
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
 
-  return (trackingName: string) => {
+  return (trackingName: string, category?: string) => {
     trackPage({
       page_theme: 'PublicCloud',
       name: trackingName,
+      page_category: category || undefined,
       level2: PCI_LEVEL2,
     });
   };
@@ -75,7 +76,7 @@ export function useTrackPageAuto() {
       tracking?: { id: string; category?: string };
     };
     const { id } = match;
-    const suffix = tracking.id || id || location.pathname.split('/').pop();
+    const suffix = tracking?.id || id || location.pathname.split('/').pop();
     let injectedTrackingKey = `${prefix}::${suffix}`;
 
     // replace . by ::
@@ -84,7 +85,7 @@ export function useTrackPageAuto() {
       page_theme: 'PublicCloud',
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
-      page_category: tracking.category || undefined,
+      page_category: tracking?.category || undefined,
     });
     hasTrackedRef.current = true;
   }, [location.pathname, params.serviceId]);
