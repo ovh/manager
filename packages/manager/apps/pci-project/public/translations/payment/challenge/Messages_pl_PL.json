@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "W celu potwierdzenia Twojego sposobu płatności <strong>wprowadź 6 pierwszych cyfr z karty kredytowej:</strong>",
+  "pci_project_new_payment_challenge_paypal": "W celu potwierdzenia Twojego sposobu płatności zaloguj się ponownie do Twojego konta PayPal.",
+  "pci_project_new_payment_challenge_bank_account": "W celu potwierdzenia Twojego sposobu płatności wprowadź poniżej numer IBAN:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "Weryfikacja Twojego sposobu płatności nie powiodła się. Spróbuj później."
+}
