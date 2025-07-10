@@ -20,6 +20,28 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       resolve: {
         breadcrumb: () => null,
+        openDeleteSiteModal: /* @ngInject */ (
+          $state,
+          serviceName,
+          datacenterId,
+        ) => (siteId) =>
+          $state.go(
+            'app.managedBaremetal.details.datacenter.details.drp.listing.deleteSite',
+            { serviceName, datacenterId, siteId },
+          ),
+        zertoMultiSites: /* @ngInject */ (
+          dedicatedCloudDrp,
+          serviceName,
+          datacenterId,
+        ) =>
+          dedicatedCloudDrp
+            .getZertoMultiSite({
+              serviceName,
+              datacenterId,
+            })
+            .then(({ data }) => {
+              return data;
+            }),
       },
     },
   );

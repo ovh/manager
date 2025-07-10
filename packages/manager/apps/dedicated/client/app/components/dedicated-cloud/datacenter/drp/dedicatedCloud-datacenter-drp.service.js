@@ -630,6 +630,12 @@ class DedicatedCloudDatacenterDrpService {
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`,
     );
   }
+
+  deleteZertoRemoteSite({ serviceName, datacenterId, siteId }) {
+    return this.$http.delete(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites?id=${siteId}`,
+    );
+  }
 }
 
 angular
