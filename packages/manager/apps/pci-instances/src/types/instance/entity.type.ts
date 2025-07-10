@@ -119,6 +119,8 @@ export type TInstanceImage = TImage;
 
 type TInstanceBackup = TBackup;
 
+export type TInstanceAddresses = Map<TInstanceAddressType, TInstanceAddress[]>;
+
 export type TInstance = {
   id: string;
   name: string;
@@ -126,7 +128,7 @@ export type TInstance = {
   status: TInstanceStatus;
   task: TInstanceTaskStatus;
   actions: TInstanceAction[];
-  addresses: Map<TInstanceAddressType, TInstanceAddress[]>;
+  addresses: TInstanceAddresses;
   volumes: TInstanceVolume[] | null;
   flavor: TInstanceFlavor | null;
   pricings: TInstancePrice[] | null;
