@@ -102,7 +102,7 @@ export type TInstanceRegion = {
   availabilityZone: string | null;
 };
 
-type TInstanceAction = {
+export type TInstanceAction = {
   name: TInstanceActionName;
   group: TInstanceActionGroup;
 };
