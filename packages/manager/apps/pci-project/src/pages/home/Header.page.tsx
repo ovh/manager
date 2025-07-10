@@ -53,6 +53,7 @@ export default function ProjectHeader() {
           ) : (
             <Title>{projectDescription}</Title>
           )}
+          {/* TODO: Add condition to display the badge */}
           <OdsBadge className="mb-7" label={t('common:discovery_mode')} />
         </div>
         <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />
