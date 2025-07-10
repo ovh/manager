@@ -6,29 +6,31 @@ import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingC
 import StatusChip, {
   TStatusChipStatus,
 } from '@/components/statusChip/StatusChip.component';
-import { TAggregatedInstance } from '@/types/instance/entity.type';
+import { TStatusSeverity } from '@/types/instance/common.type';
 
 type TStatusCellProps = {
-  instance: TAggregatedInstance;
+  status: TStatusSeverity;
+  taskState: string | null;
   isLoading: boolean;
   isPolling: boolean;
 };
 
-export const StatusCell: FC<TStatusCellProps> = ({
+export const TaskStatus: FC<TStatusCellProps> = ({
   isLoading,
-  instance,
+  status,
+  taskState,
   isPolling,
 }) => {
   const { t, i18n } = useTranslation('status');
-  const statusLabel = instance.status.label.toLowerCase();
+  const statusLabel = status.label.toLowerCase();
 
   const pollingTaskLabel =
-    instance.taskState ?? t('common:pci_instances_common_pending');
+    taskState ?? t('common:pci_instances_common_pending');
 
-  const status: TStatusChipStatus = isPolling
+  const chipStatus: TStatusChipStatus = isPolling
     ? { label: pollingTaskLabel, severity: 'default' }
     : {
-        ...instance.status,
+        ...status,
         label: t(`pci_instances_status_${statusLabel}`),
       };
 
@@ -46,7 +48,7 @@ export const StatusCell: FC<TStatusCellProps> = ({
   return (
     <LoadingCell isLoading={isLoading}>
       <StatusChip
-        status={status}
+        status={chipStatus}
         {...(isPolling && {
           icon: (
             <OsdsIcon

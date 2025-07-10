@@ -1,17 +1,21 @@
+import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
 import {
   TInstance,
   TInstanceAction,
   TInstanceFlavor,
   TInstancePrice,
   TInstanceRegion,
+  TInstanceStatus,
+  TInstanceStatusSeverity,
+  TInstanceTaskStatus,
 } from '@/types/instance/entity.type';
 
-type TRegion = TInstanceRegion;
 type TPrice = {
   label: string;
   type: string;
   value: number;
 };
+
 type TFlavor = {
   name: string;
   ram: string;
@@ -22,8 +26,13 @@ export type TInstanceDashboardViewModel = {
   id: string;
   name: string;
   flavor: TFlavor | null;
-  region: TRegion;
+  region: TInstanceRegion;
   pricings: TPrice[];
+  status: {
+    label: TInstanceStatus;
+    severity: TInstanceStatusSeverity;
+  };
+  task: TInstanceTaskStatus;
   isEditEnabled: boolean;
 } | null;
 
@@ -54,6 +63,8 @@ export const selectInstanceDashboard = (
     flavor: instance.flavor ? mapFlavor(instance.flavor) : null,
     region: instance.region,
     pricings: mapPricings(instance.pricings || []),
+    task: instance.task,
+    status: getInstanceStatus(instance.status),
     isEditEnabled: isEditionEnabled(instance.actions),
   };
 };

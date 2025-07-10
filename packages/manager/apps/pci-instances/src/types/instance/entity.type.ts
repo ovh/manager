@@ -10,19 +10,18 @@ import {
   TFlavorSpec,
   TImage,
   TBackup,
+  TStatusSeverity,
+  TSeverity,
 } from './common.type';
 
 export type TInstanceAddressType = TAddressType;
 
-export type TInstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
+export type TInstanceStatusSeverity = TSeverity;
 export type TInstanceStatus = TStatus;
 
 export type TInstanceActionName = TActionName;
 
-export type TAggregatedInstanceStatus = {
-  label: TInstanceStatus;
-  severity: TInstanceStatusSeverity;
-};
+export type TAggregatedInstanceStatus = TStatusSeverity;
 
 export type TInstanceTaskStatus = {
   isPending: boolean;
@@ -136,3 +135,5 @@ export type TInstance = {
   sshKey: string | null;
   login: string | null;
 };
+
+export type TPartialInstance = Pick<TInstance, 'id'> & Partial<TInstance>;
