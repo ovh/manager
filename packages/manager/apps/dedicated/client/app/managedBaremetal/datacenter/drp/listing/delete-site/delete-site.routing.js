@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.managedBaremetal.details.datacenter.details.drp.listing.deleteSite',
+    'app.managedBaremetal.details.datacenters.datacenter.drp.listing.deleteSite',
     {
       url: '/delete-site/:siteId',
       views: {
