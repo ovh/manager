@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useServices } from './useService';
 import {
   UseSavingsPlanParams,
   SavingsPlanContract,
@@ -9,6 +8,7 @@ import {
   SavingsPlanService,
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
+import { useParam, useProjectId } from './useProject';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -78,12 +78,12 @@ const postSavingsPlan = async ({
   return data;
 };
 
-export const useServiceId = () => {
-  const { projectId } = useParams();
-  const { data: services } = useServices({
-    projectId,
-  });
-  return services?.[0];
+export const useServiceId = (): number => {
+  const { serviceId } = useRouteLoaderData('savings-plan') as {
+    serviceId: number;
+  };
+
+  return serviceId;
 };
 
 export const useSavingsPlan = () => {
@@ -164,7 +164,7 @@ export const useSavingsPlanCreate = (
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
   const navigate = useNavigate();
-  const { projectId } = useParams();
+  const projectId = useProjectId();
 
   return useMutation({
     onSuccess: async (res) => {
@@ -198,3 +198,5 @@ export const useSavingsPlanContract = () => {
     queryFn: () => getSavingsPlanContracts(serviceId),
   });
 };
+
+export const useSavingsPlanId = (): string => useParam('savingsPlanId');

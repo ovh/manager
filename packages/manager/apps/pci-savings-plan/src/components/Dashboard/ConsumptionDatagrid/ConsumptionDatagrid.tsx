@@ -20,6 +20,7 @@ import {
 } from '@/types/savingsPlanConsumption.type';
 import { toLocalDateUTC } from '@/utils/formatter/date';
 import { paginateResults } from '@/utils/paginate/utils';
+import { useProjectId } from '@/hooks/useProject';
 
 type ConsumptionDatagridProps = {
   isLoading: boolean;
@@ -41,7 +42,7 @@ const ConsumptionDatagrid = ({
   const { trackClick } = useOvhTracking();
 
   const navigate = useNavigate();
-  const { projectId } = useParams();
+  const projectId = useProjectId();
   const { clearNotifications } = useNotifications();
   const columns = [
     {

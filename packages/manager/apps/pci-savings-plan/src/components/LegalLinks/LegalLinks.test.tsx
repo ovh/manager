@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
-import { waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import React from 'react';
-import { render } from '@/utils/testProvider';
+import { render, waitFor, screen } from '@/utils/testProvider';
 import LegalLinks from './LegalLinks';
 import { SavingsPlanContract } from '@/types';
 
@@ -23,13 +23,29 @@ const MOCK_CONTRACTS: SavingsPlanContract[] = [
 ];
 
 const server = setupServer(
-  http.get('/engine/apiv6/services?resourceName=undefined', () => {
+  http.get('/engine/apiv6/services?resourceName=789', () => {
     return HttpResponse.json([123]);
   }),
-  http.get('/engine/apiv6/services/123/savingsPlans/contracts', () => {
+  http.get('/engine/apiv6/services/789/savingsPlans/contracts', () => {
     return HttpResponse.json(MOCK_CONTRACTS);
   }),
 );
+
+vi.mock('@/hooks/useProject', () => {
+  return {
+    useProjectId: () => '123',
+  };
+});
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useRouteLoaderData: () => ({
+      serviceId: 789,
+    }),
+  };
+});
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());

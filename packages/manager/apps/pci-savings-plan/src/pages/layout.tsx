@@ -49,7 +49,7 @@ export default function Layout() {
   } = useSavingsPlan();
 
   if (isError || isErrorSavingsPlan || error) {
-    return <ErrorBanner error={error?.response} />;
+    return <ErrorBanner error={error?.response ?? {}} />;
   }
 
   if (isLoading || isLoadingSavingsPlan) {
