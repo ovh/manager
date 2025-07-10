@@ -34,6 +34,7 @@ export type TInstanceDashboardViewModel = {
   };
   task: TInstanceTaskStatus;
   canActivateMonthlyBilling: boolean;
+  isDeleteEnabled: boolean;
   isEditEnabled: boolean;
 } | null;
 
@@ -56,6 +57,9 @@ const mapPricings = (pricings: TInstancePrice[]) =>
 const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'activate_monthly_billing');
 
+const canDeleteInstance = (actions: TInstanceAction[]) =>
+  actions.some(({ name }) => name === 'delete');
+
 export const selectInstanceDashboard = (
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
@@ -70,6 +74,7 @@ export const selectInstanceDashboard = (
     task: instance.task,
     status: getInstanceStatus(instance.status),
     canActivateMonthlyBilling: canActivateMonthlyBilling(instance.actions),
+    isDeleteEnabled: canDeleteInstance(instance.actions),
     isEditEnabled: isEditionEnabled(instance.actions),
   };
 };
