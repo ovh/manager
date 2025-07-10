@@ -35,7 +35,8 @@
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "strip-json-comments": "^5.0.2"
   },
   "engines": {
     "node": "^22",

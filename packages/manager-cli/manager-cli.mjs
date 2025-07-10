@@ -6,7 +6,7 @@ import { applicationsBasePath, getAvailableApps } from './utils/AppUtils.mjs';
 const args = process.argv.slice(2);
 const [command, ...restArgs] = args;
 
-const validMigrationTypes = ['routes', 'tests', 'swc', 'all'];
+const validMigrationTypes = ['routes', 'tests', 'swc', 'static-kit', 'all'];
 const validTestTypes = ['unit', 'integration'];
 const validFormats = ['json', 'html'];
 
@@ -67,6 +67,7 @@ yarn manager-cli migrations-status --type all
 yarn manager-cli migrations-status --type routes
 yarn manager-cli migrations-status --type tests
 yarn manager-cli migrations-status --type swc
+yarn manager-cli migrations-status --type static-kit
 
 # Export as HTML or JSON
 yarn manager-cli migrations-status --type routes --format json
