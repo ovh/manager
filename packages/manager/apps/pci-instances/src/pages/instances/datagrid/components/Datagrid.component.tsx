@@ -16,14 +16,13 @@ import {
 import { NameIdCell } from '@/pages/instances/datagrid/components/cell/NameIdCell.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { ActionsCell } from '@/pages/instances/datagrid/components/cell/ActionsCell.component';
-
-import { StatusCell } from '@/pages/instances/datagrid/components/cell/StatusCell.component';
 import { ListCell } from '@/pages/instances/datagrid/components/cell/ListCell.component';
 import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { DeepReadonly } from '@/types/utils.type';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
+import { TaskStatus } from '../../task/TaskStatus.component';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -192,9 +191,10 @@ const DatagridComponent = ({
           const isPolling = !!pollingInstance && pollingInstance.isPolling;
 
           return (
-            <StatusCell
+            <TaskStatus
               isLoading={instancesQueryLoading}
-              instance={instance}
+              status={instance.status}
+              taskState={instance.taskState}
               isPolling={isPolling}
             />
           );
