@@ -28,6 +28,57 @@ import { PRIVATE_REGISTRY_CREATE_PLAN } from '@/pages/create/constants';
 import PlanChooser from '@/components/PlanChooser.component';
 import queryClient from '@/queryClient';
 import { getRegistryQueryPrefix } from '@/api/hooks/useRegistry';
+import { TCapability } from '@/api/data/capability';
+
+// TODO: remove when 3AZ registry available
+const mocked3AZCapability: TCapability = {
+  regionName: 'EU-WEST-PAR',
+  plans: [
+    {
+      code: 'registry.s-plan-equivalent.hour.consumption',
+      createdAt: '2019-09-13T15:53:33.599585Z',
+
+      updatedAt: '2021-03-29T10:09:03.960847Z',
+      name: 'SMALL',
+      id: '9f728ba5-998b-4401-ab0f-497cd8bc6a89',
+      registryLimits: {
+        imageStorage: 214748364800,
+        parallelRequest: 15,
+      },
+      features: {
+        vulnerability: false,
+      },
+    },
+    {
+      code: 'registry.m-plan-equivalent.hour.consumption',
+      createdAt: '2019-09-13T15:53:33.601794Z',
+      updatedAt: '2023-12-04T11:03:43.109685Z',
+      name: 'MEDIUM',
+      id: 'c5ddc763-be75-48f7-b7ec-e923ca040bee',
+      registryLimits: {
+        imageStorage: 644245094400,
+        parallelRequest: 45,
+      },
+      features: {
+        vulnerability: true,
+      },
+    },
+    {
+      code: 'registry.l-plan-equivalent.hour.consumption',
+      createdAt: '2019-09-13T15:53:33.603052Z',
+      updatedAt: '2023-12-04T10:51:15.658746Z',
+      name: 'LARGE',
+      id: '0dae73df-6c49-47bf-a9d5-6b866c74ac54',
+      registryLimits: {
+        imageStorage: 5497558138880,
+        parallelRequest: 90,
+      },
+      features: {
+        vulnerability: true,
+      },
+    },
+  ],
+};
 
 export default function PlanStep({
   isCreationDisabled,
@@ -48,6 +99,7 @@ export default function PlanStep({
   const { addSuccess, addError } = useNotifications();
 
   const { data: capabilities, isPending } = useGetCapabilities(projectId);
+  const mockedCapabilities = [...(capabilities || []), mocked3AZCapability];
 
   const createCallbacks = {
     success: () => {
@@ -138,8 +190,9 @@ export default function PlanStep({
         <PlanChooser
           plan={store.state.plan}
           plans={
-            capabilities.find((c) => c.regionName === store.state.region.name)
-              .plans
+            mockedCapabilities.find(
+              (c) => c.regionName === store.state.region.name,
+            ).plans
           }
           onInput={(value) => store.set.plan(value)}
         />
