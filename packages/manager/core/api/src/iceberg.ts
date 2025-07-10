@@ -96,7 +96,7 @@ const buildHeaders = () => {
       return builder;
     },
     setDisabledCache: (disableCache: boolean) => {
-      if (disableCache) headers['Pragma'] = 'no-cache';
+      if (disableCache) headers.Pragma = 'no-cache';
       return builder;
     },
     setPaginationSort: (sortBy: string, sortOrder = 'ASC') => {
@@ -138,7 +138,6 @@ export async function fetchIcebergV2<T>({
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const requestHeaders = buildHeaders()
-    .setPaginationMode()
     .setPaginationSize(pageSize)
     .setPaginationCursor(cursor)
     .setDisabledCache(disableCache)
@@ -180,7 +179,7 @@ export async function fetchIcebergV6<T>({
   disableCache,
 }: IcebergFetchParamsV6): Promise<IcebergFetchResultV6<T>> {
   const requestHeaders = buildHeaders()
-    .setPaginationMode()
+    .setPaginationMode('CachedObjectList-Pages')
     .setPaginationSize(pageSize)
     .setPaginationNumber(page)
     .setDisabledCache(disableCache)
