@@ -1,6 +1,5 @@
 // src/components/RenderFormField.component.tsx
 
-import React from 'react';
 import { OsdsFormField, OsdsText } from '@ovhcloud/ods-components/react';
 import { Controller } from 'react-hook-form';
 import {
