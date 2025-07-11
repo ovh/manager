@@ -163,7 +163,6 @@ angular.module('App').controller(
       if (this.isDetachable) {
         return this.getDetachPrices(this.serviceId, this.model.offer.planCode);
       }
-
       return this.Hosting.getUpgradePrices(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
         this.model.offer.planCode,
@@ -207,7 +206,6 @@ angular.module('App').controller(
       return this.Hosting.orderUpgrade(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
         this.model.offer.planCode,
-        this.model.duration.duration,
         this.hosting.isCloudWeb ? startTime : null,
       );
     }
@@ -221,10 +219,8 @@ angular.module('App').controller(
 
       return this.getPrices()
         .then((durations) => {
-          this.durations.available = durations;
-          if (durations?.length === 1) {
-            [this.model.duration] = this.durations.available;
-          }
+          this.durations = durations;
+          this.model.duration = durations;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
@@ -269,9 +265,8 @@ angular.module('App').controller(
       const win = this.$window.open('', '_blank');
       win.referrer = null;
       win.opener = null;
-
       return this.executeOrder()
-        .then((order) => {
+        .then(({ data: { order } }) => {
           this.Alerter.success(
             this.$translate.instant('hosting_order_upgrade_success', {
               t0: order.url,
@@ -330,12 +325,12 @@ angular.module('App').controller(
       return this.$state.go('^');
     }
 
-    static isProrataDuration({ duration }) {
-      return /^upto/.test(duration);
-    }
-
     hasFreedom() {
       return !OFFERS_WITHOUT_FREEDOM.includes(this.hosting.offer);
+    }
+
+    static formatExpirationDate(date) {
+      return `upto-${date.split('T')[0]}`;
     }
   },
 );

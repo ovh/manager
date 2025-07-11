@@ -19,7 +19,7 @@ export const PACK = {
     },
   },
 
-  fiberAccess: ['ftth'],
+  fiberAccess: ['ftth', 'ftte', 'ftto'],
 };
 
 export default {
