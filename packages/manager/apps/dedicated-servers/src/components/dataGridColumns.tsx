@@ -45,7 +45,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       ),
     },
     {
-      id: 'iam.displayName',
+      id: 'displayName',
       isSearchable: true,
       isFilterable: true,
       enableHiding: false,
@@ -78,7 +78,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       ),
     },
     {
-      id: 'commercialRange',
+      id: 'model',
       isSearchable: false,
       isFilterable: true,
       enableHiding: true,

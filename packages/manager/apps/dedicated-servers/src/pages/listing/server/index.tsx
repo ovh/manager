@@ -18,11 +18,11 @@ import { ErrorComponent } from '@/components/errorComponent';
 export default function ServerListing() {
   const columns = useColumns();
   const [visibleColumns] = useState([
-    'name',
+    'displayName',
     'ip',
     'model',
     'region',
-    'status',
+    'state',
     'actions',
     'tags',
   ]);

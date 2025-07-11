@@ -72,7 +72,7 @@ export default function Listing() {
 
   const clusterColumns: DatagridColumn<Cluster>[] = [
     {
-      id: 'name',
+      id: 'displayName',
       isSearchable: true,
       isFilterable: true,
       enableHiding: false,
