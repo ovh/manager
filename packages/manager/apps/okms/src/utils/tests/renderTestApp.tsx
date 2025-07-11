@@ -25,6 +25,10 @@ import {
   getSecretsMock,
   GetSecretsMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
+import {
+  getVersionsMock,
+  GetVersionsMockParams,
+} from '@secret-manager/mocks/versions/versions.handler';
 import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
@@ -77,7 +81,8 @@ export const renderTestApp = async (
     CreateCredentialsMockParams &
     GetSecretsMockParams &
     GetSecretMockParams &
-    CreateSecretsMockParams = {},
+    CreateSecretsMockParams &
+    GetVersionsMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers([
@@ -97,6 +102,7 @@ export const renderTestApp = async (
       ...getSecretsMock(mockParams),
       ...getSecretMock(mockParams),
       ...createSecretsMock(mockParams),
+      ...getVersionsMock(mockParams),
     ]),
   );
 
