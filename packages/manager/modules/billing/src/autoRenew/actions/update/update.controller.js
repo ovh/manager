@@ -53,7 +53,7 @@ export default class AutoRenewServiceModalController {
         this.model = {
           period: this.billingService.renew.automatic
             ? mappedPeriods.find(
-                (p) => this.billingService.cleanRenewPeriod === p.period,
+                (p) => this.billingService.renew.period === p.period,
               )
             : mappedPeriods.find(
                 (p) => SERVICE_RENEW_MODES.MANUAL === p.period,
@@ -82,7 +82,7 @@ export default class AutoRenewServiceModalController {
   }
 
   getNoticeTranslationPeriod() {
-    const months = this.billingService.cleanRenewPeriod;
+    const months = this.billingService.renew.period;
 
     return this.ovhUpdatePeriodTranslationService.getNoticeTranslationPeriod(
       months,

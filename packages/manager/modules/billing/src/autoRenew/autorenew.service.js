@@ -321,7 +321,7 @@ export default class {
         ...pick(service, ['serviceId', 'serviceType', 'renew']),
         renew: {
           ...service.renew,
-          period: service.cleanRenewPeriod,
+          period: service.renew.period,
         },
       };
 
