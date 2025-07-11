@@ -1,0 +1,22 @@
+{
+  "pci_project_new_payment_title": "Crear un proyecto Public Cloud",
+  "pci_project_new_payment_btn_continue_default": "Crear mi proyecto",
+  "pci_project_new_payment_btn_continue_credit_card": "Crear mi proyecto",
+  "pci_project_new_payment_btn_continue_bank_account": "Añadir",
+  "pci_project_new_payment_btn_continue_credit": "Recargar y crear mi proyecto",
+  "pci_project_new_payment_btn_cancel": "Cancelar",
+  "pci_project_new_payment_create_error": "Se ha producido un error al añadir su forma de pago. Por favor, vuelva a intentarlo.",
+  "pci_project_new_payment_checkout_error": "Se ha producido un error al crear el proyecto de Public Cloud. Por favor, vuelva a intentarlo.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "No ha sido posible verificar su forma de pago. Esta forma de pago se ha desactivado. Por favor, seleccione una nueva forma de pago para poder crear un nuevo proyecto.",
+  "pci_project_new_payment_set_default_payment_method_error": "Se ha producido un error al actualizar su forma de pago por defecto.",
+  "pci_project_new_payment_information": "Información bancaria",
+  "pci_project_new_payment_pending_check": "Pendiente de validación de su forma de pago",
+  "pci_project_new_payment_check_error": "La verificación de su forma de pago en su entidad bancaria es excepcionalmente larga.",
+  "pci_project_new_payment_check_payment_method_status": "Consulte el estado en la lista de sus formas de pago y vuelva a crear su proyecto de Public Cloud una vez validada la forma de pago.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Nuestro equipo está realizando la comprobación del pedido manualmente. Será necesario un plazo de tratamiento adicional, ya que este procedimiento puede tardar algunos días. Mientras tanto, compruebe que la información proporcionada es correcta y consulte el estado de su solicitud.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Seguimiento del pedido",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Tras un análisis de los datos asociados a su pedido o relativos a su cuenta, consideramos que estos no ofrecen todas las garantías necesarias en términos de seguridad de la transacción. Para poder tramitar su pedido, procesar el pago del mismo y ejecutar el contrato, OVHcloud le invita a realizar su compra nuevamente utilizando otra forma de pago. También puede contactar con uno de nuestros asesores en el «Centro de ayuda» de su cuenta de cliente, desde donde podrá enviar los elementos necesarios para completar la transacción. En caso contrario, no podremos tramitar la transacción.",
+  "pci_project_new_payment_btn_return": "Volver",
+  "pci_project_new_payment_btn_continue_add_credit_card": "Siguiente",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Añadir una cuenta bancaria"
+}
