@@ -1,0 +1,22 @@
+{
+  "pci_project_new_payment_title": "Utwórz projekt Public Cloud",
+  "pci_project_new_payment_btn_continue_default": "Utwórz projekt",
+  "pci_project_new_payment_btn_continue_credit_card": "Utwórz projekt",
+  "pci_project_new_payment_btn_continue_bank_account": "Dodaj",
+  "pci_project_new_payment_btn_continue_credit": "Zasil konto i utwórz projekt",
+  "pci_project_new_payment_btn_cancel": "Anuluj",
+  "pci_project_new_payment_create_error": "Wystąpił błąd podczas dodawania Twojego sposobu płatności. Spróbuj ponownie później.",
+  "pci_project_new_payment_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud.  Spróbuj ponownie później.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "Weryfikacja Twojego sposobu płatności nie powiodła się.  Został on dezaktywowany. Wybierz inny sposób płatności, aby utworzyć nowy projekt.",
+  "pci_project_new_payment_set_default_payment_method_error": "Wystąpił błąd podczas ustawienia Twojego sposobu płatności jako domyślnego sposobu płatności.",
+  "pci_project_new_payment_information": "Informacje bankowe",
+  "pci_project_new_payment_pending_check": "Oczekiwanie na zatwierdzenie Twojego sposobu płatności",
+  "pci_project_new_payment_check_error": "Weryfikacja sposobu płatności w Twoim banku trwa wyjątkowo długo.",
+  "pci_project_new_payment_check_payment_method_status": "Prosimy o sprawdzenie statusu sposobu płatności na liście sposobów płatności. Po zatwierdzeniu sposobu płatności możesz wrócić do tworzenia projektu Public Cloud.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Weryfikacja Twojego zamówienia jest przeprowadzana ręcznie przez nasze zespoły. Konieczny jest dodatkowy czas przetwarzania, procedura ta może potrwać kilka dni. W tym czasie zweryfikuj Twoje dane i sprawdź status zamówienia.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Informacje o zamówieniu",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "Po przeanalizowaniu danych powiązanych z zamówieniem lub kontem stwierdzamy, że prawdopodobnie nie spełniają one wszystkich warunków niezbędnych do zapewnienia bezpieczeństwa transakcji. Abyśmy mogli przetworzyć i sfinalizować zamówienie, dokonaj zakupu ponownie przy użyciu innego sposobu płatności. Możesz również skontaktować się z naszym konsultantem (sekcja pomocy na Twoim koncie), aby przekazać nam przydatne informacje umożliwiające sfinalizowanie transakcji. W przeciwnym razie transakcja nie zostanie zrealizowana.",
+  "pci_project_new_payment_btn_return": "Powrót",
+  "pci_project_new_payment_btn_continue_add_credit_card": "Dalej",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Dodaj konto bankowe"
+}

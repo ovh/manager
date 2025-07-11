@@ -1,0 +1,22 @@
+{
+  "pci_project_new_payment_title": "Creare un progetto Public Cloud",
+  "pci_project_new_payment_btn_continue_default": "Crea il tuo progetto",
+  "pci_project_new_payment_btn_continue_credit_card": "Crea il tuo progetto",
+  "pci_project_new_payment_btn_continue_bank_account": "Aggiungi",
+  "pci_project_new_payment_btn_continue_credit": "Ricarica e crea il tuo progetto",
+  "pci_project_new_payment_btn_cancel": "Annulla",
+  "pci_project_new_payment_create_error": "Si è verificato un errore durante l'aggiunta del metodo di pagamento. Ti preghiamo di riprovare.",
+  "pci_project_new_payment_checkout_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Ti preghiamo di riprovare.",
+  "pci_project_new_payment_challenge_error_payment_method_deactivated": "La verifica del metodo di pagamento non è andata a buon fine e verrà quindi disattivato. Per poter creare un nuovo progetto, scegli un altro metodo di pagamento.",
+  "pci_project_new_payment_set_default_payment_method_error": "Si è verificato un errore durante l’aggiornamento del metodo di pagamento in modalità predefinita.",
+  "pci_project_new_payment_information": "Informazioni bancarie",
+  "pci_project_new_payment_pending_check": "In attesa di conferma del tuo metodo di pagamento",
+  "pci_project_new_payment_check_error": "La verifica del tuo metodo di pagamento presso il tuo istituto bancario sta richiedendo tempi anomali.",
+  "pci_project_new_payment_check_payment_method_status": "Ti consigliamo di consultare lo stato di quest'ultimo nella lista dei metodi di pagamento e ripristinare il tuo progetto Public Cloud una volta convalidato il metodo di pagamento.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review": "Il nostro team sta procedendo alla convalida manuale del tuo ordine. Il tempo di elaborazione sarà maggiore, dato che la procedura richiede alcuni giorni. Durante questo periodo, verifica le informazioni e segui lo stato della richiesta.",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link": "Stato dell'ordine",
+  "pci_project_new_payment_check_anti_fraud_case_fraud_refused": "In seguito a un'analisi dei dati associati al tuo ordine o relativi al tuo account,  sembra che questi non presentino tutte le garanzie necessarie in termini di sicurezza della transazione. Per poter procedere all'elaborazione e al pagamento dell’ordine e all'esecuzione del contratto, ti invitiamo a ripetere l'acquisto utilizzando un altro metodo di pagamento. Puoi anche contattare uno dei nostri consulenti tramite la sezione \"Aiuto\" del tuo account, per fornirci gli elementi utili al buon esito della transazione. In caso contrario, la transazione non sarà presa in considerazione.",
+  "pci_project_new_payment_btn_return": "Indietro",
+  "pci_project_new_payment_btn_continue_add_credit_card": "Continua",
+  "pci_project_new_payment_btn_continue_sepa_direct_debit": "Aggiungi il tuo conto bancario"
+}
