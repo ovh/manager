@@ -22,6 +22,8 @@ export * from './guides-header';
 export * from './notifications/notifications.component';
 export * from './notifications/useNotifications';
 
+export * from './price';
+
 export * from './filters';
 
 export * from './ManagerButton/ManagerButton';
