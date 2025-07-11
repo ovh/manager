@@ -4,6 +4,8 @@ import {
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
+  TRACKING_GO_TO_TAB_PREFIX,
+  TRACKING_VIRTUAL_MACHINE_TAB,
 } from './dedicatedCloud-datacenter.constants';
 import { VDC_TYPE } from './vmware-vdc-add/dedicatedCloud-vmware-vdc-add.constants';
 import { NETWORK_LABEL } from '../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
@@ -32,6 +34,13 @@ export default class {
           VDC_MIRGRATION_GUIDE_LINK[this.ovhSubsidiary] ||
           VDC_MIRGRATION_GUIDE_LINK.DEFAULT;
       });
+  }
+
+  trackTab(hit) {
+    this.trackClick(
+      `${TRACKING_GO_TO_TAB_PREFIX}${hit}`,
+      TRACKING_VIRTUAL_MACHINE_TAB,
+    );
   }
 
   /* Update description or name */

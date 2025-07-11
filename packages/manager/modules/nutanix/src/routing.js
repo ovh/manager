@@ -51,7 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return [
           {
             title: $translate.instant('nutanix_cluster_list_name'),
-            property: 'serviceName',
+            property: 'iam.displayName',
             sortable: 'asc',
             searchable: true,
             filterable: true,
