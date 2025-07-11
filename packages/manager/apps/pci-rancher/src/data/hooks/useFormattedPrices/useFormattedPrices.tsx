@@ -12,7 +12,7 @@ export const useFormattedRancherPrices = (
   pricing?: TRancherPricing[],
 ) => {
   const { getFormattedCatalogPrice: hourly } = useCatalogPrice(5);
-  const { getFormattedCatalogPrice: monthly } = useCatalogPrice(2);
+  const { getFormattedCatalogPrice: monthly } = useCatalogPrice(2); // to import
   const { t } = useTranslation('order-price');
 
   return useMemo(() => {
@@ -25,6 +25,7 @@ export const useFormattedRancherPrices = (
               hourly: `${hourly(pricingItem.hourlyPrice)} /vCPU/${t(
                 'order_catalog_price_interval_hour',
               )}`,
+              // convertHourlyPriceToMonthly(pricing?.price) === pricingItem.monthlyPrice)
               monthly: `${monthly(pricingItem.monthlyPrice)} /vCPU/${t(
                 'order_catalog_price_interval_month',
               )}`,
