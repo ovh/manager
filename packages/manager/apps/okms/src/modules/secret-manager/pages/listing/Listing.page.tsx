@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BaseLayout,
   Datagrid,
+  DatagridColumn,
   ErrorBanner,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
@@ -13,7 +14,9 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
+import { Secret } from '@secret-manager/types/secret.type';
 import {
+  DatagridAction,
   DatagridCellPath,
   DatagridCellVersion,
   DatagridCreationDate,
@@ -26,7 +29,7 @@ export default function SecretListingPage() {
   const { domainId } = useParams<SecretListingPageParams>();
   const { data: secrets, isPending, error, refetch } = useSecretList(domainId);
 
-  const columns = [
+  const columns: DatagridColumn<Secret>[] = [
     {
       id: 'path',
       cell: DatagridCellPath,
@@ -41,6 +44,11 @@ export default function SecretListingPage() {
       id: 'createdAt',
       cell: DatagridCreationDate,
       label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
+    },
+    {
+      id: 'actions',
+      cell: DatagridAction,
+      label: '',
     },
   ];
 
