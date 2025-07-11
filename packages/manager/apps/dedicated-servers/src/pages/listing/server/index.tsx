@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import React, { useState } from 'react';
 import './index.scss';
 import {
   Datagrid,
@@ -12,13 +10,13 @@ import {
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { DedicatedServer } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
-import { getColumns } from '@/components/dataGridColumns';
+import { useColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
 import { urls } from '@/routes/routes.constant';
 import { ErrorComponent } from '@/components/errorComponent';
 
 export default function ServerListing() {
-  const [columns] = useState([]);
+  const columns = useColumns();
   const [visibleColumns] = useState([
     'name',
     'ip',
@@ -28,7 +26,6 @@ export default function ServerListing() {
     'actions',
     'tags',
   ]);
-  const { t } = useTranslation('dedicated-servers');
   const { sorting, setSorting } = useDataGrid({
     id: 'displayName',
     desc: false,
@@ -84,7 +81,7 @@ export default function ServerListing() {
             {flattenData && (
               <div>
                 <Datagrid
-                  columns={getColumns(t)}
+                  columns={columns}
                   items={sortServersListing(
                     sorting,
                     (flattenData as unknown) as DedicatedServer[],
