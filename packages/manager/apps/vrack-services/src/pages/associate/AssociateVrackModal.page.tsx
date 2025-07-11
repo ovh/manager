@@ -49,7 +49,8 @@ export default function AssociateVrackModal() {
   };
 
   if (!id) {
-    return closeModal();
+    closeModal();
+    return <></>;
   }
 
   return (
