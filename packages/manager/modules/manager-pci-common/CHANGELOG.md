@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.0...@ovh-ux/manager-pci-common@0.18.1) (2025-07-11)
+
+
+### Bug Fixes
+
+* **pci-common:** export useParam hook ([f0bf572](https://github.com/ovh/manager/commit/f0bf572f123d61773ae305e4b37e79191630341e))
+
+
+
+
+
 # 0.18.0 (2025-07-10)
 
 
