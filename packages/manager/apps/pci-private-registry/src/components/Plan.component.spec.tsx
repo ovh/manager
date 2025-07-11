@@ -59,6 +59,10 @@ describe('PlanComponent', () => {
         },
       },
     }),
+    useCatalogPrice: () => ({
+      getFormattedCatalogPrice: () => (price) => `$${price}`,
+    }),
+    convertHourlyPriceToMonthly: (price) => price,
   }));
 
   vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
@@ -251,6 +255,8 @@ describe('PlanComponent', () => {
       wrapper,
     });
 
-    expect(getByTestId('price').textContent).toBe('42');
+    expect(getByTestId('price').textContent).toBe(
+      '42~ private_registry_monthly_price',
+    );
   });
 });
