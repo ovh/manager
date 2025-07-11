@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Fai puntare il record {{t0}} del tuo dominio {{t1}} verso {{t2}}",
   "hosting_add_step3_insert_token_field": "Inserire un record {{t0}} per il dominio {{t1}} con valore {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Dominio aggiunto correttamente al tuo hosting condiviso.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "Si è verificato un errore nell'aggiunta del o dei domini al tuo hosting condiviso."
+  "hosting_tab_DOMAINS_configuration_add_failure": "Si è verificato un errore nell'aggiunta del o dei domini al tuo hosting condiviso.",
+  "domain_tab_emails": "Email e mailing list"
 }
