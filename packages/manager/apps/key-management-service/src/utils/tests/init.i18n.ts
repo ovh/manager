@@ -2,6 +2,7 @@ import i18next, { i18n } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonDashboard from '../../../../../modules/common-translations/public/translations/dashboard/Messages_fr_FR.json';
 import commonForm from '../../../../../modules/common-translations/public/translations/form/Messages_fr_FR.json';
+import commonStatus from '../../../../../modules/common-translations/public/translations/status/Messages_fr_FR.json';
 import kmsCommon from '../../../public/translations/key-management-service/common/Messages_fr_FR.json';
 import create from '../../../public/translations/key-management-service/create/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/key-management-service/dashboard/Messages_fr_FR.json';
@@ -16,6 +17,7 @@ import secretCommon from '../../../public/translations/secret-manager/common/Mes
 import secretOnboarding from '../../../public/translations/secret-manager/onboarding/Messages_fr_FR.json';
 import secretDashboard from '../../../public/translations/secret-manager/dashboard/Messages_fr_FR.json';
 import secretCreate from '../../../public/translations/secret-manager/create/Messages_fr_FR.json';
+import secretList from '../../../public/translations/secret-manager/secrets/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -46,10 +48,12 @@ function addTranslations() {
     )
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
+    .addResources(defaultLocale, NAMESPACES.STATUS, commonStatus)
     .addResources(defaultLocale, 'secret-manager/common', secretCommon)
     .addResources(defaultLocale, 'secret-manager/onboarding', secretOnboarding)
     .addResources(defaultLocale, 'secret-manager/dashboard', secretDashboard)
     .addResources(defaultLocale, 'secret-manager/create', secretCreate)
+    .addResources(defaultLocale, 'secret-manager/secrets', secretList)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -84,6 +88,7 @@ export const initTestI18n = () =>
 const commonLabels = {
   dashboard: commonDashboard,
   form: commonForm,
+  status: commonStatus,
 };
 
 const secretManagerLabels = {
@@ -91,6 +96,7 @@ const secretManagerLabels = {
   onboarding: secretOnboarding,
   dashboard: secretDashboard,
   create: secretCreate,
+  secrets: secretList,
 };
 
 export const labels = {
