@@ -138,7 +138,6 @@ export async function fetchIcebergV2<T>({
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const requestHeaders = buildHeaders()
-    .setPaginationMode()
     .setPaginationSize(pageSize)
     .setPaginationCursor(cursor)
     .setDisabledCache(disableCache)

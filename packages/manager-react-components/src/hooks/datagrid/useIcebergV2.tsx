@@ -68,6 +68,7 @@ export function useResourcesIcebergV2<T>({
   queryKey,
   defaultSorting = undefined,
   shouldFetchAll = false,
+  disableCache,
   ...options
 }: IcebergFetchParamsV2 &
   IcebergV2HookParams<T>): UseResourcesIcebergV2Result<T> {
@@ -98,6 +99,7 @@ export function useResourcesIcebergV2<T>({
         sortBy: sorting?.[0]?.id || null,
         sortOrder: sorting?.[0]?.desc ? 'DESC' : 'ASC',
         filters: searchFilter ? [searchFilter, ...filters] : filters,
+        disableCache,
       }),
     getNextPageParam: (lastPage) => lastPage.cursorNext,
   });
