@@ -156,7 +156,17 @@ const routes: RouteObject[] = [
             ...lazyRouteConfig(() =>
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
-            children: [...instanceActionsRoutes],
+            children: [
+              ...instanceActionsRoutes,
+              {
+                path: 'attach/network',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/instances/instance/dashboard/action/AttachNetwork.page'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },
