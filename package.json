@@ -42,6 +42,7 @@
     "format:md": "yarn run lint:md --fix",
     "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,manager-react-components}/**/*.{tsx,ts}\"",
     "generate:uapp": "yarn workspace @ovh-ux/manager-generator run start",
+    "generate:uapp:dev": "yarn workspace @ovh-ux/manager-generator dev",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
