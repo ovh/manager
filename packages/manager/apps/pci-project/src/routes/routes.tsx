@@ -48,15 +48,6 @@ export default (
       />
     </Route>
     <Route
-      path={urls.creation}
-      Component={CreationPage}
-      handle={{
-        tracking: {
-          pageType: PageType.funnel,
-        },
-      }}
-    />
-    <Route
       path={urls.creating}
       Component={CreatingPage}
       handle={{
@@ -105,6 +96,16 @@ export default (
         tracking: {
           pageName: 'onboarding',
           pageType: PageType.onboarding,
+        },
+      }}
+    />
+    <Route
+      path={urls.creation}
+      Component={CreationPage}
+      handle={{
+        tracking: {
+          pageName: 'new',
+          pageType: PageType.dashboard,
         },
       }}
     />

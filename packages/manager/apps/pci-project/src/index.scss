@@ -10,6 +10,7 @@ html {
 ods-text.font-bold::part(text) {
   font-weight: bold;
 }
+
 ods-text.disabled::part(text) {
   opacity: 0.6;
 }
