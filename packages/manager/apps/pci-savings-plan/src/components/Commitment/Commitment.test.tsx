@@ -14,12 +14,18 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 }));
 
 const defaultProps = {
-  duration: 1,
-  price: '1',
   hourlyPriceWithoutCommitment: 0.01,
   isActive: false,
+  planPricing: {
+    id: '1',
+    code: '1',
+    duration: 1,
+    price: 1,
+    monthlyPercentageDiscount: 86,
+    monthlyPrice: '1',
+    monthlyPriceWithoutDiscount: '10.00',
+  },
   onClick: vi.fn(),
-  quantity: 1,
 };
 
 const trackingSpy = vi.fn();
@@ -63,6 +69,6 @@ describe('Commitment', () => {
 
   it('should render the hourly price without commitment', () => {
     setupSpecTest();
-    expect(screen.getByText('~ €10.00')).toBeInTheDocument();
+    expect(screen.getByText('~ 10.00')).toBeInTheDocument();
   });
 });

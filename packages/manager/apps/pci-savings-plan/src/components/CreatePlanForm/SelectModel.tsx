@@ -6,7 +6,11 @@ import { OdsTabs, OdsTab, OdsSpinner } from '@ovhcloud/ods-components/react';
 import { DescriptionWrapper } from './CreatePlanForm';
 import { TileTechnicalInfo } from '../TileTechnicalInfo/TileTechnicalInfo';
 import { Block } from '../SimpleTile/SimpleTile';
-import { InstanceInfo, TechnicalInfo } from '@/types/CreatePlan.type';
+import {
+  InstanceInfo,
+  InstanceTechnicalName,
+  TechnicalInfo,
+} from '@/types/CreatePlan.type';
 
 type SelectModelProps = {
   technicalInfo: TechnicalInfo[];
@@ -14,7 +18,7 @@ type SelectModelProps = {
   isInstance: boolean;
   isTechnicalInfoLoading: boolean;
   onSelectModel: (model: string) => void;
-  setInstanceCategory: (category: string) => void;
+  setInstanceCategory: (category: InstanceTechnicalName) => void;
   tabsList: InstanceInfo[];
   technicalModel: string;
 };
