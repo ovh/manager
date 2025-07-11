@@ -78,7 +78,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       ),
     },
     {
-      id: 'commercialRange',
+      id: 'model',
       isSearchable: false,
       isFilterable: true,
       enableHiding: true,
