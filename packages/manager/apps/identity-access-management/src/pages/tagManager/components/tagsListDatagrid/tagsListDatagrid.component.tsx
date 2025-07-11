@@ -31,6 +31,7 @@ export default function TagsListDatagrid() {
   const [paginatedTagList, setPaginatedTagList] = useState<IamTagListItem[]>(
     [],
   );
+  const [rowSelection, setRowSelection] = useState({});
   const [page, setPage] = useState(1);
   const { t } = useTranslation(['tag-manager', NAMESPACES.ERROR]);
   const { addError } = useNotifications();
@@ -38,7 +39,7 @@ export default function TagsListDatagrid() {
     TagManagerContext,
   );
 
-  const columns: DatagridColumn<unknown>[] = [
+  const columns: DatagridColumn<IamTagListItem>[] = [
     {
       id: 'name',
       cell: (item: IamTagListItem) => (
@@ -96,6 +97,11 @@ export default function TagsListDatagrid() {
     setPaginatedTagList(filtered.slice(0, PAGE_SIZE * page));
   }, [tags?.list, filter, page]);
 
+  useEffect(() => {
+    // tslint:disable-next-line:no-console
+    console.log(rowSelection);
+  }, [rowSelection]);
+
   const onSearch = (newSearch: string) => {
     setFilter(newSearch);
   };
@@ -117,6 +123,18 @@ export default function TagsListDatagrid() {
     setPaginatedTagList(sorted.slice(0, PAGE_SIZE * page));
   };
 
+  const getRowId = (item: IamTagListItem) => item.name;
+
+  const isSelectable = (item: IamTagListItem) => item.count > 1;
+
+  const onToggleAllRowsSelection = (isAllRowSelected: boolean) => {
+    const selectedTags: Record<string, boolean> = {};
+    filteredTags.forEach((tag) => {
+      if (isSelectable(tag)) selectedTags[tag.name] = !isAllRowSelected;
+    });
+    setRowSelection(selectedTags);
+  };
+
   return (
     <>
       <Datagrid
@@ -134,6 +152,13 @@ export default function TagsListDatagrid() {
         isLoading={isLoading}
         numberOfLoadingRows={10}
         onSortChange={sortItems}
+        manageRowSelection={{
+          rowSelection,
+          setRowSelection,
+          onToggleAllRowsSelection,
+          enableRowSelection: ({ original: item }) => isSelectable(item),
+        }}
+        getRowId={getRowId}
       />
       <DatagridItemsCounter
         currentPage={page}
