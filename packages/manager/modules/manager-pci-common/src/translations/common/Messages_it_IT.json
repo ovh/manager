@@ -90,5 +90,6 @@
   "common_dual_list_target_search": "Cerca nel contenuto di destinazione",
   "common_cancel": "Annullare",
   "common_confirm": "Confermare",
-  "common_not_supported": "Non supportato"
+  "common_not_supported": "Non supportato",
+  "common_price_from": "Da"
 }
