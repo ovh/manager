@@ -21,3 +21,4 @@ coverage
 **/migration-status-reports/**
 CLAUDE.md
 .mcp.json
+.claude
