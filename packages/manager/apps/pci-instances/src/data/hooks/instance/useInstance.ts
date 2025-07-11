@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import {
+  attachNetwork,
   getInstance,
   TGetInstanceQueryParams,
   updateInstanceName,
@@ -78,6 +79,33 @@ export const useUpdateInstanceName = ({
   return useMutation({
     mutationFn: ({ instanceName }: TInstanceNameMutationFnVariables) =>
       updateInstanceName({ projectId, instanceId, instanceName }),
+    onSuccess,
+    onError,
+  });
+};
+
+type TUseAttachNetworkCallbacks = DeepReadonly<{
+  onSuccess?: (data: unknown) => void;
+  onError?: (error: unknown) => void;
+}>;
+
+type TUseAttachNetworkArgs = {
+  projectId: string;
+  instanceId: string;
+  networkId: string;
+  callbacks: TUseAttachNetworkCallbacks;
+};
+
+export const useAttachNetwork = ({
+  projectId,
+  instanceId,
+  networkId,
+  callbacks = {},
+}: TUseAttachNetworkArgs) => {
+  const { onSuccess, onError } = callbacks;
+
+  return useMutation({
+    mutationFn: () => attachNetwork({ projectId, instanceId, networkId }),
     onSuccess,
     onError,
   });
