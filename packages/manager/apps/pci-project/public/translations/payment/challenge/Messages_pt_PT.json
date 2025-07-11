@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Para verificar o seu método de pagamento, <strong>insira os 6 primeiros algarismos do seu cartão de crédito:</strong>",
+  "pci_project_new_payment_challenge_paypal": "Para verificar o seu método de pagamento, volte a ligar-se à sua conta PayPal.",
+  "pci_project_new_payment_challenge_bank_account": "Para verificar o seu método de pagamento, insira o seu IBAN:",
+  "pci_project_new_payment_challenge_error_retry_challenge": "Não foi possível verificar o seu método de pagamento. Tente novamente."
+}
