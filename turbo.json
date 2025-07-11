@@ -27,6 +27,12 @@
         "VITE_CONTAINER_APP"
       ],
       "dependsOn": ["^dev"]
+    },
+    "lint:modern": {
+      "outputs": []
+    },
+    "lint:modern:fix": {
+      "outputs": []
     }
   }
 }

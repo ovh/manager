@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Emit */
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": true,
+    "removeComments": true,
+
+    /* Language & Modules */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+
+    /* Interop & Module Output */
+    "allowSyntheticDefaultImports": true,
+    "incremental": true,
+
+    /* Type Declarations */
+    "skipLibCheck": true,
+
+    /* Custom Types */
+    "types": ["node"],
+    "typeRoots": ["./src/adapters/eslint/types", "./node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types"]
+}

@@ -1,11 +1,14 @@
-import fs from 'fs';
+import fs, { readFileSync } from 'fs';
 import path from 'path';
+import { applicationsBasePath } from './AppUtils.mjs';
 
 export const babelConfigurationFiles = ['.babelrc', 'babel.config.js'];
 
 export const UNIT_TEST_CONFIG_PKG = '@ovh-ux/manager-tests-setup';
 
 export const UNIT_TEST_CONFIG_VERSION = 'latest';
+
+export const TS_EXCLUDED_DEPENDENCIES = /^(typescript(-eslint)?|tslib|ts-node|tsconfig)/;
 
 export const REQUIRED_DEP_VERSIONS = {
   '@ovh-ux/manager-vite-config': '>=0.9.4',
@@ -22,6 +25,17 @@ export const EXCLUDED_TESTS_DEPS = [
   '@testing-library/react',
   '@testing-library/user-event'
 ];
+
+export const EXCLUDED_ESLINT_FILES = [
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.cjs',
+  '.eslintrc.json',
+  'eslint.config.js',
+  '.eslintignore',
+];
+
+export const ESLINT_DEP_REGEX = /^(eslint|@typescript-eslint|eslint-plugin|@html-eslint|@vitest\/eslint-plugin|@tanstack\/eslint-plugin|prettier|globals|tailwind-csstree|typescript-eslint)/;
 
 /**
  * Read package json content
@@ -62,4 +76,19 @@ export const satisfiesVersion = (required, actual) => {
     if ((actParts[i] || 0) < reqParts[i]) return false;
   }
   return true;
+};
+
+/**
+ * Resolves the actual package name from the app folder name.
+ * @param {string} appName - The folder name like 'pci-block-storage'.
+ * @returns {string|null} The real package name from package.json.
+ */
+export const getPackageNameFromApp = (appName) => {
+  try {
+    const pkgPath = path.resolve(applicationsBasePath, appName, 'package.json');
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    return pkg.name || null;
+  } catch (e) {
+    return null;
+  }
 };
