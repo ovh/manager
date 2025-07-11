@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useContext, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
@@ -17,8 +17,10 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     shell: { navigation },
   } = useContext(ShellContext);
   const [redirectionGuardChecked, setRedirectionGuardChecked] = useState(false);
-  const goToProjectCreation = () => navigate(`../${urls.creation}`);
-  const goToProjectsList = () => navigate(`../${urls.listing}`);
+  const { pathname: projectCreationUrl } = useResolvedPath(
+    `../${urls.creation}`,
+  );
+  const { pathname: projectListingUrl } = useResolvedPath(`../${urls.listing}`);
   const goToProject = (project: TProjectWithService) => {
     navigation.navigateTo('public-cloud', BASE_PROJECT_PATH, {
       projectId: project.project_id,
@@ -51,12 +53,6 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     isReady: isActiveProjectsReady,
   } = useActiveProjects();
   useEffect(() => {
-    // If user has credit enabled, redirect them to actual project creation page
-    if (redirectToProjectCreation) {
-      goToProjectCreation();
-      return;
-    }
-
     // NOTE: to keep the existing behavior, the 'eligibility' check must be done before the projects check.
     if (isEligibilityLoading || !isActiveProjectsReady) {
       return;
@@ -65,7 +61,7 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     // If there are unpaid projects among existing one, show listing
     const unpaidProjects = activeProjects.filter((d) => d.isUnpaid);
     if (unpaidProjects.length > 0) {
-      goToProjectsList();
+      navigate(projectListingUrl);
       return;
     }
 
@@ -83,7 +79,13 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
       (d) => d.planCode === PlanCode.PROJECT_2018,
     );
     if (otherActiveProjects.length > 0) {
-      goToProjectsList();
+      navigate(projectListingUrl);
+      return;
+    }
+
+    // If user has credit enabled, redirect them to actual project creation page
+    if (redirectToProjectCreation) {
+      navigate(projectCreationUrl);
       return;
     }
 
@@ -99,6 +101,8 @@ export default function DiscoveryGuard({ children }: { children: ReactNode }) {
     activeProjects,
     isEligibilityLoading,
     isActiveProjectsReady,
+    projectListingUrl,
+    projectCreationUrl,
   ]);
 
   const isLoading =
