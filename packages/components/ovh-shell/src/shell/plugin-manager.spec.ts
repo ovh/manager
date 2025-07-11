@@ -1,5 +1,6 @@
-import { IShellPluginMethodCall } from '../../src/common';
-import PluginManager, { IPluginEntry } from '../../src/shell/plugin-manager';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { IShellPluginMethodCall } from '../common';
+import PluginManager, { IPluginEntry } from './plugin-manager';
 
 describe('Plugin registration', () => {
   it('registers one plugin', () => {
@@ -49,7 +50,7 @@ describe('Plugin availability', () => {
     const testFunction = () => expectedResult;
     const pluginManager = new PluginManager();
     pluginManager.registerPlugin('1', {
-      testCall: jest.fn(testFunction),
+      testCall: vi.fn(testFunction),
     });
 
     // Act
@@ -70,7 +71,7 @@ describe('Plugin Invokation', () => {
 
     // Act
     pluginManager.registerPlugin('1', {
-      testCall: jest.fn(testFunction),
+      testCall: vi.fn(testFunction),
     });
     const callInvocationSignature: IShellPluginMethodCall = {
       plugin: '1',

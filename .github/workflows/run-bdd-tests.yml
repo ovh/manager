@@ -1,4 +1,4 @@
-name: Run Jest tests
+name: Run tests
 on: [push]
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install repository
         run: yarn install --frozen-lockfile
-      - name: Build BDD covered packages and dependencies
+      - name: Build covered packages and dependencies
         run: |
           yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager-react-components"
@@ -30,9 +30,6 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
           yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
           yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
-      # This task is for running the jest tests outside microApps
-      - name: Run tests Jest
-        run: yarn test:jest
       - name: Run tests on changed packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
