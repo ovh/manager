@@ -97,7 +97,7 @@ export default function Listing() {
     isLoading,
     status,
   } = useOkmsList({
-    pageSize: 10,
+    pageSize: 100,
   });
 
   useAutoRefetch({
