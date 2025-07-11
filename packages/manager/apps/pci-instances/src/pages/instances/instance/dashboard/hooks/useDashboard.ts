@@ -1,3 +1,4 @@
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { useInstance } from '@/data/hooks/instance/useInstance';
 import { selectInstanceDashboard } from '../view-models/selectInstanceDashboard';
 import { TInstance } from '@/types/instance/entity.type';
@@ -10,6 +11,7 @@ type TUseDashboardArgs = {
 };
 
 export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
+  const projectUrl = useProjectUrl('public-cloud');
   const { data: instance, isPending } = useInstance({
     region,
     instanceId,
@@ -22,7 +24,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   });
 
   return {
-    instance: selectInstanceDashboard(instance),
+    instance: selectInstanceDashboard(projectUrl, instance),
     isPending,
   };
 };
