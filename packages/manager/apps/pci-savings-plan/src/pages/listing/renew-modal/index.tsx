@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import Errors from '@/components/Error/Error';
@@ -7,12 +7,13 @@ import RenewModal from '@/components/Modal/RenewModal';
 import {
   useSavingsPlan,
   useSavingsPlanChangePeriod,
+  useSavingsPlanId,
 } from '@/hooks/useSavingsPlan';
 import { SavingsPlanPlanedChangeStatus } from '@/types/api.type';
 
 const RenewModalPage = () => {
   const navigate = useNavigate();
-  const { savingsPlanId } = useParams();
+  const savingsPlanId = useSavingsPlanId();
   const { data: savingsPlan, error, isError } = useSavingsPlan();
   const { t } = useTranslation('listing');
   const { addSuccess } = useNotifications();
@@ -27,8 +28,8 @@ const RenewModalPage = () => {
   const onSuccess = () => {
     addSuccess(
       t(periodEndAction ? 'banner_renew_deactivate' : 'banner_renew_activate', {
-        planName: currentPlan.displayName,
-        endDate: currentPlan.endDate,
+        planName: currentPlan?.displayName,
+        endDate: currentPlan?.endDate,
       }),
     );
   };

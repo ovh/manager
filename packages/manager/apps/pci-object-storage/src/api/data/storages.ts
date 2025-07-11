@@ -13,8 +13,9 @@ export type TStorage = {
   objectsCount: number;
   containerCount: number;
   usedSpace: number;
-  offer?: string;
-  mode?: string;
+  deploymentMode: string;
+  offer: string;
+  mode: string;
   public?: boolean;
   s3StorageType?: string;
   isHighPerfStorage?: boolean;
@@ -23,7 +24,6 @@ export type TStorage = {
   objectsSize?: number;
   virtualHost?: string;
   ownerId?: number;
-  deploymentMode?: string;
   state?: string;
 };
 

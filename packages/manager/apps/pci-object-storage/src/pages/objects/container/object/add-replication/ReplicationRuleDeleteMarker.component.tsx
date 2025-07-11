@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
-import { TReplicationStatus } from './AddReplication.page';
+import { TReplicationStatus } from './ManageReplicationPage.form';
 
 type TReplicationRuleDeleteMarkerProps = {
   deleteMarkerReplication: TReplicationStatus;

@@ -4,7 +4,13 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { vi } from 'vitest';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import {
+  createMemoryRouter,
+  MemoryRouter,
+  Route,
+  RouterProvider,
+  Routes,
+} from 'react-router-dom';
 import React from 'react';
 
 export const shellContext = {
@@ -104,4 +110,22 @@ export const wrapperOffsiteReplication = ({
       {children}
     </ShellContext.Provider>
   </QueryClientProvider>
+);
+export const replicationTestWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <MemoryRouter initialEntries={['/project/storage/container/replication/add']}>
+    <QueryClientProvider client={new QueryClient()}>
+      <ShellContext.Provider value={mockShellContext as any}>
+        <Routes>
+          <Route
+            path="/project/storage/:storageId/replication/add"
+            element={children}
+          />
+        </Routes>
+      </ShellContext.Provider>
+    </QueryClientProvider>
+  </MemoryRouter>
 );

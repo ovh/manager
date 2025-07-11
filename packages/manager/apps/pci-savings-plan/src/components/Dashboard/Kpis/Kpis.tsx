@@ -137,9 +137,10 @@ const Kpis = ({
     [consumption, getFormattedFee],
   );
 
-  const formattedUsage = useMemo(() => {
-    return formatKpiValue(usage, true);
-  }, [usage]);
+  const formattedUsage =
+    flavorOptions.length === 0
+      ? t('dashboard_kpis_not_available')
+      : `${usage} %`;
 
   const kpiData = [
     {

@@ -82,5 +82,6 @@
   "kube_add_plan_content_standard_3AZ_banner": "The Standard plan is not yet available in 3-AZ regions. Select 1-AZ deployment to access this plan.",
   "kube_add_plan_content_standard_very_soon": "Coming soon",
   "kube_add_plan_subtitle": "Choose the right plan for your needs. Pick from a wide selection of instances (Kubernetes nodes), billed by the hour or via a subscription.",
-  "kubernetes_add_deployment_mode_card_beta": "Beta"
+  "kubernetes_add_deployment_mode_card_beta": "Beta",
+  "kube_add_node_pool_name_title": "Name your node pool"
 }

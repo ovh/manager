@@ -12,9 +12,10 @@ import { useSavingsPlan } from '@/hooks/useSavingsPlan';
 import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 import Header from '@/components/Header/Header';
+import { useProjectId } from '@/hooks/useProject';
 
 const Dashboard: React.FC = () => {
-  const { projectId } = useParams();
+  const projectId = useProjectId();
   const navigate = useNavigate();
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();

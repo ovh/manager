@@ -70,7 +70,7 @@ const useTechnicalInfo = ({
         .filter((item) => item.id !== '')
         .sort((a, z) => {
           if (a.technical?.cpu?.cores) {
-            return a.technical.cpu.cores - z.technical.cpu.cores;
+            return a.technical.cpu.cores - (z.technical?.cpu?.cores ?? 0);
           }
           return 1;
         }),

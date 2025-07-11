@@ -3,6 +3,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constant';
 import { Error } from '../Error';
+import { validateServiceIdLoader } from '@/routes/loader/validateServiceIdLoader';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -18,9 +19,11 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
 
 export const Routes = [
   {
+    id: 'savings-plan',
     path: '/pci/projects/:projectId/savings-plan',
     ...lazyRouteConfig(() => import('@/pages/layout')),
     errorElement: <Error />,
+    loader: validateServiceIdLoader,
     children: [
       {
         id: 'dashboard',

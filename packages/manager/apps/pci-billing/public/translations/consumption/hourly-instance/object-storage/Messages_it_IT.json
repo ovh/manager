@@ -7,5 +7,8 @@
   "cpbc_object_storage_consumption_info_part2": "Il tuo consumo corrisponde esattamente a {{amount}} GiB/ora.",
   "cpbc_object_storage_output_traffic_info_part1": "Ogni gigabyte in uscita (con qualsiasi destinazione) viene fatturato",
   "cpbc_object_storage_output_traffic_info_part2": ". Nel periodo selezionato hai consumato {{amount}} GiB. Il traffico in entrata non viene mai fatturato.",
-  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni."
+  "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni.",
+  "cpbc_object_storage_col_bucket_name": "Nome del bucket",
+  "cpbc_object_storage_col_type": "Piano",
+  "cpbc_object_storage_col_retrieval_fees": "Spese di estrazione dei dati"
 }
