@@ -154,7 +154,7 @@ describe('DiscoveryGuard', () => {
     });
   });
 
-  it('redirects to project creation if CREDIT is available', async () => {
+  it('redirects to project creation if credit is available and no project exist', async () => {
     vi.mocked(useEligibility).mockReturnValue(
       mockEligibility({
         paymentMethodsAuthorized: [TEligibilityPaymentMethod.CREDIT],
@@ -166,7 +166,23 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../new');
+      expect(mockNavigate).toHaveBeenCalledWith('/new');
+    });
+  });
+
+  it('does not redirect to project creation if other project exists, even with credit enabled', async () => {
+    vi.mocked(useEligibility).mockReturnValue(
+      mockEligibility({
+        paymentMethodsAuthorized: [TEligibilityPaymentMethod.CREDIT],
+      }),
+    );
+    vi.mocked(useActiveProjects).mockReturnValue({
+      activeProjects: [mockProject({ planCode: PlanCode.PROJECT_2018 })],
+      isReady: true,
+    });
+    render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 
@@ -178,7 +194,7 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 
@@ -209,7 +225,7 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 });
