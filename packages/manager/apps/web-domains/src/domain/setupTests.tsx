@@ -20,10 +20,13 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-    useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
   };
 });
+
+vi.mock('@/domain/utils/utils', () => ({
+  getLanguageKey: vi.fn(),
+}));
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
@@ -51,11 +54,13 @@ const mocks = vi.hoisted(() => ({
     },
   },
 }));
+const trackClickMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   ShellContext: React.createContext({
     shell: mocks.shell,
   }),
+  useOvhTracking: () => ({ trackClick: trackClickMock }),
   useNavigationGetUrl: (
     linkParams: [string, string, unknown],
   ): UseQueryResult<unknown, Error> => {
@@ -63,8 +68,4 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
-}));
-
-vi.mock('punycode', () => ({
-  toUnicode: vi.fn(),
 }));
