@@ -21,6 +21,7 @@ export const useDomainDatagridColumns = () => {
       id: 'status',
       cell: (props: TDomainsInfo) => (
         <DomainDatagridColumnRegisteredStatus
+          domainName={props.name}
           registrationStatus={props.registrationStatus}
         />
       ),
