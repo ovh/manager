@@ -20,6 +20,7 @@ import component from './dedicatedCloud-datacenter-drp.component';
 import onPremiseTypeConfiguration from './configuration/onPremise';
 import ovhTypeConfiguration from './configuration/ovh';
 import summary from './summary';
+import listing from './listing';
 
 const moduleName = 'dedicatedCloudDatacenterDrp';
 
@@ -43,6 +44,7 @@ angular
     onPremiseTypeConfiguration,
     ovhTypeConfiguration,
     summary,
+    listing,
   ])
   .component(component.name, component)
   .constant(optionsConstantName, DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS)
