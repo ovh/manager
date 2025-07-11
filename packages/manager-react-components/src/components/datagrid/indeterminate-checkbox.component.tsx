@@ -7,6 +7,7 @@ export type IndeterminateCheckboxProps = {
   onChange: () => void;
   isChecked?: boolean;
   isIndeterminate?: boolean;
+  isDisabled?: boolean;
 };
 
 export const IndeterminateCheckbox = ({
@@ -16,6 +17,7 @@ export const IndeterminateCheckbox = ({
   onChange,
   isChecked,
   isIndeterminate,
+  isDisabled,
 }: IndeterminateCheckboxProps) => {
   return (
     <OdsCheckbox
@@ -25,6 +27,7 @@ export const IndeterminateCheckbox = ({
       onOdsChange={onChange}
       isChecked={isChecked}
       isIndeterminate={isIndeterminate}
+      isDisabled={isDisabled}
     />
   );
 };
