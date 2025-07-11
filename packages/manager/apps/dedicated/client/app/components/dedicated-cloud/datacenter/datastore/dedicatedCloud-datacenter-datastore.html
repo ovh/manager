@@ -55,6 +55,18 @@
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_scope' | translate"
+    >
+        <span
+            data-ng-if="$row.isGlobal"
+            data-ng-bind="'dedicatedCloud_tab_datastores_scope_global' | translate"
+        ></span>
+        <span
+            data-ng-if="!$row.isGlobal"
+            data-ng-bind="'dedicatedCloud_tab_datastores_scope_not_global' | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_datacenter' | translate"
     >
         <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
@@ -114,7 +126,7 @@
         data-compact
         data-placement="end"
         data-disabled="$row.asyncLoading"
-        data-ng-if="($row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered) || $row.isGlobalCompatible"
+        data-ng-if="($row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered) || ($row.isGlobalCompatible && !$row.isGlobal)"
     >
         <oui-action-menu-item
             data-ng-if="$row.billingType === $ctrl.RESOURCE_BILLING_TYPES.hourly && $row.state === $ctrl.RESOURCE_STATES.delivered"
@@ -129,7 +141,7 @@
         ></oui-action-menu-item>
 
         <oui-action-menu-item
-            data-ng-if="$row.isGlobalCompatible"
+            data-ng-if="$row.isGlobalCompatible && !$row.isGlobal"
             data-on-click="$ctrl.goToConvertToGlobal($row)"
             ><span
                 data-translate="dedicatedCloud_convert_datastore_to_global"
