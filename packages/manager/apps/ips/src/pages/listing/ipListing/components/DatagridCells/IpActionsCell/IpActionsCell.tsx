@@ -1,0 +1,239 @@
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
+import ipaddr from 'ipaddr.js';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId, ipFormatter } from '@/utils';
+import { IpTypeEnum } from '@/data/api';
+import {
+  useGetIpdetails,
+  useGetGameMitigation,
+  useIpHasForcedMitigation,
+  useIpHasServicesAttached,
+  useGetIpVmacWithIp,
+} from '@/data/hooks';
+
+export type IpActionsCellParams = {
+  ip: string;
+  parentIpGroup?: string;
+};
+/* 
+  list of category and path map in order to check if the ip is attached to that category
+  categoryAndPathMapping = [
+        {
+            category: "CLOUD",
+            path: "/cloud/project",
+        },{
+            category: "VRACK",
+            path: "/vrack",
+        },{
+            category: "DEDICATED",
+            path: "/dedicated/server"
+        },{
+            category: "HOUSING",
+            path: "/dedicated/housing",
+        },{
+            category: "PRIVATE_CLOUD",
+            path: "/dedicatedCloud"
+        },{
+            category: "VPS",
+            path: "/vps",
+        },{
+            category: "IP_LOAD_BALANCING",
+            path: "/ipLoadbalancing",
+        }
+    ];
+
+*/
+
+/*
+  6 use cases possible:
+  single IPv4 <=> parentIpGroup = undefined, ip = ipv4, isGroup = false, ipGroup = ip/32
+    display => ip + nothing
+
+  single IPv6 <=> parentIpGroup = undefined, ip = ipv6, isGroup = false, ipGroup = ip/128
+    display => ip + nothing
+
+  single IPv4 inside block <=> parentIpGroup = ipv4/range, ip = ipv4, isGroup = false, ipGroup = ip/32
+    display => ip + parent IP
+
+  single IPv6 inside block <=> parentIpGroup = ipv6/range, ip = ipv6, isGroup = false, ipGroup = ip/128
+    display => ip + parent IP
+
+  block IPv4 <=> parentIpGroup = undefined, ip = ipv4/range, isGroup = true, ipGroup = ip/range
+    display => nothing + parent IP
+
+  block IPv6 <=> parentIpGroup = undefined, ip = ipv4/range, isGroup = true, ipGroup = ip/range
+    display => nothing + parent IP
+ */
+export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
+  const { shell } = React.useContext(ShellContext);
+  const [vrackPage, setVrackPage] = React.useState('');
+  const [isVmacAlreadyExist, setIsVmacAlreadyExist] = React.useState(false);
+  const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
+  const parentId = fromIpToId(parentIpGroup || ipGroup);
+  const id = fromIpToId(ipAddress);
+  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const navigate = useNavigate();
+  const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const isAdmin = useContext(ShellContext)
+    .environment?.getUser()
+    .auth?.roles?.includes('ADMIN');
+
+  const gameMitigationDetails = useGetGameMitigation({
+    ip: ipAddress,
+    enabled: true,
+  });
+
+  const { hasForcedMitigation } = useIpHasForcedMitigation({
+    ip,
+  });
+
+  const {
+    hasServiceAttached: hasCloudServiceAttachedToIP,
+  } = useIpHasServicesAttached({
+    path: '/cloud/project',
+    category: 'CLOUD',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
+
+  const {
+    hasServiceAttached: hasHousingServiceAttachedToIp,
+  } = useIpHasServicesAttached({
+    path: '/dedicated/housing',
+    category: 'HOUSING',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
+
+  const {
+    hasServiceAttached: hasDedicatedServiceAttachedToIp,
+  } = useIpHasServicesAttached({
+    path: '/dedicated/server',
+    category: 'DEDICATED',
+    serviceName: ipDetails?.routedTo?.serviceName,
+  });
+
+  const { vmacsWithIp } = useGetIpVmacWithIp({
+    serviceName: ipDetails?.routedTo?.serviceName,
+    enabled: !!ipDetails && hasDedicatedServiceAttachedToIp,
+  });
+
+  React.useEffect(() => {
+    if (vmacsWithIp.length) {
+      setIsVmacAlreadyExist(true);
+    }
+  }, [vmacsWithIp]);
+
+  React.useEffect(() => {
+    const fetchUrl = async () => {
+      try {
+        const response = await shell.navigation.getURL(
+          'dedicated',
+          `#/vrack/${ipDetails?.routedTo?.serviceName}`,
+          {},
+        );
+        setVrackPage(response as string);
+      } catch (error) {
+        setVrackPage('#');
+      }
+    };
+    fetchUrl();
+  }, [ipDetails?.routedTo?.serviceName]);
+
+  const goToVrackPage = () => {
+    window.top.location.href = vrackPage;
+  };
+
+  const items: ActionMenuItem[] = [
+    {
+      id: 0,
+      label: t('listingMenuReverseDns'),
+      onClick: () =>
+        navigate(
+          urls.listingConfigureReverseDns
+            .replace(urlDynamicParts.parentId, parentId)
+            .replace(urlDynamicParts.optionalId, isGroup ? '' : id),
+        ),
+    },
+    !!ipDetails?.canBeTerminated &&
+      !ipDetails.bringYourOwnIp &&
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+        ipDetails?.type,
+      ) && {
+        id: 1,
+        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        isLoading,
+        onClick: () =>
+          navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
+      },
+    !!ipDetails?.canBeTerminated &&
+      ipDetails.bringYourOwnIp &&
+      isAdmin &&
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+        ipDetails?.type,
+      ) && {
+        id: 1,
+        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        isLoading,
+        onClick: () =>
+          navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
+      },
+    !parentIpGroup && {
+      id: 2,
+      label: ipDetails?.description
+        ? t('listingActionEditDescription')
+        : t('listingActionAddDescription'),
+      onClick: () =>
+        navigate(urls.upsertDescription.replace(urlDynamicParts.id, id)),
+    },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !hasCloudServiceAttachedToIP &&
+      Boolean(gameMitigationDetails?.result?.length) && {
+        id: 3,
+        label: t('listingActionManageGameMitigation'),
+        onClick: () =>
+          navigate(urls.configureGameFirewall.replace(urlDynamicParts.id, id)),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !hasForcedMitigation &&
+      !hasHousingServiceAttachedToIp && {
+        id: 4,
+        label: t('listingActionConfigureEdgeNetworkFirewall'),
+        onClick: () =>
+          navigate(
+            urls.configureEdgeNetworkFirewall.replace(urlDynamicParts.id, id),
+          ),
+      },
+    ipaddr.IPv6.isIPv6(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.VRACK && {
+        id: 5,
+        label: t('listingActionManageSubnetInVrack'),
+        onClick: () => goToVrackPage(),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.ADDITIONAL && {
+        id: 6,
+        label: t('listingActionAddVirtualMac'),
+        onClick: () =>
+          navigate(urls.addVirtualMac.replace(urlDynamicParts.id, id)),
+        isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist,
+      },
+  ].filter(Boolean);
+
+  return (
+    <ActionMenu
+      items={items}
+      isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
+      icon={ODS_ICON_NAME.ellipsisVertical}
+      id={`actions-${parentId}-${isGroup ? 'block' : id}`}
+    />
+  );
+};

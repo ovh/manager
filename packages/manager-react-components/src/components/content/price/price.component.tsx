@@ -22,6 +22,9 @@ export function Price({
   ovhSubsidiary,
   locale,
   isConvertIntervalUnit,
+  isStartingPrice,
+  suffix = '',
+  freePriceLabel,
 }: Readonly<PriceProps>) {
   const { t } = useTranslation('price');
   const isAsiaFormat = ['ASIA', 'AU', 'IN', 'SG'].includes(ovhSubsidiary);
@@ -66,7 +69,7 @@ export function Price({
   const components = [
     {
       condition: value === 0,
-      component: <span>{t('price_free')}</span>,
+      component: <span>{freePriceLabel ?? t('price_free')}</span>,
     },
     {
       condition: isFrenchFormat && tax > 0,
@@ -81,6 +84,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
           <TextPriceContent>
             <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
               ({priceWithTax}
@@ -105,6 +113,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -118,6 +131,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -134,6 +152,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -150,6 +173,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
           <TextPriceContent>
             <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
               ({priceWithTax}
@@ -171,6 +199,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -181,7 +214,12 @@ export function Price({
     return <></>;
   }
 
-  return <OdsText>{matchingComponent.component}</OdsText>;
+  return (
+    <OdsText>
+      {isStartingPrice && value > 0 ? t('price_from_label') : ''}
+      {matchingComponent.component}
+    </OdsText>
+  );
 }
 
 export default Price;

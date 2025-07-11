@@ -1,0 +1,41 @@
+export const subRoutes = {
+  root: '/ip',
+  onboarding: 'onboarding',
+  order: 'order',
+  byoip: 'byoip',
+  configureReverseDns: 'configure-reverse-dns',
+  manageOrganisations: 'manage-organisations',
+  openOrganisations: 'open',
+  byoipOrder: 'byoip-order',
+  terminateIp: 'terminate',
+  terminateByoip: 'terminate-byoip',
+  upsertDescription: 'upsert-description',
+  configureGameFirewall: 'game-firewall',
+  configureEdgeNetworkFirewall: 'edge-network-firewall',
+  addVirtualMac: 'add-virtual-mac',
+};
+
+export const urlDynamicParts = {
+  parentId: ':parentId',
+  id: ':id',
+  optionalId: ':id?',
+  organisationId: ':organisationId',
+};
+
+export const urls = {
+  root: subRoutes.root,
+  onboarding: `${subRoutes.root}/${subRoutes.onboarding}`,
+  listing: subRoutes.root,
+  listingIpTerminate: `${subRoutes.root}/${subRoutes.terminateIp}/${urlDynamicParts.id}`,
+  listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
+  upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
+  configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
+  addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.addVirtualMac}`,
+  configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
+  order: `${subRoutes.root}/${subRoutes.order}`,
+  byoip: `${subRoutes.root}/${subRoutes.byoip}`,
+  manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
+  openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
+  listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
+  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
+};
