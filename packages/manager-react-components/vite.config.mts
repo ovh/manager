@@ -63,10 +63,12 @@ export default defineConfig({
         '@ovhcloud/ods-components',
         '@ovhcloud/ods-components/react',
         '@ovhcloud/ods-theme-blue-jeans',
+        '@ovhcloud/ods-react',
       ],
       output: {
         globals: {
           '@ovh-ux/manager-core-api': 'ManagerCoreApi',
+          '@ovhcloud/ods-react': 'OdsReact',
           '@ovh-ux/manager-react-shell-client': 'ManagerReactShellClient',
           '@tanstack/react-query': 'ReactQuery',
           i18next: 'i18next',
