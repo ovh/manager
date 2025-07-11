@@ -1,6 +1,6 @@
 <oui-message
     id="error-message"
-    data-ng-show="$ctrl.errorMessage"
+    data-ng-if="$ctrl.errorMessage"
     type="error"
     dismissable="true"
     on-dismiss="$ctrl.errorMessage = null;"
@@ -26,7 +26,7 @@
             description="{{:: 'vps_upscale_choice_model_details' | translate }}"
             editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
             prevent-next="true"
-            valid="$ctrl.range"
+            valid="$ctrl.range && !$ctrl.errorMessage"
             on-focus="$ctrl.resetRangeConfiguration()"
             on-submit="$ctrl.trackStep(2)"
         >
@@ -39,7 +39,7 @@
                         class="h-100"
                         name="range.formattedName"
                         data-model="$ctrl.range"
-                        data-label="{{:: range.formattedName }}"
+                        data-label="{{:: range.displayName }}"
                         data-values="[range]"
                         data-variant="light"
                         data-disabled="!range.hasUpscaleConfigAvailable"
@@ -130,7 +130,7 @@
             editable="!$ctrl.loading.getUpscaleInformation || $ctrl.loading.performUpscale"
             description="{{:: 'vps_upscale_change_configuration_details' | translate }}"
             prevent-next="true"
-            valid="$ctrl.isNewPlanCodeDifferent && $ctrl.rangeConfiguration.pricing"
+            valid="$ctrl.isNewPlanCodeDifferent && $ctrl.rangeConfiguration.pricing && !$ctrl.errorMessage"
             on-submit="$ctrl.trackStep($ctrl.isEliteUpgrade ? 2 : 3)"
         >
             <p data-translate="vps_upscale_change_configuration_indication"></p>
