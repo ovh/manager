@@ -2,8 +2,8 @@ export type Cart = {
   cartId: string;
   description: string;
   expire: string;
-  items: Array<unknown>;
-  readonly: boolean;
+  items?: Array<unknown>;
+  readonly: boolean | undefined;
 };
 
 export enum PlanCode {
@@ -82,6 +82,7 @@ export type CartSummary = {
   };
   contracts: CartContract[];
   projectItem?: { voucherConfiguration?: { value: string } };
+  readonly?: boolean;
 };
 
 export type CartDetail = {
@@ -112,3 +113,28 @@ export type CartContract = {
 export enum PaymentMean {
   FIDELITY_ACCOUNT = 'fidelityAccount',
 }
+
+export type AddOptionToCartResponse = {
+  cartId: string;
+  itemId: number;
+  prices: {
+    price: {
+      value: number;
+      currencyCode: string;
+      priceInUcents: number;
+      text: string;
+    };
+    label: string;
+  }[];
+  duration: string;
+  settings: {
+    cartId: string;
+    pricingMode: string;
+    subscription_id: number;
+    planCode: string;
+    quantity: number;
+  };
+  offerId: string | null;
+  options: unknown[];
+  productId: string;
+};

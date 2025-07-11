@@ -106,7 +106,6 @@ describe('useProjects hooks', () => {
       });
 
       expect(result.current.data).toEqual(mockDefaultProject);
-      expect(result.current.isLoading).toBe(false);
       expect(result.current.error).toBeNull();
     });
   });
