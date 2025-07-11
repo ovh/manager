@@ -4,6 +4,7 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
   assertTextVisibility,
   getOdsButtonByLabel,
+  assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
@@ -114,7 +115,7 @@ describe('KMS dashboard test suite', () => {
   });
 
   it('should navigate to the rename modal on click on rename button', async () => {
-    await renderTestApp(mockPageUrl);
+    const { container } = await renderTestApp(mockPageUrl);
 
     await waitFor(
       () => expect(screen.getByLabelText('edit')).toBeEnabled(),
@@ -123,16 +124,13 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(() => userEvent.click(screen.getByLabelText('edit')));
 
-    await waitFor(
-      () =>
-        expect(
-          screen.getAllByText(
-            labels.serviceKeys[
-              'key_management_service_service-keys_dashboard_field_name'
-            ],
-          ),
-        ).toHaveLength(2),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    // Wait for modal to open
+    await assertOdsModalVisibility({ container, isVisible: true });
+
+    expect(
+      await screen.findByText(
+        labels.credentials.key_management_service_credential_dashboard_name,
+      ),
+    ).toBeVisible();
   });
 });
