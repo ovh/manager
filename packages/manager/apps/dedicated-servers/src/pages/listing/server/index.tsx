@@ -18,16 +18,16 @@ import { ErrorComponent } from '@/components/errorComponent';
 export default function ServerListing() {
   const columns = useColumns();
   const [visibleColumns] = useState([
-    'name',
+    'iam.displayName',
     'ip',
     'model',
     'region',
-    'status',
+    'state',
     'actions',
     'tags',
   ]);
   const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
+    id: 'iam_displayName',
     desc: false,
   });
   const {
@@ -54,7 +54,7 @@ export default function ServerListing() {
     const serverList = [...originalList];
     serverList.sort((s1, s2) => {
       const key = colSorting.id as keyof DedicatedServer;
-      if (key.toString() === 'displayName') {
+      if (key.toString().includes('displayName')) {
         return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
       }
       if (key && Object.keys(s1).includes(key as string)) {
