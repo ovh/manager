@@ -1,6 +1,8 @@
 {
   "@ovh-ux/manager-config": "8.4.1",
   "@ovh-ux/manager-core": "7.6.2",
+  "@ovh-ux/manager-core-utils": "link:../../../packages/manager/core/utils",
+  "@ovh-ux/manager-tailwind-config": "link:../../../packages/manager/core/tailwind-config",
   "@ovh-ux/manager-phone-prefix": "link:../../../packages/manager/modules/phone-prefix",
   "@ovh-ux/manager-new-billing": "link:../../../packages/manager/modules/new-billing",
   "@ovh-ux/manager-product-offers": "link:../../../packages/manager/modules/product-offers",

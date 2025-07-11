@@ -1,9 +1,7 @@
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import pkg from '@yarnpkg/lockfile';
 
-const { parse } = pkg;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -18,6 +16,59 @@ const PACKAGE_DIRS = [
   'packages/components',
   'packages/manager-react-components',
 ].map(sub => path.join(ROOT_DIR, sub));
+
+function parseYarnLock(content) {
+  const result = { type: 'success', object: {} };
+  const lines = content.split('\n');
+  let currentKey = null;
+  let currentEntry = {};
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (!line) continue;
+
+    // Start of a new entry
+    if (line.endsWith(':') && !line.startsWith(' ')) {
+      if (currentKey) {
+        result.object[currentKey] = currentEntry;
+      }
+      currentKey = line.slice(0, -1).replace(/"/g, '');
+      currentEntry = {};
+      continue;
+    }
+
+    // Entry properties
+    if (line.startsWith('  ') && currentKey) {
+      const [key, ...valueParts] = line.split(' ');
+      const value = valueParts.join(' ').replace(/"/g, '');
+
+      if (key === 'version') {
+        currentEntry.version = value;
+      } else if (key === 'resolved') {
+        currentEntry.resolved = value;
+      } else if (key === 'dependencies') {
+        currentEntry.dependencies = {};
+        // Parse dependencies block
+        let j = i + 1;
+        while (j < lines.length && lines[j].startsWith('    ')) {
+          const depLine = lines[j].trim();
+          const [depName, depVersion] = depLine.split(' ');
+          currentEntry.dependencies[depName.replace(/"/g, '')] = depVersion.replace(/"/g, '');
+          j++;
+        }
+        i = j - 1;
+      }
+    }
+  }
+
+  // Add the last entry
+  if (currentKey) {
+    result.object[currentKey] = currentEntry;
+  }
+
+  return result;
+}
 
 function readJSON(filepath) {
   return JSON.parse(readFileSync(filepath, 'utf-8'));
@@ -63,7 +114,7 @@ function collectInternalPackagePathsAndPrivacy() {
 
 function generateDependencyMapFromYarnLock(internalInfo) {
   const raw = readFileSync(YARN_LOCK, 'utf8');
-  const parsed = parse(raw);
+  const parsed = parseYarnLock(raw);
   const lockEntries = Object.keys(parsed.object || {});
   const dependencyMap = {};
 
