@@ -39,7 +39,7 @@
   "iam_resource_type_ipFailover": "IP Failover",
   "iam_resource_type_ipLoadBalancing": "Load Balancer",
   "iam_resource_type_ipService": "IP: Serviço",
-  "iam_resource_type_ldp": "Logs Data Platform",
+  "iam_resource_type_ldp": "Logs Data Platform: Serviço",
   "iam_resource_type_legacyVrack": "vRack Legacy",
   "iam_resource_type_licenseCloudLinux": "Licença CloudLinux",
   "iam_resource_type_licenseCpanel": "Licença cPanel",
@@ -104,5 +104,11 @@
   "iam_resource_type_xdslSpare": "Modem XDSL Spare",
   "iam_resource_type_zimbraPlatform": "Zimbra",
   "iam_resource_type_zimbraPlatform/account": "Zimbra / Conta de e-mail",
-  "iam_resource_type_zimbraPlatform/organization": "Zimbra / Organização"
+  "iam_resource_type_zimbraPlatform/organization": "Zimbra / Organização",
+  "iam_resource_type_ldp/alias": "Logs Data Platform: Alias",
+  "iam_resource_type_ldp/dashboard": "Logs Data Platform: Dashboards",
+  "iam_resource_type_ldp/index": "Logs Data Platform: Índices",
+  "iam_resource_type_ldp/osd": "Logs Data Platform: OpenSearch Dashboards",
+  "iam_resource_type_ldp/stream": "Logs Data Platform: Fluxo de dados",
+  "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant de métricas"
 }

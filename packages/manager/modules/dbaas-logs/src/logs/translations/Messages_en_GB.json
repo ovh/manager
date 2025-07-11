@@ -796,5 +796,6 @@
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "streams_subscriptions_kind_label": "Type (Kind)",
-  "logs_home_region": "Region"
+  "logs_home_region": "Region",
+  "logs_iam_policies": "IAM Policies"
 }

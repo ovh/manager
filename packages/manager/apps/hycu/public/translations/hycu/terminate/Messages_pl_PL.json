@@ -4,7 +4,7 @@
   "hycu_terminate_input_label": "Hasło potwierdzenia: ",
   "hycu_terminate_cancel_label": "Anuluj",
   "hycu_terminate_confirm_label": "Rezygnacja",
-  "hycu_terminate_success_message": "Rezygnacja z usługi {{serviceName}} została zarejestrowana. Otrzymasz e-mail z potwierdzeniem.",
+  "hycu_terminate_success_message": "Dyspozycja rezygnacji z usługi \"{{serviceName}}\" została przyjęta. Otrzymasz e-mail z prośbą o jej potwierdzenie.",
   "hycu_terminate_error_message": "Wystąpił błąd: {{error}}",
-  "hycu_terminate_success_message_us": "Dyspozycja rezygnacji została przyjęta. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail."
+  "hycu_terminate_success_message_us": "Dyspozycja rezygnacji z usługi \"{{serviceName}}\" została przyjęta. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail."
 }
