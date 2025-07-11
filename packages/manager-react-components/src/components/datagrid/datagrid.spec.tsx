@@ -72,27 +72,39 @@ const DatagridTest = ({
   columns = cols,
   items,
   pageIndex,
+  pageSize,
   className,
   noResultLabel,
   filters,
   getRowCanExpand,
   renderSubComponent,
   tableLayoutFixed,
+  hasRowSelection,
+  enableRowSelection,
+  onRowSelectionChange,
+  getRowId,
 }: {
   columns: any;
   items: string[];
   pageIndex: number;
+  pageSize?: number;
   className?: string;
   noResultLabel?: string;
   filters?: FilterProps;
   getRowCanExpand?: (props: Row<any>) => boolean;
   renderSubComponent?: (row: Row<any>) => JSX.Element;
   tableLayoutFixed?: boolean;
+  hasRowSelection?: boolean;
+  enableRowSelection?: (row: Row<any>) => boolean;
+  onRowSelectionChange?: (selectedRows: Row<any>[]) => void;
+  getRowId?: (originalRow: any, index: number) => string;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
-    pageSize: 2,
+    pageSize: pageSize || 2,
   });
+
+  const [rowSelection, setRowSelection] = useState({});
   const start = pagination.pageIndex * pagination.pageSize;
   const end = start + pagination.pageSize;
   return (
@@ -110,6 +122,17 @@ const DatagridTest = ({
       getRowCanExpand={getRowCanExpand}
       renderSubComponent={renderSubComponent}
       tableLayoutFixed={tableLayoutFixed}
+      rowSelection={
+        hasRowSelection
+          ? {
+              rowSelection,
+              setRowSelection,
+              enableRowSelection,
+              onRowSelectionChange,
+            }
+          : null
+      }
+      getRowId={getRowId}
     />
   );
 };
@@ -393,4 +416,37 @@ it('should use fixed column width', async () => {
 
   const td = getByText('foo').closest('td');
   expect(td.style.width).toBe('50px');
+});
+
+it('should display new column to select rows', async () => {
+  const selectAllMock = vitest.fn();
+  const { container } = render(
+    <DatagridTest
+      columns={sampleColumns}
+      items={['foo', 'bar', 'hello']}
+      pageIndex={0}
+      pageSize={3}
+      className={'overflow-hidden'}
+      hasRowSelection={true}
+      enableRowSelection={(row) => row.original === 'foo'}
+      onRowSelectionChange={selectAllMock}
+      getRowId={(row) => row}
+    />,
+  );
+
+  const allCheckboxes = container.querySelectorAll('ods-checkbox');
+
+  expect(allCheckboxes.length).toBe(4); // 3 row and 1 header
+
+  expect(allCheckboxes[2]).toHaveAttribute('is-disabled', 'true');
+
+  expect(allCheckboxes[1]).toHaveAttribute('is-disabled', 'false');
+
+  const toogleAll = allCheckboxes[0];
+
+  fireEvent.click(toogleAll);
+
+  waitFor(() => {
+    expect(selectAllMock).toHaveBeenCalledWith(['foo']);
+  });
 });

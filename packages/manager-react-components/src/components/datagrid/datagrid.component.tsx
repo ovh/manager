@@ -11,6 +11,8 @@ import {
   Row,
   OnChangeFn,
   VisibilityState,
+  RowSelectionState,
+  Table,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -36,6 +38,7 @@ import { DataGridTextCell } from './text-cell.component';
 import { defaultNumberOfLoadingRows } from './datagrid.constants';
 import { DatagridTopbar } from './datagrid-topbar.component';
 import './translations';
+import { IndeterminateCheckbox } from './indeterminate-checkbox';
 
 export type ColumnSort = TanstackColumnSort;
 export type PaginationState = TanstackPaginationState;
@@ -87,6 +90,15 @@ export interface SearchProps {
   searchInput: string;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   onSearch: (search: string) => void;
+}
+
+export interface RowSelectionProps<T> {
+  rowSelection: RowSelectionState;
+  setRowSelection: React.Dispatch<React.SetStateAction<RowSelectionState>>;
+  /** This callback is called every time 1 or multiple rows are selected */
+  onRowSelectionChange?: (selectedRows: T[]) => void;
+  /** when used, for each row if expression is false, the row is disabled */
+  enableRowSelection?: (row: Row<T>) => boolean;
 }
 
 export interface DatagridProps<T> {
@@ -151,6 +163,10 @@ export interface DatagridProps<T> {
   tableLayoutFixed?: boolean;
   /** To use if tag column is present and filter is enabled. This allows to fetch all tags from iam only for this resource type */
   resourceType?: string;
+  /** Enable and configure row selection */
+  rowSelection?: RowSelectionProps<T>;
+  /** Use to overwrite row id */
+  getRowId?: (originalRow: T, index: number) => string;
 }
 
 export const Datagrid = <T,>({
@@ -182,6 +198,8 @@ export const Datagrid = <T,>({
   hideHeader,
   tableLayoutFixed,
   resourceType,
+  rowSelection,
+  getRowId,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
   const pageCount = pagination
@@ -192,6 +210,35 @@ export const Datagrid = <T,>({
 
   const table = useReactTable({
     columns: [
+      ...(rowSelection
+        ? [
+            {
+              id: 'select',
+              cell: ({ row }: { row: Row<T> }) => (
+                <IndeterminateCheckbox
+                  id={row.id}
+                  name={`select-${row.id}`}
+                  label="select"
+                  onChange={() => row.toggleSelected()}
+                  isChecked={row.getIsSelected()}
+                  isDisabled={!row.getCanSelect()}
+                />
+              ),
+              header: () => (
+                <IndeterminateCheckbox
+                  id="select-all"
+                  name="select-all"
+                  label="select"
+                  onChange={() => {
+                    table.toggleAllRowsSelected();
+                  }}
+                  isChecked={table.getIsAllRowsSelected()}
+                  isIndeterminate={table.getIsSomeRowsSelected()}
+                />
+              ),
+            },
+          ]
+        : []),
       ...(getRowCanExpand && renderSubComponent
         ? [
             {
@@ -238,6 +285,9 @@ export const Datagrid = <T,>({
       onSortingChange: onSortChange,
       state: {
         sorting,
+        ...(rowSelection?.rowSelection && {
+          rowSelection: rowSelection.rowSelection,
+        }),
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -245,6 +295,9 @@ export const Datagrid = <T,>({
       state: {
         ...(sorting && {
           sorting: [sorting],
+        }),
+        ...(rowSelection?.rowSelection && {
+          rowSelection: rowSelection.rowSelection,
         }),
       },
       onStateChange: (updater) => {
@@ -266,6 +319,14 @@ export const Datagrid = <T,>({
       ),
     },
     ...(onColumnVisibilityChange && { onColumnVisibilityChange }),
+    enableRowSelection: (row) => {
+      if (rowSelection?.enableRowSelection)
+        return rowSelection.enableRowSelection(row);
+
+      return !!rowSelection;
+    },
+    onRowSelectionChange: rowSelection?.setRowSelection,
+    getRowId,
   });
 
   useEffect(() => {
@@ -318,6 +379,31 @@ export const Datagrid = <T,>({
     () => columns?.find((item) => item?.isSearchable),
     [columns],
   );
+
+  // Handle onRowSelectionChange callback
+  useEffect(() => {
+    const selectedRows =
+      table.getSelectedRowModel()?.rows?.map(({ original }) => original) || [];
+    rowSelection?.onRowSelectionChange?.(selectedRows);
+  }, [JSON.stringify(rowSelection?.rowSelection)]);
+
+  /**
+   * Update internal rowSelection state when items list change:
+   * if items selected but is remove from list, remove it from row selection state
+   */
+  useEffect(() => {
+    if (table.getSelectedRowModel()?.rows) {
+      const newSelectionState = table
+        .getSelectedRowModel()
+        .rows.reduce((selection, { id }) => {
+          return {
+            ...selection,
+            [id]: true,
+          };
+        }, {});
+      table.setRowSelection(newSelectionState);
+    }
+  }, [JSON.stringify(items)]);
 
   return (
     <div>

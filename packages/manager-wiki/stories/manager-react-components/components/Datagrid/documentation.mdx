@@ -321,3 +321,105 @@ Exemple of column definition
     `}
   language="javascript"
 />
+
+---
+
+### Row selection
+
+#### How to use It
+
+To activate default row selection, use `rowSelection` attribute on the Datagrid definition.
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      onRowSelectionChange, // Optional
+      enableRowSelection // optional
+    }}
+  />;
+```
+
+A new column is automatically displayed at the 1st place of the datagrid with checkboxes to select each row but also checkbox in the header to select / unselect all the rows.
+
+#### Disable the selection for some of the rows
+
+`enableRowsSelection` is a function that can be use inside `rowSelection` attribute to tell the Datagrid which row should be selectable or not.
+The row is passed in the parameters of the function so it is easy to use on parent side.
+
+example:
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+const isSelectable = (item: Item) => item.price > 10;
+
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      enableRowSelection: ({ original: item }) => isSelectable(item)
+    }}
+  />;
+```
+
+In that case, only items with price > 10 would be selectable and others would have disabled checkbox. When using "select all" checkbox, only available checkboxes is selected.
+
+#### onRowSelectionChange Callback
+
+You can get the list of selectedRows using the onRowSelectionChange callback?
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+const onRowSelectionChange = (selectedRows: Row<T>[]) => {
+    // Compute anything with slected rows here
+};
+
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      onRowSelectionChange
+    }}
+  />;
+```
+
+#### Overwrite the rowId for better row selection
+
+By default, the row id is the index of the item within the datagrid. To be able to better know which row has been selected,
+you should always overwrite the row id with `getRowId` attribute.
+
+`getRowId` is a function that have row item passed as a parameter and should return the custom id as a string.
+
+```tsx
+const getRowId = (item) => item.label;
+
+return
+  <Datagrid
+    ...
+    getRowId={getRowId}
+  />;
+```
+
+when using this attribute, the selected rows will be defined by the custom id to be easier to work with.
+
+#### Select all behavior
+Because most of the time, the pagination is made on api side, datagrid will only be able to select the items passed to it.
+this means if the user select all and then load more, the newly displayed rows won't be selected.
+To keep the consistency accros the manager, this behavior should be the same if the pagination is managed by the front.
+
+#### Row selection and datagrid filter
+The defined behavior of row selection while filtering the item list is:
+- If the selected row still appear on the list after filtering, it stay selected
+- If the selected row is hidden after filtering, it is removed from the selection
+- When cancelling the filter to show all the rows, the rows selected while filtered are still selected
