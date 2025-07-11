@@ -24,9 +24,10 @@ import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { urls } from '@/routes/routes.constants';
 import { onboardingRefetchInterval } from './onboarding.constants';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function OnboardingPage() {
-  const { t } = useTranslation('vrack-services/onboarding');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.onboarding);
   const link = useGuideUtils();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();

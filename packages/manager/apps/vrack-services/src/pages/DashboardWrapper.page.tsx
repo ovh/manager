@@ -11,9 +11,10 @@ import { DashboardLayout } from '@/components/layout-helpers';
 import NotFound from '@/pages/not-found/404.page';
 import { urls } from '@/routes/routes.constants';
 import { DashboardTabItemProps } from '@/components/layout-helpers/layout-helpers.type';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function DashboardWrapper() {
-  const { t } = useTranslation('vrack-services/dashboard');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
   const { id } = useParams();
   const location = useLocation();
   const { trackClick } = useOvhTracking();

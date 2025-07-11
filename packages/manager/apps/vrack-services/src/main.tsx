@@ -9,6 +9,7 @@ import { App } from './App';
 import './index.scss';
 import './vite-hmr';
 import { getTrackingContext } from './utils/tracking';
+import { TRANSLATION_NAMESPACES } from './utils/constants';
 
 const init = async ({ appName }: { appName: string }) => {
   const context = await initShellContext(appName, getTrackingContext(appName));
@@ -16,7 +17,7 @@ const init = async ({ appName }: { appName: string }) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: [appName, `${appName}/listing`, `${appName}/error`],
+    ns: [TRANSLATION_NAMESPACES.common, TRANSLATION_NAMESPACES.listing],
   });
 
   const rootElement = document.getElementById('ovh-app');

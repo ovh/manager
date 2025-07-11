@@ -20,9 +20,10 @@ import {
 } from '@/data/api/get/iamResource';
 import { EndpointItem, useEndpointsList } from './useEndpointList.hook';
 import { ActionCell } from './ActionCell.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export const EndpointDatagrid: React.FC = () => {
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { id } = useParams();
 
   const { data: vs, isError, error, isLoading } = useVrackService();

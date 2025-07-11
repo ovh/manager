@@ -19,12 +19,13 @@ import {
 } from '@ovh-ux/manager-network-common';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function EndpointsDeleteModal() {
   const { t } = useTranslation([
-    'vrack-services/endpoints',
+    TRANSLATION_NAMESPACES.endpoints,
     NAMESPACES.ACTIONS,
-    'vrack-services',
+    TRANSLATION_NAMESPACES.common,
   ]);
   const { id, urn } = useParams();
   const urnToDelete = urn.replace('_', '/');
@@ -101,7 +102,7 @@ export default function EndpointsDeleteModal() {
         >
           {t('modalError', {
             error: updateError?.response?.data?.message,
-            ns: 'vrack-services',
+            ns: TRANSLATION_NAMESPACES.common,
           })}
         </OdsMessage>
       )}

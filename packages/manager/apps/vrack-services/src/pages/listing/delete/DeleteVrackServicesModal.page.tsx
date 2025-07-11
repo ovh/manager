@@ -8,10 +8,11 @@ import { MessagesContext } from '@/components/feedback-messages/Messages.context
 import { PageName } from '@/utils/tracking';
 import { sharedTrackingParams } from './deleteVrackServicesModal.constants';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function DeleteVrackServicesModal() {
   const { id } = useParams();
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const { data: vs } = useVrackService();
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccessMessage } = React.useContext(MessagesContext);

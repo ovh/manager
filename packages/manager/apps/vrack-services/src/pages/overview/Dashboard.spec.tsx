@@ -25,7 +25,10 @@ describe('Vrack Services overview page test suite', () => {
     await assertTextVisibility(labels.dashboard.endpointsTabLabel);
     await assertTextVisibility(labels.dashboard.tileTitle);
     await assertTextVisibility(vrackServicesListMocks[0].currentState.region);
-    await getBadgeByLabel({ container, value: labels.dashboard.DRAFT });
+    await getBadgeByLabel({
+      container,
+      value: labels.service.service_state_draft,
+    });
     await assertTextVisibility(vrackServicesListMocks[0].iam.displayName);
     await assertTextVisibility('10 mars 2023');
   });

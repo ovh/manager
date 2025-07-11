@@ -17,10 +17,12 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Contract, Order } from '@ovh-ux/manager-module-order';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useSendOrder } from '@ovh-ux/manager-network-common';
 import { LoadingText } from '@/components/LoadingText.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type OrderSubmitModalContentProps = {
   submitButtonLabel: string;
@@ -37,7 +39,10 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
   onSuccess,
   onError,
 }) => {
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.common,
+    NAMESPACES.ORDER,
+  ]);
   const { trackClick } = useOvhTracking();
   const [isContractAccepted, setIsContractAccepted] = React.useState(false);
   const { sendOrder, isPending, error, isError } = useSendOrder();
@@ -62,7 +67,7 @@ export const OrderSubmitModalContent: React.FC<OrderSubmitModalContentProps> = (
         />
         <label className="ml-3 cursor-pointer" htmlFor="confirm-contract">
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('modalConfirmContractsCheckboxLabel')}
+            {t('accept_terms', { ns: NAMESPACES.ORDER })}
           </OdsText>
         </label>
       </div>

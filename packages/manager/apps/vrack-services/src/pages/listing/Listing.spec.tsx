@@ -51,7 +51,7 @@ describe('Vrack Services listing test suite', () => {
 
     let goDetailsButton = await getButtonByLabel({
       container,
-      value: labels.common['action-goDetails'],
+      value: labels.actions.see_details,
       nth: 6,
     });
     expect(goDetailsButton).toBeEnabled();
@@ -72,7 +72,7 @@ describe('Vrack Services listing test suite', () => {
 
     goDetailsButton = await getButtonByLabel({
       container,
-      value: labels.common['action-goDetails'],
+      value: labels.actions.see_details,
       nth: 1,
     });
     expect(goDetailsButton).toBeEnabled();
