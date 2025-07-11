@@ -60,12 +60,20 @@ export default function OnboardingPage() {
     isPending: isFinalizationPending,
   } = useCheckoutWithFidelityAccount({
     onSuccess(summary: CartSummary) {
-      const vouchercode =
-        summary?.projectItem?.voucherConfiguration?.value || '';
-      const creatingUrl = urls.creating
-        .replace(':orderId', `${summary.orderId}`)
-        .replace(':voucherCode', vouchercode);
-      navigate(`../${creatingUrl}`);
+      const voucherCode =
+        summary.projectItem?.voucherConfiguration?.value ?? null;
+      if (voucherCode) {
+        const createWithVoucherUrl = urls.creatingWithVoucher
+          .replace(':orderId', `${summary.orderId}`)
+          .replace(':voucherCode', encodeURIComponent(voucherCode));
+        navigate(`../${createWithVoucherUrl}`);
+      } else {
+        const createWithoutVoucherUrl = urls.creating.replace(
+          ':orderId',
+          `${summary.orderId}`,
+        );
+        navigate(`../${createWithoutVoucherUrl}`);
+      }
     },
   });
 
