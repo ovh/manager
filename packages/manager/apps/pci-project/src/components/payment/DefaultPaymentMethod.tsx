@@ -54,7 +54,7 @@ const getFormatExpirationDate = (
     return '';
   }
 
-  return formatDate({ date: method.expirationDate, format: 'MM/YYYY' });
+  return formatDate({ date: method.expirationDate, format: 'MM/yyyy' });
 };
 
 const DefaultPaymentMethod: React.FC<DefaultPaymentMethodProps> = ({
