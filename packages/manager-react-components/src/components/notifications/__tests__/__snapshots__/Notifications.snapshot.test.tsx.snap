@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Notifications component - Snapshot Testing > should list notifications 1`] = `
+<div>
+  <div
+    class="_message_1fc37_2 _message--success_1fc37_22 _message--default_1fc37_10 mb-2 w-full"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-check_3t4o5_82 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      Notification-1
+    </div>
+  </div>
+  <div
+    class="_message_1fc37_2 _message--warning_1fc37_26 _message--default_1fc37_10 mb-2 w-full"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--triangle-exclamation_3t4o5_421 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      Notification-2
+    </div>
+  </div>
+  <div
+    class="_message_1fc37_2 _message--information_1fc37_18 _message--default_1fc37_10 mb-2 w-full"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--circle-info_3t4o5_85 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      Notification-3
+    </div>
+  </div>
+  <div
+    class="_message_1fc37_2 _message--danger_1fc37_14 _message--default_1fc37_10 mb-2 w-full"
+  >
+    <span
+      class="_icon_3t4o5_2 _icon--diamond-exclamation_3t4o5_148 _message__icon_1fc37_50"
+    />
+    <div
+      class="_message__body_1fc37_54"
+    >
+      Notification-4
+    </div>
+  </div>
+</div>
+`;
