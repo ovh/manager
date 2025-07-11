@@ -19,3 +19,4 @@ coverage
 .DS_Store
 **/target/**
 .xtmrc.yaml
+**/migration-status-reports/**

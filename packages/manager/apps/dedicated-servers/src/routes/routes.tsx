@@ -27,7 +27,7 @@ export const routes: any = [
         ...lazyRouteConfig(() => import('@/pages/listing/server')),
         handle: {
           tracking: {
-            pageName: 'server',
+            pageName: 'all-servers',
             pageType: PageType.listing,
           },
         },

@@ -23,5 +23,7 @@ export default function Actions({ snapshot }: Readonly<ActionsProps>) {
     },
   ];
 
+  if (snapshot.status === 'deleting') return null;
+
   return <ActionMenu id={snapshot.id} items={items} isCompact />;
 }

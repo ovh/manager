@@ -1,0 +1,186 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/React Templates/I18N Translations" />
+
+# I18N Translations Implementation
+
+This guide outlines how to implement internationalization (i18n) in React applications using the shell client's `initI18n` function.
+
+## 📝 Implementation Steps
+
+### 1. Create i18n.ts File
+
+Create an `i18n.ts` file in your app's root directory:
+
+```tsx
+// src/i18n.ts
+import i18n from 'i18next';
+import I18NextHttpBackend from 'i18next-http-backend';
+import { initReactI18next } from 'react-i18next';
+
+export default async function initI18n(
+  locale = 'fr_FR',
+  availablesLocales = ['fr_FR'],
+) {
+  await i18n
+    .use(initReactI18next)
+    .use(I18NextHttpBackend)
+    .use({
+      type: 'postProcessor',
+      name: 'normalize',
+      process: (value: string) =>
+        value ? value.replace(/&amp;/g, '&') : value,
+    })
+    .init({
+      lng: locale,
+      fallbackLng: 'fr_FR',
+      supportedLngs: availablesLocales,
+      defaultNS: 'common',
+      ns: ['common'], // namespaces to load by default
+      backend: {
+        loadPath: (lngs: string[], namespaces: string[]) =>
+          `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
+            lngs[0]
+          }.json`,
+      },
+      postProcess: 'normalize',
+    });
+  return i18n;
+}
+```
+
+This implementation:
+- Uses `i18next` with HTTP backend for loading translations
+- Includes a post-processor to normalize HTML entities
+- Loads translations from JSON files in the `translations` directory
+- Supports multiple locales with French as default
+- Uses the `common` namespace by default
+
+### 2. Translation Files Structure
+
+Create translation files in the following structure:
+
+```
+public/
+  translations/
+    common/
+      Messages_fr_FR.json
+      Messages_en_GB.json
+```
+
+Example translation file:
+
+```json
+// public/translations/common/Messages_fr_FR.json
+{
+  "app_title": "Mon Application",
+  "welcome_message": "Bienvenue dans l'application"
+}
+```
+
+## 🎯 Usage Examples
+
+### 1. Using Translations in Components
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <h1>{t('app_title')}</h1>
+      <p>{t('welcome_message')}</p>
+    </div>
+  );
+};
+```
+
+### 2. Dynamic Translations
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const DynamicComponent = ({ userName }) => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      {t('welcome_user', { name: userName })}
+    </div>
+  );
+};
+```
+
+### 3. Pluralization
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const ItemsList = ({ count }) => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      {t('items_count', { count })}
+    </div>
+  );
+};
+```
+
+## ✅ Best Practices
+
+1. **Organization**
+   - Group translations by feature or component
+   - Use namespaces for better organization
+   - Keep translation keys consistent
+
+2. **Naming Conventions**
+   - Use lowercase with underscores
+   - Be descriptive and specific
+   - Follow a consistent pattern
+
+```tsx
+// ✅ Good
+t('button_submit')
+t('form_validation_required')
+t('page_dashboard_title')
+
+// ❌ Bad
+t('submit')
+t('required')
+t('title')
+```
+
+3. **Dynamic Content**
+   - Use variables for dynamic content
+   - Provide fallback values
+   - Handle pluralization properly
+
+```tsx
+// ✅ Good
+t('items_count', { count: 5 })
+t('welcome_user', { name: userName, defaultValue: 'Welcome' })
+
+// ❌ Bad
+t(`items_${count}`)
+t('welcome_' + userName)
+```
+
+## 🔍 Code Review Checklist
+
+- [ ] i18n.ts file is properly configured
+- [ ] Translations are initialized before app render
+- [ ] Translation keys follow naming conventions
+- [ ] Dynamic content is properly handled
+- [ ] Pluralization is implemented where needed
+- [ ] Fallback language is specified
+- [ ] Supported languages are defined
+- [ ] Translation files are organized by feature/component
+
+## 📚 Reference
+
+- [React-i18next Documentation](https://react.i18next.com/)
+- [i18next Documentation](https://www.i18next.com/)
+

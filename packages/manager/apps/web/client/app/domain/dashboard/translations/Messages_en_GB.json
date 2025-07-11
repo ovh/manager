@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Failed",
   "domain_dashboard_general_information_suspended_by_procedure_message": "Your domain name is temporarily suspended while we verify your contact details. Please check current operations to see if you need to take any action. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Your domain name’s contact details are being verified. Please check current operations to see if you need to take any action. ",
-  "domain_dashboard_general_information_see_operations": "View current operations"
+  "domain_dashboard_general_information_see_operations": "View current operations",
+  "domain_tab_DNS_state_error": "Error",
+  "domain_tab_DNS_error_warning": "An error has been detected while updating your DNS. Please correct it."
 }

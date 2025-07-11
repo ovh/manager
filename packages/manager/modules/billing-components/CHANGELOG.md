@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.6...@ovh-ux/manager-billing-components@4.19.0) (2025-07-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([a451936](https://github.com/ovh/manager/commit/a451936dbf4dfde3f4c6762a4e4345d59d923422)), closes [#MANAGER-16119](https://github.com/ovh/manager/issues/MANAGER-16119)
+* **billing:** domain show restorable status & replace renew button ([1574ee8](https://github.com/ovh/manager/commit/1574ee8c39c89dfb7d88e9805778fcc7fbd01775)), closes [#MANAGER-16774](https://github.com/ovh/manager/issues/MANAGER-16774)
+
+
+
+
+
+## [4.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.5...@ovh-ux/manager-billing-components@4.18.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
 ## [4.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.4...@ovh-ux/manager-billing-components@4.18.5) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

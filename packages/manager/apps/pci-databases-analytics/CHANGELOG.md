@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.3...@ovh-ux/manager-pci-databases-analytics-app@1.23.0) (2025-07-07)
+
+
+### Features
+
+* **pci-databases-analytics:** change pricing for beta offer and remove old pricing format ([490ee92](https://github.com/ovh/manager/commit/490ee9237f88afdb41898fdb4a36de83c9125d0b)), closes [#DATATR-2234](https://github.com/ovh/manager/issues/DATATR-2234) [#DATATR-2284](https://github.com/ovh/manager/issues/DATATR-2284)
+
+
+
+
+
+## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.2...@ovh-ux/manager-pci-databases-analytics-app@1.22.3) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.1...@ovh-ux/manager-pci-databases-analytics-app@1.22.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.0...@ovh-ux/manager-pci-databases-analytics-app@1.22.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.21.5...@ovh-ux/manager-pci-databases-analytics-app@1.22.0) (2025-06-20)
+
+
+### Features
+
+* **manager-config:** added user related types ([76a0cb1](https://github.com/ovh/manager/commit/76a0cb1e34eba52f9d814023b784fccc4f502068)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
 ## [1.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.21.4...@ovh-ux/manager-pci-databases-analytics-app@1.21.5) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

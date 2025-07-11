@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.1...@ovh-ux/manager-account@0.14.2) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4148] ([a9398e8](https://github.com/ovh/manager/commit/a9398e8e404133deca51e04f43d8383a37c29db1))
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.0...@ovh-ux/manager-account@0.14.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **container:** fix redirection to contacts ([afffff0](https://github.com/ovh/manager/commit/afffff03811fca200cdd31487e2b0cf2d2bbf113)), closes [#MANAGER-18915](https://github.com/ovh/manager/issues/MANAGER-18915)
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.2...@ovh-ux/manager-account@0.14.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **account:** kyc add retry for upload link retrieval ([4701f15](https://github.com/ovh/manager/commit/4701f15c007d75e4a9c998893dd568a544c4e4f3)), closes [#MANAGER-18499](https://github.com/ovh/manager/issues/MANAGER-18499)
+
+
+### Features
+
+* **account:** add retry loop on KYC fraud ([4b2788d](https://github.com/ovh/manager/commit/4b2788d7adba1348285f3d306fead8fd81d2b038)), closes [#MANAGER-17734](https://github.com/ovh/manager/issues/MANAGER-17734)
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.1...@ovh-ux/manager-account@0.13.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.0...@ovh-ux/manager-account@0.13.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.4...@ovh-ux/manager-account@0.13.0) (2025-06-16)
+
+
+### Features
+
+* **account:** add a shorcut to the contracts page ([1efae96](https://github.com/ovh/manager/commit/1efae96c4863115aa086c13fc32bc06e3c053721)), closes [#MANAGER-18361](https://github.com/ovh/manager/issues/MANAGER-18361)
+
+
+
+
+
 ## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.3...@ovh-ux/manager-account@0.12.4) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

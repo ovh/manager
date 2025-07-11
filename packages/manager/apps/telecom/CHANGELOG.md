@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.2...@ovh-ux/manager-telecom@16.11.3) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.1...@ovh-ux/manager-telecom@16.11.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([da96e0d](https://github.com/ovh/manager/commit/da96e0d4fe902579661531f2ba319c6f26a8aae4))
+
+
+
+
+
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.0...@ovh-ux/manager-telecom@16.11.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.8...@ovh-ux/manager-telecom@16.11.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **telecom.softphone:** remove possibility to delete device one by one ([f2979a1](https://github.com/ovh/manager/commit/f2979a1efb9de3d90fea273ed5f4af0f27bf1984)), closes [#MANAGER-18433](https://github.com/ovh/manager/issues/MANAGER-18433)
+* **telecom.voip:** add url image for phone grandstream ht802 ([17b602f](https://github.com/ovh/manager/commit/17b602ffda7d7539eb2009f1e9567c734d4b862c)), closes [#MANAGER-18427](https://github.com/ovh/manager/issues/MANAGER-18427)
+
+
+### Features
+
+* **web:** remove old skipnav ([3bab04b](https://github.com/ovh/manager/commit/3bab04b4325c08b9ca9c42d992dd31e60c2501d7)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
 ## [16.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.7...@ovh-ux/manager-telecom@16.10.8) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

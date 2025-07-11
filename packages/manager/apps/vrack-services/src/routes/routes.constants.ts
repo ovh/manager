@@ -30,6 +30,5 @@ export const urls = {
   endpointsOnboarding: '/:id/endpoints/onboarding',
   endpointsListing: '/:id/endpoints/listing',
   endpointsDelete: '/:id/endpoints/listing/delete/:urn',
-  endpointsEdit: '/:id/endpoints/listing/edit/:urn',
   createEndpoint: '/:id/createendpoint',
 };

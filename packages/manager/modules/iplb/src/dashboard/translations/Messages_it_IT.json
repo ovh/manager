@@ -71,7 +71,7 @@
   "iplb_modify": "Modifica",
   "iplb_select": "Seleziona",
   "iplb_add": "Aggiungi",
-  "iplb_delete": "Elimina",
+  "iplb_delete": "Disattivare",
   "iplb_remove": "Cancella",
   "iplb_modal_ok": "OK",
   "iplb_tile_subscription": "Impegno contrattuale",
@@ -84,5 +84,6 @@
   "iplb_preview_see": "Visualizza l'anteprima",
   "iplb_complete_order": "Salda il buono d’ordine",
   "iplb_tile_subscription_autorenew": "Rinnovo automatico",
-  "iplb_tile_subscription_expiration_date": "Data di scadenza"
+  "iplb_tile_subscription_expiration_date": "Data di scadenza",
+  "iplb_tab_logs": "Log"
 }

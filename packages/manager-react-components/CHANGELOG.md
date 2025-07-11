@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.2...@ovh-ux/manager-react-components@2.30.0) (2025-07-04)
+
+### Bug Fixes
+
+- **mrc.datagrid:** fix flex alignment ([5d1e9d7](https://github.com/ovh/manager/commit/5d1e9d7104985ef927f6f92b8226180dc6afd90d)), closes [#MANAGER-15793](https://github.com/ovh/manager/issues/MANAGER-15793)
+
+### Features
+
+- **core:** refactor api update iceberg header request ([258f02e](https://github.com/ovh/manager/commit/258f02e2f8dad8766866ef4882faccf58c08bc0d)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add test for useIcebergV2 filter and search ([d26717c](https://github.com/ovh/manager/commit/d26717cd0774d94d7758cf8e24fcd4db7917d277)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **mrc:** add onClick props to PciGuideHeader ([65fbd3b](https://github.com/ovh/manager/commit/65fbd3b7baa0db8b2afd8a70d609390a211dda91)), closes [#DTCORE-3308](https://github.com/ovh/manager/issues/DTCORE-3308)
+
+## [2.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.1...@ovh-ux/manager-react-components@2.29.2) (2025-07-02)
+
+### Bug Fixes
+
+- **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+
+## [2.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.0...@ovh-ux/manager-react-components@2.29.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.28.0...@ovh-ux/manager-react-components@2.29.0) (2025-06-20)
+
+### Bug Fixes
+
+- **mrc:** white page when multiple FilterCategories.Options filters [#17449](https://github.com/ovh/manager/issues/17449) ([6ab5d58](https://github.com/ovh/manager/commit/6ab5d58f6a1d34127674068f166c4af5df62a4ed)), closes [#MANAGER-18548](https://github.com/ovh/manager/issues/MANAGER-18548)
+
+### Features
+
+- **docs:** add documentation react templates ([88fb974](https://github.com/ovh/manager/commit/88fb974fe31aa73aa47c340fc8b22c9da72b678b)), closes [#MANAGER-17263](https://github.com/ovh/manager/issues/MANAGER-17263)
+
 # [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
 
 ### Features

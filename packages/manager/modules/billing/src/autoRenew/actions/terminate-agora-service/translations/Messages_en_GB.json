@@ -16,11 +16,14 @@
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "An error has occurred submitting your LDP cancellation request. {{error}}",
   "autorenew_agora_terminate_service_success_NUTANIX": "Your Nutanix cancellation request has been submitted. You have been sent an email detailing the steps to follow.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX": "Your Nutanix cancellation request has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_error_NUTANIX": "An error has occurred requesting to cancel your Nutanix service. {{error}}",
-  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Your \"{{serviceName}}\" node cancellation has been processed. An email will be sent to you explaining the next steps.",
+  "autorenew_agora_terminate_service_error_NUTANIX": "An error has occurred submitting your Nutanix service cancellation request. {{error}}",
+  "autorenew_agora_terminate_service_success_NUTANIX_NODE": "Your cancellation request for the \"{{serviceName}}\" node has been processed. An email will be sent to you explaining the steps to follow.",
   "autorenew_agora_terminate_service_success_ftc_NUTANIX_NODE": "Your cancellation request for the \"{{serviceName}}\" node has been processed. A confirmation email has been sent to you.",
   "autorenew_agora_terminate_service_error_NUTANIX_NODE": "Unable to process your cancellation request: {{error}}",
   "autorenew_agora_terminate_service_success_VEEAM_ENTERPRISE": "Your cancellation request for the \"{{serviceName}}\" licence has been processed. An email will be sent to you explaining the steps to follow.",
   "autorenew_agora_terminate_service_success_ftc_VEEAM_ENTERPRISE": "Your cancellation request for the \"{{serviceName}}\" licence has been processed. A confirmation email has been sent to you.",
-  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Unable to process your cancellation request: {{error}}"
+  "autorenew_agora_terminate_service_error_VEEAM_ENTERPRISE": "Unable to process your cancellation request: {{error}}",
+  "autorenew_agora_terminate_service_success_IP": "Your Additional IP \"{{serviceName}}\" cancellation has been processed. An email will be sent to you explaining the steps to follow.",
+  "autorenew_agora_terminate_service_success_ftc_IP": "Your Additional IP \"{{serviceName}}\" cancellation has been processed. A confirmation email has been sent to you.",
+  "autorenew_agora_terminate_service_error_IP": "Unable to process your cancellation request: {{error}}"
 }

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.5...@ovh-ux/manager-procedures-app@0.14.6) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.4...@ovh-ux/manager-procedures-app@0.14.5) (2025-07-02)
+
+
+### Bug Fixes
+
+* **procedures:** add retry to get upload links request ([1c4162d](https://github.com/ovh/manager/commit/1c4162d7421f5d77ffe87f2404d18d457327fbbf)), closes [#MANAGER-18411](https://github.com/ovh/manager/issues/MANAGER-18411)
+
+
+
+
+
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.3...@ovh-ux/manager-procedures-app@0.14.4) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.2...@ovh-ux/manager-procedures-app@0.14.3) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.1...@ovh-ux/manager-procedures-app@0.14.2) (2025-06-13)
 
 

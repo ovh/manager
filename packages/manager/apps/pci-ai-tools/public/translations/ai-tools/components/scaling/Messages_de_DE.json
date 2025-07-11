@@ -1,0 +1,16 @@
+{
+  "fieldScalingDesc1": "Wählen Sie die optimale Deployment-Strategie für Ihre App: Entscheiden Sie sich entweder für eine feste Anzahl an Replikas, auf denen Ihre App eingerichtet wird, oder geben Sie eine Mindest- und eine Höchstzahl an Replikas für Ihre Deployments an. So optimieren Sie ihre Leistung dynamisch und mit der Autoscaling-Option je nach Anzahl der Anfragen.",
+  "scalingLink": "Weitere Informationen zu Skalierungsstrategien",
+  "scalingStratActiveLabel": "Autoscaling aktiviert",
+  "noScalingStratActiveLabel": "Autoscaling deaktiviert",
+  "replicasInputLabel": "Anzahl der Replikas, auf denen Ihre App deployt wird",
+  "haInfoHelper": "Deployen Sie Ihre App für Hochverfügbarkeit auf mindestens 2 Replikas",
+  "replicasMinInputLabel": "Mindestanzahl an Replikas",
+  "replicasMaxInputLabel": "Höchstzahl an Replikas",
+  "resourceTypeLabel": "Überwachte Metrik",
+  "resourceTypeInfo": "Metrik für das Auslösen von Autoscaling.",
+  "treshholderTargetLabel": "Schwellenwert (%)",
+  "treshholderTargetInfo": "Wert der Metrik in %",
+  "scalingBillingInfo": "Bitte beachten Sie, dass die ausgewählte Anzahl an Replikas die Anzahl der bezogenen Ressourcen entsprechend erhöht.",
+  "errorFormMinMaxRepField": "Die Mindestanzahl an Replikas muss kleiner als die Höchstzahl an Replikas sein"
+}

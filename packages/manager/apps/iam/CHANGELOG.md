@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.20...@ovh-ux/manager-iam-app@3.1.21) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.19...@ovh-ux/manager-iam-app@3.1.20) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.18...@ovh-ux/manager-iam-app@3.1.19) (2025-06-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.17...@ovh-ux/manager-iam-app@3.1.18) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.16...@ovh-ux/manager-iam-app@3.1.17) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.15...@ovh-ux/manager-iam-app@3.1.16) (2025-06-19)
+
+
+### Bug Fixes
+
+* **iam:** unit test of logs routing ([55b966b](https://github.com/ovh/manager/commit/55b966bdb3cd4a46c5b9e15830252601f4f295e9)), closes [#MANAGER-18760](https://github.com/ovh/manager/issues/MANAGER-18760)
+
+
+
+
+
+## [3.1.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.14...@ovh-ux/manager-iam-app@3.1.15) (2025-06-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
 ## [3.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.13...@ovh-ux/manager-iam-app@3.1.14) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam-app

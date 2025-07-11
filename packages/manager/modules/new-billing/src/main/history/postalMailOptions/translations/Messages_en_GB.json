@@ -1,8 +1,0 @@
-{
-  "billing_main_history_postal_mail_options_title": "Modify options for sending bills",
-  "billing_main_history_postal_mail_options_activation": "Would you like to confirm that you wish to receive bills in paper format?",
-  "billing_main_history_postal_mail_options_desactivation": "Would you like to confirm that you no longer wish to receive bills in paper format?",
-  "billing_main_history_postal_mail_options_activate_success": "Your settings have been updated. From now on, you will receive your bills in paper format.",
-  "billing_main_history_postal_mail_options_desactivate_success": "Your settings have been updated. From now on, you will no longer receive your bills in paper format.",
-  "billing_main_history_postal_mail_options_update_error": "An error has occurred updating this setting"
-}

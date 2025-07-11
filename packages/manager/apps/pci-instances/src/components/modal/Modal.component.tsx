@@ -18,6 +18,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
+export type TModalVariant = 'primary' | 'warning' | 'critical';
+
 const Modal = ({
   title,
   onModalClose,
@@ -31,7 +33,7 @@ const Modal = ({
   children: React.ReactNode;
   isPending: boolean;
   handleInstanceAction: () => void;
-  variant?: 'primary' | 'warning';
+  variant?: TModalVariant;
 }) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const id = useId();
@@ -54,7 +56,7 @@ const Modal = ({
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_TEXT_SIZE._400}
-            hue={ODS_TEXT_COLOR_HUE._500}
+            hue={ODS_TEXT_COLOR_HUE._800}
             level={ODS_TEXT_LEVEL.heading}
           >
             {title}

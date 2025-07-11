@@ -30,16 +30,15 @@
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-hpc-all
 /packages/manager/apps/iam @ovh/dev-manager-enabler-all
+/packages/manager/apps/identity-access-management @ovh/dev-manager-infra-all @ovh/dev-manager-enabler-all
 /packages/manager/apps/iplb @ovh/dev-manager-infra-all
 /packages/manager/apps/key-management-service @ovh/dev-manager-kms
 /packages/manager/apps/ips @ovh/dev-manager-infra-all
 /packages/manager/apps/dedicated-servers @ovh/dev-manager-infra-all
-/packages/manager/module/resource-tagging @ovh/dev-manager-infra-all
 /packages/manager/apps/metrics @ovh/dev-manager-infra-all
 /packages/manager/apps/nasha @ovh/dev-manager-infra-all
 /packages/manager/apps/netapp @ovh/dev-manager-infra-all
 /packages/manager/apps/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/apps/office @ovh/dev-manager-web-all
 /packages/manager/apps/overthebox @ovh/dev-manager-web-all
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
@@ -90,6 +89,7 @@
 /packages/manager/modules/emailpro @ovh/dev-manager-web-all
 /packages/manager/modules/exchange @ovh/dev-manager-web-all
 /packages/manager/modules/freefax @ovh/dev-manager-web-all
+/packages/manager/modules/gcj @ovh/dev-manager-gcj-all
 /packages/manager/modules/hub @ovh/dev-manager-gcj-all
 /packages/manager/modules/iam @ovh/dev-manager-enabler-all
 /packages/manager/modules/iplb @ovh/dev-manager-infra-all
@@ -101,12 +101,12 @@
 /packages/manager/modules/netapp @ovh/dev-manager-infra-all
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/nutanix @ovh/dev-manager-hpc-all
-/packages/manager/modules/office @ovh/dev-manager-web-all
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all
 /packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
 /packages/manager/modules/phone-prefix @ovh/dev-manager-web-all
 /packages/manager/modules/product-offers @ovh/dev-manager-web-all
+/packages/manager/modules/resource-tagging @ovh/dev-manager-infra-all
 /packages/manager/modules/sharepoint @ovh/dev-manager-web-all
 /packages/manager/modules/sign-up @ovh/dev-manager-gcj-all
 /packages/manager/modules/sms @ovh/dev-manager-web-all
@@ -138,4 +138,9 @@
 /packages/manager-cli @ovh/dev-manager-control-tower
 
 # Scripts
-/scripts @ovh/dev-manager-control-tower
+/scripts @ovh/devops-manager
+
+# Github and husky folder
+/.github @ovh/devops-manager
+/.github/CODEOWNERS @ovh/dev-manager-control-tower
+/.husky @ovh/devops-manager

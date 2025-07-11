@@ -27,7 +27,7 @@
   "pci_additional_ip_create_step_select_region_floating_ip": "Selecione uma localização",
   "pci_additional_ip_create_step_select_region_description_floating_ip": "Não encontra a região que deseja na lista? Para saber mais sobre a disponibilidade dos produtos por região, <a href=\"{{ guideLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">clique aqui</a>.",
   "pci_additional_ip_create_step_attach_instance_description_floating_ip": "Só são exibidas as instâncias com redes privadas",
-  "pci_additional_ip_create_no_instance_message_floating_ip": "Não se encontrou nenhuma instância com rede privada na região escolhida. Crie uma antes de associar um Floating IP.",
+  "pci_additional_ip_create_no_instance_message_floating_ip": "Não se encontrou nenhuma instância com rede privada na região escolhida. Crie uma antes de associar um Floating IP. <Link>Criar uma instância</Link>",
   "pci_additional_ip_create_summary_step_missing_components_description": "Detetámos componentes em falta: <strong>Gateway</strong>.",
   "pci_additional_ip_create_summary_step_gateway_name": "Está a ser criada uma nova instância Gateway no datacenter {{ region }}.",
   "pci_additional_ip_create_summary_step_gateway_size_and_price": "O tamanho escolhido é: {{ size }}",

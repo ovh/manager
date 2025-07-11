@@ -46,5 +46,8 @@
   "modify_name": "Modifier le nom",
   "modify_name_success": "Le nom a été modifié avec succès",
   "retry": "Réessayer",
-  "start": "Commencer"
+  "start": "Commencer",
+  "renew": "Renouveler",
+  "restore": "Restaurer",
+  "see_details": "Aller au détail"
 }

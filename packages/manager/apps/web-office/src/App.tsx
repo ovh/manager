@@ -1,15 +1,23 @@
+import { Suspense } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { Routes } from './routes/routes';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import Routes from '@/routes/routes';
 import queryClient from './queryClient';
+import Loading from './components/loading/Loading.component';
 
 function App() {
-  const router = createHashRouter(Routes);
+  const routes = createHashRouter(createRoutesFromElements(Routes));
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={routes} />
+      </Suspense>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

@@ -8,6 +8,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { downloadContent } from '@/utils';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/constants';
 import { usePostS3Secret } from '@/api/hooks/useUser';
@@ -146,5 +147,12 @@ export default function ActionsComponent({ user }: Readonly<{ user: TUser }>) {
     },
   ];
 
-  return <ActionMenu id={user.id.toString()} items={items} isCompact />;
+  return (
+    <ActionMenu
+      id={user.id.toString()}
+      items={items}
+      isCompact
+      variant={ODS_BUTTON_VARIANT.ghost}
+    />
+  );
 }

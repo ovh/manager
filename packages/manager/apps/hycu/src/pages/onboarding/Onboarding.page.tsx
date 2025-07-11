@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
-import onboardingImgSrc from './hycu-x-ovhcloud.svg';
+import onboardingImgSrc from './hycu-x-ovhcloud.svg?url';
 import HYCU_CONFIG from '@/hycu.config';
 import { urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constant';
@@ -12,8 +13,12 @@ import { TRACKING } from '@/tracking.constant';
 export default function Onboarding() {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const { t } = useTranslation('hycu/onboarding');
-  const { t: tCommon } = useTranslation('hycu');
+  const { t } = useTranslation([
+    'hycu/onboarding',
+    'hycu',
+    NAMESPACES.ONBOARDING,
+    NAMESPACES.ACTIONS,
+  ]);
   const link = useGuideUtils();
 
   const tileList = [
@@ -22,7 +27,7 @@ export default function Onboarding() {
       texts: {
         title: t('hycu_onboarding_guide1_title'),
         description: t('hycu_onboarding_guide1_description'),
-        category: t('hycu_onboarding_category_tutorial'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink1,
       tracking: 'guides-documentation',
@@ -32,7 +37,7 @@ export default function Onboarding() {
       texts: {
         title: t('hycu_onboarding_guide2_title'),
         description: t('hycu_onboarding_guide2_description'),
-        category: t('hycu_onboarding_category_tutorial'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink2,
       tracking: 'nutanix',
@@ -42,7 +47,7 @@ export default function Onboarding() {
       texts: {
         title: t('hycu_onboarding_guide3_title'),
         description: t('hycu_onboarding_guide3_description'),
-        category: t('hycu_onboarding_category_tutorial'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink3,
       tracking: 'disaster-recovery-plan',
@@ -50,7 +55,7 @@ export default function Onboarding() {
   ];
 
   const title: string = HYCU_CONFIG.rootLabel;
-  const description: string = tCommon('hycu_description');
+  const description: string = t('hycu:hycu_description');
   const imgSrc: React.ComponentProps<'img'> = {
     src: onboardingImgSrc,
     className: 'max-h-36 w-max-w-9/12',
@@ -61,12 +66,12 @@ export default function Onboarding() {
       title={title}
       img={imgSrc}
       description={description}
-      orderButtonLabel={t('orderButtonLabel')}
+      orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
       onOrderButtonClick={() => {
         trackClick(TRACKING.onboarding.beginClick);
         navigate(urls.order);
       }}
-      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={link?.main}
       onmoreInfoButtonClick={() => {
         trackClick(TRACKING.onboarding.moreInfoClick);

@@ -8,7 +8,7 @@
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
   "pci_projects_project_storages_blocks_add_type_price": "{{price}}/mes + IVA por GB",
   "pci_projects_project_storages_blocks_add_size_title": "Capacidad del volumen",
-  "pci_projects_project_storages_blocks_add_size_help": "El tamaño máximo depende de la cuota de su proyecto.",
+  "pci_projects_project_storages_blocks_add_size_help": "El tamaño máximo depende de la cuota disponible. <Link>Comprobar mi cuota</Link>",
   "pci_projects_project_storages_blocks_add_size_unit": "GB",
   "pci_projects_project_storages_blocks_add_name_title": "Nombre del volumen",
   "pci_projects_project_storages_blocks_add_submit_title": "Validación",
@@ -42,5 +42,7 @@
   "pci_projects_project_storages_blocks_add_availability_zone_subtitle": "La elección de una zona de disponibilidad es definitiva. Si desea cambiar su volumen de zona, deberá eliminarlo y volver a crearlo en la nueva zona deseada.",
   "pci_projects_project_storages_blocks_add_type_addon_iops_dynamic": "{{iops}} IOPS/GB hasta {{max}} IOPS{{separator}} ",
   "pci_projects_project_storages_blocks_add_type_multi_attach_banner": "Es imprescindible utilizar un sistema de archivos compatible con la gestión de múltiples conexiones o en clúster para tus volúmenes cuando están conectados a varias instancias. Sin esta configuración, los datos podrían corromperse. Para más información, <Link>consulte nuestra guía sobre la configuración de volúmenes con conexión múltiple</Link>",
-  "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Más información sobre las particularidades de los servicios 3-AZ"
+  "pci_projects_project_storages_blocks_add_type_subtitle_3AZ_link": "Más información sobre las particularidades de los servicios 3-AZ",
+  "pci_projects_project_storages_blocks_add_encryption_description": "Active el cifrado para agregar un nivel de seguridad a los volúmenes y mantener la confidencialidad de la información.",
+  "pci_projects_project_storages_blocks_add_error_quota_exceeded": "Ya no tiene cuota disponible en esta localización. Para continuar, <Link>aumente sus cuotas</Link>"
 }

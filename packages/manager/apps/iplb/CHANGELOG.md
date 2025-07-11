@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.58...@ovh-ux/manager-iplb-app@3.2.0) (2025-07-08)
+
+
+### Features
+
+* **dedicated.iplb:** enable logs for ip load balancer ([8894135](https://github.com/ovh/manager/commit/88941357d37301f3928e22e552fa071529499400)), closes [#MANAGER-18530](https://github.com/ovh/manager/issues/MANAGER-18530)
+
+
+
+
+
+## [3.1.58](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.57...@ovh-ux/manager-iplb-app@3.1.58) (2025-07-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.57](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.56...@ovh-ux/manager-iplb-app@3.1.57) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.56](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.55...@ovh-ux/manager-iplb-app@3.1.56) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.55](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.54...@ovh-ux/manager-iplb-app@3.1.55) (2025-06-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.54](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.53...@ovh-ux/manager-iplb-app@3.1.54) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
+## [3.1.53](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.52...@ovh-ux/manager-iplb-app@3.1.53) (2025-06-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-iplb-app
+
+
+
+
+
 ## [3.1.52](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.1.51...@ovh-ux/manager-iplb-app@3.1.52) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb-app

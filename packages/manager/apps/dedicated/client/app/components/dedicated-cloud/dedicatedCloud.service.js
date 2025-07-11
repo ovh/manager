@@ -144,15 +144,15 @@ class DedicatedCloudService {
   /* ------- DATACENTER -------*/
 
   getDatacenters(serviceName) {
-    return this.OvhHttp.get(
-      '/sws/dedicatedCloud/{serviceName}/datacenters-summary',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-        },
-      },
-    );
+    return this.icebergUtils
+      .icebergQuery(`/dedicatedCloud/${serviceName}/datacenter`, {})
+      .then(({ data }) =>
+        data.map((datacenter) => ({
+          ...datacenter,
+          displayName: punycode.toUnicode(datacenter.name),
+          id: datacenter.datacenterId,
+        })),
+      );
   }
 
   getDatacentersInformations(serviceName, elementsByPage, elementsToSkip) {
@@ -801,18 +801,16 @@ class DedicatedCloudService {
     }));
   }
 
-  getSecurityPolicies(serviceName, count, offset, clearCache) {
-    return this.OvhHttp.get('/sws/dedicatedCloud/{serviceName}/networks', {
-      rootPath: '2api',
-      urlParams: {
-        serviceName,
-      },
-      params: {
-        count,
+  getSecurityPolicies(serviceName, pageSize, offset, isCacheDisabled) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/allowedNetwork`,
+      {
+        pageSize,
         offset,
+        isCacheDisabled,
+        sort: 'networkAccessId',
       },
-      clearCache,
-    });
+    );
   }
 
   addSecurityPolicy(serviceName, network) {
@@ -869,7 +867,7 @@ class DedicatedCloudService {
         rootPath: 'apiv6',
         urlParams: {
           serviceName,
-          networkAccessId: entry.id,
+          networkAccessId: entry.networkAccessId,
         },
         data: {
           description: entry.description,
@@ -1332,10 +1330,10 @@ class DedicatedCloudService {
 
   fetchHosts(serviceName) {
     return this.getDatacenters(serviceName).then((dataCenters) => {
-      if (dataCenters.results && dataCenters.results.length > 0) {
+      if (dataCenters?.length > 0) {
         return this.$q
           .all(
-            dataCenters.results.map((dataCenter) =>
+            dataCenters.map((dataCenter) =>
               this.getHosts(serviceName, dataCenter.id)
                 .then((hostIds) =>
                   this.$q.all(

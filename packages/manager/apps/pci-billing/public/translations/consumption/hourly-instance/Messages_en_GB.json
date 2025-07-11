@@ -1,13 +1,13 @@
 {
   "cpbc_hourly_instance_col_name": "Name",
-  "cpbc_hourly_instance_col_consumption": "Usage",
+  "cpbc_hourly_instance_col_consumption": "Consumption",
   "cpbc_hourly_instance_col_consumption_tooltip": "Billed at the beginning of the following month.",
   "cpbc_hourly_instance_detail_title": "Servers",
   "cpbc_object_storage_detail_title": "Object storage",
-  "cpbc_archive_storage_detail_title": "Archive storage ",
+  "cpbc_archive_storage_detail_title": "Archive storage",
   "cpbc_snapshot_detail_title": "Backup storage",
-  "cpbc_volume_detail_title": "Additional disks ",
-  "cpbc_hourly_instance_trafic_title": "Outgoing public traffic of the instance",
+  "cpbc_volume_detail_title": "Additional disks",
+  "cpbc_hourly_instance_trafic_title": "Outgoing public traffic from instances",
   "cpbc_hourly_private_registry_title": "Managed Private Registry",
   "cpbc_hourly_training_title": "AI Training",
   "cpbc_hourly_notebooks_title": "AI Notebooks",
@@ -17,5 +17,8 @@
   "cpbc_hourly_gateway_title": "Gateway",
   "cpbc_hourly_ai_deploy_title": "AI Deploy",
   "cpbc_cold_archive_detail_title": "Cold Archive",
-  "cpbc_hourly_public_ip_title": "Public IP"
+  "cpbc_hourly_public_ip_title": "Public IP",
+  "cpbc_hourly_rancher_title": "Managed Rancher Service",
+  "cpbc_hourly_ai_endpoints_title": "AI Endpoints",
+  "cpbc_hourly_data_platform_title": "Data Platform"
 }

@@ -13,6 +13,8 @@ import {
   SERVICE_EXPIRATION,
   SERVICE_STATES,
   SERVICE_STATUS,
+  SERVICE_RENEW_MODES,
+  SERVICE_TYPES,
 } from './autorenew.constants';
 
 export default class {
@@ -28,6 +30,7 @@ export default class {
     OvhApiEmailExchange,
     OvhApiMeAutorenew,
     OvhHttp,
+    $http,
     ovhPaymentMethod,
   ) {
     this.$q = $q;
@@ -39,6 +42,7 @@ export default class {
     this.OvhApiBillingAutorenewServices = OvhApiBillingAutorenewServices;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
     this.OvhHttp = OvhHttp;
+    this.$http = $http;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
     this.queryParams = {};
@@ -202,6 +206,16 @@ export default class {
     }).$promise;
   }
 
+  putServiceV6(service, data = {}) {
+    return this.OvhHttp.put('/services/{id}', {
+      rootPath: 'apiv6',
+      urlParams: {
+        id: service.id,
+      },
+      data,
+    });
+  }
+
   disableAutoRenewForDomains() {
     return this.OvhHttp.post('/me/manualDomainPayment', {
       rootPath: 'apiv6',
@@ -215,6 +229,12 @@ export default class {
         hosting: serviceName,
       },
     });
+  }
+
+  terminateHostingSkipRetentionPeriod(serviceId) {
+    return this.$http.post(
+      `/services/${serviceId}/terminate/skipRetentionPeriod`,
+    );
   }
 
   terminateEmail(serviceName) {
@@ -271,11 +291,40 @@ export default class {
   }
 
   updateRenew(service, agreements) {
-    const agreementsPromise = service.hasAutomaticRenew()
-      ? this.DucUserContractService.acceptAgreements(agreements)
-      : Promise.resolve([]);
+    const agreementsPromise =
+      agreements && service.hasAutomaticRenew()
+        ? this.DucUserContractService.acceptAgreements(agreements)
+        : Promise.resolve([]);
+
     return agreementsPromise.then(() => {
-      const toUpdate = pick(service, ['serviceId', 'serviceType', 'renew']);
+      if (service?.serviceType === SERVICE_TYPES.ZIMBRA_SLOT) {
+        const mode = service?.renew?.automatic
+          ? SERVICE_RENEW_MODES.AUTOMATIC
+          : SERVICE_RENEW_MODES.MANUAL;
+
+        const period =
+          Number.isInteger(service?.renew?.period) || !service?.renew?.period
+            ? `P${service?.renew?.period || 1}M`
+            : service?.renew?.period;
+
+        return this.putServiceV6(service, {
+          renew: {
+            mode,
+            ...(mode === SERVICE_RENEW_MODES.AUTOMATIC && {
+              period,
+            }),
+          },
+        });
+      }
+
+      const toUpdate = {
+        ...pick(service, ['serviceId', 'serviceType', 'renew']),
+        renew: {
+          ...service.renew,
+          period: service.cleanRenewPeriod,
+        },
+      };
+
       toUpdate.route = get(service, 'route.url');
       return this.updateServices([toUpdate]);
     });

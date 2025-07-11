@@ -11,94 +11,78 @@ import Links from '../../../../manager-wiki/components/external-links';
 
 <Meta title="Core/common-translations/Overview" />
 
-# Common Translations
+# 🌍 Common Translations
 
 <StorybookHeading label="Overview" level={2} />
 
-The Common Translations module provides a centralized collection of translations for OVHcloud Manager applications. It ensures consistency in user interface text across different languages and regions, making it easier to maintain and update translations across the platform.
+The purpose of this package is to maintain the common reusable translations which can be consumed across the µ-apps.
 
-<StorybookHeading label="Key Features" level={2} />
+## 📝 Contribute to common translations package
 
-- **Multi-language Support**: Includes translations for multiple languages including English (GB), French (FR/CA), German (DE), Spanish (ES), Italian (IT), Polish (PL), and Portuguese (PT)
-- **Categorized Translations**: Organized into logical categories:
-  - Actions (common UI actions like save, cancel, delete)
-  - Form (form-related messages and validation)
-  - Clipboard (copy/paste operations)
-  - Bytes (file size units)
-- **Consistent Formatting**: Standardized message format with support for variables
-- **TypeScript Support**: Full TypeScript type definitions for translation keys
-- **Easy Integration**: Simple import and usage in any Manager application
+Translations are split into multiple folders to facilitate lazy loading with i18next's [namespaces](https://www.i18next.com/principles/namespaces). Each folder must have it's own purpose in the context of it's usage.
 
-<StorybookHeading label="Usage" level={2} />
+> ℹ️ Info
+>
+> Translation keys must be generic and not include any app/module name as prefix/suffix as the content from this package will be made available for all the µ-apps.
 
-To use the common translations in your application:
+### ➕ Adding a new Namespace
 
-1. Install the package:
-```bash
-npm install @ovh-ux/manager-common-translations
-```
+1. Create a new folder in `packages/manager/modules/common-translations/public/translations`
+2. Add `Messages_fr_FR.json` file.
+3. Add all the required translations with appropriate keys. 
+4. Follow the usual translation process of **Submitting a request** to CMT team and then **Retrieving the translations** to make the corresponding changes in other locale files.
 
-2. Import and use translations in your application:
-```typescript
-import { useTranslation } from 'react-i18next';
-import '@ovh-ux/manager-common-translations';
+### 🔄 Add/Update translations in existing Namespace
 
-function MyComponent() {
-  const { t } = useTranslation('common');
-  
-  return (
-    <div>
-      <button>{t('actions.save')}</button>
-      <p>{t('form.mandatory_fields')}</p>
-    </div>
-  );
-}
-```
+1. Add/Update the required content with appropriate keys in `Messages_fr_FR.json` file.
+2. Follow the usual translation process of **Submitting a request** to CMT team and then **Retrieving the translations** to make the corresponding changes in other locale files.
 
-<StorybookHeading label="Translation Categories" level={2} />
+## 🚀 Consuming translations from the package
 
-### Actions
-Common UI action translations including:
-- Basic actions (save, cancel, delete)
-- Navigation (back, next, previous)
-- Data operations (load, search, filter)
-- System operations (install, update, configure)
+The "@ovh-ux/manager-common-translations" package provides the following,
 
-### Form
-Form-related translations including:
-- Field validation messages
-- Required field indicators
-- Character count limits
-- Error messages for various validation types
+1. Content for all the supported locales.
+2. A `NAMESPACES` constant to facilitate easy loading of i18next's namespace.
 
-### Clipboard
-Clipboard operation translations:
-- Copy success/error messages
-- Copy to clipboard action text
+To consume the translations provided by the package,
 
-### Bytes
-File size unit translations:
-- Standard units (B, KB, MB, GB, etc.)
-- Binary units (KiB, MiB, GiB, etc.)
+1. You need to include the package as dependency in your µ-app or other package where you intend to consume it.
 
-<StorybookHeading label="Best Practices" level={2} />
+    ```json
+    {
+      ...
+      ...
+      "dependencies": {
+        "@ovh-ux/manager-common-translations": "x.x.x",
+        ...
+        ...
+      }
+    }
+    ```
 
-1. **Use Translation Keys**: Always use translation keys instead of hardcoded strings
-2. **Maintain Consistency**: Use existing translations when available instead of creating new ones
-3. **Variable Usage**: Use the `{{ variable }}` syntax for dynamic content
-4. **Type Safety**: Leverage TypeScript types for translation keys to catch errors early
-5. **Testing**: Test your application with different languages to ensure proper translation display
-6. **Fallback Handling**: Implement proper fallback behavior when translations are missing
-7. **Context Awareness**: Use appropriate translations based on the user's locale and region
+2. In your React component, you can consume the translations from the package as shown in the below code-snippet.
 
-<StorybookHeading label="Contributing" level={2} />
+    ```
+    import { useTranslation } from 'react-i18next';
+    import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-When adding new translations:
-1. Add translations for all supported languages
-2. Follow the existing naming conventions
-3. Place translations in the appropriate category
-4. Update TypeScript types if adding new keys
-5. Test the changes with the translation system
+    export const ReactComponent = () => {
+      ...
+      const { t } = useTranslation(NAMESPACES.<NAMESPACE_NAME>);
+      ...
+
+      return (
+          ...
+          <>{{t('<TRANSLATION_KEY>')}}</>
+          ...
+      );
+    }
+    ```
+
+> ⚠️ Warning
+>
+> **@ovh-ux/manager-vite-config** automatically includes the translation files in the final bundle of the µ-app. If the base config provided by this package is not consumed in your µ-app, it will be your responsibility to add these files in your bundle.
+
 
 <StorybookHeading label="Support" level={2} />
 

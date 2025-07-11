@@ -1,81 +1,134 @@
-import get from 'lodash/get';
-import kebabCase from 'lodash/kebabCase';
-
 import { BillingService } from '@ovh-ux/manager-models';
+import { SERVICE_RENEW_MODES } from './update.constants';
 
-export default class {
+export default class AutoRenewServiceModalController {
   /* @ngInject */
-  constructor($translate, atInternet, Alerter) {
+  constructor(
+    ovhUpdateAutoRenewServiceModalService,
+    ovhUpdatePeriodTranslationService,
+    $translate,
+    ovhPaymentMethod,
+    $state,
+    Alerter,
+    $q,
+  ) {
+    this.ovhUpdateAutoRenewServiceModalService = ovhUpdateAutoRenewServiceModalService;
+    this.ovhUpdatePeriodTranslationService = ovhUpdatePeriodTranslationService;
     this.$translate = $translate;
-    this.atInternet = atInternet;
+    this.ovhPaymentMethod = ovhPaymentMethod;
+    this.$state = $state;
     this.Alerter = Alerter;
+    this.$q = $q;
   }
 
   $onInit() {
-    this.currentRenew = { ...this.service.renew };
     this.billingService = new BillingService(this.service);
+    this.hasAgreed = this.autoRenewAgreements?.length === 0;
 
-    this.model = {
-      agreements: this.autorenewAgreements.length === 0,
+    this.periods = [];
+    this.loading = {
+      getRenewPeriods: false,
+      updateRenew: false,
     };
+
+    this.ovhPaymentMethod.hasDefaultPaymentMethod().then((payment) => {
+      this.hasDefaultPaymentMethod = payment;
+    });
+    this.getRenewPeriods();
   }
 
-  switchStep() {
-    this.displayConfirmation = !this.displayConfirmation;
-  }
+  getRenewPeriods() {
+    this.loading.getRenewPeriods = true;
+    return this.ovhUpdateAutoRenewServiceModalService
+      .getAvailableRenewPeriods(this.billingService)
+      .then((periods) => {
+        const mappedPeriods = periods.map((period) => ({
+          period,
+          label: this.ovhUpdatePeriodTranslationService.getTranslationPeriod(
+            period,
+          ),
+        }));
 
-  update() {
-    this.isUpdating = true;
-    return this.updateRenew(this.billingService, this.autorenewAgreements)
-      .then(() =>
-        this.goBack(
-          this.$translate.instant('billing_autorenew_service_update_success'),
-        ),
-      )
-      .catch((error) =>
-        this.Alerter.set(
-          'alert-danger',
-          this.$translate.instant('billing_autorenew_service_update_error', {
-            message: get(error, 'data.message'),
-          }),
-        ),
-      )
+        this.periods = mappedPeriods;
+        this.model = {
+          period: this.billingService.renew.automatic
+            ? mappedPeriods.find(
+                (p) => this.billingService.cleanRenewPeriod === p.period,
+              )
+            : mappedPeriods.find(
+                (p) => SERVICE_RENEW_MODES.MANUAL === p.period,
+              ),
+        };
+      })
       .finally(() => {
-        this.isUpdating = false;
+        this.loading.getRenewPeriods = false;
       });
   }
 
-  onConfirmation() {
-    this.atInternet.trackEvent({
-      event: `autorenew::${kebabCase(
-        this.service.serviceType,
-      )}::validate-config`,
-      page: `dedicated::account::billing::autorenew::${kebabCase(
-        this.service.serviceType,
-      )}::validate-config`,
-      chapter1: 'dedicated',
-      chapter2: 'account',
-      chapter3: 'billing',
-    });
+  onPeriodChange(value) {
+    if (value.period === SERVICE_RENEW_MODES.MANUAL) {
+      this.billingService.setManualRenew();
+    } else {
+      this.billingService.setAutomaticRenew(value.period);
+    }
   }
 
-  onFinish() {
-    const previousType = this.currentRenew.automatic ? 'auto' : 'manual';
-    const previousPeriod = this.currentRenew.period
-      ? `_${this.currentRenew.period}m`
-      : '';
-    const type = this.service.renew.automatic ? 'auto' : 'manual';
-    const period = this.service.renew.period
-      ? `_${this.service.renew.period}m`
-      : '';
-    this.atInternet.trackClick({
-      name: `autorenew::${kebabCase(
-        this.service.serviceType,
-      )}::update::from_${previousType}${previousPeriod}_to_${type}${period}`,
-      type: 'action',
-      chapter1: 'dedicated',
-      chapter2: 'account',
-      chapter3: 'billing',
-    });
+  showAutoRenewalNotice(form) {
+    return this.billingService.renew.automatic && !form?.period?.$pristine;
+  }
+
+  showManualRenewalNotice(form) {
+    return !this.billingService.renew.automatic && !form?.period?.$pristine;
+  }
+
+  getNoticeTranslationPeriod() {
+    const months = this.billingService.cleanRenewPeriod;
+
+    return this.ovhUpdatePeriodTranslationService.getNoticeTranslationPeriod(
+      months,
+    );
+  }
+
+  showAddPaymentMethodLink(form) {
+    return (
+      !form?.$pristine &&
+      this.billingService.renew.automatic &&
+      !this.hasDefaultPaymentMethod
+    );
+  }
+
+  getAutomaticExpirationDate() {
+    return new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    }).format(new Date(this.billingService.expiration));
+  }
+
+  submitConfirmation() {
+    this.loading.updateRenew = true;
+    return this.updateRenew(this.billingService, this.autoRenewAgreements)
+      .then(() =>
+        this.goBack(
+          this.$translate.instant(
+            'autorenew_service_update_modal_update_success',
+          ),
+          'success',
+        ),
+      )
+      .catch((error) =>
+        this.goBack(
+          this.$translate.instant(
+            'autorenew_service_update_modal_update_error',
+            {
+              message: error?.data?.message,
+            },
+          ),
+          'danger',
+        ),
+      )
+      .finally(() => {
+        this.loading.updateRenew = false;
+      });
   }
 }

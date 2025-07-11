@@ -7,9 +7,12 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { Translation, useTranslation } from 'react-i18next';
+import { Trans, Translation, useTranslation } from 'react-i18next';
 import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  isApiCustomError,
+  isMaxQuotaReachedError,
+} from '@ovh-ux/manager-core-api';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import {
   isDiscoveryProject,
@@ -35,6 +38,7 @@ import { useAddVolume } from '@/api/hooks/useVolume';
 import { ExtenBannerBeta } from '@/components/exten-banner-beta/ExtenBannerBeta';
 import { AvailabilityZoneStep } from '@/pages/new/components/AvailabilityZoneStep';
 import { DEPLOYMENT_MODES_HELP_URL } from '@/constants';
+import ExternalLink from '@/components/ExternalLink';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -52,11 +56,6 @@ export default function NewPage(): JSX.Element {
 
   const { addVolume } = useAddVolume({
     projectId,
-    name: stepper.form.volumeName,
-    regionName: stepper.form.region?.name,
-    volumeCapacity: stepper.form.volumeCapacity,
-    volumeType: stepper.form.volumeType?.name,
-    availabilityZone: stepper.form.availabilityZone,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -70,19 +69,36 @@ export default function NewPage(): JSX.Element {
         true,
       );
     },
-    onError: (err: ApiError) => {
+    onError: (err: unknown) => {
       stepper.validation.step.unlock();
-      addError(
-        <Translation ns="add">
-          {(tr) =>
-            tr('pci_projects_project_storages_blocks_add_error_post', {
-              volume: stepper.form.volumeName,
-              message: err?.response?.data?.message || err?.message || null,
-            })
-          }
-        </Translation>,
-        true,
-      );
+      if (isApiCustomError(err)) {
+        if (isMaxQuotaReachedError(err)) {
+          addError(
+            <Trans
+              ns="add"
+              i18nKey="pci_projects_project_storages_blocks_add_error_quota_exceeded"
+              components={{
+                Link: (
+                  <ExternalLink href={`${projectUrl}/quota`} isTargetBlank />
+                ),
+              }}
+            />,
+            true,
+          );
+        } else {
+          addError(
+            <Trans
+              ns="add"
+              i18nKey="pci_projects_project_storages_blocks_add_error_post"
+              values={{
+                volume: stepper.form.volumeName,
+                message: err.response?.data.message || err.message || null,
+              }}
+            />,
+            true,
+          );
+        }
+      }
       // scroll to top of page to display error message
       window.scrollTo(0, 0);
     },
@@ -229,7 +245,7 @@ export default function NewPage(): JSX.Element {
             projectId={projectId}
             region={stepper.form.region}
             volumeType={stepper.form.volumeType}
-            pricing={stepper.form.pricing}
+            encryptionType={stepper.form.encryptionType}
             step={stepper.capacity.step}
             onSubmit={stepper.capacity.submit}
           />
@@ -244,12 +260,19 @@ export default function NewPage(): JSX.Element {
             isDisabled: stepper.validation.step.isLocked,
           }}
         >
-          <VolumeNameStep
-            projectId={projectId}
-            step={stepper.volumeName.step}
-            onSubmit={stepper.volumeName.submit}
-            defaultVolumeName={`${stepper.form.volumeType?.name}-${stepper.form.region?.name}-${stepper.form.volumeCapacity}GB`}
-          />
+          {!!stepper.form.region &&
+            !!stepper.form.region &&
+            !!stepper.form.volumeCapacity && (
+              <VolumeNameStep
+                projectId={projectId}
+                step={stepper.volumeName.step}
+                onSubmit={stepper.volumeName.submit}
+                volumeType={stepper.form.volumeType}
+                encryptionType={stepper.form.encryptionType}
+                region={stepper.form.region.name}
+                volumeCapacity={stepper.form.volumeCapacity}
+              />
+            )}
         </StepComponent>
         <StepComponent
           order={stepper.getOrder(stepper.validation.step)}
@@ -258,11 +281,21 @@ export default function NewPage(): JSX.Element {
         >
           <ValidationStep
             volumeCapacity={stepper.form.volumeCapacity}
-            pricing={stepper.form.pricing}
+            projectId={projectId}
+            region={stepper.form.region}
+            volumeType={stepper.form.volumeType}
+            encryptionType={stepper.form.encryptionType}
             onSubmit={() => {
               clearNotifications();
               stepper.validation.submit();
-              addVolume();
+              addVolume({
+                region: stepper.form.region.name,
+                type: stepper.form.volumeType,
+                encryptionType: stepper.form.encryptionType,
+                name: stepper.form.volumeName,
+                size: stepper.form.volumeCapacity,
+                availabilityZone: stepper.form.availabilityZone,
+              });
             }}
           />
         </StepComponent>

@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.1...@ovh-ux/manager-pci-rancher-app@1.28.2) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4153] ([16d9603](https://github.com/ovh/manager/commit/16d96031daa8ef51d7ad9d3030f9b5174b4caf9d))
+* **i18n:** add missing translations [CDS 4156] ([676a856](https://github.com/ovh/manager/commit/676a856bce80395f1b844ff0715f89eb555450e6))
+
+
+
+
+
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.0...@ovh-ux/manager-pci-rancher-app@1.28.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.27.7...@ovh-ux/manager-pci-rancher-app@1.28.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+* **pci.svp:** wording svp ([#16156](https://github.com/ovh/manager/issues/16156)) ([10aac20](https://github.com/ovh/manager/commit/10aac20d6b19ef6fdce9110f7290e9ed7398ea4a)), closes [#TAPC-2510](https://github.com/ovh/manager/issues/TAPC-2510)
+
+
+
+
+
+## [1.27.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.27.6...@ovh-ux/manager-pci-rancher-app@1.27.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.27.5...@ovh-ux/manager-pci-rancher-app@1.27.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
 ## [1.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.27.4...@ovh-ux/manager-pci-rancher-app@1.27.5) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

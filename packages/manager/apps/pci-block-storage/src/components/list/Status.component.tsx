@@ -1,8 +1,5 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE, OdsChipAttribute } from '@ovhcloud/ods-components';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { ComponentProps, useMemo } from 'react';
+import { Badge } from '@ovh-ux/manager-pci-common';
 
 type StatusComponentProps = {
   statusGroup: string;
@@ -12,48 +9,28 @@ export default function StatusComponent({
   statusGroup,
   status,
 }: Readonly<StatusComponentProps>) {
-  const { i18n, t } = useTranslation();
-  const [chipAttribute, setChipAttribute] = useState<OdsChipAttribute>({
-    color: ODS_THEME_COLOR_INTENT.success,
-  });
-  useEffect(() => {
+  const chipAttribute = useMemo<Partial<ComponentProps<typeof Badge>>>(() => {
     switch (statusGroup) {
       case 'ACTIVE':
-        setChipAttribute({
-          color: ODS_THEME_COLOR_INTENT.success,
-        });
-        break;
+        return {
+          color: 'success',
+        };
       case 'PENDING':
-        setChipAttribute({
-          color: ODS_THEME_COLOR_INTENT.warning,
-        });
-        break;
+        return {
+          color: 'warning',
+        };
       case 'ERROR':
-        setChipAttribute({
-          color: ODS_THEME_COLOR_INTENT.error,
-        });
-        break;
+        return {
+          color: 'critical',
+        };
       default:
-        setChipAttribute({
-          color: ODS_THEME_COLOR_INTENT.info,
-        });
-        break;
+        return {
+          color: 'information',
+        };
     }
   }, [statusGroup]);
 
-  const getStatusLabel = (st: string) =>
-    i18n.exists(`common:pci_projects_project_storages_blocks_status_${st}`)
-      ? t(`pci_projects_project_storages_blocks_status_${st}`)
-      : '';
-
   return (
-    <OsdsChip
-      {...chipAttribute}
-      className="w-fit"
-      size={ODS_CHIP_SIZE.sm}
-      data-testid="StatusComponent_chip"
-    >
-      {getStatusLabel(statusGroup) || status}
-    </OsdsChip>
+    <Badge {...chipAttribute} className="w-fit" size="sm" label={status} />
   );
 }

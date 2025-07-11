@@ -1,0 +1,245 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/React Templates/Config page" />
+
+# How to add a Config Page ?
+
+> 💡 Good to know
+>
+> `Config` is not implemented in the [`generator`](https://github.com/ovh/manager/tree/master/packages/manager/core/generator) by default, you have to create a new page
+
+A config page is a dedicated Form-based interfaces for creating services.
+
+We recommand to call it `config` and not `create` or `new`
+
+## As a developer
+
+You have to create a new page for configuration settings. Here's how to implement it:
+
+It can be `pages/config/config.page.tsx`
+
+### Main Components
+
+#### BaseLayout
+
+The config page uses the `BaseLayout` component from `manager-react-components` as its main container. This provides consistent styling and structure across the application.
+
+```tsx
+import { BaseLayout } from '@ovh-ux/manager-react-components';
+
+const ConfigPage = () => {
+  return (
+    <BaseLayout
+      header={{
+        title: t('config.title'),
+        description: t('config.description'),
+      }}
+    >
+      {/* Config content goes here */}
+    </BaseLayout>
+  );
+};
+```
+
+### Implementation Example
+
+```tsx
+import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { OdsFormField, OdsSelect, OdsCheckbox } from '@ovhcloud/ods-components/react';
+
+const ConfigPage = () => {
+  const [settings, setSettings] = useState({
+    setting1: false,
+    setting2: 'option1',
+    setting3: '',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateSettings(settings);
+      // Show success message
+    } catch (error) {
+      // Handle error
+    }
+  };
+
+  return (
+    <BaseLayout
+      header={{
+        title: t('config.title'),
+        description: t('config.description'),
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <OdsFormField label={t('config.setting1.label')}>
+          <OdsCheckbox
+            checked={settings.setting1}
+            onChange={(value) => setSettings({ ...settings, setting1: value })}
+          />
+        </OdsFormField>
+
+        <OdsFormField label={t('config.setting2.label')}>
+          <OdsSelect
+            value={settings.setting2}
+            onChange={(value) => setSettings({ ...settings, setting2: value })}
+            items={[
+              { value: 'option1', label: t('config.setting2.option1') },
+              { value: 'option2', label: t('config.setting2.option2') },
+            ]}
+          />
+        </OdsFormField>
+
+        <button type="submit">{t('config.save')}</button>
+      </form>
+    </BaseLayout>
+  );
+};
+```
+
+### REACT HOOK FORM AND ZOD
+
+For form handling and validation, we recommend using React Hook Form with Zod. This combination provides type-safe form validation and efficient form state management.
+
+#### React Hook Form
+- Provides efficient form state management
+- Reduces re-renders
+- Handles form submission and validation
+- Supports complex form scenarios
+
+#### Zod
+- Type-safe schema validation
+- Runtime type checking
+- Automatic TypeScript type inference
+- Rich validation features
+
+Here's an example of how to implement them:
+
+```tsx
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+// Define your form schema
+const configSchema = z.object({
+  setting1: z.boolean(),
+  setting2: z.enum(['option1', 'option2']),
+  setting3: z.string().min(1, 'This field is required'),
+});
+
+type ConfigFormData = z.infer<typeof configSchema>;
+
+const ConfigPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ConfigFormData>({
+    resolver: zodResolver(configSchema),
+    defaultValues: {
+      setting1: false,
+      setting2: 'option1',
+      setting3: '',
+    },
+  });
+
+  const onSubmit = async (data: ConfigFormData) => {
+    try {
+      await updateSettings(data);
+      // Show success message
+    } catch (error) {
+      // Handle error
+    }
+  };
+
+  return (
+    <BaseLayout
+      header={{
+        title: t('config.title'),
+        description: t('config.description'),
+      }}
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <OdsFormField 
+          label={t('config.setting1.label')}
+          error={errors.setting1?.message}
+        >
+          <OdsCheckbox
+            {...register('setting1')}
+          />
+        </OdsFormField>
+
+        <OdsFormField 
+          label={t('config.setting2.label')}
+          error={errors.setting2?.message}
+        >
+          <OdsSelect
+            {...register('setting2')}
+            items={[
+              { value: 'option1', label: t('config.setting2.option1') },
+              { value: 'option2', label: t('config.setting2.option2') },
+            ]}
+          />
+        </OdsFormField>
+
+        <button type="submit" disabled={isSubmitting}>
+          {t('config.save')}
+        </button>
+      </form>
+    </BaseLayout>
+  );
+};
+```
+
+#### Benefits of using React Hook Form and Zod
+1. **Type Safety**
+   - Full TypeScript support
+   - Runtime type checking
+   - Automatic type inference
+
+2. **Performance**
+   - Minimal re-renders
+   - Efficient form state management
+   - Optimized validation
+
+3. **Developer Experience**
+   - Clear error messages
+   - Easy form state access
+   - Simple validation rules
+
+4. **Maintenance**
+   - Centralized validation logic
+   - Reusable schemas
+   - Easy to update and extend
+
+
+## 📊 TRACKING Checklist
+
+- [ ] TrackPage display tracking on component mount
+- [ ] TrackClick - Next step buttons
+- [ ] TrackClick - Submit form buttons
+
+### External Resources
+
+#### React Hook Form
+- [Official Documentation](https://react-hook-form.com/get-started)
+- [TypeScript Integration](https://react-hook-form.com/ts)
+- [Form Validation](https://react-hook-form.com/get-started#Formvalidation)
+- [Advanced Usage](https://react-hook-form.com/advanced-usage)
+
+#### Zod
+- [Official Documentation](https://zod.dev/)
+- [TypeScript Integration](https://zod.dev/?id=typescript)
+- [Schema Validation](https://zod.dev/?id=schema-validation)
+- [Error Handling](https://zod.dev/?id=error-handling)
+
+### Code Review Checklist
+
+- [ ] Use `BaseLayout` component from `manager-react-components`
+- [ ] Implement proper form validation
+- [ ] Handle loading and error states
+- [ ] Use ODS components for form elements
+- [ ] Add proper translations
+- [ ] Implement proper error handling
+- [ ] Add success/error notifications
+- [ ] Follow accessibility guidelines 

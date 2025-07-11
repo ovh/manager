@@ -1,3 +1,8 @@
+#!/usr/bin/env node
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-console */
+
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import path, { dirname, resolve, join } from 'path';
@@ -8,7 +13,7 @@ const __dirname = dirname(__filename);
 const basePath = path.resolve('../manager/apps');
 
 export const runMigration = ({
-  appName,
+  appName = null,
   commandLabel,
   scriptOrSteps,
   formatGlob = '*.{js,ts,tsx}',
@@ -17,31 +22,57 @@ export const runMigration = ({
   testCommand = null,
   dryRun = false,
   docLink = null,
+  statusOnly = false,
+  onEnd = () => {},
 }) => {
-  const appPath = path.join(basePath, appName);
-  const isValidAppName = /^[a-zA-Z0-9_-]+$/.test(appName);
+  const appPath = appName ? path.join(basePath, appName) : null;
 
-  if (!appName || !isValidAppName || !isCodeFileExistsSync(appPath)) {
-    console.error(
-      [
-        `❌ Unable to proceed: invalid or missing application setup.`,
-        '',
-        `Possible issues:`,
-        `  - App name is missing or invalid: "${appName}"`,
-        `  - App folder not found at: ${appPath}`,
-        '',
-        `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${framework ? '[--framework <name>] ' : ''}${commandLabel.includes('tests-migrate') ? '--testType <unit|integration> ' : ''}[--dry-run]`,
-      ].join('\n'),
+  if (appName) {
+    const isValidAppName = /^[a-zA-Z0-9_-]+$/.test(appName);
+
+    if (!isValidAppName || !isCodeFileExistsSync(appPath)) {
+      console.error(
+        [
+          `❌ Unable to proceed: invalid or missing application setup.`,
+          '',
+          `Possible issues:`,
+          `  - App name is missing or invalid: "${appName}"`,
+          `  - App folder not found at: ${appPath}`,
+          '',
+          `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${
+            framework ? '[--framework <name>] ' : ''
+          }${
+            commandLabel.includes('tests-migrate')
+              ? '--testType <unit|integration> '
+              : ''
+          }[--dry-run]`,
+        ].join('\n'),
+      );
+      process.exit(1);
+    }
+
+    console.log(
+      `🔄 Starting ${commandLabel}${
+        testType ? ` (${testType} tests)` : ''
+      } for app: ${appName}${framework ? ` using ${framework}` : ''}`,
     );
-    process.exit(1);
+  } else {
+    console.log(
+      `🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`,
+    );
   }
 
   try {
-    console.log(`🔄 Starting ${commandLabel}${testType ? ` (${testType} tests)` : ''} for app: ${appName}${framework ? ` using ${framework}` : ''}`);
-
     if (Array.isArray(scriptOrSteps)) {
       for (const cmd of scriptOrSteps) {
-        const finalCmd = `${cmd} ${appName}${dryRun ? ' --dry-run' : ''}${testType ? ` --testType ${testType}` : ''}`;
+        const finalCmd = [
+          cmd,
+          appName || '',
+          dryRun ? '--dry-run' : '',
+          testType ? `--testType ${testType}` : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
         console.log(`📦 Running: ${finalCmd}`);
         execSync(finalCmd, { stdio: 'inherit' });
       }
@@ -49,11 +80,22 @@ export const runMigration = ({
       const migrateScript = testType
         ? `./${commandLabel}/${testType}/migrate-${framework || 'default'}.mjs`
         : `./${commandLabel}/migrate-${framework || 'default'}.mjs`;
-      const migrateCommand = `node ${migrateScript} ${dryRun ? '--dry-run' : ''} --only ${appName}`;
+      const migrateCommand = [
+        'node',
+        migrateScript,
+        dryRun ? '--dry-run' : '',
+        appName ? `--only ${appName}` : '',
+      ]
+        .filter(Boolean)
+        .join(' ');
       execSync(migrateCommand, { stdio: 'inherit' });
     }
 
-    console.log(`✅ ${commandLabel} completed for "${appName}".`);
+    if (appName) {
+      console.log(`✅ ${commandLabel} completed for "${appName}".`);
+    } else {
+      console.log(`✅ ${commandLabel} completed.`);
+    }
   } catch (error) {
     console.error(
       [
@@ -68,9 +110,20 @@ export const runMigration = ({
     process.exit(1);
   }
 
-  if (dryRun) process.exit(0);
+  if ((dryRun || statusOnly) && typeof onEnd === 'function') {
+    onEnd();
+  }
 
-  const appFullPath = join('packages', 'manager', 'apps', appName, '**', formatGlob);
+  if (dryRun || !appName || statusOnly) return;
+
+  const appFullPath = join(
+    'packages',
+    'manager',
+    'apps',
+    appName,
+    '**',
+    formatGlob,
+  );
 
   try {
     console.log('📦 Running yarn install to apply dependency changes...');
@@ -107,7 +160,9 @@ export const runMigration = ({
 
   if (testCommand) {
     try {
-      console.log(`🧪 Running tests for app "${appName}" to verify migration...`);
+      console.log(
+        `🧪 Running tests for app "${appName}" to verify migration...`,
+      );
       execSync(`yarn workspace @ovh-ux/manager-${appName}-app ${testCommand}`, {
         stdio: 'inherit',
         cwd: resolve(__dirname, '../..'),
@@ -117,5 +172,9 @@ export const runMigration = ({
       console.error(error);
       process.exit(1);
     }
+  }
+
+  if ((dryRun || statusOnly) && typeof onEnd === 'function') {
+    onEnd();
   }
 };

@@ -457,7 +457,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/ai/apps/onboarding"
+      "path": "/pci/projects/{project}/ai-ml/deploy"
     }
   }
 ]

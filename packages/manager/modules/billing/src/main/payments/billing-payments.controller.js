@@ -29,7 +29,7 @@ export default class BillingPaymentsCtrl {
         .$promise.then((depositRequests) => {
           this.paymentRequests = depositRequests;
           this.paymentRequestsHref = this.$state.href(
-            'app.account.billing.main.payments.request',
+            'billing.main.payments.request',
           );
         });
     }
@@ -152,7 +152,7 @@ export default class BillingPaymentsCtrl {
   }
 
   depositDetailsHref({ depositId }) {
-    return this.$state.href('app.account.billing.main.payments.payment', {
+    return this.$state.href('billing.main.payments.payment', {
       id: depositId,
     });
   }

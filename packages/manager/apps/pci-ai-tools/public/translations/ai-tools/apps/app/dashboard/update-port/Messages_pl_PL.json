@@ -1,0 +1,12 @@
+{
+  "updatePortTitle": "Zmień port HTTP",
+  "updateHttpPortDesc1": "Możesz zaktualizować port aplikacji. Zachowujesz aktualną konfigurację w innych elementach, takich jak punkt końcowy HTTP czy strategia wdrażania.",
+  "updateHttpPortDesc2": "Repliki mogą działać z opóźnieniem.",
+  "fieldHttpPortLabel": "Port HTTP",
+  "httpPortInfo": "Wprowadź nowy port HTTP, na którym chcesz wdrożyć aplikację.",
+  "updatePortButtonCancel": "Anuluj",
+  "updatePortButtonConfirm": "Zmodyfikuj",
+  "updatePortToastErrorTitle": "Wystąpił błąd",
+  "updatePortToastSuccessTitle": "Gotowe",
+  "updatePortToastSuccessDescription": "Port HTTP został zaktualizowany"
+}

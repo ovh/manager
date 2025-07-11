@@ -8,7 +8,6 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DomainItem } from './Domains.page';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -18,6 +17,7 @@ import {
   DOMAIN_DIAGNOSTICS,
   EDIT_DOMAIN,
 } from '@/tracking.constants';
+import { DomainItem } from './Domains.types';
 
 interface ActionButtonDomainProps {
   item: DomainItem;

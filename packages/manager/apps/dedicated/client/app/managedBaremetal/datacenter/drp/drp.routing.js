@@ -21,9 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
             $stateParams.datacenterId,
           ),
         datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
-          DedicatedCloud.getDatacenters($stateParams.productId).then(
-            ({ results }) => results,
-          ),
+          DedicatedCloud.getDatacenters($stateParams.productId),
         setDisableSuccessAlertPreference: /* @ngInject */ (
           dedicatedCloudDrp,
         ) => (pccId, value) =>

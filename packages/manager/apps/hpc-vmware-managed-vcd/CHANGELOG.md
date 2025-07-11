@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.6) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.5) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.4) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+
+
+
+
+
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.3) (2025-06-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4102] ([19c95b0](https://github.com/ovh/manager/commit/19c95b09ca3e36a3ab636c5973df4cc823c98d83)), closes [#MANAGER-18376](https://github.com/ovh/manager/issues/MANAGER-18376)
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.8...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4089] ([42efa30](https://github.com/ovh/manager/commit/42efa30c659543af0610cd912fc3bbfe0229c7cc))
+* update svg import for svgr plugin ([91773fd](https://github.com/ovh/manager/commit/91773fde810627253d39739ad4ad8086f18619cf)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397)
+
+
+### Features
+
+* **vcd:** add reset password modal feature ([18c4774](https://github.com/ovh/manager/commit/18c4774b7dcf3c35c510f48217dc8374c9d885bc)), closes [#MANAGER-15191](https://github.com/ovh/manager/issues/MANAGER-15191)
+
+
+
+
+
 ## [0.15.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.15.8) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

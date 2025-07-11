@@ -1,0 +1,13 @@
+{
+  "partnerImageTitle": "Catálogo de apps prontas a usar",
+  "partnerImageDesc": "Escolha entre o catálogo de aplicações seguintes para acelerar a disponibilização dos seus serviços",
+  "documentationLinkLabel": "Documentação",
+  "imageDocLink": "Mais informações",
+  "partnerImageVersionDesc": "Escolha a versão da imagem",
+  "versionPlaceholder": "Procurar",
+  "noVersionFound": "Nenhuma versão encontrada",
+  "partnerContractSignedOff": "Tomei conhecimento e aceito as condições de utilização dos parceiros para a implementação deste modelo.",
+  "partnerContractSignedOn": "Li e aceitei as condições de utilização dos parceiros no dia {{signedDate}} para a implementação deste modelo.",
+  "partnerConditionLink": "Ler as condições de utilização dos parceiros",
+  "signContract": "Assinar"
+}

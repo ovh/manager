@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.2.0...@ovh-ux/sign-up@3.2.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/sign-up
+
+
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.1.10...@ovh-ux/sign-up@3.2.0) (2025-06-16)
+
+
+### Features
+
+* **sign-up:** added disabled field for siren number ([920523e](https://github.com/ovh/manager/commit/920523eaa8528861c527250fa845b5f7997f3ddb)), closes [#MANAGER-16862](https://github.com/ovh/manager/issues/MANAGER-16862)
+
+
+
+
+
 ## [3.1.10](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.1.9...@ovh-ux/sign-up@3.1.10) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/sign-up

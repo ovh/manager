@@ -27,7 +27,7 @@ const ImageSelector = ({
       name="image"
       onValueChange={setImageId}
       value={imageId}
-      disabled={isImageLoading || !imageOptions?.length}
+      disabled={isImageLoading || !imageOptions.length}
     >
       <p className="text-grey-500 my-2 font-bold text-xs">
         {t('pci_instances_actions_rescue_start_instance_select_image_label')}

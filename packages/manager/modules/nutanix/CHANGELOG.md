@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.1...@ovh-ux/manager-nutanix@2.8.2) (2025-06-25)
+
+
+### Bug Fixes
+
+* **dedicated:** update order url for nutanix product ([711a18c](https://github.com/ovh/manager/commit/711a18c8453c8c59f0c5545ba3d213d13f84ceaa)), closes [#MANAGER-18838](https://github.com/ovh/manager/issues/MANAGER-18838) [#INC0138192](https://github.com/ovh/manager/issues/INC0138192)
+
+
+
+
+
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.0...@ovh-ux/manager-nutanix@2.8.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-nutanix
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.15...@ovh-ux/manager-nutanix@2.8.0) (2025-06-18)
+
+
+### Features
+
+* **nutanix:** add cidr on top of redeploy form ([4b878a3](https://github.com/ovh/manager/commit/4b878a3a3b4948d99f481659785ee62c9a4101f0)), closes [#MANAGER-18357](https://github.com/ovh/manager/issues/MANAGER-18357)
+
+
+
+
+
 ## [2.7.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.7.14...@ovh-ux/manager-nutanix@2.7.15) (2025-06-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

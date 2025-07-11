@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.4...@ovh-ux/manager-iam@1.17.5) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4144] ([58a9c30](https://github.com/ovh/manager/commit/58a9c30077ab937e5dff4b16d707c840e9c202a6))
+* **i18n:** add missing translations [CDS 4148] ([a9398e8](https://github.com/ovh/manager/commit/a9398e8e404133deca51e04f43d8383a37c29db1))
+* **i18n:** add missing translations [CDS 4156] ([676a856](https://github.com/ovh/manager/commit/676a856bce80395f1b844ff0715f89eb555450e6))
+* **i18n:** add missing translations [CDS 4163] ([3256162](https://github.com/ovh/manager/commit/3256162d5f9213c3884768afac5536f4b5fe2c06))
+
+
+
+
+
+## [1.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.3...@ovh-ux/manager-iam@1.17.4) (2025-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4137] ([3239826](https://github.com/ovh/manager/commit/3239826012b0b92557da00829e506742376ebb71))
+* remove unused translations [CDS] ([da96e0d](https://github.com/ovh/manager/commit/da96e0d4fe902579661531f2ba319c6f26a8aae4))
+
+
+
+
+
+## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.2...@ovh-ux/manager-iam@1.17.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4128] ([2272617](https://github.com/ovh/manager/commit/2272617f3916a2588bd4cddbadeba7302b642fc3))
+
+
+
+
+
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.1...@ovh-ux/manager-iam@1.17.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([351f285](https://github.com/ovh/manager/commit/351f285c817dc6c659aa18f227852c14710208ba))
+
+
+
+
+
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.0...@ovh-ux/manager-iam@1.17.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* **iam:** unit test of logs routing ([55b966b](https://github.com/ovh/manager/commit/55b966bdb3cd4a46c5b9e15830252601f4f295e9)), closes [#MANAGER-18760](https://github.com/ovh/manager/issues/MANAGER-18760)
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.16.0...@ovh-ux/manager-iam@1.17.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4097] ([b3934e4](https://github.com/ovh/manager/commit/b3934e46471029a48981b4d561955ed0e6d3c955))
+* **iam:** fix logs labels ([c691ccf](https://github.com/ovh/manager/commit/c691ccf707723a9a789d16478df10254a9bbe674)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+* **iam:** fix logs redirection rules ([7052c1e](https://github.com/ovh/manager/commit/7052c1eeb4ebd496f71a130c6af68b05f9d48c03)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+* **iam:** fix logs tab order ([3af195c](https://github.com/ovh/manager/commit/3af195c947023fcc24fefc1d97a79416b42caa15)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+
+
+### Features
+
+* **iam:** add activity logs tabs ([d7de81c](https://github.com/ovh/manager/commit/d7de81c8e31d6c6c11f34ebb410078ab06dd6c6a)), closes [#MANAGER-17514](https://github.com/ovh/manager/issues/MANAGER-17514)
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.15.5...@ovh-ux/manager-iam@1.16.0) (2025-06-10)
 
 

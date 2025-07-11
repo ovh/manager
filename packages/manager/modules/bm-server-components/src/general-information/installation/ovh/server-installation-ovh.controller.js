@@ -7,7 +7,6 @@ import { INPUTS_RULES } from '../../inputs/constants';
 import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
-  TEMPLATE_OS_SOFTWARE_RAID_LIST,
   REINSTALL_API_CONSOLE_LINK,
   API_OS_INSTALLATION_DOCUMENTATION_LINK,
   EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK,
@@ -89,7 +88,6 @@ export default class ServerInstallationOvhCtrl {
 
       defaultOsCategory: 'BASIC',
 
-      raidList: TEMPLATE_OS_SOFTWARE_RAID_LIST,
       fileSystemList: null,
 
       forbiddenMountPoint: [
@@ -668,8 +666,7 @@ export default class ServerInstallationOvhCtrl {
               (remainingSize / this.$scope.installation.nbDiskUse) * 3;
             break;
           case this.$scope.constants.warningRaid10:
-            realRemainingSize =
-              remainingSize / (this.$scope.installation.nbDiskUse / 2);
+            realRemainingSize = remainingSize / ( this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ));
             break;
           default:
             break;
@@ -1523,19 +1520,26 @@ export default class ServerInstallationOvhCtrl {
 
   // return list of available raid
   getRaidList(nbDisk) {
-    if (nbDisk !== null && this.$scope.constants.raidList !== null) {
-      if (nbDisk >= 7) {
-        return this.$scope.constants.raidList[7];
-      }
-      if (nbDisk >= 6) {
-        if (nbDisk % 2 === 0) {
-          return this.$scope.constants.raidList[5] || [];
-        }
-        return this.$scope.constants.raidList[6] || [];
-      }
-      return this.$scope.constants.raidList[nbDisk] || [];
+    const raidList = [0];
+    if (nbDisk === null || this.$scope.constants.raidList === null) {
+      return raidList;
     }
-    return [];
+    if (nbDisk >= 2) {
+      raidList.push(1);
+    }
+    if (nbDisk >= 3) {
+      raidList.push(5);
+    }
+    if (nbDisk >= 5) {
+      raidList.push(6);
+    }
+    if (nbDisk >= 7) {
+      raidList.push(7);
+    }
+    if (nbDisk >= 4 && nbDisk % 2 === 0) {
+      raidList.push(10);
+    }
+    return raidList;
   }
 
   // Reture true if partition is in edit mode
@@ -1666,7 +1670,7 @@ export default class ServerInstallationOvhCtrl {
             set(
               option,
               'partition.realSize',
-              option.partition.size * (this.$scope.installation.nbDiskUse / 2),
+              option.partition.size * (this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ) ),
             );
             break;
           default:

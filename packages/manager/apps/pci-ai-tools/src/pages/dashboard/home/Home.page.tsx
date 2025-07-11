@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardHeader, Skeleton } from '@datatr-ux/uxlib';
 import { Activity, BrainCircuit, TerminalSquare } from 'lucide-react';
-import ai from '@/types/AI';
 import storeImage from '@/../public/assets/stock.png';
 import exploreImage from '@/../public/assets/explore.png';
 import trainImage from '@/../public/assets/train.png';
@@ -13,6 +12,14 @@ import { useDashboardData } from '../Dashboard.context';
 import Cli from './_components/Cli.component';
 import Onboarding from './_components/Onboarding.component';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
+import {
+  isRunningApp,
+  isRunningJob,
+  isRunningNotebook,
+  isStoppedApp,
+  isStoppedJob,
+  isStoppedNotebook,
+} from '@/lib/statusHelper';
 
 export default function Home() {
   const { projectId } = useParams();
@@ -22,7 +29,7 @@ export default function Home() {
   const objectStoragePath = `/pci/projects/${projectId}/storages/objects`;
   const notebooksPath = `/pci/projects/${projectId}/ai-ml/notebooks`;
   const jobsPath = `/pci/projects/${projectId}/ai-ml/training`;
-  const appsPath = `/pci/projects/${projectId}/ai/apps`;
+  const appsPath = `/pci/projects/${projectId}/ai-ml/deploy`;
 
   const isOnbording: boolean =
     notebooks.length === 0 && jobs.length === 0 && apps.length === 0;
@@ -79,19 +86,15 @@ export default function Home() {
               active={
                 isOnbording
                   ? -1
-                  : notebooks?.filter(
-                      (nb) =>
-                        nb.status.state ===
-                        ai.notebook.NotebookStateEnum.RUNNING,
+                  : notebooks?.filter((nb) =>
+                      isRunningNotebook(nb.status.state),
                     ).length || 0
               }
               stopped={
                 isOnbording
                   ? -1
-                  : notebooks?.filter(
-                      (nb) =>
-                        nb.status.state !==
-                        ai.notebook.NotebookStateEnum.RUNNING,
+                  : notebooks?.filter((nb) =>
+                      isStoppedNotebook(nb.status.state),
                     ).length || 0
               }
             />
@@ -104,16 +107,14 @@ export default function Home() {
               active={
                 isOnbording
                   ? -1
-                  : jobs?.filter(
-                      (job) => job.status.state === ai.job.JobStateEnum.RUNNING,
-                    ).length || 0
+                  : jobs?.filter((job) => isRunningJob(job.status.state))
+                      .length || 0
               }
               stopped={
                 isOnbording
                   ? -1
-                  : jobs?.filter(
-                      (job) => job.status.state !== ai.job.JobStateEnum.RUNNING,
-                    ).length || 0
+                  : jobs?.filter((job) => isStoppedJob(job.status.state))
+                      .length || 0
               }
             />
             <ProductInformations
@@ -125,16 +126,14 @@ export default function Home() {
               active={
                 isOnbording
                   ? -1
-                  : apps?.filter(
-                      (app) => app.status.state === ai.app.AppStateEnum.RUNNING,
-                    ).length || 0
+                  : apps?.filter((app) => isRunningApp(app.status.state))
+                      .length || 0
               }
               stopped={
                 isOnbording
                   ? -1
-                  : apps?.filter(
-                      (app) => app.status.state !== ai.app.AppStateEnum.RUNNING,
-                    ).length || 0
+                  : apps?.filter((app) => isStoppedApp(app.status.state))
+                      .length || 0
               }
             />
           </div>

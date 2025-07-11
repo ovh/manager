@@ -9,7 +9,6 @@ import { trackingContext, LEVEL2 } from './utils/tracking.constants';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
-import 'element-internals-polyfill';
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName, trackingContext);

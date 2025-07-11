@@ -3,7 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.3...@ovh-ux/manager-billing@0.38.0) (2025-06-10)
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.42.0...@ovh-ux/manager-billing@0.43.0) (2025-07-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([a451936](https://github.com/ovh/manager/commit/a451936dbf4dfde3f4c6762a4e4345d59d923422)), closes [#MANAGER-16119](https://github.com/ovh/manager/issues/MANAGER-16119)
+* **billing:** cleanup code after slicing /dedicated ([ecc2e5c](https://github.com/ovh/manager/commit/ecc2e5c82cf799653ff9372e57241e3e3ad87b38)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.3...@ovh-ux/manager-new-billing@0.42.0) (2025-07-02)
+
+
+### Features
+
+* **billing:** contract page optimisation part 2 ([11211db](https://github.com/ovh/manager/commit/11211db2a94cc0378592e3ebf1a57a37598e0627)), closes [#MANAGER-18420](https://github.com/ovh/manager/issues/MANAGER-18420)
+* **billing:** myservices show contracts tab for us ([3170ae9](https://github.com/ovh/manager/commit/3170ae91b1accd41e35d778ad1c7a91391e9a2f2)), closes [#MANAGER-18444](https://github.com/ovh/manager/issues/MANAGER-18444)
+
+
+
+
+
+## [0.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.2...@ovh-ux/manager-new-billing@0.41.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([351f285](https://github.com/ovh/manager/commit/351f285c817dc6c659aa18f227852c14710208ba))
+
+
+
+
+
+## [0.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.1...@ovh-ux/manager-new-billing@0.41.2) (2025-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4075] ([3767ecc](https://github.com/ovh/manager/commit/3767ecc118a72aa312c3e3bc856454cb60c3f42a))
+
+
+
+
+
+## [0.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.41.0...@ovh-ux/manager-new-billing@0.41.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* **billing:** fix some regressions on billing pages ([bcd0d5d](https://github.com/ovh/manager/commit/bcd0d5d4d0c38bc4a097010eadcef3533e0d9eaa)), closes [#MANAGER-18544](https://github.com/ovh/manager/issues/MANAGER-18544)
+* **billing:** put defaultPaymentMean back to autorenew resolve ([acacf6e](https://github.com/ovh/manager/commit/acacf6ebcbab5feddd1ffda04b23b146ba5b76ff)), closes [#MANAGER-18574](https://github.com/ovh/manager/issues/MANAGER-18574) [#INC0133696](https://github.com/ovh/manager/issues/INC0133696)
+
+
+
+
+
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.40.1...@ovh-ux/manager-new-billing@0.41.0) (2025-06-10)
 
 
 ### Features
@@ -14,7 +72,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.2...@ovh-ux/manager-billing@0.37.3) (2025-06-02)
+## [0.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.40.0...@ovh-ux/manager-new-billing@0.40.1) (2025-06-02)
 
 
 ### Bug Fixes
@@ -25,7 +83,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.1...@ovh-ux/manager-billing@0.37.2) (2025-05-23)
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.39.1...@ovh-ux/manager-new-billing@0.40.0) (2025-05-26)
+
+
+### Features
+
+* **billing:** move services list to its dedicated route ([a516b64](https://github.com/ovh/manager/commit/a516b64a377d21060072c17586d76b0549a948a2)), closes [#MANAGER-17700](https://github.com/ovh/manager/issues/MANAGER-17700)
+
+
+
+
+
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.39.0...@ovh-ux/manager-new-billing@0.39.1) (2025-05-23)
 
 
 ### Bug Fixes
@@ -36,7 +105,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.37.0...@ovh-ux/manager-billing@0.37.1) (2025-05-15)
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.1...@ovh-ux/manager-new-billing@0.39.0) (2025-05-21)
+
+
+### Features
+
+* **billing:** add delete hosting for suspended service ([#15900](https://github.com/ovh/manager/issues/15900)) ([d2fafca](https://github.com/ovh/manager/commit/d2fafcaaaec9469059cc932ec90f897cfafc84b2)), closes [#MANAGER-13617](https://github.com/ovh/manager/issues/MANAGER-13617)
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.38.0...@ovh-ux/manager-new-billing@0.38.1) (2025-05-15)
 
 
 ### Bug Fixes
@@ -47,7 +127,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.36.0...@ovh-ux/manager-billing@0.37.0) (2025-05-14)
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.37.0...@ovh-ux/manager-new-billing@0.38.0) (2025-05-14)
 
 
 ### Features
@@ -58,7 +138,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.3...@ovh-ux/manager-billing@0.36.0) (2025-05-06)
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.1...@ovh-ux/manager-new-billing@0.37.0) (2025-05-06)
 
 
 ### Features
@@ -69,63 +149,86 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.2...@ovh-ux/manager-billing@0.35.3) (2025-04-28)
+## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.36.0...@ovh-ux/manager-new-billing@0.36.1) (2025-04-30)
 
 
 ### Bug Fixes
 
+* **billing:** added language property used for contact creation ([0793424](https://github.com/ovh/manager/commit/07934247f5cb57eb79b95a6ec081738f8b52d2db)), closes [#MANAGER-18136](https://github.com/ovh/manager/issues/MANAGER-18136) [#INC0126805](https://github.com/ovh/manager/issues/INC0126805)
+
+
+
+
+
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.1...@ovh-ux/manager-new-billing@0.36.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* **billing:** autorenew cancel termination zimbra ([fa8a4a3](https://github.com/ovh/manager/commit/fa8a4a3a9302d34f7c43c655143144d32b4aa829)), closes [#MANAGER-17976](https://github.com/ovh/manager/issues/MANAGER-17976)
 * **billing:** fix services retrieval in pay as you go page ([#16469](https://github.com/ovh/manager/issues/16469)) ([4582f38](https://github.com/ovh/manager/commit/4582f38d053419c3a4ee7ecdfbcc0f953c54ce21)), closes [#DTRSD-118701](https://github.com/ovh/manager/issues/DTRSD-118701) [#PRB0041684](https://github.com/ovh/manager/issues/PRB0041684) [#MANAGER-17839](https://github.com/ovh/manager/issues/MANAGER-17839)
-
-
-
-
-
-## [0.35.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.1...@ovh-ux/manager-billing@0.35.2) (2025-04-17)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 3855] ([e579be0](https://github.com/ovh/manager/commit/e579be0d9e667562424ecba54edc0b001fd6412b))
-
-
-
-
-
-## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.35.0...@ovh-ux/manager-billing@0.35.1) (2025-04-10)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 3832] ([797ea8e](https://github.com/ovh/manager/commit/797ea8e2cee6e2b37ab6a6d8b23ece0613dc6b51))
-* **i18n:** add missing translations [CDS 3847] ([b32c5d3](https://github.com/ovh/manager/commit/b32c5d32f508c8af5208e7276309fdd783342ce0))
-
-
-
-
-
-# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.1...@ovh-ux/manager-billing@0.35.0) (2025-04-09)
 
 
 ### Features
 
+* **billing:** add filter and sort on agreements listing page ([#16668](https://github.com/ovh/manager/issues/16668)) ([98add50](https://github.com/ovh/manager/commit/98add501aeeab41b777d1a4ccdd122f29fe31d85)), closes [#MANAGER-17517](https://github.com/ovh/manager/issues/MANAGER-17517)
+
+
+
+
+
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.35.0...@ovh-ux/manager-new-billing@0.35.1) (2025-04-22)
+
+
+### Bug Fixes
+
+* **dedicated:** base configuration link by subsidiaries ([#16094](https://github.com/ovh/manager/issues/16094)) ([44db09f](https://github.com/ovh/manager/commit/44db09ff890af282ee5e6235ff6ecb1fbf98fe69)), closes [#MANAGER-17503](https://github.com/ovh/manager/issues/MANAGER-17503)
+
+
+
+
+
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.34.1...@ovh-ux/manager-new-billing@0.35.0) (2025-04-17)
+
+
+### Bug Fixes
+
+* **billing:** rename extra sql perso status type and manage actions ([#16003](https://github.com/ovh/manager/issues/16003)) ([f31b266](https://github.com/ovh/manager/commit/f31b2665e16f8e751774092fac3356d8556cbc69)), closes [#WEB-20255](https://github.com/ovh/manager/issues/WEB-20255)
+
+
+### Features
+
+* **billing:** add filter and sort on agreements listing page ([#16302](https://github.com/ovh/manager/issues/16302)) ([c193c21](https://github.com/ovh/manager/commit/c193c211b11185805f24cd57282a94a5d57f1a91)), closes [#MANAGER-17517](https://github.com/ovh/manager/issues/MANAGER-17517)
+
+
+
+
+
+## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.34.0...@ovh-ux/manager-new-billing@0.34.1) (2025-04-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3850] ([6fc9ea1](https://github.com/ovh/manager/commit/6fc9ea124f3b4444f8f1a7b6edd43da47729e30e))
+
+
+
+
+
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.33.0...@ovh-ux/manager-new-billing@0.34.0) (2025-04-09)
+
+
+### Features
+
+* **billing:** display banner after successful default payment method creation ([9b6a708](https://github.com/ovh/manager/commit/9b6a708f16e7a9ee7aa2c69beb6a64c1ddb20b4b)), closes [#MANAGER-16775](https://github.com/ovh/manager/issues/MANAGER-16775)
+* **billing:** handle new 2api renew period correctly ([e7585f1](https://github.com/ovh/manager/commit/e7585f1f624981e21f709cffc5143401ae26a0a3)), closes [#MANAGER-16329](https://github.com/ovh/manager/issues/MANAGER-16329)
 * **container:** added an invitation modal to accept contracts ([3390858](https://github.com/ovh/manager/commit/33908580cfde1e913c73ffc7fd59e3c9724c1cac))
 
 
 
 
 
-## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.34.0...@ovh-ux/manager-billing@0.34.1) (2025-04-03)
-
-
-### Bug Fixes
-
-* **i18n:** add missing translations [CDS 3825] ([c6d2754](https://github.com/ovh/manager/commit/c6d2754e2c52befd9a757525dfa32c00e3757ac1))
-
-
-
-
-
-# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.33.0...@ovh-ux/manager-billing@0.34.0) (2025-04-01)
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.32.1...@ovh-ux/manager-new-billing@0.33.0) (2025-04-01)
 
 
 ### Features
@@ -136,23 +239,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.32.0...@ovh-ux/manager-billing@0.33.0) (2025-03-27)
+## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.32.0...@ovh-ux/manager-new-billing@0.32.1) (2025-03-25)
 
 
 ### Bug Fixes
 
-* **i18n:** add missing translations [CDS 296] ([bf4b02c](https://github.com/ovh/manager/commit/bf4b02c0d647e0a157bc72917dfd79c8fcde0a2d))
-
-
-### Features
-
-* add node nutanix resilitate popin ([dead987](https://github.com/ovh/manager/commit/dead9877bc6b15b9a83cdb24ff46a8962d14c120)), closes [#MANAGER-15716](https://github.com/ovh/manager/issues/MANAGER-15716)
+* **billing:** restore sshKeySwitch directive ([#16102](https://github.com/ovh/manager/issues/16102)) ([aca6997](https://github.com/ovh/manager/commit/aca6997fcd819640b14f9fb631c75b624ab78497)), closes [#MANAGER-17509](https://github.com/ovh/manager/issues/MANAGER-17509)
 
 
 
 
 
-# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.3...@ovh-ux/manager-billing@0.32.0) (2025-03-24)
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.4...@ovh-ux/manager-new-billing@0.32.0) (2025-03-24)
 
 
 ### Bug Fixes
@@ -168,40 +266,51 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.2...@ovh-ux/manager-billing@0.31.3) (2025-02-24)
+## [0.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.3...@ovh-ux/manager-new-billing@0.31.4) (2025-03-05)
 
 
 ### Bug Fixes
 
-* **billing:** add zimbra slot translation ([#15600](https://github.com/ovh/manager/issues/15600)) ([50a6de7](https://github.com/ovh/manager/commit/50a6de748b12d1f358444d277c9f0773eaa2a0bc))
+* **billing:** autorenew for zimbra slot ([#15764](https://github.com/ovh/manager/issues/15764)) ([34ea0b8](https://github.com/ovh/manager/commit/34ea0b8f2f12c7701ff2ca86aad7b1d516d2c787)), closes [#MANAGER-17194](https://github.com/ovh/manager/issues/MANAGER-17194)
 
 
 
 
 
-## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.1...@ovh-ux/manager-billing@0.31.2) (2025-02-21)
-
-
-### Reverts
-
-* Revert "fix(billing): add zimbra slot translation (#15366)" ([5a7152b](https://github.com/ovh/manager/commit/5a7152b3ad1af53dd21cb23ec3cc8ca617d85147)), closes [#15366](https://github.com/ovh/manager/issues/15366)
-
-
-
-
-
-## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.31.0...@ovh-ux/manager-billing@0.31.1) (2025-02-20)
+## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.2...@ovh-ux/manager-new-billing@0.31.3) (2025-03-04)
 
 
 ### Bug Fixes
 
-* **billing:** add zimbra slot translation ([#15366](https://github.com/ovh/manager/issues/15366)) ([ceccd72](https://github.com/ovh/manager/commit/ceccd725f75e7a0447f2c56eb51f55cd8c08e5bf))
+* **new-billing:** add zimbra slot translation ([#15633](https://github.com/ovh/manager/issues/15633)) ([013d668](https://github.com/ovh/manager/commit/013d6681c70a7b4688a8cd85a06b951cdf9dc870))
 
 
 
 
 
-# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.30.0...@ovh-ux/manager-billing@0.31.0) (2025-02-11)
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.1...@ovh-ux/manager-new-billing@0.31.2) (2025-02-24)
+
+
+### Bug Fixes
+
+* **billing:** fix js errors ([#15376](https://github.com/ovh/manager/issues/15376)) ([4d2f4a2](https://github.com/ovh/manager/commit/4d2f4a2fa8507b27cde963996cf8b2599743e3c6))
+
+
+
+
+
+## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.31.0...@ovh-ux/manager-new-billing@0.31.1) (2025-02-18)
+
+
+### Bug Fixes
+
+* **billing:** put redirections on app definition level ([#15357](https://github.com/ovh/manager/issues/15357)) ([badce06](https://github.com/ovh/manager/commit/badce06aad331ac563c5121cd94f16ea020c1114))
+
+
+
+
+
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.30.1...@ovh-ux/manager-new-billing@0.31.0) (2025-02-11)
 
 
 ### Features
@@ -212,7 +321,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.29.1...@ovh-ux/manager-billing@0.30.0) (2025-02-03)
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.30.0...@ovh-ux/manager-new-billing@0.30.1) (2025-02-06)
+
+
+### Bug Fixes
+
+* **billing:** standardize and fix redirection to order tracking ([#15290](https://github.com/ovh/manager/issues/15290)) ([a243c15](https://github.com/ovh/manager/commit/a243c15c8ff08ab9fee4b3686304e8e5f59c07be))
+
+
+
+
+
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.1...@ovh-ux/manager-new-billing@0.30.0) (2025-02-03)
 
 
 ### Features
@@ -223,35 +343,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.29.0...@ovh-ux/manager-billing@0.29.1) (2025-01-23)
+## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.29.0...@ovh-ux/manager-new-billing@0.29.1) (2025-01-23)
 
 
 ### Bug Fixes
 
+* **billing:** add forgotten services helper from dedicated ([#14995](https://github.com/ovh/manager/issues/14995)) ([ade051f](https://github.com/ovh/manager/commit/ade051ffc011d11588f7333b15aa844cac91efb2))
+* **billing:** add missing ng-pagination-front dependency ([#15016](https://github.com/ovh/manager/issues/15016)) ([63aa941](https://github.com/ovh/manager/commit/63aa941073bfdec51b9eb186c92fa3f8e76a0c85))
 * **billing:** adjust ssh key list template and fix error prone code ([#14994](https://github.com/ovh/manager/issues/14994)) ([0ab6fda](https://github.com/ovh/manager/commit/0ab6fda758841f295369a2b5e2ddb1350c8070d8))
+* **billing:** fix redirection to autorenew activation modal ([#14990](https://github.com/ovh/manager/issues/14990)) ([ace987b](https://github.com/ovh/manager/commit/ace987b003e91f19a15a64c6ebc8da07a0dd375a))
+* **i18n:** add missing translations [CDS 3629] ([adf932c](https://github.com/ovh/manager/commit/adf932c4780460a1e65e59b0eb50dcca029018f0))
 
 
 
 
 
-# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.28.0...@ovh-ux/manager-billing@0.29.0) (2025-01-16)
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.28.0...@ovh-ux/manager-new-billing@0.29.0) (2025-01-16)
 
 
 ### Features
 
-* **dedicated:** delete vrack from billing autorenew page ([#13823](https://github.com/ovh/manager/issues/13823)) ([ba52bf9](https://github.com/ovh/manager/commit/ba52bf99bf603357f92054b49b3bba13fba4a94f))
-* **dedicated:** revert delete vrack from billing autorenew page ([01de65b](https://github.com/ovh/manager/commit/01de65bd23415694b8d59ea75c5da8b01bd0eb30))
 * terminate nutanix cluster rebased ([#14763](https://github.com/ovh/manager/issues/14763)) ([d645d63](https://github.com/ovh/manager/commit/d645d631d8dca0ebd48a87377a268f4357b0b163))
 
 
 
 
 
-# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.27.1...@ovh-ux/manager-billing@0.28.0) (2025-01-15)
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.27.1...@ovh-ux/manager-new-billing@0.28.0) (2025-01-15)
 
 
 ### Bug Fixes
 
+* **billing:** fix malformed redirection ([#14864](https://github.com/ovh/manager/issues/14864)) ([b159760](https://github.com/ovh/manager/commit/b15976019854016668d7b650ce903b55432add72))
 * **billing:** fixed redirection to hosting mx plan resiliation page ([#14820](https://github.com/ovh/manager/issues/14820)) ([aeb1913](https://github.com/ovh/manager/commit/aeb1913dedc342c8c1438b36d6f7459ae9355179))
 
 
@@ -268,7 +391,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.27.0...@ovh-ux/manager-billing@0.27.1) (2025-01-13)
+## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.27.0...@ovh-ux/manager-new-billing@0.27.1) (2025-01-13)
 
 
 ### Reverts
@@ -279,7 +402,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.26.0...@ovh-ux/manager-billing@0.27.0) (2025-01-13)
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.26.2...@ovh-ux/manager-new-billing@0.27.0) (2025-01-13)
 
 
 ### Features
@@ -290,18 +413,68 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.25.0...@ovh-ux/manager-billing@0.26.0) (2024-12-23)
+## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.26.1...@ovh-ux/manager-new-billing@0.26.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* **billing:** redirect correctly old urls from order ([#14750](https://github.com/ovh/manager/issues/14750)) ([e6584ad](https://github.com/ovh/manager/commit/e6584ada69e3c8d136f0ea62fdde7002dc9c7059))
+
+
+
+
+
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.26.0...@ovh-ux/manager-new-billing@0.26.1) (2025-01-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 3576] ([5dc4f4b](https://github.com/ovh/manager/commit/5dc4f4b77dc3023494a2cbde7ed548c7fad953b7))
+* **i18n:** add missing translations [CDS 3579] ([e272f80](https://github.com/ovh/manager/commit/e272f804a6745ed1a08ceb1e6b6131bc236e7689))
+* **i18n:** add missing translations [CDS 3582] ([1e8d1ce](https://github.com/ovh/manager/commit/1e8d1ce11f72a617329bab92b3188a5a9eea658f))
+* **i18n:** add missing translations [CDS 3585] ([8c9e43f](https://github.com/ovh/manager/commit/8c9e43fd721bcc928b74ba6369002ae0be1d7acb))
+
+
+
+
+
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.2...@ovh-ux/manager-new-billing@0.26.0) (2024-12-23)
 
 
 ### Features
 
-* **dedicated:** my services revamp ([#14431](https://github.com/ovh/manager/issues/14431)) ([be8ee42](https://github.com/ovh/manager/commit/be8ee42ac19a18f9ea6e276d3dcf099a3c6f64f7))
+* **billing:** backport myservices ([#14474](https://github.com/ovh/manager/issues/14474)) ([b09461e](https://github.com/ovh/manager/commit/b09461edcacaf8635c0168383c5a43af9db31cc1))
 
 
 
 
 
-# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.24.0...@ovh-ux/manager-billing@0.25.0) (2024-12-09)
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.1...@ovh-ux/manager-new-billing@0.25.2) (2024-12-23)
+
+
+### Bug Fixes
+
+* **billing:** added auth information on currentUser ([#14688](https://github.com/ovh/manager/issues/14688)) ([6a1e400](https://github.com/ovh/manager/commit/6a1e400eaca7109fcb814bbf2d88069eb76b2c29))
+* **billing:** added wuc dependency to fix injection error ([#14560](https://github.com/ovh/manager/issues/14560)) ([5d5fae3](https://github.com/ovh/manager/commit/5d5fae381a02294d61674abe51c977932ba927d5))
+* **billing:** dead link on order tracking ([#14613](https://github.com/ovh/manager/issues/14613)) ([5e60d4e](https://github.com/ovh/manager/commit/5e60d4e77661f249252a2e4de32c6b18ff7c6838))
+* **billing:** fix hasautorenew2016 is not a function ([#14554](https://github.com/ovh/manager/issues/14554)) ([93b18fc](https://github.com/ovh/manager/commit/93b18fc1f18f98453eca0ea9bde9e898be4d358c))
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.25.0...@ovh-ux/manager-new-billing@0.25.1) (2024-12-12)
+
+
+### Bug Fixes
+
+* **billing:** fix autorenew display issue ([#14525](https://github.com/ovh/manager/issues/14525)) ([f8ce779](https://github.com/ovh/manager/commit/f8ce77915a06cbc7e876d2649f5d17ced23c4580))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.24.0...@ovh-ux/manager-new-billing@0.25.0) (2024-12-09)
 
 
 ### Features
@@ -312,23 +485,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.23.0...@ovh-ux/manager-billing@0.24.0) (2024-12-09)
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-new-billing@0.23.0...@ovh-ux/manager-new-billing@0.24.0) (2024-12-09)
 
 
 ### Features
 
 * **billing:** micro app billing ([#13631](https://github.com/ovh/manager/issues/13631)) ([10765a6](https://github.com/ovh/manager/commit/10765a6f2747cd2ea4080b7b374d797541402197))
-
-
-
-
-
-# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.22.0...@ovh-ux/manager-billing@0.23.0) (2024-12-03)
-
-
-### Features
-
-* vcd veeam GA ([#14048](https://github.com/ovh/manager/issues/14048)) ([8bc7cdb](https://github.com/ovh/manager/commit/8bc7cdbc0343aeff345f44c019cd4cddb125a73c))
 
 
 

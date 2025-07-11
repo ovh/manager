@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.28.0...@ovh-ux/manager-iplb@1.29.0) (2025-07-08)
+
+
+### Features
+
+* **dedicated.iplb:** enable logs for ip load balancer ([8894135](https://github.com/ovh/manager/commit/88941357d37301f3928e22e552fa071529499400)), closes [#MANAGER-18530](https://github.com/ovh/manager/issues/MANAGER-18530)
+
+
+
+
+
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.27.0...@ovh-ux/manager-iplb@1.28.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 541] ([1863ef6](https://github.com/ovh/manager/commit/1863ef6a69f30e0ab47ed61212de3c403efd0657))
+
+
+### Features
+
+* **iplb-order:** adding a link to iplb order from the listing and onboarding page ([d6bd409](https://github.com/ovh/manager/commit/d6bd4090816e59568cf473111679d322af868f66)), closes [#MANAGER-18690](https://github.com/ovh/manager/issues/MANAGER-18690)
+* **iplb:** add iplb configo federated module and route ([15378dd](https://github.com/ovh/manager/commit/15378dd20bc88e861e8cb35a53ed37db224dd613)), closes [#MANAGER-18704](https://github.com/ovh/manager/issues/MANAGER-18704)
+
+
+
+
+
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.3...@ovh-ux/manager-iplb@1.27.0) (2025-07-02)
+
+
+### Features
+
+* **dedicated:** ftc update delete iplb wording ([457b1e0](https://github.com/ovh/manager/commit/457b1e05d1089011638e3c76cd2f62770c2d574c)), closes [#MANAGER-18668](https://github.com/ovh/manager/issues/MANAGER-18668)
+
+
+
+
+
+## [1.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.2...@ovh-ux/manager-iplb@1.26.3) (2025-06-23)
+
+
+### Bug Fixes
+
+* **iplb:** fix frontend edit while removing headers ([212ca98](https://github.com/ovh/manager/commit/212ca986f5fc21c146b5f8f607434e9b54681f15)), closes [#MANAGER-18490](https://github.com/ovh/manager/issues/MANAGER-18490)
+
+
+
+
+
+## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.1...@ovh-ux/manager-iplb@1.26.2) (2025-06-17)
+
+
+### Bug Fixes
+
+* **iplb:** fix frontend edit while removing headers ([1109be8](https://github.com/ovh/manager/commit/1109be8467c23fdcee9f9558a5333a4a2c38419e)), closes [#PRB0042156](https://github.com/ovh/manager/issues/PRB0042156)
+
+
+
+
+
 ## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.26.0...@ovh-ux/manager-iplb@1.26.1) (2025-06-12)
 
 
