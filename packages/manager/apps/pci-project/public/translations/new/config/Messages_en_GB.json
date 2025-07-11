@@ -1,0 +1,8 @@
+{
+  "pci_project_new_config_title": "Create a Public Cloud project",
+  "pci_project_new_config_description_label": "Project name",
+  "pci_project_new_config_description_contracts": "I have read and accept the following contracts: {{ contractsLinks }}.",
+  "pci_project_new_config_btn_continue": "Continue",
+  "pci_project_new_config_btn_cancel": "Cancel",
+  "pci_project_new_config_btn_return_to_projects": "Back"
+}
