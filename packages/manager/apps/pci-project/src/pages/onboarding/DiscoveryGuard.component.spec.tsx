@@ -166,7 +166,7 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../new');
+      expect(mockNavigate).toHaveBeenCalledWith('/new');
     });
   });
 
@@ -178,7 +178,7 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 
@@ -209,7 +209,7 @@ describe('DiscoveryGuard', () => {
     });
     render(<DiscoveryGuard>children</DiscoveryGuard>, { wrapper });
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('../');
+      expect(mockNavigate).toHaveBeenCalledWith('/');
     });
   });
 });

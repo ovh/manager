@@ -61,11 +61,19 @@ export default function OnboardingPage() {
   } = useCheckoutWithFidelityAccount({
     onSuccess(summary: CartSummary) {
       const vouchercode =
-        summary?.projectItem?.voucherConfiguration?.value || '';
-      const creatingUrl = urls.creating
-        .replace(':orderId', `${summary.orderId}`)
-        .replace(':voucherCode', vouchercode);
-      navigate(`../${creatingUrl}`);
+        summary?.projectItem?.voucherConfiguration?.value || null;
+      if (vouchercode) {
+        const createWithVoucherUrl = urls.creatingWithVoucher
+          .replace(':orderId', `${summary.orderId}`)
+          .replace(':voucherCode', vouchercode);
+        navigate(`../${createWithVoucherUrl}`);
+      } else {
+        const createWithoutVoucherUrl = urls.creating.replace(
+          ':orderId',
+          `${summary.orderId}`,
+        );
+        navigate(`../${createWithoutVoucherUrl}`);
+      }
     },
   });
 
