@@ -19,7 +19,8 @@ import { StatusEnum } from '@/enum/status.enum';
 import { DOMAIN_OPERATIONS, DNS_OPERATIONS } from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
-  parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
+  searchableColumnID: string,
+  parent: ParentEnum,
 ) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
@@ -29,14 +30,16 @@ export const useOngoingOperationDatagridColumns = (
 
   const columns = [
     {
-      id: parent,
+      id: searchableColumnID,
       cell: (props: TOngoingOperations) => (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),
       label:
-        parent === ParentEnum.DOMAIN
-          ? t('domain_operations_table_header_domain')
-          : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
+        (parent === ParentEnum.DOMAIN &&
+          t('domain_operations_table_header_domain')) ||
+        (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
+        (parent === ParentEnum.ALLDOM &&
+          t('domain_operations_table_header_name')),
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
@@ -52,8 +55,8 @@ export const useOngoingOperationDatagridColumns = (
       comparator: FilterCategories.Options,
       isFilterable: true,
       filterOptions: (parent === ParentEnum.DOMAIN
-          ? DOMAIN_OPERATIONS
-          : DNS_OPERATIONS
+        ? DOMAIN_OPERATIONS
+        : DNS_OPERATIONS
       ).map((op) => ({
         label: t(`domain_operations_nicOperation_${op}`),
         value: op,

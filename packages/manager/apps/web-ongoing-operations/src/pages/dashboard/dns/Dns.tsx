@@ -1,86 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Datagrid,
-  ErrorBanner,
-  useNotifications,
-  useResourcesIcebergV6,
-} from '@ovh-ux/manager-react-components';
-import { toASCII } from 'punycode';
-import { TOngoingOperations } from 'src/types';
-import { useTranslation } from 'react-i18next';
-import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
+import React from 'react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { taskMeDns } from '@/constants';
 import { ParentEnum } from '@/enum/parent.enum';
+import DashboardPage from '@/components/Dashboard/DashboardPage';
 
 export default function Domain() {
-  const { t: tError } = useTranslation('web-ongoing-operations/error');
   const { notifications } = useNotifications();
-  const [searchInput, setSearchInput] = useState('');
-
-  const columns = useOngoingOperationDatagridColumns(ParentEnum.ZONE);
-
-  const {
-    flattenData,
-    isError,
-    totalCount,
-    hasNextPage,
-    fetchNextPage,
-    isLoading,
-    sorting,
-    setSorting,
-    filters,
-    search,
-  } = useResourcesIcebergV6<TOngoingOperations>({
-    route: taskMeDns.join('/'),
-    queryKey: taskMeDns,
-    pageSize: 30,
-    disableCache: !!notifications.length,
-    columns,
-  });
-
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      search.setSearchInput(toASCII(searchInput.toLowerCase()));
-    }, 300);
-
-    return () => clearTimeout(debounce);
-  }, [searchInput]);
-
-  useEffect(() => {
-    search.onSearch(search.searchInput);
-  }, [search.searchInput]);
-
-  if (isError) {
-    return (
-      <ErrorBanner
-        error={{
-          status: 500,
-          data: { message: tError('manager_error_page_default') },
-        }}
-      />
-    );
-  }
 
   return (
     <React.Suspense>
-      <div data-testid="datagrid">
-        <Datagrid
-          columns={columns}
-          items={flattenData || []}
-          totalItems={totalCount || 0}
-          hasNextPage={hasNextPage && !isLoading}
-          onFetchNextPage={fetchNextPage}
-          sorting={sorting}
-          onSortChange={setSorting}
-          filters={filters}
-          isLoading={isLoading}
-          search={{
-            searchInput,
-            setSearchInput,
-            onSearch: () => null,
-          }}
-        />
-      </div>
+      <DashboardPage
+        searchableColumnID={ParentEnum.ZONE}
+        parent={ParentEnum.ZONE}
+        notifications={notifications}
+        route={`${taskMeDns.join('/')}`}
+        queryKey={taskMeDns}
+      />
     </React.Suspense>
   );
 }

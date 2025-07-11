@@ -15,13 +15,6 @@ vi.mock('react-router-dom', () => ({
   useLocation: vi.fn(),
 }));
 
-vi.mock('@/data/api/web-ongoing-operations', () => ({
-  getmeTaskDomainList: vi.fn(),
-  getmeTaskDomainArgumentNames: vi
-    .fn()
-    .mockImplementation(() => Promise.resolve(['nic1', 'nic2'])),
-}));
-
 describe('Domain datagrid', () => {
   it('fetch in a good way using useResourcesIcebergV6', () => {
     (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
@@ -39,8 +32,10 @@ describe('Domain datagrid', () => {
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
-        pageSize: 30,
-        route: taskMeDomain.join('/'),
+        pageSize: 10,
+        route: `${taskMeDomain.join('/')}?type=domain`,
+        disableCache: false,
+        queryKey: taskMeDomain,
       }),
     );
   });
