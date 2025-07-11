@@ -25,6 +25,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { useOrganization } from '@/data/hooks';
 import { Modal } from '@/components';
@@ -44,7 +45,12 @@ import {
 import { OrganizationSchema, organizationSchema } from '@/utils';
 
 export const AddEditOrganizationModal = () => {
-  const { t } = useTranslation(['organizations/form', 'common']);
+  const { t } = useTranslation([
+    'organizations/form',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, organizationId } = useParams();
   const trackingName = organizationId ? EDIT_ORGANIZATION : ADD_ORGANIZATION;
@@ -165,12 +171,12 @@ export const AddEditOrganizationModal = () => {
       isDismissible
       isLoading={isLoading}
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
         testid: 'confirm-btn',
-        label: t('common:confirm'),
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
         isDisabled: !isDirty || !isValid,
         isLoading: isLoading || isSending,
         onClick: handleSubmit(handleSaveClick),
@@ -191,7 +197,7 @@ export const AddEditOrganizationModal = () => {
           </div>
         )}
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:form_mandatory_fields')}
+          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
         </OdsText>
         <Controller
           control={control}

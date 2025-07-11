@@ -10,6 +10,7 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
@@ -27,7 +28,7 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_DOMAIN } from '@/tracking.constants';
 
 export const DeleteDomainModal = () => {
-  const { t } = useTranslation(['domains', 'common']);
+  const { t } = useTranslation(['domains', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, domainId } = useParams();
@@ -111,11 +112,11 @@ export const DeleteDomainModal = () => {
       isLoading={isDomainLoading || isAccountsLoading}
       isOpen
       secondaryButton={{
-        label: t('common:cancel'),
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
         onClick: handleCancelClick,
       }}
       primaryButton={{
-        label: t('common:delete'),
+        label: t(`${NAMESPACES.ACTIONS}:delete`),
         onClick: handleDeleteClick,
         isDisabled: accounts?.length > 0 || !domainId,
         isLoading: isSending,
