@@ -1,10 +1,11 @@
 <oui-modal
     data-primary-label="{{ ::'vps_common_confirm' | translate }}"
-    data-primary-action="$ctrl.confirm()"
+    data-primary-action="$ctrl.serviceOptionId ? $ctrl.downgradeConfirm() : $ctrl.confirm()"
+    data-primary-disabled="$ctrl.contracts.length > 0 && !$ctrl.model.agree"
     data-secondary-action="$ctrl.cancel()"
     data-secondary-label="{{ ::'vps_common_cancel' | translate }}"
     data-on-dismiss="$ctrl.cancel()"
-    data-loading="$ctrl.terminate.loading || $ctrl.selectedVps.loading"
+    data-loading="$ctrl.terminate.loading || $ctrl.selectedVps.loading || $ctrl.optionServiceProcessLoading"
     data-heading="{{:: $ctrl.TITLES[$ctrl.vpsOption] | translate}}"
 >
     <p
@@ -15,5 +16,21 @@
     <p
         class="oui-modal__text text-danger"
         data-translate="vps_configuration_cancel_option_step1_warn"
+        data-ng-if="!$ctrl.serviceOptionId"
     ></p>
+    <p
+        data-translate="vps_downgrade_option_info2"
+        data-translate-values=":: {
+            price: $ctrl.findRenewCapacity($ctrl.upgradeAvailable.prices).price.text,
+            duration: $ctrl.getDuration($ctrl.upgradeAvailable),
+        }"
+        data-ng-if="$ctrl.serviceOptionId"
+    ></p>
+    <ovh-contracts-summary
+        name="agreeContracts"
+        data-ng-if="$ctrl.serviceOptionId && $ctrl.contracts.length > 0"
+        data-items="$ctrl.contracts"
+        data-model="$ctrl.model.agree"
+    >
+    </ovh-contracts-summary>
 </oui-modal>

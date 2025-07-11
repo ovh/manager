@@ -11,7 +11,7 @@ export const SERVICE_TYPE = 'vps';
 export const ADD_DOMAIN_LINK =
   'https://www.ovh.com/fr/order/webcloud/#/webCloud/domain/select?selection=~()';
 
-export const NEW_RANGE_VERSION = '2019v1';
+export const NEW_RANGE_VERSION = ['2019v1', '2025v1'];
 
 export const VPS_STATES = {
   ERROR: ['maintenance', 'stopped', 'stopping'],

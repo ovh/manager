@@ -9,6 +9,27 @@
     <div data-ng-if="!$ctrl.veeam.loading">
         <!--Backup Schedule section-->
         <div class="mb-3" data-ng-if="$ctrl.isAutomatedBackupAvailable">
+            <oui-message
+                class="mb-2"
+                type="info"
+                data-ng-if="$ctrl.veeam.data.rotation === 1"
+            >
+                <p
+                    data-translate="vps_tab_VEEAM_schedule_backup_offer_information"
+                ></p>
+                <button
+                    class="oui-button oui-button_ghost oui-button_icon-right"
+                    data-ng-click="$ctrl.goToVeeamOrderPage()"
+                >
+                    <span
+                        data-translate="vps_tab_VEEAM_schedule_backup_premium_order"
+                    ></span>
+                    <span
+                        class="oui-icon oui-icon-arrow-right"
+                        aria-hidden="true"
+                    ></span>
+                </button>
+            </oui-message>
             <!--Schedule automate backup-->
             <div
                 class="row align-items-center"
