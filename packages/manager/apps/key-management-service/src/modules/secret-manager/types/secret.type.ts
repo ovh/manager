@@ -3,7 +3,7 @@ import { IAM } from '@/types/okms.type';
 /**
  * SECRET
  */
-export type SecretState = 'ACTIVE' | 'DEACTIVATED' | 'DELETED';
+export type SecretVersionState = 'ACTIVE' | 'DEACTIVATED' | 'DELETED';
 
 // Secret data is defined as JSON, but it is typed as 'Any' in the API schema.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,7 +17,7 @@ export type SecretVersion = {
   createdAt: string;
   deactivatedAt?: string;
   id: number;
-  state: SecretState;
+  state: SecretVersionState;
 };
 
 export type SecretVersionWithData = SecretVersion & SecretVersionDataField;
