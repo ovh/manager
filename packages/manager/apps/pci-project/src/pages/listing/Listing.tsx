@@ -1,5 +1,5 @@
 import { useEffect, Suspense } from 'react';
-import { useHref, Outlet } from 'react-router-dom';
+import { useHref, Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
@@ -39,6 +39,7 @@ type ErrorResponse = {
 export default function Listing() {
   const { t } = useTranslation('listing');
   const projectPath = useHref(`${urls.root}/${urls.project}`);
+  const navigate = useNavigate();
 
   const {
     redirectUrl,
@@ -113,6 +114,7 @@ export default function Listing() {
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
           label={t('pci_projects_create_project')}
+          onClick={() => navigate(`./${urls.creation}`)}
         />
       )}
     </div>
