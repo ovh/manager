@@ -152,6 +152,14 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => dedicatedCloudDrp.getDrpState({ serviceName, datacenterId }),
         isZertoOnPremise: /* @ngInject */ (zertoState) =>
           zertoState.drpType === 'onPremise',
+        goToAddSite: /* @ngInject */ ($state, productId, datacenterId) => () =>
+          $state.go(
+            'app.managedBaremetal.details.datacenters.datacenter.drp.addSite',
+            {
+              productId,
+              datacenterId,
+            },
+          ),
       },
     },
   );

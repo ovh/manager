@@ -143,6 +143,11 @@ export default /* @ngInject */ ($stateProvider) => {
       isZertoOnPremise: /* @ngInject */ (zertoState) => {
         return zertoState.drpType === 'onPremise';
       },
+      goToAddSite: /* @ngInject */ ($state, productId, datacenterId) => () =>
+        $state.go('app.dedicatedCloud.details.datacenter.details.drp.addSite', {
+          productId,
+          datacenterId,
+        }),
     },
   });
 };

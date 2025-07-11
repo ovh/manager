@@ -626,8 +626,16 @@ class DedicatedCloudDatacenterDrpService {
   }
 
   getZertoMultiSite({ serviceName, datacenterId }) {
-    return this.$http.get(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`,
+    return this.$http
+      .get(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteZertoRemoteSite({ serviceName, datacenterId, siteId }) {
+    return this.$http.delete(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites?id=${siteId}`,
     );
   }
 }
