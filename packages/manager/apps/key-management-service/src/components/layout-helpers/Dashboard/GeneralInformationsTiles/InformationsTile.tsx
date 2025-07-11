@@ -20,8 +20,8 @@ import { OKMS } from '@/types/okms.type';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 type InformationTileProps = {
-  okmsData?: OKMS;
-  okmsServiceInfos?: ServiceDetails;
+  okmsData: OKMS;
+  okmsServiceInfos: ServiceDetails;
 };
 
 const InformationsTile = ({

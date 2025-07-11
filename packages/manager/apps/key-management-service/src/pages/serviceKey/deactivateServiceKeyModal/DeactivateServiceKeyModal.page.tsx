@@ -45,9 +45,12 @@ const stateByReason: {
 };
 
 export const DisableServiceKeyModal = () => {
-  const { okmsId, keyId } = useParams();
+  const { okmsId, keyId } = useParams() as {
+    okmsId: string;
+    keyId: string;
+  };
   const [deactivationReason, setDeactivationReason] = useState<
-    OkmsServiceKeyDeactivationReason
+    OkmsServiceKeyDeactivationReason | undefined
   >();
   const { addSuccess, clearNotifications } = useNotifications();
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -80,6 +83,24 @@ export const DisableServiceKeyModal = () => {
       closeModal();
     },
   });
+
+  const handleSubmit = () => {
+    if (!deactivationReason) {
+      return;
+    }
+
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['confirm'],
+    });
+
+    updateKmsServiceKey({
+      state: stateByReason[deactivationReason],
+      deactivationReason,
+    });
+  };
 
   return (
     <OdsModal
@@ -138,18 +159,7 @@ export const DisableServiceKeyModal = () => {
         isDisabled={!deactivationReason}
         slot="actions"
         color={ODS_BUTTON_COLOR.primary}
-        onClick={() => {
-          trackClick({
-            location: PageLocation.popup,
-            buttonType: ButtonType.button,
-            actionType: 'action',
-            actions: ['confirm'],
-          });
-          updateKmsServiceKey({
-            state: stateByReason[deactivationReason],
-            deactivationReason,
-          });
-        }}
+        onClick={handleSubmit}
         aria-label="edit-name-okms"
         label={t(
           'key_management_service_service-keys_deactivation_button_confirm',

@@ -9,7 +9,7 @@ import { KMIP_ENPOINT_LABEL, KMIP_RSA_LABEL } from './KmipTile.constants';
 import { DownloadKmsPublicCaLink } from '@/components/dashboard/downloadKmsPublicCaLink/DownloadKmsPublicCaLink';
 
 type KmipTileProps = {
-  okmsData?: OKMS;
+  okmsData: OKMS;
 };
 const KmipTile = ({ okmsData }: KmipTileProps) => {
   const items: DashboardTileBlockItem[] = [

@@ -4,7 +4,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 
 type CreateCredentialConfirmationDetailsTextProps = {
   label: string;
-  value: string;
+  value: string | undefined;
 };
 
 const CreateCredentialConfirmationDetailsText = ({

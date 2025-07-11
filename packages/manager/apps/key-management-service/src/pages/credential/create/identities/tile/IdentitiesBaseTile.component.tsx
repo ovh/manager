@@ -4,7 +4,7 @@ import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
 
 type IdentitiesBaseTileProps = {
   title: string;
-  urn: string;
+  urn?: string;
   updateCallback: (isSelected: boolean) => void;
   isChecked: boolean;
   setIsChecked: Dispatch<SetStateAction<boolean>>;

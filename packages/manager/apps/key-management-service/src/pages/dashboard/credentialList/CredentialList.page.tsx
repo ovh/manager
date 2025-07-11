@@ -24,7 +24,9 @@ import { kmsIamActions } from '@/utils/iam/iam.constants';
 const CredentialList = () => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const okms = useContext(OkmsContext);
+  // Context has to be better typed, but for now we assume it is always defined
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const okms = useContext(OkmsContext)!;
   const { trackClick } = useOvhTracking();
 
   const { isAuthorized, isLoading: isLoadingIam } = useAuthorizationIam(

@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsKeyTypes,
   OkmsServiceKeyState,
 } from '@/types/okmsServiceKey.type';
@@ -57,7 +57,7 @@ vi.mock('@/data/hooks/useUpdateOkmsServiceKey', () => ({
 }));
 
 describe('useServiceKeyActionsList', () => {
-  const commonKeyProps: Omit<OkmsAllServiceKeys, 'type' | 'state'> = {
+  const commonKeyProps: Omit<OkmsServiceKey, 'type' | 'state'> = {
     id: 'testKeyId',
     name: 'testKeyName',
     keys: [],
