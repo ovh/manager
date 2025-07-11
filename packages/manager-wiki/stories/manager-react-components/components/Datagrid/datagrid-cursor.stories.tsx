@@ -35,6 +35,7 @@ const DatagridStory = (args) => {
   const [searchParams] = useSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
+  const [rowSelection, setRowSelection] = useState({});
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;

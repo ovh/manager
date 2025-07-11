@@ -321,3 +321,130 @@ Exemple of column definition
     `}
   language="javascript"
 />
+
+---
+
+### Row selection
+
+#### How to use It
+
+To activate default row selection, use `manageRowSelection` attribute on the Datagrid definition.
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+return
+  <Datagrid
+    ...
+    manageRowSelection={{
+      rowSelection,
+      setRowSelection,
+      onToggleAllRowsSelection, // Optional
+      enableRowSelection // optional
+    }}
+  />;
+```
+
+A new column is automatically displayed at the 1st place of the datagrid with checkboxes to select each row but also checkbox in the header to select / unselect all the rows.
+
+#### Disable the selection for some of the rows
+
+`enableRowsSelection` is a function that can be use inside `manageRowSelection` attribute to tell the Datagrid which row should be selectable or not.
+The row is passed in the parameters of the function so it is easy to use on parent side.
+
+example:
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+const isSelectable = (item: Item) => item.price > 10;
+
+return
+  <Datagrid
+    ...
+    manageRowSelection={{
+      rowSelection,
+      setRowSelection,
+      enableRowSelection: ({ original: item }) => isSelectable(item)
+    }}
+  />;
+```
+
+In that case, only items with price > 10 would be selectable and others would have disabled checkbox. When using "select all" checkbox, only available checkboxes is selected.
+
+#### Overwrite the select all behavior
+
+By default, the select all checkbox is selecting only the items that the datagrid is aware of.
+Because in manager we can have manual pagination on front end side, we maybe want the "select all" to select items that are not send on the datagrid yet.
+It is possible to select items that are known by front but not the datagrid by overwriting the action made on select all using `onToggleAllRowsSelection` function inside manageRowSelection attribute
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+const onToggleAllRowsSelection = (isAllRowSelected: boolean) => {
+    const selectedItems: Record<number, boolean> = {};
+    items.forEach((item, index) => {
+        selectedItems[index] = !isAllRowSelected;
+    });
+    setRowSelection(selectedItems);
+};
+
+return
+  <Datagrid
+    ...
+    manageRowSelection={{
+      rowSelection,
+      setRowSelection,
+      enableRowSelection
+    }}
+  />;
+```
+
+In the case of API pagination, the front don't know the entire list of items before fetching the API so it is not possible to select all items in advance.
+When using "select all" checkbox, only the displayed items will be selected. If the user click on load more, the newly fetched items won't be selected and "select all" checkbox will get the indeterminate state.
+
+#### Overwrite the rowId for better row selection
+
+By default, the row id is the index of the item within the datagrid. To be able to better know which row has been selected,
+it is possible to overwrite the row id with `getRowId` attribute.
+
+`getRowId` is a function that have row item passed as a parameter and should return the custom id as a string.
+
+```tsx
+const getRowId = (item) => item.label;
+
+return
+  <Datagrid
+    ...
+    getRowId={getRowId}
+  />;
+```
+
+when using this attribute, the selected rows will be defined by the custom id to be easier to work with.
+
+In the case of using `onToggleAllRowsSelection`, be careful to create the rowSelection state object using custom id and not index:
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+const getRowId = (item) => item.label;
+
+const onToggleAllRowsSelection = (isAllRowSelected: boolean) => {
+    const selectedItems: Record<string, boolean> = {};
+    items.forEach(({label}) => {
+        selectedItems[label] = !isAllRowSelected;
+    });
+    setRowSelection(selectedItems);
+};
+
+return
+  <Datagrid
+    ...
+    manageRowSelection={{
+      rowSelection,
+      setRowSelection,
+      enableRowSelection
+    }}
+    getRowId={getRowId}
+  />;
+```
