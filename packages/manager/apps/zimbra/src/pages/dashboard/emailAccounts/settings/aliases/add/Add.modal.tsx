@@ -13,7 +13,7 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -27,7 +27,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDomains, useAccount } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
-import { Modal, Loading } from '@/components';
+import { Loading } from '@/components';
 import {
   AliasBodyParamsType,
   getZimbraPlatformAliasesQueryKey,
@@ -153,24 +153,19 @@ export const AddAliasModal = () => {
 
   return (
     <Modal
-      title={t('common:add_alias')}
-      color={ODS_MODAL_COLOR.information}
+      heading={t('common:add_alias')}
+      type={ODS_MODAL_COLOR.information}
       isOpen
-      onClose={onClose}
-      isDismissible
+      onDismiss={onClose}
       isLoading={isLoading}
       ref={modalRef}
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'confirm-btn',
-        label: t('common:confirm'),
-        isDisabled: !isDirty || !isValid,
-        isLoading: isLoading || isSending,
-        onClick: handleSubmit(handleConfirmClick),
-      }}
+      primaryLabel={t('common:confirm')}
+      primaryButtonTestId="confirm-btn"
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      isPrimaryButtonLoading={isLoading || isSending}
+      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
+      secondaryLabel={t('common:cancel')}
+      onSecondaryButtonClick={handleCancelClick}
     >
       <form
         className="flex flex-col gap-4"
