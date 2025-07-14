@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "2.31.0",
+  "version": "3.0.0-alpha.1",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -56,7 +56,7 @@
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "@ovhcloud/ods-components": "^18.6.2",
-    "@ovhcloud/ods-react": "19.0.0-alpha.2",
+    "@ovhcloud/ods-react": "19.0.1",
     "@ovhcloud/ods-themes": "^18.6.2",
     "@types/lodash.isdate": "^4.0.9",
     "@types/lodash.isequal": "^4.5.0",
