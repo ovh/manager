@@ -12,6 +12,8 @@ export * from './useDeleteIpReverse';
 export * from './useUpdateIpGameFirewall';
 export * from './useIpHasForcedMitigation';
 export * from './useIpHasServiceAttached';
+export * from './useGetAttachedServices';
 export * from './useIpGameFirewallRules';
 export * from './useAddVirtualMacToIp';
 export * from './useAddIpToVirtualMac';
+export * from './useUpdateIpMitigation';

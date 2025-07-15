@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
@@ -14,7 +14,9 @@ import {
   useGetGameMitigation,
   useIpHasForcedMitigation,
   useIpHasServicesAttached,
+  useGetAttachedServices,
   useGetIpVmacWithIp,
+  useGetIpMitigation,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -70,10 +72,16 @@ export type IpActionsCellParams = {
   block IPv6 <=> parentIpGroup = undefined, ip = ipv4/range, isGroup = true, ipGroup = ip/range
     display => nothing + parent IP
  */
+
+/*  
+    If its not permanent mitigation then display listingManageMitigation_DEFAULT_to_PERMANENT
+    If its permanent mitigation(PERMANENT) And mitigation state is Ok then display listingManageMitigation_PERMANENT_to_AUTO
+    If its permanent mitigation(PERMANENT) OR mitigation state is Ok And if mitigation is auto (FORCED) then enable listingManageMitigation_stats
+*/
+
 export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
-  const { shell } = React.useContext(ShellContext);
-  const [vrackPage, setVrackPage] = React.useState('');
-  const [isVmacAlreadyExist, setIsVmacAlreadyExist] = React.useState(false);
+  const { shell } = useContext(ShellContext);
+  const [vrackPage, setVrackPage] = useState('');
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
@@ -84,29 +92,13 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     .environment?.getUser()
     .auth?.roles?.includes('ADMIN');
 
-  const gameMitigationDetails = useGetGameMitigation({
-    ip: ipAddress,
-    enabled: true,
-  });
-
-  const { hasForcedMitigation } = useIpHasForcedMitigation({
-    ip,
-  });
-
+  const serviceName = ipDetails?.routedTo?.serviceName;
   const {
     hasServiceAttached: hasCloudServiceAttachedToIP,
   } = useIpHasServicesAttached({
     path: '/cloud/project',
     category: 'CLOUD',
-    serviceName: ipDetails?.routedTo?.serviceName,
-  });
-
-  const {
-    hasServiceAttached: hasHousingServiceAttachedToIp,
-  } = useIpHasServicesAttached({
-    path: '/dedicated/housing',
-    category: 'HOUSING',
-    serviceName: ipDetails?.routedTo?.serviceName,
+    serviceName,
   });
 
   const {
@@ -114,39 +106,57 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   } = useIpHasServicesAttached({
     path: '/dedicated/server',
     category: 'DEDICATED',
-    serviceName: ipDetails?.routedTo?.serviceName,
+    serviceName,
   });
+
+  // Case only for housing if the service doesnt exist in the product list then its housing service attched to Ip
+  const { servicesAttached } = useGetAttachedServices({
+    serviceName,
+  });
+
+  // Check if Ip as routTo service(serviceName) and if that serviceName is not within attached services(servicesAttached) then its housing
+  const hasHousingServiceAttachedToIp =
+    Boolean(serviceName) && servicesAttached.length === 0;
 
   const { vmacsWithIp } = useGetIpVmacWithIp({
-    serviceName: ipDetails?.routedTo?.serviceName,
-    enabled: !!ipDetails && hasDedicatedServiceAttachedToIp,
+    serviceName,
+    enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
 
-  React.useEffect(() => {
-    if (vmacsWithIp.length) {
-      setIsVmacAlreadyExist(true);
-    }
-  }, [vmacsWithIp]);
+  const isVmacAlreadyExist = vmacsWithIp.length > 0;
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (!serviceName) return;
     const fetchUrl = async () => {
       try {
         const response = await shell.navigation.getURL(
           'dedicated',
-          `#/vrack/${ipDetails?.routedTo?.serviceName}`,
+          `#/vrack/${serviceName}`,
           {},
         );
         setVrackPage(response as string);
-      } catch (error) {
+      } catch {
         setVrackPage('#');
       }
     };
     fetchUrl();
-  }, [ipDetails?.routedTo?.serviceName]);
+  }, [serviceName, shell.navigation]);
 
   const goToVrackPage = () => {
     window.top.location.href = vrackPage;
   };
+
+  const gameMitigationDetails = useGetGameMitigation({
+    ip: ipAddress,
+    enabled: true,
+  });
+
+  const { hasForcedMitigation } = useIpHasForcedMitigation({ ip });
+  const { ipMitigation, isLoading: isMitigationLoading } = useGetIpMitigation({
+    ip: ipAddress,
+  });
+
+  const isDefaultMitigation = (ipMitigation?.length ?? 0) === 0;
 
   const items: ActionMenuItem[] = [
     {
@@ -165,7 +175,9 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        label: `${t('terminate', {
+          ns: NAMESPACES.ACTIONS,
+        })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
@@ -177,7 +189,9 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 1,
-        label: `${t('terminate', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        label: `${t('terminate', {
+          ns: NAMESPACES.ACTIONS,
+        })} Additional IP`,
         isLoading,
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
@@ -224,6 +238,18 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         onClick: () =>
           navigate(urls.addVirtualMac.replace(urlDynamicParts.id, id)),
         isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist,
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !hasHousingServiceAttachedToIp &&
+      ipMitigation && {
+        id: 7,
+        label: isDefaultMitigation
+          ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
+          : t('listingManageMitigation_PERMANENT_to_AUTO'),
+        onClick: () =>
+          navigate(urls.manageIpMitigation.replace(urlDynamicParts.id, id)),
+        isDisabled: isMitigationLoading,
       },
   ].filter(Boolean);
 
