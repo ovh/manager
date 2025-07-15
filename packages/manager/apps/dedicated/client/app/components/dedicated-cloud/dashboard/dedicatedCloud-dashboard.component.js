@@ -37,6 +37,7 @@ export default {
     dedicatedCloudDescription: '<',
     managedVCDAvailability: '<',
     dedicatedCloudPCCMigrationState: '<',
+    isLogsDisabled: '<?',
   },
   template,
 };
