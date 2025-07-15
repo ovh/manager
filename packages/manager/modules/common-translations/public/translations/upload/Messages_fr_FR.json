@@ -1,0 +1,16 @@
+{
+  "drag_and_drop_file": "Glisser-déposer un fichier",
+  "drag_and_drop_files": "Glisser-déposer des fichiers",
+  "browse_files": "Parcourir les fichiers",
+  "max_file": "Nombre maximal de fichiers : ",
+  "max_size": "Taille maximale autorisée : ",
+  "accepted_type": "Type de fichier accepté : {{ type }}",
+  "accepted_types": "Types de fichiers acceptés : {{ types }}",
+  "uploaded_file": "Fichier importé",
+  "uploaded_files": "Fichiers importés",
+  "error_file_max-file-reached": "Nombre maximal de fichiers atteint",
+  "error_file_size-too-large": "Le fichier sélectionné dépasse la taille maximale autorisée",
+  "error_files_size-too-large": "Certains fichiers dépassent la taille maximale autorisée",
+  "error_file_wrong-format": "Le type du fichier sélectionné n'est pas autorisé",
+  "error_files_wrong-format": "Certains types de fichiers ne sont pas autorisés"
+}
