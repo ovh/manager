@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 
@@ -7,14 +8,11 @@ import Others from './components/Others.component';
 import DashboardTiles from './components/DashboardTiles.component';
 
 export default function Home() {
+  const { t } = useTranslation('home');
   const { projectId } = useParams<{ projectId: string }>();
 
   if (!projectId) {
-    // Option 1 : message d'erreur
-    return <div>Erreur : identifiant projet manquant.</div>;
-    // Option 2 : return null;
-    // Option 3 : redirection (si tu utilises un router)
-    // return <Navigate to="/erreur" />;
+    throw Error(t('project_identifier_missing'));
   }
 
   return (

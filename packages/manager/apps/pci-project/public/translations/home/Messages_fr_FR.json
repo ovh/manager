@@ -42,5 +42,6 @@
   "community": "Communauté",
   "discuss_discord": "Discuter sur discord",
   "community_alt": "Communauté",
-  "discuss_community": "Discuter sur OVHcloud Community"
+  "discuss_community": "Discuter sur OVHcloud Community",
+  "project_identifier_missing": "Identifiant projet manquant."
 }
