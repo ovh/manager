@@ -102,8 +102,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('vps.detail.dashboard.cancel-commitment'),
       goToCancelResiliation: /* @ngInject */ ($state) => () =>
         $state.href('vps.detail.dashboard.cancel-resiliation'),
-      goToResiliation: /* @ngInject */ ($state) => () =>
-        $state.href('vps.detail.dashboard.resiliation'),
+      goToResiliation: /* @ngInject */ ($state, vps) => () =>
+        vps.engagement
+          ? $state.href('vps.detail.dashboard.resiliation')
+          : $state.href('vps.detail.dashboard.terminate'),
       serviceInfos: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/vps/${serviceName}/serviceInfos`).then(({ data }) => data),
       shouldReengage: /* @ngInject */ (vps) => vps.shouldReengage,
