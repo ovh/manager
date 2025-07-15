@@ -14,7 +14,7 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -27,6 +27,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useGenerateUrl } from '@/hooks';
 import { useOrganization } from '@/data/hooks';
+import { Modal } from '@/components';
 import {
   getZimbraPlatformOrganizationQueryKey,
   OrganizationBodyParamsType,
@@ -153,22 +154,27 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      heading={
+      isOpen
+      title={
         organizationId
           ? t('common:edit_organization')
           : t('common:add_organization')
       }
-      isOpen
-      type={ODS_MODAL_COLOR.information}
-      onDismiss={onClose}
+      color={ODS_MODAL_COLOR.information}
+      onClose={onClose}
+      isDismissible
       isLoading={isLoading}
-      primaryLabel={t('common:confirm')}
-      primaryButtonTestId="confirm-btn"
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoading || isSending}
-      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
-      secondaryLabel={t('common:cancel')}
-      onSecondaryButtonClick={handleCancelClick}
+      secondaryButton={{
+        label: t('common:cancel'),
+        onClick: handleCancelClick,
+      }}
+      primaryButton={{
+        testid: 'confirm-btn',
+        label: t('common:confirm'),
+        isDisabled: !isDirty || !isValid,
+        isLoading: isLoading || isSending,
+        onClick: handleSubmit(handleSaveClick),
+      }}
     >
       <form
         className="flex flex-col gap-4"
