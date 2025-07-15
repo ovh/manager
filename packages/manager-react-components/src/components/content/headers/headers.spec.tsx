@@ -4,7 +4,8 @@ import { render } from '../../../utils/test.provider';
 import { Headers } from './headers.component';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../hooks/iam';
-import { GuideButton, ActionMenu } from '../../navigation';
+import { ActionMenu } from '../../navigation';
+import { GuideButton } from '../../guide-button';
 
 export const header = () => (
   <Headers title="Example for header" description="description for header" />

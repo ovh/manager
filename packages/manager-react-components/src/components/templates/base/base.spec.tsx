@@ -1,17 +1,14 @@
-import React from 'react';
 import { vitest } from 'vitest';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
-  OdsTab,
-  OdsTabs,
   OdsTable,
   OdsBadge,
 } from '@ovhcloud/ods-components/react';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
 import { BaseLayout } from './base.component';
-import { GuideButton, GuideItem } from '../../navigation';
+import { GuideButton, GuideItem } from '../../guide-button';
 import OdsNotification from '../../notifications/ods-notification';
 import { NotificationType } from '../../notifications/useNotifications';
 

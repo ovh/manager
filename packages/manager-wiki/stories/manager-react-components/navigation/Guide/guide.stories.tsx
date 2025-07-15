@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import {
   GuideButton,
   GuideButtonProps,
-} from '@ovh-ux/manager-react-components';
+} from '../../../../../../packages/manager-react-components/src';
 
 const guideItems = [
   {
@@ -29,7 +29,7 @@ export const GuideButtonLoading = () => (
 );
 
 const meta: Meta<GuideButtonProps> = {
-  title: 'Manager React Components/Navigation/Menus',
+  title: 'Manager React Components/Components/GuideButton',
   decorators: [(story) => <div>{story()}</div>],
   component: GuideButton,
   argTypes: {},
