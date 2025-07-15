@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -13,6 +13,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useGenerateUrl } from '@/hooks';
+import { Modal } from '@/components';
 import {
   CANCEL,
   CONFIRM,
@@ -97,17 +98,22 @@ export const DeleteAutoReplyModal = () => {
 
   return (
     <Modal
-      heading={t('common:delete_auto_reply')}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={onClose}
+      title={t('common:delete_auto_reply')}
+      color={ODS_MODAL_COLOR.critical}
+      onClose={onClose}
+      isDismissible
       isOpen
-      primaryLabel={t('common:delete')}
-      isPrimaryButtonLoading={isSending}
-      onPrimaryButtonClick={handleDeleteClick}
-      primaryButtonTestId="delete-btn"
-      secondaryLabel={t('common:cancel')}
-      onSecondaryButtonClick={handleCancelClick}
-      secondaryButtonTestId="cancel-btn"
+      secondaryButton={{
+        label: t('common:cancel'),
+        onClick: handleCancelClick,
+        testid: 'cancel-btn',
+      }}
+      primaryButton={{
+        label: t('common:delete'),
+        onClick: handleDeleteClick,
+        isLoading: isSending,
+        testid: 'delete-btn',
+      }}
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('zimbra_auto_replies_delete_modal_content')}

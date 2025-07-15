@@ -102,22 +102,3 @@ it('should display the modal with disabled buttons', async () => {
   await act(() => fireEvent.click(secondaryButton));
   expect(onSecondaryButtonClick).not.toHaveBeenCalled();
 });
-
-it('should display the modal whith new test ids', async () => {
-  const onPrimaryButtonClick = vi.fn(actionsMock.onPrimaryButtonClick);
-  const onSecondaryButtonClick = vi.fn(actionsMock.onSecondaryButtonClick);
-  const { getByTestId } = render(
-    <Modal
-      {...basicMock}
-      {...actionsMock}
-      primaryButtonTestId="new-primary-test-id"
-      secondaryButtonTestId="new-secondary-test-id"
-      onPrimaryButtonClick={onPrimaryButtonClick}
-      onSecondaryButtonClick={onSecondaryButtonClick}
-    />,
-  );
-  const primaryButton = getByTestId('new-primary-test-id');
-  const secondaryButton = getByTestId('new-secondary-test-id');
-  expect(primaryButton).toBeInTheDocument();
-  expect(secondaryButton).toBeInTheDocument();
-});

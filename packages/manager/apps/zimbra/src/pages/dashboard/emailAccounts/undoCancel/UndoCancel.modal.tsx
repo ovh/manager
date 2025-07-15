@@ -1,10 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import {
-  Modal,
   useFormatDate,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -18,6 +17,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useSlotWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import { Modal } from '@/components';
 import {
   getZimbraPlatformListQueryKey,
   putService,
@@ -103,19 +103,24 @@ export const UndoCancelSlotModal = () => {
 
   return (
     <Modal
-      heading={t('common:undo_cancel_slot_title', {
+      title={t('common:undo_cancel_slot_title', {
         offer: capitalize(slotWithService?.offer),
       })}
-      type={ODS_MODAL_COLOR.information}
-      onDismiss={onClose}
+      color={ODS_MODAL_COLOR.information}
+      onClose={onClose}
       isLoading={isLoading}
+      isDismissible
       isOpen
-      primaryLabel={t('common:confirm')}
-      onPrimaryButtonClick={handleSlotUndoCancelClick}
-      isPrimaryButtonLoading={isSending || isLoading}
-      primaryButtonTestId="primary-btn"
-      secondaryLabel={t('common:cancel')}
-      onSecondaryButtonClick={handleUndoCancelClick}
+      secondaryButton={{
+        label: t('common:cancel'),
+        onClick: handleUndoCancelClick,
+      }}
+      primaryButton={{
+        label: t('common:confirm'),
+        onClick: handleSlotUndoCancelClick,
+        isLoading: isSending || isLoading,
+        testid: 'primary-btn',
+      }}
     >
       <>
         <OdsText

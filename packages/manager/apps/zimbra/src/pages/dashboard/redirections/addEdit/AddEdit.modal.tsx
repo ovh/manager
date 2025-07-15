@@ -14,7 +14,7 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -25,7 +25,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loading } from '@/components';
+import { Modal, Loading } from '@/components';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { useAccount, useDomains } from '@/data/hooks';
 import { RedirectionSchema, redirectionSchema } from '@/utils';
@@ -165,22 +165,27 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      type={ODS_MODAL_COLOR.information}
-      ref={modalRef}
       isOpen
-      heading={t(
+      color={ODS_MODAL_COLOR.information}
+      isDismissible
+      ref={modalRef}
+      title={t(
         redirectionId ? 'common:edit_redirection' : 'common:add_redirection',
       )}
-      onDismiss={onClose}
+      onClose={onClose}
+      secondaryButton={{
+        testid: 'cancel-btn',
+        label: t('common:cancel'),
+        onClick: handleCancelClick,
+      }}
+      primaryButton={{
+        testid: 'confirm-btn',
+        label: t('common:confirm'),
+        isDisabled: !isDirty || !isValid,
+        isLoading: isLoadingDomains || isLoadingAccount || isSending,
+        onClick: handleSubmit(handleConfirmClick),
+      }}
       isLoading={isLoadingAccount}
-      primaryLabel={t('common:confirm')}
-      primaryButtonTestId="confirm-btn"
-      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
-      isPrimaryButtonDisabled={!isDirty || !isValid}
-      isPrimaryButtonLoading={isLoadingDomains || isLoadingAccount || isSending}
-      secondaryLabel={t('common:cancel')}
-      onSecondaryButtonClick={handleCancelClick}
-      secondaryButtonTestId="cancel-btn"
     >
       <form
         data-testid="redirection-form"
