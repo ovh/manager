@@ -182,6 +182,9 @@ export default class {
 
     const window = this.$window.open();
     window.opener = null;
+    console.log({
+      expressURL: `${this.expressURL}review?products=${stringifiedExpressParameters}`,
+    });
     window.location = `${this.expressURL}review?products=${stringifiedExpressParameters}`;
     window.target = '_blank';
 
