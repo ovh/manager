@@ -8,7 +8,6 @@ import {
 } from './onboarding.component';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import placeholderSrc from './../../../../public/assets/placeholder.png';
-import { Card } from '../../navigation/card/card.component';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 
@@ -22,34 +21,7 @@ const imgAltText = 'img alt text';
 const descriptionText = 'description text';
 const orderBtnLabel = 'Order Now';
 const infoBtnLabel = 'more info';
-const children = (
-  <>
-    <Card
-      href={''}
-      texts={{
-        title: 'Test Onboarding 1',
-        description: 'This is the description 1',
-        category: 'WEB',
-      }}
-    />
-    <Card
-      href={''}
-      texts={{
-        title: 'Test Onboarding 2',
-        description: 'This is the description 2',
-        category: 'CLOUD',
-      }}
-    />
-    <Card
-      href={''}
-      texts={{
-        title: 'Test Onboarding  3',
-        description: 'This is the description 3',
-        category: 'TELECOM',
-      }}
-    />
-  </>
-);
+const children = <>Test Onboarding 1</>;
 
 describe('specs:onboarding', () => {
   describe('default content', () => {
@@ -100,6 +72,11 @@ describe('specs:onboarding', () => {
       expect(orderButton).toHaveAttribute('is-disabled', 'true');
     });
     it('displays order button correctly', async () => {
+      mockedHook.mockReturnValue({
+        isAuthorized: true,
+        isLoading: false,
+        isFetched: true,
+      });
       const onOrderButtonClick = vi.fn();
       const screen = await setupSpecTest({
         title: customTitle,
@@ -167,16 +144,18 @@ describe('specs:onboarding', () => {
       expect(orderButton).toHaveAttribute('is-disabled', 'true');
       expect(moreInfoButton).toHaveAttribute('is-disabled', 'true');
     });
-    // it('displays children correctly', async () => {
-    //   waitFor(() =>
-    //     render(
-    //       <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
-    //     ),
-    //   );
-    //   const card = screen.getByText('Test Onboarding 1');
-    //   expect(card.closest('aside')).toHaveClass(
-    //     'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20',
-    //   );
-    // });
+    it('displays children correctly', async () => {
+      mockedHook.mockReturnValue({
+        isAuthorized: true,
+        isLoading: false,
+        isFetched: true,
+      });
+      waitFor(() =>
+        render(
+          <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
+        ),
+      );
+      const card = screen.getByText('Test Onboarding 1');
+    });
   });
 });
