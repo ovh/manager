@@ -9,7 +9,11 @@ import {
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constant';
 import { renderHook } from '@testing-library/react';
-import { MAX_CHAR, MIN_CHAR, useSecretPathSchema } from './pathSchema';
+import {
+  PATH_MAX_CHAR,
+  PATH_MIN_CHAR,
+  useSecretPathSchema,
+} from './pathSchema';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 
 let i18nValue: i18n;
@@ -67,25 +71,22 @@ describe('PathSchema test suite', () => {
   );
 
   it('should return the correct error message for a path that is too short', () => {
-    const path = 'a'.repeat(MIN_CHAR - 1);
+    const path = 'a'.repeat(PATH_MIN_CHAR - 1);
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
-      labels.common.form.error_min_chars.replace(
-        '{{ value }}',
-        MIN_CHAR.toString(),
-      ),
+      labels.common.form.required_field,
     );
   });
 
   it('should return the correct error message for a path that is too long', () => {
-    const path = 'a'.repeat(MAX_CHAR + 1);
+    const path = 'a'.repeat(PATH_MAX_CHAR + 1);
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
       labels.common.form.error_max_chars.replace(
         '{{ value }}',
-        MAX_CHAR.toString(),
+        PATH_MAX_CHAR.toString(),
       ),
     );
   });
