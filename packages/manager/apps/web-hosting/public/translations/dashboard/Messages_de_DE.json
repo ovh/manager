@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Das Feld {{t0}} Ihrer Domain {{t1}} auf {{t2}} verweisen lassen.",
   "hosting_add_step3_insert_token_field": "Ein Feld {{t0}} für die Domain {{t1}} mit dem Wert {{t2}} einfügen.",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Die Domain(s) wurde(n) Ihrem Shared Hosting erfolgreich hinzugefügt.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "Beim Hinzufügen der Domain(s) zu Ihrem Shared Hosting ist ein Fehler aufgetreten."
+  "hosting_tab_DOMAINS_configuration_add_failure": "Beim Hinzufügen der Domain(s) zu Ihrem Shared Hosting ist ein Fehler aufgetreten.",
+  "domain_tab_emails": "E-Mails und Mailinglisten"
 }
