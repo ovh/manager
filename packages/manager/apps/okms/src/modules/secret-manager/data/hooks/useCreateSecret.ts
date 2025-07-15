@@ -8,7 +8,7 @@ import {
 
 export const useCreateSecret = (
   options: Partial<
-    UseMutationOptions<CreateSecretResponse, Error, PostSecretParams>
+    UseMutationOptions<CreateSecretResponse, ApiError, PostSecretParams>
   > = {},
 ) => {
   return useMutation<CreateSecretResponse, ApiError, PostSecretParams>({
