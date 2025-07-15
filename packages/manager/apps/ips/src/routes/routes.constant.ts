@@ -13,6 +13,7 @@ export const subRoutes = {
   configureGameFirewall: 'game-firewall',
   configureEdgeNetworkFirewall: 'edge-network-firewall',
   addVirtualMac: 'add-virtual-mac',
+  manageIpMitigation: 'manage-mitigation',
 };
 
 export const urlDynamicParts = {
@@ -38,4 +39,5 @@ export const urls = {
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
   listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
   byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
+  manageIpMitigation: `${subRoutes.root}/${subRoutes.manageIpMitigation}/${urlDynamicParts.id}`,
 };
