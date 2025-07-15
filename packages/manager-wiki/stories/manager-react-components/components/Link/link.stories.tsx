@@ -7,21 +7,21 @@ const backLink: LinkProps = {
   children: 'Back to the list',
   href: 'https://www.ovhcloud.com',
   target: '_blank',
-  type: LinkType.back,
+  type: LINK_TYPE.back,
 };
 
 const nextLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Next Page',
-  type: LinkType.next,
+  type: LINK_TYPE.next,
 };
 
 const externalLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'External Page',
-  type: LinkType.external,
+  type: LINK_TYPE.external,
 };
 
 const iamLinkWithAuthorization: LinkProps = {
