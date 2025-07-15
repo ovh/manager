@@ -18,44 +18,44 @@ type QuickAccessItem = {
 };
 
 export default function QuickAccess({ projectId }: { projectId: string }) {
-  const { t } = useTranslation(['home']);
+  const { t } = useTranslation('home');
   const quickAccess: QuickAccessItem[] = useMemo(
     () => [
       {
         icon: IconInstances,
         title: t('instances'),
         description: t('create_instance'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `instances/new`,
       },
       {
         icon: IconKubernetes,
         title: t('kubernetes'),
         description: t('create_cluster'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `kubernetes/new`,
       },
       {
         icon: IconObjectStorage,
         title: t('object_storage'),
         description: t('create_container'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `storages/objects/new`,
       },
       {
         icon: IconBlockStorage,
         title: t('block_storage'),
         description: t('create_volume'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `storages/blocks`,
       },
       {
         icon: IconNetwork,
         title: t('network'),
         description: t('manage_vrack'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `private-networks`,
       },
       {
         icon: IconDatabase,
         title: t('database'),
         description: t('create_database'),
-        link: `/public-cloud/pci/projects/${projectId}/instances/new`,
+        link: `databases-analytics/operational/services/new`,
       },
     ],
     [projectId, t],
