@@ -3,7 +3,7 @@
   "domain_section_title": "1. Sélection du domaine",
   "region_selector_title": "Sélectionnez une région",
   "domain_selector_title": "Sélectionnez un domaine",
-  "domain_selector_create_domain": "Nouveau domaine",
+  "domain_selector_activate_domain": "Activer",
   "secret_section_title": "2. Configuration du secret",
   "path_title": "Path",
   "path_helper": "Pour créer une hiérarchie, utilisez des '/'. Exemple : prod/database/MySQL",

@@ -7,6 +7,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constant';
 import { OKMS } from '@/types/okms.type';
 import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { RadioCard } from '@/common/components/RadioCard/RadioCard.component';
@@ -42,6 +43,19 @@ export const DomainSelector = ({
 }: DomainSelectorProps) => {
   const { t } = useTranslation('secret-manager/create');
 
+  if (domains.length === 0) {
+    return (
+      <OdsButton
+        data-testid={ACTIVATE_DOMAIN_BTN_TEST_ID}
+        label={t('domain_selector_activate_domain')}
+      />
+    );
+  }
+
+  if (domains.length === 1) {
+    return <></>;
+  }
+
   return (
     <div className="flex flex-col gap-3">
       <OdsText preset="heading-4">{t('domain_selector_title')}</OdsText>
@@ -61,9 +75,6 @@ export const DomainSelector = ({
             )}
           </RadioCard>
         ))}
-      </div>
-      <div className="flex flex-col">
-        <OdsButton label={t('domain_selector_create_domain')} />
       </div>
     </div>
   );

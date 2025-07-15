@@ -5,7 +5,6 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import { I18nextProvider } from 'react-i18next';
-import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { useSearchParams } from 'react-router-dom';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
@@ -23,10 +22,15 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
+import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constant';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { DomainManagement } from './DomainManagement.component';
-import { catalogMock } from '@/mocks/catalog/catalog.mock';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { catalogMock, REGION_CA_EAST_BHS } from '@/mocks/catalog/catalog.mock';
+import {
+  okmsMock,
+  okmsMockbyRegionQuantityOne,
+  okmsMockbyRegionQuantityTwo,
+} from '@/mocks/kms/okms.mock';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
@@ -80,6 +84,8 @@ vi.mocked(useOkmsList).mockReturnValue({
   data: okmsMock,
 } as UseQueryResult<OKMS[], ErrorResponse>);
 
+const setSelectedDomainIdMocked = vi.fn();
+
 const TestComponent = () => {
   const [selectedDomainId, setSelectedDomainId] = useState<
     string | undefined
@@ -88,7 +94,10 @@ const TestComponent = () => {
   return (
     <DomainManagement
       selectedDomainId={selectedDomainId}
-      setSelectedDomainId={setSelectedDomainId}
+      setSelectedDomainId={(id) => {
+        setSelectedDomainIdMocked(id);
+        setSelectedDomainId(id);
+      }}
     />
   );
 };
@@ -113,8 +122,6 @@ const renderDomainManagement = async () => {
 };
 
 /* TEST UTILS */
-const firstRegion = catalogMock.plans[0].configurations[0].values[0];
-
 const assertInitialRegionList = async () => {
   const availableRegions = catalogMock.plans[0].configurations[0].values;
   await waitFor(
@@ -135,10 +142,47 @@ const assertInitialRegionList = async () => {
   );
 };
 
-const selectRegion = async (user: UserEvent) => {
-  const firstRegionRadioCard = screen.getByTestId(firstRegion);
+const assertDomainsAreNotInTheDocument = async (domains: OKMS[]) => {
+  await waitFor(() => {
+    domains.forEach(async (domain) => {
+      const domainRadioCard = screen.queryByTestId(domain.id);
+      expect(domainRadioCard).toBeNull();
+    });
+  });
+};
 
-  await act(() => user.click(firstRegionRadioCard));
+const assertDomainsAreInTheDocument = async (domains: OKMS[]) => {
+  await waitFor(() => {
+    domains.forEach((domain) => {
+      assertTextVisibility(domain.iam.displayName);
+      const domainRadioCard = screen.getByTestId(domain.id);
+      expect(domainRadioCard).toBeVisible();
+    });
+  });
+};
+
+const assertActivateButtonIsInTheDocument = async () => {
+  const activateButton = screen.queryByTestId(ACTIVATE_DOMAIN_BTN_TEST_ID);
+  await waitFor(() => {
+    expect(activateButton).toBeVisible();
+  });
+};
+
+const assertActivateButtonIsNotInTheDocument = async () => {
+  const activateButton = screen.queryByTestId(ACTIVATE_DOMAIN_BTN_TEST_ID);
+  await waitFor(() => {
+    expect(activateButton).toBeNull();
+  });
+};
+
+const selectRegion = async (user: UserEvent, region: string) => {
+  const regionCard = screen.getByTestId(region);
+
+  await act(() => user.click(regionCard));
+
+  await waitFor(() => {
+    expect(regionCard).toBeChecked();
+  });
 };
 
 /* DOMAIN MANAGEMENT TEST SUITE */
@@ -179,34 +223,95 @@ describe('Domain management test suite', () => {
     await assertInitialRegionList();
   });
 
-  it('should display a filtered domain list and select the first one on a region selection', async () => {
-    const user = userEvent.setup();
-    // GIVEN
-    vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+  describe('on region selection', () => {
+    afterEach(() => {
+      vi.clearAllMocks();
+    });
+    it('should display a CTA when there is no domain', async () => {
+      const user = userEvent.setup();
+      // GIVEN
+      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
 
-    const regionDomainList = filterDomainsByRegion(okmsMock, firstRegion);
-    await renderDomainManagement();
-    await assertTextVisibility(
-      labels.secretManager.create.domain_section_title,
-    );
-    await assertTextVisibility(firstRegion);
+      await renderDomainManagement();
+      await assertTextVisibility(
+        labels.secretManager.create.domain_section_title,
+      );
+      await assertTextVisibility(REGION_CA_EAST_BHS);
 
-    // WHEN
-    await selectRegion(user);
+      // WHEN
+      await selectRegion(user, REGION_CA_EAST_BHS);
 
-    // THEN
-    await waitFor(() => {
-      // assert we display the correct domain list
+      // THEN
+      await assertDomainsAreNotInTheDocument(okmsMock);
+      await assertActivateButtonIsInTheDocument();
+      // assert we reset the selectedDomainId
+      await waitFor(() =>
+        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
+      );
+      expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(undefined);
+    });
+
+    it('should not display anything when there is exactly one domain', async () => {
+      const user = userEvent.setup();
+      // GIVEN
+      const regionWithOneDomain = okmsMockbyRegionQuantityOne.region;
+      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+
+      await renderDomainManagement();
+      await assertTextVisibility(
+        labels.secretManager.create.domain_section_title,
+      );
+      await assertTextVisibility(regionWithOneDomain);
+
+      // WHEN
+      await selectRegion(user, regionWithOneDomain);
+
+      // THEN
+      await assertDomainsAreNotInTheDocument(okmsMock);
+      await assertActivateButtonIsNotInTheDocument();
+      // assert we select the region's domain
+      await waitFor(() =>
+        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
+      );
+      expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
+        okmsMockbyRegionQuantityOne.mock[0].id,
+      );
+    });
+
+    it('should display a filtered domain list when there is more than one domain', async () => {
+      const user = userEvent.setup();
+      const regionWithTwoDomains = okmsMockbyRegionQuantityTwo.region;
+
+      // GIVEN
+      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+
+      await renderDomainManagement();
+      await assertTextVisibility(
+        labels.secretManager.create.domain_section_title,
+      );
+      await assertTextVisibility(regionWithTwoDomains);
+
+      // WHEN
+      await selectRegion(user, regionWithTwoDomains);
+
+      // THEN
+      await assertDomainsAreNotInTheDocument(okmsMockbyRegionQuantityOne.mock);
+      await assertDomainsAreInTheDocument(okmsMockbyRegionQuantityTwo.mock);
+      await assertActivateButtonIsNotInTheDocument();
       // assert that the first domain is selected
-      regionDomainList.forEach((domain, index) => {
-        assertTextVisibility(domain.iam.displayName);
-        const domainRadioCard = screen.getByTestId(domain.id);
-        if (index === 0) {
-          expect(domainRadioCard).toBeChecked();
-          return;
-        }
-        expect(domainRadioCard).not.toBeChecked();
+      await waitFor(() => {
+        const domainRadioCard = screen.getByTestId(
+          okmsMockbyRegionQuantityTwo.mock[0].id,
+        );
+        expect(domainRadioCard).toBeChecked();
       });
+      // assert we set the selected domain id
+      await waitFor(() =>
+        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
+      );
+      expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
+        okmsMockbyRegionQuantityTwo.mock[0].id,
+      );
     });
   });
 
