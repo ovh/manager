@@ -18,6 +18,10 @@ export default function DatagridColumnRenewMode({
 }: DatagridColumnBadgeProps) {
   const { t } = useTranslation('allDom');
 
+  if (!renewMode) {
+    return '-';
+  }
+
   if (allDomResourceState === ServiceInfoUpdateEnum.TerminateAtExpirationDate) {
     return (
       <OdsBadge

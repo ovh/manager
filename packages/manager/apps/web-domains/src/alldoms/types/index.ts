@@ -54,10 +54,12 @@ export interface TServiceInfo {
 }
 
 export interface AlldomService {
-  name: string;
-  type: ServiceInfoType;
-  domains: TDomainsInfo[];
-  extensions: string[];
+  currentState: {
+    name: string;
+    type: ServiceInfoType;
+    domains: TDomainsInfo[];
+    extensions: string[];
+  };
   nicAdmin: string;
   nicBilling: string;
   nicTechnical: string;
@@ -65,19 +67,6 @@ export interface AlldomService {
   renewMode: ServiceInfoRenewMode | null;
   expirationDate: string;
   serviceId: number;
-}
-
-export interface TAlldoms {
-  id: string;
-  currentState: {
-    name: string;
-    type: ServiceInfoType;
-    domains: TDomainsInfo[];
-    extensions: string[];
-  };
-  currentTasks: any;
-  iam: any;
-  resourceStatus: string;
 }
 
 export interface TDomainsInfo {

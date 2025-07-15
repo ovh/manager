@@ -46,7 +46,6 @@ export default function ServiceDetailSubscribing({
         />
 
         <ServiceActionMenu
-          serviceId={`${serviceId}-subscribe`}
           serviceName={serviceInfoDetail.allDomResource.currentState.name}
           terminateUrl={'terminate'}
           allDomResourceState={serviceInfoDetail.allDomResourceState}
@@ -96,7 +95,6 @@ export default function ServiceDetailSubscribing({
           </ul>
         </div>
         <ServiceActionMenu
-          serviceId={`${serviceId}-contact`}
           serviceName={serviceInfoDetail.allDomResource.currentState.name}
           terminateUrl={'terminate'}
           allDomResourceState={serviceInfoDetail.allDomResourceState}

@@ -11,7 +11,6 @@ import { ActionEnum, ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
 
 interface DatagridColumnActionMenuProps {
-  readonly serviceId: string;
   readonly serviceName: string;
   readonly allDomResourceState: ServiceInfoUpdateEnum;
   readonly terminateUrl: string;
@@ -19,7 +18,6 @@ interface DatagridColumnActionMenuProps {
 }
 
 export default function ServiceActionMenu({
-  serviceId,
   serviceName,
   terminateUrl,
   allDomResourceState,
@@ -103,7 +101,7 @@ export default function ServiceActionMenu({
 
   return (
     <ActionMenu
-      id={serviceId}
+      id={serviceName}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       items={items}

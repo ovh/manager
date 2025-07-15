@@ -10,16 +10,19 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 
+import { toASCII } from 'punycode';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
-import { AlldomService, TAlldoms } from '@/alldoms/types';
+import { AlldomService } from '@/alldoms/types';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
 import { findContact } from '@/alldoms/utils/utils';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
   const { notifications } = useNotifications();
+  const [searchInput, setSearchInput] = useState('');
   const [alldomServices, setAlldomServices] = useState<AlldomService[]>([]);
+  const columns = useAllDomDatagridColumns();
 
   const {
     flattenData: allDomList,
@@ -30,28 +33,31 @@ export default function ServiceList() {
     sorting,
     isLoading,
     setSorting,
-  } = useResourcesIcebergV2<TAlldoms>({
+    filters,
+    search,
+  } = useResourcesIcebergV2<AlldomService>({
     route: '/domain/alldom',
-    queryKey: ['domain', 'alldom'],
+    queryKey: ['domain', 'alldom', searchInput],
     pageSize: 10,
+    columns,
   });
 
   const { data: serviceList, listLoading } = useGetAllDoms({
-    names: ['testdomain-puweb', 'tomlebossdavenir'],
+    names: allDomList?.map((alldom: AlldomService) => alldom.currentState.name),
   });
 
   useEffect(() => {
-    if (allDomList && !listLoading && serviceList) {
+    if (allDomList) {
       const services = allDomList.map((alldom) => {
+        if (!serviceList || listLoading) {
+          return alldom;
+        }
         const service = serviceList.find(
           (s) => s.resource.name === alldom.currentState.name,
         );
         const contacts = service?.customer?.contacts ?? [];
         return {
-          name: alldom.currentState.name,
-          type: alldom.currentState.type,
-          domains: alldom.currentState.domains,
-          extensions: alldom.currentState.extensions,
+          ...alldom,
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
@@ -64,9 +70,19 @@ export default function ServiceList() {
       });
       setAlldomServices(services);
     }
-  }, [allDomList, listLoading, serviceList]);
+  }, [allDomList]);
 
-  const columns = useAllDomDatagridColumns();
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      search.setSearchInput(toASCII(searchInput.toLowerCase()));
+    }, 300);
+
+    return () => clearTimeout(debounce);
+  }, [searchInput]);
+
+  useEffect(() => {
+    search.onSearch(search.searchInput);
+  }, [search.searchInput]);
 
   const header = {
     title: t('title'),
@@ -100,6 +116,12 @@ export default function ServiceList() {
           sorting={sorting}
           onSortChange={setSorting}
           isLoading={isLoading}
+          filters={filters}
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: () => null,
+          }}
         />
         <Outlet />
       </div>

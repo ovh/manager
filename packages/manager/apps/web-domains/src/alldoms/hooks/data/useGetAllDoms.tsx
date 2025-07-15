@@ -9,7 +9,7 @@ interface UseGetDatagridServiceInfoListProps {
 export const useGetAllDoms = ({
   names = [],
 }: UseGetDatagridServiceInfoListProps) => {
-  const { data, isLoading } = useQueries({
+  const { data, listLoading } = useQueries({
     queries: names
       ? names.map((name) => ({
           queryKey: ['serviceInfo', name],
@@ -18,12 +18,10 @@ export const useGetAllDoms = ({
       : [],
     combine: (results) => {
       return {
-        isLoading: results.some((result) => result.isLoading),
-        data: results.map((result) => {
-          return result.data;
-        }),
+        listLoading: results.some((result) => result.isLoading),
+        data: results.map((result) => result.data),
       };
     },
   });
-  return { data, listLoading: isLoading };
+  return { data, listLoading };
 };

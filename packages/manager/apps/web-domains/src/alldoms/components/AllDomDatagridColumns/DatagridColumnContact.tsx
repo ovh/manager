@@ -9,7 +9,7 @@ export default function DatagridColumnContact({
   contact,
 }: Readonly<DatagridColumnContactProps>) {
   if (!contact) {
-    return '';
+    return '-';
   }
 
   return <DataGridTextCell>{contact}</DataGridTextCell>;
