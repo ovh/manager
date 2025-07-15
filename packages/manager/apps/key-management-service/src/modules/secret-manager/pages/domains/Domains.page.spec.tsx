@@ -7,6 +7,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
+import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 import { labels } from '@/utils/tests/init.i18n';
 import {
   regionWithMultipleOkms,
@@ -17,7 +18,7 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDomains(
   regionWithMultipleOkms.region,
 );
 
-const checkPageToBeDisplayed = async (container: HTMLElement) => {
+const checkDomainsPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
   // Check the page title
@@ -35,7 +36,7 @@ const checkPageToBeDisplayed = async (container: HTMLElement) => {
     label: regionWithMultipleOkms.okmsMock[0].iam.displayName,
     isLink: true,
   });
-  expect(okmsNameLink).toBeInTheDocument();
+  expect(okmsNameLink).toBeEnabled();
 
   return { user, okmsNameLink };
 };
@@ -44,13 +45,19 @@ describe('Secret domains listing test suite', () => {
   it('should display the okms listing page', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkPageToBeDisplayed(container);
+    await checkDomainsPageToBeDisplayed(container);
+  });
+
+  it('should display the region selector', async () => {
+    const { container } = await renderTestApp(mockPageUrl);
+
+    await assertRegionSelectorIsVisible(container);
   });
 
   it('should display the listing table with all columns', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    await checkPageToBeDisplayed(container);
+    await checkDomainsPageToBeDisplayed(container);
 
     const name = labels.listing.key_management_service_listing_name_cell;
     const id = labels.listing.key_management_service_listing_id_cell;
@@ -66,7 +73,7 @@ describe('Secret domains listing test suite', () => {
   it(`should navigate to the kms creation form on click on order kms button`, async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user } = await checkPageToBeDisplayed(container);
+    const { user } = await checkDomainsPageToBeDisplayed(container);
 
     const button = await getOdsButtonByLabel({
       container,
@@ -83,7 +90,9 @@ describe('Secret domains listing test suite', () => {
   it('should navigate to the secrets listing page on click on domain name', async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
-    const { user, okmsNameLink } = await checkPageToBeDisplayed(container);
+    const { user, okmsNameLink } = await checkDomainsPageToBeDisplayed(
+      container,
+    );
 
     user.click(okmsNameLink);
 
@@ -98,7 +107,7 @@ describe('Secret domains listing test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkPageToBeDisplayed(container);
+      await checkDomainsPageToBeDisplayed(container);
     });
 
     it('when the region is not valid', async () => {
@@ -108,7 +117,13 @@ describe('Secret domains listing test suite', () => {
 
       // manager redirects to the root page
       // then to the default region page that displays the okms list
-      await checkPageToBeDisplayed(container);
+      await checkDomainsPageToBeDisplayed(container);
     });
+  });
+
+  it('should redirect to the secret list when the kms list has one item', async () => {
+    await renderTestApp(mockPageUrl, { nbOkms: 1 });
+
+    await assertTextVisibility(labels.secretManager.common.secret_manager);
   });
 });
