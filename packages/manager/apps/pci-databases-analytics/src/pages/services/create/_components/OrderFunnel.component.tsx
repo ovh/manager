@@ -146,14 +146,6 @@ const OrderFunnel = ({
   const classNameLabel = 'scroll-m-20 text-xl font-semibold';
 
   const [isApiTerraformDialogOpen, setApiTerraformDialogOpen] = useState(false);
-  const [dialogData, setDialogData] = useState<ReturnType<
-    typeof useOrderFunnel
-  > | null>(null);
-
-  const handleApiTerraformDialog = () => {
-    setDialogData(model);
-    setApiTerraformDialogOpen(true);
-  };
 
   return (
     <>
@@ -443,7 +435,7 @@ const OrderFunnel = ({
                 type="button"
                 className="w-full break-words whitespace-normal"
                 mode="ghost"
-                onClick={handleApiTerraformDialog}
+                onClick={() => setApiTerraformDialogOpen(true)}
               >
                 {t('apiAndTerraformButton')}
               </Button>

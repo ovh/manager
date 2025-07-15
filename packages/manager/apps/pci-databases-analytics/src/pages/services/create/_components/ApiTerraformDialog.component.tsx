@@ -139,9 +139,8 @@ const ApiTerraformDialog = ({
   };
 
   // Fill API configuration
-  const apiBody: ServiceCreationWithEngine = {
+  const apiBodyContent = {
     description: dialogData.name,
-    engine: dialogData.availability.engine as database.EngineEnum,
     nodesPattern: {
       flavor: dialogData.availability.flavor,
       number: dialogData.nodes,
@@ -150,29 +149,26 @@ const ApiTerraformDialog = ({
     plan: dialogData.availability.plan,
     version: dialogData.availability.version,
     ipRestrictions: dialogData.ipRestrictions,
-  };
+  } as database.ServiceCreation;
   if (dialogData.network.type === database.NetworkTypeEnum.private) {
     const networkOpenstackId = dialogData.network.network.regions.find((r) =>
       r.region.includes(dialogData.availability.region),
     ).openstackId;
-    apiBody.networkId = networkOpenstackId;
-    apiBody.subnetId = dialogData.network.subnet.id;
+    apiBodyContent.networkId = networkOpenstackId;
+    apiBodyContent.subnetId = dialogData.network.subnet.id;
   }
   if (dialogData.flavor.storage) {
-    apiBody.disk = {
+    apiBodyContent.disk = {
       size:
         dialogData.flavor.storage.minimum.value + dialogData.additionalStorage,
     } as database.service.Disk;
   }
-  // Destructure body to extract engine and keep the rest
-  const { engine, ...formattedApiBody } = apiBody;
-  const apiEndpoint = `/cloud/project/${projectId}/database/${engine}`;
-  const apiBodyContent = formattedApiBody;
+  const apiEndpoint = `/cloud/project/${projectId}/database/${dialogData.availability.engine}`;
 
   return (
     <>
       <Dialog open={true} onOpenChange={onRequestClose}>
-        <DialogContent className="fixed left-1/2 top-1/2 max-h-[80vh] w-[90vw] max-w-xl -translate-x-1/2 -translate-y-1/2 p-4">
+        <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle>
               {t('pciDatabasesAddCommandDialogEquivalentOrder')}
@@ -209,7 +205,7 @@ const ApiTerraformDialog = ({
                 }}
               ></Trans>
               <div>{t('pciDatabasesAddCommandDialogApiParameters')}</div>
-              <div className="inline-flex items-center gap-1 font-mono text-sm">
+              <div className="inline-flex gap-1 font-mono text-sm items-start">
                 <span className="rounded bg-green-100 px-2 py-0.5 text-green-700 font-semibold">
                   POST
                 </span>
@@ -221,7 +217,7 @@ const ApiTerraformDialog = ({
                 </span>
               </div>
               <Code
-                className="h-dvh max-h-64 max-w-full"
+                className="h-dvh max-h-64 max-w-full text-xs"
                 code={JSON.stringify(apiBodyContent, null, 2)}
                 lang={JsonLanguage}
                 onCopied={() =>
@@ -273,7 +269,7 @@ const ApiTerraformDialog = ({
                 />
               ) : (
                 <Code
-                  className="h-dvh max-h-64 max-w-full"
+                  className="h-dvh max-h-64 max-w-full text-xs"
                   code={terraformData.resource}
                   lang={TerraformLanguage}
                   onCopied={() =>
