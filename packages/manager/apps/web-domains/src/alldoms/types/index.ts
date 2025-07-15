@@ -68,12 +68,16 @@ export interface AlldomService {
 }
 
 export interface TAlldoms {
+  id: string;
   currentState: {
     name: string;
     type: ServiceInfoType;
     domains: TDomainsInfo[];
     extensions: string[];
   };
+  currentTasks: any;
+  iam: any;
+  resourceStatus: string;
 }
 
 export interface TDomainsInfo {

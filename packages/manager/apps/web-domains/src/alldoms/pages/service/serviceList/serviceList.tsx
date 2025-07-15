@@ -28,6 +28,7 @@ export default function ServiceList() {
     hasNextPage,
     fetchNextPage,
     sorting,
+    isLoading,
     setSorting,
   } = useResourcesIcebergV2<TAlldoms>({
     route: '/domain/alldom',
@@ -36,16 +37,15 @@ export default function ServiceList() {
   });
 
   const { data: serviceList, listLoading } = useGetAllDoms({
-    names: allDomList?.map((alldom: TAlldoms) => alldom.currentState.name),
+    names: ['testdomain-puweb', 'tomlebossdavenir'],
   });
 
   useEffect(() => {
-    if (allDomList && serviceList) {
+    if (allDomList && !listLoading && serviceList) {
       const services = allDomList.map((alldom) => {
         const service = serviceList.find(
           (s) => s.resource.name === alldom.currentState.name,
         );
-
         const contacts = service?.customer?.contacts ?? [];
         return {
           name: alldom.currentState.name,
@@ -62,10 +62,9 @@ export default function ServiceList() {
           serviceId: service.serviceId,
         } as AlldomService;
       });
-
       setAlldomServices(services);
     }
-  }, [allDomList, serviceList]);
+  }, [allDomList, listLoading, serviceList]);
 
   const columns = useAllDomDatagridColumns();
 
@@ -78,7 +77,9 @@ export default function ServiceList() {
       <ErrorBanner
         error={{
           status: 500,
-          data: { message: error.message },
+          data: {
+            message: error.message,
+          },
         }}
       />
     );
@@ -98,7 +99,7 @@ export default function ServiceList() {
           onFetchNextPage={fetchNextPage}
           sorting={sorting}
           onSortChange={setSorting}
-          isLoading={listLoading}
+          isLoading={isLoading}
         />
         <Outlet />
       </div>

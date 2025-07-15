@@ -30,7 +30,6 @@ export const getServiceInformation = async (
   );
 
   const { data } = await v6.get(`/services/${serviceNameId}`);
-  console.log('data', data);
   return data;
 };
 
