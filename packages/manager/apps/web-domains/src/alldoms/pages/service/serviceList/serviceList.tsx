@@ -70,7 +70,7 @@ export default function ServiceList() {
       });
       setAlldomServices(services);
     }
-  }, [allDomList]);
+  }, [allDomList, listLoading, serviceList]);
 
   useEffect(() => {
     const debounce = setTimeout(() => {
