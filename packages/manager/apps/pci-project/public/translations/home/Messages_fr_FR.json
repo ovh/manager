@@ -1,4 +1,16 @@
 {
   "name": "Accueil",
-  "quick_access": "Accès rapide"
+  "quick_access": "Accès rapide",
+  "instances": "Instances",
+  "create_instance": "Créer une instance",
+  "kubernetes": "Kubernetes",
+  "create_cluster": "Créer un cluster",
+  "object_storage": "Object Storage",
+  "create_container": "Créer un conteneur",
+  "block_storage": "Block Storage",
+  "create_volume": "Créer un volume",
+  "network": "Network",
+  "manage_vrack": "Gérer les réseaux privés (vRack)",
+  "database": "Database",
+  "create_database": "Créer une base de données"
 }
