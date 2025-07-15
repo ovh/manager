@@ -5,8 +5,8 @@
   },
   "include": [
     // Add you components migrated here
-    "./src/components/Links/Link.component.tsx",
-    "./src/components/Links/Links.props.ts"
+    // "./src/components/Link/Link.component.tsx",
+    "./src/components/Link/Link.props.ts"
   ],
   "exclude": [
     "./src/hooks/*",
