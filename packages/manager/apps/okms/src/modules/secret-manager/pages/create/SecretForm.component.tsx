@@ -58,32 +58,31 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
   });
 
   /* Submit */
-  const { mutateAsync: createSecret, isPending } = useCreateSecret();
-
-  const handleConfirmClick: SubmitHandler<SecretSchema> = async (formData) => {
-    try {
-      const result = await createSecret({
-        okmsId: domainId,
-        data: {
-          path: formData.path,
-          version: { data: JSON.parse(formData.data) },
-        },
-      });
-
+  const { mutate: createSecret, isPending } = useCreateSecret({
+    onSuccess: async (data) => {
       await queryClient.invalidateQueries({
         queryKey: secretQueryKeys.list(domainId),
       });
 
-      navigate(
-        SECRET_MANAGER_ROUTES_URLS.secretDashboard(domainId, result.path),
-      );
-    } catch (error) {
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretDashboard(domainId, data.path));
+    },
+    onError: (error) => {
       addError(
         t(`${NAMESPACES.ERROR}:error_message`, {
-          message: error.message,
+          message: error.response.data.message,
         }),
       );
-    }
+    },
+  });
+
+  const handleConfirmClick: SubmitHandler<SecretSchema> = (formData) => {
+    createSecret({
+      okmsId: domainId,
+      data: {
+        path: formData.path,
+        version: { data: JSON.parse(formData.data) },
+      },
+    });
   };
 
   return (
