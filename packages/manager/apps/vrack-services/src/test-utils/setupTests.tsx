@@ -10,23 +10,23 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-react-shell-client');
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
   };
 });
 
-vi.mock('react-router-dom', async (importOriginal) => {
-  const original: typeof import('react-router-dom') = await importOriginal();
+vi.mock('react-router-dom', async () => {
+  const original = await vi.importActual('react-router-dom');
   return {
     ...original,
+    useNavigate: () => ({ navigate: vi.fn() }),
     useSearchParams: () => [{ get: (str: string) => str }],
-    useNavigate: vi.fn(),
     useLocation: vi.fn().mockReturnValue({
       pathname: 'pathname',
     }),
-    NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
+    NavLink: ({ ...params }: NavLinkProps) => params.children,
   };
 });

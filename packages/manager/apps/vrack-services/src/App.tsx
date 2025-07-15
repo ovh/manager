@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { getRoutes } from '@/routes/routes';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import ComponentRoutes from '@/routes/routes';
 import { MessageContextProvider } from '@/components/feedback-messages/Messages.context';
 
 const queryClient = new QueryClient({
@@ -21,8 +25,7 @@ const Routes: React.FC = () => {
     'vrack-services',
   ]);
   const { shell } = React.useContext(ShellContext);
-  const routes = getRoutes();
-  const router = createHashRouter(routes);
+  const router = createHashRouter(createRoutesFromElements(ComponentRoutes));
   const isAppAvailable = !!data?.['vrack-services'];
 
   React.useEffect(() => {
@@ -39,7 +42,11 @@ const Routes: React.FC = () => {
     return <></>;
   }
 
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<span>Loading routes ...</span>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 };
 
 export const App: React.FC = () => {
