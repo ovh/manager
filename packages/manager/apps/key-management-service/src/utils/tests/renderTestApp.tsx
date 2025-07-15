@@ -25,6 +25,7 @@ import {
   getSecretsMock,
   GetSecretsMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
+import { getLocationsMock } from '@secret-manager/mocks/locations/secrets.handler';
 import {
   getVersionsMock,
   GetVersionsMockParams,
@@ -99,6 +100,7 @@ export const renderTestApp = async (
       ...deleteCredentialMock(mockParams),
       ...getIdentityUserIds(),
       ...getIdentityUsers(),
+      ...getLocationsMock(),
       ...getSecretsMock(mockParams),
       ...getSecretMock(mockParams),
       ...createSecretsMock(mockParams),
