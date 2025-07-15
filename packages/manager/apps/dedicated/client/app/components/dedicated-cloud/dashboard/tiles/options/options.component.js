@@ -15,9 +15,8 @@ export default {
     goToDrp: '<',
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
-
     isDrpActionPossible: '<',
-
+    isLogsDisabled: '<?',
     onBasicOptionsUpgrade: '&',
     onCertificationUpgrade: '&',
     onConfigurationOnlyUpgrade: '&',
