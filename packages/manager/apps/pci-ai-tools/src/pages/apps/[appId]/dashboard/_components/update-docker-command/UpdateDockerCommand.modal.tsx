@@ -31,6 +31,7 @@ import RouteModal from '@/components/route-modal/RouteModal';
 import ai from '@/types/AI';
 import { DOCKER_CONFIG } from '@/configuration/docker-command';
 import { useUpdateApp } from '@/data/hooks/ai/app/useUpdateApp.hook';
+import { parseDockerCommand } from '@/lib/dockerCommandHelper';
 
 const UpdateDockerCommand = () => {
   const { app, projectId } = useAppData();
@@ -75,13 +76,7 @@ const UpdateDockerCommand = () => {
 
   const onSubmit = form.handleSubmit((formValues) => {
     const updateAppInfo: ai.app.UpdateInput = {
-      command: Array.from(
-        new Set(
-          formValues.dockerCommand
-            .split(' ')
-            .filter((cmd: string) => cmd.trim() !== ''),
-        ),
-      ),
+      command: parseDockerCommand(formValues.dockerCommand),
     };
     updateApp({ projectId, appId: app.id, appInfo: updateAppInfo });
   });
