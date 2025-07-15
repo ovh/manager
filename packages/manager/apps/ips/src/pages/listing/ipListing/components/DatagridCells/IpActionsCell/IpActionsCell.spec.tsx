@@ -4,6 +4,10 @@ import { describe, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
@@ -23,25 +27,45 @@ const useIpHasServicesAttachedMock = vi.hoisted(() =>
   vi.fn(() => ({ hasServiceAttached: true })),
 );
 
+const useIpHasServicesNotAttachedMock = vi.hoisted(() =>
+  vi.fn(() => ({ hasServiceNotAttached: false })),
+);
+
 const useGetIpVmacWithIpMock = vi.hoisted(() =>
   vi.fn(() => ({ vmacsWithIp: [] })),
+);
+
+const useGetIpMitigationMock = vi.hoisted(() =>
+  vi.fn(() => ({ ipMitigation: [], isLoading: false })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
   useIpHasServicesAttached: useIpHasServicesAttachedMock,
+  useIpHasServicesNotAttached: useIpHasServicesNotAttachedMock,
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
+  useGetIpMitigation: useGetIpMitigationMock,
 }));
+
+const mockShell = {
+  navigation: {
+    getURL: vi.fn().mockResolvedValue('mocked-url'),
+  },
+};
 
 /** RENDER */
 const renderComponent = (params: IpActionsCellParams) => {
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
-        <IpActionsCell {...params} />
-      </ListingContextProvider>
-    </QueryClientProvider>,
+    <ShellContext.Provider
+      value={({ shell: mockShell } as unknown) as ShellContextType}
+    >
+      <QueryClientProvider client={queryClient}>
+        <ListingContextProvider>
+          <IpActionsCell {...params} />
+        </ListingContextProvider>
+      </QueryClientProvider>
+    </ShellContext.Provider>,
   );
 };
 
