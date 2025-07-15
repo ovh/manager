@@ -1,7 +1,7 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TServiceDetail } from '@/alldoms/types';
+import { AlldomService } from '@/alldoms/types';
 import DatagridColumnDomainRegisteredAuthorized from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainRegisteredAuthorized';
 import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
 import { DatagridColumnDate } from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDate';
@@ -15,10 +15,8 @@ export const useAllDomDatagridColumns = () => {
   const columns = [
     {
       id: 'serviceName',
-      cell: (props: TServiceDetail) => (
-        <DatagridColumnServiceName
-          allDomName={props.allDomResource.currentState.name}
-        />
+      cell: (props: AlldomService) => (
+        <DatagridColumnServiceName allDomName={props.name} />
       ),
       label: t('allDom_table_header_serviceName'),
       isFilterable: true,
@@ -26,9 +24,9 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'renewMode',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DatagridColumnRenewMode
-          renewMode={props.serviceInfo.billing.renew.current.mode}
+          renewMode={props.renewMode}
           allDomResourceState={props.allDomResourceState}
         />
       ),
@@ -37,9 +35,9 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'type',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DataGridTextCell>
-          {t(`allDom_table_type_${props.allDomResource.currentState.type}`)}
+          {t(`allDom_table_type_${props.type}`)}
         </DataGridTextCell>
       ),
       label: t('allDom_table_header_type'),
@@ -47,12 +45,10 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'authorized_domain',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DatagridColumnDomainRegisteredAuthorized
-          allDomType={props.allDomResource.currentState.type}
-          registeredDomainCount={
-            props.allDomResource.currentState.domains.length
-          }
+          allDomType={props.type}
+          registeredDomainCount={props.domains.length}
         />
       ),
       label: t('allDom_table_header_registered_authorized_domain'),
@@ -60,24 +56,22 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'expiration_date',
-      cell: (props: TServiceDetail) => (
-        <DatagridColumnDate
-          expirationDate={props.serviceInfo.billing.expirationDate}
-        />
+      cell: (props: AlldomService) => (
+        <DatagridColumnDate expirationDate={props.expirationDate} />
       ),
       label: t('allDom_domain_table_header_expiration_date'),
       enableHiding: false,
     },
     {
       id: 'nicAdmin',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DatagridColumnContact contact={props.nicAdmin} />
       ),
       label: t('allDom_table_header_nicAdmin'),
     },
     {
       id: 'nicTech',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DatagridColumnContact contact={props.nicTechnical} />
       ),
       label: t('allDom_table_header_nicTech'),
@@ -85,7 +79,7 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'nicBilling',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <DatagridColumnContact contact={props.nicBilling} />
       ),
       label: t('allDom_table_header_nicBilling'),
@@ -93,11 +87,11 @@ export const useAllDomDatagridColumns = () => {
     },
     {
       id: 'actions',
-      cell: (props: TServiceDetail) => (
+      cell: (props: AlldomService) => (
         <ServiceActionMenu
-          serviceId={`${props.serviceInfo.serviceId}`}
-          serviceName={props.allDomResource.currentState.name}
-          terminateUrl={`terminate/${props.allDomResource.currentState.name}`}
+          serviceId={`${props.serviceId}`}
+          serviceName={props.name}
+          terminateUrl={`terminate/${props.name}`}
           allDomResourceState={props.allDomResourceState}
           whichAction={ActionEnum.All}
         />

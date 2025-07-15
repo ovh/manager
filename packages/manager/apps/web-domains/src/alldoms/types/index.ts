@@ -48,16 +48,32 @@ export interface TServiceInfo {
       type: string;
     }[];
   };
+  resource: {
+    name: string;
+  };
 }
 
-export interface TServiceProperty {
+export interface AlldomService {
   name: string;
-  iam: {
-    id: string;
-    urn: string;
-  };
   type: ServiceInfoType;
-  offer: string;
+  domains: TDomainsInfo[];
+  extensions: string[];
+  nicAdmin: string;
+  nicBilling: string;
+  nicTechnical: string;
+  allDomResourceState: ServiceInfoUpdateEnum;
+  renewMode: ServiceInfoRenewMode | null;
+  expirationDate: string;
+  serviceId: number;
+}
+
+export interface TAlldoms {
+  currentState: {
+    name: string;
+    type: ServiceInfoType;
+    domains: TDomainsInfo[];
+    extensions: string[];
+  };
 }
 
 export interface TDomainsInfo {

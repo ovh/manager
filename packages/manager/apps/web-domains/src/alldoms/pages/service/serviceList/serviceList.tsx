@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   BaseLayout,
-  useResourcesIcebergV6,
   ErrorBanner,
   useNotifications,
   Notifications,
+  useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
-import { TServiceProperty } from '@/alldoms/types';
+import { AlldomService, TAlldoms } from '@/alldoms/types';
+import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import { findContact } from '@/alldoms/utils/utils';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
   const { notifications } = useNotifications();
+  const [alldomServices, setAlldomServices] = useState<AlldomService[]>([]);
 
   const {
     flattenData: allDomList,
@@ -25,17 +28,44 @@ export default function ServiceList() {
     hasNextPage,
     fetchNextPage,
     sorting,
-    totalCount,
     setSorting,
-  } = useResourcesIcebergV6<TServiceProperty>({
-    route: '/allDom',
-    queryKey: ['/allDom'],
+  } = useResourcesIcebergV2<TAlldoms>({
+    route: '/domain/alldom',
+    queryKey: ['domain', 'alldom'],
     pageSize: 10,
   });
 
-  const { data: serviceInfoList, listLoading } = useGetAllDoms({
-    allDomList,
+  const { data: serviceList, listLoading } = useGetAllDoms({
+    names: allDomList?.map((alldom: TAlldoms) => alldom.currentState.name),
   });
+
+  useEffect(() => {
+    if (allDomList && serviceList) {
+      const services = allDomList.map((alldom) => {
+        const service = serviceList.find(
+          (s) => s.resource.name === alldom.currentState.name,
+        );
+
+        const contacts = service?.customer?.contacts ?? [];
+        return {
+          name: alldom.currentState.name,
+          type: alldom.currentState.type,
+          domains: alldom.currentState.domains,
+          extensions: alldom.currentState.extensions,
+          nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
+          nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
+          nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
+          allDomResourceState:
+            service?.billing?.lifecycle?.capacities?.actions[0],
+          renewMode: service.billing.renew.current.mode,
+          expirationDate: service.billing.expirationDate,
+          serviceId: service.serviceId,
+        } as AlldomService;
+      });
+
+      setAlldomServices(services);
+    }
+  }, [allDomList, serviceList]);
 
   const columns = useAllDomDatagridColumns();
 
@@ -62,8 +92,8 @@ export default function ServiceList() {
       <div data-testid="datagrid">
         <Datagrid
           columns={columns}
-          items={serviceInfoList}
-          totalItems={totalCount}
+          items={alldomServices}
+          totalItems={allDomList?.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
           sorting={sorting}
