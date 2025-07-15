@@ -4,10 +4,11 @@ import { i18n } from 'i18next';
 import { renderHook } from '@testing-library/react';
 import {
   MOCK_DATA_INVALID_JSON,
+  MOCK_DATA_VALID_ARRAY_JSON,
   MOCK_DATA_VALID_JSON,
 } from '@secret-manager/utils/tests/secret.constant';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
-import { useSecretDataSchema } from './dataSchema';
+import { DATA_MIN_CHAR, useSecretDataSchema } from './dataSchema';
 
 let i18nValue: i18n;
 
@@ -36,6 +37,24 @@ describe('PathSchema test suite', () => {
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
       labels.common.form.required_field,
+    );
+  });
+
+  it('should return the correct error message for a data that is too short', () => {
+    const data = 'a'.repeat(DATA_MIN_CHAR - 1);
+    const result = getSchemaParsingResult(data);
+    expect(result.success).toBe(false);
+    expect(result.error.issues[0].message).toBe(
+      labels.common.form.required_field,
+    );
+  });
+
+  it('should return the correct error message for an valid array JSON', () => {
+    const path = MOCK_DATA_VALID_ARRAY_JSON;
+    const result = getSchemaParsingResult(path);
+    expect(result.success).toBe(false);
+    expect(result.error.issues[0].message).toBe(
+      labels.secretManager.create.data_error_invalid_json,
     );
   });
 
