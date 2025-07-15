@@ -7,10 +7,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Links, LinksProps, LinkType } from '../../../Links';
+import { Link, LinkProps, LINK_TYPE } from '../../../Link';
 import '../translations/translation';
 
-export interface GuideItem extends Omit<LinksProps, 'id'> {
+export interface GuideItem extends Omit<LinkProps, 'id'> {
   id: number;
   href: string;
   download?: string;
@@ -54,10 +54,10 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
       >
         <div className="flex flex-col gap-2 py-1">
           {items.map(({ id, onClick, ...rest }) => (
-            <Links
+            <Link
               key={id}
-              type={LinkType.external}
-              onClickReturn={onClick}
+              type={LINK_TYPE.external}
+              onClick={onClick}
               {...rest}
             />
           ))}
