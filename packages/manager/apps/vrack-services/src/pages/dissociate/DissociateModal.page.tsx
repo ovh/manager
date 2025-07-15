@@ -85,7 +85,8 @@ export default function DissociateModal() {
   });
 
   if (!id || !vrackId) {
-    return closeModal();
+    closeModal();
+    return <></>;
   }
 
   return (

@@ -43,7 +43,8 @@ export default function AssociateAnotherVrackModal() {
   };
 
   if (!id) {
-    return closeModal();
+    closeModal();
+    return <></>;
   }
 
   return (
