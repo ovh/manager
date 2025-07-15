@@ -1,34 +1,30 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import {
-  Links,
-  LinksProps,
-  LinkType,
-} from '../../../../../manager-react-components/src/lib';
+import { Link, LinkProps, LINK_TYPE } from '@ovh-ux/manager-react-components';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
-const backLink: LinksProps = {
+const backLink: LinkProps = {
   children: 'Back to the list',
   href: 'https://www.ovhcloud.com',
   target: '_blank',
-  type: LinkType.back,
+  type: LINK_TYPE.back,
 };
 
-const nextLink: LinksProps = {
+const nextLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Next Page',
-  type: LinkType.next,
+  type: LINK_TYPE.next,
 };
 
-const externalLink: LinksProps = {
+const externalLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'External Page',
-  type: LinkType.external,
+  type: LINK_TYPE.external,
 };
 
-const iamLinkWithAuth: LinksProps = {
+const iamLinkWithAuthorization: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Resiliate Link',
@@ -37,7 +33,7 @@ const iamLinkWithAuth: LinksProps = {
   displayTooltip: true,
 };
 
-const iamLinkWithoutAuth: LinksProps = {
+const iamLinkWithoutAuthorization: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Resiliate Link',
@@ -46,7 +42,7 @@ const iamLinkWithoutAuth: LinksProps = {
   displayTooltip: true,
 };
 
-const iamLinkWithoutAuthAndTooltip: LinksProps = {
+const iamLinkWithoutAuthAndTooltip: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Resiliate Link',
@@ -55,8 +51,8 @@ const iamLinkWithoutAuthAndTooltip: LinksProps = {
   displayTooltip: false,
 };
 
-const meta: Meta<LinksProps> = {
-  title: 'Manager React Components/Components/Links',
+const meta: Meta<LinkProps> = {
+  title: 'Manager React Components/Components/Link',
   decorators: [(story) => <div>{story()}</div>],
   argTypes: {},
   args: backLink,
@@ -64,16 +60,20 @@ const meta: Meta<LinksProps> = {
 
 export default meta;
 
-export const BackLink = () => <Links {...backLink} />;
+export const BackLink = () => <Link {...backLink} />;
 
-export const NextLink = () => <Links {...nextLink} />;
+export const NextLink = () => <Link {...nextLink} />;
 
-export const ExternalLink = () => <Links {...externalLink} />;
+export const ExternalLink = () => <Link {...externalLink} />;
 
-export const IamLinkWithAuth = () => <Links {...iamLinkWithAuth} />;
+export const IamLinkWithAuthorization = () => (
+  <Link {...iamLinkWithAuthorization} />
+);
 
-export const IamLinkWithoutAuth = () => <Links {...iamLinkWithoutAuth} />;
+export const IamLinkWithoutAuthorization = () => (
+  <Link {...iamLinkWithoutAuthorization} />
+);
 
 export const IamLinkWithoutAuthAndTooltip = () => (
-  <Links {...iamLinkWithoutAuthAndTooltip} />
+  <Link {...iamLinkWithoutAuthAndTooltip} />
 );
