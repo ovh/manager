@@ -1,0 +1,110 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../.storybook/docs/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+import meta, { ExternalLink } from './link.stories';
+import Link from '../../../../.storybook/docs/external-Link';
+
+<Meta title="Manager React Components/Typography/Link/Documentation" />
+
+<StoryBookBanner of={meta} />
+
+<Canvas of={ExternalLink} sourceState="none" />
+
+The pre-formatted Link is a customizable, purpose-driven link component that enhances the ODS Link by incorporating visual and functional elements such as icons
+
+<StorybookHeading label="Overview" level={2} />
+
+<StorybookIdentityCard
+  aliases={['Menu', 'Ellipsis Menu', 'Dropdown Menu']}
+  githubUrl={Link.github.Link}
+  name="ActionMenu"
+  relatedComponents={[{ name: 'ods-link', href: Link.ods.link }]}
+>
+  Its primary role is to provide clear and intuitive navigation options (e.g.,
+  "Back," "Next," or external redirections) while maintaining consistency with
+  the overall design system.
+</StorybookIdentityCard>
+
+<StorybookHeading label="Anatomy" level={2} />
+
+**An ODS Link** which contains:
+
+1. An ODS Icon depending of the usage: External, Back or Next
+2. A label: a clear text label that describes the action or destination
+
+<StorybookHeading label="Usage" level={2} />
+
+A **pre-formatted Link** is ideal for:
+
+**External Link**: clearly communicating that the user will leave the current context
+
+- **"Back" Link**: providing an option to navigate to a previous page or step
+- **"Next" Link**: guiding users to the next step in a process or section
+
+<StorybookHeading label="Dos & Don'ts" level={2} />
+
+<StorybookBestPractices
+  dos={[
+    'Use clear, concise labels for the Link',
+    'Use the appropriate variant with the link type (e.g., external link for external navigation)',
+  ]}
+  donts={[
+    'Do not use for inline Link where iconography adds no value',
+    'Avoid overloading a page with too many pre-formatted Link; prioritize simplicity',
+  ]}
+/>
+
+<StorybookHeading label="Placement" level={2} />
+
+Similar to a standard link and ODS Link, a **pre-formatted Link** can:
+
+- Stand alone on a page
+- Be embedded within a sentence or paragraph for contextual navigation
+
+<StorybookHeading label="Behavior" level={2} />
+
+**States**
+The **pre-formatted Link** inherits its states from the ODS Link. These states include:
+
+- **Hover**: Link becomes underlined, and its color changes
+- **Focus**: Visual focus indicator, outline, appears
+- **Click**: Activates the link, redirecting the user
+- **Visited**: After a user has clicked on the link, the color changes to indicate that the destination has already been visited
+- **Disabled**: Link is non-interactive; it cannot be clicked or focused
+
+When users clicks anywhere on the **Link**, even its icon, they are redirected to the expected page or section.
+
+<StorybookHeading label="Variation" level={2} />
+
+**Pre-formatted Link** has three predefined variants based on usage:
+
+- External
+- Back
+- Next
+
+<StorybookHeading label="Accessibility" level={2} />
+
+_Ensure the component meets accessibility standards.
+Describe what should keyboard interaction do to the component
+WAI Patterns can help you go though keyboard interaction :_ **[https://www.w3.org/WAI/ARIA/apg/patterns/](https://www.w3.org/WAI/ARIA/apg/patterns/)**
+
+<StorybookTable
+  data={{
+    columns: ['key', 'interaction'],
+    rows: [
+      {
+        key: 'Tab',
+        interaction: 'Navigate to the Link',
+      },
+      {
+        key: 'Enter while Link is focused',
+        interaction: 'Activate the Link',
+      },
+    ],
+  }}
+/>

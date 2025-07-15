@@ -11,7 +11,7 @@ export * from './navigation';
 export * from './templates';
 export * from './typography';
 
-export * from './Links';
+export * from './Link';
 export * from './datagrid/datagrid.component';
 export * from './datagrid/text-cell.component';
 export * from './datagrid/useDatagrid';
