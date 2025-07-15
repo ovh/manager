@@ -73,5 +73,16 @@
   "listingTerminateIp_confirm_description": "Veuillez confirmer la résiliation de votre IP",
   "listingTerminateIp_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Vous allez recevoir un e-mail pour la valider.",
   "listingTerminateIp_ftc_success": "La demande de résiliation de votre service {{service}} a bien été prise en compte. Un e-mail de confirmation vous a été envoyé.",
-  "listingMenuReverseDns": "Configurer le reverse DNS"
+  "listingMenuReverseDns": "Configurer le reverse DNS",
+  "listingManageMitigation_DEFAULT_to_PERMANENT": "Scrubbing Centre: permanent",
+  "listingManageMitigation_PERMANENT_to_AUTO": "Scrubbing Centre: automatic",
+  "listingManageMitigation_stats": "Network Security Dashboard",
+  "listingManageMitigation_permanent_title": "Passer du Network Scrubbing Center en mode permanent",
+  "listingManageMitigation_permanent_question": "Êtes-vous sûr de vouloir activer le mode Scrubbing Center permanent sur IP {{t0}} ? Veuillez utiliser cette option avec prudence (dans la plupart des cas, vous devez conserver le mode automatique).",
+  "listingManageMitigation_permanent_success": "La mitigation sera activée et permanente dans quelques instants sur l'IP {{t0}}.",
+  "listingManageMitigation_permanent_failed": "Une erreur est survenue lors de l'activation en mode permanent sur l'IP {{t0}}",
+  "listingManageMitigation_auto_title": "Passage du mode Network Scrubbing Center en mode automatique",
+  "listingManageMitigation_auto_question": "De cette façon, vous activez le mode de protection par défaut sur IP {{t0}}.",
+  "listingManageMitigation_auto_success": "La mitigation passera en mode automatique dans quelques instant sur l'IP {{t0}}.",
+  "listingManageMitigation_auto_failed": "Une erreur est survenue lors du passage de la mitigation en mode automatique sur l'IP {{t0}}"
 }
