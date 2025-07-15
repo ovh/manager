@@ -74,10 +74,20 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       serviceId: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
-      service: /* @ngInject */ ($http, serviceId) =>
-        $http
-          .get(`/services/${serviceId}`)
-          .then(({ data }) => new Service(data)),
+      service: /* @ngInject */ (
+        $http,
+        $state,
+        migration2020,
+        serviceId,
+        serviceName,
+      ) =>
+        $http.get(`/services/${serviceId}`).then(({ data }) => ({
+          ...new Service(data),
+          hasOutperformAvailablity: migration2020.status === 'available',
+          goToOutperform: () =>
+            $state.go('vps.outperform', { vpsName: serviceName }),
+        })),
+      serviceType: /* @ngInject */ (serviceInfo) => serviceInfo.serviceType,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('vps_resiliate'),
     },

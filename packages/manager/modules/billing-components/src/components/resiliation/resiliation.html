@@ -45,6 +45,29 @@
                 data-translate-values="{ 'serviceName': '<strong>' + $ctrl.serviceName + '</strong>' }"
             ></p>
 
+            <oui-message
+                type="info"
+                class="my-3"
+                data-ng-if="$ctrl.serviceType === $ctrl.SERVICE_TYPE.VPS && $ctrl.service.hasOutperformAvailablity"
+            >
+                <strong
+                    data-translate="vps_terminate_outperform_availability_banner_title"
+                ></strong>
+                <p
+                    data-translate="vps_terminate_outperform_availability_banner_info"
+                ></p>
+                <oui-button
+                    variant="link"
+                    icon-right="oui-icon-arrow-right"
+                    data-on-click="$ctrl.service.goToOutperform()"
+                >
+                    <span
+                        class="text-wrap"
+                        data-translate="vps_terminate_outperform_availability_banner_button"
+                    ></span>
+                </oui-button>
+            </oui-message>
+
             <oui-button variant="secondary" on-click="$ctrl.onCancel()">
                 <span data-translate="billing_resiliation_cancel"></span>
             </oui-button>
