@@ -4,6 +4,8 @@ import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
+  Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,6 +17,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { Secret } from '@secret-manager/types/secret.type';
+import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import {
   DatagridAction,
   DatagridCellPath,
@@ -25,6 +28,7 @@ import { SecretListingPageParams } from './listing.type';
 
 export default function SecretListingPage() {
   const navigate = useNavigate();
+  const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
   const { domainId } = useParams<SecretListingPageParams>();
   const { data: secrets, isPending, error, refetch } = useSecretList(domainId);
@@ -64,25 +68,31 @@ export default function SecretListingPage() {
     );
 
   return (
-    <BaseLayout header={{ title: t('secret_manager') }}>
-      <Datagrid
-        columns={columns}
-        items={secrets || []}
-        totalItems={secrets?.length}
-        isLoading={isPending}
-        contentAlignLeft
-        topbar={
-          <OdsButton
-            label={t('create_secret')}
-            onClick={() =>
-              navigate({
-                pathname: SECRET_MANAGER_ROUTES_URLS.secretCreate,
-                search: `?${SECRET_MANAGER_SEARCH_PARAMS.domainId}=${domainId}`,
-              })
-            }
-          />
-        }
-      />
+    <BaseLayout
+      header={{ title: t('secret_manager') }}
+      message={notifications.length > 0 && <Notifications />}
+    >
+      <div className="space-y-6">
+        <RegionSelector />
+        <Datagrid
+          columns={columns}
+          items={secrets || []}
+          totalItems={secrets?.length}
+          isLoading={isPending}
+          contentAlignLeft
+          topbar={
+            <OdsButton
+              label={t('create_secret')}
+              onClick={() =>
+                navigate({
+                  pathname: SECRET_MANAGER_ROUTES_URLS.secretCreate,
+                  search: `?${SECRET_MANAGER_SEARCH_PARAMS.domainId}=${domainId}`,
+                })
+              }
+            />
+          }
+        />
+      </div>
     </BaseLayout>
   );
 }
