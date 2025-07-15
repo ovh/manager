@@ -49,5 +49,18 @@
   "formConnectorLabelName": "Nombre",
   "formConnectorLabelConfiguration": "Configuración",
   "formConnectorAddButtonLabel": "Crear un conector",
-  "formConnectorEditButtonLabel": "Actualizar el conector"
+  "formConnectorEditButtonLabel": "Actualizar el conector",
+  "breadcrumb-add": "Creación",
+  "breadcrumb-edit": "Edición",
+  "breadcrumb-tasks": "Tareas",
+  "formConnectorPlaceholderName": "Introduzca el nombre de su conector",
+  "addConnectorButtonLabel": "Crear un conector",
+  "editConnectorButtonLabel": "Actualizar el conector",
+  "deleteConnectorTitle": "Eliminar un conector",
+  "deleteConnectorDescription": "Va a eliminar el conector {{name}}. ¿Desea continuar?",
+  "deleteConnectorButtonCancel": "Cancelar",
+  "deleteConnectorButtonConfirm": "Confirmar",
+  "deleteConnectorToastErrorTitle": "Se ha producido un error al eliminar el conector",
+  "deleteConnectorToastSuccessTitle": "Éxito",
+  "deleteConnectorToastSuccessDescription": "El conector {{name}} se ha eliminado correctamente"
 }

@@ -49,5 +49,18 @@
   "formConnectorLabelName": "Name",
   "formConnectorLabelConfiguration": "Configuration",
   "formConnectorAddButtonLabel": "Create a connector",
-  "formConnectorEditButtonLabel": "Update connector"
+  "formConnectorEditButtonLabel": "Update connector",
+  "breadcrumb-add": "Creation",
+  "breadcrumb-edit": "Release",
+  "breadcrumb-tasks": "Tasks",
+  "formConnectorPlaceholderName": "Enter the name of your connector",
+  "addConnectorButtonLabel": "Create a connector",
+  "editConnectorButtonLabel": "Update connector",
+  "deleteConnectorTitle": "Delete a connector",
+  "deleteConnectorDescription": "You are about to delete your {{name}} connector. Do you wish to continue?",
+  "deleteConnectorButtonCancel": "Cancel",
+  "deleteConnectorButtonConfirm": "Confirm",
+  "deleteConnectorToastErrorTitle": "An error has occurred deleting your connector",
+  "deleteConnectorToastSuccessTitle": "Success",
+  "deleteConnectorToastSuccessDescription": "Your {{name}} connector has been deleted"
 }

@@ -49,5 +49,18 @@
   "formConnectorLabelName": "Nazwa",
   "formConnectorLabelConfiguration": "Konfiguracja",
   "formConnectorAddButtonLabel": "Utwórz konektor",
-  "formConnectorEditButtonLabel": "Aktualizacja konektora"
+  "formConnectorEditButtonLabel": "Aktualizacja konektora",
+  "breadcrumb-add": "Rejestracja",
+  "breadcrumb-edit": "Edycja",
+  "breadcrumb-tasks": "Zadania",
+  "formConnectorPlaceholderName": "Wprowadź nazwę konektora",
+  "addConnectorButtonLabel": "Utwórz konektor",
+  "editConnectorButtonLabel": "Aktualizacja konektora",
+  "deleteConnectorTitle": "Usuń konektor",
+  "deleteConnectorDescription": "Chcesz usunąć konektor {{name}}. Czy chcesz kontynuować?",
+  "deleteConnectorButtonCancel": "Anuluj",
+  "deleteConnectorButtonConfirm": "Zatwierdź",
+  "deleteConnectorToastErrorTitle": "Wystąpił błąd podczas usuwania konektora",
+  "deleteConnectorToastSuccessTitle": "Sukces",
+  "deleteConnectorToastSuccessDescription": "Konektor {{name}} został poprawnie usunięty"
 }

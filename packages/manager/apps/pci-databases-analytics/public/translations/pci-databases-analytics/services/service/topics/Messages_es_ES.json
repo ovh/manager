@@ -44,5 +44,6 @@
   "tableHeadDeletePolicy": "Política de eliminación",
   "tableValueUnlimited": "Ilimitado",
   "tableActionDelete": "Eliminar",
-  "tableActionEdit": "Modificar"
+  "tableActionEdit": "Modificar",
+  "breadcrumb": "Temas"
 }

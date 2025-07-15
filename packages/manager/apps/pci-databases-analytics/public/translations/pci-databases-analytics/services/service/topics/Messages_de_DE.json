@@ -44,5 +44,6 @@
   "tableHeadDeletePolicy": "Regeln für das Löschen",
   "tableValueUnlimited": "unbegrenzt",
   "tableActionDelete": "Löschen",
-  "tableActionEdit": "Ändern"
+  "tableActionEdit": "Ändern",
+  "breadcrumb": "Themen"
 }

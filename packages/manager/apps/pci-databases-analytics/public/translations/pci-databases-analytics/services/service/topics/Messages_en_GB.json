@@ -44,5 +44,6 @@
   "tableHeadDeletePolicy": "Deletion policy",
   "tableValueUnlimited": "unlimited",
   "tableActionDelete": "Delete",
-  "tableActionEdit": "Modify"
+  "tableActionEdit": "Modify",
+  "breadcrumb": "Topics"
 }
