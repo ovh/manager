@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { getIpDetailsQueryKey, addIpToVirtualMac } from '@/data/api';
+import { getdedicatedServerVmacQueryKey, addIpToVirtualMac } from '@/data/api';
 
 export type UseAddIpToVirtualMacParams = {
   serviceName: string;
@@ -21,7 +21,9 @@ export const useAddIpToVirtualMac = (params: UseAddIpToVirtualMacParams) => {
     onSuccess: async (data) => {
       clearNotifications();
       await queryClient.invalidateQueries({
-        queryKey: getIpDetailsQueryKey({ ip: params.ip }),
+        queryKey: getdedicatedServerVmacQueryKey({
+          serviceName: params.serviceName,
+        }),
       });
       params.onSuccess?.(data);
     },
