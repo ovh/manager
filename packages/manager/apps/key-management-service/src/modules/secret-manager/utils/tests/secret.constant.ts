@@ -1,3 +1,6 @@
+/* ACTIVATE button */
+export const ACTIVATE_DOMAIN_BTN_TEST_ID = 'secret-activate-domain-button';
+
 /* PATH input */
 export const PATH_INPUT_TEST_ID = 'secret-input-path';
 export const MOCK_PATH_VALID = 'a/valid/path';
@@ -11,6 +14,7 @@ export const MOCK_PATH_INVALID_CHARACTERS_NOT_ALLOWED =
 /* DATA input */
 export const DATA_INPUT_TEST_ID = 'secret-input-data';
 export const MOCK_DATA_VALID_JSON = '{"a": "valid JSON"}';
+export const MOCK_DATA_VALID_ARRAY_JSON = '[{"a": "valid array JSON"}]';
 export const MOCK_DATA_INVALID_JSON = 'not a json';
 
 /* SUBMIT button */
