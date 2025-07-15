@@ -5,6 +5,8 @@ import onPremiseConfiguration from './configuration/onPremise';
 import ovhConfiguration from './configuration/ovh';
 import routing from './drp.routing';
 import summary from './summary';
+import listing from './listing';
+import addSite from './add-site';
 
 const moduleName = 'managedBaremetalDatacenterDrpModule';
 
@@ -14,6 +16,8 @@ angular
     onPremiseConfiguration,
     ovhConfiguration,
     summary,
+    listing,
+    addSite,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
