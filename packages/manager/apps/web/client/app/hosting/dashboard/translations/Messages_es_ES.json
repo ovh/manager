@@ -1400,6 +1400,6 @@
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
   "hosting_tab_STATISTICS_type_allowed": "Consultas autorizadas",
-  "hosting_tab_STATISTICS_type_denied": "Solicitudes rechazadas",
+  "hosting_tab_STATISTICS_type_denied": "Consultas rechazadas",
   "hosting_tab_SSL": "Certificados SSL"
 }

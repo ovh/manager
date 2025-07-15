@@ -123,7 +123,7 @@
   "logs_password_new_label": "Neues Passwort",
   "logs_password_setup_label": "Passwort",
   "logs_password_confirm_label": "Passwort bestätigen",
-  "logs_password_setup_message": "Herzlich Willkommen {{userFullName}}. Bitte legen Sie zunächst das Passwort für Ihren Account auf der Logs Data Platform ({{userName}}) fest.",
+  "logs_password_setup_message": "Willkommen! Bitte legen Sie zunächst das Passwort für Ihren Account auf der Logs Data Platform ({{userName}}) fest.",
   "logs_password_rule_length": "Das Passwort muss mindestens 12 Zeichen enthalten.",
   "logs_password_rule_contains_number": "Das Passwort muss mindestens eine Ziffer enthalten.",
   "logs_password_rule_contains_uppercase": "Das Passwort muss mindestens einen Großbuchstaben enthalten.",
@@ -796,5 +796,13 @@
   "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
   "streams_subscriptions_kind_label": "Typ (Kind)",
-  "logs_home_region": "Region"
+  "logs_home_region": "Region",
+  "logs_tab_iam": "Identity and Access (IAM)",
+  "logs_iam_enable_error": "Bei der Aktivierung des OVHcloud IAM ist ein Fehler aufgetreten.",
+  "logs_iam_enable_success": "Das IAM von OVHcloud wurde für den Dienst „{{accountName}}“ erfolgreich aktiviert.",
+  "logs_iam_setup_message": "Oder entscheiden Sie sich, die Zugriffsrechte des Dienstes zu kontrollieren – mit",
+  "logs_iam_ovhcloud_iam": "dem IAM von OVHcloud",
+  "logs_iam_enable_iam": "OVHcloud IAM aktivieren",
+  "logs_iam_access": "Zum OVHcloud IAM-Bereich",
+  "logs_iam_title": "Identitäten und Zugriff"
 }

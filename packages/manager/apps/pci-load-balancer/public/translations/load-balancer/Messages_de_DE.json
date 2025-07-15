@@ -33,5 +33,5 @@
   "octavia_load_balancer_provisioning_status_updating": "Wird aktualisiert",
   "octavia_load_balancer_provisioning_status_error": "Fehler",
   "octavia_load_balancer_delete_success": "Ihr Loadbalancer wurde gelöscht",
-  "octavia_load_balancer_quota_creation_error": "Sie haben kein verfügbares Quota mehr für diesen Standort. Um fortzufahren, <Link>Erhöhen Sie Ihre Quotas</Link>"
+  "octavia_load_balancer_quota_creation_error": "Sie haben für diesen Standort kein verfügbares Quota mehr. Um fortzufahren, <Link>erhöhen Sie Ihre Quotas</Link>"
 }
