@@ -33,19 +33,18 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import clsx from 'clsx';
-import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
+import { getResources } from '@/utils/resource';
+import useTechnicalInfo, {
+  TPricingInfo,
+  usePricingInfo,
+} from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
   useSavingsPlanCreate,
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 
-import rancherSrc from '../../assets/images/rancher.png';
-import serviceSrc from '../../assets/images/service.png';
-import {
-  TPricingByDuration,
-  useDefaultOfferId,
-} from '../../hooks/planCreation/useDefaultOffer';
+import { useDefaultOfferId } from '../../hooks/planCreation/useDefaultOffer';
 import {
   InstanceInfo,
   InstanceTechnicalName,
@@ -97,7 +96,7 @@ export type CreatePlanFormProps = {
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
-  pricingByDuration: TPricingByDuration[];
+  pricingByDuration: TPricingInfo[];
   isPricingLoading: boolean;
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
@@ -460,18 +459,7 @@ export const CreatePlanFormContainer = ({
     (a, b) => (a.duration ?? 0) - (b.duration ?? 0),
   );
 
-  const resources: Resource[] = [
-    {
-      value: ResourceType.instance,
-      label: t('resource_tabs_instance'),
-      img: serviceSrc,
-    },
-    {
-      value: ResourceType.rancher,
-      label: t('resource_tabs_rancher'),
-      img: rancherSrc,
-    },
-  ];
+  const resources: Resource[] = getResources(t);
 
   const instancesInformation = useMemo(
     () =>

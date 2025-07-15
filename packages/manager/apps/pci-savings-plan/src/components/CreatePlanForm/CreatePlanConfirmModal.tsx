@@ -9,11 +9,10 @@ import { useTranslation } from 'react-i18next';
 import { Block } from '../SimpleTile/SimpleTile';
 import LegalLinks from '../LegalLinks/LegalLinks';
 import { DeploymentMode } from '@/utils/savingsPlan';
-import {
-  PromotionPrice,
-  PromotionLineThroughPrice,
-} from '../Commitment/PromotionPrice';
+import { PromotionPrice, OriginalPrice } from '../Commitment/PromotionPrice';
 import CommitmentMonth from '../Commitment/CommitmentMonth';
+import { Resource, ResourceType } from '@/types/CreatePlan.type';
+import { getResources } from '@/utils/resource';
 
 const BoldLabelText = ({
   label,
@@ -30,27 +29,31 @@ const BoldLabelText = ({
   );
 };
 
+type TSavingsPlanInfo = {
+  name: string;
+  duration: number;
+  resource: ResourceType;
+  deploymentMode: DeploymentMode;
+  model: string;
+  quantity: number;
+  monthlyPercentageDiscount: string;
+  monthlyPrice: string;
+  monthlyPriceWithoutDiscount: string;
+};
+
+type CreatePlanConfirmModalProps = {
+  isModalOpen: boolean;
+  setIsModalOpen: (isModalOpen: boolean) => void;
+  onCreateSavingsPlan: () => void;
+  savingsPlanInfo: TSavingsPlanInfo;
+};
+
 const CreatePlanConfirmModal = ({
   isModalOpen,
   setIsModalOpen,
   onCreateSavingsPlan,
   savingsPlanInfo,
-}: {
-  isModalOpen: boolean;
-  setIsModalOpen: (isModalOpen: boolean) => void;
-  onCreateSavingsPlan: () => void;
-  savingsPlanInfo: {
-    name: string;
-    duration: number;
-    resource: string;
-    deploymentMode: DeploymentMode;
-    model: string;
-    quantity: number;
-    monthlyPercentageDiscount: number;
-    monthlyPrice: string;
-    monthlyPriceWithoutDiscount: string;
-  };
-}) => {
+}: CreatePlanConfirmModalProps) => {
   const { t } = useTranslation('create');
 
   const [isLegalChecked, setIsLegalChecked] = useState(false);
@@ -69,6 +72,12 @@ const CreatePlanConfirmModal = ({
     name,
   } = savingsPlanInfo;
 
+  const resources: Resource[] = getResources(t);
+  const resourceLabel = resources.find(
+    (r) => r.value === savingsPlanInfo.resource,
+  )?.label;
+
+  const isInstance = savingsPlanInfo.resource === ResourceType.instance;
   return (
     <Modal
       isOpen={isModalOpen}
@@ -85,20 +94,22 @@ const CreatePlanConfirmModal = ({
         <Subtitle>{t('modal_summary_title')}</Subtitle>
         <OdsMessage>{t('modal_content')}</OdsMessage>
         <BoldLabelText label={t('modal_summary_label_name')} value={name} />
-        <BoldLabelText
-          label={t('modal_summary_label_deployment_mode')}
-          value={deploymentMode}
-        />
+        {savingsPlanInfo.resource === ResourceType.instance && (
+          <BoldLabelText
+            label={t('modal_summary_label_deployment_mode')}
+            value={`${t('region')} ${deploymentMode}`}
+          />
+        )}
         <BoldLabelText
           label={t('modal_summary_label_service')}
-          value={savingsPlanInfo.resource}
+          value={resourceLabel}
         />
         <BoldLabelText
           label={t('modal_summary_label_model')}
           value={savingsPlanInfo.model}
         />
         <BoldLabelText
-          label={t('modal_summary_label_quantity')}
+          label={t(`quantity_label_${isInstance ? 'instance' : 'rancher'}`)}
           value={savingsPlanInfo.quantity}
         />
         <div className="flex flex-row gap-2">
@@ -113,9 +124,7 @@ const CreatePlanConfirmModal = ({
         <div className="flex flex-row justify-between">
           <OdsText>{t('modal_summary_label_total_price')}</OdsText>
           <div>
-            <PromotionLineThroughPrice
-              price={`~ ${monthlyPriceWithoutDiscount}`}
-            />
+            <OriginalPrice price={`~ ${monthlyPriceWithoutDiscount}`} />
             <PromotionPrice price={monthlyPrice} />
           </div>
         </div>

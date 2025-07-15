@@ -1,11 +1,10 @@
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useMemo } from 'react';
-import { TPricingByDuration } from './useDefaultOffer';
 import { getPlanPricing } from '@/utils/pricing/utils';
+import { TPricingInfo } from '../useCatalogCommercial';
 
-export type TPlanPricing = TPricingByDuration & {
-  duration: number;
-  monthlyPercentageDiscount: number;
+export type TPlanPricing = TPricingInfo & {
+  monthlyPercentageDiscount: string;
   monthlyPrice: string;
   monthlyPriceWithoutDiscount: string;
 };
@@ -15,7 +14,7 @@ export const usePlanPricing = ({
   quantity,
   activeHourlyPrice,
 }: {
-  pricingByDuration: TPricingByDuration[];
+  pricingByDuration: TPricingInfo[];
   quantity: number;
   activeHourlyPrice: number;
 }): TPlanPricing[] => {
@@ -39,7 +38,7 @@ export const usePlanPricing = ({
           p.monthlyPriceWithoutDiscount,
         ),
       }));
-  }, [pricingByDuration]);
+  }, [pricingByDuration, activeHourlyPrice, getTextPrice, quantity]);
 
   return enrichedPricingByDuration;
 };

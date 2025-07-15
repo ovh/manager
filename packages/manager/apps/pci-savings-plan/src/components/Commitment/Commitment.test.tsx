@@ -15,7 +15,7 @@ const defaultProps = {
     code: '1',
     duration: 1,
     price: 1,
-    monthlyPercentageDiscount: 86,
+    monthlyPercentageDiscount: '86',
     monthlyPrice: '1',
     monthlyPriceWithoutDiscount: '10.00',
   },

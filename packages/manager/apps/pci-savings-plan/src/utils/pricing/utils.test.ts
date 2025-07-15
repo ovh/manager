@@ -1,9 +1,9 @@
-import { TPricingByDuration } from '@/hooks/planCreation/useDefaultOffer';
 import { getPlanPricing } from './utils';
+import { TPricingInfo } from '@/hooks/useCatalogCommercial';
 
 describe('getPlanPricing', () => {
   it('should calculate pricing fields correctly', () => {
-    const pricing: TPricingByDuration = {
+    const pricing: TPricingInfo = {
       id: '1',
       code: 'test',
       duration: 6,

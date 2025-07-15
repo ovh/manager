@@ -8,17 +8,19 @@ import clsx from 'clsx';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TPlanPricing } from '@/hooks/planCreation/usePlanPricing';
-import { PromotionPrice, PromotionLineThroughPrice } from './PromotionPrice';
+import { PromotionPrice, OriginalPrice } from './PromotionPrice';
 import CommitmentMonth from './CommitmentMonth';
 
-const Commitment = ({
-  planPricing,
-  isActive,
-  onClick,
-}: {
+type TCommitment = {
   planPricing: TPlanPricing;
   isActive: boolean;
   onClick: () => void;
+};
+
+const Commitment: React.FC<TCommitment> = ({
+  planPricing,
+  isActive,
+  onClick,
 }) => {
   const { t } = useTranslation('create');
   const { trackClick } = useOvhTracking();
@@ -35,7 +37,7 @@ const Commitment = ({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
       actionType: 'action',
-      actions: [`add_savings_plan::add_billing::add_${planPricing.duration}`],
+      actions: [`add_savings_plan::add_billing::add_${duration}`],
     });
     onClick();
   };
@@ -61,9 +63,7 @@ const Commitment = ({
       <span className="flex flex-col items-end justify-center">
         <div className="flex flex-row items-center justify-center">
           {!!monthlyPriceWithoutDiscount && (
-            <PromotionLineThroughPrice
-              price={`~ ${monthlyPriceWithoutDiscount}`}
-            />
+            <OriginalPrice price={`~ ${monthlyPriceWithoutDiscount}`} />
           )}
           <PromotionPrice price={monthlyPrice} />
         </div>

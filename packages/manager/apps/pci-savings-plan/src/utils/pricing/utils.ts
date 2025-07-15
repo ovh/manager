@@ -1,14 +1,14 @@
 import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 import { getDiffInPercent } from '@/components/Commitment/Commitment.utils';
 import { CENTS_PRICE } from '../commercial-catalog/utils';
-import { TPricingByDuration } from '@/hooks/planCreation/useDefaultOffer';
+import { TPricingInfo } from '@/hooks/useCatalogCommercial';
 
 export const getPlanPricing = ({
   pricing,
   quantity,
   hourlyPriceWithoutDiscount,
 }: {
-  pricing: TPricingByDuration;
+  pricing: TPricingInfo;
   quantity: number;
   hourlyPriceWithoutDiscount: number;
 }) => {
