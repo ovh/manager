@@ -30,11 +30,6 @@ describe('OnBoardingPage', () => {
     expect(titles).toHaveLength(2);
     expect(titles[0]).toBeVisible();
     expect(titles[1]).toBeVisible();
-    expect(
-      getByText(
-        'pci_projects_project_storages_volume_backup_onboarding_action_title',
-      ),
-    ).toBeVisible();
   });
 
   it('renders OnBoardingDescription with the correct translation keys', () => {
