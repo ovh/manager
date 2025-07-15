@@ -19,6 +19,16 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetConnector } from '@/hooks/api/database/connector/useGetConnector.hook';
 import { StatusEnum } from '@/types/cloud/project/database/kafkaConnect/connector/task/StatusEnum';
 import { POLLING } from '@/configuration/polling.constants';
+import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+
+export function breadcrumb() {
+  return (
+    <BreadcrumbItem
+      translationKey="breadcrumb-tasks"
+      namespace="pci-databases-analytics/services/service/connectors"
+    />
+  );
+}
 
 const Tasks = () => {
   const { t } = useTranslation(

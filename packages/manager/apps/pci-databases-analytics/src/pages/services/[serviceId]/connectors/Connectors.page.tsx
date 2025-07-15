@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Plus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   Alert,
   AlertDescription,
@@ -141,7 +141,7 @@ const Connectors = () => {
           <AlertTitle>{t('noIntegrationTitle')}</AlertTitle>
           <AlertDescription>
             <p>{t('noIntegrationTitleDescription')}</p>
-            <Link to="../integrations/add">
+            <Link to="../integrations">
               {t('noIntegrationAddIntegrationLinkLabel')}
             </Link>
           </AlertDescription>
@@ -178,6 +178,7 @@ const Connectors = () => {
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
         </div>
       )}
+      <Outlet />
     </>
   );
 };

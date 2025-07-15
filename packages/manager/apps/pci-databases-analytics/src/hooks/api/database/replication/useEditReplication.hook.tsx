@@ -6,14 +6,14 @@ import {
   IEditReplication,
 } from '@/data/api/database/replication.api';
 
-export interface UsEditReplication {
+export interface UseEditReplication {
   onError: (cause: CdbError) => void;
   onSuccess: (replication: database.service.Replication) => void;
 }
 export function useEditReplication({
   onError,
   onSuccess: customOnSuccess,
-}: UsEditReplication) {
+}: UseEditReplication) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (replicationInfo: IEditReplication) => {

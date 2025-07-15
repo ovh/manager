@@ -1,5 +1,6 @@
 {
   "title": "Topics",
+  "breadcrumb": "Topics",
   "addButtonLabel": "Ajouter un topic",
   "formTopicErrorMinLength": "Veuillez entrer au moins {{min}} caractères",
   "formTopicErrorMaxLength": "Veuillez entrer au maximum {{max}} caractères",

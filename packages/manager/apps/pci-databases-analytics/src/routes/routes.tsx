@@ -318,6 +318,26 @@ export default [
                     '@/pages/services/[serviceId]/connectors/Connectors.page'
                   ),
                 ),
+                children: [
+                  {
+                    id: 'service.{service.engine}.connectors.delete',
+                    path: 'delete/:connectorId',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/connectors/delete/DeleteConnector.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                id: 'service.{service.engine}.connectors.tasks',
+                path: 'tasks/:connectorId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/tasks/Tasks.page'
+                  ),
+                ),
               },
               {
                 id: 'service.{service.engine}.connectors.add',
@@ -334,15 +354,6 @@ export default [
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/services/[serviceId]/connectors/edit/EditConnector.page'
-                  ),
-                ),
-              },
-              {
-                id: 'service.{service.engine}.connectors.tasks',
-                path: 'tasks/:connectorId',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/services/[serviceId]/connectors/tasks/Tasks.page'
                   ),
                 ),
               },

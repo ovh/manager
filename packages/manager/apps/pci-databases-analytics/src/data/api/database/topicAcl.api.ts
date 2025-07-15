@@ -1,6 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import * as database from '@/types/cloud/project/database';
-import { ServiceData } from '.';
+import { HeadersIcebergPagination, ServiceData } from '.';
 import { TopicAcl } from '@/types/cloud/project/database/kafka';
 
 export const getTopicAcls = async ({
@@ -10,11 +10,7 @@ export const getTopicAcls = async ({
 }: ServiceData) =>
   apiClient.v6
     .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
-      },
+      headers: HeadersIcebergPagination,
     })
     .then((res) => res.data as database.kafka.TopicAcl[]);
 
@@ -28,9 +24,10 @@ export const addTopicAcl = async ({
   topicAcl,
 }: AddTopicAcl) =>
   apiClient.v6
-    .post(`/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`, {
-      ...topicAcl,
-    })
+    .post(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
+      topicAcl,
+    )
     .then((res) => res.data as database.kafka.TopicAcl);
 
 export interface DeleteTopicAcl extends ServiceData {

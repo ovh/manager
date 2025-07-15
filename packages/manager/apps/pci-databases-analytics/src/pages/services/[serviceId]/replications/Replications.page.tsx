@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { ColumnDef } from '@tanstack/react-table';
-
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Alert, AlertDescription, AlertTitle, Button } from '@datatr-ux/uxlib';
 import { useMemo } from 'react';
 import * as database from '@/types/cloud/project/database';
-
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useServiceData } from '../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
@@ -103,7 +101,7 @@ const Replications = () => {
           <AlertTitle>{t('noIntegrationTitle')}</AlertTitle>
           <AlertDescription>
             <p>{t('noIntegrationTitleDescription')}</p>
-            <Link to="../integrations/add">
+            <Link to="../integrations">
               {t('noIntegrationAddIntegrationLinkLabel')}
             </Link>
           </AlertDescription>

@@ -1,12 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import * as database from '@/types/cloud/project/database';
-import { ServiceData } from '.';
-
-const icebergHeaders = {
-  'X-Pagination-Mode': 'CachedObjectList-Pages',
-  'X-Pagination-Size': '50000',
-  Pragma: 'no-cache',
-};
+import { HeadersNoCache, HeadersIcebergPagination, ServiceData } from '.';
 
 export const getConnectors = async ({
   projectId,
@@ -17,7 +11,7 @@ export const getConnectors = async ({
     .get<database.kafkaConnect.Connector[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/connector`,
       {
-        headers: icebergHeaders,
+        headers: HeadersIcebergPagination,
       },
     )
     .then((res) => res.data);
@@ -32,9 +26,7 @@ export const getConnector = async ({
     .get<database.kafkaConnect.Connector>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/connector/${connectorId}`,
       {
-        headers: {
-          Pragma: 'no-cache',
-        },
+        headers: HeadersNoCache,
       },
     )
     .then((res) => res.data);
@@ -48,19 +40,20 @@ export const getConnectorsCapabilities = async ({
     .get<database.kafkaConnect.capabilities.Connector[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/connector`,
       {
-        headers: icebergHeaders,
+        headers: HeadersIcebergPagination,
       },
     )
     .then((res) => res.data);
 
+export interface IServiceWithConnectorCapabilityId extends ServiceData {
+  connectorCapabilityId: string;
+}
 export const getConnectorConfiguration = async ({
   projectId,
   engine,
   serviceId,
   connectorCapabilityId,
-}: ServiceData & {
-  connectorCapabilityId: string;
-}) =>
+}: IServiceWithConnectorCapabilityId) =>
   apiClient.v6
     .get<database.kafkaConnect.capabilities.connector.configuration.Property[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/connector/${connectorCapabilityId}/configuration`,
@@ -72,9 +65,7 @@ export const getConnectorTransforms = async ({
   engine,
   serviceId,
   connectorCapabilityId,
-}: ServiceData & {
-  connectorCapabilityId: string;
-}) =>
+}: IServiceWithConnectorCapabilityId) =>
   apiClient.v6
     .get<database.kafkaConnect.capabilities.connector.Transform[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/connector/${connectorCapabilityId}/transforms`,
@@ -93,9 +84,7 @@ export const addConnector = async ({
   apiClient.v6
     .post<database.kafkaConnect.Connector>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/connector`,
-      {
-        ...connector,
-      },
+      connector,
     )
     .then((res) => res.data);
 
@@ -170,7 +159,7 @@ export const getConnectorTasks = async ({
     .get<database.kafkaConnect.connector.Task[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/connector/${connectorId}/task`,
       {
-        headers: icebergHeaders,
+        headers: HeadersIcebergPagination,
       },
     )
     .then((res) => res.data);

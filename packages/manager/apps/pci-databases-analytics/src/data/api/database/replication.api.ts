@@ -1,12 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import * as database from '@/types/cloud/project/database';
-import { ServiceData } from '.';
-
-const icebergHeaders = {
-  'X-Pagination-Mode': 'CachedObjectList-Pages',
-  'X-Pagination-Size': '50000',
-  Pragma: 'no-cache',
-};
+import { HeadersIcebergPagination, ServiceData } from '.';
 
 export const getReplications = async ({
   projectId,
@@ -17,7 +11,7 @@ export const getReplications = async ({
     .get<database.service.Replication[]>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
       {
-        headers: icebergHeaders,
+        headers: HeadersIcebergPagination,
       },
     )
     .then((res) => res.data);
@@ -34,9 +28,7 @@ export const addReplication = async ({
   apiClient.v6
     .post<database.service.Replication>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-      {
-        ...replication,
-      },
+      replication,
     )
     .then((res) => res.data);
 
@@ -51,6 +43,7 @@ export const editReplication = async ({
 }: IEditReplication) => {
   const {
     id,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, prettier/prettier
     sourceIntegration,
     targetIntegration,
     ...replicationWithoutId
@@ -58,9 +51,7 @@ export const editReplication = async ({
   return apiClient.v6
     .put<database.service.Replication>(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication/${id}`,
-      {
-        ...replicationWithoutId,
-      },
+      replicationWithoutId,
     )
     .then((res) => res.data);
 };

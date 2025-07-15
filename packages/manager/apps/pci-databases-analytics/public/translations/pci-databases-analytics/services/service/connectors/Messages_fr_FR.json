@@ -1,5 +1,8 @@
 {
   "breadcrumb": "Connectors",
+  "breadcrumb-add": "Création",
+  "breadcrumb-edit": "Edition",
+  "breadcrumb-tasks": "Tâches",
   "title": "Connectors",
   "addButtonLabel": "Ajouter un connector",
   "pauseConnectorToastErrorTitle": "Une erreur est survenue lors de la mise en pause du connector",
@@ -47,7 +50,15 @@
   "formConnectorLabelConnector": "Connector",
   "formConnectorPlaceholederConnector": "Sélectionnez un connector",
   "formConnectorLabelName": "Nom",
+  "formConnectorPlaceholderName": "Entrez le nom de votre connector",
   "formConnectorLabelConfiguration": "Configuration",
-  "formConnectorAddButtonLabel": "Créer un connector",
-  "formConnectorEditButtonLabel": "Mettre à jour le connector"
+  "addConnectorButtonLabel": "Créer un connector",
+  "editConnectorButtonLabel": "Mettre à jour le connector",
+  "deleteConnectorTitle": "Supprimer un connector",
+  "deleteConnectorDescription": "Vous allez supprimer votre connector {{name}}. Souhaitez-vous continuer ?",
+  "deleteConnectorButtonCancel": "Annuler",
+  "deleteConnectorButtonConfirm": "Confirmer",
+  "deleteConnectorToastErrorTitle": "Une erreur est survenue lors de la suppression de votre connector",
+  "deleteConnectorToastSuccessTitle": "Succès",
+  "deleteConnectorToastSuccessDescription": "Votre connector {{name}} a correctement été supprimée"
 }
