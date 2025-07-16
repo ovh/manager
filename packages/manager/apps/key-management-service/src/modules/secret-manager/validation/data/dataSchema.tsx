@@ -6,7 +6,7 @@ export const useSecretDataSchema = () => {
   const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
 
   return z
-    .string({ message: t('required_field', { ns: NAMESPACES.FORM }) })
+    .string({ error: t('required_field', { ns: NAMESPACES.FORM }) })
     .refine(
       (value) => {
         try {
@@ -17,7 +17,7 @@ export const useSecretDataSchema = () => {
         }
       },
       {
-        message: t('secret-manager/create:data_error_invalid_json'),
+        error: t('secret-manager/create:data_error_invalid_json'),
       },
     );
 };
