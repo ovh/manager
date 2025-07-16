@@ -12,7 +12,7 @@ import {
   PATH_INPUT_TEST_ID,
   MOCK_PATH_VALID,
   SUBMIT_BTN_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constant';
+} from '@secret-manager/utils/tests/secret.constants';
 import { fireEvent, act, render, screen } from '@testing-library/react';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
