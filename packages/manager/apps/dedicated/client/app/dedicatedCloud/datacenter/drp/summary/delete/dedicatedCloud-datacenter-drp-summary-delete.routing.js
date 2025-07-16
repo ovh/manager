@@ -3,18 +3,9 @@ export default /* @ngInject */ ($stateProvider) => {
     'app.dedicatedCloud.details.datacenter.details.drp.summary.deleteDrp',
     {
       url: '/deleteDrp',
-      views: {
-        modal: {
-          component: 'dedicatedCloudDatacenterDrpDelete',
-        },
-      },
       layout: 'modal',
-      resolve: {
-        drpInformations: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
-          dedicatedCloudDrp.constructor.getPlanServiceInformations(currentDrp),
-
-        goBack: /* @ngInject */ ($state) => () => $state.go('^'),
-        breadcrumb: () => null,
+      redirectTo: () => {
+        return 'app.dedicatedCloud.details.datacenter.details.zerto.summary.deleteZerto';
       },
     },
   );
