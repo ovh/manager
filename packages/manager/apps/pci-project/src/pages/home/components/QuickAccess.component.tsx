@@ -1,71 +1,23 @@
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsCard } from '@ovhcloud/ods-components/react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import IconInstances from '@/assets/home/Instances.svg?url';
-import IconKubernetes from '@/assets/home/Managed Kubernetes Service.svg?url';
-import IconObjectStorage from '@/assets/home/Object Storage.svg?url';
-import IconNetwork from '@/assets/home/vRack Private Network.svg?url';
-import IconDatabase from '@/assets/home/Managed MongoDB.svg?url';
-import IconBlockStorage from '@/assets/home/Block Storage.svg?url';
 
-type QuickAccessItem = {
+export type QuickAccessItem = {
   icon: string;
   title: string;
   description: string;
   link: string;
 };
 
-export default function QuickAccess({ projectId }: { projectId: string }) {
+export function QuickAccess({ items }: { items: QuickAccessItem[] }) {
   const { t } = useTranslation('home');
-  const quickAccess: QuickAccessItem[] = useMemo(
-    () => [
-      {
-        icon: IconInstances,
-        title: t('instances'),
-        description: t('create_instance'),
-        link: `instances/new`,
-      },
-      {
-        icon: IconKubernetes,
-        title: t('kubernetes'),
-        description: t('create_cluster'),
-        link: `kubernetes/new`,
-      },
-      {
-        icon: IconObjectStorage,
-        title: t('object_storage'),
-        description: t('create_container'),
-        link: `storages/objects/new`,
-      },
-      {
-        icon: IconBlockStorage,
-        title: t('block_storage'),
-        description: t('create_volume'),
-        link: `storages/blocks`,
-      },
-      {
-        icon: IconNetwork,
-        title: t('network'),
-        description: t('manage_vrack'),
-        link: `private-networks`,
-      },
-      {
-        icon: IconDatabase,
-        title: t('database'),
-        description: t('create_database'),
-        link: `databases-analytics/operational/services/new`,
-      },
-    ],
-    [projectId, t],
-  );
 
   return (
     <>
       <Subtitle>{t('quick_access')}</Subtitle>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5 my-6">
-        {quickAccess.map((item, idx) => (
+        {items.map((item, idx) => (
           <Link to={item.link} style={{ textDecoration: 'none' }} key={idx}>
             <OdsCard className="flex flex-row items-center p-4 h-full border border-[var(--ods-color-neutral-200)] rounded-xl bg-white shadow-none min-h-[100px]">
               <div className="bg-[var(--ods-color-information-700)] rounded flex items-center justify-center w-23 h-23">
