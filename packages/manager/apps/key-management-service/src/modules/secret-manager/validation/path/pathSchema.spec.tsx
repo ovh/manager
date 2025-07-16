@@ -7,7 +7,7 @@ import {
   MOCK_PATH_INVALID_ENDS_WITH_SLASH,
   MOCK_PATH_INVALID_STARTS_WITH_SLASH,
   MOCK_PATH_VALID,
-} from '@secret-manager/utils/tests/secret.constant';
+} from '@secret-manager/utils/tests/secret.constants';
 import { renderHook } from '@testing-library/react';
 import {
   PATH_MAX_CHAR,
