@@ -140,7 +140,7 @@
                                 type="button"
                                 data-translate="common_delete"
                                 data-ng-click="setAction('zone/record/delete/domain-zone-record-delete', ctrlDomainTabZoneDns.selectedRecords)"
-                                data-ng-if="ctrlDomainTabZoneDns.atLeastOneSelected && ctrlDomainTabZoneDns.allowModification"
+                                data-ng-if="ctrlDomainTabZoneDns.atLeastOneSelected"
                             ></button>
                         </div>
                         <div class="col-md-9 mb-3">
@@ -373,7 +373,7 @@
                                     <td class="text-right">
                                         <oui-action-menu
                                             data-compact
-                                            data-ng-if="!(record.fieldType === 'NS' && !record.subDomain) && ctrlDomainTabZoneDns.allowModification"
+                                            data-ng-if="!(record.fieldType === 'NS' && !record.subDomain)"
                                             data-placement="end"
                                         >
                                             <oui-action-menu-item
@@ -413,7 +413,6 @@
                         type="button"
                         data-translate="domain_configuration_dns_entry_add_title_button"
                         data-ng-click="setAction('zone/record/add/domain-zone-record-add', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes })"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                     <button
                         class="btn btn-block btn-default"
@@ -427,7 +426,6 @@
                         data-translate="domain_tab_ZONE_default_ttl_button"
                         data-ng-click="setAction('zone/default-ttl/domain-zone-default-ttl', ctrlDomainTabZoneDns.domain)"
                         data-ng-disabled="!ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.zone.paginatedZone.records.results.length"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                     <button
                         class="btn btn-block btn-default"
@@ -441,14 +439,12 @@
                         type="button"
                         data-translate="domain_configuration_zonedns_reset_title_button"
                         data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                     <button
                         class="btn btn-block btn-default"
                         type="button"
                         data-translate="domain_tab_ZONE_default_delete_all"
                         data-ng-click="setAction('zone/delete-all/domain-zone-delete-all', ctrlDomainTabZoneDns.domain)"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                 </div>
 
