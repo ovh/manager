@@ -4,17 +4,17 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../drp/dedicatedCloud-datacenter-drp.constants';
+} from '../zerto/dedicatedCloud-datacenter-zerto.constants';
 
 import { DEDICATED_CLOUD_DATACENTER } from '../dedicatedCloud-datacenter.constants';
 import { LABELS } from '../../dedicatedCloud.constant';
 
 export default class {
   /* @ngInject */
-  constructor($translate, DedicatedCloud, dedicatedCloudDrp, $q) {
+  constructor($translate, DedicatedCloud, dedicatedCloudZerto, $q) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
-    this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.dedicatedCloudZerto = dedicatedCloudZerto;
     this.$q = $q;
     this.DRP_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_STATUS;
     this.DRP_VPN_STATUS = DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS;
@@ -86,25 +86,26 @@ export default class {
   }
 
   checkForZertoOptionOrder() {
-    return this.dedicatedCloudDrp
+    return this.dedicatedCloudZerto
       .checkForZertoOptionOrder(this.serviceName)
-      .then((storedDrpInformations) => {
-        const storedDrpStatus =
-          storedDrpInformations != null
-            ? this.dedicatedCloudDrp.constructor.formatStatus(
-                storedDrpInformations.status,
+      .then((storedZertoInformations) => {
+        const storedZertoStatus =
+          storedZertoInformations != null
+            ? this.dedicatedCloudZerto.constructor.formatStatus(
+                storedZertoInformations.status,
               )
             : this.DRP_STATUS.disabled;
 
-        this.drpStatus =
-          [this.currentDrp.state, storedDrpStatus].find(
+        this.zertoStatus =
+          [this.currentZerto.state, storedZertoStatus].find(
             (status) => status !== this.DRP_STATUS.disabled,
           ) || this.DRP_STATUS.disabled;
 
-        this.drpRemotePccStatus =
-          this.currentDrp.drpType === DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-            ? this.dedicatedCloudDrp.constructor.formatStatus(
-                get(this.currentDrp, 'remoteSiteInformation.state'),
+        this.zertoRemotePccStatus =
+          this.currentZerto.drpType ===
+          DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
+            ? this.dedicatedCloudZerto.constructor.formatStatus(
+                get(this.currentZerto, 'remoteSiteInformation.state'),
               )
             : this.DRP_STATUS.delivered;
       })
