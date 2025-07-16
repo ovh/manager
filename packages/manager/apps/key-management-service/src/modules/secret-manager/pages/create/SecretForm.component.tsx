@@ -25,7 +25,7 @@ import {
   DATA_INPUT_TEST_ID,
   PATH_INPUT_TEST_ID,
   SUBMIT_BTN_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constant';
+} from '@secret-manager/utils/tests/secret.constants';
 import { BackLink } from './BackLink.component';
 
 type SecretFormProps = {
