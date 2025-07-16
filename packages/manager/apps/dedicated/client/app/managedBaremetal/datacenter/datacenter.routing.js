@@ -44,7 +44,8 @@ export default /* @ngInject */ ($stateProvider) => {
         'app.managedBaremetal.details.datacenters.datacenter.dashboard',
       datastoresState: () =>
         'app.managedBaremetal.details.datacenters.datacenter.datastores',
-      drpState: () => 'app.managedBaremetal.details.datacenters.datacenter.drp',
+      zertoState: () =>
+        'app.managedBaremetal.details.datacenters.datacenter.zerto',
       hostsState: () =>
         'app.managedBaremetal.details.datacenters.datacenter.hosts',
       goToHosts: /* @ngInject */ ($state) => () =>
@@ -55,18 +56,18 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       goToBackup: /* @ngInject */ ($state) => () =>
         $state.go('app.managedBaremetal.details.datacenters.datacenter.backup'),
-      goToDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.datacenters.datacenter.drp'),
-      goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
+      goToZerto: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.zerto'),
+      goToZertoSummary: /* @ngInject */ ($state, currentZerto) => () =>
         $state.go(
-          'app.managedBaremetal.details.datacenters.datacenter.drp.summary',
+          'app.managedBaremetal.details.datacenters.datacenter.zerto.summary',
           {
-            drpInformations: currentDrp,
+            zertoInformations: currentZerto,
           },
         ),
-      goToDeleteDrp: /* @ngInject */ ($state) => () =>
+      goToDeleteZerto: /* @ngInject */ ($state) => () =>
         $state.go(
-          'app.managedBaremetal.details.datacenters.datacenter.dashboard.deleteDrp',
+          'app.managedBaremetal.details.datacenters.datacenter.dashboard.deleteZerto',
         ),
 
       virtualMachinesState: () =>

@@ -4,7 +4,7 @@ import backup from './backup';
 import dashboard from './dashboard';
 import datacenterComponent from '../../components/dedicated-cloud/datacenter';
 import datastore from './datastore';
-import drp from './drp';
+import zerto from './zerto';
 import host from './host';
 import routing from './datacenter.routing';
 import virtualMachine from './virtualMachine';
@@ -17,7 +17,7 @@ angular
     dashboard,
     datacenterComponent,
     datastore,
-    drp,
+    zerto,
     host,
     virtualMachine,
   ])

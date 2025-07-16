@@ -84,22 +84,22 @@ export default class {
   }
 
   closeModal() {
-    if (this.isOrderingFromDrp()) {
+    if (this.isOrderingFromZerto()) {
       this.$state.go('^');
     } else {
       this.$scope.setAction(false);
     }
   }
 
-  isOrderingFromDrp() {
+  isOrderingFromZerto() {
     return (
       startsWith(
         this.$state.current.name,
-        'app.dedicatedCloud.details.datacenter.drp',
+        'app.dedicatedCloud.details.datacenter.zerto',
       ) ||
       startsWith(
         this.$state.current.name,
-        'app.managedBaremetal.details.datacenters.datacenter.drp',
+        'app.managedBaremetal.details.datacenters.datacenter.zerto',
       )
     );
   }
@@ -491,11 +491,11 @@ export default class {
     =            STEP 4            =
     ============================== */
 
-  getDrpState() {
+  getZertoState() {
     this.trackStep(4);
     return this.$scope.model.service.productReference === 'MBM'
-      ? 'app.managedBaremetal.details.datacenters.datacenter.drp'
-      : 'app.dedicatedCloud.details.datacenter.drp';
+      ? 'app.managedBaremetal.details.datacenters.datacenter.zerto'
+      : 'app.dedicatedCloud.details.datacenter.zerto';
   }
 
   loadContracts() {
@@ -567,9 +567,9 @@ export default class {
         );
       })
       .finally(() =>
-        this.isOrderingFromDrp()
+        this.isOrderingFromZerto()
           ? this.$scope.closeModal().then(() =>
-              this.$state.go(this.getDrpState(), {
+              this.$state.go(this.getZertoState(), {
                 reload: true,
               }),
             )
@@ -618,9 +618,9 @@ export default class {
         );
       })
       .finally(() =>
-        this.isOrderingFromDrp()
+        this.isOrderingFromZerto()
           ? this.$scope.closeModal().then(() =>
-              this.$state.go(this.getDrpState(), {
+              this.$state.go(this.getZertoState(), {
                 reload: true,
               }),
             )

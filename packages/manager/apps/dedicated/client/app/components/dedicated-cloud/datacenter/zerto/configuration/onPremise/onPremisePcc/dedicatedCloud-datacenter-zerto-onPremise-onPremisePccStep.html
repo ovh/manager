@@ -1,0 +1,42 @@
+<div class="text-center" data-ng-if="$ctrl.isValidating">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.isValidating">
+    <form name="$ctrl.onPremise" novalidate>
+        <oui-field
+            data-label="{{:: 'dedicatedCloud_datacenter_remote_vra_network' | translate }}"
+            data-size="m"
+            data-required
+        >
+            <input
+                class="oui-input"
+                name="remoteVraNetwork"
+                type="text"
+                data-ng-model="$ctrl.zertoInformations.remoteVraNetwork"
+                placeholder="{{:: 'dedicatedCloud_datacenter_remote_vra_network_placeholder' | translate }}"
+                data-required
+            />
+        </oui-field>
+    </form>
+
+    <div class="mt-5">
+        <oui-button
+            data-variant="secondary"
+            data-variant-nav="previous"
+            data-on-click="$ctrl.goToPreviousStep()"
+        >
+            <span data-translate="common_previous"></span>
+        </oui-button>
+        <oui-button
+            data-variant="primary"
+            data-variant-nav="next"
+            data-on-click="$ctrl.validateConfiguration()"
+            data-disabled="$ctrl.onPremise.$invalid"
+        >
+            <span
+                data-translate="dedicatedCloud_datacenter_install_plan"
+            ></span>
+        </oui-button>
+    </div>
+</div>

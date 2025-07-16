@@ -15,8 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       trackingPrefix: () => 'Enterprise::PrivateCloud::',
-      deleteDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.dedicatedCloud.details.dashboard.deleteDrp'),
+      deleteZerto: /* @ngInject */ ($state) => () =>
+        $state.go('app.dedicatedCloud.details.dashboard.deleteZerto'),
       featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability([
           'dedicated-cloud:mailingListSubscription',
