@@ -22,7 +22,7 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
-import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constant';
+import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { DomainManagement } from './DomainManagement.component';
 import { catalogMock, REGION_CA_EAST_BHS } from '@/mocks/catalog/catalog.mock';

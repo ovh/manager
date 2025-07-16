@@ -7,7 +7,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constant';
+import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
 import { OKMS } from '@/types/okms.type';
 import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { RadioCard } from '@/common/components/RadioCard/RadioCard.component';
