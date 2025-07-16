@@ -1,20 +1,13 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as cartApi from '@/data/api/cart';
 import * as servicesApi from '@/data/api/services';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import { createWrapper } from '@/wrapperRenders';
 import {
   useGetHdsCartServiceOption,
-  useIsAValidHdsSupportLevel,
   useIsAlreadyHdsCertifiedProject,
-  useIsHdsFeatureAvailabilityEnabled,
   usePrepareHdsCart,
 } from './useHds';
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFeatureAvailability: vi.fn(),
-}));
 
 vi.mock('@/data/api/cart', () => ({
   createCart: vi.fn(),
@@ -36,90 +29,6 @@ vi.mock('@/data/api/payment', () => ({
 describe('useHds hooks', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('useIsHdsFeatureAvailabilityEnabled returns true if feature is available', () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
-      data: { 'public-cloud:hds': true },
-      error: null,
-      isError: false,
-      isSuccess: true,
-    } as unknown) as ReturnType<typeof useFeatureAvailability>);
-
-    const { result } = renderHook(() => useIsHdsFeatureAvailabilityEnabled(), {
-      wrapper: createWrapper(),
-    });
-
-    expect(result.current).toBe(true);
-  });
-
-  it('useIsHdsFeatureAvailabilityEnabled returns false if feature is not available', () => {
-    vi.mocked(useFeatureAvailability).mockReturnValue(({
-      data: { 'public-cloud:hds': false },
-      isLoading: false,
-      isSuccess: true,
-      status: 'success',
-    } as unknown) as ReturnType<typeof useFeatureAvailability>);
-
-    const { result } = renderHook(() => useIsHdsFeatureAvailabilityEnabled(), {
-      wrapper: createWrapper(),
-    });
-
-    expect(result.current).toBe(false);
-  });
-
-  it('useIsAValidHdsSupportLevel returns true for enterprise or business', () => {
-    const customContext = {
-      ...shellContext,
-      environment: {
-        ...shellContext.environment,
-        getUser: () => ({ supportLevel: { level: 'enterprise' } }),
-      },
-    };
-
-    const { result: resultEnterprise } = renderHook(
-      () => useIsAValidHdsSupportLevel(),
-      {
-        wrapper: createWrapper(
-          (customContext as unknown) as typeof shellContext,
-        ),
-      },
-    );
-
-    expect(resultEnterprise.current).toBe(true);
-
-    const customContext2 = {
-      ...shellContext,
-      environment: {
-        ...shellContext.environment,
-        getUser: () => ({ supportLevel: { level: 'business' } }),
-      },
-    };
-
-    const { result: resultBusiness } = renderHook(
-      () => useIsAValidHdsSupportLevel(),
-      {
-        wrapper: createWrapper(
-          (customContext2 as unknown) as typeof shellContext,
-        ),
-      },
-    );
-
-    expect(resultBusiness.current).toBe(true);
-  });
-
-  it('useIsAValidHdsSupportLevel returns false for other levels', () => {
-    const customContext = {
-      ...shellContext,
-      environment: {
-        ...shellContext.environment,
-        getUser: () => ({ supportLevel: { level: 'basic' } }),
-      },
-    };
-    const { result } = renderHook(() => useIsAValidHdsSupportLevel(), {
-      wrapper: createWrapper((customContext as unknown) as typeof shellContext),
-    });
-    expect(result.current).toBe(false);
   });
 
   it('useIsAlreadyHdsCertifiedProject returns true if project is certified', async () => {
