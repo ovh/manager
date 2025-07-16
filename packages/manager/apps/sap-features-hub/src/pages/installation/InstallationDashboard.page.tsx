@@ -6,10 +6,12 @@ import {
   BaseLayout,
   IconLinkAlignmentType,
   Notifications,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
+import { useWizardAvailability } from '@/hooks/wizardAvailability/useWizardAvailability';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
 import { INSTALLATION_STEPS } from './installation.constants';
 import { urls } from '@/routes/routes.constant';
@@ -27,6 +29,7 @@ export type DashboardLayoutProps = {
 export default function InstallationDashboard() {
   const { t } = useTranslation('installation');
   const { currentStep } = useFormSteps();
+  const { isWizardAvailable, isLoading } = useWizardAvailability();
   const navigate = useNavigate();
 
   const pageTitle = !currentStep
@@ -38,17 +41,23 @@ export default function InstallationDashboard() {
 
   return (
     <InstallationFormContextProvider>
-      <BaseLayout
-        breadcrumb={<Breadcrumb />}
-        header={{ title: pageTitle }}
-        backLinkLabel={t('backlink_label')}
-        onClickReturn={() => navigate(urls.dashboard)}
-        description={t('description')}
-        iconAlignment={IconLinkAlignmentType.left}
-        message={<Notifications />}
+      <RedirectionGuard
+        condition={!isWizardAvailable}
+        isLoading={isLoading}
+        route={urls.dashboard}
       >
-        <Outlet />
-      </BaseLayout>
+        <BaseLayout
+          breadcrumb={<Breadcrumb />}
+          header={{ title: pageTitle }}
+          backLinkLabel={t('backlink_label')}
+          onClickReturn={() => navigate(urls.dashboard)}
+          description={t('description')}
+          iconAlignment={IconLinkAlignmentType.left}
+          message={<Notifications />}
+        >
+          <Outlet />
+        </BaseLayout>
+      </RedirectionGuard>
     </InstallationFormContextProvider>
   );
 }
