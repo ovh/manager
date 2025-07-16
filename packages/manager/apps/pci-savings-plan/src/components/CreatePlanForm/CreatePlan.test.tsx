@@ -40,6 +40,9 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...(actual as any),
     useNavigate: () => mockedUsedNavigate,
+    useRouteLoaderData: () => ({
+      serviceId: 789,
+    }),
   };
 });
 
