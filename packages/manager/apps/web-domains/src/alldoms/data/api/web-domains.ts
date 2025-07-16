@@ -3,12 +3,8 @@ import {
   DomainBillingInformation,
   TAllDomDomains,
   TServiceInfo,
-  UpdateAllDomProps,
 } from '@/alldoms/types';
-import {
-  ServiceInfoRenewMode,
-  ServiceInfoUpdateEnum,
-} from '@/alldoms/enum/service.enum';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 
 /**
  *  : List available AllDom services
@@ -41,44 +37,23 @@ export const getAllDomResource = async (serviceName: string) => {
 };
 
 /**
- *  : Terminate the domain
+ *  : Update the service (terminate or cancel the terminate)
  */
 
-export const updateAllDomService = async ({
-  serviceName,
-  ...payload
-}: UpdateAllDomProps): Promise<TServiceInfo> => {
+export const updateService = async (
+  serviceName: string,
+  terminationPolicy: ServiceInfoUpdateEnum,
+  serviceRoute: string,
+): Promise<TServiceInfo> => {
   // First call to retrieve serviceID in order to update it
-  const { data: allDomServiceId } = await v6.get(
-    `/services?resourceName=${serviceName}`,
+  const { data: serviceId } = await v6.get(
+    `/services?resourceName=${serviceName}&routes=${serviceRoute}`,
   );
 
-  const { data } = await v6.put(`/services/${allDomServiceId}`, payload);
+  const { data } = await v6.put(`/services/${serviceId}`, {
+    terminationPolicy,
+  });
   return data;
-};
-
-export const updateDomainServiceInfo = async (
-  domainName: string,
-): Promise<TServiceInfo[]> => {
-  // First call to retrieve serviceID in order to update it
-  const { data: domainServiceInfoId } = await v6.get<number[]>(
-    `/services?resourceName=${domainName}`,
-  );
-
-  const promiseDomainServiceInfoId = await Promise.all(
-    domainServiceInfoId.map(async (id) => {
-      const { data } = await v6.put(`/services/${id}&routes=/domain`, {
-        displayName: domainName,
-        renew: {
-          mode: ServiceInfoRenewMode.Manual,
-        },
-        terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
-      });
-      return data;
-    }),
-  );
-
-  return promiseDomainServiceInfoId;
 };
 
 export const getDomainBillingInformation = async (

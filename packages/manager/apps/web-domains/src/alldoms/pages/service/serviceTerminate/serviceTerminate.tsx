@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import ModalStepOne from '@/alldoms/components/Terminate/Steps/Terminate.stepOne';
 import ModalStepTwo from '@/alldoms/components/Terminate/Steps/Terminate.stepTwo';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
+import Loading from '@/alldoms/components/Loading/Loading';
 
 export default function ServiceTerminate() {
   const { t } = useTranslation(['allDom']);
@@ -36,6 +37,10 @@ export default function ServiceTerminate() {
       setIsAllDomainChecked(false);
     }
   }, [domainAttachedChecked]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Modal

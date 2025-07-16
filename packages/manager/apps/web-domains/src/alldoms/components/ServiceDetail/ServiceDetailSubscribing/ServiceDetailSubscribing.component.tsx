@@ -59,6 +59,7 @@ export default function ServiceDetailSubscribing({
           terminateUrl={'terminate'}
           lifecycleCapacities={lifecycleCapacities}
           whichAction={ActionEnum.OnlyRenew}
+          cancelTerminateUrl={'terminate/cancel'}
         />
       </div>
 
