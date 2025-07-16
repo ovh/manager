@@ -68,6 +68,8 @@ export default function DeleteVrackNetwork() {
       closeModal();
     },
     onError: (error) => {
+      // Ref: MANAGER-19025
+      // TODO : if error.message contains or another well condition change translate by : managed_vcd_dashboard_vrack_unable_delete_used_network
       addError({
         content: t('managed_vcd_dashboard_vrack_delete_network_error', {
           errorApi: error.message,

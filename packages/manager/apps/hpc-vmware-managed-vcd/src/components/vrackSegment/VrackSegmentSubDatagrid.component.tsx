@@ -69,6 +69,7 @@ export const VrackSegmentSubDatagrid = ({
             label: '',
             cell: (network: string) => {
               const isDeleting = vrackSegmentStatus === 'deleting';
+              const isLastNetwork = networks.length <= 1;
               const buttonId = `delete-network-${network}`;
               return (
                 <div className="flex items-center justify-end">
@@ -80,7 +81,7 @@ export const VrackSegmentSubDatagrid = ({
                     icon="trash"
                     variant="ghost"
                     color="critical"
-                    isDisabled={isDeleting}
+                    isDisabled={isDeleting || isLastNetwork}
                     onClick={() => {
                       navigate(
                         urls.vrackSegmentDeleteNetwork
@@ -97,6 +98,13 @@ export const VrackSegmentSubDatagrid = ({
                   {isDeleting && (
                     <OdsTooltip triggerId={buttonId}>
                       {t('managed_vcd_dashboard_vrack_deleting')}
+                    </OdsTooltip>
+                  )}
+                  {isLastNetwork && (
+                    <OdsTooltip triggerId={buttonId}>
+                      {t(
+                        'managed_vcd_dashboard_vrack_unable_delete_last_network',
+                      )}
                     </OdsTooltip>
                   )}
                 </div>
