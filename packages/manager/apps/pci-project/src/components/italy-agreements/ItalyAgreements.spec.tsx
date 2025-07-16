@@ -2,7 +2,7 @@ import { ReactNode, SyntheticEvent } from 'react';
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import ItalyAgreements from '@/components/ItalyAgreements';
+import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
 
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const mod = await vi.importActual('@ovhcloud/ods-components/react');
