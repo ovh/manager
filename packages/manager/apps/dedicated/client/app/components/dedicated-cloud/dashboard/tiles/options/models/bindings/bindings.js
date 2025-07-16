@@ -17,7 +17,7 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../../../../../datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+} from '../../../../../datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 const moduleName = 'ovhManagerPccDashboardOptionsModelBindings';
 
@@ -95,7 +95,7 @@ class ModelBindings {
         },
       },
       security: {
-        drpGlobalStatus: {
+        zertoGlobalStatus: {
           value: undefined,
           detail: undefined,
         },
@@ -110,7 +110,7 @@ class ModelBindings {
               exists: undefined,
               action: undefined,
             },
-            deleteDrp: {
+            deleteZerto: {
               exists: undefined,
               sref: undefined,
             },
@@ -181,12 +181,12 @@ class ModelBindings {
   }
 
   updateOptionsSecurity() {
-    this.options.security.drpGlobalStatus = this.computeOptionsSecurityDrpGlobalStatus();
+    this.options.security.zertoGlobalStatus = this.computeOptionsSecurityZertoGlobalStatus();
 
-    this.options.security.actionMenu.exists = this.model.drp.isDrpActionPossible;
+    this.options.security.actionMenu.exists = this.model.zerto.isZertoActionPossible;
     this.options.security.actionMenu.items.selectDatacenter = this.computeOptionsSecurityActionMenuItemsSelectDatacenter();
     this.options.security.actionMenu.items.goToVpnConfiguration = this.computeOptionsSecurityActionMenuItemsVpnConfiguration();
-    this.options.security.actionMenu.items.deleteDrp = this.computeOptionsSecurityActionMenuItemsDeleteDrp();
+    this.options.security.actionMenu.items.deleteZerto = this.computeOptionsSecurityActionMenuItemsDeleteZerto();
   }
 
   computeOptionsBasicDescriptionItems() {
@@ -358,19 +358,19 @@ class ModelBindings {
     };
   }
 
-  computeOptionsSecurityDrpGlobalStatus() {
+  computeOptionsSecurityZertoGlobalStatus() {
     return {
-      value: this.model.drp.drpGlobalStatus,
-      detail: this.model.drp.currentDrp.isWaitingVpnConfiguration
-        ? `ovhManagerPccDashboardOptions_security_drp_status_vpn_${this.model.drp.currentDrp.vpnStatus}`
-        : `ovhManagerPccDashboardOptions_security_drp_status_${this.model.drp.currentDrp.state}`,
+      value: this.model.zerto.zertoGlobalStatus,
+      detail: this.model.zerto.currentZerto.isWaitingVpnConfiguration
+        ? `ovhManagerPccDashboardOptions_security_drp_status_vpn_${this.model.zerto.currentZerto.vpnStatus}`
+        : `ovhManagerPccDashboardOptions_security_drp_status_${this.model.zerto.currentZerto.state}`,
     };
   }
 
   computeOptionsSecurityActionMenuItemsSelectDatacenter() {
     return {
       exists:
-        this.model.drp.currentDrp.state ===
+        this.model.zerto.currentZerto.state ===
         DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
       action: this.computeOptionsSecurityActionMenuItemsSelectDatacenterAction(),
     };
@@ -378,39 +378,40 @@ class ModelBindings {
 
   computeOptionsSecurityActionMenuItemsSelectDatacenterAction() {
     return () => {
-      if (this.model.drp.datacenterList.length === 1) {
-        const [{ id: datacenterId }] = this.model.drp.datacenterList;
-        return this.model.drp.goToDrp(datacenterId);
+      if (this.model.zerto.datacenterList.length === 1) {
+        const [{ id: datacenterId }] = this.model.zerto.datacenterList;
+        return this.model.zerto.goToZerto(datacenterId);
       }
 
-      return this.model.drp.goToDrpDatacenterSelection();
+      return this.model.zerto.goToZertoDatacenterSelection();
     };
   }
 
   computeOptionsSecurityActionMenuItemsVpnConfiguration() {
     return {
       exists:
-        this.model.drp.currentDrp.vpnStatus ===
+        this.model.zerto.currentZerto.vpnStatus ===
         DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.notConfigured,
-      action: this.model.drp.goToVpnConfiguration,
+      action: this.model.zerto.goToVpnConfiguration,
     };
   }
 
-  computeOptionsSecurityActionMenuItemsDeleteDrp() {
-    const drpStatus = this.model.drp.currentDrp.state;
-    const drpRemotePccStatus =
-      this.model.drp.currentDrp.drpType ===
+  computeOptionsSecurityActionMenuItemsDeleteZerto() {
+    const zertoStatus = this.model.zerto.currentZerto.state;
+    const zertoRemotePccStatus =
+      this.model.zerto.currentZerto.drpType ===
       DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh
-        ? this.model.drp.service.constructor.formatStatus(
-            get(this.model.drp.currentDrp, 'remoteSiteInformation.state'),
+        ? this.model.zerto.service.constructor.formatStatus(
+            get(this.model.zerto.currentZerto, 'remoteSiteInformation.state'),
           )
         : DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
 
     return {
       exists:
-        drpStatus === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered &&
-        drpRemotePccStatus === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered &&
-        this.model.drp.currentDrp.vpnStatus !==
+        zertoStatus === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered &&
+        zertoRemotePccStatus ===
+          DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered &&
+        this.model.zerto.currentZerto.vpnStatus !==
           DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.configuring,
     };
   }

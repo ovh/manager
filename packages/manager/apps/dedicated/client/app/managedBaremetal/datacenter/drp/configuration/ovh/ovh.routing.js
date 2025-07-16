@@ -4,13 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/ovh',
       abstract: true,
-      views: {
-        'progressTrackerView@app.managedBaremetal.details.datacenters.datacenter.drp': {
-          component: 'dedicatedCloudDatacenterDrpOvh',
-        },
-      },
       redirectTo:
-        'app.managedBaremetal.details.datacenters.datacenter.drp.ovh.mainPccStep',
+        'app.managedBaremetal.details.datacenters.datacenter.zerto.ovh',
     },
   );
 };

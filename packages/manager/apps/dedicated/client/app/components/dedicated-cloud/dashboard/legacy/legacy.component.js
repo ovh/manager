@@ -3,20 +3,20 @@ import template from './legacy.html';
 
 export default {
   bindings: {
-    currentDrp: '<',
+    currentZerto: '<',
     currentService: '<',
     currentUser: '<',
     datacenterList: '<',
-    deleteDrp: '<',
+    deleteZerto: '<',
     disableVmwareOption: '<',
-    drpGlobalStatus: '<',
+    zertoGlobalStatus: '<',
     editDetails: '<',
 
-    goToDrp: '<',
-    goToDrpDatacenterSelection: '<',
+    goToZerto: '<',
+    goToZertoDatacenterSelection: '<',
     goToVpnConfiguration: '<',
 
-    isDrpActionPossible: '<',
+    isZertoActionPossible: '<',
     onMlSubscribe: '<',
     orderSecurityOption: '<',
     orderVmwareOption: '<',
