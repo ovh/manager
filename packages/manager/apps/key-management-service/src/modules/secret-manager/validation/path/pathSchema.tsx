@@ -16,7 +16,7 @@ export const useSecretPathSchema = () => {
   const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
 
   return z
-    .string({ message: t('required_field', { ns: NAMESPACES.FORM }) })
+    .string({ error: t('required_field', { ns: NAMESPACES.FORM }) })
     .regex(
       PATH_ALLOWED_CHARACTER_REGEX,
       t('secret-manager/create:path_error_allowed_characters'),
