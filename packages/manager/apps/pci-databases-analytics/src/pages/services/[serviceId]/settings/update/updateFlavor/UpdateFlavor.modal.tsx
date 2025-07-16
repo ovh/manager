@@ -100,7 +100,7 @@ const UpdateFlavor = () => {
       isLoading={!listFlavors || !initialFlavorObject || !newPrice || !oldPrice}
     >
       <DialogContent className="sm:max-w-2xl">
-        <ScrollArea className="max-h-[80vh] px-6">
+        <ScrollArea className="max-h-[80vh]">
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateFlavorForm">
               <DialogHeader className="mb-2">

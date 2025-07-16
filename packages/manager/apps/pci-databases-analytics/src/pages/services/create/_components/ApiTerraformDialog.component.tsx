@@ -26,7 +26,6 @@ import {
 import A from '@/components/links/A.component';
 import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
 import { useOrderFunnel } from './useOrderFunnel.hook';
-import { ServiceCreationWithEngine } from '@/hooks/api/database/service/useAddService.hook';
 import { useLocale } from '@/hooks/useLocale';
 
 import * as TTerraform from '@/types/terraform';
@@ -133,6 +132,13 @@ const ApiTerraformDialog = ({
             dialogData.flavor.storage.minimum.value +
             dialogData.additionalStorage,
         } as Disk;
+      }
+      if (dialogData.network.type === database.NetworkTypeEnum.private) {
+        const networkOpenstackId = dialogData.network.network.regions.find(
+          (r) => r.region.includes(dialogData.region.name),
+        ).openstackId;
+        terraformService.body.networkId = networkOpenstackId;
+        terraformService.body.subnetId = dialogData.network.subnet.id;
       }
       serviceToTerraform(terraformService);
     }

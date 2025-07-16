@@ -63,7 +63,7 @@
   "region_continent_SYD": "Oceania",
   "region_continent_US": "Stati Uniti",
   "region_continent_SHA": "Europa Occidentale",
-  "region_continent_all": "Tutte le Region",
+  "region_continent_all": "Tutte le localizzazioni",
   "region_MUM": "Mumbai",
   "region_MUM_micro": "Mumbai ({{ micro }})",
   "region_location_MUM": "Asia Pacifica (Mumbai)",
@@ -81,5 +81,8 @@
   "region_EU-WEST-PAR": "Parigi",
   "region_EU-WEST-PAR_micro": "Parigi ({{ micro }})",
   "region_location_EU-WEST-PAR": "Europa occidentale (Francia)",
-  "region_continent_EU-WEST-PAR": "Europa occidentale"
+  "region_continent_EU-WEST-PAR": "Europa occidentale",
+  "help-link-more-info": "Scopri di più",
+  "region-description-1AZ": "Una Region 1-AZ (zona di disponibilità) raggruppa uno o più datacenter localizzati sullo stesso sito.",
+  "region-description-3AZ": " Una regione 3-AZ comprende tre zone di disponibilità situate nella stessa area metropolitana, separate da pochi chilometri. Soddisfa i più elevati requisiti di resilienza, garantendo al tempo stesso una latenza estremamente bassa tra gli AZ."
 }
