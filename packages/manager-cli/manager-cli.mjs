@@ -33,6 +33,27 @@ yarn manager-cli tests-migrate --app zimbra --testType integration --framework j
 # Preview changes without applying them (without affecting files)
 yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
   },
+  'duplicated-translations': {
+    script: 'check-duplicated-translations',
+    isAppRequired: true,
+    description:
+      'Check for duplicate translations that already exist in the common module.',
+    help: `
+      #Check duplicated translations on zimbra app
+      yarn manager-cli duplicated-translations --app zimbra
+    `,
+  },
+  'pkg-manager-migrate': {
+    script: 'pkg-manager-migrate',
+    isAppRequired: true,
+    description: 'Migrate a specific app to a new package manager (e.g., pnpm)',
+    help: `
+# Migrate an app from Yarn to PNPM
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm
+
+# Dry-run preview
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm --dry-run`,
+  },
   'migrations-status': {
     script: 'migrations-status',
     isAppRequired: false,
@@ -53,20 +74,11 @@ yarn manager-cli migrations-status --type tests --format html
 yarn manager-cli migrations-status --type all --format html
 yarn manager-cli migrations-status --type all --format json`
   },
-  'duplicated-translations': {
-    script: 'check-duplicated-translations',
-    isAppRequired: true,
-    description:
-      'Check for duplicate translations that already exist in the common module.',
-    help: `
-      #Check duplicated translations on zimbra app
-      yarn manager-cli duplicated-translations --app zimbra
-    `,
-  },
 };
 
 const validMigrationTypes = ['routes', 'tests', 'swc', 'all'];
 const validTestTypes = ['unit', 'integration'];
+const validPkgManagerTypes = ['pnpm'];
 const validFormats = ['json', 'html'];
 
 const printHelp = () => {
@@ -201,11 +213,15 @@ if (command === 'migrations-status') {
   }
 }
 
+// Handle --testType for tests-migrate only
 if (command === 'tests-migrate') {
+  let testType = null;
   const typeArgIndex = restArgs.findIndex((arg) => arg === '--testType');
-  const testType = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
+  if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+    testType = restArgs[typeArgIndex + 1];
+  }
 
-  if (!testType || testType.startsWith('--')) {
+  if (!testType) {
     console.error(`❌ Missing required flag: --testType <unit|integration>`);
     process.exit(1);
   }
@@ -214,6 +230,25 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
+}
+
+// Handle package manager migration
+if (command === 'pkg-manager-migrate') {
+  let pckManagerType = null;
+  const typeArgIndex = restArgs.findIndex((arg) => arg === '--type');
+  if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+    pckManagerType = restArgs[typeArgIndex + 1];
+  }
+
+  if (!pckManagerType) {
+    console.error(`❌ Missing required flag: --type <${validPkgManagerTypes.join('|')}>`);
+    process.exit(1);
+  }
+  if (!validPkgManagerTypes.includes(pckManagerType)) {
+    console.error(`❌ Invalid --type "${pckManagerType}". Must be one of: ${validPkgManagerTypes.join(', ')}`);
+    process.exit(1);
+  }
+  extraFlags.push('--type', restArgs[typeArgIndex + 1]);
 }
 
 // Final command assembly
