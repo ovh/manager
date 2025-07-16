@@ -39,7 +39,6 @@ export default class DomainTabZoneDnsCtrl {
   $onInit() {
     this.domain = this.$scope.ctrlDomain.domain;
 
-    this.allowModification = false;
     this.atLeastOneSelected = false;
     this.hasResult = false;
     this.loading = {
@@ -66,7 +65,6 @@ export default class DomainTabZoneDnsCtrl {
     this.$scope.loadPaginated = (count, offset) =>
       this.loadPaginated(count, offset);
 
-    this.checkAllowModification(this.domain.name);
     this.getZoneDns(this.domain.name);
     if (!this.domain.isExpired) {
       this.displayPropagationInfo(this.domain.name);
@@ -138,28 +136,6 @@ export default class DomainTabZoneDnsCtrl {
         window.localStorage.removeItem(localStorageKey);
       }
     }
-  }
-
-  // DNS Data ---------------------------------------------------------------
-  checkAllowModification(domainName) {
-    return this.$q
-      .all({
-        domainServiceInfo: this.Domain.getServiceInfo(domainName).catch(
-          () => null,
-        ),
-        zoneServiceInfo: this.Domain.getZoneServiceInfo(domainName),
-        user: this.WucUser.getUser(),
-      })
-      .then(({ domainServiceInfo, zoneServiceInfo, user }) => {
-        this.allowModification =
-          user &&
-          ((domainServiceInfo &&
-            (domainServiceInfo.contactTech === user.nichandle ||
-              domainServiceInfo.contactAdmin === user.nichandle)) ||
-            (zoneServiceInfo &&
-              (zoneServiceInfo.contactTech === user.nichandle ||
-                zoneServiceInfo.contactAdmin === user.nichandle)));
-      });
   }
 
   static getDomainToDisplay(record) {
