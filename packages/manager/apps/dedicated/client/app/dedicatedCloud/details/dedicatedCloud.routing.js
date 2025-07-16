@@ -11,7 +11,7 @@ import { NEW_PRODUCT_LINK } from './dedicatedCloud.constants';
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+} from '../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicatedCloud.details', {
@@ -44,39 +44,40 @@ export default /* @ngInject */ ($stateProvider) => {
         DedicatedCloud.getSelected(productId, true).then(
           (dedicatedCloudData) => new DedicatedCloudInfo(dedicatedCloudData),
         ),
-      currentDrp: /* @ngInject */ (dedicatedCloudDrp, productId) =>
-        dedicatedCloudDrp.getPccDrpPlan(productId).then((states) => {
+      currentZerto: /* @ngInject */ (dedicatedCloudZerto, productId) =>
+        dedicatedCloudZerto.getPccZertoPlan(productId).then((states) => {
           const existingPlan = states.find(
             ({ state }) =>
               state !== DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
           );
 
           // If no plan with state other than disabled, let's return the first datacenter plan
-          const currentDrp = existingPlan || sortBy(states, 'datacenterId')[0];
+          const currentZerto =
+            existingPlan || sortBy(states, 'datacenterId')[0];
 
-          const drpVpnStatus = get(
-            currentDrp,
+          const zertoVpnStatus = get(
+            currentZerto,
             'remoteSiteInformation.vpnConfigState',
           );
-          currentDrp.vpnStatus = drpVpnStatus;
-          currentDrp.isWaitingVpnConfiguration =
-            drpVpnStatus != null &&
-            drpVpnStatus !==
+          currentZerto.vpnStatus = zertoVpnStatus;
+          currentZerto.isWaitingVpnConfiguration =
+            zertoVpnStatus != null &&
+            zertoVpnStatus !==
               DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.configured;
 
-          currentDrp.state = dedicatedCloudDrp.constructor.formatStatus(
-            currentDrp.state,
+          currentZerto.state = dedicatedCloudZerto.constructor.formatStatus(
+            currentZerto.state,
           );
 
-          return dedicatedCloudDrp
+          return dedicatedCloudZerto
             .getDisableSuccessAlertPreference(productId)
             .then((alertPreferenceValue) => {
-              currentDrp.isSuccessAlertDisable = alertPreferenceValue;
+              currentZerto.isSuccessAlertDisable = alertPreferenceValue;
             })
             .catch(() => {
-              currentDrp.isSuccessAlertDisable = true;
+              currentZerto.isSuccessAlertDisable = true;
             })
-            .then(() => currentDrp);
+            .then(() => currentZerto);
         }),
       datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
         DedicatedCloud.getDatacenters($stateParams.productId),
@@ -136,7 +137,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
         dedicatedCloudVCDMigrationState?.hasMigration,
 
-      drpAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+      zertoAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('dedicated-cloud:drp')
           .then((featureAvailability) =>
@@ -152,23 +153,26 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
 
-      drpGlobalStatus: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => ({
+      zertoGlobalStatus: /* @ngInject */ (
+        currentZerto,
+        dedicatedCloudZerto,
+      ) => ({
         error:
-          dedicatedCloudDrp.constructor.isDrpNotInValidState(
-            currentDrp.state,
+          dedicatedCloudZerto.constructor.isZertoNotInValidState(
+            currentZerto.state,
           ) ||
-          dedicatedCloudDrp.constructor.isDrpNotInValidState(
-            currentDrp.vpnStatus,
+          dedicatedCloudZerto.constructor.isZertoNotInValidState(
+            currentZerto.vpnStatus,
           ),
         warning:
-          dedicatedCloudDrp.constructor.isDrpInChangingState(
-            currentDrp.state,
+          dedicatedCloudZerto.constructor.isZertoInChangingState(
+            currentZerto.state,
           ) ||
-          dedicatedCloudDrp.constructor.isDrpInChangingState(
-            currentDrp.vpnStatus,
+          dedicatedCloudZerto.constructor.isZertoInChangingState(
+            currentZerto.vpnStatus,
           ),
-        success: dedicatedCloudDrp.constructor.isDrpInValidState(
-          currentDrp.state,
+        success: dedicatedCloudZerto.constructor.isZertoInValidState(
+          currentZerto.state,
         ),
       }),
       editDetails: /* @ngInject */ ($uibModal, productId) => (data) =>
@@ -184,8 +188,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           },
         }),
-      isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
-        dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
+      isZertoActionPossible: /* @ngInject */ (
+        currentZerto,
+        dedicatedCloudZerto,
+      ) => dedicatedCloudZerto.constructor.isZertoActionPossible(currentZerto),
 
       datacentersState: () => 'app.dedicatedCloud.details.datacenter',
       pccDashboardState: () => 'app.dedicatedCloud.details.dashboard',
@@ -193,22 +199,25 @@ export default /* @ngInject */ ($stateProvider) => {
       operationState: () => 'app.dedicatedCloud.details.operation',
       securityState: () => 'app.dedicatedCloud.details.security',
       usersState: () => 'app.dedicatedCloud.details.users',
-      goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.drp', {
+      goToZerto: /* @ngInject */ ($state, currentZerto) => (datacenterId) =>
+        $state.go('app.dedicatedCloud.details.datacenter.details.zerto', {
           datacenterId,
-          drpInformations: currentDrp,
+          zertoInformations: currentZerto,
         }),
-      goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
+      goToZertoDatacenterSelection: /* @ngInject */ ($state) => () =>
         $state.go(
-          'app.dedicatedCloud.details.dashboard.drpDatacenterSelection',
+          'app.dedicatedCloud.details.dashboard.zertoDatacenterSelection',
         ),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.dedicatedCloud.details', {}, { reload }),
-      goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
-          datacenterId: currentDrp.datacenterId,
-          drpInformations: currentDrp,
-        }),
+      goToVpnConfiguration: /* @ngInject */ ($state, currentZerto) => () =>
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.zerto.summary',
+          {
+            datacenterId: currentZerto.datacenterId,
+            zertoInformations: currentZerto,
+          },
+        ),
       goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
         $state.go('app.dedicatedCloud.details.datacenter.details', {
           productId,
