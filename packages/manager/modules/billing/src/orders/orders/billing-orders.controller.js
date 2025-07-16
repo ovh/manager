@@ -1,7 +1,7 @@
+import assign from 'lodash/assign';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import set from 'lodash/set';
-import { BILLING_ORDERS_STATUS } from './billing-orders.constant';
 
 export default class BillingOrdersCtrl {
   /* @ngInject */
@@ -10,18 +10,18 @@ export default class BillingOrdersCtrl {
     $log,
     $translate,
     OvhApiMeOrder,
+    constants,
     coreConfig,
     orders,
     schema,
     criteria,
+    currentUser,
     filter,
     getOrderTrackingHref,
     goToOrder,
     goToOrderRetractation,
     updateFilterParam,
     billingFeatureAvailability,
-    timeNow,
-    kycValidated,
   ) {
     this.$q = $q;
     this.$log = $log;
@@ -37,8 +37,6 @@ export default class BillingOrdersCtrl {
     this.goToOrderRetractation = goToOrderRetractation;
     this.updateFilterParam = updateFilterParam;
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
-    this.timeNow = timeNow;
-    this.kycValidated = kycValidated;
   }
 
   descriptionOfHeading() {
@@ -50,32 +48,17 @@ export default class BillingOrdersCtrl {
   loadRow($row) {
     return this.OvhApiMeOrder.v6()
       .getStatus({ orderId: $row.orderId })
-      .$promise.then((statusResponse) => {
-        const order = {
-          ...$row,
+      .$promise.then((status) => assign($row, status))
+      .then(() =>
+        assign($row, {
           canRetract: moment($row.retractionDate || 0).isAfter(this.timeNow),
-        };
-        let { status } = statusResponse;
-        const isExpired = moment(order.expirationDate).isBefore(this.timeNow);
-
-        if (status === BILLING_ORDERS_STATUS.NOT_PAID) {
-          if (isExpired) {
-            status = BILLING_ORDERS_STATUS.ORDER_EXPIRED;
-          } else if (!this.kycValidated) {
-            status = BILLING_ORDERS_STATUS.DOCUMENTS_REQUESTED;
-          }
-        }
-        order.status = status;
-        return order;
-      });
+        }),
+      );
   }
 
   getStateEnumFilter() {
     const states = get(this.schema.models, 'billing.order.OrderStatusEnum')
       .enum;
-
-    states.push(BILLING_ORDERS_STATUS.ORDER_EXPIRED);
-
     const filter = {
       values: {},
     };

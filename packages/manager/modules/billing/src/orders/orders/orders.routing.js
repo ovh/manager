@@ -27,11 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get('/auth/time', { serviceType: 'apiv6' })
           .then((result) => parseInt(result.data, 10))
-          .then((timestamp) => moment.unix(timestamp)),
-      kycValidated: /* @ngInject */ (coreConfig) => {
-        const { kycValidated } = coreConfig.getUser();
-        return kycValidated;
-      },
+          .then((timestamp) => moment(timestamp)),
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       criteria: /* @ngInject */ ($log, filter) => {
         if (filter) {
