@@ -23,6 +23,12 @@ export const buildTestsReportFileName = (outputFormat) => outputFormat === 'json
     ? `${reportOutputBasePath}/tests-migration-report.html`
     : null;
 
+export const buildStaticKitReportFileName = (outputFormat) => outputFormat === 'json'
+  ? `${reportOutputBasePath}/static-kit-migration-report.json`
+  : outputFormat === 'html'
+    ? `${reportOutputBasePath}/static-kit-migration-report.html`
+    : null;
+
 export const buildMergedReportFileName = (outputFormat) =>
   outputFormat === 'json'
     ? `${reportOutputBasePath}/migration-status-full-report.json`
@@ -119,6 +125,8 @@ const buildMergedMigrationReport = () => {
     'Routes Migration': buildRoutesReportFileName('json'),
     'Tests Migration': buildTestsReportFileName('json'),
     'SWC Migration': buildSwcReportFileName('json'),
+    'ESLint Migration': buildStaticKitReportFileName('json'),
+    'TypeScript Migration': buildStaticKitReportFileName('json'),
   };
 
   const mergedMap = new Map();
