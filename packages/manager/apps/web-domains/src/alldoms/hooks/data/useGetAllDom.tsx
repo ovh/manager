@@ -20,11 +20,11 @@ export const useGetAllDom = ({
   const queries = useQueries({
     queries: [
       {
-        queryKey: ['serviceInfo', serviceName],
+        queryKey: ['allDom', 'service', serviceName],
         queryFn: () => getServiceInformation(serviceName, ServiceRoutes.AllDom),
       },
       {
-        queryKey: ['domainAttached', serviceName],
+        queryKey: ['allDom', 'domains', serviceName],
         queryFn: () => getAllDomResource(serviceName),
       },
     ],

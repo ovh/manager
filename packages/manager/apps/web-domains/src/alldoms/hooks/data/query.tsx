@@ -26,7 +26,7 @@ export const useGetAllDomResource = (serviceName: string) => {
 
 export const useGetDomainBillingInformation = (domainName: string) => {
   return useQuery<DomainBillingInformation>({
-    queryKey: ['billing', 'domain', domainName],
+    queryKey: ['allDom', 'domains', 'billing', domainName],
     queryFn: () => getDomainBillingInformation(domainName),
     enabled: !!domainName,
   });

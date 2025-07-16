@@ -70,16 +70,6 @@ export interface TDomainsInfo {
   extension?: string;
 }
 
-export interface UpdateAllDomProps {
-  serviceName: string;
-  displayName: string;
-  renew?: {
-    mode?: ServiceInfoRenewMode;
-    period?: number;
-  };
-  terminationPolicy?: ServiceInfoUpdateEnum;
-}
-
 export interface ModalStepsProps {
   domainsAttached?: TDomainsInfo[];
   domainAttachedChecked?: string[];

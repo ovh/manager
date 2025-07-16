@@ -18,6 +18,7 @@ interface DatagridColumnActionMenuProps {
   readonly serviceName: string;
   readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
   readonly terminateUrl: string;
+  readonly cancelTerminateUrl?: string;
   readonly whichAction: ActionEnum;
 }
 
@@ -25,6 +26,7 @@ export default function ServiceActionMenu({
   id,
   serviceName,
   terminateUrl,
+  cancelTerminateUrl,
   lifecycleCapacities,
   whichAction,
 }: DatagridColumnActionMenuProps) {
@@ -86,6 +88,12 @@ export default function ServiceActionMenu({
     isDisabled: disableAction,
   };
 
+  const cancelTerminate = {
+    id: 5,
+    label: t('allDom_table_action_cancel_terminate'),
+    onClick: () => navigate(cancelTerminateUrl),
+  };
+
   let items = [];
 
   switch (whichAction) {
@@ -93,14 +101,18 @@ export default function ServiceActionMenu({
       items = [handleContactAction];
       break;
     case ActionEnum.OnlyRenew:
-      items = [renewCGIAction, renewalAction, terminateAction];
+      items = [
+        renewCGIAction,
+        renewalAction,
+        disableAction ? cancelTerminate : terminateAction,
+      ];
       break;
     default:
       items = [
         renewCGIAction,
         renewalAction,
         handleContactAction,
-        terminateAction,
+        disableAction ? cancelTerminate : terminateAction,
       ];
       break;
   }
