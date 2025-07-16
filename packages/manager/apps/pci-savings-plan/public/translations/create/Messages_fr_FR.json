@@ -22,6 +22,8 @@
   "quantity_banner_rancher": "Le minimum de consommation pour Managed Rancher Service est de 20 vCPU par Rancher, toutefois vous pouvez créer un ou plusieurs Saving Plan à partir de 1 vCPU. Les vCPU souscrits seront décomptés du nombre total de vCPU consommés.",
   "select_commitment": "Sélectionner la durée d'engagement",
   "select_commitment_description": "Une durée d'engagement plus longue vous accorde une remise plus importante.",
+  "choose_date": "Selectionner une date",
+  "choose_date_description": "Indiquez la date à laquelle vous souhaitez que votre Savings Plan prenne effet",
   "choose_name": "Spécifier un nom",
   "input_name_rules": "Seuls les caractères alphanumériques sont autorisés, ainsi que les _ et -. Limité à 60 caractères.",
   "legal_checkbox": "J'ai pris connaissance et accepte les termes des conditions contractuelles suivantes :",

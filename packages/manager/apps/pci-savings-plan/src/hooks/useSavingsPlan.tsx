@@ -61,11 +61,13 @@ const postSavingsPlan = async ({
   offerId,
   displayName,
   size,
+  startDate,
 }: {
   serviceId: number;
   offerId: string;
   displayName: string;
   size: number;
+  startDate: string;
 }): Promise<SavingsPlanService> => {
   const { data } = await v6.post<SavingsPlanService>(
     `/services/${serviceId}/savingsPlans/subscribe/execute`,
@@ -73,6 +75,7 @@ const postSavingsPlan = async ({
       displayName,
       offerId,
       size,
+      startDate,
     },
   );
   return data;
@@ -158,6 +161,13 @@ export const useSavingsPlanEditName = ({
   });
 };
 
+type MutationCreatePlanParams = {
+  displayName: string;
+  offerId: string;
+  size: number;
+  startDate: Date;
+};
+
 export const useSavingsPlanCreate = (
   onSuccess?: (data: SavingsPlanService) => void,
 ) => {
@@ -182,11 +192,18 @@ export const useSavingsPlanCreate = (
       displayName,
       offerId,
       size,
-    }: {
-      displayName: string;
-      offerId: string;
-      size: number;
-    }) => postSavingsPlan({ serviceId, offerId, displayName, size }),
+      startDate,
+    }: MutationCreatePlanParams) => {
+      const date = startDate.toISOString().split('T')[0];
+
+      return postSavingsPlan({
+        serviceId,
+        offerId,
+        displayName,
+        size,
+        startDate: date,
+      });
+    },
   });
 };
 
