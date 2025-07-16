@@ -88,7 +88,7 @@
         class="d-block"
     ></strong>
     <p
-        data-ng-if="$ctrl.migration2020.date"
+        data-ng-if="$ctrl.migration2020.date && !$ctrl.MIGRATION_STATUS.ONGOING"
         data-translate="vps_dashboard_migration_2020_info_with_date_part_2"
         data-translate-values="{ url: $ctrl.forceOutperform2020Href() }"
         class="mb-0"
