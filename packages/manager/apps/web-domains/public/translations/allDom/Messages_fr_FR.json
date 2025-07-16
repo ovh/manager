@@ -1,6 +1,6 @@
 {
   "title": "Mes packs Alldom",
-  "allDom_table_header_serviceName": "Nom du alldom",
+  "allDom_table_header_id": "Nom du alldom",
   "allDom_table_header_renewMode": "Mode de renouvellement",
   "allDom_table_header_type": "Type",
   "allDom_table_header_registered_authorized_domain": "Domaines enregistrés",
