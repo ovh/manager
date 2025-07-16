@@ -38,8 +38,12 @@ export type TFeatureState = {
 };
 
 export const PCI_HDS_ADDON = {
+  productName: 'cloud',
+  family: 'certification-hds',
+  parentPlanCode: 'project.2018',
   planCodeScope: 'certification.hds',
   certifiedProject: 'publiccloud-certification-hds',
+  planCode: 'certification.hds.2018',
 };
 
 export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
@@ -167,3 +171,17 @@ export const PCI_FEATURES_STATES: TFeatureState = {
 
 export const SUPPORT_URL =
   'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
+
+export const PCI_PROJECT_ORDER_CART = {
+  productName: 'cloud',
+  planCode: 'project.2018',
+  infraConfigValue: 'public-cloud',
+  creditPlanCode: 'credit',
+};
+
+export const PCI_PROJECT_DISCOVERY_ORDER_CART = {
+  productName: 'cloud',
+  planCode: 'project.discovery',
+  infraConfigValue: 'public-cloud',
+  creditPlanCode: 'credit',
+};
