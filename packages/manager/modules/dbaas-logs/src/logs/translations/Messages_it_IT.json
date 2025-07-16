@@ -797,12 +797,10 @@
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
   "streams_subscriptions_kind_label": "Tipo (Kind)",
   "logs_home_region": "Region",
-  "logs_tab_iam": "Identità e accessi (IAM)",
   "logs_iam_enable_error": "Si è verificato un errore durante l'attivazione del servizio IAM di OVHcloud.",
   "logs_iam_enable_success": "L'IAM di OVHcloud è stato attivato correttamente per il servizio \"{{accountName}}\"",
   "logs_iam_setup_message": "In alternativa, verifica i permessi di accesso al servizio con",
   "logs_iam_ovhcloud_iam": "IAM di OVHcloud",
   "logs_iam_enable_iam": "Attivare IAM OVHcloud",
-  "logs_iam_access": "Accedere allo spazio IAM OVHcloud",
-  "logs_iam_title": "Identità e accessi"
+  "logs_iam_policies": "Politiche IAM"
 }

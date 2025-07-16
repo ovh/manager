@@ -6,6 +6,7 @@ import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
@@ -72,7 +73,7 @@ export default function StorageListingPage() {
       cell: ActionDeleteCell,
       isSortable: false,
     },
-  ];
+  ] as DatagridColumn<unknown>[];
 
   return (
     <DatagridContainer
