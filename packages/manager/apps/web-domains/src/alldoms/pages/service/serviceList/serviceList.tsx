@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Datagrid,
   BaseLayout,
-  useResourcesIcebergV6,
   ErrorBanner,
   useNotifications,
   Notifications,
+  useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
 
+import { toASCII } from 'punycode';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
-import { TServiceProperty } from '@/alldoms/types';
+import { AlldomService } from '@/alldoms/types';
+import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import { findContact } from '@/alldoms/utils/utils';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
   const { notifications } = useNotifications();
+  const [searchInput, setSearchInput] = useState('');
+  const [alldomServices, setAlldomServices] = useState<AlldomService[]>([]);
+  const columns = useAllDomDatagridColumns();
 
   const {
     flattenData: allDomList,
@@ -25,19 +31,57 @@ export default function ServiceList() {
     hasNextPage,
     fetchNextPage,
     sorting,
-    totalCount,
+    isLoading,
     setSorting,
-  } = useResourcesIcebergV6<TServiceProperty>({
-    route: '/allDom',
-    queryKey: ['/allDom'],
+    search,
+  } = useResourcesIcebergV2<AlldomService>({
+    route: '/domain/alldom',
+    queryKey: ['domain', 'alldom', searchInput],
     pageSize: 10,
+    columns,
   });
 
-  const { data: serviceInfoList, listLoading } = useGetAllDoms({
-    allDomList,
+  const { data: serviceList, listLoading } = useGetAllDoms({
+    names: allDomList?.map((alldom: AlldomService) => alldom.currentState.name),
   });
 
-  const columns = useAllDomDatagridColumns();
+  useEffect(() => {
+    if (allDomList) {
+      const services = allDomList.map((alldom) => {
+        if (!serviceList || listLoading) {
+          return alldom;
+        }
+        const service = serviceList.find(
+          (s) => s.resource.name === alldom.currentState.name,
+        );
+        const contacts = service.customer?.contacts ?? [];
+        const { lifecycle, renew, expirationDate } = service.billing;
+        return {
+          ...alldom,
+          nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
+          nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
+          nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
+          lifecycleCapacities: lifecycle?.capacities.actions ?? [],
+          renewMode: renew.current.mode,
+          expirationDate,
+          serviceId: service.serviceId,
+        } as AlldomService;
+      });
+      setAlldomServices(services);
+    }
+  }, [allDomList, listLoading, serviceList]);
+
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      search.setSearchInput(toASCII(searchInput.toLowerCase()));
+    }, 300);
+
+    return () => clearTimeout(debounce);
+  }, [searchInput]);
+
+  useEffect(() => {
+    search.onSearch(search.searchInput);
+  }, [search.searchInput]);
 
   const header = {
     title: t('title'),
@@ -48,7 +92,9 @@ export default function ServiceList() {
       <ErrorBanner
         error={{
           status: 500,
-          data: { message: error.message },
+          data: {
+            message: error.message,
+          },
         }}
       />
     );
@@ -62,13 +108,18 @@ export default function ServiceList() {
       <div data-testid="datagrid">
         <Datagrid
           columns={columns}
-          items={serviceInfoList}
-          totalItems={totalCount}
+          items={alldomServices}
+          totalItems={allDomList?.length}
           hasNextPage={hasNextPage}
           onFetchNextPage={fetchNextPage}
           sorting={sorting}
           onSortChange={setSorting}
-          isLoading={listLoading}
+          isLoading={isLoading}
+          search={{
+            searchInput,
+            setSearchInput,
+            onSearch: () => null,
+          }}
         />
         <Outlet />
       </div>

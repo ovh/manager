@@ -7,22 +7,25 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { ActionEnum, ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
+import {
+  ActionEnum,
+  LifecycleCapacitiesEnum,
+} from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
 
 interface DatagridColumnActionMenuProps {
-  readonly serviceId: string;
+  readonly id: string;
   readonly serviceName: string;
-  readonly allDomResourceState: ServiceInfoUpdateEnum;
+  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
   readonly terminateUrl: string;
   readonly whichAction: ActionEnum;
 }
 
 export default function ServiceActionMenu({
-  serviceId,
+  id,
   serviceName,
   terminateUrl,
-  allDomResourceState,
+  lifecycleCapacities,
   whichAction,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
@@ -47,8 +50,9 @@ export default function ServiceActionMenu({
     { categoryType: allDomManagerService, service: serviceName },
   ]);
 
-  const disableAction =
-    allDomResourceState === ServiceInfoUpdateEnum.TerminateAtExpirationDate;
+  const disableAction = lifecycleCapacities.includes(
+    LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+  );
 
   const renewCGIAction = {
     id: 1,
@@ -103,7 +107,7 @@ export default function ServiceActionMenu({
 
   return (
     <ActionMenu
-      id={serviceId}
+      id={id}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       items={items}

@@ -2,13 +2,13 @@ import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
-import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
 import {
   useGetAllDomResource,
   useGetDomainBillingInformation,
 } from '@/alldoms/hooks/data/query';
 import { domainBillingDetail } from '@/alldoms/__mocks__/domainBillingDetail';
+import { alldomService } from '@/alldoms/__mocks__/alldomService';
 
 vi.mock('@/alldoms/hooks/data/query', () => ({
   useGetAllDomResource: vi.fn(),
@@ -18,7 +18,7 @@ vi.mock('@/alldoms/hooks/data/query', () => ({
 describe('Terminate service', () => {
   it('display the modal', async () => {
     (useGetAllDomResource as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail.allDomResource,
+      data: alldomService,
       isLoading: false,
     });
 
@@ -40,7 +40,7 @@ describe('Terminate service', () => {
   });
 
   (useGetAllDomResource as jest.Mock).mockReturnValue({
-    data: serviceInfoDetail.allDomResource,
+    data: alldomService,
     isLoading: false,
   });
 
@@ -49,7 +49,7 @@ describe('Terminate service', () => {
     isLoading: false,
   });
 
-  serviceInfoDetail.allDomResource.currentState.domains.forEach((domain) => {
+  alldomService.currentState.domains.forEach((domain) => {
     it(`should render ${domain.name} checkbox`, async () => {
       render(<ServiceTerminate />, { wrapper });
       await waitFor(async () => {
@@ -65,7 +65,7 @@ describe('Terminate service', () => {
 
   it('should select all checkboxes when the "select all" checkbox is clicked', async () => {
     (useGetAllDomResource as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail.allDomResource,
+      data: alldomService,
       isLoading: false,
     });
 
@@ -84,15 +84,11 @@ describe('Terminate service', () => {
 
     await waitFor(async () => {
       await Promise.all(
-        serviceInfoDetail.allDomResource.currentState.domains.map(
-          async (domain) => {
-            const checkbox = await screen.findByTestId(
-              `checkbox-${domain.name}`,
-            );
-            const input = checkbox.querySelector('input');
-            expect(input?.checked).toBe(true);
-          },
-        ),
+        alldomService.currentState.domains.map(async (domain) => {
+          const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
+          const input = checkbox.querySelector('input');
+          expect(input?.checked).toBe(true);
+        }),
       );
     });
   });

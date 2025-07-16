@@ -4,7 +4,7 @@ import { ODS_BADGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
   ServiceInfoRenewMode,
-  ServiceInfoUpdateEnum,
+  LifecycleCapacitiesEnum,
   ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
 import { useGetServiceInformation } from '@/alldoms/hooks/data/query';
@@ -27,25 +27,22 @@ export default function DomainDatagridColumnRenewMode({
   }
 
   const { mode } = data.billing.renew.current;
-  const { actions } = data.billing.lifecycle.capacities;
+  const { lifecycle } = data.billing;
 
-  if (actions[0] === ServiceInfoUpdateEnum.TerminateAtExpirationDate) {
-    return (
-      <OdsBadge
-        label={t(`allDom_table_status_terminate`)}
-        color={ODS_BADGE_COLOR.critical}
-      />
-    );
+  let label = t(`allDom_table_status_${mode}`);
+  let badgeColor =
+    mode === ServiceInfoRenewMode.Automatic
+      ? ODS_BADGE_COLOR.success
+      : ODS_BADGE_COLOR.warning;
+
+  if (
+    lifecycle?.capacities.actions.includes(
+      LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+    )
+  ) {
+    label = t('allDom_table_status_terminate');
+    badgeColor = ODS_BADGE_COLOR.critical;
   }
 
-  return (
-    <OdsBadge
-      label={t(`allDom_table_status_${mode}`)}
-      color={
-        mode === ServiceInfoRenewMode.Automatic
-          ? ODS_BADGE_COLOR.success
-          : ODS_BADGE_COLOR.warning
-      }
-    />
-  );
+  return <OdsBadge label={label} color={badgeColor} />;
 }
