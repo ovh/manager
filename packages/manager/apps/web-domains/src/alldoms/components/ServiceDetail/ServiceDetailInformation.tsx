@@ -35,7 +35,7 @@ export default function ServiceDetailInformation({
       <div className="flex flex-col gap-y-3">
         <OdsText preset={ODS_TEXT_PRESET.heading6}>
           {t('allDom_page_detail_information_general_pack', {
-            t0: currentState.name,
+            packName: currentState.name,
           })}
         </OdsText>
         <div>

@@ -13,6 +13,7 @@ import { AlldomService } from '@/alldoms/types';
 import ServiceDetailSubscribingRenewDate from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribingRenewDate';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import ServiceDetailSubscribingRenewMode from './ServiceDetailSubscribingRenewMode';
+import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
 
 interface ServiceDetailSubscribingProps {
   readonly alldomService: AlldomService;
@@ -56,9 +57,10 @@ export default function ServiceDetailSubscribing({
         <ServiceActionMenu
           id={`${currentState.name}-${ActionEnum.OnlyRenew}`}
           serviceName={currentState.name}
-          terminateUrl={'terminate'}
+          terminateUrl={TERMINATE_URL()}
           lifecycleCapacities={lifecycleCapacities}
           whichAction={ActionEnum.OnlyRenew}
+          cancelTerminateUrl={CANCEL_TERMINATE_URL()}
         />
       </div>
 
@@ -86,19 +88,19 @@ export default function ServiceDetailSubscribing({
             <li className="list-none">{`${t(
               'allDom_page_detail_subscribing_contact_admin',
               {
-                t0: nicAdmin,
+                nic: nicAdmin,
               },
             )}`}</li>
             <li className="list-none">{`${t(
               'allDom_page_detail_subscribing_contact_tech',
               {
-                t0: nicTechnical,
+                nic: nicTechnical,
               },
             )}`}</li>
             <li className="list-none">{`${t(
               'allDom_page_detail_subscribing_contact_billing',
               {
-                t0: nicBilling,
+                nic: nicBilling,
               },
             )}`}</li>
           </ul>
@@ -106,7 +108,7 @@ export default function ServiceDetailSubscribing({
         <ServiceActionMenu
           id={`${currentState.name}-${ActionEnum.OnlyContact}`}
           serviceName={currentState.name}
-          terminateUrl={'terminate'}
+          terminateUrl={TERMINATE_URL()}
           lifecycleCapacities={lifecycleCapacities}
           whichAction={ActionEnum.OnlyContact}
         />

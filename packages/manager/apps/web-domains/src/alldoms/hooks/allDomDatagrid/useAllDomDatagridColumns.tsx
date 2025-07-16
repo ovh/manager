@@ -13,6 +13,7 @@ import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnSkeleton from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnSkeleton';
 import { useNichandle } from '@/alldoms/hooks/nichandle/useNichandle';
+import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
@@ -126,9 +127,10 @@ export const useAllDomDatagridColumns = () => {
         <ServiceActionMenu
           id={`${props.currentState.name}-${ActionEnum.All}`}
           serviceName={props.currentState.name}
-          terminateUrl={`terminate/${props.currentState.name}`}
+          terminateUrl={TERMINATE_URL(props.currentState.name)}
           lifecycleCapacities={props.lifecycleCapacities}
           whichAction={ActionEnum.All}
+          cancelTerminateUrl={CANCEL_TERMINATE_URL(props.currentState.name)}
         />
       ),
       label: '',
