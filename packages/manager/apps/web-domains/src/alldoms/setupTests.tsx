@@ -21,6 +21,7 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
+    useResourcesIcebergV2: vi.fn(),
   };
 });
 
@@ -62,8 +63,4 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
-}));
-
-vi.mock('punycode', () => ({
-  toUnicode: vi.fn(),
 }));
