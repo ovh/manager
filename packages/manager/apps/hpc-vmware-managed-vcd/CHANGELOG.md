@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.0) (2025-07-16)
+
+
+### Features
+
+* **vcd:** add searchbar and filter on vdc datagrid ([a0e81bb](https://github.com/ovh/manager/commit/a0e81bb1b3f0f8c7c0e2f1660dd1b10c32716ea8)), closes [#MANAGER-18723](https://github.com/ovh/manager/issues/MANAGER-18723)
+* **vcd:** improve accessibility datagrid pages ([2692ff0](https://github.com/ovh/manager/commit/2692ff0ff07ecb98bc7ba685a4b536350006962b)), closes [#MANAGER-18723](https://github.com/ovh/manager/issues/MANAGER-18723)
+
+
+
+
+
 ## [0.16.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.6...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.16.7) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

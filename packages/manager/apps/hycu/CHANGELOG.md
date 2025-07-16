@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.12...@ovh-ux/manager-hycu-app@0.14.0) (2025-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4176] ([9252994](https://github.com/ovh/manager/commit/92529948befd22b11a0f68eb850a8723e5d23c3d)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+
+
+### Features
+
+* **hycu:** update terminate service translation ([f38aa4f](https://github.com/ovh/manager/commit/f38aa4f4f08391db2416758756e3f0b49c296100)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+
+
+
+
+
 ## [0.13.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.11...@ovh-ux/manager-hycu-app@0.13.12) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app
