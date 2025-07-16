@@ -1,7 +1,11 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
+import {
+  FilterCategories,
+  FilterComparator,
+  FilterTypeCategories,
+} from '@ovh-ux/manager-core-api';
 import { AlldomService } from '@/alldoms/types';
 import DatagridColumnDomainRegisteredAuthorized from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainRegisteredAuthorized';
 import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
@@ -16,15 +20,15 @@ export const useAllDomDatagridColumns = () => {
 
   const columns = [
     {
-      id: 'resourceName',
+      id: 'id',
       cell: (props: AlldomService) => (
         <DatagridColumnServiceName allDomName={props.currentState.name} />
       ),
       label: t('allDom_table_header_serviceName'),
       enableHiding: false,
-      comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
+      type: FilterTypeCategories.String,
     },
     {
       id: 'renewMode',
@@ -38,7 +42,7 @@ export const useAllDomDatagridColumns = () => {
       enableHiding: true,
     },
     {
-      id: 'type',
+      id: 'ovh:type',
       cell: (props: AlldomService) => (
         <DataGridTextCell>
           {t(`allDom_table_type_${props.currentState.type}`)}
@@ -46,6 +50,12 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_type'),
       enableHiding: true,
+      isFilterable: true,
+      type: FilterTypeCategories.Tags,
+      filterOptions: ['french', 'international'].map((op) => ({
+        label: op,
+        value: op,
+      })),
     },
     {
       id: 'authorized_domain',
