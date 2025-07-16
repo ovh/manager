@@ -804,5 +804,6 @@
   "logs_iam_ovhcloud_iam": "el IAM OVHcloud",
   "logs_iam_enable_iam": "Activar IAM OVHcloud",
   "logs_iam_access": "Ir al área de IAM de OVHcloud",
-  "logs_iam_title": "Identidades y acceso"
+  "logs_iam_title": "Identidades y acceso",
+  "logs_iam_policies": "Políticas de IAM"
 }

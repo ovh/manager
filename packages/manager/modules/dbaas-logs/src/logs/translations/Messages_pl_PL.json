@@ -804,5 +804,6 @@
   "logs_iam_ovhcloud_iam": "IAM OVHcloud ",
   "logs_iam_enable_iam": "Włącz IAM OVHcloud",
   "logs_iam_access": "Przejdź do przestrzeni IAM OVHcloud",
-  "logs_iam_title": "Tożsamość i dostęp"
+  "logs_iam_title": "Tożsamość i dostęp",
+  "logs_iam_policies": "Polityka IAM"
 }
