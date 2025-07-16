@@ -40,25 +40,25 @@ const mockProject: TProject = {
   unleash: false,
 };
 
-function mockQueryResult<T>(data: T) {
+function mockQueryResult<T>(data: T, isLoading = false) {
   return ({
     data,
     error: null,
     isError: false,
-    isPending: false,
-    isLoading: false,
-    isSuccess: true,
+    isPending: isLoading,
+    isLoading,
+    isSuccess: !isLoading,
     refetch: vi.fn(),
     remove: vi.fn(),
-    status: 'success',
+    status: isLoading ? 'pending' : 'success',
     dataUpdatedAt: 0,
     errorUpdatedAt: 0,
     failureCount: 0,
-    isFetched: true,
+    isFetched: !isLoading,
     isRefetching: false,
     isStale: false,
     isPaused: false,
-    fetchStatus: 'idle',
+    fetchStatus: isLoading ? 'fetching' : 'idle',
     isLoadingError: false,
     isRefetchError: false,
     variables: undefined,
@@ -297,7 +297,7 @@ describe('HdsSection', () => {
     expect(button).toHaveAttribute('is-loading', 'true');
   });
 
-  it('shows spinner in contracts section when contracts are loading', () => {
+  it('shows skeleton in contracts section when contracts are loading', async () => {
     vi.mocked(useHdsModule.useIsAlreadyHdsCertifiedProject).mockReturnValue(
       mockQueryResult<boolean>(false),
     );
@@ -310,6 +310,7 @@ describe('HdsSection', () => {
     vi.mocked(useCartModule.useGetCartSummary).mockReturnValue(
       (mockQueryResult<CartSummary | undefined>(
         undefined,
+        true,
       ) as unknown) as UseQueryResult<CartSummary, Error>,
     );
     vi.mocked(useCheckoutWithFidelityAccount).mockReturnValue(
@@ -318,11 +319,14 @@ describe('HdsSection', () => {
 
     render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
 
+    const hdsCheckbox = screen.getByTestId('hds-checkbox');
     fireEvent(
-      screen.getByTestId('hds-checkbox'),
+      hdsCheckbox,
       new CustomEvent('odsChange', { detail: { checked: true } }),
     );
 
-    expect(screen.getByTestId('ods-spinner')).toBeVisible();
+    await waitFor(() => {
+      expect(screen.getByTestId('contracts-skeleton')).toBeVisible();
+    });
   });
 });
