@@ -7,16 +7,14 @@ import {
 import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TServiceDetail } from '@/alldoms/types';
+import { AlldomService } from '@/alldoms/types';
 
 interface ServiceDetailInformationProps {
-  readonly allDomResource: TServiceDetail['allDomResource'];
-  readonly extensionsList?: string[];
+  readonly currentState: AlldomService['currentState'];
 }
 
 export default function ServiceDetailInformation({
-  allDomResource,
-  extensionsList,
+  currentState,
 }: ServiceDetailInformationProps) {
   const { t } = useTranslation('allDom');
   return (
@@ -37,7 +35,7 @@ export default function ServiceDetailInformation({
       <div className="flex flex-col gap-y-3">
         <OdsText preset={ODS_TEXT_PRESET.heading6}>
           {t('allDom_page_detail_information_general_pack', {
-            t0: allDomResource.currentState.name,
+            t0: currentState.name,
           })}
         </OdsText>
         <div>
@@ -47,7 +45,7 @@ export default function ServiceDetailInformation({
             </strong>
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.span}>
-            {extensionsList
+            {currentState.extensions
               .map((extension) => `.${extension.toLowerCase()}`)
               .join('; ')}
           </OdsText>

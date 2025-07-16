@@ -20,7 +20,7 @@ import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/Service
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribing.component';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/Loading/Loading';
-import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -35,7 +35,7 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: serviceInfoDetail, isLoading } = useGetAllDom({
+  const { data: alldomService, isLoading } = useGetAllDom({
     serviceName,
   });
 
@@ -56,8 +56,9 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
     >
       <section>
-        {serviceInfoDetail.allDomResourceState ===
-          ServiceInfoUpdateEnum.TerminateAtExpirationDate &&
+        {alldomService.lifecycleCapacities.includes(
+          LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+        ) &&
           isManualRenewMessage && (
             <OdsMessage
               color={ODS_MESSAGE_COLOR.warning}
@@ -75,8 +76,7 @@ export default function ServiceDetail() {
                     i18nKey="allDom_detail_page_manuel_renew_warning"
                     values={{
                       t0: formatDate({
-                        date:
-                          serviceInfoDetail.serviceInfo.billing.expirationDate,
+                        date: alldomService.expirationDate,
                         format: 'PP',
                       }),
                     }}
@@ -94,17 +94,10 @@ export default function ServiceDetail() {
             </OdsMessage>
           )}
         <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
-          <ServiceDetailInformation
-            allDomResource={serviceInfoDetail.allDomResource}
-            extensionsList={
-              serviceInfoDetail.allDomResource.currentState.extensions
-            }
-          />
-          <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
+          <ServiceDetailInformation currentState={alldomService.currentState} />
+          <ServiceDetailSubscribing alldomService={alldomService} />
         </div>
-        <ServiceDetailDomains
-          items={serviceInfoDetail.allDomResource.currentState.domains}
-        />
+        <ServiceDetailDomains items={alldomService.currentState.domains} />
       </section>
       <Outlet />
     </BaseLayout>
