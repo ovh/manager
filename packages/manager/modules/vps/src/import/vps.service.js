@@ -71,7 +71,8 @@ export default /* @ngInject */ function VpsService(
   this.getMigration2020 = function getMigration2020(serviceName) {
     return $http
       .get(`/vps/${serviceName}/migration2020`)
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      .catch(() => null);
   };
 
   this.postMigration2020 = function getMigration2020(serviceName, plan) {
