@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.8.0...@ovh-ux/manager-pci-billing-app@0.9.0) (2025-07-16)
+
+
+### Features
+
+* **billing:** enrich storage billing with additional info ([#17980](https://github.com/ovh/manager/issues/17980)) ([cbfbb02](https://github.com/ovh/manager/commit/cbfbb0243ce60ec3a3910d858bba84c508a585cd)), closes [#TAPC-3709](https://github.com/ovh/manager/issues/TAPC-3709)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.1...@ovh-ux/manager-pci-billing-app@0.8.0) (2025-07-07)
 
 
