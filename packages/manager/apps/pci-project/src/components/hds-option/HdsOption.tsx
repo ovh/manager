@@ -15,13 +15,17 @@ type HdsOptionProps = {
   onCheckChanged: (isChecked: boolean) => void;
   isValidForCertification: boolean;
   isAlreadyCertifiedProject?: boolean;
+  isDisabled?: boolean;
+  isLightVersion?: boolean;
 };
 
 export default function HdsOption({
   isChecked,
+  isDisabled = false,
   onCheckChanged,
   isValidForCertification,
   isAlreadyCertifiedProject = false,
+  isLightVersion = false,
 }: HdsOptionProps) {
   const { t } = useTranslation('hds');
 
@@ -30,20 +34,25 @@ export default function HdsOption({
   const hdsInfoLink =
     HDS_INFO[ovhSubsidiary as OvhSubsidiary] || HDS_INFO.DEFAULT || '';
 
-  const isHdsDisabled = isAlreadyCertifiedProject || !isValidForCertification;
+  const isHdsDisabled =
+    isAlreadyCertifiedProject || !isValidForCertification || isDisabled;
 
   return (
     <div className="flex flex-col gap-5">
-      <OdsText preset="paragraph">
-        {t('pci_projects_project_edit_hds_description')}
-      </OdsText>
+      {!isLightVersion && (
+        <>
+          <OdsText preset="paragraph">
+            {t('pci_projects_project_edit_hds_description')}
+          </OdsText>
 
-      <OdsLink
-        icon="external-link"
-        target="_blank"
-        href={hdsInfoLink}
-        label={t('pci_projects_hds_description_link')}
-      />
+          <OdsLink
+            icon="external-link"
+            target="_blank"
+            href={hdsInfoLink}
+            label={t('pci_projects_hds_description_link')}
+          />
+        </>
+      )}
 
       <OdsFormField className="flex flex-row items-center">
         <OdsCheckbox
@@ -60,6 +69,16 @@ export default function HdsOption({
           </OdsText>
         </label>
       </OdsFormField>
+
+      {isLightVersion && (
+        <OdsLink
+          icon="external-link"
+          target="_blank"
+          className="ml-8"
+          href={hdsInfoLink}
+          label={t('pci_projects_hds_description_link')}
+        />
+      )}
     </div>
   );
 }

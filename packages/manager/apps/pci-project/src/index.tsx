@@ -47,6 +47,7 @@ const init = async (appName: string) => {
       <ShellContext.Provider value={context}>
         <App />
       </ShellContext.Provider>
+      ,
     </React.StrictMode>,
   );
 };
