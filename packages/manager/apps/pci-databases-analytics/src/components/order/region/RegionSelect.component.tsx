@@ -7,16 +7,30 @@ import {
   Badge,
   ScrollArea,
   ScrollBar,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  RadioGroup,
+  RadioTile,
 } from '@datatr-ux/uxlib';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { ExternalLink, HelpCircle } from 'lucide-react';
 import { Region } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
 import useHorizontalScroll from '@/hooks/useHorizontalScroll.hook';
+import { RegionTypeEnum } from '@/types/cloud/project/database/capabilities/RegionTypeEnum';
+import Flag from '@/components/flag/Flag.component';
+import { getRegionFlag } from '@/lib/flagHelper';
+import { cn } from '@/lib/utils';
+import A from '@/components/links/A.component';
 
 interface RegionsSelectProps {
   regions: Region[];
   value: string;
   onChange: (newRegion: string) => void;
+}
+interface MappedRegions extends Region {
+  label: string;
+  continent: string;
 }
 const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
   ({ regions, value, onChange }, ref) => {
@@ -24,11 +38,10 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
     const { t } = useTranslation('regions');
     const scrollRef = useHorizontalScroll();
 
-    const mappedRegions = regions.map((r) => ({
-      name: r.name,
-      tags: r.tags,
+    const mappedRegions: MappedRegions[] = regions.map((r) => ({
       label: t(`region_${r.name}_micro`, { micro: r.name }),
       continent: t(`region_continent_${r.name}`),
+      ...r,
     }));
     const continents = [
       ...new Set([
@@ -36,6 +49,53 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
         ...mappedRegions.map((mr) => mr.continent),
       ]),
     ];
+    const RegionTypeBadge = ({ region }: { region: MappedRegions }) => {
+      const helpLink = (
+        <A
+          href="https://www.ovhcloud.com/fr/about-us/global-infrastructure/expansion-regions-az/"
+          className="flex gap-1 items-center"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {t('help-link-more-info')}
+          <ExternalLink className="size-3" />
+        </A>
+      );
+      switch (region.type) {
+        case RegionTypeEnum['1AZ']:
+          return (
+            <Badge className="bg-primary-400 text-white">
+              <span>1-AZ</span>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <HelpCircle className="size-4 ml-2" />
+                </PopoverTrigger>
+                <PopoverContent className="text-xs">
+                  {t('region-description-1AZ')}
+                  {helpLink}
+                </PopoverContent>
+              </Popover>
+            </Badge>
+          );
+        case RegionTypeEnum['3AZ']:
+          return (
+            <Badge className="bg-primary-500 text-white">
+              <span>3-AZ</span>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <HelpCircle className="size-4 ml-2" />
+                </PopoverTrigger>
+                <PopoverContent className="text-xs">
+                  {t('region-description-3AZ')}
+                  {helpLink}
+                </PopoverContent>
+              </Popover>
+            </Badge>
+          );
+        default:
+          return <Badge className="bg-neutral-100 text-text">?</Badge>;
+      }
+    };
     return (
       <div data-testid="regions-select-container" ref={ref}>
         <Tabs
@@ -43,12 +103,21 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           onValueChange={(v) => setSelectedContinentIndex(+v)}
         >
           <ScrollArea data-testid="scrollbar" ref={scrollRef}>
-            <TabsList className="bg-white justify-start p-0 hidden md:flex overflow-y-hidden rounded-none rounded-t-md">
+            <TabsList
+              className={cn(
+                'md:flex inline-flex w-fit items-center justify-center h-auto border-[#e6f5fc] border-b',
+                'bg-transparent shadow-none rounded-none p-0',
+              )}
+            >
               {continents.map((continent, index) => (
                 <TabsTrigger
                   key={continent}
                   value={`${index}`}
-                  className="-mb-[1px] px-4 text-lg text-primary-600 font-semibold h-full bg-white border border-primary-100 rounded-t-md rounded-b-none data-[state=active]:bg-background data-[state=active]:shadow-none data-[state=active]:bg-primary-50 data-[state=active]:border-b-primary-50 data-[state=active]:font-bold data-[state=active]:text-primary-800"
+                  className={cn(
+                    'bg-transparent shadow-none text-primary-[#e6f5fc] border-b-2 rounded-none font-semibold border-transparent text-primary',
+                    'w-full px-6 flex gap-2 items-center',
+                    'data-[state=active]:shadow-none data-[state=active]:text-primary data-[state=active]:border-primary',
+                  )}
                 >
                   {continent}
                 </TabsTrigger>
@@ -56,7 +125,11 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
             </TabsList>
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
-          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-primary-50 border border-primary-100 rounded-b-md">
+          <RadioGroup
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 mt-2"
+            value={value}
+            onValueChange={onChange}
+          >
             {mappedRegions
               .filter((r) =>
                 selectedContinentIndex === 0
@@ -66,18 +139,14 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
               .map((region) => (
                 <RadioTile
                   data-testid={`regions-radio-tile-${region.name}`}
-                  name="region-select"
                   key={region.name}
-                  onChange={() => onChange(region.name)}
                   value={region.name}
-                  checked={region.name === value}
                 >
                   <div className="flex w-full gap-2 justify-between">
-                    <span
-                      className={`${region.name === value ? 'font-bold' : ''}`}
-                    >
+                    <h5 className="flex gap-2 items-center">
+                      <Flag flagName={getRegionFlag(region.name)} />
                       {region.label}
-                    </span>
+                    </h5>
                     <div className="flex gap-1">
                       {region.tags.map((tag) => (
                         <Badge
@@ -90,9 +159,12 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                       ))}
                     </div>
                   </div>
+                  <div className="flex w-full gap-2 justify-between mt-2">
+                    <RegionTypeBadge region={region} />
+                  </div>
                 </RadioTile>
               ))}
-          </div>
+          </RadioGroup>
         </Tabs>
       </div>
     );

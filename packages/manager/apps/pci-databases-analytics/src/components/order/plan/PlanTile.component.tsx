@@ -1,20 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@datatr-ux/uxlib';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { Badge, RadioTile, Separator } from '@datatr-ux/uxlib';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
 import { Plan } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
 
-export const PlanTile = ({
-  plan,
-  selected,
-  onChange,
-}: {
-  plan: Plan;
-  selected: boolean;
-  onChange: (newPlan: string) => void;
-}) => {
+export const PlanTile = ({ plan }: { plan: Plan }) => {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
@@ -22,19 +13,12 @@ export const PlanTile = ({
   return (
     <RadioTile
       data-testid={`plan-tile-radio-tile-${plan.name}`}
-      name="plan-select"
-      onChange={() => onChange(plan.name)}
       value={plan.name}
-      checked={selected}
     >
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex justify-between w-full">
-            <h5
-              className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-            >
-              {plan.name}
-            </h5>
+            <h5 className="capitalize font-normal">{plan.name}</h5>
             <div>
               {plan.tags.map((tag) => (
                 <Badge
@@ -48,7 +32,7 @@ export const PlanTile = ({
               ))}
             </div>
           </div>
-          <RadioTile.Separator />
+          <Separator className="my-2" />
         </div>
         <div className="text-xs flex flex-col">
           <PlanTile.Ram ram={plan.ram} />

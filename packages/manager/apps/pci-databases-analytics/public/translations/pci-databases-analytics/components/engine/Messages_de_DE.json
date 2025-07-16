@@ -10,5 +10,6 @@
   "versionTag-soonDeprecated": "Bald veraltet",
   "selectAVersion": "Version auswählen",
   "noVersionFound": "Keine Versionen gefunden",
-  "description-valkey": "In-Memory-Speichersystem für Key-Value-Daten"
+  "description-valkey": "In-Memory-Speichersystem für Key-Value-Daten",
+  "versionTag-endOfSale": "End of Sales"
 }

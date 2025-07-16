@@ -35,5 +35,14 @@
   "errorSourceTypeFieldInvalid": "Ten typ punktu przywracania nie jest dostępny dla tej usługi",
   "errorSourcePITFieldInvalidDate": "Wybrana data jest nieprawidłowa",
   "errorSourceBackupFieldEmpty": "Wybierz backup",
-  "breadcrumb": "Fork"
+  "breadcrumb": "Fork",
+  "orderSectionTitleService": "Usługa",
+  "orderSectionDescriptionService": "Wybierz typ usługi bazy danych, którą chcesz utworzyć, oraz wersję.",
+  "orderSectionTitleSource": "Źródło",
+  "orderSectionTitleRegion": "Serwerownia",
+  "orderSectionTitlePlan": "Oferta",
+  "orderSectionTitleFlavor": "Instancja",
+  "orderSectionTitleStorage": "Storage",
+  "orderSectionTitleOptions": "Opcje",
+  "fieldNameLabel": "Nazwa"
 }

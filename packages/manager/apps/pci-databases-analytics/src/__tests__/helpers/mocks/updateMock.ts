@@ -364,6 +364,7 @@ export const mockedRegionCapabilitiesUpdate: database.capabilities.RegionCapabil
     startDate: '2020/02/20',
     status: database.availability.StatusEnum.STABLE,
   },
+  type: database.capabilities.RegionTypeEnum['1AZ'],
   name: 'gra',
   order: 1,
   tags: [],

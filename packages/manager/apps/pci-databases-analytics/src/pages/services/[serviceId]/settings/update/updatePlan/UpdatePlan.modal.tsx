@@ -80,9 +80,7 @@ const UpdatePlan = () => {
   const onSubmit = form.handleSubmit((formValues) => {
     // Get the data to submit. We want to check the flavor for some edge cases
     // such as mongodb discovery, where the flavor must be updated with the plan
-    const { flavors } = listPlans
-      .find((p) => p.name === formValues.plan)
-      .regions.find((r) => r.name === service.nodes[0].region);
+    const { flavors } = listPlans.find((p) => p.name === formValues.plan);
     const flavor = flavors.find((f) => f.name === service.flavor) || flavors[0];
     const data = {
       plan: formValues.plan,
@@ -103,9 +101,9 @@ const UpdatePlan = () => {
       isLoading={!listPlans || !initialFlavorObject || !newPrice || !oldPrice}
     >
       <DialogContent className="px-0 sm:max-w-2xl">
-        <ScrollArea className="max-h-[80vh] px-6">
+        <ScrollArea className="max-h-[80vh] px-5">
           <Form {...form}>
-            <form onSubmit={onSubmit} id="updatePlanForm">
+            <form onSubmit={onSubmit} id="updatePlanForm" className="px-1">
               <DialogHeader className="mb-2">
                 <DialogTitle data-testid="update-plan-modal">
                   {t('updatePlanTitle')}

@@ -154,6 +154,7 @@ export const mockedRegionCapabilities: database.capabilities.RegionCapabilities 
   },
   name: 'region',
   order: 1,
+  type: database.capabilities.RegionTypeEnum['1AZ'],
   tags: [database.capabilities.TagEnum.current],
 };
 

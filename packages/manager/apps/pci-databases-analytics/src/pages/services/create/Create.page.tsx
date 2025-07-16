@@ -1,6 +1,5 @@
 import { useSearchParams, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { Skeleton } from '@datatr-ux/uxlib';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import * as database from '@/types/cloud/project/database';
@@ -12,6 +11,7 @@ import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAv
 import { useGetSuggestions } from '@/hooks/api/database/availability/useGetSuggestions.hook';
 import { useGetFullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
+import OrderSkeleton from '@/components/order/skeleton/OrderSkeleton.component';
 
 export function breadcrumb() {
   return (
@@ -87,22 +87,7 @@ const Service = () => {
         ></Trans>
       </p>
       {loading ? (
-        <div
-          data-testid="order-funnel-skeleton"
-          className="grid grid-cols-1 lg:grid-cols-4 gap-4"
-        >
-          <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
-            <Skeleton className="w-80 h-8" />
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-              <Skeleton className="w-full h-52" />
-              <Skeleton className="w-full h-52" />
-              <Skeleton className="w-full h-52" />
-              <Skeleton className="w-full h-52" />
-              <Skeleton className="w-full h-52" />
-            </div>
-          </div>
-          <Skeleton className="w-full h-[600px]" />
-        </div>
+        <OrderSkeleton />
       ) : (
         <OrderFunnel
           availabilities={availabilitiesQuery.data.filter((a) =>

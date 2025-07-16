@@ -29,11 +29,12 @@ export function useUpdateFlavor({
     const version = engine?.versions.find(
       (v: Version) => v.name === service.version,
     );
-    const plan = version?.plans.find((p: Plan) => p.name === service.plan);
-    const region = plan?.regions.find(
+
+    const region = version?.regions.find(
       (r: Region) => r.name === service.nodes[0].region,
     );
-    return region?.flavors.sort((a, b) => a.order - b.order) || [];
+    const plan = region?.plans.find((p: Plan) => p.name === service.plan);
+    return plan?.flavors.sort((a, b) => a.order - b.order) || [];
   }, [listEngines, service]);
 
   // Initial values

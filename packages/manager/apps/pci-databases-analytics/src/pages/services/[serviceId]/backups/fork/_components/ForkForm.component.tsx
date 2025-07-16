@@ -46,7 +46,6 @@ import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.co
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
-import ForkSummary from './ForkSummary.component';
 import { useFork } from './useFork.hook';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -57,6 +56,9 @@ import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { ForkInitialValue } from '../Fork.page';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import OrderSummary from '@/pages/services/create/_components/OrderSummary.component';
+import OrderSection from '@/components/order/Section.component';
+import NameInput from '@/components/order/name/NameInput.component';
 
 interface ForkFormProps {
   availabilities: database.Availability[];
@@ -106,10 +108,8 @@ const ForkForm = ({
     },
   });
 
-  const hasNodeSelection =
-    model.result.plan &&
-    model.result.plan.nodes.minimum !== model.result.plan.nodes.maximum;
   const hasStorageSelection =
+    model.result.availability &&
     model.result.flavor?.storage &&
     model.result.flavor.storage.minimum.value !==
       model.result.flavor.storage.maximum.value;
@@ -119,14 +119,14 @@ const ForkForm = ({
       // data has been validated, create payload and submit post request
       const serviceInfos: ServiceCreationWithEngine = {
         description: data.name,
-        engine: data.engineWithVersion.engine as database.EngineEnum,
+        engine: data.engine as database.EngineEnum,
         nodesPattern: {
           flavor: data.flavor,
           number: data.nbNodes,
           region: data.region,
         },
         plan: data.plan,
-        version: data.engineWithVersion.version,
+        version: data.version,
         ipRestrictions: data.ipRestrictions as database.service.IpRestriction[],
         forkFrom: {
           serviceId: data.forkFrom.serviceId,
@@ -177,19 +177,36 @@ const ForkForm = ({
     }
   };
 
-  const classNameLabel = 'scroll-m-20 text-xl font-semibold';
+  const classNameLabel = 'scroll-m-20 text-xl font-semibold text-lg';
 
   return (
     <Form {...model.form}>
-      <form
+      <div
         className="grid grid-cols-1 lg:grid-cols-4 gap-4"
         onSubmit={onSubmit}
       >
         <div
           data-testid="fork-form-container"
-          className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent"
+          className="col-span-1 md:col-span-3 flex flex-col gap-4"
         >
-          <section id="source" className="divide-y-[1rem] divide-transparent">
+          <OrderSection id="engine" title={t('orderSectionTitleService')}>
+            <FormField
+              control={model.form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className={classNameLabel}>
+                    {t('fieldNameLabel')}
+                  </FormLabel>
+                  <FormControl>
+                    <NameInput {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </OrderSection>
+          <OrderSection id="source" title={t('orderSectionTitleSource')}>
             <FormField
               control={model.form.control}
               name="forkFrom.type"
@@ -207,7 +224,7 @@ const ForkForm = ({
                       value={field.value}
                       className="grid grid-cols-3 gap-2"
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem
                             data-testid="radio-button-now"
@@ -215,11 +232,17 @@ const ForkForm = ({
                             disabled={!model.result.canUsePit}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel
+                          className={cn(
+                            'font-normal',
+                            !model.result.canUsePit &&
+                              'opacity-70 cursor-not-allowed',
+                          )}
+                        >
                           {t('inputTypeValueNow')}
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem
                             data-testid="radio-button-pitr"
@@ -227,11 +250,17 @@ const ForkForm = ({
                             disabled={!model.result.canUsePit}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel
+                          className={cn(
+                            'font-normal',
+                            !model.result.canUsePit &&
+                              'opacity-70 cursor-not-allowed',
+                          )}
+                        >
                           {t('inputTypeValuePIT')}
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem
                             data-testid="radio-button-backup"
@@ -253,10 +282,7 @@ const ForkForm = ({
                 control={model.form.control}
                 name="forkFrom.backupId"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      {t('inputSourceBackupLabel')}
-                    </FormLabel>
+                  <FormItem className="mt-4">
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
@@ -295,13 +321,7 @@ const ForkForm = ({
                 control={model.form.control}
                 name="forkFrom.pointInTime"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel
-                      data-testid="pitr-form-label"
-                      className={cn(classNameLabel, 'text-lg')}
-                    >
-                      {t('inputSourcePITPlaceholder')}
-                    </FormLabel>
+                  <FormItem className="mt-4">
                     <FormControl>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -353,197 +373,142 @@ const ForkForm = ({
                 )}
               />
             )}
-          </section>
-          <section id="plan">
-            <FormField
-              control={model.form.control}
-              name="plan"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={classNameLabel}>
-                    {t('fieldPlanLabel')}
-                  </FormLabel>
-                  <FormControl>
-                    <PlansSelect
-                      {...field}
-                      plans={model.lists.plans}
-                      value={field.value}
-                      onChange={(newPlan) =>
-                        model.form.setValue('plan', newPlan)
-                      }
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </section>
-          <section id="region">
+          </OrderSection>
+
+          <OrderSection title={t('fieldRegionLabel')} id="region">
             <FormField
               control={model.form.control}
               name="region"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={classNameLabel}>
-                    {t('fieldRegionLabel')}
-                  </FormLabel>
                   <FormControl>
-                    <RegionsSelect
-                      {...field}
-                      regions={model.lists.regions}
-                      value={field.value}
-                      onChange={(newRegion) =>
-                        model.form.setValue('region', newRegion)
+                    <RegionsSelect {...field} regions={model.lists.regions} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </OrderSection>
+
+          <OrderSection title={t('fieldPlanLabel')} id="plan">
+            <FormField
+              control={model.form.control}
+              name="plan"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <PlansSelect {...field} plans={model.lists.plans} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </OrderSection>
+
+          <OrderSection title={t('orderSectionTitleFlavor')} id="flavor">
+            <FormField
+              control={model.form.control}
+              name="flavor"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <FlavorsSelect {...field} flavors={model.lists.flavors} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={model.form.control}
+              name="nbNodes"
+              render={({ field }) => (
+                <FormItem className="mt-4">
+                  <FormControl>
+                    <NodesConfig
+                      minimum={
+                        model.result.availability?.specifications.nodes.minimum
                       }
+                      maximum={
+                        model.result.availability?.specifications.nodes.maximum
+                      }
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          </section>
+          </OrderSection>
 
-          <section id="flavor">
-            <FormField
-              control={model.form.control}
-              name="flavor"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={classNameLabel}>
-                    {t('fieldFlavorLabel')}
-                  </FormLabel>
-                  <p>{t('fieldFlavorDescription')}</p>
-                  <FormControl>
-                    {model.result.availability && (
-                      <FlavorsSelect
-                        {...field}
-                        flavors={model.lists.flavors}
-                        value={field.value}
-                        onChange={(newFlavor) =>
-                          model.form.setValue('flavor', newFlavor)
-                        }
-                      />
-                    )}
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </section>
-
-          {model.result.availability &&
-            (hasNodeSelection || hasStorageSelection) && (
-              <section
-                id="cluster"
-                className="divide-y-[1rem] divide-transparent"
-              >
-                <h4>{t('sectionClusterTitle')}</h4>
-                {hasNodeSelection && (
-                  <FormField
-                    control={model.form.control}
-                    name="nbNodes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                          {t('fieldNodesLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <NodesConfig
-                            {...field}
-                            minimum={model.result.plan.nodes.minimum}
-                            maximum={model.result.plan.nodes.maximum}
-                            value={field.value}
-                            onChange={(newNbNodes) =>
-                              model.form.setValue('nbNodes', newNbNodes)
-                            }
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-                {hasStorageSelection && (
-                  <FormField
-                    control={model.form.control}
-                    name="additionalStorage"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                          {t('fieldStorageLabel')}
-                        </FormLabel>
-                        <FormControl>
-                          <StorageConfig
-                            {...field}
-                            availability={model.result.availability}
-                            value={field.value}
-                            onChange={(newStorage) =>
-                              model.form.setValue(
-                                'additionalStorage',
-                                newStorage,
-                              )
-                            }
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-              </section>
-            )}
-          <section id="options" className="divide-y-[1rem] divide-transparent">
-            <h4>{t('sectionOptionsTitle')}</h4>
-            {model.result.plan && (
+          {hasStorageSelection && (
+            <OrderSection id="storage" title={t('orderSectionTitleStorage')}>
               <FormField
                 control={model.form.control}
-                name="network"
+                name="additionalStorage"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      {t('fieldNetworkLabel')}
+                    <FormControl>
+                      <StorageConfig
+                        availability={model.result.availability}
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </OrderSection>
+          )}
+
+          <OrderSection id="options" title={t('orderSectionTitleOptions')}>
+            <div className="flex flex-col gap-4">
+              {model.result.plan && (
+                <FormField
+                  control={model.form.control}
+                  name="network"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldNetworkLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <NetworkOptions
+                          {...field}
+                          value={field.value}
+                          networks={model.lists.networks}
+                          subnets={model.lists.subnets}
+                          networkQuery={model.queries.networks}
+                          subnetQuery={model.queries.subnets}
+                          availableNetworks={model.result.plan.networks}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+              <FormField
+                control={model.form.control}
+                name="ipRestrictions"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldIpsLabel')}
                     </FormLabel>
                     <FormControl>
-                      <NetworkOptions
+                      <IpsRestrictionsForm
                         {...field}
                         value={field.value}
-                        onChange={(newNetwork) =>
-                          model.form.setValue('network', newNetwork)
+                        onChange={(newIps) =>
+                          model.form.setValue('ipRestrictions', newIps)
                         }
-                        networks={model.lists.networks}
-                        subnets={model.lists.subnets}
-                        networkQuery={model.queries.networks}
-                        subnetQuery={model.queries.subnets}
-                        availableNetworks={model.result.plan.networks}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            )}
-            <FormField
-              control={model.form.control}
-              name="ipRestrictions"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                    {t('fieldIpsLabel')}
-                  </FormLabel>
-                  <FormControl>
-                    <IpsRestrictionsForm
-                      {...field}
-                      value={field.value}
-                      onChange={(newIps) =>
-                        model.form.setValue('ipRestrictions', newIps)
-                      }
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </section>
+            </div>
+          </OrderSection>
         </div>
 
         <Card className="sticky top-4 h-fit shadow-lg">
@@ -551,7 +516,7 @@ const ForkForm = ({
             <CardTitle>{t('summaryTitle')}</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-2">
-            <ForkSummary
+            <OrderSummary
               order={model.result}
               onSectionClicked={(section) => scrollToDiv(section)}
             />
@@ -565,6 +530,7 @@ const ForkForm = ({
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button
+              onClick={onSubmit}
               data-testid="fork-submit-button"
               className="w-full"
               disabled={isPendingAddService}
@@ -573,7 +539,7 @@ const ForkForm = ({
             </Button>
           </CardFooter>
         </Card>
-      </form>
+      </div>
     </Form>
   );
 };

@@ -22,6 +22,8 @@ import { TRACKING } from '@/configuration/tracking.constants';
 import { formatStorage } from '@/lib/bytesHelper';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
+import { getRegionFlag } from '@/lib/flagHelper';
+import Flag from '@/components/flag/Flag.component';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -146,7 +148,15 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
-        <span>{tRegions(`region_${row.original.nodes[0].region}`)}</span>
+        <div className="flex items-center gap-2">
+          <Flag
+            flagName={getRegionFlag(row.original.nodes[0].region)}
+            className="w-4 h-3"
+          />
+          <span className="whitespace-nowrap">
+            {tRegions(`region_${row.original.nodes[0].region}`)}
+          </span>
+        </div>
       ),
     },
     {

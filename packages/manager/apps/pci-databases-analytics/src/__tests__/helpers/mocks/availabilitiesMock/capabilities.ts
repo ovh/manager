@@ -130,5 +130,13 @@ export const mockedCapabilities: FullCapabilities = {
       backupRetention: '3',
     },
   ],
-  regions: [{ name: 'GRA', lifecycle: mockedLifecycle, order: 0, tags: [] }],
+  regions: [
+    {
+      name: 'GRA',
+      lifecycle: mockedLifecycle,
+      order: 0,
+      tags: [],
+      type: database.capabilities.RegionTypeEnum['1AZ'],
+    },
+  ],
 };
