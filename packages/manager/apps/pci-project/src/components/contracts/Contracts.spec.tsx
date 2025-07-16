@@ -48,26 +48,18 @@ describe('Contracts', () => {
     });
   });
 
-  it('renders spinner when contracts is undefined', () => {
+  it('renders skeleton when isLoading true', () => {
     const { getByTestId } = render(
-      <Contracts
-        contracts={undefined}
-        isChecked={false}
-        onCheckChanged={vi.fn()}
-      />,
+      <Contracts isLoading={true} isChecked={false} onCheckChanged={vi.fn()} />,
     );
 
-    const spinner = getByTestId('ods-spinner');
-    expect(spinner).toBeVisible();
+    const skeleton = getByTestId('contracts-skeleton');
+    expect(skeleton).toBeVisible();
   });
 
   it('disables checkbox if contracts are missing or empty', () => {
     const { getByTestId } = render(
-      <Contracts
-        contracts={undefined}
-        isChecked={false}
-        onCheckChanged={vi.fn()}
-      />,
+      <Contracts isChecked={false} onCheckChanged={vi.fn()} />,
     );
 
     const checkBox = getByTestId('contracts-checkbox');
