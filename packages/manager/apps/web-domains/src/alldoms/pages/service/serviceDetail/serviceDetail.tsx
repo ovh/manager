@@ -14,6 +14,7 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
@@ -21,6 +22,7 @@ import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/Service
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/Loading/Loading';
 import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
+import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -38,6 +40,12 @@ export default function ServiceDetail() {
   const { data: alldomService, isLoading } = useGetAllDom({
     serviceName,
   });
+
+  const { data: url } = useNavigationGetUrl([
+    appConfig.rootLabel,
+    `/alldoms/${serviceName}/${CANCEL_TERMINATE_URL()}`,
+    {},
+  ]);
 
   if (isLoading) {
     return <Loading />;
@@ -75,7 +83,7 @@ export default function ServiceDetail() {
                     t={t}
                     i18nKey="allDom_detail_page_manuel_renew_warning"
                     values={{
-                      t0: formatDate({
+                      expirationDate: formatDate({
                         date: alldomService.expirationDate,
                         format: 'PP',
                       }),
@@ -84,10 +92,9 @@ export default function ServiceDetail() {
                   />
                 </OdsText>
                 <OdsLink
-                  href={``} // Currently empty for a future
+                  href={url as string}
                   label={t('allDom_detail_page_manuel_renew_warning_link')}
                   icon={ODS_ICON_NAME.arrowRight}
-                  target="_blank"
                   className="link-banner"
                 />
               </div>
