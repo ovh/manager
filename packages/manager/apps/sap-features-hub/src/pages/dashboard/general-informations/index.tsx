@@ -12,6 +12,7 @@ import { urls } from '@/routes/routes.constant';
 import useGuideUtils, {
   GUIDE_LINK_SOURCE_CODE,
 } from '@/hooks/guide/useGuideUtils';
+import { useWizardAvailability } from '@/hooks/wizardAvailability/useWizardAvailability';
 import { BACKUP_SAP_TITLE } from './general-informations.constants';
 import { TRACKING } from '@/tracking.constants';
 import { testIds } from '@/utils/testIds.constants';
@@ -22,6 +23,7 @@ function GeneralInfos() {
   const wizardHref = useHref(urls.installationWizard);
   const listingHref = useHref(urls.listing);
   const { trackClick } = useOvhTracking();
+  const { isWizardAvailable } = useWizardAvailability();
 
   const tiles = [
     {
@@ -150,7 +152,7 @@ function GeneralInfos() {
         },
       ],
     },
-    {
+    isWizardAvailable && {
       title: t('blocks_pre_installation_wizard_sap_title'),
       items: [
         {
@@ -274,7 +276,7 @@ function GeneralInfos() {
         },
       ],
     },
-  ];
+  ].filter(Boolean);
 
   return (
     <div className="flex flex-col gap-4">

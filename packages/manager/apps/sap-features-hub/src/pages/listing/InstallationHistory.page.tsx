@@ -4,6 +4,7 @@ import {
   Datagrid,
   DatagridColumn,
   HeadersProps,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +16,7 @@ import { LABELS } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
 import { TSAPInstallationWithService } from '@/types/installation.type';
 import useInstallationHistory from '@/data/hooks/useInstallationHistory';
+import { useWizardAvailability } from '@/hooks/wizardAvailability/useWizardAvailability';
 import {
   ApplicationTypeCell,
   ApplicationVersionCell,
@@ -37,6 +39,10 @@ export default function HistoryPage() {
   const { trackClick } = useOvhTracking();
 
   const { data: installations, isLoading } = useInstallationHistory();
+  const {
+    isWizardAvailable,
+    isLoading: isWizardAvailabilityLoading,
+  } = useWizardAvailability();
 
   const header: HeadersProps = { title: t('sap_hub_history_list') };
 
@@ -107,31 +113,37 @@ export default function HistoryPage() {
 
   return (
     <Suspense>
-      <BaseLayout
-        breadcrumb={<Breadcrumb />}
-        header={header}
-        backLinkLabel={tInstallation('backlink_label')}
-        onClickReturn={() => navigate(urls.dashboard)}
-        description={t('sap_hub_history_title')}
+      <RedirectionGuard
+        condition={!isWizardAvailable}
+        isLoading={isWizardAvailabilityLoading}
+        route={urls.dashboard}
       >
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() => {
-            trackClick(TRACKING.wizard.start);
-            navigate(urls.installationWizard);
-          }}
-          label={tDashboard('blocks_start_wizard')}
-          className="mb-8"
-        />
-        {installations && (
-          <Datagrid
-            columns={columns}
-            items={installations}
-            totalItems={0}
-            hasNextPage={false}
+        <BaseLayout
+          breadcrumb={<Breadcrumb />}
+          header={header}
+          backLinkLabel={tInstallation('backlink_label')}
+          onClickReturn={() => navigate(urls.dashboard)}
+          description={t('sap_hub_history_title')}
+        >
+          <OdsButton
+            variant={ODS_BUTTON_VARIANT.outline}
+            onClick={() => {
+              trackClick(TRACKING.wizard.start);
+              navigate(urls.installationWizard);
+            }}
+            label={tDashboard('blocks_start_wizard')}
+            className="mb-8"
           />
-        )}
-      </BaseLayout>
+          {installations && (
+            <Datagrid
+              columns={columns}
+              items={installations}
+              totalItems={0}
+              hasNextPage={false}
+            />
+          )}
+        </BaseLayout>
+      </RedirectionGuard>
     </Suspense>
   );
 }
