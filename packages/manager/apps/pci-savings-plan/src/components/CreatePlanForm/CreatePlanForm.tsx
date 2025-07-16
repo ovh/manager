@@ -10,6 +10,7 @@ import {
   OdsInput,
   OdsSpinner,
   OdsText,
+  OdsDatepicker,
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
@@ -91,6 +92,13 @@ type InstanceInfoWithTechnical = InstanceInfo & {
   technical: TechnicalInfo[];
 };
 
+type CreatePlanParams = {
+  offerId: string;
+  displayName: string;
+  size: number;
+  startDate: Date;
+};
+
 export type CreatePlanFormProps = {
   instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
@@ -101,15 +109,7 @@ export type CreatePlanFormProps = {
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
   setTechnicalModel: (technicalModel: string) => void;
-  onCreatePlan: ({
-    offerId,
-    displayName,
-    size,
-  }: {
-    offerId: string;
-    displayName: string;
-    size: number;
-  }) => void;
+  onCreatePlan: (params: CreatePlanParams) => void;
   isDiscoveryProject: boolean;
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
@@ -212,6 +212,19 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const activeInstance = instanceSelected.technical?.find(
     (item) => item.name === technicalModel,
   );
+  const minDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  }, []);
+
+  const maxDate = useMemo(() => {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 6);
+    return date;
+  }, []);
+
+  const [startDate, setStartDate] = useState(minDate);
 
   const onSetInstanceCategory = useCallback(
     (category: InstanceTechnicalName) => {
@@ -269,6 +282,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         offerId: offerIdSelected,
         displayName: planName,
         size: quantity,
+        startDate,
       });
     }
   };
@@ -337,6 +351,19 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         quantity={quantity}
         handleQuantityChange={handleQuantityChange}
       />
+      <Block>
+        <Subtitle>{t('choose_date')}</Subtitle>
+        <DescriptionWrapper>{t('choose_date_description')}</DescriptionWrapper>
+        <OdsDatepicker
+          value={startDate}
+          name="savings-plan-start-date"
+          min={minDate}
+          max={maxDate}
+          onOdsChange={(e) => {
+            setStartDate(e.target.value);
+          }}
+        />
+      </Block>
       <CommitmentWrapper
         enrichedPricingByDuration={enrichedPricingByDuration}
         isLoading={isPricingLoading || isTechnicalInfoLoading}
