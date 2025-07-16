@@ -12,6 +12,26 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const basePath = path.resolve('../manager/apps');
 
+/**
+ * Runs a migration or setup process for a specific app or globally.
+ *
+ * Supports dry-run, formatter/linter post-processing, and test verification.
+ *
+ * @param {Object} options - Configuration options for the migration.
+ * @param {string|null} [options.appName=null] - Name of the application (e.g., 'zimbra'), or null for global run.
+ * @param {string} options.commandLabel - Label describing the migration operation (e.g., 'tests-migrate').
+ * @param {string|string[]} options.scriptOrSteps - Path(s) to migration script(s), or CLI steps to invoke.
+ * @param {string} [options.formatGlob='*.{js,ts,tsx}'] - Glob pattern for files to format/lint.
+ * @param {string|null} [options.framework=null] - Optional framework name (e.g., 'react', 'vue').
+ * @param {string|null} [options.testType=null] - Optional test type (e.g., 'unit', 'integration').
+ * @param {string|null} [options.testCommand=null] - Optional test command to run (e.g., 'test:unit').
+ * @param {boolean} [options.dryRun=false] - Whether to perform a dry run (no writes or changes).
+ * @param {string|null} [options.docLink=null] - Optional link to documentation in case of failure.
+ * @param {boolean} [options.statusOnly=false] - Whether to skip mutation and only report status.
+ * @param {boolean} [options.enablePrettier=true] - Whether to run Prettier on affected files.
+ * @param {boolean} [options.enableLintFix=true] - Whether to run ESLint with auto-fix after migration.
+ * @param {() => void} [options.onEnd=() => {}] - Callback function to run at the end (e.g., for cleanup).
+ */
 export const runMigration = ({
   appName = null,
   commandLabel,
@@ -23,6 +43,8 @@ export const runMigration = ({
   dryRun = false,
   docLink = null,
   statusOnly = false,
+  enablePrettier = true,
+  enableLintFix = true,
   onEnd = () => {},
 }) => {
   const appPath = appName ? path.join(basePath, appName) : null;
@@ -136,26 +158,30 @@ export const runMigration = ({
     console.error(error);
   }
 
-  try {
-    console.log('🎨 Formatting code with Prettier...');
-    execSync(`yarn prettier --write "${appFullPath}"`, {
-      stdio: 'inherit',
-      cwd: resolve(__dirname, '../..'),
-    });
-  } catch (error) {
-    console.error('❌ Failed to format code automatically.');
-    console.error(error);
+  if(enablePrettier){
+    try {
+      console.log('🎨 Formatting code with Prettier...');
+      execSync(`yarn prettier --write "${appFullPath}"`, {
+        stdio: 'inherit',
+        cwd: resolve(__dirname, '../..'),
+      });
+    } catch (error) {
+      console.error('❌ Failed to format code automatically.');
+      console.error(error);
+    }
   }
 
-  try {
-    console.log('🧹 Applying ESLint fixes...');
-    execSync(`yarn eslint "${appFullPath}" --fix --quiet`, {
-      stdio: 'inherit',
-      cwd: resolve(__dirname, '../..'),
-    });
-  } catch (error) {
-    console.error('❌ ESLint encountered issues while fixing your code.');
-    console.error(error);
+  if(enableLintFix){
+    try {
+      console.log('🧹 Applying ESLint fixes...');
+      execSync(`yarn eslint "${appFullPath}" --fix --quiet`, {
+        stdio: 'inherit',
+        cwd: resolve(__dirname, '../..'),
+      });
+    } catch (error) {
+      console.error('❌ ESLint encountered issues while fixing your code.');
+      console.error(error);
+    }
   }
 
   if (testCommand) {

@@ -6,7 +6,10 @@ import { applicationsBasePath, getAvailableApps } from './utils/AppUtils.mjs';
 const args = process.argv.slice(2);
 const [command, ...restArgs] = args;
 
-// Known commands and metadata
+const validMigrationTypes = ['routes', 'tests', 'swc', 'static-kit', 'all'];
+const validTestTypes = ['unit', 'integration'];
+const validFormats = ['json', 'html'];
+
 const knownCommands = {
   'routes-migrate': {
     script: 'json-to-component-route-migration',
@@ -33,6 +36,25 @@ yarn manager-cli tests-migrate --app zimbra --testType integration --framework j
 # Preview changes without applying them (without affecting files)
 yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
   },
+  'duplicated-translations': {
+    script: 'check-duplicated-translations',
+    isAppRequired: true,
+    description: 'Check for duplicate translations that already exist in the common module.',
+    help: `
+#Check duplicated translations on zimbra app
+yarn manager-cli duplicated-translations --app zimbra`,
+  },
+  'static-analysis-migrate': {
+    script: 'static-analysis-migration',
+    isAppRequired: true,
+    description: 'Migrate ESLint & TS config to static-analysis-kit (safe defaults + recommendations)',
+    help: `
+# Migrate to static-analysis-kit for an app (non-destructive)
+yarn manager-cli static-analysis-migrate --app zimbra
+
+# Preview changes without writing files
+yarn manager-cli static-analysis-migrate --app zimbra --dry-run`
+  },
   'migrations-status': {
     script: 'migrations-status',
     isAppRequired: false,
@@ -41,10 +63,11 @@ yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
 # Check all migrations
 yarn manager-cli migrations-status --type all
 
-# Filter by type (routes, tests or swc)
+# Filter by type (${validMigrationTypes.join(', ')})
 yarn manager-cli migrations-status --type routes
 yarn manager-cli migrations-status --type tests
 yarn manager-cli migrations-status --type swc
+yarn manager-cli migrations-status --type static-kit
 
 # Export as HTML or JSON
 yarn manager-cli migrations-status --type routes --format json
@@ -53,21 +76,7 @@ yarn manager-cli migrations-status --type tests --format html
 yarn manager-cli migrations-status --type all --format html
 yarn manager-cli migrations-status --type all --format json`
   },
-  'duplicated-translations': {
-    script: 'check-duplicated-translations',
-    isAppRequired: true,
-    description:
-      'Check for duplicate translations that already exist in the common module.',
-    help: `
-      #Check duplicated translations on zimbra app
-      yarn manager-cli duplicated-translations --app zimbra
-    `,
-  },
 };
-
-const validMigrationTypes = ['routes', 'tests', 'swc', 'all'];
-const validTestTypes = ['unit', 'integration'];
-const validFormats = ['json', 'html'];
 
 const printHelp = () => {
   const commandsList = Object.entries(knownCommands)
