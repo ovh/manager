@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.4...@ovh-ux/manager-pci-savings-plan-app@1.18.0) (2025-07-16)
+
+
+### Features
+
+* **savings-plan:** enrich stats value and add strict mode ([#18001](https://github.com/ovh/manager/issues/18001)) ([b5ee003](https://github.com/ovh/manager/commit/b5ee003c8b2007e5d8143331085fea4e80feecd5)), closes [#TAPC-4392](https://github.com/ovh/manager/issues/TAPC-4392)
+
+
+
+
+
 ## [1.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.3...@ovh-ux/manager-pci-savings-plan-app@1.17.4) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

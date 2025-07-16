@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.5...@ovh-ux/manager-pci-kubernetes-app@0.26.6) (2025-07-16)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** round node pool estimation ([6fa1c92](https://github.com/ovh/manager/commit/6fa1c92485ae44f1c3521e4bad58bcc116bac26e)), closes [#TAPC-3147](https://github.com/ovh/manager/issues/TAPC-3147)
+* **pci-kubernetes:** update nodepool detail configuration ([aa95ac1](https://github.com/ovh/manager/commit/aa95ac188d9b5ab3c4d1de2cc275cfe71d3055f2)), closes [#TAPC-4381](https://github.com/ovh/manager/issues/TAPC-4381)
+
+
+
+
+
 ## [0.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.4...@ovh-ux/manager-pci-kubernetes-app@0.26.5) (2025-07-10)
 
 
