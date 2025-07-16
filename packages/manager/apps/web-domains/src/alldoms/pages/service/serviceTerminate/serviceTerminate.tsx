@@ -52,7 +52,7 @@ export default function ServiceTerminate() {
 
         {isStepOne ? (
           <ModalStepOne
-            domainsAttached={domains?.currentState.domains}
+            domainsAttached={domains.currentState.domains}
             checkAllDomain={isAllDomainChecked}
             changeStep={changeStep}
             domainAttachedChecked={domainAttachedChecked}

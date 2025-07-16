@@ -4,17 +4,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ServiceInfoRenewMode,
-  ServiceInfoUpdateEnum,
+  LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
 
 interface ServiceDetailSubscribingRenewModeProps {
   readonly renewMode: ServiceInfoRenewMode;
-  readonly serviceState: ServiceInfoUpdateEnum;
+  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
 }
 
 export default function ServiceDetailSubscribingRenewMode({
   renewMode,
-  serviceState,
+  lifecycleCapacities,
 }: ServiceDetailSubscribingRenewModeProps) {
   const { t } = useTranslation('allDom');
 
@@ -24,7 +24,9 @@ export default function ServiceDetailSubscribingRenewMode({
         {t('allDom_table_header_renewMode')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {serviceState === ServiceInfoUpdateEnum.TerminateAtExpirationDate
+        {lifecycleCapacities.includes(
+          LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+        )
           ? t(`allDom_table_status_terminate`)
           : t(`allDom_status_${renewMode}`)}
       </OdsText>

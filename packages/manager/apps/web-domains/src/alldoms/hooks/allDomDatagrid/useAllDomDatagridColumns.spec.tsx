@@ -24,7 +24,7 @@ describe('Datagrid columns', () => {
 
   it('should return the good labels', () => {
     const tests: Record<string, string> = {
-      serviceName: 'allDom_table_header_serviceName',
+      id: 'allDom_table_header_id',
       renewMode: 'allDom_table_header_renewMode',
       type: 'allDom_table_header_type',
       authorized_domain: 'allDom_table_header_registered_authorized_domain',
