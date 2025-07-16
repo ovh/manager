@@ -9,7 +9,7 @@ import {
   PATH_INPUT_TEST_ID,
   MOCK_PATH_VALID,
   SUBMIT_BTN_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constant';
+} from '@secret-manager/utils/tests/secret.constants';
 import { fireEvent, act, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
