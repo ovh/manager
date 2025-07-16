@@ -23,7 +23,7 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     const maxAddable = maximum.value - minimum.value;
     return (
       <div data-testid="storage-configuration-container">
-        <p>
+        <p className="mb-2">
           {t('storageFlavorDescription', {
             flavor,
             includedStorage: formatStorage(minimum),
@@ -37,10 +37,15 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
         <Label htmlFor="storage-select">{t('inputStorageLabel')}</Label>
         <div className="flex flex-col">
           <div className="flex justify-between mb-2">
-            <span>{t('inputStorageNoneValue')}</span>
             <span>
               {formatStorage({
-                value: maxAddable,
+                value: minimum.value,
+                unit: DEFAULT_UNIT,
+              })}
+            </span>
+            <span>
+              {formatStorage({
+                value: maximum.value,
                 unit: DEFAULT_UNIT,
               })}
             </span>
@@ -63,7 +68,7 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
           >
             <span className="font-bold">
               {formatStorage({
-                value,
+                value: minimum.value + value,
                 unit: DEFAULT_UNIT,
               })}
             </span>

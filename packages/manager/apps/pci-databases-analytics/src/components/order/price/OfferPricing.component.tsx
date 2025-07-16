@@ -14,7 +14,9 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
       <Table>
         <TableBody>
           <TableRow className="text-xs">
-            <TableCell>{t('pricing_instance_label')}</TableCell>
+            <TableCell className="px-0 align-top">
+              {t('pricing_instance_label')}
+            </TableCell>
             <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
@@ -25,7 +27,9 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow className="text-xs">
-            <TableCell>{t('pricing_storage_label')}</TableCell>
+            <TableCell className="px-0 align-top">
+              {t('pricing_storage_label')}
+            </TableCell>
             <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
@@ -36,7 +40,7 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold text-text">
+            <TableCell className="font-semibold text-text px-0 align-top min-w-[110px]">
               {t('total_hour_label')}
             </TableCell>
             <TableCell className="text-right px-0">
@@ -49,7 +53,9 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow className="text-sm text-gray-500 italic">
-            <TableCell>{t('estimated_month_label')}</TableCell>
+            <TableCell className="px-0 align-top">
+              {t('estimated_month_label')}
+            </TableCell>
             <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"

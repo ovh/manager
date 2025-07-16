@@ -176,7 +176,7 @@ const RestoreServiceModal = () => {
                       value={field.value}
                       className="grid grid-cols-3 gap-2"
                     >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem
                             data-testid="restore-modal-radio-now"
@@ -184,11 +184,17 @@ const RestoreServiceModal = () => {
                             disabled={!canUsePointInTime}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel
+                          className={cn(
+                            'font-normal',
+                            !canUsePointInTime &&
+                              'opacity-70 cursor-not-allowed',
+                          )}
+                        >
                           {t('inputTypeValueNow')}
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem
                             data-testid="restore-modal-radio-pitr"
@@ -196,11 +202,17 @@ const RestoreServiceModal = () => {
                             disabled={!canUsePointInTime}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel
+                          className={cn(
+                            'font-normal',
+                            !canUsePointInTime &&
+                              'opacity-70 cursor-not-allowed',
+                          )}
+                        >
                           {t('inputTypeValuePIT')}
                         </FormLabel>
                       </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormItem className="flex items-end gap-2">
                         <FormControl>
                           <RadioGroupItem value={ForkSourceType.backup} />
                         </FormControl>
