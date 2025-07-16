@@ -1,5 +1,9 @@
 import { useHref, useSearchParams } from 'react-router-dom';
-import { BaseLayout, HeadersProps } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  HeadersProps,
+  RedirectionGuard,
+} from '@ovh-ux/manager-react-components';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -8,6 +12,7 @@ import { InstallationDetailsSummary } from '@/components/InstallationDetails/Ins
 import { InstallationDetailsProgress } from '@/components/InstallationDetails/InstallationDetailsProgress.component';
 import { InstallationDetailsError } from '@/components/InstallationDetails/InstallationDetailsError.component';
 import { useInstallationTaskDetailsOptions } from '@/hooks/installationDetails/useInstallationDetails';
+import { useWizardAvailability } from '@/hooks/wizardAvailability/useWizardAvailability';
 import { SAPInstallationStatus } from '@/types/installation.type';
 import { urls } from '@/routes/routes.constant';
 
@@ -17,6 +22,7 @@ export default function InstallationDetailsPage() {
   const { t } = useTranslation('dashboard/installation');
   const hrefPrevious = useHref(urls.listing);
   const [searchParams] = useSearchParams();
+  const { isWizardAvailable, isLoading } = useWizardAvailability();
 
   const serviceName = searchParams.get('serviceName');
   const taskId = searchParams.get('taskId');
@@ -43,25 +49,34 @@ export default function InstallationDetailsPage() {
 
   return (
     <Suspense>
-      <BaseLayout
-        breadcrumb={<Breadcrumb />}
-        header={header}
-        backLinkLabel={t('dashboard_installation_go_back_to_list')}
-        hrefPrevious={hrefPrevious}
-        subtitle={t('dashboard_installation_description')}
+      <RedirectionGuard
+        condition={!isWizardAvailable}
+        isLoading={isLoading}
+        route={urls.dashboard}
       >
-        <div className="flex flex-col gap-8">
-          <InstallationDetailsError serviceName={serviceName} taskId={taskId} />
-          <InstallationDetailsSummary
-            serviceName={serviceName}
-            taskId={taskId}
-          />
-          <InstallationDetailsProgress
-            serviceName={serviceName}
-            taskId={taskId}
-          />
-        </div>
-      </BaseLayout>
+        <BaseLayout
+          breadcrumb={<Breadcrumb />}
+          header={header}
+          backLinkLabel={t('dashboard_installation_go_back_to_list')}
+          hrefPrevious={hrefPrevious}
+          subtitle={t('dashboard_installation_description')}
+        >
+          <div className="flex flex-col gap-8">
+            <InstallationDetailsError
+              serviceName={serviceName}
+              taskId={taskId}
+            />
+            <InstallationDetailsSummary
+              serviceName={serviceName}
+              taskId={taskId}
+            />
+            <InstallationDetailsProgress
+              serviceName={serviceName}
+              taskId={taskId}
+            />
+          </div>
+        </BaseLayout>
+      </RedirectionGuard>
     </Suspense>
   );
 }

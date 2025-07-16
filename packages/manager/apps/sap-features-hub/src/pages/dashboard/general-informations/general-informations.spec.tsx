@@ -9,10 +9,15 @@ import {
   ShellContextType,
   TrackingClickParams,
 } from '@ovh-ux/manager-react-shell-client';
+import {
+  useFeatureAvailability,
+  UseFeatureAvailabilityResult,
+} from '@ovh-ux/manager-react-components';
 import GeneralInformations from './index';
 import { BACKUP_SAP_TITLE } from './general-informations.constants';
 import { TRACKING } from '@/tracking.constants';
 import { testIds } from '@/utils/testIds.constants';
+import { FEATURES } from '@/utils/features.constants';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -20,6 +25,14 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
+  return {
+    ...original,
+    useFeatureAvailability: vi.fn(),
   };
 });
 
@@ -53,20 +66,48 @@ const renderComponent = () =>
   );
 
 describe('SAP Features Hub dashboard test suite', () => {
-  it('should render tiles with correct titles', async () => {
+  const standardElements = [
+    'blocks_pre_installation_sap_hana_title',
+    'blocks_infrastructure_as_code_title',
+    BACKUP_SAP_TITLE,
+    'blocks_logs_analysis_and_extract_title',
+  ];
+  const wizardElement = 'blocks_pre_installation_wizard_sap_title';
+
+  it('should render all tiles with correct titles when wizard feature is available', async () => {
+    // when
+    vi.mocked(useFeatureAvailability).mockReturnValue({
+      data: { [FEATURES.INSTALLATION_WIZARD]: true },
+      isLoading: false,
+    } as UseFeatureAvailabilityResult);
+
     renderComponent();
 
-    const elements = [
-      'blocks_pre_installation_sap_hana_title',
-      'blocks_infrastructure_as_code_title',
-      BACKUP_SAP_TITLE,
-      'blocks_pre_installation_wizard_sap_title',
-      'blocks_logs_analysis_and_extract_title',
-    ];
-
-    elements.forEach(
+    // then
+    standardElements.forEach(
       (element) => expect(screen.getByText(element)).toBeVisible,
     );
+
+    // and
+    expect(screen.getByText(wizardElement)).toBeVisible();
+  });
+
+  it('should render all tiles except wizard when feature is not available', async () => {
+    // when
+    vi.mocked(useFeatureAvailability).mockReturnValue({
+      data: { [FEATURES.INSTALLATION_WIZARD]: false },
+      isLoading: false,
+    } as UseFeatureAvailabilityResult);
+
+    renderComponent();
+
+    // then
+    standardElements.forEach(
+      (element) => expect(screen.getByText(element)).toBeVisible,
+    );
+
+    // and
+    expect(screen.queryByText(wizardElement)).not.toBeInTheDocument();
   });
 });
 
@@ -147,6 +188,11 @@ describe('Tracking test suite', () => {
   it.each(testCases)(
     'should track $testId click',
     async ({ testId, trackingParams }) => {
+      vi.mocked(useFeatureAvailability).mockReturnValue({
+        data: { [FEATURES.INSTALLATION_WIZARD]: true },
+        isLoading: false,
+      } as UseFeatureAvailabilityResult);
+
       renderComponent();
       const user = userEvent.setup();
       const link = screen.getByTestId(testId);
