@@ -3,4 +3,6 @@ export const urls = {
   alldomsDetail: '/alldoms/:serviceName',
   alldomsListingTerminate: 'terminate/:serviceName',
   alldomsDetailTerminate: 'terminate',
+  alldomsListingCancelTerminate: 'terminate/cancel/:serviceName',
+  alldomsDetailCancelTerminate: 'terminate/cancel',
 };
