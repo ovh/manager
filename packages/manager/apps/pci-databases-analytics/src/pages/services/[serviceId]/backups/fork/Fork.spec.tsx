@@ -197,7 +197,7 @@ describe('Fork funnel page', () => {
   it('renders the skeleton component while loading', async () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
-      expect(screen.getByTestId('fork-skeleton')).toBeInTheDocument();
+      expect(screen.getByTestId('order-funnel-skeleton')).toBeInTheDocument();
     });
   });
 
@@ -269,6 +269,7 @@ describe('Fork funnel page', () => {
     render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('fork-form-container')).toBeInTheDocument();
+      expect(screen.getByTestId('fork-submit-button')).toBeInTheDocument();
       expect(screen.getByTestId('radio-button-pitr')).toBeInTheDocument();
       expect(screen.getByTestId('radio-button-pitr')).not.toBeDisabled();
     });
@@ -276,7 +277,7 @@ describe('Fork funnel page', () => {
       fireEvent.click(screen.getByTestId('radio-button-pitr'));
     });
     await waitFor(() => {
-      expect(screen.getByTestId('pitr-form-label')).toBeInTheDocument();
+      expect(screen.getByText('inputSourcePITPlaceholder')).toBeInTheDocument();
     });
     act(() => {
       fireEvent.click(screen.getByTestId('radio-button-now'));
