@@ -86,20 +86,20 @@
     data-loading="$ctrl.bindings.isLoading"
 >
     <oui-tile-definition
-        data-ng-if="$ctrl.drpAvailability"
+        data-ng-if="$ctrl.zertoAvailability"
         data-term="{{ $ctrl.LABELS.ZERTO }}"
     >
         <oui-tile-description>
             <span
                 class="oui-badge"
                 data-ng-class="{
-        'oui-badge_error': $ctrl.bindings.options.security.drpGlobalStatus.value.error,
-        'oui-badge_warning': $ctrl.bindings.options.security.drpGlobalStatus.value.warning,
-        'oui-badge_success': $ctrl.bindings.options.security.drpGlobalStatus.value.success
+        'oui-badge_error': $ctrl.bindings.options.security.zertoGlobalStatus.value.error,
+        'oui-badge_warning': $ctrl.bindings.options.security.zertoGlobalStatus.value.warning,
+        'oui-badge_success': $ctrl.bindings.options.security.zertoGlobalStatus.value.success
 }"
             >
                 <span
-                    data-translate="{{:: $ctrl.bindings.options.security.drpGlobalStatus.detail }}"
+                    data-translate="{{:: $ctrl.bindings.options.security.zertoGlobalStatus.detail }}"
                 ></span>
             </span>
         </oui-tile-description>
@@ -126,8 +126,8 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.deleteDrp.exists"
-                data-on-click="$ctrl.deleteDrp()"
+                data-ng-if="::$ctrl.bindings.options.security.actionMenu.items.deleteZerto.exists"
+                data-on-click="$ctrl.deleteZerto()"
             >
                 <span
                     data-translate="ovhManagerPccDashboardOptions_security_drp_action_delete"

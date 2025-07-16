@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'managedBaremetalDatacenterDrpOvhSecondPccStepLazyloading';
+const moduleName = 'managedBaremetalDatacenterZertoOvhSecondPccStepLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {

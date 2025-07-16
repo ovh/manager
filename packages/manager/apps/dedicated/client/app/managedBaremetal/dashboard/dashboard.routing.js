@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       trackingPrefix: () => 'Baremetal::Managed_baremetal::',
-      deleteDrp: /* @ngInject */ ($state) => () =>
-        $state.go('app.managedBaremetal.details.dashboard.deleteDrp'),
+      deleteZerto: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.details.dashboard.deleteZerto'),
       featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability([
           'dedicated-cloud:mailingListSubscription',

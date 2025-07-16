@@ -3,15 +3,15 @@ import template from './vmware-option.html';
 
 export default {
   bindings: {
-    currentDrp: '<',
+    currentZerto: '<',
     datacenterList: '<',
-    deleteDrp: '<',
+    deleteZerto: '<',
     disableVmwareOption: '<',
-    drpGlobalStatus: '<',
-    goToDrp: '<',
-    goToDrpDatacenterSelection: '<',
+    zertoGlobalStatus: '<',
+    goToZerto: '<',
+    goToZertoDatacenterSelection: '<',
     goToVpnConfiguration: '<',
-    isDrpActionPossible: '<',
+    isZertoActionPossible: '<',
     orderVmwareOption: '<',
     productId: '<',
     setMessage: '<',

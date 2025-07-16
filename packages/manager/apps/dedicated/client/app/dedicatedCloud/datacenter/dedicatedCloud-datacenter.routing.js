@@ -72,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
         'app.dedicatedCloud.details.datacenter.details.dashboard',
       datastoresState: () =>
         'app.dedicatedCloud.details.datacenter.details.datastores',
-      drpState: () => 'app.dedicatedCloud.details.datacenter.details.drp',
+      zertoState: () => 'app.dedicatedCloud.details.datacenter.details.zerto',
       hostsState: () => 'app.dedicatedCloud.details.datacenter.details.hosts',
       networkState: () =>
         'app.dedicatedCloud.details.datacenter.details.network',
@@ -84,7 +84,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(datastoresState),
       goToBackup: /* @ngInject */ ($state, backupState) => () =>
         $state.go(backupState),
-      goToDrp: /* @ngInject */ ($state, drpState) => () => $state.go(drpState),
+      goToZerto: /* @ngInject */ ($state, zertoState) => () =>
+        $state.go(zertoState),
       goToNetwork: /* @ngInject */ ($state, networkState) => () =>
         $state.go(networkState),
       goToAddNsx: /* @ngInject */ ($state, addNsxState) => () =>
@@ -95,13 +96,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'app.dedicatedCloud.details.datacenter.details.virtualMachines',
         ),
-      goToDrpSummary: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go('app.dedicatedCloud.details.datacenter.details.drp.summary', {
-          drpInformations: currentDrp,
-        }),
-      goToDeleteDrp: /* @ngInject */ ($state) => () =>
+      goToZertoSummary: /* @ngInject */ ($state, currentZerto) => () =>
         $state.go(
-          'app.dedicatedCloud.details.datacenter.details.dashboard.deleteDrp',
+          'app.dedicatedCloud.details.datacenter.details.zerto.summary',
+          {
+            zertoInformations: currentZerto,
+          },
+        ),
+      goToDeleteZerto: /* @ngInject */ ($state) => () =>
+        $state.go(
+          'app.dedicatedCloud.details.datacenter.details.dashboard.deleteZerto',
         ),
       totalCountNsx: /* @ngInject */ (
         ovhManagerPccDatacenterService,
