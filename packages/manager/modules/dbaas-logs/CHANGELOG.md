@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.30.1...@ovh-ux/manager-dbaas-logs@1.31.0) (2025-07-16)
+
+
+### Features
+
+* **dedicated.ldp:** display IAM policies associated to ldp account ([8a32c9a](https://github.com/ovh/manager/commit/8a32c9ae5ece51706d99acb6ae4c2aff7d82b487)), closes [#MANAGER-18661](https://github.com/ovh/manager/issues/MANAGER-18661)
+
+
+
+
+
 ## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.30.0...@ovh-ux/manager-dbaas-logs@1.30.1) (2025-07-10)
 
 
