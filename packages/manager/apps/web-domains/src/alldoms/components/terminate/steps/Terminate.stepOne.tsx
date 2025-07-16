@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { ModalStepsProps, TDomainsInfo } from '@/alldoms/types';
-import DomainsCheckboxList from '@/alldoms/components/Terminate/DomainsCheckboxes/DomainsCheckboxList';
+import DomainsCheckboxList from '@/alldoms/components/terminate/DomainsCheckboxes/DomainsCheckboxList';
 
 export default function TerminateModalStepOne({
   domainsAttached,
