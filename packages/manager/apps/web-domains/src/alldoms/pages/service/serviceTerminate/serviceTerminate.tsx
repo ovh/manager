@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import ModalStepOne from '@/alldoms/components/Terminate/Steps/Terminate.stepOne';
 import ModalStepTwo from '@/alldoms/components/Terminate/Steps/Terminate.stepTwo';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
+import Loading from '@/alldoms/components/Loading/Loading';
 
 export default function ServiceTerminate() {
   const { t } = useTranslation(['allDom']);
@@ -37,12 +38,16 @@ export default function ServiceTerminate() {
     }
   }, [domainAttachedChecked]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Modal
       isLoading={isLoading}
       type={ODS_MODAL_COLOR.critical}
       heading={t('allDom_modal_title', {
-        t0: serviceName,
+        serviceName,
       })}
     >
       <div>
