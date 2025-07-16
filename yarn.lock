@@ -6615,6 +6615,15 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-pci-common@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.18.0.tgz#1da47df1497010a899ef2f81142f62f5bebeb3e2"
+  integrity sha512-F7vr6vghLK7KCD27+xDPhm4QYMsq1+Y8qIyxylsAEgqdprrvqoQSpE50W1urE5oOzmWDaGYxsLP2uOTsNPXPyg==
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
