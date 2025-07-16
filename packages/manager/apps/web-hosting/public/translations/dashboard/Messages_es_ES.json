@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Haga que el registro {{t0}} del dominio {{t1}}apunte a {{t2}}",
   "hosting_add_step3_insert_token_field": "Cree un registro {{t0}} para el dominio {{t1}} con el valor {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Se ha añadido el dominio o dominios al alojamiento compartido.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "Se ha producido un error al añadir el dominio o dominios al alojamiento compartido."
+  "hosting_tab_DOMAINS_configuration_add_failure": "Se ha producido un error al añadir el dominio o dominios al alojamiento compartido.",
+  "domain_tab_emails": "Correo electrónico y listas de correo"
 }

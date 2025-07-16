@@ -33,5 +33,5 @@
   "octavia_load_balancer_provisioning_status_updating": "en proceso de actualización",
   "octavia_load_balancer_provisioning_status_error": "error",
   "octavia_load_balancer_delete_success": "El Load Balancer se ha eliminado correctamente",
-  "octavia_load_balancer_quota_creation_error": "Ya no tiene cuota disponible en esta localización. Para continuar, <Link>aumente sus cuotas</Link>"
+  "octavia_load_balancer_quota_creation_error": "No hay cuotas disponibles en esta localización. Para continuar, <Link>aumente sus cuotas</Link>"
 }

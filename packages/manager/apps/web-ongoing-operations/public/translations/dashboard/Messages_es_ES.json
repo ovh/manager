@@ -141,8 +141,8 @@
   "domain_operations_nicOperation_ContactControlNotify": "Notificación de verificación del contacto",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Envío del aviso RDRP",
   "domain_operations_guides": "Información general",
-  "domain_operations_upload_file_template_1": "Solo los archivos siguientes a este ",
-  "domain_operations_upload_file_template_link": "plantilla de documento",
+  "domain_operations_upload_file_template_1": "Solo los archivos que sigan este ",
+  "domain_operations_upload_file_template_link": "modelo de documento",
   "domain_operations_upload_file_template_2": " serán aceptados.",
   "domain_operations_update_dns_click": "Haga clic aquí para corregir la configuración de sus servidores DNS"
 }

@@ -1,0 +1,5 @@
+{
+  "user_agreements_accept_loading_error": "Se ha producido un error al cargar los contratos",
+  "user_agreements_accept_all_no_contract": "No tiene ningún contrato nuevo que leer y aceptar.",
+  "user_agreements_accept_all_ok": "OK"
+}

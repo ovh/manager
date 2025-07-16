@@ -42,5 +42,5 @@
   "pci_projects_project_network_private_create_subnet": "Skonfiguruj podsieć",
   "pci_projects_project_network_private_gateway_options": "Opcje bramy sieciowej",
   "pci_projects_project_network_private_3az_guide_description": "Aby uzyskać więcej informacji na temat specyfikacji usług 3-AZ i jak z nich korzystać do projektowania odpornej infrastruktury, <Link>kliknij tutaj</Link>",
-  "pci_projects_project_network_private_create_error_quota_exceeded": "W wybranej lokalizacji wyczerpał się limit. Aby kontynuować, <Link>Zwiększ limity</Link>"
+  "pci_projects_project_network_private_create_error_quota_exceeded": "W wybranej lokalizacji wyczerpał się limit. Aby kontynuować, <Link>zwiększ limity</Link>"
 }

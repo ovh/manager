@@ -2,7 +2,7 @@
   "order_ssl_certificate": "Contratar un certificado SSL Sectigo",
   "import_ssl_certificate": "Importación de su propio certificado SSL",
   "enable_ssl_certificate": "Activar el certificado SSL",
-  "enable_ssl_encrypt": "Activar SSL Let's Encrypt",
+  "enable_ssl_encrypt": "Activar SSL Let's encrypt",
   "cell_main_domain": "Dominio principal",
   "cell_additional_domain": "Dominio adicional (SAN)",
   "cell_certificate_type": "Tipo de certificado",
