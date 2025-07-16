@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.1...@ovh-ux/manager-pci-gateway-app@0.25.0) (2025-07-16)
+
+
+### Features
+
+* **pci-gateway:** remove connected networks link ([#17912](https://github.com/ovh/manager/issues/17912)) ([d392ffa](https://github.com/ovh/manager/commit/d392ffa5b242992feedf50a27f4a6d47ba6d96c1)), closes [#TAPC-4480](https://github.com/ovh/manager/issues/TAPC-4480)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.0...@ovh-ux/manager-pci-gateway-app@0.24.1) (2025-07-10)
 
 
