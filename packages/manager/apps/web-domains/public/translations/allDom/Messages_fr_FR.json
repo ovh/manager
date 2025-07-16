@@ -28,7 +28,7 @@
   "allDom_modal_step_two_warning": "Attention, les services suivants seront résiliés :",
   "allDom_modal_domain_already_in_terminate": "Votre domaine est déjà en cours de résiliation",
   "allDom_modal_step_terminate": "Résilier",
-  "allDom_modal_success_message": "Le service {{t0}} et le(s) domaine(s) {{t1}} ont bien été mis à jour",
+  "allDom_modal_success_message": "Votre demande de résiliation a bien été prise en compte",
   "allDom_detail_page_domain_unavailable": "Ce domaine n'est pas disponible.",
   "allDom_modal_error_message": "Une erreur est survenue : {{t0}}",
   "allDom_page_detail_information_general_pack": "Pack {{t0}}",
@@ -48,5 +48,9 @@
   "allDom_status_automatic": "Automatique",
   "allDom_status_manual": "Manuel",
   "allDom_automatic_renew": "Renouvellement prévu le",
-  "allDom_manual_renew": "Date d'expiration"
+  "allDom_manual_renew": "Date d'expiration",
+  "allDom_cancel_terminate_title": "Annuler la résiliation du service {{t0}}",
+  "allDom_cancel_terminate_subtitle": "Souhaitez-vous annuler la résiliation du service {{t0}} ?",
+  "allDom_cancel_terminate_success": "La résilitation de votre service {{t0}} a été annulée",
+  "allDom_cancel_terminate_error": "L'annulation de la résilitation de votre service {{t0}} a échoué"
 }

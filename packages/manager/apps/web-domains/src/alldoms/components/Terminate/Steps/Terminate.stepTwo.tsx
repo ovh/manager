@@ -12,11 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ModalStepsProps } from '@/alldoms/types';
 import {
-  ServiceInfoRenewMode,
-  ServiceInfoUpdateEnum,
-} from '@/alldoms/enum/service.enum';
-import {
-  useUpdateAllDomService,
+  useTerminateAllDomService,
   useUpdateDomainServiceInfo,
 } from '@/alldoms/hooks/data/mutation/mutation';
 
@@ -27,20 +23,17 @@ export default function TerminateModalStepTwo({
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
-  const updateAllDomServiceMutation = useUpdateAllDomService();
+  const terminateAllDomServiceMutation = useTerminateAllDomService();
   const updateDomainServiceInfoMutation = useUpdateDomainServiceInfo();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const handleTerminate = async () => {
     try {
-      await updateAllDomServiceMutation.mutateAsync({
-        serviceName,
-        displayName: serviceName,
-        renew: {
-          mode: ServiceInfoRenewMode.Manual,
-        },
-        terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+      await terminateAllDomServiceMutation.mutateAsync(serviceName);
+
+      await queryClient.invalidateQueries({
+        queryKey: ['serviceInfoList'],
       });
 
       await Promise.all(
@@ -57,9 +50,6 @@ export default function TerminateModalStepTwo({
           })}
         </OdsText>,
       );
-      await queryClient.invalidateQueries({
-        queryKey: ['serviceInfo'],
-      });
     } catch (error) {
       addError(
         <OdsText>

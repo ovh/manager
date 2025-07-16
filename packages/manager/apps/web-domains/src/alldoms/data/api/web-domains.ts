@@ -3,7 +3,6 @@ import {
   DomainBillingInformation,
   TAllDomDomains,
   TServiceInfo,
-  UpdateAllDomProps,
 } from '@/alldoms/types';
 import {
   ServiceInfoRenewMode,
@@ -41,19 +40,21 @@ export const getAllDomResource = async (serviceName: string) => {
 };
 
 /**
- *  : Terminate the domain
+ *  : Update the domain (terminate or cancel the terminate)
  */
 
-export const updateAllDomService = async ({
-  serviceName,
-  ...payload
-}: UpdateAllDomProps): Promise<TServiceInfo> => {
+export const updateAllDomService = async (
+  serviceName: string,
+  terminationPolicy: ServiceInfoUpdateEnum,
+): Promise<TServiceInfo> => {
   // First call to retrieve serviceID in order to update it
   const { data: allDomServiceId } = await v6.get(
     `/services?resourceName=${serviceName}`,
   );
 
-  const { data } = await v6.put(`/services/${allDomServiceId}`, payload);
+  const { data } = await v6.put(`/services/${allDomServiceId}`, {
+    terminationPolicy,
+  });
   return data;
 };
 
@@ -68,10 +69,6 @@ export const updateDomainServiceInfo = async (
   const promiseDomainServiceInfoId = await Promise.all(
     domainServiceInfoId.map(async (id) => {
       const { data } = await v6.put(`/services/${id}&routes=/domain`, {
-        displayName: domainName,
-        renew: {
-          mode: ServiceInfoRenewMode.Manual,
-        },
         terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
       });
       return data;
