@@ -23,7 +23,7 @@ export const getPublicCloudOptions = async (
 
 export const attachConfigurationToCartItem = async (
   cartId: string,
-  itemId: string,
+  itemId: number,
   payload: { label: string; value: unknown },
 ) => {
   await v6.post(`order/cart/${cartId}/item/${itemId}/configuration`, payload);
@@ -66,6 +66,18 @@ export const orderCloudProject = async (
 };
 
 /**
+ * Retrieves the details of a specific cart by its ID.
+ *
+ * @param cartId - The unique identifier of the cart to retrieve.
+ * @returns {Promise<Cart>} A promise that resolves to the cart details.
+ */
+export const getCart = async (cartId: string): Promise<Cart> => {
+  const { data } = await v6.get<Cart>(`/order/cart/${cartId}`);
+
+  return data;
+};
+
+/**
  * Creates a new order cart depending on the given OVH subsidiary.
  *
  * @param ovhSubsidiary - The OVH subsidiary code
@@ -87,6 +99,58 @@ export const createCart = async (ovhSubsidiary: string): Promise<Cart> => {
  */
 export const assignCart = async (cartId: string): Promise<void> => {
   await v6.post(`/order/cart/${cartId}/assign`, { cartId });
+};
+
+/**
+ * Adds an item to the specified cart.
+ *
+ * @param cartId - The unique identifier of the cart to which the item will be added.
+ * @param item - The item details, including itemId, duration, planCode, pricingMode, and quantity.
+ * @returns {Promise<AddItemToCartResponse>}
+ */
+export const addItemToCart = async (
+  cartId: string,
+  item: {
+    itemId: number;
+    duration: string;
+    planCode: string;
+    pricingMode: string;
+    quantity: number;
+  },
+): Promise<OrderedProduct> => {
+  const { data } = await v6.post<Promise<OrderedProduct>>(
+    `/order/cart/${cartId}/cloud/options`,
+    { ...item },
+  );
+
+  return data;
+};
+
+export const removeItemFromCart = async (cartId: string, itemId: number) => {
+  await v6.delete(`/order/cart/${cartId}/item/${itemId}`);
+};
+
+export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
+  const { data } = await v6.post<CartSummary>(
+    `/order/cart/${cartId}/checkout`,
+    {
+      cartId,
+    },
+  );
+
+  return data;
+};
+
+/**
+ * Retrieves the summary of a specified cart.
+ *
+ * @param cartId
+ * @returns {Promise<CartSummary>} The cart summary, including details, prices, and contracts.
+ */
+export const getCartSummary = async (cartId: string): Promise<CartSummary> => {
+  const { data } = await v6.get<CartSummary>(`/order/cart/${cartId}/summary`);
+
+  return data;
 };
 
 /**
@@ -112,29 +176,6 @@ export const addOptionToCart = async (
       ...options,
     },
   );
-
-  return data;
-};
-
-export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
-  const { data } = await v6.post<CartSummary>(
-    `/order/cart/${cartId}/checkout`,
-    {
-      cartId,
-    },
-  );
-
-  return data;
-};
-
-/**
- * Retrieves the summary of a specified cart.
- *
- * @param cartId
- * @returns {Promise<CartSummary>} The cart summary, including details, prices, and contracts.
- */
-export const getCartSummary = async (cartId: string): Promise<CartSummary> => {
-  const { data } = await v6.get<CartSummary>(`/order/cart/${cartId}/summary`);
 
   return data;
 };
