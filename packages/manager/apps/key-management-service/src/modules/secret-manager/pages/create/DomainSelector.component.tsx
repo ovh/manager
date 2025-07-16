@@ -53,7 +53,7 @@ export const DomainSelector = ({
   }
 
   if (domains.length === 1) {
-    return <></>;
+    return null;
   }
 
   return (
