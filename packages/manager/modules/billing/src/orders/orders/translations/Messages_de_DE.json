@@ -28,6 +28,5 @@
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
   "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung",
   "orders_order_action_retract": "Bestellung stornieren",
-  "orders_tracking": "Bestellungsnachverfolgung",
-  "orders_order_status_orderExpired": "Bestellung abgelaufen "
+  "orders_tracking": "Bestellungsnachverfolgung"
 }

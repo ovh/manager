@@ -28,6 +28,5 @@
   "orders_search_input_title": "Buscar mis pedidos por identificador.",
   "orders_table_actions_tooltip": "Más detalles sobre el pedido",
   "orders_order_action_retract": "Cancelar el pedido",
-  "orders_tracking": "Seguimiento del pedido",
-  "orders_order_status_orderExpired": "El pedido ha expirado."
+  "orders_tracking": "Seguimiento del pedido"
 }
