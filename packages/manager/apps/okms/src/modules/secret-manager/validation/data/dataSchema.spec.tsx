@@ -6,7 +6,7 @@ import {
   MOCK_DATA_INVALID_JSON,
   MOCK_DATA_VALID_ARRAY_JSON,
   MOCK_DATA_VALID_JSON,
-} from '@secret-manager/utils/tests/secret.constant';
+} from '@secret-manager/utils/tests/secret.constants';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 import { DATA_MIN_CHAR, useSecretDataSchema } from './dataSchema';
 
