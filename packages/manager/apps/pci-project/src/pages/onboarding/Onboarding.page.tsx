@@ -27,7 +27,7 @@ import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 import onboardingImage from '../../../public/assets/onboarding.png';
 import onboardingUsImage from '../../../public/assets/onboarding-us.png';
-import ItalyAgreements from '@/components/ItalyAgreements';
+import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
 import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout';
 
 export default function OnboardingPage() {

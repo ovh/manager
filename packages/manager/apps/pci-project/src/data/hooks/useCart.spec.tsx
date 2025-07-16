@@ -1,16 +1,60 @@
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { getCartSummary } from '@/data/api/cart';
-import { CartSummary } from '@/data/types/cart.type';
+import { PCI_PROJECT_ORDER_CART } from '@/constants';
+import {
+  addItemToCart,
+  assignCart,
+  attachConfigurationToCartItem,
+  createCart,
+  getCartSummary,
+  getPublicCloudOptions,
+  orderCloudProject,
+  removeItemFromCart,
+} from '@/data/api/cart';
+import {
+  Cart,
+  CartProductOption,
+  CartProductType,
+  CartSummary,
+  OrderedProduct,
+  PlanCode,
+} from '@/data/types/cart.type';
 import queryClient from '@/queryClient';
 import { createWrapper } from '@/wrapperRenders';
-import { getCartSummaryQueryKey, useGetCartSummary } from './useCart';
+import {
+  getCartSummaryQueryKey,
+  getContractAgreementsQueryKey,
+  useAddItemToCart,
+  useAttachConfigurationToCartItem,
+  useContractAgreements,
+  useCreateAndAssignCart,
+  useCreateCart,
+  useGetCartSummary,
+  useGetHdsAddonOption,
+  useOrderProjectItem,
+  useRemoveItemFromCart,
+} from './useCart';
 
 vi.mock('@/data/api/cart', () => ({
   getCartSummary: vi.fn(),
+  createCart: vi.fn(),
+  assignCart: vi.fn(),
+  getPublicCloudOptions: vi.fn(),
+  orderCloudProject: vi.fn(),
+  attachConfigurationToCartItem: vi.fn(),
+  addItemToCart: vi.fn(),
+  removeItemFromCart: vi.fn(),
 }));
 
 describe('useCart hooks', () => {
+  const mockCart: Cart = {
+    cartId: 'cart-1',
+    description: 'Test cart',
+    expire: '2024-12-31',
+    readonly: false,
+  };
+
   const mockCartSummary: CartSummary = {
     orderId: 123,
     url: 'https://order-url',
@@ -22,8 +66,46 @@ describe('useCart hooks', () => {
       withTax: { value: 12, currencyCode: 'EUR', text: '12.00 €' },
       withoutTax: { value: 10, currencyCode: 'EUR', text: '10.00 €' },
     },
-    contracts: [],
+    contracts: [
+      {
+        name: 'Contract 1',
+        url: 'https://contract1.url',
+        content: 'Contract 1 content',
+      },
+      {
+        name: 'Contract 2',
+        url: 'https://contract2.url',
+        content: 'Contract 2 content',
+      },
+    ],
   };
+
+  const mockOrderedProduct: OrderedProduct = {
+    cartId: 'cart-1',
+    itemId: 123,
+    productId: 'product-1',
+    configuration: [],
+    duration: 'P1M',
+    options: [],
+    prices: [],
+    settings: {
+      planCode: 'project.2018',
+      pricingMode: 'default',
+      quantity: 1,
+    },
+  };
+
+  const mockCartProductOptions: CartProductOption[] = [
+    {
+      mandatory: false,
+      exclusive: false,
+      productName: 'cloud',
+      planCode: 'certification.hds.2018',
+      family: 'certification-hds',
+      productType: CartProductType.CLOUD_SERVICE,
+      prices: [],
+    },
+  ];
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -34,6 +116,24 @@ describe('useCart hooks', () => {
     it('should return correct query key for cartId', () => {
       expect(getCartSummaryQueryKey('cart-1')).toEqual([
         '/order/cart/cart-1/summary',
+      ]);
+    });
+  });
+
+  describe('getContractAgreementsQueryKey', () => {
+    it('should return correct query key for cartId', () => {
+      expect(getContractAgreementsQueryKey('cart-1')).toEqual([
+        'new-cart',
+        'cart-1',
+        'contract-agreements',
+      ]);
+    });
+
+    it('should handle null cartId', () => {
+      expect(getContractAgreementsQueryKey(null)).toEqual([
+        'new-cart',
+        null,
+        'contract-agreements',
       ]);
     });
   });
@@ -67,6 +167,271 @@ describe('useCart hooks', () => {
       expect(getCartSummary).not.toHaveBeenCalled();
       expect(result.current.data).toBeUndefined();
       expect(result.current.error).toBeNull();
+    });
+  });
+
+  describe('useCreateCart', () => {
+    it('should create cart and order project successfully', async () => {
+      vi.mocked(createCart).mockResolvedValueOnce(mockCart);
+      vi.mocked(assignCart).mockResolvedValueOnce(undefined);
+      vi.mocked(getPublicCloudOptions).mockResolvedValueOnce(
+        mockCartProductOptions,
+      );
+      vi.mocked(orderCloudProject).mockResolvedValueOnce(mockOrderedProduct);
+      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce(undefined);
+
+      const { result } = renderHook(
+        () =>
+          useCreateCart(
+            OvhSubsidiary.FR,
+            PlanCode.PROJECT_2018,
+            'Test project',
+          ),
+        { wrapper: createWrapper() },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
+      });
+
+      expect(createCart).toHaveBeenCalledWith(OvhSubsidiary.FR);
+      expect(assignCart).toHaveBeenCalledWith('cart-1');
+      expect(getPublicCloudOptions).toHaveBeenCalledWith(
+        'cart-1',
+        PlanCode.PROJECT_2018,
+      );
+      expect(orderCloudProject).toHaveBeenCalledWith(
+        'cart-1',
+        PlanCode.PROJECT_2018,
+      );
+      expect(attachConfigurationToCartItem).toHaveBeenCalledWith(
+        'cart-1',
+        123,
+        {
+          label: 'description',
+          value: 'Test project',
+        },
+      );
+      expect(result.current.data).toEqual(mockCart);
+    });
+  });
+
+  describe('useContractAgreements', () => {
+    it('should fetch contract agreements when cartId is provided', async () => {
+      vi.mocked(getCartSummary).mockResolvedValueOnce(mockCartSummary);
+
+      const { result } = renderHook(() => useContractAgreements('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
+      });
+
+      expect(getCartSummary).toHaveBeenCalledWith('cart-1');
+      expect(result.current.data).toEqual([
+        { name: 'Contract 1', url: 'https://contract1.url' },
+        { name: 'Contract 2', url: 'https://contract2.url' },
+      ]);
+    });
+
+    it('should not fetch when cartId is null', () => {
+      const { result } = renderHook(() => useContractAgreements(null), {
+        wrapper: createWrapper(),
+      });
+
+      expect(getCartSummary).not.toHaveBeenCalled();
+      expect(result.current.data).toBeUndefined();
+    });
+  });
+
+  describe('useCreateAndAssignCart', () => {
+    it('should create and assign cart successfully', async () => {
+      vi.mocked(createCart).mockResolvedValueOnce(mockCart);
+      vi.mocked(assignCart).mockResolvedValueOnce(undefined);
+
+      const { result } = renderHook(() => useCreateAndAssignCart(), {
+        wrapper: createWrapper(),
+      });
+
+      result.current.mutate({ ovhSubsidiary: OvhSubsidiary.FR });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(createCart).toHaveBeenCalledWith(OvhSubsidiary.FR);
+      expect(assignCart).toHaveBeenCalledWith('cart-1');
+      expect(result.current.data).toEqual(mockCart);
+    });
+  });
+
+  describe('useOrderProjectItem', () => {
+    it('should order project item successfully', async () => {
+      vi.mocked(orderCloudProject).mockResolvedValueOnce(mockOrderedProduct);
+
+      const { result } = renderHook(() => useOrderProjectItem(), {
+        wrapper: createWrapper(),
+      });
+
+      result.current.mutate({ cartId: 'cart-1' });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(orderCloudProject).toHaveBeenCalledWith(
+        'cart-1',
+        PCI_PROJECT_ORDER_CART.planCode,
+      );
+      expect(result.current.data).toEqual(mockOrderedProduct);
+    });
+  });
+
+  describe('useAddItemToCart', () => {
+    it('should add item to cart successfully', async () => {
+      vi.mocked(addItemToCart).mockResolvedValueOnce(mockOrderedProduct);
+      const onSuccess = vi.fn();
+
+      const { result } = renderHook(() => useAddItemToCart({ onSuccess }), {
+        wrapper: createWrapper(),
+      });
+
+      const itemParams = {
+        cartId: 'cart-1',
+        item: {
+          itemId: 123,
+          duration: 'P1M',
+          planCode: 'project.2018',
+          pricingMode: 'default',
+          quantity: 1,
+        },
+      };
+
+      result.current.mutate(itemParams);
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(addItemToCart).toHaveBeenCalledWith('cart-1', itemParams.item);
+      expect(onSuccess).toHaveBeenCalledWith(mockOrderedProduct);
+      expect(result.current.data).toEqual(mockOrderedProduct);
+    });
+  });
+
+  describe('useRemoveItemFromCart', () => {
+    it('should remove item from cart successfully', async () => {
+      vi.mocked(removeItemFromCart).mockResolvedValueOnce(undefined);
+      const onSuccess = vi.fn();
+
+      const { result } = renderHook(
+        () => useRemoveItemFromCart({ onSuccess }),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      result.current.mutate({ cartId: 'cart-1', itemId: 123 });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(removeItemFromCart).toHaveBeenCalledWith('cart-1', 123);
+      expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+
+  describe('useAttachConfigurationToCartItem', () => {
+    it('should attach configuration to cart item successfully', async () => {
+      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce(undefined);
+      const onSuccess = vi.fn();
+
+      const { result } = renderHook(
+        () => useAttachConfigurationToCartItem({ onSuccess }),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      const params = {
+        cartId: 'cart-1',
+        itemId: 123,
+        payload: { label: 'description', value: 'Test description' },
+      };
+
+      result.current.mutate(params);
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(attachConfigurationToCartItem).toHaveBeenCalledWith(
+        'cart-1',
+        123,
+        {
+          label: 'description',
+          value: 'Test description',
+        },
+      );
+      expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+
+  describe('useGetHdsAddonOption', () => {
+    it('should get HDS addon option when cartId is provided', async () => {
+      vi.mocked(getPublicCloudOptions).mockResolvedValueOnce(
+        mockCartProductOptions,
+      );
+
+      const { result } = renderHook(() => useGetHdsAddonOption('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
+      });
+
+      expect(getPublicCloudOptions).toHaveBeenCalledWith(
+        'cart-1',
+        PCI_PROJECT_ORDER_CART.planCode,
+      );
+      expect(result.current.data).toEqual(mockCartProductOptions[0]);
+    });
+
+    it('should not fetch when cartId is not provided', () => {
+      const { result } = renderHook(() => useGetHdsAddonOption(undefined), {
+        wrapper: createWrapper(),
+      });
+
+      expect(getPublicCloudOptions).not.toHaveBeenCalled();
+      expect(result.current.data).toBeUndefined();
+    });
+
+    it('should return undefined when HDS option is not found', async () => {
+      const optionsWithoutHds = [
+        {
+          mandatory: false,
+          exclusive: false,
+          productName: 'cloud',
+          planCode: 'other.option',
+          family: 'other-family',
+          productType: CartProductType.CLOUD_SERVICE,
+          prices: [],
+        },
+      ];
+      vi.mocked(getPublicCloudOptions).mockResolvedValueOnce(optionsWithoutHds);
+
+      const { result } = renderHook(() => useGetHdsAddonOption('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isLoading).toBe(false);
+      });
+
+      expect(result.current.data).toBeUndefined();
     });
   });
 });

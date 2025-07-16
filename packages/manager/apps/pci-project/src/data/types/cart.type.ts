@@ -39,13 +39,25 @@ export type CartProductPrice = {
 
 export type OrderedProduct = {
   cartId: string;
-  itemId: string;
+  itemId: number;
   productId: string;
   configuration: unknown[];
   duration: string;
   options: unknown[];
-  prices: unknown[];
-  settings: unknown;
+  prices: {
+    label: string;
+    price: {
+      currencyCode: string;
+      priceInUcents: number;
+      text: string;
+      value: number;
+    };
+  }[];
+  settings: {
+    planCode: string;
+    pricingMode: string;
+    quantity: number;
+  };
 };
 
 export type CartProductOption = {

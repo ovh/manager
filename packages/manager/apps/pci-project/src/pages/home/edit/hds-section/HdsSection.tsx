@@ -52,7 +52,10 @@ export default function HdsSection({ project }: { project: TProject }) {
       !isHdsCertifiedProject,
   });
 
-  const { data: cartSummary } = useGetCartSummary(cart?.cartId);
+  const {
+    data: cartSummary,
+    isLoading: isCartSummaryLoading,
+  } = useGetCartSummary(cart?.cartId);
 
   const handleHdsChecked = useCallback((isChecked: boolean) => {
     setIsHDSChecked(isChecked);
@@ -103,6 +106,7 @@ export default function HdsSection({ project }: { project: TProject }) {
       {isContractsDisplayed && (
         <Contracts
           contracts={cartSummary?.contracts}
+          isLoading={isCartSummaryLoading}
           isChecked={isContractsChecked}
           onCheckChanged={setIsContractsChecked}
         />
