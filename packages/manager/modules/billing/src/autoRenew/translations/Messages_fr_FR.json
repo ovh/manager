@@ -58,7 +58,8 @@
   "autorenew_service_renew_paid": "Payé",
 
   "autorenew_empty": "Vous n'avez aucun service",
-  "autorenew_service_action_title": "Actions",
+  "autorenew_service_action_title": "Action",
+  "autorenew_service_actions_title": "Actions",
   "autorenew_service_autorenew_day": "Jour de renouvellement automatique:",
   "autorenew_service_autorenew_day_tooltip": "Si vous avez des services en renouvellement automatique, vous pouvez choisir leur jour de renouvellement",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Si vous avez des services en renouvellement automatique, vous pouvez choisir leur jour de renouvellement (option non compatible avec les produits Bare Metal et VPS dont la date de renouvellement est définie au 1er du mois par défaut pour cette catégorie de produit).",
