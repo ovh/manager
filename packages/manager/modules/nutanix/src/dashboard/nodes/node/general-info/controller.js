@@ -1,17 +1,33 @@
+import {
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+  PREFIX_TRACKING_NUTANIX_DATAGRID,
+} from '../../../../constants';
 import { NO_OS_INSTALLED_REGEX, TRAVAUX_LINK } from './constants';
 
 export default class NutanixNodeGeneralInfoCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig, NutanixNode, $rootScope, Alerter) {
+  constructor(
+    $translate,
+    coreConfig,
+    NutanixNode,
+    $rootScope,
+    Alerter,
+    atInternet,
+  ) {
     this.$translate = $translate;
     this.region = coreConfig.getRegion();
     this.nutanixNodeService = NutanixNode;
     this.$rootScope = $rootScope;
     this.Alerter = Alerter;
+    this.atInternet = atInternet;
     this.TRAVAUX_LINK = TRAVAUX_LINK[this.region] || TRAVAUX_LINK.DEFAULT;
   }
 
   $onInit() {
+    this.atInternet.trackPage({
+      name: `${PREFIX_TRACKING_NUTANIX_DATAGRID}::link::details_node::${this.commercialRange}`,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+    });
     this.isRebooting = false;
     this.loadServer();
     // Server Restart

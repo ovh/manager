@@ -1,5 +1,7 @@
+import { ENTERPRISE_SOLUTIONS_LEVEL_2_CODE } from '../../../../constants';
 import { NUTANIX_MULTIPLE_NODES_ORDER_FEATURE } from '../../../constants';
 import NodeExpressOrderLinkGenerator from '../../../node-express-order-link-generator';
+import { TRACKING } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.all.add-nodes', {
@@ -44,6 +46,20 @@ export default /* @ngInject */ ($stateProvider) => {
               NUTANIX_MULTIPLE_NODES_ORDER_FEATURE,
             ),
           ),
+      trackClick: /* @ngInject */ (atInternet) => (options) => {
+        atInternet.trackClick({
+          page: {
+            name: TRACKING.LISTING_ADD_NODE,
+          },
+          type: 'action',
+          level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+          ...options,
+        });
+      },
+    },
+    atInternet: {
+      rename: TRACKING.LISTING_ADD_NODE,
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
     },
   });
 };

@@ -2,6 +2,8 @@ import {
   CLUSTER_STATUS,
   NUTANIX_AUTHORIZATION_TYPE,
   MAX_NODES_BY_CLUSTER,
+  PREFIX_TRACKING_NUTANIX,
+  ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
 } from '../../constants';
 import {
   GENERAL_INFO_TILE_TITLE,
@@ -110,6 +112,10 @@ export default class NutanixGeneralInfoCtrl {
     return this.atInternet.trackClick({
       name: `${this.trackingPrefix}::${trackText}`,
       type: 'action',
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+      page: {
+        name: TRACKING.DASHBOARD,
+      },
     });
   }
 
@@ -134,5 +140,17 @@ export default class NutanixGeneralInfoCtrl {
 
   haveSupportAuthorizations() {
     return this.accountAuthorizations[NUTANIX_AUTHORIZATION_TYPE.SUPPORT];
+  }
+
+  onClickOnAddNode() {
+    this.atInternet.trackClick({
+      name: `${PREFIX_TRACKING_NUTANIX}::::tile::button::add-nodes`,
+      type: 'action',
+      level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
+      page: {
+        name: TRACKING.DASHBOARD,
+      },
+    });
+    this.goToAddNode();
   }
 }

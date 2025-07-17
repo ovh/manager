@@ -12,6 +12,8 @@ export default {
     expressOrderLink: '<',
     handleSuccess: '<',
     isMultipleNodesOrderEnabled: '<',
+    commercialRange: '<',
+    trackClick: '<',
   },
   template,
   controller,

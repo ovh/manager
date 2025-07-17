@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { ENTERPRISE_SOLUTIONS_LEVEL_2_CODE } from '../constants';
 
 import { GUIDE_URL, LICENSE_REGISTRATION_ENDS_IN_DAYS } from './constants';
 import { NUTANIX_PERSONAL_LICENSE_EDITION } from './general-info/constants';
@@ -23,6 +24,7 @@ export default class NutanixDashboardCtrl {
     if (this.isLicenceRegisterDateExpired()) {
       this.atInternet.trackPage({
         name: 'hpc::nutanix::cluster::banner-register-cluster',
+        level2: ENTERPRISE_SOLUTIONS_LEVEL_2_CODE,
       });
     }
   }
