@@ -1,5 +1,5 @@
 import { Link } from '../Link.component';
-import { LINK_TYPE } from '../Link.props';
+import { LinkType } from '../Link.props';
 import { render } from '../../../utils/test.provider';
 
 describe('Link component', () => {
@@ -16,7 +16,7 @@ describe('Link component', () => {
     const props = {
       children: 'Back to the list',
       href: 'https://www.example.com',
-      type: LINK_TYPE.back,
+      type: LinkType.back,
     };
     const { asFragment } = render(<Link {...props} />);
     expect(asFragment()).toMatchSnapshot();
@@ -26,7 +26,7 @@ describe('Link component', () => {
     const props = {
       children: 'Next Page',
       href: 'https://www.example.com',
-      type: LINK_TYPE.next,
+      type: LinkType.next,
     };
     const { asFragment } = render(<Link {...props} />);
     expect(asFragment()).toMatchSnapshot();
@@ -37,7 +37,7 @@ describe('Link component', () => {
       href: 'https://www.ovhcloud.com/',
       target: '_blank',
       children: 'External Page',
-      type: LINK_TYPE.external,
+      type: LinkType.external,
     };
 
     const { asFragment } = render(<Link {...props} />);
