@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import 'element-internals-polyfill';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
+import 'element-internals-polyfill';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -44,6 +44,8 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
+    useAuthorizationIam: vi.fn(),
+    useFeatureAvailability: vi.fn(),
   };
 });
 
@@ -85,6 +87,8 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   return {
     ...originalModule,
     OdsRadio: () => <input type="radio" />,
+    OdsCheckbox: () => <input type="checkbox" />,
+    OdsSelect: () => <select></select>,
   };
 });
 
