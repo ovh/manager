@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.43.2...@ovh-ux/manager-billing@0.44.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **billing:** switch back to renew period ([c8c18ee](https://github.com/ovh/manager/commit/c8c18eec2d220cfb4206e53f93a2ab0c7a879be3)), closes [#MANAGER-18960](https://github.com/ovh/manager/issues/MANAGER-18960)
+
+
+### Features
+
+* **billing:** feature order status for awaiting documents and expired ([c511f7b](https://github.com/ovh/manager/commit/c511f7b93444a985bd45004b5fe19304fb551b24)), closes [#MANAGER-18616](https://github.com/ovh/manager/issues/MANAGER-18616)
+* **billing:** optimize ssh keys page api calls ([e41f099](https://github.com/ovh/manager/commit/e41f0991d6bbbd0ea0249472183e0cf1028cb562)), closes [#MANAGER-17559](https://github.com/ovh/manager/issues/MANAGER-17559)
+
+
+### Reverts
+
+* **billing:** feature order status for awaiting documents and expired ([313715e](https://github.com/ovh/manager/commit/313715ef8aff84b9601a3af122b65043b96f34a9)), closes [#MANAGER-18616](https://github.com/ovh/manager/issues/MANAGER-18616)
+
+
+
+
+
 ## [0.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.43.1...@ovh-ux/manager-billing@0.43.2) (2025-07-17)
 
 
