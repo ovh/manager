@@ -78,7 +78,8 @@
     "./src/hooks/index.ts",
     "./src/components/index.ts",
     "./src/components/action-menu/**/*",
-    "./src/components/base-layout/**/*"
+    "./src/components/base-layout/**/*",
+    "./src/enumTypes/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
