@@ -15,44 +15,44 @@
                     <span
                         class="oui-badge"
                         data-ng-class="{
-                              'oui-badge_error': $ctrl.drpGlobalStatus.error,
-                              'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
-                              'oui-badge_success': $ctrl.drpGlobalStatus.success
+                              'oui-badge_error': $ctrl.zertoGlobalStatus.error,
+                              'oui-badge_warning': $ctrl.zertoGlobalStatus.warning,
+                              'oui-badge_success': $ctrl.zertoGlobalStatus.success
                         }"
                     >
                         <span
-                            data-translate="{{:: $ctrl.currentDrp.isWaitingVpnConfiguration ? 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus : 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
+                            data-translate="{{:: $ctrl.currentZerto.isWaitingVpnConfiguration ? 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentZerto.vpnStatus : 'dedicatedCloud_options_zerto_status_' + $ctrl.zertoStatus }}"
                         ></span>
                     </span>
                 </dd>
             </dl>
             <oui-action-menu
-                data-ng-if="$ctrl.isDrpActionPossible"
+                data-ng-if="$ctrl.isZertoActionPossible"
                 data-compact
                 data-placement="end"
             >
                 <oui-action-menu-item
-                    data-ng-if="$ctrl.currentDrp.status === $ctrl.DRP_STATUS.disabled"
-                    data-on-click="$ctrl.chooseDatacenterForDrp()"
+                    data-ng-if="$ctrl.currentZerto.status === $ctrl.DRP_STATUS.disabled"
+                    data-on-click="$ctrl.chooseDatacenterForZerto()"
                 >
                     <span
-                        data-translate="dedicatedCloud_options_zerto_action_activate"
+                        data-translate="dedicatedCloud_options_drp_action_activate"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
                     data-on-click="$ctrl.goToVpnConfiguration()"
-                    data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+                    data-ng-if="::$ctrl.currentZerto.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
                 >
                     <span
-                        data-translate="dedicatedCloud_options_zerto_action_add_configuration"
+                        data-translate="dedicatedCloud_options_drp_action_add_configuration"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ng-if="::$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered && $ctrl.currentDrp.vpnStatus !== $ctrl.DRP_VPN_STATUS.configuring"
-                    data-on-click="$ctrl.deleteDrp()"
+                    data-ng-if="::$ctrl.zertoStatus === $ctrl.DRP_STATUS.delivered && $ctrl.zertoRemotePccStatus === $ctrl.DRP_STATUS.delivered && $ctrl.currentZerto.vpnStatus !== $ctrl.DRP_VPN_STATUS.configuring"
+                    data-on-click="$ctrl.deleteZerto()"
                 >
                     <span
-                        data-translate="dedicatedCloud_options_zerto_action_delete"
+                        data-translate="dedicatedCloud_options_drp_action_delete"
                     ></span>
                 </oui-action-menu-item>
             </oui-action-menu>

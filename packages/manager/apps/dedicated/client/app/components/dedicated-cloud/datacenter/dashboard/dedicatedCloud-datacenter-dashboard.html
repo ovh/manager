@@ -1,11 +1,11 @@
 <div data-ovh-alert="dedicated-cloud-datacenter-dashboard-alert"></div>
 
-<ovh-manager-dedicated-cloud-datacenter-drp-alerts
-    data-current-drp="$ctrl.currentDrp"
+<ovh-manager-dedicated-cloud-datacenter-zerto-alerts
+    data-current-zerto="$ctrl.currentZerto"
     data-current-user="$ctrl.currentUser"
     data-go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
     data-pcc-type="$ctrl.pccType"
-></ovh-manager-dedicated-cloud-datacenter-drp-alerts>
+></ovh-manager-dedicated-cloud-datacenter-zerto-alerts>
 
 <div class="mb-5 px-0">
     <div class="row d-md-flex mb-5">
@@ -131,25 +131,25 @@
                 class="mb-3"
             >
                 <oui-tile-definition
-                    data-ng-if="$ctrl.drpAvailability"
+                    data-ng-if="$ctrl.zertoAvailability"
                     data-term="{{:: $ctrl.LABELS.ZERTO }}"
                 >
                     <oui-tile-description>
                         <span
                             class="oui-badge"
                             data-ng-class="{
-                                  'oui-badge_error': $ctrl.drpGlobalStatus.error,
-                                  'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
-                                  'oui-badge_success': $ctrl.drpGlobalStatus.success
+                                  'oui-badge_error': $ctrl.zertoGlobalStatus.error,
+                                  'oui-badge_warning': $ctrl.zertoGlobalStatus.warning,
+                                  'oui-badge_success': $ctrl.zertoGlobalStatus.success
                             }"
                         >
                             <span
-                                data-ng-if="::!$ctrl.currentDrp.isWaitingVpnConfiguration"
-                                data-translate="{{ 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
+                                data-ng-if="::!$ctrl.currentZerto.isWaitingVpnConfiguration"
+                                data-translate="{{ 'dedicatedCloud_options_zerto_status_' + $ctrl.zertoStatus }}"
                             ></span>
                             <span
-                                data-ng-if="::$ctrl.currentDrp.isWaitingVpnConfiguration"
-                                data-translate="{{:: 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus }}"
+                                data-ng-if="::$ctrl.currentZerto.isWaitingVpnConfiguration"
+                                data-translate="{{:: 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentZerto.vpnStatus }}"
                             ></span>
                         </span>
                     </oui-tile-description>
