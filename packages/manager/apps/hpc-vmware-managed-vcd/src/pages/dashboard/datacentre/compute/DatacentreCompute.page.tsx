@@ -27,6 +27,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { FEATURES } from '@/utils/features.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -86,7 +87,11 @@ export default function ComputeListingPage() {
             data-testid={TEST_IDS.computeSpecialOfferBanner}
             isDismissible={false}
           >
-            <OdsText>{t('managed_vcd_vdc_compute_special_offer')}</OdsText>
+            <OdsText>
+              {t('managed_vcd_vdc_compute_special_offer', {
+                productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+              })}
+            </OdsText>
           </OdsMessage>
         </div>
       )}
