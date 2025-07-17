@@ -10,8 +10,8 @@
   "dedicatedCloud_discount": "Sconto",
   "dedicatedCloud_discount_explanation": "Prezzo finale calcolato al momento della creazione dell'ordine, fino a esaurimento scorte. Applicato solo per il mese corrente.",
   "dedicatedCloud_discount_AMD": "Approfitta del 35% di sconto sugli Host XL e XL+ della gamma 2014v2 Entreprise! L’offerta è valida fino a esaurimento scorte.",
-  "dedicatedCloud_description": "Nome",
-  "dedicatedCloud_description_modify_title": "Modifica il nome",
+  "dedicatedCloud_description": "Descrizione",
+  "dedicatedCloud_description_modify_title": "Modifica la descrizione",
   "dedicatedCloud_connection_policy": "Politica di connessione",
   "dedicatedCloud_billing": "Fatturazione",
   "dedicatedCloud_connection_policy_LAST": "Disconnetti la più recente",
@@ -246,5 +246,8 @@
   "ip_order_renew_MBM": "Gli IP verranno rinnovati automaticamente insieme all’infrastruttura Managed Bare Metal.",
   "dedicatedCloud_premier_sbg_order_warning": "Non siamo in grado di effettuare nuovi ordini sul nostro sito di SBG. I team OVHcloud sono pienamente operativi e stiamo facendo il possibile per ripristinare questa possibilità di ordine nel prossimo futuro.",
   "dedicatedCloud_banner_new_product": "Adesso è possibile selezionare datacenter corrispondenti a pacchetti software VMware differenti all'interno di uno stesso ambiente Private Cloud.",
-  "dedicatedCloud_banner_new_product_link": "Scopri di più"
+  "dedicatedCloud_banner_new_product_link": "Scopri di più",
+  "dedicatedCloud_dashboard_editing_description_success": "La modifica della descrizione del servizio diventerà effettiva in pochi minuti.",
+  "dedicatedCloud_name": "Cognome",
+  "dedicatedCloud_name_modify_title": "Modifica il nome"
 }
