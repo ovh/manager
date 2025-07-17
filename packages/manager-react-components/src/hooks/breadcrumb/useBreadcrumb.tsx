@@ -27,7 +27,11 @@ export const useBreadcrumb = ({
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
+        const response = await shell?.navigation.getURL(
+          appName as string,
+          '#/',
+          {},
+        );
         const rootItem = {
           label: rootLabel,
           href: String(response),
