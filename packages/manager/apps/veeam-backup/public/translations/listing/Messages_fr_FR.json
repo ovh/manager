@@ -4,7 +4,7 @@
   "name_cell": "Nom",
   "status_cell": "Statut",
   "ovhref_cell": "Référence",
-  "vcdorg_cell": "Organisation VCD",
+  "vcdorg_cell": "Organisation {{productName}}",
   "location_cell": "Localisation",
   "region_cell": "Région",
   "createdat_cell": "Date de création",

@@ -30,6 +30,7 @@ import {
   RegionCell,
 } from './VCDOrganiationDatagridCell.component';
 import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
+import { VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME } from '@/veeam-backup.config';
 
 const useExpressOrderLink = () => {
   const orderBaseUrl = useOrderURL('express_review_base');
@@ -137,7 +138,9 @@ export const OrderVeeamStep2: React.FC = () => {
       >
         <>
           <OdsText preset="heading-1" className="block mb-9">
-            {t('choose_org_title')}
+            {t('choose_org_title', {
+              vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+            })}
           </OdsText>
           {isLoading && <Loading className="mb-5" />}
           {!isLoading && !isError && (
@@ -154,6 +157,7 @@ export const OrderVeeamStep2: React.FC = () => {
                 hasNextPage
                   ? 'all_organization_backed_up_message_fetch_next_page'
                   : 'all_organization_backed_up_message',
+                { vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME },
               )}
             </OdsMessage>
           )}
