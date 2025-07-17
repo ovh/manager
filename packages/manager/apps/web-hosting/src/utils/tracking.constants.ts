@@ -38,6 +38,7 @@ export const ORDER_CTA = 'order_website';
 export const EXPORT_CSV = 'export_csv';
 export const DATAGRID_LINK = 'details_';
 export const WEBSITE = 'website';
+export const WORDPRESS_MANAGED = 'wordpress-managed';
 export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';
 export const DASHBOARD = 'dashboard';

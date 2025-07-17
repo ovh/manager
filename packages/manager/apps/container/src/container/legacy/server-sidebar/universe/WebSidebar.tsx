@@ -16,6 +16,7 @@ export const webFeatures = [
   'web:domains:zone',
   'web-ongoing-operations',
   'web-hosting:websites',
+  'web-hosting:wordpress-managed',
   'hosting',
   'private-database',
   'email-pro',
@@ -151,7 +152,19 @@ export default function WebSidebar() {
         },
       });
     }
-
+    if (features['web-hosting:wordpress-managed']) {
+      menu.push({
+        id: 'web-hosting-websites',
+        label: t('sidebar_web_hosting_wordpress_managed'),
+        icon: getIcon('ovh-font ovh-font-domain'),
+        badge: 'alpha',
+        routeMatcher: new RegExp('^/wordpress-managed'),
+        href: navigation.getURL(
+          'web-hosting',
+          '#/wordpress-managed',
+        ),
+      });
+    }
     if (features['private-database']) {
       menu.push({
         id: 'privateDatabases',
