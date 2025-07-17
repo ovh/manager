@@ -14,5 +14,6 @@
   "zimbra_account_order_initiated_title": "Order your Zimbra accounts!",
   "zimbra_account_order_initiated_subtitle": "If you haven’t finalised your order, please click the link below to complete it.",
   "zimbra_account_order_initiated_info": "We will notify you via email once your email accounts are ready.",
-  "zimbra_account_order_initiated_link_label": "Link to your order"
+  "zimbra_account_order_initiated_link_label": "Link to your order",
+  "zimbra_account_service_name": "your Zimbra accounts"
 }
