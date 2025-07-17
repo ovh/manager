@@ -1,17 +1,18 @@
 import { OKMS } from '@/types/okms.type';
 import {
+  REGION_CA_EAST_BHS,
   REGION_EU_WEST_RBX,
   REGION_EU_WEST_SBG,
 } from '../catalog/catalog.mock';
 
-type OkmsMockByRegion = {
+type OkmsByRegion = {
   region: string;
-  mock: OKMS[];
+  okmsMock?: OKMS[];
 };
 
-export const okmsMockbyRegionQuantityTwo: OkmsMockByRegion = {
+export const regionWithMultipleOkms: OkmsByRegion = {
   region: REGION_EU_WEST_RBX,
-  mock: [
+  okmsMock: [
     {
       iam: {
         displayName: 'kms-roubaix-1',
@@ -45,9 +46,9 @@ export const okmsMockbyRegionQuantityTwo: OkmsMockByRegion = {
   ],
 };
 
-export const okmsMockbyRegionQuantityOne: OkmsMockByRegion = {
+export const regionWithOneOkms: OkmsByRegion = {
   region: REGION_EU_WEST_SBG,
-  mock: [
+  okmsMock: [
     {
       iam: {
         displayName: 'kms-strasbourg-1',
@@ -66,7 +67,9 @@ export const okmsMockbyRegionQuantityOne: OkmsMockByRegion = {
   ],
 };
 
+export const regionWithoutOkms: OkmsByRegion = { region: REGION_CA_EAST_BHS };
+
 export const okmsMock: OKMS[] = [
-  ...okmsMockbyRegionQuantityTwo.mock,
-  ...okmsMockbyRegionQuantityOne.mock,
+  ...regionWithMultipleOkms.okmsMock,
+  ...regionWithOneOkms.okmsMock,
 ];

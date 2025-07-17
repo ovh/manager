@@ -25,11 +25,12 @@ import { act, render, screen } from '@testing-library/react';
 import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { DomainManagement } from './DomainManagement.component';
-import { catalogMock, REGION_CA_EAST_BHS } from '@/mocks/catalog/catalog.mock';
+import { catalogMock } from '@/mocks/catalog/catalog.mock';
 import {
   okmsMock,
-  okmsMockbyRegionQuantityOne,
-  okmsMockbyRegionQuantityTwo,
+  regionWithOneOkms,
+  regionWithMultipleOkms,
+  regionWithoutOkms,
 } from '@/mocks/kms/okms.mock';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
@@ -236,10 +237,10 @@ describe('Domain management test suite', () => {
       await assertTextVisibility(
         labels.secretManager.create.domain_section_title,
       );
-      await assertTextVisibility(REGION_CA_EAST_BHS);
+      await assertTextVisibility(regionWithoutOkms.region);
 
       // WHEN
-      await selectRegion(user, REGION_CA_EAST_BHS);
+      await selectRegion(user, regionWithoutOkms.region);
 
       // THEN
       await assertDomainsAreNotInTheDocument(okmsMock);
@@ -254,17 +255,16 @@ describe('Domain management test suite', () => {
     it('should not display anything when there is exactly one domain', async () => {
       const user = userEvent.setup();
       // GIVEN
-      const regionWithOneDomain = okmsMockbyRegionQuantityOne.region;
       vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
 
       await renderDomainManagement();
       await assertTextVisibility(
         labels.secretManager.create.domain_section_title,
       );
-      await assertTextVisibility(regionWithOneDomain);
+      await assertTextVisibility(regionWithOneOkms.region);
 
       // WHEN
-      await selectRegion(user, regionWithOneDomain);
+      await selectRegion(user, regionWithOneOkms.region);
 
       // THEN
       await assertDomainsAreNotInTheDocument(okmsMock);
@@ -274,13 +274,12 @@ describe('Domain management test suite', () => {
         expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
       );
       expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
-        okmsMockbyRegionQuantityOne.mock[0].id,
+        regionWithOneOkms.okmsMock[0].id,
       );
     });
 
     it('should display a filtered domain list when there is more than one domain', async () => {
       const user = userEvent.setup();
-      const regionWithTwoDomains = okmsMockbyRegionQuantityTwo.region;
 
       // GIVEN
       vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
@@ -289,19 +288,19 @@ describe('Domain management test suite', () => {
       await assertTextVisibility(
         labels.secretManager.create.domain_section_title,
       );
-      await assertTextVisibility(regionWithTwoDomains);
+      await assertTextVisibility(regionWithMultipleOkms.region);
 
       // WHEN
-      await selectRegion(user, regionWithTwoDomains);
+      await selectRegion(user, regionWithMultipleOkms.region);
 
       // THEN
-      await assertDomainsAreNotInTheDocument(okmsMockbyRegionQuantityOne.mock);
-      await assertDomainsAreInTheDocument(okmsMockbyRegionQuantityTwo.mock);
+      await assertDomainsAreNotInTheDocument(regionWithOneOkms.okmsMock);
+      await assertDomainsAreInTheDocument(regionWithMultipleOkms.okmsMock);
       await assertActivateButtonIsNotInTheDocument();
       // assert that the first domain is selected
       await waitFor(() => {
         const domainRadioCard = screen.getByTestId(
-          okmsMockbyRegionQuantityTwo.mock[0].id,
+          regionWithMultipleOkms.okmsMock[0].id,
         );
         expect(domainRadioCard).toBeChecked();
       });
@@ -310,7 +309,7 @@ describe('Domain management test suite', () => {
         expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
       );
       expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
-        okmsMockbyRegionQuantityTwo.mock[0].id,
+        regionWithMultipleOkms.okmsMock[0].id,
       );
     });
   });
