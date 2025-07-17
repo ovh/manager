@@ -48,5 +48,16 @@
   "deployment_one_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
   "deployment_three_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
   "choose_ressource_description_info": "Continui a gestire i tuoi servizi come d’abitudine. La piattaforma calcola automaticamente l’utilizzo in base alle configurazioni dei tuoi Savings Plan e al consumo delle tue risorse esistenti o future.",
-  "select_quantity_description_rancher_info": "Rancher verrà fatturato in base al numero totale di vCPU di ciascun nodo di lavoro dei tuoi \"downstream cluster\". Le vCPU dei nodi di tipo “controle-plane” non vengono fatturate."
+  "select_quantity_description_rancher_info": "Rancher verrà fatturato in base al numero totale di vCPU di ciascun nodo di lavoro dei tuoi \"downstream cluster\". Le vCPU dei nodi di tipo “controle-plane” non vengono fatturate.",
+  "modal_title": "Riepilogo del tuo Savings Plan",
+  "modal_content": "Prima di creare il tuo Savings Plan, leggi attentamente il riepilogo del tuo Savings Plan, perché una volta convalidato, non sarà più possibile eliminarlo.",
+  "modal_secondary_label": "Modifica",
+  "modal_summary_title": "Riepilogo del Savings Plan",
+  "modal_summary_label_name": "Nome del savings plan",
+  "modal_summary_label_deployment_mode": "Modalità di deploy",
+  "modal_summary_label_service": "Servizi",
+  "modal_summary_label_model": "Modello",
+  "modal_summary_label_quantity": "Numero di istanze",
+  "modal_summary_label_commitment_duration": "Durata del contratto:",
+  "modal_summary_label_total_price": "Prezzo totale"
 }

@@ -83,6 +83,13 @@ const useTechnicalInfo = ({
   });
 };
 
+export type TPricingInfo = {
+  id: string;
+  code: string;
+  duration: number;
+  price: number;
+};
+
 export const usePricingInfo = ({
   productSizeCode,
 }: {
@@ -102,7 +109,9 @@ export const usePricingInfo = ({
     },
     select: (res) =>
       res.length > 0
-        ? res.map(formatPricingInfo).filter((item) => item.id !== null)
+        ? res
+            .map(formatPricingInfo)
+            .filter((item): item is TPricingInfo => item !== null)
         : [],
   });
 };

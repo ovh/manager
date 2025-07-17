@@ -2,8 +2,10 @@ import { OdsCard } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import React from 'react';
 
-export const Block: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className="my-8">{children}</div>
+export const Block: React.FC<React.PropsWithChildren<{
+  className?: string;
+}>> = ({ children, className }) => (
+  <div className={clsx('my-8', className)}>{children}</div>
 );
 
 const SimpleTile: React.FC<React.PropsWithChildren<{
