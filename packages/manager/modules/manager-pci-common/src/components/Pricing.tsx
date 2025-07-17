@@ -15,8 +15,9 @@ export function Pricing({ pricing, options }: Readonly<PricingProps>) {
   const price = useMemo(() => pricing && getPriceDetails(pricing, options), [
     pricing,
     options,
+    getPriceDetails,
   ]);
-  if (!price) return <OsdsSkeleton />;
+  if (!price) return <OsdsSkeleton data-testid="loading" />;
   return (
     <span>
       <span className={clsx(price?.secondary && 'font-bold')}>
