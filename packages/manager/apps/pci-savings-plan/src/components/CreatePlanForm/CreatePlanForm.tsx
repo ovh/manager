@@ -67,7 +67,6 @@ import {
   isValidSavingsPlanName,
 } from '../../utils/savingsPlan';
 import LegalLinks from '../LegalLinks/LegalLinks';
-import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 import SelectResource from './SelectResource';
 
 const COMMON_SPACING = 'my-4';
@@ -209,15 +208,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     (item: InstanceInfo) => item.technicalName === instanceCategory,
   );
   const [instanceSelected] = technicalInfoList;
-  // TODO: Api will add a new params region 3AZ to filters
-  // We will need to add it in the query
-  const filteredTechnicalInfo = instanceSelected.technical.filter((item) =>
-    deploymentMode === DeploymentMode['1AZ']
-      ? !item.code.includes('3AZ')
-      : item.code.includes('3AZ'),
-  );
 
-  const activeInstance = filteredTechnicalInfo?.find(
+  const activeInstance = instanceSelected.technical?.find(
     (item) => item.name === technicalModel,
   );
 
@@ -299,7 +291,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         />
       )}
       <SelectModel
-        technicalInfo={filteredTechnicalInfo}
+        technicalInfo={instanceSelected.technical}
         isInstance={isInstance}
         tabsList={tabsList}
         instanceCategory={instanceCategory}
@@ -410,6 +402,7 @@ export const CreatePlanFormContainer = ({
     isLoading: isTechnicalInfoLoading,
   } = useTechnicalInfo({
     productCode: instanceCategory,
+    deploymentMode,
   });
 
   const computedTechnicalModel =
