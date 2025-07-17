@@ -104,34 +104,52 @@ exports[`Headers component > renders header with header buttons correctly 1`] = 
         with-arrow="true"
       >
         <div>
-          <ods-link
-            color="primary"
+          <a
+            class="_link_udbet_2 _link--no-text_udbet_29"
             href="https://ovh.com/"
-            icon="external-link"
             label="mrc_changelog_changelog"
             rel="external"
             target="_blank"
-          />
+          >
+            <span>
+              ​
+            </span>
+            <span
+              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            />
+          </a>
         </div>
         <div>
-          <ods-link
-            color="primary"
+          <a
+            class="_link_udbet_2 _link--no-text_udbet_29"
             href="https://ovh.com/"
-            icon="external-link"
             label="mrc_changelog_roadmap"
             rel="external"
             target="_blank"
-          />
+          >
+            <span>
+              ​
+            </span>
+            <span
+              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            />
+          </a>
         </div>
         <div>
-          <ods-link
-            color="primary"
+          <a
+            class="_link_udbet_2 _link--no-text_udbet_29"
             href="https://ovh.com/"
-            icon="external-link"
             label="mrc_changelog_feature-request"
             rel="external"
             target="_blank"
-          />
+          >
+            <span>
+              ​
+            </span>
+            <span
+              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            />
+          </a>
         </div>
       </ods-popover>
       <div
@@ -154,20 +172,32 @@ exports[`Headers component > renders header with header buttons correctly 1`] = 
         <div
           class="flex flex-col gap-2 py-1"
         >
-          <ods-link
-            color="primary"
+          <a
+            class="_link_udbet_2 _link--no-text_udbet_29"
             href="https://www.ovh.com"
-            icon="external-link"
             label="ovh.com"
             target="_blank"
-          />
-          <ods-link
-            color="primary"
+          >
+            <span>
+              ​
+            </span>
+            <span
+              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            />
+          </a>
+          <a
+            class="_link_udbet_2 _link--no-text_udbet_29"
             href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
-            icon="external-link"
             label="Guides OVH"
             target="_blank"
-          />
+          >
+            <span>
+              ​
+            </span>
+            <span
+              class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            />
+          </a>
         </div>
       </ods-popover>
     </div>
