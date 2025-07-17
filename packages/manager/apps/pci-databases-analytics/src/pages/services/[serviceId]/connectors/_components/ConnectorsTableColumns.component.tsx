@@ -1,12 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table';
-import {
-  ArrowDown,
-  ArrowUp,
-  MoreHorizontal,
-  PauseCircleIcon,
-  PlayCircle,
-  PlugZapIcon,
-} from 'lucide-react';
+import { ArrowDown, ArrowUp, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Badge,
@@ -19,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@datatr-ux/uxlib';
-import { d } from '@tanstack/react-query-devtools/build/legacy/devtools-PtxSnd7z';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';

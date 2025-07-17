@@ -5,14 +5,14 @@ import {
   IDeleteReplication,
 } from '@/data/api/database/replication.api';
 
-export interface UseDeletReplication {
+export interface UseDeleteReplication {
   onError: (cause: CdbError) => void;
   onSuccess: () => void;
 }
 export function useDeleteReplication({
   onError,
   onSuccess: customOnSuccess,
-}: UseDeletReplication) {
+}: UseDeleteReplication) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (replicationInfo: IDeleteReplication) => {
