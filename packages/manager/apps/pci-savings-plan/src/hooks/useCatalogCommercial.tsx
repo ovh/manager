@@ -12,6 +12,7 @@ import {
   CommercialCatalogTechnicalType,
 } from '@/types/commercial-catalog.type';
 import { useServiceId } from './useSavingsPlan';
+import { DeploymentMode } from '@/utils/savingsPlan';
 
 const getCatalogCommercial = async <T,>({
   additionalParams,
@@ -43,27 +44,32 @@ const getCommercialOffers = async ({
 const getTechnicalInfo = async ({
   productCode,
   merchant,
+  deploymentMode,
 }: {
   productCode: string;
   merchant: string;
+  deploymentMode: DeploymentMode;
 }): Promise<CommercialCatalogTechnicalType[]> => {
   return getCatalogCommercial<CommercialCatalogTechnicalType[]>({
-    additionalParams: `nature=REGULAR&productCode=${productCode}`,
+    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_node:${deploymentMode}`,
     merchant,
   });
 };
 
 const useTechnicalInfo = ({
   productCode,
+  deploymentMode,
 }: {
   productCode: InstanceTechnicalName;
+  deploymentMode: DeploymentMode;
 }) => {
   const context = React.useContext(ShellContext);
   const subsidiary = context.environment.getUser().ovhSubsidiary;
 
   return useQuery({
-    queryKey: ['technicalInfo', productCode],
-    queryFn: () => getTechnicalInfo({ productCode, merchant: subsidiary }),
+    queryKey: ['technicalInfo', productCode, deploymentMode],
+    queryFn: () =>
+      getTechnicalInfo({ productCode, merchant: subsidiary, deploymentMode }),
     select: (res) =>
       res
         .map(formatTechnicalInfo)
