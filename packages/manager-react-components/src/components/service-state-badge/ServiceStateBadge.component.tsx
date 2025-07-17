@@ -1,17 +1,10 @@
 import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
-import { ResourceStatus } from '../../hooks/services/services.type';
+import { ServiceStateBadgeProps } from './ServiceStateBadge.props';
+import { Badge } from '../badge';
 
-export type ServiceStateBadgeProps = Omit<
-  React.ComponentProps<typeof OdsBadge>,
-  'color' | 'label'
-> & {
-  state: ResourceStatus;
-};
-
-export const STATES = {
+const STATES = {
   active: { label: 'service_state_active', color: 'success' },
   deleted: { label: 'service_state_deleted', color: 'critical' },
   suspended: { label: 'service_state_suspended', color: 'warning' },
@@ -31,5 +24,9 @@ export const ServiceStateBadge = ({
     color: 'information',
   };
 
-  return <OdsBadge label={t(label)} color={color} {...rest}></OdsBadge>;
+  return (
+    <Badge color={color} {...rest}>
+      {t(label)}
+    </Badge>
+  );
 };
