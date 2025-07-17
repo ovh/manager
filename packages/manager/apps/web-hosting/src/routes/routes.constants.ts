@@ -6,6 +6,7 @@ export const subRoutes = {
 export const urls = {
   // ROOT
   root: '',
+  wordpressManaged: '/wordpress-managed',
   hosting: '/web/hosting',
 
   // COMMON
@@ -26,4 +27,6 @@ export const urls = {
 
   // TASK
   task: `/${subRoutes.serviceName}/task`,
+
+  // MANAGED CMS
 };

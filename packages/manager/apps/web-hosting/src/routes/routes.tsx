@@ -9,9 +9,6 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/404';
 
-import OrderDomainPage from '../pages/dashboard/OrderDomain.page';
-import OnboardingPage from '../pages/onboarding/Onboarding.page';
-import WebsitesPage from '../pages/websites/Websites.page';
 import {
   ADD_DOMAIN,
   DASHBOARD,
@@ -24,12 +21,25 @@ import {
   SSL,
   TASK,
   WEBSITE,
+  WORDPRESS_MANAGED,
 } from '../utils/tracking.constants';
-import { DashboardLayout, RootPage } from './pages/default';
+import {
+  DashboardLayout,
+  OnboardingPage,
+  RootPage,
+  WebsitesPage,
+} from './pages/default';
 import { AddDomainPage } from './pages/domain';
-import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import {
+  DisableSslPage,
+  ImportSslPage,
+  OrderSectigoPage,
+  SanSslPage,
+  SslPage,
+} from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
 import { urls } from './routes.constants';
+import { ManagedWordpressPage } from './pages/managedWordpress';
 
 export type RouteHandle = {
   isOverridePage?: boolean;
@@ -57,6 +67,19 @@ export default (
       />
     }
   >
+    <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.wordpressManaged}
+      Component={ManagedWordpressPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'wordpressManaged',
+        },
+      }}
+    />
     <Route
       id={WEBSITE}
       path={urls.websites}
