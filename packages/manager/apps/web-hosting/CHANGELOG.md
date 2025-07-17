@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.4.2...@ovh-ux/manager-web-hosting-app@0.4.3) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4194] ([98d0aa4](https://github.com/ovh/manager/commit/98d0aa4924e6a517dc073fcbff816c2211446e36))
+
+
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.4.1...@ovh-ux/manager-web-hosting-app@0.4.2) (2025-07-17)
 
 
