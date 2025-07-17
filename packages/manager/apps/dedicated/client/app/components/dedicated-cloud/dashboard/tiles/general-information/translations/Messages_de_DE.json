@@ -29,5 +29,7 @@
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Webinterface",
   "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Öffnet einen neuen Tab",
-  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Name des VCD"
+  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Name des VCD",
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Beschreibung",
+  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Ändern"
 }
