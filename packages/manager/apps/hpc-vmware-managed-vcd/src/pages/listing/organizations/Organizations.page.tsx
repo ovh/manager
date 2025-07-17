@@ -23,12 +23,12 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import OrganizationActions from './OrganizationActions.component';
 import { MessageList } from '@/components/message/MessageList.component';
 import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
   return vdcOrgs?.map(({ id, currentState, resourceStatus }) => ({
@@ -146,7 +146,7 @@ export default function Listing() {
     <>
       <MessageList className="px-10" />
       <DatagridContainer
-        title={MANAGED_VCD_LABEL}
+        title={VMWARE_CLOUD_DIRECTOR_LABEL}
         queryKey={vcdOrganizationListQueryKey}
         route={{
           api: VCD_ORGANIZATION_ROUTE,
