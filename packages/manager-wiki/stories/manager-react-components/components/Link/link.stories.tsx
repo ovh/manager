@@ -1,27 +1,27 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Link, LinkProps, LINK_TYPE } from '@ovh-ux/manager-react-components';
+import { Link, LinkProps, LinkType } from '@ovh-ux/manager-react-components';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 const backLink: LinkProps = {
   children: 'Back to the list',
   href: 'https://www.ovhcloud.com',
   target: '_blank',
-  type: LINK_TYPE.back,
+  type: LinkType.back,
 };
 
 const nextLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'Next Page',
-  type: LINK_TYPE.next,
+  type: LinkType.next,
 };
 
 const externalLink: LinkProps = {
   href: 'https://www.ovhcloud.com/',
   target: '_blank',
   children: 'External Page',
-  type: LINK_TYPE.external,
+  type: LinkType.external,
 };
 
 const iamLinkWithAuthorization: LinkProps = {
