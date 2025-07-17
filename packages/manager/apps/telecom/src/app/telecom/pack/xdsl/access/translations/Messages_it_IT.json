@@ -139,5 +139,6 @@
   "xdsl_detail_mail_sending_update_running": "La richiesta di modifica dell'invio di email è in fase di elaborazione, ti chiediamo di attendere.",
   "xdsl_detail_mail_sending_update_succeed": "La richiesta di modifica dell'invio è stata effettuata correttamente, l'elaborazione è in corso.",
   "xdsl_detail_mail_sending_update_failed": "Si è verificato un errore durante la modifica dell'invio di email: {{error}}",
-  "xdsl_detail_mail_sending_guide": "Scopri di più"
+  "xdsl_detail_mail_sending_guide": "Scopri di più",
+  "xdsl_details_modem_profile_detail": "Profilo {{ modemProfile }}"
 }

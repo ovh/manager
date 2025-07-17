@@ -59,29 +59,20 @@
                 data-description="{{:: 'hosting_order_upgrade_select_duration' | translate }}"
                 data-on-focus="$ctrl.getDurations()"
                 data-loading="$ctrl.loading.durations"
-                data-valid="$ctrl.durations.available"
+                data-valid="$ctrl.durations && $ctrl.model.duration"
                 data-prevent-next="true"
             >
                 <oui-radio-group
                     data-required
                     data-model="$ctrl.model.duration"
                 >
-                    <oui-radio
-                        data-ng-repeat="duration in ($ctrl.durations.available | orderBy: 'duration': false) track by $index"
-                        data-value="duration"
-                    >
+                    <oui-radio data-value="$ctrl.durations">
                         <span
-                            data-ng-if="$ctrl.constructor.isProrataDuration(duration)"
-                            data-ng-bind-html="duration.duration | wucDuration: 'longDate':{prorata:true}"
-                        >
-                        </span>
+                            data-ng-bind="$ctrl.constructor.formatExpirationDate($ctrl.hosting.expiration) | wucDuration:'longDate':{prorata:true}"
+                        ></span>
+                        &nbsp;:
                         <span
-                            data-ng-if="!$ctrl.constructor.isProrataDuration(duration)"
-                            data-ng-bind-html="duration.duration | wucDuration: 'longDate'"
-                        ></span
-                        >&nbsp;:
-                        <span
-                            data-ng-bind-html="duration.prices | price: $ctrl.ovhSubsidiary"
+                            data-ng-bind-html="$ctrl.durations.order.prices | price: $ctrl.ovhSubsidiary"
                         ></span>
                     </oui-radio>
                 </oui-radio-group>
@@ -115,17 +106,17 @@
 
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_contracts' | translate }}"
-                data-valid="$ctrl.model.agree || !$ctrl.model.duration.contracts.length"
+                data-valid="$ctrl.model.agree || !$ctrl.durations.order.contracts.length"
             >
                 <ovh-contracts-summary
                     name="agreeContracts"
-                    data-ng-if="$ctrl.model.duration.contracts.length"
-                    data-items="$ctrl.model.duration.contracts"
+                    data-ng-if="$ctrl.durations.order.contracts.length"
+                    data-items="$ctrl.durations.order.contracts"
                     data-model="$ctrl.model.agree"
                 >
                 </ovh-contracts-summary>
                 <span
-                    data-ng-if="!$ctrl.model.duration.contracts.length"
+                    data-ng-if="!$ctrl.model.contracts.length"
                     data-translate="hosting_order_upgrade_no_contract"
                 ></span>
             </oui-step-form>
@@ -136,7 +127,7 @@
                 <table class="table table-condensed">
                     <tbody>
                         <tr
-                            data-ng-repeat="detail in $ctrl.model.duration.details track by $index"
+                            data-ng-repeat="detail in $ctrl.durations.order.details track by $index"
                         >
                             <th
                                 class="font-weight-normal"
@@ -159,7 +150,7 @@
                             ></th>
                             <td
                                 class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withoutTax.text"
+                                data-ng-bind="$ctrl.durations.order.prices.withoutTax.text"
                             ></td>
                         </tr>
                         <tr>
@@ -170,7 +161,7 @@
                             ></th>
                             <td
                                 class="font-weight-bold text-right"
-                                data-ng-bind="$ctrl.model.duration.prices.withTax.text"
+                                data-ng-bind="$ctrl.durations.order.prices.withTax.text"
                             ></td>
                         </tr>
                     </tfoot>
