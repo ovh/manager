@@ -9,15 +9,15 @@ import {
   TOOLTIP_POSITION,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { LINK_TYPE, LinkProps, LinkIconsProps } from './Link.props';
+import { LinkType, LinkProps, LinkIconsProps } from './Link.props';
 import { useAuthorizationIam } from '../../hooks';
 
 const LinkIcons: React.FC<LinkIconsProps> = ({ type, children }) => (
   <>
-    {type === LINK_TYPE.back && <Icon name="arrow-left" />}
+    {type === LinkType.back && <Icon name="arrow-left" />}
     {children}
-    {type === LINK_TYPE.external && <Icon name="external-link" />}
-    {type === LINK_TYPE.next && <Icon name="arrow-right" />}
+    {type === LinkType.external && <Icon name="external-link" />}
+    {type === LinkType.next && <Icon name="arrow-right" />}
   </>
 );
 
