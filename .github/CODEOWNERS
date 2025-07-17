@@ -15,8 +15,7 @@
 /playwright-helpers/ @ovh/team-manager-dev-reactjs
 
 # Manager-pci-common
-# TODO: Update owners to be TAPC & Core-stack groups instead of particular users.
-/packages/manager/modules/manager-pci-common/ @fredericvilcot @frenautvh
+/packages/manager/modules/manager-pci-common @ovh/dev-manager-pci-common-maintenance
 
 # Manager-components
 /packages/manager-components @ovh/team-manager-control-tower
