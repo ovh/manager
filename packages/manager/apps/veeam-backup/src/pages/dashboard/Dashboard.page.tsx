@@ -30,6 +30,7 @@ import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.c
 
 import { CHANGELOG_LINKS } from '@/constants';
 import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
+import { VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME } from '@/veeam-backup.config';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -83,7 +84,9 @@ export default function DashboardPage() {
                 },
                 {
                   id: 'vcdOrg',
-                  label: t('vcd_org'),
+                  label: t('vcd_org', {
+                    productName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+                  }),
                   value: (
                     <OrganizationCell
                       className="mt-4 tile__link--breakable"
