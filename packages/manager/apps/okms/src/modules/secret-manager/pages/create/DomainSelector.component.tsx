@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OKMS } from '@/types/okms.type';
 import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { RadioCard } from '@/common/components/RadioCard/RadioCard.component';
@@ -41,13 +42,13 @@ export const DomainSelector = ({
   onDomainSelection,
   selectedDomain,
 }: DomainSelectorProps) => {
-  const { t } = useTranslation('secret-manager/create');
+  const { t } = useTranslation(['secret-manager/create', NAMESPACES.ACTIONS]);
 
   if (domains.length === 0) {
     return (
       <OdsButton
         data-testid={ACTIVATE_DOMAIN_BTN_TEST_ID}
-        label={t('domain_selector_activate_domain')}
+        label={t('activate', { ns: NAMESPACES.ACTIONS })}
       />
     );
   }
