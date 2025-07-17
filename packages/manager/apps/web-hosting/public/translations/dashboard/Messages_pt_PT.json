@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Fazer apontar o campo {{t0}} do seu domínio {{t1}} para {{t2}}",
   "hosting_add_step3_insert_token_field": "Inserir um campo {{t0}} para o domínio {{t1}} com o valor {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "A adição de um ou mais domínios no seu alojamento partilhado foram efetuados com sucesso.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "Ocorreu um erro durante a adição do(s) domínio(s) ao seu alojamento partilhado."
+  "hosting_tab_DOMAINS_configuration_add_failure": "Ocorreu um erro durante a adição do(s) domínio(s) ao seu alojamento partilhado.",
+  "domain_tab_emails": "Emails e listas de discussão"
 }
