@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.8.2...@ovh-ux/manager-web-ongoing-operations-app@1.9.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **web:** replace some dedicated url by account url ([64ea41e](https://github.com/ovh/manager/commit/64ea41ef89846503cc4ffae2a908d6be2b3b4afa)), closes [#MANAGER-17815](https://github.com/ovh/manager/issues/MANAGER-17815)
+
+
+### Features
+
+* **web-ongoing-operations:** filters to change column visibility ([243bde0](https://github.com/ovh/manager/commit/243bde0fce05d1b62141d2c61132fc7d589be2e0)), closes [#MANAGER-18311](https://github.com/ovh/manager/issues/MANAGER-18311)
+* **web-ongoing-operations:** update test config ([854ab53](https://github.com/ovh/manager/commit/854ab5396edba8345b0cd2190d061a4d5da270a5)), closes [#MANAGER-18705](https://github.com/ovh/manager/issues/MANAGER-18705)
+
+
+
+
+
 ## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.8.1...@ovh-ux/manager-web-ongoing-operations-app@1.8.2) (2025-07-17)
 
 

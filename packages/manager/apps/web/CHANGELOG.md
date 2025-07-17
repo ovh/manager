@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.2...@ovh-ux/manager-web@19.19.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **web:** fix hosting multisite for ssl ([897a47c](https://github.com/ovh/manager/commit/897a47c268c857f5f9ce9718e71495658a6bc567)), closes [#INC0141499](https://github.com/ovh/manager/issues/INC0141499)
+* **web:** replace some dedicated url by account url ([64ea41e](https://github.com/ovh/manager/commit/64ea41ef89846503cc4ffae2a908d6be2b3b4afa)), closes [#MANAGER-17815](https://github.com/ovh/manager/issues/MANAGER-17815)
+
+
+### Features
+
+* **hosting:** change api for upgrade hosting plan ([6634e06](https://github.com/ovh/manager/commit/6634e069ec59e4799837890cb0290234ec7b0a3d)), closes [#MANAGER-18335](https://github.com/ovh/manager/issues/MANAGER-18335)
+
+
+
+
+
 ## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.1...@ovh-ux/manager-web@19.18.2) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.41...@ovh-ux/manager-emailpro-app@0.11.42) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
 ## [0.11.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.40...@ovh-ux/manager-emailpro-app@0.11.41) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro-app

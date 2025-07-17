@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.0...@ovh-ux/manager-vps@2.49.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **vps:** fix url for order secondary domain ([39e5c32](https://github.com/ovh/manager/commit/39e5c320348adc5bf518ea4788549ae29ca46805)), closes [#MANAGER-19068](https://github.com/ovh/manager/issues/MANAGER-19068)
+
+
+
+
+
 # [2.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.48.1...@ovh-ux/manager-vps@2.49.0) (2025-07-08)
 
 
