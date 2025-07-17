@@ -16,11 +16,15 @@ import {
   ORDER_DOMAIN,
   SSL,
   WEBSITE,
+  WORDPRESS_MANAGED,
   SAN_SSL,
 } from '@/utils/tracking.constants';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
+const WordpressManagedPage = React.lazy(() =>
+  import('@/pages/wordpressManaged/WordpressManaged.page'),
+);
 const OnboardingPage = React.lazy(() =>
   import('@/pages/onboarding/Onboarding.page'),
 );
@@ -66,6 +70,19 @@ export default (
       />
     }
   >
+    <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.wordpressManaged}
+      Component={WordpressManagedPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'wordpressManaged',
+        },
+      }}
+    />
     <Route
       id={WEBSITE}
       path={urls.websites}
