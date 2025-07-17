@@ -1,0 +1,59 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Datagrid, Notifications } from '@ovh-ux/manager-react-components';
+import { Button, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_MESSAGE_COLOR,
+} from '@ovhcloud/ods-components';
+import {
+  TDatagridDnsDetails,
+  TDomainResource,
+} from '@/domain/types/domainResource';
+import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDnsDatagridColumns';
+import { computeDnsDetails } from '@/domain/utils/utils';
+
+interface DomainTabDnsProps {
+  readonly domainResource: TDomainResource;
+}
+
+export default function DomainTabDns({ domainResource }: DomainTabDnsProps) {
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+
+  const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
+
+  const columns = useDomainDnsDatagridColumns();
+
+  return (
+    <div data-testid="datagrid">
+      {dnsDetails.find((dns) => dns.status === 'ERROR') && (
+        <Message
+          color={ODS_MESSAGE_COLOR.warning}
+          className="w-full mt-4"
+          dismissible={false}
+        >
+          <MessageIcon name="triangle-exclamation" />
+          <MessageBody>{t('domain_tab_DNS_error_warning')}</MessageBody>
+        </Message>
+      )}
+      <div className="flex gap-4 my-6">
+        {/* FIXME: page implemented by MANAGER-18978 */}
+        <Button size={ODS_BUTTON_SIZE.sm}>
+          {t('domain_dns_tab_button_modify_dns')}
+        </Button>
+        {/* FIXME: page implemented by MANAGER-19005 */}
+        <Button size={ODS_BUTTON_SIZE.sm} variant={ODS_BUTTON_VARIANT.outline}>
+          {t('domain_dns_tab_button_order_anycast')}
+        </Button>
+      </div>
+      <Datagrid
+        columns={columns}
+        items={dnsDetails}
+        totalItems={dnsDetails?.length ? dnsDetails.length : 0}
+      />
+    </div>
+  );
+}
