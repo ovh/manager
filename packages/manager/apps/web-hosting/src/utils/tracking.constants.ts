@@ -64,4 +64,8 @@ export const WEBSITE = 'website';
 // task
 export const TASK = 'task';
 
+// managed wordpress
+
+export const WORDPRESS_MANAGED = 'managed-wordpress';
+
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;
