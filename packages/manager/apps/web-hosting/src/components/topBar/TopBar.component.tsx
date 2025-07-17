@@ -84,7 +84,8 @@ export default function Topbar() {
               ?.filter(
                 (item) =>
                   item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
-                  item?.currentState?.hosting?.serviceName === serviceName,
+                  item?.currentState?.hosting?.serviceName === serviceName &&
+                  !item?.currentState?.isDefault,
               )
               ?.map((it) => (
                 <option
