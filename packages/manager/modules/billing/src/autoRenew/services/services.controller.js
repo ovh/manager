@@ -44,6 +44,7 @@ export default class ServicesCtrl {
     this.trackingPage = TRACKING_PAGE;
     this.trackingCategory = TRACKING_PAGE_CATEGORY;
     this.trackingActionsPrefix = TRACKING_ACTIONS_PREFIX;
+    this.isUSRegion = this.coreConfig.isRegion('US');
 
     this.ALIGNMENT_URL = this.coreConfig.isRegion('EU')
       ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR

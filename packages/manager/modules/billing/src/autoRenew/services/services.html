@@ -59,9 +59,11 @@
     >
         <oui-datagrid-topbar>
             <oui-action-menu
-                data-text="{{:: 'autorenew_service_action_title' | translate }}"
+                data-text="{{:: ($ctrl.isUSRegion ? 'autorenew_service_action_title' : 'autorenew_service_actions_title') | translate }}"
             >
-                <div data-ng-if="$ctrl.selectedServices.length > 0">
+                <div
+                    data-ng-if="$ctrl.selectedServices.length > 0 && !$ctrl.isUSRegion"
+                >
                     <oui-action-menu-item
                         data-href="{{ $ctrl.manualRenewUrl }}"
                         data-external
