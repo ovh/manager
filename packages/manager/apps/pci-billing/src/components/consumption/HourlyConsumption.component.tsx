@@ -16,6 +16,7 @@ import SnapshotList from './SnapshotList.component';
 import VolumeList from './VolumeList.component';
 import { ResourcesColumn } from './useResourceUsageListColumns';
 import AiEndpointList from './AiEndpointList.component';
+import DataPlatformUsageList from './DataPlatformUsageList.component';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -149,7 +150,7 @@ export default function HourlyConsumption({
       key: 'dataplatform',
       title: t('cpbc_hourly_data_platform_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption.dataplatform} />
+        <DataPlatformUsageList resourcesUsage={consumption.dataplatform} />
       ),
       condition: !isTrustedZone,
     },
