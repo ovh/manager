@@ -18,7 +18,7 @@ vitest.mock('../price-text', async () => {
     intervalUnitText = '',
   }: any) => <span>{`${price} ${label} ${intervalUnitText} `}</span>;
   return {
-    PRICE_TEXT_PRESET: {
+    PriceTextPreset: {
       WITH_TAX: 'with-tax',
     },
     PriceText,
