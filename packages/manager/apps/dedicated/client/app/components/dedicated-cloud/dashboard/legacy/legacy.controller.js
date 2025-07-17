@@ -17,7 +17,7 @@ export default class {
 
   openModalToEditDescription() {
     return this.editDetails({
-      contextTitle: 'dedicatedCloud_description',
+      contextTitle: 'dedicatedCloud_name',
       productId: this.productId,
       successText: this.$translate.instant(
         'dedicatedCloud_dashboard_nameModifying_success',
