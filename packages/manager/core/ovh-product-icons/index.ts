@@ -6,6 +6,7 @@ import OdsIconWrapper from './utils/OdsIconWrapper';
 import {
   HOSTING_SVG,
   OFFICE365_SVG,
+  WORDPRESS_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
   HEADSET_SVG,
@@ -41,6 +42,7 @@ import {
   VEEAM,
   VRACK,
   LineCommunicating,
+  Wordpress,
 } from './assets-icon-svg/icons';
 import OvhProductName from './utils/OvhProductNameEnum';
 
@@ -54,6 +56,7 @@ export {
   SvgIconWrapper,
   HOSTING_SVG,
   OFFICE365_SVG,
+  WORDPRESS_SVG,
   PROJECTCLOUD_SVG,
   HEADSET_SVG,
   TELECOMETHERNET_SVG,
@@ -74,6 +77,7 @@ export {
   Telephony,
   Hosting,
   Office365,
+  Wordpress,
   Exchange,
   ProjectCloud,
   Server,

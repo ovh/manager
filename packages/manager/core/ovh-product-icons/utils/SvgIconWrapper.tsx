@@ -22,8 +22,9 @@ interface IconComponents {
 
 const isValidIconComponent = (
   icon: unknown,
-): icon is FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }> =>
-  typeof icon === 'function';
+): icon is FunctionComponent<
+  React.SVGProps<SVGSVGElement> & { title?: string }
+> => typeof icon === 'function';
 
 const iconComponents: IconComponents = Object.entries({
   ...dedicatedIcons,
@@ -56,6 +57,7 @@ const SvgIconWrapper: React.FC<SvgIconProps> = ({
 
 const HOSTING_SVG = SvgIconWrapper({ name: OvhProductName.HOSTING });
 const OFFICE365_SVG = SvgIconWrapper({ name: OvhProductName.OFFICE365 });
+const WORDPRESS_SVG = SvgIconWrapper({ name: OvhProductName.WORDPRESS });
 const PROJECTCLOUD_SVG = SvgIconWrapper({ name: OvhProductName.PROJECTCLOUD });
 const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
 const ZIMBRA_SVG = SvgIconWrapper({
@@ -87,6 +89,7 @@ const LINECOMMUNICATING_SVG = SvgIconWrapper({
 export {
   HOSTING_SVG,
   OFFICE365_SVG,
+  WORDPRESS_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
   HEADSET_SVG,

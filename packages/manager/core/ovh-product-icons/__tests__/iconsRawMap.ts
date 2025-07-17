@@ -18,6 +18,7 @@ import Office365 from '../assets-icon-svg/office365.svg?raw';
 import Exchange from '../assets-icon-svg/exchange.svg?raw';
 import Zimbra from '../assets-icon-svg/zimbra.svg?raw';
 import Headset from '../assets-icon-svg/headset.svg?raw';
+import Wordpress from '../assets-icon-svg/wordpress.svg?raw';
 
 import BareMetalCloud from '../assets-icon-svg/container/bare _metal_cloud.svg?raw';
 import HostedPrivateCloud from '../assets-icon-svg/container/hosted_private_cloud.svg?raw';
@@ -70,6 +71,7 @@ export const iconRawMap = {
   [OvhProductName.EXCHANGE]: Exchange,
   [OvhProductName.ZIMBRA]: Zimbra,
   [OvhProductName.HEADSET]: Headset,
+  [OvhProductName.WORDPRESS]: Wordpress,
 
   [OvhProductName.BAREMETALCLOUD]: BareMetalCloud,
   [OvhProductName.HOSTEDPRIVATECLOUD]: HostedPrivateCloud,
