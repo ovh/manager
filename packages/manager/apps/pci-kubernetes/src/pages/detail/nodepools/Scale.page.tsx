@@ -19,6 +19,7 @@ import {
   AutoscalingState,
 } from '@/components/Autoscaling.component';
 import { useTrack } from '@/hooks/track';
+import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 
 export default function ScalePage(): JSX.Element {
   const { projectId, kubeId: clusterId } = useParams();
@@ -128,8 +129,10 @@ export default function ScalePage(): JSX.Element {
           updateSize({
             autoscale: state.isAutoscale,
             desiredNodes: state.quantity.desired,
-            maxNodes: state.quantity.max,
-            minNodes: state.quantity.min,
+            maxNodes: state.isAutoscale
+              ? state.quantity.max
+              : ANTI_AFFINITY_MAX_NODES,
+            minNodes: state.isAutoscale ? state.quantity.min : 0,
           });
         }}
         {...(isScaling ? { disabled: true } : {})}
