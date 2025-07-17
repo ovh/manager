@@ -8,10 +8,5 @@
   "zimbra_account_order_commitment_month": "mois",
   "zimbra_account_order_commitment_months": "mois",
   "zimbra_account_order_commitment_available_soon": "Disponible prochainement",
-  "zimbra_account_order_cta_confirm": "Payer",
-  "zimbra_account_order_cta_done": "Retour",
-  "zimbra_account_order_initiated_title": "Commande de vos comptes Zimbra initiée !",
-  "zimbra_account_order_initiated_subtitle": "Si vous n'avez pas pu finaliser votre commande, merci de la compléter en cliquant sur le lien suivant :",
-  "zimbra_account_order_initiated_link_label": "Lien vers votre commande",
-  "zimbra_account_order_initiated_info": "Nous vous informerons de la disponibilité de vos comptes par e-mail."
+  "zimbra_account_service_name": "vos comptes Zimbra"
 }

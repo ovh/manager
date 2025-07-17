@@ -14,5 +14,6 @@
   "zimbra_account_order_initiated_title": "¡Se ha iniciado el pedido de sus cuentas Zimbra!",
   "zimbra_account_order_initiated_subtitle": "Si no ha podido finalizar el pedido, puede completarlo haciendo clic en el siguiente enlace:",
   "zimbra_account_order_initiated_info": "Le informaremos de la disponibilidad de sus cuentas por correo electrónico.",
-  "zimbra_account_order_initiated_link_label": "Enlace del pedido"
+  "zimbra_account_order_initiated_link_label": "Enlace del pedido",
+  "zimbra_account_service_name": "sus cuentas Zimbra"
 }
