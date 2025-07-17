@@ -8,14 +8,24 @@ import {
   OdsTable,
   OdsBadge,
 } from '@ovhcloud/ods-components/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import { BaseLayout } from './base.component';
 import { GuideButton, GuideItem } from '../../navigation';
 import { Notifications } from '../../notifications/Notifications.component';
+import { queryClient } from '../../../utils/test.provider';
+
+const mocks = vitest.hoisted(() => ({
+  useAuthorizationIam: vitest.fn(),
+}));
 
 // Mock react-router-dom's useLocation
 vitest.mock('react-router-dom', () => ({
   useLocation: vitest.fn(),
+}));
+
+vitest.mock('../../hooks/iam/useOvhIam', () => ({
+  useAuthorizationIam: mocks.useAuthorizationIam,
 }));
 
 const listingTmpltProps = {
@@ -127,11 +137,13 @@ describe('BaseLayout component', () => {
     const spy = vitest.fn();
 
     render(
-      <BaseLayout
-        {...listingTmpltProps}
-        backLinkLabel={backLinkLabel}
-        onClickReturn={spy}
-      />,
+      <QueryClientProvider client={queryClient}>
+        <BaseLayout
+          {...listingTmpltProps}
+          backLinkLabel={backLinkLabel}
+          onClickReturn={spy}
+        />
+      </QueryClientProvider>,
     );
     expect(screen.getByTestId('manager-back-link')).toBeInTheDocument();
     expect(screen.getByTestId('manager-back-link')).toBeVisible();
