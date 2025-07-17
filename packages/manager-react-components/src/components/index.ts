@@ -31,7 +31,7 @@ export * from './filters';
 export * from './ManagerButton/ManagerButton';
 export * from './ManagerText/ManagerText';
 
-export * from './ServiceStateBadge/ServiceStateBadge.component';
+export * from './service-state-badge';
 
 export * from './tile';
 export * from './region/region.component';
