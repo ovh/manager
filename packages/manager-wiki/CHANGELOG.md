@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.4.0...@ovh-ux/manager-wiki@0.5.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **manager-wiki:** update price stories ([c3bb325](https://github.com/ovh/manager/commit/c3bb3251b4e315e9b8c5d90bb710e80704830a41)), closes [#MANAGER-19708](https://github.com/ovh/manager/issues/MANAGER-19708)
+
+
+### Features
+
+* **manager-react-component:** add badge within the header of base layout ([d5d113c](https://github.com/ovh/manager/commit/d5d113c577ee599af96ba2a8e426411a494fa31d)), closes [#MANAGER-18077](https://github.com/ovh/manager/issues/MANAGER-18077)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.3.0...@ovh-ux/manager-wiki@0.4.0) (2025-07-10)
 
 
