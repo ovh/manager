@@ -10,7 +10,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   DashboardTile,
-  NotificationType,
   BaseLayout,
   GuideButton,
   GuideItem,
@@ -19,7 +18,8 @@ import {
   ChangelogLinks,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import OdsNotification from '../../../../../manager-react-components/src/components/notifications/ods-notification';
+import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
+
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 const guideItems: GuideItem[] = [
@@ -113,13 +113,7 @@ export const listingTemplateProps = {
   description:
     'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <OdsNotification
-      notification={{
-        uid: 87879789,
-        content: 'Votre service a été créé avec succès',
-        type: NotificationType.Success,
-      }}
-    />
+    <Message color={MESSAGE_COLOR.success}>Votre service a été créé</Message>
   ),
   children: <Tabs />,
   subtitle: '',
@@ -152,13 +146,9 @@ const dashboardTemplateProps = {
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <OdsNotification
-      notification={{
-        uid: 87879789,
-        content: 'Votre service a été créé avec succès',
-        type: NotificationType.Success,
-      }}
-    />
+    <Message color={MESSAGE_COLOR.success}>
+      <p>Votre service a été créé avec succès</p>
+    </Message>
   ),
   tabs: (
     <OdsTabs>
