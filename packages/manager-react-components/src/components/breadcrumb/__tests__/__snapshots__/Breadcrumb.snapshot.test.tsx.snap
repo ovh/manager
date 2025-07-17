@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`breadcrumb component snapshot > should hide root label when hideRootLabel is true 1`] = `
+<DocumentFragment>
+  <nav
+    class=""
+  >
+    <ol
+      class="_breadcrumb__list_1jn0o_2"
+    />
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`breadcrumb component snapshot > should render 3 breadcrumb items when hideRootLabel is false 1`] = `
+<DocumentFragment>
+  <nav
+    class=""
+  >
+    <ol
+      class="_breadcrumb__list_1jn0o_2"
+    >
+      <li
+        class="_breadcrumb-item_vrq54_2"
+      >
+        <span
+          aria-current="page"
+          href="/"
+        >
+          vRack services
+        </span>
+      </li>
+    </ol>
+  </nav>
+</DocumentFragment>
+`;
