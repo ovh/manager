@@ -8,10 +8,14 @@ import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import {
+  regionWithMultipleOkms,
+  regionWithoutOkms,
+} from '@/mocks/kms/okms.mock';
 
-const mockRegion = 'eu-west-rbx';
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDomains(mockRegion);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDomains(
+  regionWithMultipleOkms.region,
+);
 
 const checkPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
@@ -28,7 +32,7 @@ const checkPageToBeDisplayed = async (container: HTMLElement) => {
   // Check the first okms link on the datagrid
   const okmsNameLink = await getOdsButtonByLabel({
     container,
-    label: okmsMock[0].iam.displayName,
+    label: regionWithMultipleOkms.okmsMock[0].iam.displayName,
     isLink: true,
   });
   expect(okmsNameLink).toBeInTheDocument();
@@ -89,7 +93,7 @@ describe('Secret domains listing test suite', () => {
   describe('should redirect to the default region page', async () => {
     it('when the kms list is empty', async () => {
       const { container } = await renderTestApp(
-        SECRET_MANAGER_ROUTES_URLS.secretDomains('ca-east-bhs'),
+        SECRET_MANAGER_ROUTES_URLS.secretDomains(regionWithoutOkms.region),
       );
 
       // manager redirects to the root page
