@@ -18,7 +18,11 @@
     "./src/components/tile/tile-item/tile-item-description/*",
     "./src/components/tile/tile-item/tile-item-root/*",
     "./src/components/tile/tile-item/tile-item-term/*",
-    "./src/components/tile/tile-root/*"
+    "./src/components/tile/tile-root/*",
+    "./src/components/service-state-badge/*",
+    "./src/components/badge/*",
+    "./src/hooks/services/services.type.ts",
+    "./src/enumTypes/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
@@ -26,7 +30,6 @@
     "./src/components/**/__tests__/*",
     "./src/utils/*",
     "./src/tailwind/*",
-    "./src/__mocks__/*",
-    "./src/enumTypes/*"
+    "./src/__mocks__/*"
   ]
 }
