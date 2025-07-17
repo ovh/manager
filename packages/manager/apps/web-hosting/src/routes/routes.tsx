@@ -46,6 +46,19 @@ export default (
     }
   >
     <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.wordpressManaged}
+      Component={WordpressManagedPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'wordpressManaged',
+        },
+      }}
+    />
+    <Route
       id={WEBSITE}
       path={urls.websites}
       Component={WebsitesPage}
