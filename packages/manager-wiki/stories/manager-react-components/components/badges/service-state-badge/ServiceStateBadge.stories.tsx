@@ -33,8 +33,15 @@ export const ServiceStateBadgeUnknown = () => (
   <ServiceStateBadge state={('unknown' as unknown) as ResourceStatus} />
 );
 
+export const LoadingBadge = () => (
+  <ServiceStateBadge
+    isLoading
+    state={('unknown' as unknown) as ResourceStatus}
+  />
+);
+
 const meta: Meta<typeof ServiceStateBadge> = {
-  title: 'Manager React Components/Components/ServiceStateBadge',
+  title: 'Manager React Components/Components/Badges/ServiceStateBadge',
   component: ServiceStateBadge,
   argTypes: {
     state: {
