@@ -2,6 +2,7 @@ enum OvhProductName {
   HOSTING = 'Hosting',
   OFFICE365 = 'Office365',
   EXCHANGE = 'Exchange',
+  WORDPRESS = 'Wordpress',
   TELECOMETHERNET = 'TelecomEthernet',
   HEADSET = 'Headset',
   TELEPHONY = 'Telephony',

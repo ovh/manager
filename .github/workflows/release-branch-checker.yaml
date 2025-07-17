@@ -12,6 +12,6 @@ jobs:
         if: github.base_ref == 'master'
         with:
           script: |
-            if(!context.payload.pull_request.head.ref.startsWith('release/')) {
-              throw new Error(`Only "release/**" branches can be merged to "master".`);
+            if(!context.payload.pull_request.head.ref.startsWith('release/') && context.payload.pull_request.head.ref !== 'develop' ) {
+              throw new Error(`Only "release/**" or "develop" branches can be merged to "master".`);
             }
