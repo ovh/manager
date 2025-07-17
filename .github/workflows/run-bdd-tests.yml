@@ -1,4 +1,4 @@
-name: Run Jest tests
+name: Run tests
 on: [push]
 
 jobs:
@@ -20,19 +20,17 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install repository
         run: yarn install --frozen-lockfile
-      - name: Build BDD covered packages and dependencies
+      - name: Build covered packages and dependencies
         run: |
           yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
           yarn exec turbo -- run build --filter="./packages/manager-react-components"
           yarn exec turbo -- run build --filter="./packages/manager/modules/order"
           yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
+          yarn exec turbo -- run build --filter="./packages/manager/modules/common-translations"
           yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
           yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
           yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
           yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
-      # This task is for running the jest tests outside microApps
-      - name: Run tests Jest
-        run: yarn test:jest
       - name: Run tests on changed packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,7 +39,7 @@ jobs:
           BRANCH=$(git branch --show-current)
           echo "My branch is $BRANCH"
           BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
-          
+
           if [[ -z "$BASE_BRANCH" ]]; then
             export BASE_BRANCH="master"
             export CURRENT_BRANCH=${BRANCH}

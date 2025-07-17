@@ -42,7 +42,9 @@ export const TerminateLicensePage = () => {
     onError: () => {
       closeModal();
       addError(
-        t(`${NAMESPACES.ERROR}:error_message`, { message: error?.message || 'Unknown error' }),
+        t(`${NAMESPACES.ERROR}:error_message`, {
+          message: error?.message || 'Unknown error',
+        }),
       );
     },
   });

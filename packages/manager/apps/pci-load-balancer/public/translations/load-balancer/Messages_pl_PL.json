@@ -33,5 +33,5 @@
   "octavia_load_balancer_provisioning_status_updating": "W trakcie aktualizacji",
   "octavia_load_balancer_provisioning_status_error": "Błąd",
   "octavia_load_balancer_delete_success": "Load Balancer został usunięty",
-  "octavia_load_balancer_quota_creation_error": "W wybranej lokalizacji wyczerpał się limit. Aby kontynuować, <Link>Zwiększ limity</Link>"
+  "octavia_load_balancer_quota_creation_error": "W wybranej lokalizacji wyczerpał się limit. Aby kontynuować, <Link>zwiększ limity</Link>"
 }
