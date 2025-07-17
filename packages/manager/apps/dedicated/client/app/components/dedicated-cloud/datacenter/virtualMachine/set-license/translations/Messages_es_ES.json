@@ -3,7 +3,7 @@
   "set_license_modal_confirm": "Activar",
   "set_license_modal_cancel": "Cancelar",
   "set_license_error_api": "Se ha producido un error al activar la licencia",
-  "set_license_success_api": "Activando la licencia...",
+  "set_license_success_api": "Activando la licencia... Esta operación puede tardar unos instantes.",
   "set_license_modal_select_placeholder": "Seleccionar",
   "set_license_modal_select_label": "Seleccionar una licencia"
 }
