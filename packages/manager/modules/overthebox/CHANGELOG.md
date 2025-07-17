@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.24.3...@ovh-ux/manager-overthebox@6.24.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* **otb-ipv6:** improving the error message display on IPv6 activation failure ([df59564](https://github.com/ovh/manager/commit/df59564f55f61cc543d32f639215474855a1bc54)), closes [#CONN-5834](https://github.com/ovh/manager/issues/CONN-5834)
+
+
+
+
+
 ## [6.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.24.2...@ovh-ux/manager-overthebox@6.24.3) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox
