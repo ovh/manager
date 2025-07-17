@@ -1,28 +1,21 @@
 import { Meta } from '@storybook/react';
-import {
-  BADGE_COLOR,
-  BADGE_SIZE,
-  Icon,
-  ICON_NAME
-} from '@ovhcloud/ods-react';
+import { BADGE_COLOR, BADGE_SIZE, Icon, ICON_NAME } from '@ovhcloud/ods-react';
 import { Badge, BadgeProps } from '@ovh-ux/manager-react-components';
 
 export const Default = {
   args: {
     children: 'Active',
     color: BADGE_COLOR.information,
-    size: BADGE_SIZE.md
+    size: BADGE_SIZE.md,
   },
 };
 
-function renderComponent({children, ...args}) {
-  return (
-    <Badge {...args}>{children}</Badge>
-  );
+function renderComponent({ children, ...args }) {
+  return <Badge {...args}>{children}</Badge>;
 }
 
 const simpleBadge: Meta<BadgeProps> = {
-  title: 'Manager React Components/Components/Badge',
+  title: 'Manager React Components/Components/Badges/Badge',
   render: renderComponent,
   parameters: {
     docs: {
@@ -38,7 +31,11 @@ export const BadgeWithIcon: Meta<BadgeProps> = {
   title: 'Manager React Components/Components/Badge',
   args: {
     ...Default.args,
-    children: <><Icon name={ICON_NAME.circleInfo}></Icon> Active</>
+    children: (
+      <>
+        <Icon name={ICON_NAME.circleInfo}></Icon> Active
+      </>
+    ),
   },
   render: renderComponent,
   parameters: {
@@ -56,7 +53,11 @@ export const BadgeWithLoader: Meta<BadgeProps> = {
   args: {
     isLoading: true,
     ...Default.args,
-    children: <><Icon name={ICON_NAME.circleInfo}></Icon> Active</>
+    children: (
+      <>
+        <Icon name={ICON_NAME.circleInfo}></Icon> Active
+      </>
+    ),
   },
   render: renderComponent,
   parameters: {
