@@ -7,7 +7,7 @@ import {
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Link, LINK_TYPE } from '../../../Link';
+import { Link, LinkType } from '../../../Link';
 import '../translations/translation';
 
 export interface ChangelogLinks {
@@ -54,8 +54,8 @@ export const ChangelogButton: React.FC<ChangelogButtonProps> = ({
             <Link
               href={value}
               target="_blank"
-              type={LINK_TYPE.external}
-              rel={LINK_TYPE.external}
+              type={LinkType.external}
+              rel={LinkType.external}
               label={t(`mrc_changelog_${key}`)}
               onClick={() =>
                 trackClick({
