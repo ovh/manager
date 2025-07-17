@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should display manager state with the good color > should display loading Badge 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'active' badge for 'success' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'deleted' badge for 'critical' 2`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'suspended' badge for 'warning' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'toActivate' badge for 'information' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'toDelete' badge for 'information' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'toSuspend' badge for 'information' 1`] = `[Function]`;
+
+exports[`should display manager state with the good color > should display manager 'unknown' badge for 'information' 1`] = `[Function]`;

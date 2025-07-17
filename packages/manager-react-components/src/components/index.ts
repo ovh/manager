@@ -29,7 +29,7 @@ export * from './ManagerButton/ManagerButton';
 export * from './ManagerLink/ManagerLink.component';
 export * from './ManagerText/ManagerText';
 
-export * from './ServiceStateBadge/ServiceStateBadge.component';
+export * from './service-state-badge';
 
 export * from './pci-maintenance-banner';
 export * from './region/region.component';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { vitest } from 'vitest';
-import { ResourceStatus } from '../../hooks';
-import { render } from '../../utils/test.provider';
-import { ServiceStateBadge } from './ServiceStateBadge.component';
+import { render } from '@testing-library/react';
+import { ResourceStatus } from '../../../hooks';
+import { ServiceStateBadge } from '../ServiceStateBadge.component';
 
 vitest.mock('../../hooks/iam');
 
@@ -25,6 +25,31 @@ describe('should display manager state with the good color', () => {
       color: 'critical',
     } as const,
     {
+      state: 'deleted',
+      label: 'service_state_deleted',
+      color: 'critical',
+    } as const,
+    {
+      state: 'suspended',
+      label: 'service_state_suspended',
+      color: 'warning',
+    } as const,
+    {
+      state: 'toActivate',
+      label: 'service_state_toActivate',
+      color: 'information',
+    } as const,
+    {
+      state: 'toDelete',
+      label: 'service_state_toDelete',
+      color: 'information',
+    } as const,
+    {
+      state: 'toSuspend',
+      label: 'service_state_toSuspend',
+      color: 'information',
+    } as const,
+    {
       state: 'unknown' as ResourceStatus,
       label: 'unknown',
       color: 'information',
@@ -35,8 +60,8 @@ describe('should display manager state with the good color', () => {
       const container = renderComponent({ state });
       const badge = container.getByTestId('badge');
       expect(badge).toBeDefined();
-      expect(badge.getAttribute('label')).toBe(label);
-      expect(badge.getAttribute('color')).toBe(color);
+      expect(badge.textContent).toBe(label);
+      expect(badge.className.includes(color)).toBe(true);
     },
   );
 });
