@@ -1,7 +1,7 @@
 import React from 'react';
 import { Headers, HeadersProps } from './headers';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { LINK_TYPE, Link } from '../../Link';
+import { LinkType, Link } from '../../Link';
 import { Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
 
@@ -43,7 +43,7 @@ export const BaseLayout = ({
         <Link
           data-testid="manager-back-link"
           onClick={onClickReturn}
-          type={LINK_TYPE.back}
+          type={LinkType.back}
           target="_self"
           href={hrefPrevious}
         >
