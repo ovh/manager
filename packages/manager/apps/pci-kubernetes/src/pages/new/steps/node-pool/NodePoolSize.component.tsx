@@ -14,12 +14,14 @@ export interface NodeSizeStepProps {
   isMonthlyBilled: boolean;
   antiAffinity: boolean;
   onScaleChange: (scaling: AutoscalingState) => void;
+  scaling: AutoscalingState;
 }
 
 export default function NodePoolSize({
   onScaleChange,
   isMonthlyBilled,
   antiAffinity,
+  scaling,
 }: Readonly<NodeSizeStepProps>) {
   const { t } = useTranslation('node-pool');
   return (
@@ -34,7 +36,7 @@ export default function NodePoolSize({
         {t('kube_common_node_pool_size_title')}
       </OsdsText>
       <Autoscaling
-        autoscale={false}
+        initialScaling={scaling}
         isAntiAffinity={antiAffinity}
         onChange={onScaleChange}
         isMonthlyBilling={isMonthlyBilled}

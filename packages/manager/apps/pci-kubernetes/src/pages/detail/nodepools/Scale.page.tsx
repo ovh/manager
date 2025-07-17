@@ -19,6 +19,7 @@ import {
   AutoscalingState,
 } from '@/components/Autoscaling.component';
 import { useTrack } from '@/hooks/track';
+import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 
 export default function ScalePage(): JSX.Element {
   const { projectId, kubeId: clusterId } = useParams();
@@ -94,13 +95,15 @@ export default function ScalePage(): JSX.Element {
         {!isPoolsPending && !isScaling ? (
           <Autoscaling
             initialScaling={{
-              min: pool?.minNodes,
-              max: pool?.maxNodes,
-              desired: pool?.desiredNodes,
+              quantity: {
+                min: pool?.minNodes ?? 0,
+                max: pool?.maxNodes ?? NODE_RANGE.MAX,
+                desired: pool?.desiredNodes ?? 3,
+              },
+              isAutoscale: !!pool?.autoscale,
             }}
             isMonthlyBilling={pool?.monthlyBilled}
             isAntiAffinity={pool?.antiAffinity}
-            autoscale={pool?.autoscale}
             onChange={(s) => setState(s)}
           />
         ) : (
@@ -128,8 +131,10 @@ export default function ScalePage(): JSX.Element {
           updateSize({
             autoscale: state.isAutoscale,
             desiredNodes: state.quantity.desired,
-            maxNodes: state.quantity.max,
-            minNodes: state.quantity.min,
+            maxNodes: state.isAutoscale
+              ? state.quantity.max
+              : ANTI_AFFINITY_MAX_NODES,
+            minNodes: state.isAutoscale ? state.quantity.min : 0,
           });
         }}
         {...(isScaling ? { disabled: true } : {})}

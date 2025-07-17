@@ -36,7 +36,7 @@ import { createNodePool, TCreateNodePoolParam } from '@/api/data/node-pools';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
-import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
+import { NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
 import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
@@ -48,6 +48,7 @@ import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from '@/hooks/useMergedFlavorById';
+import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation([
@@ -168,12 +169,7 @@ export default function NewPage(): JSX.Element {
         },
       }));
     }
-  }, [
-    store.flavor,
-    store.isMonthlyBilling,
-    store.autoScaling,
-    isCatalogPending,
-  ]);
+  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending]);
 
   const create = () => {
     trackClick(`details::nodepools::add::confirm`);
@@ -192,16 +188,13 @@ export default function NewPage(): JSX.Element {
       antiAffinity: store.antiAffinity,
       monthlyBilled: store.isMonthlyBilling,
       autoscale: Boolean(store.autoScaling?.isAutoscale),
-      minNodes: store.autoScaling?.quantity.min ?? 0,
+      minNodes: store.scaling.isAutoscale ? store.scaling.quantity.min : 0,
       desiredNodes: store.autoScaling?.quantity.desired ?? 0,
-      maxNodes: store.antiAffinity
-        ? Math.min(
-            ANTI_AFFINITY_MAX_NODES,
-            store.autoScaling?.quantity.max ?? 0,
-          )
-        : store.autoScaling?.quantity.max ?? 0,
+      maxNodes: store.scaling.isAutoscale
+        ? store.scaling.quantity.max
+        : NODE_RANGE.MAX,
     };
-    // test
+
     createNodePool(projectId, clusterId, param)
       .then(() => {
         addSuccess(
@@ -246,11 +239,6 @@ export default function NewPage(): JSX.Element {
         }));
       });
   };
-  const hasMax5NodesAntiAffinity =
-    !store.antiAffinity ||
-    (store.antiAffinity &&
-      store.autoScaling &&
-      store.autoScaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
 
   const handleValueChange = (e: OdsInputValueChangeEvent) => {
     if (e.detail.value) store.set.name(e.detail.value);
@@ -396,26 +384,17 @@ export default function NewPage(): JSX.Element {
         order={3}
         next={{
           action: () => {
-            if (store.autoScaling) {
+            if (store.scaling) {
               store.check(StepsEnum.SIZE);
               store.lock(StepsEnum.SIZE);
               store.open(StepsEnum.BILLING);
             }
           },
           label: t('common_stepper_next_button_label'),
-          isDisabled:
-            !hasMax5NodesAntiAffinity ||
-            !store.autoScaling ||
-            (!store.autoScaling.isAutoscale &&
-              store.autoScaling.quantity.desired > NODE_RANGE.MAX) ||
-            (store.autoScaling.isAutoscale &&
-              (store.autoScaling.quantity.min > NODE_RANGE.MAX ||
-                store.autoScaling.quantity.max > NODE_RANGE.MAX ||
-                store.autoScaling.quantity.min >=
-                  store.autoScaling.quantity.max)) ||
-            (regionInformations?.type &&
-              isMultiDeploymentZones(regionInformations.type) &&
-              !store.selectedAvailabilityZone),
+          isDisabled: !!(
+            regionInformations &&
+            hasInvalidScalingOrAntiAffinityConfig(regionInformations, store)
+          ),
         }}
         edit={{
           action: () => {
@@ -437,8 +416,9 @@ export default function NewPage(): JSX.Element {
           <div />
         )}
         <NodePoolSize
+          scaling={store.scaling}
           isMonthlyBilled={store.isMonthlyBilling}
-          onScaleChange={(auto) => store.set.autoScaling(auto)}
+          onScaleChange={(auto) => store.set.scaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
         />
         <>

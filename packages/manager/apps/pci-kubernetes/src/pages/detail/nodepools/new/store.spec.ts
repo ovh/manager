@@ -20,7 +20,7 @@ describe('NewPoolStore', () => {
     });
     it('should set autoScaling', () => {
       const { result } = renderHook(() => useNewPoolStore());
-      act(() => result.current.set.autoScaling(undefined));
+      act(() => result.current.set.scaling(undefined));
       expect(result.current.autoScaling).toBe(undefined);
     });
     it('should set flavor', () => {
