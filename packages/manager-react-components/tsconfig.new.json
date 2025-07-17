@@ -7,7 +7,10 @@
     // Add you components migrated here
     "./src/components/Link/Link.props.ts",
     // "./src/components/Link/Link.component.tsx",
-    "./src/components/Breadcrumb/*"
+    "./src/components/Breadcrumb/*",
+    "./src/components/container/Tabs.Component.tsx",
+    "./src/components/input/tiles/TilesInput.component.tsx",
+    "./src/components/input/tiles/components/SimpleTilesInput.component.tsx"
   ],
   "exclude": [
     "./src/hooks/*",

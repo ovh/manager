@@ -4,6 +4,7 @@ export * from './breadcrumb';
 
 export * from './clipboard';
 export * from './container';
+export * from './tabs';
 export * from './input';
 
 export * from './content';
