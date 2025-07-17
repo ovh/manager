@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { PriceText } from '../PriceText.component';
-import { PRICE_TEXT_PRESET } from '../PriceText.props';
+import { PriceTextPreset } from '../PriceText.props';
 
 describe('PriceText Component', () => {
   const defaultProps = {
@@ -20,7 +20,7 @@ describe('PriceText Component', () => {
   });
 
   it('should render price with WITH_TAX preset', () => {
-    render(<PriceText {...defaultProps} preset={PRICE_TEXT_PRESET.WITH_TAX} />);
+    render(<PriceText {...defaultProps} preset={PriceTextPreset.WITH_TAX} />);
     const span = screen.getByText('€9.99').parentElement;
 
     expect(screen.getByText('(', { exact: false })).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('PriceText Component', () => {
       <PriceText
         {...defaultProps}
         label="incl. tax"
-        preset={PRICE_TEXT_PRESET.WITH_TAX}
+        preset={PriceTextPreset.WITH_TAX}
       />,
     );
     expect(screen.getByText('incl. tax')).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe('PriceText Component', () => {
       <PriceText
         {...defaultProps}
         intervalUnitText="/mo"
-        preset={PRICE_TEXT_PRESET.WITH_TAX}
+        preset={PriceTextPreset.WITH_TAX}
       />,
     );
     expect(screen.queryByText('/mo')).not.toBeInTheDocument();
@@ -80,7 +80,7 @@ describe('PriceText Component', () => {
     render(
       <PriceText
         {...defaultProps}
-        preset={PRICE_TEXT_PRESET.WITH_TAX}
+        preset={PriceTextPreset.WITH_TAX}
         label="incl. VAT"
         intervalUnitText="/mo"
       />,

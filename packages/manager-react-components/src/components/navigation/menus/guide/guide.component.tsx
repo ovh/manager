@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsPopover, OdsButton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Link, LinkProps, LINK_TYPE } from '../../../Link';
+import { Link, LinkProps, LinkType } from '../../../Link';
 import '../translations/translation';
 
 export interface GuideItem extends Omit<LinkProps, 'id'> {
@@ -56,7 +56,7 @@ export const GuideButton: React.FC<GuideButtonProps> = ({
           {items.map(({ id, onClick, ...rest }) => (
             <Link
               key={id}
-              type={LINK_TYPE.external}
+              type={LinkType.external}
               onClick={onClick}
               {...rest}
             />
