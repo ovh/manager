@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.3...@ovh-ux/manager-email-domain@1.11.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* **web.mxplan:** remove the check availability on shared account ([df1e1f0](https://github.com/ovh/manager/commit/df1e1f07ab1fa0ef9066c9c37f8a0d8afc403818)), closes [#MANAGER-18781](https://github.com/ovh/manager/issues/MANAGER-18781)
+
+
+
+
+
 ## [1.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.2...@ovh-ux/manager-email-domain@1.11.3) (2025-04-10)
 
 
