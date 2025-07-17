@@ -47,6 +47,7 @@ export default function ScalePage(): JSX.Element {
     poolId,
   ]);
 
+  // test
   useEffect(() => {
     if (pool) {
       setState({
@@ -66,6 +67,7 @@ export default function ScalePage(): JSX.Element {
         tScale('kube_node_pool_autoscaling_scale_error', {
           message: cause?.response?.data?.message,
         }),
+        true,
       );
       goBack();
     },
@@ -74,7 +76,7 @@ export default function ScalePage(): JSX.Element {
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
-      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'));
+      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'), true);
       goBack();
     },
     projectId,
