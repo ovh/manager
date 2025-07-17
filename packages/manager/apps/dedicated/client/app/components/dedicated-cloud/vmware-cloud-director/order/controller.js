@@ -1,4 +1,5 @@
 import { VCD_PLAN_CODE } from '../../dedicatedCloud.constant';
+import { VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME } from '../vmware-cloud-director.constants';
 
 export default class VdcOrderController {
   /* @ngInject */
@@ -16,6 +17,7 @@ export default class VdcOrderController {
     this.DedicatedCloud = DedicatedCloud;
     this.dedicatedCloudDataCenterHostService = dedicatedCloudDataCenterHostService;
     this.expressOrderURL = RedirectionService.getURL('expressOrder');
+    this.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME = VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME;
   }
 
   $onInit() {
@@ -54,6 +56,7 @@ export default class VdcOrderController {
         this.close(
           this.$translate.instant(
             'dedicatedCloud_vmware_cloud_director_order_error',
+            { productName: VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME },
           ),
           'error',
         );
