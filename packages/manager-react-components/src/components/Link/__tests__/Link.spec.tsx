@@ -2,7 +2,7 @@ import AxiosMockAdapter from 'axios-mock-adapter';
 import { screen, waitFor } from '@testing-library/react';
 import apiClient from '@ovh-ux/manager-core-api';
 import { Link } from '../Link.component';
-import { LINK_TYPE } from '../Link.props';
+import { LinkType } from '../Link.props';
 import { render } from '../../../utils/test.provider';
 
 const PROPS_LINK = {
@@ -26,7 +26,7 @@ describe('Link component', () => {
     const props = {
       children: 'Back to the list',
       href: 'https://www.example.com',
-      type: LINK_TYPE.back,
+      type: LinkType.back,
     };
     render(<Link {...props} />);
     const linkElement = screen.getByText('Back to the list');
@@ -43,7 +43,7 @@ describe('Link component', () => {
     const props = {
       children: 'Next Page',
       href: 'https://www.example.com',
-      type: LINK_TYPE.next,
+      type: LinkType.next,
     };
     render(<Link {...props} />);
     const linkElement = screen.getByText('Next Page');
@@ -61,7 +61,7 @@ describe('Link component', () => {
       href: 'https://www.ovhcloud.com/',
       target: '_blank',
       children: 'External Page',
-      type: LINK_TYPE.external,
+      type: LinkType.external,
     };
 
     render(<Link {...props} />);
