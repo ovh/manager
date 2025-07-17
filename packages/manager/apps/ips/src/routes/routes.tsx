@@ -123,6 +123,21 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                id: subRoutes.deleteVirtualMac,
+                path: urls.deleteVirtualMac,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/deleteVirtualMac/deleteVirtualMac.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-delete-virtual-mac',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {

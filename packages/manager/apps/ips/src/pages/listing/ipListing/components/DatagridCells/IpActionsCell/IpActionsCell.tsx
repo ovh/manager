@@ -83,9 +83,10 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const { shell } = useContext(ShellContext);
   const [vrackPage, setVrackPage] = useState('');
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
+  const [isVmacAlreadyExist, setIsVmacAlreadyExist] = React.useState(false);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { ipDetails, isLoading } = useGetIpdetails({ ip, enabled: !isGroup });
   const navigate = useNavigate();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const isAdmin = useContext(ShellContext)
@@ -123,7 +124,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
 
-  const isVmacAlreadyExist = vmacsWithIp.length > 0;
+  React.useEffect(() => {
+    const matchingVmacs =
+      vmacsWithIp?.filter((vmac) => vmac.ip?.includes(ipFormatter(ip).ip)) ??
+      [];
+    setIsVmacAlreadyExist(!!matchingVmacs.length);
+  }, [vmacsWithIp]);
 
   useEffect(() => {
     if (!serviceName) return;
@@ -206,9 +212,17 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
+      isVmacAlreadyExist && {
+        id: 3,
+        label: t('listingActionDeleteVirtualMac'),
+        onClick: () =>
+          navigate(urls.deleteVirtualMac.replace(urlDynamicParts.id, id)),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
       Boolean(gameMitigationDetails?.result?.length) && {
-        id: 3,
+        id: 4,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
           navigate(urls.configureGameFirewall.replace(urlDynamicParts.id, id)),
@@ -217,7 +231,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
-        id: 4,
+        id: 5,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         onClick: () =>
           navigate(
@@ -226,14 +240,14 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       },
     ipaddr.IPv6.isIPv6(ipAddress) &&
       ipDetails?.type === IpTypeEnum.VRACK && {
-        id: 5,
+        id: 6,
         label: t('listingActionManageSubnetInVrack'),
         onClick: () => goToVrackPage(),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       ipDetails?.type === IpTypeEnum.ADDITIONAL && {
-        id: 6,
+        id: 7,
         label: t('listingActionAddVirtualMac'),
         onClick: () =>
           navigate(urls.addVirtualMac.replace(urlDynamicParts.id, id)),
@@ -243,7 +257,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasHousingServiceAttachedToIp &&
       ipMitigation && {
-        id: 7,
+        id: 8,
         label: isDefaultMitigation
           ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
           : t('listingManageMitigation_PERMANENT_to_AUTO'),
