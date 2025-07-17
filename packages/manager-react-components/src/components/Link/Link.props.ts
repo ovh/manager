@@ -1,7 +1,7 @@
 import React, { DOMAttributes } from 'react';
 import { LinkProp } from '@ovhcloud/ods-react';
 
-export enum LINK_TYPE {
+export enum LinkType {
   back = 'back',
   next = 'next',
   external = 'external',
@@ -15,7 +15,7 @@ export interface LinkProps extends LinkProp, DOMAttributes<HTMLAnchorElement> {
   href?: string;
   rel?: string;
   target?: string;
-  type?: LINK_TYPE;
+  type?: LinkType;
   // Iam trigger
   iamActions?: string[];
   urn?: string;
@@ -25,6 +25,6 @@ export interface LinkProps extends LinkProp, DOMAttributes<HTMLAnchorElement> {
 }
 
 export interface LinkIconsProps {
-  type?: LINK_TYPE;
+  type?: LinkType;
   children: React.ReactNode;
 }

@@ -15,7 +15,7 @@ import {
 } from './Price.utils';
 import './translations';
 
-import { PriceText, PRICE_TEXT_PRESET } from './price-text';
+import { PriceText, PriceTextPreset } from './price-text';
 
 export function Price({
   value,
@@ -74,7 +74,7 @@ export function Price({
           <PriceText
             price={priceWithTax}
             label={t('price_ttc_label')}
-            preset={PRICE_TEXT_PRESET.WITH_TAX}
+            preset={PriceTextPreset.WITH_TAX}
           />
         </>
       ),
@@ -117,7 +117,7 @@ export function Price({
           <PriceText
             price={priceWithTax}
             label={t('price_gst_incl_label')}
-            preset={PRICE_TEXT_PRESET.WITH_TAX}
+            preset={PriceTextPreset.WITH_TAX}
           />
         </>
       ),
