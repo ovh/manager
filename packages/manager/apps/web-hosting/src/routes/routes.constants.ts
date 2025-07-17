@@ -7,6 +7,7 @@ export const urls = {
   root: '',
   websites: '/websites',
   onboarding: '/onboarding',
+  wordpressManaged: '/wordpress-managed',
   dashboard: `/${subRoutes.serviceName}`,
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
   addDomain: `/${subRoutes.serviceName}/add-domain`,
