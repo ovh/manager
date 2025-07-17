@@ -18,9 +18,9 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { urls } from '@/routes/routes.constant';
-import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
   return vdcOrgs?.map(({ id, currentState }) => ({ ...currentState, id }));
@@ -125,7 +125,7 @@ export default function Listing() {
 
   return (
     <DatagridContainer
-      title={MANAGED_VCD_LABEL}
+      title={VMWARE_CLOUD_DIRECTOR_LABEL}
       queryKey={vcdOrganizationListQueryKey}
       route={{
         api: VCD_ORGANIZATION_ROUTE,
