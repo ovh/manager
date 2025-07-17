@@ -25,7 +25,7 @@ export const FormFieldSummary = ({
       {isLoading && <OdsSkeleton className="w-20" />}
       {!isLoading && (
         <OdsText
-          className="max-w-60 text-end"
+          className="max-w-60 text-end break-words"
           data-testid={testIds.summaryFieldValue}
         >
           {field.value ? valueText : FORM_LABELS.unknownText}
