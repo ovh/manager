@@ -1,0 +1,12 @@
+{
+  "path": "Path",
+  "secret_manager": "Secret Manager",
+  "urn": "URN",
+  "version": "Version",
+  "versions": "Versions",
+  "expiration_date": "Date d'expiration",
+  "version_state_active": "Active",
+  "version_state_deactivated": "Désactivée",
+  "version_state_deleted": "Supprimée",
+  "create_secret": "Créer un secret"
+}
