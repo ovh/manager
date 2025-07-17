@@ -7,7 +7,7 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { useOrderContext } from './Order.context';
-import { Link, LINK_TYPE } from '../Link';
+import { Link, LinkType } from '../Link';
 
 export type TOrderSummary = {
   onFinish: () => void;
@@ -54,7 +54,7 @@ export const OrderSummary: React.FC<TOrderSummary> = ({
             components={{
               ExternalLink: (
                 <Link
-                  type={LINK_TYPE.external}
+                  type={LinkType.external}
                   target="_blank"
                   href={orderLink}
                   data-testid="order-summary-link"
