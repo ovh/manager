@@ -39,5 +39,7 @@ export const hasConflictingPorts = ({
   rules: IpGameFirewallRule[];
 }) =>
   rules.some(
-    (rule) => startPort >= rule.ports.from || endPort <= rule.ports.to,
+    (rule) =>
+      (startPort >= rule.ports.from && startPort <= rule.ports.to) ||
+      (endPort >= rule.ports.from && endPort <= rule.ports.to),
   );
