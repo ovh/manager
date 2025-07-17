@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.31.0...@ovh-ux/manager-react-components@2.32.0) (2025-07-17)
+
+### Features
+
+- **manager-react-component:** add badge within the header of base layout ([d5d113c](https://github.com/ovh/manager/commit/d5d113c577ee599af96ba2a8e426411a494fa31d)), closes [#MANAGER-18077](https://github.com/ovh/manager/issues/MANAGER-18077)
+- **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
 # [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.30.0...@ovh-ux/manager-react-components@2.31.0) (2025-07-10)
 
 ### Features

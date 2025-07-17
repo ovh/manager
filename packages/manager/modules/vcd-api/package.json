@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-vcd-api",
-  "version": "0.5.21",
+  "version": "0.5.22",
   "private": true,
   "description": "OVHcloud manager module VCD API.",
   "repository": {
@@ -24,13 +24,13 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.14.0",
-    "@ovh-ux/manager-module-order": "^0.10.3",
-    "@ovh-ux/manager-react-components": "^2.31.0",
+    "@ovh-ux/manager-core-api": "^0.15.0",
+    "@ovh-ux/manager-module-order": "^0.10.4",
+    "@ovh-ux/manager-react-components": "^2.32.0",
     "@ovh-ux/manager-react-shell-client": "^0.8.7"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.9",
+    "@ovh-ux/manager-core-test-utils": "^0.4.10",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.10.1",
     "msw": "2.1.7",

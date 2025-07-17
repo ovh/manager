@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.14.0...@ovh-ux/manager-core-api@0.15.0) (2025-07-17)
+
+
+### Features
+
+* **core:** iceberg v2 disabled pagination mode ([6cf5ad4](https://github.com/ovh/manager/commit/6cf5ad439854ff114c09e93fa797a63c4839bc52)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+* **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.13.0...@ovh-ux/manager-core-api@0.14.0) (2025-07-04)
 
 
