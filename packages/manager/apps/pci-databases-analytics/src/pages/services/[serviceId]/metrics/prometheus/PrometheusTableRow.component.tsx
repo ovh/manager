@@ -1,6 +1,6 @@
 import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { TableCell, TableRow, Button, useToast } from '@datatr-ux/uxlib';
+import { TableCell, TableRow, Button, useToast, Skeleton } from '@datatr-ux/uxlib';
 
 interface PrometheusTableRowProps {
   name: string;
@@ -16,7 +16,7 @@ const PrometheusTableRow = ({ name, value }: PrometheusTableRowProps) => {
       <TableCell className="font-semibold">{t(`${name}Label`)}</TableCell>
       <TableCell>
         <p className="flex-1 truncate h-6 m-0 max-w-96" title={value}>
-          {value}
+          {value ?? <Skeleton className="h-4 w-24" />}
         </p>
       </TableCell>
       <TableCell className="justify-items-center">
