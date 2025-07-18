@@ -41,7 +41,7 @@ export default function DisableSslModal() {
 
   return (
     <Modal
-      onOdsClose={closeModal}
+      onDismiss={closeModal}
       isOpen
       type={ODS_MODAL_COLOR.critical}
       heading={t('delete_ssl')}

@@ -11,6 +11,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -38,7 +39,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   item,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const { proCount } = useAccountsStatistics();
@@ -133,7 +134,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       onClick: handleEditEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
-      label: t('modify'),
+      label: t(`${NAMESPACES.ACTIONS}:modify`),
     },
     {
       id: 2,
@@ -147,7 +148,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
-      label: t('delete'),
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];
@@ -158,7 +159,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       onClick: handleCancelSlotClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
-      label: t('terminate'),
+      label: t(`${NAMESPACES.ACTIONS}:terminate`),
       color: ODS_BUTTON_COLOR.critical,
     });
   }

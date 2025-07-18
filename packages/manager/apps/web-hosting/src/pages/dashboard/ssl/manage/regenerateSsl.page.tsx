@@ -35,7 +35,7 @@ export default function RegenerateSslModal() {
 
   return (
     <Modal
-      onOdsClose={closeModal}
+      onDismiss={closeModal}
       isOpen
       heading={t('regenerate_ssl')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}

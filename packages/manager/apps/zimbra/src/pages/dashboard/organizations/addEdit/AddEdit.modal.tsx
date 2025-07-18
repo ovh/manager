@@ -14,7 +14,7 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -25,9 +25,9 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { useOrganization } from '@/data/hooks';
-import { Modal } from '@/components';
 import {
   getZimbraPlatformOrganizationQueryKey,
   OrganizationBodyParamsType,
@@ -44,7 +44,12 @@ import {
 import { OrganizationSchema, organizationSchema } from '@/utils';
 
 export const AddEditOrganizationModal = () => {
-  const { t } = useTranslation(['organizations/form', 'common']);
+  const { t } = useTranslation([
+    'organizations/form',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, organizationId } = useParams();
   const trackingName = organizationId ? EDIT_ORGANIZATION : ADD_ORGANIZATION;
@@ -154,27 +159,22 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      isOpen
-      title={
+      heading={
         organizationId
           ? t('common:edit_organization')
           : t('common:add_organization')
       }
-      color={ODS_MODAL_COLOR.information}
-      onClose={onClose}
-      isDismissible
+      isOpen
+      type={ODS_MODAL_COLOR.information}
+      onDismiss={onClose}
       isLoading={isLoading}
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'confirm-btn',
-        label: t('common:confirm'),
-        isDisabled: !isDirty || !isValid,
-        isLoading: isLoading || isSending,
-        onClick: handleSubmit(handleSaveClick),
-      }}
+      primaryLabel={t('common:confirm')}
+      primaryButtonTestId="confirm-btn"
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      isPrimaryButtonLoading={isLoading || isSending}
+      onPrimaryButtonClick={handleSubmit(handleSaveClick)}
+      secondaryLabel={t('common:cancel')}
+      onSecondaryButtonClick={handleCancelClick}
     >
       <form
         className="flex flex-col gap-4"
@@ -191,7 +191,7 @@ export const AddEditOrganizationModal = () => {
           </div>
         )}
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:form_mandatory_fields')}
+          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
         </OdsText>
         <Controller
           control={control}

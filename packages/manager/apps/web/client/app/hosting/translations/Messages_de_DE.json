@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Ein Hosting bestellen",
   "hostings_order_sql": "Eine Datenbank bestellen",
   "hostings_guides_title": "Guides",
-  "hosting_guides_general_information": "Allgemeine Informationen"
+  "hosting_guides_general_information": "Allgemeine Informationen",
+  "hosting_datagrid_description": "Erstellen Sie Ihr Webprojekt in wenigen Minuten. Veröffentlichen Sie Ihren Blog, Ihre professionelle Website oder Ihren Onlineshop mit unseren skalierbaren Hostings für alle Ihre Projekte.",
+  "hosting_databgrid_column_display_name": "Benutzerdefinierter Name des Dienstes",
+  "hosting_databgrid_column_offer": "Angebot",
+  "hosting_databgrid_column_state": "Status",
+  "hosting_databgrid_column_resource_type": "Ressourcen-Typ",
+  "hosting_databgrid_column_datacenter": "Standort",
+  "hosting_databgrid_column_service_name": "Name des Dienstes"
 }

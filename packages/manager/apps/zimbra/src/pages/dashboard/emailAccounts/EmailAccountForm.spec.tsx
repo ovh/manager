@@ -6,7 +6,6 @@ import { fireEvent } from '@testing-library/dom';
 import { useParams } from 'react-router-dom';
 import { render, waitFor, act } from '@/utils/test.provider';
 import EmailAccountForm from './EmailAccountForm.component';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { platformMock, accountMock } from '@/data/api';
 
 describe('email account add and edit form', () => {
@@ -17,10 +16,7 @@ describe('email account add and edit form', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('confirm-btn')).toHaveAttribute(
-      'label',
-      commonTranslation.confirm,
-    );
+    expect(getByTestId('confirm-btn')).toHaveAttribute('label', 'confirm');
   });
 
   it('should be in edit mode if accountId', async () => {
@@ -34,11 +30,7 @@ describe('email account add and edit form', () => {
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
     });
-
-    expect(getByTestId('confirm-btn')).toHaveAttribute(
-      'label',
-      commonTranslation.save,
-    );
+    expect(getByTestId('confirm-btn')).toHaveAttribute('label', 'save');
   });
 
   // @TODO: find why this test is inconsistent

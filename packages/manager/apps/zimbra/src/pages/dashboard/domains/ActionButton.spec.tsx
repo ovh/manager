@@ -23,13 +23,13 @@ describe('Domains datagrid action menu', () => {
 
     expect(menuItems.length).toBe(3);
 
-    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.configure);
+    expect(menuItems[0]).toHaveAttribute('label', 'configure');
 
     expect(menuItems[1]).toHaveAttribute(
       'label',
       commonTranslation.diagnostics,
     );
 
-    expect(menuItems[2]).toHaveAttribute('label', commonTranslation.delete);
+    expect(menuItems[2]).toHaveAttribute('label', 'delete');
   });
 });
