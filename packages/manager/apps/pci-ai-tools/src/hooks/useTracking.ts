@@ -10,7 +10,7 @@ import {
 import { PlanCode } from '@/configuration/project';
 
 // Set the project mode, needed to track discovery actions
-function useProjectModeTracking() {
+export function useProjectModeTracking() {
   const { shell } = useContext(ShellContext);
   const { setPciProjectMode } = shell.tracking;
   const { data: project } = usePciProject();
@@ -37,7 +37,7 @@ export function useTrackAction() {
       page_theme: 'PublicCloud',
       name: trackingName,
       level2: PCI_LEVEL2,
-      page_category: pageCategory,
+      page_category: pageCategory || undefined,
     });
   };
 }

@@ -9,6 +9,11 @@ import {
   mockedGuides,
 } from '@/__tests__/helpers/mocks/shared/guides';
 
+vi.mock('@/hooks/useTracking', () => ({
+  useProjectModeTracking: vi.fn(),
+  useTrackAction: vi.fn(),
+}));
+
 describe('Onboarding page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
