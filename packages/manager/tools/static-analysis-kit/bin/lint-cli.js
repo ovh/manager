@@ -13,7 +13,7 @@ const eslintBin = resolve(__dirname, '../node_modules/.bin/eslint');
 const args = process.argv.slice(2);
 const hasExplicitConfigArg = args.includes('--config');
 const localConfigPath = join(userCwd, 'eslint.config.ts');
-const sharedDefaultPath = resolve(__dirname, '../dist/adapters/eslint/config/eslint.config.js');
+const sharedDefaultPath = resolve(__dirname, '../dist/adapters/eslint/config/eslint-shared-config.js');
 const hasLocalConfig = existsSync(localConfigPath);
 
 // Determine effective config path
