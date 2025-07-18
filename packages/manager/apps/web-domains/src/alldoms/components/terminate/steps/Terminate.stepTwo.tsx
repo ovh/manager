@@ -13,7 +13,7 @@ import { useTerminateService } from '@/alldoms/hooks/useTerminateService/useTerm
 export default function TerminateModalStepTwo({
   domainTerminateList,
   serviceName,
-  changeStep,
+  setIsStepOne,
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
 
@@ -21,11 +21,14 @@ export default function TerminateModalStepTwo({
     serviceName,
     domainTerminateList,
   );
-
   return (
     <div>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {t('allDom_modal_step_two_warning')}
+        {domainTerminateList.length === 0
+          ? t('allDom_modal_step_two_no_domain_checked', {
+              serviceName,
+            })
+          : t('allDom_modal_step_two_warning')}
       </OdsText>
       <ul className="flex flex-col gap-y-2 ml-2 pl-8">
         {domainTerminateList.map((element) => (
@@ -38,7 +41,7 @@ export default function TerminateModalStepTwo({
         <OdsButton
           label={t(`${NAMESPACES.ACTIONS}:previous`)}
           variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => changeStep()}
+          onClick={() => setIsStepOne(true)}
         />
         <OdsButton
           label={t('allDom_modal_step_terminate')}

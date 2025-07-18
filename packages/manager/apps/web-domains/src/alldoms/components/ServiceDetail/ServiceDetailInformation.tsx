@@ -44,6 +44,7 @@ export default function ServiceDetailInformation({
               {t('allDom_page_detail_information_general_extensions')}
             </strong>
           </OdsText>
+          &nbsp;
           <OdsText preset={ODS_TEXT_PRESET.span}>
             {currentState.extensions
               .map((extension) => `.${extension.toLowerCase()}`)
