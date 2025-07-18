@@ -209,7 +209,7 @@ export default function AddVirtualMacModal() {
                   render={({ field: { name, value, onChange, onBlur } }) => (
                     <OdsFormField className="w-full">
                       <label htmlFor={name} slot="label">
-                        {t('addVirtualMacType')}
+                        {t('virtualMacType')}
                       </label>
                       <div className="flex">
                         <OdsSelect
@@ -249,7 +249,7 @@ export default function AddVirtualMacModal() {
                   render={({ field: { name, value, onChange, onBlur } }) => (
                     <OdsFormField className="w-full">
                       <label htmlFor={name} slot="label">
-                        {t('addVirtualMacField')}
+                        {t('virtualMacField')}
                       </label>
                       <div className="flex">
                         <OdsSelect
@@ -291,7 +291,7 @@ export default function AddVirtualMacModal() {
                 render={({ field: { name, value, onChange, onBlur } }) => (
                   <OdsFormField className="block my-4">
                     <label htmlFor={name} slot="label">
-                      {t('addVirtualMacMachinename')}
+                      {t('virtualMacMachinename')}
                     </label>
                     <OdsInput
                       id="form-field-vm-name"
