@@ -179,7 +179,7 @@ export default class LogsHomeService {
   getElasticSearchApiUrl(object, urls) {
     const elasticSearchApiUrl = this.constructor.findUrl(
       urls,
-      this.LogsConstants.URLS.ELASTICSEARCH_API,
+      this.LogsConstants.URLS.OPENSEARCH_API,
     );
     set(
       object,
