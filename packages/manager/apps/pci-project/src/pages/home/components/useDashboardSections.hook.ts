@@ -1,8 +1,8 @@
 import { useMemo, useCallback, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useCreditDetails } from '@/data/hooks/useCredit';
-import { formatDate } from '@/hooks/formatDate';
 import { getDocumentationLinks, COMMUNITY_LINKS } from './constants';
 
 // Types for dashboard sections
@@ -22,8 +22,9 @@ export type BottomSectionItem = {
 };
 
 export function useDashboardSections(projectId: string) {
-  const { t, i18n } = useTranslation('home');
+  const { t } = useTranslation('home');
   const { environment } = useContext(ShellContext);
+  const formatDate = useFormatDate();
   const {
     data: vouchersCreditDetails = [],
     isLoading,
@@ -41,11 +42,11 @@ export function useDashboardSections(projectId: string) {
       price: credit.balance,
       validUntil: credit.expirationDate
         ? t('expires_on', {
-            date: formatDate(credit.expirationDate, 'PPpp', i18n.language),
+            date: formatDate({ date: credit.expirationDate, format: 'PPpp' }),
           })
         : null,
     }));
-  }, [isLoading, vouchersCreditDetails, projectId, t, i18n.language]);
+  }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
   const createDocumentationItems = useCallback(() => {
     const user = environment.getUser();
