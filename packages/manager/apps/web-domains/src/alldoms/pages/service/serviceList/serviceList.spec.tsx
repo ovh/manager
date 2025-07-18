@@ -1,4 +1,3 @@
-import '@/alldoms/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
@@ -11,10 +10,6 @@ import { serviceInfoProperty } from '@/alldoms/__mocks__/serviceInfoProperty';
 
 vi.mock('@/alldoms/hooks/data/useGetAllDoms', () => ({
   useGetAllDoms: vi.fn(),
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useContext: vi.fn(),
 }));
 
 describe('AllDom datagrid', () => {

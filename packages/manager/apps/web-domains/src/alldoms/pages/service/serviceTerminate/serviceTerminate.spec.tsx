@@ -1,4 +1,3 @@
-import '@/alldoms/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';

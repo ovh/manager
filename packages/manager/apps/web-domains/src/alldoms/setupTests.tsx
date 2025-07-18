@@ -52,9 +52,14 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useContext: vi.fn(),
   ShellContext: React.createContext({
     shell: mocks.shell,
+    environment: {
+      user: { nichandle: 'fakeNic', email: 'fake@ovh.com' },
+    },
   }),
+
   useNavigationGetUrl: (
     linkParams: [string, string, unknown],
   ): UseQueryResult<unknown, Error> => {
@@ -62,8 +67,4 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
-}));
-
-vi.mock('punycode', () => ({
-  toUnicode: vi.fn(),
 }));
