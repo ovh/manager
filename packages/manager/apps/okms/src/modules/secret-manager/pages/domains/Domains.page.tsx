@@ -18,7 +18,9 @@ export default function SecretDomainsPage() {
   const navigate = useNavigate();
   const { region } = useParams() as { region: string };
 
-  const { data, error, isPending, refetch } = useOkmsDatagridList();
+  const { data, error, isPending, refetch } = useOkmsDatagridList({
+    pageSize: 100,
+  });
   const flattenData = data?.pages.flatMap((page) => page.data);
 
   // Filter okms by regionId
