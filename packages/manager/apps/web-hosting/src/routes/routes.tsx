@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Route } from 'react-router-dom';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
@@ -12,7 +11,6 @@ import {
   DISABLE_SSL,
   ONBOARDING,
   ORDER_SECTIGO,
-  REGENERATE_SSL,
   ORDER_DOMAIN,
   SSL,
   WEBSITE,
@@ -35,9 +33,6 @@ const OrderSectigoPage = React.lazy(() =>
 const DisableSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/manage/disableSsl.page'),
 );
-const RegenerateSslPage = React.lazy(() =>
-  import('@/pages/dashboard/ssl/manage/regenerateSsl.page'),
-);
 const SanSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/manage/sanSsl.page'),
 );
@@ -53,11 +48,6 @@ export default (
     id={'root'}
     path={urls.root}
     Component={RootPage}
-    handle={{
-      breadcrumb: {
-        icon: ODS_ICON_NAME.home,
-      },
-    }}
     errorElement={
       <ErrorBoundary
         redirectionApp="web-hosting-backup"
@@ -140,17 +130,6 @@ export default (
         handle={{
           tracking: {
             pageName: DISABLE_SSL,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={REGENERATE_SSL}
-        path={urls.regenerateSsl}
-        Component={RegenerateSslPage}
-        handle={{
-          tracking: {
-            pageName: REGENERATE_SSL,
             pageType: PageType.popup,
           },
         }}
