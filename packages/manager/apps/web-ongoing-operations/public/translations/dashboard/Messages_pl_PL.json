@@ -140,5 +140,6 @@
   "domain_operations_update_title": "Aktualizacja operacji dla domeny {{t0}}",
   "domain_operations_nicOperation_ContactControlNotify": "Powiadomienie o weryfikacji kontaktu",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Wysłanie powiadomienia RDRP",
-  "domain_operations_guides": "Informacje ogólne"
+  "domain_operations_guides": "Informacje ogólne",
+  "domain_operations_update_field_bad_value": "Wartość wprowadzona w polu {{t0}} jest nieprawidłowa"
 }

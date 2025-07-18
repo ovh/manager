@@ -140,5 +140,6 @@
   "domain_operations_update_title": "Aktualisierung des Vorgangs für die Domain {{t0}}",
   "domain_operations_nicOperation_ContactControlNotify": "Kontaktüberprüfungsbenachrichtigung",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Versand der RDRP-Benachrichtigung",
-  "domain_operations_guides": "Allgemeine Informationen"
+  "domain_operations_guides": "Allgemeine Informationen",
+  "domain_operations_update_field_bad_value": "Der in das Feld {{t0}} eingegebene Wert ist ungültig."
 }
