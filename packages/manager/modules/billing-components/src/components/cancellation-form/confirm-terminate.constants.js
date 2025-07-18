@@ -8,6 +8,7 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
   'okms',
   'logs-account',
   'nutanix',
+  'vcd',
 ];
 
 export const SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX = /hycu-vms-*|(logs-enterprise(-hds)?$)/;
