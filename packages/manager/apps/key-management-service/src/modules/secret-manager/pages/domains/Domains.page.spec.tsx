@@ -111,4 +111,10 @@ describe('Secret domains listing test suite', () => {
       await checkPageToBeDisplayed(container);
     });
   });
+
+  it('should redirect to the secret list when the kms list has one item', async () => {
+    await renderTestApp(mockPageUrl, { nbOkms: 1 });
+
+    await assertTextVisibility(labels.secretManager.common.secret_manager);
+  });
 });

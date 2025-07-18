@@ -4,6 +4,7 @@ import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,6 +16,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { Secret } from '@secret-manager/types/secret.type';
+import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import {
   DatagridAction,
   DatagridCellPath,
@@ -64,7 +66,15 @@ export default function SecretListingPage() {
     );
 
   return (
-    <BaseLayout header={{ title: t('secret_manager') }}>
+    <BaseLayout
+      header={{ title: t('secret_manager') }}
+      message={
+        <>
+          <Notifications />
+          <RegionSelector />
+        </>
+      }
+    >
       <Datagrid
         columns={columns}
         items={secrets || []}
