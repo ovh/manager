@@ -6,7 +6,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -21,6 +21,7 @@ import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/Service
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/Loading/Loading';
 import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
+import { urls } from '@/alldoms/routes/routes.constant';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -30,6 +31,7 @@ export default function ServiceDetail() {
   const { t } = useTranslation(['allDom', 'web-domains/error']);
   const { notifications } = useNotifications();
   const formatDate = useFormatDate();
+  const hrefCancelTerminate = useHref(urls.alldomsCancelTerminate);
 
   const header = {
     title: serviceName,
@@ -84,10 +86,9 @@ export default function ServiceDetail() {
                   />
                 </OdsText>
                 <OdsLink
-                  href={``} // Currently empty for a future
+                  href={hrefCancelTerminate}
                   label={t('allDom_detail_page_manuel_renew_warning_link')}
                   icon={ODS_ICON_NAME.arrowRight}
-                  target="_blank"
                   className="link-banner"
                 />
               </div>

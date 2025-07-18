@@ -3,11 +3,16 @@ import {
   updateAllDomService,
   updateDomainServiceInfo,
 } from '@/alldoms/data/api/web-domains';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 
-export const useUpdateAllDomService = () => {
+export const useTerminateAllDomService = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: updateAllDomService,
+    mutationFn: (serviceName: string) =>
+      updateAllDomService(
+        serviceName,
+        ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['alldom'] });
     },

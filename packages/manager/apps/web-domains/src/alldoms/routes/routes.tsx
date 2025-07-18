@@ -15,6 +15,11 @@ const AllDomDetailPage = React.lazy(() =>
 const AllDomTerminatePage = React.lazy(() =>
   import('@/alldoms/pages/service/serviceTerminate/serviceTerminate'),
 );
+const AllDomCancelTerminatePage = React.lazy(() =>
+  import(
+    '@/alldoms/pages/service/serviceCancelTerminate/serviceCancelTerminate'
+  ),
+);
 
 export default (
   <>
@@ -64,6 +69,11 @@ export default (
           path={urls.alldomsDetailTerminate}
           Component={AllDomTerminatePage}
           id="allDomDetailTerminate"
+        ></Route>
+        <Route
+          path={urls.alldomsCancelTerminate}
+          Component={AllDomCancelTerminatePage}
+          id="allDomCancelTerminate"
         ></Route>
       </Route>
     </Route>
