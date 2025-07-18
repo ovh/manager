@@ -39,6 +39,10 @@ const useGetIpMitigationMock = vi.hoisted(() =>
   vi.fn(() => ({ ipMitigation: [], isLoading: false })),
 );
 
+const useGetAttachedServicesMock = vi.hoisted(() =>
+  vi.fn(() => ({ servicesAttached: [] })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
@@ -46,6 +50,7 @@ vi.mock('@/data/hooks/ip', () => ({
   useIpHasServicesNotAttached: useIpHasServicesNotAttachedMock,
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
   useGetIpMitigation: useGetIpMitigationMock,
+  useGetAttachedServices: useGetAttachedServicesMock,
 }));
 
 const mockShell = {
