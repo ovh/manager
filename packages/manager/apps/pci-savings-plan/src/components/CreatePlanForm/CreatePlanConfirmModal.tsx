@@ -1,4 +1,4 @@
-import { Modal, Subtitle } from '@ovh-ux/manager-react-components';
+import { Modal, useFormatDate } from '@ovh-ux/manager-react-components';
 import {
   OdsCheckbox,
   OdsMessage,
@@ -35,6 +35,7 @@ type TSavingsPlanInfo = {
   resource: ResourceType;
   deploymentMode: DeploymentMode;
   model: string;
+  startDate: Date;
   quantity: number;
   monthlyPercentageDiscount: string;
   monthlyPrice: string;
@@ -55,7 +56,7 @@ const CreatePlanConfirmModal = ({
   savingsPlanInfo,
 }: CreatePlanConfirmModalProps) => {
   const { t } = useTranslation('create');
-
+  const formatDate = useFormatDate();
   const [isLegalChecked, setIsLegalChecked] = useState(false);
 
   const onPrimaryButtonClick = () => {
@@ -90,8 +91,7 @@ const CreatePlanConfirmModal = ({
       onPrimaryButtonClick={onPrimaryButtonClick}
     >
       <div className="flex flex-col gap-4">
-        <Subtitle>{t('modal_summary_title')}</Subtitle>
-        <OdsMessage>{t('modal_content')}</OdsMessage>
+        <OdsMessage isDismissible={false}>{t('modal_content')}</OdsMessage>
         <BoldLabelText label={t('modal_summary_label_name')} value={name} />
         {savingsPlanInfo.resource === ResourceType.instance && (
           <BoldLabelText
@@ -111,6 +111,7 @@ const CreatePlanConfirmModal = ({
           label={t(`quantity_label_${isInstance ? 'instance' : 'rancher'}`)}
           value={savingsPlanInfo.quantity}
         />
+
         <div className="flex flex-row gap-2">
           <OdsText preset="heading-6">
             {t('modal_summary_label_commitment_duration')}
@@ -118,7 +119,10 @@ const CreatePlanConfirmModal = ({
           <CommitmentMonth duration={savingsPlanInfo.duration} />
           <PromotionPrice price={`- ${monthlyPercentageDiscount} %`} />
         </div>
-
+        <BoldLabelText
+          label={t(`modal_summary_label_start_date`)}
+          value={formatDate({ date: savingsPlanInfo.startDate })}
+        />
         <hr />
         <div className="flex flex-row justify-between">
           <OdsText>{t('modal_summary_label_total_price')}</OdsText>
@@ -127,6 +131,7 @@ const CreatePlanConfirmModal = ({
             <PromotionPrice price={monthlyPrice} />
           </div>
         </div>
+
         <hr />
         <Block className="flex flex-row gap-2">
           <OdsCheckbox

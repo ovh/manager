@@ -16,7 +16,6 @@ import React, {
   FC,
   PropsWithChildren,
   Suspense,
-  startTransition,
   useCallback,
   useContext,
   useEffect,
@@ -212,19 +211,19 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const activeInstance = instanceSelected.technical?.find(
     (item) => item.name === technicalModel,
   );
-  const minDate = useMemo(() => {
+  const minStartDate = useMemo(() => {
     const date = new Date();
     date.setDate(date.getDate() + 1);
     return date;
   }, []);
 
-  const maxDate = useMemo(() => {
+  const maxStartDate = useMemo(() => {
     const date = new Date();
     date.setMonth(date.getMonth() + 6);
     return date;
   }, []);
 
-  const [startDate, setStartDate] = useState(minDate);
+  const [startDate, setStartDate] = useState(minStartDate);
 
   const onSetInstanceCategory = useCallback(
     (category: InstanceTechnicalName) => {
@@ -315,6 +314,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             resource: selectedResource,
             deploymentMode,
             model: technicalModel,
+            startDate,
             quantity,
             monthlyPrice: currentPlanPricing.monthlyPrice,
             monthlyPercentageDiscount:
@@ -357,8 +357,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <OdsDatepicker
           value={startDate}
           name="savings-plan-start-date"
-          min={minDate}
-          max={maxDate}
+          min={minStartDate}
+          max={maxStartDate}
           onOdsChange={(e) => {
             setStartDate(e.target.value);
           }}
