@@ -11,9 +11,8 @@ export interface VoucherCreditDetail {
 export const useCreditDetails = (projectId: string) => {
   return useQuery({
     queryKey: ['credit', projectId],
-    queryFn: async () => {
-      const response = await getCreditDetails(projectId);
-
+    queryFn: () => getCreditDetails(projectId),
+    select: (response) => {
       const formattedData: VoucherCreditDetail[] =
         response.data?.map((creditDetail: CreditDetailsResponse) => ({
           voucher: creditDetail.voucher || 'Unknown',
