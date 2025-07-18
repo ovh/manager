@@ -183,7 +183,7 @@ const NodePoolStep = ({
               ANTI_AFFINITY_MAX_NODES,
               nodePoolState.scaling.quantity.max,
             )
-          : nodePoolState.scaling.quantity.max,
+          : NODE_RANGE.MAX,
         monthlyPrice: isMonthlyBilled
           ? getPrice(flavor, nodePoolState.scaling).month
           : convertHourlyPriceToMonthly(
