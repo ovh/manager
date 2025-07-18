@@ -241,9 +241,19 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      isVmacAlreadyExist &&
+      hasDedicatedServiceAttachedToIp && {
+        id: 7,
+        label: t('listingActionViewVirtualMac'),
+        onClick: () =>
+          navigate(urls.viewVirtualMac.replace(urlDynamicParts.id, id)),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasHousingServiceAttachedToIp &&
       ipMitigation && {
-        id: 7,
+        id: 8,
         label: isDefaultMitigation
           ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
           : t('listingManageMitigation_PERMANENT_to_AUTO'),
