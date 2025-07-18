@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { LoadingCell } from '@/components/datagrid/cell/LoadingCell.component';
-import { BaseTextCell } from '@/components/datagrid/cell/TextCell.component';
+import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
+import { BaseTextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
 import { DeepReadonly } from '@/types/utils.type';
 
 export type TListCellItem = DeepReadonly<{
