@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.49.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.49.5...@ovh-ux/manager-dedicated@20.49.6) (2025-07-18)
+
+
+### Bug Fixes
+
+* **dedicated:** remove depedencie of billing ([e15408c](https://github.com/ovh/manager/commit/e15408cabfa09f7ea198b947de3fe551d6a45053)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
 ## [20.49.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.49.4...@ovh-ux/manager-dedicated@20.49.5) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
