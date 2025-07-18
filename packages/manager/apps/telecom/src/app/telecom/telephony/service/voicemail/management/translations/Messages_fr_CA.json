@@ -9,5 +9,11 @@
   "telephony_line_answer_voicemail_directories_empty": "Vous n'avez aucun message.",
   "telephony_line_answer_voicemail_directories_caller": "Appelant",
   "telephony_line_answer_voicemail_directories_date": "Date",
-  "telephony_line_answer_voicemail_directories_duration": "Durée"
+  "telephony_line_answer_voicemail_directories_duration": "Durée",
+  "telephony_line_answer_voicemail_directories_transcript": "Voir la transcription",
+  "telephony_line_answer_voicemail_directories_transcript_beta": "(Bêta)",
+  "telephony_line_answer_voicemail_directories_transcript_modal_title": "Transcription",
+  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Cette transcription a été générée par Intelligence Artificielle",
+  "telephony_line_answer_voicemail_directories_transcript_modal_download": "Télécharger la transcription",
+  "telephony_line_answer_voicemail_directories_transcript_modal_close": "Fermer"
 }
