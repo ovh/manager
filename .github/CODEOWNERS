@@ -71,6 +71,7 @@
 /packages/manager/apps/web-hosting @ovh/dev-manager-web-all
 /packages/manager/apps/web-office @ovh/dev-manager-web-all
 /packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
+/packages/manager/apps/web-domains @ovh/dev-manager-web-domain
 /packages/manager/apps/zimbra @ovh/dev-manager-web-all
 
 # Core

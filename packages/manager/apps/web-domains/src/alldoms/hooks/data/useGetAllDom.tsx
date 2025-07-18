@@ -48,7 +48,7 @@ export const useGetAllDom = ({
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
-          lifecycleCapacities: lifecycle?.capacities.actions ?? [],
+          lifecyclePendingActions: lifecycle?.current.pendingActions ?? [],
           renewMode: renew?.current?.mode,
           creationDate: lifecycle?.current?.creationDate,
           expirationDate,

@@ -8,16 +8,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
-import { ModalStepsProps, TDomainsInfo } from '@/alldoms/types';
+import { ModalStepsProps } from '@/alldoms/types';
 import DomainsCheckboxList from '@/alldoms/components/terminate/DomainsCheckboxes/DomainsCheckboxList';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 export default function TerminateModalStepOne({
-  domainsAttached,
-  domainAttachedChecked,
-  checkAllDomain,
-  changeStep,
-  handleDomainAttached,
-  handleCheckAllDomain,
+  services,
+  domainsChecked,
+  checkAllDomains,
+  setIsStepOne,
+  setDomainsChecked,
+  setCheckAllDomains,
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
@@ -34,12 +35,20 @@ export default function TerminateModalStepOne({
             name="alldomains"
             id="alldomains"
             data-testid="checkbox-alldomains"
-            checked={checkAllDomain}
+            checked={checkAllDomains}
             onChange={(e) => {
-              handleCheckAllDomain(e.target.checked);
-              handleDomainAttached(
+              setCheckAllDomains(e.target.checked);
+              setDomainsChecked(
                 e.target.checked
-                  ? domainsAttached.map((domain: TDomainsInfo) => domain.name)
+                  ? services
+                      .filter(
+                        (domain) =>
+                          !hasTerminateAtExpirationDateAction(
+                            domain.billing.lifecycle.current.pendingActions ??
+                              [],
+                          ),
+                      )
+                      .map((domain) => domain.resource.name)
                   : [],
               );
             }}
@@ -49,9 +58,9 @@ export default function TerminateModalStepOne({
           </label>
         </div>
         <DomainsCheckboxList
-          domainsAttached={domainsAttached}
-          domainAttachedChecked={domainAttachedChecked}
-          handleDomainAttached={handleDomainAttached}
+          services={services}
+          domainsChecked={domainsChecked}
+          handleDomainAttached={setDomainsChecked}
         />
       </div>
 
@@ -72,8 +81,7 @@ export default function TerminateModalStepOne({
         <OdsButton
           label={t(`${NAMESPACES.ACTIONS}:next`)}
           variant={ODS_BUTTON_VARIANT.default}
-          onClick={() => changeStep()}
-          isDisabled={!domainAttachedChecked.length}
+          onClick={() => setIsStepOne(false)}
         />
       </div>
     </div>

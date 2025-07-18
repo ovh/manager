@@ -22,17 +22,18 @@ export const useTerminateService = (serviceName: string, domains: string[]) => {
         ServiceInfoUpdateEnum.TerminateAtExpirationDate,
         ServiceRoutes.AllDom,
       );
-      await Promise.all(
-        domains.map((domain) =>
-          updateService(
-            domain,
-            ServiceInfoUpdateEnum.TerminateAtExpirationDate,
-            ServiceRoutes.Domain,
+      if (domains) {
+        await Promise.all(
+          domains.map((domain) =>
+            updateService(
+              domain,
+              ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+              ServiceRoutes.Domain,
+            ),
           ),
-        ),
-      );
+        );
+      }
     },
-
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allDom'] });
       addSuccess(t('allDom_modal_success_message'));

@@ -21,7 +21,7 @@ export function useDatagridColumnUrl({
 
   if (parent === ParentEnum.ALLDOM) {
     value = props.domain;
-    url = `${allDom}/alldom/${value}`;
+    url = `${allDom}/alldoms/${value}`;
   }
 
   return { url, value };

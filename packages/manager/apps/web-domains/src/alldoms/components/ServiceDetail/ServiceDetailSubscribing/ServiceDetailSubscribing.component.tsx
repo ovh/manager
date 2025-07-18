@@ -27,7 +27,7 @@ export default function ServiceDetailSubscribing({
     expirationDate,
     renewMode,
     currentState,
-    lifecycleCapacities,
+    lifecyclePendingActions,
     creationDate,
     nicAdmin,
     nicBilling,
@@ -51,14 +51,14 @@ export default function ServiceDetailSubscribing({
           expirationDate={expirationDate}
           renewMode={renewMode}
           renewDate={renewalDate}
-          lifecycleCapacities={lifecycleCapacities}
+          lifecyclePendingActions={lifecyclePendingActions}
         />
 
         <ServiceActionMenu
           id={`${currentState.name}-${ActionEnum.OnlyRenew}`}
           serviceName={currentState.name}
           terminateUrl={TERMINATE_URL()}
-          lifecycleCapacities={lifecycleCapacities}
+          lifecyclePendingActions={lifecyclePendingActions}
           whichAction={ActionEnum.OnlyRenew}
           cancelTerminateUrl={CANCEL_TERMINATE_URL()}
         />
@@ -71,7 +71,7 @@ export default function ServiceDetailSubscribing({
 
       <ServiceDetailSubscribingRenewMode
         renewMode={renewMode}
-        lifecycleCapacities={lifecycleCapacities}
+        lifecyclePendingActions={lifecyclePendingActions}
       />
 
       <OdsDivider
@@ -109,7 +109,7 @@ export default function ServiceDetailSubscribing({
           id={`${currentState.name}-${ActionEnum.OnlyContact}`}
           serviceName={currentState.name}
           terminateUrl={TERMINATE_URL()}
-          lifecycleCapacities={lifecycleCapacities}
+          lifecyclePendingActions={lifecyclePendingActions}
           whichAction={ActionEnum.OnlyContact}
         />
       </div>

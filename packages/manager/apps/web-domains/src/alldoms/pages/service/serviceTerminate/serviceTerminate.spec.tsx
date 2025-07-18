@@ -3,16 +3,17 @@ import { vi } from 'vitest';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
-import {
-  useGetAllDomResource,
-  useGetDomainBillingInformation,
-} from '@/alldoms/hooks/data/query';
-import { domainBillingDetail } from '@/alldoms/__mocks__/domainBillingDetail';
+import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
+import { allDomTerminate } from '@/alldoms/__mocks__/allDomTerminate';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 
 vi.mock('@/alldoms/hooks/data/query', () => ({
   useGetAllDomResource: vi.fn(),
-  useGetDomainBillingInformation: vi.fn(),
+}));
+
+vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
+  useGetServices: vi.fn(),
 }));
 
 describe('Terminate service', () => {
@@ -22,8 +23,8 @@ describe('Terminate service', () => {
       isLoading: false,
     });
 
-    (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
-      data: domainBillingDetail,
+    (useGetServices as jest.Mock).mockReturnValue({
+      data: allDomTerminate,
       isLoading: false,
     });
 
@@ -44,16 +45,18 @@ describe('Terminate service', () => {
     isLoading: false,
   });
 
-  (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
-    data: domainBillingDetail,
+  (useGetServices as jest.Mock).mockReturnValue({
+    data: allDomTerminate,
     isLoading: false,
   });
 
-  alldomService.currentState.domains.forEach((domain) => {
-    it(`should render ${domain.name} checkbox`, async () => {
+  allDomTerminate.forEach((domain) => {
+    it(`should render ${domain.resource.name} checkbox`, async () => {
       render(<ServiceTerminate />, { wrapper });
       await waitFor(async () => {
-        const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
+        const checkbox = await screen.findByTestId(
+          `checkbox-${domain.resource.name}`,
+        );
         const input = checkbox.querySelector('input');
         expect(input).toBeInTheDocument();
         expect(input?.checked).toBe(false);
@@ -69,8 +72,8 @@ describe('Terminate service', () => {
       isLoading: false,
     });
 
-    (useGetDomainBillingInformation as jest.Mock).mockReturnValue({
-      data: domainBillingDetail,
+    (useGetServices as jest.Mock).mockReturnValue({
+      data: allDomTerminate,
       isLoading: false,
     });
 
@@ -84,8 +87,10 @@ describe('Terminate service', () => {
 
     await waitFor(async () => {
       await Promise.all(
-        alldomService.currentState.domains.map(async (domain) => {
-          const checkbox = await screen.findByTestId(`checkbox-${domain.name}`);
+        allDomTerminate.map(async (domain) => {
+          const checkbox = await screen.findByTestId(
+            `checkbox-${domain.resource.name}`,
+          );
           const input = checkbox.querySelector('input');
           expect(input?.checked).toBe(true);
         }),

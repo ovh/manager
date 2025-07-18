@@ -1,18 +1,9 @@
-import { aapi, v2, v6 } from '@ovh-ux/manager-core-api';
+import { v2, v6 } from '@ovh-ux/manager-core-api';
+import { TAllDomDomains, TServiceInfo } from '@/alldoms/types';
 import {
-  DomainBillingInformation,
-  TAllDomDomains,
-  TServiceInfo,
-} from '@/alldoms/types';
-import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
-
-/**
- *  : List available AllDom services
- */
-export const getAllDomList = async (): Promise<string[]> => {
-  const { data } = await v6.get('/allDom');
-  return data;
-};
+  ServiceInfoUpdateEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
 
 /**
  *  : Get this AllDom properties
@@ -43,7 +34,7 @@ export const getAllDomResource = async (serviceName: string) => {
 export const updateService = async (
   serviceName: string,
   terminationPolicy: ServiceInfoUpdateEnum,
-  serviceRoute: string,
+  serviceRoute: ServiceRoutes,
 ): Promise<TServiceInfo> => {
   // First call to retrieve serviceID in order to update it
   const { data: serviceId } = await v6.get(
@@ -53,14 +44,5 @@ export const updateService = async (
   const { data } = await v6.put(`/services/${serviceId}`, {
     terminationPolicy,
   });
-  return data;
-};
-
-export const getDomainBillingInformation = async (
-  domainName: string,
-): Promise<DomainBillingInformation> => {
-  const { data } = await aapi.get(
-    `/billing/services?search=${domainName}&type=DOMAIN`,
-  );
   return data;
 };

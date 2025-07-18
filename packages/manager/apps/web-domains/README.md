@@ -1,3 +1,3 @@
 # @ovh-ux/manager-web-domains-app
 
-> Domains and AllDom management
+> Domains and Alldom management

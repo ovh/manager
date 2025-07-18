@@ -17,8 +17,10 @@ export default function UpdateMeComponent({
   fields,
 }: UpdateMeComponentProps) {
   const { t } = useTranslation('dashboard');
-  const { data: url } = useNavigationGetUrl(['account', '', {}]);
+  const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
+
+  const url = `${accountUrl as string}/useraccount/infos`;
 
   if (nichandle !== value) {
     return (
@@ -39,7 +41,7 @@ export default function UpdateMeComponent({
         })}
       </OdsText>
       <OdsLink
-        href={`${url}/useraccount/infos`}
+        href={url}
         color="primary"
         label={t(`domain_operations_update_${argumentKey}_click`)}
         className="block modal-link"

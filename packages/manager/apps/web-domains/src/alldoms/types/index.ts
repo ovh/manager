@@ -2,8 +2,7 @@ import {
   DomainRegistrationStateEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
-  ServiceInfoUpdateEnum,
-  LifecycleCapacitiesEnum,
+  LifecycleActionsEnum,
 } from '@/alldoms/enum/service.enum';
 
 export interface TAllDomDomains {
@@ -28,9 +27,7 @@ export interface TServiceInfo {
     lifecycle?: {
       current: {
         creationDate: string | null;
-      };
-      capacities: {
-        actions: LifecycleCapacitiesEnum[];
+        pendingActions: LifecycleActionsEnum[];
       };
     } | null;
   };
@@ -55,7 +52,7 @@ export interface AlldomService {
   nicAdmin: string;
   nicBilling: string;
   nicTechnical: string;
-  lifecycleCapacities: LifecycleCapacitiesEnum[];
+  lifecyclePendingActions: LifecycleActionsEnum[];
   renewMode: ServiceInfoRenewMode | null;
   expirationDate: string;
   creationDate: string;
@@ -71,26 +68,13 @@ export interface TDomainsInfo {
 }
 
 export interface ModalStepsProps {
-  domainsAttached?: TDomainsInfo[];
-  domainAttachedChecked?: string[];
+  services?: TServiceInfo[];
+  domainsChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
-  checkAllDomain?: boolean;
-  changeStep: () => void;
-  handleDomainAttached?: (domainSelected: string[]) => void;
-  handleCheckAllDomain?: (checked: boolean) => void;
+  checkAllDomains?: boolean;
+  setIsStepOne: (changeStep: boolean) => void;
+  setDomainsChecked?: (domainSelected: string[]) => void;
+  setCheckAllDomains?: (checked: boolean) => void;
   closeModal?: () => void;
-}
-
-export interface DomainBillingInformation {
-  list: {
-    results: [
-      {
-        renew: {
-          deleteAtExpiration: boolean;
-          forced: boolean;
-        };
-      },
-    ];
-  };
 }

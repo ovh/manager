@@ -33,7 +33,7 @@ export const alldomService: AlldomService = {
   nicAdmin: 'aa00001-ovh',
   nicBilling: 'aa00001-ovh',
   nicTechnical: 'aa00001-ovh',
-  lifecycleCapacities: [],
+  lifecyclePendingActions: [],
   renewMode: null,
   creationDate: '',
   expirationDate: '',

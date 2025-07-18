@@ -3,18 +3,19 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  LifecycleActionsEnum,
   ServiceInfoRenewMode,
-  LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface ServiceDetailSubscribingRenewModeProps {
   readonly renewMode: ServiceInfoRenewMode;
-  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
+  readonly lifecyclePendingActions: LifecycleActionsEnum[];
 }
 
 export default function ServiceDetailSubscribingRenewMode({
   renewMode,
-  lifecycleCapacities,
+  lifecyclePendingActions,
 }: ServiceDetailSubscribingRenewModeProps) {
   const { t } = useTranslation('allDom');
 
@@ -24,9 +25,7 @@ export default function ServiceDetailSubscribingRenewMode({
         {t('allDom_table_header_renewMode')}
       </OdsText>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {lifecycleCapacities.includes(
-          LifecycleCapacitiesEnum.TerminateAtExpirationDate,
-        )
+        {hasTerminateAtExpirationDateAction(lifecyclePendingActions)
           ? t(`allDom_table_status_terminate`)
           : t(`allDom_status_${renewMode}`)}
       </OdsText>

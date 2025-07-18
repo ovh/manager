@@ -7,8 +7,15 @@ import DomainDatagridColumnDate from '@/alldoms/components/DomainDatagridColumns
 import DomainDatagridColumnDomain from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDomain';
 import DomainDatagridColumnRenewMode from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnRenewMode';
 
-export const useDomainDatagridColumns = () => {
+interface DomainDatagridColumnsProps {
+  readonly alldomTerminated: boolean;
+}
+
+export const useDomainDatagridColumns = ({
+  alldomTerminated,
+}: DomainDatagridColumnsProps) => {
   const { t } = useTranslation('allDom');
+
   const columns = [
     {
       id: 'domainName',
@@ -16,6 +23,7 @@ export const useDomainDatagridColumns = () => {
         <DomainDatagridColumnDomain domain={props.name} />
       ),
       label: t('allDom_domain_table_header_domain_name'),
+      isSortable: true,
     },
     {
       id: 'status',
@@ -32,7 +40,10 @@ export const useDomainDatagridColumns = () => {
       cell: (props: TDomainsInfo) => {
         return props.registrationStatus ===
           DomainRegistrationStateEnum.Registered ? (
-          <DomainDatagridColumnRenewMode serviceName={props.name} />
+          <DomainDatagridColumnRenewMode
+            alldomTerminated={alldomTerminated}
+            serviceName={props.name}
+          />
         ) : (
           <p>-</p>
         );
