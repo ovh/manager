@@ -20,7 +20,7 @@ import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDeta
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribing.component';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
-import Loading from '@/alldoms/components/Loading/Loading';
+import Loading from '@/alldoms/components/loading/Loading';
 import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 
@@ -29,7 +29,7 @@ export default function ServiceDetail() {
     true,
   );
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const { t } = useTranslation(['allDom']);
   const { notifications } = useNotifications();
   const formatDate = useFormatDate();
 
