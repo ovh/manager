@@ -490,19 +490,6 @@ pciNode.children = [
         features: ['pci-dataplatform'],
         tag: NodeTag.NEW,
       },
-      {
-        id: 'pci-logs-data-platform',
-        idAttr: 'pci-logs-data-platform-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_logs_data_platform',
-        serviceType: 'DBAAS_LOGS',
-        routing: {
-          application: 'dedicated',
-          hash: '#/dbaas/logs',
-        },
-        features: ['logs-data-platform'],
-        forceVisibility: true,
-      },
     ],
   },
   {
