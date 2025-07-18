@@ -96,7 +96,7 @@ export interface RowSelectionProps<T> {
   rowSelection: RowSelectionState;
   setRowSelection: React.Dispatch<React.SetStateAction<RowSelectionState>>;
   /** This callback is called every time 1 or multiple rows are selected */
-  onRowSelectionChange?: (selectedRows: Row<T>[]) => void;
+  onRowSelectionChange?: (selectedRows: T[]) => void;
   /** when used, for each row if expression is false, the row is disabled */
   enableRowSelection?: (row: Row<T>) => boolean;
 }
@@ -378,8 +378,11 @@ export const Datagrid = <T,>({
 
   // Handle onRowSelectionChange callback
   useEffect(() => {
-    rowSelection?.onRowSelectionChange?.(table.getSelectedRowModel().rows);
-  }, [rowSelection]);
+    const selectedRows = table
+      .getSelectedRowModel()
+      .rows.map(({ original }) => original);
+    rowSelection?.onRowSelectionChange?.(selectedRows);
+  }, [JSON.stringify(rowSelection.rowSelection)]);
 
   return (
     <div>
