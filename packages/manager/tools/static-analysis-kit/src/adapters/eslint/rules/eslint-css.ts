@@ -31,5 +31,6 @@ export const cssEslintConfig: ExtendedFlatConfig = {
   },
   rules: {
     ...css.configs.recommended.rules,
+    'no-irregular-whitespace': 'off',
   },
 };
