@@ -1,7 +1,7 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 import { ToggleField } from './ToggleField.component';
 import { testIds } from '@/utils/testIds.constants';
@@ -33,7 +33,9 @@ describe('ToggleField component unit test suite', () => {
     expect(toggle).toHaveAttribute('value', 'true');
 
     // and
-    toggle.dispatchEvent(new CustomEvent('odsChange'));
+    act(() => {
+      toggle.dispatchEvent(new CustomEvent('odsChange', { detail: true }));
+    });
     expect(handleChange).toHaveBeenCalled();
   });
 });
