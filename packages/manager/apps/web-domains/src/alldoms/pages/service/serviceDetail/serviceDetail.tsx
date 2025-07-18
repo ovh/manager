@@ -21,15 +21,15 @@ import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/Service
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribing.component';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/loading/Loading';
-import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
     true,
   );
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const { t } = useTranslation(['allDom']);
   const { notifications } = useNotifications();
   const formatDate = useFormatDate();
 
@@ -64,8 +64,8 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
     >
       <section>
-        {alldomService.lifecycleCapacities.includes(
-          LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+        {hasTerminateAtExpirationDateAction(
+          alldomService.lifecyclePendingActions,
         ) &&
           isManualRenewMessage && (
             <OdsMessage
@@ -85,7 +85,7 @@ export default function ServiceDetail() {
                     values={{
                       expirationDate: formatDate({
                         date: alldomService.expirationDate,
-                        format: 'PP',
+                        format: 'PPP',
                       }),
                     }}
                     components={{ strong: <strong /> }}
@@ -104,7 +104,12 @@ export default function ServiceDetail() {
           <ServiceDetailInformation currentState={alldomService.currentState} />
           <ServiceDetailSubscribing alldomService={alldomService} />
         </div>
-        <ServiceDetailDomains items={alldomService.currentState.domains} />
+        <ServiceDetailDomains
+          alldomTerminated={hasTerminateAtExpirationDateAction(
+            alldomService.lifecyclePendingActions,
+          )}
+          items={alldomService.currentState.domains}
+        />
       </section>
       <Outlet />
     </BaseLayout>

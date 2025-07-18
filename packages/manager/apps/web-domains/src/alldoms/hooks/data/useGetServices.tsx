@@ -4,16 +4,18 @@ import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
 interface UseGetDatagridServiceInfoListProps {
   readonly names: string[];
+  readonly serviceRoute: ServiceRoutes;
 }
 
-export const useGetAllDoms = ({
+export const useGetServices = ({
   names,
+  serviceRoute,
 }: UseGetDatagridServiceInfoListProps) => {
   const { data, listLoading } = useQueries({
     queries: names
       ? names.map((name) => ({
-          queryKey: ['serviceInfo', name],
-          queryFn: () => getServiceInformation(name, ServiceRoutes.AllDom),
+          queryKey: ['allDom', name],
+          queryFn: () => getServiceInformation(name, serviceRoute),
         }))
       : [],
     combine: (results) => {
