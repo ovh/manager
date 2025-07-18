@@ -24,3 +24,4 @@ Always prepending yarn:
 - `test:e2e`: Run e2e test using playwright
 - `test`: Runs testing using coverage
 - `test:watch`: Runs test using watch mode
+
