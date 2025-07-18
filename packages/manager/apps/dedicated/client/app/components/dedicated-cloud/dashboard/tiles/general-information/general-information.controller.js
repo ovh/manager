@@ -10,6 +10,7 @@ export default class {
 
   $onInit() {
     this.bindings = {
+      name: this.currentService.name,
       commercialRange: this.currentService.commercialRange,
       description: this.currentService.description,
       numberOfIPBlocks: {

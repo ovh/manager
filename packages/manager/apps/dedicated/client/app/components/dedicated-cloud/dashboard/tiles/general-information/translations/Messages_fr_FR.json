@@ -1,9 +1,8 @@
 {
   "ovhManagerPccDashboardGeneralInformation_heading": "Informations générales",
-
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Description",
   "ovhManagerPccDashboardGeneralInformation_name_term": "Nom",
-  "ovhManagerPccDashboardGeneralInformation_name_actionMenu_update": "Modifier le nom",
-
+  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Modifier",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Solution logicielle",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Mise à jour disponible",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned": "Mise à jour programmée",
@@ -12,31 +11,24 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_SYSTEMCENTER": "VMM",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_AZURE": "Azure",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_VCSA": "vCSA",
-
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Installer la mise à jour majeure ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Installer la mise à jour mineure ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modifier la date de mise à jour",
-
   "ovhManagerPccDashboardGeneralInformation_loadLocation_error": "Une erreur est survenue lors de la récupération des données nécessaires à l'affichage des informations de localisation.",
   "ovhManagerPccDashboardGeneralInformation_location_zone": "Zone Private Cloud",
   "ovhManagerPccDashboardGeneralInformation_location_region_location": "Localisation",
   "ovhManagerPccDashboardGeneralInformation_location_region": "Région",
-
   "ovhManagerPccDashboardGeneralInformation_commercial_range": "Gamme commerciale",
-
   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Nombre de datacenters",
   "ovhManagerPccDashboardGeneralInformation_vcd_name": "Nom du VCD",
-
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Nombre de blocs IP",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_0": "Aucun",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_order": "Commander des blocs d’IP",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Associer des blocs d’IP à un autre service",
-
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Interfaces de gestion",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Interface web",
-
   "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Ouvre un nouvel onglet"
 }
