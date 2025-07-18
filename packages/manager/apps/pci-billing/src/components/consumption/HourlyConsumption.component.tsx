@@ -36,7 +36,7 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_instance_detail_title'),
       component: (
         <InstanceList
-          billingInstances={consumption?.hourlyInstances}
+          billingInstances={consumption.hourlyInstances}
           colNameLabel={t('cpbc_hourly_instance_col_name')}
           colTotalLabel={t('cpbc_hourly_instance_col_consumption')}
         />
@@ -46,32 +46,32 @@ export default function HourlyConsumption({
     {
       key: 'snapshot',
       title: t('cpbc_snapshot_detail_title'),
-      component: <SnapshotList snapshots={consumption?.snapshots} />,
+      component: <SnapshotList snapshots={consumption.snapshots} />,
       condition: true,
     },
     {
       key: 'volume',
       title: t('cpbc_volume_detail_title'),
-      component: <VolumeList volumes={consumption?.volumes} />,
+      component: <VolumeList volumes={consumption.volumes} />,
       condition: true,
     },
     {
       key: 'objectStorage',
       title: t('cpbc_object_storage_detail_title'),
-      component: <ObjectStorageList storages={consumption?.objectStorages} />,
+      component: <ObjectStorageList storages={consumption.objectStorages} />,
       condition: true,
     },
 
     {
       key: 'archiveStorage',
       title: t('cpbc_archive_storage_detail_title'),
-      component: <ArchiveStorageList storages={consumption?.archiveStorages} />,
+      component: <ArchiveStorageList storages={consumption.archiveStorages} />,
       condition: !isTrustedZone,
     },
     {
       key: 'coldArchive',
       title: t('cpbc_cold_archive_detail_title'),
-      component: <ColdArchiveList coldArchives={consumption?.coldArchive} />,
+      component: <ColdArchiveList coldArchives={consumption.coldArchive} />,
       condition: !isTrustedZone,
     },
     {
@@ -79,7 +79,7 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_instance_trafic_title'),
       component: (
         <OutgoingTrafficList
-          instanceBandwidths={consumption?.bandwidthByRegions}
+          instanceBandwidths={consumption.bandwidthByRegions}
         />
       ),
       condition: true,
@@ -88,7 +88,7 @@ export default function HourlyConsumption({
       key: 'privateRegistry',
       title: t('cpbc_hourly_private_registry_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.privateRegistry} />
+        <ResourceUsageList resourcesUsage={consumption.privateRegistry} />
       ),
       condition: !isTrustedZone,
     },
@@ -108,7 +108,7 @@ export default function HourlyConsumption({
       title: PRODUCTS.KUBERNETES_LOAD_BALANCER,
       component: (
         <ResourceUsageList
-          resourcesUsage={consumption?.kubernetesLoadBalancer}
+          resourcesUsage={consumption.kubernetesLoadBalancer}
         />
       ),
       condition: !isTrustedZone,
@@ -116,19 +116,19 @@ export default function HourlyConsumption({
     {
       key: 'training',
       title: t('cpbc_hourly_training_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.training} />,
+      component: <ResourceUsageList resourcesUsage={consumption.training} />,
       condition: !isTrustedZone,
     },
     {
       key: 'notebooks',
       title: t('cpbc_hourly_notebooks_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.notebooks} />,
+      component: <ResourceUsageList resourcesUsage={consumption.notebooks} />,
       condition: true,
     },
     {
       key: 'aiDeploy',
       title: t('cpbc_hourly_ai_deploy_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.aiDeploy} />,
+      component: <ResourceUsageList resourcesUsage={consumption.aiDeploy} />,
       condition: !isTrustedZone,
     },
     {
@@ -141,7 +141,7 @@ export default function HourlyConsumption({
       key: 'dataProcessing',
       title: t('cpbc_hourly_data_processing_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.dataProcessing} />
+        <ResourceUsageList resourcesUsage={consumption.dataProcessing} />
       ),
       condition: !isTrustedZone,
     },
@@ -156,32 +156,32 @@ export default function HourlyConsumption({
     {
       key: 'databases',
       title: t('cpbc_hourly_databases_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.databases} />,
+      component: <ResourceUsageList resourcesUsage={consumption.databases} />,
       condition: !isTrustedZone,
     },
     {
       key: 'floatingIP',
       title: t('cpbc_hourly_floating_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.floatingIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.floatingIP} />,
       condition: !isTrustedZone,
     },
     {
       key: 'publicIP',
       title: t('cpbc_hourly_public_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.publicIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.publicIP} />,
       condition: !isTrustedZone,
     },
     {
       key: 'gateway',
       title: t('cpbc_hourly_gateway_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.gateway} />,
+      component: <ResourceUsageList resourcesUsage={consumption.gateway} />,
       condition: !isTrustedZone,
     },
     {
       key: 'octaviaLoadBalancer',
       title: PRODUCTS.OCTAVIA_LOAD_BALANCER,
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.octaviaLoadBalancer} />
+        <ResourceUsageList resourcesUsage={consumption.octaviaLoadBalancer} />
       ),
       condition: !isTrustedZone,
     },
