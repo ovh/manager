@@ -41,10 +41,11 @@ export const reactEslintConfig: Linter.FlatConfig = {
   },
   rules: {
     ...reactPlugin.configs.recommended.rules,
-    ...reactHooksPlugin.configs.recommended.rules,
 
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md#when-not-to-use-it
-    'react/react-in-jsx-scope': 'off', // Disable React import rule for JSX
+    ...reactPlugin.configs['jsx-runtime'].rules,
+
+    ...reactHooksPlugin.configs.recommended.rules,
 
     // Enforce only one component per file (stateless included)
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
