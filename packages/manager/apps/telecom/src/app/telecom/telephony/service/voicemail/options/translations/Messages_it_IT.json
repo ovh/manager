@@ -29,5 +29,6 @@
   "telephony_line_answer_voicemail_options_mail_empty": "Non hai ancora configurato l'indirizzo email a cui inviare la notifica.",
   "telephony_line_answer_voicemail_options_mail_limit": "È possibile inviare la notifica a un massimo di 5 indirizzi email.",
   "telephony_line_answer_voicemail_options_mail_type_attachment": "Messaggio allegato",
-  "telephony_line_answer_voicemail_options_mail_type_simple": "Solo notifica"
+  "telephony_line_answer_voicemail_options_mail_type_simple": "Solo notifica",
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Trascrizione in allegato (Beta, generata da Intelligenza Artificiale)."
 }
