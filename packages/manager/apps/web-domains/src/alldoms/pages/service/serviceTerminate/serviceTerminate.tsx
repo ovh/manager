@@ -1,5 +1,5 @@
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '@ovh-ux/manager-react-components';
@@ -39,34 +39,37 @@ export default function ServiceTerminate() {
 
   return (
     <Modal
-      isLoading={isLoading}
       type={ODS_MODAL_COLOR.critical}
       heading={t('allDom_modal_title', {
         t0: serviceName,
       })}
     >
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
-          {t('allDom_modal_subtitle')}
-        </OdsText>
+      {isLoading ? (
+        <OdsSpinner />
+      ) : (
+        <div>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+            {t('allDom_modal_subtitle')}
+          </OdsText>
 
-        {isStepOne ? (
-          <ModalStepOne
-            domainsAttached={domains?.currentState.domains}
-            checkAllDomain={isAllDomainChecked}
-            changeStep={changeStep}
-            domainAttachedChecked={domainAttachedChecked}
-            handleDomainAttached={handleDomainAttached}
-            handleCheckAllDomain={handleCheckAllDomain}
-          />
-        ) : (
-          <ModalStepTwo
-            domainTerminateList={domainAttachedChecked}
-            changeStep={changeStep}
-            serviceName={serviceName}
-          />
-        )}
-      </div>
+          {isStepOne ? (
+            <ModalStepOne
+              domainsAttached={domains?.currentState.domains}
+              checkAllDomain={isAllDomainChecked}
+              changeStep={changeStep}
+              domainAttachedChecked={domainAttachedChecked}
+              handleDomainAttached={handleDomainAttached}
+              handleCheckAllDomain={handleCheckAllDomain}
+            />
+          ) : (
+            <ModalStepTwo
+              domainTerminateList={domainAttachedChecked}
+              changeStep={changeStep}
+              serviceName={serviceName}
+            />
+          )}
+        </div>
+      )}
     </Modal>
   );
 }

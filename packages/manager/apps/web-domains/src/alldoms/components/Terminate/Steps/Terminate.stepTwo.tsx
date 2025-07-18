@@ -54,7 +54,7 @@ export default function TerminateModalStepTwo({
       addError(
         <OdsText>
           {t('allDom_modal_error_message', {
-            t0: error.message,
+            t0: error.response.data.message,
           })}
         </OdsText>,
       );
