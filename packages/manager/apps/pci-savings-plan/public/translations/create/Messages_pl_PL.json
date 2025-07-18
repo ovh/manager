@@ -48,5 +48,7 @@
   "deployment_one_az": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
   "deployment_three_az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
   "choose_ressource_description_info": "Zarządzasz swoimi usługami jak dotychczas. Platforma automatycznie oblicza zużycie na podstawie konfiguracji Savings Plans i wykorzystania istniejących lub przyszłych zasobów.",
-  "select_quantity_description_rancher_info": "Rancher jest fakturowany za godzinę, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters”. vCPU węzłów typu control-plane nie są fakturowane."
+  "select_quantity_description_rancher_info": "Rancher jest fakturowany za godzinę, w oparciu o całkowitą liczbę vCPU w każdym z węzłów roboczych w „downstream clusters”. vCPU węzłów typu control-plane nie są fakturowane.",
+  "choose_date": "Wybierz datę",
+  "choose_date_description": "Wskaż dzień, w którym plan Savings Plan ma obowiązywać"
 }
