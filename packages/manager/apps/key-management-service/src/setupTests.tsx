@@ -22,14 +22,22 @@ const server = setupServer(
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'warn' });
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   delete global.server;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   global.__VERSION__ = null;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   global.server = server;
 });
 
 afterAll(() => {
   server.close();
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   delete global.__VERSION__;
 });
 

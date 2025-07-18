@@ -13,12 +13,14 @@ import RestApiTile from '@/components/layout-helpers/Dashboard/GeneralInformatio
 import BillingInformationsTile from '@/components/layout-helpers/Dashboard/GeneralInformationsTiles/BillingInformationsTile';
 
 function GeneralInformationsTab() {
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { data: okms, error, isLoading: isOkmsLoading } = useOkmsById(okmsId);
   const {
     data: okmsService,
     isLoading: isOkmsServiceLoading,
-  } = useServiceDetails({ resourceName: okms?.data.id });
+    // This has been refactored and removed by https://github.com/ovh/manager/pull/17804
+    // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain, @typescript-eslint/no-non-null-assertion
+  } = useServiceDetails({ resourceName: okms?.data.id! });
 
   const navigate = useNavigate();
 
@@ -44,7 +46,9 @@ function GeneralInformationsTab() {
         <KmipTile okmsData={okms.data} />
         <RestApiTile okmsData={okms.data} />
       </div>
-      <BillingInformationsTile okmsService={okmsService.data} />
+      {okmsService.data && (
+        <BillingInformationsTile okmsService={okmsService.data} />
+      )}
     </DashboardGridLayout>
   );
 }

@@ -2,7 +2,6 @@ import { describe, expect } from 'vitest';
 import {
   serviceKeyMaxCharacters,
   ServiceKeyNameErrors,
-  ServiceKeyNameErrorsType,
   validateServiceKeyName,
 } from './validateServiceKeyName';
 
@@ -10,7 +9,7 @@ describe('Service key name validation test suite', () => {
   const useCases: {
     name: string;
     usecase: string;
-    error: ServiceKeyNameErrorsType;
+    error: ServiceKeyNameErrors;
   }[] = [
     {
       name: '',

@@ -26,7 +26,7 @@ import KmsTabs, {
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
 import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 
-export const OkmsContext = createContext<OKMS>(null);
+export const OkmsContext = createContext<OKMS | null>(null);
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -36,18 +36,18 @@ export default function DashboardPage() {
     'key-management-service/credential',
   ]);
   const navigate = useNavigate();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as {
+    okmsId: string;
+  };
   const {
     data: okms,
-    isLoading: isOkmsLoading,
-    isError: isOkmsError,
+    isPending: isOkmsLoading,
     error: okmsError,
   } = useOkmsById(okmsId);
 
   const {
     data: okmsServiceInfos,
-    isLoading: isOkmsServiceInfosLoading,
-    isError: isOkmsServiceInfosError,
+    isPending: isOkmsServiceInfosLoading,
     error: okmsServiceInfoError,
   } = useServiceDetails({ resourceName: okmsId });
 
@@ -57,47 +57,49 @@ export default function DashboardPage() {
 
   const displayName = okmsServiceInfos?.data?.resource.displayName;
 
-  const tabsList: KmsTabProps[] = useMemo(
-    () =>
-      [
-        {
-          url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
-          content: (
-            <>{t('key-management-service/dashboard:general_informations')}</>
-          ),
-        },
-        {
-          url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
-          content: <>{SERVICE_KEYS_LABEL}</>,
-        },
-        {
-          url: KMS_ROUTES_URLS.credentialListing(okmsId),
-          content: (
-            <>{t('key-management-service/dashboard:access_certificates')}</>
-          ),
-        },
-        features?.[KMS_FEATURES.LOGS] && {
-          url: KMS_ROUTES_URLS.kmsLogs(okmsId),
-          content: (
-            <div className="flex gap-2">
-              {t('key-management-service/dashboard:logs')}{' '}
-              <OdsBadge
-                size="sm"
-                label="beta"
-                color="information"
-                className="font-normal"
-              />
-            </div>
-          ),
-        },
-      ].filter(Boolean),
-    [features, t],
-  );
+  const tabsList: KmsTabProps[] = useMemo(() => {
+    const tabs: KmsTabProps[] = [
+      {
+        url: KMS_ROUTES_URLS.kmsDashboard(okmsId),
+        content: (
+          <>{t('key-management-service/dashboard:general_informations')}</>
+        ),
+      },
+      {
+        url: KMS_ROUTES_URLS.serviceKeyListing(okmsId),
+        content: <>{SERVICE_KEYS_LABEL}</>,
+      },
+      {
+        url: KMS_ROUTES_URLS.credentialListing(okmsId),
+        content: (
+          <>{t('key-management-service/dashboard:access_certificates')}</>
+        ),
+      },
+    ];
+    if (features?.[KMS_FEATURES.LOGS]) {
+      tabs.push({
+        url: KMS_ROUTES_URLS.kmsLogs(okmsId),
+        content: (
+          <div className="flex gap-2">
+            {t('key-management-service/dashboard:logs')}{' '}
+            <OdsBadge
+              size="sm"
+              label="beta"
+              color="information"
+              className="font-normal"
+            />
+          </div>
+        ),
+      });
+    }
+
+    return tabs;
+  }, [features, t]);
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: displayName,
+      label: displayName || okmsId,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -129,14 +131,10 @@ export default function DashboardPage() {
   if (isOkmsServiceInfosLoading || isOkmsLoading || isLoading)
     return <Loading />;
 
-  if (isOkmsServiceInfosError || isOkmsError) {
+  if (okmsServiceInfoError || okmsError) {
     return (
       <ErrorBanner
-        error={
-          okmsServiceInfoError
-            ? okmsServiceInfoError.response
-            : okmsError.response
-        }
+        error={okmsServiceInfoError?.response || okmsError?.response || {}}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
@@ -155,7 +153,7 @@ export default function DashboardPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <OkmsContext.Provider value={okms?.data}>
+      <OkmsContext.Provider value={okms.data}>
         <BaseLayout
           header={headerProps}
           onClickReturn={() => {

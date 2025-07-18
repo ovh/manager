@@ -40,7 +40,6 @@ const IdentitiesUserTile = ({
   return (
     <IdentitiesBaseTile
       title={user.login}
-      urn={user.urn}
       updateCallback={updateUserInList}
       isChecked={isChecked}
       setIsChecked={setIsChecked}

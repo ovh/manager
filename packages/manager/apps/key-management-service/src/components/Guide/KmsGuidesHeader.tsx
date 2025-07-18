@@ -1,6 +1,9 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GuideButton, GuideItem } from '@ovh-ux/manager-react-components';
+import {
+  GuideButton,
+  GuideItem as GuideItemMRC,
+} from '@ovh-ux/manager-react-components';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import {
   ButtonType,
@@ -9,6 +12,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
+
+type GuideItem = GuideItemMRC & { dataTestid?: string };
 
 export default function KmsGuidesHeader() {
   const { t } = useTranslation('key-management-service/guide');
@@ -29,36 +34,42 @@ export default function KmsGuidesHeader() {
     });
   };
 
-  const kmsGuides: GuideItem[] = React.useMemo(
-    () =>
-      [
-        {
-          id: 1,
-          href: guideLinks?.quickStart,
-          target: '_blank',
-          label: t('guides_header_quick_start'),
-          dataTestid: 'guides_header_quick_start',
-          onClick: () => handleTrackClick('go-to-quick-start-guide'),
-        },
-        features?.[KMS_FEATURES.KMS_USAGE_GUIDE] && {
-          id: 2,
-          href: guideLinks?.usage,
-          target: '_blank',
-          label: t('guides_header_kms_usage'),
-          dataTestid: 'guides_header_kms_usage',
-          onClick: () => handleTrackClick('go-to-use-ovh-kms'),
-        },
-        features?.[KMS_FEATURES.KMIP_CONNECTION_GUIDE] && {
-          id: 3,
-          href: guideLinks?.kmip,
-          target: '_blank',
-          label: t('guides_header_connect_kmip_product'),
-          dataTestid: 'guides_header_connect_kmip_product',
-          onClick: () => handleTrackClick('connect-product-kmip'),
-        },
-      ].filter(Boolean),
-    [guideLinks, t, features],
-  );
+  const kmsGuides = React.useMemo(() => {
+    const guides: GuideItem[] = [
+      {
+        id: 1,
+        href: guideLinks?.quickStart,
+        target: '_blank',
+        label: t('guides_header_quick_start'),
+        dataTestid: 'guides_header_quick_start',
+        onClick: () => handleTrackClick('go-to-quick-start-guide'),
+      },
+    ];
+
+    if (features?.[KMS_FEATURES.KMS_USAGE_GUIDE]) {
+      guides.push({
+        id: 2,
+        href: guideLinks?.usage,
+        target: '_blank',
+        label: t('guides_header_kms_usage'),
+        dataTestid: 'guides_header_kms_usage',
+        onClick: () => handleTrackClick('go-to-use-ovh-kms'),
+      });
+    }
+
+    if (features?.[KMS_FEATURES.KMIP_CONNECTION_GUIDE]) {
+      guides.push({
+        id: 3,
+        href: guideLinks?.kmip,
+        target: '_blank',
+        label: t('guides_header_connect_kmip_product'),
+        dataTestid: 'guides_header_connect_kmip_product',
+        onClick: () => handleTrackClick('connect-product-kmip'),
+      });
+    }
+
+    return guides;
+  }, [t, guideLinks, features]);
 
   return (
     <Suspense fallback={<GuideButton isLoading items={kmsGuides} />}>

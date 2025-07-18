@@ -49,7 +49,7 @@ const CreateAddIdentities = ({
 }: CreateAddIdentitiesProps) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const [isRootAccount, setIsRootAccount] = useState<boolean>(false);
   const { userList, groupList, serviceAccountList } = useIdentityData();
   const { auth } = useContext(ShellContext).environment.getUser();
@@ -63,9 +63,9 @@ const CreateAddIdentities = ({
         : [
             ...userList.map((user) => user.urn),
             ...groupList.map((group) => group.urn),
-            ...serviceAccountList.map(
-              (serviceAccount) => serviceAccount.identity,
-            ),
+            ...serviceAccountList
+              .map((serviceAccount) => serviceAccount.identity)
+              .filter((identity) => identity !== null),
           ],
     );
   }, [userList, groupList, serviceAccountList, isRootAccount]);

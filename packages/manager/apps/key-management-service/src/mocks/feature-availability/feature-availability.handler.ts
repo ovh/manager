@@ -6,9 +6,13 @@ export type GetFeatureAvailabilityMocksParams = {
   feature?: string;
 };
 
-const findAvailabilityByFeature = (feature: string) => ({
-  [feature]: featuresAvailabilityMock[feature] ?? false,
-});
+const findAvailabilityByFeature = (feature: string | undefined) => {
+  if (!feature) return {};
+
+  return {
+    [feature]: featuresAvailabilityMock[feature] ?? false,
+  };
+};
 
 export const getFeatureAvailabilityMocks = ({
   isFeatureAvailabilityKO,

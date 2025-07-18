@@ -51,7 +51,6 @@ const IdentitiesServiceAccountTile = ({
   return (
     <IdentitiesBaseTile
       title={serviceAccount.name}
-      urn={serviceAccount.identity}
       updateCallback={updateServiceAccountInList}
       isChecked={isChecked}
       setIsChecked={setIsChecked}
