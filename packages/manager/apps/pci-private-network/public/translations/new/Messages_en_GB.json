@@ -42,5 +42,5 @@
   "pci_projects_project_network_private_create_subnet": "Configure your subnet",
   "pci_projects_project_network_private_gateway_options": "Network Gateway Options",
   "pci_projects_project_network_private_3az_guide_description": "To learn more about 3-AZ service specifications and how to use them to build a resilient infrastructure, <Link>click here</Link>",
-  "pci_projects_project_network_private_create_error_quota_exceeded": "You no longer have any quota available for this location. To continue, <Link>increase your quotas</Link>"
+  "pci_projects_project_network_private_create_error_quota_exceeded": "You no longer have any quota available for this region. To continue, <Link>increase your quotas</Link>"
 }
