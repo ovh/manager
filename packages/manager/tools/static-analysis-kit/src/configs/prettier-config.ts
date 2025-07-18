@@ -1,36 +1,53 @@
-import { dirname, resolve } from 'path';
+import { createRequire } from 'module';
+import { resolve } from 'path';
 import { cwd } from 'process';
-import { fileURLToPath } from 'url';
 
-import { importOrderConfig } from './import-order-config';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { importOrderConfig } from './import-order-config.js';
 
 /**
- * Dynamically resolve the Tailwind config from the current working directory.
- * This allows Prettier plugins to align with the context of each app or package.
+ * A Node.js `require` function scoped to this ES module context.
+ *
+ * This allows using `require.resolve(...)` to locate CommonJS or plugin paths,
+ * which is not otherwise available in native ESM scope.
+ *
+ * @see https://nodejs.org/api/modules.html#createrequirefilename
+ */
+const require = createRequire(import.meta.url);
+
+/**
+ * Absolute path to the Tailwind CSS Prettier plugin.
+ *
+ * This plugin ensures deterministic sorting of utility classes
+ * in Tailwind-based JSX/HTML code.
+ *
+ * Must be passed as a string path to work with `eslint-plugin-prettier`.
+ */
+const tailwindPluginPath = require.resolve('prettier-plugin-tailwindcss');
+
+/**
+ * Absolute path to the Trivago import-sorting Prettier plugin.
+ *
+ * This plugin sorts and groups imports based on customizable rules
+ * to improve consistency and reduce noise in diffs.
+ */
+const sortImportsPluginPath = require.resolve('@trivago/prettier-plugin-sort-imports');
+
+/**
+ * Absolute path to the Tailwind configuration file for the current working directory.
+ *
+ * This allows Tailwind-aware tools (e.g., class sorting, custom theme detection)
+ * to resolve context-sensitive rules per app or workspace.
  */
 const tailwindConfigPath = resolve(cwd(), 'tailwind.config.js');
 
 /**
- * Absolute path to the Prettier plugin for sorting Tailwind CSS classes.
- */
-const tailwindPrettierPluginPath = resolve(
-  __dirname,
-  '../../node_modules/prettier-plugin-tailwindcss/dist/index.mjs',
-);
-
-/**
- * Absolute path to the Prettier plugin for sorting imports using Trivago's strategy.
- */
-const trivagoImportSortPluginPath = resolve(
-  __dirname,
-  '../../node_modules/@trivago/prettier-plugin-sort-imports/lib/src/index.js',
-);
-
-/**
- * Glob patterns for files and folders to exclude from Prettier formatting.
- * Applied to both Prettier CLI and editor integrations.
+ * Glob patterns that define which files or folders should be excluded
+ * from Prettier formatting.
+ *
+ * These paths are respected in CLI usage and in `eslint-plugin-prettier`
+ * where applicable.
+ *
+ * @type {string[]}
  */
 export const prettierIgnorePatterns = [
   '**/dist/**',
@@ -44,11 +61,24 @@ export const prettierIgnorePatterns = [
 ];
 
 /**
- * Shared Prettier configuration used by both CLI and eslint-plugin-prettier.
+ * Shared Prettier configuration for formatting source code across
+ * multiple projects and editors.
+ *
+ * This config is injected into `eslint-plugin-prettier` rules and also
+ * usable in CLI-based workflows.
+ *
+ * It supports:
+ * - Tailwind CSS class sorting
+ * - Trivago import grouping
+ * - Custom code style defaults
+ *
+ * Plugins must be passed as resolved file paths to be compatible with ESLint.
  *
  * @see https://prettier.io/docs/en/options.html
  * @see https://github.com/prettier/prettier-plugin-tailwindcss
  * @see https://github.com/trivago/prettier-plugin-sort-imports
+ *
+ * @type {import('prettier').Options}
  */
 export const prettierConfig = {
   semi: true,
@@ -59,22 +89,15 @@ export const prettierConfig = {
   arrowParens: 'always',
   endOfLine: 'lf',
 
-  /**
-   * Prettier plugins must use absolute paths when executed via ESLint integration.
-   */
-  plugins: [tailwindPrettierPluginPath, trivagoImportSortPluginPath],
+  // Plugin entry paths (must be string paths, not objects)
+  plugins: [tailwindPluginPath, sortImportsPluginPath],
 
-  /**
-   * Tailwind-related options to sort classnames and recognize utility calls.
-   */
+  // Tailwind-specific sorting behavior
   tailwindConfig: tailwindConfigPath,
   tailwindFunctions: ['clsx', 'tw'],
   tailwindAttributes: ['classList'],
 
-  /**
-   * Custom import sorting rules (used by trivago plugin).
-   * These control grouping and order of import blocks.
-   */
+  // Trivago import grouping/sorting rules
   importOrder: importOrderConfig,
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
