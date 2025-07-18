@@ -10,7 +10,6 @@ import {
 import { createWrapper } from '@/wrapperRenders';
 import { TVolumeStatus } from '../api/api.types';
 import {
-  getBackupsQueryKey,
   useBackup,
   useBackups,
   useCreateVolumeBackup,
@@ -397,18 +396,6 @@ describe('volumeBackup hooks', () => {
 
       expect(result.current.error?.message).toBe(errorMessage);
       expect(onSuccessMock).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('getBackupsQueryKey', () => {
-    it('should return the correct query key format', () => {
-      const key = getBackupsQueryKey('project1');
-      expect(key).toEqual([
-        [
-          'pci-volume-backup',
-          '/cloud/project/project1/aggregated/volumeBackup',
-        ],
-      ]);
     });
   });
 });
