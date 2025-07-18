@@ -565,7 +565,7 @@
                                         data-translate="server_configuration_installation_ovh_step2_raid"
                                     ></span>
                                     <span
-                                        class="icon-question-sign icon-white"
+                                        class="fa fa-question-circle"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
@@ -582,7 +582,7 @@
                                         data-translate="server_configuration_installation_ovh_step2_available_size"
                                     ></span>
                                     <span
-                                        class="icon-question-sign icon-white"
+                                        class="fa fa-question-circle"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
@@ -596,7 +596,7 @@
                                         data-translate="server_configuration_installation_ovh_step2_size"
                                     ></span>
                                     <span
-                                        class="icon-question-sign icon-white"
+                                        class="fa fa-question-circle"
                                         data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
                                         data-oui-tooltip-placement="left"
                                     >
@@ -782,14 +782,9 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-hide="$ctrl.isSetPartition(partition)"
-                                        data-ng-bind="installation.nbDiskUse"
+                                        data-ng-hide="$ctrl.isSetPartition(partition) || partition.fileSystem !== constants.warningSwap"
+                                        data-ng-bind="installation.nbDiskUse + ' x '"
                                     >
-                                    </span>
-                                    <span
-                                        data-ng-hide="$ctrl.isSetPartition(partition)"
-                                    >
-                                        x
                                     </span>
                                     <span
                                         data-ng-hide="$ctrl.isSetPartition(partition)"
@@ -1554,7 +1549,7 @@
                                         data-ng-if="!informations.softRaidOnlyMirroring"
                                     >
                                         <span
-                                            class="icon-question-sign icon-white"
+                                            class="fa fa-question-circle"
                                             data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
                                             data-oui-tooltip-placement="right"
                                         >
@@ -1598,7 +1593,7 @@
                                             data-translate="server_configuration_installation_ovh_step2_raid"
                                         ></span>
                                         <span
-                                            class="icon-question-sign icon-white"
+                                            class="fa fa-question-circle"
                                             data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
                                             data-oui-tooltip-placement="left"
                                         >
@@ -1612,7 +1607,7 @@
                                             data-translate="server_configuration_installation_ovh_step2_available_size"
                                         ></span>
                                         <span
-                                            class="icon-question-sign icon-white"
+                                            class="fa fa-question-circle"
                                             data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
                                             data-oui-tooltip-placement="left"
                                         >
@@ -1626,7 +1621,7 @@
                                             data-translate="server_configuration_installation_ovh_step2_size"
                                         ></span>
                                         <span
-                                            class="icon-question-sign icon-white"
+                                            class="fa fa-question-circle"
                                             data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
                                             data-oui-tooltip-placement="left"
                                         >
@@ -1714,21 +1709,10 @@
                                     <td>
                                         <span
                                             data-ng-if="partition.fileSystem == constants.warningSwap"
-                                            data-ng-bind="installation.nbDiskUse"
+                                            data-ng-bind="installation.nbDiskUse + ' x '"
                                         >
                                         </span>
                                         <span
-                                            data-ng-if="partition.fileSystem == constants.warningSwap"
-                                        >
-                                            x
-                                        </span>
-                                        <span
-                                            data-ng-if="partition.fileSystem == constants.warningSwap"
-                                            data-ng-bind="$ctrl.getDisplaySize(partition.size)"
-                                        >
-                                        </span>
-                                        <span
-                                            data-ng-if="partition.fileSystem != constants.warningSwap"
                                             data-ng-bind="$ctrl.getDisplaySize(partition.size)"
                                         >
                                         </span>
