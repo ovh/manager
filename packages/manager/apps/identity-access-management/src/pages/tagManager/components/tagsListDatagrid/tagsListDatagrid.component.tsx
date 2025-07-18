@@ -35,9 +35,11 @@ export default function TagsListDatagrid() {
   const [page, setPage] = useState(1);
   const { t } = useTranslation(['tag-manager', NAMESPACES.ERROR]);
   const { addError } = useNotifications();
-  const { isShowSystemChecked, isShowUnassignedResourcesChecked } = useContext(
-    TagManagerContext,
-  );
+  const {
+    isShowSystemChecked,
+    isShowUnassignedResourcesChecked,
+    setSelectedTagsList,
+  } = useContext(TagManagerContext);
 
   const columns: DatagridColumn<IamTagListItem>[] = [
     {
@@ -97,10 +99,11 @@ export default function TagsListDatagrid() {
     setPaginatedTagList(filtered.slice(0, PAGE_SIZE * page));
   }, [tags?.list, filter, page]);
 
-  useEffect(() => {
-    // tslint:disable-next-line:no-console
-    console.log(rowSelection);
-  }, [rowSelection]);
+  // useEffect(() => {
+  //   // tslint:disable-next-line:no-console
+  //   console.log(rowSelection);
+
+  // }, [rowSelection]);
 
   const onSearch = (newSearch: string) => {
     setFilter(newSearch);
@@ -127,12 +130,8 @@ export default function TagsListDatagrid() {
 
   const isSelectable = (item: IamTagListItem) => item.count > 1;
 
-  const onToggleAllRowsSelection = (isAllRowSelected: boolean) => {
-    const selectedTags: Record<string, boolean> = {};
-    filteredTags.forEach((tag) => {
-      if (isSelectable(tag)) selectedTags[tag.name] = !isAllRowSelected;
-    });
-    setRowSelection(selectedTags);
+  const onRowSelectionChange = (selectedRows: IamTagListItem[]) => {
+    setSelectedTagsList(selectedRows);
   };
 
   return (
@@ -152,11 +151,11 @@ export default function TagsListDatagrid() {
         isLoading={isLoading}
         numberOfLoadingRows={10}
         onSortChange={sortItems}
-        manageRowSelection={{
+        rowSelection={{
           rowSelection,
           setRowSelection,
-          onToggleAllRowsSelection,
           enableRowSelection: ({ original: item }) => isSelectable(item),
+          onRowSelectionChange,
         }}
         getRowId={getRowId}
       />
