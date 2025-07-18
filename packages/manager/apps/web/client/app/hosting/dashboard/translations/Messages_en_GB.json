@@ -1399,7 +1399,7 @@
   "hosting_dashboard_service_activate_email_tooltip": "To create an email address, you’ll need to link a domain name to your hosting plan.",
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
-  "hosting_tab_STATISTICS_type_allowed": "Authorized requests",
-  "hosting_tab_STATISTICS_type_denied": "Requests declined",
+  "hosting_tab_STATISTICS_type_allowed": "Authorised requests",
+  "hosting_tab_STATISTICS_type_denied": "Declined requests",
   "hosting_tab_SSL": "SSL certificates "
 }

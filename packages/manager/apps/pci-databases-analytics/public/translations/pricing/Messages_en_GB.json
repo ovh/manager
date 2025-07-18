@@ -7,7 +7,7 @@
   "pricing_unit_monthly": "/month",
   "pricing_label": "Price",
   "freeBetaLabel": "Free beta",
-  "freeBetaPopover": "The service is free during the beta phase and will become payable after the switch to general availability.",
+  "freeBetaPopover": "The service is free during the beta phase, but charges will apply once it’s officially launched.",
   "pricing_instance_label": "Instance",
   "pricing_storage_label": "Storage",
   "total_hour_label": "Total per hour",
