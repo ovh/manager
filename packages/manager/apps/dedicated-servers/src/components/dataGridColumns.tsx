@@ -6,6 +6,7 @@ import {
   DataGridTextCell,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
 import { ActionCell } from '@/components/actionCell';
 import { DedicatedServer } from '@/data/types/server.type';
 import MonitoringStatusChip from '@/components/monitoringStatus';
@@ -29,13 +30,12 @@ const textByProductStatus: Record<string, string> = {
   hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
 
-export function getColumns(
-  t: (v: string) => string,
-): DatagridColumn<DedicatedServer>[] {
+export function useColumns(): DatagridColumn<DedicatedServer>[] {
+  const { t } = useTranslation('dedicated-servers');
   return [
     {
       id: 'serverId',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.Numeric,
@@ -55,7 +55,7 @@ export function getColumns(
     },
     {
       id: 'ip',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -66,7 +66,7 @@ export function getColumns(
     },
     {
       id: 'reverse',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -79,7 +79,7 @@ export function getColumns(
     },
     {
       id: 'commercialRange',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -92,7 +92,7 @@ export function getColumns(
     },
     {
       id: 'os',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -103,7 +103,7 @@ export function getColumns(
     },
     {
       id: 'region',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -116,7 +116,7 @@ export function getColumns(
     },
     {
       id: 'rack',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -127,7 +127,7 @@ export function getColumns(
     },
     {
       id: 'datacenter',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -153,6 +153,7 @@ export function getColumns(
     },
     {
       id: 'monitoring',
+      isSearchable: false,
       isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.Boolean,
@@ -161,7 +162,7 @@ export function getColumns(
     },
     {
       id: 'vrack',
-      isSearchable: true,
+      isSearchable: false,
       isFilterable: false, // until fix
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -206,6 +207,7 @@ export function getColumns(
     },
     {
       id: 'tags',
+      isSearchable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.Tags,
