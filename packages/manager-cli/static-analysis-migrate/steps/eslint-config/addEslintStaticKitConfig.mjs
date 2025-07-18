@@ -87,7 +87,6 @@ export default [
   reactEslintConfig,
   a11yEslintConfig,
   htmlEslintConfig,
-  cssEslintConfig,
   tailwindJsxConfig,
   tanStackQueryEslintConfig,
   ...importEslintConfig,
@@ -96,6 +95,10 @@ export default [
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  {
+    ...cssEslintConfig,
+    files: ['**\\/*.css', '**\\/*.scss'],
+  }
 ];*/
 
 // Progressive and disable some rules
@@ -144,7 +147,27 @@ const addEslintStaticKitConfig = async () => {
     }
   }
 
-  // 2. Update package.json
+  // 2. Run the build script using yarn workspace command
+  console.log(`🛠 Running build script inside 'manager/packages/manager/tools/static-analysis-kit'...`);
+  const buildProc = spawn('yarn', ['workspace', '@ovh-ux/manager-static-analysis-kit', 'build'], {
+    shell: true,
+    stdio: 'inherit',
+    cwd: path.resolve(__dirname, '../../../..'),  // Run from the root directory
+  });
+
+  buildProc.on('close', (code) => {
+    if (code === 0) {
+      console.log(`✅ Build script ran successfully inside 'static-analysis-kit'.`);
+    } else {
+      console.warn(`⚠ Build script failed with exit code ${code}.`);
+    }
+  });
+
+  buildProc.on('error', (err) => {
+    console.error(`❌ Failed to run the build script: ${err.message}`);
+  });
+
+  // 3. Update package.json
   const pkg = readPackageJson(applicationPath);
   if (!pkg) {
     console.error(`❌ Could not read package.json in ${applicationPath}`);
@@ -171,7 +194,7 @@ const addEslintStaticKitConfig = async () => {
     writePackageJson(applicationPath, pkg);
   }
 
-  // 3. Final suggestion
+  // 4. Final suggestion
   console.log(`\n✅ ESLint static analysis setup complete for "${appName}".`);
   console.log(`📘 You can now progressively enable rules for full adoption.`);
   console.log(`📄 See: /development-guidelines/static-analysis-kit-migration/`);
