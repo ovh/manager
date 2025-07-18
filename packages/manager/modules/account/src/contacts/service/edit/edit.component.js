@@ -8,6 +8,7 @@ export default {
     currentUser: '<',
     goBack: '<',
     service: '<',
+    relatedReplicableService: '<',
   },
   controller,
   template,
