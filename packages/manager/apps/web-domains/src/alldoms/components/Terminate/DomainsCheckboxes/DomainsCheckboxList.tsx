@@ -1,26 +1,30 @@
 import React from 'react';
-import { TDomainsInfo } from '@/alldoms/types';
 import DomainsCheckboxItem from './DomainCheckboxItem';
+import { TServiceInfo } from '@/alldoms/types';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 
 interface DomainsCheckboxesProps {
-  readonly domainsAttached: TDomainsInfo[];
-  readonly domainAttachedChecked: string[];
+  readonly services: TServiceInfo[];
+  readonly domainsChecked: string[];
   readonly handleDomainAttached: (domainSelected: string[]) => void;
 }
 
 export default function DomainsCheckboxList({
-  domainsAttached,
-  domainAttachedChecked,
+  services,
+  domainsChecked,
   handleDomainAttached,
 }: DomainsCheckboxesProps) {
   return (
     <div className="flex flex-col gap-y-2 pl-9">
-      {domainsAttached.map(({ name }) => (
+      {services.map((service) => (
         <DomainsCheckboxItem
-          domainName={name}
-          domainAttachedChecked={domainAttachedChecked}
+          serviceName={service.resource.name}
+          isDisabled={service.billing.lifecycle.capacities.actions.includes(
+            LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+          )}
+          domainsChecked={domainsChecked}
           handleDomainAttached={handleDomainAttached}
-          key={name}
+          key={service.serviceId}
         />
       ))}
     </div>

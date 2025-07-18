@@ -29,7 +29,7 @@ export default function ServiceDetail() {
     true,
   );
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { t } = useTranslation(['allDom', 'web-domains/error']);
+  const { t } = useTranslation(['allDom']);
   const { notifications } = useNotifications();
   const formatDate = useFormatDate();
 

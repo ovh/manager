@@ -1,4 +1,7 @@
-import { ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
+import {
+  LifecycleCapacitiesEnum,
+  ServiceInfoRenewMode,
+} from '@/alldoms/enum/service.enum';
 import { TServiceInfo } from '@/alldoms/types';
 
 export const serviceInfo: TServiceInfo = {
@@ -14,6 +17,7 @@ export const serviceInfo: TServiceInfo = {
     lifecycle: {
       current: {
         creationDate: '2024-09-25T06:40:26Z',
+        pendingActions: [LifecycleCapacitiesEnum.EarlyRenewal],
       },
       capacities: {
         actions: [],

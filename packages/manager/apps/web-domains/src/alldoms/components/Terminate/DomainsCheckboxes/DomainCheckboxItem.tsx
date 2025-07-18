@@ -2,80 +2,64 @@ import React from 'react';
 import {
   OdsCheckbox,
   OdsIcon,
-  OdsSpinner,
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
-import { useGetDomainBillingInformation } from '@/alldoms/hooks/data/query';
 
 interface DomainsCheckboxItemProps {
-  readonly domainName: string;
-  readonly domainAttachedChecked: string[];
+  readonly serviceName: string;
+  readonly isDisabled: boolean;
+  readonly domainsChecked: string[];
   readonly handleDomainAttached: (domainSelected: string[]) => void;
 }
 
 export default function DomainsCheckboxItem({
-  domainName,
-  domainAttachedChecked,
+  serviceName,
+  isDisabled,
+  domainsChecked,
   handleDomainAttached,
 }: DomainsCheckboxItemProps) {
   const { t } = useTranslation('allDom');
-  const { data, isLoading } = useGetDomainBillingInformation(domainName);
-
-  if (isLoading) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.xs} />;
-  }
-
-  const { deleteAtExpiration, forced } = data.list.results[0].renew;
-  const isDisabled = deleteAtExpiration && forced;
 
   return (
     <div className="flex items-center gap-x-4">
       <div className="flex items-center gap-x-4">
         <OdsCheckbox
-          name={domainName}
-          inputId={domainName}
-          isChecked={domainAttachedChecked.includes(domainName)}
+          name={serviceName}
+          inputId={serviceName}
+          isChecked={domainsChecked.includes(serviceName)}
           onOdsChange={(e) => {
             const updatedCheckedDomains = e.detail.checked
-              ? [...domainAttachedChecked, domainName]
-              : domainAttachedChecked.filter(
-                  (domainChecked) => domainChecked !== domainName,
+              ? [...domainsChecked, serviceName]
+              : domainsChecked.filter(
+                  (domainChecked) => domainChecked !== serviceName,
                 );
             handleDomainAttached(updatedCheckedDomains);
           }}
-          data-testid={`checkbox-${domainName}`}
+          data-testid={`checkbox-${serviceName}`}
           isDisabled={isDisabled}
         />
         <label
-          htmlFor={domainName}
+          htmlFor={serviceName}
           className={
             isDisabled
               ? 'text-[var(--ods-color-text-disabled-default)]'
               : 'text-[var(--ods-color-text)]'
           }
         >
-          {domainName}
+          {serviceName}
         </label>
       </div>
       {isDisabled && (
         <div>
           <OdsIcon
-            id={`${domainName}`}
+            id={serviceName}
             className="custom-tooltip"
             name={ODS_ICON_NAME.circleQuestion}
           />
-          <OdsTooltip
-            role="tooltip"
-            strategy="fixed"
-            triggerId={`${domainName}`}
-          >
+          <OdsTooltip role="tooltip" strategy="fixed" triggerId={serviceName}>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t('allDom_modal_domain_already_in_terminate')}
             </OdsText>
