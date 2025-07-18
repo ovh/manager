@@ -5,15 +5,6 @@ import {
   ServiceInfoUpdateEnum,
 } from '@/alldoms/enum/service.enum';
 
-export interface TServiceDetail {
-  allDomResource: TAllDomDomains;
-  serviceInfo: TServiceInfo;
-  nicAdmin: string;
-  nicBilling: string;
-  nicTechnical: string;
-  allDomResourceState?: ServiceInfoUpdateEnum;
-}
-
 export interface TAllDomDomains {
   currentState: {
     name: string;
@@ -48,16 +39,27 @@ export interface TServiceInfo {
       type: string;
     }[];
   };
+  resource: {
+    name: string;
+  };
 }
 
-export interface TServiceProperty {
-  name: string;
-  iam: {
-    id: string;
-    urn: string;
+export interface AlldomService {
+  currentState: {
+    name: string;
+    type: ServiceInfoType;
+    domains: TDomainsInfo[];
+    extensions: string[];
   };
-  type: ServiceInfoType;
-  offer: string;
+  nicAdmin: string;
+  nicBilling: string;
+  nicTechnical: string;
+  allDomResourceState: ServiceInfoUpdateEnum;
+  renewMode: ServiceInfoRenewMode | null;
+  expirationDate: string;
+  creationDate: string;
+  renewalDate: string;
+  serviceId: number;
 }
 
 export interface TDomainsInfo {

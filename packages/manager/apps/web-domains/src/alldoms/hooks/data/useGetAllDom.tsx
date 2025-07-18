@@ -31,15 +31,20 @@ export const useGetAllDom = ({
       const serviceInfo = results[0].data;
       const allDomResource = results[1].data;
       const contacts = serviceInfo?.customer?.contacts ?? [];
+
       return {
         data: {
-          serviceInfo,
-          allDomResource,
+          ...allDomResource,
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
           allDomResourceState:
             serviceInfo?.billing?.lifecycle?.capacities?.actions[0],
+          renewMode: serviceInfo?.billing?.renew?.current?.mode,
+          creationDate: serviceInfo?.billing?.lifecycle?.current?.creationDate,
+          expirationDate: serviceInfo?.billing?.expirationDate,
+          renewalDate: serviceInfo?.billing?.renew?.current?.nextDate,
+          serviceId: serviceInfo?.serviceId,
         },
         isLoading: results.some((r) => r.isLoading),
       };

@@ -4,7 +4,7 @@ import { render, waitFor } from '@testing-library/react';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
-import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
+import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 
 vi.mock('@/alldoms/hooks/data/useGetAllDom', () => ({
   useGetAllDom: vi.fn(),
@@ -23,7 +23,7 @@ describe('AllDom datagrid', () => {
 
   it('display the information general pack', async () => {
     (useGetAllDom as jest.Mock).mockReturnValue({
-      data: serviceInfoDetail,
+      data: serviceInfo,
       isLoading: false,
     });
 

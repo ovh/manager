@@ -1,12 +1,12 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
-import { serviceInfoDetail } from '@/alldoms/__mocks__/serviceInfoDetail';
-import { serviceInfoProperty } from '@/alldoms/__mocks__/serviceInfoProperty';
+import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
+import { alldomService } from '@/alldoms/__mocks__/alldomService';
 
 vi.mock('@/alldoms/hooks/data/useGetAllDoms', () => ({
   useGetAllDoms: vi.fn(),
@@ -14,13 +14,18 @@ vi.mock('@/alldoms/hooks/data/useGetAllDoms', () => ({
 
 describe('AllDom datagrid', () => {
   it('display the datagrid data', async () => {
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
-      data: serviceInfoProperty,
+    (useResourcesIcebergV2 as jest.Mock).mockReturnValue({
+      flattenData: [alldomService],
       isLoading: false,
+      search: {
+        searchInput: '',
+        setSearchInput: vi.fn(),
+        onSearch: vi.fn(),
+      },
     });
 
     (useGetAllDoms as jest.Mock).mockReturnValue({
-      data: [serviceInfoDetail],
+      data: [serviceInfo],
       listLoading: false,
     });
     const { getByTestId } = render(<ServiceList />, { wrapper });

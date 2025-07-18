@@ -8,7 +8,7 @@ interface ServiceDetailDomainsProps {
 }
 
 export default function ServiceDetailDomains({
-  items,
+  items = [],
 }: ServiceDetailDomainsProps) {
   const columns = useDomainDatagridColumns();
   return <Datagrid columns={columns} items={items} totalItems={items.length} />;

@@ -35,7 +35,7 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: serviceInfoDetail, isLoading } = useGetAllDom({
+  const { data: alldomService, isLoading } = useGetAllDom({
     serviceName,
   });
 
@@ -56,7 +56,7 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
     >
       <section>
-        {serviceInfoDetail.allDomResourceState ===
+        {alldomService.allDomResourceState ===
           ServiceInfoUpdateEnum.TerminateAtExpirationDate &&
           isManualRenewMessage && (
             <OdsMessage
@@ -75,8 +75,7 @@ export default function ServiceDetail() {
                     i18nKey="allDom_detail_page_manuel_renew_warning"
                     values={{
                       t0: formatDate({
-                        date:
-                          serviceInfoDetail.serviceInfo.billing.expirationDate,
+                        date: alldomService.expirationDate,
                         format: 'PP',
                       }),
                     }}
@@ -94,17 +93,10 @@ export default function ServiceDetail() {
             </OdsMessage>
           )}
         <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
-          <ServiceDetailInformation
-            allDomResource={serviceInfoDetail.allDomResource}
-            extensionsList={
-              serviceInfoDetail.allDomResource.currentState.extensions
-            }
-          />
-          <ServiceDetailSubscribing serviceInfoDetail={serviceInfoDetail} />
+          <ServiceDetailInformation currentState={alldomService.currentState} />
+          <ServiceDetailSubscribing alldomService={alldomService} />
         </div>
-        <ServiceDetailDomains
-          items={serviceInfoDetail.allDomResource.currentState.domains}
-        />
+        <ServiceDetailDomains items={alldomService.currentState?.domains} />
       </section>
       <Outlet />
     </BaseLayout>

@@ -21,6 +21,7 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
+    useResourcesIcebergV2: vi.fn(),
   };
 });
 
