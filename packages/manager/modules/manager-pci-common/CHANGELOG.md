@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.2...@ovh-ux/manager-pci-common@0.18.3) (2025-07-18)
+
+
+### Bug Fixes
+
+* **pci-common:** add pricing function in calculate usememo dep ([64b4892](https://github.com/ovh/manager/commit/64b4892870cf7d6a2a9413caf43609544df88dd5))
+
+
+
+
+
 ## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.0...@ovh-ux/manager-pci-common@0.18.2) (2025-07-11)
 
 
