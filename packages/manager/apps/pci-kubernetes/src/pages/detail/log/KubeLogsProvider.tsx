@@ -20,17 +20,7 @@ export function KubeLogsProvider({
   return (
     <LogProvider
       logsApiURL={`/cloud/project/${projectId}/kube/${kubeId}/log`}
-      logsKeys={[
-        'audit_verb',
-        'audit_authorizationDecision',
-        'audit_responseStatus',
-        'audit_user',
-        'audit_requestURI',
-        'audit_groups',
-        'audit_authorizationReason',
-        'audit_userAgent',
-        'audit_auditID',
-      ]}
+      logsKeys={['message']}
       logsKind="audit"
       logsGuideURL={
         DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT
