@@ -12,9 +12,10 @@ import { PageLayout } from '@ovh-ux/manager-react-components';
 import { EndpointDatagrid } from './EndpointDataGrid.component';
 import { useNavigateToCreateEndpointPage } from '../endpoints.hook';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function EndpointsListing() {
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { data: vs } = useVrackService();
   const navigateToCreateEndpointPage = useNavigateToCreateEndpointPage();
 

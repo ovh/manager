@@ -22,13 +22,14 @@ import { useAllowedVrackList } from '@ovh-ux/manager-network-common';
 import { AssociateVrack } from './AssociateVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';
 import { LoadingText } from '@/components/LoadingText.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function AssociateVrackModal() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation([
-    'vrack-services/associate',
+    TRANSLATION_NAMESPACES.associate,
     NAMESPACES.ACTIONS,
   ]);
   const {

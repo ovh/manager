@@ -18,6 +18,7 @@ import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
 import { ActionCell } from './ActionCell.component';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sortVrackServicesListing = (
   sorting: ColumnSort,
@@ -51,7 +52,7 @@ const sortVrackServicesListing = (
 };
 
 export const VrackServicesDatagrid: React.FC = () => {
-  const { t, i18n } = useTranslation('vrack-services/listing');
+  const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.listing);
 
   const { data } = useVrackServicesList();
   const { sorting, setSorting } = useDataGrid({
@@ -100,9 +101,9 @@ export const VrackServicesDatagrid: React.FC = () => {
     },
     {
       id: 'actions',
-      label: t('actions'),
+      label: '',
       isSortable: false,
-      cell: (vs) => <ActionCell {...vs} />,
+      cell: ActionCell,
     },
   ];
 

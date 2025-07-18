@@ -18,9 +18,10 @@ import { formatDateString } from '@/utils/date';
 import { VrackId } from '@/components/vrack-id/VrackId.component';
 import { DisplayName } from '@/components/display-name/DisplayName.component';
 import { ProductStatusChip } from '@/components/ProductStatusChip.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function OverviewTab() {
-  const { t, i18n } = useTranslation('vrack-services/dashboard');
+  const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
   const { data: vrackServices, error, isLoading } = useVrackService();
 
   return error ? (

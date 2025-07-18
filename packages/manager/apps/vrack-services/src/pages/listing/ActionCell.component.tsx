@@ -13,10 +13,14 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { urls } from '@/routes/routes.constants';
 import { useVrackMenuItems } from '@/components/vrack-id/useVrackMenuItems.hook';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
-export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
+export const ActionCell = (vs: VrackServicesWithIAM) => {
   const navigate = useNavigate();
-  const { t } = useTranslation(['vrack-services', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.common,
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
   const vrackActionsMenuItems = useVrackMenuItems({ vs, isListing: true });
 
@@ -38,7 +42,7 @@ export const ActionCell: React.FC<VrackServicesWithIAM> = (vs) => {
       items={[
         {
           id: 0,
-          label: t('action-goDetails'),
+          label: t('see_details', { ns: NAMESPACES.ACTIONS }),
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
