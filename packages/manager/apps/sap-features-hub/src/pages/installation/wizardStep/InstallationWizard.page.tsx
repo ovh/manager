@@ -95,13 +95,14 @@ export default function InstallationWizard() {
 
   const handleSubmit = () => {
     const isValidUpload = upload.file && !upload.readError;
-    if (isValidUpload) {
-      setFormDataWithUpload();
-    } else {
-      clearInstallationForm();
-    }
+    if (isValidUpload) setFormDataWithUpload();
+
     navigate(urls.installationInitialStep);
   };
+
+  React.useEffect(() => {
+    clearInstallationForm();
+  }, []);
 
   return (
     <Modal
