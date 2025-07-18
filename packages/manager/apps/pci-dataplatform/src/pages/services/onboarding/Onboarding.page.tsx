@@ -6,7 +6,7 @@ import onboardingImgSrc from '@/../public/assets/onboarding-image.png';
 import OnboardingTile from './_components/OnboardingTile.component';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PlanCode } from '@/types/cloud/Project';
-import Link from '@/components/links/Link.component';
+import OvhLink from '@/components/links/OvhLink.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('dataplatform/services');
@@ -33,13 +33,14 @@ const Onboarding = () => {
                 <p className="text-[#995400]">{t('discoveryMode')}</p>
               </div>
               <Button type="button" asChild>
-                <Link
+                <OvhLink
                   className="hover:no-underline hover:text-primary-foreground"
-                  to={`#/pci/projects/${projectData.data?.project_id}/activate`}
+                  application="public-cloud"
+                  path={`#/pci/projects/${projectData.data?.project_id}/activate`}
                 >
                   {t('discoveryModeActivate')}
                   <ArrowRight className="w-4 h-4 ml-2 mt-1" />
-                </Link>
+                </OvhLink>
               </Button>
             </div>
           </AlertDescription>
