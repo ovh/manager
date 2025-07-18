@@ -46,11 +46,11 @@ const formIsNonNullable = (
 
   const regionType = form.region.type as DeploymentMode;
 
+  // TODO:  When 3AZ will be available, update condition to make form.plan mandatory to create a cluster & remove "free" fallback value in createCluster call
   return (
     !!form.network &&
     ((isMultiDeploymentZones(regionType) && !!form.network.privateNetwork) ||
       isMonoDeploymentZone(regionType)) &&
-    !!form.plan &&
     !!form.updatePolicy
   );
 };
@@ -143,7 +143,7 @@ export default function NewPage() {
     if (formIsNonNullable(stepper.form))
       createCluster({
         name: stepper.form.clusterName,
-        plan: stepper.form.plan,
+        plan: stepper.form.plan ?? 'free',
         region: stepper.form.region.name,
         version: stepper.form.version,
         updatePolicy: stepper.form.updatePolicy,
