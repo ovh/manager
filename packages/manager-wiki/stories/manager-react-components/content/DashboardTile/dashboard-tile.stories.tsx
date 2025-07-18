@@ -25,6 +25,7 @@ const items: DashboardTileBlockItem[] = [
   {
     id: 'component-example',
     label: 'Component Example',
+    labelTooltip: 'This is a tooltip for the component example',
     value: <OdsText preset="span">Test Value</OdsText>,
   },
   {
@@ -47,6 +48,7 @@ const items: DashboardTileBlockItem[] = [
   {
     id: 'clipboard',
     label: 'Clipboard',
+    labelTooltip: 'This is a tooltip for the clipboard example',
     value: <Clipboard className="w-full" value="example value" />,
   },
   {
