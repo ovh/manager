@@ -1,5 +1,5 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
-import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { useQuery, useQueries, UseQueryOptions } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getClusterIds,
   getCluster,
@@ -7,10 +7,14 @@ import {
 } from '@/data/api/vmwareServices';
 import { VMwareDatacentreCluster } from '@/types/vmwareService.type';
 
-export const useClusters = ({
-  serviceName,
-  datacenterId,
-}: TGetDatacentreParams) => {
+type ClustersQueryOptions = Partial<
+  UseQueryOptions<ApiResponse<number[]>, ApiError, number[]>
+>;
+
+export const useClusters = (
+  { serviceName, datacenterId }: TGetDatacentreParams,
+  options?: ClustersQueryOptions,
+) => {
   const {
     data: clusterIds = [],
     isLoading: isLoadingIds,
@@ -27,6 +31,7 @@ export const useClusters = ({
     queryFn: () => getClusterIds({ serviceName, datacenterId }),
     select: (res) => res.data,
     enabled: !!serviceName && !!datacenterId,
+    ...options,
   });
 
   const queries = useQueries({
