@@ -39,7 +39,13 @@ export default function InstallationInitialStep() {
   const { t } = useTranslation('installation');
   const { initializeAndProceed } = useFormSteps();
   const {
-    values: { serviceName, datacenterId, clusterName },
+    values: {
+      serviceName,
+      serviceDisplayName,
+      datacenterId,
+      datacenterName,
+      clusterName,
+    },
     setValues,
     initializationState: { isPrefilled, prefilledData },
   } = useInstallationFormContext();
@@ -55,16 +61,27 @@ export default function InstallationInitialStep() {
     data: datacentres,
     isLoading: isLoadingDatacentres,
     isError: isDatacentresError,
-  } = useVMwareDatacentres(serviceName);
+  } = useVMwareDatacentres(serviceName, {
+    enabled: !!serviceDisplayName,
+    staleTime: 0,
+    gcTime: 0,
+  });
 
   const {
     data: clusters,
     isLoading: isLoadingClusters,
     isError: isClustersError,
-  } = useClusters({
-    serviceName,
-    datacenterId: datacenterId?.toString(),
-  });
+  } = useClusters(
+    {
+      serviceName,
+      datacenterId: datacenterId?.toString(),
+    },
+    {
+      enabled: !!serviceDisplayName && !!datacenterName,
+      staleTime: 0,
+      gcTime: 0,
+    },
+  );
 
   const {
     stateMessage: serverErrorMessage,
@@ -146,7 +163,12 @@ export default function InstallationInitialStep() {
         options={services}
         optionValueKey="serviceName"
         optionLabelKey="displayName"
-        isDisabled={isLoadingServices || isServicesError}
+        isDisabled={
+          isLoadingServices ||
+          isServicesError ||
+          isLoadingDatacentres ||
+          isLoadingClusters
+        }
         isLoading={isLoadingServices}
         defaultValue={getSelectDefaultValue(
           getLatestValue('serviceName'),
@@ -174,7 +196,12 @@ export default function InstallationInitialStep() {
         options={datacentres}
         optionValueKey="datacenterId"
         optionLabelKey="name"
-        isDisabled={!serviceName || isLoadingDatacentres || isDatacentresError}
+        isDisabled={
+          !serviceDisplayName ||
+          isLoadingDatacentres ||
+          isDatacentresError ||
+          isLoadingClusters
+        }
         isLoading={isLoadingDatacentres}
         defaultValue={getSelectDefaultValue(
           getLatestValue('datacenterId'),
@@ -189,7 +216,7 @@ export default function InstallationInitialStep() {
           }));
         }}
         error={
-          invalidDatacentreError
+          serviceDisplayName && invalidDatacentreError
             ? t('service_input_error_no_cluster_available')
             : undefined
         }
@@ -201,7 +228,7 @@ export default function InstallationInitialStep() {
         options={clusters}
         optionValueKey="name"
         isDisabled={
-          !datacenterId ||
+          !datacenterName ||
           isLoadingClusters ||
           isClustersError ||
           invalidDatacentreError
