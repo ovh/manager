@@ -94,11 +94,17 @@ export const DNSOperations = [
   DNSOperationsEnum.ZoneRestore,
 ];
 
+export enum AlldomOperationsEnum {
+  AlldomDelete = 'AlldomDelete',
+}
+
+export const AlldomOperations = [AlldomOperationsEnum.AlldomDelete];
+
 export const editableArgument: Record<string, z.ZodString> = {
   authInfo: z
     .string()
     .min(5)
-    .max(50),
+    .max(65),
   legitimacyAfnic: z.string(),
   processId: z
     .string()

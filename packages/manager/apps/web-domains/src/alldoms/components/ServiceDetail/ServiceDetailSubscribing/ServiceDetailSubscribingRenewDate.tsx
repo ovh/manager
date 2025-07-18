@@ -5,27 +5,28 @@ import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
   ServiceInfoRenewMode,
-  LifecycleCapacitiesEnum,
+  LifecycleActionsEnum,
 } from '@/alldoms/enum/service.enum';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface ServiceDetailSubscribingRenewProps {
   readonly renewDate: string;
   readonly expirationDate: string;
   readonly renewMode: string;
-  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
+  readonly lifecyclePendingActions: LifecycleActionsEnum[];
 }
 
 export default function ServiceDetailSubscribingRenewDate({
   renewDate,
   expirationDate,
   renewMode,
-  lifecycleCapacities,
+  lifecyclePendingActions,
 }: ServiceDetailSubscribingRenewProps) {
   const { t } = useTranslation('allDom');
   const formatDate = useFormatDate();
   const isAutomatic = renewMode === ServiceInfoRenewMode.Automatic;
-  const isTerminated = lifecycleCapacities.includes(
-    LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+  const isTerminated = hasTerminateAtExpirationDateAction(
+    lifecyclePendingActions,
   );
   let date = renewDate;
 

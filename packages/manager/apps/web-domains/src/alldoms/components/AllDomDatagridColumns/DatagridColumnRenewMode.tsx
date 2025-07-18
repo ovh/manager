@@ -4,17 +4,18 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   ServiceInfoRenewMode,
-  LifecycleCapacitiesEnum,
+  LifecycleActionsEnum,
 } from '@/alldoms/enum/service.enum';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface DatagridColumnBadgeProps {
   readonly renewMode: ServiceInfoRenewMode | null;
-  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
+  readonly lifecyclePendingActions: LifecycleActionsEnum[];
 }
 
 export default function DatagridColumnRenewMode({
   renewMode,
-  lifecycleCapacities,
+  lifecyclePendingActions,
 }: DatagridColumnBadgeProps) {
   const { t } = useTranslation('allDom');
 
@@ -22,11 +23,7 @@ export default function DatagridColumnRenewMode({
     return '';
   }
 
-  if (
-    lifecycleCapacities.includes(
-      LifecycleCapacitiesEnum.TerminateAtExpirationDate,
-    )
-  ) {
+  if (hasTerminateAtExpirationDateAction(lifecyclePendingActions)) {
     return (
       <OdsBadge
         label={t('allDom_table_status_terminate')}

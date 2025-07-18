@@ -20,6 +20,7 @@ import {
   DomainOperations,
   DNSOperations,
   DomainOperationsEnum,
+  AlldomOperations,
 } from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
@@ -31,6 +32,19 @@ export const useOngoingOperationDatagridColumns = (
   const navigate = useNavigate();
   const location = useLocation();
   const formatDate = useFormatDate();
+
+  const getOperationsFilter = (type: ParentEnum) => {
+    switch (type) {
+      case ParentEnum.DOMAIN:
+        return DomainOperations;
+      case ParentEnum.ZONE:
+        return DNSOperations;
+      case ParentEnum.ALLDOM:
+        return AlldomOperations;
+      default:
+        return [];
+    }
+  };
 
   const columns = [
     {
@@ -60,10 +74,7 @@ export const useOngoingOperationDatagridColumns = (
       comparator: FilterCategories.Options,
       isFilterable: true,
       enableHiding: false,
-      filterOptions: (parent === ParentEnum.DOMAIN
-        ? DomainOperations
-        : DNSOperations
-      ).map((op) => ({
+      filterOptions: getOperationsFilter(parent).map((op: string) => ({
         label: t(`domain_operations_nicOperation_${op}`),
         value: op,
       })),

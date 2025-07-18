@@ -7,16 +7,14 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import {
-  ActionEnum,
-  LifecycleCapacitiesEnum,
-} from '@/alldoms/enum/service.enum';
+import { ActionEnum, LifecycleActionsEnum } from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
+import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface DatagridColumnActionMenuProps {
   readonly id: string;
   readonly serviceName: string;
-  readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
+  readonly lifecyclePendingActions: LifecycleActionsEnum[];
   readonly terminateUrl: string;
   readonly cancelTerminateUrl?: string;
   readonly whichAction: ActionEnum;
@@ -27,7 +25,7 @@ export default function ServiceActionMenu({
   serviceName,
   terminateUrl,
   cancelTerminateUrl,
-  lifecycleCapacities,
+  lifecyclePendingActions,
   whichAction,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
@@ -52,8 +50,8 @@ export default function ServiceActionMenu({
     { categoryType: allDomManagerService, service: serviceName },
   ]);
 
-  const disableAction = lifecycleCapacities.includes(
-    LifecycleCapacitiesEnum.TerminateAtExpirationDate,
+  const disableAction = hasTerminateAtExpirationDateAction(
+    lifecyclePendingActions,
   );
 
   const renewCGIAction = {
@@ -62,12 +60,13 @@ export default function ServiceActionMenu({
     href: renewUrl,
     target: '_blank',
     'data-testid': 'renew-button',
+    isDisabled: disableAction,
   };
 
   const renewalAction = {
     id: 2,
     label: t(`allDom_table_action_renewal`),
-    href: `${billingUrl}`,
+    href: `${billingUrl as string}`,
     target: '_blank',
     isDisabled: disableAction,
   };
@@ -75,7 +74,7 @@ export default function ServiceActionMenu({
   const handleContactAction = {
     id: 3,
     label: t(`allDom_table_action_handle_contacts`),
-    href: `${handleContactUrl}`,
+    href: `${handleContactUrl as string}`,
     target: '_blank',
     'data-testid': 'handleContact-button',
   };
