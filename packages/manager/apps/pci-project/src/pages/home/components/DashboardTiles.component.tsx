@@ -23,7 +23,7 @@ export default function DashboardTiles({ projectId }: { projectId: string }) {
 
   return (
     <div
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-stretch"
       role="region"
       aria-label={t('dashboard_tiles_aria')}
     >
@@ -44,11 +44,11 @@ export default function DashboardTiles({ projectId }: { projectId: string }) {
         return (
           <div
             key={sectionIdx}
-            className="space-y-4 flex flex-col h-full"
+            className="flex flex-col h-full"
             role="region"
             aria-label={t('section_aria', { title: section.title })}
           >
-            <div className="flex flex-col min-h-[400px] h-full">
+            <div className="h-full [&>*]:h-full">
               <DashboardTile
                 title={section.title}
                 items={items.map((item, itemIdx) => ({
