@@ -148,12 +148,11 @@ describe('CreatePlanForm', () => {
       fireEvent.click(screen.getByText('commitment_month'));
       // Select model
       fireEvent.click(screen.getByText('select_model_description_instance_b3'));
-      // Accept legal checkbox
-      fireEvent.click(screen.getByText('legal_checkbox'));
-      // Click on create button
-      fireEvent.click(screen.getByTestId('cta-plan-button'));
 
-      expect(defaultProps.onCreatePlan).toHaveBeenCalled();
+      // Create button should be enabled
+      const ctaPlanButton = screen.getByTestId('cta-plan-button');
+
+      expect(ctaPlanButton).toHaveAttribute('is-disabled', 'false');
     });
 
     it('should not call onCreatePlan if form not valid', async () => {

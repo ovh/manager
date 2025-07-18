@@ -16,22 +16,22 @@ export enum ResourcesColumn {
   price = 'price',
 }
 
+export const getHourlyQuantity = (quantity: TQuantity) => {
+  switch (quantity.unit) {
+    case 'Minute':
+      return (quantity.value / 60).toFixed(2);
+    case 'Hour':
+    default:
+      return quantity.value;
+  }
+};
+
 export function useResourceUsageListColumns({
   disabledColumns,
 }: { disabledColumns?: ResourcesColumn[] } = {}) {
   const { t } = useTranslation('consumption/hourly-instance/resource-usage');
   const { currency } = useContext(ShellContext).environment.getUser();
   const { translateMicroRegion } = useTranslatedMicroRegions();
-
-  const hourlyQuantity = (quantity: TQuantity) => {
-    switch (quantity?.unit) {
-      case 'Minute':
-        return (quantity?.value / 60).toFixed(2);
-      case 'Hour':
-      default:
-        return quantity?.value;
-    }
-  };
 
   return [
     {
@@ -61,7 +61,7 @@ export function useResourceUsageListColumns({
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
           {t('pci_billing_private_registry_consumption_value', {
-            value: hourlyQuantity(row.quantity),
+            value: getHourlyQuantity(row.quantity),
           })}
         </DataGridTextCell>
       ),

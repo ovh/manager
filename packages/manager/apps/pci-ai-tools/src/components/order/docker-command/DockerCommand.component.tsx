@@ -6,6 +6,7 @@ import { HelpCircle, Plus, TrashIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  Code,
   Form,
   FormControl,
   FormField,
@@ -16,8 +17,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  docker,
 } from '@datatr-ux/uxlib';
 import { DOCKER_CONFIG } from '@/configuration/docker-command';
+import { parseDockerCommand } from '@/lib/dockerCommandHelper';
 
 interface DockerCommandFormProps {
   commands: string[];
@@ -46,13 +49,7 @@ const DockerCommand = React.forwardRef<
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const dockerCommands: string[] = Array.from(
-      new Set(
-        formValues.command
-          .split(' ')
-          .filter((cmd: string) => cmd.trim() !== ''),
-      ),
-    );
+    const dockerCommands: string[] = parseDockerCommand(formValues.command);
     onChange(dockerCommands);
   });
 
@@ -126,17 +123,14 @@ const DockerCommand = React.forwardRef<
           </Button>
         )}
       </div>
-      <div>
-        <ul data-testid="docker-command-list" className="list-disc">
-          <div className="flex flex-row flex-wrap gap-4">
-            {commands.map((command, index) => (
-              <li key={index} className="ml-8 text-sm">
-                {command}
-              </li>
-            ))}
-          </div>
-        </ul>
-      </div>
+      {commands.length > 0 && (
+        <Code
+          className="text-sm"
+          code={commands.join(' ')}
+          showCopyButton={false}
+          lang={docker}
+        ></Code>
+      )}
     </Form>
   );
 });

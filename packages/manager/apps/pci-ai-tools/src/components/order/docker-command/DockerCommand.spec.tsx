@@ -26,7 +26,6 @@ describe('Docker Command component', () => {
       expect(screen.getByTestId('docker-command-form-container')).toBeTruthy();
       expect(screen.getByTestId('command-input-field')).toBeTruthy();
       expect(screen.getByTestId('docker-command-button')).toBeTruthy();
-      expect(screen.getByTestId('docker-command-list')).toBeTruthy();
     });
   });
 
