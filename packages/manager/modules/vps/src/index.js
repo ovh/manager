@@ -4,6 +4,7 @@ import 'oclazyload';
 import 'angular-translate';
 import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import onboarding from './onboarding';
+import vpsOutperform from './components/outperform';
 
 import template from './vps/vps.html';
 
@@ -16,6 +17,7 @@ angular
     'pascalprecht.translate',
     ngOvhTranslateAsyncLoader,
     onboarding,
+    vpsOutperform,
   ])
   .config(
     /* @ngInject */ ($stateProvider, $urlRouterProvider) => {

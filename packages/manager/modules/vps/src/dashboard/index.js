@@ -32,6 +32,7 @@ import ovhManagerVpsDashboardTile from './tile';
 import vpsStateInfo from './components/vps-state-info';
 import vpsAnnouncementBanner from './components/vps-announcement-banner';
 import ovhManagerVpsDashboardMigrate from './migrate';
+import ovhManagerVpsForceOutperform2020 from './forceOutperform2020';
 
 const moduleName = 'ovhManagerVpsDashboard';
 
@@ -63,6 +64,7 @@ angular
     vpsAnnouncementBanner,
     ovhManagerVpsDashboardMigrate,
     ovhManagerVpsDashboardTerminateOption,
+    ovhManagerVpsForceOutperform2020,
     'ui.router',
   ])
   .component(component.name, component)
