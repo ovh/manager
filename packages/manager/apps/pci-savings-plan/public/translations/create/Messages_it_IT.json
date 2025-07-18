@@ -48,5 +48,7 @@
   "deployment_one_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
   "deployment_three_az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
   "choose_ressource_description_info": "Continui a gestire i tuoi servizi come d’abitudine. La piattaforma calcola automaticamente l’utilizzo in base alle configurazioni dei tuoi Savings Plan e al consumo delle tue risorse esistenti o future.",
-  "select_quantity_description_rancher_info": "Rancher verrà fatturato in base al numero totale di vCPU di ciascun nodo di lavoro dei tuoi \"downstream cluster\". Le vCPU dei nodi di tipo “controle-plane” non vengono fatturate."
+  "select_quantity_description_rancher_info": "Rancher verrà fatturato in base al numero totale di vCPU di ciascun nodo di lavoro dei tuoi \"downstream cluster\". Le vCPU dei nodi di tipo “controle-plane” non vengono fatturate.",
+  "choose_date": "Seleziona una data",
+  "choose_date_description": "Indica la data in cui vuoi che il tuo Savings Plan entri in vigore"
 }

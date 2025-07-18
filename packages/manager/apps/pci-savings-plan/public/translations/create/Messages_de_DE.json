@@ -48,5 +48,7 @@
   "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone.",
   "deployment_three_az": "Bereitstellung mit hoher Resilienz/Hochverfügbarkeit für kritische Anwendungen in 3 Verfügbarkeitszonen.",
   "choose_ressource_description_info": "Sie können Ihre Dienste weiter wie gewohnt verwalten. Die Plattform berechnet automatisch Ihre Nutzung basierend auf den Konfigurationen Ihrer Savings Plans und der Nutzung Ihrer bestehenden oder künftigen Ressourcen.",
-  "select_quantity_description_rancher_info": "Rancher wird je nach Gesamtzahl der vCPUs jedes Worker-Nodes Ihrer Downstream-Cluster abgerechnet. Die vCPUs der Control-Plane-Nodes werden nicht abgerechnet."
+  "select_quantity_description_rancher_info": "Rancher wird je nach Gesamtzahl der vCPUs jedes Worker-Nodes Ihrer Downstream-Cluster abgerechnet. Die vCPUs der Control-Plane-Nodes werden nicht abgerechnet.",
+  "choose_date": "Datum auswählen",
+  "choose_date_description": "Geben Sie das Datum an, ab dem Ihr Savings Plan wirksam werden soll"
 }

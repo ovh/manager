@@ -48,5 +48,7 @@
   "deployment_one_az": "Implementación resiliente y económica en 1 zona de disponibilidad.",
   "deployment_three_az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad.",
   "choose_ressource_description_info": "Con este modelo podrá seguir gestionando sus servicios con total normalidad. La plataforma calcula automáticamente su uso en función de la configuración de sus Savings Plans y del consumo de sus recursos existentes o futuros.",
-  "select_quantity_description_rancher_info": "Rancher se factura en función del número total de vCPU de cada nodo de trabajo de sus «downstream clusters». Los vCPU de los nodos de tipo plano de control no se facturan."
+  "select_quantity_description_rancher_info": "Rancher se factura en función del número total de vCPU de cada nodo de trabajo de sus «downstream clusters». Los vCPU de los nodos de tipo plano de control no se facturan.",
+  "choose_date": "Seleccionar una fecha",
+  "choose_date_description": "Introduzca la fecha en la que desea que el plan de ahorro surta efecto"
 }
