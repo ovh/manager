@@ -12,9 +12,12 @@ import { Outlet } from 'react-router-dom';
 
 import { toASCII } from 'punycode';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
-import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { AlldomService } from '@/alldoms/types';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import {
+  ServiceInfoContactEnum,
+  ServiceRoutes,
+} from '@/alldoms/enum/service.enum';
 import { findContact } from '@/alldoms/utils/utils';
 
 export default function ServiceList() {
@@ -36,13 +39,14 @@ export default function ServiceList() {
     search,
   } = useResourcesIcebergV2<AlldomService>({
     route: '/domain/alldom',
-    queryKey: ['domain', 'alldom', searchInput],
+    queryKey: ['allDom', 'domains', searchInput],
     pageSize: 10,
     columns,
   });
 
-  const { data: serviceList, listLoading } = useGetAllDoms({
+  const { data: serviceList, listLoading } = useGetServices({
     names: allDomList?.map((alldom: AlldomService) => alldom.currentState.name),
+    serviceRoute: ServiceRoutes.AllDom,
   });
 
   useEffect(() => {
@@ -72,7 +76,7 @@ export default function ServiceList() {
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
-          lifecycleCapacities: lifecycle?.capacities.actions ?? [],
+          lifecycleCapacities: lifecycle?.current.pendingActions ?? [],
           renewMode: renew.current.mode,
           expirationDate,
           creationDate: lifecycle?.current?.creationDate,

@@ -20,7 +20,7 @@ import {
 export default function TerminateModalStepTwo({
   domainTerminateList,
   serviceName,
-  changeStep,
+  setIsStepOne,
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
@@ -34,15 +34,17 @@ export default function TerminateModalStepTwo({
         ServiceInfoUpdateEnum.TerminateAtExpirationDate,
         ServiceRoutes.AllDom,
       );
-      await Promise.all(
-        domainTerminateList.map((domain) =>
-          updateService(
-            domain,
-            ServiceInfoUpdateEnum.TerminateAtExpirationDate,
-            ServiceRoutes.Domain,
+      if (domainTerminateList) {
+        await Promise.all(
+          domainTerminateList.map((domain) =>
+            updateService(
+              domain,
+              ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+              ServiceRoutes.Domain,
+            ),
           ),
-        ),
-      );
+        );
+      }
     },
 
     onSuccess: () => {
@@ -64,7 +66,11 @@ export default function TerminateModalStepTwo({
   return (
     <div>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {t('allDom_modal_step_two_warning')}
+        {domainTerminateList.length === 0
+          ? t('allDom_modal_step_two_no_domain_checked', {
+              t0: serviceName,
+            })
+          : t('allDom_modal_step_two_warning')}
       </OdsText>
       <ul className="flex flex-col gap-y-2 ml-2 pl-8">
         {domainTerminateList.map((element) => (
@@ -77,7 +83,7 @@ export default function TerminateModalStepTwo({
         <OdsButton
           label={t(`${NAMESPACES.ACTIONS}:previous`)}
           variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => changeStep()}
+          onClick={() => setIsStepOne(true)}
         />
         <OdsButton
           label={t('allDom_modal_step_terminate')}
