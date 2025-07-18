@@ -69,7 +69,7 @@ describe('alldom datagrid', () => {
       expect(allDomName).toBeInTheDocument();
       expect(allDomName).toHaveAttribute(
         'href',
-        'https://ovh.test/#/web-domains/alldom/allDom-test',
+        'https://ovh.test/#/web-domains/alldoms/allDom-test',
       );
     });
   });

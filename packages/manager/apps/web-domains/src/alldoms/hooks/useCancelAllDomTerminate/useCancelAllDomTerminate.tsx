@@ -5,10 +5,12 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { updateService } from '@/alldoms/data/api/web-domains';
 import {
+  ServiceInfoRenewMode,
   ServiceInfoUpdateEnum,
   ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
 import { TDomainsInfo } from '@/alldoms/types';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 
 export const useCancelAllDomTerminate = (
   serviceName: string,
@@ -19,6 +21,11 @@ export const useCancelAllDomTerminate = (
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  const { data: services } = useGetServices({
+    names: domains.map((domain) => domain.name),
+    serviceRoute: ServiceRoutes.Domain,
+  });
+
   return useMutation({
     mutationFn: async () => {
       await updateService(
@@ -27,13 +34,20 @@ export const useCancelAllDomTerminate = (
         ServiceRoutes.AllDom,
       );
       await Promise.all(
-        domains.map((domain) =>
-          updateService(
-            domain.name,
-            ServiceInfoUpdateEnum.TerminateAtExpirationDate,
-            ServiceRoutes.Domain,
+        services
+          .filter(
+            (domain) =>
+              /* We filter on domains that have automatic renew mode because manual ones have to keep the terminateAtExpirationDate status */
+              domain.billing.renew.current.mode ===
+              ServiceInfoRenewMode.Automatic,
+          )
+          .map((domain) =>
+            updateService(
+              domain.resource.name,
+              ServiceInfoUpdateEnum.Empty,
+              ServiceRoutes.Domain,
+            ),
           ),
-        ),
       );
     },
 

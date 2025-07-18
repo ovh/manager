@@ -4,12 +4,12 @@ import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
-import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
 
-vi.mock('@/alldoms/hooks/data/useGetAllDoms', () => ({
-  useGetAllDoms: vi.fn(),
+vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
+  useGetServices: vi.fn(),
 }));
 
 describe('AllDom datagrid', () => {
@@ -24,7 +24,7 @@ describe('AllDom datagrid', () => {
       },
     });
 
-    (useGetAllDoms as jest.Mock).mockReturnValue({
+    (useGetServices as jest.Mock).mockReturnValue({
       data: [serviceInfo],
       listLoading: false,
     });

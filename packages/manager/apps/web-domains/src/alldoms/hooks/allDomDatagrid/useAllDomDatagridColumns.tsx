@@ -28,7 +28,6 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_id'),
       enableHiding: false,
-      isSearchable: true,
       type: FilterTypeCategories.String,
     },
     {
@@ -37,7 +36,7 @@ export const useAllDomDatagridColumns = () => {
         <DatagridColumnSkeleton serviceId={props.serviceId}>
           <DatagridColumnRenewMode
             renewMode={props.renewMode}
-            lifecycleCapacities={props.lifecycleCapacities}
+            lifecyclePendingActions={props.lifecyclePendingActions}
           />
         </DatagridColumnSkeleton>
       ),
@@ -82,7 +81,8 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicAdmin}
             url={
-              props.nicAdmin === nichandle && `${accountUrl}/useraccount/infos`
+              props.nicAdmin === nichandle &&
+              `${accountUrl as string}/useraccount/infos`
             }
           />
         </DatagridColumnSkeleton>
@@ -97,7 +97,7 @@ export const useAllDomDatagridColumns = () => {
             contact={props.nicTechnical}
             url={
               props.nicTechnical === nichandle &&
-              `${accountUrl}/useraccount/infos`
+              `${accountUrl as string}/useraccount/infos`
             }
           />
         </DatagridColumnSkeleton>
@@ -113,7 +113,7 @@ export const useAllDomDatagridColumns = () => {
             contact={props.nicBilling}
             url={
               props.nicBilling === nichandle &&
-              `${accountUrl}/useraccount/infos`
+              `${accountUrl as string}/useraccount/infos`
             }
           />
         </DatagridColumnSkeleton>
@@ -128,7 +128,7 @@ export const useAllDomDatagridColumns = () => {
           id={`${props.currentState.name}-${ActionEnum.All}`}
           serviceName={props.currentState.name}
           terminateUrl={TERMINATE_URL(props.currentState.name)}
-          lifecycleCapacities={props.lifecycleCapacities}
+          lifecyclePendingActions={props.lifecyclePendingActions}
           whichAction={ActionEnum.All}
           cancelTerminateUrl={CANCEL_TERMINATE_URL(props.currentState.name)}
         />

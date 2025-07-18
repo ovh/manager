@@ -6,6 +6,7 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
@@ -28,7 +29,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    ns: ['allDom', NAMESPACES.ACTIONS],
   });
 
   const region = context.environment.getRegion();
