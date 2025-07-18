@@ -10,7 +10,7 @@ import {
 import { PlanCode } from '@/configuration/project';
 
 // Set the project mode, needed to track discovery actions
-function useProjectModeTracking() {
+export function useProjectModeTracking() {
   const { shell } = useContext(ShellContext);
   const { setPciProjectMode } = shell.tracking;
   const { data: project } = usePciProject();
@@ -31,26 +31,31 @@ export function useTrackAction() {
   const { shell } = useContext(ShellContext);
   const { trackClick } = shell.tracking;
 
-  return (trackingName: string) => {
+  return (trackingName: string, pageCategory?: string) => {
     trackClick({
       type: 'action',
+      page_theme: 'PublicCloud',
       name: trackingName,
       level2: PCI_LEVEL2,
+      page_category: pageCategory || undefined,
     });
   };
 }
 
-// Fire a page tracking event when landing on the page
-export function useTrackPage(pageTracking: string) {
+// Fire a page manual tracking event as page.display for toast and banner
+export function useTrackBanner() {
   useProjectModeTracking();
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
-  useEffect(() => {
+
+  return (trackingName: string, category?: string) => {
     trackPage({
-      name: pageTracking,
+      page_theme: 'PublicCloud',
+      name: trackingName,
+      page_category: category || undefined,
       level2: PCI_LEVEL2,
     });
-  }, []);
+  };
 }
 
 export function useTrackPageAuto() {
@@ -68,17 +73,20 @@ export function useTrackPageAuto() {
   useEffect(() => {
     if (hasTrackedRef.current) return;
     const prefix = APP_TRACKING_PREFIX;
+    const { tracking } = match.handle as {
+      tracking?: { id: string; category?: string };
+    };
     const { id } = match;
-    const routerTrackingKey = (match?.handle as { tracking: string })?.tracking;
-    const suffix =
-      routerTrackingKey || id || location.pathname.split('/').pop();
+    const suffix = tracking?.id || id || location.pathname.split('/').pop();
     let injectedTrackingKey = `${prefix}::${suffix}`;
 
     // replace . by ::
     injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
     trackPage({
+      page_theme: 'PublicCloud',
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
+      page_category: tracking?.category || undefined,
     });
     hasTrackedRef.current = true;
   }, [location.pathname, params.serviceId]);

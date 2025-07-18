@@ -7,6 +7,8 @@ import ai from '@/types/AI';
 import { getColumns } from './JobsListColumns.component';
 import { getFilters } from './JobListFilters.component';
 import DataTable from '@/components/data-table';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface JobsListProps {
   jobs: ai.job.Job[];
@@ -15,7 +17,7 @@ interface JobsListProps {
 export default function JobsList({ jobs }: JobsListProps) {
   const { t } = useTranslation('ai-tools/jobs');
   const navigate = useNavigate();
-
+  const track = useTrackAction();
   const columns: ColumnDef<ai.job.Job>[] = getColumns({
     onRestartClicked: (job: ai.job.Job) => {
       navigate(`./restart/${job.id}`);
@@ -42,6 +44,7 @@ export default function JobsList({ jobs }: JobsListProps) {
           <Button
             data-testid="create-job-button"
             onClick={() => {
+              track(TRACKING.training.listing.createTrainingClick(), 'listing');
               navigate('./new');
             }}
           >
