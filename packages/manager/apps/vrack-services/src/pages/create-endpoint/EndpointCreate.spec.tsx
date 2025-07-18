@@ -3,7 +3,7 @@ import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { iamResourcesMocks } from '@/data/mocks/iam';
+import { iamResourcesMocks } from '../../../__mocks__';
 import {
   changeSelectValueByLabelText,
   getButtonByLabel,
