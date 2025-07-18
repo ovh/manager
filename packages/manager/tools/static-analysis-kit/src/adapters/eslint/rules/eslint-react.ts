@@ -7,7 +7,6 @@ import { jsTsFiles } from '../../../configs/file-globs-config';
 
 /**
  * ESLint Flat Config for React and React Hooks.
- *
  * This configuration applies:
  * - Recommended React rules from `eslint-plugin-react`
  * - Recommended rules for hooks from `eslint-plugin-react-hooks`
