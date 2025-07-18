@@ -17,6 +17,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@ovh-ux/billing-informations": "^1.2.13",
     "@ovh-ux/logs-to-customer": "^1.5.2",
     "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.15.0",

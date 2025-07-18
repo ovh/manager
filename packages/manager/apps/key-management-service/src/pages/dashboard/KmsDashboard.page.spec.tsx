@@ -127,11 +127,9 @@ describe('KMS dashboard test suite', () => {
       () =>
         expect(
           screen.getAllByText(
-            labels.serviceKeys[
-              'key_management_service_service-keys_dashboard_field_name'
-            ],
+            labels.credentials.key_management_service_credential_dashboard_name,
           ),
-        ).toHaveLength(2),
+        ).toHaveLength(1),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });
