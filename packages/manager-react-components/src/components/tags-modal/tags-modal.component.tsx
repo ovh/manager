@@ -57,7 +57,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
     return (
       <OdsModal
         color={'neutral'}
-        className="text-left"
+        className="text-left tags-modal"
         onOdsClose={onCancel}
         isOpen={isOpen}
         ref={ref}
@@ -84,7 +84,7 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
           />
         </div>
 
-        <div className="w-full min-w-[85px] h-[120px] overflow-auto">
+        <div className="w-full min-w-[85px] h-[120px] overflow-auto tags-editor">
           {results && <TagsList tags={results} />}
         </div>
         <OdsButton
