@@ -8,6 +8,7 @@
     <h4 class="oui-tile__title oui-heading_4">
         <span
             data-translate="dedicatedCloud_vmware_cloud_director_title"
+            data-translate-values=":: {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME}"
         ></span>
         <span
             class="oui-badge oui-badge_new"
@@ -26,11 +27,13 @@
             <p
                 class="pt-1"
                 data-translate="dedicatedCloud_vmware_cloud_director_migration_confirmed_detail"
+                data-translate-values=":: {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME}"
             ></p>
         </oui-tile-description>
         <oui-tile-description data-ng-if=":: !$ctrl.pccMigrationState.isDone">
             <p
                 data-translate="dedicatedCloud_vmware_cloud_director_validate_migration_detail"
+                data-translate-values=":: {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME}"
             ></p>
             <oui-button
                 data-variant="primary"
@@ -72,6 +75,7 @@
             >
                 <span
                     data-translate="dedicatedCloud_vmware_cloud_director_offer_detail"
+                    data-translate-values=":: {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME}"
                 >
                 </span>
                 <i

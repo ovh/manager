@@ -12,7 +12,10 @@ import { useGuideUtils } from './useGuideUtils';
 import onboardingImgSrc from '@/assets/veeamxOVHcloud.svg?url';
 import { urls } from '@/routes/routes.constant';
 import { useBillingUrl } from '@/components/Links/BillingLink.component';
-import { productFullName } from '@/veeam-backup.config';
+import {
+  productFullName,
+  VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+} from '@/veeam-backup.config';
 import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
 import { Loading } from '@/components/Loading/Loading';
 
@@ -39,7 +42,9 @@ export default function Onboarding() {
     },
     {
       texts: {
-        title: t('guide2_title'),
+        title: t('guide2_title', {
+          productName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+        }),
         description: t('guide2_description'),
         category: t('guide_category'),
       },
