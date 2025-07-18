@@ -1,6 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormProvider, Path, useForm, UseFormTrigger } from 'react-hook-form';
+import {
+  Controller,
+  FormProvider,
+  Path,
+  useForm,
+  UseFormTrigger,
+} from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
@@ -8,6 +14,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { RhfField } from '@/components/Fields';
+import { RhfToggleField } from '@/components/Fields/RhfToggleField.component';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { ENABLEMENT_FORM_SCHEMA } from '@/schema/form.schema';
 import {
@@ -65,6 +72,7 @@ export default function InstallationStepEnablement() {
     trigger,
     register: baseRegister,
     unregister,
+    control,
     watch,
     resetField,
     formState,
@@ -125,6 +133,10 @@ export default function InstallationStepEnablement() {
     return saveFormOnContext;
   }, []);
 
+  useEffect(() => {
+    trigger(['hasBackup', 'hasLogsInLdpOvh']);
+  }, [hasBackup, hasLogsInLdpOvh, JSON.stringify(defaultValues)]);
+
   const {
     mutate: validate,
     isPending: isValidationPending,
@@ -142,6 +154,7 @@ export default function InstallationStepEnablement() {
   return (
     <FormProvider
       register={register}
+      control={control}
       unregister={unregister}
       watch={watch}
       formState={formState}
@@ -164,14 +177,16 @@ export default function InstallationStepEnablement() {
         }}
         onPrevious={previousStep}
       >
-        <RhfField
-          controllerParams={register('hasBackup')}
-          className="w-full max-w-md flex flex-row items-center gap-x-2"
-          isHiddenError
-        >
-          <RhfField.Label>{t('enablement_input_has_backup')}</RhfField.Label>
-          <RhfField.Toggle className="ml-auto" />
-        </RhfField>
+        <Controller
+          control={control}
+          name="hasBackup"
+          render={({ field }) => (
+            <RhfToggleField
+              field={field}
+              label={t('enablement_input_has_backup')}
+            />
+          )}
+        />
         <div className={hasBackup ? 'flex flex-col gap-y-4' : 'hidden'}>
           <RhfField
             controllerParams={register('bucketBackint.id')}
@@ -221,23 +236,17 @@ export default function InstallationStepEnablement() {
             <RhfField.VisualHintCounter max={BACKUP_KEY_LENGTH} />
           </RhfField>
         </div>
-        <RhfField
-          controllerParams={register('hasLogsInLdpOvh')}
-          className="w-full max-w-md flex flex-row items-center gap-x-2"
-          isHiddenError
-        >
-          <RhfField.Label className="flex gap-2 items-center">
-            {t('enablement_input_has_logs_ldp_ovh')}
-            <OdsIcon
-              id="has-logs-ldp-ovh-tooltip-trigger"
-              name="circle-question"
+        <Controller
+          control={control}
+          name="hasLogsInLdpOvh"
+          render={({ field }) => (
+            <RhfToggleField
+              field={field}
+              label={t('enablement_input_has_logs_ldp_ovh')}
+              tooltip={t('enablement_input_has_logs_ldp_ovh_helper')}
             />
-          </RhfField.Label>
-          <RhfField.Toggle className="ml-auto" />
-          <OdsTooltip triggerId="has-logs-ldp-ovh-tooltip-trigger">
-            {t('enablement_input_has_logs_ldp_ovh_helper')}
-          </OdsTooltip>
-        </RhfField>
+          )}
+        />
         <div className={hasLogsInLdpOvh ? 'flex flex-col gap-y-4' : 'hidden'}>
           <RhfField
             controllerParams={register('logsDataPlatform.entrypoint')}
