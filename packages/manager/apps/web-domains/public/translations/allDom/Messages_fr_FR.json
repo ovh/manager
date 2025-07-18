@@ -27,6 +27,7 @@
   "allDom_modal_choice": "Je souhaite supprimer :",
   "allDom_modal_step_one_message": "Les domaines non supprimés ne seront plus rattachés au pack, vous ne bénéficierez plus du tarif préférentiel. Les futurs renouvellements seront effectués au prix standard.",
   "allDom_modal_step_two_warning": "Attention, les services suivants seront résiliés :",
+  "allDom_modal_step_two_no_domain_checked": "Vous avez choisi de résilier votre pack {{serviceName}} tout en conservant vos noms de domaines.",
   "allDom_modal_domain_already_in_terminate": "Votre domaine est déjà en cours de résiliation",
   "allDom_modal_step_terminate": "Résilier",
   "allDom_modal_success_message": "Votre demande de résiliation a bien été prise en compte",

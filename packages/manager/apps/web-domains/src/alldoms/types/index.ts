@@ -28,6 +28,7 @@ export interface TServiceInfo {
     lifecycle?: {
       current: {
         creationDate: string | null;
+        pendingActions: LifecycleCapacitiesEnum[];
       };
       capacities: {
         actions: LifecycleCapacitiesEnum[];
@@ -71,26 +72,13 @@ export interface TDomainsInfo {
 }
 
 export interface ModalStepsProps {
-  domainsAttached?: TDomainsInfo[];
-  domainAttachedChecked?: string[];
+  services?: TServiceInfo[];
+  domainsChecked?: string[];
   domainTerminateList?: string[];
   serviceName?: string;
-  checkAllDomain?: boolean;
-  changeStep: () => void;
-  handleDomainAttached?: (domainSelected: string[]) => void;
-  handleCheckAllDomain?: (checked: boolean) => void;
+  checkAllDomains?: boolean;
+  setIsStepOne: (changeStep: boolean) => void;
+  setDomainsChecked?: (domainSelected: string[]) => void;
+  setCheckAllDomains?: (checked: boolean) => void;
   closeModal?: () => void;
-}
-
-export interface DomainBillingInformation {
-  list: {
-    results: [
-      {
-        renew: {
-          deleteAtExpiration: boolean;
-          forced: boolean;
-        };
-      },
-    ];
-  };
 }
