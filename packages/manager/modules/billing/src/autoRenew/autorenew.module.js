@@ -35,6 +35,7 @@ import terminateVrack from './actions/terminate-vrack';
 import warnNicBilling from './actions/warnNicBilling/warnNicBilling.module';
 import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
 import services from './services/services.module';
+import periodTranslatorHelper from './helpers/period-translator-helper.service';
 
 import component from './autorenew.component';
 import routing from './autorenew.routing';
@@ -82,6 +83,7 @@ angular
   .config(routing)
   .component('autoRenew', component)
   .service('BillingAutoRenew', service)
+  .service('billingPeriodTranslatorHelper', periodTranslatorHelper)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
