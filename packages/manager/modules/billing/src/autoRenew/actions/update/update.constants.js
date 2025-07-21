@@ -1,8 +1,3 @@
-export const SERVICE_RENEW_MODES = {
-  AUTOMATIC: 'automatic',
-  MANUAL: 'manual',
-};
-
 export const CONTRACTS_IDS = {
   CA: 1752,
   QC: 1753,
@@ -11,6 +6,5 @@ export const CONTRACTS_IDS = {
 };
 
 export default {
-  SERVICE_RENEW_MODES,
   CONTRACTS_IDS,
 };

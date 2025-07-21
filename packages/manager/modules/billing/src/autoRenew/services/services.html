@@ -179,9 +179,7 @@
             data-title="::'billing_autorenew_service_frequency' | translate"
             data-type="options"
         >
-            <span
-                data-ng-bind-html="$row.hasAutomaticRenew() && !$row.isResiliated() && $row.renewPeriod ? 'billing_autorenew_service_every_' + $row.renew.period + '_month': 'billing_autorenew_service_none' | translate"
-            >
+            <span data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)">
             </span>
         </oui-datagrid-column>
 
