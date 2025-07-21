@@ -7,7 +7,6 @@ import { jsTsFiles } from '../../../configs/file-globs-config';
 
 /**
  * ESLint Flat Config for React and React Hooks.
- *
  * This configuration applies:
  * - Recommended React rules from `eslint-plugin-react`
  * - Recommended rules for hooks from `eslint-plugin-react-hooks`
@@ -41,6 +40,10 @@ export const reactEslintConfig: Linter.FlatConfig = {
   },
   rules: {
     ...reactPlugin.configs.recommended.rules,
+
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md#when-not-to-use-it
+    ...reactPlugin.configs['jsx-runtime'].rules,
+
     ...reactHooksPlugin.configs.recommended.rules,
 
     // Enforce only one component per file (stateless included)
