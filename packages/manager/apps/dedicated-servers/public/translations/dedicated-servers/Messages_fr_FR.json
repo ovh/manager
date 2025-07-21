@@ -32,5 +32,6 @@
   "server_display_with-engagement": "avec engagement",
   "server_display_without-engagement": "sans engagement",
   "server_display_renew-automatic": "automatique",
-  "server_display_renew-manual": "manuel"
+  "server_display_renew-manual": "manuel",
+  "server_display_actions": "Actions"
 }
