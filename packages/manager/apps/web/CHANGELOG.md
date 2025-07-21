@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.19.0...@ovh-ux/manager-web@19.20.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4164] ([c05cdc9](https://github.com/ovh/manager/commit/c05cdc9aa5830d53ae12c3d2c600dee8e09e12c0))
+
+
+### Features
+
+* **web-hosting:** configure columns on list layout ([f7a7868](https://github.com/ovh/manager/commit/f7a7868f4a433b8cc3f008f150031553f447163e)), closes [#WEB-20306](https://github.com/ovh/manager/issues/WEB-20306)
+
+
+
+
+
 # [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.2...@ovh-ux/manager-web@19.19.0) (2025-07-17)
 
 
