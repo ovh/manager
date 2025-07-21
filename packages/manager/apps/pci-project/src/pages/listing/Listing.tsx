@@ -2,6 +2,7 @@ import { useEffect, Suspense } from 'react';
 import { useHref, Outlet, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -28,6 +29,7 @@ import {
 import ManagerBannerText from '@/components/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { urls } from '@/routes/routes.constant';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type ErrorResponse = {
   response?: {
@@ -37,6 +39,7 @@ type ErrorResponse = {
 };
 
 export default function Listing() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('listing');
   const projectPath = useHref(`${urls.root}/${urls.project}`);
   const navigate = useNavigate();
@@ -105,6 +108,14 @@ export default function Listing() {
     title: t('pci_projects'),
   };
 
+  const handleCreateProjectClick = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.LISTING.CTA_CREATE_PROJECT,
+    });
+    navigate(urls.creation);
+  };
+
   const TopBarCTA = (
     <div>
       {!isTrustedZoneLoading && !isTrustedZone && (
@@ -114,7 +125,7 @@ export default function Listing() {
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
           label={t('pci_projects_create_project')}
-          onClick={() => navigate(`./${urls.creation}`)}
+          onClick={handleCreateProjectClick}
         />
       )}
     </div>
