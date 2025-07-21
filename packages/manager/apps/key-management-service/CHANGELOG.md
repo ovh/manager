@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.31.4...@ovh-ux/manager-key-management-service-app@0.32.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **kms:** fix dashboard tabs url ([253d38a](https://github.com/ovh/manager/commit/253d38a158dc9536b97f9e4b5449a1c04485dcb0)), closes [#MANAGER-18752](https://github.com/ovh/manager/issues/MANAGER-18752)
+* **kms:** manage users with no permissions to services ([1739a2f](https://github.com/ovh/manager/commit/1739a2fd3c6dd1f3b444b20fd0a62bd33c64eee7)), closes [#MANAGER-18260](https://github.com/ovh/manager/issues/MANAGER-18260)
+
+
+### Features
+
+* **kms:** add guides links ([c279260](https://github.com/ovh/manager/commit/c279260a718700de2b4d5c10a9ad823314ac2b1a)), closes [#MANAGER-17360](https://github.com/ovh/manager/issues/MANAGER-17360)
+
+
+
+
+
 ## [0.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.31.3...@ovh-ux/manager-key-management-service-app@0.31.4) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
