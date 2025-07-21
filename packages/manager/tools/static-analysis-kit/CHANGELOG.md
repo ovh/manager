@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.3.1...@ovh-ux/manager-static-analysis-kit@0.4.0) (2025-07-21)
+
+
+### Features
+
+* static kit enhancement after v1 publish ([ce8d80d](https://github.com/ovh/manager/commit/ce8d80d6747771d7cad0b7470e64a52d5262f782)), closes [#MANAGER-17954](https://github.com/ovh/manager/issues/MANAGER-17954)
+
+
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.3.0...@ovh-ux/manager-static-analysis-kit@0.3.1) (2025-07-18)
 
 
