@@ -1,6 +1,6 @@
 {
   "pci_projects_project_home": "Home page",
-  "pci_projects_project_parameters": "Impostazioni",
+  "pci_projects_project_settings": "Impostazioni",
   "pci_projects_project_create_an_instance": "Crea un'istanza",
   "pci_projects_project_create_a_container": "Crea un container Object Storage",
   "pci_projects_project_create_a_volume": "Crea un volume Block Storage",

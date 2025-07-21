@@ -16,7 +16,7 @@ describe('useTabs', () => {
       },
       {
         name: 'settings',
-        title: 'pci_projects_project_parameters',
+        title: 'pci_projects_project_settings',
         to: '/edit',
       },
     ]);

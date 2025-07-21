@@ -1,6 +1,6 @@
 {
   "pci_projects_project_home": "Strona główna",
-  "pci_projects_project_parameters": "Ustawienia",
+  "pci_projects_project_settings": "Ustawienia",
   "pci_projects_project_create_an_instance": "Tworzenie instancji",
   "pci_projects_project_create_a_container": "Tworzenie kontenera Object Storage",
   "pci_projects_project_create_a_volume": "Tworzenie wolumenu Block Storage",
