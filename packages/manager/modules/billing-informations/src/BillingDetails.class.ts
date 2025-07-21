@@ -61,7 +61,7 @@ export default class BillingDetails {
   }
 
   isManualRenew() {
-    return this.billing.renew.current.mode === 'manual';
+    return this.billing.renew?.current.mode === 'manual';
   }
 
   isResiliated() {
