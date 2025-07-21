@@ -2,7 +2,6 @@ import { Linter } from 'eslint';
 
 import { a11yEslintConfig } from '../rules/eslint-a11y';
 import { complexityJsxTsxConfig, complexityTsJsConfig } from '../rules/eslint-complexity';
-import { cssEslintConfig } from '../rules/eslint-css';
 import { htmlEslintConfig } from '../rules/eslint-html';
 import { importEslintConfig } from '../rules/eslint-imports';
 import { javascriptEslintConfig } from '../rules/eslint-javascript';
@@ -36,7 +35,6 @@ export const eslintSharedConfig: Linter.FlatConfig[] = [
   htmlEslintConfig,
   javascriptEslintConfig,
   typescriptEslintConfig,
-  cssEslintConfig,
 
   // Static analysis extensions
   ...importEslintConfig, // JS/TS import rules
