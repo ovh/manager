@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.3...@ovh-ux/manager-nutanix@2.8.4) (2025-07-21)
+
+
+### Bug Fixes
+
+* **nutanix:** change display name in listing page of cluster ([be4e37b](https://github.com/ovh/manager/commit/be4e37b9d948bf12e306ea5e9eaae26beba40c3f)), closes [#MANAGER-18840](https://github.com/ovh/manager/issues/MANAGER-18840)
+
+
+
+
+
 ## [2.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.2...@ovh-ux/manager-nutanix@2.8.3) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

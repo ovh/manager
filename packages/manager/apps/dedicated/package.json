@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.49.6",
+  "version": "20.50.0",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -43,9 +43,9 @@
     "@ovh-ux/manager-metrics": "^1.6.1",
     "@ovh-ux/manager-models": "^2.5.5",
     "@ovh-ux/manager-nasha": "^2.20.1",
-    "@ovh-ux/manager-netapp": "^2.13.6",
+    "@ovh-ux/manager-netapp": "^2.14.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
-    "@ovh-ux/manager-nutanix": "^2.8.3",
+    "@ovh-ux/manager-nutanix": "^2.8.4",
     "@ovh-ux/manager-resource-tagging": "^1.1.4",
     "@ovh-ux/manager-support": "^2.1.16",
     "@ovh-ux/manager-trusted-nic": "^1.2.1",

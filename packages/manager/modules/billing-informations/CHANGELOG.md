@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.15](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.14...@ovh-ux/billing-informations@1.2.15) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
 ## [1.2.14](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.13...@ovh-ux/billing-informations@1.2.14) (2025-07-21)
 
 **Note:** Version bump only for package @ovh-ux/billing-informations

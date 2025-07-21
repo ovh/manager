@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.49.6...@ovh-ux/manager-dedicated@20.50.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **dedicated:** update roadmap and changelog link in pcc ([9b6a020](https://github.com/ovh/manager/commit/9b6a020ddff89ad062a419d46f222a5ac15c6bcb)), closes [#MANAGER-18693](https://github.com/ovh/manager/issues/MANAGER-18693)
+
+
+### Features
+
+* **dedicated:** add tracking to virtual machines license ([b4feb78](https://github.com/ovh/manager/commit/b4feb781bd9c29477a6e27d1c9c16d37d7cf5dfd)), closes [#MANAGER-17516](https://github.com/ovh/manager/issues/MANAGER-17516)
+* **dedicated:** make dismissable banner of customer survey ([ebabf2c](https://github.com/ovh/manager/commit/ebabf2ceb74f155d2b06d9ad39a2188f377e363b)), closes [#MANAGER-18792](https://github.com/ovh/manager/issues/MANAGER-18792)
+
+
+
+
+
 ## [20.49.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.49.5...@ovh-ux/manager-dedicated@20.49.6) (2025-07-18)
 
 
