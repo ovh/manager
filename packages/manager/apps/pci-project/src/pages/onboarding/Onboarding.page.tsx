@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { format } from 'date-fns';
 import {
+  useOvhTracking,
+  ShellContext,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   OdsButton,
   OdsCheckbox,
   OdsLink,
@@ -12,7 +16,6 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import DiscoveryGuard from '@/pages/onboarding/DiscoveryGuard.component';
 
 import { useContractAgreements, useCreateCart } from '@/data/hooks/useCart';
@@ -20,6 +23,7 @@ import { CartSummary, PlanCode } from '@/data/types/cart.type';
 
 import { INDIAN_KYC_SUPPORT_LINK } from '@/constants';
 import { urls } from '@/routes/routes.constant';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 import onboardingImage from '../../../public/assets/onboarding.png';
 import onboardingUsImage from '../../../public/assets/onboarding-us.png';
@@ -28,6 +32,7 @@ import { useCheckoutWithFidelityAccount } from '@/hooks/useCheckout/useCheckout'
 
 export default function OnboardingPage() {
   const { t } = useTranslation('onboarding');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const context = useContext(ShellContext);
   const user = context.environment.getUser();
@@ -76,6 +81,10 @@ export default function OnboardingPage() {
       return;
     }
 
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.ONBOARDING.CTA_CREATE_PROJECT,
+    });
     finalizeCart({ cartId: cart.cartId });
   };
 

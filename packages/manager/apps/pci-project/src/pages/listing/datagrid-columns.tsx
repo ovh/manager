@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   DataGridTextCell,
   DatagridColumn,
@@ -9,6 +10,7 @@ import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { TProjectWithService } from '@/data/types/project.type';
 import StatusComponent from './Status.component';
 import Actions from './Actions.component';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 const useProjectUrl = (
   getProjectUrl: (projectId: string) => Promise<string>,
@@ -29,8 +31,15 @@ const ProjectLink: React.FC<{
   getProjectUrl: (projectId: string) => Promise<string>;
 }> = ({ projectId, label, getProjectUrl }) => {
   const url = useProjectUrl(getProjectUrl, projectId);
+  const { trackClick } = useOvhTracking();
+  const handleTracking = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.LISTING.SHOW_PROJECT,
+    });
+  };
 
-  return <OdsLink href={url || '#'} label={label} />;
+  return <OdsLink href={url || '#'} onClick={handleTracking} label={label} />;
 };
 
 export const getDatagridColumns = (
