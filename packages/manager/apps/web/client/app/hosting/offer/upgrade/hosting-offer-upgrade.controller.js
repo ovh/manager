@@ -186,9 +186,7 @@ angular.module('App').controller(
             detachOptions,
           );
         })
-        .then((data) => {
-          return data.order;
-        });
+        .then((data) => ({ data }));
     }
 
     executeOrder() {
@@ -219,8 +217,10 @@ angular.module('App').controller(
 
       return this.getPrices()
         .then((durations) => {
-          this.durations = durations;
-          this.model.duration = durations;
+          this.durations = durations.order
+            ? durations
+            : { order: durations.shift() };
+          this.model.duration = this.durations;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
