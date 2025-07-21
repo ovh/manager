@@ -1,5 +1,8 @@
 import { ActionMenu, useNotifications } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +13,7 @@ import { urls } from '@/routes/routes.constant';
 import { TProjectWithService } from '@/data/types/project.type';
 import { removeProject } from '@/data/api/projects';
 import { useSetAsDefaultProject } from '@/data/hooks/useProjects';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type ActionsProps = {
   projectWithService: TProjectWithService;
@@ -19,6 +23,7 @@ export default function Actions({
   projectWithService,
 }: Readonly<ActionsProps>) {
   const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR]);
+  const { trackClick } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
   const {
     shell: { navigation },
@@ -40,7 +45,15 @@ export default function Actions({
     isDefault: projectWithService.isDefault,
   };
 
+  const trackDeleteProjectClick = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.LISTING.DELETE_PROJECT,
+    });
+  };
+
   const handleDeleteProject = () => {
+    trackDeleteProjectClick();
     removeProject({ projectId: projectWithService.project_id }).then(() =>
       addSuccess(t('pci_projects_project_delete_success')),
     );
@@ -98,7 +111,7 @@ export default function Actions({
         label: t('pci_projects_project_delete'),
         ...(projectStatus.isCreating
           ? { onClick: handleDeleteProject }
-          : { href: deleteHref }),
+          : { href: deleteHref, onClick: trackDeleteProjectClick }),
       });
     }
 
