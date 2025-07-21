@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
@@ -31,7 +32,7 @@ export default (
       Component={ListingPage}
       handle={{
         tracking: {
-          pageName: 'listing',
+          pageName: PROJECTS_TRACKING.LISTING.PAGE_NAME,
           pageType: PageType.listing,
         },
       }}
@@ -62,8 +63,8 @@ export default (
         Component={HomePage}
         handle={{
           tracking: {
-            pageName: 'home',
-            pageType: PageType.dashboard,
+            pageName: PROJECTS_TRACKING.PROJECT_HOME.PAGE_NAME,
+            pageType: PageType.onboarding,
           },
         }}
       />
@@ -82,7 +83,7 @@ export default (
           Component={RemovePage}
           handle={{
             tracking: {
-              pageName: 'remove',
+              pageName: PROJECTS_TRACKING.DELETE.PAGE_NAME,
               pageType: PageType.popup,
             },
           }}
@@ -94,7 +95,7 @@ export default (
       Component={OnboardingPage}
       handle={{
         tracking: {
-          pageName: 'onboarding',
+          pageName: PROJECTS_TRACKING.ONBOARDING.PAGE_NAME,
           pageType: PageType.onboarding,
         },
       }}
