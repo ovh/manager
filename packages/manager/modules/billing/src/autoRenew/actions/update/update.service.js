@@ -1,5 +1,7 @@
-import { SERVICE_RENEW_MODES } from './update.constants';
-import { SERVICE_TYPES_USING_V6_SERVICES } from '../../autorenew.constants';
+import {
+  SERVICE_RENEW_MODES,
+  SERVICE_TYPES_USING_V6_SERVICES,
+} from '../../autorenew.constants';
 
 export default class AutoUpdateRenewServiceModalService {
   /* @ngInject */
