@@ -100,5 +100,10 @@
   "pci_project_project_voucher_description_aria": "Beschreibung des Aktionscodes",
   "pci_project_project_voucher_name_aria": "Name des Aktionscodes",
   "pci_project_project_community": "Community",
-  "pci_project_project_billing": "Abrechnung"
+  "pci_project_project_billing": "Abrechnung",
+  "pci_projects_project_activate_project_banner_message": "Sie verwenden den Discovery-Modus. Aktivieren Sie Ihr Projekt und genießen Sie 200€ Guthaben für 30 Tage.",
+  "pci_projects_project_activate_project_banner_cta": "Aktivieren",
+  "pci_projects_project_banner_discovery_title": "Sie verwenden den Discovery-Modus.",
+  "pci_projects_project_banner_discovery_message": "Aktivieren Sie Ihr Projekt und <strong>genießen Sie 200€ Guthaben für 30 Tage</strong>.",
+  "pci_projects_project_banner_discovery_cta": "Aktivieren"
 }

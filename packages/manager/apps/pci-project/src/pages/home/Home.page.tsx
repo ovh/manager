@@ -9,6 +9,7 @@ import {
   QuickAccessItem,
 } from './components/QuickAccess.component';
 import { Others, OtherActionItem } from './components/Others.component';
+import { DiscoveryBanner } from './components/DiscoveryBanner.component';
 import DashboardTiles from './components/DashboardTiles.component';
 
 import IconInstances from '@/assets/home/Instances.svg?url';
@@ -96,6 +97,7 @@ export default function Home() {
 
   return (
     <>
+      <DiscoveryBanner className="mb-6 w-full" />
       <QuickAccess items={quickAccessItems} />
       <Others items={otherActionsItems} />
       <OdsDivider className="my-8 block" />

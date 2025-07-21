@@ -100,5 +100,10 @@
   "pci_project_project_voucher_description_aria": "Descrizione codice promozionale",
   "pci_project_project_voucher_name_aria": "Nome codice promozionale",
   "pci_project_project_community": "Community",
-  "pci_project_project_billing": "Fatturazione"
+  "pci_project_project_billing": "Fatturazione",
+  "pci_projects_project_activate_project_banner_message": "Stai utilizzando la modalità Discovery. Attiva il tuo progetto e goditi 200€ di credito offerto per 30 giorni.",
+  "pci_projects_project_activate_project_banner_cta": "Attivare",
+  "pci_projects_project_banner_discovery_title": "Stai utilizzando la modalità Discovery.",
+  "pci_projects_project_banner_discovery_message": "Attiva il tuo progetto e <strong>goditi 200€ di credito offerto per 30 giorni</strong>.",
+  "pci_projects_project_banner_discovery_cta": "Attivare"
 }

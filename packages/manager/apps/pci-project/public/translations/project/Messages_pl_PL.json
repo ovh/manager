@@ -100,5 +100,10 @@
   "voucher_description_aria": "Opis kodu promocyjnego",
   "voucher_name_aria": "Nazwa kodu promocyjnego",
   "pci_project_project_community": "Społeczność",
-  "pci_project_project_billing": "Rozliczenia"
+  "pci_project_project_billing": "Rozliczenia",
+  "pci_projects_project_activate_project_banner_message": "Używasz trybu Discovery. Aktywuj swój projekt i ciesz się 200€ kredytu oferowanego przez 30 dni.",
+  "pci_projects_project_activate_project_banner_cta": "Włącz",
+  "pci_projects_project_banner_discovery_title": "Używasz trybu Discovery.",
+  "pci_projects_project_banner_discovery_message": "Aktywuj swój projekt i <strong>ciesz się 200€ kredytu oferowanego przez 30 dni</strong>.",
+  "pci_projects_project_banner_discovery_cta": "Włącz"
 }

@@ -100,5 +100,8 @@
   "pci_project_project_voucher_description_aria": "Description du code promo",
   "pci_project_project_voucher_name_aria": "Nom du code promo",
   "pci_project_project_community": "Communauté",
-  "pci_project_project_billing": "Facturation"
+  "pci_project_project_billing": "Facturation",
+  "pci_projects_project_banner_discovery_title": "Vous utilisez le mode Découverte.",
+  "pci_projects_project_banner_discovery_message": "Activez votre projet et <strong>profitez de 200€ de crédit offert pendant 30 jours</strong>.",
+  "pci_projects_project_banner_discovery_cta": "Activer"
 }

@@ -98,5 +98,10 @@
   "understand_manage": "Compreender e gerir",
   "voucher_credit": "Código promocional: {{voucher}}",
   "voucher_description_aria": "Descrição do código promocional",
-  "voucher_name_aria": "Nome do código promocional"
+  "voucher_name_aria": "Nome do código promocional",
+  "pci_projects_project_activate_project_banner_message": "Está a utilizar o modo Discovery. Ative o seu projeto e desfrute de 200€ de crédito oferecido durante 30 dias.",
+  "pci_projects_project_activate_project_banner_cta": "Ativar",
+  "pci_projects_project_banner_discovery_title": "Está a utilizar o modo Discovery.",
+  "pci_projects_project_banner_discovery_message": "Ative o seu projeto e <strong>desfrute de 200€ de crédito oferecido durante 30 dias</strong>.",
+  "pci_projects_project_banner_discovery_cta": "Ativar"
 }
