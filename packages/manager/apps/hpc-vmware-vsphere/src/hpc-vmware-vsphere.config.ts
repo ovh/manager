@@ -5,4 +5,7 @@ export default {
     },
   },
   rootLabel: 'hpc-vmware-vsphere',
+  legacyApplication: 'dedicated',
+  legacyPath: 'dedicated_cloud',
+  dedicatedCloudsTitle: 'Hosted Private Cloud',
 };

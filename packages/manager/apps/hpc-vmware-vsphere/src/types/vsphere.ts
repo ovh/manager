@@ -19,6 +19,7 @@ export enum VMWareState {
 
 export type TVMwareVSphere = {
   serviceName: string;
+  description: string;
   iam: {
     urn: string;
     displayName: string;
