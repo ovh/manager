@@ -97,7 +97,7 @@ export default function ListingPage() {
         <div className="header mb-6 mt-8">
           <Headers
             title={t('pci_projects_project_public_gateway_title')}
-            description={t('pci_projects_project_public_gateways_intro_part_1')}
+            description={t('pci_projects_project_public_gateways_intro')}
             headerButton={<PciGuidesHeader category="instances" />}
             changelogButton={
               <ChangelogButton
@@ -106,16 +106,6 @@ export default function ListingPage() {
               />
             }
           />
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.text}
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          >
-            <ul>
-              <li>{t('pci_projects_project_public_gateways_intro_part_2')}</li>
-              <li>{t('pci_projects_project_public_gateways_intro_part_3')}</li>
-            </ul>
-          </OsdsText>
         </div>
 
         <OsdsDivider></OsdsDivider>

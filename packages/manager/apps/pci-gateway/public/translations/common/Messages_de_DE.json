@@ -1,8 +1,5 @@
 {
   "pci_projects_project_public_gateway_title": "Gateway",
-  "pci_projects_project_public_gateways_intro_part_1": "Die Gateways bieten Konnektivität für private Instanzen. Dies ermöglicht einen gesicherten Zugang zu externen Netzwerken sowie einen externen Zugang zu einer Anwendung:",
-  "pci_projects_project_public_gateways_intro_part_2": "Im ersten Fall fungiert Gateway als SNAT-Gateway und erlaubt es Instanzen, auf das Internet zuzugreifen, jedoch nicht umgekehrt.",
-  "pci_projects_project_public_gateways_intro_part_3": "Im zweiten Beispiel wird ein Service per Internet zugänglich gemacht, der einer privaten Instanz oder einem Loadbalancer nachgeschaltet ist. Dies erfolgt durch Floating IPs.",
   "pci_projects_project_public_gateway_create": "Gateway erstellen",
   "pci_projects_project_public_gateway_name": "Name/ID",
   "pci_projects_project_public_gateway_region": "Region",
@@ -14,5 +11,6 @@
   "pci_projects_project_public_gateway_modify": "Gateway-Einstellungen bearbeiten",
   "pci_projects_project_public_gateway_go_to_private_networks": "Mein privates Netzwerk anzeigen",
   "pci_projects_project_public_gateway_delete": "Löschen",
-  "pci_projects_project_public_gateway_no_data": "Es sind keine Daten verfügbar."
+  "pci_projects_project_public_gateway_no_data": "Es sind keine Daten verfügbar.",
+  "pci_projects_project_public_gateways_intro": "Die Gateways bieten Konnektivität zu privaten Instanzen, was einen sicheren Zugriff auf externe Netzwerke oder einen externen Zugriff der Anwendung ermöglicht."
 }
