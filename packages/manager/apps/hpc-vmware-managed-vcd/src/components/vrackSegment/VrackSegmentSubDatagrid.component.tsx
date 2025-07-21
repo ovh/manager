@@ -4,13 +4,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  isStatusTerminated,
   useVcdOrganization,
   VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { LABELS } from '../../utils/labels.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
-import { isStatusTerminated } from '@/utils/resourceStatus';
 
 const CSS = `
       .sub-row > td {

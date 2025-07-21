@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
+  isStatusTerminated,
   useVcdOrganization,
   useVcdVrackSegmentListOptions,
   VCDVrackSegment,
@@ -26,7 +27,6 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
 import ActionMenu from '../action/Action.component';
 import { VrackSegmentStatusBadge } from '../vrackSegmentStatusBadge/VrackSegmentStatusBadge.component';
-import { isStatusTerminated } from '@/utils/resourceStatus';
 
 export type VrackSegmentDatagridProps = {
   id: string;

@@ -8,14 +8,12 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import {
   VeeamBackupOffer,
-  ResourceStatus,
+  BackupResourceStatus,
+  isStatusTerminated,
 } from '@ovh-ux/manager-module-vcd-api';
 import { urls } from '@/routes/routes.constant';
 import TEST_IDS from '@/utils/testIds.constants';
-import {
-  OFFER_CREATING_STATUS,
-  CANCELED_VEEAM_BACKUP_STATUS,
-} from '@/constants';
+import { OFFER_CREATING_STATUS } from '@/constants';
 
 export const ActivateOfferGold = ({
   id,
@@ -23,7 +21,7 @@ export const ActivateOfferGold = ({
   backupStatus,
 }: {
   id: string;
-  backupStatus: ResourceStatus;
+  backupStatus: BackupResourceStatus;
   status?: VeeamBackupOffer['status'];
 }): JSX.Element => {
   const { t: tStatus } = useTranslation(NAMESPACES.STATUS);
@@ -40,25 +38,24 @@ export const ActivateOfferGold = ({
         }
       />
 
-      {status !== OFFER_CREATING_STATUS &&
-        !CANCELED_VEEAM_BACKUP_STATUS.includes(backupStatus) && (
-          <ActionMenu
-            id={`action-gold-offer-${id}`}
-            isCompact
-            variant={ODS_BUTTON_VARIANT.ghost}
-            icon={ODS_ICON_NAME.ellipsisVertical}
-            items={[
-              {
-                'data-testid': TEST_IDS.activateGoldOfferAction,
-                id: 1,
-                label: tAction('activate'),
-                onClick: () => {
-                  navigate(urls.activateVeeamBackupOffer.replace(':id', id));
-                },
+      {status !== OFFER_CREATING_STATUS && !isStatusTerminated(backupStatus) && (
+        <ActionMenu
+          id={`action-gold-offer-${id}`}
+          isCompact
+          variant={ODS_BUTTON_VARIANT.ghost}
+          icon={ODS_ICON_NAME.ellipsisVertical}
+          items={[
+            {
+              'data-testid': TEST_IDS.activateGoldOfferAction,
+              id: 1,
+              label: tAction('activate'),
+              onClick: () => {
+                navigate(urls.activateVeeamBackupOffer.replace(':id', id));
               },
-            ]}
-          />
-        )}
+            },
+          ]}
+        />
+      )}
     </div>
   );
 };

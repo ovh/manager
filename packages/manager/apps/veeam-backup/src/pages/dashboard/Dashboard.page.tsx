@@ -15,6 +15,7 @@ import {
   getOrganizationIdFromBackup,
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
+  isStatusTerminated,
   useVeeamBackup,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
@@ -27,7 +28,7 @@ import { BillingTile } from './BillingTile.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
-import { CHANGELOG_LINKS, CANCELED_VEEAM_BACKUP_STATUS } from '@/constants';
+import { CHANGELOG_LINKS } from '@/constants';
 import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function DashboardPage() {
@@ -51,12 +52,8 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       message={
         <>
-          {CANCELED_VEEAM_BACKUP_STATUS.includes(
-            data?.data?.resourceStatus,
-          ) && (
-            <OdsMessage color="warning" isDismissible={false}>
-              {t('terminated_service')}
-            </OdsMessage>
+          {isStatusTerminated(data?.data?.resourceStatus) && (
+            <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
           )}
           <MessagesViewer id={id} />
         </>
