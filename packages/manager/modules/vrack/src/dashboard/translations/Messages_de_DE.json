@@ -54,5 +54,8 @@
   "vrack_select_dialog_modal_description_for_ipv6": "Bitte beachten Sie, dass zusätzliche IPv6-Blöcke immer nur einzeln hinzugefügt/entfernt werden können.",
   "vrack_select_dialog_modal_description_for_vs": "Bitte beachten Sie, dass das Hinzufügen und Entfernen von vRack Services Produkten immer nur einzeln möglich ist.",
   "vrack_terminate_modal_success_banner": "Ihre Anfrage zur Löschung Ihres vRack wurde registriert. Eine E-Mail mit weiteren Informationen zur Vorgehensweise wurde soeben an Sie versandt.",
-  "vrack_terminate_modal_error_banner": "Das Löschen Ihres vRack ist fehlgeschlagen. Bitte überprüfen Sie, ob Ihr vRack leer ist."
+  "vrack_terminate_modal_error_banner": "Das Löschen Ihres vRack ist fehlgeschlagen. Bitte überprüfen Sie, ob Ihr vRack leer ist.",
+  "vrack_terminate_title": "Mein vRack kündigen",
+  "vrack_terminate_description": "Um Ihr vRack zu kündigen, müssen Sie zuerst alle damit verbundenen Dienste trennen.",
+  "vrack_terminate": "Löschen"
 }

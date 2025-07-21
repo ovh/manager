@@ -54,5 +54,8 @@
   "vrack_select_dialog_modal_description_for_ipv6": "Pamiętaj, że dodatkowe bloki IPv6 można dodawać/usuwać tylko pojedynczo.",
   "vrack_select_dialog_modal_description_for_vs": "Pamiętaj, że produkty vRack Services można dodawać/usuwać tylko pojedynczo.",
   "vrack_terminate_modal_success_banner": "Dyspozycja usunięcia vRacka została przyjęta. Otrzymasz e-mail z opisem dalszej procedury.",
-  "vrack_terminate_modal_error_banner": "Nie udało się usunąć usługi vRrack. Sprawdź, czy vRack jest pusty."
+  "vrack_terminate_modal_error_banner": "Nie udało się usunąć usługi vRrack. Sprawdź, czy vRack jest pusty.",
+  "vrack_terminate_title": "Rezygnacja z vRacka",
+  "vrack_terminate_description": "Aby zrezygnować z vRacka, najpierw należy odłączyć wszystkie przypisane do niego usługi",
+  "vrack_terminate": "Zakończ"
 }
