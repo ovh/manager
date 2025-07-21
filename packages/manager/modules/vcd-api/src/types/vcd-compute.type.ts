@@ -1,4 +1,4 @@
-import { BillingType, ResourceStatus, Task } from './vcd-utility.type';
+import { BillingType, VCDResourceStatus, Task } from './vcd-utility.type';
 
 export type VCDComputeState = {
   billingType: BillingType;
@@ -10,7 +10,7 @@ export type VCDComputeState = {
 
 export type VCDCompute = {
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: VCDResourceStatus;
   currentState: VCDComputeState;
   currentTasks?: Task[];
 };
