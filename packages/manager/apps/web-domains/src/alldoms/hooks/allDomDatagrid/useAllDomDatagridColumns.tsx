@@ -2,6 +2,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { AlldomService } from '@/alldoms/types';
 import DatagridColumnDomainRegisteredAuthorized from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnDomainRegisteredAuthorized';
 import DatagridColumnServiceName from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnServiceName';
@@ -11,9 +12,12 @@ import DatagridColumnRenewMode from '@/alldoms/components/AllDomDatagridColumns/
 import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnSkeleton from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnSkeleton';
+import { useNichandle } from '@/alldoms/hooks/nichandle/useNichandle';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
+  const { nichandle } = useNichandle();
+  const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
 
   const columns = [
     {
@@ -74,7 +78,12 @@ export const useAllDomDatagridColumns = () => {
       id: 'nicAdmin',
       cell: (props: AlldomService) => (
         <DatagridColumnSkeleton serviceId={props.serviceId}>
-          <DatagridColumnContact contact={props.nicAdmin} />
+          <DatagridColumnContact
+            contact={props.nicAdmin}
+            url={
+              props.nicAdmin === nichandle && `${accountUrl}/useraccount/infos`
+            }
+          />
         </DatagridColumnSkeleton>
       ),
       label: t('allDom_table_header_nicAdmin'),
@@ -83,7 +92,13 @@ export const useAllDomDatagridColumns = () => {
       id: 'nicTech',
       cell: (props: AlldomService) => (
         <DatagridColumnSkeleton serviceId={props.serviceId}>
-          <DatagridColumnContact contact={props.nicTechnical} />
+          <DatagridColumnContact
+            contact={props.nicTechnical}
+            url={
+              props.nicTechnical === nichandle &&
+              `${accountUrl}/useraccount/infos`
+            }
+          />
         </DatagridColumnSkeleton>
       ),
       label: t('allDom_table_header_nicTech'),
@@ -93,7 +108,13 @@ export const useAllDomDatagridColumns = () => {
       id: 'nicBilling',
       cell: (props: AlldomService) => (
         <DatagridColumnSkeleton serviceId={props.serviceId}>
-          <DatagridColumnContact contact={props.nicBilling} />
+          <DatagridColumnContact
+            contact={props.nicBilling}
+            url={
+              props.nicBilling === nichandle &&
+              `${accountUrl}/useraccount/infos`
+            }
+          />
         </DatagridColumnSkeleton>
       ),
       label: t('allDom_table_header_nicBilling'),
