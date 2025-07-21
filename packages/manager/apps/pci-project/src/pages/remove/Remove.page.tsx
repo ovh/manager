@@ -3,7 +3,11 @@ import {
   isDiscoveryProject,
   useProject,
 } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,8 +23,10 @@ import {
   useIsDefaultProject,
 } from '@/data/hooks/useProjects';
 import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 export default function RemovePage() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('remove');
 
   const { projectId: projectIdParam } = useParams();
@@ -57,11 +63,19 @@ export default function RemovePage() {
   } = useIsDefaultProject(projectId);
 
   const handleRemoveSuccess = () => {
+    trackPage({
+      pageType: PageType.bannerSuccess,
+      pageName: PROJECTS_TRACKING.DELETE.REQUEST_SUCCESS,
+    });
     addSuccess(t('pci_projects_project_edit_remove_success'));
     goBack();
   };
 
   const handleRemoveError = (error: ApiError) => {
+    trackPage({
+      pageType: PageType.bannerError,
+      pageName: PROJECTS_TRACKING.DELETE.REQUEST_FAIL,
+    });
     addError(
       t('pci_projects_project_edit_remove_error', {
         error: error.message,
@@ -80,6 +94,10 @@ export default function RemovePage() {
   });
 
   const handleConfirm = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.DELETE.CTA_CONFIRM,
+    });
     if (hasActiveOrPendingSavingPlan) {
       window.open(`${SUPPORT_URL}${ovhSubsidiary}`, '_blank', 'noopener');
       goBack();
@@ -91,6 +109,14 @@ export default function RemovePage() {
       serviceId,
       isUs: region === 'US',
     });
+  };
+
+  const handleCancel = () => {
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.DELETE.CTA_CANCEL,
+    });
+    goBack();
   };
 
   /**
@@ -125,7 +151,7 @@ export default function RemovePage() {
       cancelText={t('pci_projects_project_edit_remove_cancel')}
       isPending={isPending}
       isDisabled={isPending}
-      onCancel={goBack}
+      onCancel={handleCancel}
       onClose={goBack}
       onConfirm={handleConfirm}
     >
