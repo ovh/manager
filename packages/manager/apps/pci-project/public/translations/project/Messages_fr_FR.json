@@ -98,5 +98,7 @@
   "pci_project_project_understand_manage": "Comprendre et gérer",
   "pci_project_project_voucher_credit": "Code promo : {{voucher}}",
   "pci_project_project_voucher_description_aria": "Description du code promo",
-  "pci_project_project_voucher_name_aria": "Nom du code promo"
+  "pci_project_project_voucher_name_aria": "Nom du code promo",
+  "pci_project_project_community": "Communauté",
+  "pci_project_project_billing": "Facturation"
 }

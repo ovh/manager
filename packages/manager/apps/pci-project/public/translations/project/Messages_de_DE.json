@@ -98,5 +98,7 @@
   "pci_project_project_understand_manage": "Verstehen und verwalten",
   "pci_project_project_voucher_credit": "Aktionscode: {{voucher}}",
   "pci_project_project_voucher_description_aria": "Beschreibung des Aktionscodes",
-  "pci_project_project_voucher_name_aria": "Name des Aktionscodes"
+  "pci_project_project_voucher_name_aria": "Name des Aktionscodes",
+  "pci_project_project_community": "Community",
+  "pci_project_project_billing": "Abrechnung"
 }

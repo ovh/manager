@@ -98,5 +98,7 @@
   "understand_manage": "Zrozum i zarządzaj",
   "voucher_credit": "Kod promocyjny: {{voucher}}",
   "voucher_description_aria": "Opis kodu promocyjnego",
-  "voucher_name_aria": "Nazwa kodu promocyjnego"
+  "voucher_name_aria": "Nazwa kodu promocyjnego",
+  "pci_project_project_community": "Społeczność",
+  "pci_project_project_billing": "Rozliczenia"
 }
