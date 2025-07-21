@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
-  NavLink,
   useLocation,
   useNavigate,
-  useParams,
   useResolvedPath,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 
 import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
-
-import appConfig from '@/communication.config';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -20,27 +16,27 @@ export type DashboardTabItemProps = {
   to: string;
 };
 
-export type DashboardLayoutProps = {
-  tabs: DashboardTabItemProps[];
-};
-
-export default function DashboardPage() {
+export default function DashboardLayout() {
   const [panel, setActivePanel] = useState('');
-  const { serviceName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation('common');
 
-  const tabsList = [
+  const tabsList: DashboardTabItemProps[] = [
     {
-      name: 'general_informations',
-      title: 'Informations générales',
+      name: 'communications',
+      title: t('tab_communications'),
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'Tab 2',
-      title: 'Tab 2',
-      to: useResolvedPath('Tab2').pathname,
+      name: 'contacts',
+      title: t('tab_contacts'),
+      to: useResolvedPath('contacts').pathname,
+    },
+    {
+      name: 'settings',
+      title: t('tab_settings'),
+      to: useResolvedPath('settings').pathname,
     },
   ];
 
@@ -60,18 +56,19 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
-      breadcrumb={
-        <Breadcrumb rootLabel={appConfig.rootLabel} appName="communication" />
-      }
+      breadcrumb={<Breadcrumb rootLabel={t('title')} appName="communication" />}
       header={header}
-      description="Description du communication"
+      description={t('description')}
       tabs={
         <OdsTabs>
           {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab key={`osds-tab-bar-item-${tab.name}`}>
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
+            <OdsTab
+              key={`osds-tab-bar-item-${tab.name}`}
+              className="select-none"
+              isSelected={tab.name === panel}
+              onClick={() => navigate(tab.to)}
+            >
+              {tab.title}
             </OdsTab>
           ))}
         </OdsTabs>
