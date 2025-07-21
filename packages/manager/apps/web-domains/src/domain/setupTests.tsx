@@ -58,12 +58,18 @@ const mocks = vi.hoisted(() => ({
       },
     },
   },
+  environment: {
+    getRegion: vi.fn(),
+    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
+    getUserLocale: vi.fn(() => 'fr_FR'),
+  },
 }));
 const trackClickMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   ShellContext: React.createContext({
     shell: mocks.shell,
+    environment: mocks.environment,
   }),
   useOvhTracking: () => ({ trackClick: trackClickMock }),
   useNavigationGetUrl: (

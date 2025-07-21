@@ -11,12 +11,12 @@ import {
   MessageIcon,
 } from '@ovhcloud/ods-react';
 import {
-  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_MESSAGE_COLOR,
 } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -25,17 +25,18 @@ import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomain
 import { computeDnsDetails } from '@/domain/utils/utils';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 
-interface DomainTabDnsProps {
+interface DNSConfigurationTabProps {
   readonly domainResource: TDomainResource;
 }
 
-export default function DomainTabDns({ domainResource }: DomainTabDnsProps) {
+export default function DNSConfigurationTab({
+  domainResource,
+}: DNSConfigurationTabProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
-
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
 
+  const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
-
   return (
     <div data-testid="datagrid">
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
@@ -68,7 +69,11 @@ export default function DomainTabDns({ domainResource }: DomainTabDnsProps) {
           {t('domain_dns_tab_button_modify_dns')}
         </Button>
         {/* FIXME: page implemented by MANAGER-19005 */}
-        <Button size={ODS_BUTTON_SIZE.sm} variant={ODS_BUTTON_VARIANT.outline}>
+        <Button
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() => navigate('order-anycast')}
+        >
           {t('domain_dns_tab_button_order_anycast')}
         </Button>
       </div>
