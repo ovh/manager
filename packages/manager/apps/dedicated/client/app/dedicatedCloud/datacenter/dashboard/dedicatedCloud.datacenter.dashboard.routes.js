@@ -91,6 +91,8 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.dashboard.nsx',
           ),
+        goBack: ($state) => () =>
+          $state.go('app.dedicatedCloud.details.datacenter'),
       },
     },
   );

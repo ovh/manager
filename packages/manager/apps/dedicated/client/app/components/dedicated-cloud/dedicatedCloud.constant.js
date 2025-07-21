@@ -1,3 +1,7 @@
+export const LABELS = {
+  ZERTO: 'Zerto',
+};
+
 export const DEDICATED_CLOUD_CONSTANTS = {
   securityOptions: ['pcidss', 'hds', 'hipaa'],
   pccNewGeneration: '2.0',
