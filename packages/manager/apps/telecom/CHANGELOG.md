@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.13.0...@ovh-ux/manager-telecom@16.14.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 576] ([9c7a1ce](https://github.com/ovh/manager/commit/9c7a1cee5dc24099c99279308df37956cba5c317))
+
+
+### Features
+
+* **telephony:** adding voicemail transcript ui ([575c0aa](https://github.com/ovh/manager/commit/575c0aa40081a4310cd3e68c3b76d1aa26bcdfaa)), closes [#MANAGER-18982](https://github.com/ovh/manager/issues/MANAGER-18982)
+
+
+
+
+
 # [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.12.0...@ovh-ux/manager-telecom@16.13.0) (2025-07-21)
 
 
