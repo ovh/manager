@@ -4,18 +4,18 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
-const LayoutPage = lazy(() => import('@/pages/layout'));
-const ListingPage = lazy(() => import('@/pages/listing'));
-const DashboardPage = lazy(() => import('@/pages/dashboard'));
-const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
+const RootLayout = lazy(() => import('@/pages/layout'));
+const DashboardLayout = lazy(() => import('@/pages/dashboardLayout'));
+const ContactsPage = lazy(() => import('@/pages/contacts'));
+const CommunicationsPage = lazy(() =>
+  import('@/pages/communications/Communications.page'),
 );
-const Tab2Page = lazy(() => import('@/pages/dashboard/tab2'));
+const SettingsPage = lazy(() => import('@/pages/settings'));
 
 export default (
   <Route
     path={urls.root}
-    Component={LayoutPage}
+    Component={RootLayout}
     errorElement={
       <ErrorBoundary
         isPreloaderHide={true}
@@ -24,34 +24,34 @@ export default (
       />
     }
   >
-    <Route
-      path={urls.listing}
-      Component={ListingPage}
-      handle={{
-        tracking: {
-          pageName: 'listing',
-          pageType: PageType.listing,
-        },
-      }}
-    />
-    <Route path={urls.dashboard} Component={DashboardPage}>
+    <Route Component={DashboardLayout}>
       <Route
-        path=""
-        Component={GeneralInfosPage}
+        path={urls.CommunicationsTab}
+        Component={CommunicationsPage}
         handle={{
           tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
+            pageName: 'communications',
+            pageType: PageType.listing,
           },
         }}
       />
       <Route
-        path={urls.tab2}
-        Component={Tab2Page}
+        path={urls.ContactsTab}
+        Component={ContactsPage}
         handle={{
           tracking: {
-            pageName: 'tab2',
-            pageType: PageType.dashboard,
+            pageName: 'contacts',
+            pageType: PageType.funnel,
+          },
+        }}
+      />
+      <Route
+        path={urls.SettingsTab}
+        Component={SettingsPage}
+        handle={{
+          tracking: {
+            pageName: 'settings',
+            pageType: PageType.funnel,
           },
         }}
       />
