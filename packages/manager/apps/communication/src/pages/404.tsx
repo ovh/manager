@@ -1,7 +1,5 @@
-import React from 'react';
+import { redirect } from 'react-router-dom';
 
 export default function NotFound() {
-  // @TODO: add a redirection here in order to catch /:serviceName given from iframe
-
-  return <h1>404 - route not found</h1>;
+  return redirect('/');
 }

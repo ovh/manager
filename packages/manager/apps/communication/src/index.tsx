@@ -27,8 +27,8 @@ const init = async (appName: string) => {
   await initI18n({
     context,
     reloadOnLocaleChange: true,
-    defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    defaultNS: 'common',
+    ns: ['communications'],
   });
 
   const region = context.environment.getRegion();
