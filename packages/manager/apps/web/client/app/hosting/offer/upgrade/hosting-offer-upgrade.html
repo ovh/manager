@@ -68,7 +68,7 @@
                 >
                     <oui-radio data-value="$ctrl.durations">
                         <span
-                            data-ng-bind="$ctrl.constructor.formatExpirationDate($ctrl.hosting.expiration) | wucDuration:'longDate':{prorata:true}"
+                            data-ng-bind-html="$ctrl.constructor.formatExpirationDate($ctrl.hosting.expiration) | wucDuration:'longDate':{prorata:true}"
                         ></span>
                         &nbsp;:
                         <span
@@ -116,7 +116,7 @@
                 >
                 </ovh-contracts-summary>
                 <span
-                    data-ng-if="!$ctrl.model.contracts.length"
+                    data-ng-if="!$ctrl.durations.order.contracts.length"
                     data-translate="hosting_order_upgrade_no_contract"
                 ></span>
             </oui-step-form>
