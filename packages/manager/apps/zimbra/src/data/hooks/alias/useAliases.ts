@@ -44,6 +44,7 @@ export const useAliases = (props: UseAliasesParams = {}) => {
         platformId,
         searchParams: urlSearchParams,
         pageParam,
+        disableCache: !!options.refetchInterval,
         ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
