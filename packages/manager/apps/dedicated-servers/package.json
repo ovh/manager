@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated-servers-app",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "private": true,
   "description": "Dedicated server listing ",
   "repository": {
@@ -22,7 +22,7 @@
     "@ovh-ux/manager-core-api": "^0.15.0",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-module-common-api": "^0.4.5",
-    "@ovh-ux/manager-react-components": "^2.32.1",
+    "@ovh-ux/manager-react-components": "^2.32.2",
     "@ovh-ux/manager-react-core-application": "^0.11.33",
     "@ovh-ux/manager-react-shell-client": "^0.8.5",
     "@ovh-ux/request-tagger": "^0.4.0",

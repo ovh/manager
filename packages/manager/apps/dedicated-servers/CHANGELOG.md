@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.5...@ovh-ux/manager-dedicated-servers-app@0.3.6) (2025-07-21)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** fix search input ([8f1a543](https://github.com/ovh/manager/commit/8f1a543400234319bc006c7c86ad35844a399428)), closes [#MANAGER-19034](https://github.com/ovh/manager/issues/MANAGER-19034)
+
+
+
+
+
 ## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.4...@ovh-ux/manager-dedicated-servers-app@0.3.5) (2025-07-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
