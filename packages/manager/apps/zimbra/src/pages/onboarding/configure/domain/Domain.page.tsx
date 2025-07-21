@@ -6,13 +6,14 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import AddDomainForm from '@/pages/dashboard/domains/DomainForm.component';
 import { ONBOARDING_CONFIGURE_DOMAIN } from '@/tracking.constants';
 import { useDomains } from '@/data/hooks';
 import { Loading } from '@/components';
 
 export const ConfigureDomain: React.FC = () => {
-  const { t } = useTranslation(['onboarding', 'common']);
+  const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ACTIONS]);
   const { trackPage } = useOvhTracking();
   const { addError } = useNotifications();
   const navigate = useNavigate();
@@ -71,7 +72,7 @@ export const ConfigureDomain: React.FC = () => {
         }
       }}
       pageTrackingName={ONBOARDING_CONFIGURE_DOMAIN}
-      submitButtonLabel={`${t('common:next')} 2/3`}
+      submitButtonLabel={`${t(`${NAMESPACES.ACTIONS}:next`)} 2/3`}
     />
   );
 };
