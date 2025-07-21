@@ -22,7 +22,7 @@ export type BottomSectionItem = {
 };
 
 export function useDashboardSections(projectId: string) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
   const { environment } = useContext(ShellContext);
   const formatDate = useFormatDate();
   const {
@@ -36,12 +36,14 @@ export function useDashboardSections(projectId: string) {
     if (isLoading) return [];
 
     return vouchersCreditDetails.slice(0, 3).map((credit) => ({
-      label: t('voucher_credit', { voucher: credit.voucher }),
+      label: t('pci_project_project_voucher_credit', {
+        voucher: credit.voucher,
+      }),
       description: credit.description,
       link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
       price: credit.balance,
       validUntil: credit.expirationDate
-        ? t('expires_on', {
+        ? t('pci_project_project_expires_on', {
             date: formatDate({ date: credit.expirationDate, format: 'PPpp' }),
           })
         : null,
@@ -53,16 +55,16 @@ export function useDashboardSections(projectId: string) {
     const documentationLinks = getDocumentationLinks(user.ovhSubsidiary);
 
     return documentationLinks.map((link) => ({
-      label: t(link.labelKey),
-      description: t(link.descriptionKey),
+      label: t(`pci_project_project_${link.labelKey}`),
+      description: t(`pci_project_project_${link.descriptionKey}`),
       link: link.link,
     }));
   }, [t, environment]);
 
   const createCommunityItems = useCallback(() => {
     return COMMUNITY_LINKS.map((link) => ({
-      label: t(link.labelKey),
-      description: t(link.descriptionKey),
+      label: t(`pci_project_project_${link.labelKey}`),
+      description: t(`pci_project_project_${link.descriptionKey}`),
       link: link.link,
     }));
   }, [t]);
@@ -70,17 +72,17 @@ export function useDashboardSections(projectId: string) {
   const sections: BottomSection[] = useMemo(
     () => [
       {
-        title: t('billing_section'),
+        title: t('pci_project_project_billing_section'),
         type: 'billing' as const,
         items: createBillingItems(),
       },
       {
-        title: t('documentation_section'),
+        title: t('pci_project_project_documentation_section'),
         type: 'documentation' as const,
         items: createDocumentationItems(),
       },
       {
-        title: t('community_section'),
+        title: t('pci_project_project_community_section'),
         type: 'community' as const,
         items: createCommunityItems(),
       },

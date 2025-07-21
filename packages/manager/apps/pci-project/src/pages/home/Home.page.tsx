@@ -19,49 +19,49 @@ import IconDatabase from '@/assets/home/Managed MongoDB.svg?url';
 import IconBlockStorage from '@/assets/home/Block Storage.svg?url';
 
 export default function Home() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
   const { projectId } = useParams<{ projectId: string }>();
 
   if (!projectId) {
-    throw Error(t('project_identifier_missing'));
+    throw Error(t('pci_project_project_project_identifier_missing'));
   }
 
   const quickAccessItems: QuickAccessItem[] = useMemo(
     () => [
       {
         icon: IconInstances,
-        title: t('instances'),
-        description: t('create_instance'),
+        title: t('pci_project_project_instances'),
+        description: t('pci_project_project_create_instance'),
         link: `instances/new`,
       },
       {
         icon: IconKubernetes,
-        title: t('kubernetes'),
-        description: t('create_cluster'),
+        title: t('pci_project_project_kubernetes'),
+        description: t('pci_project_project_create_cluster'),
         link: `kubernetes/new`,
       },
       {
         icon: IconObjectStorage,
-        title: t('object_storage'),
-        description: t('create_container'),
+        title: t('pci_project_project_object_storage'),
+        description: t('pci_project_project_create_container'),
         link: `storages/objects/new`,
       },
       {
         icon: IconBlockStorage,
-        title: t('block_storage'),
-        description: t('create_volume'),
+        title: t('pci_project_project_block_storage'),
+        description: t('pci_project_project_create_volume'),
         link: `storages/blocks`,
       },
       {
         icon: IconNetwork,
-        title: t('network'),
-        description: t('manage_vrack'),
+        title: t('pci_project_project_network'),
+        description: t('pci_project_project_manage_vrack'),
         link: `private-networks`,
       },
       {
         icon: IconDatabase,
-        title: t('database'),
-        description: t('create_database'),
+        title: t('pci_project_project_database'),
+        description: t('pci_project_project_create_database'),
         link: `databases-analytics/operational/services/new`,
       },
     ],
@@ -72,22 +72,22 @@ export default function Home() {
     () => [
       {
         icon: 'book',
-        label: t('create_ai_notebook'),
+        label: t('pci_project_project_create_ai_notebook'),
         link: `ai-ml/auth`,
       },
       {
         icon: 'network',
-        label: t('create_load_balancer'),
+        label: t('pci_project_project_create_load_balancer'),
         link: `octavia-load-balancer/load-balancers`,
       },
       {
         icon: 'bill',
-        label: t('billing'),
+        label: t('pci_project_project_billing'),
         link: `billing`,
       },
       {
         icon: 'cog',
-        label: t('quotas'),
+        label: t('pci_project_project_quotas'),
         link: `quota`,
       },
     ],

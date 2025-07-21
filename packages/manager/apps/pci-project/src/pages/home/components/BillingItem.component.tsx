@@ -8,7 +8,7 @@ interface BillingItemProps {
 }
 
 export default function BillingItem({ item, isLoading }: BillingItemProps) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
 
   if (isLoading) {
     return (
@@ -34,26 +34,32 @@ export default function BillingItem({ item, isLoading }: BillingItemProps) {
         {item.label && (
           <div
             className="font-semibold text-sm"
-            aria-label={t('voucher_name_aria')}
+            aria-label={t('pci_project_project_voucher_name_aria')}
           >
             {item.label}
           </div>
         )}
         {item.description && (
-          <div className="text-sm" aria-label={t('voucher_description_aria')}>
+          <div
+            className="text-sm"
+            aria-label={t('pci_project_project_voucher_description_aria')}
+          >
             {item.description}
           </div>
         )}
         {item.price && (
           <div
             className="font-bold text-lg"
-            aria-label={t('available_balance_aria')}
+            aria-label={t('pci_project_project_available_balance_aria')}
           >
             {item.price}
           </div>
         )}
         {item.validUntil && (
-          <div className="text-xs" aria-label={t('expiration_date_aria')}>
+          <div
+            className="text-xs"
+            aria-label={t('pci_project_project_expiration_date_aria')}
+          >
             {item.validUntil}
           </div>
         )}

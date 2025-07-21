@@ -11,11 +11,11 @@ export type QuickAccessItem = {
 };
 
 export function QuickAccess({ items }: { items: QuickAccessItem[] }) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
 
   return (
     <>
-      <Subtitle>{t('quick_access')}</Subtitle>
+      <Subtitle>{t('pci_project_project_quick_access')}</Subtitle>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5 my-6">
         {items.map((item, idx) => (
           <Link to={item.link} style={{ textDecoration: 'none' }} key={idx}>

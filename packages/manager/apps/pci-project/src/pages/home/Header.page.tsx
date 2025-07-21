@@ -27,7 +27,7 @@ export default function ProjectHeader() {
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project, isLoading, error } = useProject();
   const { tabs } = useTabs();
-  const isDiscovery = isDiscoveryProject();
+  const isDiscovery = isDiscoveryProject(project);
 
   if (error) throw error;
 
@@ -57,7 +57,7 @@ export default function ProjectHeader() {
         changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
       }}
       tabs={
-        <nav aria-label={t('main_navigation')}>
+        <nav aria-label={t('pci_project_project_main_navigation')}>
           <TabsPanel tabs={tabs} />
         </nav>
       }

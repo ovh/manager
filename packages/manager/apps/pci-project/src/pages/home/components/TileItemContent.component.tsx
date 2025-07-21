@@ -17,17 +17,23 @@ export default function TileItemContent({
   isLoading,
   projectId,
 }: TileItemContentProps) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
 
   // Determine element type once
   const elementType = item.isVoucherLink ? 'voucher' : section.type;
 
   const getAriaLabel = () => {
     const ariaLabelMap = {
-      voucher: t('link_credits_vouchers_aria'),
-      billing: t('billing_item_aria', { label: item.label }),
-      documentation: t('documentation_link_aria', { label: item.label }),
-      community: t('community_link_aria', { label: item.label }),
+      voucher: t('pci_project_project_link_credits_vouchers_aria'),
+      billing: t('pci_project_project_billing_item_aria', {
+        label: item.label,
+      }),
+      documentation: t('pci_project_project_documentation_link_aria', {
+        label: item.label,
+      }),
+      community: t('pci_project_project_community_link_aria', {
+        label: item.label,
+      }),
     };
 
     return ariaLabelMap[elementType] || item.label;

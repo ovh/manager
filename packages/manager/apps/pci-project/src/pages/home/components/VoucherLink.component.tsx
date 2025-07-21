@@ -5,7 +5,7 @@ interface VoucherLinkProps {
 }
 
 export default function VoucherLink({ projectId }: VoucherLinkProps) {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('project');
 
   return (
     <div className="flex justify-start">
@@ -14,9 +14,11 @@ export default function VoucherLink({ projectId }: VoucherLinkProps) {
         className="text-[var(--ods-color-primary-500)] font-semibold text-sm no-underline hover:underline"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`${t('credits_vouchers')} - Opens in new tab`}
+        aria-label={`${t(
+          'pci_project_project_credits_vouchers',
+        )} - Opens in new tab`}
       >
-        {t('credits_vouchers')} →
+        {t('pci_project_project_credits_vouchers')} →
       </a>
     </div>
   );

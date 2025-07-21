@@ -11,12 +11,14 @@ export type OtherActionItem = {
 };
 
 export function Others({ items }: { items: OtherActionItem[] }) {
-  const { t } = useTranslation(['home']);
+  const { t } = useTranslation('project');
 
   return (
     <div className="my-8">
       <div className="flex flex-wrap items-center gap-3 mt-4 sm:flex-nowrap">
-        <Subtitle className="mr-4 whitespace-nowrap">{t('others')}</Subtitle>
+        <Subtitle className="mr-4 whitespace-nowrap">
+          {t('pci_project_project_others')}
+        </Subtitle>
         <div className="flex flex-wrap gap-3 flex-1">
           {items.map((action, idx) => (
             <Link to={action.link} style={{ textDecoration: 'none' }} key={idx}>
