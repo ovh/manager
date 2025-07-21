@@ -69,3 +69,11 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
     } as UseQueryResult<unknown, Error>;
   },
 }));
+
+vi.mock('@/alldoms/hooks/nichandle/useNichandle', () => ({
+  useNichandle: vi.fn(() => {
+    return {
+      nichandle: 'aa00001-ovh',
+    };
+  }),
+}));
