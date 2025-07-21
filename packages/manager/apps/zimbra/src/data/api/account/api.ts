@@ -10,16 +10,19 @@ export const getZimbraPlatformAccounts = ({
   searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
+  disableCache,
 }: {
   platformId: string;
   searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
+  disableCache?: boolean;
 }) =>
   fetchIcebergV2<AccountType[]>({
     route: `${getApiPath(platformId)}account${searchParams}`,
     pageSize,
     cursor: pageParam as string,
+    disableCache,
   });
 
 export const getZimbraPlatformAccountDetail = async (

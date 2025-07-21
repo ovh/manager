@@ -29,6 +29,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { useOrganization } from '@/data/hooks';
 import {
+  getZimbraPlatformOrganizationDetailsQueryKey,
   getZimbraPlatformOrganizationQueryKey,
   OrganizationBodyParamsType,
   postZimbraPlatformOrganization,
@@ -107,7 +108,12 @@ export const AddEditOrganizationModal = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
+        queryKey: organizationId
+          ? getZimbraPlatformOrganizationDetailsQueryKey(
+              platformId,
+              organizationId,
+            )
+          : getZimbraPlatformOrganizationQueryKey(platformId),
       });
       onClose();
     },

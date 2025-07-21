@@ -10,16 +10,19 @@ export const getZimbraPlatformMailingLists = ({
   searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
+  disableCache,
 }: {
   platformId: string;
   searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
+  disableCache?: boolean;
 }) =>
   fetchIcebergV2<MailingListType[]>({
     route: `${getApiPath(platformId)}mailingList${searchParams}`,
     pageSize,
     cursor: pageParam as string,
+    disableCache,
   });
 
 export const getZimbraPlatformMailingListDetails = async (
