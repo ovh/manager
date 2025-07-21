@@ -172,9 +172,9 @@
   "billing_autorenew_service_frequency": "Fréquence de renouvellement",
 
   "billing_autorenew_service_none": "Aucun",
-  "billing_autorenew_service_every_1_month": "Tous les mois",
-  "billing_autorenew_service_every_3_month": "Tous les 3 mois",
-  "billing_autorenew_service_every_6_month": "Tous les 6 mois",
-  "billing_autorenew_service_every_12_month": "Tous les ans",
+  "billing_autorenew_service_every_month": "Tous les mois",
+  "billing_autorenew_service_every_x_months": "Tous les {{ months }} mois",
+  "billing_autorenew_service_every_year": "Tous les ans",
+  "billing_autorenew_service_every_x_years": "Tous les {{ years }} ans",
   "billing_autorenew_engagement_none": "Sans engagement"
 }
