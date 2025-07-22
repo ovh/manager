@@ -1,0 +1,11 @@
+{
+  "sap_hub_history_title": "Sprawdź listę instalacji wstępnych SAP przeprowadzonych lub w toku.",
+  "sap_hub_history_list": "Lista instalacji wstępnych SAP",
+  "sap_hub_history_installation_date": "Data",
+  "sap_hub_history_application_version": "Wersja aplikacji",
+  "sap_hub_history_application_type": "Rodzaj aplikacji",
+  "sap_hub_history_deployment_type": "Rodzaj wdrożenia",
+  "sap_hub_history_installation_status": "Status",
+  "sap_hub_history_installation_RETRY": "Ponowna próba",
+  "sap_hub_history_installation_see_detail": "Sprawdź szczegóły"
+}
