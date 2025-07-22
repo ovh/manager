@@ -1,0 +1,17 @@
+{
+  "breadcrumb": "Backups",
+  "title": "Sauvegardes",
+  "description": "Vous trouverez ci-dessous la liste des sauvegardes de vos notebooks. Il est possible de créer un nouveau notebook à partir de chacune d'entre elles.",
+  "tableHeaderId": "Id",
+  "tableHeaderCreationDate": "Date de création",
+  "tableHeaderUpdateDate": "Date de modification",
+  "backupDropdownMenuLabel": "Action",
+  "tableActionFork": "Fork",
+  "forkBackupTitle": "Commander un notebook depuis un backup",
+  "forkBackupDescription": "Utiliser le backup {{id}} créé le {{date}} pour commander un nouveau notebook?",
+  "forkButtonCancel": "Annuler",
+  "forkBackupButtonConfirm": "Commander",
+  "forkToastErrorTitle": "Une erreur est survenue",
+  "forkToastSuccessTitle": "Succés",
+  "forkToastSuccessDescription": "votre notebook a été créé avec succès"
+}
