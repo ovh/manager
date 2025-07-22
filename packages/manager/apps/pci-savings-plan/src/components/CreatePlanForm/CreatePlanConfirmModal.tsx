@@ -90,8 +90,7 @@ const CreatePlanConfirmModal = ({
       onPrimaryButtonClick={onPrimaryButtonClick}
     >
       <div className="flex flex-col gap-4">
-        <Subtitle>{t('modal_summary_title')}</Subtitle>
-        <OdsMessage>{t('modal_content')}</OdsMessage>
+        <OdsMessage isDismissible={false}>{t('modal_content')}</OdsMessage>
         <BoldLabelText label={t('modal_summary_label_name')} value={name} />
         {savingsPlanInfo.resource === ResourceType.instance && (
           <BoldLabelText
