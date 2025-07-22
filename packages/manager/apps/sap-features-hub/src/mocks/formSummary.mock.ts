@@ -206,6 +206,7 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
         {
           value: mock.logsDataPlatform?.certificate,
           label: l.enablement_input_logstash_certificat,
+          isSecretValue: true,
         },
       ],
     },

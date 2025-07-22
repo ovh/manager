@@ -236,6 +236,7 @@ export const useFormSummary = (values: InstallationFormValues) => {
                 {
                   value: values.logsDataPlatform.certificate,
                   label: t('enablement_input_logstash_certificat'),
+                  isSecretValue: true,
                 },
               ]),
         ],
