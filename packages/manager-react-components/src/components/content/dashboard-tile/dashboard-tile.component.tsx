@@ -14,6 +14,10 @@ export type DashboardTileProps = {
   'data-testid'?: string;
 };
 
+/**
+ * DashboardTile
+ * @deprecated component, use ManagerTile instead.
+ */
 export const DashboardTile: React.FC<DashboardTileProps> = ({
   title,
   items,
