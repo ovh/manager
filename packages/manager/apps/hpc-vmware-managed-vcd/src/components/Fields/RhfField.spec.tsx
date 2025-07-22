@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import { RhfField } from '.';
 
 const SCHEMA = z.object({
