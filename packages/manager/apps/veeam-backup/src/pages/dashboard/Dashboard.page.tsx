@@ -57,7 +57,9 @@ export default function DashboardPage() {
           {['DISABLED', 'DISABLING', 'REMOVED'].includes(
             data?.data?.resourceStatus,
           ) && (
-            <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
+            <OdsMessage color="warning" isDismissible={false}>
+              {t('terminated_service')}
+            </OdsMessage>
           )}
           <SuccessMessages id={id} />
         </>
@@ -90,7 +92,7 @@ export default function DashboardPage() {
                   label: t('vcd_org'),
                   value: (
                     <OrganizationCell
-                      className="mt-4"
+                      className="mt-4 tile__link--breakable"
                       withLink
                       organizationId={getOrganizationIdFromBackup(data?.data)}
                     />
@@ -145,7 +147,7 @@ export default function DashboardPage() {
                 },
                 {
                   id: 'bilingModalities',
-                  value: <BillingLink />,
+                  value: <BillingLink className="tile__link--breakable" />,
                 },
               ].filter(Boolean)}
             />

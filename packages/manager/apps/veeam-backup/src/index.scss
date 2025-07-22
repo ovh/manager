@@ -9,3 +9,15 @@ html {
 .progress__full-width::part(progress) {
   width: 100%;
 }
+
+.tile__link--breakable {
+  &::part(link) {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+  }
+  &::part(label) {
+    white-space: break-spaces;
+  }
+}
