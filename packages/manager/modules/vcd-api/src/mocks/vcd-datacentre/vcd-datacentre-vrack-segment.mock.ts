@@ -3,7 +3,7 @@ import { VCDVrackSegment } from '../../types/vcd-vrack-segment.type';
 export const mockVrackSegmentList: VCDVrackSegment[] = [
   {
     id: 'uuid-1',
-    resourceStatus: 'ACTIVE',
+    resourceStatus: 'READY',
     targetSpec: {
       vlanId: '420',
       type: 'MIGRATED',
@@ -20,7 +20,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-2',
-    resourceStatus: 'PENDING',
+    resourceStatus: 'UPDATING',
     targetSpec: {
       vlanId: '421',
       type: 'DEFAULT',
@@ -37,7 +37,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-3',
-    resourceStatus: 'ACTIVE',
+    resourceStatus: 'READY',
     targetSpec: {
       vlanId: '422',
       type: 'DEFAULT',
@@ -54,7 +54,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-4',
-    resourceStatus: 'FAILED',
+    resourceStatus: 'ERROR',
     targetSpec: {
       vlanId: '423',
       type: 'DEFAULT',
@@ -71,7 +71,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-5',
-    resourceStatus: 'ACTIVE',
+    resourceStatus: 'READY',
     targetSpec: {
       vlanId: '424',
       type: 'DEFAULT',
@@ -88,7 +88,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-6',
-    resourceStatus: 'PENDING',
+    resourceStatus: 'UPDATING',
     targetSpec: {
       vlanId: '425',
       type: 'MIGRATED',
@@ -105,7 +105,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-7',
-    resourceStatus: 'ACTIVE',
+    resourceStatus: 'READY',
     targetSpec: {
       vlanId: '426',
       type: 'MIGRATED',
@@ -122,7 +122,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-8',
-    resourceStatus: 'FAILED',
+    resourceStatus: 'ERROR',
     targetSpec: {
       vlanId: '427',
       type: 'MIGRATED',
@@ -139,7 +139,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-9',
-    resourceStatus: 'ACTIVE',
+    resourceStatus: 'READY',
     targetSpec: {
       vlanId: '428',
       type: 'DEFAULT',
@@ -156,7 +156,7 @@ export const mockVrackSegmentList: VCDVrackSegment[] = [
   },
   {
     id: 'uuid-10',
-    resourceStatus: 'PENDING',
+    resourceStatus: 'UPDATING',
     targetSpec: {
       vlanId: '429',
       type: 'MIGRATED',

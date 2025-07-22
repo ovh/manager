@@ -68,7 +68,7 @@ export const VrackSegmentSubDatagrid = ({
             id: 'actions',
             label: '',
             cell: (network: string) => {
-              const isDeleting = vrackSegmentStatus === 'deleting';
+              const isDeleting = vrackSegmentStatus === 'DELETING';
               const isLastNetwork = networks.length <= 1;
               const buttonId = `delete-network-${network}`;
               return (
