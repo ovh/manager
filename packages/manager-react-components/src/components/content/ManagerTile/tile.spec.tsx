@@ -61,4 +61,18 @@ describe('Manager Tile component', () => {
       expect(screen.queryByText('label')).not.toBeInTheDocument();
     });
   });
+
+  it('renders a tooltip on labels correctly', async () => {
+    render(
+      <ManagerTile>
+        <ManagerTile.Item>
+          <ManagerTile.Item.Label tooltip="This is a tooltip">
+            label
+          </ManagerTile.Item.Label>
+        </ManagerTile.Item>
+      </ManagerTile>,
+    );
+
+    expect(screen.getByText('This is a tooltip')).toBeInTheDocument();
+  });
 });
