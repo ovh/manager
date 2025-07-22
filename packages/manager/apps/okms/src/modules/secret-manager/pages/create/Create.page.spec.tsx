@@ -53,9 +53,6 @@ describe('Create secret page test suite', () => {
     await assertTextVisibility(
       labels.secretManager.create.secret_section_title,
     );
-    await assertTextVisibility(
-      labels.secretManager.create.paiement_section_title,
-    );
   });
 
   it('should navigate to the created secret page on submit', async () => {

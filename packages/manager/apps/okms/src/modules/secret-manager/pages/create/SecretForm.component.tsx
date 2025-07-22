@@ -138,16 +138,18 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
             )}
           />
         </div>
-        <div className="flex flex-col gap-3">
+        {/* TEMP: waiting for metadata management */}
+        {/* <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
         </div>
         <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('metadata_title')}</OdsText>
-        </div>
+        </div> */}
       </div>
-      <div className="flex flex-col gap-5">
+      {/* TEMP: waiting for payment informations */}
+      {/* <div className="flex flex-col gap-5">
         <OdsText preset="heading-2">{t('paiement_section_title')}</OdsText>
-      </div>
+      </div> */}
       <div className="flex justify-between items-center py-3">
         <BackLink />
         <OdsButton
