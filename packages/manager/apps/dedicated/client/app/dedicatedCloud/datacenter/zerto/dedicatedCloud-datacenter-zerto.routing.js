@@ -104,7 +104,21 @@ export default /* @ngInject */ ($stateProvider) => {
         dedicatedCloudZerto.checkForZertoOptionOrder(
           currentService.serviceName,
         ),
-
+      zertoInformations: /* @ngInject */ (
+        dedicatedCloudZerto,
+        serviceName,
+        datacenterOfZerto,
+        currentZerto,
+        datacenterHosts,
+        storedZertoInformations,
+      ) =>
+        dedicatedCloudZerto.constructor.buildZertoInformations(
+          serviceName,
+          datacenterOfZerto,
+          currentZerto,
+          datacenterHosts,
+          storedZertoInformations,
+        ),
       storeZertoOptionOrderInUserPref: /* @ngInject */ (
         dedicatedCloudZerto,
       ) => (zertoInformations, enableZerto) =>
@@ -150,12 +164,18 @@ export default /* @ngInject */ ($stateProvider) => {
       isZertoOnPremise: /* @ngInject */ (zertoState) => {
         return zertoState.drpType === 'onPremise';
       },
-      goToAddSite: /* @ngInject */ ($state, productId, datacenterId) => () =>
+      goToAddSite: /* @ngInject */ (
+        $state,
+        zertoInformations,
+        productId,
+        datacenterId,
+      ) => () =>
         $state.go(
-          'app.dedicatedCloud.details.datacenter.details.zerto.addSite',
+          'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite',
           {
             productId,
             datacenterId,
+            zertoInformations,
           },
         ),
     },

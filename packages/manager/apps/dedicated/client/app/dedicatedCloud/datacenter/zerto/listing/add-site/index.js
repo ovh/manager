@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerDedicatedCloudDatacenterZertoAddSiteLazyloading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.dedicatedCloud.details.datacenter.details.zerto.addSite.**',
+      'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite.**',
       {
         url: '/add-site',
         lazyLoad: ($transition$) => {
