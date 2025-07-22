@@ -1,6 +1,5 @@
 import { z } from 'zod/v3';
 import {
-  mockVrackSegmentList,
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
   VCDVrackSegment,
@@ -43,7 +42,7 @@ export default function EditVrackSegmentId() {
 
   const options = {
     ...defaultOptions,
-    select: (data: ApiResponse<VrackSegment>) => ({
+    select: (data: ApiResponse<VCDVrackSegment>) => ({
       ...data.data.targetSpec,
       vlanId: Number(data.data.targetSpec.vlanId),
     }),
