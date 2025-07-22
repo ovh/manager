@@ -16,7 +16,7 @@
   "location_cell": "Localisation",
   "description_cell": "Description",
   "active_status": "Activé",
-  "none_status": "Aucun",
+  "none_status": "Désactivé",
   "error_status": "Erreur",
   "cancel_button": "Annuler",
   "order_button": "Commander"
