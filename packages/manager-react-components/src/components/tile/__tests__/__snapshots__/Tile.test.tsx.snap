@@ -178,40 +178,22 @@ exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
                 Sample Term
               </span>
             </div>
-            <div
-              class="w-min"
-              id="navigation-action-trigger-action-menu"
+            <button
+              aria-controls="popover::r1::content"
+              aria-expanded="false"
+              aria-haspopup="dialog"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+              data-part="trigger"
+              data-scope="popover"
+              data-state="closed"
+              dir="ltr"
+              id="popover::r1::trigger"
+              type="button"
             >
-              <ods-button
-                aria-label="common_actions"
-                data-testid="navigation-action-trigger-action"
-                icon="ellipsis-vertical"
-                id="action-menu"
-                is-disabled="false"
-                is-loading="false"
-                size="sm"
-                slot="menu-title"
-                variant="outline"
+              <span
+                class="_icon_i4xp0_2 _icon--ellipsis-vertical_i4xp0_163"
               />
-            </div>
-            <ods-popover
-              class="py-[8px] px-0 w-max"
-              data-testid="navigation-action-trigger-action-popover"
-              trigger-id="navigation-action-trigger-action-menu"
-              with-arrow="true"
-            >
-              <div
-                class="flex flex-col"
-              >
-                <ods-button
-                  class="menu-item-button w-full"
-                  display-tooltip="false"
-                  label="Test Label"
-                  size="sm"
-                  variant="ghost"
-                />
-              </div>
-            </ods-popover>
+            </button>
           </dt>
           <dd
             class="m-0"
