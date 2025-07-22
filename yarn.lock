@@ -11359,7 +11359,7 @@
   dependencies:
     "@types/node" "*"
 
-"@typescript-eslint/eslint-plugin@8.36.0", "@typescript-eslint/eslint-plugin@^4.7.4", "@typescript-eslint/eslint-plugin@^7.18.1-alpha.3", "@typescript-eslint/eslint-plugin@^8.26.1", "@typescript-eslint/eslint-plugin@^8.34.1":
+"@typescript-eslint/eslint-plugin@8.36.0", "@typescript-eslint/eslint-plugin@^4.7.4", "@typescript-eslint/eslint-plugin@^8.26.1", "@typescript-eslint/eslint-plugin@^8.34.1", "@typescript-eslint/eslint-plugin@^8.37.0":
   version "4.33.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.33.0.tgz#c24dc7c8069c7706bc40d99f6fa87edcb2005276"
   integrity sha512-aINiAxGVdOl1eJyVjaWn/YcVAq4Gi/Yo35qHGCnqbWVz61g39D0h23veY/MA0rFFGfxK7TySg2uwDeNv+JgVpg==
@@ -11385,7 +11385,7 @@
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
-"@typescript-eslint/parser@8.36.0", "@typescript-eslint/parser@^4.7.4", "@typescript-eslint/parser@^7.18.1-alpha.3", "@typescript-eslint/parser@^8.0.0", "@typescript-eslint/parser@^8.34.1":
+"@typescript-eslint/parser@8.36.0", "@typescript-eslint/parser@^4.7.4", "@typescript-eslint/parser@^8.0.0", "@typescript-eslint/parser@^8.34.1", "@typescript-eslint/parser@^8.37.0":
   version "4.33.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.33.0.tgz#dfe797570d9694e560528d18eecad86c8c744899"
   integrity sha512-ZohdsbXadjGBSK0/r+d87X0SBmKzOq4/S5nzK6SBgJspFo9/CUDJ7hjayuze+JK7CZQLDMroqytp7pOcFKTxZA==
@@ -11402,15 +11402,6 @@
   dependencies:
     "@typescript-eslint/tsconfig-utils" "^8.36.0"
     "@typescript-eslint/types" "^8.36.0"
-    debug "^4.3.4"
-
-"@typescript-eslint/project-service@8.37.0":
-  version "8.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/project-service/-/project-service-8.37.0.tgz#0594352e32a4ac9258591b88af77b5653800cdfe"
-  integrity sha512-BIUXYsbkl5A1aJDdYJCBAo8rCEbAvdquQ8AnLb6z5Lp1u3x5PNgSSx9A/zqYc++Xnr/0DVpls8iQ2cJs/izTXA==
-  dependencies:
-    "@typescript-eslint/tsconfig-utils" "^8.37.0"
-    "@typescript-eslint/types" "^8.37.0"
     debug "^4.3.4"
 
 "@typescript-eslint/scope-manager@4.33.0":
@@ -11483,16 +11474,6 @@
     "@typescript-eslint/types" "8.36.0"
     "@typescript-eslint/typescript-estree" "8.36.0"
 
-"@typescript-eslint/utils@8.37.0":
-  version "8.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-8.37.0.tgz#189ea59b2709f5d898614611f091a776751ee335"
-  integrity sha512-TSFvkIW6gGjN2p6zbXo20FzCABbyUAuq6tBvNRGsKdsSQ6a7rnV6ADfZ7f4iI3lIiXc4F4WWvtUfDw9CJ9pO5A==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.7.0"
-    "@typescript-eslint/scope-manager" "8.37.0"
-    "@typescript-eslint/types" "8.37.0"
-    "@typescript-eslint/typescript-estree" "8.37.0"
-
 "@typescript-eslint/visitor-keys@4.33.0":
   version "4.33.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.33.0.tgz#2a22f77a41604289b7a186586e9ec48ca92ef1dd"
@@ -11507,14 +11488,6 @@
   integrity sha512-vZrhV2lRPWDuGoxcmrzRZyxAggPL+qp3WzUrlZD+slFueDiYHxeBa34dUXPuC0RmGKzl4lS5kFJYvKCq9cnNDA==
   dependencies:
     "@typescript-eslint/types" "8.36.0"
-    eslint-visitor-keys "^4.2.1"
-
-"@typescript-eslint/visitor-keys@8.37.0":
-  version "8.37.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-8.37.0.tgz#cdb6a6bd3e8d6dd69bd70c1bdda36e2d18737455"
-  integrity sha512-YzfhzcTnZVPiLfP/oeKtDp2evwvHLMe0LOy7oe+hb9KKIumLNohYS9Hgp1ifwpu42YWxhZE8yieggz6JpqO/1w==
-  dependencies:
-    "@typescript-eslint/types" "8.37.0"
     eslint-visitor-keys "^4.2.1"
 
 "@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23":
