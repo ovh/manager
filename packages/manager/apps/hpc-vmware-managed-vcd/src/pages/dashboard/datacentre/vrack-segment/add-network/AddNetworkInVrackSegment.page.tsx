@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod/v3';
 import {
   mockVrackSegmentList,
   useUpdateVcdVrackSegment,
@@ -68,7 +68,7 @@ function AddNetworkVrackSegmentLoaded() {
           })
           .refine(
             (network) =>
-              !vrackSegmentTargetSpec.networks.some((networkB) =>
+              !vrackSegmentTargetSpec.networks.some((networkB: string) =>
                 hasIpv4CIDRConflict(network, networkB),
               ),
             {
