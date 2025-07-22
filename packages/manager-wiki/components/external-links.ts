@@ -1,4 +1,10 @@
 const externalLinks = {
+  nativeElements: {
+    section:
+      'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/section',
+    descriptionList:
+      'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl',
+  },
   ods: {
     button:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-button--documentation',
@@ -24,6 +30,10 @@ const externalLinks = {
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-text--documentation',
     tooltip:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-tooltip--documentation',
+    card:
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-card--documentation',
+    divider:
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-divider--documentation',
   },
   github: {
     action:
@@ -42,6 +52,8 @@ const externalLinks = {
       'https://github.com/ovh/manager/blob/master/packages/manager-react-components/src/components/ManagerText/ManagerText.tsx',
     price:
       'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/content/price',
+    tile:
+      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/tile',
   },
 };
 
