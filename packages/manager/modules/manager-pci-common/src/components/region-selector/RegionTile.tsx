@@ -9,12 +9,14 @@ export interface RegionTileProps {
   region: TLocalisation;
   isSelected: boolean;
   isCompact?: boolean;
+  showTooltip?: boolean;
 }
 
 export const RegionTile = ({
   region,
   isSelected,
   isCompact,
+  showTooltip,
 }: Readonly<RegionTileProps>) => (
   <div className="flex flex-col w-full items-center">
     <div className={isCompact ? 'my-4' : ''}>
@@ -30,7 +32,7 @@ export const RegionTile = ({
       <>
         <hr className="w-full border-solid border-0 border-b border-ods-primary-200" />
         <div>
-          <RegionChipByType type={region.type} />
+          <RegionChipByType showTooltip={!!showTooltip} type={region.type} />
         </div>
       </>
     )}
