@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { HelpIconWithTooltip } from './help-icon-with-tooltip';
+import { HelpIconWithTooltip } from '../ManagerTile/help-icon-with-tooltip';
 
 export type TileBlockOptions = {
   label?: string;

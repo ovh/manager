@@ -27,7 +27,9 @@ export const CompleteExample = () => {
       <ManagerTile.Title>Complete example</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>Component Example</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label tooltip="This is a tooltip for the component example">
+          Component Example
+        </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">Test Value</OdsText>
         </ManagerTile.Item.Description>
@@ -53,7 +55,9 @@ export const CompleteExample = () => {
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>Clipboard</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label tooltip="This is a tooltip for the clipboard example">
+          Clipboard
+        </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <Clipboard className="w-full" value="example value" />
         </ManagerTile.Item.Description>
