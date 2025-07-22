@@ -84,8 +84,7 @@ const CreatePlanConfirmModal = ({
       onDismiss={() => setIsModalOpen(false)}
       secondaryLabel={t('modal_secondary_label')}
       onSecondaryButtonClick={() => setIsModalOpen(false)}
-      title={t('modal_title')}
-      content={t('modal_content')}
+      heading={t('modal_title')}
       primaryLabel={t('cta_plan')}
       isPrimaryButtonDisabled={!isLegalChecked}
       onPrimaryButtonClick={onPrimaryButtonClick}
