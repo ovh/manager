@@ -6,6 +6,7 @@ import keys from 'lodash/keys';
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS,
+  DEDICATEDCLOUD_DATACENTER_DRP_ROLES,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
   DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES,
@@ -523,6 +524,7 @@ class DedicatedCloudDatacenterZertoService {
     return this.ovhUserPref.remove(preferenceKey, true);
   }
 
+  // It's near `formatPlanInformations`. Should be refactorised (See: MANAGER-19360)
   static getPlanServiceInformations({
     drpType,
     datacenterId,
@@ -631,15 +633,141 @@ class DedicatedCloudDatacenterZertoService {
   getZertoMultiSite({ serviceName, datacenterId }) {
     return this.$http
       .get(
-        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites`,
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zertoSingle/remoteSites`,
+      )
+      .then(({ data }) => data);
+  }
+
+  addZertoSite({ serviceName, datacenterId }, payload) {
+    return this.$http
+      .post(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zertoSingle/remoteSites`,
+        payload,
       )
       .then(({ data }) => data);
   }
 
   deleteZertoRemoteSite({ serviceName, datacenterId, siteId }) {
     return this.$http.delete(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/remoteSites?id=${siteId}`,
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zertoSingle/remoteSites?id=${siteId}`,
     );
+  }
+
+  static buildZertoInformations(
+    serviceName,
+    datacenter,
+    zerto,
+    datacenterHosts,
+    storedZertoInformations = null,
+  ) {
+    const zertoInformations = {
+      hasDatacenterWithoutHosts: datacenterHosts.length === 0,
+    };
+
+    if (DedicatedCloudDatacenterZertoService.getIsDisablingZerto(zerto.state)) {
+      return null;
+    }
+
+    const otherZertoInformations = DedicatedCloudDatacenterZertoService.isDeliveredOrDelivering(
+      zerto.state,
+    )
+      ? DedicatedCloudDatacenterZertoService.formatPlanInformations(
+          serviceName,
+          datacenter,
+          zerto,
+        )
+      : storedZertoInformations;
+
+    return {
+      ...zertoInformations,
+      ...(otherZertoInformations || {}),
+    };
+  }
+
+  // It's near `getPlanServiceInformations`. Should be refactorised (See: MANAGER-19360)
+  static formatPlanInformations(
+    serviceName,
+    datacenter,
+    { drpType, localSiteInformation, remoteSiteInformation, state },
+  ) {
+    let primaryPcc;
+    let primaryDatacenter;
+    let secondaryPcc;
+    let secondaryDatacenter;
+    let vpnConfiguration;
+
+    if (localSiteInformation && remoteSiteInformation) {
+      switch (localSiteInformation.role) {
+        case DEDICATEDCLOUD_DATACENTER_DRP_ROLES.primary:
+          primaryPcc = {
+            serviceName,
+          };
+          primaryDatacenter = {
+            id: datacenter.id,
+            displayName: datacenter.displayName,
+          };
+          secondaryPcc = {
+            serviceName,
+          };
+          secondaryDatacenter = {
+            id: remoteSiteInformation.datacenterId,
+            displayName: remoteSiteInformation.datacenterName,
+          };
+          break;
+        case DEDICATEDCLOUD_DATACENTER_DRP_ROLES.single:
+          primaryPcc = {
+            serviceName,
+          };
+          primaryDatacenter = {
+            id: datacenter.id,
+            displayName: datacenter.displayName,
+          };
+          vpnConfiguration = remoteSiteInformation;
+          break;
+        default:
+          primaryPcc = {
+            serviceName: remoteSiteInformation.serviceName,
+          };
+          primaryDatacenter = {
+            id: remoteSiteInformation.datacenterId,
+            displayName: remoteSiteInformation.datacenterName,
+          };
+          secondaryPcc = {
+            serviceName,
+          };
+          secondaryDatacenter = {
+            id: datacenter.id,
+            displayName: datacenter.displayName,
+          };
+          break;
+      }
+    }
+
+    return {
+      drpType,
+      state,
+      primaryPcc,
+      primaryDatacenter,
+      secondaryPcc,
+      secondaryDatacenter,
+      vpnConfiguration,
+    };
+  }
+
+  static isDeliveredOrDelivering(state) {
+    return [
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.provisionning,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.toProvision,
+    ].includes(state);
+  }
+
+  static getIsDisablingZerto(zertoState) {
+    return [
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.toDisable,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabling,
+    ].includes(zertoState);
   }
 }
 
