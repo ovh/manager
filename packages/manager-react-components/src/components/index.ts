@@ -1,4 +1,5 @@
 export * from './action-banner';
+export * from './action-menu';
 export * from './redirection-guard';
 export * from './breadcrumb';
 
