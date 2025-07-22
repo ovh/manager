@@ -133,10 +133,6 @@ export default function InstallationStepEnablement() {
     return saveFormOnContext;
   }, []);
 
-  useEffect(() => {
-    trigger(['hasBackup', 'hasLogsInLdpOvh']);
-  }, [hasBackup, hasLogsInLdpOvh, JSON.stringify(defaultValues)]);
-
   const {
     mutate: validate,
     isPending: isValidationPending,
