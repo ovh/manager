@@ -71,7 +71,7 @@ export default class {
       productId: this.currentService.serviceName,
       destinationId: 'dedicatedCloud',
       successText: this.$translate.instant(
-        'dedicatedCloud_dashboard_nameModifying_success',
+        'dedicatedCloud_dashboard_editing_description_success',
       ),
       value: this.currentService.description,
     }).result.then((newDescription) => {

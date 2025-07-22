@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_alert_close": "Fermer le message d'information",
-  "dedicatedCloud_dashboard_nameModifying_success": "Le changement de nom de votre service sera effectif dans quelques instants.",
+  "dedicatedCloud_dashboard_editing_description_success": "Le changement de description de votre service sera effectif dans quelques instants.",
   "dedicatedCloud_dashboard_loading_error": "Une erreur est survenue lors du chargement des informations de votre service.",
   "dedicatedCloud_coming_soon": "A venir",
   "dedicatedCloud_banner_hdc_ready_label": "OVH vous propose désormais de l'hébergement de données de Santé via son offre Private Cloud Healthcare. votre infrastructure est compatible !",
