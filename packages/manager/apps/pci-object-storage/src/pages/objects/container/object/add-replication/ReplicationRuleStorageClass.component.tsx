@@ -80,22 +80,21 @@ export function ReplicationRuleStorageClass({
               'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass',
             )}
           </label>
-          {!destinationName && (
-            <div className="mt-2 ml-3 cursor-pointer">
-              <OdsIcon
-                id="trigger-popover"
-                name="circle-question"
-                className="text-[var(--ods-color-information-500)]"
-              />
-              <OdsPopover triggerId="trigger-popover">
-                <OdsText preset="caption">
-                  {t(
-                    'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass_tooltip',
-                  )}
-                </OdsText>
-              </OdsPopover>
-            </div>
-          )}
+
+          <div className="mt-2 ml-3 cursor-pointer">
+            <OdsIcon
+              id="trigger-popover-storage-class"
+              name="circle-question"
+              className="text-[var(--ods-color-information-500)]"
+            />
+            <OdsPopover triggerId="trigger-popover-storage-class">
+              <OdsText preset="caption">
+                {t(
+                  'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass_tooltip',
+                )}
+              </OdsText>
+            </OdsPopover>
+          </div>
         </span>
       </OdsFormField>
 
