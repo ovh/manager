@@ -1,4 +1,6 @@
 {
   "veeam_enterprise_title": "Veeam Enterprise",
-  "veeam_enterprise_order": "Ordina"
+  "veeam_enterprise_order": "Ordina",
+  "veeam_enterprise_list_service_name": "Cognome",
+  "veeam_enterprise_list_activation_status": "Stato"
 }
