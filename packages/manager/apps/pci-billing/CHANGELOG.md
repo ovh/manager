@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.1...@ovh-ux/manager-pci-billing-app@0.9.2) (2025-07-22)
+
+
+### Bug Fixes
+
+* **billing:** incorrect unit on dataplatform ([#18061](https://github.com/ovh/manager/issues/18061)) ([3f9ece5](https://github.com/ovh/manager/commit/3f9ece5c4f03e95c6922a3a892b00a0fbfecc5dc)), closes [#TAPC-4501](https://github.com/ovh/manager/issues/TAPC-4501) [#TAPC-4489](https://github.com/ovh/manager/issues/TAPC-4489)
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.0...@ovh-ux/manager-pci-billing-app@0.9.1) (2025-07-17)
 
 
