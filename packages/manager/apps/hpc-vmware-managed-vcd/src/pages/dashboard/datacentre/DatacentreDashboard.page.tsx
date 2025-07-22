@@ -20,6 +20,7 @@ import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
+import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -31,6 +32,7 @@ function DatacentreDashboardPage() {
   ]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
   const navigate = useNavigate();
+
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
     enabled: isUpdatingTargetSpec(vcdDatacentre?.data),
@@ -151,6 +153,9 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
+      message={
+        <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
+      }
       backLinkLabel={t('dashboard:managed_vcd_dashboard_back_link')}
       onClickReturn={() =>
         navigate(urls.datacentres.replace(subRoutes.dashboard, id))

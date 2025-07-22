@@ -117,4 +117,12 @@ describe('Datacentre Dashboard Page', () => {
       ),
     });
   });
+
+  it('display a warning message when the service is suspended', async () => {
+    await renderTest({
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}`,
+    });
+
+    await assertTextVisibility('cancel_service_success');
+  });
 });
