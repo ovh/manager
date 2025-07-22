@@ -31,10 +31,7 @@ export const ENABLEMENT_BUCKET_BACKINT = z.object({
 });
 
 export const ENABLEMENT_LOGS_DATA_PLATFORM = z.object({
-  entrypoint: z
-    .string()
-    .url()
-    .regex(LOGS_DATA_PLATFORM_REGEX),
+  entrypoint: z.string().regex(LOGS_DATA_PLATFORM_REGEX),
   certificate: z
     .string()
     .trim()
