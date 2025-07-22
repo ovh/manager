@@ -11,7 +11,14 @@
     "./src/components/Breadcrumb/Breadcrumb.component.tsx",
     "./src/hooks/breadcrumb/useBreadcrumb.tsx",
     "./src/components/tags-list/*",
-    "./src/components/modal/*"
+    "./src/components/modal/*",
+    "./src/components/tile/*",
+    "./src/components/tile/tile-divider/*",
+    "./src/components/tile/tile-item/*",
+    "./src/components/tile/tile-item/tile-item-description/*",
+    "./src/components/tile/tile-item/tile-item-root/*",
+    "./src/components/tile/tile-item/tile-item-term/*",
+    "./src/components/tile/tile-root/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
