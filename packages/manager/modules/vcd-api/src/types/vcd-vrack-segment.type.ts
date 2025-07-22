@@ -5,9 +5,17 @@ export interface VCDVrackSegmentSpec {
   networks: string[];
 }
 
+export type VrackSegmentResourceStatus =
+  | 'CREATING'
+  | 'DELETING'
+  | 'ERROR'
+  | 'READY'
+  | 'SUSPENDED'
+  | 'UPDATING';
+
 export interface VCDVrackSegment {
   id: string;
-  resourceStatus: string;
+  resourceStatus: VrackSegmentResourceStatus;
   targetSpec: VCDVrackSegmentSpec;
   currentState: VCDVrackSegmentSpec;
   currentTasks: unknown[];
