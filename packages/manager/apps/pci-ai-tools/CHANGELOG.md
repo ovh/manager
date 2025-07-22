@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.6...@ovh-ux/manager-pci-ai-tools-app@1.8.7) (2025-07-22)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:** docker command is not working as expected ([bf4bdbd](https://github.com/ovh/manager/commit/bf4bdbdeab993a44ee90947ff4f6fbd280804637)), closes [#DATATR-2360](https://github.com/ovh/manager/issues/DATATR-2360)
+
+
+
+
+
 ## [1.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.5...@ovh-ux/manager-pci-ai-tools-app@1.8.6) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
