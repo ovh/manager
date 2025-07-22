@@ -15,6 +15,7 @@ import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   mockVrackSegmentList,
   useVcdVrackSegmentListOptions,
@@ -25,6 +26,7 @@ import { useHref } from 'react-router-dom';
 import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
+import { VrackSegmentStatusBadge } from '../vrackSegmentStatusBadge/VrackSegmentStatusBadge.component';
 
 export type VrackSegmentDatagridProps = {
   id: string;
@@ -35,7 +37,10 @@ export const VrackSegmentDatagrid = ({
   id,
   vdcId,
 }: VrackSegmentDatagridProps) => {
-  const { t } = useTranslation('datacentres/vrack-segment');
+  const { t } = useTranslation([
+    'datacentres/vrack-segment',
+    NAMESPACES.STATUS,
+  ]);
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
@@ -85,15 +90,30 @@ export const VrackSegmentDatagrid = ({
   const columns = [
     {
       id: 'searchableValue',
-      label: t('managed_vcd_dashboard_vrack_segment'),
+      label: t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment'),
       cell: (item: VCDVrackSegment) => {
         return (
           <OdsText preset="paragraph">
-            {t('managed_vcd_dashboard_vrack_column_segment_vrack_label', {
-              vlanId: item.targetSpec.vlanId,
-            })}
+            {t(
+              'datacentres/vrack-segment:managed_vcd_dashboard_vrack_column_segment_vrack_label',
+              {
+                vlanId: item.targetSpec.vlanId,
+              },
+            )}
           </OdsText>
         );
+      },
+      isSearchable: true,
+      isSortable: true,
+      isFilterable: true,
+      comparator: FilterCategories.String,
+      type: DatagridColumnTypes.String,
+    },
+    {
+      id: 'status',
+      label: t(`${NAMESPACES.STATUS}:status`),
+      cell: (item: VCDVrackSegment) => {
+        return <VrackSegmentStatusBadge resourceStatus={item.resourceStatus} />;
       },
       isSearchable: true,
       isSortable: true,
@@ -108,7 +128,7 @@ export const VrackSegmentDatagrid = ({
       isSortable: false,
       isFilterable: false,
       cell: (item: VCDVrackSegment) => {
-        const isDeleting = item.resourceStatus === 'deleting';
+        const isDeleting = item.resourceStatus === 'DELETING';
         const itemId = item.targetSpec.vlanId;
         const isNotEditable = item.currentState.mode !== 'TAGGED';
 
@@ -124,11 +144,15 @@ export const VrackSegmentDatagrid = ({
                 {
                   id: 1,
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
-                  label: t('managed_vcd_dashboard_vrack_edit_vlan'),
+                  label: t(
+                    'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
+                  ),
                   isDisabled: isNotEditable,
                   tooltipMessage:
                     isNotEditable &&
-                    t('managed_vcd_dashboard_vrack_edit_vlan_not_available'),
+                    t(
+                      'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan_not_available',
+                    ),
                 },
                 {
                   id: 2,
@@ -136,14 +160,18 @@ export const VrackSegmentDatagrid = ({
                     subRoutes.vrackSegmentId,
                     item.id,
                   ),
-                  label: t('managed_vcd_dashboard_vrack_add_network'),
+                  label: t(
+                    'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
+                  ),
                 },
                 ...(hasExtraSegments && item.targetSpec.type !== 'DEFAULT'
                   ? [
                       {
                         id: 3,
                         color: ODS_BUTTON_COLOR.critical,
-                        label: t('managed_vcd_dashboard_vrack_delete_segment'),
+                        label: t(
+                          'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
+                        ),
                         href: hrefVrackSegmentDelete.replace(
                           subRoutes.vrackSegmentId,
                           item.id,
@@ -155,7 +183,9 @@ export const VrackSegmentDatagrid = ({
             />
             {isDeleting && (
               <OdsTooltip triggerId={itemId}>
-                {t('managed_vcd_dashboard_vrack_deleting')}
+                {t(
+                  'datacentres/vrack-segment:managed_vcd_dashboard_vrack_deleting',
+                )}
               </OdsTooltip>
             )}
           </div>
@@ -168,10 +198,12 @@ export const VrackSegmentDatagrid = ({
     <div className="flex flex-col gap-8">
       <div className="flex flex-col justify-between">
         <OdsText preset="heading-3" className="mb-4">
-          {t('managed_vcd_dashboard_vrack_segments')}
+          {t('datacentres/vrack-segment:managed_vcd_dashboard_vrack_segments')}
         </OdsText>
         <OdsText preset="paragraph">
-          {t('managed_vcd_dashboard_vrack_description')}
+          {t(
+            'datacentres/vrack-segment:managed_vcd_dashboard_vrack_description',
+          )}
         </OdsText>
       </div>
       <React.Suspense>

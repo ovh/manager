@@ -13,7 +13,8 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string, params: Record<string, string>) => {
       let translatedKey =
-        fr_FR[translationKey as keyof typeof fr_FR] ?? translationKey;
+        fr_FR[translationKey.split(':')[1] as keyof typeof fr_FR] ??
+        translationKey;
       if (params) {
         Object.keys(params).forEach((key) => {
           translatedKey = translatedKey.replace(`{{ ${key} }}`, params[key]);
