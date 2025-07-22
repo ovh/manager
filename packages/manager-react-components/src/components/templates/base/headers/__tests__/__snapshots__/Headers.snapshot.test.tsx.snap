@@ -14,62 +14,23 @@ exports[`Headers component > renders header with actions correctly 1`] = `
     <div
       class="flex flex-wrap justify-end items-center"
     >
-      <div
-        class="w-min"
-        id="navigation-action-trigger-1"
+      <button
+        aria-controls="popover::r1::content"
+        aria-expanded="false"
+        aria-haspopup="dialog"
+        class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+        data-part="trigger"
+        data-scope="popover"
+        data-state="closed"
+        dir="ltr"
+        id="popover::r1::trigger"
+        type="button"
       >
-        <ods-button
-          aria-label="common_actions"
-          data-testid="navigation-action-trigger-action"
-          icon="chevron-down"
-          id="1"
-          is-disabled="false"
-          is-loading="false"
-          label="common_actions"
-          size="sm"
-          slot="menu-title"
-          variant="outline"
+        <span
+          class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
         />
-      </div>
-      <ods-popover
-        class="py-[8px] px-0 w-max"
-        data-testid="navigation-action-trigger-action-popover"
-        trigger-id="navigation-action-trigger-1"
-        with-arrow="true"
-      >
-        <div
-          class="flex flex-col"
-        >
-          <a
-            href="https://www.ovh.com"
-            target="_blank"
-          >
-            <ods-button
-              class="menu-item-button w-full"
-              display-tooltip="false"
-              href="https://www.ovh.com"
-              label="Action 1"
-              size="sm"
-              target="_blank"
-              variant="ghost"
-            />
-          </a>
-          <a
-            href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
-            target="_blank"
-          >
-            <ods-button
-              class="menu-item-button w-full"
-              display-tooltip="false"
-              href="https://help.ovhcloud.com/csm/fr-documentation?id=kb_home"
-              label="Action 2"
-              size="sm"
-              target="_blank"
-              variant="ghost"
-            />
-          </a>
-        </div>
-      </ods-popover>
+        common_actions
+      </button>
     </div>
   </header>
 </div>

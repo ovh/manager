@@ -48,13 +48,13 @@ export const actionMenuStandard = {
   args: {
     items: actionItems,
     isCompact: false,
-    popoverPosition: ODS_POPOVER_POSITION.bottomEnd,
+    popoverPosition: ODS_POPOVER_POSITION.bottom,
   },
 };
 
 const meta: Meta<ActionMenuProps> = {
   decorators: [(story) => <div className="h-52">{story()}</div>],
-  title: 'Manager React Components/Navigation/Menus',
+  title: 'Manager React Components/components/ActionMenu',
   component: ActionMenu,
 };
 
