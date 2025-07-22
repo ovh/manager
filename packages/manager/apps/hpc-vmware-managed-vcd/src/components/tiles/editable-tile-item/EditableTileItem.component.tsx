@@ -8,6 +8,7 @@ type EditableTileItemProps = {
   value: string;
   name?: string;
   urn: string;
+  isDisabled?: boolean;
   iamActions: string[];
   onClickEdit: () => void;
 };
@@ -16,6 +17,7 @@ export default function EditableTileItem({
   value,
   name,
   urn,
+  isDisabled,
   iamActions,
   onClickEdit,
 }: EditableTileItemProps) {
@@ -36,6 +38,7 @@ export default function EditableTileItem({
             size="sm"
             icon="pen"
             label=""
+            isDisabled={isDisabled}
             id={`editButton-${name || value}`}
             aria-label={t('managed_vcd_dashboard_edit_modal_cta_edit')}
           />

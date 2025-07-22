@@ -4,10 +4,13 @@ import {
   Clipboard,
   DashboardTile,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import {
+  isStatusTerminated,
+  VCDDatacentre,
+  VCDOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
@@ -48,6 +51,7 @@ export default function DatacentreGenerationInformationTile({
               ]}
               urn={vcdDatacentre?.iam?.urn}
               onClickEdit={() => navigate(subRoutes.editDescription)}
+              isDisabled={isStatusTerminated(vcdOrganization.resourceStatus)}
             />
           ),
         },
