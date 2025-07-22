@@ -221,5 +221,6 @@
   "sidebar_skip_to_the_main_content": "Zum Hauptinhalt",
   "sidebar_public_networking": "Öffentliches Netzwerk",
   "sidebar_private_networking": "Privates Netzwerk",
-  "sidebar_network_services": "Netzwerkdienste"
+  "sidebar_network_services": "Netzwerkdienste",
+  "sidebar_sap_features_hub": "SAP-Hub-Features"
 }
