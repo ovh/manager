@@ -3,8 +3,9 @@ import { render } from '@testing-library/react';
 import { Headers } from '../Headers.component';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../../../hooks/iam';
-import { ActionMenu, ChangelogButton } from '../../../../navigation';
+import { ChangelogButton } from '../../../../navigation';
 import { GuideMenu } from '../../../../guide-menu';
+import { ActionMenu } from '../../../../action-menu';
 
 vitest.mock('../../../../../hooks/iam');
 
