@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.7...@ovh-ux/manager-pci-kubernetes-app@0.27.0) (2025-07-22)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** add free plan default value to allow US to create cluster ([b83ae5c](https://github.com/ovh/manager/commit/b83ae5c315df166976de2c53cc9093f0099db212))
+
+
+### Features
+
+* **pci-kubernetes:** add cluster plan in list ([f8e4e58](https://github.com/ovh/manager/commit/f8e4e587ff04a3b75856dbc54dba37278ad10451)), closes [#TAPC-3168](https://github.com/ovh/manager/issues/TAPC-3168)
+* **pci-kubernetes:** add plan details in cluster informations page ([af214c1](https://github.com/ovh/manager/commit/af214c12e676cc7d198541466fac5dcfe3dbd149)), closes [#TAPC-3169](https://github.com/ovh/manager/issues/TAPC-3169)
+* **pci-kubernetes:** update cluster plan value ([bb354a9](https://github.com/ovh/manager/commit/bb354a91db9102f3e26c87b9a39752338487e297)), closes [#TAPC-4418](https://github.com/ovh/manager/issues/TAPC-4418) [#TAPC-4419](https://github.com/ovh/manager/issues/TAPC-4419)
+
+
+
+
+
 ## [0.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.26.6...@ovh-ux/manager-pci-kubernetes-app@0.26.7) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
