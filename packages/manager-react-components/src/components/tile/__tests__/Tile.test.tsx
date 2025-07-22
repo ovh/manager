@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { Link } from '@ovhcloud/ods-react';
 import { Tile } from '../index';
-import { ActionMenu } from '../../navigation/menus/action/action.component';
+import { ActionMenu } from '../../action-menu';
 
 describe('Tile Snapshot tests', () => {
   it('renders simple tile', () => {
