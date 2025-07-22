@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.140.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.4...@ovh-ux/manager-container-app@0.140.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* **container:** remove ldp link into puclic cloud section ([94587a8](https://github.com/ovh/manager/commit/94587a836f386ee6eaaf6496a01f673a1d9e9eaa)), closes [#INC0141252](https://github.com/ovh/manager/issues/INC0141252) [#MANAGER-19148](https://github.com/ovh/manager/issues/MANAGER-19148)
+
+
+
+
+
 ## [0.140.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.3...@ovh-ux/manager-container-app@0.140.4) (2025-07-18)
 
 
