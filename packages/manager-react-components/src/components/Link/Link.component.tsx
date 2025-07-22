@@ -66,7 +66,7 @@ export const Link: React.FC<LinkProps> = ({
   return (
     <Tooltip position={TOOLTIP_POSITION.bottom}>
       <TooltipTrigger asChild>
-        <OdsLink {...getLinkProps(true)}>
+        <OdsLink {...getLinkProps(true)} disabled={true}>
           <LinkIcons type={type}>{children}</LinkIcons>
         </OdsLink>
       </TooltipTrigger>
