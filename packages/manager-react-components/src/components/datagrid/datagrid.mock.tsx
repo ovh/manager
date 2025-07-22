@@ -1,7 +1,7 @@
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { DataGridTextCell } from './text-cell.component';
-import { ActionMenu } from '../navigation';
+import { ActionMenu } from '../action-menu';
 import { DatagridColumn, DatagridColumnTypes } from './datagrid.component';
 import { IamObject } from '../../hooks';
 
