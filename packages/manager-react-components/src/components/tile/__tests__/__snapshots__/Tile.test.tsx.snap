@@ -1,0 +1,316 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tile Snapshot tests > renders multiple dd elements 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Simple Tile
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Sample Term
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <span
+              class="_text--span_1aw48_60"
+            >
+              Sample Description
+            </span>
+          </dd>
+          <dd
+            class="m-0"
+          >
+            <a
+              class="_link_udbet_2"
+              href="https://www.ovhcloud.com"
+            >
+              Link
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Tile Snapshot tests > renders simple tile 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Simple Tile
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Sample Term
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <span
+              class="_text--span_1aw48_60"
+            >
+              Sample Description
+            </span>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Sample Term
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <span
+              class="_text--span_1aw48_60"
+            >
+              Sample Description
+            </span>
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Tile Snapshot tests > renders tile term with Actions Menu 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Simple Tile
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Sample Term
+              </span>
+            </div>
+            <div
+              class="w-min"
+              id="navigation-action-trigger-action-menu"
+            >
+              <ods-button
+                aria-label="common_actions"
+                data-testid="navigation-action-trigger-action"
+                icon="ellipsis-vertical"
+                id="action-menu"
+                is-disabled="false"
+                is-loading="false"
+                size="sm"
+                slot="menu-title"
+                variant="outline"
+              />
+            </div>
+            <ods-popover
+              class="py-[8px] px-0 w-max"
+              data-testid="navigation-action-trigger-action-popover"
+              trigger-id="navigation-action-trigger-action-menu"
+              with-arrow="true"
+            >
+              <div
+                class="flex flex-col"
+              >
+                <ods-button
+                  class="menu-item-button w-full"
+                  display-tooltip="false"
+                  label="Test Label"
+                  size="sm"
+                  variant="ghost"
+                />
+              </div>
+            </ods-popover>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <span
+              class="_text--span_1aw48_60"
+            >
+              Sample Description
+            </span>
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
+<body>
+  <div>
+    <div
+      class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    >
+      <section
+        class="flex flex-col w-full"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31"
+        >
+          Simple Tile
+        </h4>
+        <hr
+          class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        />
+        <dl
+          class="flex flex-col m-0"
+        >
+          <div
+            class="flex flex-col gap-1"
+          >
+            <dt
+              class="flex justify-between"
+            >
+              <div
+                class="flex items-center gap-1 text-[var(--ods-color-text)]"
+              >
+                <span
+                  class="_text--span_1aw48_60 font-bold"
+                >
+                  Sample Term
+                </span>
+                <span
+                  class="_icon_i4xp0_2 _icon--circle-question_i4xp0_88"
+                  data-part="trigger"
+                  data-scope="tooltip"
+                  data-state="closed"
+                  dir="ltr"
+                  id="tooltip::r0::trigger"
+                />
+              </div>
+            </dt>
+            <dd
+              class="m-0"
+            >
+              <span
+                class="_text--span_1aw48_60"
+              >
+                Sample Description
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  </div>
+  <div
+    data-part="positioner"
+    data-scope="tooltip"
+    dir="ltr"
+    id="tooltip::r0::popper"
+    style="position: absolute; isolation: isolate; min-width: max-content; pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
+  >
+    <div
+      class="_tooltip-content_zk0pd_2"
+      data-part="content"
+      data-scope="tooltip"
+      data-state="closed"
+      dir="ltr"
+      hidden=""
+      id="tooltip::r0::content"
+      role="tooltip"
+      style="pointer-events: auto;"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        Sample Tooltip Message
+      </p>
+    </div>
+  </div>
+</body>
+`;
