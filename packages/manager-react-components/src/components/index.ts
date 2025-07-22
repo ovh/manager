@@ -33,6 +33,7 @@ export * from './ManagerText/ManagerText';
 
 export * from './ServiceStateBadge/ServiceStateBadge.component';
 
+export * from './tile';
 export * from './region/region.component';
 export * from './order';
 
