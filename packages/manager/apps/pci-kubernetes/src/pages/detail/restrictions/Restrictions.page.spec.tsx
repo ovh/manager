@@ -1,16 +1,7 @@
 import { describe, it, vi, expect, beforeEach } from 'vitest';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  act,
-} from '@testing-library/react';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
+import { render, screen, fireEvent } from '@testing-library/react';
+
 import { useParams } from 'react-router-dom';
 import RestrictionsPage from './Restrictions.page';
 import {

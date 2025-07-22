@@ -10,6 +10,9 @@
   "kube_service_file_help": "O ficheiro kubeconfig contém os dados que permitem à ferramenta online de comandos \"kubectl\" comunicar com a API do seu cluster.",
   "kube_service_file_more_information": "Mais informações disponíveis aqui",
   "kube_service_cluster_information": "Informações sobre o cluster",
+  "kube_service_cluster_plan": "Plano",
+  "kube_service_cluster_plan_free": "Free",
+  "kube_service_cluster_plan_standard": "Standard",
   "kube_service_cluster_status": "Estado",
   "kube_service_cluster_status_READY": "Ok",
   "kube_service_cluster_status_ERROR": "Erro",
@@ -78,5 +81,6 @@
   "pci_project_flavors_zone_global_region": "1-AZ",
   "pci_project_flavors_zone_3az": "3-AZ",
   "pci_project_flavors_zone_3az_tooltip": "A 3-AZ region comprises three availability zones located in the same metropolitan area, separated by a few miles. It meets the highest resilience requirements while guaranteeing extremely low latency between AZs.",
-  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) region groups together one or more datacentres located on the same site."
+  "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) region groups together one or more datacentres located on the same site.",
+  "kube_service_cluster_plan_description": "O nível de serviço associado a este cluster MKS."
 }
