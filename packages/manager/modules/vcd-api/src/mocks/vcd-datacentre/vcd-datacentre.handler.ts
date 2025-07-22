@@ -12,10 +12,21 @@ export type GetDatacentresMocksParams = {
   nbCompute?: number;
   isStorageKO?: boolean;
   nbStorage?: number;
+  resourceId?: string;
 };
 
 const findDatacentreById = (params: PathParams) =>
-  datacentreList.find(({ id }) => id === params.id);
+  datacentreList.find(({ id }) => id === params.vdcId);
+
+const findStorages = ({ resourceId, nbStorage }: GetDatacentresMocksParams) =>
+  resourceId
+    ? storageList.filter(({ id }) => id === resourceId)
+    : storageList.slice(0, nbStorage);
+
+const findComputes = ({ resourceId, nbStorage }: GetDatacentresMocksParams) =>
+  resourceId
+    ? computeList.filter(({ id }) => id === resourceId)
+    : computeList.slice(0, nbStorage);
 
 export const getDatacentresMocks = ({
   isDatacentresKo,
@@ -25,20 +36,23 @@ export const getDatacentresMocks = ({
   nbCompute = Number.POSITIVE_INFINITY,
   isStorageKO,
   nbStorage = Number.POSITIVE_INFINITY,
+  resourceId,
 }: GetDatacentresMocksParams): Handler[] => [
   {
-    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id/storage',
+    url:
+      '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId/storage',
     response: isStorageKO
       ? { message: 'Storage error' }
-      : storageList.slice(0, nbStorage),
+      : findStorages({ nbStorage, resourceId }),
     api: 'v2',
     status: isStorageKO ? 500 : 200,
   },
   {
-    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id/compute',
+    url:
+      '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId/compute',
     response: isComputeKO
       ? { message: 'Compute error' }
-      : computeList.slice(0, nbCompute),
+      : findComputes({ nbCompute, resourceId }),
     api: 'v2',
     status: isComputeKO ? 500 : 200,
   },
@@ -51,7 +65,7 @@ export const getDatacentresMocks = ({
     status: isDatacentresKo ? 500 : 200,
   },
   {
-    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id',
+    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId',
     response: (_: unknown, params: PathParams) =>
       isDatacentresKo
         ? { message: 'Datacentre error' }
@@ -60,7 +74,7 @@ export const getDatacentresMocks = ({
     status: isDatacentresKo ? 500 : 200,
   },
   {
-    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:id',
+    url: '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId',
     response: isDatacentreUpdateKo
       ? { message: 'Datacentre update error' }
       : {},

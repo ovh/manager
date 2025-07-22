@@ -1,11 +1,12 @@
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   useVcdOrganization,
   useUpdateVcdOrganizationDetails,
   VCDOrganizationTargetSpec,
+  isStatusTerminated,
 } from '@ovh-ux/manager-module-vcd-api';
+import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 import {
   validateDescription,
   validateOrganizationName,
@@ -75,26 +76,32 @@ export const UpdateDetailModalHandler = ({
   };
 
   return (
-    <EditDetailModal
-      detailValue={getOrganizationDetailValue(detailName)}
-      headline={t(`managed_vcd_dashboard_edit_${detailName}_modal_title`)}
-      inputLabel={t(`managed_vcd_dashboard_edit_${detailName}_modal_label`)}
-      errorHelper={t(
-        `managed_vcd_dashboard_edit_${detailName}_modal_helper_error`,
-      )}
-      validateDetail={getValidationFunction(detailName)}
-      onEdit={(newValue: string) =>
-        updateDetails({
-          id,
-          details: {
-            ...currentDetails,
-            [getOrganizationDetailKey(detailName)]: newValue,
-          },
-        })
-      }
-      onCloseModal={closeModal}
-      error={isError ? error : null}
+    <RedirectionGuard
       isLoading={isPending}
-    />
+      condition={isStatusTerminated(vcdOrganization?.data?.resourceStatus)}
+      route={'..'}
+    >
+      <EditDetailModal
+        detailValue={getOrganizationDetailValue(detailName)}
+        headline={t(`managed_vcd_dashboard_edit_${detailName}_modal_title`)}
+        inputLabel={t(`managed_vcd_dashboard_edit_${detailName}_modal_label`)}
+        errorHelper={t(
+          `managed_vcd_dashboard_edit_${detailName}_modal_helper_error`,
+        )}
+        validateDetail={getValidationFunction(detailName)}
+        onEdit={(newValue: string) =>
+          updateDetails({
+            id,
+            details: {
+              ...currentDetails,
+              [getOrganizationDetailKey(detailName)]: newValue,
+            },
+          })
+        }
+        onCloseModal={closeModal}
+        error={isError ? error : null}
+        isLoading={isPending}
+      />
+    </RedirectionGuard>
   );
 };

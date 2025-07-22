@@ -45,6 +45,7 @@ describe('Datacentre Compute Listing Page', () => {
     const { getByText, queryByText } = await renderTest({
       initialRoute: vdcRoute,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': false },
+      nbCompute: 2,
     });
 
     // access compute tab
@@ -89,6 +90,7 @@ describe('Datacentre Compute Listing Page', () => {
     const { getByText, getByTestId } = await renderTest({
       initialRoute: vdcRoute,
       feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
+      nbCompute: 2,
     });
 
     // access compute tab
@@ -119,5 +121,21 @@ describe('Datacentre Compute Listing Page', () => {
   it('display an error', async () => {
     await renderTest({ initialRoute: computeRoute, isComputeKO: true });
     await assertTextVisibility(DEFAULT_LISTING_ERROR);
+  });
+
+  it('should disable remove button when status is suspended', async () => {
+    const { queryByTestId } = await renderTest({
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}/compute`,
+      resourceId: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
+    });
+
+    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
+    expect(orderButton.getAttribute('is-disabled')).toBe('true');
+
+    const deleteButton = await getElementByTestId(TEST_IDS.cellDeleteCta);
+    expect(deleteButton.getAttribute('is-disabled')).toBe('true');
+
+    const tooltip = queryByTestId(TEST_IDS.cellDeleteTooltip);
+    expect(tooltip).not.toBeInTheDocument();
   });
 });

@@ -5,6 +5,7 @@ import {
   Datagrid,
   DatagridColumn,
   ErrorBanner,
+  RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import {
   OdsButton,
@@ -12,7 +13,9 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
+  isStatusTerminated,
   useVcdCatalog,
+  useVcdDatacentre,
   useVcdOrder,
   useVdcOrderableResource,
   VCDOrderableStoragePriced,
@@ -53,6 +56,7 @@ export const DatacentreOrder = <T extends OrderType>({
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
   const { trackClick } = useOvhTracking();
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const {
     selectedResource,
     setSelectedResource,
@@ -110,7 +114,11 @@ export const DatacentreOrder = <T extends OrderType>({
   }
 
   return (
-    <React.Suspense>
+    <RedirectionGuard
+      isLoading={isLoadingResource || isLoadingCatalog}
+      condition={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+      route={'..'}
+    >
       <div className="px-10 my-4 flex flex-col">
         <OdsText preset="heading-3">{title}</OdsText>
         <OdsText className="my-6">{subtitle}</OdsText>
@@ -158,6 +166,6 @@ export const DatacentreOrder = <T extends OrderType>({
           />
         </div>
       </div>
-    </React.Suspense>
+    </RedirectionGuard>
   );
 };

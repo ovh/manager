@@ -1,7 +1,11 @@
 import React from 'react';
 import { OdsButton, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { VCDCompute, VCDStorage } from '@ovh-ux/manager-module-vcd-api';
+import {
+  isStatusTerminated,
+  VCDCompute,
+  VCDStorage,
+} from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import TEST_IDS from '@/utils/testIds.constants';
 
@@ -55,12 +59,14 @@ export const ActionDeleteCell = (resource: VCDCompute | VCDStorage) => {
         aria-label="delete-datacentre-resource"
         data-testid={TEST_IDS.cellDeleteCta}
       />
-      <OdsTooltip
-        triggerId={`delete-tooltip-trigger-${resource?.id}`}
-        data-testid={TEST_IDS.cellDeleteTooltip}
-      >
-        <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
-      </OdsTooltip>
+      {!isStatusTerminated(resource.resourceStatus) && (
+        <OdsTooltip
+          triggerId={`delete-tooltip-trigger-${resource?.id}`}
+          data-testid={TEST_IDS.cellDeleteTooltip}
+        >
+          <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
+        </OdsTooltip>
+      )}
     </>
   );
 };

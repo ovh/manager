@@ -1,6 +1,8 @@
 import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
+  isStatusTerminated,
+  useVcdDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   DatagridColumn,
@@ -35,6 +37,7 @@ export default function ComputeListingPage() {
     FEATURES.COMPUTE_SPECIAL_OFFER_BANNER,
   ]);
   const { trackClick } = useOvhTracking();
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -102,6 +105,7 @@ export default function ComputeListingPage() {
           <OdsButton
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
+            isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
             onClick={() => {
               trackClick(TRACKING.compute.addVirtualHost);
               navigate(subRoutes.order);

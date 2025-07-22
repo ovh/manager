@@ -29,6 +29,7 @@ describe('Datacentres Listing Page', () => {
     // when
     await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters`,
+      nbDatacentres: 1,
     });
 
     // then
