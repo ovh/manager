@@ -221,5 +221,6 @@
   "sidebar_skip_to_the_main_content": "Go to main content",
   "sidebar_public_networking": "Public network",
   "sidebar_private_networking": "Private network",
-  "sidebar_network_services": "Network services"
+  "sidebar_network_services": "Network services",
+  "sidebar_sap_features_hub": "SAP Features Hub"
 }
