@@ -38,17 +38,16 @@ export const EditDetailModal = ({
 }: EditModalProps) => {
   const { t } = useTranslation('dashboard');
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
-  const [isErrorVisible, setIsErrorVisible] = useState(false);
+  const [updateError, setUpdateError] = useState(error);
   const isValid = validateDetail(newDetail);
   const isButtonEnabled = isValid && newDetail !== detailValue && !isLoading;
 
   const handleSubmit = async () => {
     if (isValid) {
-      setIsErrorVisible(false);
       try {
         await onEdit(newDetail);
       } catch (err) {
-        setIsErrorVisible(true);
+        setUpdateError(err);
       }
     }
   };
@@ -57,14 +56,15 @@ export const EditDetailModal = ({
     <OdsModal onOdsClose={onCloseModal} isOpen isDismissible>
       <div className="flex flex-col">
         <OdsText preset="heading-3">{headline}</OdsText>
-        {!!error && isErrorVisible && (
+        {!!updateError && (
           <OdsMessage
             color="danger"
             isDismissible
-            onOdsRemove={() => setIsErrorVisible(false)}
+            onOdsRemove={() => setUpdateError(null)}
           >
             {t('managed_vcd_dashboard_edit_modal_error', {
-              error: error.response?.data?.message || error?.message,
+              error:
+                updateError.response?.data?.message || updateError?.message,
             })}
           </OdsMessage>
         )}

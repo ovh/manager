@@ -4,6 +4,7 @@ import {
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
+import { screen } from '@testing-library/dom';
 import { organizationList } from '@ovh-ux/manager-module-vcd-api';
 import { labels, renderTest } from '../../../test-utils';
 import TEST_IDS from '../../../utils/testIds.constants';
@@ -34,5 +35,22 @@ describe('Organizations Listing Page', () => {
       element: vcdNameLink,
       label: vcdDetails.fullName,
     });
+  });
+
+  it('should disable action menu and terminate button when service is suspended', async () => {
+    await renderTest();
+
+    const {
+      id,
+      currentState: { description },
+    } = organizationList[2];
+
+    await assertTextVisibility(description);
+
+    const terminateButton = screen.queryByTestId(`terminate-cta-${id}`);
+    const actionMenuButton = terminateButton?.closest('ods-button');
+
+    expect(terminateButton).toBeDisabled();
+    expect(actionMenuButton).toBeDisabled();
   });
 });
