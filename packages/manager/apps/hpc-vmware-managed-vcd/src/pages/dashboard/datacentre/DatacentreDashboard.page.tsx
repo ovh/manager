@@ -17,6 +17,7 @@ import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
+import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -24,6 +25,7 @@ function DatacentreDashboardPage() {
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const navigate = useNavigate();
+
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
     enabled: isUpdatingTargetSpec(vcdDatacentre?.data),
@@ -85,6 +87,9 @@ function DatacentreDashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
+      message={
+        <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
+      }
       backLinkLabel={t('managed_vcd_dashboard_back_link')}
       onClickReturn={() =>
         navigate(urls.datacentres.replace(subRoutes.dashboard, id))
