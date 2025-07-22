@@ -41,6 +41,13 @@ import { ReplicationRuleApplication } from './ReplicationRuleApplication.compone
 import { TContainer } from '../show/Show.page';
 import { TRegion } from '@/api/data/region';
 import { useSyncStorageClass } from '@/hooks/useSyncStorageClass';
+import { ReplicationRuleTag, TTagMap } from './ReplicationRuleTag.component';
+import {
+  emptyTag,
+  TTagValidationResult,
+  TValidationErrors,
+  validateAllTags,
+} from '../../../../../utils/useTagValidation';
 
 const validIdRegex = /^[\x20-\x7E]{3,255}$/;
 const validPrefixRegex = /^[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}](?:[\p{L}\p{N}\p{S}\p{P}\p{M}\p{Z}]{0,255})?$/u;
@@ -146,6 +153,27 @@ export function ManageReplicationForm({
     shouldEditRule ? existingRule.priority : 1,
   );
   const [priorityError, setPriorityError] = useState<boolean>(false);
+
+  const getInitialTags = useCallback((): TTagMap => {
+    if (!shouldEditRule || !existingRule?.filter?.tags) return {};
+
+    return Object.entries(existingRule.filter.tags).reduce<TTagMap>(
+      (acc, [key, value], index) => {
+        acc[index + 1] = { key, value };
+        return acc;
+      },
+      {},
+    );
+  }, [shouldEditRule, existingRule?.filter?.tags]);
+
+  const [tags, setTags] = useState<TTagMap>(getInitialTags);
+  const [newTag, setNewTag] = useState(emptyTag);
+  const [validationErrors, setValidationErrors] = useState<TValidationErrors>(
+    {},
+  );
+
+  const [newTagErrors, setNewTagErrors] = useState<TTagValidationResult>({});
+
   const {
     data: serverDestinationContainer,
     isLoading: isLoadingDestination,
@@ -229,7 +257,9 @@ export function ManageReplicationForm({
       !isReplicationApplicationLimited ||
       (isReplicationApplicationLimited &&
         ((isValidReplicationRulePrefix && replicationRulePrefix !== '') ||
-          Object.keys(existingRule?.filter?.tags || {}).length > 0));
+          Object.keys(tags).length > 0 ||
+          !!newTag.key ||
+          !!newTag.value));
 
     const objectLockError =
       serverDestinationContainer &&
@@ -257,6 +287,8 @@ export function ManageReplicationForm({
     priority,
     priorityError,
     isReplicationApplicationLimited,
+    tags,
+    newTag,
   ]);
 
   const { updateContainer, isPending } = useUpdateStorage({
@@ -302,8 +334,45 @@ export function ManageReplicationForm({
     },
   });
 
+  const getTagsErrors = useCallback(() => {
+    const {
+      validationErrors: errors,
+      newTagErrors: newErrors,
+    } = validateAllTags({ tags, newTag, t });
+
+    setValidationErrors(errors);
+    setNewTagErrors(newErrors);
+
+    const hasTagErrors = Object.values(errors).some(
+      (err) => err && Object.keys(err).length > 0,
+    );
+
+    const hasNewTagErrors = Object.keys(newErrors).length > 0;
+
+    return !hasTagErrors && !hasNewTagErrors;
+  }, [tags, newTag, t]);
+
   const onSubmitReplicationRule = () => {
     if (!isButtonActive) return;
+
+    const hasTagsErrors = !getTagsErrors();
+
+    let tagsToPass = {};
+    if (!hasTagsErrors) {
+      const transformedTags = Object.values(tags).reduce(
+        (acc, { key, value }) => {
+          if (key !== '') {
+            acc[key] = value;
+          }
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+      tagsToPass = {
+        ...transformedTags,
+        ...(newTag.key ? { [newTag.key]: newTag.value } : {}),
+      };
+    }
 
     const newReplicationRule = {
       id: replicationRuleId,
@@ -311,7 +380,7 @@ export function ManageReplicationForm({
       ...(isReplicationApplicationLimited && {
         filter: {
           ...(replicationRulePrefix && { prefix: replicationRulePrefix }),
-          ...(existingRule?.filter?.tags && { tags: existingRule.filter.tags }),
+          ...(Object.keys(tagsToPass).length > 0 && { tags: tagsToPass }),
         },
       }),
       destination: {
@@ -329,11 +398,13 @@ export function ManageReplicationForm({
         )
       : [...(container.replication?.rules || []), newReplicationRule];
 
-    updateContainer({
-      replication: {
-        rules: updatedRules,
-      },
-    });
+    if (!hasTagsErrors) {
+      updateContainer({
+        replication: {
+          rules: updatedRules,
+        },
+      });
+    }
   };
   useEffect(() => {
     clearNotifications();
@@ -378,6 +449,9 @@ export function ManageReplicationForm({
           setIsReplicationApplicationLimited={
             setIsReplicationApplicationLimited
           }
+          tags={tags}
+          newTag={newTag}
+          setDeleteMarkerReplication={setDeleteMarkerReplication}
         />
 
         {isReplicationApplicationLimited && (
@@ -396,6 +470,19 @@ export function ManageReplicationForm({
                   : undefined
               }
             />
+
+            <ReplicationRuleTag
+              tags={tags}
+              setTags={setTags}
+              validationErrors={validationErrors}
+              setValidationErrors={setValidationErrors}
+              newTagErrors={newTagErrors}
+              setNewTagErrors={setNewTagErrors}
+              newTag={newTag}
+              setNewTag={setNewTag}
+              isEditMode={isEditMode}
+              deleteMarkerReplication={deleteMarkerReplication}
+            />
           </>
         )}
 
@@ -403,6 +490,9 @@ export function ManageReplicationForm({
           deleteMarkerReplication={deleteMarkerReplication}
           setDeleteMarkerReplication={setDeleteMarkerReplication}
           asyncReplicationLink={asyncReplicationLink}
+          tags={tags}
+          newTag={newTag}
+          isReplicationApplicationLimited={isReplicationApplicationLimited}
         />
 
         <ReplicationRuleDestination

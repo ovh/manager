@@ -5,20 +5,43 @@ import {
   OdsText,
   OdsFormField,
 } from '@ovhcloud/ods-components/react';
+import { useCallback } from 'react';
+import { TTagMap } from './ReplicationRuleTag.component';
+import { TNewTag } from '../../../../../utils/useTagValidation';
+import { TReplicationStatus } from './ManageReplicationPage.form';
+import { STATUS_DISABLED } from '@/constants';
 
 export type TReplicationRuleApplication = {
   isReplicationApplicationLimited: boolean;
   setIsReplicationApplicationLimited: (value: boolean) => void;
+  tags: TTagMap;
+  newTag: TNewTag;
+  setDeleteMarkerReplication: (
+    deleteMarkerReplication: TReplicationStatus,
+  ) => void;
 };
 export function ReplicationRuleApplication({
   isReplicationApplicationLimited,
   setIsReplicationApplicationLimited,
+  tags,
+  newTag,
+  setDeleteMarkerReplication,
 }: TReplicationRuleApplication) {
   const { t } = useTranslation(['containers/replication/add']);
 
-  const handleReplicationApplication = () => {
+  const handleReplicationApplication = useCallback(() => {
     setIsReplicationApplicationLimited(true);
-  };
+
+    if (newTag.key || newTag.value || Object.keys(tags).length > 0) {
+      setDeleteMarkerReplication(STATUS_DISABLED);
+    }
+  }, [
+    newTag.key,
+    newTag.value,
+    tags,
+    setIsReplicationApplicationLimited,
+    setDeleteMarkerReplication,
+  ]);
 
   return (
     <OdsFormField className="mt-8 max-w-[800px] block">
