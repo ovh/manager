@@ -18,14 +18,14 @@ export const FormFieldSummary = ({
 
   return (
     <div
-      className="flex items-start justify-between gap-x-4 max-w-md"
+      className="flex items-start justify-between gap-x-4 max-w-lg"
       {...props}
     >
       <OdsText className="max-w-60">{field.label}</OdsText>
       {isLoading && <OdsSkeleton className="w-20" />}
       {!isLoading && (
         <OdsText
-          className="max-w-60 text-end break-words"
+          className="max-w-72 text-end break-words"
           data-testid={testIds.summaryFieldValue}
         >
           {field.value ? valueText : FORM_LABELS.unknownText}
