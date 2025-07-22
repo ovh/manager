@@ -34,7 +34,7 @@ export const updateVrackSegment = ({
   payload: VCDVrackSegmentSpec;
 }): Promise<ApiResponse<VCDVrackSegment>> =>
   apiClient.v2.put(getVdcVrackSegmentRoute({ id, vdcId, vrackSegmentId }), {
-    data: payload,
+    targetSpec: payload,
   });
 
 export const deleteVrackSegment = ({
