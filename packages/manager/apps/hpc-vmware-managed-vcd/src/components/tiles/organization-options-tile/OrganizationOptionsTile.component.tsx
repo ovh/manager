@@ -12,8 +12,10 @@ import TEST_IDS from '@/utils/testIds.constants';
 
 export default function OrganizationOptionsTile({
   isLicenseActive,
+  isDisabled,
 }: Readonly<{
   isLicenseActive: boolean;
+  isDisabled: boolean;
 }>) {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
@@ -43,6 +45,7 @@ export default function OrganizationOptionsTile({
                 <ActionMenu
                   id="license_menu"
                   isCompact
+                  isDisabled={isDisabled}
                   variant={ODS_BUTTON_VARIANT.ghost}
                   icon={ODS_ICON_NAME.ellipsisVertical}
                   items={[

@@ -6,10 +6,12 @@ import {
   Region,
 } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import {
+  isStatusTerminated,
+  VCDOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
@@ -29,6 +31,8 @@ export default function OrganizationGenerationInformationTile({
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
+  const isDisabled = isStatusTerminated(vcdOrganization.resourceStatus);
+
   return (
     <DashboardTile
       title={t('managed_vcd_dashboard_general_information')}
@@ -44,6 +48,7 @@ export default function OrganizationGenerationInformationTile({
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
               ]}
+              isDisabled={isDisabled}
               onClickEdit={() => navigate(subRoutes.editName)}
             />
           ),
@@ -59,6 +64,7 @@ export default function OrganizationGenerationInformationTile({
               iamActions={[
                 iamActions.vmwareCloudDirectorApiovhOrganizationEdit,
               ]}
+              isDisabled={isDisabled}
               onClickEdit={() => navigate(subRoutes.editDescription)}
             />
           ),

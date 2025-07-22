@@ -25,7 +25,11 @@ import OrganizationActions from './OrganizationActions.component';
 import { MessageList } from '@/components/message/MessageList.component';
 
 const organizationMapper = (vdcOrgs?: VCDOrganization[]) => {
-  return vdcOrgs?.map(({ id, currentState }) => ({ ...currentState, id }));
+  return vdcOrgs?.map(({ id, currentState, resourceStatus }) => ({
+    ...currentState,
+    id,
+    resourceStatus,
+  }));
 };
 
 /* ========= datagrid cells ========== */

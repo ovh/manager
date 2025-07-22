@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, expect, it, vi } from 'vitest';
 import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
@@ -137,5 +137,24 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
     expect(trackClickMock).toHaveBeenCalledWith(
       TRACKING.datacentreDashboard.goToVcdPortal,
     );
+  });
+
+  it('should not be able to update description when datacenter is suspended', async () => {
+    // when
+    render(
+      <QueryClientProvider client={queryClient}>
+        <DatacentreGeneralInformationTile
+          vcdOrganization={vcdOrg as VCDOrganization}
+          vcdDatacentre={
+            { ...datacentre, resourceStatus: 'SUSPENDED' } as VCDDatacentre
+          }
+        />
+      </QueryClientProvider>,
+    );
+
+    // then
+    expect(
+      screen.getByTestId(TEST_IDS.editButton).getAttribute('is-disabled'),
+    ).toBe('true');
   });
 });
