@@ -3,12 +3,10 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText, OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 type HelpIconWithTooltipProps = {
-  labelTooltip: string;
+  label: string;
 };
 
-export const HelpIconWithTooltip = ({
-  labelTooltip,
-}: HelpIconWithTooltipProps) => {
+export const HelpIconWithTooltip = ({ label }: HelpIconWithTooltipProps) => {
   const tooltipId = useId();
 
   return (
@@ -25,7 +23,7 @@ export const HelpIconWithTooltip = ({
         withArrow
       >
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="w-56">
-          <span>{labelTooltip}</span>
+          <span>{label}</span>
         </OdsText>
       </OdsTooltip>
     </>
