@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.0...@ovh-ux/manager-pci-savings-plan-app@1.19.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* **savings-plan:** issue on modal type from mrc ([88765d8](https://github.com/ovh/manager/commit/88765d821785d5e437c9655d0e44ff3adf20a919))
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.3...@ovh-ux/manager-pci-savings-plan-app@1.19.0) (2025-07-22)
 
 
