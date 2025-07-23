@@ -11,6 +11,10 @@ ods-text.font-bold::part(text) {
   font-weight: bold;
 }
 
+ods-text.text-critical::part(text) {
+  color: var(--ods-color-critical-500);
+}
+
 ods-text.disabled::part(text) {
   opacity: 0.6;
 }
