@@ -12,8 +12,9 @@ import {
 } from '@/data/api';
 import AddEditMailingList from './AddEdit.page';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { OdsHTMLElement } from '@/utils/test.utils';
 
-describe('mailing lists add and edit page', async () => {
+describe('mailing lists add and edit page', () => {
   it('should be in add mode', async () => {
     const { getByTestId, queryByTestId } = render(<AddEditMailingList />);
 
@@ -53,16 +54,16 @@ describe('mailing lists add and edit page', async () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const selectDomain = getByTestId('select-domain') as any;
-    const inputOwner = getByTestId('input-owner') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
+    const inputOwner = getByTestId('input-owner') as OdsHTMLElement;
     const replyToList = getByTestId(`radio-reply-to-${ReplyToChoices.LIST}`);
-    const selectLanguage = getByTestId('select-language') as any;
+    const selectLanguage = getByTestId('select-language') as OdsHTMLElement;
     const moderationOptionAll = getByTestId(
       `radio-moderation-option-${ModerationChoices.ALL}`,
     );
 
-    await act(() => {
+    act(() => {
       inputAccount.odsBlur.emit({});
       selectDomain.odsBlur.emit({});
       inputOwner.odsBlur.emit({});
@@ -76,7 +77,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputAccount, {
         target: { value: 'account' },
       });
@@ -85,7 +86,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(inputAccount).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectDomain, {
         target: { value: 'domain.fr' },
       });
@@ -94,7 +95,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(selectDomain).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputOwner, {
         target: { value: 'testowner' },
       });
@@ -106,7 +107,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(inputOwner).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectLanguage, {
         target: { value: 'FR' },
       });
@@ -115,14 +116,14 @@ describe('mailing lists add and edit page', async () => {
 
     expect(selectLanguage).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(replyToList);
       fireEvent.click(moderationOptionAll);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputOwner, {
         target: { value: 't' },
       });

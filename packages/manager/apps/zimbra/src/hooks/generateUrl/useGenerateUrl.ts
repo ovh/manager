@@ -23,8 +23,7 @@ export const useGenerateUrl = (
     searchParams: urlSearchParams,
   });
 
-  if (type === 'href') {
-    return useHref(fullURL, { relative: relativeType });
-  }
-  return fullURL;
+  const hrefUrl = useHref(fullURL, { relative: relativeType });
+
+  return type === 'href' ? hrefUrl : fullURL;
 };

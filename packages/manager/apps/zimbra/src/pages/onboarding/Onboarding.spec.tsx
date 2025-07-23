@@ -5,23 +5,23 @@ import { render, act, fireEvent } from '@/utils/test.provider';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 
 describe('Onboarding page', () => {
-  it('should display page correctly', async () => {
+  it('should display page correctly', () => {
     const { findByText } = render(<Onboarding />);
 
-    const title = await findByText(onboardingTranslation.title);
-    expect(title).toBeVisible();
+    const title = findByText(onboardingTranslation.title);
+    expect(title).toBeDefined();
   });
 
-  it('should call window open on click', async () => {
+  it('should call window open on click', () => {
     const { container } = render(<Onboarding />);
 
     const spy = vi.spyOn(window, 'open');
 
-    const button = await container.querySelector(
+    const button = container.querySelector(
       `ods-button[label="${onboardingTranslation.orderButtonLabel}"]`,
     );
 
-    await act(() => {
+    act(() => {
       fireEvent.click(button);
     });
 

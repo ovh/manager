@@ -47,6 +47,7 @@ import {
   postZimbraDomain,
   DomainType,
   ResourceStatus,
+  OrganizationType,
 } from '@/data/api';
 import queryClient from '@/queryClient';
 import { DNS_CONFIG_TYPE, DomainSchema, domainSchema } from '@/utils';
@@ -92,12 +93,12 @@ export const DomainForm = ({
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackOrgs, setHackOrgs] = useState([]);
+  const [hackOrgs, setHackOrgs] = useState<OrganizationType[]>([]);
   const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
 
   useEffect(() => {
     setHackOrgs(
-      (organizations || [])?.filter(
+      organizations?.filter(
         (org) => org.resourceStatus === ResourceStatus.READY,
       ),
     );
@@ -105,7 +106,9 @@ export const DomainForm = ({
   }, [organizations]);
   const backLinkUrl = useGenerateUrl(backUrl, 'href');
 
-  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery({
+  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery<
+    string[]
+  >({
     queryKey: getDomainsZoneListQueryKey,
     queryFn: () => getDomainsZoneList(),
   });
@@ -149,8 +152,8 @@ export const DomainForm = ({
     },
     onSuccess,
     onError,
-    onSettled: (domain: DomainType, error: ApiError) => {
-      queryClient.invalidateQueries({
+    onSettled: async (domain: DomainType, error: ApiError) => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 

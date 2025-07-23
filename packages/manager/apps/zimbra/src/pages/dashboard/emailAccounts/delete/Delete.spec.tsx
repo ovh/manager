@@ -26,13 +26,14 @@ describe('Domains delete modal', () => {
   it('check transition from step 1 to step 2 and delete', async () => {
     const { getByTestId } = render(<DeleteEmailAccountModal />);
     expect(getByTestId('text-step-1')).toBeVisible();
-    await act(() => {
+    act(() => {
       fireEvent.click(getByTestId('primary-btn'));
     });
 
     expect(getByTestId('text-step-2')).toBeVisible();
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(getByTestId('primary-btn'));
     });
 

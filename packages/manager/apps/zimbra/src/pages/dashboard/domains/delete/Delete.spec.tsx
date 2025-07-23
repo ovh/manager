@@ -58,8 +58,10 @@ describe('Domain delete modal', () => {
     expect(queryByTestId('banner-message')).toBeNull();
     expect(btn).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(btn);
+      await Promise.resolve();
     });
 
     expect(deleteZimbraPlatformDomain).toHaveBeenCalledOnce();

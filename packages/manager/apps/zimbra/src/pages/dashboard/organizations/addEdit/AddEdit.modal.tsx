@@ -106,8 +106,8 @@ export const AddEditOrganizationModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: organizationId
           ? getZimbraPlatformOrganizationDetailsQueryKey(
               platformId,

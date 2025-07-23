@@ -43,14 +43,14 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // off
       fireEvent.click(consent);
       // quantity 1
@@ -59,7 +59,7 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
       // quantity 0
@@ -68,14 +68,14 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // quantity 1
       fireEvent.click(quantityPlus);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(button);
     });
 

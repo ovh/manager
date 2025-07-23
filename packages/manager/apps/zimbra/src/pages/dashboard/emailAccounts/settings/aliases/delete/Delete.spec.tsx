@@ -32,7 +32,8 @@ describe('Alias delete modal', () => {
 
     expect(getByTestId('delete-btn')).not.toBeDisabled();
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(getByTestId('delete-btn'));
     });
 

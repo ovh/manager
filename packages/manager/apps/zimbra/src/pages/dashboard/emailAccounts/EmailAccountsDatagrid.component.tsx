@@ -22,64 +22,11 @@ import {
 import queryClient from '@/queryClient';
 import { EmailAccountItem } from './EmailAccounts.types';
 
-const columns: DatagridColumn<EmailAccountItem>[] = [
-  {
-    id: 'email_account',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
-    ),
-    label: 'common:email_account',
-    isSearchable: true,
-  },
-  {
-    id: 'organization',
-    cell: (item) => (
-      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-    ),
-    label: 'common:organization',
-  },
-  {
-    id: 'offer',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
-    ),
-    label: 'zimbra_account_datagrid_offer_label',
-  },
-  {
-    id: 'quota',
-    cell: (item) => {
-      const { formatBytes } = useBytes();
-
-      return (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {formatBytes(item.used, 2, 1024)} /{' '}
-          {formatBytes(item.available, 0, 1024)}
-        </OdsText>
-      );
-    },
-    label: 'zimbra_account_datagrid_quota',
-  },
-  {
-    id: 'status',
-    cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: `${NAMESPACES.STATUS}:status`,
-  },
-  {
-    id: 'renewal_type',
-    cell: (item) => <BillingStateBadge state={item.service?.state} />,
-    label: 'zimbra_account_datagrid_renewal_type',
-  },
-  {
-    id: 'tooltip',
-    cell: (item: EmailAccountItem) => <ActionButtonEmailAccount item={item} />,
-    label: '',
-  },
-];
-
 export const EmailAccountsDatagrid = () => {
   const { t } = useTranslation(['accounts', 'common', NAMESPACES.STATUS]);
   const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
   const isOverridedPage = useOverridePage();
+  const { formatBytes } = useBytes();
 
   const [
     searchInput,
@@ -144,6 +91,63 @@ export const EmailAccountsDatagrid = () => {
       })) ?? []
     );
   }, [accounts, services]);
+
+  const columns: DatagridColumn<EmailAccountItem>[] = useMemo(
+    () => [
+      {
+        id: 'email_account',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
+        ),
+        label: 'common:email_account',
+        isSearchable: true,
+      },
+      {
+        id: 'organization',
+        cell: (item) => (
+          <LabelChip id={item.organizationId}>
+            {item.organizationLabel}
+          </LabelChip>
+        ),
+        label: 'common:organization',
+      },
+      {
+        id: 'offer',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
+        ),
+        label: 'zimbra_account_datagrid_offer_label',
+      },
+      {
+        id: 'quota',
+        cell: (item) => (
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {formatBytes(item.used, 2, 1024)} /{' '}
+            {formatBytes(item.available, 0, 1024)}
+          </OdsText>
+        ),
+        label: 'zimbra_account_datagrid_quota',
+      },
+      {
+        id: 'status',
+        cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
+        label: `${NAMESPACES.STATUS}:status`,
+      },
+      {
+        id: 'renewal_type',
+        cell: (item) => <BillingStateBadge state={item.service?.state} />,
+        label: 'zimbra_account_datagrid_renewal_type',
+      },
+      {
+        id: 'tooltip',
+        cell: (item: EmailAccountItem) => (
+          <ActionButtonEmailAccount item={item} />
+        ),
+        label: '',
+      },
+    ],
+    [],
+  );
 
   return (
     <Datagrid

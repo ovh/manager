@@ -31,6 +31,7 @@ import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { Loading } from '@/components';
 import {
   AliasBodyParamsType,
+  DomainType,
   getZimbraPlatformAliasesQueryKey,
   postZimbraPlatformAlias,
   ResourceStatus,
@@ -65,7 +66,7 @@ export const AddAliasModal = () => {
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
@@ -107,8 +108,8 @@ export const AddAliasModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAliasesQueryKey(platformId),
       });
       onClose();

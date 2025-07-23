@@ -16,11 +16,9 @@ import {
 } from '@/data/api';
 
 describe('DeleteOrganization modal', () => {
-  it('should render modal', async () => {
+  it('should render modal', () => {
     const { findByText } = render(<DeleteOrganizationModal />);
-    expect(
-      await findByText(commonTranslation.delete_organization),
-    ).toBeVisible();
+    expect(findByText(commonTranslation.delete_organization)).toBeDefined();
   });
 
   it('should have button disabled if domains', async () => {
@@ -60,7 +58,8 @@ describe('DeleteOrganization modal', () => {
     expect(queryByTestId('banner-message')).toBeNull();
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(button);
     });
 

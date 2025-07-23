@@ -10,7 +10,7 @@ import {
 } from '@/utils';
 
 describe('GeneratePasswordButton component', () => {
-  it('should render and call onGenerate & onClick when clicked', async () => {
+  it('should render and call onGenerate & onClick when clicked', () => {
     const onGenerate = vi.fn();
     const onClick = vi.fn();
     const { getByTestId } = render(
@@ -29,7 +29,7 @@ describe('GeneratePasswordButton component', () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
-  it('should generate a password with all defaults', async () => {
+  it('should generate a password with all defaults', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -43,7 +43,7 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(password).toHaveLength(12);
     expect(containsLowercase(password)).toBe(true);
     expect(containsUppercase(password)).toBe(true);
@@ -51,7 +51,7 @@ describe('GeneratePasswordButton component', () => {
     expect(containsSpecial(password)).toBe(true);
   });
 
-  it('should generate a password with 20 characters', async () => {
+  it('should generate a password with 20 characters', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -66,11 +66,11 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(password).toHaveLength(20);
   });
 
-  it('should generate a password with only lowercased letters', async () => {
+  it('should generate a password with only lowercased letters', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -88,14 +88,14 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(containsLowercase(password)).toBe(true);
     expect(containsUppercase(password)).toBe(false);
     expect(containsDigit(password)).toBe(false);
     expect(containsSpecial(password)).toBe(false);
   });
 
-  it('should generate a password with only uppercased letters', async () => {
+  it('should generate a password with only uppercased letters', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -113,14 +113,14 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(containsUppercase(password)).toBe(true);
     expect(containsLowercase(password)).toBe(false);
     expect(containsDigit(password)).toBe(false);
     expect(containsSpecial(password)).toBe(false);
   });
 
-  it('should generate a password with only digits', async () => {
+  it('should generate a password with only digits', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -138,14 +138,14 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(containsDigit(password)).toBe(true);
     expect(containsLowercase(password)).toBe(false);
     expect(containsUppercase(password)).toBe(false);
     expect(containsSpecial(password)).toBe(false);
   });
 
-  it('should generate a password with only special characters', async () => {
+  it('should generate a password with only special characters', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
       <GeneratePasswordButton
@@ -163,7 +163,7 @@ describe('GeneratePasswordButton component', () => {
     fireEvent.click(cmp);
 
     expect(onGenerate).toHaveBeenCalledOnce();
-    const password = onGenerate.mock.lastCall[0];
+    const password = onGenerate.mock.lastCall?.[0];
     expect(containsSpecial(password)).toBe(true);
     expect(containsDigit(password)).toBe(false);
     expect(containsLowercase(password)).toBe(false);

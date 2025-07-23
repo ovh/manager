@@ -33,6 +33,7 @@ import {
 import {
   getZimbraPlatformOrganizationQueryKey,
   OrganizationBodyParamsType,
+  OrganizationType,
   postZimbraPlatformOrganization,
 } from '@/data/api';
 import queryClient from '@/queryClient';
@@ -90,8 +91,8 @@ export const ConfigureOrganization: React.FC = () => {
         true,
       );
     },
-    onSuccess: (org) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (org: OrganizationType) => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
       });
       next(org?.id);

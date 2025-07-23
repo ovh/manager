@@ -10,19 +10,19 @@ const loadingTestId = 'billing-state-loading';
 const defaultTestId = 'billing-state';
 
 describe('BillingStateBadge component', () => {
-  it('should be in loading state if isLoading is true', async () => {
+  it('should be in loading state if isLoading is true', () => {
     const { getByTestId } = render(<BillingStateBadge isLoading />);
     const cmp = getByTestId(loadingTestId);
     expect(cmp).toBeInTheDocument();
   });
 
-  it('should be in loading state if state is not defined', async () => {
+  it('should be in loading state if state is not defined', () => {
     const { getByTestId } = render(<BillingStateBadge />);
     const cmp = getByTestId(loadingTestId);
     expect(cmp).toBeInTheDocument();
   });
 
-  it('should correctly display "AUTOMATIC_RENEWAL" state', async () => {
+  it('should correctly display "AUTOMATIC_RENEWAL" state', () => {
     const { getByTestId } = render(
       <BillingStateBadge
         data-testid={defaultTestId}
@@ -38,7 +38,7 @@ describe('BillingStateBadge component', () => {
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.success);
   });
 
-  it('should correctly display "MANUAL_RENEWAL" state', async () => {
+  it('should correctly display "MANUAL_RENEWAL" state', () => {
     const { getByTestId } = render(
       <BillingStateBadge
         data-testid={defaultTestId}
@@ -54,7 +54,7 @@ describe('BillingStateBadge component', () => {
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.warning);
   });
 
-  it('should correctly display "CANCELED" state', async () => {
+  it('should correctly display "CANCELED" state', () => {
     const { getByTestId } = render(
       <BillingStateBadge
         data-testid={defaultTestId}
@@ -70,7 +70,7 @@ describe('BillingStateBadge component', () => {
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
 
-  it('should correctly display "CANCELATION_PLANNED" state', async () => {
+  it('should correctly display "CANCELATION_PLANNED" state', () => {
     const { getByTestId } = render(
       <BillingStateBadge
         data-testid={defaultTestId}

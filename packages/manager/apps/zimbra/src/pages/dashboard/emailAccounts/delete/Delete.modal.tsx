@@ -69,8 +69,8 @@ export const DeleteEmailAccountModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
 

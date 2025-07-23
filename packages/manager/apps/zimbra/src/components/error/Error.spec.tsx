@@ -20,7 +20,7 @@ vi.mock('@ovh-ux/manager-react-core-application', async (importActual) => {
 });
 
 describe('Error component', () => {
-  it('should render', async () => {
+  it('should render', () => {
     const { getByText } = render(
       <ErrorBanner error={{ data: { message: 'test' } }} />,
     );

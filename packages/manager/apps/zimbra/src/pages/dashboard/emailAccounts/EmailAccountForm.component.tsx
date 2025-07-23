@@ -52,6 +52,7 @@ import {
   getZimbraPlatformListQueryKey,
   ResourceStatus,
   ZimbraOffer,
+  DomainType,
 } from '@/data/api';
 import {
   AddEmailAccountSchema,
@@ -139,7 +140,7 @@ export const EmailAccountForm = () => {
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
@@ -192,8 +193,8 @@ export const EmailAccountForm = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
       onClose();
@@ -261,7 +262,6 @@ export const EmailAccountForm = () => {
   const slotId = watch('slotId');
   useEffect(() => {
     const selectedSlot = slots?.find((slot) => slot.id === slotId);
-
     if (selectedSlot) {
       setValue('offer', selectedSlot.offer);
       trigger('offer');

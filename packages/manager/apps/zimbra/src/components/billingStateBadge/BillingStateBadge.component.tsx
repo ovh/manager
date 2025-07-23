@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
   const { t } = useTranslation('common');
   const { state, isLoading } = props;
 
-  const { color, label } = useMemo(() => {
+  const { color, label } = React.useMemo(() => {
     return {
       color: getColor(state),
       label: t(getKey(state)),

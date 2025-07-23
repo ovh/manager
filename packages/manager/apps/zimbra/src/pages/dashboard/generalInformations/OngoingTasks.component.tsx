@@ -18,7 +18,7 @@ const isOngoing = (task: TaskType) =>
 export const OngoingTasks: React.FC = () => {
   const { t } = useTranslation('dashboard');
   const [loadMore, setLoadMore] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const { data, isError, isPending } = useTasks();
 
   const ongoingTasks = useMemo(() => {
