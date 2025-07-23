@@ -1,5 +1,5 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor, act } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
@@ -7,6 +7,7 @@ import {
   assignCart,
   attachConfigurationToCartItem,
   createCart,
+  deleteConfigurationItemFromCart,
   getCartSummary,
   getPublicCloudOptions,
   orderCloudProject,
@@ -30,6 +31,7 @@ import {
   useContractAgreements,
   useCreateAndAssignCart,
   useCreateCart,
+  useDeleteConfigurationItemFromCart,
   useGetCartSummary,
   useGetHdsAddonOption,
   useOrderProjectItem,
@@ -43,6 +45,7 @@ vi.mock('@/data/api/cart', () => ({
   getPublicCloudOptions: vi.fn(),
   orderCloudProject: vi.fn(),
   attachConfigurationToCartItem: vi.fn(),
+  deleteConfigurationItemFromCart: vi.fn(),
   addItemToCart: vi.fn(),
   removeItemFromCart: vi.fn(),
 }));
@@ -178,7 +181,11 @@ describe('useCart hooks', () => {
         mockCartProductOptions,
       );
       vi.mocked(orderCloudProject).mockResolvedValueOnce(mockOrderedProduct);
-      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce(undefined);
+      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce({
+        id: 1,
+        label: 'description',
+        value: 'Test project',
+      });
 
       const { result } = renderHook(
         () =>
@@ -345,7 +352,11 @@ describe('useCart hooks', () => {
 
   describe('useAttachConfigurationToCartItem', () => {
     it('should attach configuration to cart item successfully', async () => {
-      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce(undefined);
+      vi.mocked(attachConfigurationToCartItem).mockResolvedValueOnce({
+        id: 1,
+        label: 'description',
+        value: 'Test project',
+      });
       const onSuccess = vi.fn();
 
       const { result } = renderHook(
@@ -432,6 +443,111 @@ describe('useCart hooks', () => {
       });
 
       expect(result.current.data).toBeUndefined();
+    });
+  });
+
+  describe('useDeleteConfigurationItemFromCart', () => {
+    it('should delete configuration from cart item successfully', async () => {
+      vi.mocked(deleteConfigurationItemFromCart).mockResolvedValueOnce(
+        undefined,
+      );
+      const onSuccess = vi.fn();
+
+      const { result } = renderHook(
+        () => useDeleteConfigurationItemFromCart({ onSuccess }),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      expect(result.current.isPending).toBe(false);
+
+      act(() => {
+        result.current.mutate({
+          cartId: 'cart-1',
+          itemId: 123,
+          configurationId: 456,
+        });
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(deleteConfigurationItemFromCart).toHaveBeenCalledWith(
+        'cart-1',
+        123,
+        456,
+      );
+      expect(onSuccess).toHaveBeenCalled();
+    });
+
+    it('should handle delete configuration errors', async () => {
+      const mockError = new Error('API Error');
+      vi.mocked(deleteConfigurationItemFromCart).mockRejectedValueOnce(
+        mockError,
+      );
+      const onError = vi.fn();
+
+      const { result } = renderHook(
+        () => useDeleteConfigurationItemFromCart({ onError }),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      act(() => {
+        result.current.mutate({
+          cartId: 'cart-1',
+          itemId: 123,
+          configurationId: 456,
+        });
+      });
+
+      await waitFor(() => {
+        expect(result.current.isError).toBe(true);
+      });
+
+      expect(onError).toHaveBeenCalledWith(
+        mockError,
+        {
+          cartId: 'cart-1',
+          itemId: 123,
+          configurationId: 456,
+        },
+        undefined,
+      );
+    });
+
+    it('should work without onSuccess and onError callbacks', async () => {
+      vi.mocked(deleteConfigurationItemFromCart).mockResolvedValueOnce(
+        undefined,
+      );
+
+      const { result } = renderHook(
+        () => useDeleteConfigurationItemFromCart(),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      act(() => {
+        result.current.mutate({
+          cartId: 'cart-1',
+          itemId: 123,
+          configurationId: 456,
+        });
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(deleteConfigurationItemFromCart).toHaveBeenCalledWith(
+        'cart-1',
+        123,
+        456,
+      );
     });
   });
 });
