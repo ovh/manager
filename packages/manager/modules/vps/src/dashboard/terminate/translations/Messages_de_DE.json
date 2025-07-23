@@ -13,5 +13,8 @@
   "vps_terminate_activate_delete_at_expiration_success": "Die Anfrage zum Kündigen dieses Dienstes am Ablaufdatum wurde registriert.",
   "vps_terminate_activate_delete_at_expiration_error": "Bei der Anfrage zum Kündigen dieses Dienstes am Ablaufdatum ist ein Fehler aufgetreten:",
   "vps_terminate_deactivate_delete_at_expiration_success": "Die Anfrage zum Kündigen dieses Dienstes am Ablaufdatum wurde ausgesetzt.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Bei der Aussetzung der Anfrage zur Kündigung am Ablaufdatum dieses Dienstes ist ein Fehler aufgetreten:"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Bei der Aussetzung der Anfrage zur Kündigung am Ablaufdatum dieses Dienstes ist ein Fehler aufgetreten:",
+  "vps_terminate_outperform_availability_banner_title": "Wussten Sie es?",
+  "vps_terminate_outperform_availability_banner_info": "Sie haben Anspruch auf mehr Ressourcen zum gleichen Preis. Sie verfügen über eine bessere Leistung und müssen Ihre Installation nicht ändern.",
+  "vps_terminate_outperform_availability_banner_button": "Meine Dienstleistung behalten und kostenlos upgraden"
 }
