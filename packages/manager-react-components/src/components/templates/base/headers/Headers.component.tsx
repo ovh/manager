@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '../../../typography';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { HeadersProps } from './Headers.props';
 
 export const Headers: React.FC<HeadersProps> = ({
@@ -9,7 +9,11 @@ export const Headers: React.FC<HeadersProps> = ({
 }) => {
   return (
     <header className="flex items-start justify-between">
-      {title && <Title data-testid="title">{title}</Title>}
+      {title && (
+        <Text preset={TEXT_PRESET.heading1} data-testid="title">
+          {title}
+        </Text>
+      )}
       {(guideButton || changelogButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
