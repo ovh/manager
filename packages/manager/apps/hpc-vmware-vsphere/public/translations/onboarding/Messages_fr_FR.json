@@ -20,5 +20,10 @@
   "logs_onboarding_primary_cta_activate": "Activer le transfert de logs",
   "logs_onboarding_primary_cta_activate_snc": "Activer le transfert de logs via le système Syslog",
   "logs_onboarding_migration_banner_title": "Activation indisponible – Migration en cours",
-  "logs_onboarding_migration_banner_description": "Votre service est actuellement en cours de migration vers VMware Cloud Director (VCD). Par conséquent, l'activation du transfert des logs est indisponible."
+  "logs_onboarding_migration_banner_description": "Votre service est actuellement en cours de migration vers VMware Cloud Director (VCD). Par conséquent, l'activation du transfert des logs est indisponible.",
+  "logs_introduction_title": "Vous pouvez collecter vos logs en optant pour l'une des deux options suivantes : souscrire un flux Logs Data Platform (LDP) ou configurer votre propre collecteur Syslog.",
+  "logs_introduction_description_ldp": "Le flux LDP permet d’ingérer les logs générés par votre infrastructure et vos applications, de les stocker, puis de les visualiser via des tableaux de bord en temps réel.",
+  "logs_introduction_description_syslog": "La collecte via Syslog permet de transférer les logs d’audit de votre cluster. Cette méthode nécessite une configuration manuelle des API afin d’activer le transfert.",
+  "logs_introduction_description_link": "Guide de Syslog",
+  "logs_introduction_title_syslog": "Vous pouvez mettre en place la collecte de vos logs en configurant votre propre collecteur Syslog."
 }

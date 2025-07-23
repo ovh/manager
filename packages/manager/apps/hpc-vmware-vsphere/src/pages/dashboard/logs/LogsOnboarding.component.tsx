@@ -1,11 +1,13 @@
-import { useMemo } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import { useVmwareVsphereCompatibilityMatrix } from '@/data/hooks/useVmwareVsphereCompatibilityMatrix';
 import { useVmwareVsphereDatacenter } from '@/data/hooks/useVmwareVsphereDatacenter';
 import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
+
 import LogsActivation from './LogsActivation.component';
 import LogsUpgrade from './LogsUpgrade.component';
 import LogsActivationInProgress from './LogsActivationInProgress.component';
@@ -13,6 +15,8 @@ import { getVmwareStatus } from '@/utils/getVmwareStatus';
 import { VMWareStatus } from '@/types/vsphere';
 import { urls } from '@/routes/routes.constant';
 import { getDedicatedCloudDatacenterListQueryKey } from '@/data/api/hpc-vmware-vsphere-datacenter';
+import LogsOnboardingForTrustedUser from './LogsOnboardingForTrustedUser.component';
+import LogsOnboardingForCommonUser from './LogsOnboardingForCommonUser.component';
 
 type LogsOnboardingProps = {
   children: React.ReactNode;
@@ -21,12 +25,15 @@ type LogsOnboardingProps = {
 const FORWARDER_VALID_STATE = ['creating', 'pending', 'toCreate', 'updating'];
 
 const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
+  const { shell } = useContext(ShellContext);
+  const { environment } = shell;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { serviceName } = useParams();
   const { data: vmwareVsphere, isLoading: isLoadingVsphere } = useVmwareVsphere(
     serviceName,
   );
+  const [isUserTrusted, setIsUserTrusted] = useState(false);
   const {
     data: datacenter,
     isLoading: isLoadingVsphereDatacenter,
@@ -51,6 +58,11 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }, [compatibilityMatrix]);
 
+  const updateUserSNC = async () => {
+    const env = await environment.getEnvironment();
+    const { isTrusted } = env.getUser();
+    setIsUserTrusted(isTrusted);
+  };
   const islogForwarderIsCreating = useMemo(() => {
     return (compatibilityMatrix?.data ?? []).some(
       (option) =>
@@ -59,6 +71,9 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }, [compatibilityMatrix]);
 
+  useEffect(() => {
+    updateUserSNC();
+  }, [environment]);
   if (isDatacenterError) {
     return (
       <ErrorBanner
@@ -86,7 +101,15 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
   }
 
   if (isLogForwarderDelivered) {
-    return children;
+    return (
+      <>
+        {isUserTrusted ? (
+          <LogsOnboardingForTrustedUser />
+        ) : (
+          <LogsOnboardingForCommonUser>{children}</LogsOnboardingForCommonUser>
+        )}
+      </>
+    );
   }
 
   if (islogForwarderIsCreating) {
@@ -102,6 +125,7 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
         currentStatus={currentStatus}
         serviceName={serviceName}
         datacenterId={datacenter?.datacenterId}
+        isUserTrusted={isUserTrusted}
       />
     );
   }
