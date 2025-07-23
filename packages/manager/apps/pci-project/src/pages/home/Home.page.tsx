@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 
-import {
-  QuickAccess,
-  QuickAccessItem,
-} from './components/QuickAccess.component';
+import { QuickAccess } from './components/QuickAccess.component';
+import { QuickAccessItem } from './components/QuickAccessCard.component';
 import { Others, OtherActionItem } from './components/Others.component';
 import { DiscoveryBanner } from './components/DiscoveryBanner.component';
 import DashboardTiles from './components/DashboardTiles.component';
