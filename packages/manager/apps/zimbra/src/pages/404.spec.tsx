@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import NotFoundPage from './404';
+
 import { render } from '@/utils/test.provider';
+
+import NotFoundPage from './404';
 
 describe('404 page', () => {
   it('should display page correctly', async () => {

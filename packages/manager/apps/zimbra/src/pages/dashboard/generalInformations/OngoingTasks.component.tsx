@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_ICON_NAME,
   ODS_LINK_COLOR,
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useTasks } from '@/data/hooks';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import { Loading } from '@/components';
-import { TaskType, TaskStatus } from '@/data/api';
+import { TaskStatus, TaskType } from '@/data/api';
+import { useTasks } from '@/data/hooks';
 
 const defaultNumberToShow = 5;
 const isOngoing = (task: TaskType) =>
@@ -18,7 +21,7 @@ const isOngoing = (task: TaskType) =>
 export const OngoingTasks: React.FC = () => {
   const { t } = useTranslation('dashboard');
   const [loadMore, setLoadMore] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const { data, isError, isPending } = useTasks();
 
   const ongoingTasks = useMemo(() => {
@@ -26,9 +29,7 @@ export const OngoingTasks: React.FC = () => {
   }, [data]);
 
   useEffect(() => {
-    setTasks(
-      loadMore ? ongoingTasks : ongoingTasks?.slice(0, defaultNumberToShow),
-    );
+    setTasks(loadMore ? ongoingTasks : ongoingTasks?.slice(0, defaultNumberToShow));
   }, [loadMore, data]);
 
   return (

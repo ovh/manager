@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
-import { describe, expect, vi } from 'vitest';
+
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, vi } from 'vitest';
+
+import { platformMock, slotMock } from '@/data/api';
 import { useSlot } from '@/data/hooks';
 import { wrapper } from '@/utils/test.provider';
-import { platformMock, slotMock } from '@/data/api';
 
 describe('useSlot', () => {
   it('should return the details of a slot', async () => {
