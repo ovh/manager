@@ -2,6 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
+import actionsMenu from './templates/actionsMenu.html';
 import localizationTemplate from './templates/localization.html';
 import { getNutanixOrderUrl } from './constants';
 
@@ -24,19 +25,38 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       staticResources: () => true,
-      resources: /* @ngInject */ (clusters, NutanixService) => {
-        return clusters.map((cluster) => {
+      resources: /* @ngInject */ (clusters, NutanixService, $q) => {
+        const enrichedClustersPromises = clusters.map((cluster) => {
           cluster.setLoadingDatacenter(true);
-          NutanixService.getServer(cluster.getFirstNode())
-            .then((data) => {
-              cluster.setDatacenter(data.datacenter);
-              cluster.setNodeDetails(data);
+
+          const serverPromise = NutanixService.getServer(
+            cluster.getFirstNode(),
+          ).then((data) => {
+            cluster.setDatacenter(data.datacenter);
+            cluster.setNodeDetails(data);
+          });
+
+          const billingPromise = NutanixService.getServiceInfo(
+            cluster.serviceName,
+          )
+            .then((billingService) => {
+              return NutanixService.getServicesDetails(billingService.id);
+            })
+            .then((servicesDetails) => {
+              cluster.setStateBilling(servicesDetails?.resource?.state);
+            });
+
+          return $q
+            .all([serverPromise, billingPromise])
+            .then(() => {
+              return cluster;
             })
             .finally(() => {
               cluster.setLoadingDatacenter(false);
             });
-          return cluster;
         });
+
+        return $q.all(enrichedClustersPromises);
       },
       apiPath: () => '/nutanix',
       schema: /* @ngInject */ ($http) =>
@@ -76,6 +96,10 @@ export default /* @ngInject */ ($stateProvider) => {
             title: $translate.instant('nutanix_cluster_admin_interface'),
             property: 'targetSpec.controlPanelURL',
           },
+          {
+            property: 'stateBilling',
+            template: actionsMenu,
+          },
         ].filter((column) => !!column);
       },
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
@@ -110,6 +134,42 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: 'hpc::nutanix::clusters',
+    },
+  });
+
+  $stateProvider.state('nutanix.index.resiliate', {
+    url: '/resiliate/:productId',
+
+    layout: 'modal',
+    views: {
+      modal: {
+        component: 'billingAutorenewTerminateAgoraService',
+      },
+    },
+
+    resolve: {
+      serviceType: () => 'NUTANIX',
+      goBack: /* @ngInject */ ($state, Alerter, serviceName) => (
+        message,
+        type,
+      ) => {
+        const promise = $state.go('nutanix.index', {
+          serviceName,
+        });
+
+        if (message) {
+          promise.then(() =>
+            Alerter.set(`alert-${type}`, message, null, 'manager-list-alert'),
+          );
+        }
+
+        return promise;
+      },
+      serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
+        NutanixService.getServiceInfo(serviceName),
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      id: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
     },
   });
 };
