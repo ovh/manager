@@ -1,22 +1,27 @@
 import React, { useContext, useMemo } from 'react';
-import {
-  IconLinkAlignmentType,
-  Links,
-  LinkType,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+
+import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import { generateOrderURL, ZimbraPlanCodes } from '@/data/api';
+
+import { ZimbraPlanCodes, generateOrderURL } from '@/data/api';
 import { ORDER_ZIMBRA_PRO_BETA_EMAIL_ACCOUNT } from '@/tracking.constants';
 
 export const ProBetaBanner = () => {
@@ -25,8 +30,7 @@ export const ProBetaBanner = () => {
   const { trackClick } = useOvhTracking();
 
   const context = useContext(ShellContext);
-  const ovhSubsidiary = context.environment.getUser()
-    .ovhSubsidiary as OvhSubsidiary;
+  const ovhSubsidiary = context.environment.getUser().ovhSubsidiary as OvhSubsidiary;
   const region = context.environment.getRegion();
 
   const expressOrderURL = useMemo(() => {
@@ -40,7 +44,7 @@ export const ProBetaBanner = () => {
         },
       ],
     });
-  }, [region, ovhSubsidiary]);
+  }, [platformId, region, ovhSubsidiary]);
 
   const onLinkClick = () => {
     trackClick({
@@ -54,12 +58,8 @@ export const ProBetaBanner = () => {
   return (
     <OdsMessage className="w-full" isDismissible={false}>
       <div className="flex flex-col gap-4 mt-1">
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>
-          {t('zimbra_pro_beta_title')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_pro_beta_description')}
-        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.heading6}>{t('zimbra_pro_beta_title')}</OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('zimbra_pro_beta_description')}</OdsText>
         <Links
           onClickReturn={onLinkClick}
           iconAlignment={IconLinkAlignmentType.right}

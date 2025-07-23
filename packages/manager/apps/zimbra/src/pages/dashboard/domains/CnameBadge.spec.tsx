@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
+
 import { ResourceStatus } from '@/data/api';
-import CnameBadge from './CnameBadge.component';
 import { render } from '@/utils/test.provider';
 
+import CnameBadge from './CnameBadge.component';
+
 describe('CnameBadge Component', () => {
-  it('should render correctly', async () => {
+  it('should render correctly', () => {
     const { container } = render(
       <CnameBadge
         item={{

@@ -14,7 +14,11 @@ export const getZimbraPlatformAliasesQueryKey = (
   ].filter(Boolean);
 };
 
-export const getZimbraPlatformAliasQueryKey = (
-  platformId: string,
-  aliasId?: string,
-) => ['get', 'zimbra', 'platform', platformId, 'alias', aliasId];
+export const getZimbraPlatformAliasQueryKey = (platformId: string, aliasId?: string) => [
+  'get',
+  'zimbra',
+  'platform',
+  platformId,
+  'alias',
+  aliasId,
+];

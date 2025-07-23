@@ -1,19 +1,13 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import { usePlatform } from '@/data/hooks';
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import {
   DomainDiagnosisResponse,
   getZimbraPlatformDomainsDiagnosticQueryKey,
   postZimbraPlatformDomainsDiagnostic,
 } from '@/data/api';
+import { usePlatform } from '@/data/hooks';
 
-type UseDomainDiagnosticParams = Omit<
-  UseQueryOptions,
-  'queryKey' | 'queryFn' | 'select'
-> & {
+type UseDomainDiagnosticParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn' | 'select'> & {
   domainId: string;
 };
 
@@ -22,9 +16,7 @@ export const useDomainDiagnostic = (params: UseDomainDiagnosticParams) => {
   const { platformId } = usePlatform();
 
   return useQuery({
-    queryKey: getZimbraPlatformDomainsDiagnosticQueryKey(platformId, [
-      domainId,
-    ]),
+    queryKey: getZimbraPlatformDomainsDiagnosticQueryKey(platformId, [domainId]),
     queryFn: () => postZimbraPlatformDomainsDiagnostic(platformId, [domainId]),
     enabled: (query) =>
       (typeof options.enabled === 'function'

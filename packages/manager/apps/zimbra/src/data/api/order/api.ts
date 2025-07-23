@@ -1,10 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import {
-  order,
-  UpgradeServiceOrderParamsType,
-  UpgradeServiceOrderResponse,
-} from './type';
+
+import { UpgradeServiceOrderParamsType, UpgradeServiceOrderResponse, order } from './type';
 
 // GET
 

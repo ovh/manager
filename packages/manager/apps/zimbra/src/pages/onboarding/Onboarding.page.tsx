@@ -1,27 +1,32 @@
 import React, { useContext, useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
-  useOvhTracking,
   ShellContext,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { getOrderURL } from '@ovh-ux/manager-module-order';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ONBOARDING_ORDER_CTA,
-  GO_TO,
-  GUIDE_HOW_TO_CONFIGURE,
-  GUIDE_ADMINISTRATOR,
-  GUIDE_WEBMAIL,
-} from '@/tracking.constants';
-import onboardingImgSrc from './onboarding-img.png';
+
 import {
   ZIMBRA_ADMINISTRATOR_GUIDE,
   ZIMBRA_HOW_TO_CONFIGURE_GUIDE,
   ZIMBRA_WEBMAIL_GUIDE,
 } from '@/guides.constants';
+import {
+  GO_TO,
+  GUIDE_ADMINISTRATOR,
+  GUIDE_HOW_TO_CONFIGURE,
+  GUIDE_WEBMAIL,
+  ONBOARDING_ORDER_CTA,
+} from '@/tracking.constants';
+
+import onboardingImgSrc from './onboarding-img.png';
 import { ORDER_LINK, WEBSITE_LINK } from './onboarding.constants';
 
 export const Onboarding = () => {
@@ -48,30 +53,24 @@ export const Onboarding = () => {
     {
       key: 1,
       href: useMemo(() => {
-        return (
-          ZIMBRA_ADMINISTRATOR_GUIDE[ovhSubsidiary] ||
-          ZIMBRA_ADMINISTRATOR_GUIDE.DEFAULT
-        );
-      }, [ZIMBRA_ADMINISTRATOR_GUIDE, ovhSubsidiary]),
+        return ZIMBRA_ADMINISTRATOR_GUIDE[ovhSubsidiary] || ZIMBRA_ADMINISTRATOR_GUIDE.DEFAULT;
+      }, [ovhSubsidiary]),
       tracking: GUIDE_ADMINISTRATOR,
     },
     {
       key: 2,
       href: useMemo(() => {
         return (
-          ZIMBRA_HOW_TO_CONFIGURE_GUIDE[ovhSubsidiary] ||
-          ZIMBRA_HOW_TO_CONFIGURE_GUIDE.DEFAULT
+          ZIMBRA_HOW_TO_CONFIGURE_GUIDE[ovhSubsidiary] || ZIMBRA_HOW_TO_CONFIGURE_GUIDE.DEFAULT
         );
-      }, [ZIMBRA_HOW_TO_CONFIGURE_GUIDE, ovhSubsidiary]),
+      }, [ovhSubsidiary]),
       tracking: GUIDE_HOW_TO_CONFIGURE,
     },
     {
       key: 3,
       href: useMemo(() => {
-        return (
-          ZIMBRA_WEBMAIL_GUIDE[ovhSubsidiary] || ZIMBRA_WEBMAIL_GUIDE.DEFAULT
-        );
-      }, [ZIMBRA_WEBMAIL_GUIDE, ovhSubsidiary]),
+        return ZIMBRA_WEBMAIL_GUIDE[ovhSubsidiary] || ZIMBRA_WEBMAIL_GUIDE.DEFAULT;
+      }, [ovhSubsidiary]),
       tracking: GUIDE_WEBMAIL,
     },
   ];
@@ -80,9 +79,7 @@ export const Onboarding = () => {
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc }}
-      description={
-        <OdsText className="text-center">{t('description')}</OdsText>
-      }
+      description={<OdsText className="text-center">{t('description')}</OdsText>}
       orderButtonLabel={t('orderButtonLabel')}
       onOrderButtonClick={onOrderButtonClick}
       moreInfoButtonLabel={t('moreInfoButtonLabel')}

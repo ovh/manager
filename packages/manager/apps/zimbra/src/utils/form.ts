@@ -1,6 +1,8 @@
-import { z } from 'zod';
 import i18n from 'i18next';
+import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ZimbraOffer, ZimbraPlanCodes } from '@/data/api/type';
 
 const customErrorMap: z.ZodErrorMap = (error, ctx) => {
@@ -43,7 +45,8 @@ const customErrorMap: z.ZodErrorMap = (error, ctx) => {
 
 z.setErrorMap(customErrorMap);
 
-export const ACCOUNT_REGEX = /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/;
+export const ACCOUNT_REGEX =
+  /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:[.|+])(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/;
 
 export const OWNER_REGEX = /^[A-Za-z0-9]+$/;
 
@@ -91,24 +94,15 @@ export const withOptionalPassword = z.object({
   password: password.or(z.literal('')),
 });
 
-export const account = z
-  .string()
-  .regex(ACCOUNT_REGEX, i18n?.t('common:form_valid_account'));
+export const account = z.string().regex(ACCOUNT_REGEX, i18n?.t('common:form_valid_account'));
 
-export const domain = z
-  .string()
-  .regex(DOMAIN_REGEX, i18n?.t('common:form_valid_domain'));
+export const domain = z.string().regex(DOMAIN_REGEX, i18n?.t('common:form_valid_domain'));
 
-export const email = z
-  .string()
-  .toLowerCase()
-  .email(i18n?.t('common:form_valid_email'));
+export const email = z.string().toLowerCase().email(i18n?.t('common:form_valid_email'));
 
 export const date = z.date({ message: i18n?.t('common:form_valid_date') });
 
-export const requiredString = z
-  .string()
-  .min(1, i18n?.t(`${NAMESPACES.FORM}:required_field`));
+export const requiredString = z.string().min(1, i18n?.t(`${NAMESPACES.FORM}:required_field`));
 
 export const withSlotId = z.object({
   slotId: z.string(),
@@ -154,9 +148,7 @@ export const addEmailAccountsSchema = z
       .min(1),
   })
   .superRefine((data, ctx) => {
-    const emails = data.accounts.map(
-      (item) => `${item.account}@${item.domain}`,
-    );
+    const emails = data.accounts.map((item) => `${item.account}@${item.domain}`);
     const uniqueEmails = new Set(emails);
 
     if (emails.length !== uniqueEmails.size) {
@@ -166,9 +158,7 @@ export const addEmailAccountsSchema = z
     }
   });
 
-export const editEmailAccountSchema = baseEmailAccountSchema.merge(
-  withOptionalPassword,
-);
+export const editEmailAccountSchema = baseEmailAccountSchema.merge(withOptionalPassword);
 
 export type AddEmailAccountSchema = z.infer<typeof addEmailAccountSchema>;
 export type AddEmailAccountsSchema = z.infer<typeof addEmailAccountsSchema>;
@@ -176,11 +166,7 @@ export type EditEmailAccountSchema = z.infer<typeof editEmailAccountSchema>;
 
 export const orderEmailAccountSchema = z.object({
   consent: z.literal<boolean>(true),
-  [ZimbraPlanCodes.ZIMBRA_STARTER]: z
-    .number()
-    .positive()
-    .min(1)
-    .max(1000),
+  [ZimbraPlanCodes.ZIMBRA_STARTER]: z.number().positive().min(1).max(1000),
   commitment: z.enum(['1', '12']),
 });
 
@@ -261,16 +247,8 @@ export const withoutCopyAutoReplySchema = z.object({
 });
 
 export const autoReplySchema = z
-  .discriminatedUnion('duration', [
-    temporaryAutoReplySchema,
-    permanentAutoReplySchema,
-  ])
-  .and(
-    z.discriminatedUnion('sendCopy', [
-      withCopyAutoReplySchema,
-      withoutCopyAutoReplySchema,
-    ]),
-  )
+  .discriminatedUnion('duration', [temporaryAutoReplySchema, permanentAutoReplySchema])
+  .and(z.discriminatedUnion('sendCopy', [withCopyAutoReplySchema, withoutCopyAutoReplySchema]))
   .and(baseAutoReplySchema);
 
 export type AutoReplySchema = z.infer<typeof autoReplySchema>;
@@ -279,11 +257,7 @@ export const mailingListSchema = z.object({
   account,
   domain,
   defaultReplyTo: requiredString,
-  owner: z
-    .string()
-    .regex(OWNER_REGEX)
-    .min(2)
-    .max(20),
+  owner: z.string().regex(OWNER_REGEX).min(2).max(20),
   language: requiredString,
   moderationOption: requiredString,
   subscriberModeration: z.boolean(),

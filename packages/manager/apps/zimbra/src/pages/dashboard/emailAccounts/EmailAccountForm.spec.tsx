@@ -1,12 +1,17 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { describe, expect, vi } from 'vitest';
-import { fireEvent } from '@testing-library/dom';
+
 import { useParams } from 'react-router-dom';
-import { render, waitFor, act } from '@/utils/test.provider';
+
+import { fireEvent } from '@testing-library/dom';
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { accountMock, platformMock } from '@/data/api';
+import { act, render, waitFor } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
 import EmailAccountForm from './EmailAccountForm.component';
-import { platformMock, accountMock } from '@/data/api';
 
 describe('email account add and edit form', () => {
   it('should be in add mode if no accountId', async () => {
@@ -36,17 +41,17 @@ describe('email account add and edit form', () => {
   // @TODO: find why this test is inconsistent
   // sometimes ODS component return attribute empty while it can
   // only be "true" or "false"
-  it.skip('check validity form', async () => {
+  it.skip('check validity form', () => {
     const { getByTestId } = render(<EmailAccountForm />);
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const selectDomain = getByTestId('select-domain') as any;
-    const inputPassword = getByTestId('input-password') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
+    const inputPassword = getByTestId('input-password') as OdsHTMLElement;
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       inputPassword.odsBlur.emit({ name: 'password', value: '' });
       selectDomain.odsBlur.emit({ name: 'domain', value: '' });
       inputAccount.odsBlur.emit({ name: 'account', value: '' });
@@ -56,7 +61,7 @@ describe('email account add and edit form', () => {
     expect(selectDomain).toHaveAttribute('has-error', 'true');
     expect(inputPassword).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.input(inputAccount, {
         target: { value: 'account' },
       });
@@ -82,7 +87,7 @@ describe('email account add and edit form', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit + 10 characters total
       fireEvent.input(inputPassword, {
         target: { value: 'Aaaaaaaaa1' },
@@ -95,7 +100,7 @@ describe('email account add and edit form', () => {
 
     expect(inputPassword).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       // No uppercased + digit or special + 10 characters total
       fireEvent.input(inputPassword, {
         target: { value: 'aaaaaaaaa1' },
@@ -108,7 +113,7 @@ describe('email account add and edit form', () => {
 
     expect(inputPassword).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + special + 10 characters total
       fireEvent.input(inputPassword, {
         target: { value: 'Aaaaaaaaa#' },
@@ -121,7 +126,7 @@ describe('email account add and edit form', () => {
 
     expect(inputPassword).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit or special but 9 characters total
       fireEvent.input(inputPassword, {
         target: { value: 'Aaaaaaaa1' },
@@ -134,7 +139,7 @@ describe('email account add and edit form', () => {
 
     expect(inputPassword).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       // Uppercased + digit AND special + 10 characters total
       fireEvent.input(inputPassword, {
         target: { value: 'Aaaaaaa1#a' },

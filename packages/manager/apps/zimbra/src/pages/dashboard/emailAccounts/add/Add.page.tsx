@@ -1,18 +1,13 @@
-import React from 'react';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import { ADD_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
+
 import EmailAccountForm from '../EmailAccountForm.component';
 
 export const AddEmailAccount = () => {
@@ -22,10 +17,7 @@ export const AddEmailAccount = () => {
 
   return (
     <>
-      <div
-        className="flex flex-col items-start space-y-4 mb-6"
-        data-testid="page-title"
-      >
+      <div className="flex flex-col items-start space-y-4 mb-6" data-testid="page-title">
         <Links
           iconAlignment={IconLinkAlignmentType.left}
           type={LinkType.back}

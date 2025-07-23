@@ -1,26 +1,24 @@
 import React, { useMemo } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import { ManagerButton } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useDomains, usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
+import { ADD_EMAIL_ACCOUNT, ORDER_ZIMBRA_EMAIL_ACCOUNT } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import {
-  ADD_EMAIL_ACCOUNT,
-  ORDER_ZIMBRA_EMAIL_ACCOUNT,
-} from '@/tracking.constants';
 
 export const DatagridTopbar = () => {
   const { t } = useTranslation(['accounts', 'common']);
@@ -42,8 +40,7 @@ export const DatagridTopbar = () => {
       .some(Boolean);
   }, [accountsStatistics]);
 
-  const canCreateAccount =
-    !isLoadingDomains && !!domains?.length && hasAvailableAccounts;
+  const canCreateAccount = !isLoadingDomains && !!domains?.length && hasAvailableAccounts;
 
   const handleAddEmailAccountClick = () => {
     trackClick({

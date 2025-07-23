@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import { render, waitFor } from '@/utils/test.provider';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render, waitFor } from '@/utils/test.provider';
+
 import MailingLists from './MailingLists.page';
 
 describe('Mailing Lists page', () => {

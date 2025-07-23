@@ -32,10 +32,8 @@ export const ONBOARDING = 'onboarding';
 export const ONBOARDING_ORDER_CTA = 'onboarding_order_cta';
 
 export const ONBOARDING_WELCOME = 'onboarding_welcome';
-export const ONBOARDING_WELCOME_CONFIGURE_NOW_CTA =
-  'onboarding_welcome_configure_now_cta';
-export const ONBOARDING_WELCOME_CONFIGURE_LATER_CTA =
-  'onboarding_welcome_configure_later_cta';
+export const ONBOARDING_WELCOME_CONFIGURE_NOW_CTA = 'onboarding_welcome_configure_now_cta';
+export const ONBOARDING_WELCOME_CONFIGURE_LATER_CTA = 'onboarding_welcome_configure_later_cta';
 
 export const ONBOARDING_CONFIGURE = 'onboarding_configure';
 export const ONBOARDING_CONFIGURE_ORGANIZATION = `${ONBOARDING_CONFIGURE}_organization`;

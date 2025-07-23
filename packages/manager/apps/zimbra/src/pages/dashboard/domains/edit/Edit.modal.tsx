@@ -1,32 +1,28 @@
 import React, { useEffect, useRef } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import { useDomain, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
-import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constants';
 import { EditDomainSchema, editDomainSchema } from '@/utils';
@@ -45,10 +41,9 @@ export const EditDomainModal = () => {
     domainId,
     gcTime: 0,
   });
-  const {
-    data: organizations,
-    isLoading: isLoadingOrganizations,
-  } = useOrganizations({ shouldFetchAll: true });
+  const { data: organizations, isLoading: isLoadingOrganizations } = useOrganizations({
+    shouldFetchAll: true,
+  });
 
   const { addError, addSuccess } = useNotifications();
 
@@ -66,9 +61,7 @@ export const EditDomainModal = () => {
         pageName: EDIT_DOMAIN,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:edit_success_message')}
-        </OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:edit_success_message')}</OdsText>,
         true,
       );
     },
@@ -86,8 +79,8 @@ export const EditDomainModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformDomainQueryKey(platformId, domain?.id),
       });
 
@@ -155,10 +148,7 @@ export const EditDomainModal = () => {
       secondaryButtonTestId="cancel-btn"
       onSecondaryButtonClick={handleCancelClick}
     >
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={handleSubmit(handleConfirmClick)}
-      >
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleConfirmClick)}>
         <OdsFormField>
           <label htmlFor="domain" slot="label">
             {t('common:domain')} *

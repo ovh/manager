@@ -1,9 +1,7 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { getOrderCatalog, getOrderCatalogQueryKey, order } from '@/data/api';
 
 type Props = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {

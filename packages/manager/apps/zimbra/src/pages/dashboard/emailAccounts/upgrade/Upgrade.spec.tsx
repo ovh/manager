@@ -1,10 +1,13 @@
 import React from 'react';
-import 'element-internals-polyfill';
+
 import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
 import { describe, expect } from 'vitest';
-import { render, waitFor } from '@/utils/test.provider';
-import UpgradeAccount from './Upgrade.page';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render, waitFor } from '@/utils/test.provider';
+
+import UpgradeAccount from './Upgrade.page';
 
 describe('upgrade account page', () => {
   it('should render page correctly', async () => {

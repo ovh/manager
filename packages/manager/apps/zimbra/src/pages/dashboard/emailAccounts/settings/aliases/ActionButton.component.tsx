@@ -1,30 +1,25 @@
 import React from 'react';
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
 import { EMAIL_ACCOUNT_DELETE_ALIAS } from '@/tracking.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { AliasItem } from './Aliases.types';
 
 interface ActionButtonAliasAccountProps {
   item: AliasItem;
 }
 
-export const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({
-  item,
-}) => {
+export const ActionButtonAlias: React.FC<ActionButtonAliasAccountProps> = ({ item }) => {
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();

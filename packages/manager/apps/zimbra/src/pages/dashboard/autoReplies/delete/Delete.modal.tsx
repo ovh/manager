@@ -1,18 +1,23 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import {
   CANCEL,
@@ -27,9 +32,7 @@ export const DeleteAutoReplyModal = () => {
   const navigate = useNavigate();
   const { accountId, autoReplyId } = useParams();
 
-  const trackingName = accountId
-    ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY
-    : DELETE_AUTO_REPLY;
+  const trackingName = accountId ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY : DELETE_AUTO_REPLY;
 
   const { addError, addSuccess } = useNotifications();
 
@@ -47,9 +50,7 @@ export const DeleteAutoReplyModal = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:delete_success_message')}
-        </OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
         true,
       );
     },

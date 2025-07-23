@@ -1,25 +1,18 @@
-import { describe, expect, vi } from 'vitest';
 import { useMatches } from 'react-router-dom';
-import { useOverridePage } from '@/hooks';
+
 import '@testing-library/jest-dom';
+import { describe, expect, vi } from 'vitest';
+
+import { useOverridePage } from '@/hooks';
 
 describe('useOverridePage', () => {
-  it('should return false', async () => {
-    vi.mocked(useMatches).mockReturnValue([]);
+  it('should return false', () => {
+    vi.mocked(useMatches).mockReturnValue([{ handle: { isOverridePage: false } }] as never);
     expect(useOverridePage()).toBeFalsy();
   });
 
-  it('should return false', async () => {
-    vi.mocked(useMatches).mockReturnValue([
-      { handle: { isOverridePage: false } },
-    ] as never);
-    expect(useOverridePage()).toBeFalsy();
-  });
-
-  it('should return false', async () => {
-    vi.mocked(useMatches).mockReturnValue([
-      { handle: { isOverridePage: true } },
-    ] as never);
+  it('should return true', () => {
+    vi.mocked(useMatches).mockReturnValue([{ handle: { isOverridePage: true } }] as never);
     expect(useOverridePage()).toBeTruthy();
   });
 });

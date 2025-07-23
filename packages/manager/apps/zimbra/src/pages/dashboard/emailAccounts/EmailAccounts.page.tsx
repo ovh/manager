@@ -1,24 +1,26 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Outlet } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import {
-  OdsSwitch,
-  OdsSwitchItem,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+
 import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsSwitch, OdsSwitchItem, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   IconLinkAlignmentType,
-  Links,
   LinkType,
+  Links,
   ManagerText,
 } from '@ovh-ux/manager-react-components';
-import { Outlet } from 'react-router-dom';
+
+import { AccountStatistics } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
-import { useAccountsStatistics, useOverridePage } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
+import { useAccountsStatistics, useOverridePage } from '@/hooks';
 import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { AccountStatistics } from '@/data/api';
+
 import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
 import SlotsDatagrid from './slots/SlotsDatagrid.component';
 
@@ -30,11 +32,7 @@ const switchStateEnum = {
 export const EmailAccounts = () => {
   const { t } = useTranslation(['accounts', 'common']);
   const { platformUrn } = usePlatform();
-  const {
-    accountsStatistics,
-    accountsConfigured,
-    accountsUnconfigured,
-  } = useAccountsStatistics();
+  const { accountsStatistics, accountsConfigured, accountsUnconfigured } = useAccountsStatistics();
 
   const isOverridedPage = useOverridePage();
   const [switchState, setSwitchState] = useState<keyof typeof switchStateEnum>(
@@ -46,10 +44,7 @@ export const EmailAccounts = () => {
     // if no configured accounts and slots available
     if (accountsConfigured === 0 && accountsUnconfigured > 0) {
       setSwitchState(switchStateEnum.SLOTS);
-    } else if (
-      switchState === switchStateEnum.SLOTS &&
-      accountsUnconfigured === 0
-    ) {
+    } else if (switchState === switchStateEnum.SLOTS && accountsUnconfigured === 0) {
       setSwitchState(switchStateEnum.ACCOUNTS);
     }
   }, [accountsConfigured, accountsUnconfigured]);
@@ -86,16 +81,12 @@ export const EmailAccounts = () => {
                 {accountsStatistics?.length > 0
                   ? accountsStatistics?.map((stats: AccountStatistics) => (
                       <span key={stats.offer}>
-                        <OdsText
-                          preset={ODS_TEXT_PRESET.heading6}
-                          className="mr-4"
-                        >
+                        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
                           {`Zimbra ${capitalize(stats.offer.toLowerCase())} :`}
                         </OdsText>
-                        <span>{`${
-                          stats.configuredAccountsCount
-                        } / ${stats.configuredAccountsCount +
-                          stats.availableAccountsCount}`}</span>
+                        <span>{`${stats.configuredAccountsCount} / ${
+                          stats.configuredAccountsCount + stats.availableAccountsCount
+                        }`}</span>
                       </span>
                     ))
                   : t('common:no_email_account_available')}
@@ -129,11 +120,7 @@ export const EmailAccounts = () => {
               })}
             </OdsSwitchItem>
           </OdsSwitch>
-          {switchState === switchStateEnum.ACCOUNTS ? (
-            <EmailAccountsDatagrid />
-          ) : (
-            <SlotsDatagrid />
-          )}
+          {switchState === switchStateEnum.ACCOUNTS ? <EmailAccountsDatagrid /> : <SlotsDatagrid />}
         </>
       )}
     </div>

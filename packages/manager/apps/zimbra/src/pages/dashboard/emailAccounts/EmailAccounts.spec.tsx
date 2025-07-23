@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import EmailAccounts from './EmailAccounts.page';
-import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import EmailAccounts from './EmailAccounts.page';
 
 describe('EmailAccounts page', () => {
   it('Page should display correctly', async () => {
@@ -15,10 +18,7 @@ describe('EmailAccounts page', () => {
 
     const button = getByTestId('add-account-btn');
 
-    expect(button).toHaveAttribute(
-      'label',
-      accountTranslation.zimbra_account_account_add,
-    );
+    expect(button).toHaveAttribute('label', accountTranslation.zimbra_account_account_add);
 
     expect(button).toHaveAttribute('is-disabled', 'true');
   });
@@ -52,8 +52,6 @@ describe('EmailAccounts page', () => {
       fireEvent.click(switchSlots);
     });
 
-    expect(
-      getByText(accountTranslation.zimbra_account_datagrid_renewal_date),
-    ).toBeTruthy();
+    expect(getByText(accountTranslation.zimbra_account_datagrid_renewal_date)).toBeTruthy();
   });
 });

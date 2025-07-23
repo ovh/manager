@@ -1,5 +1,1 @@
-export const getZimbraPlatformListQueryKey = () => [
-  'get',
-  'zimbra',
-  'platform',
-];
+export const getZimbraPlatformListQueryKey = () => ['get', 'zimbra', 'platform'];

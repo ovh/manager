@@ -1,33 +1,25 @@
 import React from 'react';
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import { DELETE_AUTO_REPLY, EMAIL_ACCOUNT_DELETE_AUTO_REPLY } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
-import {
-  DELETE_AUTO_REPLY,
-  EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
-} from '@/tracking.constants';
+
 import { AutoReplyItem } from './AutoReplies.types';
 
 export interface ActionButtonAutoReplyProps {
   item: AutoReplyItem;
 }
 
-export const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
-  item,
-}) => {
+export const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({ item }) => {
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const { accountId } = useParams();
@@ -41,9 +33,7 @@ export const ActionButtonAutoReply: React.FC<ActionButtonAutoReplyProps> = ({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [
-        accountId ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY : DELETE_AUTO_REPLY,
-      ],
+      actions: [accountId ? EMAIL_ACCOUNT_DELETE_AUTO_REPLY : DELETE_AUTO_REPLY],
     });
 
     navigate(hrefDeleteAutoReply);

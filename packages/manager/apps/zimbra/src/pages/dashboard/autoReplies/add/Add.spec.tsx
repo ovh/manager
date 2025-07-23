@@ -1,12 +1,17 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { describe, expect, vi } from 'vitest';
+
 import { useSearchParams } from 'react-router-dom';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import { AutoReplyDurations, AddAutoReply } from './Add.page';
-import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import { accountMock } from '@/data/api';
+import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
+import { AddAutoReply, AutoReplyDurations } from './Add.page';
 
 describe('add auto reply page', () => {
   it('should render page correctly', async () => {
@@ -33,7 +38,7 @@ describe('add auto reply page', () => {
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-account');
     const selectDomain = getByTestId('select-domain');
-    const radioPermanent = getByTestId(AutoReplyDurations.PERMANENT) as any;
+    const radioPermanent = getByTestId(AutoReplyDurations.PERMANENT) as OdsHTMLElement;
     const inputFrom = getByTestId('from');
     const inputUntil = getByTestId('until');
     const message = getByTestId('message');

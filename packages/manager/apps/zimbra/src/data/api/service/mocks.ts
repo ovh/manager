@@ -1,4 +1,5 @@
 import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-react-components';
+
 import { makeSlotServiceHashmap } from './utils';
 
 export const serviceMock: ServiceDetails = {

@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import ActionButtonAutoReply from './ActionButton.component';
-import { render } from '@/utils/test.provider';
+
 import { ResourceStatus } from '@/data/api';
+import { render } from '@/utils/test.provider';
+
+import ActionButtonAutoReply from './ActionButton.component';
 
 describe('AutoReplies datagrid action menu', () => {
   it('renders with 1 button', () => {

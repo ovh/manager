@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_ICON_NAME,
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsIcon,
@@ -8,40 +20,28 @@ import {
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
-import { useOrganization } from '@/data/hooks';
+
 import {
+  OrganizationBodyParamsType,
   getZimbraPlatformOrganizationDetailsQueryKey,
   getZimbraPlatformOrganizationQueryKey,
-  OrganizationBodyParamsType,
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/data/api';
+import { useOrganization } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
-import {
-  ADD_ORGANIZATION,
-  CANCEL,
-  CONFIRM,
-  EDIT_ORGANIZATION,
-} from '@/tracking.constants';
+import { ADD_ORGANIZATION, CANCEL, CONFIRM, EDIT_ORGANIZATION } from '@/tracking.constants';
 import { OrganizationSchema, organizationSchema } from '@/utils';
 
 export const AddEditOrganizationModal = () => {
@@ -95,9 +95,7 @@ export const AddEditOrganizationModal = () => {
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t(
-            organizationId
-              ? 'common:edit_error_message'
-              : 'zimbra_organization_add_error_message',
+            organizationId ? 'common:edit_error_message' : 'zimbra_organization_add_error_message',
             {
               error: error.response?.data?.message,
             },
@@ -106,13 +104,10 @@ export const AddEditOrganizationModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: organizationId
-          ? getZimbraPlatformOrganizationDetailsQueryKey(
-              platformId,
-              organizationId,
-            )
+          ? getZimbraPlatformOrganizationDetailsQueryKey(platformId, organizationId)
           : getZimbraPlatformOrganizationQueryKey(platformId),
       });
       onClose();
@@ -165,11 +160,7 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      heading={
-        organizationId
-          ? t('common:edit_organization')
-          : t('common:add_organization')
-      }
+      heading={organizationId ? t('common:edit_organization') : t('common:add_organization')}
       isOpen
       type={ODS_MODAL_COLOR.information}
       onDismiss={onClose}
@@ -182,10 +173,7 @@ export const AddEditOrganizationModal = () => {
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={handleSubmit(handleSaveClick)}
-      >
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(handleSaveClick)}>
         {!organizationId && (
           <div>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -214,9 +202,7 @@ export const AddEditOrganizationModal = () => {
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
                 data-testid="input-name"
-                placeholder={t(
-                  'zimbra_organization_add_form_input_name_placeholder',
-                )}
+                placeholder={t('zimbra_organization_add_form_input_name_placeholder')}
                 id={name}
                 name={name}
                 hasError={!!errors[name]}
@@ -243,11 +229,7 @@ export const AddEditOrganizationModal = () => {
                   className="ml-3 text-xs"
                   name={ODS_ICON_NAME.circleQuestion}
                 ></OdsIcon>
-                <OdsTooltip
-                  role="tooltip"
-                  strategy="fixed"
-                  triggerId="tooltip-trigger"
-                >
+                <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-trigger">
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_organization_add_form_input_label_tooltip')}
                   </OdsText>
@@ -256,9 +238,7 @@ export const AddEditOrganizationModal = () => {
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
                 data-testid="input-label"
-                placeholder={t(
-                  'zimbra_organization_add_form_input_label_placeholder',
-                )}
+                placeholder={t('zimbra_organization_add_form_input_label_placeholder')}
                 id={name}
                 name={name}
                 hasError={!!errors[name]}

@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import AutoReplies from './AutoReplies.page';
+
 import { render } from '@/utils/test.provider';
+
+import AutoReplies from './AutoReplies.page';
 
 describe('AutoReplies page', () => {
   it('should display page correctly', () => {

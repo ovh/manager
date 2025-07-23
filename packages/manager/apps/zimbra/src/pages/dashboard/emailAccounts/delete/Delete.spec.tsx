@@ -1,12 +1,16 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useSearchParams } from 'react-router-dom';
-import { fireEvent, render, act } from '@/utils/test.provider';
-import { domainMock, deleteZimbraPlatformAccount } from '@/data/api';
-import DeleteEmailAccountModal from './Delete.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { deleteZimbraPlatformAccount, domainMock } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render } from '@/utils/test.provider';
+
+import DeleteEmailAccountModal from './Delete.modal';
 
 vi.mocked(useSearchParams).mockReturnValue([
   new URLSearchParams({
@@ -18,21 +22,20 @@ vi.mocked(useSearchParams).mockReturnValue([
 describe('Domains delete modal', () => {
   it('check if it is displayed', async () => {
     const { findByText } = render(<DeleteEmailAccountModal />);
-    expect(
-      await findByText(commonTranslation.delete_email_account),
-    ).toBeVisible();
+    expect(await findByText(commonTranslation.delete_email_account)).toBeVisible();
   });
 
   it('check transition from step 1 to step 2 and delete', async () => {
     const { getByTestId } = render(<DeleteEmailAccountModal />);
     expect(getByTestId('text-step-1')).toBeVisible();
-    await act(() => {
+    act(() => {
       fireEvent.click(getByTestId('primary-btn'));
     });
 
     expect(getByTestId('text-step-2')).toBeVisible();
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(getByTestId('primary-btn'));
     });
 

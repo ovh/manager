@@ -1,5 +1,18 @@
 import React, { useEffect, useMemo, useRef } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsCheckbox,
   OdsFormField,
@@ -7,13 +20,9 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -21,15 +30,10 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { Loading } from '@/components';
-import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { useAccount, useDomains } from '@/data/hooks';
-import { RedirectionSchema, redirectionSchema } from '@/utils';
+import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import {
   ADD_REDIRECTION,
   CANCEL,
@@ -38,22 +42,17 @@ import {
   EMAIL_ACCOUNT_ADD_REDIRECTION,
   EMAIL_ACCOUNT_EDIT_REDIRECTION,
 } from '@/tracking.constants';
+import { RedirectionSchema, redirectionSchema } from '@/utils';
 
 export const AddEditOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation([
-    'redirections',
-    NAMESPACES.ACTIONS,
-    NAMESPACES.FORM,
-  ]);
+  const { t } = useTranslation(['redirections', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
   const { accountId, redirectionId } = useParams();
 
   const trackingName = useMemo(() => {
     if (accountId) {
-      return redirectionId
-        ? EMAIL_ACCOUNT_EDIT_REDIRECTION
-        : EMAIL_ACCOUNT_ADD_REDIRECTION;
+      return redirectionId ? EMAIL_ACCOUNT_EDIT_REDIRECTION : EMAIL_ACCOUNT_ADD_REDIRECTION;
     }
     return redirectionId ? EDIT_REDIRECTION : ADD_REDIRECTION;
   }, [redirectionId, accountId]);
@@ -95,9 +94,7 @@ export const AddEditOrganizationModal = () => {
 
   useEffect(() => {
     if (accountDetail) {
-      const [account, domain] = (
-        accountDetail?.currentState?.email || '@'
-      ).split('@');
+      const [account, domain] = (accountDetail?.currentState?.email || '@').split('@');
       reset({
         account,
         domain,
@@ -173,9 +170,7 @@ export const AddEditOrganizationModal = () => {
       type={ODS_MODAL_COLOR.information}
       ref={modalRef}
       isOpen
-      heading={t(
-        redirectionId ? 'common:edit_redirection' : 'common:add_redirection',
-      )}
+      heading={t(redirectionId ? 'common:edit_redirection' : 'common:add_redirection')}
       onDismiss={onClose}
       isLoading={isLoadingAccount}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
@@ -192,9 +187,7 @@ export const AddEditOrganizationModal = () => {
         className="flex flex-col gap-4"
         onSubmit={handleSubmit(handleConfirmClick)}
       >
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('zimbra_redirections_add_header')}
-        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('zimbra_redirections_add_header')}</OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
           {t(`${NAMESPACES.FORM}:mandatory_fields`)}
         </OdsText>
@@ -262,10 +255,7 @@ export const AddEditOrganizationModal = () => {
                           )) || []}
                         </OdsSelect>
                         {isLoadingDomains && (
-                          <Loading
-                            className="flex justify-center"
-                            size={ODS_SPINNER_SIZE.sm}
-                          />
+                          <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                         )}
                       </>
                     )}
@@ -279,11 +269,7 @@ export const AddEditOrganizationModal = () => {
           control={control}
           name="to"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              data-testid="field-to"
-              className="w-full"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField data-testid="field-to" className="w-full" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_redirections_add_form_input_to')} *
               </label>
@@ -304,16 +290,13 @@ export const AddEditOrganizationModal = () => {
           control={control}
           name="keepCopy"
           render={({ field: { name, value, onChange } }) => (
-            <OdsFormField
-              data-testid="field-checkbox"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField data-testid="field-checkbox" error={errors?.[name]?.message}>
               <div className="flex leading-none gap-4 cursor-pointer">
                 <OdsCheckbox
                   inputId={name}
                   id={name}
                   name={name}
-                  value={(value as unknown) as string}
+                  value={value as unknown as string}
                   isChecked={value}
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>

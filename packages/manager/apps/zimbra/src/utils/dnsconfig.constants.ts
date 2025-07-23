@@ -18,9 +18,7 @@ export enum DnsRecordTypeKey {
   NONE = 'none',
 }
 
-export const getDnsRecordTypeKeyFromDnsRecordType = (
-  type: DnsRecordType,
-): DnsRecordTypeKey => {
+export const getDnsRecordTypeKeyFromDnsRecordType = (type: DnsRecordType): DnsRecordTypeKey => {
   switch (type) {
     case DnsRecordType.SRV:
       return DnsRecordTypeKey.SRV;

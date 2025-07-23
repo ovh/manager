@@ -1,10 +1,13 @@
 import React from 'react';
-import 'element-internals-polyfill';
+
 import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import OrderEmailAccounts from './Order.page';
+
 import emailAccountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import OrderEmailAccounts from './Order.page';
 
 describe('email account order page', () => {
   it('should render page correctly', async () => {
@@ -21,9 +24,7 @@ describe('email account order page', () => {
 
   // Can't find a way to test ods-quantity, ::part css selector doesnt seems to work
   it.skip('should have a correct form validation and call window open on confirm', async () => {
-    const { getByTestId, queryByTestId, container } = render(
-      <OrderEmailAccounts />,
-    );
+    const { getByTestId, queryByTestId, container } = render(<OrderEmailAccounts />);
 
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
@@ -34,23 +35,19 @@ describe('email account order page', () => {
     const consent = getByTestId('consent');
     // can't find a way to select - and + buttons with a selector
     // that works like ods-quantity::part(button-minus)
-    const quantityMinus = container.querySelector(
-      'ods-quantity::part(button-minus)',
-    );
-    const quantityPlus = container.querySelector(
-      'ods-quantity::part(button-minus)',
-    );
+    const quantityMinus = container.querySelector('ods-quantity::part(button-minus)');
+    const quantityPlus = container.querySelector('ods-quantity::part(button-minus)');
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // off
       fireEvent.click(consent);
       // quantity 1
@@ -59,7 +56,7 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
       // quantity 0
@@ -68,14 +65,14 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // quantity 1
       fireEvent.click(quantityPlus);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(button);
     });
 

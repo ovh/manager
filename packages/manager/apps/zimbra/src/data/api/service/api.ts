@@ -1,12 +1,10 @@
-import {
-  fetchIcebergV6,
-  IcebergFetchParamsV6,
-  v6,
-} from '@ovh-ux/manager-core-api';
+import { IcebergFetchParamsV6, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
+
 import { buildURLSearchParams } from '@/utils';
-import { makeSlotServiceHashmap } from './utils';
+
 import { SlotServiceBodyParamsType } from './type';
+import { makeSlotServiceHashmap } from './utils';
 
 // GET
 
@@ -34,9 +32,7 @@ export const getSlotServices = async () => {
   return makeSlotServiceHashmap(data);
 };
 
-export const getServiceByResourceName = async (
-  resourceName: string,
-): Promise<ServiceDetails> => {
+export const getServiceByResourceName = async (resourceName: string): Promise<ServiceDetails> => {
   const searchParams = buildURLSearchParams({
     resourceName,
     routes: '/zimbra/slot/{slotId}',
@@ -52,10 +48,7 @@ export const getServiceByResourceName = async (
 
 // PUT
 
-export const putService = async (
-  serviceId: number,
-  params: SlotServiceBodyParamsType,
-) => {
+export const putService = async (serviceId: number, params: SlotServiceBodyParamsType) => {
   const { data } = await v6.put(`services/${serviceId}`, params);
   return data;
 };

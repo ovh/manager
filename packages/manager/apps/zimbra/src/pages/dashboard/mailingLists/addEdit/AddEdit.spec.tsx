@@ -1,19 +1,19 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
-import { useParams } from 'react-router-dom';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import {
-  ReplyToChoices,
-  ModerationChoices,
-  mailingListsMock,
-  platformMock,
-} from '@/data/api';
-import AddEditMailingList from './AddEdit.page';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
-describe('mailing lists add and edit page', async () => {
+import { useParams } from 'react-router-dom';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { ModerationChoices, ReplyToChoices, mailingListsMock, platformMock } from '@/data/api';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditMailingList from './AddEdit.page';
+
+describe('mailing lists add and edit page', () => {
   it('should be in add mode', async () => {
     const { getByTestId, queryByTestId } = render(<AddEditMailingList />);
 
@@ -21,9 +21,7 @@ describe('mailing lists add and edit page', async () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('page-title')).toHaveTextContent(
-      commonTranslation.add_mailing_list,
-    );
+    expect(getByTestId('page-title')).toHaveTextContent(commonTranslation.add_mailing_list);
   });
 
   it('should be in edit mode', async () => {
@@ -38,9 +36,7 @@ describe('mailing lists add and edit page', async () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('page-title')).toHaveTextContent(
-      commonTranslation.edit_mailing_list,
-    );
+    expect(getByTestId('page-title')).toHaveTextContent(commonTranslation.edit_mailing_list);
   });
   // @TODO: find why this test is inconsistent
   // sometimes ODS component return attribute empty while it can
@@ -53,16 +49,14 @@ describe('mailing lists add and edit page', async () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const selectDomain = getByTestId('select-domain') as any;
-    const inputOwner = getByTestId('input-owner') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
+    const inputOwner = getByTestId('input-owner') as OdsHTMLElement;
     const replyToList = getByTestId(`radio-reply-to-${ReplyToChoices.LIST}`);
-    const selectLanguage = getByTestId('select-language') as any;
-    const moderationOptionAll = getByTestId(
-      `radio-moderation-option-${ModerationChoices.ALL}`,
-    );
+    const selectLanguage = getByTestId('select-language') as OdsHTMLElement;
+    const moderationOptionAll = getByTestId(`radio-moderation-option-${ModerationChoices.ALL}`);
 
-    await act(() => {
+    act(() => {
       inputAccount.odsBlur.emit({});
       selectDomain.odsBlur.emit({});
       inputOwner.odsBlur.emit({});
@@ -76,7 +70,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputAccount, {
         target: { value: 'account' },
       });
@@ -85,7 +79,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(inputAccount).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectDomain, {
         target: { value: 'domain.fr' },
       });
@@ -94,7 +88,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(selectDomain).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputOwner, {
         target: { value: 'testowner' },
       });
@@ -106,7 +100,7 @@ describe('mailing lists add and edit page', async () => {
 
     expect(inputOwner).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectLanguage, {
         target: { value: 'FR' },
       });
@@ -115,14 +109,14 @@ describe('mailing lists add and edit page', async () => {
 
     expect(selectLanguage).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(replyToList);
       fireEvent.click(moderationOptionAll);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputOwner, {
         target: { value: 't' },
       });

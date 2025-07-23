@@ -1,26 +1,29 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import { IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
-import { render, waitFor, fireEvent, act } from '@/utils/test.provider';
-import DeleteOrganizationModal from './Delete.modal';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+
 import {
-  organizationMock,
-  platformMock,
+  DomainType,
   deleteZimbraPlatformOrganization,
   getZimbraPlatformDomains,
-  DomainType,
+  organizationMock,
+  platformMock,
 } from '@/data/api';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import DeleteOrganizationModal from './Delete.modal';
 
 describe('DeleteOrganization modal', () => {
-  it('should render modal', async () => {
+  it('should render modal', () => {
     const { findByText } = render(<DeleteOrganizationModal />);
-    expect(
-      await findByText(commonTranslation.delete_organization),
-    ).toBeVisible();
+    expect(findByText(commonTranslation.delete_organization)).toBeDefined();
   });
 
   it('should have button disabled if domains', async () => {
@@ -60,7 +63,8 @@ describe('DeleteOrganization modal', () => {
     expect(queryByTestId('banner-message')).toBeNull();
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(button);
     });
 

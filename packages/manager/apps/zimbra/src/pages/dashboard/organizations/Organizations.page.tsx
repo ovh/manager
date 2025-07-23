@@ -1,31 +1,29 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl, useDebouncedValue, useOverridePage } from '@/hooks';
+import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { BadgeStatus, IdLink, LabelChip } from '@/components';
 import { useOrganizations, usePlatform } from '@/data/hooks';
-import ActionButton from './ActionButton.component';
-import { BadgeStatus, LabelChip, IdLink } from '@/components';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { useDebouncedValue, useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_ORGANIZATION } from '@/tracking.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButton from './ActionButton.component';
 import { OrganizationItem } from './Organizations.types';
 
 const columns: DatagridColumn<OrganizationItem>[] = [
@@ -67,25 +65,15 @@ export default function Organizations() {
   const { platformUrn } = usePlatform();
   const isOverridedPage = useOverridePage();
 
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
 
-  const {
-    data,
-    fetchAllPages,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage,
-  } = useOrganizations({
-    organizationName: debouncedSearchInput,
-    refetchInterval: DATAGRID_REFRESH_INTERVAL,
-    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
-  });
+  const { data, fetchAllPages, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
+    useOrganizations({
+      organizationName: debouncedSearchInput,
+      refetchInterval: DATAGRID_REFRESH_INTERVAL,
+      refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+    });
 
   const items: OrganizationItem[] =
     data?.map((item) => ({

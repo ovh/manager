@@ -1,8 +1,5 @@
-import {
-  CurrencyCode,
-  IntervalUnitType,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { order } from './type';
 
 export const orderCatalogMock: order.publicOrder.Catalog = {

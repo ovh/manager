@@ -1,12 +1,11 @@
 import React from 'react';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { OdsLink } from '@ovhcloud/ods-components/react';
+
 import { IconLinkAlignmentType } from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import { SELECT_ORGANIZATION } from '@/tracking.constants';
 

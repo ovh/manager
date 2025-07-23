@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import ActionButtonOrganization from './ActionButton.component';
-import { render } from '@/utils/test.provider';
+
 import { ResourceStatus } from '@/data/api';
+import { render } from '@/utils/test.provider';
+
+import ActionButtonOrganization from './ActionButton.component';
 
 describe('Organizations datagrid action menu', () => {
   it('we have good number of item with good content', () => {

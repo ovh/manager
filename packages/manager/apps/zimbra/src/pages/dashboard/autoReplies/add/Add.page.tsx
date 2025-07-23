@@ -1,24 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import {
-  IconLinkAlignmentType,
-  Links,
-  LinkType,
-  Subtitle,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-  OdsTextarea,
-  OdsDatepicker,
-  OdsCheckbox,
-} from '@ovhcloud/ods-components/react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -27,8 +15,27 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCheckbox,
+  OdsDatepicker,
+  OdsFormField,
+  OdsInput,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsTextarea,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -36,20 +43,18 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { Loading } from '@/components';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { AutoReplySchema, autoReplySchema } from '@/utils';
-import { Loading } from '@/components';
+import queryClient from '@/queryClient';
 import {
   ADD_AUTO_REPLY,
   BACK_PREVIOUS_PAGE,
   CONFIRM,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constants';
-import queryClient from '@/queryClient';
+import { AutoReplySchema, autoReplySchema } from '@/utils';
 
 export enum AutoReplyDurations {
   TEMPORARY = 'temporary',
@@ -82,12 +87,8 @@ export const AddAutoReply = () => {
   const { accountId } = useParams();
   const [searchParams] = useSearchParams();
   const organizationId = searchParams.get('organizationId');
-  const trackingName = accountId
-    ? EMAIL_ACCOUNT_ADD_AUTO_REPLY
-    : ADD_AUTO_REPLY;
-  const [selectedOrganizationId, setSelectedOrganizationId] = useState(
-    organizationId,
-  );
+  const trackingName = accountId ? EMAIL_ACCOUNT_ADD_AUTO_REPLY : ADD_AUTO_REPLY;
+  const [selectedOrganizationId, setSelectedOrganizationId] = useState(organizationId);
 
   const goBackUrl = useGenerateUrl('..', 'href');
 
@@ -186,9 +187,7 @@ export const AddAutoReply = () => {
   const formValues = watch();
 
   const selectedDomain = useMemo(() => {
-    return domains?.find(
-      (domain) => formValues.domain === domain.currentState?.name,
-    );
+    return domains?.find((domain) => formValues.domain === domain.currentState?.name);
   }, [domains, formValues.domain]);
 
   useEffect(() => {
@@ -246,10 +245,7 @@ export const AddAutoReply = () => {
       />
       <Subtitle>{t('common:add_auto_reply')}</Subtitle>
       {accountId && account && !isLoadingAccount && (
-        <OdsText
-          data-testid="create-for-account"
-          preset={ODS_TEXT_PRESET.paragraph}
-        >
+        <OdsText data-testid="create-for-account" preset={ODS_TEXT_PRESET.paragraph}>
           {t('zimbra_auto_replies_add_header_create_for_account')}
           <b> {account.currentState?.email}</b>
         </OdsText>
@@ -257,9 +253,7 @@ export const AddAutoReply = () => {
       <OdsText data-testid="page-header" preset={ODS_TEXT_PRESET.paragraph}>
         {t('zimbra_auto_replies_add_header')}
       </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
       {!accountId && (
         <Controller
           control={control}
@@ -315,10 +309,7 @@ export const AddAutoReply = () => {
                         ))}
                       </OdsSelect>
                       {isLoading && (
-                        <Loading
-                          className="flex justify-center"
-                          size={ODS_SPINNER_SIZE.sm}
-                        />
+                        <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                       )}
                     </div>
                   )}
@@ -367,9 +358,7 @@ export const AddAutoReply = () => {
                   name={name}
                   id={name}
                   data-testid={name}
-                  placeholder={t(
-                    'zimbra_auto_replies_add_datepicker_placeholder',
-                  )}
+                  placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
                   format="dd/mm/yyyy"
                   locale={locale as ODS_DATEPICKER_LOCALE}
                   hasError={!!errors[name]}
@@ -394,9 +383,7 @@ export const AddAutoReply = () => {
                   name={name}
                   id={name}
                   data-testid={name}
-                  placeholder={t(
-                    'zimbra_auto_replies_add_datepicker_placeholder',
-                  )}
+                  placeholder={t('zimbra_auto_replies_add_datepicker_placeholder')}
                   format="dd/mm/yyyy"
                   locale={locale as ODS_DATEPICKER_LOCALE}
                   hasError={!!errors[name]}
@@ -420,7 +407,7 @@ export const AddAutoReply = () => {
                 inputId={name}
                 id={name}
                 name={name}
-                value={(value as unknown) as string}
+                value={value as unknown as string}
                 isChecked={value}
                 onClick={() => onChange(!value)}
               ></OdsCheckbox>
@@ -449,26 +436,18 @@ export const AddAutoReply = () => {
                   value={value}
                   hasError={!!errors[name]}
                   className="w-1/2"
-                  isDisabled={
-                    !orgAccounts || isOrgAccountsLoading ? true : null
-                  }
+                  isDisabled={!orgAccounts || isOrgAccountsLoading ? true : null}
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
                 >
                   {(orgAccounts || []).map(({ currentState: acc }, index) => (
-                    <option
-                      key={`copy-${acc.email}-${index}`}
-                      value={acc.email}
-                    >
+                    <option key={`copy-${acc.email}-${index}`} value={acc.email}>
                       {acc.email}
                     </option>
                   ))}
                 </OdsSelect>
                 {isOrgAccountsLoading && (
-                  <Loading
-                    className="flex justify-center"
-                    size={ODS_SPINNER_SIZE.sm}
-                  />
+                  <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                 )}
               </div>
             </OdsFormField>
