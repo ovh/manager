@@ -58,5 +58,11 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "A sua instância {{ name }} vai ser suspensa. Os recursos dedicados à sua instância Public Cloud serão libertados, mas o seu IP será conservado. Os dados do seu disco local serão armazenados, e apenas será faturado o armazenamento utilizado (1). A duração da operação depende do tamanho do seu disco local. Poderá reativar a sua instância a qualquer momento.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Atenção: Para as instâncias com faturação mensal, a faturação clássica continuará a ser aplicada independentemente do estado do serviço.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Esta ação não está disponível para a sua instância {{ name }}",
-  "pci_instances_actions_instance_success_message": "O estado da sua instância {{ name }} foi atualizado"
+  "pci_instances_actions_instance_success_message": "O estado da sua instância {{ name }} foi atualizado",
+  "pci_instances_actions_backup_instance_distant_label": "Adicionar um backup remoto (opcional)",
+  "pci_instances_actions_backup_instance_distant_name_label": "Nome do backup remoto",
+  "pci_instances_actions_backup_instance_distant_region_label": "Selecione uma localização",
+  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup será faturado: ~{{price}} €/mês por GB + IVA",
+  "pci_instances_actions_backup_instance_region_enable_warning": "A localização escolhida não está ativada. Ao clicar em \"Confirmar\", será adicionado ao seu projeto.",
+  "pci_instances_actions_backup_instance_with_distant_success_message": "O backup {{ name }} está a ser criado. Uma vez criado este backup local, procederemos à criação do backup remoto designado {{ distantName }}. Para visualizar o estado e os detalhes da operação, aceda à página <InstanceBackupLink> Instance Backup</InstanceBackupLink>. Se o backup não for apresentado imediatamente, não hesite em atualizar a página para obter a lista mais recente."
 }
