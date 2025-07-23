@@ -1,13 +1,9 @@
 import React, { Fragment, useMemo } from 'react';
-import {
-  LinkType,
-  Links,
-  IconLinkAlignmentType,
-  Subtitle,
-  Clipboard,
-} from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+
 import { useLocation, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
   ODS_BADGE_COLOR,
   ODS_BUTTON_VARIANT,
@@ -17,38 +13,35 @@ import {
   ODS_TEXT_PRESET,
   JSX as Ods,
 } from '@ovhcloud/ods-components';
-import {
-  OdsBadge,
-  OdsButton,
-  OdsIcon,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsButton, OdsIcon, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
+
 import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useGenerateUrl } from '@/hooks';
+  Clipboard,
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import {
   GuideLink,
   Loading,
+  TabItemProps,
   TabsPanel,
   activatedTabs,
   useComputePathMatchers,
-  TabItemProps,
 } from '@/components';
-import { urls } from '@/routes/routes.constants';
-import { useDomainDiagnostic } from '@/data/hooks';
 import {
-  DomainDiagnosisTestStatusEnum,
   DomainDiagnosisTestResult,
+  DomainDiagnosisTestStatusEnum,
   ExpectedDNSConfig,
 } from '@/data/api';
-import { DnsRecordType } from '@/utils/dnsconfig.constants';
-import { Guide, GUIDES_LIST } from '@/guides.constants';
-import { FEATURE_FLAGS } from '@/utils';
+import { useDomainDiagnostic } from '@/data/hooks';
+import { GUIDES_LIST, Guide } from '@/guides.constants';
+import { useGenerateUrl } from '@/hooks';
+import { urls } from '@/routes/routes.constants';
 import {
   AUTO_CONFIGURE_DOMAIN,
   BACK_PREVIOUS_PAGE,
@@ -59,14 +52,14 @@ import {
   DOMAIN_DIAGNOSTICS_SPF,
   DOMAIN_DIAGNOSTICS_SRV,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
+import { DnsRecordType } from '@/utils/dnsconfig.constants';
 
 const isDiagnosticError = (diagnostic: DomainDiagnosisTestResult) => {
   return diagnostic && diagnostic?.status !== DomainDiagnosisTestStatusEnum.OK;
 };
 
-const getStatusBadgeColor = (
-  status: DomainDiagnosisTestStatusEnum,
-): ODS_BADGE_COLOR => {
+const getStatusBadgeColor = (status: DomainDiagnosisTestStatusEnum): ODS_BADGE_COLOR => {
   switch (status) {
     case DomainDiagnosisTestStatusEnum.OK:
       return ODS_BADGE_COLOR.success;
@@ -95,21 +88,12 @@ const StatusBadge = ({ status, ...props }: StatusBadgeProps) => {
   );
 };
 
-const TabTitle = ({
-  title,
-  hasError,
-}: {
-  title: string;
-  hasError?: boolean;
-}) => {
+const TabTitle = ({ title, hasError }: { title: string; hasError?: boolean }) => {
   return (
     <>
       {title}
       {hasError && (
-        <OdsIcon
-          className="diag-dns-icon ml-4"
-          name={ODS_ICON_NAME.hexagonExclamation}
-        />
+        <OdsIcon className="diag-dns-icon ml-4" name={ODS_ICON_NAME.hexagonExclamation} />
       )}
     </>
   );
@@ -131,17 +115,13 @@ const useDNSRecordConfigHelp = ({
             <tr key={target}>
               <td>
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  <strong className="mr-4">
-                    {t('zimbra_domain_diagnostic_field_priority')}
-                  </strong>
+                  <strong className="mr-4">{t('zimbra_domain_diagnostic_field_priority')}</strong>
                   {priority}
                 </OdsText>
               </td>
               <td>
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  <strong className="mr-4">
-                    {t('zimbra_domain_diagnostic_field_target')}
-                  </strong>
+                  <strong className="mr-4">{t('zimbra_domain_diagnostic_field_target')}</strong>
                 </OdsText>
                 <Clipboard value={target.toString()} />
               </td>
@@ -154,9 +134,7 @@ const useDNSRecordConfigHelp = ({
         <tr key="spf">
           <td>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              <strong className="mr-4">
-                {t('zimbra_domain_diagnostic_field_value')}
-              </strong>
+              <strong className="mr-4">{t('zimbra_domain_diagnostic_field_value')}</strong>
             </OdsText>
             <Clipboard value={expectedDNSConfig?.spf} />
           </td>
@@ -167,17 +145,13 @@ const useDNSRecordConfigHelp = ({
         <Fragment key={cname?.name}>
           <tr key={`CNAME ${index + 1}`}>
             <td>
-              <OdsText preset={ODS_TEXT_PRESET.heading5}>
-                {`CNAME ${index + 1}`}
-              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.heading5}>{`CNAME ${index + 1}`}</OdsText>
             </td>
           </tr>
           <tr key={cname?.name}>
             <td>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                <strong className="mr-4">
-                  {t('zimbra_domain_diagnostic_field_subdomain')}
-                </strong>
+                <strong className="mr-4">{t('zimbra_domain_diagnostic_field_subdomain')}</strong>
               </OdsText>
               <Clipboard value={cname?.name} />
             </td>
@@ -185,9 +159,7 @@ const useDNSRecordConfigHelp = ({
           <tr key={cname?.value}>
             <td>
               <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                <strong className="mr-4">
-                  {t('zimbra_domain_diagnostic_field_value')}
-                </strong>
+                <strong className="mr-4">{t('zimbra_domain_diagnostic_field_value')}</strong>
               </OdsText>
               <Clipboard value={cname?.value} />
             </td>
@@ -224,35 +196,23 @@ const TabContent = ({
 
   if (!diagnostic) {
     return (
-      <OdsMessage
-        className="md:w-1/2"
-        isDismissible={false}
-        color={ODS_MESSAGE_COLOR.danger}
-      >
+      <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
         {t('zimbra_domain_diagnostic_loading_error')}
       </OdsMessage>
     );
   }
 
-  const isOk =
-    diagnostic && diagnostic.status === DomainDiagnosisTestStatusEnum.OK;
+  const isOk = diagnostic && diagnostic.status === DomainDiagnosisTestStatusEnum.OK;
   const [error] = diagnostic.errors;
 
   return (
-    <div
-      className="flex flex-col gap-4 md:w-1/2"
-      data-testid={`tab-content-${recordType}`}
-    >
+    <div className="flex flex-col gap-4 md:w-1/2" data-testid={`tab-content-${recordType}`}>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         <strong>{t('zimbra_domain_diagnostic_status')}</strong>
         <StatusBadge className="ml-4" status={diagnostic.status} />
       </OdsText>
       {!isOk && (
-        <OdsMessage
-          className="w-full"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.warning}
-        >
+        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
           {t(
             `zimbra_domain_diagnostic_information_banner_${recordType.toLowerCase()}_${diagnostic?.status.toLowerCase()}`,
           )}
@@ -270,12 +230,7 @@ const TabContent = ({
       </OdsText>
       {!isOk && (
         <>
-          {guide && (
-            <GuideLink
-              label={t('zimbra_domain_diagnostic_access_guide')}
-              guide={guide}
-            />
-          )}
+          {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
             <OdsButton
               label={t('zimbra_domain_diagnostic_cta_auto_configure')}
@@ -294,13 +249,9 @@ const TabContent = ({
                 <tr key="type">
                   <td>
                     <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      <strong className="mr-4">
-                        {t('zimbra_domain_diagnostic_type')}
-                      </strong>
+                      <strong className="mr-4">{t('zimbra_domain_diagnostic_type')}</strong>
                       <OdsText preset={ODS_TEXT_PRESET.span}>
-                        {recordType === DnsRecordType.DKIM
-                          ? 'CNAME'
-                          : recordType}
+                        {recordType === DnsRecordType.DKIM ? 'CNAME' : recordType}
                       </OdsText>
                     </OdsText>
                   </td>
@@ -421,13 +372,13 @@ export const DomainDiagnostics = () => {
 
   const currentTab = useMemo(
     () =>
-      tabsList.find((tab) => activatedTabs(tab.pathMatchers, location))
-        ?.component || tabsList[0].component,
+      tabsList.find((tab) => activatedTabs(tab.pathMatchers, location))?.component ||
+      tabsList[0].component,
     [location, domain, isFetching, tabsList],
   );
 
-  const handleRefreshClick = () => {
-    refreshDiagnostic();
+  const handleRefreshClick = async () => {
+    await refreshDiagnostic();
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,
@@ -437,10 +388,7 @@ export const DomainDiagnostics = () => {
   };
 
   return (
-    <div
-      className="flex flex-col w-full gap-4"
-      data-testid="domain-diagnostic-page"
-    >
+    <div className="flex flex-col w-full gap-4" data-testid="domain-diagnostic-page">
       <Links
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
@@ -476,11 +424,7 @@ export const DomainDiagnostics = () => {
       </div>
       {isFetching && !isError && <Loading />}
       {!isFetching && isError && (
-        <OdsMessage
-          className="md:w-1/2"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.danger}
-        >
+        <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
           {t('zimbra_domain_diagnostics_loading_error')}
         </OdsMessage>
       )}

@@ -1,29 +1,25 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ActionMenu,
   ActionMenuProps,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
 import { SlotWithService, usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
+import { CANCEL_SLOT, CONFIGURE_SLOT, UNDO_CANCEL_SLOT, UPGRADE_SLOT } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import {
-  CANCEL_SLOT,
-  CONFIGURE_SLOT,
-  UNDO_CANCEL_SLOT,
-  UPGRADE_SLOT,
-} from '@/tracking.constants';
-import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
 
 interface ActionButtonSlotProps {
   item: SlotWithService;
@@ -35,9 +31,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const { proCount } = useAccountsStatistics();
-  const { data: availability } = useFeatureAvailability([
-    FEATURE_AVAILABILITY.PRO_BETA,
-  ]);
+  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
 
   const hrefConfigureSlot = useGenerateUrl('./add', 'path', {
     slotId: item.id,
@@ -65,10 +59,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
     navigate(hrefCancelSlot);
   };
 
-  const hrefUndoCancelSlot = useGenerateUrl(
-    `./slot/${item.id}/undo_cancel`,
-    'path',
-  );
+  const hrefUndoCancelSlot = useGenerateUrl(`./slot/${item.id}/undo_cancel`, 'path');
 
   const handleUndoCancelSlotClick = () => {
     trackClick({
@@ -80,10 +71,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
     navigate(hrefUndoCancelSlot);
   };
 
-  const hrefUpgradeEmailAccount = useGenerateUrl(
-    `./slot/${item?.id}/upgrade`,
-    'path',
-  );
+  const hrefUpgradeEmailAccount = useGenerateUrl(`./slot/${item?.id}/upgrade`, 'path');
 
   const handleUpgradeEmailClick = () => {
     trackClick({
@@ -142,12 +130,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
   }
 
   return (
-    <ActionMenu
-      id={item.id}
-      items={actionItems}
-      variant={ODS_BUTTON_VARIANT.ghost}
-      isCompact
-    />
+    <ActionMenu id={item.id} items={actionItems} variant={ODS_BUTTON_VARIANT.ghost} isCompact />
   );
 };
 

@@ -1,7 +1,9 @@
 import React from 'react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 export interface LabelChipProps {
   id: string;

@@ -1,32 +1,28 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import { DELETE_DOMAIN, DOMAIN_DIAGNOSTICS, EDIT_DOMAIN } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
-import {
-  DELETE_DOMAIN,
-  DOMAIN_DIAGNOSTICS,
-  EDIT_DOMAIN,
-} from '@/tracking.constants';
+
 import { DomainItem } from './Domains.types';
 
 interface ActionButtonDomainProps {
   item: DomainItem;
 }
 
-export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
-  item,
-}) => {
+export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({ item }) => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();

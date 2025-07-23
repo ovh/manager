@@ -1,27 +1,16 @@
 import React, { useEffect } from 'react';
-import {
-  IconLinkAlignmentType,
-  LinkType,
-  Links,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet, useMatches, useNavigate, useParams } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useTranslation } from 'react-i18next';
+
+import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { Loading, TabItemProps, TabsPanel, useComputePathMatchers } from '@/components';
 import { useAccount } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import {
-  Loading,
-  TabsPanel,
-  useComputePathMatchers,
-  TabItemProps,
-} from '@/components';
 import { urls } from '@/routes/routes.constants';
-import { FEATURE_FLAGS } from '@/utils';
 import {
   BACK_PREVIOUS_PAGE,
   EDIT_EMAIL_ACCOUNT,
@@ -29,6 +18,7 @@ import {
   EMAIL_ACCOUNT_AUTO_REPLY,
   EMAIL_ACCOUNT_REDIRECTION,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const EmailAccountSettingsLayout = () => {
   const { trackClick } = useOvhTracking();
@@ -37,8 +27,7 @@ export const EmailAccountSettingsLayout = () => {
   const navigate = useNavigate();
   const { accountId } = useParams();
   const goBackUrl = useGenerateUrl(
-    matches.find((m) => m.pathname.endsWith('email_accounts'))?.pathname ||
-      '..',
+    matches.find((m) => m.pathname.endsWith('email_accounts'))?.pathname || '..',
     'href',
   );
 
@@ -120,10 +109,7 @@ export const EmailAccountSettingsLayout = () => {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          <div
-            className="flex flex-col items-start space-y-4 mb-6"
-            data-testid="page-title"
-          >
+          <div className="flex flex-col items-start space-y-4 mb-6" data-testid="page-title">
             <Links
               iconAlignment={IconLinkAlignmentType.left}
               type={LinkType.back}

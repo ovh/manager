@@ -1,25 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  ActionMenu,
-  useFeatureAvailability,
-} from '@ovh-ux/manager-react-components';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu, useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { ResourceStatus, ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import {
-  ResourceStatus,
-  ServiceBillingState,
-  ZimbraPlanCodes,
-} from '@/data/api';
 import {
   CANCEL_SLOT,
   DELETE_EMAIL_ACCOUNT,
@@ -28,24 +22,21 @@ import {
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
 } from '@/tracking.constants';
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { EmailAccountItem } from './EmailAccounts.types';
 
 interface ActionButtonEmailAccountProps {
   item: EmailAccountItem;
 }
 
-export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> = ({
-  item,
-}) => {
+export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> = ({ item }) => {
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const { proCount } = useAccountsStatistics();
-  const { data: availability } = useFeatureAvailability([
-    FEATURE_AVAILABILITY.PRO_BETA,
-  ]);
+  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
 
   const hrefEditEmailAccount = useGenerateUrl(`./${item.id}/settings`, 'path');
 
@@ -59,10 +50,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefEditEmailAccount);
   };
 
-  const hrefEmailAccountAliases = useGenerateUrl(
-    `./${item.id}/aliases`,
-    'path',
-  );
+  const hrefEmailAccountAliases = useGenerateUrl(`./${item.id}/aliases`, 'path');
 
   const handleEmailAliasesClick = () => {
     trackClick({
@@ -98,10 +86,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefCancelSlot);
   };
 
-  const hrefUndoCancelSlot = useGenerateUrl(
-    `./slot/${item.slotId}/undo_cancel`,
-    'path',
-  );
+  const hrefUndoCancelSlot = useGenerateUrl(`./slot/${item.slotId}/undo_cancel`, 'path');
 
   const handleUndoCancelSlotClick = () => {
     trackClick({
@@ -113,10 +98,7 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefUndoCancelSlot);
   };
 
-  const hrefUpgradeEmailAccount = useGenerateUrl(
-    `./slot/${item?.slotId}/upgrade`,
-    'path',
-  );
+  const hrefUpgradeEmailAccount = useGenerateUrl(`./slot/${item?.slotId}/upgrade`, 'path');
 
   const handleUpgradeEmailClick = () => {
     trackClick({

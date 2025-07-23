@@ -1,56 +1,48 @@
 import React, { useMemo } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, usePlatform, useOrganizations } from '@/data/hooks';
-import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
-import ActionButtonDomain from './ActionButton.component';
-import { LabelChip, BadgeStatus } from '@/components';
-import { CnameBadge } from './CnameBadge.component';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import { AccountStatistics, ResourceStatus, DomainType } from '@/data/api';
+import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { BadgeStatus, LabelChip } from '@/components';
+import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
+import { useDomains, useOrganizations, usePlatform } from '@/data/hooks';
+import { useDebouncedValue, useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_DOMAIN } from '@/tracking.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButtonDomain from './ActionButton.component';
+import { CnameBadge } from './CnameBadge.component';
 import { DomainItem } from './Domains.types';
 
 const columns: DatagridColumn<DomainItem>[] = [
   {
     id: 'domains',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
     label: 'common:domain',
     isSearchable: true,
   },
   {
     id: 'organization',
-    cell: (item) => (
-      <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-    ),
+    cell: (item) => <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>,
     label: 'common:organization',
   },
   {
     id: 'account',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.account}</OdsText>,
     label: 'common:number_of_accounts',
   },
   {
@@ -77,12 +69,8 @@ export const Domains = () => {
   const navigate = useNavigate();
   const isOverridedPage = useOverridePage();
 
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
 
   const {
     data: domains,
@@ -122,8 +110,7 @@ export const Domains = () => {
         organizationId: item.currentState?.organizationId,
         organizationLabel: item.currentState?.organizationLabel,
         account: item.currentState?.accountsStatistics.reduce(
-          (acc: number, current: AccountStatistics) =>
-            acc + current.configuredAccountsCount,
+          (acc: number, current: AccountStatistics) => acc + current.configuredAccountsCount,
           0,
         ),
         status: item.resourceStatus,
@@ -154,10 +141,7 @@ export const Domains = () => {
                 />
               </div>
               {(isLoading || organizations?.length === 0) && (
-                <OdsTooltip
-                  role="tooltip"
-                  triggerId={'tooltip-trigger-domain-btn'}
-                >
+                <OdsTooltip role="tooltip" triggerId={'tooltip-trigger-domain-btn'}>
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                     {t('zimbra_domains_tooltip_need_organization')}
                   </OdsText>

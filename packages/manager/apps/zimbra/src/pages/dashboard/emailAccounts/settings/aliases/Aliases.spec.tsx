@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import Aliases from './Aliases.page';
-import { render, waitFor } from '@/utils/test.provider';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render, waitFor } from '@/utils/test.provider';
+
+import Aliases from './Aliases.page';
 
 describe('Aliases page', () => {
   it('Page should display correctly', async () => {
