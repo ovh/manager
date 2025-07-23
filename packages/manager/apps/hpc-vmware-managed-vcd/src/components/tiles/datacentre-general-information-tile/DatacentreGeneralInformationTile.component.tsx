@@ -13,6 +13,7 @@ import {
   useOvhTracking,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
@@ -26,6 +27,7 @@ import { capitalize } from '@/utils/capitalize';
 import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -40,6 +42,11 @@ export default function DatacentreGenerationInformationTile({
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+  const { data: featuresAvailable } = useFeatureAvailability([
+    FEATURE_FLAGS.VRACK,
+  ]);
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
+
   const { data: urlVrack } = useNavigationGetUrl([
     DEDICATED_PATH,
     `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack ||
@@ -122,7 +129,7 @@ export default function DatacentreGenerationInformationTile({
             />
           ),
         },
-        {
+        isVrackFeatureAvailable && {
           id: 'vRack',
           label: VRACK_LABEL,
           value: (
@@ -151,7 +158,7 @@ export default function DatacentreGenerationInformationTile({
           label: ID_LABEL,
           value: <Clipboard value={vcdDatacentre?.id} className="w-full" />,
         },
-      ]}
+      ].filter(Boolean)}
     />
   );
 }
