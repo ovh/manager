@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
 import App from './App';
+import appConfig from '@/hpc-vmware-vsphere.config';
 import './vite-hmr';
 import './index.scss';
 
@@ -48,4 +49,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('hpc-vmware-vsphere');
+init(appConfig.appName);

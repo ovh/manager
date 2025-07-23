@@ -1,5 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet, NavLink, useResolvedPath, useParams } from 'react-router-dom';
+import {
+  Outlet,
+  NavLink,
+  useResolvedPath,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
 import {
   OdsTabs,
   OdsTab,
@@ -14,15 +20,16 @@ import {
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 
-import { useMemo } from 'react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import appConfig from '@/hpc-vmware-vsphere.config';
 
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { VSPHERE_CHANGELOGS_LINKS } from './dashboard.constants';
-import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { useActivePanel } from '@/hooks/useActivePanel';
+import { HybridBreadcrumbItem } from '@/hooks/breadcrumb/HybridBreadcrumbItem';
 import { DashboardTabItem } from '@/types/DashboardTabItem';
+
+import { useActivePanel } from '@/hooks/useActivePanel';
+import useGuideUtils from '@/hooks/guide/useGuideUtils';
+import { useHybridBreadcrumb } from '@/hooks/breadcrumb/useHybridBreadcrumb';
 import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
 
 export type DashboardLayoutProps = {
@@ -31,17 +38,22 @@ export type DashboardLayoutProps = {
 
 export default function DashboardPage() {
   const { serviceName } = useParams();
+  const navigate = useNavigate();
+
   const { data: vmwareVsphere, isLoading: isLoadingVsphere } = useVmwareVsphere(
     serviceName,
   );
 
-  const serviceDescription = vmwareVsphere?.data?.description ?? serviceName;
+  const service = {
+    name: serviceName,
+    description: vmwareVsphere?.data?.description ?? serviceName,
+  };
 
   const guides = useGuideUtils();
 
   const { t } = useTranslation('dashboard');
 
-  const { legacyApplication, legacyPath, dedicatedCloudsTitle } = appConfig;
+  const { legacyApplication, legacyPath, dedicatedCloudTitle } = appConfig;
 
   const { data: legacyAppBaseUrl } = useNavigationGetUrl([
     legacyApplication,
@@ -49,7 +61,7 @@ export default function DashboardPage() {
     {},
   ]) as { data: string };
 
-  const legacyAppServiceBaseUrl = `${legacyAppBaseUrl}/${serviceName}`;
+  const legacyAppServiceBaseUrl = `${legacyAppBaseUrl}/${service.name}`;
 
   const tabsList: DashboardTabItem[] = [
     {
@@ -99,7 +111,7 @@ export default function DashboardPage() {
   const activePanel = useActivePanel(tabsList);
 
   const header: HeadersProps = {
-    title: serviceDescription,
+    title: service.description,
     changelogButton: <ChangelogButton links={VSPHERE_CHANGELOGS_LINKS} />,
     headerButton: (
       <GuideButton
@@ -127,26 +139,12 @@ export default function DashboardPage() {
     ),
   };
 
-  const breadcrumbItems: BreadcrumbItem[] = useMemo(() => {
-    return [
-      {
-        label: dedicatedCloudsTitle,
-        href: legacyAppBaseUrl,
-      },
-      {
-        label: serviceDescription,
-        href: legacyAppServiceBaseUrl,
-      },
-      ...(activePanel
-        ? [
-            {
-              label: activePanel.title,
-              href: activePanel.to,
-            },
-          ]
-        : []),
-    ];
-  }, [activePanel, legacyAppServiceBaseUrl]);
+  const breadcrumbItems: HybridBreadcrumbItem[] = useHybridBreadcrumb({
+    appName: dedicatedCloudTitle,
+    service,
+    legacyAppBaseUrl,
+    activePanel,
+  });
 
   if (isLoadingVsphere) {
     return (
@@ -159,11 +157,12 @@ export default function DashboardPage() {
   return (
     <BaseLayout
       breadcrumb={
-        <OdsBreadcrumb>
+        <OdsBreadcrumb data-testid="breadcrumb">
           {breadcrumbItems?.map((item) => (
             <OdsBreadcrumbItem
               key={item.label}
               href={item.href}
+              onOdsClick={() => navigate(item.to)}
               label={item.label}
             />
           ))}

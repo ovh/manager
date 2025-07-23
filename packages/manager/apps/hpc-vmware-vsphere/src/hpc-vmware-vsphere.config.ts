@@ -1,4 +1,5 @@
 export default {
+  appName: 'hpc-vmware-vsphere',
   listing: {
     datagrid: {
       serviceKey: 'vmware-vsphere',
@@ -7,5 +8,5 @@ export default {
   rootLabel: 'hpc-vmware-vsphere',
   legacyApplication: 'dedicated',
   legacyPath: 'dedicated_cloud',
-  dedicatedCloudsTitle: 'Hosted Private Cloud',
+  dedicatedCloudTitle: 'Hosted Private Cloud',
 };
