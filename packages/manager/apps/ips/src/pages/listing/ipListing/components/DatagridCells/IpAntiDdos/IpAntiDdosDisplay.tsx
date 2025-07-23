@@ -32,7 +32,7 @@ export const IpAntiDdosDisplay = ({
 
   return (
     <>
-      {enabled && !ipMitigation && (
+      {enabled && Object.keys(ipMitigation).length === 0 && (
         <BadgeCell
           badgeColor={ODS_BADGE_COLOR.neutral}
           text={t('listingColumnsIpAntiDDosAutomatic')}
@@ -40,7 +40,7 @@ export const IpAntiDdosDisplay = ({
           trigger={id}
         />
       )}
-      {enabled && !!ipMitigation && (
+      {enabled && Object.keys(ipMitigation).length > 0 && (
         <div key={ipMitigation.ipOnMitigation}>
           {ipMitigation.state === IpMitigationStateEnum.OK &&
             ipMitigation.permanent && (
@@ -60,7 +60,7 @@ export const IpAntiDdosDisplay = ({
                 trigger={id}
               />
             )}
-          {!!ipMitigation &&
+          {Object.keys(ipMitigation).length > 0 &&
             ipMitigation.state !== IpMitigationStateEnum.OK && (
               <BadgeCell
                 badgeColor={ODS_BADGE_COLOR.warning}
