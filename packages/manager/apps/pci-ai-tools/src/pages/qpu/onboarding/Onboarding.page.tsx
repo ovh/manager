@@ -24,7 +24,7 @@ const Onboarding = () => {
       <div className="w-full text-right">
         {!isQuantum && <Guides section={notebookGuidesSections} />}
       </div>
-      <h2>{t('title')}</h2>
+      <h2>{t('title')}</h2> hiiiii in the QPU onboarding page
       <img
         src={isQuantum ? onboardingQuantumImgSrc : onboardingImgSrc}
         className="max-h-[250px]"

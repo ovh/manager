@@ -5,18 +5,12 @@ import Guides from '@/components/guides/Guides.component';
 import NotebooksList from './_components/NotebooksListTable.component';
 import { notebookGuidesSections } from '@/configuration/guide';
 import { useGetNotebooks } from '@/data/hooks/ai/notebook/useGetNotebooks.hook';
-import queryClient from '@/query.client';
-import { getNotebooks } from '@/data/api/ai/notebook/notebook.api';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import {
   EmulatorRoadmapLinks,
   NotebookRoadmapLinks,
 } from '@/configuration/roadmap-changelog.constants';
-import {
-  getFramework,
-  getRegions,
-} from '@/data/api/ai/capabilities/capabilities.api';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
@@ -29,34 +23,11 @@ interface NotebooksProps {
 }
 
 export const Loader = async ({ params }: NotebooksProps) => {
-  const { projectId, quantum } = params;
-  const regions = await queryClient.fetchQuery({
-    queryKey: [projectId],
-    queryFn: () => getRegions({ projectId }),
-  });
-  const notebooks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai', 'notebook'],
-    queryFn: () => getNotebooks({ projectId }),
-  });
-  const fmks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai', 'capabilities', regions[0].id, 'framework'],
-    queryFn: () => getFramework({ projectId, region: regions[0].id }),
-  });
-  const filterFmkIds = fmks
-    .filter((fmk) =>
-      quantum === 'quantum' ? fmk.type === 'Quantum' : fmk.type === 'AI',
-    )
-    .map((fwk) => fwk.id);
+  const { projectId } = params;
 
-  if (
-    notebooks.filter((nb) => filterFmkIds.includes(nb.spec.env.frameworkId))
-      .length === 0
-  ) {
-    return quantum === 'quantum'
-      ? redirect(
-          `/pci/projects/${projectId}/ai-ml/quantum/notebooks/onboarding`,
-        )
-      : redirect(`/pci/projects/${projectId}/ai-ml/notebooks/onboarding`);
+  const qpu = 0; // Replace with actual logic to determine if QPU is available
+  if (qpu === 0) {
+    return redirect(`/pci/projects/${projectId}/ai-ml/quantum/qpu/onboarding`);
   }
   return null;
 };

@@ -677,6 +677,203 @@ export default [
               },
             ],
           },
+
+          // QPU
+          {
+            path: ':quantum/qpu',
+            ...lazyRouteConfig(() => import('@/pages/qpu/NotebookRoot.layout')),
+            children: [
+              {
+                path: '',
+                id: 'qpu',
+                ...lazyRouteConfig(() => import('@/pages/qpu/Qpus.page')),
+                children: [
+                  {
+                    path: 'start/:notebookId',
+                    id: 'qpu.start',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpu/start/Start.modal'),
+                    ),
+                  },
+                  {
+                    path: 'stop/:notebookId',
+                    id: 'qpu.stop',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpu/stop/Stop.modal'),
+                    ),
+                  },
+                  {
+                    path: 'delete/:notebookId',
+                    id: 'qpu.delete',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpu/delete/Delete.modal'),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: 'onboarding',
+                id: 'onboarding-qpu',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/qpu/onboarding/Onboarding.page'),
+                ),
+              },
+              {
+                path: 'new',
+                id: 'qpu.create',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/qpu/create/Create.page'),
+                ),
+                children: [
+                  {
+                    path: 'add-sshkey',
+                    id: 'qpu.create.add-sshkey',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/_components/AddSSHKey.modal'),
+                    ),
+                  },
+                ],
+              },
+              {
+                path: ':notebookId',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/qpu/[notebookId]/Notebook.layout'),
+                ),
+                children: [
+                  {
+                    path: '',
+                    id: 'qpu.qpu.dashboard',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/qpu/[notebookId]/dashboard/Dashboard.page'
+                      ),
+                    ),
+                    children: [
+                      {
+                        path: 'delete',
+                        id: 'qpu.qpu.dashboard.delete',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/dashboard/delete/Delete.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-flavor',
+                        id: 'qpu.qpu.dashboard.update-flavor',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                  {
+                    path: 'containers',
+                    id: 'qpu.notebook.containers',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/qpu/[notebookId]/containers/Containers.page'
+                      ),
+                    ),
+                    children: [
+                      {
+                        path: 'data-sync',
+                        id: 'qpu.notebook.containers.data-sync',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/containers/dataSync/DataSync.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'add-container',
+                        id: 'qpu.qpu.container.add',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/containers/addVolume/AddVolume.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'delete/:volumeId?',
+                        id: 'qpu.qpu.container.delete',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'data-sync/:volumeId?',
+                        id: 'qpu.qpu.containers.data-sync.volume',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/containers/dataSync/DataSync.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                  {
+                    path: 'public-git',
+                    id: 'qpu.qpu.public-git',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/qpu/[notebookId]/public-git/PublicGit.page'
+                      ),
+                    ),
+                    children: [
+                      {
+                        path: 'add-public-git',
+                        id: 'qpu.qpu.public-git.add',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/public-git/addVolume/AddVolume.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'delete/:volumeId?',
+                        id: 'qpu.qpu.public-git.delete',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                  {
+                    path: 'logs',
+                    id: 'qpu.qpu.logs',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpu/[notebookId]/logs/Logs.page'),
+                    ),
+                  },
+                  {
+                    path: 'backups',
+                    id: 'qpu.qpu.backups',
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpu/[notebookId]/backups/Backups.page'),
+                    ),
+                    children: [
+                      {
+                        path: 'fork/:backupId?',
+                        id: 'qpu.qpu.backups.fork',
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/pages/qpu/[notebookId]/backups/fork/Fork.modal'
+                          ),
+                        ),
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     ],
