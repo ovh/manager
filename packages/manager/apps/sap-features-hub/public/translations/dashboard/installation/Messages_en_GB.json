@@ -1,0 +1,22 @@
+{
+  "dashboard_installation_title": "SAP Preinstallation Wizard",
+  "dashboard_installation_description": "Installation Report",
+  "dashboard_installation_general_informations": "General information",
+  "dashboard_installation_item_start_date": "Launch date",
+  "dashboard_installation_item_end_date": "End date",
+  "dashboard_installation_item_application_version": "Application version",
+  "dashboard_installation_item_application_type": "Application type",
+  "dashboard_installation_item_deployment_type": "Deployment type",
+  "dashboard_installation_progress_step_initialisation": "Initializing temporary resources in your infrastructure",
+  "dashboard_installation_progress_step_create_virtuals_machines": "Creating virtual machines",
+  "dashboard_installation_progress_step_sap_hana_install": "Installing SAP HANA and configuring the requested options",
+  "dashboard_installation_progress_step_sap_install": "Installing the SAP system and configuring the requested options",
+  "dashboard_installation_progress_step_clean_resources": "Delete temporary resources in your infrastructure",
+  "dashboard_installation_progress_step_success": "Step completed successfully",
+  "dashboard_installation_progress_step_failure": "Step failed",
+  "dashboard_installation_progress_step_pending": "Executing step",
+  "dashboard_installation_progress_step_waiting": "Pending step",
+  "dashboard_installation_progress_status_label": "Installation status",
+  "dashboard_installation_error_message": "Error at step \"{{stepName}}\". More details below.",
+  "dashboard_installation_go_back_to_list": "Back to the list of SAP pre-installations"
+}
