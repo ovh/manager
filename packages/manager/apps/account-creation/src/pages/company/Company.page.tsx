@@ -51,7 +51,7 @@ export default function CompanyPage() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<SearchFormData>({
     defaultValues: {
       search: '',
     },

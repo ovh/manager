@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -14,9 +14,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LegalForm } from '@ovh-ux/manager-config';
 import { useUserContext } from '@/context/user/useUser';
 import { useLegalFormRules } from '@/data/hooks/useRules';
-import {
-  AVERAGE_NUMBER_OF_LEGAL_FORMS,
-} from './accountType.constants';
+import { AVERAGE_NUMBER_OF_LEGAL_FORMS } from './accountType.constants';
 import AccountTypeTooltipContent from './tooltip-content/TooltipContent.component';
 import { urls } from '@/routes/routes.constant';
 
@@ -25,28 +23,22 @@ export default function AccountType() {
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const navigate = useNavigate();
-  const { ovhSubsidiary, country, setLegalForm } = useUserContext();
+  const { ovhSubsidiary, country, legalForm, setLegalForm } = useUserContext();
   const { data: rule, isLoading } = useLegalFormRules({
     ovhSubsidiary,
     country,
   });
-  const [selectedLegalForm, setSelectedLegalForm] = useState<LegalForm | null>(
-    null,
-  );
   const [legalFormError, setLegalFormError] = useState<boolean>(false);
 
-  const validateStep = () => {
-    if (selectedLegalForm === null) {
+  const validateStep = useCallback(() => {
+    if (!legalForm) {
       setLegalFormError(true);
+    } else if (country === 'FR' && legalForm !== 'individual') {
+      navigate(urls.company);
     } else {
-      setLegalForm(selectedLegalForm);
-      if (country === 'FR' && selectedLegalForm !== 'individual') {
-        navigate(urls.company);
-      } else {
-        navigate(urls.accountDetails);
-      }
+      navigate(urls.accountDetails);
     }
-  };
+  }, [legalForm, country]);
 
   return (
     <>
@@ -92,9 +84,7 @@ export default function AccountType() {
                       isDisabled={true}
                       className="contents sm:inline-flex"
                     ></OdsRadio>
-                    <OdsSkeleton
-                      className="w-[11ch] h-5 content-center"
-                    />
+                    <OdsSkeleton className="w-[11ch] h-5 content-center" />
                   </div>
                 ),
               )}
@@ -113,7 +103,7 @@ export default function AccountType() {
                     name={`legal_form`}
                     value={value}
                     onOdsChange={() => {
-                      setSelectedLegalForm(value as LegalForm);
+                      setLegalForm(value as LegalForm);
                       setLegalFormError(false);
                     }}
                     hasError={legalFormError}

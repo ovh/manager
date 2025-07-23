@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { User } from '@ovh-ux/manager-config';
 import { getHeaders } from '@ovh-ux/request-tagger';
+import { v6 } from '@ovh-ux/manager-core-api';
 
 const baseURL = '/engine/apiv6';
 const endpointPath = '/me';
@@ -15,7 +16,7 @@ const axiosInstance = axios.create({
  *  Get connected user account information
  */
 export const getMe = async (): Promise<User> => {
-  const { data } = await axiosInstance.get<User>(endpointPath);
+  const { data } = await v6.get<User>(endpointPath);
   return data;
 };
 
