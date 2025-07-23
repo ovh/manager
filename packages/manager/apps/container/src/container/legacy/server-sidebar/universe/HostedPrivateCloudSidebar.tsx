@@ -47,6 +47,7 @@ const features = [
   'dedicated-server:nutanixOrder',
   'network-security',
   'key-management-service',
+  'okms:key-management-service',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -361,7 +362,7 @@ export default function HostedPrivateCloudSidebar() {
         />
       );
       menu.push({
-        id: 'identity-security-operations',
+        id: 'identity-security-operations-legacy',
         label: t('sidebar_security_identity_operations'),
         icon: (
           <OsdsIcon
@@ -406,6 +407,62 @@ export default function HostedPrivateCloudSidebar() {
         ],
       });
     }
+
+    if (feature['okms:key-management-service']) {
+      const keyIcon = (
+        <OsdsIcon
+          name={ODS_ICON_NAME.KEY_CONCEPT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.text}
+        />
+      );
+      menu.push({
+        id: 'identity-security-operations',
+        label: t('sidebar_security_identity_operations'),
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
+        pathMatcher: new RegExp('^/okms'),
+        subItems: [
+          {
+            id: 'key-management-service',
+            label: t('sidebar_key-management-service'),
+            href: navigation.getURL('okms', '/'),
+            pathMatcher: new RegExp('^/okms'),
+            icon: keyIcon,
+            async loader() {
+              const app = 'okms/key-management-service';
+              const services = await loadServices(
+                '/okms/resource',
+                undefined,
+                app,
+              );
+
+              return [
+                {
+                  id: 'key-management-service-all',
+                  label: t('sidebar_service_all'),
+                  href: navigation.getURL(app, '/'),
+                  ignoreSearch: true,
+                  icon: keyIcon,
+                },
+                ...services.map((service) => ({
+                  ...service,
+                  pathMatcher: new RegExp(
+                    `^/okms/key-management-service/${service.serviceName}`,
+                  ),
+                })),
+              ];
+            },
+          },
+        ],
+      });
+    }
+
     return menu;
   };
 
