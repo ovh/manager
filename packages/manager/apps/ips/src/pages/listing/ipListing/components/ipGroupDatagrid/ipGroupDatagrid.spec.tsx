@@ -32,8 +32,8 @@ const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
 );
 
-const useGetIpMitigationMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipMitigation: undefined, isLoading: true, error: undefined })),
+const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
+  vi.fn(() => ({ ipMitigation: {}, isLoading: true, error: undefined })),
 );
 
 const useGetIpEdgeFirewallMock = vi.hoisted(() =>
@@ -63,7 +63,7 @@ const useGetIpVmacWithIpMock = vi.hoisted(() =>
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
-  useGetIpMitigation: useGetIpMitigationMock,
+  useGetIpMitigationWithoutIceberg: useGetIpMitigationWithoutIcebergMock,
   useGetIpEdgeFirewall: useGetIpEdgeFirewallMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
@@ -172,15 +172,13 @@ describe('IpDatagrid Component', async () => {
       error: false,
       isLoading: false,
     });
-    useGetIpMitigationMock.mockReturnValue({
-      ipMitigation: [
-        {
-          ipOnMitigation: '1.1.1.1',
-          auto: true,
-          permanent: false,
-          state: IpMitigationStateEnum.OK,
-        },
-      ] as IpMitigationType[],
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {
+        ipOnMitigation: '1.1.1.1',
+        auto: true,
+        permanent: false,
+        state: IpMitigationStateEnum.OK,
+      } as IpMitigationType,
       error: false,
       isLoading: false,
     });
