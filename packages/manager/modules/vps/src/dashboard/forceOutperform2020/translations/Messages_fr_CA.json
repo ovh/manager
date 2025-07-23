@@ -1,0 +1,6 @@
+{
+  "vps_dashboard_force_outperform_2020_title": "Activer l'augmentation des ressources",
+  "vps_dashboard_force_outperform_2020_description": "Souhaitez-vous activer l'augmentation des ressources maintenant",
+  "vps_dashboard_force_outperform_2020_success_message": "Votre demande d'augmentation de ressources a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "vps_dashboard_force_outperform_2020_error_message": "Votre demande d'augmentation de ressources n'a pas pu aboutir. {{ error }}"
+}
