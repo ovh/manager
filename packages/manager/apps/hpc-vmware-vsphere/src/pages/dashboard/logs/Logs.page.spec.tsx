@@ -16,6 +16,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+import environment from '@ovh-ux/shell/dist/types/plugin/environment';
 import { FEATURES } from '@/utils/features.constant';
 import { TVMwareVSphere } from '@/types/vsphere';
 import LogsPage from './Logs.page';
@@ -74,6 +75,15 @@ const shellContext = {
   shell: {
     navigation: {
       getURL: vi.fn().mockResolvedValue('https://www.ovh.com/dedicated/'),
+    },
+    environment: {
+      getEnvironment: () => {
+        return {
+          getUser: () => {
+            return { isTrusted: false };
+          },
+        };
+      },
     },
   },
 };
