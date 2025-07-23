@@ -15,13 +15,13 @@ const queryClient = new QueryClient();
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
 );
-const useGetIpMitigationMock = vi.hoisted(() =>
+const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
   vi.fn(() => ({ ipMitigation: undefined, isLoading: true, error: undefined })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
-  useGetIpMitigation: useGetIpMitigationMock,
+  useGetIpMitigationWithoutIceberg: useGetIpMitigationWithoutIcebergMock,
 }));
 
 vi.mock('../SkeletonCell/SkeletonCell', () => ({
@@ -45,8 +45,8 @@ describe('IpAntiDdos Component', async () => {
       ipDetails: ipDetailsList[0],
       isLoading: false,
     });
-    useGetIpMitigationMock.mockReturnValue({
-      ipMitigation: [] as IpMitigationType[],
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {} as IpMitigationType,
       isLoading: false,
       error: undefined,
     });
@@ -70,10 +70,11 @@ describe('IpAntiDdos Component', async () => {
       ipDetails: ipDetailsList[0],
       isLoading: false,
     });
-    useGetIpMitigationMock.mockReturnValue({
-      ipMitigation: [
-        { permanent: true, state: IpMitigationStateEnum.OK },
-      ] as IpMitigationType[],
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {
+        permanent: true,
+        state: IpMitigationStateEnum.OK,
+      } as IpMitigationType,
       isLoading: false,
       error: undefined,
     });
@@ -97,10 +98,11 @@ describe('IpAntiDdos Component', async () => {
       ipDetails: ipDetailsList[0],
       isLoading: false,
     });
-    useGetIpMitigationMock.mockReturnValue({
-      ipMitigation: [
-        { auto: true, state: IpMitigationStateEnum.OK },
-      ] as IpMitigationType[],
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {
+        auto: true,
+        state: IpMitigationStateEnum.OK,
+      } as IpMitigationType,
       isLoading: false,
       error: undefined,
     });
@@ -124,10 +126,10 @@ describe('IpAntiDdos Component', async () => {
       ipDetails: ipDetailsList[0],
       isLoading: false,
     });
-    useGetIpMitigationMock.mockReturnValue({
-      ipMitigation: [
-        { state: IpMitigationStateEnum.CREATION_PENDING },
-      ] as IpMitigationType[],
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {
+        state: IpMitigationStateEnum.CREATION_PENDING,
+      } as IpMitigationType,
       isLoading: false,
       error: undefined,
     });
