@@ -9,7 +9,10 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useGetIpMitigation, useUpdateIpMitigation } from '@/data/hooks/ip';
+import {
+  useGetIpMitigationWithoutIceberg,
+  useUpdateIpMitigation,
+} from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 import Loading from '../../listing/manageOrganisations/components/Loading/Loading';
 
@@ -17,20 +20,27 @@ export default function ManageIpMitigationModal() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { ip, ipGroup } = ipFormatter(fromIdToIp(id));
-  const { ipMitigation, isLoading: isMitigationLoading } = useGetIpMitigation({
+  const {
+    ipMitigation,
+    isLoading: isMitigationLoading,
+  } = useGetIpMitigationWithoutIceberg({
     ip,
   });
-  const { addSuccess, addError } = useNotifications();
+  const { addWarning, addError } = useNotifications();
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS, 'error']);
 
   // If there is no mitigation on IP then its a default mitigation.
-  const isDefaultMitigation = (ipMitigation?.length ?? 0) === 0;
+  const isDefaultMitigation = Object.keys(ipMitigation).length === 0;
   const title = isDefaultMitigation
     ? t('listingManageMitigation_permanent_title')
     : t('listingManageMitigation_auto_title');
   const question = isDefaultMitigation
     ? t('listingManageMitigation_permanent_question', { t0: ip })
     : t('listingManageMitigation_auto_question', { t0: ip });
+
+  const disableConfirm =
+    ipMitigation?.state === 'creationPending' ||
+    ipMitigation?.state === 'removalPending';
 
   // Determine the new mitigation type to set for ip upon confirmation
   // If isDefaultMitigation the new mitigation will be permanent and vice versa
@@ -47,7 +57,7 @@ export default function ManageIpMitigationModal() {
     mitigation,
     onSuccess: () => {
       navigate('..');
-      addSuccess(
+      addWarning(
         isDefaultMitigation
           ? t('listingManageMitigation_permanent_success', { t0: ip })
           : t('listingManageMitigation_auto_success', { t0: ip }),
@@ -90,7 +100,7 @@ export default function ManageIpMitigationModal() {
           <OdsButton
             slot="actions"
             type="button"
-            isDisabled={updateIpMitigationPending}
+            isDisabled={updateIpMitigationPending || disableConfirm}
             label={t('validate', { ns: NAMESPACES.ACTIONS })}
             onClick={confirm}
             data-testid="confirm-button"
