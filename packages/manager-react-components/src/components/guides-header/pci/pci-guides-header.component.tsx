@@ -14,6 +14,9 @@ interface PciGuidesHeaderProps {
   onGuideClick?: (key: string) => void;
 }
 
+/**
+ * @deprecated Use `GuideMenu` component from MRC V3 instead.
+ */
 export function PciGuidesHeader({
   category,
   onGuideClick,
