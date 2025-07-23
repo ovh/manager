@@ -1,30 +1,31 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import {
-  Modal,
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useSlotWithService } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+
 import {
+  SlotServiceTerminationPolicy,
   getZimbraPlatformListQueryKey,
   putService,
-  SlotServiceTerminationPolicy,
 } from '@/data/api';
+import { useSlotWithService } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
-import { CANCEL, CONFIRM, CANCEL_SLOT } from '@/tracking.constants';
+import { CANCEL, CANCEL_SLOT, CONFIRM } from '@/tracking.constants';
 import { capitalize } from '@/utils';
 
 export const CancelSlotModal = () => {
@@ -41,8 +42,7 @@ export const CancelSlotModal = () => {
   const { mutate: cancelEmailAccount, isPending: isSending } = useMutation({
     mutationFn: (serviceId: number) => {
       return putService(serviceId, {
-        terminationPolicy:
-          SlotServiceTerminationPolicy.terminateAtExpirationDate,
+        terminationPolicy: SlotServiceTerminationPolicy.terminateAtExpirationDate,
       });
     },
     onSuccess: () => {
@@ -71,8 +71,8 @@ export const CancelSlotModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
 

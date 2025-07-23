@@ -1,12 +1,15 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
+
 import { useParams } from 'react-router-dom';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { render, waitFor } from '@/utils/test.provider';
-import accountsTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
-import CancelSlotModal from './Cancel.modal';
+
 import { accountMock, platformMock, slotMock } from '@/data/api';
+import { render, waitFor } from '@/utils/test.provider';
+
+import CancelSlotModal from './Cancel.modal';
 
 describe('Slot cancel modal', () => {
   it('check if it is displayed', async () => {

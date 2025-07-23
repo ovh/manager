@@ -1,23 +1,23 @@
 import React, { useMemo } from 'react';
-import { OdsDivider } from '@ovhcloud/ods-components/react';
-import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsDivider } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useOrganization, usePlatform } from '@/data/hooks';
-import { Guide, GUIDES_LIST } from '@/guides.constants';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
+
 import { BadgeStatus, GuideLink } from '@/components';
-import { OngoingTasks } from './OngoingTasks.component';
-import { capitalize } from '@/utils';
+import { useOrganization, usePlatform } from '@/data/hooks';
+import { GUIDES_LIST, Guide } from '@/guides.constants';
 import { useAccountsStatistics } from '@/hooks';
+import { capitalize } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import { OngoingTasks } from './OngoingTasks.component';
 
 export const GeneralInformations = () => {
-  const { t } = useTranslation([
-    'dashboard',
-    'common',
-    NAMESPACES.STATUS,
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation(['dashboard', 'common', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
   const { platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
   const { accountsStatistics } = useAccountsStatistics();
@@ -35,12 +35,7 @@ export const GeneralInformations = () => {
             {
               id: 'serviceStatus',
               label: t('zimbra_dashboard_tile_status_serviceStatus'),
-              value: (
-                <BadgeStatus
-                  data-testid="org-status"
-                  status={organisation?.resourceStatus}
-                />
-              ),
+              value: <BadgeStatus data-testid="org-status" status={organisation?.resourceStatus} />,
             },
           ]
         : []),
@@ -74,12 +69,9 @@ export const GeneralInformations = () => {
             <div className="flex flex-col">
               {accountsStatistics?.length > 0
                 ? accountsStatistics?.map((stats) => (
-                    <span key={stats.offer}>{`${
-                      stats.configuredAccountsCount
-                    } / ${stats.configuredAccountsCount +
-                      stats.availableAccountsCount} ${capitalize(
-                      stats.offer.toLowerCase(),
-                    )}`}</span>
+                    <span key={stats.offer}>{`${stats.configuredAccountsCount} / ${
+                      stats.configuredAccountsCount + stats.availableAccountsCount
+                    } ${capitalize(stats.offer.toLowerCase())}`}</span>
                   ))
                 : t('common:no_email_account')}
             </div>

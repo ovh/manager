@@ -1,4 +1,5 @@
 import { AddEmailAccountSchema } from '@/utils';
+
 import { AccountBodyParamsType } from './type';
 
 export const formatAccountPayload = (

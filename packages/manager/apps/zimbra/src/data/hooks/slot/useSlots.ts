@@ -1,10 +1,13 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
   SlotBillingStatus,
   SlotService,
@@ -13,8 +16,8 @@ import {
   getZimbraPlatformSlots,
   getZimbraPlatformSlotsQueryKey,
 } from '@/data/api';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 import { useSlotServices } from '@/data/hooks';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 export type SlotWithService = {
   id: string;
@@ -35,14 +38,7 @@ type UseSlotsParams = Omit<
 };
 
 export const useSlots = (props: UseSlotsParams = {}) => {
-  const {
-    shouldFetchAll,
-    accountId,
-    billingStatus,
-    offer,
-    used,
-    ...options
-  } = props;
+  const { shouldFetchAll, accountId, billingStatus, offer, used, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { platformId } = useParams();
 
@@ -56,11 +52,7 @@ export const useSlots = (props: UseSlotsParams = {}) => {
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformSlotsQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
+    queryKey: getZimbraPlatformSlotsQueryKey(platformId, urlSearchParams, allPages),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformSlots({
         platformId,
@@ -71,14 +63,9 @@ export const useSlots = (props: UseSlotsParams = {}) => {
     enabled: (q) =>
       (typeof options.enabled === 'function'
         ? options.enabled(q)
-        : typeof options.enabled !== 'boolean' || options.enabled) &&
-      !!platformId,
-    getNextPageParam: (lastPage: { cursorNext?: string }) =>
-      lastPage.cursorNext,
-    select: (data) =>
-      data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<SlotType[]>) => page.data,
-      ),
+        : typeof options.enabled !== 'boolean' || options.enabled) && !!platformId,
+    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
+    select: (data) => data?.pages.flatMap((page: UseInfiniteQueryResult<SlotType[]>) => page.data),
   });
 
   const fetchAllPages = useCallback(() => {

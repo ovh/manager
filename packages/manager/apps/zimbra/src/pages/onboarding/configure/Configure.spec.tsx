@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import ConfigureLayout from './Configure.layout';
+
 import { render } from '@/utils/test.provider';
+
+import ConfigureLayout from './Configure.layout';
 
 describe('Configure Layout', () => {
   it('should render correctly', () => {

@@ -1,16 +1,15 @@
+import React, { useContext, useMemo } from 'react';
+
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+
+import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import React, { useContext, useMemo } from 'react';
-import {
-  IconLinkAlignmentType,
-  Links,
-  LinkType,
-} from '@ovh-ux/manager-react-components';
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+
 import { Guide } from '@/guides.constants';
 import { GO_TO } from '@/tracking.constants';
 

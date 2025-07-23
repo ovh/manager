@@ -1,13 +1,6 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import {
-  getSlotServices,
-  getSlotServicesQueryKey,
-  SlotService,
-} from '@/data/api';
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { SlotService, getSlotServices, getSlotServicesQueryKey } from '@/data/api';
 
 type Options = Omit<UseQueryOptions, 'queryKey' | 'queryFn'>;
 

@@ -1,4 +1,5 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 import {
   GUIDE_ADMINISTRATOR,
   GUIDE_CNAME,

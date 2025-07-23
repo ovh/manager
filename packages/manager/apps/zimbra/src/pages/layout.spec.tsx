@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import Layout from './layout';
+
 import { render, waitFor } from '@/utils/test.provider';
+
+import Layout from './layout';
 
 describe('Layout', () => {
   it('should render correctly', async () => {
