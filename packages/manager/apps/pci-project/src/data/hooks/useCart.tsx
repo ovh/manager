@@ -6,6 +6,7 @@ import {
   assignCart,
   attachConfigurationToCartItem,
   createCart,
+  deleteConfigurationItemFromCart,
   getCartSummary,
   getPublicCloudOptions,
   orderCloudProject,
@@ -15,6 +16,7 @@ import {
 import { PCI_HDS_ADDON, PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
   Cart,
+  CartConfiguration,
   CartContract,
   OrderedProduct,
   PlanCode,
@@ -148,13 +150,13 @@ export const useRemoveItemFromCart = ({
  * @param {Function} [options.onSuccess] - Called after successful configuration attachment.
  * @param {Function} [options.onError] - Called if the mutation fails.
  *
- * @returns {UseMutationResult<void, ApiError, { cartId: string; itemId: number; payload: { label: string; value: string } }>}
+ * @returns {UseMutationResult<CartConfiguration, ApiError, { cartId: string; itemId: number; payload: { label: string; value: string } }>}
  */
 export const useAttachConfigurationToCartItem = ({
   onSuccess,
   onError,
 }: {
-  onSuccess?: () => void;
+  onSuccess?: (data: CartConfiguration) => void;
   onError?: (error: ApiError) => void;
 } = {}) =>
   useMutation({
@@ -167,6 +169,31 @@ export const useAttachConfigurationToCartItem = ({
       itemId: number;
       payload: { label: string; value: string };
     }) => attachConfigurationToCartItem(cartId, itemId, payload),
+    onSuccess: (data: CartConfiguration) => {
+      if (onSuccess) {
+        onSuccess(data);
+      }
+    },
+    onError,
+  });
+
+export const useDeleteConfigurationItemFromCart = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void;
+  onError?: (error: ApiError) => void;
+} = {}) => {
+  return useMutation({
+    mutationFn: ({
+      cartId,
+      itemId,
+      configurationId,
+    }: {
+      cartId: string;
+      itemId: number;
+      configurationId: number;
+    }) => deleteConfigurationItemFromCart(cartId, itemId, configurationId),
     onSuccess: () => {
       if (onSuccess) {
         onSuccess();
@@ -174,6 +201,7 @@ export const useAttachConfigurationToCartItem = ({
     },
     onError,
   });
+};
 
 /**
  * Mutation hook to create and assign a new cart for a given OVH subsidiary.

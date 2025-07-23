@@ -150,3 +150,9 @@ export type AddOptionToCartResponse = {
   options: unknown[];
   productId: string;
 };
+
+export type CartConfiguration = {
+  id: number;
+  label: string;
+  value: string;
+};
