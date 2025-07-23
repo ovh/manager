@@ -16,7 +16,7 @@ import {
   useIpHasServicesAttached,
   useGetAttachedServices,
   useGetIpVmacWithIp,
-  useGetIpMitigation,
+  useGetIpMitigationWithoutIceberg,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -152,11 +152,18 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   });
 
   const { hasForcedMitigation } = useIpHasForcedMitigation({ ip });
-  const { ipMitigation, isLoading: isMitigationLoading } = useGetIpMitigation({
+  const {
+    ipMitigation,
+    isLoading: isMitigationLoading,
+  } = useGetIpMitigationWithoutIceberg({
     ip: ipAddress,
   });
 
-  const isDefaultMitigation = (ipMitigation?.length ?? 0) === 0;
+  const isDefaultMitigation = Object.keys(ipMitigation).length === 0;
+
+  const disableManageMitigationAction =
+    ipMitigation?.state === 'creationPending' ||
+    ipMitigation?.state === 'removalPending';
 
   const items: ActionMenuItem[] = [
     {
@@ -259,7 +266,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
           : t('listingManageMitigation_PERMANENT_to_AUTO'),
         onClick: () =>
           navigate(urls.manageIpMitigation.replace(urlDynamicParts.id, id)),
-        isDisabled: isMitigationLoading,
+        isDisabled: isMitigationLoading || disableManageMitigationAction,
       },
   ].filter(Boolean);
 

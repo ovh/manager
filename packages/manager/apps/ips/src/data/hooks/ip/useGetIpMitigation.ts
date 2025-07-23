@@ -1,10 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
+import {
+  ApiError,
+  ApiResponse,
+  IcebergFetchResultV6,
+} from '@ovh-ux/manager-core-api';
 import {
   IpMitigationType,
   getIpMitigation,
   getIpMitigationQueryKey,
+  getIpMitigationWithoutIceberg,
+  getIpMitigationWithoutIcebergQueryKey,
 } from '@/data/api';
+import { ipFormatter } from '@/utils';
 
 export type UseGetIpMitigationParams = {
   ip: string;
@@ -28,6 +35,52 @@ export const useGetIpMitigation = ({
 
   return {
     ipMitigation: ipMitigationResponse?.data,
+    isLoading,
+    isError,
+    error,
+  };
+};
+
+export const useGetIpMitigationWithoutIceberg = ({
+  ip,
+  enabled = true,
+}: UseGetIpMitigationParams) => {
+  const { ipGroup, ipAddress } = ipFormatter(ip);
+  const ipBlockip = ipGroup;
+  const { data: ipMitigationResponse, isLoading, isError, error } = useQuery<
+    ApiResponse<IpMitigationType>,
+    ApiError
+  >({
+    queryKey: getIpMitigationWithoutIcebergQueryKey({
+      ipBlockip,
+      ip: ipAddress,
+    }),
+    queryFn: async () => {
+      try {
+        const response = await getIpMitigationWithoutIceberg({
+          ipBlockip,
+          ip: ipAddress,
+        });
+        return response;
+      } catch (err) {
+        if ((err as ApiError)?.response?.status === 404) {
+          return { data: {} } as ApiResponse<IpMitigationType>;
+        }
+        throw err;
+      }
+    },
+    enabled,
+    refetchInterval: (query) =>
+      query.state.data?.data?.state === 'creationPending' ||
+      query.state.data?.data?.state === 'removalPending'
+        ? 2000
+        : false,
+  });
+
+  return {
+    ipMitigation: ipMitigationResponse?.data
+      ? ipMitigationResponse?.data
+      : ({} as IpMitigationType),
     isLoading,
     isError,
     error,

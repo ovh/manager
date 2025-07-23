@@ -2,10 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
-  getIpDetailsQueryKey,
+  getIpMitigationWithoutIcebergQueryKey,
   updateIpMitigation,
   UpdateIpMitigationParams,
 } from '@/data/api';
+import { ipFormatter } from '@/utils';
 
 export type UseUpdateIpMitigationParams = UpdateIpMitigationParams & {
   onError?: (apiError: ApiError) => void;
@@ -21,13 +22,16 @@ export const useUpdateIpMitigation = ({
 }: UseUpdateIpMitigationParams) => {
   const queryClient = useQueryClient();
   const { clearNotifications } = useNotifications();
-
+  const { ipAddress, ipGroup } = ipFormatter(ip);
   return useMutation({
     mutationFn: () => updateIpMitigation({ ipBlock, ip, mitigation }),
     onSuccess: async (data) => {
       clearNotifications();
       await queryClient.invalidateQueries({
-        queryKey: getIpDetailsQueryKey({ ip }),
+        queryKey: getIpMitigationWithoutIcebergQueryKey({
+          ipBlockip: ipGroup,
+          ip: ipAddress,
+        }),
       });
       onSuccess?.(data);
     },
