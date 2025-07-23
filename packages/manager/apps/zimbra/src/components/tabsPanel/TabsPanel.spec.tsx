@@ -1,7 +1,11 @@
 import React from 'react';
-import { describe, expect, vi } from 'vitest';
+
 import { useLocation } from 'react-router-dom';
+
+import { describe, expect, vi } from 'vitest';
+
 import { render, waitFor } from '@/utils/test.provider';
+
 import TabsPanel from './TabsPanel.component';
 
 const tabs = [
@@ -38,7 +42,7 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    await waitFor(() => {
       expect(link1).toHaveAttribute('is-selected', 'true');
     });
 
@@ -61,7 +65,7 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    await waitFor(() => {
       expect(link2).toHaveAttribute('is-selected', 'true');
     });
 

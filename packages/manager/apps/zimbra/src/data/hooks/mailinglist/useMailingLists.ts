@@ -1,14 +1,17 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams, useSearchParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
+  MailingListType,
   getZimbraPlatformMailingLists,
   getZimbraPlatformMailingListsQueryKey,
-  MailingListType,
 } from '@/data/api';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
@@ -33,11 +36,7 @@ export const useMailingLists = (props: UseMailingListsParams = {}) => {
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformMailingListsQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
+    queryKey: getZimbraPlatformMailingListsQueryKey(platformId, urlSearchParams, allPages),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformMailingLists({
         platformId,
@@ -49,14 +48,10 @@ export const useMailingLists = (props: UseMailingListsParams = {}) => {
     enabled: (q) =>
       (typeof options.enabled === 'function'
         ? options.enabled(q)
-        : typeof options.enabled !== 'boolean' || options.enabled) &&
-      !!platformId,
-    getNextPageParam: (lastPage: { cursorNext?: string }) =>
-      lastPage.cursorNext,
+        : typeof options.enabled !== 'boolean' || options.enabled) && !!platformId,
+    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
     select: (data) =>
-      data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<MailingListType[]>) => page.data,
-      ),
+      data?.pages.flatMap((page: UseInfiniteQueryResult<MailingListType[]>) => page.data),
   });
 
   const fetchAllPages = useCallback(() => {

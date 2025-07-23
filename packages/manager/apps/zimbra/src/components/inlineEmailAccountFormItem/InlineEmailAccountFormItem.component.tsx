@@ -1,20 +1,18 @@
 import React from 'react';
+
+import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsPassword,
-} from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
-import { Controller, useFormContext } from 'react-hook-form';
-import { AddEmailAccountsSchema } from '@/utils';
+import { OdsButton, OdsFormField, OdsInput, OdsPassword } from '@ovhcloud/ods-components/react';
+
 import { GeneratePasswordButton } from '@/components';
+import { AddEmailAccountsSchema } from '@/utils';
 
 export const InlineEmailAccountFormItem = ({
   index,
@@ -40,18 +38,13 @@ export const InlineEmailAccountFormItem = ({
           control={control}
           name={`accounts.${index}.firstName`}
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="flex-1"
-              error={errors.accounts?.[index]?.firstName?.message}
-            >
+            <OdsFormField className="flex-1" error={errors.accounts?.[index]?.firstName?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_firstName_label')} *
               </label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
-                placeholder={t(
-                  'zimbra_account_add_input_firstName_placeholder',
-                )}
+                placeholder={t('zimbra_account_add_input_firstName_placeholder')}
                 name={name}
                 hasError={!!errors.accounts?.[index]?.firstName}
                 value={value}
@@ -65,10 +58,7 @@ export const InlineEmailAccountFormItem = ({
           control={control}
           name={`accounts.${index}.lastName`}
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="flex-1"
-              error={errors.accounts?.[index]?.lastName?.message}
-            >
+            <OdsFormField className="flex-1" error={errors.accounts?.[index]?.lastName?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_lastName_label')} *
               </label>
@@ -89,10 +79,7 @@ export const InlineEmailAccountFormItem = ({
           control={control}
           name={`accounts.${index}.account`}
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="flex-2"
-              error={errors.accounts?.[index]?.account?.message}
-            >
+            <OdsFormField className="flex-2" error={errors.accounts?.[index]?.account?.message}>
               <label htmlFor={name} slot="label">
                 {t('common:email_account')} *
               </label>
@@ -123,10 +110,7 @@ export const InlineEmailAccountFormItem = ({
           control={control}
           name={`accounts.${index}.password`}
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="flex-1"
-              error={errors.accounts?.[index]?.password?.message}
-            >
+            <OdsFormField className="flex-1" error={errors.accounts?.[index]?.password?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')} *
               </label>

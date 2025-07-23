@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { AccountBodyParamsType, AccountType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { AccountBodyParamsType, AccountType } from './type';
 
 // GET
 
@@ -25,13 +27,8 @@ export const getZimbraPlatformAccounts = ({
     disableCache,
   });
 
-export const getZimbraPlatformAccountDetail = async (
-  platformId: string,
-  accountId: string,
-) => {
-  const { data } = await v2.get<AccountType>(
-    `${getApiPath(platformId)}account/${accountId}`,
-  );
+export const getZimbraPlatformAccountDetail = async (platformId: string, accountId: string) => {
+  const { data } = await v2.get<AccountType>(`${getApiPath(platformId)}account/${accountId}`);
   return data;
 };
 
@@ -54,23 +51,15 @@ export const putZimbraPlatformAccount = async (
   accountId: string,
   params: AccountBodyParamsType,
 ) => {
-  const { data } = await v2.put(
-    `${getApiPath(platformId)}account/${accountId}`,
-    {
-      targetSpec: params,
-    },
-  );
+  const { data } = await v2.put(`${getApiPath(platformId)}account/${accountId}`, {
+    targetSpec: params,
+  });
   return data;
 };
 
 // DELETE
 
-export const deleteZimbraPlatformAccount = async (
-  platformId: string,
-  accountId: string,
-) => {
-  const { data } = await v2.delete(
-    `${getApiPath(platformId)}account/${accountId}`,
-  );
+export const deleteZimbraPlatformAccount = async (platformId: string, accountId: string) => {
+  const { data } = await v2.delete(`${getApiPath(platformId)}account/${accountId}`);
   return data;
 };
