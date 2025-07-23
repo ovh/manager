@@ -1,10 +1,16 @@
 import {
   TDatagridDnsDetails,
+  TDomainResource,
   TNameServer,
   TNameServerWithType,
 } from '../types/domainResource';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
+import {
+  ActiveConfigurationTypeEnum,
+  DnsConfigurationTypeEnum,
+} from '../enum/dnsConfigurationType.enum';
+import { TDomainZone } from '../types/domainZone';
 
 const INTERNAL_DNS_PATTERN: Record<string, RegExp> = {
   EU: /^d?ns(?:\d{1,3})?\.ovh\.net/i,
@@ -100,4 +106,25 @@ export function transformTarget(
     status,
     type: guessNameserverType(dns.nameServer),
   };
+}
+
+export function computeActiveConfiguration(
+  domainResource: TDomainResource,
+  domainZone?: TDomainZone,
+): ActiveConfigurationTypeEnum {
+  if (!domainZone) {
+    return ActiveConfigurationTypeEnum.EXTERNAL;
+  }
+
+  const configType =
+    domainResource?.currentState?.dnsConfiguration.configurationType;
+
+  switch (configType) {
+    case DnsConfigurationTypeEnum.MIXED:
+      return ActiveConfigurationTypeEnum.MIXED;
+    case DnsConfigurationTypeEnum.EXTERNAL:
+      return ActiveConfigurationTypeEnum.EXTERNAL;
+    default:
+      return ActiveConfigurationTypeEnum.INTERNAL;
+  }
 }
