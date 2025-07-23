@@ -9,6 +9,7 @@ import {
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
 import { useParam, useProjectId } from './useProject';
+import { toIsoDate } from '@/utils/formatter/date';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -194,7 +195,7 @@ export const useSavingsPlanCreate = (
       size,
       startDate,
     }: MutationCreatePlanParams) => {
-      const date = startDate.toISOString().split('T')[0];
+      const date = toIsoDate(startDate);
 
       return postSavingsPlan({
         serviceId,
