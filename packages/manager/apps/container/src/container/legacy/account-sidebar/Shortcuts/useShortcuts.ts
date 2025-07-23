@@ -21,16 +21,12 @@ const useShortcuts = (): UseShortcuts => {
 
   const getShortcuts = (): Shortcut[] => {
     return [
-      ...(['EU', 'CA'].includes(region)
-        ? [
-            {
-              id: 'services',
-              icon: getOdsIcon(ODS_ICON_NAME.MULTI_DEVICE_CONCEPT),
-              url: navigation.getURL('dedicated', '#/billing/autoRenew'),
-              tracking: 'hub::sidebar::shortcuts::go-to-services',
-            },
-          ]
-        : []),
+      {
+        id: 'services',
+        icon: getOdsIcon(ODS_ICON_NAME.MULTI_DEVICE_CONCEPT),
+        url: navigation.getURL('billing', '#/autoRenew'),
+        tracking: 'hub::sidebar::shortcuts::go-to-services',
+      },
       {
         id: 'bills',
         icon: getOdsIcon(ODS_ICON_NAME.RECEIPT_CONCEPT),
