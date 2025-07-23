@@ -19,10 +19,10 @@ import {
 import {
   useGetIpEdgeFirewall,
   useGetIpGameFirewall,
-  useGetIpMitigation,
   useGetIcebergIpReverse,
   useGetIpVmacWithIp,
   useGetIpdetails,
+  useGetIpMitigationWithoutIceberg,
 } from '@/data/hooks/ip';
 import {
   isAntiDdosEnabled,
@@ -49,7 +49,10 @@ export const IpGroupDatagrid = ({
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
     ip: row.original.ip,
   });
-  const { ipMitigation, isLoading: isMitigationLoading } = useGetIpMitigation({
+  const {
+    ipMitigation,
+    isLoading: isMitigationLoading,
+  } = useGetIpMitigationWithoutIceberg({
     ip: row.original.ip,
   });
   const {
@@ -125,9 +128,7 @@ export const IpGroupDatagrid = ({
       label: t('listingColumnsIpAntiDDos'),
       cell: (ip: string) => (
         <IpAntiDdosDisplay
-          ipMitigation={ipMitigation?.find(
-            (mitigation) => mitigation.ipOnMitigation === ip,
-          )}
+          ipMitigation={ipMitigation}
           enabled={isAntiDdosEnabled(ipDetails)}
           ip={ip}
         />
