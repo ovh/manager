@@ -194,7 +194,10 @@ export const useSavingsPlanCreate = (
       size,
       startDate,
     }: MutationCreatePlanParams) => {
-      const date = startDate.toISOString().split('T')[0];
+      const year = startDate.getFullYear();
+      const month = String(startDate.getMonth() + 1).padStart(2, '0');
+      const day = String(startDate.getDate()).padStart(2, '0');
+      const date = `${year}-${month}-${day}`;
 
       return postSavingsPlan({
         serviceId,

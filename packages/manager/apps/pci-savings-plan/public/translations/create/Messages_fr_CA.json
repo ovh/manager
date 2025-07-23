@@ -54,6 +54,7 @@
   "modal_summary_label_deployment_mode": "Mode de déploiement",
   "modal_summary_label_service": "Service",
   "modal_summary_label_model": "Modèle",
+  "modal_summary_label_start_date": "Date d'effet",
   "modal_summary_label_quantity": "Nombre d'instances",
   "modal_summary_label_commitment_duration": "Durée d'engagement :",
   "modal_summary_label_total_price": "Prix total"

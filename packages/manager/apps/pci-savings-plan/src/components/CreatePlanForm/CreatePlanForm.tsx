@@ -303,7 +303,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   return (
     <div>
-      {currentPlanPricing && (
+      {isModalOpen && (
         <CreatePlanConfirmModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
@@ -351,6 +351,13 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         quantity={quantity}
         handleQuantityChange={handleQuantityChange}
       />
+
+      <CommitmentWrapper
+        enrichedPricingByDuration={enrichedPricingByDuration}
+        isLoading={isPricingLoading || isTechnicalInfoLoading}
+        setOfferIdSelected={setOfferIdSelected}
+        offerIdSelected={offerIdSelected}
+      />
       <Block>
         <Subtitle>{t('choose_date')}</Subtitle>
         <DescriptionWrapper>{t('choose_date_description')}</DescriptionWrapper>
@@ -364,12 +371,6 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           }}
         />
       </Block>
-      <CommitmentWrapper
-        enrichedPricingByDuration={enrichedPricingByDuration}
-        isLoading={isPricingLoading || isTechnicalInfoLoading}
-        setOfferIdSelected={setOfferIdSelected}
-        offerIdSelected={offerIdSelected}
-      />
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
         <OdsInput
