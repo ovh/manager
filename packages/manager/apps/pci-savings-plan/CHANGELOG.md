@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.1...@ovh-ux/manager-pci-savings-plan-app@1.19.2) (2025-07-23)
+
+
+### Bug Fixes
+
+* **savings-plan:** fix close cross and title issue ([268639c](https://github.com/ovh/manager/commit/268639c10e8d764d0cdab00e94c938e960ad135c)), closes [#TAPC-2811](https://github.com/ovh/manager/issues/TAPC-2811)
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.0...@ovh-ux/manager-pci-savings-plan-app@1.19.1) (2025-07-22)
 
 
