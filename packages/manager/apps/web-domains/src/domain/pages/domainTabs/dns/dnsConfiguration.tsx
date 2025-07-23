@@ -4,18 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
   Button,
+  BUTTON_SIZE,
   Icon,
+  ICON_NAME,
   Link,
   Message,
+  MESSAGE_COLOR,
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import {
   TDatagridDnsDetails,
@@ -24,9 +21,6 @@ import {
 import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDnsDatagridColumns';
 import { computeDnsDetails } from '@/domain/utils/utils';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
-import { urls } from '@/domain/routes/routes.constant';
-import { useGetDomainAnycastOption } from '@/domain/hooks/data/query';
 import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
 
 interface DnsConfigurationTabProps {
@@ -39,6 +33,7 @@ export default function DnsConfigurationTab({
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
   const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
 
   const onOpenAnycastTerminateModal = () => {
@@ -48,7 +43,7 @@ export default function DnsConfigurationTab({
     <div data-testid="datagrid">
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
         <Message
-          color={ODS_MESSAGE_COLOR.warning}
+          color={MESSAGE_COLOR.warning}
           className="w-full mt-4"
           dismissible={false}
         >
@@ -57,22 +52,21 @@ export default function DnsConfigurationTab({
         </Message>
       )}
       <Message
-        color={ODS_MESSAGE_COLOR.information}
+        color={MESSAGE_COLOR.information}
         className="w-full mt-4"
         dismissible={false}
       >
         <MessageIcon name="circle-info" />
         <MessageBody>
           {t('domain_tab_DNS_information_message')}
-          <Link href="https://www.zonemaster.net/en/run-test">
+          <Link href="https://www.zonemaster.net/en/run-test" target="_blank">
             {t('domain_tab_DNS_information_link')}
-            <Icon name={ODS_ICON_NAME.externalLink} />
+            <Icon name={ICON_NAME.externalLink} />
           </Link>
         </MessageBody>
       </Message>
       <div className="flex gap-4 my-6">
-        {/* FIXME: page implemented by MANAGER-18978 */}
-        <Button size={ODS_BUTTON_SIZE.sm}>
+        <Button size={BUTTON_SIZE.sm} onClick={() => navigate('dns-modify')}>
           {t('domain_dns_tab_button_modify_dns')}
         </Button>
         <AnycastOrderButtonComponent
