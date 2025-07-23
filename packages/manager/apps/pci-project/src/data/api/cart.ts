@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import {
   AddOptionToCartResponse,
   Cart,
+  CartConfiguration,
   CartProduct,
   CartProductOption,
   CartSummary,
@@ -25,8 +26,23 @@ export const attachConfigurationToCartItem = async (
   cartId: string,
   itemId: number,
   payload: { label: string; value: unknown },
+): Promise<CartConfiguration> => {
+  const { data } = await v6.post(
+    `order/cart/${cartId}/item/${itemId}/configuration`,
+    payload,
+  );
+
+  return data;
+};
+
+export const deleteConfigurationItemFromCart = async (
+  cartId: string,
+  itemId: number,
+  configurationId: number,
 ) => {
-  await v6.post(`order/cart/${cartId}/item/${itemId}/configuration`, payload);
+  await v6.delete(
+    `order/cart/${cartId}/item/${itemId}/configuration/${configurationId}`,
+  );
 };
 
 export const orderCloudProject = async (
