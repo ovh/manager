@@ -1,9 +1,10 @@
 import head from 'lodash/head';
 import some from 'lodash/some';
 import { formatRelative, fromUnixTime } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
+import { enGB, fr, frCA, de, es, it, pl, pt } from 'date-fns/locale';
 import { detectUserLocale } from '@ovh-ux/manager-config';
 
+const dateFnsLocales = { enGB, fr, frCA, de, es, it, pl, pt };
 export default class BmServerComponentsMrtgTileController {
   /* @ngInject */
   constructor($q, $scope, $stateParams, $translate, ChartFactory) {

@@ -52,7 +52,7 @@ import './css/source.scss';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
-import * as dateFnsLocales from 'date-fns/locale';
+import { enGB, fr, frCA, de, es, it, pl, pt } from 'date-fns/locale';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 import '@ovh-ux/ng-at-internet';
@@ -121,6 +121,8 @@ import otrs from './otrs';
 import networkSecurity from './network-security';
 
 import { TRACKING } from './at-internet.constants';
+
+const dateFnsLocales = { enGB, fr, frCA, de, es, it, pl, pt };
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();

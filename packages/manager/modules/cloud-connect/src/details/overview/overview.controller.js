@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 import { format } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
+import { enGB, fr, frCA, de, es, it, pl, pt } from 'date-fns/locale';
 
 import {
   POP_MAP,
@@ -10,6 +10,8 @@ import {
   getDiagnosticDashboardTrackingContext,
 } from '../../cloud-connect.constants';
 import { REGION_TYPE, GAP, OPTIC_STATUS } from './overview.constants';
+
+const dateFnsLocales = { enGB, fr, frCA, de, es, it, pl, pt };
 
 export default class CloudConnectOverviewCtrl {
   /* @ngInject */
