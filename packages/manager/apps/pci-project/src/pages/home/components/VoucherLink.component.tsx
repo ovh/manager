@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 
 interface VoucherLinkProps {
   projectId: string;
@@ -9,17 +10,16 @@ export default function VoucherLink({ projectId }: VoucherLinkProps) {
 
   return (
     <div className="flex justify-start">
-      <a
+      <OdsLink
         href={`/public-cloud/pci/projects/${projectId}/billing/credits`}
-        className="text-[var(--ods-color-primary-500)] font-semibold text-sm no-underline hover:underline"
         target="_blank"
         rel="noopener noreferrer"
+        color="primary"
+        label={`${t('pci_project_project_credits_vouchers')} →`}
         aria-label={`${t(
           'pci_project_project_credits_vouchers',
         )} - Opens in new tab`}
-      >
-        {t('pci_project_project_credits_vouchers')} →
-      </a>
+      />
     </div>
   );
 }

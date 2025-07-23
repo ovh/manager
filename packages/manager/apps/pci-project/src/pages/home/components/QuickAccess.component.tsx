@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OdsCard } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 
 export type QuickAccessItem = {
@@ -24,9 +24,9 @@ export function QuickAccess({ items }: { items: QuickAccessItem[] }) {
                 <img src={item.icon} alt="" className="w-20 h-20" />
               </div>
               <div className="flex flex-col justify-center ml-6">
-                <div className="font-bold text-xl text-[var(--ods-color-heading)] mb-1 leading-tight">
+                <OdsText preset="heading-4" className="mb-1 leading-tight">
                   {item.title}
-                </div>
+                </OdsText>
                 <div className="flex justify-start items-center text-base text-[var(--ods-color-primary-500)] leading-tight">
                   {item.description}
                 </div>

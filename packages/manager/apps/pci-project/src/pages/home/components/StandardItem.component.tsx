@@ -1,3 +1,5 @@
+import { OdsText, OdsLink } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 import { BottomSectionItem } from './useDashboardSections.hook';
 
 interface StandardItemProps {
@@ -5,19 +7,22 @@ interface StandardItemProps {
 }
 
 export default function StandardItem({ item }: StandardItemProps) {
+  const { t } = useTranslation('project');
+
   return (
     <div className="flex justify-between items-start">
-      <div className="flex-1">
-        <div className="font-bold text-black">{item.label}</div>
-        <a
+      <div className="flex-1 truncate">
+        <OdsText preset="heading-6" className="block">
+          {item.label}
+        </OdsText>
+        <OdsLink
           href={item.link}
-          className="font-bold hover:underline no-underline text-[var(--ods-color-primary-500)]"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${item.description} - Opens in new tab`}
-        >
-          {item.description}
-        </a>
+          color="primary"
+          label={item.description}
+          aria-label={`${item.description} - ${t('opens_in_new_tab')}`}
+        />
       </div>
     </div>
   );

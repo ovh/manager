@@ -1,69 +1,80 @@
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 import { BottomSectionItem } from './useDashboardSections.hook';
 
-interface BillingItemProps {
+type BillingItemProps = {
   item: BottomSectionItem;
   isLoading: boolean;
-}
+};
 
-export default function BillingItem({ item, isLoading }: BillingItemProps) {
+const BillingItem = memo(function BillingItem({
+  item,
+  isLoading,
+}: BillingItemProps) {
   const { t } = useTranslation('project');
 
   if (isLoading) {
     return (
-      <div className="flex justify-between items-start">
-        <div className="flex-1 text-[var(--ods-color-text)] space-y-2">
-          {/* Label skeleton */}
-          <div className="space-y-1">
-            <OdsSkeleton className="h-5 w-32" />
-            <OdsSkeleton className="h-4 w-48" />
-          </div>
-          {/* Price skeleton */}
-          <OdsSkeleton className="h-6 w-20" />
-          {/* "Valid until" skeleton */}
-          <OdsSkeleton className="h-3 w-24" />
-        </div>
+      <div
+        className="flex flex-col gap-4 flex-1"
+        role="status"
+        aria-label={t('pci_project_project_loading_billing_info')}
+      >
+        <OdsSkeleton className="w-1/3" />
+        <OdsSkeleton className="w-1/2" />
+        <OdsSkeleton className="w-20" />
+        <OdsSkeleton className="w-2/3" />
       </div>
     );
   }
 
   return (
-    <div className="flex justify-between items-start">
+    <div
+      className="flex justify-between items-start"
+      role="listitem"
+      aria-labelledby={t('billing-item-title')}
+    >
       <div className="flex-1 text-[var(--ods-color-text)]">
         {item.label && (
-          <div
-            className="font-semibold text-sm"
+          <OdsText
+            id="billing-item-title"
+            preset="heading-6"
+            className="block mb-2"
             aria-label={t('pci_project_project_voucher_name_aria')}
           >
             {item.label}
-          </div>
+          </OdsText>
         )}
         {item.description && (
-          <div
-            className="text-sm"
+          <OdsText
+            preset="paragraph"
+            className="mb-2"
             aria-label={t('pci_project_project_voucher_description_aria')}
           >
             {item.description}
-          </div>
+          </OdsText>
         )}
         {item.price && (
-          <div
-            className="font-bold text-lg"
+          <OdsText
+            preset="heading-4"
+            className="block mb-1"
             aria-label={t('pci_project_project_available_balance_aria')}
           >
             {item.price}
-          </div>
+          </OdsText>
         )}
         {item.validUntil && (
-          <div
-            className="text-xs"
+          <OdsText
+            preset="caption"
             aria-label={t('pci_project_project_expiration_date_aria')}
           >
             {item.validUntil}
-          </div>
+          </OdsText>
         )}
       </div>
     </div>
   );
-}
+});
+
+export default BillingItem;

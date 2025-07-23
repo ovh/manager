@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { OdsCard, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
 export interface DocumentationLink {
   term: string;
@@ -21,7 +21,9 @@ export default function DocumentationSection({
     <div className="col-sm-4 mb-4">
       <OdsCard className="h-100">
         <div className="p-4">
-          <h3 className="text-lg font-semibold mb-4">{t('documentation')}</h3>
+          <OdsText preset="heading-4" className="mb-4">
+            {t('documentation')}
+          </OdsText>
           <div className="space-y-4">
             {links.map((link, index) => (
               <div
@@ -29,9 +31,9 @@ export default function DocumentationSection({
                 className="border-b border-gray-200 pb-3 last:border-b-0"
               >
                 <div className="flex flex-col">
-                  <div className="text-sm font-medium text-gray-600 mb-1">
+                  <OdsText preset="caption" className="mb-1">
                     {t(link.term)}
-                  </div>
+                  </OdsText>
                   <div>
                     <OdsLink
                       href={link.href}
