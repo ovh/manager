@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getEligibility } from './eligibility';
+import { getEligibility, checkVoucherEligibility } from './eligibility';
 import {
   TEligibility,
   TEligibilityPaymentMethod,
   TEligibilityRequiredAction,
+  TEligibilityVoucher,
 } from '@/data/types/payment/eligibility.type';
 
 vi.mock('@ovh-ux/manager-core-api');
@@ -123,6 +124,83 @@ describe('eligibility API', () => {
 
       expect(result).toEqual(mockEligibility);
       expect(result?.paymentMethodsAuthorized).toHaveLength(6);
+    });
+  });
+
+  describe('checkVoucherEligibility', () => {
+    it('should call the correct API endpoint with voucher parameter', async () => {
+      const mockVoucherEligibility: TEligibilityVoucher = {
+        credit: {
+          currencyCode: CurrencyCode.EUR,
+          priceInUcents: 1000,
+          text: '10.00 EUR',
+          value: 10,
+        },
+        paymentMethodRequired: true,
+      };
+
+      mockV6.mockResolvedValue({ data: { voucher: mockVoucherEligibility } });
+
+      await checkVoucherEligibility('VOUCHER123');
+
+      expect(mockV6).toHaveBeenCalledWith(
+        '/cloud/eligibility?voucher=VOUCHER123',
+      );
+    });
+
+    it('should return voucher eligibility data', async () => {
+      const mockVoucherEligibility: TEligibilityVoucher = {
+        credit: {
+          currencyCode: CurrencyCode.USD,
+          priceInUcents: 2500,
+          text: '25.00 USD',
+          value: 25,
+        },
+        paymentMethodRequired: false,
+      };
+
+      mockV6.mockResolvedValue({ data: { voucher: mockVoucherEligibility } });
+
+      const result = await checkVoucherEligibility('VALID_VOUCHER');
+
+      expect(result).toEqual(mockVoucherEligibility);
+    });
+
+    it('should handle API errors', async () => {
+      const mockError = new Error('VOUCHER_INVALID');
+      mockV6.mockRejectedValue(mockError);
+
+      await expect(checkVoucherEligibility('INVALID_VOUCHER')).rejects.toThrow(
+        'VOUCHER_INVALID',
+      );
+    });
+
+    it('should handle empty voucher response', async () => {
+      mockV6.mockResolvedValue({ data: { voucher: undefined } });
+
+      const result = await checkVoucherEligibility('EMPTY_VOUCHER');
+
+      expect(result).toBeUndefined();
+    });
+
+    it('should handle voucher with different currency', async () => {
+      const mockVoucherEligibility: TEligibilityVoucher = {
+        credit: {
+          currencyCode: CurrencyCode.points,
+          priceInUcents: null,
+          text: '100 points',
+          value: 100,
+        },
+        paymentMethodRequired: false,
+      };
+
+      mockV6.mockResolvedValue({ data: { voucher: mockVoucherEligibility } });
+
+      const result = await checkVoucherEligibility('POINTS_VOUCHER');
+
+      expect(result).toEqual(mockVoucherEligibility);
+      expect(result?.credit.currencyCode).toBe(CurrencyCode.points);
+      expect(result?.credit.priceInUcents).toBeNull();
     });
   });
 });
