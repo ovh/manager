@@ -132,8 +132,8 @@ export const ConfigureEmailAccounts: React.FC = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
       onClose();

@@ -5,7 +5,7 @@ import { render } from '@/utils/test.provider';
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 
 describe('Email accounts DatagridTopbar component', () => {
-  it('should display correctly', async () => {
+  it('should display correctly', () => {
     const { getByTestId } = render(<EmailAccounts />);
 
     const addButton = getByTestId('add-account-btn');

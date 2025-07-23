@@ -74,8 +74,8 @@ export const DeleteOrganizationModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
       });
 

@@ -4,6 +4,7 @@ import {
   useOvhTracking,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { Error } from '@/components';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import { isOnboarded } from '@/utils';
@@ -36,7 +37,7 @@ export const Layout = () => {
   return (
     <>
       <Outlet />
-      {isError && <Error error={error} />}
+      {isError && <Error error={error as ErrorBannerProps['error']} />}
       {!platformId && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}

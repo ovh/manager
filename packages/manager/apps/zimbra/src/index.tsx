@@ -33,11 +33,11 @@ const init = async (appName: string) => {
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+  ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <ShellContext.Provider value={context}>
         <App />
@@ -46,4 +46,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('zimbra');
+await init('zimbra');

@@ -73,8 +73,8 @@ export const UpgradeAccount = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
     },

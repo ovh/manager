@@ -11,7 +11,7 @@ vi.mocked(useParams).mockReturnValue({
 });
 
 describe('DeleteAutoReply modal', () => {
-  it('should render with delete button enabled', async () => {
+  it('should render with delete button enabled', () => {
     const { getByTestId } = render(<DeleteAutoReplyModal />);
 
     const cancelButton = getByTestId('cancel-btn');
@@ -21,7 +21,7 @@ describe('DeleteAutoReply modal', () => {
     expect(deleteButton).toBeInTheDocument();
 
     // TODO: test this when autoreplies are implemented
-    /* await act(() => {
+    /* act(() => {
       fireEvent.click(btn);
     });
 

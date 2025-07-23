@@ -58,7 +58,7 @@ const OrderCatalogForm = ({
   const [orderURL, setOrderURL] = useState('');
   const starterPlan = useMemo(() => {
     const starter = (catalog?.plans || []).find(
-      (plan) => plan.planCode === ZimbraPlanCodes.ZIMBRA_STARTER,
+      (plan) => plan.planCode === (ZimbraPlanCodes.ZIMBRA_STARTER as string),
     );
 
     if (!starter) {

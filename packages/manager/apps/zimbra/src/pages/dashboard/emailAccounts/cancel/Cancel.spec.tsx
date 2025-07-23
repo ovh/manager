@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import { useParams } from 'react-router-dom';
 import { describe, expect, vi } from 'vitest';
 import { render, waitFor } from '@/utils/test.provider';
-import accountsTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import CancelSlotModal from './Cancel.modal';
 import { accountMock, platformMock, slotMock } from '@/data/api';
 

@@ -73,8 +73,8 @@ export const DeleteDomainModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 

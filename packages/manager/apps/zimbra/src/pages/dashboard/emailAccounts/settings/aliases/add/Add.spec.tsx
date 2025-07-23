@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { fireEvent, render, screen, waitFor, act } from '@/utils/test.provider';
 import { accountMock, platformMock } from '@/data/api';
 import AddAliasModal from './Add.modal';
+import { OdsHTMLElement } from '@/utils/test.utils';
 
 describe('add alias modal', () => {
   it('should display modal', async () => {
@@ -31,12 +32,13 @@ describe('add alias modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const selectDomain = getByTestId('select-domain') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       inputAccount.odsBlur.emit({});
       selectDomain.odsBlur.emit({});
     });
@@ -45,7 +47,8 @@ describe('add alias modal', () => {
     expect(selectDomain).toHaveAttribute('has-error', 'true');
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.input(inputAccount, {
         target: { value: 'alias' },
       });

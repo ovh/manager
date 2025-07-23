@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useShell } from '@ovh-ux/manager-react-core-application';
@@ -5,11 +6,8 @@ import {
   ErrorMessage,
   TRACKING_LABELS,
   ErrorBanner,
+  ErrorBannerProps,
 } from '@ovh-ux/manager-react-components';
-
-interface ErrorObject {
-  [key: string]: any;
-}
 
 function getTrackingTypology(error: ErrorMessage) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
@@ -20,7 +18,7 @@ function getTrackingTypology(error: ErrorMessage) {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-export const Error: React.FC<ErrorObject> = ({ error }) => {
+export const Error: React.FC<ErrorBannerProps> = ({ error }) => {
   const navigate = useNavigate();
   const location = useLocation();
 

@@ -426,8 +426,8 @@ export const DomainDiagnostics = () => {
     [location, domain, isFetching, tabsList],
   );
 
-  const handleRefreshClick = () => {
-    refreshDiagnostic();
+  const handleRefreshClick = async () => {
+    await refreshDiagnostic();
     trackClick({
       location: PageLocation.page,
       buttonType: ButtonType.button,

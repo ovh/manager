@@ -43,6 +43,7 @@ import {
   ModerationChoices,
   getZimbraPlatformMailingListsQueryKey,
   ResourceStatus,
+  DomainType,
 } from '@/data/api';
 import { mailingListSchema, MailingListSchema } from '@/utils';
 import queryClient from '@/queryClient';
@@ -115,7 +116,7 @@ export const MailingListForm = () => {
   });
   //
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
@@ -175,8 +176,8 @@ export const MailingListForm = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformMailingListsQueryKey(platformId),
       });
       goBack();
@@ -371,7 +372,7 @@ export const MailingListForm = () => {
                     id={choice.value}
                     name={choice.value}
                     value={value}
-                    isChecked={value === choice.value}
+                    isChecked={value === (choice.value as string)}
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-reply-to-${choice.value}`}
                   ></OdsRadio>
@@ -434,7 +435,7 @@ export const MailingListForm = () => {
                     id={choice.value}
                     name={choice.value}
                     value={value}
-                    isChecked={value === choice.value}
+                    isChecked={value === (choice.value as string)}
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-moderation-option-${choice.value}`}
                   ></OdsRadio>

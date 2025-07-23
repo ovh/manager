@@ -69,8 +69,8 @@ export const DeleteAlias = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAliasQueryKey(platformId),
       });
       onClose();

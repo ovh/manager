@@ -7,6 +7,7 @@ import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
 import { AutoReplyDurations, AddAutoReply } from './Add.page';
 import autoRepliesFormTranslation from '@/public/translations/auto-replies/form/Messages_fr_FR.json';
 import { accountMock } from '@/data/api';
+import { OdsHTMLElement } from '@/utils/test.utils';
 
 describe('add auto reply page', () => {
   it('should render page correctly', async () => {
@@ -33,7 +34,9 @@ describe('add auto reply page', () => {
     const button = getByTestId('confirm-btn');
     const inputAccount = getByTestId('input-account');
     const selectDomain = getByTestId('select-domain');
-    const radioPermanent = getByTestId(AutoReplyDurations.PERMANENT) as any;
+    const radioPermanent = getByTestId(
+      AutoReplyDurations.PERMANENT,
+    ) as OdsHTMLElement;
     const inputFrom = getByTestId('from');
     const inputUntil = getByTestId('until');
     const message = getByTestId('message');
