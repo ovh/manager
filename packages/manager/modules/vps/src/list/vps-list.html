@@ -24,7 +24,8 @@
 <oui-datagrid
     class="table-striped"
     id="{{ $ctrl.datagridId }}"
-    rows="$ctrl.resources.data"
+    data-rows-loader="$ctrl.loadPage()"
+    data-page="{{ $ctrl.paginationNumber }}"
     data-page-size="{{ $ctrl.paginationSize }}"
     data-row-loader="$ctrl.loadResource($row)"
     data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
