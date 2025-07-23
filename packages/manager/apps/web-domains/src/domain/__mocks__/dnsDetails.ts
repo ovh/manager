@@ -3,6 +3,7 @@ import {
   TDomainResource,
   TNameServerWithType,
 } from '../types/domainResource';
+import { TDomainZone } from '../types/domainZone';
 
 export const ns1: TNameServerWithType = {
   nameServer: 'ns1.example.com',
@@ -99,3 +100,11 @@ export const dnsDatagridMock: TDatagridDnsDetails[] = [
     type: 'STANDARD',
   },
 ];
+
+export const domainZoneMock: TDomainZone = {
+  nameServers: [],
+  dnssecSupported: false,
+  hasDnsAnycast: false,
+  lastUpdate: '',
+  name: 'test',
+};
