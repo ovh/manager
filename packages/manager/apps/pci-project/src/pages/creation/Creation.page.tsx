@@ -146,7 +146,7 @@ export default function ProjectCreation() {
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
-          <PaymentStep />
+          <PaymentStep cart={cart} cartProjectItem={projectItem} />
         </StepComponent>
       </div>
     </div>
