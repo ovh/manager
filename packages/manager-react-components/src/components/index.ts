@@ -9,7 +9,6 @@ export * from './input';
 export * from './content';
 export * from './navigation';
 export * from './templates';
-export * from './typography';
 
 export * from './Link';
 export * from './datagrid/datagrid.component';
