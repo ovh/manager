@@ -7,9 +7,8 @@ import {
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useEnableLogForwarder } from '@/data/hooks/useVmwareVsphereLogForwarder';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { LANDING_URL } from '@/hooks/guide/guidesLinks.constants';
@@ -23,18 +22,17 @@ type LogsActivationProps = {
   datacenterId: number;
   currentStatus: VMWareStatus;
   serviceName: string;
+  isUserTrusted: boolean;
 };
 
 const LogsActivation = ({
   datacenterId,
   currentStatus,
   serviceName,
+  isUserTrusted,
 }: LogsActivationProps) => {
   const { t } = useTranslation('onboarding');
   const { addInfo } = useNotifications();
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
-  const [isUserTrusted, setIsUserTrusted] = useState(false);
   const [taskId, setTaskId] = useState<number | null>(null);
   const {
     mutate: enableLogForwarder,
@@ -46,11 +44,7 @@ const LogsActivation = ({
   });
   const { data: taskData } = useVmwareDedicatedCloudTask(serviceName, taskId);
   const guides = useGuideUtils(LANDING_URL);
-  const getSNC = async () => {
-    const env = await environment.getEnvironment();
-    const { isTrusted } = env.getUser();
-    setIsUserTrusted(isTrusted);
-  };
+
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -71,10 +65,6 @@ const LogsActivation = ({
       });
     }
   }, [taskData]);
-
-  useEffect(() => {
-    getSNC();
-  }, [environment]);
 
   useEffect(() => {
     if (currentStatus === VMWareStatus.MIGRATING) {
