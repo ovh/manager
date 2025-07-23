@@ -61,13 +61,70 @@ export default class BillingTerminate {
     return this.$http.post(`/vrack/${serviceId}/terminate`);
   }
 
+  /* eslint-disable class-methods-use-this */
   getTerminationForm(serviceId) {
-    return this.OvhApiServices.Form()
-      .v6()
-      .get({
-        serviceId,
-        formName: TERMINATION_FORM_NAME,
-      }).$promise;
+    console.warn(serviceId);
+    return new Promise((resolve) => {
+      resolve({
+        name: 'termination',
+        questions: [
+          {
+            answers: [
+              {
+                key: 'TOO_EXPENSIVE',
+              },
+              {
+                key: 'WRONG_ORDER',
+              },
+              {
+                key: 'PRODUCT_TOOLS_DONT_SUIT_ME',
+              },
+              {
+                key: 'NOT_NEEDED_ANYMORE',
+              },
+              {
+                key: 'LACK_OF_PERFORMANCES',
+              },
+              {
+                key: 'OTHER',
+              },
+            ],
+            question: 'reason',
+            type: 'enum',
+            mandatory: true,
+          },
+          {
+            question: 'commentary_reason',
+            type: 'text',
+            mandatory: false,
+          },
+          {
+            answers: [
+              {
+                key: 'NOT_REPLACING_SERVICE',
+              },
+              {
+                key: 'SUBSCRIBE_AN_OTHER_SERVICE',
+              },
+              {
+                key: 'SUBSCRIBE_OTHER_KIND_SERVICE_WITH_COMPETITOR',
+              },
+              {
+                key: 'OTHER',
+              },
+            ],
+            question: 'future_use',
+            type: 'enum',
+            mandatory: true,
+          },
+          {
+            question: 'commentary_future_use',
+            type: 'text',
+            mandatory: false,
+          },
+        ],
+      });
+    });
   }
 
   answerForm({ serviceId }, answers) {
