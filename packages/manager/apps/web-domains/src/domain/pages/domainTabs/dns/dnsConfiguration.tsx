@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Datagrid, Notifications } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
   Button,
   Icon,
@@ -34,7 +34,6 @@ export default function DNSConfigurationTab({
 }: DNSConfigurationTabProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
-
   const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
   return (
@@ -65,7 +64,10 @@ export default function DNSConfigurationTab({
       </Message>
       <div className="flex gap-4 my-6">
         {/* FIXME: page implemented by MANAGER-18978 */}
-        <Button size={ODS_BUTTON_SIZE.sm}>
+        <Button
+          size={ODS_BUTTON_SIZE.sm}
+          onClick={() => navigate('dns-modify')}
+        >
           {t('domain_dns_tab_button_modify_dns')}
         </Button>
         {/* FIXME: page implemented by MANAGER-19005 */}

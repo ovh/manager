@@ -1,4 +1,8 @@
-import { GUIDES_LIST, LangCode } from '@/domain/constants/guideLinks';
+import {
+  GuideLinks,
+  GUIDES_LIST,
+  LangCode,
+} from '@/domain/constants/guideLinks';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -16,6 +20,19 @@ export function getLanguageKey(lang: string): LangCode {
   const isSupported = code in GUIDES_LIST.domains.url;
 
   return isSupported ? (code as LangCode) : 'DEFAULT';
+}
+
+export function generateGuideLinks(template: string): GuideLinks {
+  return {
+    FR: template.replace('{{lang}}', 'fr'),
+    EN: template.replace('{{lang}}', 'en-gb'),
+    DE: template.replace('{{lang}}', 'de'),
+    ES: template.replace('{{lang}}', 'es-es'),
+    IT: template.replace('{{lang}}', 'it'),
+    PL: template.replace('{{lang}}', 'pl'),
+    PT: template.replace('{{lang}}', 'pt'),
+    DEFAULT: template.replace('{{lang}}', 'fr'),
+  };
 }
 
 export function computeDnsDetails(
