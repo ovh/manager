@@ -5,6 +5,7 @@ import {
   useVcdDatacentre,
   getVcdDatacentreListQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout, {
@@ -18,12 +19,17 @@ import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
+  const { data: featuresAvailable } = useFeatureAvailability([
+    FEATURE_FLAGS.VRACK,
+  ]);
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
   const navigate = useNavigate();
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
@@ -55,8 +61,9 @@ function DatacentreDashboardPage() {
       title: VRACK_LABEL,
       to: useResolvedPath(subRoutes.vrackSegments).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
+      disabled: !isVrackFeatureAvailable,
     },
-  ];
+  ].filter(({ disabled }) => !disabled);
 
   const serviceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
   const hasServiceRenamed = vdcId !== serviceName;
