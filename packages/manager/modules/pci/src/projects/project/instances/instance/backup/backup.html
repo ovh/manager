@@ -15,12 +15,10 @@
     >
         <oui-field
             data-label="{{:: 'pci_projects_project_instances_instance_backup_name_label' | translate }}"
-            data-size="xl"
         >
             <input
                 class="oui-input"
                 type="text"
-                id="name"
                 name="name"
                 data-ng-model="$ctrl.backup.name"
                 required
@@ -33,6 +31,70 @@
                 }"
             ></span>
         </oui-field>
+
+        <label data-ng-if="$ctrl.distantBackupRegions.length > 0" class="mb-3">
+            <oui-switch data-model="$ctrl.distantSnapshot"> </oui-switch>
+            &nbsp;
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_distant_label"
+            ></span>
+        </label>
+
+        <div data-ng-if="$ctrl.distantSnapshot">
+            <oui-field
+                data-label="{{:: 'pci_projects_project_instances_instance_backup_distant_name_label' | translate }}"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    data-ng-model="$ctrl.backup.distantSnapshotName"
+                    name="distantSnapshotName"
+                    required
+                    data-ng-maxlength="255"
+                />
+            </oui-field>
+
+            <oui-field
+                data-label="{{ :: 'pci_projects_project_instances_instance_backup_distant_region_label' | translate }}"
+            >
+                <oui-select
+                    data-items="$ctrl.distantBackupRegions"
+                    data-match="microRegion.text"
+                    data-value-property="name"
+                    data-group-by="$ctrl.getRegionGroup"
+                    data-model="$ctrl.backup.distantRegion"
+                    name="distantRegion"
+                    placeholder="{{ :: 'pci_projects_project_instances_instance_backup_distant_region_label' | translate }}"
+                    data-searchable
+                    required
+                >
+                    <div
+                        class="regions-badges d-flex flex-row justify-content-between"
+                    >
+                        <span
+                            ng-bind="$item.microRegion.text"
+                            class="ml-1"
+                        ></span>
+
+                        <span
+                            class="oui-badge oui-badge_promotion {{ :: $item.badgeClass }}"
+                        >
+                            <span
+                                data-translate="{{ :: $item.badgeName }}"
+                            ></span>
+                        </span>
+                    </div>
+                </oui-select>
+
+                <span
+                    data-ng-if="$ctrl.backup.distantRegion"
+                    data-translate="pci_projects_project_instances_instance_backup_distant_region_price"
+                    data-translate-values="{
+                        price: $ctrl.formatPrice() || '?'
+                    }"
+                ></span>
+            </oui-field>
+        </div>
 
         <oui-message type="warning" data-ng-if="!$ctrl.storage.isAttachable()">
             <span
@@ -55,6 +117,15 @@
         <oui-message type="info" data-ng-if="$ctrl.isTrustedZone">
             <span
                 data-translate="pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message"
+            ></span>
+        </oui-message>
+
+        <oui-message
+            type="warning"
+            data-ng-if="$ctrl.showActivateRegionWarning"
+        >
+            <span
+                data-translate="pci_projects_project_instances_instance_backup_region_enable_warning"
             ></span>
         </oui-message>
     </oui-modal>
