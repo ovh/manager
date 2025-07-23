@@ -2,7 +2,7 @@ import React from 'react';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
-export const Loading = ({
+export const Loading: React.FC<HTMLOdsSpinnerElement> = ({
   className = 'flex justify-center my-5',
   size = ODS_SPINNER_SIZE.md,
 }) => {

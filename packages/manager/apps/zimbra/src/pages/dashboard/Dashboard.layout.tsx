@@ -78,8 +78,9 @@ export const DashboardLayout: React.FC = () => {
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: (GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
-        GUIDES_LIST.administrator_guide.url.DEFAULT) as string,
+      href:
+        GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
+        GUIDES_LIST.administrator_guide.url.DEFAULT,
       target: '_blank',
       label: t('zimbra_dashboard_administrator_guide'),
       onClick: () => {

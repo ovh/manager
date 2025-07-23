@@ -5,7 +5,7 @@ import CnameBadge from './CnameBadge.component';
 import { render } from '@/utils/test.provider';
 
 describe('CnameBadge Component', () => {
-  it('should render correctly', async () => {
+  it('should render correctly', () => {
     const { container } = render(
       <CnameBadge
         item={{

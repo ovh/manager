@@ -18,9 +18,10 @@ import {
 describe('DeleteOrganization modal', () => {
   it('should render modal', async () => {
     const { findByText } = render(<DeleteOrganizationModal />);
-    expect(
-      await findByText(commonTranslation.delete_organization),
-    ).toBeVisible();
+
+    waitFor(() => {
+      expect(findByText(commonTranslation.delete_organization)).toBeVisible();
+    });
   });
 
   it('should have button disabled if domains', async () => {

@@ -15,7 +15,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 describe('useGenerateUrl', () => {
-  it('should return url href', async () => {
+  it('should return url href', () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'href'), {
       wrapper,
     });
@@ -24,7 +24,7 @@ describe('useGenerateUrl', () => {
     );
   });
 
-  it('should return url href with params', async () => {
+  it('should return url href with params', () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'href', {
@@ -39,14 +39,14 @@ describe('useGenerateUrl', () => {
     );
   });
 
-  it('should return url path', async () => {
+  it('should return url path', () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'path'), {
       wrapper,
     });
     expect(result.current).toBe('./add');
   });
 
-  it('should return url path with params', async () => {
+  it('should return url path with params', () => {
     const { result } = renderHook(
       () =>
         useGenerateUrl('./delete', 'path', {

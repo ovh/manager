@@ -40,7 +40,7 @@ export const ProBetaBanner = () => {
         },
       ],
     });
-  }, [region, ovhSubsidiary]);
+  }, [platformId, region, ovhSubsidiary]);
 
   const onLinkClick = () => {
     trackClick({

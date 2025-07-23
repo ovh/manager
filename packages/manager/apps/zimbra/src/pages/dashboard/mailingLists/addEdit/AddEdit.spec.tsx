@@ -13,7 +13,7 @@ import {
 import AddEditMailingList from './AddEdit.page';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
-describe('mailing lists add and edit page', async () => {
+describe('mailing lists add and edit page', () => {
   it('should be in add mode', async () => {
     const { getByTestId, queryByTestId } = render(<AddEditMailingList />);
 

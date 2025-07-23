@@ -1,4 +1,8 @@
-import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import {
+  render as reactRender,
+  RenderOptions,
+  RenderResult,
+} from '@testing-library/react';
 import i18n from 'i18next';
 import React, { ComponentType } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
@@ -116,7 +120,7 @@ const customRender = (
   ui: React.JSX.Element,
   options?: Omit<RenderOptions, 'queries'>,
 ): RenderResult =>
-  render(ui, { wrapper: wrapperWithI18n as ComponentType, ...options });
+  reactRender(ui, { wrapper: wrapperWithI18n as ComponentType, ...options });
 
 // We should look into using that
 // https://testing-library.com/docs/user-event/intro

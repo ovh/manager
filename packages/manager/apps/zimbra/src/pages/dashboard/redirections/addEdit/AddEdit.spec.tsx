@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import AddEditRedirectionModal from './AddEdit.modal';
 import { render, fireEvent, act } from '@/utils/test.provider';
 
-describe('AddEditRedirection modal', async () => {
+describe('AddEditRedirection modal', () => {
   // @TODO: this test can fail randomly for no apparent reason, I think there's
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed

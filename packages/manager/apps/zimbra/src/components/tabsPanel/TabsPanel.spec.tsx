@@ -38,7 +38,7 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    await waitFor(() => {
       expect(link1).toHaveAttribute('is-selected', 'true');
     });
 
@@ -61,7 +61,7 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    await waitFor(() => {
       expect(link2).toHaveAttribute('is-selected', 'true');
     });
 

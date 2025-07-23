@@ -32,7 +32,7 @@ describe('Add Domain page', () => {
     expect(page).toHaveTextContent(commonTranslation.add_domain);
   });
 
-  it('Button should be disabled if organization is selected but no domain name is provided', async () => {
+  it('Button should be disabled if organization is selected but no domain name is provided', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');
@@ -145,7 +145,7 @@ describe('Add Domain page', () => {
   });
 
   // TODO: Remove skip when FEATURE_FLAGS.DOMAIN_DNS_CONFIGURATION && FEATURE_FLAGS.DOMAIN_NOT_OVH are removed
-  it.skip('Button should be enabled when an external domain name is provided', async () => {
+  it.skip('Button should be enabled when an external domain name is provided', () => {
     const { getByTestId } = render(<AddDomain />);
 
     const selectOrganization = getByTestId('select-organization');

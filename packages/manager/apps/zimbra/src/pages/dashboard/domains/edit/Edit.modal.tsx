@@ -86,8 +86,8 @@ export const EditDomainModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 

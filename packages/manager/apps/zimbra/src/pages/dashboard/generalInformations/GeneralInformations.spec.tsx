@@ -6,7 +6,7 @@ import { render, waitFor } from '@/utils/test.provider';
 import { organizationMock } from '@/data/api';
 
 describe('General Informations page', () => {
-  it('should display page correctly', async () => {
+  it('should display page correctly', () => {
     const { getByTestId, queryByTestId } = render(<GeneralInformations />);
 
     const serviceStatus = queryByTestId('org-status');

@@ -4,19 +4,19 @@ import { useOverridePage } from '@/hooks';
 import '@testing-library/jest-dom';
 
 describe('useOverridePage', () => {
-  it('should return false', async () => {
+  it('should return false', () => {
     vi.mocked(useMatches).mockReturnValue([]);
     expect(useOverridePage()).toBeFalsy();
   });
 
-  it('should return false', async () => {
+  it('should return false', () => {
     vi.mocked(useMatches).mockReturnValue([
       { handle: { isOverridePage: false } },
     ] as never);
     expect(useOverridePage()).toBeFalsy();
   });
 
-  it('should return false', async () => {
+  it('should return false', () => {
     vi.mocked(useMatches).mockReturnValue([
       { handle: { isOverridePage: true } },
     ] as never);
