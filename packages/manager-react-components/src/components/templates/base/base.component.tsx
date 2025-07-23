@@ -1,8 +1,8 @@
 import React from 'react';
 import { Headers, HeadersProps } from './headers';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { LinkType, Link } from '../../Link';
-import { Subtitle } from '../../typography';
 import { PageLayout } from '../layout/layout.component';
 
 export type BaseLayoutProps = React.PropsWithChildren<{
@@ -57,7 +57,11 @@ export const BaseLayout = ({
       </OdsText>
     )}
     {message && <div className="mb-5 max-w-[800px]">{message}</div>}
-    {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
+    {subtitle && (
+      <Text preset={TEXT_PRESET.heading3} className="block mb-6">
+        {subtitle}
+      </Text>
+    )}
     {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
     {tabs && <div className="mb-6">{tabs}</div>}
     {children}
