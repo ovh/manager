@@ -38,7 +38,7 @@
                 type="button"
                 data-ng-click="$ctrl.serviceOptionId ? $ctrl.onVeeamUpgradeStepperFinish() : $ctrl.onVeeamOrderStepperFinish()"
                 class="oui-button oui-button_primary"
-                data-ng-disabled="$ctrl.serviceOptionId && !$ctrl.model.agree"
+                data-ng-disabled="$ctrl.serviceOptionId && $ctrl.contracts.length > 0 && !$ctrl.model.agree"
             >
                 <span data-translate="vps_common_order"></span>
                 <span
