@@ -3,11 +3,8 @@ import { render } from '@testing-library/react';
 import { Headers } from '../Headers.component';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
 import { useAuthorizationIam } from '../../../../../hooks/iam';
-import {
-  GuideButton,
-  ActionMenu,
-  ChangelogButton,
-} from '../../../../navigation';
+import { ActionMenu } from '../../../../action-menu';
+import { GuideButton, ChangelogButton } from '../../../../navigation';
 
 const header = () => <Headers title="Example for header" />;
 
