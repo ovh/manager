@@ -5,7 +5,7 @@ import Headers from '../Headers.component';
 describe('Headers Component', () => {
   const defaultProps = {
     title: 'Page Title',
-    guideButton: <button>Guide</button>,
+    GuideMenu: <button>Guide</button>,
     changelogButton: <button>Changelog</button>,
   };
 
@@ -30,7 +30,7 @@ describe('Headers Component', () => {
     render(
       <Headers
         {...defaultProps}
-        guideButton={undefined}
+        GuideMenu={undefined}
         changelogButton={undefined}
       />,
     );
@@ -42,14 +42,14 @@ describe('Headers Component', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('renders only guide button when only guideButton is provided', () => {
+  it('renders only guide button when only GuideMenu is provided', () => {
     render(<Headers {...defaultProps} changelogButton={undefined} />);
     expect(screen.getByText('Guide')).toBeInTheDocument();
     expect(screen.queryByText('Changelog')).not.toBeInTheDocument();
   });
 
   it('renders only changelog button when only changelogButton is provided', () => {
-    render(<Headers {...defaultProps} guideButton={undefined} />);
+    render(<Headers {...defaultProps} GuideMenu={undefined} />);
     expect(screen.getByText('Changelog')).toBeInTheDocument();
     expect(screen.queryByText('Guide')).not.toBeInTheDocument();
   });
