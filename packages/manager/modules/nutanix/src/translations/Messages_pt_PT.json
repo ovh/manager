@@ -22,5 +22,6 @@
   "nutanix_dashboard_technical_details_ram_frequency_unit": "MHz",
   "nutanix_dashboard_service_status_active": "Ativo",
   "nutanix_dashboard_service_status_suspended": "Suspenso",
-  "nutanix_dashboard_service_status_toSuspend": "Suspensão pendente"
+  "nutanix_dashboard_service_status_toSuspend": "Suspensão pendente",
+  "nutanix_cluster_list_resiliate": "Rescindir"
 }

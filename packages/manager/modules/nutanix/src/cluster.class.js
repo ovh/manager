@@ -21,6 +21,7 @@ export default class Cluster {
     });
     this.loadingDatacenter = false;
     this.status = this.status.toLowerCase();
+    this.stateBilling = null;
   }
 
   getNodes() {
@@ -65,5 +66,9 @@ export default class Cluster {
 
   setDatacenter(dcName) {
     this.datacenter = dcName;
+  }
+
+  setStateBilling(state) {
+    this.stateBilling = state;
   }
 }
