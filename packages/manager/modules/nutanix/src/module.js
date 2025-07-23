@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { iamProtectedData } from '@ovh-ux/manager-components';
+import { billingModule } from '@ovh-ux/manager-billing';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
@@ -31,6 +32,7 @@ angular
     ListLayoutHelper.moduleName,
     iamProtectedData,
     datacenterName,
+    billingModule,
   ])
   .config(routing)
   .component('clusterComponent', component)

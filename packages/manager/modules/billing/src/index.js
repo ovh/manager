@@ -23,6 +23,7 @@ import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import billingModule from './billing.module';
 
 import 'bootstrap';
 import 'angular-ui-bootstrap';
@@ -72,3 +73,5 @@ angular
   );
 
 export default moduleName;
+
+export { billingModule };
