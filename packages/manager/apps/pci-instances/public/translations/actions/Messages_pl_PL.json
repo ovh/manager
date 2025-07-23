@@ -58,5 +58,11 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Chcesz zawiesić instancję {{name}}. Zasoby dedykowane Twojej instancji Public Cloud zostaną zwolnione, ale jej IP zostanie zachowane. Dane z Twojego lokalnego dysku będą przechowywane. Fakturowana będzie tylko przestrzeń dyskowa używana do tego celu. Czas operacji zależy od rozmiaru dysku lokalnego. W każdej chwili będziesz mógł ponownie włączyć instancję.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Uwaga: w przypadku instancji rozliczanych w trybie miesięcznym, będą one nadal fakturowane zgodnie z tym trybem, niezależnie od statusu usługi.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Ta operacja nie jest dostępna dla instancji {{name}}",
-  "pci_instances_actions_instance_success_message": "Status instancji {{name}} został zaktualizowany"
+  "pci_instances_actions_instance_success_message": "Status instancji {{name}} został zaktualizowany",
+  "pci_instances_actions_backup_instance_distant_label": "Dodaj zdalny backup (opcjonalnie)",
+  "pci_instances_actions_backup_instance_distant_name_label": "Nazwa zdalnego backupu",
+  "pci_instances_actions_backup_instance_distant_region_label": "Wybierz lokalizację",
+  "pci_instances_actions_backup_instance_distant_region_price": "Każda kopia zapasowa będzie płatna: ~{{price}} PLN netto/m-c/GB",
+  "pci_instances_actions_backup_instance_region_enable_warning": "Wybrana lokalizacja nie jest aktywna. Klikając „Zatwierdź”, dodasz ją do swojego projektu.",
+  "pci_instances_actions_backup_instance_with_distant_success_message": "Trwa tworzenie kopii zapasowej {{name}}. Po utworzeniu lokalnego backupu utworzymy backup zdalny {{distantName}}. Aby sprawdzić status i szczegóły operacji, przejdź do strony <InstanceBackupLink> Instance Backup</InstanceBackupLink>. Jeśli kopia zapasowa nie wyświetla się natychmiast, odśwież stronę, aby zaktualizować listę."
 }

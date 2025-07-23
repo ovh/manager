@@ -58,5 +58,11 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Sie sind im Begriff, Ihre Instanz {{ name }} auszusetzen. Die Ihrer Public Cloud Instanz vorbehaltenen Ressourcen werden freigegeben, ihre IP bleibt jedoch erhalten. Die Daten Ihrer lokalen Festplatte werden gespeichert. Nur der dafür verwendete Speicher wird Ihnen in Rechnung gestellt (1). Die Dauer des Vorgangs hängt von der Größe Ihrer lokalen Festplatte ab. Sie können Ihre Instanz jederzeit erneut aktivieren.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Bitte beachten Sie: Für monatlich berechnete Instanzen wird die übliche Abrechnung fortgesetzt, unabhängig vom Status der Dienstleistung.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Diese Aktion ist für Ihre Instanz {{ name }} nicht verfügbar",
-  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert."
+  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert.",
+  "pci_instances_actions_backup_instance_distant_label": "Ein Remote-Backup hinzufügen (optional)",
+  "pci_instances_actions_backup_instance_distant_name_label": "Name des Remote-Backups",
+  "pci_instances_actions_backup_instance_distant_region_label": "Wählen Sie einen Standort aus.",
+  "pci_instances_actions_backup_instance_distant_region_price": "Für jedes Backup fallen Gebühren an: ~{{price}} € inkl. MwSt./Monat/GB",
+  "pci_instances_actions_backup_instance_region_enable_warning": "Der ausgewählte Standort ist nicht aktiviert. Wenn Sie auf „Bestätigen“ klicken, wird er Ihrem Projekt hinzugefügt.",
+  "pci_instances_actions_backup_instance_with_distant_success_message": "Das Backup {{ name }} wird erstellt. Sobald dieses lokale Backup erstellt wurde, erstellen wir das Remote-Backup mit dem Namen {{ distantName }}. Um sich den Status und die Details des Vorgangs anzusehen, wechseln Sie zur Seite <InstanceBackupLink>Instance Backup</InstanceBackupLink>. Wenn das Backup nicht sofort angezeigt wird, können Sie Ihre Seite aktualisieren, damit auch die Liste aktualisiert wird."
 }

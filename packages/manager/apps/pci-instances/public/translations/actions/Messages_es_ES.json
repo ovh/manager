@@ -58,5 +58,11 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Va a suspender su instancia {{ name }}. Los recursos dedicados a la instancia de Public Cloud se liberarán, pero la IP se conservará. Los datos de su disco local se almacenarán y solo se facturará el almacenamiento utilizado para este fin (1). La duración de la operación dependerá del tamaño del disco local. Podrá reactivar su instancia en cualquier momento.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Atención: En el caso de las instancias con facturación mensual, la facturación clásica seguirá aplicándose independientemente del estado del servicio.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Esta acción no está disponible para su instancia {{ name }}",
-  "pci_instances_actions_instance_success_message": "El estado de su instancia {{ name }} se ha actualizado correctamente"
+  "pci_instances_actions_instance_success_message": "El estado de su instancia {{ name }} se ha actualizado correctamente",
+  "pci_instances_actions_backup_instance_distant_label": "Añadir un backup remoto (opcional)",
+  "pci_instances_actions_backup_instance_distant_name_label": "Nombre del backup remoto",
+  "pci_instances_actions_backup_instance_distant_region_label": "Seleccione una localización",
+  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup tendrá un coste de: ~{{price}} €/mes + IVA por GB",
+  "pci_instances_actions_backup_instance_region_enable_warning": "La localización seleccionada no está activada. Al hacer clic en «Confirmar», se añadirá a su proyecto.",
+  "pci_instances_actions_backup_instance_with_distant_success_message": "Creando el backup {{ name }}... Una vez creado el backup local, procederemos a crear el backup remoto denominado {{ distantName }}. Para consultar el estado y los detalles de la operación, acceda a la página <InstanceBackupLink>Instance Backup</InstanceBackupLink>. Si el backup no aparece inmediatamente, recargue la página para actualizar la lista."
 }
