@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import managerBillingComponents from '@ovh-ux/manager-billing-components';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 
@@ -20,6 +21,7 @@ angular
     ngAtInternet,
     'ui.router',
     vpsListComponent,
+    managerBillingComponents,
   ])
   .service('VpsService', VpsService)
   .service('VpsTaskService', VpsTaskService)
