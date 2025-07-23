@@ -812,6 +812,7 @@
   "hosting_tab_DATABASES_configuration_user_delete_fail": "Une erreur est survenue lors de la demande de suppression de l'utilisateur {{t0}}.",
   "hosting_tab_DATABASES_configuration_user_delete_success": "L'utilisateur va être supprimé.",
   "hosting_tab_FTP_configuration_explorer_title": "FTP Explorer",
+  "hosting_tab_FTP_configuration_explorer_info": "L'accès via le client FTP web (Net2FTP) n'est plus disponible. Veuillez utiliser un client FTP tel que <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> et <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> pour vous connecter à votre hébergement.",
   "hosting_tab_FTP_configuration_explorer_disabled": "Bientôt disponible",
   "hosting_tab_FTP_configuration_change_password_title": "Modifier mon mot de passe",
   "hosting_tab_FTP_configuration_change_password_title_button": "Modifier mon mot de passe",
