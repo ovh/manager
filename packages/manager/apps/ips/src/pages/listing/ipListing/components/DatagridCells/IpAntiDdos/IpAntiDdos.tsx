@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { ipFormatter } from '@/utils/ipFormatter';
-import { useGetIpdetails, useGetIpMitigation } from '@/data/hooks/ip';
+import {
+  useGetIpdetails,
+  useGetIpMitigationWithoutIceberg,
+} from '@/data/hooks/ip';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
@@ -40,7 +43,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
     !isDetailsLoading &&
     isAntiDdosEnabled(ipDetails);
 
-  const { ipMitigation, isLoading, error } = useGetIpMitigation({
+  const { ipMitigation, isLoading, error } = useGetIpMitigationWithoutIceberg({
     ip,
     enabled,
   });
@@ -52,7 +55,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
       error={error}
     >
       <IpAntiDdosDisplay
-        ipMitigation={ipMitigation?.[0]}
+        ipMitigation={ipMitigation}
         enabled={enabled}
         ip={ip}
       ></IpAntiDdosDisplay>
