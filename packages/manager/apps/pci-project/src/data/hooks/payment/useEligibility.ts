@@ -1,5 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { getEligibility } from '@/data/api/payment/eligibility';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import {
+  checkVoucherEligibility,
+  getEligibility,
+} from '@/data/api/payment/eligibility';
 
 export const eligibilityQueryKey = () => ['cloud', 'eligibility'];
 
@@ -9,3 +13,16 @@ export const useEligibility = () => {
     queryFn: getEligibility,
   });
 };
+
+export const useCheckVoucherEligibility = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void;
+  onError?: (error: ApiError) => void;
+}) =>
+  useMutation({
+    mutationFn: (voucher: string) => checkVoucherEligibility(voucher),
+    onSuccess,
+    onError,
+  });
