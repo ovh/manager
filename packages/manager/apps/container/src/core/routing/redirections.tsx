@@ -17,31 +17,33 @@ export function Redirections(
 ): JSX.Element {
   return (
     <>
-      <>
-        <Route
-          path="/useraccount/*"
-          element={<Rewrite to="/account/useraccount/*" />}
-        />
-        <Route
-          path="/dedicated/useraccount/*"
-          element={<Rewrite to="/account/useraccount/*" />}
-        />
-        <Route
-          path="/dedicated/contacts/*"
-          element={<Rewrite to="/account/contacts/*" />}
-        />
-        <Route
-          path="/dedicated/identity-documents/*"
-          element={<Rewrite to="/account/identity-documents/*" />}
-        />
-        <Route
-          path="/dedicated/documents/*"
-          element={<Rewrite to="/account/documents/*" />}
-        />
-      </>
+      <Route
+        path="/useraccount/*"
+        element={<Rewrite to="/account/useraccount/*" />}
+      />
+      <Route
+        path="/dedicated/useraccount/*"
+        element={<Rewrite to="/account/useraccount/*" />}
+      />
+      <Route
+        path="/dedicated/contacts/*"
+        element={<Rewrite to="/account/contacts/*" />}
+      />
+      <Route
+        path="/dedicated/identity-documents/*"
+        element={<Rewrite to="/account/identity-documents/*" />}
+      />
+      <Route
+        path="/dedicated/documents/*"
+        element={<Rewrite to="/account/documents/*" />}
+      />
       <Route
         path="/dedicated/billing/*"
         element={<Rewrite to="/billing/*" />}
+      />
+      <Route
+        path="/dedicated/history"
+        element={<Rewrite to="/dedicated/configuration" />}
       />
       <Route path="/freefax">
         <Route path=":id/*" element={<Rewrite to="/telecom/freefax/:id/*" />} />
