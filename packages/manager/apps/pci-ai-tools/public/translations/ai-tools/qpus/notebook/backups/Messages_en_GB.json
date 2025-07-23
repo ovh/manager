@@ -1,0 +1,17 @@
+{
+  "breadcrumb": "Backups",
+  "title": "Backups",
+  "description": "Below you’ll find the list of backups for your notebooks. A new notebook can be created from each.",
+  "tableHeaderId": "Id",
+  "tableHeaderCreationDate": "Created on",
+  "tableHeaderUpdateDate": "Modified on",
+  "backupDropdownMenuLabel": "Action",
+  "tableActionFork": "Fork",
+  "forkBackupTitle": "Order a notebook from a backup",
+  "forkBackupDescription": "Use the {{id}} backup created on {{date}} to order a new notebook?",
+  "forkButtonCancel": "Cancel",
+  "forkBackupButtonConfirm": "Order",
+  "forkToastErrorTitle": "An error has occurred",
+  "forkToastSuccessTitle": "Completed",
+  "forkToastSuccessDescription": "your notebook has been created"
+}

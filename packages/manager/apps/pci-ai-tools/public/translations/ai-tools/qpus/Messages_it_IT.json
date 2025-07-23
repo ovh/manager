@@ -1,0 +1,20 @@
+{
+  "title": "AI Notebooks",
+  "createNewNotebook": "Crea un notebook",
+  "tableHeaderName": "Nome",
+  "tableHeaderLocation": "Region",
+  "tableHeaderFramework": "Framework",
+  "tableHeaderEditor": "Editor",
+  "tableHeaderResources": "Risorse",
+  "tableHeaderPrivacy": "Privacy ",
+  "networkSecureTitle": "Privato",
+  "networkPublicTitle": "Pubblico",
+  "tableHeaderDuration": "Durata",
+  "tableHeaderStatus": "Stato",
+  "tableActionManage": "Gestisci",
+  "tableActionStart": "Comincia ora",
+  "tableActionStop": "Arrestare",
+  "tableActionDelete": "Eliminare",
+  "deleteTableTooltip": "Il notebook deve essere in stato interrotto",
+  "quantumTitle": "Emulatori"
+}

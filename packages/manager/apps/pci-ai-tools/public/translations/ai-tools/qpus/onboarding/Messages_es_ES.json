@@ -1,0 +1,20 @@
+{
+  "title": "AI Notebooks",
+  "description1": "Sus notebooks operativos y totalmente gestionados en cuestión de segundos.",
+  "description2": "Acelere el lanzamiento de sus proyectos y modelos con los notebooks.",
+  "description3": "¿Trabaja como «data scientist» o desarrollador y quiere lanzar un notebook en cuestión de minutos? Acceda rápidamente a Jupyter o VS Code y lance rápidamente su notebook con todos los recursos necesarios gracias a nuestra solución AI Notebooks. Disfrute de un acceso de usuario protegido, un uso simplificado de los datos y los principales frameworks de inteligencia artificial (TensorFlow, PyTorch, Hugging Face o incluso Scikit-learn) para impulsar el desarrollo de su actividad.",
+  "createNotebookButton": "Crear un notebook",
+  "cardTutotitle": "Guías",
+  "cardGuidetitle": "Guías",
+  "cardLink": "Más información",
+  "cardTuto1Description": "Documentación completa de AI Notebooks",
+  "cardTuto1Content": "Consulte toda la documentación de AI Notebooks.",
+  "cardTuto2Description": "Características, capacidades y límites",
+  "cardTuto2Content": "Descubra el AI Notebook de OVHcloud.",
+  "cardTuto3Description": "Empezar con AI Notebooks",
+  "cardTuto3Content": "Esta guía explica cómo crear un notebook rápidamente desde el área de cliente, la línea de comandos o la API.",
+  "quantumTitle": "Emuladores Cuánticos",
+  "quantumDescription1": "Explore la informática cuántica con total libertad gracias a nuestros notebooks listos para usar en el cloud",
+  "quantumDescription2": "Simule hasta 20 cúbits en cuestión de segundos, sin restricciones de instalación ni configuración.",
+  "quantumDescription3": "Acceda a un entorno preconfigurado, compatible con los principales frameworks (Qiskit, Pulser, MyQLM, Perceval...) y colabore fácilmente con sus equipos a través de una interfaz compartida y segura"
+}
