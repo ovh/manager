@@ -1,0 +1,11 @@
+{
+  "status-DELETING": "Deleting",
+  "status-RESTARTING": "Restarting...",
+  "status-STARTING": "Pending",
+  "status-STOPPING": "Cancelling...",
+  "status-FAILED": "Failed",
+  "status-ERROR": "Error",
+  "status-STOPPED": "Stopped",
+  "status-SYNC_FAILED": "Sync failed",
+  "status-RUNNING": "Running"
+}
