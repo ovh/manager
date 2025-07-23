@@ -8,3 +8,9 @@ export enum DnsConfigurationTypeEnum {
   MIXED = 'MIXED',
   PARKING = 'PARKING',
 }
+
+export enum ActiveConfigurationTypeEnum {
+  EXTERNAL = 'EXTERNAL',
+  MIXED = 'MIXED',
+  INTERNAL = 'INTERNAL',
+}
