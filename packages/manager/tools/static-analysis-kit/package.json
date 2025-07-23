@@ -90,6 +90,7 @@
   ],
   "scripts": {
     "build": "tsx scripts/build.ts",
+    "postinstall": "tsx scripts/build.ts",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "prepare": "tsx scripts/build.ts",
