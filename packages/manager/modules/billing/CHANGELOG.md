@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.44.0...@ovh-ux/manager-billing@0.45.0) (2025-07-23)
+
+
+### Features
+
+* **billing:** feature order status for awaiting documents and expired ([03d04aa](https://github.com/ovh/manager/commit/03d04aa551f8824aae947605119840eca503d895)), closes [#MANAGER-18616](https://github.com/ovh/manager/issues/MANAGER-18616)
+
+
+
+
+
 # [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.43.2...@ovh-ux/manager-billing@0.44.0) (2025-07-17)
 
 
