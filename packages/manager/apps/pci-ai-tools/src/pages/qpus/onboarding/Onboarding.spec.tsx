@@ -26,7 +26,7 @@ describe('Onboarding page', () => {
     render(<Onboarding />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByTestId('onbaording-container')).toBeTruthy();
-      expect(screen.getByTestId('create-notebook-link')).toBeTruthy();
+      expect(screen.getByTestId('create-qpu-link')).toBeTruthy();
       expect(screen.getByTestId('guide-open-button')).toBeTruthy();
     });
   });
