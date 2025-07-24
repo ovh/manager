@@ -1,35 +1,25 @@
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import NotFound from './pages/404';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
+const LayoutPage = React.lazy(() => import('@/pages/layout'));
+const IndexPage = React.lazy(() => import('@/pages/index'));
 
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
-
-export const routes: RouteObject[] = [
-  {
-    path: '/',
-    ...lazyRouteConfig(() => import('@/pages/layout')),
-    children: [
-      {
-        path: '/',
-        ...lazyRouteConfig(() => import('@/pages/index')),
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
-
-export default routes;
+export default (
+  <Route
+    path={'/'}
+    Component={LayoutPage}
+    id={'root'}
+    errorElement={
+      <ErrorBoundary
+        redirectionApp="catalog"
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+      />
+    }
+  >
+    <Route path={'/'} Component={IndexPage} />
+    <Route path={'*'} element={<NotFound />} />
+  </Route>
+);
