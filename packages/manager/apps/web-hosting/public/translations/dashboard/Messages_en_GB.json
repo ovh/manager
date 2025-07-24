@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Point the {{t0}} record of your {{t1}} domain to {{t2}}",
   "hosting_add_step3_insert_token_field": "Insert a {{t0}} record for the {{t1}} domain, and insert the value {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "The domain(s) have been added to your hosting plan.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "An error has occurred adding the domain(s) to your hosting plan."
+  "hosting_tab_DOMAINS_configuration_add_failure": "An error has occurred adding the domain(s) to your hosting plan.",
+  "domain_tab_emails": "Emails and mailing lists"
 }

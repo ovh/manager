@@ -3,5 +3,6 @@
   "unsubscribed": "Not subscribed",
   "subscribed": "Subscribed",
   "to_activate": "Enabling required",
-  "activation_in_progress": "Enabling..."
+  "activation_in_progress": "Enabling...",
+  "disabled": "Disabled"
 }

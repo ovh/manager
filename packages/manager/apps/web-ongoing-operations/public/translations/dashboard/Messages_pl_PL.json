@@ -141,8 +141,8 @@
   "domain_operations_nicOperation_ContactControlNotify": "Powiadomienie o weryfikacji kontaktu",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Wysłanie powiadomienia RDRP",
   "domain_operations_guides": "Informacje ogólne",
-  "domain_operations_upload_file_template_1": "Tylko następujące pliki ",
-  "domain_operations_upload_file_template_link": "szablon dokumentu",
-  "domain_operations_upload_file_template_2": " zostaną zaakceptowane.",
+  "domain_operations_upload_file_template_1": "Tylko pliki zgodne ",
+  "domain_operations_upload_file_template_link": "z tym szablonem dokumentu",
+  "domain_operations_upload_file_template_2": " będą akceptowane.",
   "domain_operations_update_dns_click": "Kliknij tutaj, aby skorygować konfigurację serwerów DNS"
 }
