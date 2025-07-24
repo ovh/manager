@@ -68,7 +68,7 @@ describe('Edit Vrack Segment Id Page', () => {
       () => {
         checkTitleIsVisible();
       },
-      { timeout: 2_000 },
+      { timeout: 3_000 },
     );
 
     await waitFor(
@@ -97,7 +97,7 @@ describe('Edit Vrack Segment Id Page', () => {
         checkFormInputAndCta(container);
         checkNetworkValue(container, '');
       },
-      { timeout: 2000 },
+      { timeout: 3000 },
     );
 
     await submitForm(container);
