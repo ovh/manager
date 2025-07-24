@@ -6,7 +6,7 @@
   "guide_category": "Anleitung",
   "guide1_title": "Backup mit Veeam Data Platform",
   "guide1_description": "Hier erfahren Sie, wie Sie Backups und Wiederherstellungen mit der Veeam Data Platform-Integration durchführen.",
-  "guide2_title": "Erste Schritte mit Managed VCD",
+  "guide2_title": "Erste Schritte mit {{productName}}",
   "guide2_description": "Die wesentlichen Prinzipien von Veeam. Entdecken Sie die Grundkonzepte von Veeam.",
   "guide2_link_label": "Die Dokumentation anzeigen",
   "guide3_title": "Häufig gestellte Fragen",
