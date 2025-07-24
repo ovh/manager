@@ -28,7 +28,6 @@ import { useGetIpdetails, useGetIpVmac } from '@/data/hooks/ip';
 import { VirtualMac } from '@/data/api';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
-import { isVmacEnabled } from '@/pages/listing/ipListing/components/DatagridCells/enableCellsUtils';
 
 export default function AddVirtualMacModal() {
   const { t } = useTranslation(['virtual-mac', NAMESPACES.ACTIONS, 'error']);
@@ -40,7 +39,7 @@ export default function AddVirtualMacModal() {
   const [serviceName, setServiceName] = React.useState('');
   const { links } = useGuideUtils();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
   const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({ ip });
   const { models, isLoading: isServerModelsLoading } = useGetServerModels({
@@ -110,13 +109,10 @@ export default function AddVirtualMacModal() {
     },
   });
 
-  // Enable it if additionnal / dedicated Ip linked to a dedicated server
-  const enabled = !isIpDetailsLoading && isVmacEnabled(ipDetails);
-
   // Api call to retrive all existing vmacs for a server
   const { vmacs, isLoading: isVmacLoading, error } = useGetIpVmac({
-    serviceName: ipDetails?.routedTo?.serviceName,
-    enabled,
+    serviceName: service,
+    enabled: true,
   });
 
   useEffect(() => {
