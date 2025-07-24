@@ -7,7 +7,6 @@
   "managed_vcd_dashboard_vrack_add_network": "Ajouter un sous-réseau",
   "managed_vcd_dashboard_vrack_network_address": "Adresse du sous-réseau au format adresse gateway / masque",
   "managed_vcd_dashboard_vrack_network": "Sous-réseau",
-  "managed_vcd_dashboard_vrack_deleting": "Suppression en cours",
   "managed_vcd_dashboard_vrack_vlan_id": "ID VLAN",
   "managed_vcd_dashboard_vrack_vlan_id_helper": "L'ID VLAN doit être compris entre 1 et 4095",
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Pour faciliter vos déploiements cloud hybride, vous pourriez avoir besoin d'utiliser le même identifiant VLAN à la fois sur votre serveur dédié et sur votre projet Public Cloud.",
