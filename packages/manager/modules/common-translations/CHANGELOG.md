@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.11.0...@ovh-ux/manager-common-translations@0.12.0) (2025-07-24)
+
+
+### Features
+
+* **common-translations:** add upload translations ([ddaad9b](https://github.com/ovh/manager/commit/ddaad9baa821935298eec60e13f2a8c5f4af8877)), closes [#MANAGER-17458](https://github.com/ovh/manager/issues/MANAGER-17458)
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.10.0...@ovh-ux/manager-common-translations@0.11.0) (2025-07-17)
 
 
