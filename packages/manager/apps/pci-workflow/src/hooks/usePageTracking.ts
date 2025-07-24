@@ -20,7 +20,7 @@ export default function usePageTracking() {
         isDiscoveryProject: project.planCode === DISCOVERY_PLANCODE,
       });
     }
-  }, [project]);
+  }, [project, setPciProjectMode]);
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
@@ -29,5 +29,5 @@ export default function usePageTracking() {
       name: `${PAGE_PREFIX}::workflow${pageKey}`,
       level2: PCI_LEVEL2,
     });
-  }, [location]);
+  }, [location, trackPage]);
 }

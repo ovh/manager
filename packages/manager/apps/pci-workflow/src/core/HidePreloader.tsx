@@ -6,7 +6,7 @@ export default function HidePreloader() {
 
   useEffect(() => {
     ux.hidePreloader();
-  }, []);
+  }, [ux]);
 
   return null;
 }

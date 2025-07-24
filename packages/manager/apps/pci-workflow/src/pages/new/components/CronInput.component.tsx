@@ -46,7 +46,7 @@ export function CronInput({ scheduling, onInput }: Readonly<CronInputProps>) {
     setErrors(err);
     const hasError = Object.values(err).some((v) => v);
     onInput(hasError ? null : state);
-  }, [state, setErrors, onInput]);
+  }, [validator, state, setErrors, onInput]);
 
   return (
     <>

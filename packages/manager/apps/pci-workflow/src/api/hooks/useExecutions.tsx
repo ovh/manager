@@ -86,5 +86,13 @@ export const useWorkflowExecutions = (
         workflowName: workflow?.name,
       },
     };
-  }, [workflows, isWorkflowPending, sorting, pagination]);
+  }, [
+    locales,
+    userLocale,
+    workflowId,
+    workflows,
+    isWorkflowPending,
+    sorting,
+    pagination,
+  ]);
 };
