@@ -9,6 +9,25 @@ import {
   ChangelogButton,
 } from '../../../../navigation';
 
+vitest.mock('../../../../../hooks/iam');
+
+vi.mock('../../../../../hooks/iam', () => ({
+  useAuthorizationIam: vi.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+    isFetched: true,
+  }),
+}));
+
+vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({
+    trackClick: vi.fn(),
+  }),
+}));
+
+const mockedHook =
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+
 const header = () => <Headers title="Example for header" />;
 
 const headerWithHeaderButtons = () => (
@@ -69,36 +88,41 @@ const headerWithActions = () => (
   />
 );
 
-vitest.mock('../../../../../hooks/iam');
-vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useOvhTracking: () => ({
-    trackClick: vi.fn(),
-  }),
-}));
-
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
-
 describe('Headers component', () => {
   beforeEach(() => {
     mockedHook.mockReturnValue({
       isAuthorized: true,
-      isLoading: true,
+      isLoading: false,
       isFetched: true,
     });
   });
 
   it('renders header with title', async () => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
     const { container } = render(header());
     expect(container).toMatchSnapshot();
   });
 
   it('renders header with header buttons correctly', async () => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
     const { container } = render(headerWithHeaderButtons());
     expect(container).toMatchSnapshot();
   });
 
   it('renders header with actions correctly', async () => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
     const { container } = render(headerWithActions());
     expect(container).toMatchSnapshot();
   });
