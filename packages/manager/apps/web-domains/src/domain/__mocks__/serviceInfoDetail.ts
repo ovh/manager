@@ -15,6 +15,7 @@ export const serviceInfoDetail: TDomainResource = {
       minDNS: 2,
       maxDNS: 8,
       hostSupported: true,
+      dnssecSupported: true,
       glueRecordIPv6Supported: true,
       nameServers: [
         {
