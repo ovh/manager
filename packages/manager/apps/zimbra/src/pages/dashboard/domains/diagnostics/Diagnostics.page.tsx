@@ -127,7 +127,7 @@ const useDNSRecordConfigHelp = ({
     case DnsRecordType.MX:
       return (
         <>
-          {expectedDNSConfig.mx.map(({ priority, target }) => (
+          {expectedDNSConfig?.mx?.map(({ priority, target }) => (
             <tr key={target}>
               <td>
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -158,7 +158,7 @@ const useDNSRecordConfigHelp = ({
                 {t('zimbra_domain_diagnostic_field_value')}
               </strong>
             </OdsText>
-            <Clipboard value={expectedDNSConfig.spf} />
+            <Clipboard value={expectedDNSConfig?.spf} />
           </td>
         </tr>
       );

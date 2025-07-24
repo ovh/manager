@@ -15,16 +15,19 @@ export const getZimbraPlatformDomains = ({
   searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
+  disableCache,
 }: {
   platformId: string;
   searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
+  disableCache?: boolean;
 }) =>
   fetchIcebergV2<DomainType[]>({
     route: `${getApiPath(platformId)}domain${searchParams}`,
     pageSize,
     cursor: pageParam as string,
+    disableCache,
   });
 
 export const getDomainsZoneList = async () => {
