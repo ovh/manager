@@ -1,0 +1,196 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button Snapshot Tests > Authorized Button States > should render basic button when authorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    Click me
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Authorized Button States > should render button with IAM props when authorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    Authorized Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Authorized Button States > should render button with ODS button props when authorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    Full Featured Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Edge Cases > should render button when no IAM props provided 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    No IAM Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Edge Cases > should render button when only iamActions provided 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    IAM Actions Only Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Edge Cases > should render button when only urn provided 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    URN Only Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Edge Cases > should render button with JSX children 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    <span>
+      JSX Children Button
+    </span>
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Edge Cases > should render button with isIamTrigger set to false 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    Non-IAM Trigger Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Loading States > should render button when IAM is loading 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-part="trigger"
+    data-scope="tooltip"
+    data-state="closed"
+    data-testid="manager-button-tooltip"
+    dir="ltr"
+    disabled=""
+    id="tooltip::r3::trigger"
+    type="button"
+  >
+    Loading IAM Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Loading States > should render button when IAM is loading and authorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button"
+    type="button"
+  >
+    Loading Authorized Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with all ODS props when unauthorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-part="trigger"
+    data-scope="tooltip"
+    data-state="closed"
+    data-testid="manager-button-tooltip"
+    dir="ltr"
+    disabled=""
+    id="tooltip::r2::trigger"
+    type="button"
+  >
+    Unauthorized Full Featured Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with custom tooltip position 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-part="trigger"
+    data-scope="tooltip"
+    data-state="closed"
+    data-testid="manager-button-tooltip"
+    dir="ltr"
+    disabled=""
+    id="tooltip::r1::trigger"
+    type="button"
+  >
+    Unauthorized Button Top Tooltip
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with tooltip when unauthorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-part="trigger"
+    data-scope="tooltip"
+    data-state="closed"
+    data-testid="manager-button-tooltip"
+    dir="ltr"
+    disabled=""
+    id="tooltip::r0::trigger"
+    type="button"
+  >
+    Unauthorized Button
+  </button>
+</div>
+`;
+
+exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button without tooltip when unauthorized 1`] = `
+<div>
+  <button
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    data-testid="manager-button-without-tooltip"
+    disabled=""
+    type="button"
+  >
+    Unauthorized Button No Tooltip
+  </button>
+</div>
+`;
