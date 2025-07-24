@@ -149,7 +149,7 @@ export default class NewAccountFormFieldController {
           if (
             this.rule.prefix &&
             value &&
-            this.fieldName !== this.FIELD_NAME_LIST.zip
+            this.rule.fieldName !== this.FIELD_NAME_LIST.zip
           ) {
             value = this.rule.prefix + value;
           }
