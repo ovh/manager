@@ -13,7 +13,7 @@ export type VCDDatacentreState = VCDDatacentreTargetSpec & {
   region: string;
   memoryQuota: number;
   name: string;
-  vRack?: string;
+  vrack?: string;
 };
 
 export type VCDDatacentre = WithIam<{
