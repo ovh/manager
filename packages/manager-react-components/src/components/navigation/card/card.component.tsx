@@ -88,9 +88,10 @@ export const Card: React.FC<CardProps> = ({
           <div className="section-see-more-label mt-auto">
             <Link
               tab-index="-1"
-              label={hrefLabel ?? t('see_more_label')}
               type={isExternalHref ? LinkType.external : LinkType.next}
-            />
+            >
+              {hrefLabel ?? t('see_more_label')}
+            </Link>
           </div>
         </div>
       </OdsCard>
