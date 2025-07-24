@@ -13,5 +13,8 @@
   "vps_terminate_activate_delete_at_expiration_success": "La richiesta di disattivazione del servizio alla data di scadenza è stata presa in carico.",
   "vps_terminate_activate_delete_at_expiration_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio alla data di scadenza:",
   "vps_terminate_deactivate_delete_at_expiration_success": "La richiesta di disattivazione di questo servizio alla data di scadenza è stata sospesa.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Si è verificato un errore durante la sospensione della richiesta di disattivazione del servizio alla data di scadenza:"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Si è verificato un errore durante la sospensione della richiesta di disattivazione del servizio alla data di scadenza:",
+  "vps_terminate_outperform_availability_banner_title": "Lo sapevi?",
+  "vps_terminate_outperform_availability_banner_info": "Hai i requisiti per usufruire dell'attribuzione di più risorse allo stesso prezzo. Avrete prestazioni migliori e non avrete bisogno di modificare la vostra installazione.",
+  "vps_terminate_outperform_availability_banner_button": "Mantieni il tuo servizio ed esegui l'upgrade gratuitamente"
 }

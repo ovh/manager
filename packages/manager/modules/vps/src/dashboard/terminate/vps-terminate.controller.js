@@ -1,10 +1,15 @@
-import { SERVICE_TYPE, TERMINATE_OPTIONS } from './vps-terminate.constants';
+import {
+  OUTPERFORM_AVAILABLE_STATUS,
+  SERVICE_TYPE,
+  TERMINATE_OPTIONS,
+} from './vps-terminate.constants';
 
 export default class {
   /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
     this.serviceType = SERVICE_TYPE.VPS;
+    this.OUTPERFORM_AVAILABLE_STATUS = OUTPERFORM_AVAILABLE_STATUS;
   }
 
   static getDegressivityMonthDetails(degressivityInformation) {

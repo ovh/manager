@@ -48,6 +48,45 @@ export default /* @ngInject */ function VpsService(
     tabVeeamChanged: 'vps.tabs.veeam.changed',
   };
 
+  this.getVpsList = function getVpsList() {
+    return iceberg(swsVpsProxypass)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  };
+
+  this.vpsRenewPrice = function vpsRenewPrice(serviceName) {
+    return this.getServiceInfos(serviceName).then(({ serviceId }) =>
+      $http
+        .get(`/service/${serviceId}/renew`, {
+          params: {
+            includeOptions: true,
+          },
+        })
+        .then(({ data }) => data[0]),
+    );
+  };
+
+  this.getMigration2020 = function getMigration2020(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/migration2020`)
+      .then(({ data }) => data)
+      .catch(() => null);
+  };
+
+  this.postMigration2020 = function getMigration2020(serviceName, plan) {
+    return $http
+      .post(`/vps/${serviceName}/migration2020`, { plan })
+      .then(({ data }) => data);
+  };
+
+  this.putMigration2020 = function getMigration2020(serviceName, date) {
+    return $http
+      .put(`/vps/${serviceName}/migration2020`, { date })
+      .then(({ data }) => data);
+  };
+
   this.getTaskInProgress = function getTaskInProgress(serviceName, type) {
     let result = null;
     return this.getSelectedVps(serviceName)
@@ -1443,5 +1482,55 @@ export default /* @ngInject */ function VpsService(
       .get(`/services/${serviceId}`)
       .then(({ data }) => data?.resource?.product?.name.includes('-resell'))
       .catch(() => false);
+  };
+
+  this.autoBackupUpgradeAvailable = function autoBackupUpgradeAvailable(
+    serviceName,
+  ) {
+    return $http
+      .get(`/services`, {
+        params: { resourceName: `${serviceName}-autobackup` },
+      })
+      .then(({ data }) => {
+        return data.length > 0
+          ? $http
+              .get(`/services/${data[0]}/upgrade`)
+              .then(({ data: upgradeAvailable }) => ({
+                serviceOptionId: data[0],
+                upgradeAvailable: upgradeAvailable?.[0],
+              }))
+          : null;
+      });
+  };
+
+  this.servicesUpgradeSimulate = function servicesUpgradeSimulate(
+    serviceId,
+    planCode,
+    params,
+  ) {
+    return $http
+      .post(`/services/${serviceId}/upgrade/${planCode}/simulate`, params)
+      .then(({ data }) => data);
+  };
+
+  this.servicesUpgradeExecute = function servicesUpgradeExecute(
+    serviceId,
+    planCode,
+    params,
+  ) {
+    return $http
+      .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
+      .then(({ data }) => data);
+  };
+
+  this.vpsCapabilities = function vpsCapabilities(serviceName, stateVps) {
+    return $http
+      .get(`/vps/capabilities/${serviceName}`, {
+        serviceType: 'aapi',
+        params: {
+          modelName: stateVps.model.name,
+        },
+      })
+      .then(({ data }) => data);
   };
 }
