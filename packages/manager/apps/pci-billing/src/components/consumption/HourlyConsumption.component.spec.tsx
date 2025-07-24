@@ -21,6 +21,7 @@ describe('HourlyConsumption', () => {
     rancher: [],
     dataplatform: [],
     monthlyInstances: [],
+    monthlySavingsPlanList: [],
     aiDeploy: [],
     dataProcessing: [],
     databases: [],
@@ -57,6 +58,7 @@ describe('HourlyConsumption', () => {
       },
       monthly: {
         total: 10.5,
+        savingsPlan: 10,
         instance: 5.25,
       },
     },

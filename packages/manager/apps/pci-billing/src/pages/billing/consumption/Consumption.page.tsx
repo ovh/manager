@@ -21,7 +21,11 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
-import { useGeTCurrentUsage } from '@/api/hook/useConsumption';
+import {
+  TConsumptionDetail,
+  useGeTCurrentUsage,
+} from '@/api/hook/useConsumption';
+import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
 
 export default function Consumption() {
   const { t } = useTranslation('consumption');
@@ -78,7 +82,7 @@ export default function Consumption() {
               rounded
               variant={ODS_TILE_VARIANT.flat}
             >
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col w-full gap-5">
                 <OsdsText
                   size={ODS_TEXT_SIZE._400}
                   level={ODS_TEXT_LEVEL.heading}
@@ -97,6 +101,9 @@ export default function Consumption() {
                 </OsdsText>
                 {consumption && (
                   <MonthlyConsumption consumption={consumption} />
+                )}
+                {consumption && (
+                  <SavingsPlanConsumption consumption={consumption} />
                 )}
               </div>
             </OsdsTile>
