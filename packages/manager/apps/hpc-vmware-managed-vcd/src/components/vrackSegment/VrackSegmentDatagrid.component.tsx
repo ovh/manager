@@ -10,12 +10,13 @@ import {
   FilterCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
+  useVcdOrganization,
   useVcdVrackSegmentListOptions,
   VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
@@ -25,6 +26,7 @@ import { VrackSegmentSubDatagrid } from './VrackSegmentSubDatagrid.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
 import { VrackSegmentStatusBadge } from '../vrackSegmentStatusBadge/VrackSegmentStatusBadge.component';
+import { isStatusTerminated } from '@/utils/resourceStatus';
 
 export type VrackSegmentDatagridProps = {
   id: string;
@@ -42,10 +44,18 @@ export const VrackSegmentDatagrid = ({
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
+  const { data: vcdOrganization } = useVcdOrganization({ id });
+  const isVcdTerminated = isStatusTerminated(
+    vcdOrganization?.data?.resourceStatus,
+  );
 
   const vcdVrackNetworkOptions = useVcdVrackSegmentListOptions(id, vdcId);
   const { data: vrackSegments, isLoading } = useQuery({
     ...vcdVrackNetworkOptions,
+    refetchInterval: (query) =>
+      query.state?.data?.data.find(
+        ({ resourceStatus }) => !['READY', 'ERROR'].includes(resourceStatus),
+      ) && 2000,
     select: (data) =>
       data.data.map((item) => ({
         ...item,
@@ -118,7 +128,8 @@ export const VrackSegmentDatagrid = ({
       isSortable: false,
       isFilterable: false,
       cell: (item: VCDVrackSegment) => {
-        const isDeleting = item.resourceStatus === 'DELETING';
+        const isNotReadyForChange =
+          !isVcdTerminated && !['READY', 'ERROR'].includes(item.resourceStatus);
         const itemId = item.targetSpec.vlanId;
         const isNotEditable = item.currentState.mode !== 'TAGGED';
 
@@ -128,7 +139,7 @@ export const VrackSegmentDatagrid = ({
               popover-position="bottom-end"
               id={itemId}
               isCompact
-              isDisabled={isDeleting}
+              isDisabled={isNotReadyForChange}
               variant={ODS_BUTTON_VARIANT.ghost}
               items={[
                 {
@@ -171,13 +182,6 @@ export const VrackSegmentDatagrid = ({
                   : []),
               ]}
             />
-            {isDeleting && (
-              <OdsTooltip triggerId={itemId}>
-                {t(
-                  'datacentres/vrack-segment:managed_vcd_dashboard_vrack_deleting',
-                )}
-              </OdsTooltip>
-            )}
           </div>
         );
       },
