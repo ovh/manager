@@ -3,5 +3,6 @@
   "unsubscribed": "Nicht abonniert",
   "subscribed": "Abonniert",
   "to_activate": "Zu aktivieren",
-  "activation_in_progress": "Wird aktiviert"
+  "activation_in_progress": "Wird aktiviert",
+  "disabled": "Deaktiviert"
 }
