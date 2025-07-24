@@ -37,6 +37,7 @@ const getStatusColor = (status: Status) => {
     case GitStatus.DISABLED:
     case GitStatus.ERROR:
     case ResourceStatus.ERROR:
+    case ResourceStatus.SUSPENDED:
     case ServiceStatus.NONE:
       return ODS_BADGE_COLOR.critical;
     case DnsStatus.NOT_CONFIGURED:
