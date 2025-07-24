@@ -31,6 +31,24 @@ export const trackingContext = {
 export const BACK_PREVIOUS_PAGE = 'back_previous-page';
 export const CANCEL = 'cancel';
 export const CONFIRM = 'confirm';
+<<<<<<< HEAD
+=======
+export const BACK_PREVIOUS_PAGE = 'back_previous-page';
+
+export const ADD_DOMAIN = 'add-domain';
+export const ORDER_DOMAIN = 'order-domain';
+export const ONBOARDING = 'onboarding';
+export const ORDER_CTA = 'order_website';
+export const EXPORT_CSV = 'export_csv';
+export const DATAGRID_LINK = 'details_';
+export const WEBSITE = 'website';
+export const WORDPRESS_MANAGED = 'managed-wordpress';
+export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
+export const GENERAL_INFORMATION = 'general-information';
+export const TASKS = 'tasks';
+export const STATISTICS = 'statistics';
+export const DIAGNOSTIC = 'diagnostic';
+>>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
 export const DASHBOARD = 'dashboard';
 export const DATAGRID_LINK = 'details_';
 export const DIAGNOSTIC = 'diagnostic';
