@@ -367,5 +367,16 @@
   "manager_components_region_continent_CA": "Ameryka Północna",
   "manager_components_region_CA": "Kanada",
   "manager_components_region_CA_micro": "Kanada ({{micro}})",
-  "manager_components_region_location_CA": "Ameryka Północna (Kanada)"
+  "manager_components_region_location_CA": "Ameryka Północna (Kanada)",
+  "manager_components_region_PHL": "Filadelfia",
+  "manager_components_region_PHL_micro": "Filadelfia ({{micro}})",
+  "manager_components_region_continent_PHL": "Ameryka Północna",
+  "manager_components_region_PHX": "Phoenix",
+  "manager_components_region_PHX_micro": "Phoenix ({{micro}})",
+  "manager_components_region_continent_PHX": "Ameryka Północna",
+  "manager_components_region_location_PHL": "Ameryka Północna (Stany Zjednoczone)",
+  "manager_components_region_CPH": "Kopenhaga",
+  "manager_components_region_CPH_micro": "Kopenhaga ({{micro}})",
+  "manager_components_region_continent_CPH": "Europa Północna",
+  "manager_components_region_location_CPH": "Europa Północna (Dania)"
 }
