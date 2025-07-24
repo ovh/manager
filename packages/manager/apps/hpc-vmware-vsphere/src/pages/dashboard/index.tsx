@@ -1,83 +1,103 @@
-import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Outlet,
   NavLink,
-  useLocation,
-  useNavigate,
   useResolvedPath,
   useParams,
+  useNavigate,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
-  Breadcrumb,
+  OdsTabs,
+  OdsTab,
+  OdsBreadcrumb,
+  OdsBreadcrumbItem,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
+import {
   BaseLayout,
   HeadersProps,
   GuideButton,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
 
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import appConfig from '@/hpc-vmware-vsphere.config';
 
-import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { VSPHERE_CHANGELOGS_LINKS } from './dashboard.constants';
+import { HybridBreadcrumbItem } from '@/hooks/breadcrumb/HybridBreadcrumbItem';
+import { DashboardTabItem } from '@/types/DashboardTabItem';
 
-export type DashboardTabItemProps = {
-  name: string;
-  title: string;
-  to: string;
-};
+import { useActivePanel } from '@/hooks/useActivePanel';
+import useGuideUtils from '@/hooks/guide/useGuideUtils';
+import { useHybridBreadcrumb } from '@/hooks/breadcrumb/useHybridBreadcrumb';
+import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
 
 export type DashboardLayoutProps = {
-  tabs: DashboardTabItemProps[];
+  tabs: DashboardTabItem[];
 };
 
 export default function DashboardPage() {
-  const [activePanel, setActivePanel] = useState('');
-  const location = useLocation();
-  const navigate = useNavigate();
   const { serviceName } = useParams();
-  const shellNav = useContext(ShellContext).shell.navigation;
+  const navigate = useNavigate();
+
+  const { data: vmwareVsphere, isLoading: isLoadingVsphere } = useVmwareVsphere(
+    serviceName,
+  );
+
+  const service = {
+    name: serviceName,
+    description: vmwareVsphere?.data?.description ?? serviceName,
+  };
+
   const guides = useGuideUtils();
 
   const { t } = useTranslation('dashboard');
 
-  const tabsList = [
+  const { legacyApplication, legacyPath, dedicatedCloudTitle } = appConfig;
+
+  const { data: legacyAppBaseUrl } = useNavigationGetUrl([
+    legacyApplication,
+    `/${legacyPath}`,
+    {},
+  ]) as { data: string };
+
+  const legacyAppServiceBaseUrl = `${legacyAppBaseUrl}/${service.name}`;
+
+  const tabsList: DashboardTabItem[] = [
     {
       name: 'general_informations',
       title: t('tabs_label_general_informations'),
-      to: '',
+      to: legacyAppServiceBaseUrl,
       isRedirectLegacy: true,
     },
     {
       name: 'datacenters',
       title: t('tabs_label_datacenters'),
-      to: useResolvedPath('datacenter').pathname,
+      to: `${legacyAppServiceBaseUrl}/datacenter`,
       isRedirectLegacy: true,
     },
     {
       name: 'users',
       title: t('tabs_label_users'),
-      to: useResolvedPath('users').pathname,
+      to: `${legacyAppServiceBaseUrl}/users`,
       isRedirectLegacy: true,
     },
     {
       name: 'security',
       title: t('tabs_label_security'),
-      to: useResolvedPath('security').pathname,
+      to: `${legacyAppServiceBaseUrl}/security`,
       isRedirectLegacy: true,
     },
     {
       name: 'operations',
       title: t('tabs_label_operations'),
-      to: useResolvedPath('operation').pathname,
+      to: `${legacyAppServiceBaseUrl}/operation`,
       isRedirectLegacy: true,
     },
     {
       name: 'license',
       title: t('tabs_label_license'),
-      to: useResolvedPath('license').pathname,
+      to: `${legacyAppServiceBaseUrl}/license`,
       isRedirectLegacy: true,
     },
     {
@@ -88,30 +108,10 @@ export default function DashboardPage() {
     },
   ];
 
-  useEffect(() => {
-    const activeTab = [...tabsList]
-      .reverse()
-      .find((tab) => location.pathname.startsWith(tab.to));
-    if (activeTab) {
-      if (activeTab.isRedirectLegacy) {
-        shellNav.navigateTo(
-          'dedicated',
-          `/dedicated_cloud/${serviceName ?? ''}/${activeTab.to
-            .split('/')
-            .pop()}`,
-          {},
-        );
-      } else {
-        setActivePanel(activeTab.to);
-      }
-    } else {
-      setActivePanel(tabsList[0].to);
-      navigate(`${tabsList[0].to}`);
-    }
-  }, [location.pathname]);
+  const activePanel = useActivePanel(tabsList);
 
   const header: HeadersProps = {
-    title: serviceName,
+    title: service.description,
     changelogButton: <ChangelogButton links={VSPHERE_CHANGELOGS_LINKS} />,
     headerButton: (
       <GuideButton
@@ -139,27 +139,55 @@ export default function DashboardPage() {
     ),
   };
 
+  const breadcrumbItems: HybridBreadcrumbItem[] = useHybridBreadcrumb({
+    appName: dedicatedCloudTitle,
+    service,
+    legacyAppBaseUrl,
+    activePanel,
+  });
+
+  if (isLoadingVsphere) {
+    return (
+      <div className="flex pt-10">
+        <OdsSpinner />
+      </div>
+    );
+  }
+
   return (
     <BaseLayout
       breadcrumb={
-        <Breadcrumb
-          rootLabel={appConfig.rootLabel}
-          appName="hpc-vmware-vsphere"
-        />
+        <OdsBreadcrumb data-testid="breadcrumb">
+          {breadcrumbItems?.map((item) => (
+            <OdsBreadcrumbItem
+              key={item.label}
+              href={item.href}
+              onOdsClick={() => navigate(item.to)}
+              label={item.label}
+            />
+          ))}
+        </OdsBreadcrumb>
       }
       header={header}
       tabs={
         <OdsTabs>
-          {tabsList.map((tab: DashboardTabItemProps) => (
-            <OdsTab
-              key={`osds-tab-bar-item-${tab.name}`}
-              isSelected={activePanel === tab.to}
-            >
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-            </OdsTab>
-          ))}
+          {tabsList.map((tab: DashboardTabItem) => {
+            const { isRedirectLegacy, name, title, to } = tab;
+            const isSelected = activePanel?.name === name;
+            return (
+              <OdsTab key={`osds-tab-bar-item-${name}`} isSelected={isSelected}>
+                {isRedirectLegacy ? (
+                  <a className="no-underline" href={to}>
+                    {title}
+                  </a>
+                ) : (
+                  <NavLink to={to} className="no-underline">
+                    {title}
+                  </NavLink>
+                )}
+              </OdsTab>
+            );
+          })}
         </OdsTabs>
       }
     >
