@@ -169,7 +169,7 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
         ...datacentre,
         currentState: {
           ...datacentre.currentState,
-          vRack: 'pn-12345',
+          vrack: 'pn-12345',
         },
       },
       expectedUrlPath: `/${VRACK_PATH}/pn-12345`,
@@ -189,8 +189,8 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
         </QueryClientProvider>,
       );
 
-      if (shouldDisplayVrackId && datacentre.currentState.vRack) {
-        assertTextVisibility(datacentre.currentState.vRack);
+      if (shouldDisplayVrackId && (dc.currentState as any).vrack) {
+        assertTextVisibility((dc.currentState as any).vrack);
       }
 
       expect(mockedUrl).toContain(expectedUrlPath);
