@@ -26,9 +26,9 @@ import {
 } from '@ovhcloud/ods-components';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInstances } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   LISTENER_PROTOCOL_LIST,
   MAX_INSTANCES_BY_LISTENER,
@@ -67,7 +67,7 @@ export function InstanceTable({
   const { t } = useTranslation('instances-table');
   const [listeners, setListeners] = useState<ListenerForm[]>([]);
   const { data: instances, isPending } = useInstances(projectId, region);
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     // cleanup form data before passing it to the onChange callback
@@ -116,9 +116,9 @@ export function InstanceTable({
               ],
             },
           ]);
-          tracking?.trackClick({
-            name: `${TRACKING_PREFIX}::add-listener`,
-            type: 'action',
+          trackClick({
+            actions: [`${TRACKING_PREFIX}`, 'add-listener'],
+            actionType: 'action',
           });
         }}
       >
@@ -303,9 +303,9 @@ export function InstanceTable({
                     setListeners(
                       listeners.filter((l) => l.uid !== listener.uid),
                     );
-                    tracking?.trackClick({
-                      name: `${TRACKING_PREFIX}::delete-listener`,
-                      type: 'action',
+                    trackClick({
+                      actions: [`${TRACKING_PREFIX}`, `delete-listener`],
+                      actionType: 'action',
                     });
                   }}
                 >
@@ -477,9 +477,9 @@ export function InstanceTable({
                             ({ uid }) => uid !== instance.uid,
                           );
                           setListeners(newListeners);
-                          tracking?.trackClick({
-                            name: `${TRACKING_PREFIX}::delete-instance`,
-                            type: 'action',
+                          trackClick({
+                            actions: [`${TRACKING_PREFIX}`, `delete-instance`],
+                            actionType: 'action',
                           });
                         }}
                       >
@@ -518,9 +518,9 @@ export function InstanceTable({
                             port: 80,
                           });
                           setListeners(newListeners);
-                          tracking?.trackClick({
-                            name: `${TRACKING_PREFIX}::add-instance`,
-                            type: 'action',
+                          trackClick({
+                            actions: [`${TRACKING_PREFIX}`, `add-instance`],
+                            actionType: 'action',
                           });
                         }}
                       >
