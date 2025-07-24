@@ -408,7 +408,7 @@ export type TStorage = {
     quantity: TQuantity;
     totalPrice: number;
   };
-  retrievalFees: {
+  retrievalFees?: {
     quantity: TQuantity;
     totalPrice: {
       value: number;
@@ -621,8 +621,8 @@ export const getConsumptionDetails = (
       archiveStorage: archiveStorageTotalPrice,
       snapshot: snapshotsTotalPrice,
       volume: volumesTotalPrice,
-      bandwidth: bandwidthTotalPrice,
       rancher: rancherTotalPrice,
+      bandwidth: bandwidthTotalPrice,
     },
     monthly: {
       total: monthlyInstanceTotalPrice + monthlySavingsPlanTotalPrice,
@@ -652,7 +652,7 @@ export const getConsumptionDetails = (
       ...totals,
       total: finalTotal,
     },
-  };
+  } as TConsumptionDetail;
 };
 
 export const useGeTCurrentUsage = (projectId: string) =>
