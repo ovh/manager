@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.2...@ovh-ux/manager-dbaas-logs@1.31.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* **ldp:** opensearch api url ([509a882](https://github.com/ovh/manager/commit/509a8823ab91f6e9c456572832919cc3eb1d7853)), closes [#OB-7401](https://github.com/ovh/manager/issues/OB-7401)
+
+
+
+
+
 ## [1.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.1...@ovh-ux/manager-dbaas-logs@1.31.2) (2025-07-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
