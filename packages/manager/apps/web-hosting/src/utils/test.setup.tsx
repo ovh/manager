@@ -141,6 +141,7 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
+<<<<<<< HEAD
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
   return {
@@ -174,6 +175,16 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (import
   };
 });
 
+=======
+vi.mock('@/data/api/managedWordpress', () => ({
+  getManagedCmsResource: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceMock),
+  ),
+  getManagedCmsResourceWebsiteDetails: vi.fn(() =>
+    Promise.resolve(managedCmsResourceWebsiteMock),
+  ),
+}));
+>>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
 afterEach(() => {
   vi.clearAllMocks();
 });
