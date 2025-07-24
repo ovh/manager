@@ -3,10 +3,14 @@ import { OdsButton, OdsTooltip } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { VCDVrackSegment } from '@ovh-ux/manager-module-vcd-api';
+import {
+  useVcdOrganization,
+  VCDVrackSegment,
+} from '@ovh-ux/manager-module-vcd-api';
 import { LABELS } from '../../utils/labels.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
+import { isStatusTerminated } from '@/utils/resourceStatus';
 
 const CSS = `
       .sub-row > td {
@@ -42,6 +46,10 @@ export const VrackSegmentSubDatagrid = ({
   const { t } = useTranslation('datacentres/vrack-segment');
   const navigate = useNavigate();
   const { id, vdcId } = useParams();
+  const { data: vcdOrganization } = useVcdOrganization({ id });
+  const isVcdTerminated = isStatusTerminated(
+    vcdOrganization?.data?.resourceStatus,
+  );
   const {
     id: vrackSegmentId,
     resourceStatus: vrackSegmentStatus,
@@ -68,7 +76,9 @@ export const VrackSegmentSubDatagrid = ({
             id: 'actions',
             label: '',
             cell: (network: string) => {
-              const isDeleting = vrackSegmentStatus === 'DELETING';
+              const isNotReadyForChange =
+                !isVcdTerminated &&
+                !['READY', 'ERROR'].includes(vrackSegmentStatus);
               const isLastNetwork = networks.length <= 1;
               const buttonId = `delete-network-${network}`;
               return (
@@ -81,7 +91,7 @@ export const VrackSegmentSubDatagrid = ({
                     icon="trash"
                     variant="ghost"
                     color="critical"
-                    isDisabled={isDeleting || isLastNetwork}
+                    isDisabled={isNotReadyForChange || isLastNetwork}
                     onClick={() => {
                       navigate(
                         urls.vrackSegmentDeleteNetwork
@@ -95,11 +105,6 @@ export const VrackSegmentSubDatagrid = ({
                       );
                     }}
                   />
-                  {isDeleting && (
-                    <OdsTooltip triggerId={buttonId}>
-                      {t('managed_vcd_dashboard_vrack_deleting')}
-                    </OdsTooltip>
-                  )}
                   {isLastNetwork && (
                     <OdsTooltip triggerId={buttonId}>
                       {t(
