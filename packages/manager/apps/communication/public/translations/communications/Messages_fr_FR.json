@@ -1,0 +1,8 @@
+{
+  "table_column_subject": "Sujet",
+  "table_column_status": "Statut",
+  "table_column_priority": "Priorité",
+  "table_column_date": "Date",
+  "table_column_categories": "Catégories",
+  "contact_status_warning": "Il semble y avoir un soucis avec le moyen de réception {{ contactType }}. Vous pouvez <anchor>gérer vos paramètres de réception</anchor> pour corriger ce problème."
+}

@@ -1,0 +1,26 @@
+{
+  "categories": [
+    {
+      "description": "BILLING Category",
+      "name": "BILLING"
+    },
+    {
+      "description": "LEGAL Category",
+      "name": "LEGAL"
+    }
+  ],
+  "priorities": [
+    {
+      "description": "HIGH Priority",
+      "name": "HIGH"
+    },
+    {
+      "description": "MEDIUM Priority",
+      "name": "MEDIUM"
+    },
+    {
+      "description": "LOW Priority",
+      "name": "LOW"
+    }
+  ]
+}
