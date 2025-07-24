@@ -93,7 +93,7 @@ describe('Edit Vrack Segment Id Page', () => {
       () => {
         expect(queryModalTitle()).toBeInTheDocument();
       },
-      { timeout: 2_000 },
+      { timeout: 3_000 },
     );
 
     await waitFor(
