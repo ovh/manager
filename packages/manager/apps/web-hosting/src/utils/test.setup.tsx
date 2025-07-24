@@ -1,6 +1,11 @@
 import { vi } from 'vitest';
 import React from 'react';
-import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
+import {
+  attachedDomainDigStatusMock,
+  managedWordpressResourceMock,
+  websitesMocks,
+  managedCmsResourceWebsiteMock,
+} from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -111,7 +116,14 @@ vi.mock('@/data/api/index', () => ({
   ),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
-
+vi.mock('@/data/api/managedWordpress', () => ({
+  getManagedCmsResource: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceMock),
+  ),
+  getManagedCmsResourceWebsiteDetails: vi.fn(() =>
+    Promise.resolve(managedCmsResourceWebsiteMock),
+  ),
+}));
 afterEach(() => {
   vi.clearAllMocks();
 });
