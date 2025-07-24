@@ -170,6 +170,17 @@
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
+
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_service_configuration_network_type' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        data-translate="{{:: 'netapp_dashboard_service_configuration_network_' + ($ctrl.isNetworkTypePublic ? 'public' : 'private') }}"
+                    ></span>
+                    {{ $ctrl.networkInfo }}
+                </oui-tile-description>
+            </oui-tile-definition>
             <oui-tile-button
                 ng-if="$ctrl.canCreateVolume"
                 disabled="!$ctrl.isCreateVolumeAvailable"
