@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.50.3...@ovh-ux/manager-dedicated@20.51.0) (2025-07-24)
+
+
+### Bug Fixes
+
+* **cdn:** defining translations for the headers of the CDN's list ([ea62c05](https://github.com/ovh/manager/commit/ea62c0576eb0b49da01fdcdae97c0b856a48adf6)), closes [#MANAGER-18168](https://github.com/ovh/manager/issues/MANAGER-18168)
+* **dedicated:** clarify partition size ([30cdd5b](https://github.com/ovh/manager/commit/30cdd5b5a08a4e3cca6f1d2aaa2dd6955ad8c1c4)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+* **dedicated:** re-enable existing tooltips ([3158e65](https://github.com/ovh/manager/commit/3158e6554ccd5daa0a6e9aa3e055bfa255e5b210)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+
+
+### Features
+
+* **dedicated:** add tracking on node action nutanix ([4c04494](https://github.com/ovh/manager/commit/4c044945fd4903f4c4c6d455f55892b1e0aacc8c)), closes [#MANAGER-16919](https://github.com/ovh/manager/issues/MANAGER-16919)
+
+
+
+
+
 ## [20.50.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.50.2...@ovh-ux/manager-dedicated@20.50.3) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
