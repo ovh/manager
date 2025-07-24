@@ -13,7 +13,9 @@ export default function MessageSuspendedService({
 }) {
   const { t } = useTranslation(NAMESPACES.BILLING);
 
-  return isStatusTerminated(status) ? (
+  if (!isStatusTerminated(status)) return null;
+
+  return (
     <div className="flex flex-col">
       <Message
         message={{
@@ -26,5 +28,5 @@ export default function MessageSuspendedService({
         }}
       />
     </div>
-  ) : null;
+  );
 }
