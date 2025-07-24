@@ -11,12 +11,13 @@ import '@ovh-ux/manager-pci-common/dist/style.css';
 import './index.css';
 
 import '@/vite-hmr.ts';
+import { TRACKING_CONTEXT } from '@/tracking.constants';
 
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, TRACKING_CONTEXT);
 
   const region = context.environment.getRegion();
   try {
