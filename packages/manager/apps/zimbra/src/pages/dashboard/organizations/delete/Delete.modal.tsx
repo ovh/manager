@@ -110,14 +110,14 @@ export const DeleteOrganizationModal = () => {
       onDismiss={onClose}
       isOpen
       isLoading={isOrganizationLoading || isDomainsLoading}
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       primaryButtonTestId="delete-btn"
       onPrimaryButtonClick={handleDeleteClick}
       isPrimaryButtonLoading={
         isSending || isOrganizationLoading || isDomainsLoading
       }
       isPrimaryButtonDisabled={domains?.length > 0 || !organizationId}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <>
