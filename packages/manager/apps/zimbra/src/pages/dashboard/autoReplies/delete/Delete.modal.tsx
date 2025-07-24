@@ -102,11 +102,11 @@ export const DeleteAutoReplyModal = () => {
       type={ODS_MODAL_COLOR.critical}
       onDismiss={onClose}
       isOpen
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       isPrimaryButtonLoading={isSending}
       onPrimaryButtonClick={handleDeleteClick}
       primaryButtonTestId="delete-btn"
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       secondaryButtonTestId="cancel-btn"
     >

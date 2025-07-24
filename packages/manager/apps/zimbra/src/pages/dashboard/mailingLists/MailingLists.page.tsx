@@ -18,6 +18,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { usePlatform, useMailingLists } from '@/data/hooks';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
 import ActionButtonMailingList from './ActionButton.component';
@@ -75,7 +76,7 @@ const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -106,7 +107,7 @@ export const getMailingListItems = (
 
 export const MailingLists = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('mailing-lists');
+  const { t } = useTranslation(['mailing-lists', NAMESPACES.STATUS]);
   const navigate = useNavigate();
   const { platformUrn, data: platformData } = usePlatform();
   const isOverridedPage = useOverridePage();

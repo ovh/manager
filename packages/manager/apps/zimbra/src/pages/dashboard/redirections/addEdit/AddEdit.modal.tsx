@@ -178,12 +178,12 @@ export const AddEditOrganizationModal = () => {
       )}
       onDismiss={onClose}
       isLoading={isLoadingAccount}
-      primaryLabel={t('common:confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       primaryButtonTestId="confirm-btn"
       onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
       isPrimaryButtonDisabled={!isDirty || !isValid}
       isPrimaryButtonLoading={isLoadingDomains || isLoadingAccount || isSending}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       secondaryButtonTestId="cancel-btn"
     >
