@@ -1,43 +1,27 @@
-import { useEffect, useState } from 'react';
-import zoomPlugin from 'chartjs-plugin-zoom';
-import 'chartjs-adapter-date-fns';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-  ChartOptions,
-  ChartData,
-  TimeScale,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { useMemo, useState } from 'react';
 import { Loader } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+  Legend,
+  AreaChart,
+  Area,
+} from 'recharts';
+import { ChartContainer } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { colors } from './colors.constants';
-import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend,
-  zoomPlugin,
-  TimeScale,
-);
+import { useLocale } from '@/hooks/useLocale';
+import { colors } from './colors.constants';
+import { MetricChartTooltip } from './MetricChartTooltip.component';
 
 interface MetricChartProps {
   metric: string;
@@ -46,6 +30,11 @@ interface MetricChartProps {
   poll: boolean;
   className?: string;
 }
+interface TransformedDataPoint {
+  timestamp: number;
+  [hostname: string]: number | number; // timestamp plus hostname keys with numeric values
+}
+
 const MetricChart = ({
   metric,
   period,
@@ -56,14 +45,18 @@ const MetricChart = ({
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/metrics',
   );
-  const chartLocale = useDateFnsLocale();
+  const [activeSeries, setActiveSeries] = useState<Array<string>>([]);
+  const handleLegendClick = (dataKey: string) => {
+    if (activeSeries.includes(dataKey)) {
+      setActiveSeries(activeSeries.filter((el) => el !== dataKey));
+    } else {
+      setActiveSeries((prev) => [...prev, dataKey]);
+    }
+  };
+
   const { isUserActive } = useUserActivityContext();
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [chart, setChart] = useState<{
-    options: ChartOptions<'line'>;
-    data: ChartData<'line', { x: number; y: number }[], Date>;
-  }>({ options: {}, data: { labels: [], datasets: [] } });
   const { projectId, service } = useServiceData();
+  const chartLocale = useLocale(); // useDateFnsLocale();
 
   const metricQuery = useGetMetric(
     projectId,
@@ -76,156 +69,97 @@ const MetricChart = ({
     },
   );
 
-  useEffect(() => {
-    if (metricQuery.data) {
-      setChart({
-        options: {
-          animation: {
-            duration: 0,
-          },
-          backgroundColor: '#dddddd',
-          // aspectRatio: 3,
-          maintainAspectRatio: false,
-          responsive: true,
-          elements: {
-            point: {
-              radius: 0,
-            },
-            line: {
-              tension: 0.4,
-            },
-          },
-          scales: {
-            y: {
-              display: true,
-              position: 'left',
-              grid: {
-                display: false,
-              },
-              ticks: {
-                precision: 2,
-              },
-            },
+  const transformedData = useMemo(() => {
+    if (!metricQuery.data) return [];
 
-            x: {
-              type: 'time',
-              position: 'bottom',
-              grid: {
-                display: false,
-              },
-              adapters: {
-                date: {
-                  locale: chartLocale,
-                },
-              },
-              time: {
-                tooltipFormat: 'Pp',
-                displayFormats: {
-                  hour: 'p',
-                  minute: 'p',
-                },
-              },
-            },
-          },
-          plugins: {
-            legend: {
-              position: 'bottom',
-            },
-            title: {
-              display: true,
-              text: t(`metricName-${metricQuery.data.name}`, {
-                interpolation: { escapeValue: false },
-                defaultValue: `${metricQuery.data.name} (${t(
-                  `metricUnit-${metricQuery.data.units}`,
-                  {
-                    defaultValue: metricQuery.data.units,
-                    interpolation: { escapeValue: false },
-                  },
-                )})`,
-                unit: t(`metricUnit-${metricQuery.data.units}`),
-              }),
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false,
-            },
-            // zoom: {
-            //   zoom: {
-            //     wheel: {
-            //       enabled: true,
-            //     },
-            //     pinch: {
-            //       enabled: true,
-            //     },
-            //     mode: 'xy',
-            //   },
-            //   pan: {
-            //     enabled: true,
-            //     mode: 'xy',
-            //     threshold: 0,
-            //   },
-            //   limits: {
-            //     x: { min: 'original', max: 'original' },
-            //     y: { min: 'original', max: 'original' },
-            //   },
-            // },
-          },
-        },
-        data: {
-          datasets: metricQuery.data.metrics.map((hostMetric, idx) => ({
-            label: hostMetric.hostname,
-            data: hostMetric.dataPoints.map((dataPoint) => ({
-              x: dataPoint.timestamp * 1000,
-              y:
-                metricQuery.data.units ===
-                database.service.MetricUnitEnum.BYTES_PER_SECOND
-                  ? dataPoint.value / 1000
-                  : dataPoint.value,
-            })),
-            fill: true,
-            borderWidth: 1,
-            ...colors[idx % colors.length],
-          })),
-        },
+    const mergedData: Record<number, TransformedDataPoint> = {};
+
+    metricQuery.data.metrics.forEach((hostMetric) => {
+      hostMetric.dataPoints.forEach((point) => {
+        const timestamp = point.timestamp * 1000;
+        if (!mergedData[timestamp]) {
+          mergedData[timestamp] = { timestamp };
+        }
+
+        mergedData[timestamp][hostMetric.hostname] =
+          metricQuery.data.units ===
+          database.service.MetricUnitEnum.BYTES_PER_SECOND
+            ? point.value / 1000
+            : point.value;
       });
-      setIsInitialized(true);
-    }
-  }, [metricQuery.data, chartLocale]);
+    });
+
+    return Object.values(mergedData).sort((a, b) => a.timestamp - b.timestamp);
+  }, [metricQuery.data]);
+
+  const minTimestamp =
+    transformedData.length > 0 ? transformedData[0].timestamp : 0;
+  const maxTimestamp =
+    transformedData.length > 0
+      ? transformedData[transformedData.length - 1].timestamp
+      : 0;
+
+  const displayDay = ![
+    database.service.MetricPeriodEnum.lastHour,
+    database.service.MetricPeriodEnum.lastDay,
+  ].includes(period);
+  const formatter = (value: number) =>
+    new Intl.DateTimeFormat(chartLocale.replace('_', '-'), {
+      timeStyle: displayDay ? undefined : 'medium',
+      dateStyle: displayDay ? 'short' : undefined,
+    }).format(new Date(value));
 
   return (
-    <>
+    <ChartContainer
+      data-testid="metric-chart-container"
+      className={cn('relative min-h-[100px] w-full', className)}
+      config={{}}
+    >
       {metricQuery.isLoading ? (
-        <div
-          data-testid="metric-chart-loading-container"
-          style={{ position: 'relative' }}
-        >
-          <div
-            className={cn(
-              'aspect-square sm:aspect-auto sm:h-[400px]',
-              className,
-            )}
-          >
-            <Line options={chart.options} data={chart.data} />
-          </div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full justify-center text-white flex items-center bg-opacity-20 bg-black">
-            <Loader className="mr-2 h-4 w-4 animate-spin" />
-            Loading...
-          </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 text-white z-10">
+          <Loader className="mr-2 h-4 w-4 animate-spin" />
+          {t('loading')}
         </div>
       ) : (
-        isInitialized && (
-          <div
-            data-testid="metric-chart-container"
-            className={cn(
-              'aspect-square sm:aspect-auto sm:h-[400px]',
-              className,
-            )}
-          >
-            <Line options={chart.options} data={chart.data} />
-          </div>
-        )
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={transformedData} accessibilityLayer>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="timestamp"
+              type="number"
+              domain={[minTimestamp, maxTimestamp]}
+              tickFormatter={formatter}
+            />
+            <YAxis />
+            <Legend
+              onClick={(legend) => handleLegendClick(legend.dataKey as string)}
+            />
+            <Tooltip
+              content={
+                <MetricChartTooltip
+                  unit={t(`metricUnit-${metricQuery.data?.units}`, {
+                    defaultValue: metricQuery.data?.units,
+                  })}
+                />
+              }
+            />
+            {metricQuery.data?.metrics.map((hostMetric, idx) => (
+              <Area
+                key={hostMetric.hostname}
+                dataKey={hostMetric.hostname}
+                type="monotone"
+                stroke={colors[idx % colors.length].borderColor}
+                fill={colors[idx % colors.length].backgroundColor}
+                fillOpacity={0.2}
+                strokeWidth={2}
+                dot={false}
+                hide={activeSeries.includes(hostMetric.hostname)}
+              />
+            ))}
+          </AreaChart>
+        </ResponsiveContainer>
       )}
-    </>
+    </ChartContainer>
   );
 };
 
