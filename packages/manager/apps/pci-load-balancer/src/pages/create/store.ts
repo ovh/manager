@@ -25,11 +25,11 @@ export enum StepsEnum {
 
 export type TCreateStore = {
   projectId: string;
-  addon: TProductAddonDetail;
-  region: TRegion;
-  publicIp: string | FloatingIpSelectionId;
-  privateNetwork: TPrivateNetwork;
-  subnet: TSubnet;
+  addon: TProductAddonDetail | null;
+  region: TRegion | null;
+  publicIp: string | FloatingIpSelectionId | null;
+  privateNetwork: TPrivateNetwork | null;
+  subnet: TSubnet | null;
   gateways: TSubnetGateway[];
   listeners: ListenerConfiguration[];
   name: string;
