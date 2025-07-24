@@ -7,5 +7,10 @@
   "service_state_toSuspend": "To be suspended",
   "service_state_enabled": "Enabled",
   "service_state_disabled": "Disabled",
-  "service_state_draft": "Configuration required"
+  "service_state_draft": "Configuration required",
+  "service_state_creating": "Creation",
+  "service_state_deleting": "Deleting",
+  "service_state_error": "Error",
+  "service_state_ready": "Active",
+  "service_state_updating": "Updating"
 }

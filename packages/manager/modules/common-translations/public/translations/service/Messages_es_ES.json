@@ -7,5 +7,10 @@
   "service_state_toSuspend": "Pendiente de suspender",
   "service_state_enabled": "Activado",
   "service_state_disabled": "Desactivado",
-  "service_state_draft": "Pendiente de configuración"
+  "service_state_draft": "Pendiente de configuración",
+  "service_state_creating": "Creación",
+  "service_state_deleting": "Eliminación",
+  "service_state_error": "Error",
+  "service_state_ready": "Activo",
+  "service_state_updating": "Actualizada"
 }
