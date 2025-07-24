@@ -1,15 +1,14 @@
 import { describe, it, Mock, vi } from 'vitest';
 import { act } from 'react-dom/test-utils';
-import { useNavigate } from 'react-router-dom';
 import { renderHook } from '@testing-library/react';
 import { TRegion } from '@ovh-ux/manager-pci-common';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useCreateActions } from './useCreateActions';
 import { useCreateStore } from '@/pages/create/store';
-import { useTracking } from '../hooks/useTracking';
-import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
 import { TFlavor } from '@/api/data/load-balancer';
 import { useGetFlavor } from '@/api/hook/useFlavors';
 import { TProductAddonDetail } from '@/types/product.type';
+import { ListenerConfiguration } from '@/types/listener.type';
 
 vi.mock('@/api/hook/useFlavors');
 
@@ -18,71 +17,70 @@ vi.mocked(useGetFlavor as Mock).mockReturnValue({
   isPending: true,
 });
 
-vi.mock('../hooks/useTracking', async () => {
-  const { ...rest } = await vi.importActual('../hooks/useTracking');
+const mockedTrackClick = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
+  useOvhTracking: vi.fn().mockImplementation(() => ({
+    trackClick: mockedTrackClick,
+  })),
+  ButtonType: { button: 'button' },
+  PageLocation: { funnel: 'funnel' },
+}));
 
-  return {
-    ...rest,
-    useTracking: vi.fn().mockImplementation(() => ({
-      trackClick: vi.fn(),
-      trackPage: vi.fn(),
-    })),
-  };
-});
-
+const mockedNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
   const { ...rest } = await vi.importActual('react-router-dom');
 
   return {
     ...rest,
-    useNavigate: vi.fn().mockReturnValue(vi.fn()),
+    useNavigate: () => mockedNavigate,
   };
 });
 
-const renderStore = () => renderHook(() => useCreateStore());
+const mockedOnSuccess = vi.fn();
+const mockedOnError = vi.fn();
+vi.mock('@/pages/create/hooks/useCreateCallbacks', () => ({
+  useCreateCallbacks: () => ({
+    onSuccess: mockedOnSuccess,
+    onError: mockedOnError,
+  }),
+}));
+
+const mockedCreate = vi.fn();
+const mockedReset = vi.fn();
+vi.mock('@/pages/create/store', () => ({
+  useCreateStore: () =>
+    ({
+      region: { name: 'region' } as TRegion,
+      addon: { size: 'size' } as TProductAddonDetail,
+      publicIp: 'ip',
+      listeners: [
+        { protocol: 'p1' },
+        { protocol: 'p2' },
+      ] as ListenerConfiguration[],
+      create: mockedCreate,
+      reset: mockedReset,
+    } as Partial<ReturnType<typeof useCreateStore>>),
+}));
 
 describe('useCreateActions', () => {
   describe('create', () => {
     it('should track', () => {
-      const [trackClickSpy, trackPageSpy] = [vi.fn(), vi.fn()];
-      (useTracking as Mock).mockImplementation(() => ({
-        trackClick: trackClickSpy,
-        trackPage: trackPageSpy,
-      }));
-
       const { result: resultActions } = renderHook(() => useCreateActions());
-      const { result: resultStore } = renderStore();
-
-      const { create } = resultStore.current;
-
-      resultStore.current.create = vi.fn();
-
-      act(() => {
-        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
-        resultStore.current.set.region({ name: 'name' } as TRegion);
-      });
-
       act(() => resultActions.current.create());
 
-      expect(trackClickSpy).toHaveBeenCalledTimes(2);
-
-      expect(trackClickSpy).toHaveBeenNthCalledWith(1, {
-        name: LOAD_BALANCER_CREATION_TRACKING.SUBMIT,
-        type: 'action',
+      expect(mockedTrackClick).toHaveBeenCalledTimes(1);
+      expect(mockedTrackClick).toHaveBeenCalledWith({
+        actions: [
+          'confirm',
+          `loadbalancer_added_region_private_size_available_2`,
+        ],
+        actionType: 'action',
+        buttonType: ButtonType.button,
+        location: PageLocation.funnel,
       });
-
-      expect(trackClickSpy).toHaveBeenNthCalledWith(2, {
-        name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::code::name`,
-        type: 'action',
-      });
-
-      resultStore.current.create = create;
     });
 
     it('should create', () => {
-      const { result: resultActions } = renderHook(() => useCreateActions());
-      const { result: resultStore } = renderStore();
-
       const flavorMock = {
         id: 'id',
         name: 'name',
@@ -92,68 +90,48 @@ describe('useCreateActions', () => {
         data: flavorMock,
       }));
 
-      act(() => {
-        resultStore.current.set.addon({ size: 'code' } as TProductAddonDetail);
-        resultStore.current.set.region({ name: 'name' } as TRegion);
-        resultStore.current.set.name('');
-      });
-
-      const { create } = resultStore.current;
-
-      resultStore.current.create = vi.fn();
-
+      const { result: resultActions } = renderHook(() => useCreateActions());
       act(() => resultActions.current.create());
 
-      expect(resultStore.current.create).toHaveBeenCalledWith(
+      expect(mockedCreate).toHaveBeenCalledWith(
         flavorMock,
         expect.any(Function),
         expect.any(Function),
       );
-
-      resultStore.current.create = create;
     });
   });
 
   describe('cancel', () => {
     it('should track', () => {
-      const [trackClickSpy, trackPageSpy] = [vi.fn(), vi.fn()];
-
-      (useTracking as Mock).mockImplementation(() => ({
-        trackClick: trackClickSpy,
-        trackPage: trackPageSpy,
-      }));
       const { result: resultActions } = renderHook(() => useCreateActions());
 
       act(() => resultActions.current.cancel());
 
-      expect(trackClickSpy).toHaveBeenNthCalledWith(1, {
-        name: LOAD_BALANCER_CREATION_TRACKING.CANCEL,
-        type: 'action',
+      expect(mockedTrackClick).toHaveBeenCalledWith({
+        actionType: 'action',
+        actions: [
+          'confirm',
+          'loadbalancer_added_region_private_size_available_2',
+        ],
+        buttonType: 'button',
+        location: 'funnel',
       });
     });
 
     it('should reset store', () => {
       const { result: resultActions } = renderHook(() => useCreateActions());
-      const { result: resultStore } = renderStore();
-      const { reset } = resultStore.current;
-      resultStore.current.reset = vi.fn();
 
       act(() => resultActions.current.cancel());
 
-      expect(resultStore.current.reset).toHaveBeenCalled();
-
-      resultStore.current.reset = reset;
+      expect(mockedReset).toHaveBeenCalled();
     });
 
     it('should navigate to listing page', () => {
-      const navigateSpy = vi.fn();
-
-      (useNavigate as Mock).mockImplementation(() => navigateSpy);
       const { result: resultActions } = renderHook(() => useCreateActions());
 
       act(() => resultActions.current.cancel());
 
-      expect(navigateSpy).toHaveBeenCalledWith('..');
+      expect(mockedNavigate).toHaveBeenCalledWith('..');
     });
   });
 });
