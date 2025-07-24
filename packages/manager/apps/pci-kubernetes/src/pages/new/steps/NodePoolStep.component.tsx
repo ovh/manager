@@ -14,8 +14,8 @@ import {
   convertHourlyPriceToMonthly,
   Datagrid,
 } from '@ovh-ux/manager-react-components';
-import { AutoscalingState } from '@/components/Autoscaling.component';
-import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE, TAGS_BLOB } from '@/constants';
+
+import { NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
@@ -26,11 +26,7 @@ import NodePoolSize from './node-pool/NodePoolSize.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import {
-  generateUniqueName,
-  isMonoDeploymentZone,
-  isMultiDeploymentZones,
-} from '@/helpers';
+import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import DeploymentZone from './node-pool/DeploymentZone.component';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
@@ -39,14 +35,11 @@ import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from '@/hooks/useMergedFlavorById';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
-
-export type NodePoolState = {
-  antiAffinity: boolean;
-  name: string;
-  isTouched: boolean;
-  selectedAvailabilityZone?: string;
-  scaling: AutoscalingState | null;
-};
+import { NodePoolState } from '@/types';
+import {
+  hasInvalidScalingOrAntiAffinityConfig,
+  resolveNodePoolMode,
+} from '@/helpers/node-pool';
 
 const NodePoolStep = ({
   stepper,
@@ -64,10 +57,14 @@ const NodePoolStep = ({
   ]);
 
   const [nodePoolState, setNodePoolState] = useState<NodePoolState>({
+    mode: 'initial',
     antiAffinity: false,
     name: '',
     isTouched: false,
-    scaling: null,
+    scaling: {
+      quantity: { min: 0, max: NODE_RANGE.MAX, desired: NODE_RANGE.MIN },
+      isAutoscale: false,
+    },
   });
 
   const isValidName = isNodePoolNameValid(nodePoolState.name);
@@ -95,12 +92,11 @@ const NodePoolStep = ({
   const isNodePoolValid =
     !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
 
-  const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
   const { projectId } = useSafeParams('projectId');
 
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
-    stepper.form.region?.name,
+    stepper.form.region?.name ?? null,
     selectedFlavor?.id ?? null,
     {
       select: (flavor) =>
@@ -112,45 +108,15 @@ const NodePoolStep = ({
     },
   );
 
-  // The maxValue is NODE_RANGE.MAX cause isAntiAffinity is hardcoded to false
-  // change to ANTI_AFFINITY_MAX_NODES otherwise
-  const isScalingValid = useMemo(() => {
-    if (!nodePoolState.scaling) return true;
-
-    const { isAutoscale, quantity } = nodePoolState.scaling;
-    const { desired, min, max } = quantity;
-
-    if (!isAutoscale) {
-      return !exceedsMaxNodes(desired);
-    }
-
-    const isMinValid = min >= 0 && min <= max;
-    const isMaxValid = max <= NODE_RANGE.MAX;
-    const isDesiredInRange = min <= desired && max >= desired;
-
-    return isMinValid && isMaxValid && isDesiredInRange;
-  }, [nodePoolState.scaling]);
-
-  const hasMax5NodesAntiAffinity =
-    !nodePoolState.antiAffinity ||
-    (nodePoolState.antiAffinity &&
-      nodePoolState.scaling &&
-      nodePoolState.scaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
-
   const { data: regionInformations } = useRegionInformations(
     projectId,
     stepper.form.region?.name ?? null,
   );
 
-  const zoneAZisChecked =
-    (regionInformations?.type &&
-      isMonoDeploymentZone(regionInformations.type)) ||
-    nodePoolState.selectedAvailabilityZone;
   const isButtonDisabled =
-    !isScalingValid ||
     !isNodePoolValid ||
-    !hasMax5NodesAntiAffinity ||
-    !zoneAZisChecked;
+    (regionInformations &&
+      hasInvalidScalingOrAntiAffinityConfig(regionInformations, nodePoolState));
 
   const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(
     TAGS_BLOB.COMING_SOON,
@@ -195,14 +161,13 @@ const NodePoolStep = ({
           stepper.form.region?.name ??
           null,
         desiredNodes: nodePoolState.scaling.quantity.desired,
-        minNodes: nodePoolState.scaling.quantity.min,
+        minNodes: nodePoolState.scaling.isAutoscale
+          ? nodePoolState.scaling.quantity.min
+          : 0,
         flavorName: selectedFlavor.name ?? '',
-        maxNodes: nodePoolState.antiAffinity
-          ? Math.min(
-              ANTI_AFFINITY_MAX_NODES,
-              nodePoolState.scaling.quantity.max,
-            )
-          : nodePoolState.scaling.quantity.max,
+        maxNodes: nodePoolState.scaling.isAutoscale
+          ? nodePoolState.scaling.quantity.max
+          : NODE_RANGE.MAX,
         monthlyPrice: isMonthlyBilled
           ? price?.month ?? 0
           : convertHourlyPriceToMonthly(price?.hour ?? 0),
@@ -247,7 +212,7 @@ const NodePoolStep = ({
             {stepper.form.region?.name && (
               <NodePoolType
                 projectId={projectId}
-                region={stepper.form.region.name}
+                region={stepper.form.region?.name}
                 onSelect={setSelectedFlavor}
               />
             )}
@@ -272,10 +237,14 @@ const NodePoolStep = ({
             )}
           <div className="mb-8">
             <NodePoolSize
+              scaling={nodePoolState.scaling}
               isMonthlyBilled={isMonthlyBilled}
-              onScaleChange={(scaling: AutoscalingState) =>
-                setNodePoolState((state) => ({ ...state, scaling }))
-              }
+              onScaleChange={(scaling) => {
+                setNodePoolState({
+                  ...nodePoolState,
+                  ...resolveNodePoolMode(scaling, nodePoolState.antiAffinity),
+                });
+              }}
               antiAffinity={nodePoolState.antiAffinity}
             />
           </div>
@@ -285,9 +254,15 @@ const NodePoolStep = ({
                 <NodePoolAntiAffinity
                   isChecked={nodePoolState.antiAffinity}
                   isEnabled={!nodePoolState.scaling?.isAutoscale}
-                  onChange={(antiAffinity: boolean) =>
-                    setNodePoolState((state) => ({ ...state, antiAffinity }))
-                  }
+                  onChange={(antiAffinity) => {
+                    setNodePoolState({
+                      ...nodePoolState,
+                      ...resolveNodePoolMode(
+                        nodePoolState.scaling,
+                        antiAffinity,
+                      ),
+                    });
+                  }}
                 />
               </div>
             )}

@@ -48,40 +48,32 @@ function getDesiredQuantity(
 }
 
 export interface AutoscalingProps {
-  initialScaling?: { min: number; max: number; desired: number };
+  initialScaling?: AutoscalingState;
   isMonthlyBilling?: boolean;
   isAntiAffinity?: boolean;
-  autoscale: boolean;
   onChange?: (scaling: AutoscalingState) => void;
 }
 
 export function Autoscaling({
   initialScaling,
   isAntiAffinity,
-  autoscale,
+
   onChange,
 }: Readonly<AutoscalingProps>) {
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL = AUTOSCALING_LINK[ovhSubsidiary] || AUTOSCALING_LINK.DEFAULT;
-  const [isAutoscale, setIsAutoscale] = useState(autoscale);
-  const [quantity, setQuantity] = useState({
-    desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
-    min: initialScaling ? initialScaling.min : 0,
-    max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
-  });
+  const [isAutoscale, setIsAutoscale] = useState(
+    initialScaling?.isAutoscale ?? false,
+  );
+  const [quantity, setQuantity] = useState(
+    initialScaling?.quantity ?? {
+      min: 0,
+      max: NODE_RANGE.MAX,
+      desired: NODE_RANGE.MIN,
+    },
+  );
   const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
-
-  // reset min node and max node if autoscaling is turned to off.
-  useEffect(() => {
-    if (!isAutoscale) {
-      setQuantity((q) => ({
-        ...q,
-        min: 0,
-        max: maxValue,
-      }));
-    }
-  }, [isAutoscale]);
 
   useEffect(() => {
     onChange?.({

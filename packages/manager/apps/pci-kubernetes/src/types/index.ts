@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { pluginData } from '@/api/data/plugins';
 import { isBase64 } from '@/helpers';
+import { AutoscalingState } from '@/components/Autoscaling.component';
 
 export enum SigningAlgorithms {
   ES256 = 'ES256',
@@ -199,3 +200,26 @@ export enum DeploymentMode {
 export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
   DEFAULT: string;
 };
+
+export type NodePoolMode =
+  | {
+      mode: 'initial';
+      scaling: AutoscalingState & { isAutoscale: false };
+      antiAffinity: false;
+    }
+  | {
+      mode: 'autoscale';
+      scaling: AutoscalingState & { isAutoscale: true };
+      antiAffinity: false;
+    }
+  | {
+      mode: 'antiAffinity';
+      scaling: AutoscalingState & { isAutoscale: false };
+      antiAffinity: true;
+    };
+
+export type NodePoolState = {
+  name: string;
+  isTouched: boolean;
+  selectedAvailabilityZone?: string;
+} & NodePoolMode;
