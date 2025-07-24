@@ -42,7 +42,7 @@ export default function DatacentreGenerationInformationTile({
   const { trackClick } = useOvhTracking();
   const { data: urlVrack } = useNavigationGetUrl([
     DEDICATED_PATH,
-    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vRack ||
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack ||
       VRACK_ONBOARDING_PATH}`,
     {},
   ]);
@@ -130,7 +130,7 @@ export default function DatacentreGenerationInformationTile({
               href={urlVrack as string}
               type={LinkType.next}
               label={
-                vcdDatacentre.currentState?.vRack ||
+                vcdDatacentre.currentState?.vrack ||
                 tVdc('managed_vcd_vdc_associate_vrack')
               }
             />
