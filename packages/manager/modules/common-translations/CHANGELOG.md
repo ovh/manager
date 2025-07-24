@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.12.0...@ovh-ux/manager-common-translations@0.13.0) (2025-07-24)
+
+
+### Features
+
+* **veeam:** add disabled status in translation commun ([5394a5c](https://github.com/ovh/manager/commit/5394a5cbf713a9544b61d128f074fc9783a84a8e)), closes [#MANAGER-17139](https://github.com/ovh/manager/issues/MANAGER-17139)
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.11.0...@ovh-ux/manager-common-translations@0.12.0) (2025-07-24)
 
 
