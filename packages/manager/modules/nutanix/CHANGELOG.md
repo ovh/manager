@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.4...@ovh-ux/manager-nutanix@2.9.0) (2025-07-24)
+
+
+### Features
+
+* **dedicated:** add tracking on node action nutanix ([4c04494](https://github.com/ovh/manager/commit/4c044945fd4903f4c4c6d455f55892b1e0aacc8c)), closes [#MANAGER-16919](https://github.com/ovh/manager/issues/MANAGER-16919)
+
+
+
+
+
 ## [2.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.8.3...@ovh-ux/manager-nutanix@2.8.4) (2025-07-21)
 
 
