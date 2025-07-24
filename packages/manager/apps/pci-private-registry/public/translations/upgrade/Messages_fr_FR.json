@@ -8,5 +8,6 @@
   "private_registry_upgrade_core_registry_95": "99,95% core & registry",
   "private_registry_upgrade_other_components": "99,9% sur les autres composants",
   "private_registry_upgrade_plan_warning": "* La plupart des logiciels clients sont configurés pour utiliser 5 connexions http simultanées lors de l'accès à un Registry",
-  "private_registry_upgrade_plan_available_storage": "Stockage disponible : "
+  "private_registry_upgrade_plan_available_storage": "Stockage disponible : ",
+  "private_registry_monthly_price": "{{ monthly }} / mois"
 }
