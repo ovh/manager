@@ -61,6 +61,8 @@ import OrderPrice from '@/components/order/price/OrderPrice.component';
 import CliEquivalent from './CliEquivalent.component';
 import publicCatalog from '@/types/Catalog';
 import { cn } from '@/lib/utils';
+import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -76,6 +78,8 @@ const OrderFunnel = ({
   suggestions,
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, suggestions);
+  const trackBanner = useTrackBanner();
+  const trackAction = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
   // Manage datastore combobox
@@ -99,6 +103,7 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (notebook) => {
+      trackBanner(TRACKING.notebooks.funnel.successBannerInfo(), 'funnel');
       toast({
         title: t('successCreatingNotebookTitle'),
         description: t('successCreatingNotebookDescription'),
@@ -131,6 +136,16 @@ const OrderFunnel = ({
     () => {
       const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
         model.result,
+      );
+      trackAction(
+        TRACKING.notebooks.funnel.createNotebookConfirmClick(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.framework.name,
+          model.result.editor.name,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.resourcesQuantity,
+        ),
       );
       addNotebook(notebookInfos);
     },
