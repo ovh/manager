@@ -13,6 +13,7 @@ export const subRoutes = {
   configureGameFirewall: 'game-firewall',
   configureEdgeNetworkFirewall: 'edge-network-firewall',
   addVirtualMac: 'add-virtual-mac',
+  service: 'service',
   viewVirtualMac: 'view-virtual-mac',
   manageIpMitigation: 'manage-mitigation',
 };
@@ -22,6 +23,7 @@ export const urlDynamicParts = {
   id: ':id',
   optionalId: ':id?',
   organisationId: ':organisationId',
+  service: ':service',
 };
 
 export const urls = {
@@ -32,8 +34,8 @@ export const urls = {
   listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
   upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.id}`,
   configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
-  addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.addVirtualMac}`,
-  viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.viewVirtualMac}`,
+  addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,
+  viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.viewVirtualMac}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,

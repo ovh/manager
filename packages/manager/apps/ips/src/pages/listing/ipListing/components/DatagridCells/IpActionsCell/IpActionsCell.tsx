@@ -15,7 +15,7 @@ import {
   useIpHasForcedMitigation,
   useIpHasServicesAttached,
   useGetAttachedServices,
-  useGetIpVmacWithIp,
+  useIpHasVmac,
   useGetIpMitigationWithoutIceberg,
 } from '@/data/hooks';
 
@@ -85,7 +85,9 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { ipDetails, isLoading } = useGetIpdetails({
+    ip: parentIpGroup || ip,
+  });
   const navigate = useNavigate();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const isAdmin = useContext(ShellContext)
@@ -118,12 +120,11 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const hasHousingServiceAttachedToIp =
     Boolean(serviceName) && servicesAttached.length === 0;
 
-  const { vmacsWithIp } = useGetIpVmacWithIp({
+  const { isVmacAlreadyExist } = useIpHasVmac({
     serviceName,
+    ip,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
-
-  const isVmacAlreadyExist = vmacsWithIp.length > 0;
 
   useEffect(() => {
     if (!serviceName) return;
@@ -243,7 +244,11 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         id: 6,
         label: t('listingActionAddVirtualMac'),
         onClick: () =>
-          navigate(urls.addVirtualMac.replace(urlDynamicParts.id, id)),
+          navigate(
+            urls.addVirtualMac
+              .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.service, serviceName),
+          ),
         isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist,
       },
     !isGroup &&
@@ -254,7 +259,11 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         id: 7,
         label: t('listingActionViewVirtualMac'),
         onClick: () =>
-          navigate(urls.viewVirtualMac.replace(urlDynamicParts.id, id)),
+          navigate(
+            urls.viewVirtualMac
+              .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.service, serviceName),
+          ),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
