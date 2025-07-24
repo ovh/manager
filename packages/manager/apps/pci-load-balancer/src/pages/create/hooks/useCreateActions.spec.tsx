@@ -2,7 +2,12 @@ import { describe, it, Mock, vi } from 'vitest';
 import { act } from 'react-dom/test-utils';
 import { renderHook } from '@testing-library/react';
 import { TRegion } from '@ovh-ux/manager-pci-common';
-import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
 import { useCreateActions } from './useCreateActions';
 import { useCreateStore } from '@/pages/create/store';
 import { TFlavor } from '@/api/data/load-balancer';
@@ -18,23 +23,10 @@ vi.mocked(useGetFlavor as Mock).mockReturnValue({
 });
 
 const mockedTrackClick = vi.fn();
-vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
-  useOvhTracking: vi.fn().mockImplementation(() => ({
-    trackClick: mockedTrackClick,
-  })),
-  ButtonType: { button: 'button' },
-  PageLocation: { funnel: 'funnel' },
-}));
+vi.mocked(useOvhTracking().trackClick).mockImplementation(mockedTrackClick);
 
 const mockedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const { ...rest } = await vi.importActual('react-router-dom');
-
-  return {
-    ...rest,
-    useNavigate: () => mockedNavigate,
-  };
-});
+vi.mocked(useNavigate).mockReturnValue(mockedNavigate);
 
 const mockedOnSuccess = vi.fn();
 const mockedOnError = vi.fn();

@@ -7,6 +7,12 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useCallback } from 'react';
+import {
   useDeleteLoadBalancer,
   useLoadBalancer,
 } from '@/api/hook/useLoadBalancer';
@@ -15,6 +21,7 @@ export default function DeletePage() {
   const { addInfo, addError } = useNotifications();
   const { t: tDelete } = useTranslation('load-balancer/delete');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const { projectId, loadBalancerId, region } = useParams();
   const onClose = () => {
     navigate('..');
@@ -64,11 +71,24 @@ export default function DeletePage() {
     },
   });
 
+  const trackClickButton = useCallback(
+    (button: 'confirm' | 'cancel') =>
+      trackClick({
+        actions: ['delete_loadbalancer', button, loadBalancer!.region],
+        actionType: 'action',
+        buttonType: ButtonType.button,
+        location: PageLocation.popup,
+      }),
+    [loadBalancer],
+  );
+
   const onConfirm = () => {
+    trackClickButton('confirm');
     deleteLoadBalancer();
   };
 
   const onCancel = () => {
+    trackClickButton('cancel');
     navigate('..');
   };
 
