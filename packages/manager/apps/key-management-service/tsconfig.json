@@ -19,6 +19,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
+      "@secret-manager/*": ["src/modules/secret-manager/*"],
       "@/*": ["./src/*"]
     }
   },
