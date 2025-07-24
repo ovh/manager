@@ -13,5 +13,6 @@
   "tableActionManage": "Detalhes",
   "tableActionCopy": "Copiar ID",
   "tableActionEditName": "Alterar o nome",
-  "tableActionDelete": "Eliminar"
+  "tableActionDelete": "Eliminar",
+  "tableHeaderFilterName": "Nome"
 }

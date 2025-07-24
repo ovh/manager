@@ -37,5 +37,16 @@
   "advancedConfigurationUpdateSuccessDescription": "La configuración avanzada del servicio se ha modificado correctamente.",
   "advancedConfigurationErrorMin": "Debe ser mayor que {{min}}",
   "advancedConfigurationErrorMax": "Debe ser inferior a {{max}}",
-  "advancedConfigurationErrorRequired": "Este campo es obligatorio."
+  "advancedConfigurationErrorRequired": "Este campo es obligatorio",
+  "toggleKafkaSettingsErrorTitle": "Se ha producido un error al actualizar el servicio",
+  "toggleRestApiSuccessTitle": "Éxito",
+  "toggleRestApiEnabledDescription": "Kafka API REST ya está activada para su servicio",
+  "toggleRestApiDisabledDescription": "Kafka API REST ya está desactivada para su servicio",
+  "toggleSchemaRegistrySuccessTitle": "Éxito",
+  "toggleSchemaRegistryEnabledDescription": "Schema Registry ya está activado para su servicio",
+  "toggleSchemaRegistryDisabledDescription": "Schema Registry está ahora desactivado para su servicio",
+  "kafkaSettingsRestApiTitle": "Kafka API REST",
+  "kafkaSettingsRestApiDescription": "Interfaz HTTP REST para un cluster Kafka (basada en el proyecto <anchor> Karapace</anchor>)",
+  "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
+  "kafkaSettingsSchemaRegistryDescription": "Interfaz de servicio HTTP REST para almacenar esquemas Apache Kafka (basado en el proyecto <anchor> Karapace</anchor>)"
 }
