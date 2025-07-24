@@ -20,18 +20,8 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
       - name: Install repository
         run: yarn install --frozen-lockfile
-      - name: Build covered packages and dependencies
-        run: |
-          yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
-          yarn exec turbo -- run build --filter="./packages/manager-react-components"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/order"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/common-translations"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/vcd-api"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/manager-pci-common"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/network-common"
-          yarn exec turbo -- run build --filter="./packages/components/ovh-payment-method"
-      - name: Run tests on changed packages
+      - name: Compute turbo filter
+        id: turbo-branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
@@ -42,14 +32,22 @@ jobs:
 
           if [[ -z "$BASE_BRANCH" ]]; then
             export BASE_BRANCH="master"
-            export CURRENT_BRANCH=${BRANCH}
             echo "NO PR FOUND for branch $BRANCH from ${BASE_BRANCH}"
           else
             echo "Base Branch is $BASE_BRANCH"
             echo "current Branch is ${BRANCH}"
             export BASE_BRANCH="${BASE_BRANCH//\"/}"
-            export CURRENT_BRANCH="${BRANCH//\"/}"
-            echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
-            echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
-          yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+
+          echo "BASE_BRANCH=$BASE_BRANCH" >> "$GITHUB_OUTPUT"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_OUTPUT"
+      - name: Build covered packages and dependencies
+        env:
+          BASE_BRANCH: ${{ steps.turbo-branch.outputs.BASE_BRANCH }}
+          BRANCH: ${{ steps.turbo-branch.outputs.BRANCH }}
+        run: yarn exec turbo -- run build --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+      - name: Run tests on changed packages
+        env:
+          BASE_BRANCH: ${{ steps.turbo-branch.outputs.BASE_BRANCH }}
+          BRANCH: ${{ steps.turbo-branch.outputs.BRANCH }}
+        run: yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
