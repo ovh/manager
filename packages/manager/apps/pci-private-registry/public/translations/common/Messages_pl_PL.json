@@ -99,5 +99,6 @@
   "private_registry_common_status_ENABLE": "Włącz",
   "private_registry_common_status_DISABLE": "Wyłącz",
   "private_registry_iam_authentication_confirm_label": "Wpisz „CONFIRM” w poniższym polu, aby potwierdzić",
-  "private_registry_retrieving_failure": "Wystąpił błąd podczas odzyskiwania prywatnego rejestru {{ registryId }}"
+  "private_registry_retrieving_failure": "Wystąpił błąd podczas odzyskiwania prywatnego rejestru {{ registryId }}",
+  "private_registry_containers_deployment_mode_label": "Tryb wdrożenia"
 }

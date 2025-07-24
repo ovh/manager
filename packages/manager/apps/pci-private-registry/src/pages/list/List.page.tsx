@@ -36,7 +36,7 @@ import {
   getRegistryQueryPrefix,
   useAllRegistries,
 } from '@/api/hooks/useRegistry';
-import { useDatagridColumn } from './useDatagridColumn';
+import { useDatagridColumn } from './hooks/useDatagridColumn';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
 
