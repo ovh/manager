@@ -13,13 +13,13 @@
   "scripts": {
     "build": "tsc && vite build",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test": "manager-test run",
+    "test:watch": "manager-test watch"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-core-utils": "^0.4.2",
-    "@ovh-ux/manager-react-components": "^1.41.1",
+    "@ovh-ux/manager-react-components": "^1.48.0",
     "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/shell": "^4.7.6",
@@ -41,11 +41,10 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-tailwind-config": "^0.5.2",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.13.1",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@vitejs/plugin-react": "^4.3.0",
-    "@vitest/coverage-v8": "^2.1.9",
-    "vitest": "^2.1.9"
+    "vite": "^6.0.7"
   },
   "regions": [
     "CA",
