@@ -20,6 +20,20 @@ import {
   WEBSITE,
 } from '@/utils/tracking.constants';
 
+export type RouteHandle = {
+  isOverridePage?: boolean;
+  tracking?: {
+    pageName?: string;
+    pageType?: PageType;
+  };
+  breadcrumb?: {
+    label: string;
+    icon?: ODS_ICON_NAME;
+  };
+};
+
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
+
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
@@ -47,17 +61,57 @@ export default (
   >
     <Route
       id={WORDPRESS_MANAGED}
-      path={urls.wordpressManaged}
-      Component={WordpressManagedPage}
+      path={urls.managedWordpress}
+      Component={ManagedWordpressPage}
       handle={{
         tracking: {
           pageType: PageType.listing,
         },
         breadcrumb: {
-          label: 'wordpressManaged',
+          label: 'managed_wordpress',
         },
       }}
-    />
+    >
+      <Route
+        id={WORDPRESS_MANAGED_SERVICE}
+        path={urls.managedWordpressResource}
+        Component={ManagedWordpressResourcePage}
+        handle={{
+          isOverridePage: true,
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: ':serviceName',
+          },
+        }}
+      >
+        <Route
+          id={GENERAL_INFORMATION}
+          path={urls.managedWordpressResource}
+          Component={ManagedWordpressServiceGeneralInformationPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+          }}
+        />
+        <Route
+          id={TASKS}
+          path={urls.managedWordpressResourceTasks}
+          Component={ManagedWordpressServiceTasksPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:web_hosting_header_tasks',
+            },
+          }}
+        />
+      </Route>
+    </Route>
+
     <Route
       id={WEBSITE}
       path={urls.websites}
