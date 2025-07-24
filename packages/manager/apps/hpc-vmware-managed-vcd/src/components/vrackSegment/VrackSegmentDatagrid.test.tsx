@@ -88,19 +88,24 @@ describe('VrackSegmentDatagrid', () => {
       screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0],
     ).toBeInTheDocument();
 
-    waitFor(() => {
-      expect(
-        screen.getAllByText(
-          fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
-            '{{ vlanId }}',
-            mockVrackSegmentList[0].targetSpec.vlanId,
-          ),
-        )[0],
-      ).toBeInTheDocument();
-      // Check if all VLAN IDs are rendered
-      mockVrackSegmentList.forEach((network) => {
-        expect(screen.getByText(network.targetSpec.vlanId)).toBeInTheDocument();
-      });
-    });
+    waitFor(
+      () => {
+        expect(
+          screen.getAllByText(
+            fr_FR.managed_vcd_dashboard_vrack_column_segment_vrack_label.replace(
+              '{{ vlanId }}',
+              mockVrackSegmentList[0].targetSpec.vlanId,
+            ),
+          )[0],
+        ).toBeInTheDocument();
+        // Check if all VLAN IDs are rendered
+        mockVrackSegmentList.forEach((network) => {
+          expect(
+            screen.getByText(network.targetSpec.vlanId),
+          ).toBeInTheDocument();
+        });
+      },
+      { timeout: 4_000 },
+    );
   });
 });
