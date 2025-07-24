@@ -12,7 +12,7 @@ import {
   DataGridTextCell,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -75,7 +75,7 @@ const SavingsPlanList = ({
     monthlySavingsPlanList,
   );
 
-  const columns = getColumns({ t, currency });
+  const columns = useMemo(() => getColumns({ t, currency }), [t, currency]);
 
   if (isLoading) {
     return (
@@ -85,7 +85,7 @@ const SavingsPlanList = ({
     );
   }
 
-  if (!isLoading && enrichedSavingsPlans.length === 0) {
+  if (enrichedSavingsPlans.length === 0) {
     return (
       <OsdsText
         size={ODS_TEXT_SIZE._400}

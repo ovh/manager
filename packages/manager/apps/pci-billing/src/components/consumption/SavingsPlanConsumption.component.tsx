@@ -30,7 +30,7 @@ export default function SavingsPlanConsumption({
         slot="summary"
         className="my-2"
       >
-        {`${t('Savings Plan')} ${svpTotalPrice}`}
+        {t('Savings Plan')} {svpTotalPrice}
       </OsdsText>
       <SavingsPlanList
         monthlySavingsPlanList={consumption?.monthlySavingsPlanList}
