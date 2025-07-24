@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sap-features-hub-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Manage SAP workloads in HostedPrivateCloud",
   "repository": {
@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@ovh-ux/manager-common-translations": "^0.12.0",
+    "@ovh-ux/manager-common-translations": "^0.13.0",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-react-components": "^2.32.3",
+    "@ovh-ux/manager-react-components": "^2.33.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@ovh-ux/request-tagger": "*",
