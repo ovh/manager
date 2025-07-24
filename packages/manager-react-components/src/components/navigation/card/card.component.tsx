@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { OdsBadge, OdsCard } from '@ovhcloud/ods-components/react';
-import { LinkType, Links } from '../../typography';
+import { LinkType, Link } from '../../Link';
 import './translations/translations';
 
 export interface IBadge {
@@ -86,7 +86,7 @@ export const Card: React.FC<CardProps> = ({
             </p>
           )}
           <div className="section-see-more-label mt-auto">
-            <Links
+            <Link
               tab-index="-1"
               label={hrefLabel ?? t('see_more_label')}
               type={isExternalHref ? LinkType.external : LinkType.next}

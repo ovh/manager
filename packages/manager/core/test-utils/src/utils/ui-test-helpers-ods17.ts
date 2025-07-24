@@ -97,7 +97,8 @@ export const getButtonByTestId = async ({
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = screen.getAllByTestId(testId).at(nth);
+    const buttons = screen.getAllByTestId(testId);
+    button = buttons[nth];
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
