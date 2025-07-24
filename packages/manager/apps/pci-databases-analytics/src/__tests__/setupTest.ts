@@ -17,4 +17,10 @@ console.error = (...args) => {
 };
 
 const scrollMock = vi.fn();
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 window.HTMLElement.prototype.scrollIntoView = scrollMock;
