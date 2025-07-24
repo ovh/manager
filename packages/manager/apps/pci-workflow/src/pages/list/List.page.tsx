@@ -62,13 +62,12 @@ export default function ListingPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { t: tFilter } = useTranslation('filter');
   const projectUrl = useProjectUrl('public-cloud');
-  const { data: workflows, isPending } = usePaginatedWorkflows(
-    projectId,
+  const { data: workflows, isPending } = usePaginatedWorkflows(projectId, {
     pagination,
     sorting,
     filters,
     searchQueries,
-  );
+  });
 
   const columns: DatagridColumn<TPaginatedWorkflow>[] = [
     {
