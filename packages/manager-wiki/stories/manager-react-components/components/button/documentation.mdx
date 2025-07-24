@@ -6,10 +6,10 @@ import {
   StorybookTable,
 } from '../../../../components/';
 import { Meta, Canvas, Source } from '@storybook/blocks';
-import meta, { Default } from './ManagerButton.stories';
+import meta, { Default } from './Button.stories';
 import Links from '../../../../components/external-links';
 
-<Meta title="Manager React Components/Components/Manager Button/Documentation" />
+<Meta title="Manager React Components/Components/Button/Documentation" />
 
 <StoryBookBanner of={meta} />
 
@@ -19,13 +19,13 @@ import Links from '../../../../components/external-links';
 
 <StorybookIdentityCard
   githubUrl={Links.github.managerButton}
-  name="ManagerButton"
+  name="Button"
   relatedComponents={[
     { name: 'ods-button', href: Links.ods.button },
     { name: 'ods-tooltip', href: Links.ods.tooltip },
   ]}
 >
-  The **Manager Button** component is a wrapper for OdsButton that provides an additional capability of disabled Button with an optional
+  The **Button** component is a wrapper for Button from ODS that provides an additional capability of disabled Button with an optional
   Tooltip for additional context if user does not have access to perform the associated action. It is designed to support actions or events,
   with optional URN and IAM actions properties to associate the Tooltip content
   with external resources. The component supports internationalization (i18n).
@@ -38,7 +38,7 @@ import Links from '../../../../components/external-links';
 
 <StorybookHeading label="Usage" level={2} />
 
-Use the **Manager Button** to provide users with a disabled button display a concise text requiring additional explanation via a tooltip.
+Use the **Button** to provide users with a disabled button display a concise text requiring additional explanation via a tooltip.
 
 <StorybookHeading label="Dos & Don'ts" level={2} />
 
@@ -52,7 +52,7 @@ Use the **Manager Button** to provide users with a disabled button display a con
 
 <StorybookHeading label="Placement" level={2} />
 
-The **Manager Button** component is typically used inline within a table, or alongside other UI elements where additional explanation is necessary.
+The **Button** component is typically used inline within a table, or alongside other UI elements where additional explanation is necessary.
 
 <StorybookHeading label="Behavior" level={2} />
 
