@@ -10,7 +10,7 @@ import { OdsButton, OdsPopover } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import '../translations/translation';
 
-import { ManagerButton } from '../../../ManagerButton/ManagerButton';
+import { Button } from '../../../button';
 
 export interface ActionMenuItem {
   id: number;
@@ -45,7 +45,6 @@ export interface ActionMenuProps {
 const MenuItem = ({
   item,
   isTrigger,
-  id,
 }: {
   item: Omit<ActionMenuItem, 'id'>;
   isTrigger: boolean;
@@ -70,7 +69,9 @@ const MenuItem = ({
   return !item?.iamActions || item?.iamActions?.length === 0 ? (
     <OdsButton {...buttonProps} />
   ) : (
-    <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
+    <Button isIamTrigger={isTrigger} {...buttonProps}>
+      {item.label}
+    </Button>
   );
 };
 
