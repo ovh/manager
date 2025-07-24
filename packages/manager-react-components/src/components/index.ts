@@ -31,7 +31,7 @@ export * from './price';
 
 export * from './filters';
 
-export * from './ManagerButton/ManagerButton';
+export * from './button';
 export * from './ManagerText/ManagerText';
 
 export * from './service-state-badge';
