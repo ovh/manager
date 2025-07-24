@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.50.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.50.2...@ovh-ux/manager-dedicated@20.50.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.50.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.50.1...@ovh-ux/manager-dedicated@20.50.2) (2025-07-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
