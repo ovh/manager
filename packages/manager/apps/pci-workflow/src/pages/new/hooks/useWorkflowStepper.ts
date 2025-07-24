@@ -27,6 +27,7 @@ export const DEFAULT_FORM_STATE: TWorkflowCreationForm = {
   name: '',
 };
 
+// eslint-disable-next-line max-lines-per-function
 export function useWorkflowStepper() {
   const [form, setForm] = useState<TWorkflowCreationForm>({
     ...DEFAULT_FORM_STATE,
