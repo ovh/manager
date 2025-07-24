@@ -6,6 +6,7 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   READY = 'READY',
   UPDATING = 'UPDATING',
+  SUSPENDED = 'SUSPENDED',
 }
 
 export enum ServiceStatus {
@@ -92,7 +93,161 @@ export type WebsiteType = {
     type?: TaskType;
   }[];
 };
+export type ManagedWordpressResourceType = {
+  id: string;
+  resourceStatus: ResourceStatus;
+  checksum: string;
+  iam: {
+    displayName: string;
+    id: string;
+    tags: Record<string, unknown>;
+    urn: string;
+  };
+  currentState: {
+    plan: string;
+    quotas: {
+      websites: {
+        planQuota: number;
+        additionalQuota: number;
+        totalQuota: number;
+        totalUsage: number;
+      };
+      disk: {
+        planQuotaBytes: number;
+        additionalQuotaBytes: number;
+        totalQuotaBytes: number;
+        totalUsageBytes: number;
+      };
+      visits: {
+        totalAdditionalQuota: number;
+        boosts: {
+          initialAmount: number;
+          currentAmount: number;
+          createdAt: string;
+          expiresAt: string;
+        }[];
+      };
+    };
+    dashboards: {
+      wordPress: string;
+    };
+    createdAt: string;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    plan: string;
+    status: TaskStatus | string;
+    type: string;
+  }[];
+};
+export enum ManagedWordpressCmsType {
+  WORD_PRESS = 'WORD_PRESS',
+}
 
+export enum ManagedWordpressPhpVersion {
+  v7_4 = '7.4',
+  v8_1 = '8.1',
+  v8_2 = '8.2',
+  v8_3 = '8.3',
+  v8_4 = '8.4',
+}
+
+export enum ManagedWordpressLanguage {
+  de_DE = 'de_DE',
+  en_GB = 'en_GB',
+  en_US = 'en_US',
+  es_ES = 'es_ES',
+  fr_CA = 'fr_CA',
+  fr_FR = 'fr_FR',
+  it_IT = 'it_IT',
+  pl_PL = 'pl_PL',
+  pt_PT = 'pt_PT',
+}
+
+export type ManagedWordpressWebsiteDetailsType = {
+  checksum: string;
+  currentState: {
+    cms: ManagedWordpressCmsType | null;
+    createdAt: string;
+    defaultFQDN: string | null;
+    diskUsageBytes: number;
+    import: {
+      checkResult: {
+        cmsSpecific: {
+          wordPress: {
+            plugins: {
+              enabled: boolean;
+              name: string;
+              version: string;
+            }[];
+            themes: {
+              active: boolean;
+              name: string;
+              version: string;
+            }[];
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    phpVersion: ManagedWordpressPhpVersion | null;
+    serviceId: string;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: TaskStatus | null;
+    type: string;
+  }[];
+  iam: {
+    displayName: string | null;
+    id: string;
+    tags: Record<string, string> | null;
+    urn: string;
+  } | null;
+  resourceStatus: ResourceStatus;
+  targetSpec: {
+    creation?: {
+      adminLogin: string;
+      cms: ManagedWordpressCmsType;
+      cmsSpecific?: {
+        wordPress?: {
+          language: ManagedWordpressLanguage | null;
+        } | null;
+      } | null;
+      phpVersion: ManagedWordpressPhpVersion | null;
+    } | null;
+    import?: {
+      adminLogin: string;
+      adminURL: string;
+      cms: ManagedWordpressCmsType;
+      cmsSpecific?: {
+        wordPress?: {
+          selection?: {
+            comments?: boolean;
+            media?: boolean;
+            pages?: boolean;
+            plugins?: {
+              enabled: boolean;
+              name: string;
+              version: string;
+            }[];
+            posts?: boolean;
+            tags?: boolean;
+            themes?: {
+              active: boolean;
+              name: string;
+              version: string;
+            }[];
+            users?: boolean;
+            wholeDatabase: boolean;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+  websiteId: string;
+};
 export enum HostingState {
   ACTIVE = 'active',
   BLOQUED = 'bloqued',
