@@ -5,8 +5,9 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { ManagerButton } from '../../ManagerButton/ManagerButton';
+import { Button } from '../../button';
 import React, { PropsWithChildren } from 'react';
 
 import placeholderSrc from '../../../../public/assets/placeholder.png';
@@ -48,7 +49,7 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   orderIam,
   moreInfoHref,
   moreInfoButtonLabel,
-  moreInfoButtonIcon = ODS_ICON_NAME.externalLink,
+  moreInfoButtonIcon = ICON_NAME.externalLink,
   /**
    * @deprecated use onMoreInfoButtonClick
    */
@@ -59,11 +60,11 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
   if (!orderButtonLabel && !moreInfoButtonLabel) {
     return <></>;
   }
+
   return (
     <div className="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center">
       {orderButtonLabel && (onOrderButtonClick || orderHref) && (
-        <ManagerButton
-          id="orderButton"
+        <Button
           className="[&::part(button)]:w-full sm:w-auto"
           size={ODS_BUTTON_SIZE.md}
           onClick={() => {
@@ -72,14 +73,15 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
               window.open(orderHref, '_blank');
             }
           }}
-          label={orderButtonLabel}
-          isDisabled={isActionDisabled}
+          disabled={isActionDisabled}
           {...(orderIam || {})}
-        />
+        >
+          {orderButtonLabel}
+        </Button>
       )}
       {moreInfoButtonLabel &&
         (onmoreInfoButtonClick || onMoreInfoButtonClick || moreInfoHref) && (
-          <OdsButton
+          <Button
             className="[&::part(button)]:w-full sm:w-auto"
             size={ODS_BUTTON_SIZE.md}
             variant={ODS_BUTTON_VARIANT.outline}
@@ -93,11 +95,16 @@ const OnboardingLayoutButton: React.FC<OnboardingLayoutButtonProps> = ({
                 }
               }
             }}
-            label={moreInfoButtonLabel}
-            icon={moreInfoButtonIcon}
-            iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-            isDisabled={isMoreInfoButtonDisabled}
-          />
+            disabled={isMoreInfoButtonDisabled}
+          >
+            <>
+              {moreInfoButtonLabel}
+              <Icon
+                aria-label={moreInfoButtonLabel}
+                name={moreInfoButtonIcon}
+              />
+            </>
+          </Button>
         )}
     </div>
   );
