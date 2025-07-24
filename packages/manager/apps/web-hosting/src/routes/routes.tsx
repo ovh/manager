@@ -52,7 +52,24 @@ export type RouteHandle = {
     icon?: ODS_ICON_NAME;
   };
 };
+<<<<<<< HEAD
 export type RouteMatch = UIMatch<unknown, RouteHandle>;
+=======
+
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
+
+const RootPage = React.lazy(() => import('@/pages/layout'));
+const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
+const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
+const ImportSslPage = React.lazy(() => import('@/pages/dashboard/ssl/add/importSsl.page'));
+const OrderSectigoPage = React.lazy(() => import('@/pages/dashboard/ssl/add/orderSectigo.page'));
+const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/disableSsl.page'));
+const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
+const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
+const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
+>>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
 
 export default (
   <Route
@@ -69,17 +86,61 @@ export default (
   >
     <Route
       id={WORDPRESS_MANAGED}
+<<<<<<< HEAD
       path={urls.wordpressManaged}
+=======
+      path={urls.managedWordpress}
+>>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
       Component={ManagedWordpressPage}
       handle={{
         tracking: {
           pageType: PageType.listing,
         },
         breadcrumb: {
-          label: 'wordpressManaged',
+          label: 'managed_wordpress',
         },
       }}
-    />
+    >
+      <Route
+        id={WORDPRESS_MANAGED_SERVICE}
+        path={urls.managedWordpressResource}
+        Component={ManagedWordpressResourcePage}
+        handle={{
+          isOverridePage: true,
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: ':serviceName',
+          },
+        }}
+      >
+        <Route
+          id={GENERAL_INFORMATION}
+          path={urls.managedWordpressResource}
+          Component={ManagedWordpressServiceGeneralInformationPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+          }}
+        />
+        <Route
+          id={TASKS}
+          path={urls.managedWordpressResourceTasks}
+          Component={ManagedWordpressServiceTasksPage}
+          handle={{
+            tracking: {
+              pageType: PageType.listing,
+            },
+            breadcrumb: {
+              label: 'common:web_hosting_header_tasks',
+            },
+          }}
+        />
+      </Route>
+    </Route>
+
     <Route
       id={WEBSITE}
       path={urls.websites}
