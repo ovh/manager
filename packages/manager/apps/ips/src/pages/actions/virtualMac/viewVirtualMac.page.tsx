@@ -6,7 +6,7 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
 
-import { useGetIpdetails, useGetIpVmac } from '@/data/hooks/ip';
+import { useIpHasVmac } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
 import { useGetIpVmacDetails } from '@/data/hooks/ip/useGetIpVmacDetails';
 
@@ -16,33 +16,31 @@ export default function ViewVirtualMacModal() {
   const [macAddress, setMacAddress] = useState('');
   const [virtualMachineName, setVirtualMachineName] = useState('');
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({ ip });
-  const serviceName = ipDetails?.routedTo?.serviceName;
 
-  // Api call to retrive all existing vmacs for a server
-  const { vmacs, isLoading: isVmacLoading, error } = useGetIpVmac({
-    serviceName,
-    enabled: Boolean(serviceName),
+  const { ipvmac, isLoading: isVmacLoading } = useIpHasVmac({
+    serviceName: service,
+    ip,
+    enabled: Boolean(service),
   });
 
   const {
     dedicatedServerVmacWithIpResponse,
     isLoading: isVmacWithIpLoading,
   } = useGetIpVmacDetails({
-    serviceName,
+    serviceName: service,
     ip,
     macAddress,
-    enabled: macAddress !== '' && Boolean(serviceName),
+    enabled: macAddress !== '' && Boolean(service),
   });
 
   useEffect(() => {
-    if (vmacs) {
-      setType(vmacs[0]?.type);
-      setMacAddress(vmacs[0]?.macAddress);
+    if (ipvmac) {
+      setType(ipvmac[0]?.type);
+      setMacAddress(ipvmac[0]?.macAddress);
     }
-  }, [vmacs]);
+  }, [ipvmac]);
 
   useEffect(() => {
     if (dedicatedServerVmacWithIpResponse) {
@@ -83,7 +81,7 @@ export default function ViewVirtualMacModal() {
       heading={t('viewVirtualMacTitle')}
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={close}
-      isLoading={isIpDetailsLoading || isVmacLoading || isVmacWithIpLoading}
+      isLoading={isVmacLoading || isVmacWithIpLoading}
     >
       <div>
         <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
