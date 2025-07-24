@@ -7,5 +7,10 @@
   "service_state_toSuspend": "Do zawieszenia",
   "service_state_enabled": "Włączony",
   "service_state_disabled": "Wyłączone",
-  "service_state_draft": "Wymagana konfiguracja"
+  "service_state_draft": "Wymagana konfiguracja",
+  "service_state_creating": "Tworzenie",
+  "service_state_deleting": "Usuwanie",
+  "service_state_error": "Błąd",
+  "service_state_ready": "Aktywna",
+  "service_state_updating": "Aktualizacja"
 }
