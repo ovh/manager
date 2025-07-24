@@ -1,8 +1,11 @@
-import { useContext, useEffect, useRef } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useEffect, useRef } from 'react';
+import {
+  TrackingClickParams,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 export const useTranslatedLinkReference = () => {
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useOvhTracking();
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -23,9 +26,10 @@ export const useTranslatedLinkReference = () => {
           anchor.setAttribute('data-handled', 'true');
           if (trackOn === 'click') {
             anchor.addEventListener('click', () => {
-              tracking.trackClick({
-                name: trackName,
-                type: trackType || 'action',
+              trackClick({
+                actions: [trackName],
+                actionType:
+                  (trackType as TrackingClickParams['actionType']) || 'action',
               });
             });
           }
