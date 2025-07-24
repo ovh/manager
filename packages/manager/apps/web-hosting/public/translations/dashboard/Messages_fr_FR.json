@@ -84,5 +84,6 @@
   "hosting_add_step3_common_action": "Faire pointer le champ {{t0}} de votre domaine {{t1}} vers {{t2}}",
   "hosting_add_step3_insert_token_field": "Insérer un champ {{t0}} pour le domaine {{t1}} ayant pour valeur {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "L'ajout du ou des domaines à votre hébergement mutualisé a été effectué avec succès.",
-  "hosting_tab_DOMAINS_configuration_add_failure": "Une erreur est survenue lors de l'ajout du ou des domaines à votre hébergement mutualisé."
+  "hosting_tab_DOMAINS_configuration_add_failure": "Une erreur est survenue lors de l'ajout du ou des domaines à votre hébergement mutualisé.",
+  "hosting_managed_wordpress_websites_description": "Créez un nouveau site ou importez en quelques clics un site existant vers ce compte."
 }

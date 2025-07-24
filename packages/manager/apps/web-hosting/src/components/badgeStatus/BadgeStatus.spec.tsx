@@ -26,6 +26,7 @@ describe('BadgeStatus component', () => {
       { status: 'DELETING', color: ODS_BADGE_COLOR.warning },
       { status: 'ERROR', color: ODS_BADGE_COLOR.critical },
       { status: 'ACTIVE', color: ODS_BADGE_COLOR.success },
+      { status: 'READY', color: ODS_BADGE_COLOR.success },
       { status: 'NONE', color: ODS_BADGE_COLOR.critical },
     ];
 
