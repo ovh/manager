@@ -1,25 +1,57 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { ResourcesV6Params } from '@ovh-ux/manager-react-components';
 import {
   createVolumeBackup,
   createVolumeSnapshot,
   deleteBackup,
   getVolumeBackups,
+  refetchInterval,
   restoreVolume,
 } from '@/data/api/volumeBackup';
-import queryClient from '@/queryClient';
+import { VOLUME_BACKUP_STATUS } from '@/constants';
+import { TVolumeBackup } from '@/data/api/api.types';
 
-export const getBackupsQueryKey = (projectId: string | undefined) => [
-  ['pci-volume-backup', `/cloud/project/${projectId}/aggregated/volumeBackup`],
-];
-
-export const useBackups = (projectId: string | undefined) =>
-  useQuery({
-    queryKey: getBackupsQueryKey(projectId),
+const getBackupsQueryOptions = (projectId: string | undefined) =>
+  queryOptions({
+    // queryKey should be an array with only one element or call to useResourcesV6 breaks
+    queryKey: [`/cloud/project/${projectId}/aggregated/volumeBackup`],
     queryFn: getVolumeBackups(projectId as NonNullable<typeof projectId>),
     enabled: !!projectId,
   });
+
+export const getBackupsResourcesV6QueryOptions = (
+  projectId: string,
+): Pick<
+  ResourcesV6Params<TVolumeBackup>,
+  'route' | 'queryFn' | 'refetchInterval' | 'queryKey'
+> => {
+  const { queryKey, queryFn, ...backupsQueryOptions } = getBackupsQueryOptions(
+    projectId,
+  );
+
+  return {
+    ...backupsQueryOptions,
+    // Route should not be required
+    route: '',
+    refetchInterval,
+    // We need to cast as unknown because MRC typing doesn't accept tanstack queryFn
+    queryFn: (queryFn as unknown) as ResourcesV6Params<
+      TVolumeBackup
+    >['queryFn'],
+    // We need to cast as unknown because MRC typing isn't correct and queryKey is set as a list
+    queryKey: (queryKey[0] as unknown) as string[],
+  };
+};
+
+export const useBackups = (projectId: string | undefined) =>
+  useQuery(getBackupsQueryOptions(projectId));
 
 export const useBackup = ({
   projectId,
@@ -51,6 +83,8 @@ export const useRestoreVolume = ({
   onError: (cause: ApiError) => void;
   onSuccess: () => void;
 }) => {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: async (params: { volumeId: string; backupId: string }) =>
       restoreVolume({
@@ -60,9 +94,7 @@ export const useRestoreVolume = ({
       }),
     onError,
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: getBackupsQueryKey(projectId),
-      });
+      queryClient.invalidateQueries(getBackupsQueryOptions(projectId));
       onSuccess();
     },
   });
@@ -82,9 +114,15 @@ export const useDeleteBackup = ({
 }: {
   projectId: string;
   regionName: string;
-  onError: (cause: ApiError) => void;
+  onError: (cause: Error) => void;
   onSuccess: () => void;
 }) => {
+  const queryClient = useQueryClient();
+
+  const backupsQuery = useMemo(() => getBackupsQueryOptions(projectId), [
+    projectId,
+  ]);
+
   const mutation = useMutation({
     mutationFn: async (backupId: string) =>
       deleteBackup({
@@ -92,13 +130,46 @@ export const useDeleteBackup = ({
         regionName,
         backupId,
       }),
-    onError,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: getBackupsQueryKey(projectId),
+    onMutate: async (backupId) => {
+      await queryClient.cancelQueries(backupsQuery);
+
+      const previousBackups = queryClient.getQueryData(backupsQuery.queryKey);
+
+      queryClient.setQueryData(backupsQuery.queryKey, (backupsData) => {
+        if (!backupsData) return undefined;
+
+        const { data, ...rest } = backupsData;
+        const newData = [...data];
+
+        const backupIndex = newData.findIndex((b) => b.id === backupId);
+        if (backupIndex !== -1) {
+          const newBackup = {
+            ...newData[backupIndex],
+            status: VOLUME_BACKUP_STATUS.DELETING,
+          };
+
+          newData.splice(backupIndex, 1, newBackup);
+        }
+
+        return {
+          data: newData,
+          ...rest,
+        };
       });
-      onSuccess();
+
+      return { previousBackups };
     },
+    onError: (error, _variables, context) => {
+      if (context?.previousBackups)
+        queryClient.setQueryData(
+          backupsQuery.queryKey,
+          context.previousBackups,
+        );
+
+      return onError(error);
+    },
+    onSuccess,
+    onSettled: () => queryClient.invalidateQueries(backupsQuery),
   });
 
   return {
@@ -124,6 +195,8 @@ export const useCreateVolumeBackup = ({
   onSuccess,
   onError,
 }: UseCreateBackupProps) => {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (params: CreateBackupProps) =>
       createVolumeBackup(
@@ -134,9 +207,7 @@ export const useCreateVolumeBackup = ({
       ),
     onError,
     onSuccess: async () => {
-      queryClient.invalidateQueries({
-        queryKey: getBackupsQueryKey(projectId),
-      });
+      queryClient.invalidateQueries(getBackupsQueryOptions(projectId));
 
       onSuccess();
     },
