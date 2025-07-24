@@ -168,12 +168,12 @@ export const AddEditOrganizationModal = () => {
       type={ODS_MODAL_COLOR.information}
       onDismiss={onClose}
       isLoading={isLoading}
-      primaryLabel={t('common:confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       primaryButtonTestId="confirm-btn"
       isPrimaryButtonDisabled={!isDirty || !isValid}
       isPrimaryButtonLoading={isLoading || isSending}
       onPrimaryButtonClick={handleSubmit(handleSaveClick)}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <form

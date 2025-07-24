@@ -18,6 +18,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl, useDebouncedValue, useOverridePage } from '@/hooks';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import ActionButton from './ActionButton.component';
@@ -50,7 +51,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   {
     id: 'status',
     cell: (item: OrganizationItem) => <BadgeStatus status={item.status} />,
-    label: 'zimbra_organization_status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -60,7 +61,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 ];
 
 export default function Organizations() {
-  const { t } = useTranslation('organizations');
+  const { t } = useTranslation(['organizations', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();

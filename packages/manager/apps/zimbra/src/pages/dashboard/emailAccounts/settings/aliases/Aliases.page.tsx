@@ -19,6 +19,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { AliasType } from '@/data/api';
 import { usePlatform, useAliases } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl } from '@/hooks';
@@ -41,7 +42,7 @@ const columns: DatagridColumn<AliasItem>[] = [
   {
     id: 'status',
     cell: (item: AliasItem) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -52,7 +53,7 @@ const columns: DatagridColumn<AliasItem>[] = [
 
 export const Aliases = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation(['accounts/alias', 'common']);
+  const { t } = useTranslation(['accounts/alias', 'common', NAMESPACES.STATUS]);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
 

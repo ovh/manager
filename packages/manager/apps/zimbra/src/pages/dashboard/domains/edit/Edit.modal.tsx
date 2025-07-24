@@ -146,12 +146,12 @@ export const EditDomainModal = () => {
       isOpen
       isLoading={isLoadingDomain || isLoadingOrganizations}
       ref={modalRef}
-      primaryLabel={t('common:confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       primaryButtonTestId="edit-btn"
       isPrimaryButtonLoading={isSending}
       isPrimaryButtonDisabled={!isDirty || !isValid}
       onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       secondaryButtonTestId="cancel-btn"
       onSecondaryButtonClick={handleCancelClick}
     >

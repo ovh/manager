@@ -100,11 +100,11 @@ export const DeleteOrganizationModal = () => {
       heading={t('common:delete_redirection')}
       isOpen
       onDismiss={onClose}
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       onPrimaryButtonClick={handleConfirmClick}
       isPrimaryButtonLoading={isSending}
       primaryButtonTestId="delete-btn"
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       secondaryButtonTestId="cancel-btn"
     >

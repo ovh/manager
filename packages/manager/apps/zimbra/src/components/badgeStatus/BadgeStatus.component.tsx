@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ResourceStatus } from '@/data/api';
@@ -8,7 +9,16 @@ export type BadgeStatusProps = {
   'data-testid'?: string;
 };
 
-const getStatusColor = (status: string) => {
+const ResourceStatusLabels: Record<keyof typeof ResourceStatus, string> = {
+  [ResourceStatus.CREATING]: 'service_state_creating',
+  [ResourceStatus.DELETING]: 'service_state_deleting',
+  [ResourceStatus.ERROR]: 'service_state_error',
+  [ResourceStatus.READY]: 'service_state_ready',
+  [ResourceStatus.SUSPENDED]: 'service_state_suspended',
+  [ResourceStatus.UPDATING]: 'service_state_updating',
+};
+
+const getStatusColor = (status: keyof typeof ResourceStatus) => {
   switch (status) {
     case ResourceStatus.READY:
       return ODS_BADGE_COLOR.success;
@@ -20,6 +30,7 @@ const getStatusColor = (status: string) => {
 };
 
 export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
+  const { t } = useTranslation();
   const statusColor = useMemo(() => getStatusColor(props.status), [
     props.status,
   ]);
@@ -28,7 +39,8 @@ export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
     <OdsBadge
       data-testid={props['data-testid']}
       color={statusColor}
-      label={props.status}
+      className="capitalize"
+      label={t(ResourceStatusLabels[props.status]) ?? props.status}
     />
   );
 };

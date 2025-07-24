@@ -164,12 +164,12 @@ export const AddAliasModal = () => {
       onDismiss={onClose}
       isLoading={isLoading}
       ref={modalRef}
-      primaryLabel={t('common:confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       primaryButtonTestId="confirm-btn"
       isPrimaryButtonDisabled={!isDirty || !isValid}
       isPrimaryButtonLoading={isLoading || isSending}
       onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <form

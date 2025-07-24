@@ -105,11 +105,11 @@ export const DeleteEmailAccountModal = () => {
       onDismiss={onClose}
       isLoading={isLoading}
       isOpen
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       isPrimaryButtonLoading={step === 1 ? false : isSending}
       onPrimaryButtonClick={step === 1 ? () => setStep(2) : handleDeleteClick}
       primaryButtonTestId="primary-btn"
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <>
