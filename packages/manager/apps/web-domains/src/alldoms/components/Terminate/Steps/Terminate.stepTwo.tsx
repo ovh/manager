@@ -7,18 +7,15 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ModalStepsProps } from '@/alldoms/types';
+import { updateService } from '@/alldoms/data/api/web-domains';
 import {
-  ServiceInfoRenewMode,
   ServiceInfoUpdateEnum,
+  ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
-import {
-  useUpdateAllDomService,
-  useUpdateDomainServiceInfo,
-} from '@/alldoms/hooks/data/mutation/mutation';
 
 export default function TerminateModalStepTwo({
   domainTerminateList,
@@ -27,51 +24,42 @@ export default function TerminateModalStepTwo({
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
-  const updateAllDomServiceMutation = useUpdateAllDomService();
-  const updateDomainServiceInfoMutation = useUpdateDomainServiceInfo();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const handleTerminate = async () => {
-    try {
-      await updateAllDomServiceMutation.mutateAsync({
+  const useTerminateService = useMutation({
+    mutationFn: async () => {
+      await updateService(
         serviceName,
-        displayName: serviceName,
-        renew: {
-          mode: ServiceInfoRenewMode.Manual,
-        },
-        terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
-      });
-
+        ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+        ServiceRoutes.AllDom,
+      );
       await Promise.all(
-        domainTerminateList.map((domainName) =>
-          updateDomainServiceInfoMutation.mutateAsync(domainName),
+        domainTerminateList.map((domain) =>
+          updateService(
+            domain,
+            ServiceInfoUpdateEnum.TerminateAtExpirationDate,
+            ServiceRoutes.Domain,
+          ),
         ),
       );
+    },
 
-      addSuccess(
-        <OdsText>
-          {t('allDom_modal_success_message', {
-            t0: serviceName,
-            t1: domainTerminateList.join(', '),
-          })}
-        </OdsText>,
-      );
-      await queryClient.invalidateQueries({
-        queryKey: ['serviceInfo'],
-      });
-    } catch (error) {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['allDom'] });
+      addSuccess(t('allDom_modal_success_message'));
+    },
+    onError: (error) => {
       addError(
-        <OdsText>
-          {t('allDom_modal_error_message', {
-            t0: error.message,
-          })}
-        </OdsText>,
+        t('allDom_modal_error_message', {
+          t0: error.message,
+        }),
       );
-    } finally {
+    },
+    onSettled: () => {
       navigate(-1);
-    }
-  };
+    },
+  });
 
   return (
     <div>
@@ -96,9 +84,7 @@ export default function TerminateModalStepTwo({
           variant={ODS_BUTTON_VARIANT.default}
           color={ODS_BUTTON_COLOR.critical}
           isDisabled={!domainTerminateList}
-          onClick={async () => {
-            handleTerminate();
-          }}
+          onClick={() => useTerminateService.mutate()}
         />
       </div>
     </div>

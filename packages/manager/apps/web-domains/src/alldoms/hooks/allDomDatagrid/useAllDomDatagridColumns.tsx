@@ -129,6 +129,7 @@ export const useAllDomDatagridColumns = () => {
           terminateUrl={`terminate/${props.currentState.name}`}
           lifecycleCapacities={props.lifecycleCapacities}
           whichAction={ActionEnum.All}
+          cancelTerminateUrl={`${props.currentState.name}/terminate/cancel`}
         />
       ),
       label: '',
