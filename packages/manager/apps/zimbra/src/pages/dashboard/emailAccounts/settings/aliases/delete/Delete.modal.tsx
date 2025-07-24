@@ -104,11 +104,11 @@ export const DeleteAlias = () => {
       onDismiss={onClose}
       isOpen
       isLoading={isLoading}
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       onPrimaryButtonClick={handleDeleteClick}
       isPrimaryButtonLoading={isDeleting}
       primaryButtonTestId="delete-btn"
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
