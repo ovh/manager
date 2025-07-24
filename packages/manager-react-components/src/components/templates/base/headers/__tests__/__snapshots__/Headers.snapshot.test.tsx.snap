@@ -5,11 +5,12 @@ exports[`Headers component > renders header with actions correctly 1`] = `
   <header
     class="flex items-start justify-between"
   >
-    <div
-      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    <h1
+      class="_text--heading-1_1aw48_13"
+      data-testid="title"
     >
       Example for header with actions 
-    </div>
+    </h1>
     <div
       class="flex flex-wrap justify-end items-center"
     >
@@ -79,11 +80,12 @@ exports[`Headers component > renders header with header buttons correctly 1`] = 
   <header
     class="flex items-start justify-between"
   >
-    <div
-      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    <h1
+      class="_text--heading-1_1aw48_13"
+      data-testid="title"
     >
       Example for header with header buttons
-    </div>
+    </h1>
     <div
       class="flex flex-wrap justify-end items-center"
     >
@@ -210,11 +212,12 @@ exports[`Headers component > renders header with title 1`] = `
   <header
     class="flex items-start justify-between"
   >
-    <div
-      class=" m-0 p-0 text-[--ods-color-heading] text-[36px] leading-[45px] font-bold mb-[24px]"
+    <h1
+      class="_text--heading-1_1aw48_13"
+      data-testid="title"
     >
       Example for header
-    </div>
+    </h1>
   </header>
 </div>
 `;
