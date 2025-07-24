@@ -13,7 +13,7 @@ import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.componen
 import { useQuantum } from '@/hooks/useQuantum.hook';
 
 const Onboarding = () => {
-  const { isQuantum, t } = useQuantum('ai-tools/notebooks/onboarding');
+  const { isQuantum, t } = useQuantum('ai-tools/qpus/onboarding');
   const locale = useLocale();
 
   return (

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { N } from 'vitest/dist/chunks/reporters.nr4dxCkA';
 
 export function useQuantum(namespace?: string) {
   const { quantum } = useParams();

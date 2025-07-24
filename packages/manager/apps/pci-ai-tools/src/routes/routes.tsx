@@ -681,32 +681,34 @@ export default [
           // QPU
           {
             path: ':quantum/qpu',
-            ...lazyRouteConfig(() => import('@/pages/qpu/NotebookRoot.layout')),
+            ...lazyRouteConfig(() =>
+              import('@/pages/qpus/NotebookRoot.layout'),
+            ),
             children: [
               {
                 path: '',
                 id: 'qpu',
-                ...lazyRouteConfig(() => import('@/pages/qpu/Qpus.page')),
+                ...lazyRouteConfig(() => import('@/pages/qpus/Qpus.page')),
                 children: [
                   {
                     path: 'start/:notebookId',
                     id: 'qpu.start',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpu/start/Start.modal'),
+                      import('@/pages/qpus/start/Start.modal'),
                     ),
                   },
                   {
                     path: 'stop/:notebookId',
                     id: 'qpu.stop',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpu/stop/Stop.modal'),
+                      import('@/pages/qpus/stop/Stop.modal'),
                     ),
                   },
                   {
                     path: 'delete/:notebookId',
                     id: 'qpu.delete',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpu/delete/Delete.modal'),
+                      import('@/pages/qpus/delete/Delete.modal'),
                     ),
                   },
                 ],
@@ -715,14 +717,14 @@ export default [
                 path: 'onboarding',
                 id: 'onboarding-qpu',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/qpu/onboarding/Onboarding.page'),
+                  import('@/pages/qpus/onboarding/Onboarding.page'),
                 ),
               },
               {
                 path: 'new',
                 id: 'qpu.create',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/qpu/create/Create.page'),
+                  import('@/pages/qpus/create/Create.page'),
                 ),
                 children: [
                   {
@@ -737,7 +739,7 @@ export default [
               {
                 path: ':notebookId',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/qpu/[notebookId]/Notebook.layout'),
+                  import('@/pages/qpus/[notebookId]/Notebook.layout'),
                 ),
                 children: [
                   {
@@ -745,7 +747,7 @@ export default [
                     id: 'qpu.qpu.dashboard',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpu/[notebookId]/dashboard/Dashboard.page'
+                        '@/pages/qpus/[notebookId]/dashboard/Dashboard.page'
                       ),
                     ),
                     children: [
@@ -754,7 +756,7 @@ export default [
                         id: 'qpu.qpu.dashboard.delete',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/dashboard/delete/Delete.modal'
+                            '@/pages/qpus/[notebookId]/dashboard/delete/Delete.modal'
                           ),
                         ),
                       },
@@ -763,7 +765,7 @@ export default [
                         id: 'qpu.qpu.dashboard.update-flavor',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                            '@/pages/qpus/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
                           ),
                         ),
                       },
@@ -774,7 +776,7 @@ export default [
                     id: 'qpu.notebook.containers',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpu/[notebookId]/containers/Containers.page'
+                        '@/pages/qpus/[notebookId]/containers/Containers.page'
                       ),
                     ),
                     children: [
@@ -783,7 +785,7 @@ export default [
                         id: 'qpu.notebook.containers.data-sync',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/containers/dataSync/DataSync.modal'
+                            '@/pages/qpus/[notebookId]/containers/dataSync/DataSync.modal'
                           ),
                         ),
                       },
@@ -792,7 +794,7 @@ export default [
                         id: 'qpu.qpu.container.add',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/containers/addVolume/AddVolume.modal'
+                            '@/pages/qpus/[notebookId]/containers/addVolume/AddVolume.modal'
                           ),
                         ),
                       },
@@ -801,7 +803,7 @@ export default [
                         id: 'qpu.qpu.container.delete',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
+                            '@/pages/qpus/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
                           ),
                         ),
                       },
@@ -810,7 +812,7 @@ export default [
                         id: 'qpu.qpu.containers.data-sync.volume',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/containers/dataSync/DataSync.modal'
+                            '@/pages/qpus/[notebookId]/containers/dataSync/DataSync.modal'
                           ),
                         ),
                       },
@@ -821,7 +823,7 @@ export default [
                     id: 'qpu.qpu.public-git',
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpu/[notebookId]/public-git/PublicGit.page'
+                        '@/pages/qpus/[notebookId]/public-git/PublicGit.page'
                       ),
                     ),
                     children: [
@@ -830,7 +832,7 @@ export default [
                         id: 'qpu.qpu.public-git.add',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/public-git/addVolume/AddVolume.modal'
+                            '@/pages/qpus/[notebookId]/public-git/addVolume/AddVolume.modal'
                           ),
                         ),
                       },
@@ -839,7 +841,7 @@ export default [
                         id: 'qpu.qpu.public-git.delete',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
+                            '@/pages/qpus/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
                           ),
                         ),
                       },
@@ -849,14 +851,14 @@ export default [
                     path: 'logs',
                     id: 'qpu.qpu.logs',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpu/[notebookId]/logs/Logs.page'),
+                      import('@/pages/qpus/[notebookId]/logs/Logs.page'),
                     ),
                   },
                   {
                     path: 'backups',
                     id: 'qpu.qpu.backups',
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpu/[notebookId]/backups/Backups.page'),
+                      import('@/pages/qpus/[notebookId]/backups/Backups.page'),
                     ),
                     children: [
                       {
@@ -864,7 +866,7 @@ export default [
                         id: 'qpu.qpu.backups.fork',
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpu/[notebookId]/backups/fork/Fork.modal'
+                            '@/pages/qpus/[notebookId]/backups/fork/Fork.modal'
                           ),
                         ),
                       },
