@@ -1,7 +1,7 @@
 {
   "managed_vcd_listing_title": "Managed VCD",
   "managed_vcd_listing_id": "ID",
-  "managed_vcd_listing_name": "Cognome",
+  "managed_vcd_listing_name": "Nome dell'organizzazione:",
   "managed_vcd_listing_location": "Localizzazione",
   "managed_vcd_listing_description": "Descrizione",
   "managed_vcd_listing_vcd_tutorial_guides": "Tutte le guide VCD",

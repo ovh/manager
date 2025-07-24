@@ -6,7 +6,7 @@
   "guide_category": "Tutoriale",
   "guide1_title": "Kopie zapasowe Veeam Data Platform",
   "guide1_description": "Dowiedz się, jak wykonywać kopie zapasowe i przywracać dane dzięki integracji Veeam Data Platform",
-  "guide2_title": "Pierwsze kroki z Managed VCD",
+  "guide2_title": "Pierwsze kroki z usługą {{productName}}",
   "guide2_description": "Podstawowe założenia Veeam. Poznaj podstawowe pojęcia związane z Veeam.",
   "guide2_link_label": "Wyświetl dokumentację",
   "guide3_title": "Najczęściej zadawane pytania",
