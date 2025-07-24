@@ -17,13 +17,16 @@ import UpdateTable from './_components/UpdateTable.component';
 import ServiceConfiguration from './_components/ServiceConfiguration.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
+import { cn } from '@/lib/utils';
+import KafkaSettingsTile from './_components/KafkaSettingsTile.component';
 
 const Settings = () => {
   const { service } = useServiceData();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings',
   );
-
+  const hasKafkaSettingsTile =
+    service.capabilities.restApi || service.capabilities.schemaRegistry;
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -49,7 +52,10 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card className="col-span-2" id="maintenances">
+        <Card
+          className={cn('col-span-2', hasKafkaSettingsTile && 'col-span-1')}
+          id="maintenances"
+        >
           <CardHeader>
             <h5>{t('maintenancesTitle')}</h5>
           </CardHeader>
@@ -57,7 +63,16 @@ const Settings = () => {
             <Maintenances />
           </CardContent>
         </Card>
-
+        {hasKafkaSettingsTile && (
+          <Card id="kafka-configuration" className="col-span-1">
+            <CardHeader>
+              <h5>{t('Kafka')}</h5>
+            </CardHeader>
+            <CardContent>
+              <KafkaSettingsTile />
+            </CardContent>
+          </Card>
+        )}
         <Card className="col-span-1" id="configuration">
           <CardHeader>
             <h5>{t('serviceConfigurationTitle')}</h5>

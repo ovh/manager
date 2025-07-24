@@ -13,5 +13,6 @@
   "tableActionManage": "Detalles",
   "tableActionCopy": "Copiar ID",
   "tableActionEditName": "Renombrar",
-  "tableActionDelete": "Eliminar"
+  "tableActionDelete": "Eliminar",
+  "tableHeaderFilterName": "Nombre"
 }

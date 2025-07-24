@@ -36,6 +36,7 @@ const PrometheusConfigTile = () => {
     service.id,
     {
       enabled: !!service.enablePrometheus,
+      refetchInterval: 10_000,
     },
   );
   const { editService, isPending } = useEditService({

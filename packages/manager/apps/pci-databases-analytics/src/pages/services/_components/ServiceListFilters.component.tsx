@@ -15,7 +15,7 @@ export const getFilters = () => {
   return [
     {
       id: 'description',
-      label: t('tableHeaderName'),
+      label: t('tableHeaderFilterName'),
       comparators: FilterCategories.String,
     },
     {

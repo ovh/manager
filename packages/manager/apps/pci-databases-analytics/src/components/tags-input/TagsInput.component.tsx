@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { z } from 'zod';
-import { X, PlusCircle } from 'lucide-react';
+import { X, PlusCircle, Plus } from 'lucide-react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -101,10 +101,11 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
             name="tag"
             render={({ field }) => (
               <>
-                <div className="flex w-full items-end">
+                <div className="flex w-full items-end ring-offset-background focus-within:ring-2 focus-within:outline-none focus-within:ring-[#000e9c] focus-within:ring-offset-2 rounded-md">
                   <FormItem ref={ref} className="flex-grow">
                     <FormControl>
                       <Input
+                        className="rounded-r-none focus-visible:ring-0"
                         data-testid="input_tag"
                         type="text"
                         placeholder={placeholder}
@@ -117,12 +118,12 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
                   <Button
                     data-testid="add_tag_button"
                     ref={addTagBtnRef}
-                    mode={'ghost'}
                     type="button"
                     onClick={form.handleSubmit(handleAddTag)}
-                    className="text-primary rounded-full p-2 ml-2 hover:text-primary"
+                    tabIndex={-1}
+                    className="rounded-l-none text-sm focus-visible:ring-0"
                   >
-                    <PlusCircle />
+                    <Plus className="size-4" />
                   </Button>
                 </div>
                 <FormMessage />

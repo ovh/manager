@@ -80,7 +80,7 @@ export function DatatableFiltersList() {
             className="ml-2 p-0 size-4"
             onClick={() => columnFilters.removeFilter(filter)}
           >
-            <X className="size-4" />
+            <X className="size-4 text-white hover:text-primary" />
           </Button>
         </Badge>
       ))}
