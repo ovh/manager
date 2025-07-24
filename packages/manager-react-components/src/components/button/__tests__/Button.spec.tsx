@@ -1,22 +1,27 @@
-import React from 'react';
 import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
-import { ManagerButton, ManagerButtonProps } from './ManagerButton';
-import { render } from '../../utils/test.provider';
-import fr_FR from './translations/Messages_fr_FR.json';
-import { useAuthorizationIam } from '../../hooks/iam';
-import { IamAuthorizationResponse } from '../../hooks/iam/iam.interface';
+import { Button, ButtonProps } from '../index';
+import { render } from '../../../utils/test.provider';
+import fr_FR from '../translations/Messages_fr_FR.json';
+import { useAuthorizationIam } from '../../../hooks/iam';
+import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 
-vitest.mock('../../hooks/iam');
+vitest.mock('../../../hooks/iam', () => ({
+  useAuthorizationIam: vitest.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+    isFetched: true,
+  }),
+}));
 
-const renderComponent = (props: ManagerButtonProps) => {
-  return render(<ManagerButton {...props} />);
+const renderComponent = (props: ButtonProps) => {
+  return render(<Button {...props} />);
 };
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
-describe('ManagerButton tests', () => {
+describe('Button tests', () => {
   afterEach(() => {
     vitest.resetAllMocks();
   });
@@ -29,12 +34,11 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
-        id: 'test-manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
-        label: 'foo-manager-button',
+        children: 'foo-manager-button',
       });
       expect(screen.getByTestId('manager-button')).not.toBeNull();
     });
@@ -46,17 +50,15 @@ describe('ManagerButton tests', () => {
         isFetched: true,
       });
       renderComponent({
-        id: 'test-manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach',
         ],
-        label: 'fo manager button',
+        children: 'fo manager button',
       });
       expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
       expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
-        'is-disabled',
-        'true',
+        'disabled',
       );
     });
   });
@@ -65,21 +67,19 @@ describe('ManagerButton tests', () => {
     it('with false value for useAuthorizationIam', () => {
       mockedHook.mockReturnValue({
         isAuthorized: false,
-        isLoading: true,
+        isLoading: false,
         isFetched: true,
       });
       renderComponent({
-        id: 'manager-button',
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
         iamActions: [
           'manager-react-components:apiovh:manager-react-components/attach-action',
         ],
-        label: 'foo-manager-button',
+        children: 'foo-manager-button',
       });
       expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
       expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
-        'is-disabled',
-        'true',
+        'disabled',
       );
       const button = screen.getByTestId('manager-button-tooltip');
       fireEvent.mouseOver(button);

@@ -1,18 +1,12 @@
-import React from 'react';
 import { vi, vitest } from 'vitest';
-import { waitFor, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, act } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
-import {
-  OnboardingLayout,
-  OnboardingLayoutProps,
-} from './onboarding.component';
+import { OnboardingLayout } from './onboarding.component';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import placeholderSrc from './../../../../public/assets/placeholder.png';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 
-const setupSpecTest = async (props: OnboardingLayoutProps) =>
-  waitFor(() => render(<OnboardingLayout {...props} />));
 vitest.mock('../../../hooks/iam');
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
@@ -25,137 +19,122 @@ const children = <>Test Onboarding 1</>;
 
 describe('specs:onboarding', () => {
   describe('default content', () => {
-    it('displays default content', async () => {
-      const screen = await setupSpecTest({ title: customTitle });
+    it('displays default content', () => {
+      render(<OnboardingLayout title={customTitle} />);
       expect(screen.getByText(customTitle)).toBeVisible();
       expect(screen.getByAltText('placeholder image')).toBeVisible();
     });
   });
   describe('additional contents', () => {
-    it('displays description correctly', async () => {
-      const screen = await setupSpecTest({
-        title: customTitle,
-        description: (
-          <OdsText preset="paragraph" className="text-center">
-            {descriptionText}
-          </OdsText>
-        ),
-      });
+    it('displays description correctly', () => {
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          description={
+            <OdsText preset="paragraph" className="text-center">
+              {descriptionText}
+            </OdsText>
+          }
+        />,
+      );
       expect(screen.getByText(descriptionText)).toBeVisible();
     });
-    it('displays img correctly', async () => {
-      const screen = await setupSpecTest({
-        title: customTitle,
-        img: { src: placeholderSrc, alt: imgAltText },
-      });
+    it('displays img correctly', () => {
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          img={{ src: placeholderSrc, alt: imgAltText }}
+        />,
+      );
       expect(screen.getByAltText(imgAltText)).toBeVisible();
     });
-    it('disable order button with false value for useAuthorizationIam', async () => {
+    it('disable order button with false value for useAuthorizationIam', () => {
       mockedHook.mockReturnValue({
         isAuthorized: false,
         isLoading: true,
         isFetched: true,
       });
-      const screen = await setupSpecTest({
-        title: customTitle,
-        orderHref: 'https://example.com/order',
-        orderButtonLabel: orderBtnLabel,
-        orderIam: {
-          urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
-          iamActions: ['vrackServices:apiovh:resource/edit'],
-        },
-      });
-      const orderButton = screen.container.querySelector(
-        `[label="${orderBtnLabel}"]`,
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          img={{ src: placeholderSrc, alt: imgAltText }}
+          orderHref="https://example.com/order"
+          orderButtonLabel={orderBtnLabel}
+          orderIam={{
+            urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
+            iamActions: ['vrackServices:apiovh:resource/edit'],
+          }}
+        />,
       );
+      const orderButton = screen.getByText(orderBtnLabel);
       expect(orderButton).toBeVisible();
-      expect(orderButton).toHaveAttribute('is-disabled', 'true');
+      expect(orderButton).toHaveAttribute('disabled');
     });
-    it('displays order button correctly', async () => {
+    it('displays order button correctly', () => {
       mockedHook.mockReturnValue({
         isAuthorized: true,
         isLoading: false,
         isFetched: true,
       });
       const onOrderButtonClick = vi.fn();
-      const screen = await setupSpecTest({
-        title: customTitle,
-        orderHref: 'https://example.com/order',
-        orderButtonLabel: orderBtnLabel,
-        onOrderButtonClick,
-      });
-      const orderButton = screen.container.querySelector(
-        `[label="${orderBtnLabel}"]`,
+
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          orderHref="https://example.com/order"
+          orderButtonLabel={orderBtnLabel}
+          onOrderButtonClick={onOrderButtonClick}
+        />,
       );
+      const orderButton = screen.getByText(orderBtnLabel);
       expect(orderButton).toBeVisible();
-      await waitFor(() => fireEvent.click(orderButton));
+      act(() => fireEvent.click(orderButton));
       expect(onOrderButtonClick).toHaveBeenCalledTimes(1);
     });
-    it('displays more info button correctly', async () => {
+    it('displays more info button correctly', () => {
       const onMoreInfoButtonClick = vi.fn();
-      const screen = await setupSpecTest({
-        title: 'title',
-        moreInfoHref: 'https://example.com/order',
-        moreInfoButtonLabel: infoBtnLabel,
-        onMoreInfoButtonClick,
-      });
-      const moreInfoButton = screen.container.querySelector(
-        `[label="${infoBtnLabel}"]`,
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          moreInfoHref="https://example.com/order"
+          moreInfoButtonLabel={infoBtnLabel}
+          onMoreInfoButtonClick={onMoreInfoButtonClick}
+        />,
       );
+      const moreInfoButton = screen.getByText(infoBtnLabel);
       expect(moreInfoButton).toBeVisible();
-      await waitFor(() => fireEvent.click(moreInfoButton));
+      act(() => fireEvent.click(moreInfoButton));
       expect(onMoreInfoButtonClick).toHaveBeenCalledTimes(1);
     });
-    it('disable buttons', async () => {
-      const screen = await setupSpecTest({
-        title: 'title',
-        moreInfoHref: 'https://example.com/order',
-        moreInfoButtonLabel: infoBtnLabel,
-        orderButtonLabel: orderBtnLabel,
-        onOrderButtonClick: vi.fn(),
-        isMoreInfoButtonDisabled: true,
-        isActionDisabled: true,
-      });
-      const orderButton = screen.container.querySelector(
-        `[label="${infoBtnLabel}"]`,
+    it('disable buttons', () => {
+      render(
+        <OnboardingLayout
+          title={customTitle}
+          moreInfoHref="https://example.com/order"
+          moreInfoButtonLabel={infoBtnLabel}
+          orderButtonLabel={orderBtnLabel}
+          onOrderButtonClick={vi.fn()}
+          isMoreInfoButtonDisabled={true}
+          isActionDisabled={true}
+        />,
       );
-      const moreInfoButton = screen.container.querySelector(
-        `[label="${orderBtnLabel}"]`,
-      );
-      expect(orderButton).toHaveAttribute('is-disabled', 'true');
-      expect(moreInfoButton).toHaveAttribute('is-disabled', 'true');
+      const orderButton = screen.getByText(orderBtnLabel);
+      const moreInfoButton = screen.getByText(infoBtnLabel);
+      expect(orderButton).toHaveAttribute('disabled');
+      expect(moreInfoButton).toHaveAttribute('disabled');
     });
-    it('disable buttons', async () => {
-      const screen = await setupSpecTest({
-        title: 'title',
-        moreInfoHref: 'https://example.com/order',
-        moreInfoButtonLabel: infoBtnLabel,
-        orderButtonLabel: orderBtnLabel,
-        onOrderButtonClick: vi.fn(),
-        isMoreInfoButtonDisabled: true,
-        isActionDisabled: true,
-      });
-      const orderButton = screen.container.querySelector(
-        `[label="${infoBtnLabel}"]`,
-      );
-      const moreInfoButton = screen.container.querySelector(
-        `[label="${orderBtnLabel}"]`,
-      );
-      expect(orderButton).toHaveAttribute('is-disabled', 'true');
-      expect(moreInfoButton).toHaveAttribute('is-disabled', 'true');
-    });
-    it('displays children correctly', async () => {
+
+    it('displays children correctly', () => {
       mockedHook.mockReturnValue({
         isAuthorized: true,
         isLoading: false,
         isFetched: true,
       });
-      waitFor(() =>
-        render(
-          <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
-        ),
+      render(
+        <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
       );
       const card = screen.getByText('Test Onboarding 1');
+      expect(card).toBeVisible();
     });
   });
 });
