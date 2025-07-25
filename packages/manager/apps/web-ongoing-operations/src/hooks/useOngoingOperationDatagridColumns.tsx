@@ -16,7 +16,11 @@ import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagri
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 import { StatusEnum } from '@/enum/status.enum';
-import { DOMAIN_OPERATIONS, DNS_OPERATIONS } from '@/constants';
+import {
+  DomainOperations,
+  DNSOperations,
+  DomainOperationsEnum,
+} from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
   parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
@@ -54,8 +58,8 @@ export const useOngoingOperationDatagridColumns = (
       isFilterable: true,
       enableHiding: false,
       filterOptions: (parent === ParentEnum.DOMAIN
-        ? DOMAIN_OPERATIONS
-        : DNS_OPERATIONS
+        ? DomainOperations
+        : DNSOperations
       ).map((op) => ({
         label: t(`domain_operations_nicOperation_${op}`),
         value: op,
@@ -130,7 +134,8 @@ export const useOngoingOperationDatagridColumns = (
             {
               id: 2,
               label: t('domain_operations_tab_popover_progress'),
-              className: `${props.function !== 'DomainIncomingTransfer' &&
+              className: `${props.function !==
+                DomainOperationsEnum.DomainIncomingTransfer &&
                 'hidden'} menu-item-button`,
               onClick: () => navigate(`/tracking/${props.id}`),
             },
