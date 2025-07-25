@@ -42,3 +42,4 @@ export * from './badge';
 export * from './Modal';
 export * from './tags-list';
 export * from './tags-modal';
+export * from './text';

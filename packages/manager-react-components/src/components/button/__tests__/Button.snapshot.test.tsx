@@ -1,8 +1,8 @@
 import { vitest } from 'vitest';
+import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
 import { render } from '../../../utils/test.provider';
 import { Button, ButtonProps } from '../index';
 import { useAuthorizationIam } from '../../../hooks/iam';
-import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
