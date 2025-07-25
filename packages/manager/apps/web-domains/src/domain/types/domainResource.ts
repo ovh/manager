@@ -8,6 +8,10 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
+import { OptionStateEnum } from '../enum/optionState.enum';
+import {
+  OptionEnum,
+} from '../../common/enum/option.enum';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -70,4 +74,10 @@ export interface TDomainResource {
       nameServers: TNameServer[];
     };
   };
+}
+
+export interface TDomainOption {
+  option: keyof typeof OptionEnum;
+  expirationDate: string;
+  state: keyof typeof OptionStateEnum;
 }
