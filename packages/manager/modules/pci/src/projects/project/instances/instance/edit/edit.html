@@ -237,14 +237,10 @@
                     data-type="warning"
                     data-ng-if="$ctrl.editInstance.imageId && $ctrl.instance.image.id !== $ctrl.editInstance.imageId && $ctrl.model.isImageCompatible"
                 >
-                    <ul class="list-unstyled">
-                        <li
-                            data-translate="pci_projects_project_instances_instance_edit_reinstall_message"
-                        ></li>
-                        <li
-                            data-ng-bind=":: $ctrl.imageEditMessage | translate"
-                        ></li>
-                    </ul>
+                    <p
+                        style="white-space: pre-wrap;"
+                        data-translate="pci_projects_project_instances_instance_edit_reinstall_message{{ $ctrl.model.image.isBackup() && $ctrl.model.image.region !== $ctrl.instance.region ? '_distant' : '' }}"
+                    ></p>
                 </oui-message>
 
                 <cui-message-container
