@@ -460,10 +460,18 @@ export function getPciProjectMenu(
         {
           id: 'pci-quantum-emulators',
           title: 'Emulators',
-          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/ai-ml/quantum/notebooks`,
+          ),
+        },
+          {
+          id: 'pci-quantum-qpu',
+          title: 'QPUs',
+          badge: 'new',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/ai-ml/quantum/qpu`,
           ),
         },
       ],

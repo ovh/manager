@@ -664,6 +664,18 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/ai-ml/quantum/notebooks',
         },
         forceVisibility: true,
+      },
+      {
+        id: 'pci-quantum-qpu',
+        idAttr: 'pci-quantum-qpu-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_quantum_qpu',
+        serviceType: 'CLOUD_PROJECT_QUANTUM_QPU',
+        routing: {
+          application: 'public-cloud',
+           hash: '#/pci/projects/{projectId}/ai-ml/quantum/qpu',
+        },
+        forceVisibility: true,
         tag: NodeTag.NEW
       },
     ],
