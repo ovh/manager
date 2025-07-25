@@ -185,3 +185,6 @@ export const PCI_PROJECT_DISCOVERY_ORDER_CART = {
   infraConfigValue: 'public-cloud',
   creditPlanCode: 'credit',
 };
+
+export const STARTUP_PROGRAM_GUIDE_URL =
+  'https://community.ovhcloud.com/community/en/what-products-are-available-to-use-with-startup-program-credits?id=community_question&sys_id=99d01d508d61d2902d4cc9575bde90ae&view_source=featuredList';
