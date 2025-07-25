@@ -11,6 +11,7 @@ import servicesActions from './components/services-actions';
 import serviceStatus from './components/service-status';
 import splitPayment from './components/split-payment';
 import terminate from './components/terminate';
+import terminateAgoraService from './components/terminate-agora-service';
 import terminateVrack from './components/terminate-vrack';
 import subscriptionTile from './components/subscription-tile';
 import autoRenew2016DeploymentBanner from './components/auto-renew-2016-deployment-banner';
@@ -36,6 +37,7 @@ angular.module(moduleName, [
   serviceStatus,
   splitPayment,
   terminate,
+  terminateAgoraService,
   terminateVrack,
   subscriptionTile,
   autoRenew2016DeploymentBanner,
