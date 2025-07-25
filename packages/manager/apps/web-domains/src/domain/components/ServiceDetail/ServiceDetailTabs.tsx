@@ -1,3 +1,7 @@
+
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Tab,
   TabContent,
@@ -5,9 +9,7 @@ import {
   Tabs,
   TabsValueChangeEvent,
 } from '@ovhcloud/ods-react';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ServiceDetailTabsProps } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
@@ -23,7 +25,7 @@ export default function ServiceDetailsTabs({
   const location = useLocation();
   const [value, setValue] = useState('');
   const navigate = useNavigate();
-
+  const { clearNotifications } = useNotifications();
   const handleValueChange = (event: TabsValueChangeEvent) => {
     navigate(`${event.value}`, { replace: true });
     setValue(event.value);
@@ -36,6 +38,10 @@ export default function ServiceDetailsTabs({
       )?.value || 'information';
     if (location.pathname) {
       setValue(tab);
+    }
+
+    if (tab !== value) {
+      clearNotifications();
     }
   }, [location.pathname]);
 
