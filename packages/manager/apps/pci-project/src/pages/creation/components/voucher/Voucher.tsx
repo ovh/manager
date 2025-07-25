@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { CartConfiguration } from '@/data/types/cart.type';
-import { useVoucher } from '../hooks/useVoucher';
+import { useVoucher } from '../../hooks/useVoucher';
 
 type VoucherProps = {
   cartId: string;
