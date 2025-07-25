@@ -91,7 +91,7 @@ const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
 const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
   const { data: url } = useNavigationGetUrl([
     DEDICATED_PATH,
-    `${VRACK_PATH}/${vcdDatacentre.currentState?.vrack}`,
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack}`,
     {},
   ]);
 
