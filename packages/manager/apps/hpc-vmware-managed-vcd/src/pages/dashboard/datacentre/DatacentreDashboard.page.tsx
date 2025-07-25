@@ -19,6 +19,7 @@ import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -26,10 +27,9 @@ function DatacentreDashboardPage() {
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
-    'hpc-vmware-managed-vcd:vrack',
+    FEATURE_FLAGS.VRACK,
   ]);
-  const isVrackFeatureAvailable =
-    featuresAvailable?.['hpc-vmware-managed-vcd:vrack'];
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
   const navigate = useNavigate();
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
