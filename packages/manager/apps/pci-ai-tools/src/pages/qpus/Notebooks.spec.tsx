@@ -4,7 +4,7 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedNotebook } from '@/__tests__/helpers/mocks/notebook/notebook';
-import Notebooks, { Loader } from './Qpus.page';
+import Notebooks, { Loader } from './Qpu.page';
 import { openButtonInMenu } from '@/__tests__/helpers/unitTestHelper';
 import * as notebookApi from '@/data/api/ai/notebook/notebook.api';
 import {

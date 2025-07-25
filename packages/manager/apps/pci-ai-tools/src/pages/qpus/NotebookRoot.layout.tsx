@@ -3,9 +3,7 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 
 function ManageBreadcrumb() {
-  const { isQuantum } = useQuantum('');
-
-  const translationKey = isQuantum ? 'crumb-quantum' : 'crumb-notebook';
+  const translationKey = 'crumb-QPUs';
   return (
     <BreadcrumbItem translationKey={translationKey} namespace="ai-tools" />
   );
