@@ -8,8 +8,6 @@ import uiRouter from '@uirouter/angularjs';
 import component from './component';
 import routing from './routing';
 
-import terminate from '../terminate/terminate.module';
-
 const moduleName = 'ovhManagerBillingAutorenewTerminateAgoraService';
 
 angular
@@ -18,7 +16,6 @@ angular
     ngAtInternet,
     ngTranslateAsyncLoader,
     'oui',
-    terminate,
     uiRouter,
   ])
   .config(routing)
