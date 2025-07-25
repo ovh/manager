@@ -43,6 +43,10 @@ const useGetAttachedServicesMock = vi.hoisted(() =>
   vi.fn(() => ({ servicesAttached: [] })),
 );
 
+const useIpHasVmacMock = vi.hoisted(() =>
+  vi.fn(() => ({ isVmacAlreadyExist: false })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
@@ -51,6 +55,7 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
   useGetIpMitigationWithoutIceberg: useGetIpMitigationWithoutIcebergMock,
   useGetAttachedServices: useGetAttachedServicesMock,
+  useIpHasVmac: useIpHasVmacMock,
 }));
 
 const mockShell = {
