@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Datagrid } from '@ovh-ux/manager-react-components';
@@ -26,6 +26,8 @@ import { computeDnsDetails } from '@/domain/utils/utils';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
+import { useGetDomainAnycastOption } from '@/domain/hooks/data/query';
+import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
 
 interface DnsConfigurationTabProps {
   readonly domainResource: TDomainResource;
@@ -36,9 +38,12 @@ export default function DnsConfigurationTab({
 }: DnsConfigurationTabProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
-
-  const navigate = useNavigate();
+  const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<boolean>(false);
   const columns = useDomainDnsDatagridColumns();
+
+  const onOpenAnycastTerminateModal = () => {
+    setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
+  }
   return (
     <div data-testid="datagrid">
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
@@ -70,21 +75,11 @@ export default function DnsConfigurationTab({
         <Button size={ODS_BUTTON_SIZE.sm}>
           {t('domain_dns_tab_button_modify_dns')}
         </Button>
-        {/* FIXME: page implemented by MANAGER-19005 */}
-        <Button
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.outline}
-          onClick={() =>
-            navigate(
-              useGenerateUrl(urls.domainTabOrderAnycast, 'path', {
-                serviceName: domainResource.id,
-              }),
-              { replace: true },
-            )
-          }
-        >
-          {t('domain_dns_tab_button_order_anycast')}
-        </Button>
+        <AnycastOrderButtonComponent
+          anycastTerminateModalOpen={anycastTerminateModalOpen}
+          serviceName={domainResource.id}
+          onOpenAnycastTerminateModal={onOpenAnycastTerminateModal}
+        />
       </div>
       <Datagrid
         columns={columns}

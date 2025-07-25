@@ -26,7 +26,7 @@ export default function DnsZoneOrder({
   const { t } = useTranslation(['domain', 'web-domains/error']);
 
   return (
-    <div className="w-fit" data-testid="dnsZone-order">
+    <div className="min-w-[65rem] w-fit" data-testid="dnsZone-order">
       <div className="pb-5">
         <Text preset={TEXT_PRESET.heading4}>
           {t('domain_tab_DNS_anycast_order_activate_zone')}
