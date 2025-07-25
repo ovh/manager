@@ -42,7 +42,7 @@ export const useWorkflows = (projectId: string) => {
       )
       .map((region) => region.name)
       .map((regionName) => ({
-        queryKey: ['regions', regionName, 'workflows'],
+        queryKey: [projectId, 'regions', regionName, 'workflows'],
         queryFn: async () => getRegionsWorkflows(projectId, regionName),
         enabled: !isRegionsPending,
       })),
@@ -149,10 +149,17 @@ export type TPaginatedWorkflow = TWorkflow & {
 
 export const usePaginatedWorkflows = (
   projectId: string,
-  pagination: PaginationState,
-  sorting: ColumnSort,
-  filters: Filter[] = [],
-  searchQueries: string[] = [],
+  {
+    pagination,
+    sorting,
+    filters = [],
+    searchQueries = [],
+  }: {
+    pagination: PaginationState;
+    sorting: ColumnSort;
+    filters: Filter[];
+    searchQueries: string[];
+  },
 ) => {
   const { t } = useTranslation('listing');
   const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(
@@ -161,31 +168,32 @@ export const usePaginatedWorkflows = (
 
   return useQueries({
     queries: workflows.map((workflow) => ({
-      queryKey: ['instances', workflow.instanceId],
+      queryKey: [projectId, 'instances', workflow.instanceId],
       queryFn: async () => getInstance(projectId, workflow.instanceId),
       staleTime: Infinity,
       enabled: !isWorkflowsPending,
     })),
-    combine: (results) => ({
-      data: useMemo(() => {
-        const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
-          ...workflow,
-          type: WORKFLOW_TYPE,
-          typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
-          instanceName: results[i].data?.name,
-        }));
-        return paginateResults<TWorkflow>(
+    combine: (results) => {
+      const workflowsWithInstanceIds = workflows.map((workflow, i) => ({
+        ...workflow,
+        type: WORKFLOW_TYPE,
+        typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
+        instanceName: results[i].data?.name,
+      }));
+
+      return {
+        data: paginateResults<TWorkflow>(
           applyFilters(
             sortWorkflows(workflowsWithInstanceIds, sorting, searchQueries) ||
               [],
             filters,
           ),
           pagination,
-        );
-      }, [workflows, sorting, filters, searchQueries, results]),
-      isPending:
-        results.some((result) => result.isPending) || isWorkflowsPending,
-    }),
+        ),
+        isPending:
+          results.some((result) => result.isPending) || isWorkflowsPending,
+      };
+    },
   });
 };
 

@@ -10,7 +10,7 @@ import App from './App';
 import './index.css';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 
-import '@/vite-hmr.ts';
+import '@/vite-hmr';
 
 const init = async (
   appName: string,

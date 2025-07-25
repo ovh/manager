@@ -64,10 +64,10 @@ export default function DeleteWorkflowPage() {
   });
 
   useEffect(() => {
-    setFormState({
-      ...formState,
+    setFormState((prevState) => ({
+      ...prevState,
       hasError: formState.isTouched && formState.inputDelete !== 'DELETE',
-    });
+    }));
   }, [formState.inputDelete, formState.isTouched]);
 
   return (

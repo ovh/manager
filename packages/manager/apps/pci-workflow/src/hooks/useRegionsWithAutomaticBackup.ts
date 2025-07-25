@@ -6,19 +6,19 @@ export const useRegionsWithAutomaticBackup = (projectId: string) => {
   const { data: regions } = useProjectRegions(projectId);
   const { addons } = useProjectSnapshotAddons(projectId);
 
-  return useMemo(
-    () =>
-      !!regions && !!addons
-        ? regions
-            .filter(
-              (region) =>
-                region.services.find((s) => s.name === 'workflow') &&
-                addons.find((a) =>
-                  a.regions.find((r) => r.name === region.name),
-                ),
-            )
-            .map((r) => r.name)
-        : [],
-    [regions, addons],
-  );
+  return useMemo(() => {
+    if (!regions || !addons) return [];
+
+    const addonsRegions = addons.flatMap((addon) =>
+      addon.regions.map((r) => r.name),
+    );
+
+    return regions
+      .filter(
+        (region) =>
+          region.services.find((s) => s.name === 'workflow') &&
+          addonsRegions.includes(region.name),
+      )
+      .map((r) => r.name);
+  }, [regions, addons]);
 };
