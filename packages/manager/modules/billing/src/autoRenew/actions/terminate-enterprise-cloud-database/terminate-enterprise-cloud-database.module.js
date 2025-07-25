@@ -6,7 +6,6 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 
 import component from './terminate-enterprise-cloud-database.component';
-import routing from './terminate-enterprise-cloud-database.routing';
 
 const moduleName = 'ovhManagerBillingAutorenewTerminateEnterpriseCloudDatabase';
 
@@ -18,7 +17,6 @@ angular
     'oui',
     uiRouter,
   ])
-  .config(routing)
   .component('billingAutorenewTerminateEnterpriseCloudDatabase', component);
 
 export default moduleName;
