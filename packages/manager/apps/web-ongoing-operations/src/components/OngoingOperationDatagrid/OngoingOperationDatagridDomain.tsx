@@ -4,11 +4,7 @@ import React from 'react';
 import { toUnicode } from 'punycode';
 import { OngoingOperationDatagridDomainProps } from '@/types';
 import { useDatagridColumnUrl } from '@/hooks/url/useDatagridColumnUrl';
-import {
-  domainCreate,
-  domainIncomingTransfer,
-  domainResourceDelete,
-} from '@/constants';
+import { DomainOperations, DomainOperationsEnum } from '@/constants';
 
 export default function OngoingOperationDatagridDomain({
   parent,
@@ -24,9 +20,11 @@ export default function OngoingOperationDatagridDomain({
         data-testid={value}
         isDisabled={
           !url ||
-          [domainCreate, domainIncomingTransfer, domainResourceDelete].includes(
-            props.function,
-          )
+          [
+            DomainOperationsEnum.DomainCreate,
+            DomainOperationsEnum.DomainIncomingTransfer,
+            DomainOperationsEnum.DomainResourceDelete,
+          ].includes(props.function as DomainOperationsEnum)
         }
       />
     </DataGridTextCell>
