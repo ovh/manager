@@ -5,6 +5,14 @@ import { Link } from '@ovhcloud/ods-react';
 import { Tile } from '../index';
 import { ActionMenu } from '../../action-menu';
 
+vitest.mock('../../../hooks/iam', () => ({
+  useAuthorizationIam: vitest.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+    isFetched: true,
+  }),
+}));
+
 describe('Tile Snapshot tests', () => {
   it('renders simple tile', () => {
     const { container } = render(

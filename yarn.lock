@@ -7045,10 +7045,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.33.0":
-  version "2.33.0"
-  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-2.33.0.tgz#9d571cb766f6e1aa2430dc9d65bfc3114411a0af"
-  integrity sha512-tPD6MFPAJ37IY9lPhUSsp+mFyJjymdtLAtqZ05BBvOTZBXERqxTBWn+kCjzobvT6ZOqa5dxKrcBZAvIs2OmjOQ==
+"@ovh-ux/manager-react-components@^2.34.0":
+  version "2.34.0"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-2.34.0.tgz#d3c20e41beddc0eba484982add55d8cf789d7509"
+  integrity sha512-VMTcTZ2yKsgV6xE31eC2pJuColLPz+1qwsWiY87nzxlizqekDR8nd0DyM2OZ05CR+Tzul6h8ESh85o2iiyCvDw==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@tanstack/react-query" "^5.51.21"
