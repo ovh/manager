@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -12,9 +12,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
-import { OKMS } from '@/types/okms.type';
 import { DomainSelector } from './DomainSelector.component';
 import { RegionSelector } from './RegionSelector.component';
+import { OkmsRegionOrderSuccessful } from '@/common/components/OrderOkmsModal/OrderOkmsModal.component';
 
 type DomainManagementProps = {
   selectedDomainId: string;
@@ -36,13 +36,36 @@ export const DomainManagement = ({
   const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
-  const [regionDomains, setRegionDomains] = useState<OKMS[]>([]);
+  const [updatingOkmsList, setUpdatingOkmsList] = useState(false);
+
+  const location = useLocation();
+  const state = location.state as OkmsRegionOrderSuccessful;
+
+  // if there is an okms order, begin refreshing the okms list
+  useEffect(() => {
+    if (state?.orderRegion) setUpdatingOkmsList(true);
+  }, [state]);
 
   const {
     data: domains,
     error: okmsError,
     isLoading: isOkmsListLoading,
-  } = useOkmsList();
+  } = useOkmsList({
+    refetchInterval: (query) => {
+      if (!updatingOkmsList) return false;
+
+      // refresh the list until there's one okms on the order region.
+      const domainList = filterDomainsByRegion(
+        query.state.data,
+        state?.orderRegion,
+      );
+      if (domainList.length === 0) return 2000;
+
+      // finish updating the list
+      setUpdatingOkmsList(false);
+      return false;
+    },
+  });
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -57,7 +80,7 @@ export const DomainManagement = ({
       SECRET_MANAGER_SEARCH_PARAMS.domainId,
     );
 
-    if (!domains || !domainIdSearchParam) return;
+    if (!domains || selectedRegion) return;
 
     const domainFromSearchParam = domains.find(
       (domain) => domain.id === domainIdSearchParam,
@@ -72,9 +95,6 @@ export const DomainManagement = ({
 
     setSelectedRegion(domainFromSearchParam.region);
     setSelectedDomainId(domainIdSearchParam);
-    setRegionDomains(
-      filterDomainsByRegion(domains, domainFromSearchParam.region),
-    );
   }, [domains, searchParams]);
 
   const handleRegionSelection = (region: string) => {
@@ -83,8 +103,6 @@ export const DomainManagement = ({
     if (!domains) return;
 
     const filteredDomainList = filterDomainsByRegion(domains, region);
-
-    setRegionDomains(filteredDomainList);
 
     if (filteredDomainList.length === 0) {
       setSelectedDomainId(undefined);
@@ -120,9 +138,11 @@ export const DomainManagement = ({
         setSelectedRegion={handleRegionSelection}
       />
       <DomainSelector
-        domains={regionDomains}
-        onDomainSelection={setSelectedDomainId}
+        domains={filterDomainsByRegion(domains, selectedRegion)}
+        selectedRegion={selectedRegion}
         selectedDomain={selectedDomainId}
+        updatingOkmsList={updatingOkmsList}
+        onDomainSelection={setSelectedDomainId}
       />
     </div>
   );
