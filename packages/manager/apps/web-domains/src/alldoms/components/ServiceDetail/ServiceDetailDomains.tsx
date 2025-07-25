@@ -1,5 +1,5 @@
-import { Datagrid } from '@ovh-ux/manager-react-components';
-import React from 'react';
+import { ColumnSort, Datagrid } from '@ovh-ux/manager-react-components';
+import React, { useMemo, useState } from 'react';
 import { useDomainDatagridColumns } from '@/alldoms/hooks/domainDatagrid/useDomainDatagridColumns';
 import { TDomainsInfo } from '@/alldoms/types';
 
@@ -10,6 +10,27 @@ interface ServiceDetailDomainsProps {
 export default function ServiceDetailDomains({
   items = [],
 }: ServiceDetailDomainsProps) {
+  const [sorting, setSorting] = useState<ColumnSort>({
+    id: 'name',
+    desc: false,
+  });
   const columns = useDomainDatagridColumns();
-  return <Datagrid columns={columns} items={items} totalItems={items.length} />;
+
+  const sortedItems = useMemo(() => {
+    if (sorting.desc) {
+      return [...items].sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return items;
+  }, [items, sorting.desc]);
+
+  return (
+    <Datagrid
+      columns={columns}
+      items={sortedItems}
+      totalItems={items.length}
+      sorting={sorting}
+      onSortChange={setSorting}
+      manualSorting
+    />
+  );
 }

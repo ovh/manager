@@ -62,6 +62,7 @@ export default function ServiceActionMenu({
     href: renewUrl,
     target: '_blank',
     'data-testid': 'renew-button',
+    isDisabled: disableAction,
   };
 
   const renewalAction = {

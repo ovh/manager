@@ -16,6 +16,7 @@ export const useDomainDatagridColumns = () => {
         <DomainDatagridColumnDomain domain={props.name} />
       ),
       label: t('allDom_domain_table_header_domain_name'),
+      isSortable: true,
     },
     {
       id: 'status',
