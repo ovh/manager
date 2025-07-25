@@ -1,6 +1,0 @@
-{
-  "pci_projects_maintenance_banner_info_project_page": "Mantenimiento: al menos uno de los servicios asociados al proyecto {{projectName}} está afectado.",
-  "pci_projects_maintenance_banner_info_list_page": "Mantenimiento: al menos uno de sus servicios {{productName}} está afectado.",
-  "pci_projects_maintenance_banner_info_product_page": "Mantenimiento: el servicio {{productServiceName}} está afectado por una operación de mantenimiento.",
-  "pci_projects_maintenance_banner_info_link": "Más información."
-}
