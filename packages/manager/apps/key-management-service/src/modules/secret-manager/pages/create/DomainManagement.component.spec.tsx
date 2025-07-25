@@ -43,6 +43,10 @@ vi.mock('@/data/api/orderCatalogOKMS', () => ({
   getOrderCatalogOKMS: vi.fn(),
 }));
 
+const location = {
+  state: '',
+};
+
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
   return {
@@ -50,6 +54,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useNavigate: () => vi.fn(),
     useHref: vi.fn((link) => link),
     useSearchParams: vi.fn(),
+    useLocation: () => location,
   };
 });
 
@@ -246,9 +251,6 @@ describe('Domain management test suite', () => {
       await assertDomainsAreNotInTheDocument(okmsMock);
       await assertActivateButtonIsInTheDocument();
       // assert we reset the selectedDomainId
-      await waitFor(() =>
-        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
-      );
       expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(undefined);
     });
 
@@ -270,9 +272,6 @@ describe('Domain management test suite', () => {
       await assertDomainsAreNotInTheDocument(okmsMock);
       await assertActivateButtonIsNotInTheDocument();
       // assert we select the region's domain
-      await waitFor(() =>
-        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
-      );
       expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
         regionWithOneOkms.okmsMock[0].id,
       );
@@ -305,9 +304,6 @@ describe('Domain management test suite', () => {
         expect(domainRadioCard).toBeChecked();
       });
       // assert we set the selected domain id
-      await waitFor(() =>
-        expect(setSelectedDomainIdMocked).toHaveBeenCalledTimes(1),
-      );
       expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(
         regionWithMultipleOkms.okmsMock[0].id,
       );

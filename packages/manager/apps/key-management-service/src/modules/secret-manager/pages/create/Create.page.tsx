@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { DomainManagement } from './DomainManagement.component';
@@ -20,6 +21,7 @@ export default function SecretCreatePage() {
         />
         <SecretForm domainId={selectedDomainId} />
       </div>
+      <Outlet />
     </BaseLayout>
   );
 }
