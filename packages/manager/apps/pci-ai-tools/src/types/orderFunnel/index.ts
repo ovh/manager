@@ -164,10 +164,10 @@ export interface AppOrderResult {
 }
 
 export interface Scaling {
-  autoScaling?: boolean;
-  replicas?: number;
-  averageUsageTarget?: number;
-  replicasMax?: number;
-  replicasMin?: number;
-  resourceType?: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
+  autoScaling: boolean;
+  replicas: number;
+  averageUsageTarget: number;
+  replicasMax: number;
+  replicasMin: number;
+  resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
 }
