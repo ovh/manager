@@ -32,7 +32,7 @@ export * from './price';
 export * from './filters';
 
 export * from './button';
-export * from './ManagerText/ManagerText';
+export * from './text';
 
 export * from './service-state-badge';
 
