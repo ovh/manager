@@ -23,9 +23,13 @@
   "domain_dns_table_type_external": "Personnalisé",
   "domain_dns_table_type_standard": "Standard",
   "domain_dns_table_type_dedicated": "Secondaire",
+  "domain_dns_table_type_anycast": "Anycast",
   "domain_dns_table_type_standard_tooltip": "Mettez à niveau vers une offre Anycast pour de meilleures performances.",
   "domain_dns_tab_button_modify_dns": "Modifier les DNS",
   "domain_dns_tab_button_order_anycast": "Commander DNS Anycast",
+  "domain_dns_tab_button_cancel_terminate_anycast": "{{action}} DNS Anycast",
+  "domain_dns_tab_terminate_description_anycast": "La résiliation prendre effet à la date d'expiration du service, le <strong>{{expirationDate}}</strong>.",
+  "domain_dns_tab_terminate_description_suite_anycast": "Êtes-vous sûr(e) de vouloir {{action}} le service DNS Anycast ?",
   "domain_tab_DNS_error_warning": "Une erreur a été détectée lors de la mise à jour de vos DNS. Veuillez les corriger s'il vous plaît.",
   "domain_tab_DNS_information_message": "Pour vous assurer du bon fonctionnement de votre configuration, vous pouvez utiliser ",
   "domain_tab_DNS_information_link": "cet outil de vérification DNS.",
@@ -34,5 +38,10 @@
   "domain_tab_DNS_anycast_order_include": "Inclus",
   "domain_tab_DNS_anycast_order": "Commander un DNS Anycast",
   "domain_tab_DNS_anycast_order_description": "Commander un DNS Anycast permet de sécuriser et d'accélérer la résolution des noms de domaine en utilisant un réseau mondial de serveurs DNS.",
-  "domain_tab_DNS_anycast_order_description_expiration": "DNS Anycast sera automatiquement renouvelé pour <Price /> jusqu'à expiration de votre zone DNS."
+  "domain_tab_DNS_anycast_order_description_expiration": "DNS Anycast sera automatiquement renouvelé pour <Price /> jusqu'à expiration de votre zone DNS.",
+  "domain_dns_tab_terminate_anycast_error": "Une erreur est survenue : {{error}}",
+  "domain_dns_tab_terminate_anycast_success": "Votre service Anycast a bien été {{action}}",
+  "domain_dns_tab_restore_anycast_description": "Vous avez demandé la résiliation de l'option DNS Anycast. Celle-ci sera effective à la date d'expiration du service, le <strong>{{expirationDate}}</strong>. Souhaitez-vous annuler la résiliation ?",
+  "domain_action_terminate": "résilié",
+  "domain_action_restore": "restauré"
 }

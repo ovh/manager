@@ -1,3 +1,6 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
   BaseLayout,
   Breadcrumb,
@@ -6,12 +9,11 @@ import {
   GuideButton,
   GuideItem,
   HeadersProps,
+  Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import appConfig from '@/web-domains.config';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
+import appConfig from '@/web-domains.config';
 import Loading from '@/domain/components/Loading/Loading';
 import ServiceDetailsTabs from '@/domain/components/ServiceDetail/ServiceDetailTabs';
 import { urls } from '@/domain/routes/routes.constant';
@@ -24,6 +26,7 @@ export default function ServiceDetail() {
   const navigate = useNavigate();
   const { serviceName } = useParams<{ serviceName: string }>();
   const langCode = getLanguageKey(i18n.language);
+  const { notifications } = useNotifications();
   const guideItems: GuideItem[] = [
     {
       id: 1,
@@ -74,6 +77,7 @@ export default function ServiceDetail() {
       onClickReturn={() => {
         navigate(urls.domainRoot, { replace: true });
       }}
+      message={notifications.length > 0 ? <Notifications /> : null}
     >
       <section className="grid grid-cols-1 gap-6 items-start lg:grid-cols-2">
         <div className="flex flex-col gap-6"></div>
