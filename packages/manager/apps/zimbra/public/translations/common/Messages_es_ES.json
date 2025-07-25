@@ -111,5 +111,11 @@
   "upgrade_pro": "Upgrade",
   "upgrade_account_pro": "Mejorar mi cuenta",
   "upgrade_btn_account": "Pasar a Zimbra Pro",
-  "email_account_upgrade": "Cambiar el producto"
+  "email_account_upgrade": "Cambiar la oferta",
+  "service_state_creating": "Creación",
+  "service_state_deleting": "Eliminación",
+  "service_state_suspended": "Suspendido",
+  "service_state_error": "Error",
+  "service_state_ready": "Activo",
+  "service_state_updating": "Actualización"
 }

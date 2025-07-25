@@ -109,12 +109,12 @@ export const DeleteDomainModal = () => {
       onDismiss={onClose}
       isLoading={isDomainLoading || isAccountsLoading}
       isOpen
-      primaryLabel={t('common:delete')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       primaryButtonTestId="delete-btn"
       isPrimaryButtonLoading={isSending}
       isPrimaryButtonDisabled={accounts?.length > 0 || !domainId}
       onPrimaryButtonClick={handleDeleteClick}
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
     >
       <>

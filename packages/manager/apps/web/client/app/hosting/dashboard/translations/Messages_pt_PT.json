@@ -1401,5 +1401,6 @@
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
   "hosting_tab_STATISTICS_type_allowed": "Pedidos autorizados",
   "hosting_tab_STATISTICS_type_denied": "Pedidos recusados",
-  "hosting_tab_SSL": "Certificados SSL"
+  "hosting_tab_SSL": "Certificados SSL",
+  "hosting_tab_FTP_configuration_explorer_info": "O acesso através do cliente FTP web (Net2FTP) já não está disponível. Utilize um cliente FTP como o <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  e o <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  para estabelecer ligação ao seu alojamento."
 }

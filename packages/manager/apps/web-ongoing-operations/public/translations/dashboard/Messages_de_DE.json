@@ -143,6 +143,7 @@
   "domain_operations_guides": "Allgemeine Informationen",
   "domain_operations_upload_file_template_1": "Nur Dateien, die dieser ",
   "domain_operations_upload_file_template_link": "Dokumentvorlage",
-  "domain_operations_upload_file_template_2": " entsprechen, werden akzeptiert.",
-  "domain_operations_update_dns_click": "Klicken Sie hier, um die Konfiguration Ihrer DNS-Server zu korrigieren."
+  "domain_operations_upload_file_template_2": " werden angenommen.",
+  "domain_operations_update_dns_click": "Klicken Sie hier, um die Konfiguration Ihrer DNS-Server zu korrigieren.",
+  "domain_operations_update_field_bad_value": "Der in das Feld {{t0}} eingegebene Wert ist ungültig."
 }

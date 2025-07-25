@@ -93,5 +93,11 @@
   "upgrade_pro": "Mettre à niveau",
   "upgrade_account_pro": "Mettre à niveau mon compte",
   "upgrade_btn_account": "Mise à niveau vers Zimbra Pro",
-  "email_account_upgrade": "Changer l'offre"
+  "email_account_upgrade": "Changer l'offre",
+  "service_state_creating": "Création",
+  "service_state_deleting": "Suppression",
+  "service_state_suspended": "Suspendu",
+  "service_state_error": "Erreur",
+  "service_state_ready": "Actif",
+  "service_state_updating": "Mise à jour"
 }

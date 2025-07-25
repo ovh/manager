@@ -111,11 +111,11 @@ export const UndoCancelSlotModal = () => {
       onDismiss={onClose}
       isLoading={isLoading}
       isOpen
-      primaryLabel={t('common:confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       onPrimaryButtonClick={handleSlotUndoCancelClick}
       isPrimaryButtonLoading={isSending || isLoading}
       primaryButtonTestId="primary-btn"
-      secondaryLabel={t('common:cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleUndoCancelClick}
     >
       <>
