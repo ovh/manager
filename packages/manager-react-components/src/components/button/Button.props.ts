@@ -1,6 +1,5 @@
-import { ButtonProp } from '@ovhcloud/ods-react';
 import { PropsWithChildren } from 'react';
-import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
+import { TOOLTIP_POSITION, ButtonProp } from '@ovhcloud/ods-react';
 
 export type ButtonProps = PropsWithChildren<{
   iamActions?: string[];

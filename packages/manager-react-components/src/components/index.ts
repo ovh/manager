@@ -32,7 +32,7 @@ export * from './price';
 export * from './filters';
 
 export * from './button';
-export * from './ManagerText/ManagerText';
+export * from './text';
 
 export * from './service-state-badge';
 
@@ -41,5 +41,5 @@ export * from './region/region.component';
 export * from './order';
 
 export * from './badge';
-export * from './modal';
+export * from './Modal';
 export * from './tags-list';
