@@ -6,10 +6,10 @@ import {
   StorybookTable,
 } from '../../../../components/';
 import { Meta, Canvas, Source } from '@storybook/blocks';
-import meta, { Default } from './ManagerText.stories';
+import meta, { Default } from './Text.stories';
 import Links from '../../../../components/external-links';
 
-<Meta title="Manager React Components/Components/Manager Text/Documentation" />
+<Meta title="Manager React Components/Components/Text/Documentation" />
 
 <StoryBookBanner of={meta} />
 
@@ -18,15 +18,15 @@ import Links from '../../../../components/external-links';
 <StorybookHeading label="Overview" level={2} />
 
 <StorybookIdentityCard
-  githubUrl={Links.github.ManagerText}
-  name="ManagerText"
+  githubUrl={Links.github.Text}
+  name="Text"
   relatedComponents={[
     { name: 'ods-text', href: Links.ods.text },
     { name: 'ods-tooltip', href: Links.ods.tooltip },
   ]}
 >
 
-The **Manager Text** component is a wrapper for OdsText with added capability to handle IAM behaviour to displays a text if the user has access to the data, otherwise display a message with a tooltip for additional context. It is designed for interactive usage, with mandatory URN and IAM actions properties to associate the text with external resources.
+The **Text** component is a wrapper for OdsText with added capability to handle IAM behaviour to displays a text if the user has access to the data, otherwise display a message with a tooltip for additional context. It is designed for interactive usage, with mandatory URN and IAM actions properties to associate the text with external resources.
 
 The component supports internationalization (i18n).
 
@@ -39,21 +39,21 @@ The component supports internationalization (i18n).
 
 <StorybookHeading label="Usage" level={2} />
 
-Use the **Manager Text** to display the information requiring IAM check to display the text.
+Use the **Text** to display the information requiring IAM check to display the text.
 
 <StorybookHeading label="Dos & Don'ts" level={2} />
 
 <StorybookBestPractices
   dos={[
-    'Do use the Manager Text for succinct, content requiring contextual explanations',
+    'Do use the Text for succinct, content requiring contextual explanations',
     'Do provide valid URN and IAM actions',
   ]}
-  donts={['Do not use the Manager Text for purely decorative purposes']}
+  donts={['Do not use the Text for purely decorative purposes']}
 />
 
 <StorybookHeading label="Placement" level={2} />
 
-The **Manager Text** component is typically used inline within a table, a paragraph, or alongside other UI elements where additional explanation is necessary.
+The **Text** component is typically used inline within a table, a paragraph, or alongside other UI elements where additional explanation is necessary.
 
 <StorybookHeading label="Behavior" level={2} />
 
