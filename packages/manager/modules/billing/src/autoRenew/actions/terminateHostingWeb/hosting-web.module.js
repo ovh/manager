@@ -7,8 +7,6 @@ import uiRouter from '@uirouter/angularjs';
 import component from './hosting-web.component';
 import routing from './hosting-web.routing';
 
-import terminate from '../terminate/terminate.module';
-
 const moduleName = 'ovhManagerBillingAutorenewTerminateHostingWeb';
 
 angular
@@ -16,7 +14,6 @@ angular
     angularTranslate,
     ngTranslateAsyncLoader,
     'oui',
-    terminate,
     uiRouter,
   ])
   .config(routing)

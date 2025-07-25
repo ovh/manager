@@ -7,8 +7,6 @@ import uiRouter from '@uirouter/angularjs';
 import component from './terminate-webcoach.component';
 import routing from './terminate-webcoach.routing';
 
-import terminate from '../terminate/terminate.module';
-
 const moduleName = 'ovhManagerBillingAutorenewTerminateWebCoach';
 
 angular
@@ -16,7 +14,6 @@ angular
     angularTranslate,
     ngTranslateAsyncLoader,
     'oui',
-    terminate,
     uiRouter,
   ])
   .config(routing)
