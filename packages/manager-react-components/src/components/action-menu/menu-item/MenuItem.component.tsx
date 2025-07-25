@@ -1,7 +1,7 @@
-import { Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { Link } from '../../Link';
 import { ActionMenuItem } from '../ActionMenu.props';
-import { ManagerButton } from '../../ManagerButton/ManagerButton';
+import { Button } from '../../button';
 
 export const MenuItem = ({
   item,
@@ -34,9 +34,9 @@ export const MenuItem = ({
     );
   }
 
-  return !item?.iamActions || item?.iamActions?.length === 0 ? (
-    <Button {...buttonProps}>{item.label}</Button>
-  ) : (
-    <ManagerButton id={`${id}`} isIamTrigger={isTrigger} {...buttonProps} />
+  return (
+    <Button id={`${id}`} isIamTrigger={isTrigger} {...buttonProps}>
+      {item.label}
+    </Button>
   );
 };
