@@ -19,8 +19,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
