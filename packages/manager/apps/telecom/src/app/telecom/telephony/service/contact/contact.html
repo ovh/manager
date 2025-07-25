@@ -9,7 +9,7 @@
 
             <form
                 name="contactForm"
-                data-ng-submit="$ctrl.applyChanges()"
+                data-ng-submit="$ctrl.applyChanges(contactForm)"
                 novalidate
             >
                 <!-- INFOS -->
@@ -32,11 +32,11 @@
                         </label>
                         <select
                             id="contactLegalForm"
-                            name="contactLegalForm"
+                            name="legalForm"
                             class="form-control"
                             required
                             data-ng-model="$ctrl.directoryForm.legalForm"
-                            data-ng-change="$ctrl.onChangeLegalForm()"
+                            data-ng-change="$ctrl.onChangeLegalForm(contactForm)"
                             data-ng-options="legalForm as ('telephony_service_contact_legalform_' + legalForm | translate) for legalForm in $ctrl.legal_form_enum"
                         >
                         </select>
@@ -51,7 +51,7 @@
                             <input
                                 type="text"
                                 id="contactLastName"
-                                name="contactLastName"
+                                name="name"
                                 class="oui-input"
                                 autofocus
                                 required
@@ -67,7 +67,7 @@
                             <input
                                 type="text"
                                 id="contactFirstName"
-                                name="contactFirstName"
+                                name="firstName"
                                 class="oui-input"
                                 required
                                 data-ng-model="$ctrl.directoryForm.firstName"
@@ -90,7 +90,7 @@
                             <input
                                 type="text"
                                 id="contactOccupation"
-                                name="contactOccupation"
+                                name="occupation"
                                 class="oui-input"
                                 data-ng-model="$ctrl.directoryForm.occupation"
                             />
@@ -105,10 +105,10 @@
                             <input
                                 type="text"
                                 id="contactSiret"
-                                name="contactSiret"
+                                name="siret"
                                 class="oui-input"
                                 autofocus
-                                data-ng-change="$ctrl.onSiretChange(contactForm.contactSiret)"
+                                data-ng-change="$ctrl.onSiretChange(contactForm)"
                                 data-ng-model="$ctrl.directoryForm.siret"
                                 data-ng-model-options="{ debounce: 500 }"
                                 maxlength="14"
@@ -126,7 +126,7 @@
                             <input
                                 type="text"
                                 id="contactTva"
-                                name="contactTva"
+                                name="siret"
                                 class="oui-input"
                                 autofocus
                                 data-ng-model="$ctrl.directoryForm.siret"
@@ -146,7 +146,7 @@
                             <input
                                 type="text"
                                 id="contactApe"
-                                name="contactApe"
+                                name="ape"
                                 class="oui-input"
                                 data-ng-model="$ctrl.directoryForm.ape"
                                 data-ng-model-options="{ debounce: 500 }"
@@ -163,7 +163,7 @@
                             <input
                                 type="text"
                                 id="contactSocialNomination"
-                                name="contactSocialNomination"
+                                name="socialNomination"
                                 class="oui-input"
                                 required
                                 data-ng-model="$ctrl.directoryForm.socialNomination"
@@ -180,7 +180,7 @@
                             <input
                                 type="text"
                                 id="contactSocialNominationExtra"
-                                name="contactSocialNominationExtra"
+                                name="socialNominationExtra"
                                 class="oui-input"
                                 data-ng-model="$ctrl.directoryForm.socialNominationExtra"
                             />
@@ -195,7 +195,7 @@
                         <input
                             type="email"
                             id="contactEmail"
-                            name="contactEmail"
+                            name="email"
                             class="oui-input"
                             data-ng-model="$ctrl.directoryForm.email"
                         />
@@ -225,7 +225,7 @@
                         <input
                             type="text"
                             id="contactCountry"
-                            name="contactCountry"
+                            name="country"
                             class="oui-input text-uppercase"
                             data-ng-model="$ctrl.directoryForm.country"
                             disabled
@@ -246,10 +246,10 @@
                                         data-ng-if="$ctrl.autoCompletePostCode.length === 0"
                                         type="text"
                                         id="contactPostCode"
-                                        name="contactPostCode"
+                                        name="postCode"
                                         class="oui-input"
                                         required
-                                        data-ng-change="$ctrl.onPostCodeChange()"
+                                        data-ng-change="$ctrl.onPostCodeChange(contactForm)"
                                         data-ng-model="$ctrl.directoryForm.postCode"
                                         data-ng-model-options="{ debounce: 500 }"
                                     />
@@ -257,9 +257,9 @@
                                         data-ng-if="$ctrl.autoCompletePostCode.length > 0"
                                         items="$ctrl.autoCompletePostCode"
                                         model="$ctrl.directoryForm.postCode"
-                                        name="contactPostCode"
+                                        name="postCode"
                                         id="contactPostCode"
-                                        data-on-change="$ctrl.onPostCodeChange()"
+                                        data-on-change="$ctrl.onPostCodeChange(contactForm)"
                                         required
                                         searchable
                                     >
@@ -276,10 +276,10 @@
                                         data-ng-if="$ctrl.autoCompletePostCode.length === 0"
                                         type="text"
                                         id="contactOutwardPostCode"
-                                        name="contactOutwardPostCode"
+                                        name="outwardPostCode"
                                         class="oui-input"
                                         required
-                                        data-ng-change="$ctrl.onUKPostCodeChange()"
+                                        data-ng-change="$ctrl.onUKPostCodeChange(contactForm)"
                                         data-ng-model="$ctrl.ukPostCode.outwardPostCode"
                                         data-ng-model-options="{ debounce: 500 }"
                                         data-ng-pattern="$ctrl.REGEX.outwardCode"
@@ -288,9 +288,9 @@
                                         data-ng-if="$ctrl.autoCompletePostCode.length > 0"
                                         items="$ctrl.autoCompletePostCode"
                                         model="$ctrl.ukPostCode.outwardPostCode"
-                                        name="contactOutwardPostCode"
+                                        name="outwardPostCode"
                                         id="contactOutwardPostCode"
-                                        data-on-change="$ctrl.onUKPostCodeChange()"
+                                        data-on-change="$ctrl.onUKPostCodeChange(contactForm)"
                                         required
                                         searchable
                                     >
@@ -305,7 +305,7 @@
                                     <input
                                         type="text"
                                         id="contactInwardPostCode"
-                                        name="contactInwardPostCode"
+                                        name="inwardPostCode"
                                         class="oui-input"
                                         required
                                         data-ng-pattern="$ctrl.REGEX.inwardCode"
@@ -325,7 +325,7 @@
                                 data-ng-if="!$ctrl.autoCompleteCity || $ctrl.autoCompleteCity.length <= 1"
                                 type="text"
                                 id="contactCity"
-                                name="contactCity"
+                                name="city"
                                 class="oui-input"
                                 required
                                 data-ng-model="$ctrl.directoryForm.city"
@@ -335,9 +335,9 @@
                                 match="name"
                                 items="$ctrl.autoCompleteCity"
                                 model="$ctrl.directoryForm.city"
-                                name="contactCity"
+                                name="city"
                                 id="contactCity"
-                                data-on-change="$ctrl.onCityChange(modelValue)"
+                                data-on-change="$ctrl.onCityChange(modelValue, contactForm)"
                                 required
                                 searchable
                             >
@@ -354,7 +354,7 @@
                         <input
                             type="text"
                             id="contactUrbanDistrict"
-                            name="contactUrbanDistrict"
+                            name="urbanDistrict"
                             class="oui-input"
                             required
                             data-ng-model="$ctrl.directoryForm.urbanDistrict"
@@ -370,7 +370,7 @@
                         <input
                             type="text"
                             id="contactCedex"
-                            name="contactCedex"
+                            name="cedex"
                             class="oui-input"
                             data-ng-model="$ctrl.directoryForm.cedex"
                         />
@@ -386,7 +386,7 @@
                             <input
                                 type="text"
                                 id="contactWaynumber"
-                                name="contactWaynumber"
+                                name="wayNumber"
                                 class="oui-input"
                                 data-ng-model="$ctrl.directoryForm.wayNumber"
                             />
@@ -400,7 +400,7 @@
                         >
                             <oui-select
                                 id="contactWaynumberExtra"
-                                name="contactWaynumberExtra"
+                                name="wayNumberExtra"
                                 class="text-uppercase"
                                 model="$ctrl.directoryForm.wayNumberExtra"
                                 items="$ctrl.wayNumberExtraEnum"
@@ -418,7 +418,7 @@
                             class="oui-input"
                             id="contactWayName"
                             type="text"
-                            name="contactWayName"
+                            name="wayName"
                             data-ng-model="$ctrl.directoryForm.wayName"
                             data-ng-pattern="$ctrl.regex.wayName"
                             oui-autocomplete="$ctrl.autoCompleteWayName"
@@ -430,7 +430,7 @@
                             match="streetName"
                             items="$ctrl.autoCompleteStreetName"
                             model="$ctrl.directoryForm.wayName"
-                            name="contactWayName"
+                            name="wayName"
                             data-on-change="$ctrl.onWayChange(modelValue)"
                             required
                             searchable
@@ -446,7 +446,7 @@
                         <input
                             type="text"
                             id="contactAddressExtra"
-                            name="contactAddressExtra"
+                            name="addressExtra"
                             class="oui-input"
                             data-ng-model="$ctrl.directoryForm.addressExtra"
                             data-ng-pattern="$ctrl.regex.addressExtra"
@@ -472,60 +472,6 @@
                         class="widget-presentation-title"
                         data-translate="telephony_service_contact_universal_directory"
                     ></h2>
-
-                    <!-- PJ SOCIAL DENOMINATION -->
-                    <div
-                        class="form-group"
-                        data-ng-if="$ctrl.availableField.pjdenomination"
-                    >
-                        <oui-field
-                            label="{{:: 'telephony_service_contact_pjdenomination' | translate }}"
-                            label-popover="{{:: 'telephony_service_contact_pjdenomination_help' | translate }}"
-                        >
-                            <input
-                                type="text"
-                                id="contactPjdenomination"
-                                name="contactPjdenomination"
-                                class="form-control"
-                                data-ng-model="$ctrl.directoryForm.socialNomination"
-                            />
-                        </oui-field>
-                    </div>
-
-                    <!-- DIRECTORY SERVICE CODE -->
-                    <div
-                        class="form-group"
-                        data-ng-if="$ctrl.availableField.directoryServiceCode"
-                        data-ng-class="{
-                             'has-error': !$ctrl.directoryForm.siret
-                         }"
-                    >
-                        <label
-                            for="directoryServiceCode"
-                            class="control-label"
-                            data-translate="telephony_service_contact_directory_code"
-                        >
-                        </label>
-
-                        <select
-                            id="directoryServiceCode"
-                            name="directoryServiceCode"
-                            class="form-control text-capitalize"
-                            data-ng-model="$ctrl.directoryForm.directoryServiceCode"
-                            data-ng-disabled="!$ctrl.directoryCodes"
-                            data-ng-options="opt.directoryServiceCode as opt.directoryServiceDescription for opt in $ctrl.directoryCodes"
-                        >
-                        </select>
-                        <span
-                            class="help-block"
-                            role="alert"
-                            data-ng-if="!$ctrl.directoryForm.siret"
-                        >
-                            <span
-                                data-translate="telephony_service_contact_directory_code_siret_warn"
-                            ></span>
-                        </span>
-                    </div>
 
                     <!-- DISPLAY UNIVERSAL DIRECTORY -->
                     <div class="form-group">
@@ -600,7 +546,7 @@
                             </label>
                             <select
                                 id="contactDisplayFirstName"
-                                name="contactDisplayFirstName"
+                                name="displayFirstName"
                                 class="form-control text-capitalize mb-4"
                                 data-ng-model="$ctrl.directoryForm.displayFirstName"
                                 data-ng-options="opt as $ctrl.getDisplayFirstNameOptions(opt) for opt in [true, false]"
@@ -621,6 +567,7 @@
                             </label>
                             <select
                                 id="displayOnlyCity"
+                                name="displayOnlyCity"
                                 class="form-control text-capitalize"
                                 data-ng-model="$ctrl.directoryForm.displayOnlyCity"
                                 data-ng-options="opt as ('telephony_service_contact_address_publish_' + (opt ? 'city' : 'full') | translate) for opt in [false, true]"
@@ -637,7 +584,7 @@
                             <input
                                 type="text"
                                 id="contactServiceDescription"
-                                name="contactServiceDescription"
+                                name="lineDescription"
                                 class="form-control"
                                 data-ng-model="$ctrl.directoryForm.lineDescription"
                             />
@@ -680,7 +627,7 @@
                             <button
                                 type="submit"
                                 class="btn btn-primary"
-                                data-ng-disabled="$ctrl.isUpdating || contactForm.$invalid"
+                                data-ng-disabled="$ctrl.isUpdating || contactForm.$invalid || !contactForm.$dirty"
                             >
                                 <oui-spinner
                                     class="mr-2"
