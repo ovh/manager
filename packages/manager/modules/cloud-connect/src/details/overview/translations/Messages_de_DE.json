@@ -51,7 +51,7 @@
   "cloud_connect_pop_port_lock": "Sperren des Ports",
   "cloud_connect_pop_port_id": "Port ID",
   "cloud_connect_pop_optic_status": "Optische Status",
-  "cloud_connect_pop_optic_description": "(Alle 5 Minuten überprüft)",
+  "cloud_connect_pop_optic_description": "Alle 5 Minuten überprüft",
   "cloud_connect_pop_configuration_status": "Konfigurationsstatus",
   "cloud_connect_dc_title": "AZ-Konfiguration",
   "cloud_connect_dc_add_button": "Eine Konfiguration hinzufügen",
