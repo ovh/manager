@@ -39,7 +39,7 @@
   "pci_projects_project_storages_containers_replication_add_value_placeholder": "saisir la valeur",
   "pci_projects_project_storages_containers_replication_add_tags_subtitle": "Tags",
   "pci_projects_project_storages_containers_replication_add_tags_helper_text": "La clé doit comporter entre 1 et 128 caractères et la valeur doit comporter entre 1 et 256 caractères. Seuls les caractères alphanumériques (de a à z ou A à Z et de 0 à 9) ainsi que certains caractères spéciaux (+ - = . _ : / @) sont autorisés. Les valeurs 'aws:' et 'ovh:' sont réservées.",
-  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Ajouter des filtres pour limiter le champ d'application de la réplication.",
+  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Ajouter des filtres pour limiter le champ d'application de la réplication. Il peut s'agir d'une combinaison de tags d'objets ou de préfixes.",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag": "Ajouter un nouveau tag",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag_tooltip": "Vous ne pouvez pas rajouter de tags si vous souhaitez répliquer les marqueurs de suppression.",
   "pci_projects_project_storages_containers_replication_add_tags_replicatDelete_marker_tooltip": "Vous ne pouvez pas répliquer les marqueurs de suppression si vous utilisez des tags pour filtrer les objets.",
@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_replication_add_update": "Éditer la règle",
   "pci_projects_project_storages_containers_replication_edit_success_message": "L'édition de votre règle de réplication a été effectuée avec succès.",
   "pci_projects_project_storages_containers_replication_edit_error_message": "Une erreur est survenue lors de l'édition de votre règle de réplication : {{ message }}.",
-  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "Vous devrez spécifier un préfixe si vous choisissez cette option.",
+  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "Vous devrez spécifier un préfixe ou un autre filtre si vous choisissez cette option.",
   "pci_projects_project_storages_containers_replication_add_tags_tag_key_duplicate_error": "La clé doit être unique.",
   "pci_projects_project_storages_containers_replication_add_destination_warning_object_lock": "L'object lock a été activé sur ce conteneur. L'object lock sur le conteneur de destination doit être activé également s'il a été activé sur le conteneur source.",
   "pci_projects_project_storages_containers_replication_add_use_storageclass_warning": "Seules les classes de stockage Standard et Infrequent Access sont disponibles sur le mode de déploiement 3-AZ. Sur ce mode de déploiement, la classe par défaut est Standard."

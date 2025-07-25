@@ -57,7 +57,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation": "*Le prix indiqué correspond au prix public d'1 To de stockage pendant 30 jours. Pour plus d'informations, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link": "consultez la page des prix.",
-  "pci_projects_project_storages_containers_add_replication_rules_info": "Félicitations, votre conteneur est bientôt prêt à être utilisé ! Si votre usage nécessite une réplication multisite de vos données pour une résilience et une disponibilité accrues, envisagez d'utiliser notre réplication asynchrone sur une ou plusieurs régions (disponible via API).",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "Félicitations, votre conteneur est bientôt prêt à être utilisé ! Si votre usage nécessite une réplication multisite de vos données pour une résilience et une disponibilité accrues, envisagez d'utiliser notre réplication asynchrone sur une ou plusieurs régions.",
   "pci_projects_project_storages_containers_add_replication_rules_info_link": "Pour en savoir plus et commencer.",
   "pci_projects_project_storages_containers_disclaimer": "*S3 est une marque déposée appartenant à Amazon Technologies, Inc. Les services de OVHcloud ne sont pas sponsorisés, approuvés, ou affiliés de quelque manière que ce soit.",
   "pci_projects_project_storages_containers_project_banner_message": "Pour accéder aux étapes suivantes, vous devez",

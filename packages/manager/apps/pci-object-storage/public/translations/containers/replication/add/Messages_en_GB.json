@@ -39,7 +39,7 @@
   "pci_projects_project_storages_containers_replication_add_value_placeholder": "enter value",
   "pci_projects_project_storages_containers_replication_add_tags_subtitle": "Tags",
   "pci_projects_project_storages_containers_replication_add_tags_helper_text": "The key must be between 1 and 128 characters, and the value must be between 1 and 256 characters. Only alphanumeric characters (from a to z or A to Z and from 0 to 9) and certain special characters (+ - = . _ : / @) are allowed. The values 'aws:' and 'ovh:' are reserved.",
-  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Add filters to limit the scope of replication.",
+  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Add filters to limit the scope of replication. This can be a combination of object tags or prefixes.",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag": "Add a new tag",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag_tooltip": "You cannot add tags if you want to replicate the removal markers.",
   "pci_projects_project_storages_containers_replication_add_tags_replicatDelete_marker_tooltip": "You cannot replicate deletion markers if you use tags to filter objects.",
@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_replication_add_update": "Edit rule",
   "pci_projects_project_storages_containers_replication_edit_success_message": "Your replication rule has been edited.",
   "pci_projects_project_storages_containers_replication_edit_error_message": "An error has occurred editing your replication rule: {{ message }}.",
-  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "You must specify a prefix if you choose this option.",
+  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "You will need to specify a prefix or other filter if you choose this option.",
   "pci_projects_project_storages_containers_replication_add_tags_tag_key_duplicate_error": "The key must be unique.",
   "pci_projects_project_storages_containers_replication_add_destination_warning_object_lock": "The object lock has been enabled on this container. The object lock on the destination container must also be enabled if it has been enabled on the source container.",
   "pci_projects_project_storages_containers_replication_add_use_storageclass_warning": "Only Standard and Infrequent Access storage classes are available on 3-AZ deployment mode. On this deployment mode, the default class is Standard."

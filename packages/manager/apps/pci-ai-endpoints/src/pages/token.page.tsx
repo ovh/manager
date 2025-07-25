@@ -1,5 +1,6 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsButton,
   OsdsIcon,
@@ -23,6 +24,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { TRACKING } from '@/configuration/tracking.constants';
 import CreateModal from '@/components/Token/CreateModal';
 import UpdateModal from '@/components/Token/UpdateModal';
 import DeleteModal from '@/components/Token/DeleteModal';
@@ -58,6 +60,7 @@ const formatDateForSearch = (date: Date, t: (key: string) => string) => {
 };
 
 export default function TokenPage() {
+  const { trackClick } = useOvhTracking();
   const { t } = useTranslation('token');
   const { projectId } = useParams();
   const { pagination, setPagination } = useDataGrid();
@@ -99,6 +102,9 @@ export default function TokenPage() {
       mode,
       selectedToken: token || null,
     });
+    if (mode === 'create') {
+      trackClick(TRACKING.apikey.createNewApikeyClick);
+    }
   };
 
   const closeModal = () => {
@@ -151,7 +157,6 @@ export default function TokenPage() {
     startIndex,
     startIndex + pagination.pageSize,
   );
-
   return (
     <>
       {availability && (

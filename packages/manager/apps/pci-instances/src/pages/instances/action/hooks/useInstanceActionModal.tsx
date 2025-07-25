@@ -3,12 +3,16 @@ import { DefaultError, useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getInstanceById } from '../useInstances';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { useInstance } from '../useInstance';
 import { TInstanceActionDto } from '@/types/instance/api.type';
 import { isApiErrorResponse } from '@/utils';
 import { TSectionType } from '@/types/instance/action/action.type';
+import {
+  selectInstanceForActionModal,
+  TInstanceActionModalViewModel,
+} from '../view-models/selectInstanceForActionModal';
+import { getInstanceById } from '@/data/hooks/instance/useInstances';
+import { useInstance } from '@/data/hooks/instance/useInstance';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
@@ -30,30 +34,40 @@ const formatSection = (section: TSectionType | null): string | null => {
   return section.replace('-', '_');
 };
 
-export const useCachedInstanceAction = (
+export type TUseInstanceActionModal = {
+  instance: TInstanceActionModalViewModel;
+  isLoading: boolean;
+};
+
+export const useInstanceActionModal = (
+  region: string | undefined,
   instanceId: string | undefined,
   section: TSectionType | null,
-) => {
+): TUseInstanceActionModal => {
   const queryClient = useQueryClient();
   const projectId = useProjectId();
   const { addError } = useNotifications();
   const navigate = useNavigate();
   const { t } = useTranslation('actions');
 
-  const cachedInstance = useMemo(
+  const aggregatedInstance = useMemo(
     () => getInstanceById(projectId, instanceId, queryClient),
     [instanceId, projectId, queryClient],
   );
 
-  const { data, isLoading, error } = useInstance(instanceId ?? '', {
-    enabled: !!instanceId && !cachedInstance,
-    retry: 1,
-    gcTime: 0,
+  const { data, isLoading, error } = useInstance({
+    region: region ?? null,
+    instanceId: instanceId ?? '',
+    queryOptions: {
+      enabled: !!instanceId && !aggregatedInstance,
+      retry: 1,
+      gcTime: 0,
+    },
   });
 
-  const instance = useMemo(() => cachedInstance ?? data, [
+  const instance = useMemo(() => aggregatedInstance ?? data, [
     data,
-    cachedInstance,
+    aggregatedInstance,
   ]);
 
   const isSectionInAction = useCallback(
@@ -97,7 +111,7 @@ export const useCachedInstanceAction = (
   }, [addError, error, instance, navigate, t]);
 
   return {
-    instance,
+    instance: useMemo(() => selectInstanceForActionModal(instance), [instance]),
     isLoading,
   };
 };

@@ -127,6 +127,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
+          encryptionType: f.encryptionType,
         }));
       },
       submit: (availabilityZone: string) => {
@@ -151,6 +152,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
+          encryptionType: f.encryptionType,
           availabilityZone: f.availabilityZone,
         }));
       },
@@ -174,6 +176,7 @@ export function useVolumeStepper(projectId: string) {
         setForm((f) => ({
           region: f.region,
           volumeType: f.volumeType,
+          encryptionType: f.encryptionType,
           availabilityZone: f.availabilityZone,
           volumeCapacity: f.volumeCapacity,
         }));
