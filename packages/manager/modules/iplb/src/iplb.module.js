@@ -7,6 +7,8 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 const moduleName = 'ovhManagerIpLoadBalancer';
 
 angular.module(moduleName, [
@@ -16,6 +18,7 @@ angular.module(moduleName, [
   'pascalprecht.translate',
   'ovhManagerFilters',
   ListLayoutHelper.moduleName,
+  ovhManagerBillingComponents,
 ]);
 
 export default moduleName;
