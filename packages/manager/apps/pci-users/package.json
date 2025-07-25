@@ -33,7 +33,7 @@
     "i18next-http-backend": "^2.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.50.1",
+    "react-hook-form": "^7.61.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
     "react-use": "^17.5.0",

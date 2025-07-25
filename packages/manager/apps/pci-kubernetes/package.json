@@ -16,7 +16,7 @@
     "@datatr-ux/ods-tailwind-config": "1.0.3",
     "@datatr-ux/ovhcloud-types": "1.0.8",
     "@datatr-ux/uxlib": "0.0.10",
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/manager-common-translations": "^0.13.0",
     "@ovh-ux/manager-config": "^8.5.0",
     "@ovh-ux/manager-core-api": "^0.15.0",
@@ -42,12 +42,12 @@
     "lucide-react": "^0.334.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.52.1",
+    "react-hook-form": "^7.61.1",
     "react-i18next": "^14.1.2",
     "react-router-dom": "^6.3.0",
     "react-use": "^17.5.0",
     "tailwind-merge": "^2.2.1",
-    "zod": "^3.22.4",
+    "zod": "^4.0.10",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
