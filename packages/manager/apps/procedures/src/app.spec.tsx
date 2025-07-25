@@ -59,9 +59,7 @@ describe('App', () => {
       );
       mocks.user.subsidiary = subsidiary;
 
-      const { default: App } = await import('@/App');
-
-      // render(<App />);
+      await import('@/App');
       expect(mocks.initI18n.default).toHaveBeenCalledWith(
         firstParam,
         subsidiary,
