@@ -40,7 +40,7 @@ import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 import { KmsDashboardOutletContext } from '@/pages/dashboard/KmsDashboard.type';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
@@ -49,12 +49,27 @@ export default function Keys() {
   const { trackClick } = useOvhTracking();
 
   const { sorting, setSorting } = useDatagridSearchParams();
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
     sorting,
     okmsId,
   });
   const { okms } = useOutletContext<KmsDashboardOutletContext>();
+
+  if (isLoading) return <Loading />;
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={error}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
+          })
+        }
+      />
+    );
 
   const columns = [
     {
@@ -84,27 +99,12 @@ export default function Keys() {
     },
     {
       id: 'action',
-      cell: (serviceKey: OkmsAllServiceKeys) =>
+      cell: (serviceKey: OkmsServiceKey) =>
         DatagridServiceKeyActionMenu(serviceKey, okms),
       isSortable: false,
       label: '',
     },
   ];
-
-  if (isLoading) return <Loading />;
-
-  if (error)
-    return (
-      <ErrorBanner
-        error={error}
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
-          })
-        }
-      />
-    );
 
   return (
     <div className="flex flex-col gap-6">

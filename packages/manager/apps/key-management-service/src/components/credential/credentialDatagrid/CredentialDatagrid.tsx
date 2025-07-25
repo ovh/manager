@@ -107,8 +107,8 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   return (
     <Datagrid
       columns={columns}
-      items={credentials.data || []}
-      totalItems={credentials.data.length}
+      items={credentials?.data || []}
+      totalItems={credentials?.data.length || 0}
       contentAlignLeft
     />
   );

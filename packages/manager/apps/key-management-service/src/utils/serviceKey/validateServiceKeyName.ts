@@ -10,13 +10,11 @@ export const ServiceKeyNameErrors = {
   tooManyCharacters: 'TOO_MANY_CHARACTERS',
 } as const;
 
-export type ServiceKeyNameErrorsType = typeof ServiceKeyNameErrors[keyof typeof ServiceKeyNameErrors];
+export type ServiceKeyNameErrors = typeof ServiceKeyNameErrors[keyof typeof ServiceKeyNameErrors];
 
 export const serviceKeyMaxCharacters = 32;
 
-export const validateServiceKeyName = (name: string | null) => {
-  if (name === null) return undefined;
-
+export const validateServiceKeyName = (name: string) => {
   if (name.length === 0) return ServiceKeyNameErrors.required;
 
   if (name.length > 32) return ServiceKeyNameErrors.tooManyCharacters;

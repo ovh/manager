@@ -23,11 +23,10 @@ import { OkmsServiceKeyReference } from '@/types/okmsServiceKeyReference.type';
 import {
   OkmsKeyTypes,
   OkmsServiceKeyOperations,
-  OkmsServiceKeyTypeECCurve,
-  OkmsServiceKeyTypeOctSize,
-  OkmsServiceKeyTypeRSASize,
+  OkmsServiceKeyCurve,
+  OkmsServiceKeySize,
 } from '@/types/okmsServiceKey.type';
-import { ServiceKeyNameErrorsType } from '@/utils/serviceKey/validateServiceKeyName';
+import { ServiceKeyNameErrors } from '@/utils/serviceKey/validateServiceKeyName';
 import { useOkmsServiceKeyReference } from '@/data/hooks/useOkmsReferenceServiceKey';
 import { useCreateOkmsServiceKey } from '@/data/hooks/useCreateOkmsServiceKey';
 import { useOkmsById } from '@/data/hooks/useOkms';
@@ -43,7 +42,7 @@ import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 export default function CreateKey() {
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/serviceKeys');
 
@@ -59,45 +58,25 @@ export default function CreateKey() {
     isLoading: serviceKeyReferenceIsLoading,
     error: serviceKeyReferenceError,
     refetch: refetchServiceKeyReference,
-  } = useOkmsServiceKeyReference(okms?.data?.region);
+  } = useOkmsServiceKeyReference(okms?.data?.region || '');
 
-  const [key, setKey] = useState<OkmsServiceKeyReference>();
-  const [keyType, setKeyType] = useState<OkmsKeyTypes>();
-  const [keySize, setKeySize] = useState<
-    OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeRSASize
-  >();
-  const [keyCurve, setKeyCurve] = useState<OkmsServiceKeyTypeECCurve>();
+  const [key, setKey] = useState<OkmsServiceKeyReference | undefined>();
+  const [keyType, setKeyType] = useState<OkmsKeyTypes | undefined>();
+  const [keySize, setKeySize] = useState<OkmsServiceKeySize | undefined>();
+  const [keyCurve, setKeyCurve] = useState<OkmsServiceKeyCurve | undefined>();
   const [keyOperations, setKeyOperations] = useState<
     OkmsServiceKeyOperations[][]
-  >();
-  const [keyDisplayName, setKeyDisplayName] = useState<string>(null);
+  >([[]]);
+  const [keyDisplayName, setKeyDisplayName] = useState<string | undefined>();
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
-    ServiceKeyNameErrorsType
-  >(null);
+    ServiceKeyNameErrors | undefined
+  >();
   const { trackClick, trackPage } = useOvhTracking();
   const { createKmsServiceKey, isPending } = useCreateOkmsServiceKey({
     okmsId,
-    onSuccess: () => {
-      navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'create_encryption_key',
-      });
-    },
-    onError: () => {
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: 'create_encryption_key',
-      });
-    },
   });
 
-  useEffect(() => {
-    if (okms && !okmsIsLoading && !servicekeyReference) {
-      refetchServiceKeyReference();
-    }
-  }, [okms, okmsIsLoading, refetchServiceKeyReference, servicekeyReference]);
-
+  // Set default key reference if available
   useEffect(() => {
     if (!serviceKeyReferenceIsLoading && !key) {
       servicekeyReference?.data?.forEach((reference) => {
@@ -105,20 +84,56 @@ export default function CreateKey() {
           setKey(reference);
           setKeyType(reference.type);
           setKeySize(
-            reference.sizes.find((size) => size.default)?.value || null,
+            reference.sizes.find((size) => size.default)?.value || undefined,
           );
           setKeyCurve(
-            reference.curves.find((curve) => curve.default)?.value || null,
+            reference.curves.find((curve) => curve.default)?.value || undefined,
           );
         }
       });
     }
   }, [servicekeyReference, serviceKeyReferenceIsLoading]);
 
+  // Submit form
+  const handleSubmit = async () => {
+    if (!keyDisplayName || !keyType) {
+      return;
+    }
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['confirm'],
+    });
+
+    try {
+      await createKmsServiceKey({
+        name: keyDisplayName,
+        context: keyDisplayName,
+        curve: keyCurve,
+        size: keySize ? (Number(keySize) as OkmsServiceKeySize) : undefined,
+        operations: keyOperations.flat(),
+        type: keyType,
+      });
+
+      navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'create_encryption_key',
+      });
+    } catch (error) {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'create_encryption_key',
+      });
+    }
+  };
+
   const breadcrumbItems: BreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName,
+      label: okms?.data?.iam?.displayName || okmsId,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -183,7 +198,7 @@ export default function CreateKey() {
                 keyCurve={keyCurve}
                 keySize={keySize}
                 keyType={keyType}
-                region={okms?.data?.region}
+                region={okms?.data?.region || ''}
                 setServiceKey={setKey}
                 setKeyCurve={setKeyCurve}
                 setKeySize={setKeySize}
@@ -217,26 +232,7 @@ export default function CreateKey() {
                   size={ODS_BUTTON_SIZE.md}
                   color={ODS_BUTTON_COLOR.primary}
                   data-testid={CREATE_KEY_TEST_IDS.ctaConfirm}
-                  onClick={() => {
-                    trackClick({
-                      location: PageLocation.funnel,
-                      buttonType: ButtonType.button,
-                      actionType: 'action',
-                      actions: ['confirm'],
-                    });
-                    createKmsServiceKey({
-                      name: keyDisplayName,
-                      context: keyDisplayName,
-                      curve: keyCurve,
-                      size: keySize
-                        ? (Number(keySize) as
-                            | OkmsServiceKeyTypeOctSize
-                            | OkmsServiceKeyTypeRSASize)
-                        : null,
-                      operations: keyOperations.flat(),
-                      type: keyType,
-                    });
-                  }}
+                  onClick={handleSubmit}
                   isLoading={isPending}
                   isDisabled={
                     !keyDisplayName ||

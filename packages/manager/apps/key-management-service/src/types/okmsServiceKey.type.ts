@@ -8,24 +8,21 @@ export type OkmsServiceKeyOptions = {
 /*
 ALL SERVICE KEY TYPE
 */
-export type OkmsAllServiceKeys = OkmsServiceKeyBase & {
-  size?: OkmsServiceKeyTypeOctSize & OkmsServiceKeyTypeRSASize;
-  curve?: OkmsServiceKeyTypeECCurve;
-  operations: OkmsServiceKeyOperations[];
-};
-
-/*
- * SERVICE KEYS BASE
- */
-export type OkmsServiceKeyBase = {
-  createdAt: string;
+export type OkmsServiceKey = {
   id: string;
   name?: string;
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
-  keys?: any[];
+  keys?: OkmsServiceKeyObject;
   iam: IamObject;
+  createdAt: string;
+  size?: OkmsServiceKeySize;
+  curve?: OkmsServiceKeyCurve;
+  operations: OkmsServiceKeyOperations[];
 };
+
+// A JSON Web Key (JWK) object
+type OkmsServiceKeyObject = unknown[];
 
 /*
 KEY STATE
@@ -61,34 +58,20 @@ export enum OkmsKeyTypes {
 }
 
 /* oct (AES) */
-
 export type OkmsServiceKeyTypeOctSize = 128 | 192 | 256;
 
-export type OkmsOctServiceKey = OkmsServiceKeyBase & {
-  size: OkmsKeyTypes.oct;
-  operations:
-    | [OkmsServiceKeyOperations.encrypt, OkmsServiceKeyOperations.decrypt]
-    | [OkmsServiceKeyOperations.wrapKey, OkmsServiceKeyOperations.unwrapKey];
-};
-
 /* RSA */
-
 export type OkmsServiceKeyTypeRSASize = 2048 | 3072 | 4096;
 
-export type OkmsRSAServiceKey = OkmsServiceKeyBase & {
-  size: OkmsKeyTypes.RSA;
-  operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify];
-};
+/* Size */
+export type OkmsServiceKeySize =
+  | OkmsServiceKeyTypeOctSize
+  | OkmsServiceKeyTypeRSASize;
 
 /* Elliptic Curve (EC) */
+export type OkmsServiceKeyCurve = 'P-256' | 'P-384' | 'P-521';
 
-export type OkmsServiceKeyTypeECCurve = 'P-256' | 'P-384' | 'P-521';
-
-export type OkmsServiceECKey = OkmsServiceKeyBase & {
-  curve: OkmsKeyTypes.EC;
-  operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify];
-};
-
+/* Deactivation reasons */
 export const OkmsServiceKeyDeactivationReasonTypes = [
   'AFFILIATION_CHANGED',
   'CA_COMPROMISE',
@@ -122,8 +105,8 @@ POST SERVICE KEY
 export type OkmsServiceKeyPostPayload = {
   name: string;
   context: string;
-  curve?: OkmsServiceKeyTypeECCurve;
-  size?: OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeRSASize;
+  curve?: OkmsServiceKeyCurve;
+  size?: OkmsServiceKeySize;
   operations: OkmsServiceKeyOperations[];
   type: OkmsKeyTypes;
 };
