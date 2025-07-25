@@ -1,8 +1,9 @@
 import { vitest } from 'vitest';
-import { render } from '../../../utils/test.provider';
-import { Button, ButtonProps } from '../index';
-import { useAuthorizationIam } from '../../../hooks/iam';
+import type { MockInstance } from 'vitest';
 import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
+import { render } from '../../../utils/test.provider';
+import { Button } from '../index';
+import { useAuthorizationIam } from '../../../hooks/iam';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -12,11 +13,7 @@ vitest.mock('../../../hooks/iam', () => ({
   }),
 }));
 
-const mockedHook = useAuthorizationIam as unknown as jest.Mock;
-
-const renderComponent = (props: ButtonProps) => {
-  return render(<Button {...props} />);
-};
+const mockedHook = useAuthorizationIam as unknown as MockInstance;
 
 describe('Button Snapshot Tests', () => {
   afterEach(() => {
@@ -31,9 +28,7 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Click me',
-      });
+      const { container } = render(<Button>Click me</Button>);
 
       expect(container).toMatchSnapshot();
     });
@@ -45,13 +40,16 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Authorized Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: true,
-        isIamTrigger: true,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={true}
+          isIamTrigger={true}
+        >
+          Authorized Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -63,13 +61,16 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Full Featured Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: true,
-        isIamTrigger: true,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={true}
+          isIamTrigger={true}
+        >
+          Full Featured Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -83,13 +84,16 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Unauthorized Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: true,
-        tooltipPosition: TOOLTIP_POSITION.bottom,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={true}
+          tooltipPosition={TOOLTIP_POSITION.bottom}
+        >
+          Unauthorized Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -101,12 +105,15 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Unauthorized Button No Tooltip',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: false,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={false}
+        >
+          Unauthorized Button No Tooltip
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -118,13 +125,16 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Unauthorized Button Top Tooltip',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: true,
-        tooltipPosition: TOOLTIP_POSITION.top,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={true}
+          tooltipPosition={TOOLTIP_POSITION.top}
+        >
+          Unauthorized Button Top Tooltip
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -136,13 +146,16 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Unauthorized Full Featured Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        displayTooltip: true,
-        tooltipPosition: TOOLTIP_POSITION.right,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          displayTooltip={true}
+          tooltipPosition={TOOLTIP_POSITION.right}
+        >
+          Unauthorized Full Featured Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -156,9 +169,7 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'No IAM Button',
-      });
+      const { container } = render(<Button>No IAM Button</Button>);
 
       expect(container).toMatchSnapshot();
     });
@@ -170,10 +181,9 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'IAM Actions Only Button',
-        iamActions: ['test:action'],
-      });
+      const { container } = render(
+        <Button iamActions={['test:action']}>IAM Actions Only Button</Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -185,10 +195,9 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'URN Only Button',
-        urn: 'urn:test:resource',
-      });
+      const { container } = render(
+        <Button urn="urn:test:resource">URN Only Button</Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -200,11 +209,11 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: <span>JSX Children Button</span>,
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-      });
+      const { container } = render(
+        <Button iamActions={['test:action']} urn="urn:test:resource">
+          <span>JSX Children Button</span>
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -216,12 +225,15 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = renderComponent({
-        children: 'Non-IAM Trigger Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-        isIamTrigger: false,
-      });
+      const { container } = render(
+        <Button
+          iamActions={['test:action']}
+          urn="urn:test:resource"
+          isIamTrigger={false}
+        >
+          Non-IAM Trigger Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -235,11 +247,11 @@ describe('Button Snapshot Tests', () => {
         isFetched: false,
       });
 
-      const { container } = renderComponent({
-        children: 'Loading IAM Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-      });
+      const { container } = render(
+        <Button iamActions={['test:action']} urn="urn:test:resource">
+          Loading IAM Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
@@ -251,11 +263,11 @@ describe('Button Snapshot Tests', () => {
         isFetched: false,
       });
 
-      const { container } = renderComponent({
-        children: 'Loading Authorized Button',
-        iamActions: ['test:action'],
-        urn: 'urn:test:resource',
-      });
+      const { container } = render(
+        <Button iamActions={['test:action']} urn="urn:test:resource">
+          Loading Authorized Button
+        </Button>,
+      );
 
       expect(container).toMatchSnapshot();
     });
