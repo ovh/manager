@@ -15,7 +15,7 @@ export default class {
 
   editDescription(value) {
     return this.editDetails({
-      contextTitle: 'dedicatedCloud_name',
+      contextTitle: 'dedicatedCloud_description',
       productId: this.productId,
       destinationId: 'dedicatedCloud',
       successText: this.$translate.instant(
