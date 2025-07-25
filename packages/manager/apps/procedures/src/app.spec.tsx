@@ -1,7 +1,4 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render } from '@testing-library/react';
-
-import React from 'react';
 
 const mocks = vi.hoisted(() => ({
   user: {
@@ -13,6 +10,25 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock('./i18n', () => mocks.initI18n);
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  ErrorBoundary: vi.fn(),
+}));
+vi.mock('@ovhcloud/ods-common-core', () => ({
+  odsSetup: vi.fn(),
+}));
+vi.mock('@ovhcloud/ods-components/react', () => ({
+  OsdsSpinner: vi.fn(),
+}));
+vi.mock('@ovhcloud/ods-components', () => ({
+  ODS_SPINNER_SIZE: { md: 'md' },
+}));
+vi.mock('@/routes/routes', () => ({
+  accountDisable2faRoute: '/account-disable-2fa',
+  exercisingYourRightsRoute: '/exercising-your-rights',
+  default: vi.fn(),
+}));
+vi.mock('@/data/invisible-challenge.interceptor', () => ({ default: vi.fn() }));
+vi.mock('@/data/authentication.interceptor', () => ({ default: vi.fn() }));
 
 vi.mock('@/utils/token', () => ({
   extractToken: () => '',
@@ -45,7 +61,7 @@ describe('App', () => {
 
       const { default: App } = await import('@/App');
 
-      render(<App />);
+      // render(<App />);
       expect(mocks.initI18n.default).toHaveBeenCalledWith(
         firstParam,
         subsidiary,

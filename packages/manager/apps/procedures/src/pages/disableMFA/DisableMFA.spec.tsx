@@ -2,7 +2,6 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Home from './DisableMFA.page';
-import { useProcedures } from '@/data/hooks/useProcedures';
 
 const mockedUsedNavigate = vi.fn();
 const mockedUsedLocation = vi.fn();
@@ -15,11 +14,15 @@ const fetch2faStatusFakeResponse = {
   error: {},
 };
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => mockedUsedNavigate,
-  useLocation: () => mockedUsedLocation,
-  Outlet: () => <p>TestOutlet</p>,
-}));
+vi.mock('react-router-dom', async () => {
+  const original = await vi.importActual('react-router-dom');
+  return {
+    ...original,
+    useNavigate: () => mockedUsedNavigate,
+    useLocation: () => mockedUsedLocation,
+    Outlet: () => <p>TestOutlet</p>,
+  };
+});
 
 vi.mock('@/context/User/modals/SessionModals', () => ({
   SessionModals: () => <div>SessionModals</div>,
