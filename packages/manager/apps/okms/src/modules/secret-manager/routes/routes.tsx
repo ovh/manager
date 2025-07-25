@@ -34,6 +34,9 @@ const SecretVersions = React.lazy(() =>
 const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/create/Create.page'),
 );
+const OrderOkms = React.lazy(() =>
+  import('@/modules/secret-manager/pages/create/OrderOkms/OrderOkms.page'),
+);
 
 export default (
   <Route
@@ -53,7 +56,12 @@ export default (
       path={SECRET_MANAGER_ROUTES_URIS.onboarding}
       Component={Onboarding}
     />
-    <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={SecretCreate} />
+    <Route path={SECRET_MANAGER_ROUTES_URIS.create} Component={SecretCreate}>
+      <Route
+        path={`${SECRET_MANAGER_ROUTES_URIS.order}/${SECRET_MANAGER_URL_PARAMS.region}`}
+        Component={OrderOkms}
+      />
+    </Route>
     <Route
       path={`${SECRET_MANAGER_ROUTES_URIS.region}/${SECRET_MANAGER_URL_PARAMS.region}`}
       Component={SecretDomains}

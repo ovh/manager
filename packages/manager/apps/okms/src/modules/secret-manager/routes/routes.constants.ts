@@ -6,12 +6,15 @@ const URIS = {
   region: 'region',
   versions: 'versions',
   create: 'create',
+  order: 'order',
 };
 
 const URLS = {
   secretManagerRoot: `/${URIS.root}`,
   secretManagerOnboarding: `/${URIS.root}/${URIS.onboarding}`,
   secretCreate: `/${URIS.root}/${URIS.create}`,
+  secretCreateOrderOkms: (regionId: string) =>
+    `/${URIS.root}/${URIS.create}/${URIS.order}/${regionId}`,
   secretDomains: (regionId: string) =>
     `/${URIS.root}/${URIS.region}/${regionId}`,
   secretListing: (domainId: string) => `/${URIS.root}/${domainId}`,
