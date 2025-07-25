@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import * as database from '@/types/cloud/project/database';
 import ForkForm from './_components/ForkForm.component';
@@ -17,6 +16,7 @@ import {
 } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
+import OrderSkeleton from '@/components/order/skeleton/OrderSkeleton.component';
 
 export function breadcrumb() {
   return (
@@ -128,7 +128,7 @@ const Fork = () => {
       <p>{t('description')}</p>
 
       {loading ? (
-        <Skeleton data-testid="fork-skeleton" className="h-4 w-32" />
+        <OrderSkeleton />
       ) : (
         <ForkForm
           availabilities={availabilitiesQuery.data}

@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AlertCircle, ArrowRight } from 'lucide-react';
 import {
+  Alert,
+  AlertDescription,
   Button,
   Card,
   CardContent,
@@ -15,8 +17,6 @@ import {
   FormLabel,
   FormMessage,
   useToast,
-  Alert,
-  AlertDescription,
   Separator,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
@@ -24,7 +24,6 @@ import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
 import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
 import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.component';
-import { cn } from '@/lib/utils';
 import {
   ServiceCreationWithEngine,
   useAddService,
@@ -40,9 +39,13 @@ import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
-import OvhLink from '@/components/links/OvhLink.component';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
+import ApiTerraformDialog from './ApiTerraformDialog.component';
+import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
+import OrderSection from '@/components/order/Section.component';
+import VersionSelect from '@/components/order/version/VersionSelect.component';
+import NameInput from '@/components/order/name/NameInput.component';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -77,19 +80,17 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (service) => {
+      navigate(`../${service.id}`);
       toast({
         title: t('successCreatingService'),
       });
-      navigate(`../${service.id}`);
     },
   });
 
   const isProjectDiscoveryMode =
     projectData.data?.planCode === PlanCode.DISCOVERY;
-  const hasNodeSelection =
-    model.result.plan &&
-    model.result.plan.nodes.minimum !== model.result.plan.nodes.maximum;
   const hasStorageSelection =
+    model.result.availability &&
     model.result.flavor?.storage &&
     model.result.flavor.storage.minimum.value !==
       model.result.flavor.storage.maximum.value;
@@ -99,14 +100,14 @@ const OrderFunnel = ({
       // data has been validated, create payload and submit post request
       const serviceInfos: ServiceCreationWithEngine = {
         description: data.name,
-        engine: data.engineWithVersion.engine as database.EngineEnum,
+        engine: data.engine as database.EngineEnum,
         nodesPattern: {
           flavor: data.flavor,
           number: data.nbNodes,
           region: data.region,
         },
         plan: data.plan,
-        version: data.engineWithVersion.version,
+        version: data.version,
         ipRestrictions: data.ipRestrictions,
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
@@ -141,265 +142,215 @@ const OrderFunnel = ({
     }
   };
 
-  const classNameLabel = 'scroll-m-20 text-xl font-semibold';
+  const classNameLabel = 'scroll-m-20 text-xl font-semibold text-lg';
+
+  const [isApiTerraformDialogOpen, setApiTerraformDialogOpen] = useState(false);
 
   return (
     <>
-      {isProjectDiscoveryMode && (
-        <Alert variant="warning">
-          <AlertDescription className="text-base">
-            <div
-              data-testid="discovery-container"
-              className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4"
-            >
-              <div className="flex flex-row gap-5 items-center">
-                <AlertCircle className="h-6 w-6" />
-                <p>{t('discoveryMode')}</p>
-              </div>
-              <Button type="button" asChild>
-                <OvhLink
-                  className="hover:no-underline hover:text-primary-foreground"
-                  application="public-cloud"
-                  path={`#/pci/projects/${projectData.data?.project_id}/activate`}
-                >
-                  {t('discoveryModeActivate')}
-                  <ArrowRight className="w-4 h-4 ml-2 mt-1" />
-                </OvhLink>
-              </Button>
-            </div>
-          </AlertDescription>
-        </Alert>
-      )}
+      <DiscoveryBanner>{t('discoveryModeActivate')}</DiscoveryBanner>
       <Form {...model.form}>
-        <form
-          className="grid grid-cols-1 lg:grid-cols-4 gap-4"
-          onSubmit={onSubmit}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           <div
             data-testid="order-funnel-container"
-            className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent"
+            className="col-span-1 md:col-span-3 flex flex-col gap-4"
           >
-            <section id="engine">
-              <FormField
-                control={model.form.control}
-                name="engineWithVersion"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldEngineLabel')}
-                    </FormLabel>
-                    <p>{t('fieldEngineDescription')}</p>
-                    <FormControl>
-                      <EnginesSelect
-                        {...field}
-                        engines={model.lists.engines}
-                        value={field.value}
-                        onChange={(newEngineWithVersion) =>
-                          model.form.setValue(
-                            'engineWithVersion',
-                            newEngineWithVersion,
-                          )
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-            <section id="plan">
-              <FormField
-                control={model.form.control}
-                name="plan"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldPlanLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <PlansSelect
-                        {...field}
-                        plans={model.lists.plans}
-                        value={field.value}
-                        onChange={(newPlan) =>
-                          model.form.setValue('plan', newPlan)
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-            <section id="region">
-              <FormField
-                control={model.form.control}
-                name="region"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldRegionLabel')}
-                    </FormLabel>
-                    <FormControl>
-                      <RegionsSelect
-                        {...field}
-                        regions={model.lists.regions}
-                        value={field.value}
-                        onChange={(newRegion) =>
-                          model.form.setValue('region', newRegion)
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            <section id="flavor">
-              <FormField
-                control={model.form.control}
-                name="flavor"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className={classNameLabel}>
-                      {t('fieldFlavorLabel')}
-                    </FormLabel>
-                    <p>{t('fieldFlavorDescription')}</p>
-                    <FormControl>
-                      {model.result.availability && (
-                        <FlavorsSelect
-                          {...field}
-                          flavors={model.lists.flavors}
-                          value={field.value}
-                          onChange={(newFlavor) =>
-                            model.form.setValue('flavor', newFlavor)
-                          }
-                        />
-                      )}
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </section>
-
-            {model.result.availability &&
-              (hasNodeSelection || hasStorageSelection) && (
-                <section
-                  id="cluster"
-                  className="divide-y-[1rem] divide-transparent"
-                >
-                  <h4>{t('sectionClusterTitle')}</h4>
-                  {hasNodeSelection && (
-                    <FormField
-                      control={model.form.control}
-                      name="nbNodes"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                            {t('fieldNodesLabel')}
-                          </FormLabel>
-                          <FormControl>
-                            <NodesConfig
-                              {...field}
-                              minimum={model.result.plan.nodes.minimum}
-                              maximum={model.result.plan.nodes.maximum}
-                              value={field.value}
-                              onChange={(newNbNodes) =>
-                                model.form.setValue('nbNodes', newNbNodes)
-                              }
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-                  {hasStorageSelection && (
-                    <FormField
-                      control={model.form.control}
-                      name="additionalStorage"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                            {t('fieldStorageLabel')}
-                          </FormLabel>
-                          <FormControl>
-                            <StorageConfig
-                              {...field}
-                              availability={model.result.availability}
-                              value={field.value}
-                              onChange={(newStorage) =>
-                                model.form.setValue(
-                                  'additionalStorage',
-                                  newStorage,
-                                )
-                              }
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  )}
-                </section>
-              )}
-            <section
-              id="options"
-              className="divide-y-[1rem] divide-transparent"
+            <OrderSection
+              id="engine"
+              title={t('orderSectionTitleService')}
+              description={t('orderSectionDescriptionService')}
             >
-              <h4>{t('sectionOptionsTitle')}</h4>
-              {model.result.plan && (
+              <div className="flex flex-col gap-4">
                 <FormField
                   control={model.form.control}
-                  name="network"
+                  name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                        {t('fieldNetworkLabel')}
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldNameLabel')}
                       </FormLabel>
                       <FormControl>
-                        <NetworkOptions
+                        <NameInput {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={model.form.control}
+                  name="engine"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldEngineLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <EnginesSelect
+                          engines={model.lists.engines}
                           {...field}
-                          value={field.value}
-                          onChange={(newNetwork) =>
-                            model.form.setValue('network', newNetwork)
-                          }
-                          networks={model.lists.networks}
-                          subnets={model.lists.subnets}
-                          networkQuery={model.queries.networks}
-                          subnetQuery={model.queries.subnets}
-                          availableNetworks={model.result.plan.networks}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              )}
+                <FormField
+                  control={model.form.control}
+                  name="version"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldVersionLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <VersionSelect
+                          versions={model.lists.versions}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </OrderSection>
+
+            <OrderSection title={t('orderSectionTitleRegion')} id="region">
               <FormField
                 control={model.form.control}
-                name="ipRestrictions"
+                name="region"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      {t('fieldIpsLabel')}
-                    </FormLabel>
                     <FormControl>
-                      <IpsRestrictionsForm
-                        {...field}
-                        value={field.value}
-                        onChange={(newIps) =>
-                          model.form.setValue('ipRestrictions', newIps)
+                      <RegionsSelect {...field} regions={model.lists.regions} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </OrderSection>
+
+            <OrderSection title={t('orderSectionTitlePlan')} id="plan">
+              <FormField
+                control={model.form.control}
+                name="plan"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <PlansSelect {...field} plans={model.lists.plans} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </OrderSection>
+
+            <OrderSection title={t('orderSectionTitleFlavor')} id="flavor">
+              <FormField
+                control={model.form.control}
+                name="flavor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <FlavorsSelect {...field} flavors={model.lists.flavors} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={model.form.control}
+                name="nbNodes"
+                render={({ field }) => (
+                  <FormItem className="mt-4">
+                    <FormControl>
+                      <NodesConfig
+                        minimum={
+                          model.result.availability?.specifications.nodes
+                            .minimum
                         }
+                        maximum={
+                          model.result.availability?.specifications.nodes
+                            .maximum
+                        }
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </section>
+            </OrderSection>
+
+            {hasStorageSelection && (
+              <OrderSection id="storage" title={t('orderSectionTitleStorage')}>
+                <FormField
+                  control={model.form.control}
+                  name="additionalStorage"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <StorageConfig
+                          availability={model.result.availability}
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </OrderSection>
+            )}
+
+            <OrderSection id="options" title={t('orderSectionTitleOptions')}>
+              <div className="flex flex-col gap-4">
+                {model.result.plan && (
+                  <FormField
+                    control={model.form.control}
+                    name="network"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className={classNameLabel}>
+                          {t('fieldNetworkLabel')}
+                        </FormLabel>
+                        <FormControl>
+                          <NetworkOptions
+                            {...field}
+                            value={field.value}
+                            networks={model.lists.networks}
+                            subnets={model.lists.subnets}
+                            networkQuery={model.queries.networks}
+                            subnetQuery={model.queries.subnets}
+                            availableNetworks={model.result.plan.networks}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+                <FormField
+                  control={model.form.control}
+                  name="ipRestrictions"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={classNameLabel}>
+                        {t('fieldIpsLabel')}
+                      </FormLabel>
+                      <FormControl>
+                        <IpsRestrictionsForm
+                          {...field}
+                          value={field.value}
+                          onChange={(newIps) =>
+                            model.form.setValue('ipRestrictions', newIps)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </OrderSection>
           </div>
 
           <Card className="sticky top-4 h-fit shadow-lg">
@@ -419,17 +370,32 @@ const OrderFunnel = ({
                 />
               )}
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex flex-col gap-2 justify-between">
               <Button
                 data-testid="order-submit-button"
                 className="w-full"
                 disabled={isPendingAddService || isProjectDiscoveryMode}
+                onClick={onSubmit}
               >
                 {t('orderButton')}
               </Button>
+              <Button
+                type="button"
+                className="w-full break-words whitespace-normal"
+                mode="ghost"
+                onClick={() => setApiTerraformDialogOpen(true)}
+              >
+                {t('apiAndTerraformButton')}
+              </Button>
+              {isApiTerraformDialogOpen && (
+                <ApiTerraformDialog
+                  onRequestClose={() => setApiTerraformDialogOpen(false)}
+                  dialogData={model.result}
+                ></ApiTerraformDialog>
+              )}
             </CardFooter>
           </Card>
-        </form>
+        </div>
       </Form>
     </>
   );

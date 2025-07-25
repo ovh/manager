@@ -81,5 +81,8 @@
   "region_continent_US-EAST-VA": "Amérique du Nord",
   "region_continent_US-WEST-OR": "Amérique du Nord",
   "region_continent_SHA": "Europe de l'Ouest",
-  "region_continent_all": "Toutes les localisations"
+  "region_continent_all": "Toutes les localisations",
+  "help-link-more-info": "En savoir plus",
+  "region-description-1AZ": "Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site.",
+  "region-description-3AZ": " Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ."
 }

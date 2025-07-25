@@ -81,5 +81,8 @@
   "region_EU-WEST-PAR": "París",
   "region_EU-WEST-PAR_micro": "París ({{ micro }})",
   "region_location_EU-WEST-PAR": "Europa occidental (Francia)",
-  "region_continent_EU-WEST-PAR": "Europa occidental"
+  "region_continent_EU-WEST-PAR": "Europa occidental",
+  "help-link-more-info": "Más información",
+  "region-description-1AZ": "Una región de 1-AZ (zona de disponibilidad) reúne uno o varios datacenters localizados en un mismo emplazamiento.",
+  "region-description-3AZ": " Una región 3-AZ comprende tres zonas de disponibilidad situadas en una misma área metropolitana, separadas por algunos kilómetros. Cumple los más altos requisitos de resiliencia, al tiempo que garantiza una latencia extremadamente baja entre los AZ."
 }

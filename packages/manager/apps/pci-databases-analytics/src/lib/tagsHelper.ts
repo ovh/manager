@@ -6,9 +6,11 @@ export const getTagVariant = (
 ): BadgeProps['variant'] => {
   switch (tag) {
     case 'new':
+    case 'BETA':
     case 'current':
       return 'success';
     case 'soonDeprecated':
+    case 'endOfSale':
       return 'warning';
     default:
       return 'neutral';

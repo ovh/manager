@@ -35,5 +35,14 @@
   "errorSourceTypeFieldInvalid": "This restore point type is not available for this service",
   "errorSourcePITFieldInvalidDate": "The date chosen is not valid",
   "errorSourceBackupFieldEmpty": "Please choose a backup",
-  "breadcrumb": "Fork"
+  "breadcrumb": "Fork",
+  "orderSectionTitleService": "Service",
+  "orderSectionDescriptionService": "Select the type of database service you want to create and the version.",
+  "orderSectionTitleSource": "Source",
+  "orderSectionTitleRegion": "Datacentre",
+  "orderSectionTitlePlan": "Plan",
+  "orderSectionTitleFlavor": "Instance",
+  "orderSectionTitleStorage": "Storage",
+  "orderSectionTitleOptions": "Options",
+  "fieldNameLabel": "Name"
 }

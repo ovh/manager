@@ -1,8 +1,8 @@
 import React from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { MinusCircle, PlusCircle } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { Plus, Trash } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Input,
@@ -13,7 +13,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  Table,
+  TableHead,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  Label,
 } from '@datatr-ux/uxlib';
+import { useQuery } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 
 interface IpsRestrictionsFormProps {
@@ -23,14 +31,25 @@ interface IpsRestrictionsFormProps {
 }
 
 const formatIpMask = (ipBlock: string) => {
+  if (!ipBlock) return null;
   const [ip, mask] = ipBlock.split('/');
   return `${ip}/${mask || '32'}`;
 };
+
+const dataplatformIp = '51.210.213.114';
 
 const IpsRestrictionsForm = React.forwardRef<
   HTMLInputElement,
   IpsRestrictionsFormProps
 >(({ value, onChange, disabled }, ref) => {
+  const ipQuery = useQuery({
+    queryKey: ['ip'],
+    queryFn: async () => {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data as { ip: string };
+    },
+  });
   const { t } = useTranslation(
     'pci-databases-analytics/components/order-options',
   );
@@ -55,19 +74,25 @@ const IpsRestrictionsForm = React.forwardRef<
 
   const form = useForm({
     resolver: zodResolver(ipSchema),
+    defaultValues: {
+      ip: '',
+      description: '',
+    },
   });
 
-  const onSubmit: SubmitHandler<database.IpRestrictionCreation> = (
-    data: database.IpRestrictionCreation,
-  ) => {
+  const addIp = ({ ip, description }: { ip: string; description: string }) => {
     const formattedIp = {
-      ...data,
-      ip: formatIpMask(data.ip),
+      ip: formatIpMask(ip),
+      description,
     };
     const newIps = [...value, formattedIp];
     onChange(newIps);
     form.reset();
   };
+
+  const onSubmit = form.handleSubmit((formValues) => {
+    addIp(formValues);
+  });
 
   const removeIp = (indexToRemove: number) => {
     const newIps = value.filter((_, index) => index !== indexToRemove);
@@ -75,89 +100,154 @@ const IpsRestrictionsForm = React.forwardRef<
   };
 
   return (
-    <Form {...form}>
-      <div className="flex w-full items-start gap-2">
-        <div className="grid grid-cols-2 gap-2 w-full">
-          <FormField
-            control={form.control}
-            name="ip"
-            defaultValue=""
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel data-testid="ip-field-label">
-                  {t('ipFieldLabel')}
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    data-testid="ip-input-field"
-                    placeholder="0.0.0.0/32"
-                    {...field}
-                    ref={ref}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+    <div>
+      {(!value.find((v) => v.ip === formatIpMask(dataplatformIp)) ||
+        !value.find((v) => v.ip === formatIpMask(ipQuery.data?.ip))) && (
+        <div className="mb-2">
+          <Label>{t('commonlyUsedIps')}</Label>
+          <div className="flex gap-2 mt-2">
+            {!value.find((v) => v.ip === formatIpMask(dataplatformIp)) && (
+              <Button
+                className="px-2"
+                mode={'outline'}
+                size={'s'}
+                onClick={() =>
+                  addIp({
+                    ip: dataplatformIp,
+                    description: 'OVHcloud Dataplatform',
+                  })
+                }
+              >
+                <Plus className="size-4 mr-2" />
+                {t('commonlyUsedIpsDatatplatform')}
+              </Button>
             )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            defaultValue=""
-            render={({ field }) => (
-              <FormItem data-testid="ip-description-field-label">
-                <FormLabel>{t('ipDescriptionFieldLabel')}</FormLabel>
-                <FormControl>
-                  <Input data-testid="ip-description-input-field" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+
+            {!value.find((v) => v.ip === formatIpMask(ipQuery.data?.ip)) && (
+              <Button
+                className="px-2"
+                mode={'outline'}
+                size={'s'}
+                onClick={() =>
+                  addIp({ ip: ipQuery.data?.ip, description: 'current ip' })
+                }
+              >
+                <Plus className="size-4 mr-2" />
+                {t('commonlyUsedIpsCurrentIp')}
+              </Button>
             )}
-          />
+          </div>
         </div>
-        <Button
-          data-testid="ip-add-button"
-          mode={'ghost'}
-          onClick={form.handleSubmit(onSubmit)}
-          disabled={disabled}
-          className="mt-[1.875rem] text-primary rounded-full p-2 ml-2 hover:text-primary"
-        >
-          <PlusCircle />
-        </Button>
-      </div>
-      <ul>
-        {value.map((ip, index) => (
-          <li key={ip.ip} className="flex items-center">
-            <Button
-              data-testid={`ip-remove-button-${index}`}
-              className="text-red-500 rounded-full p-2 ml-2 hover:text-red-500 h-8 w-8"
-              mode={'ghost'}
-              type="button"
-              onClick={() => removeIp(index)}
-              disabled={disabled}
-            >
-              <MinusCircle />
-            </Button>
-            <div>
-              <span>{ip.ip}</span>
-              {ip.description && (
-                <>
-                  <span> - </span>
-                  <span className="truncate max-w-96" title={ip.description}>
-                    {ip.description}
-                  </span>
-                </>
+      )}
+      <div>
+        <Form {...form}>
+          <div
+            id="ip-form"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                onSubmit();
+              }
+            }}
+            className="grid md:flex md:flex-row md:items-start gap-2"
+          >
+            <FormField
+              control={form.control}
+              name="ip"
+              defaultValue=""
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel data-testid="ip-field-label">
+                    {t('ipFieldLabel')}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      data-testid="ip-input-field"
+                      placeholder="0.0.0.0/32"
+                      {...field}
+                      ref={ref}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </div>
-          </li>
-        ))}
-      </ul>
-      <p data-testid="configured-ips">
+            />
+            <FormField
+              control={form.control}
+              name="description"
+              defaultValue=""
+              render={({ field }) => (
+                <FormItem
+                  data-testid="ip-description-field-label"
+                  className="w-full"
+                >
+                  <FormLabel>{t('ipDescriptionFieldLabel')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      data-testid="ip-description-input-field"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              data-testid="ip-add-button"
+              className="md:mt-8"
+              mode={'outline'}
+              disabled={disabled}
+              onClick={onSubmit}
+            >
+              <Plus className="mr-2 size-4" />
+              {t('ipAddButtonLabel')}
+            </Button>
+          </div>
+        </Form>
+      </div>
+      {value.length > 0 && (
+        <Table className="table-fixed mt-2">
+          <TableHeader className="border bg-[#f7f8f8]">
+            <TableRow>
+              <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+                {t('ipTableHeaderIp')}
+              </TableHead>
+              <TableHead className="h-10 px-2 border font-semibold text-primary-800 border-r-0">
+                {t('ipTableHeaderDescription')}
+              </TableHead>
+              <TableHead className="h-10 px-2 border font-semibold text-primary-800 border-l-0" />
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {value.map(({ ip, description }, idx) => (
+              <TableRow key={`${ip}-${idx}`} className="!border">
+                <TableCell>{ip}</TableCell>
+                <TableCell>{description}</TableCell>
+                <TableCell className="text-right">
+                  <Button
+                    data-testid={`ip-remove-button-${idx}`}
+                    className="text-red-500 rounded-full p-2 hover:text-red-500 size-8"
+                    mode={'ghost'}
+                    variant={'destructive'}
+                    type="button"
+                    onClick={() => removeIp(idx)}
+                    disabled={disabled}
+                  >
+                    <Trash />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
+      <p data-testid="configured-ips" className="mt-2">
         {t('numberOfConfiguredIps', {
           count: value.length,
           context: `${value.length}`,
         })}
       </p>
-    </Form>
+    </div>
   );
 });
 

@@ -13,5 +13,6 @@
   "tableActionManage": "Szczegóły",
   "tableActionCopy": "Skopiuj ID",
   "tableActionEditName": "Zmień nazwę",
-  "tableActionDelete": "Usuń"
+  "tableActionDelete": "Usuń",
+  "tableHeaderFilterName": "Nazwa"
 }

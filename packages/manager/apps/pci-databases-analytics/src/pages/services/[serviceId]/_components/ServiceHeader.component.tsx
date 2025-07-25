@@ -5,6 +5,8 @@ import ServiceStatusBadge from '../../_components/ServiceStatusBadge.component';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import ServiceNameWithUpdate from './ServiceNameWithUpdate.component';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
+import { getRegionFlag } from '@/lib/flagHelper';
+import Flag from '@/components/flag/Flag.component';
 
 export const ServiceHeader = ({ service }: { service: database.Service }) => {
   const { t } = useTranslation('regions');
@@ -33,7 +35,13 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
             {service.flavor}
           </Badge>
           <Badge variant={'outline'} className="capitalize">
-            {t(`region_${service.nodes[0].region}`)}
+            <div className="flex items-center gap-1">
+              <Flag
+                flagName={getRegionFlag(service.nodes[0].region)}
+                className="w-3 h-2"
+              />
+              {t(`region_${service.nodes[0].region}`)}
+            </div>
           </Badge>
         </div>
       </div>

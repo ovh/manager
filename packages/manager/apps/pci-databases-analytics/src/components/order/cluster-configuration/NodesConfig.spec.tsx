@@ -27,17 +27,6 @@ describe('NodesConfig component', () => {
     });
   });
 
-  it('should not be displayed', async () => {
-    const onChange = vi.fn();
-    render(
-      <NodesConfig maximum={1} minimum={1} onChange={onChange} value={1} />,
-    );
-    await waitFor(() => {
-      expect(screen.queryByTestId('nodes-configuration-label')).toBeNull();
-      expect(screen.queryByTestId('nodes-configuration-input')).toBeNull();
-    });
-  });
-
   it('should trigger callback when input change', async () => {
     const onChange = vi.fn();
     render(

@@ -23,7 +23,7 @@ module.exports = {
     extend: {
       colors: {
         // Override colors for ODS17 theme
-        'primary-50': '#f5feff',
+        // 'primary-50': '#f5feff',
         heading: '#4d5693',
       },
       borderRadius: {

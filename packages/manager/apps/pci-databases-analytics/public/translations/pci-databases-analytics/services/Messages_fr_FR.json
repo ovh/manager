@@ -2,6 +2,7 @@
   "title": "Services",
   "createNewService": "Créer un service",
   "tableHeaderName": "Nom / ID",
+  "tableHeaderFilterName": "Nom",
   "tableHeaderEngine": "Engine",
   "tableHeaderPlan": "Plan",
   "tableHeaderFlavor": "Flavor",

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
-import { Engine, Flavor, Plan, Version } from '@/types/orderFunnel';
+import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import * as databases from '@/types/cloud/project/database';
 import { computeServicePrice } from '@/lib/pricingHelper';
 import { useUpdateTree } from '../_components/useUpdateTree';
@@ -38,18 +38,20 @@ export function useUpdatePlan({ availabilities, service }: UseUpdatePlanProps) {
 
   // Compute available plans for this service
   const listEngines = useUpdateTree(availabilities);
-  const listPlans =
+  const listRegions =
     listEngines
       ?.find((e: Engine) => e.name === service.engine)
       ?.versions.find((v: Version) => v.name === service.version)
+      ?.regions.sort((a, b) => a.order - b.order) || [];
+  const listPlans =
+    listRegions
+      ?.find((r: Region) => r.name === service.nodes[0].region)
       ?.plans.sort((a, b) => a.order - b.order) || [];
 
   // Initial values
   const initialPlan = listPlans?.find((p) => p.name === service.plan);
   const initialFlavorObject = useMemo(() => {
-    return initialPlan?.regions
-      .find((r) => r.name === service.nodes[0].region)
-      ?.flavors?.find((f) => f.name === service.flavor);
+    return initialPlan?.flavors?.find((f) => f.name === service.flavor);
   }, [initialPlan, service.nodes, service.flavor]);
 
   const initialAddedStorage = useMemo(() => {
@@ -92,18 +94,16 @@ export function useUpdatePlan({ availabilities, service }: UseUpdatePlanProps) {
 
   const newPrice = useMemo(() => {
     const selectedPlanObj = listPlans.find((p) => p.name === selectedPlan);
-    const region = selectedPlanObj?.regions.find(
-      (r) => r.name === service.nodes[0].region,
-    );
     const flavor =
-      region?.flavors.find((f) => f.name === service.flavor) ||
-      region?.flavors[0];
+      selectedPlanObj?.flavors.find((f) => f.name === service.flavor) ||
+      selectedPlanObj?.flavors[0];
     return computePrice(flavor, selectedPlanObj, true);
   }, [selectedPlan, listPlans, initialAddedStorage]);
 
   return {
     form,
     listEngines,
+    listRegions,
     listPlans,
     initialPlan,
     initialFlavorObject,

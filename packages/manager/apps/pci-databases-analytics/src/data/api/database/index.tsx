@@ -1,5 +1,14 @@
 import * as database from '@/types/cloud/project/database';
 
+export const HeadersNoCache = {
+  Pragma: 'no-cache',
+};
+export const HeadersIcebergPagination = {
+  'X-Pagination-Mode': 'CachedObjectList-Pages',
+  'X-Pagination-Size': '50000',
+  ...HeadersNoCache,
+};
+
 export interface PCIData {
   projectId: string;
 }

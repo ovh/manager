@@ -18,7 +18,6 @@ import {
   FormMessage,
   useToast,
 } from '@datatr-ux/uxlib';
-import VersionSelector from '@/components/order/engine/EngineTileVersion.component';
 import * as database from '@/types/cloud/project/database';
 import { Engine } from '@/types/orderFunnel';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
@@ -27,6 +26,7 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
 import { useUpdateTree } from '../_components/useUpdateTree';
 import RouteModal from '@/components/route-modal/RouteModal';
+import VersionSelect from '@/components/order/version/VersionSelect.component';
 
 const UpdateVersion = () => {
   const { service, projectId } = useServiceData();
@@ -109,10 +109,9 @@ const UpdateVersion = () => {
                 <FormItem>
                   <FormLabel>{t('updateVersionInputLabel')}</FormLabel>
                   <FormControl>
-                    <VersionSelector
-                      isEngineSelected
+                    <VersionSelect
                       versions={listVersions}
-                      selectedVersion={field.value}
+                      value={field.value}
                       onChange={field.onChange}
                     />
                   </FormControl>

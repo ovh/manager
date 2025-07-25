@@ -9,7 +9,7 @@ export * from './Integration';
 export * from './Option';
 export * from './Plan';
 export * from './TagEnum';
-export * from './TagEnum';
+export * from './RegionTypeEnum';
 export * from './EngineCapabilities';
 export * from './RegionCapabilities';
 export { advancedConfiguration };

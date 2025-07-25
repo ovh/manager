@@ -22,8 +22,8 @@ import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.availability.Suggestion,
-  item: 'plan' | 'region' | 'flavor',
-  listItems: Plan[] | Region[] | Flavor[],
+  item: 'plan' | 'region' | 'flavor' | 'version',
+  listItems: Plan[] | Region[] | Flavor[] | Version[],
   currentValue?: string,
 ) => {
   if (listItems.length === 0) return '';
@@ -47,10 +47,8 @@ export function useOrderFunnel(
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { projectId } = useParams();
   const orderSchema = z.object({
-    engineWithVersion: z.object({
-      engine: z.string(),
-      version: z.string(),
-    }),
+    engine: z.string(),
+    version: z.string(),
     plan: z.string(),
     region: z.string(),
     flavor: z.string(),
@@ -82,13 +80,17 @@ export function useOrderFunnel(
           message: t('errorNetworkFieldMissingId'),
         },
       ),
-    name: z.string(),
+    name: z
+      .string()
+      .min(1)
+      .max(50),
   });
   const form = useForm({
     resolver: zodResolver(orderSchema),
     defaultValues: {
       name: generateName(),
-      engineWithVersion: { engine: '', version: '' },
+      engine: '',
+      version: '',
       plan: '',
       region: '',
       flavor: '',
@@ -104,7 +106,8 @@ export function useOrderFunnel(
   });
 
   const name = form.watch('name');
-  const engineWithVersion = form.watch('engineWithVersion');
+  const engine = form.watch('engine');
+  const version = form.watch('version');
   const plan = form.watch('plan');
   const region = form.watch('region');
   const flavor = form.watch('flavor');
@@ -142,40 +145,47 @@ export function useOrderFunnel(
       ),
     [availabilities, capabilities],
   );
-  // Create the list of available plans
-  const listPlans = useMemo(
+  // Create the list of available versions
+  const listVersions = useMemo(
     () =>
       listEngines
-        ?.find((e: Engine) => e.name === engineWithVersion.engine)
-        ?.versions.find((v: Version) => v.name === engineWithVersion.version)
-        ?.plans.sort((a, b) => a.order - b.order) || [],
-    [listEngines, engineWithVersion],
+        ?.find((e: Engine) => e.name === engine)
+        ?.versions.sort((a, b) => a.order - b.order) || [],
+    [listEngines, engine],
   );
   // Create the list of available regions
   const listRegions = useMemo(
     () =>
-      listPlans
-        ?.find((p: Plan) => p.name === plan)
+      listVersions
+        ?.find((v: Version) => v.name === version)
         ?.regions.sort((a, b) => a.order - b.order) || [],
-    [listPlans, plan],
+    [listVersions, version],
   );
-  // Create the list of available flavors
-  const listFlavors = useMemo(
+  // Create the list of available plans
+  const listPlans = useMemo(
     () =>
       listRegions
         ?.find((r: Region) => r.name === region)
-        ?.flavors.sort((a, b) => a.order - b.order) || [],
+        ?.plans.sort((a, b) => a.order - b.order) || [],
     [listRegions, region],
   );
 
+  // Create the list of available flavors
+  const listFlavors = useMemo(
+    () =>
+      listPlans
+        ?.find((p: Plan) => p.name === plan)
+        ?.flavors.sort((a, b) => a.order - b.order) || [],
+    [listPlans, plan],
+  );
+
   const engineObject: Engine | undefined = useMemo(
-    () => listEngines.find((e) => e.name === engineWithVersion.engine),
-    [listEngines, engineWithVersion.engine],
+    () => listEngines.find((e) => e.name === engine),
+    [listEngines, engine],
   );
   const versionObject: Version | undefined = useMemo(
-    () =>
-      engineObject?.versions.find((v) => v.name === engineWithVersion.version),
-    [engineObject, engineWithVersion.version],
+    () => listVersions.find((v) => v.name === version),
+    [listVersions, version],
   );
   const planObject: Plan | undefined = useMemo(
     () => listPlans.find((p) => p.name === plan),
@@ -203,13 +213,13 @@ export function useOrderFunnel(
     () =>
       availabilities.find(
         (a) =>
-          a.engine === engineWithVersion.engine &&
-          a.version === engineWithVersion.version &&
-          a.plan === plan &&
+          a.engine === engine &&
+          a.version === version &&
           a.region === region &&
+          a.plan === plan &&
           a.specifications.flavor === flavor,
       ),
-    [availabilities, engineWithVersion, plan, region, flavor],
+    [availabilities, engine, version, region, plan, flavor],
   );
 
   // compute pricing when availability, nbNodes and additionalStorage changes
@@ -226,58 +236,65 @@ export function useOrderFunnel(
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 
-  // select an engine and a version when listEngines is changed
   useEffect(() => {
-    const engineAndVersion = { engine: '', version: '' };
     const suggestedEngine = suggestions.find((s) => s.default);
     const defaultEngine =
       listEngines.find((e) => e.name === suggestedEngine.engine) ??
       listEngines[0];
-    const { defaultVersion } = defaultEngine;
-    engineAndVersion.engine = defaultEngine.name;
-    engineAndVersion.version = defaultVersion;
-    form.setValue('engineWithVersion', engineAndVersion);
-  }, [listEngines]);
-  // update plan
+    form.setValue('engine', defaultEngine.name);
+  }, [listEngines, suggestions]);
+  // update version
   useEffect(() => {
     form.setValue(
-      'plan',
+      'version',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
-        'plan',
-        listPlans,
+        suggestions.find((s) => s.engine === engine),
+        'version',
+        listVersions,
       ),
     );
-  }, [listPlans, suggestions, engineWithVersion.engine]);
-  // update nodes when plan changes
-  useEffect(() => {
-    if (!planObject) return;
-    form.setValue('nbNodes', planObject.nodes.minimum);
-  }, [plan, listPlans]);
+  }, [listVersions, suggestions, engine]);
   // update region
   useEffect(() => {
     form.setValue(
       'region',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
+        suggestions.find((s) => s.engine === engine),
         'region',
         listRegions,
         region,
       ),
     );
-  }, [listRegions, suggestions, engineWithVersion.engine, region]);
+  }, [listRegions, suggestions, engine, region]);
+  // update plan
+  useEffect(() => {
+    form.setValue(
+      'plan',
+      getSuggestedItemOrDefault(
+        suggestions.find((s) => s.engine === engine),
+        'plan',
+        listPlans,
+        plan,
+      ),
+    );
+  }, [listPlans, suggestions, engine, plan]);
+  // update nodes when plan changes
+  useEffect(() => {
+    if (!planObject) return;
+    form.setValue('nbNodes', planObject.nodes.minimum);
+  }, [plan, listPlans]);
   // update flavor
   useEffect(() => {
     form.setValue(
       'flavor',
       getSuggestedItemOrDefault(
-        suggestions.find((s) => s.engine === engineWithVersion.engine),
+        suggestions.find((s) => s.engine === engine),
         'flavor',
         listFlavors,
         flavor,
       ),
     );
-  }, [listFlavors, suggestions, engineWithVersion.engine, flavor]);
+  }, [listFlavors, suggestions, engine, flavor]);
   // reset storage when flavor is changed
   useEffect(() => {
     form.setValue('additionalStorage', 0);
@@ -313,6 +330,7 @@ export function useOrderFunnel(
     },
     lists: {
       engines: listEngines,
+      versions: listVersions,
       plans: listPlans,
       regions: listRegions,
       flavors: listFlavors,
