@@ -53,5 +53,6 @@
   "managed_vcd_dashboard_password_renew_success": "Dyspozycja resetu hasła administratora została zarejestrowana. Otrzymasz e-mail z linkiem umożliwiającym reset hasła.",
   "managed_vcd_dashboard_password_renew_error": "Wystąpił błąd podczas resetu hasła administratora. Spróbuj ponownie później lub skontaktuj się z pomocą techniczną.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Zatwierdź",
-  "managed_vcd_dashboard_cancellation_tooltip": "Jeśli chcesz zrezygnować z usługi, skontaktuj się z działem obsługi klienta."
+  "managed_vcd_dashboard_cancellation_tooltip": "Jeśli chcesz zrezygnować z usługi, skontaktuj się z działem obsługi klienta.",
+  "managed_vcd_dashboard_vrack_title": "Sieci vRack"
 }
