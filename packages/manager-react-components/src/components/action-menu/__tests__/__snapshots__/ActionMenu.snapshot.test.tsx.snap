@@ -1,321 +1,681 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with ghost variant > ghost-variant 1`] = `
-<button
-  aria-controls="popover::r5::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r5::trigger"
-  type="button"
+exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with default variant > default-variant 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r6::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r6::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with ghost variant > ghost-variant 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::r5::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r5::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with outline variant > outline-variant 1`] = `
-<button
-  aria-controls="popover::r4::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r4::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r4::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r4::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in compact mode > compact-mode 1`] = `
-<button
-  aria-controls="popover::r2::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r2::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--ellipsis-vertical_i4xp0_163"
-  />
-</button>
+  <button
+    aria-controls="popover::r2::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r2::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--ellipsis-vertical_i4xp0_163"
+    />
+  </button>
+</div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot with custom icon > custom-icon 1`] = `
-<button
-  aria-controls="popover::r3::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r3::trigger"
-  type="button"
+exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in compact mode with custom icon > compact-mode-custom-icon 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r3::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r3::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--ellipsis-horizontal_i4xp0_160"
+    />
+  </button>
+</div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Custom labels > should match snapshot with custom label > custom-label 1`] = `
-<button
-  aria-controls="popover::r8::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r8::trigger"
-  type="button"
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom icon > custom-icon 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  Custom Actions
-</button>
+  <button
+    aria-controls="popover::rb::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rb::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom label > custom-label 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::ra::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::ra::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    Custom Actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom label and icon > custom-label-and-icon 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rc::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rc::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
+    />
+    Settings
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot with default props > default-props 1`] = `
-<button
-  aria-controls="popover::r0::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r0::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r0::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r0::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot with minimal props > minimal-props 1`] = `
-<button
-  aria-controls="popover::r1::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r1::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r1::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r1::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with empty items array > empty-items 1`] = `
-<button
-  aria-controls="popover::rb::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::rb::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::rk::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rk::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with many items > many-items 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rm::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rm::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with single item > single-item 1`] = `
-<button
-  aria-controls="popover::rc::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::rc::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::rl::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rl::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > IAM authorization states > should match snapshot when IAM is loading > iam-loading-state 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rn::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rn::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > IAM authorization states > should match snapshot when IAM is not authorized > iam-unauthorized-state 1`] = `
-<button
-  aria-controls="popover::rd::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::rd::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::ro::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::ro::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with IAM protected items > iam-protected-items 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::ri::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::ri::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with mixed item types > mixed-item-types 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rj::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rj::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with only button items > button-only-items 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rh::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rh::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with only link items > link-only-items 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rg::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rg::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with left position > left-position 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::rf::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rf::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with right position > right-position 1`] = `
-<button
-  aria-controls="popover::ra::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::ra::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::re::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::re::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with top position > top-position 1`] = `
-<button
-  aria-controls="popover::r9::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r9::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::rd::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::rd::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > States > should match snapshot when disabled > disabled-state 1`] = `
-<button
-  aria-controls="popover::r6::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  disabled=""
-  id="popover::r6::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+  <button
+    aria-controls="popover::r7::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    disabled=""
+    id="popover::r7::trigger"
+    type="button"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
+`;
+
+exports[`ActionMenu Snapshot Tests > States > should match snapshot when disabled and loading > disabled-loading-state 1`] = `
+<div
+  data-testid="navigation-action-trigger-action"
+>
+  <button
+    aria-controls="popover::r9::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    disabled=""
+    id="popover::r9::trigger"
+    type="button"
+  >
+    <span
+      class="_button__spinner_10f3x_372"
+    >
+      <span
+        class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
+        role="progressbar"
+      >
+        <svg
+          class="_spinner__svg_o7c7y_32"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="none"
+            height="24"
+            width="24"
+          />
+          <g
+            transform="translate(-237.694 -93.932)"
+          >
+            <path
+              d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
+              transform="translate(5486 4225)"
+            />
+            <circle
+              cx="1"
+              cy="1"
+              r="1"
+              transform="translate(248.694 114.932)"
+            />
+            <circle
+              cx="1"
+              cy="1"
+              r="1"
+              transform="translate(238.694 104.932)"
+            />
+          </g>
+        </svg>
+      </span>
+    </span>
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
 
 exports[`ActionMenu Snapshot Tests > States > should match snapshot when loading > loading-state 1`] = `
-<button
-  aria-controls="popover::r7::content"
-  aria-expanded="false"
-  aria-haspopup="dialog"
-  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
-  data-part="trigger"
-  data-scope="popover"
-  data-state="closed"
-  dir="ltr"
-  id="popover::r7::trigger"
-  type="button"
+<div
+  data-testid="navigation-action-trigger-action"
 >
-  <span
-    class="_button__spinner_10f3x_372"
+  <button
+    aria-controls="popover::r8::content"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    data-part="trigger"
+    data-scope="popover"
+    data-state="closed"
+    dir="ltr"
+    id="popover::r8::trigger"
+    type="button"
   >
     <span
-      class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-      role="progressbar"
+      class="_button__spinner_10f3x_372"
     >
-      <svg
-        class="_spinner__svg_o7c7y_32"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+      <span
+        class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
+        role="progressbar"
       >
-        <rect
-          fill="none"
-          height="24"
-          width="24"
-        />
-        <g
-          transform="translate(-237.694 -93.932)"
+        <svg
+          class="_spinner__svg_o7c7y_32"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
-            transform="translate(5486 4225)"
+          <rect
+            fill="none"
+            height="24"
+            width="24"
           />
-          <circle
-            cx="1"
-            cy="1"
-            r="1"
-            transform="translate(248.694 114.932)"
-          />
-          <circle
-            cx="1"
-            cy="1"
-            r="1"
-            transform="translate(238.694 104.932)"
-          />
-        </g>
-      </svg>
+          <g
+            transform="translate(-237.694 -93.932)"
+          >
+            <path
+              d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
+              transform="translate(5486 4225)"
+            />
+            <circle
+              cx="1"
+              cy="1"
+              r="1"
+              transform="translate(248.694 114.932)"
+            />
+            <circle
+              cx="1"
+              cy="1"
+              r="1"
+              transform="translate(238.694 104.932)"
+            />
+          </g>
+        </svg>
+      </span>
     </span>
-  </span>
-  <span
-    class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-  />
-  common_actions
-</button>
+    <span
+      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+    />
+    common_actions
+  </button>
+</div>
 `;
