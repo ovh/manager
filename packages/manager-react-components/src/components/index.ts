@@ -34,7 +34,6 @@ export * from './ManagerText/ManagerText';
 
 export * from './ServiceStateBadge/ServiceStateBadge.component';
 
-export * from './pci-maintenance-banner';
 export * from './region/region.component';
 export * from './order';
 
