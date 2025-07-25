@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",
-    "@ovh-ux/manager-billing-components": "^3.18.1",
+    "@ovh-ux/manager-billing-components": "^4.19.1",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",

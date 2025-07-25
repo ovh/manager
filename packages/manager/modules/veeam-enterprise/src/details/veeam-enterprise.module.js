@@ -9,6 +9,8 @@ import 'angular-ui-bootstrap';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 import VeeamEnterpriseCtrl from './controller';
 import VeeamEnterpriseService from './service';
 import VeeamEnterpriseDashboardComponent from '../dashboard/component';
@@ -31,6 +33,7 @@ angular
     'ui.bootstrap',
     'ovh-api-services',
     'oui',
+    ovhManagerBillingComponents,
   ])
   .config(routing)
   .controller('VeeamEnterpriseCtrl', VeeamEnterpriseCtrl)

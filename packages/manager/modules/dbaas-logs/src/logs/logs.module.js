@@ -12,6 +12,8 @@ import 'angular-ui-bootstrap';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './logs.scss';
 
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 import empty from './empty';
 import component from './logs.component';
 import constants from './logs-constants';
@@ -40,6 +42,7 @@ angular
     logsDetail,
     logsList,
     logsOnboarding,
+    ovhManagerBillingComponents,
   ])
   .config(routing)
   .config(
