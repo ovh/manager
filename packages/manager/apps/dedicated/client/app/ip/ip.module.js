@@ -4,6 +4,8 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import translate from 'angular-translate';
 import uiRouter from '@uirouter/angularjs';
 
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 import ipModule from './ip/ip.module';
 
 import dedicatedCloud from '../components/dedicated-cloud';
@@ -35,6 +37,7 @@ angular
     byoip,
     failover,
     onboarding,
+    ovhManagerBillingComponents,
   ])
   .config(routing)
   .filter('availableIpText', availableTextFilter)

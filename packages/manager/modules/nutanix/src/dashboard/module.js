@@ -3,6 +3,8 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 import component from './component';
 import routing from './routing';
 import nodes from './nodes';
@@ -17,6 +19,7 @@ angular
     'ui.router',
     generalInfo,
     nodes,
+    ovhManagerBillingComponents,
   ])
   .config(routing)
   .component('nutanixDashboard', component)
