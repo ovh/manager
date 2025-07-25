@@ -38,4 +38,10 @@ export default class TerminateServiceCtrl {
         this.loading = false;
       });
   }
+
+  shouldDisabledTextarea({ question }) {
+    return question === 'commentary_future_use'
+      ? this.model.future_use !== 'OTHER'
+      : false;
+  }
 }

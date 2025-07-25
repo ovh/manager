@@ -50,6 +50,10 @@ export default class BillingLinksService {
         ? `&serviceType=${service.serviceType}`
         : '';
 
+      const serviceNameParam = service.serviceId
+        ? `&serviceName=${service.serviceId}`
+        : '';
+
       links.commitmentLink =
         (getCommitmentLink && getCommitmentLink(service)) ||
         `${autorenewLink}/${service.id}/commitment`;
@@ -119,9 +123,12 @@ export default class BillingLinksService {
           break;
         case SERVICE_TYPE.OKMS:
         case SERVICE_TYPE.VRACK_SERVICES:
+          links.resiliateLink = `${autorenewLink}/services/terminate-service?id=${service.id}${serviceTypeParam}`;
+          break;
         case SERVICE_TYPE.LICENSE_HYCU:
         case SERVICE_TYPE.VEEAM_BACKUP:
-          links.resiliateLink = `${autorenewLink}/services/terminate-service?id=${service.id}${serviceTypeParam}`;
+        case SERVICE_TYPE.VMWARE_CLOUD_DIRECTOR_ORGANIZATION:
+          links.resiliateLink = `${autorenewLink}/services/terminate-service?id=${service.id}${serviceTypeParam}${serviceNameParam}`;
           break;
         default:
           links.resiliateLink = service.canResiliateByEndRule()
