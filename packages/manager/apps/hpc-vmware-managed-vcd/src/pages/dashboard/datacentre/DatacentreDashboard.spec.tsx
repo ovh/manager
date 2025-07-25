@@ -9,10 +9,21 @@ import {
   getElementByTestId,
   assertOdsModalText,
 } from '@ovh-ux/manager-core-test-utils';
+import { vi } from 'vitest';
 
 import { labels, renderTest, mockEditInputValue } from '../../../test-utils';
 import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {

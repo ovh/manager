@@ -135,6 +135,7 @@ export const TRACKING_TABS_ACTIONS = {
   datacentreDashboard: ['datacenter', 'general-informations'],
   compute: ['datacenter', 'compute'],
   storage: ['datacenter', 'storage'],
+  vrack: ['datacenter', 'vrack'],
 };
 
 export const getTabTrackingParams = (

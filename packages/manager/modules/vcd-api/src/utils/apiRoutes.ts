@@ -26,3 +26,19 @@ export const getVcdDatacentreStorageRoute = (id: string, vdcId: string) => {
 export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/orderableResource`;
 };
+
+export const getVdcVrackSegmentListRoute = (id: string, vdcId: string) => {
+  return `${getVcdDatacentresRoute(id)}/${vdcId}/vrackSegment`;
+};
+
+export const getVdcVrackSegmentRoute = ({
+  id,
+  vdcId,
+  vrackSegmentId,
+}: {
+  id: string;
+  vdcId: string;
+  vrackSegmentId: string;
+}) => {
+  return `${getVdcVrackSegmentListRoute(id, vdcId)}/${vrackSegmentId}`;
+};
