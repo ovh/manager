@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { OKMS } from '@/types/okms.type';
 import { ErrorResponse } from '@/types/api.type';
@@ -15,10 +15,13 @@ export const useOkmsById = (okmsId: string) => {
   });
 };
 
-export const useOkmsList = () => {
+export const useOkmsList = (
+  options: Partial<UseQueryOptions<OKMS[], ErrorResponse>> = {},
+) => {
   return useQuery<OKMS[], ErrorResponse>({
     queryKey: okmsQueryKeys.list,
     queryFn: getOkmsList,
+    ...options,
   });
 };
 
