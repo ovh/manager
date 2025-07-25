@@ -4,21 +4,5 @@
   "subscribed": "Subskrybujesz",
   "to_activate": "Do aktywacji",
   "activation_in_progress": "Trwa włączanie...",
-  "disabled": "Wyłączone",
-  "ok": "Aktywna",
-  "autorenewInProgress": "Trwa odnawianie",
-  "expired": "Zakończ",
-  "inCreation": "Trwa tworzenie",
-  "inMaintenance": "Trwają prace konserwacyjne",
-  "pendingDebt": "Płatność do uregulowania",
-  "deleting": "Trwa usuwanie",
-  "suspended": "Zawieszona",
-  "suspending": "Zawieszanie w trakcie",
-  "errorMessage": "Wykonanie Twojej dyspozycji nie powiodło się. {{error}}",
-  "pay_as_you_go": "Płatność według zużycia",
-  "prepaid": "Przedpłata",
-  "creating": "Trwa tworzenie",
-  "updating": "Aktualizacja",
-  "unconfigured": "Brak konfiguracji",
-  "unPaid": "Niezapłacona faktura"
+  "disabled": "Wyłączone"
 }
