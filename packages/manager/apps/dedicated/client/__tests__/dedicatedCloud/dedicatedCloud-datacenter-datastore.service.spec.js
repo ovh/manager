@@ -78,10 +78,10 @@ describe('ovhManagerPccDatacenterDatastoreService test suites', () => {
       case: 'should retrieve all datastores sorted',
       expected: {
         data: [
-          { ...dcDatastores[0], dc: datacenterId },
-          globalDatastores[2],
-          globalDatastores[0],
-          globalDatastores[1],
+          { ...dcDatastores[0], dc: datacenterId, isGlobal: false },
+          { ...globalDatastores[2], isGlobal: true },
+          { ...globalDatastores[0], isGlobal: true },
+          { ...globalDatastores[1], isGlobal: true },
         ],
         count: 4,
       },
@@ -91,7 +91,7 @@ describe('ovhManagerPccDatacenterDatastoreService test suites', () => {
     {
       case: 'should retrieve only dc datastore',
       expected: {
-        data: [{ ...dcDatastores[0], dc: datacenterId }],
+        data: [{ ...dcDatastores[0], dc: datacenterId, isGlobal: false }],
         count: 4,
       },
       pageSize: 1,
@@ -100,7 +100,10 @@ describe('ovhManagerPccDatacenterDatastoreService test suites', () => {
     {
       case: 'should retrieve only 2 global datastores',
       expected: {
-        data: [globalDatastores[2], globalDatastores[0]],
+        data: [
+          { ...globalDatastores[2], isGlobal: true },
+          { ...globalDatastores[0], isGlobal: true },
+        ],
         count: 4,
       },
       pageSize: 2,

@@ -7,6 +7,7 @@ export default {
     guideUrl: '<',
     clearCache: '<',
     notifications: '<',
+    isLogsAvailable: '<',
   },
   template,
   controller,
