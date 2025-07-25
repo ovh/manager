@@ -7,9 +7,9 @@ import GeneralInformationSection from './general-information-section/GeneralInfo
 import HdsSection from './hds-section/HdsSection';
 import RemoveSection from './remove-section/RemoveSection';
 import {
-  useIsHdsFeatureAvailabilityEnabled,
   useIsAValidHdsSupportLevel,
-} from './hds-section/useHds';
+  useIsHdsFeatureAvailabilityEnabled,
+} from '@/hooks/useHds/useHds';
 
 export default function EditPage() {
   const { data: project } = useProject();

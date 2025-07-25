@@ -1,8 +1,7 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useQuery } from '@tanstack/react-query';
-import { useContext, useMemo } from 'react';
-import { FEATURE_AVAILABILITY, PCI_HDS_ADDON } from '@/constants';
+import { useContext } from 'react';
+import { PCI_HDS_ADDON } from '@/constants';
 import { addOptionToCart, assignCart, createCart } from '@/data/api/cart';
 import {
   getCartServiceOption,
@@ -11,28 +10,6 @@ import {
 } from '@/data/api/services';
 import { getCartServiceOptionQueryKey } from '@/data/hooks/useServices';
 import { TCartServiceOption, TServiceOption } from '@/data/types/service.type';
-
-/**
- * Check if HDS feature availability is enabled
- */
-export const useIsHdsFeatureAvailabilityEnabled = (): boolean => {
-  const { data: availability } = useFeatureAvailability([
-    FEATURE_AVAILABILITY.HDS,
-  ]);
-  return Boolean(availability?.[FEATURE_AVAILABILITY.HDS]);
-};
-
-/**
- * Check Hds support Level eligibility
- * Only 'enterprise' and 'business' levels are eligible for HDS
- */
-export const useIsAValidHdsSupportLevel = () => {
-  const { supportLevel } = useContext(ShellContext).environment.getUser();
-  return useMemo(
-    () => ['enterprise', 'business'].includes(supportLevel?.level),
-    [supportLevel],
-  );
-};
 
 export const getIsAlreadyHdsCertifiedProjectQueryKey = (projectId: string) => [
   'isHdsCertified',

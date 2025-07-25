@@ -1,10 +1,23 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { StepComponent, Title } from '@ovh-ux/manager-react-components';
+import {
+  OvhSubsidiary,
+  StepComponent,
+  Title,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useCallback, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  useAttachConfigurationToCartItem,
+  useCreateAndAssignCart,
+  useOrderProjectItem,
+} from '@/data/hooks/useCart';
+import FullPageSpinner from '@/components/FullPageSpinner';
+import { useConfigForm } from './hooks/useConfigForm';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
-import { useStepper } from './useStepper';
+import { useStepper } from './hooks/useStepper';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -14,6 +27,17 @@ export default function ProjectCreation() {
   ]);
 
   const navigate = useNavigate();
+  const { environment } = useContext(ShellContext);
+  const user = environment.getUser();
+  const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
+
+  const { form, setForm, isConfigFormValid } = useConfigForm(ovhSubsidiary);
+
+  const { mutate: createAndAssignCart, data: cart } = useCreateAndAssignCart();
+  const { mutate: orderProjectItem, data: projectItem } = useOrderProjectItem();
+  const {
+    mutate: attachConfigurationToCartItem,
+  } = useAttachConfigurationToCartItem();
 
   const {
     currentStep,
@@ -24,6 +48,44 @@ export default function ProjectCreation() {
     isPaymentChecked,
     isPaymentLocked,
   } = useStepper();
+
+  useEffect(() => {
+    createAndAssignCart(
+      { ovhSubsidiary },
+      {
+        onSuccess: (createdCart) => {
+          orderProjectItem({
+            cartId: createdCart.cartId,
+          });
+        },
+      },
+    );
+  }, [createAndAssignCart, orderProjectItem, ovhSubsidiary]);
+
+  const handleConfigNext = () => {
+    if (!cart || !projectItem) return;
+
+    attachConfigurationToCartItem(
+      {
+        cartId: projectItem.cartId,
+        itemId: projectItem.itemId,
+        payload: {
+          label: 'description',
+          value: form.description,
+        },
+      },
+      {
+        onSuccess: () => setCurrentStep(1),
+      },
+    );
+  };
+
+  const handleCancel = useCallback(() => navigate('..'), [navigate]);
+  const handlePaymentNext = useCallback(() => {}, []);
+
+  if (!cart || !projectItem) {
+    return <FullPageSpinner />;
+  }
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
@@ -41,22 +103,27 @@ export default function ProjectCreation() {
               ? {
                   action: () => setCurrentStep(0),
                   label: t('modify', { ns: NAMESPACES.ACTIONS }),
-
                   isDisabled: false,
                 }
               : undefined
           }
           next={{
-            action: () => setCurrentStep(1),
+            action: handleConfigNext,
             label: t('next', { ns: NAMESPACES.ACTIONS }),
-            isDisabled: false,
+            isDisabled: !isConfigFormValid(),
           }}
           skip={{
-            action: () => navigate('..'),
+            action: handleCancel,
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
-          <ConfigStep />
+          <ConfigStep
+            cart={cart}
+            cartProjectItem={projectItem}
+            ovhSubsidiary={ovhSubsidiary}
+            form={form}
+            setForm={setForm}
+          />
         </StepComponent>
 
         <StepComponent
@@ -68,18 +135,14 @@ export default function ProjectCreation() {
             ns: 'new/payment',
           })}
           next={{
-            action: () => {
-              /**
-               * TODO: handle project creation
-               */
-            },
+            action: handlePaymentNext,
             label: t('pci_project_new_payment_btn_continue_default', {
               ns: 'new/payment',
             }),
             isDisabled: false,
           }}
           skip={{
-            action: () => navigate('..'),
+            action: handleCancel,
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
