@@ -19,18 +19,15 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { MessagesViewer } from '@/components/Messages/MessageViewer.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
-import { ConsumedVms } from './ConsumedVms.component';
-import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
-import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
-import { BillingLink } from '@/components/Links/BillingLink.component';
+import { BillingTile } from './BillingTile.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
-import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_LINKS, CANCELED_VEEAM_BACKUP_STATUS } from '@/constants';
 import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
 
 export default function DashboardPage() {
@@ -54,12 +51,14 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       message={
         <>
-          {['DISABLED', 'DISABLING', 'REMOVED'].includes(
+          {CANCELED_VEEAM_BACKUP_STATUS.includes(
             data?.data?.resourceStatus,
           ) && (
-            <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
+            <OdsMessage color="warning" isDismissible={false}>
+              {t('terminated_service')}
+            </OdsMessage>
           )}
-          <SuccessMessages id={id} />
+          <MessagesViewer id={id} />
         </>
       }
       backLinkLabel={t('back_to_listing_label')}
@@ -90,7 +89,7 @@ export default function DashboardPage() {
                   label: t('vcd_org'),
                   value: (
                     <OrganizationCell
-                      className="mt-4"
+                      className="mt-4 tile__link--breakable"
                       withLink
                       organizationId={getOrganizationIdFromBackup(data?.data)}
                     />
@@ -121,34 +120,8 @@ export default function DashboardPage() {
                 },
               ]}
             />
-            <DashboardTile
-              title={t('billing')}
-              items={[
-                {
-                  id: 'consumedVms',
-                  label: t('consumed_vms'),
-                  value: <ConsumedVms id={id} backup={data?.data} />,
-                },
-                ...(data?.data?.currentState?.offers?.map((offer) => ({
-                  id: offer.name,
-                  label: `${offer.name
-                    .at(0)
-                    .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: <OfferProgress offer={offer} id={id} />,
-                })) || []),
-                data?.data?.currentState.offers.every(
-                  (offer) => offer.name !== 'GOLD',
-                ) && {
-                  id: 'gold',
-                  label: 'Gold',
-                  value: <ComingSoonBadge />,
-                },
-                {
-                  id: 'bilingModalities',
-                  value: <BillingLink />,
-                },
-              ].filter(Boolean)}
-            />
+
+            <BillingTile backup={data?.data} id={id} />
             <SubscriptionTile {...data?.data} />
           </DashboardGridLayout>
         </React.Suspense>

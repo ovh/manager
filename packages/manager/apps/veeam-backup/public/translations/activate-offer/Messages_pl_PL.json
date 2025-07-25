@@ -1,0 +1,6 @@
+{
+  "title": "Aktywuj opcję Gold Backup Storage",
+  "description": "Gold Backup Storage korzysta z Object Storage High Performance, z podstawową przestrzenią dyskową, a następnie kopią w innym regionie. To repozytorium kopii zapasowych jest skonfigurowane z 14-dniową niezmiennością danych.",
+  "error": "Wystąpił błąd podczas aktywacji repozytorium Gold: {{errorAPI}}",
+  "success": "Trwa aktywacja repozytorium Gold"
+}
