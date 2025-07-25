@@ -21,14 +21,11 @@ const Onboarding = () => {
       data-testid="onbaording-container"
       className="flex flex-col items-center gap-4"
     >
-      <div className="w-full text-right">
-        {!isQuantum && <Guides section={notebookGuidesSections} />}
-      </div>
       <h2>{t('title')}</h2>
       <img
-        src={isQuantum ? onboardingQuantumImgSrc : onboardingImgSrc}
+        src={onboardingQuantumImgSrc}
         className="max-h-[250px]"
-        alt="ai notebooks"
+        alt="ai QPUs"
       />
       <p className="font-bold">{t('description1')}</p>
       <p>{t('description2')}</p>
@@ -41,31 +38,6 @@ const Onboarding = () => {
           {t('createNotebookButton')}
         </Link>
       </Button>
-      {!isQuantum && (
-        <div className="grid grid-cols-1 md:grid md:grid-cols-3 gap-2">
-          <OnboardingTile
-            title={t('cardGuidetitle')}
-            description={t('cardTuto1Description')}
-            content={t('cardTuto1Content')}
-            href={getGuideUrl(GUIDES.GLOBAL_AI, locale)}
-            linkName={t('cardLink')}
-          />
-          <OnboardingTile
-            title={t('cardTutotitle')}
-            description={t('cardTuto2Description')}
-            content={t('cardTuto2Content')}
-            href={getGuideUrl(GUIDES.NOTEBOOK_ONBOARDING_TUTO_1, locale)}
-            linkName={t('cardLink')}
-          />
-          <OnboardingTile
-            title={t('cardTutotitle')}
-            description={t('cardTuto3Description')}
-            content={t('cardTuto3Content')}
-            href={getGuideUrl(GUIDES.NOTEBOOK_ONBOARDING_TUTO_2, locale)}
-            linkName={t('cardLink')}
-          />
-        </div>
-      )}
     </div>
   );
 };

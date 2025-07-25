@@ -678,7 +678,6 @@ export default [
             ],
           },
 
-          // QPU
           {
             path: ':quantum/qpu',
             ...lazyRouteConfig(() =>
