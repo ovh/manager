@@ -5,7 +5,12 @@ import {
   CartConfiguration,
   OrderedProduct,
 } from '@/data/types/cart.type';
-import Voucher from '../components/Voucher';
+import Voucher from '../components/voucher/Voucher';
+import StartupProgram from '../components/startup-program/StartupProgram';
+import {
+  useIsStartupProgramAvailable,
+  useStartupProgramAmountText,
+} from '@/data/hooks/useCredit';
 
 export type PaymentStepProps = {
   cart: Cart;
@@ -33,6 +38,11 @@ export default function PaymentStep({
     }));
   };
 
+  const { data: isStartupProgramAvailable } = useIsStartupProgramAvailable();
+  const { data: startupProgramAmountText } = useStartupProgramAmountText(
+    isStartupProgramAvailable ?? false,
+  );
+
   return (
     <div className="flex flex-col gap-8">
       <Voucher
@@ -49,6 +59,10 @@ export default function PaymentStep({
         handleValidityChange={() => {}}
         handlePaymentMethodChallenge={true}
       />
+
+      {isStartupProgramAvailable && startupProgramAmountText && (
+        <StartupProgram value={startupProgramAmountText} />
+      )}
     </div>
   );
 }
