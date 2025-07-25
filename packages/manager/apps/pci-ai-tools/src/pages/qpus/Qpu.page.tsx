@@ -14,7 +14,7 @@ import {
 import { useQuantum } from '@/hooks/useQuantum.hook';
 import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 
-interface NotebooksProps {
+interface QpuProps {
   params: {
     projectId: string;
     quantum: string;
@@ -22,7 +22,7 @@ interface NotebooksProps {
   request: Request;
 }
 
-export const Loader = async ({ params }: NotebooksProps) => {
+export const Loader = async ({ params }: QpuProps) => {
   const { projectId } = params;
 
   const qpu = 0; // Replace with actual logic to determine if QPU is available
@@ -32,7 +32,7 @@ export const Loader = async ({ params }: NotebooksProps) => {
   return null;
 };
 
-const Notebooks = () => {
+const Qpus = () => {
   const { projectId } = useParams();
   const { isQuantum, t } = useQuantum('ai-tools/notebooks');
   const { isUserActive } = useUserActivityContext();
@@ -76,4 +76,4 @@ const Notebooks = () => {
   );
 };
 
-export default Notebooks;
+export default Qpus;
