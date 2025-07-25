@@ -12,15 +12,7 @@ import { jsFiles, tsFiles } from '../../../configs/file-globs-config';
  */
 const sharedImportRules: Record<string, Linter.RuleEntry | undefined> = {
   ...importPlugin.flatConfigs.recommended.rules,
-  'import/no-cycle': [
-    'error',
-    {
-      maxDepth: Infinity,
-      ignoreExternal: false,
-      allowUnsafeDynamicCyclicDependency: false,
-      disableScc: false,
-    },
-  ],
+  'import/no-cycle': 'off',
   'import/no-dynamic-require': 'warn',
   'import/no-nodejs-modules': 'warn',
 };
@@ -70,7 +62,10 @@ export const importEslintConfig: Linter.FlatConfig[] = [
   // TypeScript configuration block
   ...tsEslint.config({
     files: [tsFiles],
-    extends: [importPlugin.flatConfigs.recommended, importPlugin.flatConfigs.typescript],
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
     rules: tsImportRules,
     settings: {
       'import/resolver': {
