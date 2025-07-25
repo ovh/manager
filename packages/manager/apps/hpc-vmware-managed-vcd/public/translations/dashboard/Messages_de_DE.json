@@ -53,5 +53,6 @@
   "managed_vcd_dashboard_password_renew_success": "Die Anfrage zur Erneuerung Ihres Admin-Passworts wurde registriert. Sie erhalten in Kürze eine E-Mail mit einem Link, über den Sie Ihr Passwort einsehen können.",
   "managed_vcd_dashboard_password_renew_error": "Beim Erneuern Ihres Admin-Passworts ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie unseren Kundensupport.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Bestätigen",
-  "managed_vcd_dashboard_cancellation_tooltip": "Wenn Sie Ihren Dienst kündigen möchten, kontaktieren Sie bitte unseren Support."
+  "managed_vcd_dashboard_cancellation_tooltip": "Wenn Sie Ihren Dienst kündigen möchten, kontaktieren Sie bitte unseren Support.",
+  "managed_vcd_dashboard_vrack_title": "vRack Netzwerke"
 }

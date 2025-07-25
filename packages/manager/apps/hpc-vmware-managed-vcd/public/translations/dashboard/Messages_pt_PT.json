@@ -53,5 +53,6 @@
   "managed_vcd_dashboard_password_renew_success": "O pedido de renovação da sua palavra-passe admin foi registado. Receberá um e-mail com uma hiperligação para consultar a sua palavra-passe.",
   "managed_vcd_dashboard_password_renew_error": "Ocorreu um erro aquando da renovação da sua palavra-passe admin. Tente novamente mais tarde ou contacte o nosso apoio ao cliente.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Validar",
-  "managed_vcd_dashboard_cancellation_tooltip": "Se pretender rescindir o seu serviço, contacte o nosso suporte."
+  "managed_vcd_dashboard_cancellation_tooltip": "Se pretender rescindir o seu serviço, contacte o nosso suporte.",
+  "managed_vcd_dashboard_vrack_title": "Redes vRack"
 }
