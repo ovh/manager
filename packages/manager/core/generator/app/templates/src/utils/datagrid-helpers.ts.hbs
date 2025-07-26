@@ -1,0 +1,21 @@
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
+/**
+ * Maps a JS data type string to a FilterTypeCategories enum value.
+ * @param type - The data type as a string.
+ * @returns The corresponding FilterTypeCategories value.
+ */
+export function mapDataTypeToFilterType(type: string): FilterTypeCategories {
+  switch (type.toLowerCase()) {
+    case 'number':
+      return FilterTypeCategories.Numeric;
+    case 'date':
+      return FilterTypeCategories.Date;
+    case 'string':
+      return FilterTypeCategories.String;
+    case 'boolean':
+      return FilterTypeCategories.Boolean;
+    default:
+      return FilterTypeCategories.String;
+  }
+}
