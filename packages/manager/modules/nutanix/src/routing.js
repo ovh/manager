@@ -2,6 +2,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
+import actionsMenu from './templates/actionsMenu.html';
 import localizationTemplate from './templates/localization.html';
 import { getNutanixOrderUrl } from './constants';
 
@@ -76,6 +77,9 @@ export default /* @ngInject */ ($stateProvider) => {
             title: $translate.instant('nutanix_cluster_admin_interface'),
             property: 'targetSpec.controlPanelURL',
           },
+          {
+            template: actionsMenu,
+          },
         ].filter((column) => !!column);
       },
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
@@ -110,6 +114,44 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     atInternet: {
       rename: 'hpc::nutanix::clusters',
+    },
+  });
+
+  $stateProvider.state('nutanix.index.resiliate', {
+    url: '/resiliate/:productId',
+
+    layout: 'modal',
+    views: {
+      modal: {
+        component: 'billingAutorenewTerminateAgoraService',
+      },
+    },
+
+    resolve: {
+      serviceType: () => 'NUTANIX',
+      goBack: /* @ngInject */ ($state, $timeout, Alerter, serviceName) => (
+        message,
+        type,
+      ) => {
+        const promise = $state.go('nutanix.index', {
+          serviceName,
+        });
+
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(`alert-${type}`, message, null, 'manager-list-alert'),
+            ),
+          );
+        }
+
+        return promise;
+      },
+      serviceInfo: /* @ngInject */ (NutanixService, serviceName) =>
+        NutanixService.getServiceInfo(serviceName),
+      serviceName: /* @ngInject */ ($transition$) =>
+        $transition$.params().productId,
+      id: /* @ngInject */ (serviceInfo) => serviceInfo.serviceId,
     },
   });
 };
