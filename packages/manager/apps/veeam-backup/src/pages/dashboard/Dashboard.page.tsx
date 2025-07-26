@@ -15,6 +15,7 @@ import {
   getOrganizationIdFromBackup,
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
+  isStatusTerminated,
   useVeeamBackup,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
@@ -54,9 +55,7 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       message={
         <>
-          {['DISABLED', 'DISABLING', 'REMOVED'].includes(
-            data?.data?.resourceStatus,
-          ) && (
+          {isStatusTerminated(data?.data?.resourceStatus) && (
             <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
           )}
           <SuccessMessages id={id} />

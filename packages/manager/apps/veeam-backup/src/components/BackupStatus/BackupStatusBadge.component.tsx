@@ -1,18 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import { ResourceStatus, VeeamBackup } from '@ovh-ux/manager-module-vcd-api';
+import {
+  BackupResourceStatus,
+  VeeamBackup,
+} from '@ovh-ux/manager-module-vcd-api';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
 
 export type BackupStatusBadgeProps = {
-  resourceStatus: ResourceStatus;
+  resourceStatus: BackupResourceStatus;
 };
 
-const colorByStatus: { [s in ResourceStatus]: OdsBadgeColor } = {
+const colorByStatus: { [s in BackupResourceStatus]: OdsBadgeColor } = {
   READY: 'success',
   CREATING: 'information',
   DISABLED: 'neutral',
   DISABLING: 'information',
   REMOVED: 'neutral',
+  REMOVING: 'neutral',
   UPDATING: 'information',
 };
 

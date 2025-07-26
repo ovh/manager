@@ -25,4 +25,16 @@ export const computeList: VCDCompute[] = [
     },
     currentTasks: [],
   },
+  {
+    id: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
+    resourceStatus: 'SUSPENDED',
+    currentState: {
+      billingType: 'MONTHLY',
+      memoryQuota: 32,
+      name: 'vhost-4-32',
+      profile: 'vhost-4-32',
+      vCPUCount: 8,
+    },
+    currentTasks: [],
+  },
 ];

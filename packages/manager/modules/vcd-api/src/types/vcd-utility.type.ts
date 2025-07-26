@@ -6,13 +6,20 @@ export type WithIam<T> = T & { iam: IamObject };
 
 export type BillingType = 'MONTHLY' | 'DEMO';
 
-export type ResourceStatus =
-  | 'READY'
-  | 'CREATING'
+type ResourceStatus = 'READY' | 'CREATING' | 'UPDATING';
+
+export type BackupResourceStatus =
+  | ResourceStatus
   | 'DISABLED'
   | 'DISABLING'
   | 'REMOVED'
-  | 'UPDATING';
+  | 'REMOVING';
+
+export type VCDResourceStatus =
+  | ResourceStatus
+  | 'DELETING'
+  | 'ERROR'
+  | 'SUSPENDED';
 
 export type Task = {
   id: string;

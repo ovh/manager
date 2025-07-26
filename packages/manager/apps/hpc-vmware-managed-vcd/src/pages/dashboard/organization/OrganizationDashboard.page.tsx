@@ -1,7 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ChangelogButton,
   HeadersProps,
@@ -15,10 +15,11 @@ import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
 import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
+import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
 
 export default function DashboardPage() {
   const { id } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
@@ -62,6 +63,10 @@ export default function DashboardPage() {
       id: subRoutes.virtualDatacenters,
       label: VIRTUAL_DATACENTERS_LABEL,
     },
+    {
+      id: subRoutes.terminate,
+      label: t(`${NAMESPACES.ACTIONS}:terminate`),
+    },
   ];
 
   return (
@@ -69,6 +74,11 @@ export default function DashboardPage() {
       tabs={tabsList}
       breadcrumbItems={breadcrumbItems}
       header={header}
+      message={
+        <MessageSuspendedService
+          status={vcdOrganisation?.data?.resourceStatus}
+        />
+      }
       backLinkLabel={t('managed_vcd_dashboard_back_link')}
       onClickReturn={() => navigate(urls.listing)}
     />

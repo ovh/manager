@@ -1,6 +1,8 @@
-import React from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import {
+  isStatusTerminated,
+  useVcdOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
@@ -41,6 +43,7 @@ export default function GeneralInformation() {
       <div className="flex flex-col gap-8">
         <OrganizationOptionsTile
           isLicenseActive={!!vcdOrganization.data?.currentState?.spla}
+          isDisabled={isStatusTerminated(vcdOrganization.data?.resourceStatus)}
         />
         <OrganizationDataProtectionTile
           vcdOrganization={vcdOrganization.data}
