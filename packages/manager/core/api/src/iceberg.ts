@@ -149,10 +149,12 @@ export async function fetchIcebergV2<T>({
     .build();
 
   const params = new URLSearchParams();
-
   if (filters?.length) {
     const tagsFilterParams = transformTagsFiltersToQuery(filters);
-    if (tagsFilterParams) {
+    if (tagsFilterParams && route.includes('/iam/resource')) {
+      params.append('tags', tagsFilterParams);
+    }
+    if (tagsFilterParams && !route.includes('/iam/resource')) {
       params.append('iamTags', tagsFilterParams);
     }
   }
