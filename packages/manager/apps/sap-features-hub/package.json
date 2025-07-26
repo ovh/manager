@@ -17,7 +17,7 @@
     "test": "TZ=UTC manager-test run"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.10.0",
+    "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/manager-common-translations": "^0.13.0",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
@@ -37,7 +37,7 @@
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.54.2",
+    "react-hook-form": "^7.61.1",
     "react-i18next": "^14.0.5",
     "react-router-dom": "^6.3.0",
     "tailwindcss": "^3.4.4",
