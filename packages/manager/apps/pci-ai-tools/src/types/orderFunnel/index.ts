@@ -1,3 +1,4 @@
+import { ResourcesPerUnit } from '@datatr-ux/ovhcloud-types/cloud/project/ai/capabilities/flavor/ResourcesPerUnit';
 import ai from '../AI';
 import catalog from '../Catalog';
 
@@ -25,6 +26,17 @@ export interface ImagePartnerApp extends ai.capabilities.app.Image {
 export interface FrameworkWithVersion {
   framework?: string;
   version?: string;
+}
+
+export interface Qpu {
+  id: string;
+  name: string;
+  type: string;
+  default: boolean;
+  description: string;
+  qubits: number;
+  pricing: catalog.Pricing[];
+  resourcesPerUnit: ResourcesPerUnit;
 }
 
 export interface OrderLabel {
@@ -128,6 +140,7 @@ export interface NotebookOrderResult {
   };
   sshKey: string[];
   volumes: OrderVolumes[];
+  QPUFlavor?: Qpu;
 }
 
 export interface JobOrderResult {
