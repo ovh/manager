@@ -12,6 +12,9 @@ interface PciMaintenanceProps {
   maintenanceURL: string;
 }
 
+/**
+ * @deprecated PciMaintenanceBanner will be moved in @ovh-ux/manager-pci-common v3
+ */
 export function PciMaintenanceBanner({
   productName,
   projectName,
