@@ -4,5 +4,5 @@
   "delete_license_modal_confirm": "Confirmer",
   "delete_license_modal_cancel": "Annuler",
   "delete_license_error_api": "Une erreur est survenue lors de la suppression de la licence",
-  "delete_license_success_api": "La demande de suppression license a été prise en compte"
+  "delete_license_success_api": "Votre licence est en cours de suppression. L’opération peut prendre quelques instants avant d’être effective."
 }
