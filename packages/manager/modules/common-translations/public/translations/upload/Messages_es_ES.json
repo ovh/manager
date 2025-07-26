@@ -3,14 +3,14 @@
   "drag_and_drop_files": "Arrastrar y soltar archivos",
   "browse_files": "Examinar archivos",
   "max_file": "Número máximo de archivos: ",
-  "max_size": "Tamaño máximo permitido: ",
+  "max_size": "Tamaño máximo autorizado: ",
   "accepted_type": "Tipo de archivo aceptado: {{ type }}",
   "accepted_types": "Tipos de archivo aceptados: {{ types }}",
   "uploaded_file": "Archivo importado",
   "uploaded_files": "Archivos importados",
   "error_file_max-file-reached": "Se alcanzó el número máximo de archivos",
-  "error_file_size-too-large": "El archivo seleccionado supera el tamaño máximo permitido",
-  "error_files_size-too-large": "Algunos archivos superan el tamaño máximo permitido",
-  "error_file_wrong-format": "No se permite el tipo de archivo seleccionado",
-  "error_files_wrong-format": "Algunos tipos de archivo no están permitidos"
+  "error_file_size-too-large": "El archivo seleccionado supera el tamaño máximo autorizado",
+  "error_files_size-too-large": "Algunos archivos superan el tamaño máximo autorizado",
+  "error_file_wrong-format": "El tipo de archivo seleccionado no está autorizado",
+  "error_files_wrong-format": "Algunos tipos de archivo no están autorizados"
 }

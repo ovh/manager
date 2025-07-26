@@ -1,7 +1,7 @@
 {
-  "drag_and_drop_file": "Trascina e rilascia un file",
-  "drag_and_drop_files": "Trascina e rilascia file",
-  "browse_files": "Sfoglia i file",
+  "drag_and_drop_file": "Trascinare un file",
+  "drag_and_drop_files": "Trascinare i file",
+  "browse_files": "Sfogliare i file",
   "max_file": "Numero massimo di file: ",
   "max_size": "Dimensione massima consentita: ",
   "accepted_type": "Tipo di file accettato: {{ type }}",
