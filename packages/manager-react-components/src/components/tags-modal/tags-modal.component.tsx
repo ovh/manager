@@ -21,7 +21,7 @@ export interface TagsModalProps {
   tags: { [key: string]: string };
   displayInternalTags?: boolean;
   onCancel: () => void;
-  onEditTags: () => void;
+  onEditTags?: () => void;
 }
 
 export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
@@ -85,7 +85,12 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
         </div>
 
         <div className="w-full min-w-[85px] h-[120px] overflow-auto">
-          {results && <TagsList tags={results} />}
+          {results && (
+            <TagsList
+              tags={results}
+              displayInternalTags={displayInternalTags}
+            />
+          )}
         </div>
         <OdsButton
           variant={ODS_BUTTON_VARIANT.ghost}
@@ -96,15 +101,16 @@ export const TagsModal = React.forwardRef<HTMLOdsModalElement, TagsModalProps>(
           className="mt-4"
           type="button"
         />
-
-        <OdsButton
-          slot="actions"
-          color={'primary'}
-          onClick={onEditTags}
-          label={t('edit_tags')}
-          className="mt-4"
-          type="button"
-        />
+        {onEditTags && (
+          <OdsButton
+            slot="actions"
+            color={'primary'}
+            onClick={onEditTags}
+            label={t('edit_tags')}
+            className="mt-4"
+            type="button"
+          />
+        )}
       </OdsModal>
     );
   },
