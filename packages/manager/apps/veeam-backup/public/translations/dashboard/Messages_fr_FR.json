@@ -3,7 +3,7 @@
   "general_informations": "Informations générales",
   "display_name": "Nom",
   "product_status": "Statut",
-  "vcd_org": "Organisation VCD",
+  "vcd_org": "Organisation {{productName}}",
   "location": "Localisation",
   "region": "Région",
   "billing": "Facturation",

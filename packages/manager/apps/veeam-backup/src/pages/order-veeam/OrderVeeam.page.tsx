@@ -17,7 +17,10 @@ import { useVeeamBackupVmConsumptionPricing } from '@ovh-ux/manager-module-vcd-a
 import { BillingLink } from '@/components/Links/BillingLink.component';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { OrderVeeamStep2 } from './OrderVeeamStep2.component';
-import { productName } from '@/veeam-backup.config';
+import {
+  productName,
+  VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+} from '@/veeam-backup.config';
 import { Loading } from '@/components/Loading/Loading';
 
 export default function OrderVeeamPage() {
@@ -40,7 +43,11 @@ export default function OrderVeeamPage() {
       }}
       subtitle={t('select_offer_title')}
     >
-      <OdsText>{t('select_offer_description')}</OdsText>
+      <OdsText>
+        {t('select_offer_description', {
+          vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+        })}
+      </OdsText>
       <BillingLink className="block mb-4" />
       {isError ? (
         <OdsMessage color="danger">
@@ -62,7 +69,9 @@ export default function OrderVeeamPage() {
                 {t('offer_content_part1')}
               </OdsText>
               <OdsText className="block mb-2">
-                {t('offer_content_part2')}
+                {t('offer_content_part2', {
+                  vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+                })}
               </OdsText>
               <OdsText>
                 <Price

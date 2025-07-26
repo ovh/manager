@@ -20,7 +20,10 @@ import {
 import { labels } from '@/test-helpers';
 import { OrderVeeamStep2 } from './OrderVeeamStep2.component';
 import '@testing-library/jest-dom';
-import { appName } from '@/veeam-backup.config';
+import {
+  appName,
+  VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+} from '@/veeam-backup.config';
 import { translations } from '@/test-helpers/labels';
 
 let i18n: i18nType;
@@ -89,7 +92,10 @@ describe('order', () => {
 
     // then
     await assertTextVisibility(
-      labels.orderVeeam.all_organization_backed_up_message,
+      labels.orderVeeam.all_organization_backed_up_message.replace(
+        '{{vcdProductName}}',
+        VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+      ),
     );
   });
 

@@ -3,7 +3,7 @@
   "general_informations": "Informações gerais",
   "display_name": "Nome",
   "product_status": "Estado",
-  "vcd_org": "Organização VCD",
+  "vcd_org": "Organização {{productName}}",
   "region": "Região",
   "billing": "Faturação",
   "consumed_vms": "MV consumidas",

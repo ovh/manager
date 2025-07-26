@@ -8,6 +8,7 @@ import {
 import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import '@testing-library/jest-dom';
+import { VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME } from '@/veeam-backup.config';
 
 describe('order', () => {
   afterEach(() => vitest.resetAllMocks());
@@ -56,7 +57,12 @@ describe('order', () => {
 
     await waitFor(
       () => {
-        assertTextVisibility(labels.orderVeeam.choose_org_title);
+        assertTextVisibility(
+          labels.orderVeeam.choose_org_title.replace(
+            '{{vcdProductName}}',
+            VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+          ),
+        );
       },
       { timeout: 10_000 },
     );
@@ -76,7 +82,10 @@ describe('order', () => {
     await waitFor(
       () => {
         assertTextVisibility(
-          labels.orderVeeam.all_organization_backed_up_message,
+          labels.orderVeeam.all_organization_backed_up_message.replace(
+            '{{vcdProductName}}',
+            VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+          ),
         );
       },
       { timeout: 10_000 },

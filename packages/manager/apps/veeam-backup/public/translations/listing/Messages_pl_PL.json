@@ -4,7 +4,7 @@
   "name_cell": "Nazwa",
   "status_cell": "Status",
   "ovhref_cell": "Opis",
-  "vcdorg_cell": "Organizacja VCD",
+  "vcdorg_cell": "Organizacja {{productName}}",
   "region_cell": "Region",
   "createdat_cell": "Data utworzenia",
   "edit_name_action": "Zmień nazwę",

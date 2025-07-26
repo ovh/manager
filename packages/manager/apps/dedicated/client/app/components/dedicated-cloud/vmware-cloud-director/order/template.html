@@ -1,5 +1,5 @@
 <oui-modal
-    data-heading="{{:: 'dedicatedCloud_vmware_cloud_director_order_title' | translate }}"
+    data-heading="{{:: 'dedicatedCloud_vmware_cloud_director_order_title' | translate : {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME} }}"
     data-primary-action="$ctrl.order()"
     data-primary-label="{{ 'dedicatedCloud_vmware_cloud_director_order_' + ($ctrl.ordered ? 'terminate' : 'confirm') | translate }}"
     data-secondary-label="{{:: 'dedicatedCloud_vmware_cloud_director_order_cancel' | translate }}"
@@ -36,6 +36,7 @@
         >
             <span
                 data-translate="dedicatedCloud_vmware_cloud_director_order_terms"
+                data-translate-values=":: {productName: $ctrl.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME}"
             ></span>
             <i
                 class="pl-1 oui-icon oui-icon-external-link"
