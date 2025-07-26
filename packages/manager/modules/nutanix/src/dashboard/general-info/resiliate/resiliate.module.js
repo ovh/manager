@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
+
 import routing from './resiliate.routing';
 
 const moduleName = 'ovhManagerNutanixDashboardGeneralInfoResiliate';
