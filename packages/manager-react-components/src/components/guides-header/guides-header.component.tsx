@@ -13,6 +13,9 @@ export interface GuidesHeaderProps {
   onGuideClick?: (guide: Guide) => void;
 }
 
+/**
+ * @deprecated Use `GuideMenu` component from MRC V3 instead.
+ */
 export function GuidesHeader({
   label,
   guides,

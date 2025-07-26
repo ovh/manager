@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * @deprecated Use `Text` component from `@ovhcloud/ods-react` with the preset `heading-1` instead.
+ */
 export const Title: React.FC<
   React.PropsWithChildren<{
     className?: string;
@@ -14,6 +17,9 @@ export const Title: React.FC<
   );
 };
 
+/**
+ * @deprecated Use `Text` component from `@ovhcloud/ods-react` with the preset `heading-3` instead.
+ */
 export const Subtitle: React.FC<
   React.PropsWithChildren<{
     className?: string;

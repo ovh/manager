@@ -25,6 +25,9 @@ export interface GuideButtonProps {
   isLoading?: boolean;
 }
 
+/**
+ * @deprecated Use `GuideMenu` component from MRC V3 instead.
+ */
 export const GuideButton: React.FC<GuideButtonProps> = ({
   isLoading,
   items,
