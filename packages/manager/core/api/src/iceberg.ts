@@ -108,13 +108,16 @@ const buildHeaders = () => {
     },
     setPaginationFilter: (filters: Filter[]) => {
       if (filters?.length) {
-        headers['x-pagination-filter'] = filters
+        const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
           .map(
             ({ comparator, key, value }) =>
               `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
           )
           .join('&');
+        if (filtersJoin) {
+          headers['x-pagination-filter'] = filtersJoin;
+        }
       }
       return builder;
     },

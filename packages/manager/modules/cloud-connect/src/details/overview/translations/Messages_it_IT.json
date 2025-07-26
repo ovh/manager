@@ -51,7 +51,7 @@
   "cloud_connect_pop_port_lock": "Blocco della porta",
   "cloud_connect_pop_port_id": "ID Port",
   "cloud_connect_pop_optic_status": "Stati ottici",
-  "cloud_connect_pop_optic_description": "(verificato ogni 5 minuti)",
+  "cloud_connect_pop_optic_description": "Verificato ogni 5 minuti",
   "cloud_connect_pop_configuration_status": "Stato della configurazione",
   "cloud_connect_dc_title": "Configurazione AZ",
   "cloud_connect_dc_add_button": "Aggiungi una configurazione",
