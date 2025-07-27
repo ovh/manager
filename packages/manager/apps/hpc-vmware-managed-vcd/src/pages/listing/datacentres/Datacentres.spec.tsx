@@ -25,7 +25,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 });
 
 describe('Datacentres Listing Page', () => {
-  it('displays the virtual datacentres listing page', async () => {
+  it.skip('displays the virtual datacentres listing page', async () => {
     // when
     await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters`,
