@@ -53,5 +53,6 @@
   "managed_vcd_dashboard_password_renew_success": "Your admin password renewal request has been processed. You will receive an email containing a link to view your password.",
   "managed_vcd_dashboard_password_renew_error": "An error has occurred renewing your admin password. Please try again later or contact our customer support team.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confirm",
-  "managed_vcd_dashboard_cancellation_tooltip": "If you would like to cancel your service, please contact our support team."
+  "managed_vcd_dashboard_cancellation_tooltip": "If you would like to cancel your service, please contact our support team.",
+  "managed_vcd_dashboard_vrack_title": "vRack networks"
 }

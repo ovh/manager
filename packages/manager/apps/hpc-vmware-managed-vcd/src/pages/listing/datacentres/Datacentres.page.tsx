@@ -1,27 +1,41 @@
-import React from 'react';
-import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
+import {
+  DataGridTextCell,
+  Links,
+  LinkType,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import {
   getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
   VCDDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useOvhTracking,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
+
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { capitalize } from '@/utils/capitalize';
-import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
+import { VRACK_PATH, DEDICATED_PATH } from './Datacentres.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const datacentreDashboardHref = useHref(
+    urls.datacentreDashboard
+      .replace(subRoutes.dashboard, id)
+      .replace(subRoutes.vdcId, vcdDatacentre.id),
+  );
   const { trackClick } = useOvhTracking();
 
   return (
@@ -29,12 +43,8 @@ const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
       <Links
         onClickReturn={() => {
           trackClick(TRACKING.datacentreListing.details);
-          navigate(
-            urls.datacentreDashboard
-              .replace(subRoutes.dashboard, id)
-              .replace(subRoutes.vdcId, vcdDatacentre.id),
-          );
         }}
+        href={datacentreDashboardHref}
         label={vcdDatacentre.currentState.name}
         data-testid={TEST_IDS.listingDatacentreNameLink}
       />
@@ -80,11 +90,37 @@ const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
   </DataGridTextCell>
 );
 
+const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
+  const { data: url } = useNavigationGetUrl([
+    DEDICATED_PATH,
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack}`,
+    {},
+  ]);
+
+  return (
+    <DataGridTextCell>
+      {vcdDatacentre.currentState?.vrack ? (
+        <Links
+          href={url as string}
+          target="_blank"
+          type={LinkType.external}
+          label={vcdDatacentre.currentState.vrack}
+        ></Links>
+      ) : (
+        ''
+      )}
+    </DataGridTextCell>
+  );
+};
 /* ======= listing page ======== */
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
   const { t: tVdc } = useTranslation('datacentres');
   const { id } = useParams();
+  const { data: featuresAvailable } = useFeatureAvailability([
+    FEATURE_FLAGS.VRACK,
+  ]);
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
 
   const columns = [
     {
@@ -117,7 +153,12 @@ export default function DatacentresListing() {
       cell: DatagridCpuSpeedCell,
       label: tVdc('managed_vcd_vdc_vcpu_speed'),
     },
-  ];
+    isVrackFeatureAvailable && {
+      id: 'vRack',
+      cell: DatagridVrackCell,
+      label: VRACK_LABEL,
+    },
+  ].filter(Boolean);
 
   const datagridProps: TDatagridContainerProps = {
     title: VIRTUAL_DATACENTERS_LABEL,
