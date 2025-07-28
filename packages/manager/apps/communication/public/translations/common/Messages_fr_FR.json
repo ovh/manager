@@ -1,0 +1,10 @@
+{
+  "title": "Mes communications",
+  "description": "Retrouvez l'ensemble des communications qu'OVH vous a envoyé, exceptées les demandes d'assistance.",
+  "tab_communications": "Mes communications",
+  "tab_contacts": "Contacts",
+  "tab_settings": "Paramètres de diffusion",
+  "priority_high": "Élevé",
+  "priority_medium": "Moyen",
+  "priority_low": "Faible"
+}
