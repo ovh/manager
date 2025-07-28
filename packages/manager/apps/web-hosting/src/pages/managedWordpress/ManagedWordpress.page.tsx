@@ -12,7 +12,6 @@ import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useManagedWordpressResource } from '@/data/hooks/managedWordpressResource/useManagedWordpressResource';
 import { ManagedWordpressResourceType } from '@/data/type';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
-import { useOverridePage } from '@/hooks';
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 
 export default function ManagedWordpressPage() {
@@ -22,7 +21,6 @@ export default function ManagedWordpressPage() {
     NAMESPACES.ACTIONS,
     NAMESPACES.STATUS,
   ]);
-  const isOverridePage = useOverridePage();
 
   const columns: DatagridColumn<ManagedWordpressResourceType>[] = useMemo(
     () => [
@@ -51,21 +49,19 @@ export default function ManagedWordpressPage() {
 
   return (
     <>
-      {!isOverridePage && (
-        <BaseLayout
-          breadcrumb={<Breadcrumb />}
-          header={{
-            title: t('common:managed_wordpress'),
-          }}
-        >
-          <Datagrid
-            isLoading={isLoading}
-            columns={columns}
-            items={data || []}
-            totalItems={data?.length || 0}
-          />
-        </BaseLayout>
-      )}
+      <BaseLayout
+        breadcrumb={<Breadcrumb />}
+        header={{
+          title: t('common:managed_wordpress'),
+        }}
+      >
+        <Datagrid
+          isLoading={isLoading}
+          columns={columns}
+          items={data || []}
+          totalItems={data?.length || 0}
+        />
+      </BaseLayout>
       <Outlet />
     </>
   );
