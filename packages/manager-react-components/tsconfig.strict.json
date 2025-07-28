@@ -9,7 +9,8 @@
 
     "./src/components/Breadcrumb/Breadcrumb.props.ts",
     "./src/components/Breadcrumb/Breadcrumb.component.tsx",
-    "./src/hooks/breadcrumb/useBreadcrumb.tsx"
+    "./src/hooks/breadcrumb/useBreadcrumb.tsx",
+    "./src/components/tags-list/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
