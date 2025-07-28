@@ -14,7 +14,7 @@ export const TRACKING_NAME = 'dedicated::account::carbon_consumption';
 
 export const API_FETCH_INTERVAL = 3000;
 
-export const SERVICES_AVAILABLE = ['baremetal', 'hpc'];
+export const SERVICES_AVAILABLE = ['baremetal', 'hpc', 'publiccloud'];
 
 export default {
   TASK_STATUS_ENUM,
