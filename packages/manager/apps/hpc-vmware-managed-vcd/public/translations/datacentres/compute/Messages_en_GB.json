@@ -4,5 +4,5 @@
   "managed_vcd_vdc_compute_billing_MONTHLY": "Monthly",
   "managed_vcd_vdc_compute_id": "ID",
   "managed_vcd_vdc_compute_order_cta": "Order a Virtual Host",
-  "managed_vcd_vdc_compute_special_offer": "Monthly subscription applicable until 31 December 2025 for any additional resources of the {{productName}} service subscribed to by 30 November 2025 at the latest. This offer is reserved for customers who accepted the migration of their Managed VMware vSphere service to the Managed VCD service (now {{productName}}) in 2024. Offer cannot be used in conjunction with any other offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions."
+  "managed_vcd_vdc_compute_special_offer": "Monthly subscription valid until 31 December 2025 for any additional {{productName}} resources subscribed to by 30 November 2025. This offer applies exclusively to customers who opted in 2024 to migrate from Managed VMware vSphere to Managed VCD (now {{productName}}). Offer cannot be used in conjunction with any other special offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions."
 }

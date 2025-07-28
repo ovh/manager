@@ -5,7 +5,7 @@
   "dedicatedCloud_vmware_cloud_director_order_host": "Host {{host}}: ",
   "dedicatedCloud_vmware_cloud_director_order_hosts_list": "Lista dos hosts do {{pcc}}:",
   "dedicatedCloud_vmware_cloud_director_order_success": "Para confirmar a migração do seu serviço, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a> .",
-  "dedicatedCloud_vmware_cloud_director_order_error": "Ocorreu um erro durante a confirmação da migração para a oferta {{productName}}",
+  "dedicatedCloud_vmware_cloud_director_order_error": "Ocorreu um erro aquando da confirmação da migração para a oferta {{productName}}",
   "dedicatedCloud_vmware_cloud_director_order_cancel": "Anular",
   "dedicatedCloud_vmware_cloud_director_order_confirm": "Seguinte",
   "dedicatedCloud_vmware_cloud_director_order_terminate": "Fechar"

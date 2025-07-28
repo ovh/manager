@@ -1,5 +1,5 @@
 {
-  "managed_vcd_onboarding_description_part1": "{{productName}} é uma solução de virtualização inteiramente operada pela OVHcloud para executar as suas aplicações, as suas VMs e os seus containers sem ter de se preocupar com as infraestruturas subjacentes.",
+  "managed_vcd_onboarding_description_part1": "{{productName}} é uma solução de virtualização inteiramente operada pela OVHcloud para executar aplicações, MV e containers sem que tenha de se preocupar com as infraestruturas subjacentes.",
   "managed_vcd_onboarding_description_part2": "Disponha de uma interface simples e unificada para gerir as suas pools de recursos de forma flexível no âmbito dos datacenters virtuais, assim como de uma solução de backup Veeam gerido.",
   "managed_vcd_onboarding_order": "Encomendar",
   "managed_vcd_onboarding_more_info": "Saber mais",

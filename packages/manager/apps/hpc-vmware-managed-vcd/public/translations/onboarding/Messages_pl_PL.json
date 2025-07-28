@@ -1,5 +1,5 @@
 {
-  "managed_vcd_onboarding_description_part1": "{{productName}} to rozwiązanie do wirtualizacji w pełni obsługiwane przez OVHcloud, dzięki któremu uruchomisz aplikacje, wirtualne maszyny i kontenery bez konieczności martwienia się o podstawową infrastrukturę.",
+  "managed_vcd_onboarding_description_part1": "{{productName}} to rozwiązanie do wirtualizacji, które jest w pełni obsługiwane przez OVHcloud i służy do uruchamiania aplikacji, wirtualnych maszyn oraz kontenerów. Nie musisz martwić się o infrastrukturę.",
   "managed_vcd_onboarding_description_part2": "Masz do dyspozycji prosty, ujednolicony interfejs do elastycznego zarządzania pulami zasobów w wirtualnych centrach danych, a także zarządzane rozwiązanie Veeam do tworzenia kopii zapasowych.",
   "managed_vcd_onboarding_order": "Zamów",
   "managed_vcd_onboarding_more_info": "Dowiedz się więcej",

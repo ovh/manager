@@ -205,7 +205,7 @@
   "sidebar_veeam_backup": "Managed Veeam for VCD",
   "sidebar_all_veeam_backup": "Alle Dienste",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
-  "sidebar_vmware_vcd": "Public VCF as a Service",
+  "sidebar_vmware_vcd": "Public VCF as-a-Service",
   "sidebar_cloud_changelog": "Cloud-Changelog",
   "sidebar_hosting_and_collab_changelog": "Changelog für Hosting und Zusammenarbeit",
   "sidebar_roadmap_changelog": "Roadmap und Changelog",

@@ -4,7 +4,7 @@
   "select_offer_description": "Añada el servicio Veeam Data Platform a su infraestructura {{vcdProductName}}. La selección de la organización {{vcdProductName}} se realizará en el siguiente paso. Más información sobre las modalidades de facturación.",
   "offer_title": "Activar {{productName}}",
   "offer_content_part1": "El servicio Veeam Data Platform dispone de un plugin VCD para guardar las MV y las vApps desde cualquier Virtual Data Center (VDC) de la organización.",
-  "offer_content_part2": "Está disponible en el nivel de organización para cualquier usuario de {{vcdProductName}} que tenga el rol de administrador de la organización.",
+  "offer_content_part2": "Está disponible a nivel de organización para cualquier usuario de {{vcdProductName}} que tenga el rol de administrador de la organización.",
   "offer_price": "/mes por MV + consumo de almacenamiento",
   "next_step": "Siguiente",
   "choose_org_title": "Elija una organización {{vcdProductName}}",
