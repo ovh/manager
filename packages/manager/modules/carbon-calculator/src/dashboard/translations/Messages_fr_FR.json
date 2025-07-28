@@ -10,6 +10,7 @@
   "carbon_calculator_dashboard_billing_download": "Télécharger mon empreinte de {{month}}",
   "carbon_calculator_dashboard_billing_explanation_hpc": "Hosted Private Cloud",
   "carbon_calculator_dashboard_billing_explanation_baremetal": "infrastructure Baremetal",
+  "carbon_calculator_dashboard_billing_explanation_publiccloud": "Public Cloud",
   "carbon_calculator_dashboard_billing_explanation_service": "de vos services <strong>{{serviceName}}</strong>",
   "carbon_calculator_dashboard_billing_explanation_contact": "dont vous êtes le <strong>contact facturation</strong>"
 }
