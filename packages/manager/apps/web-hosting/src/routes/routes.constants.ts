@@ -6,20 +6,7 @@ export const subRoutes = {
 export const urls = {
   // ROOT
   root: '',
-<<<<<<< HEAD
   wordpressManaged: '/wordpress-managed',
-=======
-  websites: '/websites',
-  onboarding: '/onboarding',
-  managedWordpress: '/managed-wordpress',
-  managedWordpressResource: `/managed-wordpress/${subRoutes.serviceName}`,
-  managedWordpressResourceGeneralInformation: `/managed-wordpress/${subRoutes.serviceName}`,
-  managedWordpressResourceTasks: `/managed-wordpress/${subRoutes.serviceName}/tasks`,
-  dashboard: `/${subRoutes.serviceName}`,
-  orderDomain: `/${subRoutes.serviceName}/order-domain`,
-  addDomain: `/${subRoutes.serviceName}/add-domain`,
-  ssl: `/${subRoutes.serviceName}/ssl`,
->>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
   hosting: '/web/hosting',
 
   // COMMON
@@ -42,4 +29,10 @@ export const urls = {
   task: `/${subRoutes.serviceName}/task`,
 
   // MANAGED CMS
+  managedWordpressResource: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceGeneralInformation: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceCreate: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/create`,
+  managedWordpressResourceImport: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/import`,
+  managedWordpressResourceTasks: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/tasks`,
+  managedWordpressResourceDeleteModal: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/delete-modal`,
 };
