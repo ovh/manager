@@ -13,14 +13,14 @@ import { urls } from '@/routes/routes.constants';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 import { useGuideItems } from './ManagedWordPressResource.constants';
-import { useGenerateUrl } from '@/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { GENERAL_INFORMATION, TASKS } from '@/utils/tracking.constants';
 
 export default function ManagedWordpressResourcePage() {
   const { t } = useTranslation(['common', 'dashboard']);
   const { serviceName } = useParams();
   const basePath = useResolvedPath('').pathname;
-
+  const isOverridedPage = useOverridePage();
   const tabsList: TabItemProps[] = [
     {
       name: 'general-information',
@@ -41,18 +41,21 @@ export default function ManagedWordpressResourcePage() {
       ]),
     },
   ];
+
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
-      header={{
-        title: serviceName,
-        headerButton: <GuideButton items={useGuideItems(t)} />,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-        description: t(
-          'dashboard:hosting_managed_wordpress_websites_description',
-        ),
-      }}
-      tabs={<TabsPanel tabs={tabsList} />}
+      header={
+        !isOverridedPage && {
+          title: serviceName,
+          headerButton: <GuideButton items={useGuideItems(t)} />,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+          description: t(
+            'dashboard:hosting_managed_wordpress_websites_description',
+          ),
+        }
+      }
+      tabs={!isOverridedPage && <TabsPanel tabs={tabsList} />}
     >
       <Outlet />
     </BaseLayout>
