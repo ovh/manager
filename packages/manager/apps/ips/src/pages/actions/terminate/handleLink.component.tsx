@@ -9,9 +9,7 @@ export const HandleLinkNavigation = ({
 }: Readonly<{ children?: string }>) => {
   const { shell, environment } = React.useContext(ShellContext);
   const region = useMemo(() => environment.getRegion(), [shell]);
-  const appName = environment.getApplicationURL('new-billing')
-    ? 'new-billing'
-    : 'dedicated';
+  const appName = 'billing';
   const [href, setHref] = React.useState('');
 
   React.useEffect(() => {
@@ -19,7 +17,7 @@ export const HandleLinkNavigation = ({
       try {
         const response = await shell.navigation.getURL(
           appName,
-          '#/billing/autorenew/services',
+          '#/autorenew/services',
           {},
         );
         setHref(response as string);
