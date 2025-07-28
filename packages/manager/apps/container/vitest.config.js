@@ -1,31 +1,24 @@
-import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import path from "path";
+import {
+  sharedConfig,
+  mergeConfig,
+  createConfig,
+  defaultExcludedFiles,
+} from "@ovh-ux/manager-tests-setup";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/interface',
-        'src/__tests__',
-        'src/**/*constants.ts',
-        'src/**/*enum.ts',
-        'src/vite-*.ts',
-      ],
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: "./src/setupTests.ts",
+      coverage: {
+        exclude: [...defaultExcludedFiles],
+      },
     },
-    exclude: ['src/__tests__', 'node_modules', 'dist'],
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
     },
-    dedupe: ['@ovh-ux/ovh-payment-method'],
-    mainFields: ['module'],
-  },
-});
+  }),
+);
