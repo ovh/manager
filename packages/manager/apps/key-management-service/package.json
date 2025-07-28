@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.32.4",
+  "version": "0.32.5",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
@@ -12,10 +12,10 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "lint:check": "eslint --ext .ts,.tsx . && tsc --noEmit",
     "start": "tsc && vite",
     "test": "vitest run --reporter=verbose",
-    "test:coverage": "vitest run --coverage",
-    "lint:check": "eslint --ext .ts,.tsx . && tsc --noEmit"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@ovh-ux/logs-to-customer": "^1.5.6",
