@@ -267,9 +267,21 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
+      isVmacAlreadyExist && {
+        id: 8,
+        label: t('listingActionDeleteVirtualMac'),
+        onClick: () =>
+          navigate(
+            urls.deleteVirtualMac
+              .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.service, serviceName),
+          ),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasHousingServiceAttachedToIp &&
       ipMitigation && {
-        id: 8,
+        id: 9,
         label: isDefaultMitigation
           ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
           : t('listingManageMitigation_PERMANENT_to_AUTO'),
