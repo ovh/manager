@@ -2,7 +2,7 @@ import { ColumnSort } from '@ovh-ux/manager-react-components';
 import apiClient from '@ovh-ux/manager-core-api';
 import { defaultCompareFunctionSortKey } from './utils';
 import {
-  OkmsAllServiceKeys,
+  OkmsServiceKey,
   OkmsServiceKeyPostPayload,
   OkmsServiceKeyPutPayload,
 } from '@/types/okmsServiceKey.type';
@@ -13,7 +13,7 @@ import {
 
 export const getListingOkmsServiceKey = async (
   okmsId: string,
-): Promise<{ data: OkmsAllServiceKeys[] }> => {
+): Promise<{ data: OkmsServiceKey[] }> => {
   return apiClient.v2.get(`okms/resource/${okmsId}/serviceKey`);
 };
 
@@ -22,17 +22,15 @@ export const getOkmsServiceKeyResourceListQueryKey = (okmsId: string) => [
 ];
 
 export const sortOkmsServiceKey = (
-  okms: OkmsAllServiceKeys[],
+  okms: OkmsServiceKey[],
   sorting: ColumnSort,
-): OkmsAllServiceKeys[] => {
+): OkmsServiceKey[] => {
   const data = [...okms];
 
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(
-      defaultCompareFunctionSortKey(sortKey as keyof OkmsAllServiceKeys),
-    );
+    data.sort(defaultCompareFunctionSortKey(sortKey as keyof OkmsServiceKey));
     if (desc) {
       data.reverse();
     }
@@ -59,7 +57,7 @@ export const getOkmsServiceKeyResource = async ({
 }: {
   okmsId: string;
   keyId: string;
-}): Promise<{ data: OkmsAllServiceKeys }> => {
+}): Promise<{ data: OkmsServiceKey }> => {
   return apiClient.v2.get(
     `okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`,
   );

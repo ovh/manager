@@ -20,7 +20,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
@@ -28,7 +28,7 @@ import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
-export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
+export const DatagridCellId = (props: OKMS | OkmsServiceKey) => {
   return <Clipboard className="w-full" value={props.id} />;
 };
 
@@ -87,7 +87,7 @@ export const DatagridResourceServiceKeyCountCell = (kms: OKMS) => {
   return <DataGridTextCell>{kms.serviceKeyCount}</DataGridTextCell>;
 };
 
-export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
+export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
@@ -108,16 +108,16 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   );
 };
 
-export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
+export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
   return <Clipboard className="w-full" value={props.id} />;
 };
 
-export const DatagridCellType = (props: OkmsAllServiceKeys) => {
+export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
   return <DataGridTextCell>{translatedValue}</DataGridTextCell>;
 };
 
-export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
+export const DatagridCreationDate = (props: OkmsServiceKey) => {
   const date = new Date(Date.parse(props.createdAt));
 
   const formattedDate = useFormattedDate({
@@ -136,12 +136,12 @@ export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
   return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
 };
 
-export const DatagridStatus = (props: OkmsAllServiceKeys) => {
+export const DatagridStatus = (props: OkmsServiceKey) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
 export const DatagridServiceKeyActionMenu = (
-  serviceKey: OkmsAllServiceKeys,
+  serviceKey: OkmsServiceKey,
   okms: OKMS,
 ) => {
   const actionList = useServiceKeyActionsList(okms, serviceKey, true);

@@ -9,7 +9,8 @@ interface IfilterIdentities {
 export const filterIdentities = ({ identities, type }: IfilterIdentities) => {
   const decodedIdentities = identities
     .map((i) => decodeIdentity(i))
-    .filter((i) => i?.type === type);
+    .filter((i) => i?.type === type)
+    .filter((i) => i !== null);
 
   return decodedIdentities;
 };
