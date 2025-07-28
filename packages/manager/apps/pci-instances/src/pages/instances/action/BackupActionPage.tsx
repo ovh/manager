@@ -188,14 +188,17 @@ const BackupActionPage = ({
 }: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
   const locale = i18n.language.replace('_', '-');
-  const defaultSnapshotName = useMemo(
+  const dateFormatter = useMemo(
     () =>
-      `${instance?.name} ${new Date().toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}`,
-    [instance?.name, locale],
+      new Intl.DateTimeFormat(locale, {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }),
+    [locale],
+  );
+  const defaultSnapshotName = useMemo(
+    () => `${instance?.name} ${dateFormatter.format(new Date())}`,
+    [instance?.name, dateFormatter],
   );
 
   const {
