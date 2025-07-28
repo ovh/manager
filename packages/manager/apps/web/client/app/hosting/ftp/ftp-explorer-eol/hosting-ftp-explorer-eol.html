@@ -1,0 +1,20 @@
+<div data-ng-controller="HostingFtpExplorerEolCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="resetAction"
+        data-wizard-hide-cancel-button="true"
+        data-wizard-confirm-button-text="'wizard_close' | translate"
+        data-wizard-title="'hosting_tab_FTP_configuration_explorer_title' | translate"
+    >
+        <div data-wizard-step>
+            <oui-message type="info">
+                <p
+                    data-translate="hosting_tab_FTP_configuration_explorer_info"
+                    data-translate-values="{fileZillaGuideUrl: ctrl.guideFileZillaUrl,
+                                            cyberduckGuideUrl: ctrl.guideCyberduckUrl}"
+                ></p>
+            </oui-message>
+        </div>
+    </div>
+</div>
