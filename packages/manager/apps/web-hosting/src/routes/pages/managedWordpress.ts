@@ -1,5 +1,19 @@
 import React from 'react';
 
-export const ManagedWordpressPage = React.lazy(
-  () => import('@/pages/wordpressManaged/WordpressManaged.page')
+export const ManagedWordpressPage = React.lazy(() =>
+  import('@/pages/managedWordpress/ManagedWordpress.page'),
 );
+export const ManagedWordpressResourcePage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/ManagedWordpressResource.page'
+  ),
+);
+export const ManagedWordpressServiceGeneralInformationPage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/myWebsites/MyWebsites.page'
+  ),
+);
+export const ManagedWordpressServiceTasksPage = React.lazy(() =>
+  import('@/pages/managedWordpress/ManagedWordpressResource/tasks/Tasks.page'),
+);
+
