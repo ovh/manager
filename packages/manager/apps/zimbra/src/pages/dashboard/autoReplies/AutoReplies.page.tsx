@@ -23,6 +23,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import ActionButtonAutoReply from './ActionButton.component';
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -77,7 +78,7 @@ const columns: DatagridColumn<AutoReplyItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'actions',
@@ -88,7 +89,12 @@ const columns: DatagridColumn<AutoReplyItem>[] = [
 
 export const AutoReplies = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation(['auto-replies', 'common']);
+  const { t } = useTranslation([
+    'auto-replies',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.STATUS,
+  ]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const location = useLocation();

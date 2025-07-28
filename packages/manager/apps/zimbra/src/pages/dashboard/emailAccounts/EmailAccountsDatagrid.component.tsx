@@ -7,6 +7,7 @@ import {
   DatagridColumn,
   useBytes,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAccounts, useSlotServices } from '@/data/hooks';
 import { useOverridePage, useDebouncedValue } from '@/hooks';
 import { LabelChip, BadgeStatus, BillingStateBadge } from '@/components';
@@ -61,7 +62,7 @@ const columns: DatagridColumn<EmailAccountItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'renewal_type',
@@ -76,7 +77,7 @@ const columns: DatagridColumn<EmailAccountItem>[] = [
 ];
 
 export const EmailAccountsDatagrid = () => {
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.STATUS]);
   const [hasADeletingAccount, setHasADeletingAccount] = useState(false);
   const isOverridedPage = useOverridePage();
 

@@ -55,6 +55,7 @@ import './ftp/snapshot/restore/hosting-ftp-snapshot-restore.service';
 import './ftp/user/add/hosting-ftp-user-add.controller';
 import './ftp/user/delete/hosting-ftp-user-delete.controller';
 import './ftp/user/update/hosting-ftp-user-update.controller';
+import './ftp/ftp-explorer-eol/hosting-ftp-explorer-eol.controller';
 import './dashboard/hosting.constant';
 import './dashboard/hosting.service';
 import './indy/hosting-indy.controller';
