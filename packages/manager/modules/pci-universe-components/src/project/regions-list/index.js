@@ -1,4 +1,5 @@
 import angular from 'angular';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
