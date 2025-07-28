@@ -1115,6 +1115,25 @@ export default [
               },
             ],
           },
+
+          {
+            path: 'quantum/qpu',
+            ...lazyRouteConfig(() => import('@/pages/qpus/QpuRoot.layout')),
+            children: [
+              {
+                path: '',
+                id: 'qpu',
+                ...lazyRouteConfig(() => import('@/pages/qpus/Qpu.page')),
+              },
+              {
+                path: 'onboarding',
+                id: 'onboarding-qpu',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/qpus/onboarding/Onboarding.page'),
+                ),
+              },
+            ],
+          },
         ],
       },
     ],
