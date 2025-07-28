@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.45.0...@ovh-ux/manager-billing@0.46.0) (2025-07-28)
+
+
+### Features
+
+* **billing:** update terminate service message on hycu/vcd/veeam-backup ([b7158d7](https://github.com/ovh/manager/commit/b7158d72df30b8f4920d12f05f984757acaedd75)), closes [#MANAGER-18543](https://github.com/ovh/manager/issues/MANAGER-18543)
+
+
+
+
+
 # [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.44.0...@ovh-ux/manager-billing@0.45.0) (2025-07-23)
 
 
