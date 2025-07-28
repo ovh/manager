@@ -6,9 +6,8 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
 
-import { useIpHasVmac } from '@/data/hooks/ip';
+import { useIpHasVmac, useGetIpVmacDetails } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
-import { useGetIpVmacDetails } from '@/data/hooks/ip/useGetIpVmacDetails';
 
 export default function ViewVirtualMacModal() {
   const { t } = useTranslation(['virtual-mac', NAMESPACES.ACTIONS, 'error']);
