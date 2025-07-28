@@ -13,5 +13,10 @@
   "addVirtualMacAddNewSuccess": "Une nouvelle MAC virtuelle a été générée et sera disponible sur l'IP {{t0}} dans quelques minutes.",
   "addVirtualMacAddNewFailure": "Une erreur est survenue lors de la génération d'une nouvelle MAC virtuelle sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
   "addVirtualMacAddExistingSuccess": "L'IP {{t0}} sera associée à la MAC virtuelle existante d'ici quelques minutes.",
-  "addVirtualMacAddExistingFailure": "Une erreur est survenue lors de l'association d'une MAC virtuelle existante sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}"
+  "addVirtualMacAddExistingFailure": "Une erreur est survenue lors de l'association d'une MAC virtuelle existante sur l'IP {{t0}}. {{error}} request_id: {{ovhQueryId}}",
+  "deleteVirtualMacTitle": "Supprimer MAC virtuelle",
+  "deleteVirtualMacInfo": "La suppression de cette virtual MAC annulera l'attribution de l'adresse IP associée à la machine virtuelle, ce qui pourrait perturber les services ou configurations qui en dépendent. Cette action est irréversible.",
+  "deleteVirtualMacConfirmation": "Êtes-vous sûr de vouloir supprimer définitivement la virtual MAC ?",
+  "deleteVirtualMacSuccess": "La MAC virtuelle {{vmac}} sera supprimée de l'IP {{ip}} d'ici quelques minutes.",
+  "deleteVirtualMacError": "Une erreur s'est produite lors de la suppression de la MAC virtuelle: {{error}}"
 }
