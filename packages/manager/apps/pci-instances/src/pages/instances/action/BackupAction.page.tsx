@@ -9,6 +9,7 @@ import { Text, Message, MessageBody } from '@ovhcloud/ods-react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
+import { formatISO } from 'date-fns';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
@@ -174,7 +175,7 @@ const BackupActionPage = () => {
   const projectId = useProjectId();
   const { instanceId, region } = useInstanceParams();
 
-  const { t, i18n } = useTranslation('actions');
+  const { t } = useTranslation('actions');
   const { addError, addInfo } = useNotifications();
   const navigate = useNavigate();
 
@@ -184,15 +185,9 @@ const BackupActionPage = () => {
     'backup',
   );
 
-  const locale = i18n.language.replace('_', '-');
   const defaultSnapshotName = useMemo(
-    () =>
-      `${instance?.name} ${new Date().toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}`,
-    [instance?.name, locale],
+    () => `${instance?.name} ${formatISO(new Date())}`,
+    [instance?.name],
   );
 
   const {
