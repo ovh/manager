@@ -8,6 +8,9 @@
     "packages": [
       "docs",
       "packages/components/*",
+      "packages/manager-cli",
+      "packages/manager-react-components",
+      "packages/manager-wiki",
       "packages/manager/apps/*",
       "packages/manager/core/api",
       "packages/manager/core/application",
@@ -16,16 +19,16 @@
       "packages/manager/core/request-tagger",
       "packages/manager/core/sso",
       "packages/manager/core/tailwind-config",
+      "packages/manager/core/test-utils",
+      "packages/manager/core/tests-setup",
       "packages/manager/core/url-builder",
       "packages/manager/core/utils",
       "packages/manager/core/vite-config",
-      "packages/manager/core/test-utils",
-      "packages/manager/core/tests-setup",
       "packages/manager/modules/*",
-      "packages/manager/tools/*",
-      "packages/manager-cli",
-      "packages/manager-react-components",
-      "packages/manager-wiki"
+      "packages/manager/tools/*"
+    ],
+    "nohoist": [
+      "**/manager-static-analysis-kit"
     ]
   },
   "scripts": {
@@ -42,6 +45,7 @@
     "format:md": "yarn run lint:md --fix",
     "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,manager-react-components}/**/*.{tsx,ts}\"",
     "generate:uapp": "yarn workspace @ovh-ux/manager-generator run start",
+    "postinstall": "turbo run build --filter @ovh-ux/manager-static-analysis-kit",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/coverage/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",

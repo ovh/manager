@@ -127,5 +127,8 @@
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0"
+  },
+  "peerDependencies": {
+    "eslint": ">= 9"
   }
 }
