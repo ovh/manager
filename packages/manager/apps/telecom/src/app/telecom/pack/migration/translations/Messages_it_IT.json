@@ -213,5 +213,5 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durante la transizione verso la nuova offerta, verrà creato un pack temporaneo per assicurare la continuità del servizio",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Questo pack verrà eliminato automaticamente una volta completato l'ordine Fibre.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Nessuna azione di modifica o eliminazione da parte tua è necessaria: il passaggio verso il tuo accesso Fibre sarà completamente automatizzato.",
-  "telecom_pack_migration_phone_call_for_new_meeting": "L'appuntamento online non è disponibile. Verrai contattato telefonicamente per proporti una data e un orario adatti alle tue esigenze."
+  "telecom_pack_migration_phone_call_for_new_meeting": "Il servizio di presa appuntamenti online non è disponibile. Verrai contattato telefonicamente per concordare una data e un orario adatti alle tue esigenze."
 }
