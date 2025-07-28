@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.1...@ovh-ux/manager-telecom@16.15.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix directory form ([44ebbee](https://github.com/ovh/manager/commit/44ebbeef16209db26ef4c461c645a72219dff979)), closes [#MANAGER-19198](https://github.com/ovh/manager/issues/MANAGER-19198)
+
+
+### Features
+
+* **xdsl-access:** adding the GTR display on the access display ([860fbae](https://github.com/ovh/manager/commit/860fbaeb7084e353e5ab5fe0ba8eb00f7fdfe36b)), closes [#UXCT-767](https://github.com/ovh/manager/issues/UXCT-767)
+
+
+
+
+
 ## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.0...@ovh-ux/manager-telecom@16.14.1) (2025-07-24)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-ongoing-operations-app",
-  "version": "1.9.4",
+  "version": "1.10.0",
   "private": true,
   "description": "Domain And DNS ongoing operations",
   "repository": {
