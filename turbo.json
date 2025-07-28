@@ -9,7 +9,13 @@
       "outputLogs": "new-only",
       "env": ["VERSION"]
     },
-    "test": {},
+    "test": {
+      "dependsOn": [
+        "^test",
+        "@ovh-ux/manager-static-analysis-kit#build"
+      ],
+      "outputs": []
+    },
     "dev": {
       "dependsOn": ["^dev"],
       "outputs": ["dist/**", "types/**"]
@@ -29,10 +35,18 @@
       "dependsOn": ["^dev"]
     },
     "lint:modern": {
-      "outputs": []
+      "outputs": [],
+      "dependsOn": [
+        "^lint:modern",
+        "@ovh-ux/manager-static-analysis-kit#build"
+      ]
     },
     "lint:modern:fix": {
-      "outputs": []
+      "outputs": [],
+      "dependsOn": [
+        "^lint:modern:fix",
+        "@ovh-ux/manager-static-analysis-kit#build"
+      ]
     }
   }
 }
