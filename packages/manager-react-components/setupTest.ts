@@ -1,6 +1,7 @@
 // vitest.setup.ts
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+import { vi } from 'vitest';
 
 // This polyfill exists because of an issue with jsdom and the EventTarget class
 // when testing a component with an OdsDatepicker (addEventListener crashes at component initialization).
