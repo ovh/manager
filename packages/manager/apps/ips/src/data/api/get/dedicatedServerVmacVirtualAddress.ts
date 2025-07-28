@@ -25,7 +25,9 @@ export const getDedicatedServerVmacVirtualAddress = async ({
   string[]
 >> =>
   v6.get<string[]>(
-    `/dedicated/server/${serviceName}/virtualMac/${macAddress}/virtualAddress`,
+    `/dedicated/server/${encodeURIComponent(
+      serviceName,
+    )}/virtualMac/${encodeURIComponent(macAddress)}/virtualAddress`,
   );
 
 export type DedicatedServerVmacDetailsType = {
