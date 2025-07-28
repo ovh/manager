@@ -42,6 +42,7 @@ export const WORDPRESS_MANAGED = 'managed-wordpress';
 export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
 export const GENERAL_INFORMATION = 'general-information';
 export const TASKS = 'tasks';
+export const IMPORT = 'import';
 export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';
 export const DASHBOARD = 'dashboard';

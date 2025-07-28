@@ -17,6 +17,7 @@ import {
 import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
 import { ManagedWordpressWebsiteDetailsType } from '@/data/type';
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
+import { useGenerateUrl } from '@/hooks';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -86,6 +87,12 @@ export default function MyWebsitesPage() {
     [],
   );
 
+  const importPage = useGenerateUrl(`./import`, 'href');
+
+  const handleImportClick = () => {
+    window.location.href = importPage;
+  };
+
   return (
     <Datagrid
       columns={columns}
@@ -102,6 +109,7 @@ export default function MyWebsitesPage() {
               id={'my-websites-import'}
               label={t('common:web_hosting_action_import')}
               variant={ODS_BUTTON_VARIANT.outline}
+              onClick={handleImportClick}
             ></ManagerButton>
             <ManagerButton
               id={'my-websites-manage'}

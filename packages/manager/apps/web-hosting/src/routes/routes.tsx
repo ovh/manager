@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, UIMatch } from 'react-router-dom';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
@@ -18,7 +18,13 @@ import {
   SAN_SSL,
   SSL,
   WEBSITE,
+  WORDPRESS_MANAGED,
+  WORDPRESS_MANAGED_SERVICE,
+  GENERAL_INFORMATION,
+  TASKS,
+  IMPORT,
 } from '@/utils/tracking.constants';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export type RouteHandle = {
   isOverridePage?: boolean;
@@ -71,47 +77,59 @@ export default (
           label: 'managed_wordpress',
         },
       }}
+    />
+
+    <Route
+      id={WORDPRESS_MANAGED_SERVICE}
+      path={urls.managedWordpressResource}
+      Component={ManagedWordpressResourcePage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: ':serviceName',
+        },
+      }}
     >
       <Route
-        id={WORDPRESS_MANAGED_SERVICE}
+        id={GENERAL_INFORMATION}
         path={urls.managedWordpressResource}
-        Component={ManagedWordpressResourcePage}
+        Component={ManagedWordpressServiceGeneralInformationPage}
         handle={{
-          isOverridePage: true,
+          tracking: {
+            pageType: PageType.listing,
+          },
+        }}
+      />
+      <Route
+        id={TASKS}
+        path={urls.managedWordpressResourceTasks}
+        Component={ManagedWordpressServiceTasksPage}
+        handle={{
           tracking: {
             pageType: PageType.listing,
           },
           breadcrumb: {
-            label: ':serviceName',
+            label: 'common:web_hosting_header_tasks',
           },
         }}
-      >
-        <Route
-          id={GENERAL_INFORMATION}
-          path={urls.managedWordpressResource}
-          Component={ManagedWordpressServiceGeneralInformationPage}
-          handle={{
-            tracking: {
-              pageType: PageType.listing,
-            },
-          }}
-        />
-        <Route
-          id={TASKS}
-          path={urls.managedWordpressResourceTasks}
-          Component={ManagedWordpressServiceTasksPage}
-          handle={{
-            tracking: {
-              pageType: PageType.listing,
-            },
-            breadcrumb: {
-              label: 'common:web_hosting_header_tasks',
-            },
-          }}
-        />
-      </Route>
+      />
+      <Route
+        id={IMPORT}
+        path={urls.managedWordpressResourceImport}
+        Component={ManagedWordpressServiceImportPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:import_website',
+          },
+          isOverridePage: true,
+        }}
+      />
     </Route>
-
     <Route
       id={WEBSITE}
       path={urls.websites}
