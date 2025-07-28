@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.1...@ovh-ux/manager-billing-components@4.20.0) (2025-07-28)
+
+
+### Features
+
+* **billing:** cancelation page rework ([27018f5](https://github.com/ovh/manager/commit/27018f5e739616c1197528f71b63bbf50969a8e0)), closes [#MANAGER-17520](https://github.com/ovh/manager/issues/MANAGER-17520)
+* **billing:** update terminate service message on hycu/vcd/veeam-backup ([b7158d7](https://github.com/ovh/manager/commit/b7158d72df30b8f4920d12f05f984757acaedd75)), closes [#MANAGER-18543](https://github.com/ovh/manager/issues/MANAGER-18543)
+
+
+
+
+
 ## [4.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.0...@ovh-ux/manager-billing-components@4.19.1) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components
