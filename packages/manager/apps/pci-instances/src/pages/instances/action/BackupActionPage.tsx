@@ -7,6 +7,7 @@ import {
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import { Text, Message, MessageBody } from '@ovhcloud/ods-react';
 import { useFormContext } from 'react-hook-form';
+import { formatISO } from 'date-fns';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { TRescueActionPageProps } from './RescueAction.page';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
@@ -176,16 +177,10 @@ const BackupActionPage = ({
   onError,
   isLoading,
 }: TBackupActionPageProps) => {
-  const { t, i18n } = useTranslation('actions');
-  const locale = i18n.language.replace('_', '-');
+  const { t } = useTranslation('actions');
   const defaultSnapshotName = useMemo(
-    () =>
-      `${instance?.name} ${new Date().toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}`,
-    [instance?.name, locale],
+    () => `${instance?.name} ${formatISO(new Date())}`,
+    [instance?.name],
   );
 
   const {
