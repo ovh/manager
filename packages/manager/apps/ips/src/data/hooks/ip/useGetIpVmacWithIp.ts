@@ -33,7 +33,6 @@ export const useGetIpVmacWithIp = ({
     queryKey: getdedicatedServerVmacQueryKey({ serviceName }),
     queryFn: () => getdedicatedServerVmac({ serviceName }),
     enabled,
-    staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });
 
