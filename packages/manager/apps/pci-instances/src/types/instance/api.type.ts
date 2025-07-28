@@ -1,12 +1,31 @@
+import { TRegionType } from '@ovh-ux/manager-pci-common';
 import { DeepReadonly } from '../utils.type';
 import {
   TActionName,
   TAddressType,
   TInstanceActionGroup,
   TStatus,
+  TInstancePriceType,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
+
+export type TSubnetDto = {
+  id: string;
+  name: string;
+  gatewayIP: string;
+  network: {
+    id: string;
+    name: string;
+  };
+};
+
+export type TInstanceNetworkAddressDto = {
+  ip: string;
+  version: number;
+  type: TInstanceAddressTypeDto;
+  subnet: TSubnetDto;
+};
 
 export type TInstanceAddressDto = {
   ip: string;
@@ -23,6 +42,34 @@ export type TInstanceVolumeDto = {
 export type TInstanceActionDto = {
   name: TInstanceActionNameDto;
   group: TInstanceActionGroup;
+};
+
+export type TFlavorDto = {
+  id: string;
+  name: string;
+  specs: {
+    cpu: number;
+    ram: number;
+    storage: number;
+    bandwidth: {
+      public: number;
+      private: number;
+    };
+  };
+};
+
+export type TImageDto = {
+  id: string;
+  name: string;
+  deprecated: boolean;
+};
+
+export type TInstancePriceTypeDto = TInstancePriceType;
+
+export type TInstancePriceDto = {
+  type: TInstancePriceTypeDto;
+  value: number;
+  status: 'enabled' | 'available' | 'eligible';
 };
 
 export type TInstanceActionNameDto = TActionName;
@@ -56,4 +103,29 @@ export type TRetrieveInstancesQueryParams = DeepReadonly<{
   offset?: number;
   searchField?: string;
   searchValue?: string;
+}>;
+
+export type TInstanceDetailDto = {
+  addresses: TInstanceNetworkAddressDto[];
+  flavor: TFlavorDto;
+  id: string;
+  image: TImageDto;
+  name: string;
+  region: string;
+  regionType: TRegionType;
+  status: TInstanceStatusDto;
+  volumes: TInstanceVolumeDto[];
+  actions: TInstanceActionDto[];
+  pendingTask: boolean;
+  prices: TInstancePriceDto[];
+  availabilityZone: string | null;
+  taskState: string;
+  isImageDeprecated: boolean;
+  sshKey: string;
+  login: string;
+};
+
+export type TNetworkAttachedToInstanceDto = DeepReadonly<{
+  id: string;
+  networkId: string;
 }>;
