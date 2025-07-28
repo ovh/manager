@@ -10,6 +10,7 @@ export const urls = {
   managedWordpress: '/managed-wordpress',
   managedWordpressResource: `/managed-wordpress/${subRoutes.serviceName}`,
   managedWordpressResourceGeneralInformation: `/managed-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceImport: `/managed-wordpress/${subRoutes.serviceName}/import`,
   managedWordpressResourceTasks: `/managed-wordpress/${subRoutes.serviceName}/tasks`,
   dashboard: `/${subRoutes.serviceName}`,
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
