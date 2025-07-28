@@ -3,6 +3,7 @@
   "websites": "Sites internet",
   "hosting": "Hébergements",
   "managed_wordpress": " Managed WordPress",
+  "import_website": "Importer mon site",
   "web_hosting_header_order": "Commander",
   "web_hosting_header_guide_general_informations": "Informations générales",
   "web_hosting_header_tasks": "Tâches",
@@ -73,5 +74,12 @@
   "web_hosting_dashboard_offer_hosting-performance-2": "Performance 2",
   "web_hosting_dashboard_offer_hosting-performance-3": "Performance 3",
   "web_hosting_dashboard_offer_hosting-performance-4": "Performance 4",
-  "web_hosting_dashboard_action_statistics": "Statistiques des visites"
+  "web_hosting_dashboard_action_statistics": "Statistiques des visites",
+  "web_hosting_common_sites_backlink": "Retour vers mes sites",
+  "web_hosting_common_url_connexion": "Url de connexion",
+  "web_hosting_common_admin_url": "Url d'administration du site",
+  "web_hosting_common_wordpress_login": "Identifiants Wordpress",
+  "web_hosting_common_admin_login": "Compte administrateur",
+  "web_hosting_common_admin_password": "Mot de passe administrateur",
+  "web_hosting_common_action_continue": "Continuer"
 }
