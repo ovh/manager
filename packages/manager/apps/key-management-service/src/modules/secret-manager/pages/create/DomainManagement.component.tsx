@@ -141,7 +141,7 @@ export const DomainManagement = ({
         domains={filterDomainsByRegion(domains, selectedRegion)}
         selectedRegion={selectedRegion}
         selectedDomain={selectedDomainId}
-        updatingOkmsList={updatingOkmsList}
+        isUpdatingOkmsList={updatingOkmsList}
         onDomainSelection={setSelectedDomainId}
       />
     </div>
