@@ -1,68 +1,73 @@
-// Full adoption
-/*import { eslintSharedConfig } from '@ovh-ux/manager-static-analysis-kit';
-
-export default eslintSharedConfig;
-*/
-
-// Progressive adoption
-/*import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
-import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+// import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
-import { complexityJsxTsxConfig, complexityTsJsConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
+import {
+  complexityJsxTsxConfig,
+  complexityTsJsConfig,
+} from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
 import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
 import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
-import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
-import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
-// import { storybookEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/storybook';
+import { tailwindSyntax } from '@eslint/css/syntax';
 
 export default [
   javascriptEslintConfig,
-  typescriptEslintConfig,
+  {
+    ...typescriptEslintConfig,
+    rules: {
+      ...typescriptEslintConfig.rules,
+      '@typescript-eslint/unbound-method': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
   reactEslintConfig,
   a11yEslintConfig,
   htmlEslintConfig,
   tailwindJsxConfig,
   tanStackQueryEslintConfig,
-  ...importEslintConfig,
-  ...checkFileEslintConfig,
   vitestEslintConfig,
-  prettierEslintConfig,
+  // TODO
+  // prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
     ...cssEslintConfig,
-    files: ['**\/*.css', '**\/*.scss'],
-  }
-];*/
-
-// Progressive and disable some rules
-/* import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-
-export default [
-  {
-    ...typescriptEslintConfig,
-    rules: {
-      ...typescriptEslintConfig.rules,
-      '@typescript-eslint/no-unsafe-return': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/await-thenable': 'off'
+    files: ['**/*.css', '**/*.scss'],
+    languageOptions: {
+      ...cssEslintConfig.languageOptions,
+      customSyntax: tailwindSyntax,
     },
   },
-];
-*/
-
-// Progressive and disable full rules
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-
-export default [
   {
-    ...typescriptEslintConfig,
-    rules: {},
+    files: ['**/*.spec.*'],
+    rules: {
+      'max-nested-callbacks': 'off',
+      'max-lines-per-function': 'off',
+    },
+  },
+  {
+    files: ['src/pages/**/*.tsx'],
+    rules: {
+      // Disable for pages to allow ErrorBoundary export
+      'react/no-multi-comp': 'off',
+
+      'max-lines-per-function': 'off',
+      'max-lines': 'off',
+    },
   },
 ];

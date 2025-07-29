@@ -5,7 +5,7 @@ export const deleteWorkflow = async (
   region: string,
   workflowId: string,
 ) => {
-  const { data } = await v6.delete(
+  const { data } = await v6.delete<void>(
     `/cloud/project/${projectId}/region/${region}/workflow/backup/${workflowId}`,
   );
   return data;
