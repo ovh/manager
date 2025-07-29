@@ -23,6 +23,7 @@ describe('Datacentre Storage Listing Page', () => {
   it('access and display storage listing page', async () => {
     await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
+      nbStorage: 2,
     });
 
     // access storage tab
@@ -63,5 +64,21 @@ describe('Datacentre Storage Listing Page', () => {
     });
 
     await assertTextVisibility(DEFAULT_LISTING_ERROR);
+  });
+
+  it('should disable remove button when status is suspended', async () => {
+    const { queryByTestId } = await renderTest({
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}/storage`,
+      resourceId: 'b683b2d1-2387-46da-8e1b-76ebbee0dbae5',
+    });
+
+    const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
+    expect(orderButton.getAttribute('is-disabled')).toBe('true');
+
+    const deleteButton = await getElementByTestId(TEST_IDS.cellDeleteCta);
+    expect(deleteButton.getAttribute('is-disabled')).toBe('true');
+
+    const tooltip = queryByTestId(TEST_IDS.cellDeleteTooltip);
+    expect(tooltip).not.toBeInTheDocument();
   });
 });

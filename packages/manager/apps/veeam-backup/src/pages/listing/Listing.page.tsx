@@ -102,6 +102,7 @@ export default function Listing() {
         { label: t('veeam-backup:status-DISABLED'), value: 'DISABLED' },
         { label: t('veeam-backup:status-DISABLING'), value: 'DISABLING' },
         { label: t('veeam-backup:status-REMOVED'), value: 'REMOVED' },
+        { label: t('veeam-backup:status-REMOVING'), value: 'DISABLING' },
         { label: t('veeam-backup:status-UPDATING'), value: 'UPDATING' },
       ],
     },
