@@ -72,6 +72,8 @@ describe('Datacentre Storage Listing Page', () => {
       resourceId: 'b683b2d1-2387-46da-8e1b-76ebbee0dbae5',
     });
 
+    await assertTextVisibility(STORAGE_LABEL);
+
     const orderButton = await getElementByTestId(TEST_IDS.storageOrderCta);
     expect(orderButton.getAttribute('is-disabled')).toBe('true');
 

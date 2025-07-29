@@ -129,6 +129,8 @@ describe('Datacentre Compute Listing Page', () => {
       resourceId: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
     });
 
+    await assertTextVisibility(COMPUTE_LABEL);
+
     const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
     expect(orderButton.getAttribute('is-disabled')).toBe('true');
 
