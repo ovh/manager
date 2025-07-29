@@ -1,5 +1,5 @@
 import React from 'react';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR } from '@ovhcloud/ods-react';
 import { Modal } from '@ovh-ux/manager-react-components';
 import {
   basic as basicMock,
@@ -11,35 +11,23 @@ import {
 
 const ModalStory = ({
   heading,
-  type = ODS_MODAL_COLOR.neutral,
-  isLoading,
-  primaryLabel,
-  isPrimaryButtonLoading,
-  isPrimaryButtonDisabled,
-  onPrimaryButtonClick,
-  secondaryLabel,
-  isSecondaryButtonDisabled,
-  isSecondaryButtonLoading,
-  onSecondaryButtonClick,
-  onDismiss,
-  isOpen = true,
+  type = MODAL_COLOR.neutral,
+  loading,
+  primaryButton,
+  secondaryButton,
+  onOpenChange,
+  open = true,
   children,
 }) => {
   return (
     <Modal
       heading={heading}
       type={type}
-      isLoading={isLoading}
-      primaryLabel={primaryLabel}
-      isPrimaryButtonLoading={isPrimaryButtonLoading}
-      isPrimaryButtonDisabled={isPrimaryButtonDisabled}
-      onPrimaryButtonClick={onPrimaryButtonClick}
-      secondaryLabel={secondaryLabel}
-      isSecondaryButtonDisabled={isSecondaryButtonDisabled}
-      isSecondaryButtonLoading={isSecondaryButtonLoading}
-      onSecondaryButtonClick={onSecondaryButtonClick}
-      onDismiss={onDismiss}
-      isOpen={isOpen}
+      loading={loading}
+      primaryButton={primaryButton}
+      secondaryButton={secondaryButton}
+      onOpenChange={onOpenChange}
+      open={open}
     >
       {children}
     </Modal>
@@ -60,17 +48,7 @@ export const Actions = ModalStory.bind({});
 
 Actions.parameters = {
   controls: {
-    include: [
-      'onDismiss',
-      'primaryLabel',
-      'isPrimaryButtonLoading',
-      'isPrimaryButtonDisabled',
-      'onPrimaryButtonClick',
-      'secondaryLabel',
-      'isSecondaryButtonDisabled',
-      'isSecondaryButtonLoading',
-      'onSecondaryButtonClick',
-    ],
+    include: ['onOpenChange', 'primaryButton', 'secondaryButton'],
   },
 };
 
@@ -97,7 +75,7 @@ export const Loading = ModalStory.bind({});
 
 Loading.parameters = {
   controls: {
-    include: ['isLoading'],
+    include: ['loading'],
   },
 };
 

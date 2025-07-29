@@ -32,17 +32,21 @@ They can be dismissable or not.
     <Modal
       heading={'Example of modal'}
       type={'warning'}
-      isLoading={false}
-      primaryLabel={'Confirm'}
-      isPrimaryButtonLoading={false}
-      isPrimaryButtonDisabled={false}
-      onPrimaryButtonClick={() => {}}
-      secondaryLabel={'Cancel'}
-      isSecondaryButtonDisabled={false}
-      isSecondaryButtonLoading={false}
-      onSecondaryButtonClick={() => {}}
-      onDismiss={() => {}}
-      isOpen={true}
+      loading={false}
+      primaryButton={{
+        label: 'Confirm',
+        loading: false,
+        onClick: {() => {}},
+        disabled: false,
+      }}
+      secondaryButton={{
+        label: 'Cancel',
+        loading: false,
+        onClick: {() => {}},
+        disabled: false,
+      }}
+      onOpenChange={() => {}}
+      open={true}
     >
       <div>Example of content</div>
     </Modal>`}
