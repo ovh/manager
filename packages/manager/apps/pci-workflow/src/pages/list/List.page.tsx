@@ -55,7 +55,7 @@ export default function ListingPage() {
   const { data: project } = useProject(projectId || '');
   const hrefAdd = useHref(`./new`);
   const [searchField, setSearchField] = useState('');
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(undefined);
   const [searchQueries, setSearchQueries] = useState<string[]>([]);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -279,7 +279,7 @@ export default function ListingPage() {
                     ...addedFilter,
                     label: column.label,
                   });
-                  filterPopoverRef.current?.closeSurface();
+                  void filterPopoverRef.current?.closeSurface();
                 }}
               />
             </OsdsPopoverContent>

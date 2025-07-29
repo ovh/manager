@@ -1,8 +1,12 @@
-import { useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
+import {
+  queryOptions,
+  useMutation,
+  useQueries,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { addMinutes, format, parseISO } from 'date-fns';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { useMemo, useRef } from 'react';
 import * as dateFnsLocales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
@@ -24,14 +28,18 @@ export type TWorkflow = TRemoteWorkflow & {
   lastExecutionStatus: TExecutionState;
 };
 
+const getWorkflowQueryOptions = (projectId: string, regionName: string) =>
+  queryOptions({
+    queryKey: [projectId, 'regions', regionName, 'workflows'],
+    queryFn: async () => getRegionsWorkflows(projectId, regionName),
+  });
+
 export const useWorkflows = (projectId: string) => {
   const { i18n } = useTranslation('pci-common');
-  const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: regions, isPending: isRegionsPending } = useProjectRegions(
-    projectId,
-  );
+  const { data: regions, isPending: isRegionsPending } =
+    useProjectRegions(projectId);
 
   return useQueries({
     queries: (regions || [])
@@ -41,11 +49,7 @@ export const useWorkflows = (projectId: string) => {
         ),
       )
       .map((region) => region.name)
-      .map((regionName) => ({
-        queryKey: [projectId, 'regions', regionName, 'workflows'],
-        queryFn: async () => getRegionsWorkflows(projectId, regionName),
-        enabled: !isRegionsPending,
-      })),
+      .map((regionName) => getWorkflowQueryOptions(projectId, regionName)),
     combine: (results) => ({
       data: (() =>
         results
@@ -61,10 +65,10 @@ export const useWorkflows = (projectId: string) => {
               };
             }
 
-            let [lastExecutionAt, lastExecutionStatus] = [
-              new Date(),
-              undefined,
-            ];
+            let [lastExecutionAt, lastExecutionStatus]: [
+              Date,
+              TExecutionState | undefined,
+            ] = [new Date(), undefined];
 
             if (Array.isArray(w.executions) && w.executions.length) {
               const executions = w.executions
@@ -87,7 +91,8 @@ export const useWorkflows = (projectId: string) => {
                 ),
                 'dd MMM yyyy HH:mm:ss',
                 {
-                  locale: locales[userLocale],
+                  locale:
+                    dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
                 },
               ),
               lastExecutionStatus,
@@ -98,14 +103,14 @@ export const useWorkflows = (projectId: string) => {
   });
 };
 
-export const defaultCompareFunction = (
-  key: keyof Omit<TWorkflow, 'executions'>,
-) => (a: TWorkflow, b: TWorkflow) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+export const defaultCompareFunction =
+  (key: keyof Omit<TWorkflow, 'executions'>) =>
+  (a: TWorkflow, b: TWorkflow) => {
+    const aValue = a[key] || '';
+    const bValue = b[key] || '';
 
-  return aValue.localeCompare(bValue);
-};
+    return aValue.localeCompare(bValue);
+  };
 
 export const sortWorkflows = (
   workflows: TWorkflow[],
@@ -162,9 +167,8 @@ export const usePaginatedWorkflows = (
   },
 ) => {
   const { t } = useTranslation('listing');
-  const { data: workflows, isPending: isWorkflowsPending } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isWorkflowsPending } =
+    useWorkflows(projectId);
 
   return useQueries({
     queries: workflows.map((workflow) => ({
@@ -216,13 +220,11 @@ export const useDeleteWorkflow = ({
     mutationFn: async () => deleteWorkflow(projectId, region, workflowId),
     onError,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['regions', region, 'workflows'],
+      const workflowOptions = getWorkflowQueryOptions(projectId, region);
+      await queryClient.invalidateQueries(workflowOptions);
+      queryClient.setQueryData(workflowOptions.queryKey, (data) => {
+        if (data) return data.filter((v) => v.id !== workflowId);
       });
-      queryClient.setQueryData(
-        ['regions', region, 'workflows'],
-        (data: { id: string }[]) => data.filter((v) => v.id !== workflowId),
-      );
       onSuccess();
     },
   });
@@ -258,9 +260,9 @@ export const useAddWorkflow = ({
     mutationFn: async () => addWorkflow(projectId, region, type),
     onError,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ['regions', region, 'workflows'],
-      });
+      await queryClient.invalidateQueries(
+        getWorkflowQueryOptions(projectId, region),
+      );
       onSuccess();
     },
   });

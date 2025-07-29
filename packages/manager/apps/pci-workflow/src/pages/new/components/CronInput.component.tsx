@@ -61,7 +61,15 @@ export function CronInput({ scheduling, onInput }: Readonly<CronInputProps>) {
       </OsdsText>
 
       <div className="flex gap-5">
-        {['minutes', 'hour', 'dom', 'month', 'dow'].map((field) => (
+        {(
+          [
+            'minutes',
+            'hour',
+            'dom',
+            'month',
+            'dow',
+          ] satisfies (keyof TWorkflowScheduling)[]
+        ).map((field) => (
           <OsdsFormField key={field} inline>
             <OsdsText
               slot="helper"

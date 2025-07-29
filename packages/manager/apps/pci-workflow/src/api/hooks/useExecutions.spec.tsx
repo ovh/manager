@@ -11,7 +11,7 @@ describe('useExecutions tests', () => {
     data: [
       {
         lastExecution: 'lastExecution',
-        lastExecutionStatus: 'lastExecutionStatus',
+        lastExecutionStatus: 'SUCCESS',
         backupName: 'backupName',
         name: 'name',
         id: 'workflow_id',

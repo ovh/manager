@@ -21,7 +21,7 @@ const init = async (
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch (_error) {
     // nothing to do
   }
 
@@ -41,4 +41,4 @@ const init = async (
   );
 };
 
-init('pci-workflow');
+void init('pci-workflow');
