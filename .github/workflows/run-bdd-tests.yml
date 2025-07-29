@@ -53,3 +53,57 @@ jobs:
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
           yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+
+      - name: GetChangedPackages
+        id: changed
+        run: |
+          get_changed_packages() {
+            echo "Base Branch is $BASE_BRANCH"
+            echo "current Branch: ${CURRENT_BRANCH}"
+            echo "[INFO] Dry run to determine which packages will be built..."
+            yarn turbo run build --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+      
+            # Clean JSON
+            tail -n +3 output.json > tmpfile.json && mv tmpfile.json output.json
+            head -n -1 output.json > temp.json && mv temp.json output.json
+      
+            # Extract packages
+            jq -r '.packages[]' output.json
+          }
+          CHANGED_PACKAGES=$(get_changed_packages)
+          echo "Changed packages:"
+          echo "$CHANGED_PACKAGES"
+      
+          # Safe multiline output for next step
+          echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Show result from previous step
+        run: |
+          echo "Changed packages:"
+          echo "Output was: ${{ steps.changed.outputs.changed_packages }}"
+          available_apps=$(yarn manager-cli --list | grep -E '^\s+- ' | sed -E 's/^\s+- //')
+          readarray -t apps_array <<< "$available_apps"
+
+          # Read the changed packages into a bash array
+          while IFS= read -r line; do
+            # Skip empty lines and '//' lines
+            if [[ "$line" == "//" || -z "$line" ]]; then
+              continue
+            fi
+           
+            echo "Processing package: $line"
+            # Remove prefix and suffix
+            cleaned_package="${line#@ovh-ux/manager-}"   # remove prefix
+            cleaned_package="${cleaned_package%-app}"    # remove suffix if exist
+            echo "Checking: $cleaned_package"
+      
+            # Check if cleaned_package is in available_apps
+            if printf "%s\n" "${apps_array[@]}" | grep -qx "$cleaned_package"; then
+              echo "✅ Found: $cleaned_package"
+              yarn manager-cli duplicated-translations --app $cleaned_package
+            fi
+            
+
+          done <<< "${{ steps.changed.outputs.changed_packages }}"
