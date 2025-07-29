@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.13.5...@ovh-ux/manager-pci-object-storage-app@0.14.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **pci-object-storage:** fix replication banner links ([75bf8dd](https://github.com/ovh/manager/commit/75bf8dd713a8054c2053e494fd38722279f5c6c1)), closes [#TAPC-4534](https://github.com/ovh/manager/issues/TAPC-4534)
+
+
+### Features
+
+* **pci-object-storage:** add tags to replication ([d888c01](https://github.com/ovh/manager/commit/d888c01ce282324595a75bef7176e5bf361fe905)), closes [#TAPC-4080](https://github.com/ovh/manager/issues/TAPC-4080)
+* **pci-object-storage:** update replication banner ([f721dbd](https://github.com/ovh/manager/commit/f721dbdaee7909539329e93b1c244dedddfa86ca)), closes [#TAPC-4503](https://github.com/ovh/manager/issues/TAPC-4503)
+
+
+
+
+
 ## [0.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.13.4...@ovh-ux/manager-pci-object-storage-app@0.13.5) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

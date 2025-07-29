@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.4...@ovh-ux/manager-pci-private-registry-app@0.9.5) (2025-07-29)
+
+
+### Bug Fixes
+
+* **pci-private-registry:** delete duplicated space for PT language ([40a1aeb](https://github.com/ovh/manager/commit/40a1aeb37c08a8e7c01e4a32f1668d1e8256c3fb)), closes [#TAPC-4280](https://github.com/ovh/manager/issues/TAPC-4280)
+
+
+
+
+
 ## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.3...@ovh-ux/manager-pci-private-registry-app@0.9.4) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

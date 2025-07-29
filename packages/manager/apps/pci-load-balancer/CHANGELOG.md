@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.4...@ovh-ux/manager-pci-load-balancer-app@0.15.5) (2025-07-29)
+
+
+### Bug Fixes
+
+* **ldp:** update of the message field for kube/lb ([f2396aa](https://github.com/ovh/manager/commit/f2396aa4aebd39137c2b065d0f88e721fb5849c1)), closes [#MANAGER-16582](https://github.com/ovh/manager/issues/MANAGER-16582)
+
+
+
+
+
 ## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.3...@ovh-ux/manager-pci-load-balancer-app@0.15.4) (2025-07-24)
 
 
