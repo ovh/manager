@@ -75,7 +75,7 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   }
 }
 
-const buildHeaders = () => {
+export const buildHeaders = () => {
   const headers = {};
 
   const builder = {
@@ -96,6 +96,7 @@ const buildHeaders = () => {
       return builder;
     },
     setDisabledCache: (disableCache: boolean) => {
+      // eslint-disable-next-line
       if (disableCache) headers['Pragma'] = 'no-cache';
       return builder;
     },
@@ -131,6 +132,16 @@ const buildHeaders = () => {
   return builder;
 };
 
+export const appendIamTags = (params: URLSearchParams, filters: Filter[]) => {
+  if (filters?.length) {
+    const tagsFilterParams = transformTagsFiltersToQuery(filters);
+    if (tagsFilterParams) {
+      params.append('iamTags', tagsFilterParams);
+    }
+  }
+  return params;
+};
+
 export async function fetchIcebergV2<T>({
   route,
   pageSize,
@@ -156,7 +167,8 @@ export async function fetchIcebergV2<T>({
       params.append(paramName, tagsFilterParams);
     }
   }
-
+  // TODO: rework this part
+  // appendIamTags(params, filters);
   let routeWithParams = route;
   if (params.size) {
     routeWithParams =
@@ -198,7 +210,8 @@ export async function fetchIcebergV6<T>({
       params.append('iamTags', tagsFilterParams);
     }
   }
-
+  // TODO: rework this part
+  // appendIamTags(params, filters);
   let routeWithParams = route;
   if (params.size) {
     routeWithParams =
