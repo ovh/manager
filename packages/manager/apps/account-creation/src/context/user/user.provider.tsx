@@ -6,6 +6,7 @@ import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
+import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -15,6 +16,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
+  const redirectToLegacySignup = useLegacySignupRedirection();
   // We will need to add states for language to prefill the /details form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
@@ -35,12 +37,16 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     if (isFetched) {
       if (error?.status === 401) {
         navigate(urls.preferences);
-      } else {
-        setLegalForm(me?.legalform);
-        setOvhSubsidiary(me?.ovhSubsidiary);
-        setCountry(me?.country as Country);
-        navigate(urls.accountType);
+        return;
       }
+      if (me?.ovhSubsidiary !== 'GB') {
+        redirectToLegacySignup();
+        return;
+      }
+      setLegalForm(me?.legalform);
+      setOvhSubsidiary(me?.ovhSubsidiary);
+      setCountry(me?.country as Country);
+      navigate(urls.accountType);
     }
   }, [isFetched]);
 
