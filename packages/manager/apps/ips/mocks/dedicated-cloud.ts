@@ -38,6 +38,11 @@ export const getDedicatedCloudMocks = ({
   hasPccZoneError,
 }: GetDedicatedCloudMocksParams): Handler[] => [
   {
+    url: '/dedicatedCloud',
+    response: [],
+    api: 'v6',
+  },
+  {
     url: '/dedicatedCloud/:serviceName/orderableIpCountries',
     response: orderableIpCountries,
     api: 'v6',
