@@ -12,21 +12,28 @@ export type GetDatacentresMocksParams = {
   nbCompute?: number;
   isStorageKO?: boolean;
   nbStorage?: number;
-  resourceId?: string;
+  computeResourceId?: string;
+  storageResourceId?: string;
 };
 
 const findDatacentreById = (params: PathParams) =>
   datacentreList.find(({ id }) => id === params.vdcId);
 
-const findStorages = ({ resourceId, nbStorage }: GetDatacentresMocksParams) =>
-  resourceId
-    ? storageList.filter(({ id }) => id === resourceId)
+const findStorages = ({
+  storageResourceId,
+  nbStorage,
+}: GetDatacentresMocksParams) =>
+  storageResourceId
+    ? storageList.filter(({ id }) => id === storageResourceId)
     : storageList.slice(0, nbStorage);
 
-const findComputes = ({ resourceId, nbStorage }: GetDatacentresMocksParams) =>
-  resourceId
-    ? computeList.filter(({ id }) => id === resourceId)
-    : computeList.slice(0, nbStorage);
+const findComputes = ({
+  computeResourceId,
+  nbCompute,
+}: GetDatacentresMocksParams) =>
+  computeResourceId
+    ? computeList.filter(({ id }) => id === computeResourceId)
+    : computeList.slice(0, nbCompute);
 
 export const getDatacentresMocks = ({
   isDatacentresKo,
@@ -36,14 +43,15 @@ export const getDatacentresMocks = ({
   nbCompute = Number.POSITIVE_INFINITY,
   isStorageKO,
   nbStorage = Number.POSITIVE_INFINITY,
-  resourceId,
+  computeResourceId,
+  storageResourceId,
 }: GetDatacentresMocksParams): Handler[] => [
   {
     url:
       '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId/storage',
     response: isStorageKO
       ? { message: 'Storage error' }
-      : findStorages({ nbStorage, resourceId }),
+      : findStorages({ nbStorage, storageResourceId }),
     api: 'v2',
     status: isStorageKO ? 500 : 200,
   },
@@ -52,7 +60,7 @@ export const getDatacentresMocks = ({
       '/vmwareCloudDirector/organization/:id/virtualDataCenter/:vdcId/compute',
     response: isComputeKO
       ? { message: 'Compute error' }
-      : findComputes({ nbCompute, resourceId }),
+      : findComputes({ nbCompute, computeResourceId }),
     api: 'v2',
     status: isComputeKO ? 500 : 200,
   },

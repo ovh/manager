@@ -126,16 +126,20 @@ describe('Datacentre Compute Listing Page', () => {
   it('should disable remove button when status is suspended', async () => {
     const { queryByTestId } = await renderTest({
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}/compute`,
-      resourceId: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
+      computeResourceId: '6873cbc3-d158-4cdc-8d37-b2d8dded1c45',
     });
 
-    const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
-    expect(orderButton.getAttribute('is-disabled')).toBe('true');
+    await assertTextVisibility(COMPUTE_LABEL);
 
-    const deleteButton = await getElementByTestId(TEST_IDS.cellDeleteCta);
-    expect(deleteButton.getAttribute('is-disabled')).toBe('true');
+    await waitFor(async () => {
+      const orderButton = await getElementByTestId(TEST_IDS.computeOrderCta);
+      expect(orderButton.getAttribute('is-disabled')).toBe('true');
 
-    const tooltip = queryByTestId(TEST_IDS.cellDeleteTooltip);
-    expect(tooltip).not.toBeInTheDocument();
+      const deleteButton = await getElementByTestId(TEST_IDS.cellDeleteCta);
+      expect(deleteButton.getAttribute('is-disabled')).toBe('true');
+
+      const tooltip = queryByTestId(TEST_IDS.cellDeleteTooltip);
+      expect(tooltip).not.toBeInTheDocument();
+    }, WAIT_FOR_DEFAULT_OPTIONS);
   });
 });
