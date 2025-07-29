@@ -2,7 +2,7 @@
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": [
     "./src/components/Link/Link.props.ts",
@@ -10,7 +10,8 @@
     "./src/components/Breadcrumb/Breadcrumb.props.ts",
     "./src/components/Breadcrumb/Breadcrumb.component.tsx",
     "./src/hooks/breadcrumb/useBreadcrumb.tsx",
-    "./src/components/tags-list/*"
+    "./src/components/tags-list/*",
+    "./src/components/modal/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
