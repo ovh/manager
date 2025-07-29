@@ -11,5 +11,6 @@
   "ovhManagerPccResourceUpgrade_validateButton": "Aceptar",
   "ovhManagerPccResourceUpgrade_cancelButton": "Cancelar",
   "dedicatedCloud_order_loading_error": "Se ha producido un error al cargar la información.",
-  "ovhManagerPccResourceUpgrade_plan_not_found": "La opción {{ planCode }} no está disponible."
+  "ovhManagerPccResourceUpgrade_plan_not_found": "La opción {{ planCode }} no está disponible.",
+  "ovhManagerPccResourceUpgrade_plan_success_message": "Se ha registrado su pedido para cambiar su {{type}} a tarifa mensual. Si aún no la ha finalizado, puede completar su pedido haciendo clic en <a href=\"{{url}}\" target=\"_blank\">Finalizar el pedido</a> ."
 }
