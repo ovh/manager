@@ -56,7 +56,7 @@ export const getButtonByLabel = async ({
     );
     button = Array.from(buttonList).filter((btn) =>
       [label, altLabel].includes(btn.textContent),
-    )[nth];
+    )[nth] as HTMLElement;
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
