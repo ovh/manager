@@ -119,9 +119,8 @@ export type ResourceSelectorComponentProps = {
 export default function ResourceSelectorComponent({
   onSelectInstance,
 }: Readonly<ResourceSelectorComponentProps>) {
-  const [selectedInstance, setSelectedInstance] = useState<TWorkflowInstance>(
-    null,
-  );
+  const [selectedInstance, setSelectedInstance] =
+    useState<TWorkflowInstance>(null);
   const { t } = useTranslation('new');
   const { t: tFilter } = useTranslation('filter');
   const { projectId } = useParams();
@@ -135,7 +134,7 @@ export default function ResourceSelectorComponent({
     },
     filters,
   );
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(undefined);
   const [searchField, setSearchField] = useState('');
   const columns = useDatagridColumn(selectedInstance, (instance) => {
     setSelectedInstance(instance);
@@ -205,7 +204,7 @@ export default function ResourceSelectorComponent({
                       ...addedFilter,
                       label: column.label,
                     });
-                    filterPopoverRef.current?.closeSurface();
+                    void filterPopoverRef.current?.closeSurface();
                   }}
                 />
               </OsdsPopoverContent>

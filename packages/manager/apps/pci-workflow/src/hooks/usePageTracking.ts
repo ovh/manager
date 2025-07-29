@@ -9,9 +9,8 @@ const DISCOVERY_PLANCODE = 'project.discovery';
 export default function usePageTracking() {
   const location = useLocation();
   const { data: project } = useProject();
-  const { setPciProjectMode, trackPage } = useContext(
-    ShellContext,
-  ).shell.tracking;
+  const { setPciProjectMode, trackPage } =
+    useContext(ShellContext).shell.tracking;
 
   useEffect(() => {
     if (project) {

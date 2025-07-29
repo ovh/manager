@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 import { format, parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
@@ -8,15 +8,14 @@ import { TWorkflowExecution } from '../data/region-workflow';
 import { useWorkflows } from './workflows';
 import { paginateResults } from '@/helpers';
 
-export const defaultCompareFunction = (key: keyof TWorkflowExecution) => (
-  a: TWorkflowExecution,
-  b: TWorkflowExecution,
-) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+export const defaultCompareFunction =
+  (key: keyof TWorkflowExecution) =>
+  (a: TWorkflowExecution, b: TWorkflowExecution) => {
+    const aValue = a[key] || '';
+    const bValue = b[key] || '';
 
-  return aValue.localeCompare(bValue);
-};
+    return aValue.localeCompare(bValue);
+  };
 
 export const sortExecutions = (
   executions: TWorkflowExecution[],
@@ -42,12 +41,10 @@ export const useWorkflowExecutions = (
   { pagination, sorting }: { pagination: PaginationState; sorting: ColumnSort },
 ) => {
   const { i18n } = useTranslation('pci-common');
-  const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: workflows, isPending: isWorkflowPending } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isWorkflowPending } =
+    useWorkflows(projectId);
 
   return useMemo(() => {
     let mappedExecution: TWorkflowExecution[] = [];
@@ -62,7 +59,7 @@ export const useWorkflowExecutions = (
           parseISO(exec.executedAt?.replace(/Z$/, '')),
           'dd MMM yyyy',
           {
-            locale: locales[userLocale],
+            locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
           },
         ),
         executedAtTime: format(
@@ -70,7 +67,7 @@ export const useWorkflowExecutions = (
           parseISO(exec.executedAt?.replace(/Z$/, '')),
           'HH:mm:ss',
           {
-            locale: locales[userLocale],
+            locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
           },
         ),
       }));
@@ -87,7 +84,6 @@ export const useWorkflowExecutions = (
       },
     };
   }, [
-    locales,
     userLocale,
     workflowId,
     workflows,
