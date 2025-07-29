@@ -10,4 +10,5 @@ export const TRANSLATION_NAMESPACES = {
   onboarding: 'onboarding',
   order: 'order',
   regionSelector: 'region-selector',
+  importIpFromSys: 'import-ip-from-sys',
 };
