@@ -15,6 +15,13 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
 import { useCreateCart } from '@/data/hooks/useCreateCart';
 import { useCheckoutOrder } from '@/data/hooks/useCheckoutOrder';
+import {
+  ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
+  ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID,
+  ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID,
+  ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
+  ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
+} from './OrderOkmsModal.component.constants';
 
 // custom type for the state
 export type OkmsRegionOrderSuccessful = {
@@ -26,6 +33,7 @@ const CancelButton = ({ onClick }: { onClick: () => void }) => {
 
   return (
     <OdsButton
+      data-testid={ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID}
       slot="actions"
       type="button"
       variant="ghost"
@@ -42,7 +50,11 @@ const TermsAndConditions = ({
   cart: CreateCartResult;
   onCancel: () => void;
 }) => {
-  const { t } = useTranslation(['secret-manager/create', NAMESPACES.ERROR]);
+  const { t } = useTranslation([
+    'secret-manager/create',
+    NAMESPACES.ERROR,
+    NAMESPACES.ACTIONS,
+  ]);
   const navigate = useNavigate();
   const { region } = useParams();
   const [isContractAccepted, setIsContractAccepted] = useState(false);
@@ -76,6 +88,7 @@ const TermsAndConditions = ({
         </div>
         <div className="flex gap-3 items-center">
           <OdsCheckbox
+            data-testid={ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID}
             name="confirm-contract"
             inputId="confirm-contract"
             isChecked={isContractAccepted}
@@ -98,8 +111,9 @@ const TermsAndConditions = ({
 
       <CancelButton onClick={onCancel} />
       <OdsButton
+        data-testid={ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID}
         slot="actions"
-        label="confirm"
+        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
         isDisabled={!isContractAccepted}
         onClick={() => mutate({ cartId: cart.cartId })}
         isLoading={isPending}
@@ -137,7 +151,7 @@ export const OrderOkmsModal = () => {
     <OdsModal isOpen onOdsClose={cancel}>
       {isPending && (
         <div className="flex items-center justify-center py-3">
-          <OdsSpinner />
+          <OdsSpinner data-testid={ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID} />
         </div>
       )}
       {error && (
@@ -153,6 +167,7 @@ export const OrderOkmsModal = () => {
           </OdsMessage>
           <CancelButton onClick={cancel} />
           <OdsButton
+            data-testid={ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID}
             slot="actions"
             label={t('retry', { ns: NAMESPACES.ACTIONS })}
             onClick={() => createCart()}
