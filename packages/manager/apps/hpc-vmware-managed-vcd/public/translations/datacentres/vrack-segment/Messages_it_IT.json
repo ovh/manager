@@ -12,7 +12,7 @@
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Per facilitare i tuoi deploy di cloud ibrido, potrebbe essere necessario utilizzare lo stesso identificativo VLAN sia sul server dedicato che sul progetto Public Cloud.",
   "managed_vcd_dashboard_vrack_edit_success": "La richiesta di modifica dell'ID VLAN è stata presa in carico.",
   "managed_vcd_dashboard_vrack_edit_error": "Si è verificato un errore durante la modifica dell'ID VLAN: {{errorApi}}",
-  "managed_vcd_dashboard_vrack_form_add_network_description": "Aggiungi un nuovo indirizzo di sottorete a questo segmento vRack per connettere le tue macchine virtuali.",
+  "managed_vcd_dashboard_vrack_form_add_network_description": "Aggiungi un nuovo indirizzo subnet a questo segmento vRack per connettere le tue macchine virtuali. La prima parte identifica il gateway nella sottorete.",
   "managed_vcd_dashboard_vrack_add_network_input_helper": "L’indirizzo della sottorete deve essere inserito in formato CIDR.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "Questo indirizzo di sottorete esiste già.",
   "managed_vcd_dashboard_vrack_add_network_success": "La sottorete è stata aggiunta correttamente",
