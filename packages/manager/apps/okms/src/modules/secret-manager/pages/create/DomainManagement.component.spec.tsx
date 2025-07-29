@@ -22,7 +22,10 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
-import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
+import {
+  ACTIVATE_DOMAIN_BTN_TEST_ID,
+  ACTIVATE_DOMAIN_SPINNER_TEST_ID,
+} from '@secret-manager/utils/tests/secret.constants';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { DomainManagement } from './DomainManagement.component';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
@@ -36,6 +39,7 @@ import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
 import { ErrorResponse } from '@/types/api.type';
+import { OkmsRegionOrderSuccessful } from '@/common/components/OrderOkmsModal/OrderOkmsModal.component';
 
 let i18nValue: i18n;
 
@@ -43,8 +47,8 @@ vi.mock('@/data/api/orderCatalogOKMS', () => ({
   getOrderCatalogOKMS: vi.fn(),
 }));
 
-const location = {
-  state: '',
+let useLocationMock: { state: OkmsRegionOrderSuccessful } = {
+  state: { orderRegion: '' },
 };
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -54,7 +58,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useNavigate: () => vi.fn(),
     useHref: vi.fn((link) => link),
     useSearchParams: vi.fn(),
-    useLocation: () => location,
+    useLocation: () => useLocationMock,
   };
 });
 
@@ -181,6 +185,20 @@ const assertActivateButtonIsNotInTheDocument = async () => {
   });
 };
 
+const assertLoadingListIsInTheDocument = async () => {
+  const activateSpinner = screen.queryByTestId(ACTIVATE_DOMAIN_SPINNER_TEST_ID);
+  await waitFor(() => {
+    expect(activateSpinner).toBeVisible();
+  });
+};
+
+const assertLoadingListIsNotInTheDocument = async () => {
+  const activateSpinner = screen.queryByTestId(ACTIVATE_DOMAIN_SPINNER_TEST_ID);
+  await waitFor(() => {
+    expect(activateSpinner).toBeNull();
+  });
+};
+
 const selectRegion = async (user: UserEvent, region: string) => {
   const regionCard = screen.getByTestId(region);
 
@@ -206,14 +224,21 @@ describe('Domain management test suite', () => {
 
   it('should display a notification message when error on catalog api', async () => {
     // GIVEN
-    vi.mocked(getOrderCatalogOKMS).mockRejectedValueOnce(
-      new Error('Mocked error'),
-    );
+    const mockError: ErrorResponse = {
+      response: { data: { message: 'errorCatalog' }, status: 500 },
+    };
+    vi.mocked(getOrderCatalogOKMS).mockRejectedValue(mockError);
+
     // WHEN
     await renderDomainManagement();
 
     // THEN
-    await assertTextVisibility('error_message');
+    await assertTextVisibility(
+      labels.common.error.error_message.replace(
+        '{{message}}',
+        mockError.response.data.message,
+      ),
+    );
   });
 
   it('should display the available region list', async () => {
@@ -233,25 +258,54 @@ describe('Domain management test suite', () => {
     afterEach(() => {
       vi.clearAllMocks();
     });
-    it('should display a CTA when there is no domain', async () => {
-      const user = userEvent.setup();
-      // GIVEN
-      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+    describe('when there is no domain', () => {
+      it('should display a CTA', async () => {
+        const user = userEvent.setup();
+        // GIVEN
+        vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
 
-      await renderDomainManagement();
-      await assertTextVisibility(
-        labels.secretManager.create.domain_section_title,
-      );
-      await assertTextVisibility(regionWithoutOkms.region);
+        await renderDomainManagement();
+        await assertTextVisibility(
+          labels.secretManager.create.domain_section_title,
+        );
+        await assertTextVisibility(regionWithoutOkms.region);
 
-      // WHEN
-      await selectRegion(user, regionWithoutOkms.region);
+        // WHEN
+        await selectRegion(user, regionWithoutOkms.region);
 
-      // THEN
-      await assertDomainsAreNotInTheDocument(okmsMock);
-      await assertActivateButtonIsInTheDocument();
-      // assert we reset the selectedDomainId
-      expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(undefined);
+        // THEN
+        await assertDomainsAreNotInTheDocument(okmsMock);
+        await assertActivateButtonIsInTheDocument();
+        await assertLoadingListIsNotInTheDocument();
+        // assert we reset the selectedDomainId
+        expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(undefined);
+      });
+
+      it('should display a loading state when an order is done', async () => {
+        const user = userEvent.setup();
+        // GIVEN
+        useLocationMock = {
+          state: {
+            orderRegion: 'new-example-region', // New mocked orderRegion value
+          },
+        };
+
+        vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+
+        await renderDomainManagement();
+        await assertTextVisibility(
+          labels.secretManager.create.domain_section_title,
+        );
+        await assertTextVisibility(regionWithoutOkms.region);
+
+        // WHEN
+        await selectRegion(user, regionWithoutOkms.region);
+
+        // THEN
+        await assertDomainsAreNotInTheDocument(okmsMock);
+        await assertActivateButtonIsNotInTheDocument();
+        await assertLoadingListIsInTheDocument();
+      });
     });
 
     it('should not display anything when there is exactly one domain', async () => {

@@ -12,6 +12,7 @@ import {
 } from '@secret-manager/utils/tests/secret.constants';
 import { fireEvent, act, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
@@ -105,6 +106,11 @@ describe('Create secret page test suite', () => {
     await act(() => user.click(submitButton));
 
     // THEN
-    await assertTextVisibility('error_message');
+    await assertTextVisibility(
+      labels.common.error.error_message.replace(
+        '{{message}}',
+        createSecretErrorMessage,
+      ),
+    );
   });
 });
