@@ -3,6 +3,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonDashboard from '../../../../../modules/common-translations/public/translations/dashboard/Messages_fr_FR.json';
 import commonForm from '../../../../../modules/common-translations/public/translations/form/Messages_fr_FR.json';
 import commonStatus from '../../../../../modules/common-translations/public/translations/status/Messages_fr_FR.json';
+import commonError from '../../../../../modules/common-translations/public/translations/error/Messages_fr_FR.json';
 import kmsCommon from '../../../public/translations/key-management-service/common/Messages_fr_FR.json';
 import create from '../../../public/translations/key-management-service/create/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/key-management-service/dashboard/Messages_fr_FR.json';
@@ -50,6 +51,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
     .addResources(defaultLocale, NAMESPACES.STATUS, commonStatus)
+    .addResources(defaultLocale, NAMESPACES.ERROR, commonError)
     .addResources(defaultLocale, 'secret-manager/common', secretCommon)
     .addResources(defaultLocale, 'secret-manager/onboarding', secretOnboarding)
     .addResources(defaultLocale, 'secret-manager/dashboard', secretDashboard)
@@ -91,6 +93,7 @@ const commonLabels = {
   dashboard: commonDashboard,
   form: commonForm,
   status: commonStatus,
+  error: commonError,
 };
 
 const secretManagerLabels = {
