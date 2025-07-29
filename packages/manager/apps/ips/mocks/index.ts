@@ -8,3 +8,4 @@ export * from './vrack';
 export * from './iam';
 export * from './organisations/organisations';
 export * from './cloud/cloud-project.handler';
+export * from './ip-load-balancing';

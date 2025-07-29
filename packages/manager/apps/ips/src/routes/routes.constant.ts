@@ -17,6 +17,7 @@ export const subRoutes = {
   viewVirtualMac: 'view-virtual-mac',
   manageIpMitigation: 'manage-mitigation',
   deleteVirtualMac: 'delete-virtual-mac',
+  importIpFromSys: 'import-ip-from-sys',
 };
 
 export const urlDynamicParts = {
@@ -33,6 +34,7 @@ export const urls = {
   listing: subRoutes.root,
   listingIpTerminate: `${subRoutes.root}/${subRoutes.terminateIp}/${urlDynamicParts.id}`,
   listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
+  listingImportIpFromSys: `${subRoutes.root}/${subRoutes.importIpFromSys}`,
   upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
   configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
   addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,

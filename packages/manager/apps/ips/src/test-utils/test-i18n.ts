@@ -7,6 +7,7 @@ import regionSelector from '../../public/translations/region-selector/Messages_f
 import configureReverseDns from '../../public/translations/configure-reverse-dns/Messages_fr_FR.json';
 import gameFirewall from '../../public/translations/game-firewall/Messages_fr_FR.json';
 import common from '../../public/translations/common/Messages_fr_FR.json';
+import importIpFromSys from '../../public/translations/import-ip-from-sys/Messages_fr_FR.json';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const translations = {
@@ -18,6 +19,7 @@ export const translations = {
   [TRANSLATION_NAMESPACES.regionSelector]: regionSelector,
   [TRANSLATION_NAMESPACES.configureReverseDns]: configureReverseDns,
   [TRANSLATION_NAMESPACES.gameFirewall]: gameFirewall,
+  [TRANSLATION_NAMESPACES.importIpFromSys]: importIpFromSys,
   [TRANSLATION_NAMESPACES.common]: common,
 };
 
@@ -30,5 +32,6 @@ export const labels = {
   regionSelector,
   configureReverseDns,
   gameFirewall,
+  importIpFromSys,
   common,
 };

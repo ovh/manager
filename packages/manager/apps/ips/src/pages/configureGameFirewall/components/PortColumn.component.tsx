@@ -11,10 +11,12 @@ export const PortColumn = ({
   rule,
   value,
   onChange,
+  portProperty,
 }: {
   value: string;
   onChange: (e: OdsInputCustomEvent<OdsInputChangeEventDetail>) => void;
   rule: IpGameFirewallRule & { isNew?: boolean };
+  portProperty: 'from' | 'to';
 }) => {
   return rule?.isNew ? (
     <OdsInput
@@ -25,6 +27,6 @@ export const PortColumn = ({
       maxlength={PORT_MAX.toString().length}
     />
   ) : (
-    <OdsText>{rule?.ports.to}</OdsText>
+    <OdsText>{rule?.ports[portProperty]}</OdsText>
   );
 };
