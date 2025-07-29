@@ -1,5 +1,6 @@
-/* ACTIVATE button */
+/* ACTIVATE DOMAIN */
 export const ACTIVATE_DOMAIN_BTN_TEST_ID = 'secret-activate-domain-button';
+export const ACTIVATE_DOMAIN_SPINNER_TEST_ID = 'secret-activate-domain-spinner';
 
 /* PATH input */
 export const PATH_INPUT_TEST_ID = 'secret-input-path';
