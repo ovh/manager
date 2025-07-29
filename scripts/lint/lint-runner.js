@@ -73,19 +73,6 @@ if (verbose) {
 
 const tasks = [];
 
-const turboBuildTarget = filterValue
-  ? filterValue
-  : isPackageName
-    ? packageName
-    : appName
-      ? appName
-      : './packages/manager/apps/*...';
-
-tasks.push({
-  name: `prebuild (turbo build --filter=${turboBuildTarget})`,
-  cmd: ['turbo', 'run', 'build', '--filter', turboBuildTarget],
-});
-
 if (!isPackageName) {
   tasks.push({
     name: appName ? `legacy lint:tsx (${appName})` : 'legacy lint:tsx',
