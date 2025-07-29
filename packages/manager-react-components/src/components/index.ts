@@ -37,7 +37,7 @@ export * from './region/region.component';
 export * from './order';
 
 export * from './badge';
-export * from './Modal';
+export * from './modal';
 export * from './tags-list';
 export * from './tags-modal';
 export * from './tags-tile';
