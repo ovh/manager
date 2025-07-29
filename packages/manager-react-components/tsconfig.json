@@ -1,22 +1,10 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
-    "lib": ["dom", "es2021"],
-    "target": "ES2020",
-    "types": ["vite/client", "node", "jest"],
-    "module": "ESNext",
-    "outDir": "dist",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "baseUrl": ".",
+    "outDir": "dist"
   },
   "files": ["global.d.ts"],
-  "include": ["src/**/*", "*.spec.tsx"],
+  "include": ["src/**/*", "*.spec.tsx", ".storybook/i18n.ts", "**/*.json"],
   "exclude": ["./src/**/*.stories.*"]
 }
