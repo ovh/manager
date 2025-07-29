@@ -41,6 +41,8 @@ import {
   GetIamMocksParams,
   GetCatalogMocksParams,
   getCloudProjectMocks,
+  getIpLoadBalancingMocks,
+  GetIpLoadBalancingMocksParams,
 } from '../../mocks';
 
 export type MockParams = GetIpsMocksParams &
@@ -52,7 +54,8 @@ export type MockParams = GetIpsMocksParams &
   GetVrackMocksParams &
   GetVpsMocksParams &
   GetOrganisationMocksParams &
-  GetCatalogMocksParams;
+  GetCatalogMocksParams &
+  GetIpLoadBalancingMocksParams;
 
 const APP_NAME = 'ips';
 
@@ -77,6 +80,7 @@ export const renderTest = async ({
       ...getVpsMocks(mockParams),
       ...getOrganisationMocks(mockParams),
       ...getCloudProjectMocks(),
+      ...getIpLoadBalancingMocks(mockParams),
     ]),
   );
 
