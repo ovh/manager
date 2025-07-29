@@ -79,6 +79,7 @@
   "sidebar_pci_quantum": "Quantum",
   "sidebar_pci_quantum_emulators": "Emulators",
   "sidebar_pci_ai_notebooks": "AI Notebooks",
+  "sidebar_pci_quantum_qpu": "QPUs",
   "sidebar_pci_ai_training": "AI Training",
   "sidebar_pci_ai_app": "AI Deploy",
   "sidebar_pci_ai_endpoints": "AI Endpoints",
