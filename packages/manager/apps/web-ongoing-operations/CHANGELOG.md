@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.9.4...@ovh-ux/manager-web-ongoing-operations-app@1.10.0) (2025-07-28)
+
+
+### Features
+
+* **web-ongoing-operations:** add zod to check value on update input ([2495ed4](https://github.com/ovh/manager/commit/2495ed459e1c8e524e97234cf75f7b8efa9da853)), closes [#MANAGER-18199](https://github.com/ovh/manager/issues/MANAGER-18199)
+
+
+
+
+
 ## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.9.3...@ovh-ux/manager-web-ongoing-operations-app@1.9.4) (2025-07-24)
 
 

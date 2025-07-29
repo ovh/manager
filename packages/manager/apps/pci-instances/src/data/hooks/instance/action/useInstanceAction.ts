@@ -14,7 +14,6 @@ import {
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
-import { TInstanceDto } from '@/types/instance/api.type';
 
 export type TMutationFnType =
   | 'delete'
@@ -26,8 +25,6 @@ export type TMutationFnType =
   | 'hard-reboot'
   | 'reinstall'
   | 'billing/monthly/activate';
-
-export type TMutationFnVariables = TInstanceDto | undefined;
 
 export type TUseInstanceActionCallbacks = DeepReadonly<{
   onSuccess?: (data?: null) => void;
@@ -69,7 +66,7 @@ const useInstanceAction = <V, R extends null>({
 };
 
 type TBackupMutationFnVariables = {
-  instance: TInstanceDto;
+  instance: { id: string };
   snapshotName: string;
 };
 
@@ -95,7 +92,7 @@ export const useInstanceBackupAction = (
   });
 
 type TRescueMutationFnVariables = {
-  instance: TInstanceDto;
+  instance: { id: string };
   imageId: string;
   isRescue: boolean;
 };
@@ -118,7 +115,7 @@ export const useInstanceRescueAction = (
   });
 
 type TReinstallMutationFnVariables = {
-  instance: TInstanceDto;
+  instance: { id: string };
   imageId: string;
 };
 
@@ -142,11 +139,11 @@ export const useBaseInstanceAction = (
   projectId: string,
   callbacks: TUseInstanceActionCallbacks = {},
 ) =>
-  useInstanceAction<TInstanceDto, null>({
+  useInstanceAction<{ id: string; imageId: string }, null>({
     projectId,
     mutationKeySuffix: type,
     mutationFn: useCallback(
-      (instance?: TInstanceDto) => {
+      (instance?: { id: string; imageId: string }) => {
         if (!instance) return Promise.reject(unknownError);
         const { id, imageId } = instance;
         switch (type) {

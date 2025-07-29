@@ -105,6 +105,12 @@ export const TRACKING_CONTEXT = {
   },
 };
 
+const APP = 'cloud-connect';
+export const FEATURES = {
+  APP,
+  LOGS: `${APP}:logs`,
+};
+
 export default {
   GUIDELINK,
   POP_MAP,

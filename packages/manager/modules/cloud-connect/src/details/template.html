@@ -46,6 +46,15 @@
         <oui-header-tabs-item data-state="cloud-connect.details.statistics"
             ><span data-translate="cloud_connect_statistics"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: $ctrl.isLogsAvailable"
+            data-state="cloud-connect.details.logs"
+            ><span data-translate="cloud_connect_logs"></span>
+            <span
+                class="oui-badge oui-badge_beta"
+                data-ng-bind=":: $ctrl.BETA"
+            ></span>
+        </oui-header-tabs-item>
     </oui-header-tabs>
 </oui-header>
 <ovh-cloud-connect-notifications

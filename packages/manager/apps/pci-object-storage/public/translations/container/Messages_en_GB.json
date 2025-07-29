@@ -45,7 +45,7 @@
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_maintenance_message": "We are currently carrying out maintenance to merge S3-compatible endpoints. Adding objects is temporarily suspended.",
   "pci_projects_project_storages_containers_container_region": "Location: {{ region }}",
-  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Keep in mind that your container doesn’t come with off-site data replication. If your use case requires this additional level of resilience, consider using &lt;1>asynchronous replication&lt;/1> across one or more regions. &lt;2>Find out more&lt;/2>.",
+  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Keep in mind that your container doesn’t come with off-site data replication. If your use case requires this additional level of resilience, consider using <1>asynchronous replication</1> across one or more regions. <2>Learn more</2>.",
   "pci_projects_project_storages_containers_container_offsite_replication_title": "Replication:",
   "pci_projects_project_storages_containers_container_offsite_replication_enabled": "Configured",
   "pci_projects_project_storages_containers_container_offsite_replication_disabled": "Not configured",
