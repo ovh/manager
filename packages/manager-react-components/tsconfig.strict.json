@@ -1,0 +1,23 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+  },
+  "include": [
+    "./src/components/Link/Link.props.ts",
+
+    "./src/components/Breadcrumb/Breadcrumb.props.ts",
+    "./src/components/Breadcrumb/Breadcrumb.component.tsx",
+    "./src/hooks/breadcrumb/useBreadcrumb.tsx"
+  ],
+  "exclude": [
+    "./src/components/**/stories.tsx",
+    "./src/components/**/test.tsx",
+    "./src/components/**/__tests__/*",
+    "./src/utils/*",
+    "./src/tailwind/*",
+    "./src/__mocks__/*",
+    "./src/enumTypes/*"
+  ]
+}
