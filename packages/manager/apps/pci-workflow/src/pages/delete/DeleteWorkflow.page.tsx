@@ -15,14 +15,12 @@ import { useDeleteWorkflow, useWorkflows } from '@/api/hooks/workflows';
 export default function DeleteWorkflowPage() {
   const { t: tDelete } = useTranslation('delete');
   const { t } = useTranslation('listing');
-  const { t: tCommon } = useTranslation('pci-common');
   const { projectId, workflowId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
-  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isPendingWorkflows } =
+    useWorkflows(projectId);
 
   const workflow = workflows.find((w) => w.id === workflowId);
   const { data: instance } = useInstance(projectId, workflow?.instanceId);
