@@ -145,6 +145,20 @@ export const Routes: any = [
                 handle: {
                   tracking: {
                     pageName: 'listing-delete-virtual-mac',
+                  },
+                },
+              },
+              {
+                id: subRoutes.importIpFromSys,
+                path: urls.listingImportIpFromSys,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/importIpFromSys/importIpFromSys.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'import-ip-from-sys',
                     pageType: PageType.popup,
                   },
                 },
