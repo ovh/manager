@@ -9,7 +9,6 @@
   "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
   "cloud_connect_datacenter_add_routing_subnet": "Introduza a sub-rede de destino",
   "cloud_connect_datacenter_add_routing_subnet_placeholder": "Sub-rede",
-  "cloud_connect_datacenter_add_routing_bgp_area": "Introduza o ASN cliente",
   "cloud_connect_datacenter_add_routing_bgp_ip": "Introduza o IP Neighbor",
   "cloud_connect_datacenter_add_routing_error": "Ocorreu um erro ao adicionar a configuração de roteamento: {{message}}",
   "cloud_connect_datacenter_add_routing_success": "Adição de uma configuração de roteamento. <a href=\"{{ tasksUrl }}\">Clique aqui para ver o estado.</a>",

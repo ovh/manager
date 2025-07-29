@@ -9,7 +9,6 @@
   "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
   "cloud_connect_datacenter_add_routing_subnet": "Wprowadź podsieć docelową",
   "cloud_connect_datacenter_add_routing_subnet_placeholder": "Podsieć",
-  "cloud_connect_datacenter_add_routing_bgp_area": "Wprowadź ",
   "cloud_connect_datacenter_add_routing_bgp_ip": "Wprowadź IP Neighbor",
   "cloud_connect_datacenter_add_routing_error": "Wystąpił błąd podczas dodawania konfiguracji routingu: {{message}}",
   "cloud_connect_datacenter_add_routing_success": "Dodanie konfiguracji routingu. <a href=\"{{tasksUrl}}\">Kliknij tutaj, aby sprawdzić status.</a>",
