@@ -38,14 +38,14 @@
       "outputs": [],
       "dependsOn": [
         "^lint:modern",
-        "@ovh-ux/manager-static-analysis-kit#build"
+        "^build"
       ]
     },
     "lint:modern:fix": {
       "outputs": [],
       "dependsOn": [
-        "^lint:modern:fix",
-        "@ovh-ux/manager-static-analysis-kit#build"
+        "^lint:modern",
+        "^build"
       ]
     }
   }

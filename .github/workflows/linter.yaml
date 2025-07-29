@@ -5,60 +5,27 @@ on:
     branches-ignore: [master, develop]
   pull_request:
     branches: [master, develop]
-
 jobs:
-  lint:
+  build:
     name: Lint Code Base
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      REPO: ${{ github.repository }}
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
           node-version: 22
-
       - name: Restore/create node_modules cache
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
       - name: Install repository
-        run: yarn install --frozen-lockfile
-
-      - name: Compute Turbo filter for lint
         run: |
-          BRANCH="${GITHUB_HEAD_REF:-$(git rev-parse --abbrev-ref HEAD)}"
-          echo "My branch is $BRANCH"
-          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
-
-          if [[ -z "$BASE_BRANCH" ]]; then
-            export BASE_BRANCH="master"
-            export CURRENT_BRANCH=${BRANCH}
-            echo "NO PR FOUND for branch $BRANCH from ${BASE_BRANCH}"
-          else
-            echo "Base Branch is $BASE_BRANCH"
-            echo "Current Branch is ${BRANCH}"
-            export BASE_BRANCH="${BASE_BRANCH//\"/}"
-            export CURRENT_BRANCH="${BRANCH//\"/}"
-          fi
-
-          echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
-          echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
-          echo "Using Turbo filter: [origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]"
-
-      - name: Prebuild changed packages and dependencies
+          yarn install --frozen-lockfile
+      - name: Lint Code Base
         run: |
-          yarn exec turbo run build --filter=[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]
-
-      - name: Lint Code Base with filter
-        run: |
-          yarn lint --filter=[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}]
+          yarn lint
