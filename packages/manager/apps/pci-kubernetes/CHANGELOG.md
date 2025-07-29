@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.2...@ovh-ux/manager-pci-kubernetes-app@0.27.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **ldp:** update of the message field for kube/lb ([f2396aa](https://github.com/ovh/manager/commit/f2396aa4aebd39137c2b065d0f88e721fb5849c1)), closes [#MANAGER-16582](https://github.com/ovh/manager/issues/MANAGER-16582)
+* **pci-kubernetes:** add close action to modal ([6ae0907](https://github.com/ovh/manager/commit/6ae09070f3916ba68392f6ec14fc6432bc81e8c3)), closes [#TAPC-4456](https://github.com/ovh/manager/issues/TAPC-4456)
+
+
+
+
+
 ## [0.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.1...@ovh-ux/manager-pci-kubernetes-app@0.27.2) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

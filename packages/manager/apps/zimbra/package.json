@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-zimbra-app",
-  "version": "0.31.10",
+  "version": "0.31.11",
   "private": true,
   "description": "zimbra react app",
   "repository": {

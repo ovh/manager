@@ -4,9 +4,9 @@ import { TFunction } from 'i18next';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useImages } from '@/data/hooks/image/useImages';
 import { useInstanceRescueAction } from '@/data/hooks/instance/action/useInstanceAction';
-import { TInstanceDto } from '@/types/instance/api.type';
 import { imagesRescueSelector } from '@/data/hooks/image/selector/image.selector';
 import ImageSelector from '@/components/imageSelector/ImageSelector.component';
+import { TInstanceActionModalViewModel } from './view-models/selectInstanceForActionModal';
 
 type TRescueActionSection = 'rescue/start' | 'rescue/end';
 
@@ -17,7 +17,7 @@ export type TRescueActionPageProps = {
   onError: (error: unknown) => void;
   onSuccess: () => void;
   onModalClose: () => void;
-  instance?: TInstanceDto;
+  instance: TInstanceActionModalViewModel;
   isLoading: boolean;
 };
 

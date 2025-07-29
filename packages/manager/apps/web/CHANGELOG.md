@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.0...@ovh-ux/manager-web@19.22.1) (2025-07-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.2...@ovh-ux/manager-web@19.22.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** add info message eol net2ftp ([a2e69e2](https://github.com/ovh/manager/commit/a2e69e2e69809e13e0a2c56a93138b9cf483013e)), closes [#MANAGER-18586](https://github.com/ovh/manager/issues/MANAGER-18586)
+
+
+### Features
+
+* **web-domains:** remove nic handle check in dns tab ([d9496c2](https://github.com/ovh/manager/commit/d9496c2a3ad0094806c2a922272734bc811660c0)), closes [#MANAGER-18980](https://github.com/ovh/manager/issues/MANAGER-18980)
+
+
+
+
+
 ## [19.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.1...@ovh-ux/manager-web@19.21.2) (2025-07-24)
 
 
