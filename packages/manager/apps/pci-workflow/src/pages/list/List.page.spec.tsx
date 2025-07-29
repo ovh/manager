@@ -13,7 +13,8 @@ import ListingPage from './List.page';
 import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual: any = await importOriginal();
+  const actual =
+    await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     ChangelogButton: vi.fn().mockReturnValue(<div></div>),
@@ -27,7 +28,8 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 
 describe('ListPage', () => {
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
-    const actual = (await importOriginal()) as Record<string, unknown>;
+    const actual =
+      await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
     return {
       ...actual,
       OsdsBreadcrumb: vi
@@ -65,7 +67,10 @@ describe('ListPage', () => {
     it('should be rendered with right props', async () => {
       const { getByTestId } = render(<ListingPage />, { wrapper });
       await waitFor(() => {
-        const props = JSON.parse(getByTestId('guard').textContent);
+        const props = JSON.parse(getByTestId('guard').textContent) as Record<
+          string,
+          unknown
+        >;
         expect(props.condition).toBe(
           DEFAULT_DATA.emptyPaginatedWorkflows.data.totalRows === 0 &&
             !DEFAULT_DATA.emptyPaginatedWorkflows.isPending,
@@ -82,17 +87,16 @@ describe('ListPage', () => {
 
   describe('Content', () => {
     beforeAll(() => {
-      vi.spyOn(
-        managerComponentsModule,
-        'RedirectionGuard',
-      ).mockImplementation((props) => <>{props.children}</>);
+      vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation(
+        (props) => <>{props.children}</>,
+      );
 
       vi.spyOn(pciCommonModule, 'useProject').mockImplementation(
         () =>
           ({
             data: DEFAULT_DATA.project,
             isPending: false,
-          } as UseQueryResult<TProject, ResponseAPIError>),
+          }) as UseQueryResult<TProject, ResponseAPIError>,
       );
 
       vi.spyOn(osdsComponents, 'OsdsBreadcrumb').mockImplementation((props) => (
@@ -119,7 +123,9 @@ describe('ListPage', () => {
 
       await waitFor(() => {
         expect(getByTestId('breadcrumb')).toBeInTheDocument();
-        const props = JSON.parse(getByTestId('breadcrumb').textContent);
+        const props = JSON.parse(
+          getByTestId('breadcrumb').textContent,
+        ) as Record<string, unknown>;
         expect(props.items).toEqual([
           {
             href: 'project_url',
@@ -183,18 +189,15 @@ describe('ListPage', () => {
             pageCount: 1,
           },
         });
-        vi.spyOn(
-          managerComponentsModule,
-          'Datagrid',
-        ).mockImplementation((props) => (
-          <div data-testid="grid">{JSON.stringify(props)}</div>
-        ));
+        vi.spyOn(managerComponentsModule, 'Datagrid').mockImplementation(
+          (props) => <div data-testid="grid">{JSON.stringify(props)}</div>,
+        );
 
         const { getByTestId } = render(<ListingPage />, { wrapper });
 
         await waitFor(() => {
           const el = getByTestId('grid');
-          const props = JSON.parse(el.textContent);
+          const props = JSON.parse(el.textContent) as Record<string, unknown>;
 
           expect(Object.keys(props).sort()).toEqual(
             [

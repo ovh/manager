@@ -6,6 +6,10 @@ import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/data/workflow');
 
+afterEach(() => {
+  vi.clearAllMocks();
+});
+
 describe('useDeleteWorkflow', () => {
   const onSuccessMock = vi.fn();
   const onErrorMock = vi.fn();
@@ -26,7 +30,7 @@ describe('useDeleteWorkflow', () => {
 
     act(() => result.current.deleteWorkflow());
 
-    waitFor(() => expect(onSuccessMock).toHaveBeenCalled());
+    await waitFor(() => expect(onSuccessMock).toHaveBeenCalled());
     expect(onErrorMock).not.toHaveBeenCalled();
   });
 
