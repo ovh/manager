@@ -68,6 +68,9 @@ export const getSecretMock = ({
 ];
 
 // POST
+
+export const createSecretErrorMessage = 'create-secret-error-message';
+
 export type CreateSecretsMockParams = {
   isCreateSecretKO?: boolean;
 };
@@ -79,10 +82,7 @@ export const createSecretsMock = ({
     url: '/okms/resource/:okmsId/secret',
     response: isCreateSecretKO
       ? {
-          status: 500,
-          data: {
-            message: 'createsecrets error',
-          },
+          message: createSecretErrorMessage,
         }
       : createSecretResponseMock,
     status: isCreateSecretKO ? 500 : 200,
