@@ -9,7 +9,6 @@
   "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Nächster Sprung (Hop)",
   "cloud_connect_datacenter_add_routing_subnet": "Geben Sie das Ziel-Subnetzwerk ein",
   "cloud_connect_datacenter_add_routing_subnet_placeholder": "Subnetzwerk",
-  "cloud_connect_datacenter_add_routing_bgp_area": " Geben Sie den ASN-Client ein",
   "cloud_connect_datacenter_add_routing_bgp_ip": "Geben Sie die IP-Neighbor-Adresse ein",
   "cloud_connect_datacenter_add_routing_error": "Beim Hinzufügen der Routing-Konfiguration ist ein Fehler aufgetreten: {{message}}",
   "cloud_connect_datacenter_add_routing_success": "Hinzufügen eine Routing-Konfiguration. <a href=\"{{ tasksUrl }}\">Klicken Sie hier, um den Status anzuzeigen.</a>",
