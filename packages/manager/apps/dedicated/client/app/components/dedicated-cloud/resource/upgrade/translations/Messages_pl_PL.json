@@ -11,5 +11,6 @@
   "ovhManagerPccResourceUpgrade_validateButton": "Zatwierdź",
   "ovhManagerPccResourceUpgrade_cancelButton": "Anuluj",
   "dedicatedCloud_order_loading_error": "Wystąpił błąd podczas pobierania informacji.",
-  "ovhManagerPccResourceUpgrade_plan_not_found": "Opcja {{planCode}} jest niedostępna."
+  "ovhManagerPccResourceUpgrade_plan_not_found": "Opcja {{planCode}} jest niedostępna.",
+  "ovhManagerPccResourceUpgrade_plan_success_message": "Dyspozycja zmiany {{type}} na abonament miesięczny została zarejestrowana. Aby ją sfinalizować, kliknij przycisk <a href=\"{{url}}\" target=\"_blank\">Sfinalizuj</a>:"
 }
