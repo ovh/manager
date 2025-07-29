@@ -11,9 +11,6 @@
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_BACKUP": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Riceverai un’email per confermarla.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_BACKUP": "Si è verificato un errore durante la richiesta di disattivazione di Managed Veeam for VCD: {{error}}",
-  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Riceverai un’email per confermarla.",
-  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
-  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Si è verificato un errore durante la richiesta di disattivazione di Managed VCD: {{error}}",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "La tua richiesta di disattivazione del LDP è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "La tua richiesta di disattivazione del LDP è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Si è verificato un errore durante la richiesta di disattivazione del tuo LDP: {{error}}",
@@ -31,5 +28,6 @@
   "autorenew_agora_terminate_service_error_IP": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La disattivazione del servizio è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La disattivazione del servizio è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
-  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}"
+  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Inserisci \"TERMINATE\" nel campo qui sotto per confermare"
 }

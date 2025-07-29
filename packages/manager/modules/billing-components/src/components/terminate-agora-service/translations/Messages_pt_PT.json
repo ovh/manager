@@ -11,9 +11,6 @@
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_BACKUP": "O pedido de rescisão do seu serviço \"{{serviceName}}\" foi registado. Receberá um e-mail para validar.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "O pedido de rescisão do seu serviço \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_BACKUP": "Ocorreu um erro aquando do pedido de rescisão do Managed Veeam for VCD. {{error}}",
-  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "O pedido de rescisão do seu serviço \"{{serviceName}}\" foi registado. Receberá um e-mail para validar.",
-  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "O pedido de rescisão do seu serviço \"{{serviceName}}\" foi registado. Foi-lhe enviado um e-mail de confirmação.",
-  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Ocorreu um erro durante o pedido de rescisão do Managed VCD. {{error}}",
   "autorenew_agora_terminate_service_success_DBAAS_LOGS": "O seu pedido de rescisão do LDP foi registado com êxito. Um e-mail com o procedimento foi-lhe enviado.",
   "autorenew_agora_terminate_service_success_ftc_DBAAS_LOGS": "O seu pedido de rescisão do LDP foi registado com êxito. Foi-lhe enviado um e-mail de confirmação.",
   "autorenew_agora_terminate_service_error_DBAAS_LOGS": "Ocorreu um erro aquando do pedido de rescisão do seu LDP. {{error}}",
@@ -31,5 +28,6 @@
   "autorenew_agora_terminate_service_error_IP": "O seu pedido de cancelamento não foi registado: {{error}}",
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "A rescisão do seu serviço foi registada. Receberá um e-mail com os detalhes do procedimento a seguir.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "A rescisão do seu serviço foi registada. Foi-lhe enviado um e-mail de confirmação.",
-  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "O seu pedido de cancelamento não foi registado: {{error}}"
+  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "O seu pedido de cancelamento não foi registado: {{error}}",
+  "autorenew_agora_terminate_service_confirm_input": "Introduza \"TERMINATE\" no seguinte campo para confirmar"
 }
