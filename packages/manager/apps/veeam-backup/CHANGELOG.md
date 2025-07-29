@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.5...@ovh-ux/manager-veeam-backup-app@0.17.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 607] ([38dbefa](https://github.com/ovh/manager/commit/38dbefab00133e653b113fde20564ca249b0a76e))
+* **veeam-backup:** not displaying action menu in case of offer is in creating or a canceled backup ([f692f31](https://github.com/ovh/manager/commit/f692f31182ef387c9c213742424c28db6d27850f)), closes [#MANAGER-18926](https://github.com/ovh/manager/issues/MANAGER-18926)
+* **veeam-backup:** update success message when activating gold offer ([6d92c05](https://github.com/ovh/manager/commit/6d92c0590adb84b065f21f6121671391696291bd)), closes [#MANAGER-17140](https://github.com/ovh/manager/issues/MANAGER-17140)
+
+
+### Features
+
+* **veeam-backup:** activate gold offer action in veeam backup ([a538618](https://github.com/ovh/manager/commit/a538618dce45c3fc7e7d15596cdf7bd353872a87)), closes [#MANAGER-17140](https://github.com/ovh/manager/issues/MANAGER-17140)
+* **veeam-backup:** add a modal for activating gold offer backup ([9b931dd](https://github.com/ovh/manager/commit/9b931dda78a1128d9e597710352d09a4546cabb1)), closes [#MANAGER-17139](https://github.com/ovh/manager/issues/MANAGER-17139)
+* **veeam-backup:** disable ellipisis gold activation when service is resilied ([34f341b](https://github.com/ovh/manager/commit/34f341b1f66bc9c3020da00aa1eb118298faee3d)), closes [#MANAGER-18926](https://github.com/ovh/manager/issues/MANAGER-18926)
+* **veeam-backup:** enable offer gold in veeam backup ([ce991fd](https://github.com/ovh/manager/commit/ce991fd3a3be85311c2a4dc28447e8c6c73aa176)), closes [#MANAGER-17138](https://github.com/ovh/manager/issues/MANAGER-17138)
+* **veeam-backup:** handle tile link overflow ([4e5e9c4](https://github.com/ovh/manager/commit/4e5e9c46fb0e8e22607e4820be739c309dbe4796)), closes [#MANAGER-18930](https://github.com/ovh/manager/issues/MANAGER-18930)
+* **veeam-backup:** update offer tooltip wording ([044d543](https://github.com/ovh/manager/commit/044d543a4e17d2a785230012336245ec4da7c1e2)), closes [#MANAGER-18259](https://github.com/ovh/manager/issues/MANAGER-18259)
+* **veeam-backup:** using order mrc component when ordering new veeam ([5cbd914](https://github.com/ovh/manager/commit/5cbd914164783479b96e7453ef8af40a14176f0d)), closes [#MANAGER-17081](https://github.com/ovh/manager/issues/MANAGER-17081)
+
+
+
+
+
 ## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.4...@ovh-ux/manager-veeam-backup-app@0.16.5) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
