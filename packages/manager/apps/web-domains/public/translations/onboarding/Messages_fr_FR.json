@@ -1,13 +1,13 @@
 {
-  "title": "web-domains",
-  "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
-  "orderButtonLabel": "Commander un web-domains",
-  "moreInfoButtonLabel": "En savoir plus sur web-domains",
+  "title": "Trouvez le nom de domaine qui vous correspond",
+  "description": "Nous vous proposons un large choix de noms de domaine adaptés à tous vos projets. * Hébergement Web 100 Mo offert * Compte E-mail 5 Go offert * DNSSEC : protège votre nom de domaine contre les tentatives de falsification des données DNS. * Easy Redirect : accès aux réseaux sociaux depuis votre nom de domaine.",
+  "orderButtonLabel": "Commander",
+  "moreInfoButtonLabel": "En savoir plus sur les noms de domaine",
   "guideCategory": "Tutoriel",
-  "guide1Title": "Premiers pas avec un web-domains",
-  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
-  "guide2Title": "Monter votre NAS via un partage NFS",
-  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
-  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "guide1Title": "Rediriger un nom de domaine géré par OVHcloud",
+  "guide1Description": "Découvrez les différents types de redirections et comment en créer une pour un nom de domaine géré par OVHcloud",
+  "guide2Title": "Changer le propriétaire d’un nom de domaine",
+  "guide2Description": "Vous trouverez dans ce guide différentes informations concernant le changement de propriétaire d’un nom de domaine.",
+  "guide3Title": "Transférer son nom de domaine vers OVHcloud",
+  "guide3Description": "Apprenez comment réaliser le transfert d'un nom de domaine vers OVHcloud"
 }
