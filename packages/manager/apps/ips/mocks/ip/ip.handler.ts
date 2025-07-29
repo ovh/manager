@@ -18,6 +18,7 @@ import {
   IpEdgeFirewallType,
   IpGameFirewallStateEnum,
   IpGameFirewallType,
+  IpMitigationStateEnum,
   IpMitigationType,
   IpReverseType,
   IpSpamType,
@@ -78,6 +79,16 @@ export const getIpsMocks = ({
       ippadr.IPv4.isIPv4(params.ip as string)
         ? getIpReverseForBlock
         : getIpv6ReverseForBlock,
+    api: 'v6',
+  },
+  {
+    url: '/ip/:ipBlock/mitigation/:ip',
+    response: (_: unknown, params: PathParams): IpMitigationType => ({
+      permanent: false,
+      ipOnMitigation: params.ip as string,
+      state: IpMitigationStateEnum.OK,
+      auto: true,
+    }),
     api: 'v6',
   },
   {
