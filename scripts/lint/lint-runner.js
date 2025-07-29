@@ -2,7 +2,7 @@
 
 /* eslint-disable */
 
-const { spawn, execSync } = require('child_process');
+const { spawn } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -12,6 +12,8 @@ const path = require('path');
 const appArgIndex = process.argv.indexOf('--app');
 const fix = process.argv.includes('--fix');
 const verbose = !process.argv.includes('--quiet');
+const filterArgIndex = process.argv.indexOf('--filter');
+const filterValue = filterArgIndex !== -1 ? process.argv[filterArgIndex + 1] : null;
 
 const appValue = appArgIndex !== -1 ? process.argv[appArgIndex + 1] : null;
 const isPackageName = appValue?.startsWith('@');
@@ -71,11 +73,13 @@ if (verbose) {
 
 const tasks = [];
 
-const turboBuildTarget = isPackageName
-  ? packageName
-  : appName
-    ? appName
-    : './packages/manager/apps/*...';
+const turboBuildTarget = filterValue
+  ? filterValue
+  : isPackageName
+    ? packageName
+    : appName
+      ? appName
+      : './packages/manager/apps/*...';
 
 tasks.push({
   name: `prebuild (turbo build --filter=${turboBuildTarget})`,
