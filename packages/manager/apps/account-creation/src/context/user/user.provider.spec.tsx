@@ -2,10 +2,28 @@ import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { User } from '@ovh-ux/manager-config';
+import { Application, User } from '@ovh-ux/manager-config';
 import * as useMeApi from '@/data/hooks/useMe';
+import * as useApplicationsApi from '@/data/hooks/useApplications';
 import { urls } from '@/routes/routes.constant';
 import UserProvider from '@/context/user/user.provider';
+
+const url = 'https://fake-manager.com/signup';
+vi.spyOn(useApplicationsApi, 'useApplications').mockReturnValue({
+  isFetched: true,
+  data: {
+    'sign-up': {
+      container: {
+        enabled: false,
+        isDefault: false,
+        path: 'sign-up',
+        containerURL: 'https://fake-manager.com',
+      },
+      universe: 'hub',
+      url,
+    },
+  } as Record<string, Application>,
+} as UseQueryResult<Record<string, Application>>);
 
 const mockedUsedNavigate = vi.fn();
 vi.mock('react-router-dom', () => ({
@@ -38,14 +56,40 @@ describe('User Provider', () => {
     });
   });
 
-  it('should redirect to the preferences page if there is an active session', async () => {
+  it('should redirect to the preferences page if there is an active session with GB user', async () => {
     vi.spyOn(useMeApi, 'useMe').mockReturnValue({
       isFetched: true,
+      data: {
+        ovhSubsidiary: 'GB',
+      },
     } as UseQueryResult<User, ApiError>);
     renderComponent();
 
     await vi.waitFor(() => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.accountType);
+    });
+  });
+
+  it('should redirect to the preferences page if there is an active session with non GB user', async () => {
+    const mockedLocationAssign = vi.fn();
+    Object.defineProperty(window, 'location', {
+      value: {
+        ...window.location,
+        pathname: '/account-creation',
+        assign: mockedLocationAssign,
+      },
+      writable: true,
+    });
+    vi.spyOn(useMeApi, 'useMe').mockReturnValue({
+      isFetched: true,
+      data: {
+        ovhSubsidiary: 'FR',
+      },
+    } as UseQueryResult<User, ApiError>);
+    renderComponent();
+
+    await vi.waitFor(() => {
+      expect(mockedLocationAssign).toHaveBeenCalledWith(url);
     });
   });
 });
