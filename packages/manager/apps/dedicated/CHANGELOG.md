@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.51.2...@ovh-ux/manager-dedicated@20.52.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4193] ([600c5d1](https://github.com/ovh/manager/commit/600c5d11b6dc098025a2cb5f80beaa6975e71088))
+
+
+### Features
+
+* **dedicated.pcc:** remove nic check on software update ([5569040](https://github.com/ovh/manager/commit/5569040f6264c43c1686d65c9ddb6cc6ccc7ea21)), closes [#MANAGER-18833](https://github.com/ovh/manager/issues/MANAGER-18833)
+* **dedicated:** add scope on datastore datagrid ([c4574b8](https://github.com/ovh/manager/commit/c4574b8b3548e6d860d278f2b82a2bb3fb4beb6d)), closes [#MANAGER-16898](https://github.com/ovh/manager/issues/MANAGER-16898)
+
+
+
+
+
 ## [20.51.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.51.1...@ovh-ux/manager-dedicated@20.51.2) (2025-07-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

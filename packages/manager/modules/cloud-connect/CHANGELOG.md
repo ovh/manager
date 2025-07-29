@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.1...@ovh-ux/manager-cloud-connect@1.24.0) (2025-07-29)
+
+
+### Features
+
+* **dedicated.cloud-connect:** enable logs for ovh cloud-connect ([d865758](https://github.com/ovh/manager/commit/d865758a0a92711e21d9380f49afcb3b086ab7c9)), closes [#MANAGER-18859](https://github.com/ovh/manager/issues/MANAGER-18859)
+
+
+
+
+
 ## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.0...@ovh-ux/manager-cloud-connect@1.23.1) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-connect
