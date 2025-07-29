@@ -1,50 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { TagsList, useServiceDetails } from '@ovh-ux/manager-react-components';
-import {
-  OdsButton,
-  OdsSkeleton,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { ACTIVATE_DOMAIN_BTN_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OKMS } from '@/types/okms.type';
 import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
 import { RadioCard } from '@/common/components/RadioCard/RadioCard.component';
-
-const ActivationInProgress = () => {
-  const { t } = useTranslation('secret-manager/create');
-
-  return (
-    <div className="flex items-center gap-3">
-      <OdsSpinner size="sm" />
-      <OdsText>{t('domain_activation_in_progress')}</OdsText>
-    </div>
-  );
-};
-
-const ActivateRegion = ({ selectedRegion }: { selectedRegion: string }) => {
-  const { t } = useTranslation(NAMESPACES.ACTIONS);
-  const navigate = useNavigate();
-
-  return (
-    <div>
-      <OdsButton
-        data-testid={ACTIVATE_DOMAIN_BTN_TEST_ID}
-        label={t('activate')}
-        onClick={() =>
-          navigate(
-            SECRET_MANAGER_ROUTES_URLS.secretCreateOrderOkms(selectedRegion),
-          )
-        }
-      />
-    </div>
-  );
-};
+import { ActivateRegion } from './ActivateRegion.component';
 
 const DomainStatus = ({ id }: { id: string }) => {
   const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
@@ -67,7 +29,7 @@ type DomainSelectorProps = {
   domains: OKMS[];
   selectedDomain: string;
   selectedRegion: string;
-  updatingOkmsList: boolean;
+  isUpdatingOkmsList: boolean;
   onDomainSelection: (domainId: string) => void;
 };
 
@@ -75,7 +37,7 @@ export const DomainSelector = ({
   domains,
   selectedDomain,
   selectedRegion,
-  updatingOkmsList,
+  isUpdatingOkmsList,
   onDomainSelection,
 }: DomainSelectorProps) => {
   const { t } = useTranslation('secret-manager/create');
@@ -83,10 +45,11 @@ export const DomainSelector = ({
   if (!selectedRegion || domains.length === 1) return null;
 
   if (domains.length === 0) {
-    return updatingOkmsList ? (
-      <ActivationInProgress />
-    ) : (
-      <ActivateRegion selectedRegion={selectedRegion} />
+    return (
+      <ActivateRegion
+        isUpdatingOkmsList={isUpdatingOkmsList}
+        selectedRegion={selectedRegion}
+      />
     );
   }
 
