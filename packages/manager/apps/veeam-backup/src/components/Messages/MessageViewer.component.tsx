@@ -7,15 +7,16 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { MessageData, MessagesContext } from './Messages.context';
 
-export const SuccessMessage: React.FC<Partial<MessageData>> = ({
+export const MessageViewer: React.FC<Partial<MessageData>> = ({
   id,
   message,
   options,
 }) => {
   const { hideMessage } = React.useContext(MessagesContext);
+
   return (
     <OdsMessage
-      color="success"
+      color={options?.type || 'success'}
       isDismissible
       onOdsRemove={() => id && hideMessage(id)}
     >
@@ -34,8 +35,8 @@ export const SuccessMessage: React.FC<Partial<MessageData>> = ({
   );
 };
 
-export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
-  const { successMessages, hiddenMessages } = React.useContext(MessagesContext);
+export const MessagesViewer: React.FC<{ id?: string }> = ({ id }) => {
+  const { messages, hiddenMessages } = React.useContext(MessagesContext);
   const queryClient = useQueryClient();
   const veeamBackupList = queryClient.getQueryData<{
     data: VeeamBackup[];
@@ -47,14 +48,14 @@ export const SuccessMessages: React.FC<{ id?: string }> = ({ id }) => {
 
   return (
     <div className="flex flex-col gap-y-2">
-      {successMessages
+      {messages
         .filter(
           ({ id: messageId, options }) =>
             !hiddenMessages.includes(messageId) &&
             (!id || options?.veeamBackupId === id),
         )
         .map((msg) => (
-          <SuccessMessage key={msg.id} {...msg} />
+          <MessageViewer key={msg.id} {...msg} />
         ))}
     </div>
   );

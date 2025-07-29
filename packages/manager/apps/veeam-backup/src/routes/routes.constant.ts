@@ -7,4 +7,5 @@ export const urls = {
   deleteVeeam: '/delete/:id',
   deleteVeeamFromDashboard: '/:id/delete',
   editVeeamDisplayNameFromDashboard: '/:id/edit-name',
+  activateVeeamBackupOffer: '/:id/activate-offer',
 };

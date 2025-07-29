@@ -20,10 +20,15 @@ function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
 
   const breadcrumbItems = useBreadcrumb({ rootLabel, items });
 
+  // The key is used to force re-render breadcrumb items when the breadcrumb length changes, to update items states (`collapsed` / `last`)
   return (
     <OdsBreadcrumb>
-      {breadcrumbItems.map(({ label, ...props }) => (
-        <OdsBreadcrumbItem key={label} label={label} {...props} />
+      {breadcrumbItems.map(({ label, ...props }, index) => (
+        <OdsBreadcrumbItem
+          key={`${label}-${index}-${breadcrumbItems.length}`}
+          label={label}
+          {...props}
+        />
       ))}
     </OdsBreadcrumb>
   );

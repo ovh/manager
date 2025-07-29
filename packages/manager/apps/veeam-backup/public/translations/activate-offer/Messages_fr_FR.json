@@ -1,0 +1,6 @@
+{
+  "title": "Activer le dépôt de sauvegarde Gold",
+  "description": "Le dépôt de sauvegarde Gold utilise de l'Object Storage High Performance, avec un stockage primaire puis une copie sur une autre région. Ce dépôt de sauvegarde est paramétré avec une immutabilité des données de 14 jours.",
+  "error": "Une erreur est survenue lors de l'activation de votre repository Gold : {{errorAPI}}",
+  "success": "L'activation de votre repository Gold est en cours"
+}

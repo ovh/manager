@@ -11,16 +11,30 @@ import {
 import userEvent from '@testing-library/user-event';
 import DatacentreGeneralInformationTile from './DatacentreGeneralInformationTile.component';
 import { labels } from '../../../test-utils';
-import { ID_LABEL } from '../../../pages/dashboard/dashboard.constants';
+import {
+  ID_LABEL,
+  VRACK_LABEL,
+} from '../../../pages/dashboard/dashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
 import { TRACKING } from '../../../tracking.constants';
+import {
+  VRACK_PATH,
+  VRACK_ONBOARDING_PATH,
+} from '../../../pages/listing/datacentres/Datacentres.constants';
 
 const trackClickMock = vi.fn();
+let mockedUrl = '';
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => {
+      mockedUrl = `${basePath}${pathWithId}`;
+      return {
+        data: mockedUrl,
+      };
+    }),
   };
 });
 
@@ -114,6 +128,7 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
       labels.dashboard.managed_vcd_dashboard_management_interface,
       labels.dashboard.managed_vcd_dashboard_api_url,
       ID_LABEL,
+      VRACK_LABEL,
       datacentre.currentState.description,
       datacentre.currentState.vCPUCount.toString(),
     ];
@@ -138,4 +153,47 @@ describe('DatacentreGeneralInformationTile component unit test suite', () => {
       TRACKING.datacentreDashboard.goToVcdPortal,
     );
   });
+});
+
+describe('DatacentreGeneralInformationTile component unit test suite', () => {
+  it.each([
+    {
+      scenario: 'without vRack',
+      datacentre,
+      expectedUrlPath: `/${VRACK_PATH}/${VRACK_ONBOARDING_PATH}`,
+      shouldDisplayVrackId: false,
+    },
+    {
+      scenario: 'with vRack',
+      datacentre: {
+        ...datacentre,
+        currentState: {
+          ...datacentre.currentState,
+          vrack: 'pn-12345',
+        },
+      },
+      expectedUrlPath: `/${VRACK_PATH}/pn-12345`,
+      shouldDisplayVrackId: true,
+    },
+  ])(
+    'should define tileTitle and sections $scenario',
+    async ({ datacentre: dc, expectedUrlPath, shouldDisplayVrackId }) => {
+      mockedUrl = '';
+      trackClickMock.mockClear();
+      render(
+        <QueryClientProvider client={queryClient}>
+          <DatacentreGeneralInformationTile
+            vcdOrganization={vcdOrg as VCDOrganization}
+            vcdDatacentre={dc as VCDDatacentre}
+          />
+        </QueryClientProvider>,
+      );
+
+      if (shouldDisplayVrackId && (dc.currentState as any).vrack) {
+        assertTextVisibility((dc.currentState as any).vrack);
+      }
+
+      expect(mockedUrl).toContain(expectedUrlPath);
+    },
+  );
 });

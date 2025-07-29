@@ -26,7 +26,7 @@ import {
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { MessagesViewer } from '@/components/Messages/MessageViewer.component';
 import {
   DisplayNameCell,
   ActionCell,
@@ -168,7 +168,7 @@ export default function Listing() {
         breadcrumb={<Breadcrumb />}
         header={header}
         description={t('listing:description')}
-        message={<SuccessMessages />}
+        message={<MessagesViewer />}
       >
         <div className="flex mb-6">
           <OdsButton
