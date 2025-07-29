@@ -86,5 +86,6 @@
   "listingManageMitigation_auto_title": "Passage du mode Network Scrubbing Center en mode automatique",
   "listingManageMitigation_auto_question": "De cette façon, vous activez le mode de protection par défaut sur IP {{t0}}.",
   "listingManageMitigation_auto_success": "La mitigation passera en mode automatique dans quelques instant sur l'IP {{t0}}.",
-  "listingManageMitigation_auto_failed": "Une erreur est survenue lors du passage de la mitigation en mode automatique sur l'IP {{t0}}"
+  "listingManageMitigation_auto_failed": "Une erreur est survenue lors du passage de la mitigation en mode automatique sur l'IP {{t0}}",
+  "listingSettingsImportIpFromSys": "Importer mes adresses IP de Sys vers OVHcloud"
 }
