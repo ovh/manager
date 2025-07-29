@@ -112,6 +112,7 @@ export const RuleDatagrid: React.FC = () => {
       label: t('startPortColumnLabel'),
       cell: (rule) => (
         <PortColumn
+          portProperty="from"
           key={newStartPort}
           rule={rule}
           value={newStartPort}
@@ -126,6 +127,7 @@ export const RuleDatagrid: React.FC = () => {
       label: t('endPortColumnLabel'),
       cell: (rule) => (
         <PortColumn
+          portProperty="to"
           key={newEndPort}
           rule={rule}
           value={newEndPort}

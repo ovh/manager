@@ -5,3 +5,4 @@ export * from './useServiceList';
 export * from './useGetProductService';
 export * from './useGetGameMitigation';
 export * from './useGetServerModels';
+export * from './useDedicatedServerIpMigration';
