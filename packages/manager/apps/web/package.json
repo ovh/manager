@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "19.22.0",
+  "version": "19.22.1",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-error-page": "^2.4.4",
     "@ovh-ux/manager-exchange": "^4.14.2",
     "@ovh-ux/manager-filters": "^1.1.1",
-    "@ovh-ux/manager-log-to-customer": "^2.6.0",
+    "@ovh-ux/manager-log-to-customer": "^2.7.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.11.3",
     "@ovh-ux/manager-phone-prefix": "^1.1.4",
     "@ovh-ux/manager-product-offers": "^5.6.1",
