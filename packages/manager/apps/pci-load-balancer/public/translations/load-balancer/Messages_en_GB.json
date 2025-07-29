@@ -33,5 +33,5 @@
   "octavia_load_balancer_provisioning_status_updating": "updating",
   "octavia_load_balancer_provisioning_status_error": "error",
   "octavia_load_balancer_actions_delete": "Delete",
-  "octavia_load_balancer_quota_creation_error": "You no longer have any quota available for this location. To continue, <Link>increase your quotas</Link>"
+  "octavia_load_balancer_quota_creation_error": "You no longer have any quota available for this region. To continue, <Link>increase your quotas</Link>"
 }

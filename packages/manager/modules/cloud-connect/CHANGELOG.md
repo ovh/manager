@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.0...@ovh-ux/manager-cloud-connect@1.23.1) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-connect
+
+
+
+
+
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.4...@ovh-ux/manager-cloud-connect@1.23.0) (2025-07-24)
+
+
+### Features
+
+* **cloud-connect:** display tooltip and timestamp on pop config ([4866e7c](https://github.com/ovh/manager/commit/4866e7cca0ce92035e9bf62ed51547acee3afbed)), closes [#UXCT-756](https://github.com/ovh/manager/issues/UXCT-756)
+
+
+
+
+
 ## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.3...@ovh-ux/manager-cloud-connect@1.22.4) (2025-07-02)
 
 

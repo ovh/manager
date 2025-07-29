@@ -9,18 +9,25 @@ import {
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
-import { DashboardTabItemProps } from './layout-helpers.type';
 import { OperationMessages } from '../feedback-messages/OperationMessages.component';
 import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
-import { CHANGELOG_LINKS } from '@/utils/constants';
+import { CHANGELOG_LINKS, TRANSLATION_NAMESPACES } from '@/utils/constants';
 import { Breadcrumb } from '../Breadcrumb.component';
+
+export type DashboardTabItemProps = {
+  name: string;
+  title: string;
+  to: string;
+  pathMatchers?: RegExp[];
+  onClick?: () => void;
+};
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
 };
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
-  const { t } = useTranslation('vrack-services/dashboard');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
   const { id } = useParams();
   const [activePanel, setActivePanel] = React.useState('');
   const location = useLocation();

@@ -24,6 +24,7 @@ export const ROUTE_PATHS = {
   REPLICATIONS: `/pci/projects/:projectId/storages/objects/:storageId/replications`,
   ADD_REPLICATION:
     '/pci/projects/:projectId/storages/objects/:storageId/replications/new',
+  EDIT_REPLICATION: `/pci/projects/:projectId/storages/objects/:storageId/replications/:replicationId/edit`,
   DELETE_REPLICATION: `/pci/projects/:projectId/storages/objects/:storageId/replications/:replicationId/delete`,
   DOWNLOAD_RCLONE: 'rclone/download',
   ADD_USER_OBJECT: `:objectName/addUser`,
@@ -86,7 +87,13 @@ const ReplicationsListPage = lazy(() =>
 
 const AddReplicationPage = lazy(() =>
   import(
-    '@/pages/objects/container/object/add-replication/AddReplication.page'
+    '@/pages/objects/container/object/add-replication/ManageReplication.page'
+  ),
+);
+
+const EditReplicationPage = lazy(() =>
+  import(
+    '@/pages/objects/container/object/add-replication/ManageReplication.page'
   ),
 );
 
@@ -316,6 +323,10 @@ export default (
       />
     </Route>
     <Route path={ROUTE_PATHS.ADD_REPLICATION} Component={AddReplicationPage} />
+    <Route
+      path={ROUTE_PATHS.EDIT_REPLICATION}
+      Component={EditReplicationPage}
+    />
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
 );

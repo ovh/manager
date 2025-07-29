@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.5.3...@ovh-ux/manager-wiki@0.6.0) (2025-07-24)
+
+
+### Features
+
+* **mrc:** add drawer component ([ebfa65d](https://github.com/ovh/manager/commit/ebfa65d2a39b40bae9545a5dc575b1539c029729)), closes [#MANAGER-17872](https://github.com/ovh/manager/issues/MANAGER-17872)
+* **mrc:** add tooltip on dashboardtile labels ([bf1c9f1](https://github.com/ovh/manager/commit/bf1c9f1d55576e744fed4605efc780969bc5973f)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+* **mrc:** add tooltip on manager-tile labels ([cd39790](https://github.com/ovh/manager/commit/cd39790ff78ba6ebc63cb753b870f667e61663f5)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+
+
+
+
+
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.5.2...@ovh-ux/manager-wiki@0.5.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.5.1...@ovh-ux/manager-wiki@0.5.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.5.0...@ovh-ux/manager-wiki@0.5.1) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.4.0...@ovh-ux/manager-wiki@0.5.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **manager-wiki:** update price stories ([c3bb325](https://github.com/ovh/manager/commit/c3bb3251b4e315e9b8c5d90bb710e80704830a41)), closes [#MANAGER-19708](https://github.com/ovh/manager/issues/MANAGER-19708)
+
+
+### Features
+
+* **manager-react-component:** add badge within the header of base layout ([d5d113c](https://github.com/ovh/manager/commit/d5d113c577ee599af96ba2a8e426411a494fa31d)), closes [#MANAGER-18077](https://github.com/ovh/manager/issues/MANAGER-18077)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.3.0...@ovh-ux/manager-wiki@0.4.0) (2025-07-10)
 
 

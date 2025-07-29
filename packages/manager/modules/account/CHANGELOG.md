@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.3...@ovh-ux/manager-account@0.14.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* **account:** remove one time binding on contact change requests ([dec871a](https://github.com/ovh/manager/commit/dec871a9e64b524cbb5b8523dcf45ec29c619de3)), closes [#MANAGER-18762](https://github.com/ovh/manager/issues/MANAGER-18762) [#INC0136987](https://github.com/ovh/manager/issues/INC0136987)
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.2...@ovh-ux/manager-account@0.14.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.1...@ovh-ux/manager-account@0.14.2) (2025-07-04)
 
 

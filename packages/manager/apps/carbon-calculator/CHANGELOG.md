@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator-app@0.5.42...@ovh-ux/manager-carbon-calculator-app@0.5.43) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-carbon-calculator-app
+
+
+
+
+
+## [0.5.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator-app@0.5.41...@ovh-ux/manager-carbon-calculator-app@0.5.42) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-carbon-calculator-app
+
+
+
+
+
 ## [0.5.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator-app@0.5.40...@ovh-ux/manager-carbon-calculator-app@0.5.41) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-carbon-calculator-app

@@ -1,5 +1,4 @@
 {
-  "hycu_terminate_success_message": "Votre demande de résiliation pour {{serviceName}} à bien été prise en compte, vous allez recevoir un mail pour valider celle-ci.",
-  "hycu_terminate_success_message_us": "Votre demande de résiliation a bien été prise en compte. Un e-mail de confirmation vous a été envoyé.",
-  "hycu_terminate_error_message": "Une erreur est survenue: {{error}}."
+  "hycu_terminate_success_message": "La demande de résiliation de votre service \"{{serviceName}}\" a bien été prise en compte. Vous allez recevoir un e-mail pour la valider.",
+  "hycu_terminate_success_message_us": "La demande de résiliation de votre service \"{{serviceName}}\" a bien été prise en compte. Un e-mail de confirmation vous a été envoyé"
 }

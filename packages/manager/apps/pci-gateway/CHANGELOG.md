@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.1...@ovh-ux/manager-pci-gateway-app@0.25.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.0...@ovh-ux/manager-pci-gateway-app@0.25.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.1...@ovh-ux/manager-pci-gateway-app@0.25.0) (2025-07-16)
+
+
+### Features
+
+* **pci-gateway:** remove connected networks link ([#17912](https://github.com/ovh/manager/issues/17912)) ([d392ffa](https://github.com/ovh/manager/commit/d392ffa5b242992feedf50a27f4a6d47ba6d96c1)), closes [#TAPC-4480](https://github.com/ovh/manager/issues/TAPC-4480)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.0...@ovh-ux/manager-pci-gateway-app@0.24.1) (2025-07-10)
 
 

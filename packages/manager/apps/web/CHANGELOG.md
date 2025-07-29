@@ -3,6 +3,99 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.1...@ovh-ux/manager-web@19.21.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+* **i18n:** add missing translations [CDS 4215] ([4a16f1a](https://github.com/ovh/manager/commit/4a16f1a2ed28334746fb5400555eb1e230fba02f))
+
+
+
+
+
+## [19.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.0...@ovh-ux/manager-web@19.21.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix error on upgrade hosting if detach mode ([3522b14](https://github.com/ovh/manager/commit/3522b143b7a9df99830c0f6fadbe8d2d42e3134f)), closes [#MANAGER-19160](https://github.com/ovh/manager/issues/MANAGER-19160)
+
+
+
+
+
+# [19.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.20.0...@ovh-ux/manager-web@19.21.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4164] ([c05cdc9](https://github.com/ovh/manager/commit/c05cdc9aa5830d53ae12c3d2c600dee8e09e12c0))
+
+
+### Features
+
+* **web-hosting:** configure columns on list layout ([f7a7868](https://github.com/ovh/manager/commit/f7a7868f4a433b8cc3f008f150031553f447163e)), closes [#WEB-20306](https://github.com/ovh/manager/issues/WEB-20306)
+
+
+
+
+
+# [19.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.19.0...@ovh-ux/manager-web@19.20.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4164] ([c05cdc9](https://github.com/ovh/manager/commit/c05cdc9aa5830d53ae12c3d2c600dee8e09e12c0))
+
+
+### Features
+
+* **web-hosting:** configure columns on list layout ([f7a7868](https://github.com/ovh/manager/commit/f7a7868f4a433b8cc3f008f150031553f447163e)), closes [#WEB-20306](https://github.com/ovh/manager/issues/WEB-20306)
+
+
+
+
+
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.2...@ovh-ux/manager-web@19.19.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **web:** fix hosting multisite for ssl ([897a47c](https://github.com/ovh/manager/commit/897a47c268c857f5f9ce9718e71495658a6bc567)), closes [#INC0141499](https://github.com/ovh/manager/issues/INC0141499)
+* **web:** replace some dedicated url by account url ([64ea41e](https://github.com/ovh/manager/commit/64ea41ef89846503cc4ffae2a908d6be2b3b4afa)), closes [#MANAGER-17815](https://github.com/ovh/manager/issues/MANAGER-17815)
+
+
+### Features
+
+* **hosting:** change api for upgrade hosting plan ([6634e06](https://github.com/ovh/manager/commit/6634e069ec59e4799837890cb0290234ec7b0a3d)), closes [#MANAGER-18335](https://github.com/ovh/manager/issues/MANAGER-18335)
+
+
+
+
+
+## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.1...@ovh-ux/manager-web@19.18.2) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.0...@ovh-ux/manager-web@19.18.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4180] ([b868db1](https://github.com/ovh/manager/commit/b868db140e6e5e00066a97b686a393f1a5432fcc))
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
 # [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.17.0...@ovh-ux/manager-web@19.18.0) (2025-07-08)
 
 

@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.3...@ovh-ux/manager-pci-savings-plan-app@1.19.4) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.2...@ovh-ux/manager-pci-savings-plan-app@1.19.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.1...@ovh-ux/manager-pci-savings-plan-app@1.19.2) (2025-07-23)
+
+
+### Bug Fixes
+
+* **savings-plan:** fix close cross and title issue ([268639c](https://github.com/ovh/manager/commit/268639c10e8d764d0cdab00e94c938e960ad135c)), closes [#TAPC-2811](https://github.com/ovh/manager/issues/TAPC-2811)
+
+
+
+
+
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.0...@ovh-ux/manager-pci-savings-plan-app@1.19.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* **savings-plan:** issue on modal type from mrc ([88765d8](https://github.com/ovh/manager/commit/88765d821785d5e437c9655d0e44ff3adf20a919))
+
+
+
+
+
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.3...@ovh-ux/manager-pci-savings-plan-app@1.19.0) (2025-07-22)
+
+
+### Features
+
+* **savings-plan:** add confirm modal for order ([#18126](https://github.com/ovh/manager/issues/18126)) ([28f034f](https://github.com/ovh/manager/commit/28f034ff286e9c77d0b4dbf6efe6db9e85e03470)), closes [#TAPC-2811](https://github.com/ovh/manager/issues/TAPC-2811)
+* **savings-plan:** use api to get technical 3AZ or 1AZ ([#18153](https://github.com/ovh/manager/issues/18153)) ([0bac4a6](https://github.com/ovh/manager/commit/0bac4a61b85dba148fd16ce127c2fdfab41bdab3)), closes [#TAPC-3558](https://github.com/ovh/manager/issues/TAPC-3558)
+
+
+
+
+
+## [1.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.2...@ovh-ux/manager-pci-savings-plan-app@1.18.3) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.1...@ovh-ux/manager-pci-savings-plan-app@1.18.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.0...@ovh-ux/manager-pci-savings-plan-app@1.18.1) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.4...@ovh-ux/manager-pci-savings-plan-app@1.18.0) (2025-07-16)
+
+
+### Features
+
+* **savings-plan:** enrich stats value and add strict mode ([#18001](https://github.com/ovh/manager/issues/18001)) ([b5ee003](https://github.com/ovh/manager/commit/b5ee003c8b2007e5d8143331085fea4e80feecd5)), closes [#TAPC-4392](https://github.com/ovh/manager/issues/TAPC-4392)
+
+
+
+
+
 ## [1.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.3...@ovh-ux/manager-pci-savings-plan-app@1.17.4) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

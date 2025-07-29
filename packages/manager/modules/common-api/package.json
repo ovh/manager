@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-common-api",
-  "version": "0.4.4",
+  "version": "0.4.6",
   "private": true,
   "description": "OVHcloud manager module common API (order, services, me, ...).",
   "repository": {
@@ -24,8 +24,8 @@
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.14.0",
-    "@ovh-ux/manager-core-test-utils": "^0.4.9",
+    "@ovh-ux/manager-core-api": "^0.15.0",
+    "@ovh-ux/manager-core-test-utils": "^0.4.11",
     "@ovh-ux/manager-react-shell-client": "^0.8.7",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",

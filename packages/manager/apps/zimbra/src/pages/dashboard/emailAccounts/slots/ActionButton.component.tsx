@@ -12,6 +12,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { SlotWithService, usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -30,7 +31,7 @@ interface ActionButtonSlotProps {
 
 export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const { proCount } = useAccountsStatistics();
@@ -110,7 +111,7 @@ export const ActionButtonSlot: React.FC<ActionButtonSlotProps> = ({ item }) => {
       onClick: handleCancelSlotClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.edit],
-      label: t('terminate'),
+      label: t(`${NAMESPACES.ACTIONS}:terminate`),
       color: ODS_BUTTON_COLOR.critical,
     });
   }

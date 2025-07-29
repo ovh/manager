@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.11.1...@ovh-ux/ovh-product-icons@0.12.0) (2025-07-17)
+
+
+### Features
+
+* add wordpress product icon ([db2401f](https://github.com/ovh/manager/commit/db2401fcec94a243deacb59afb642db1b7fa71e0)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-product-icons@0.11.0...@ovh-ux/ovh-product-icons@0.11.1) (2025-06-12)
 
 

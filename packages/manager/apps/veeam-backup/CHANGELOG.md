@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.4...@ovh-ux/manager-veeam-backup-app@0.16.5) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.3...@ovh-ux/manager-veeam-backup-app@0.16.4) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.2...@ovh-ux/manager-veeam-backup-app@0.16.3) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.1...@ovh-ux/manager-veeam-backup-app@0.16.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.0...@ovh-ux/manager-veeam-backup-app@0.16.1) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.15...@ovh-ux/manager-veeam-backup-app@0.16.0) (2025-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4176] ([9252994](https://github.com/ovh/manager/commit/92529948befd22b11a0f68eb850a8723e5d23c3d)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+
+
+### Features
+
+* **veeam-backup:** update terminate service translation ([809217c](https://github.com/ovh/manager/commit/809217c0be458d90336fbede418f3770f5287ade)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+* **veeam:** add filter and search on datagrid ([ff28d36](https://github.com/ovh/manager/commit/ff28d3667f89b7b720dff2dd047cb2cf158d3b32)), closes [#MANAGER-18723](https://github.com/ovh/manager/issues/MANAGER-18723)
+
+
+
+
+
 ## [0.15.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.15.14...@ovh-ux/manager-veeam-backup-app@0.15.15) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

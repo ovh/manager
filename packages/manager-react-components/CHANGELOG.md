@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.3...@ovh-ux/manager-react-components@2.33.0) (2025-07-24)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4199] ([c502cd6](https://github.com/ovh/manager/commit/c502cd6b93d5a53b2351ec723623aa78a9802abe))
+- **mrc:** remove margin on baselayout when no tabs are set ([5996498](https://github.com/ovh/manager/commit/59964986d85cff79eba754db97a1499f990f81c0))
+- **mrc:** update deprecation notice for dashboard-tile component ([1d736b6](https://github.com/ovh/manager/commit/1d736b63be01a977172a0c29e33bd970669633d6)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+
+### Features
+
+- **mrc:** add drawer component ([ebfa65d](https://github.com/ovh/manager/commit/ebfa65d2a39b40bae9545a5dc575b1539c029729)), closes [#MANAGER-17872](https://github.com/ovh/manager/issues/MANAGER-17872)
+- **mrc:** add tooltip on dashboardtile labels ([bf1c9f1](https://github.com/ovh/manager/commit/bf1c9f1d55576e744fed4605efc780969bc5973f)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+- **mrc:** add tooltip on manager-tile labels ([cd39790](https://github.com/ovh/manager/commit/cd39790ff78ba6ebc63cb753b870f667e61663f5)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+
+## [2.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.2...@ovh-ux/manager-react-components@2.32.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.1...@ovh-ux/manager-react-components@2.32.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.0...@ovh-ux/manager-react-components@2.32.1) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.31.0...@ovh-ux/manager-react-components@2.32.0) (2025-07-17)
+
+### Features
+
+- **manager-react-component:** add badge within the header of base layout ([d5d113c](https://github.com/ovh/manager/commit/d5d113c577ee599af96ba2a8e426411a494fa31d)), closes [#MANAGER-18077](https://github.com/ovh/manager/issues/MANAGER-18077)
+- **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
 # [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.30.0...@ovh-ux/manager-react-components@2.31.0) (2025-07-10)
 
 ### Features

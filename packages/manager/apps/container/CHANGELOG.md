@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.141.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.5...@ovh-ux/manager-container-app@0.141.0) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 585, 587] ([000cf6a](https://github.com/ovh/manager/commit/000cf6add15ca76d09a78d5bf85f3c02eaebc7b0)), closes [#MANAGER-19043](https://github.com/ovh/manager/issues/MANAGER-19043)
+
+
+### Features
+
+* **container:** add sap-features-hub to container ([b0224ca](https://github.com/ovh/manager/commit/b0224caa1b8a9a623eecc6da9119916bd698a0a2)), closes [#MANAGER-15975](https://github.com/ovh/manager/issues/MANAGER-15975)
+* **sap-features-hub:** add menu entry dashboard ([61498bf](https://github.com/ovh/manager/commit/61498bfb7dc144032bc4740860ed0787eb431856)), closes [#MANAGER-16148](https://github.com/ovh/manager/issues/MANAGER-16148)
+
+
+
+
+
+## [0.140.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.4...@ovh-ux/manager-container-app@0.140.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* **container:** remove ldp link into puclic cloud section ([94587a8](https://github.com/ovh/manager/commit/94587a836f386ee6eaaf6496a01f673a1d9e9eaa)), closes [#INC0141252](https://github.com/ovh/manager/issues/INC0141252) [#MANAGER-19148](https://github.com/ovh/manager/issues/MANAGER-19148)
+
+
+
+
+
+## [0.140.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.3...@ovh-ux/manager-container-app@0.140.4) (2025-07-18)
+
+
+### Bug Fixes
+
+* **dedicated:** remove depedencie of billing ([e15408c](https://github.com/ovh/manager/commit/e15408cabfa09f7ea198b947de3fe551d6a45053)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
+## [0.140.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.2...@ovh-ux/manager-container-app@0.140.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.140.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.1...@ovh-ux/manager-container-app@0.140.2) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.140.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.0...@ovh-ux/manager-container-app@0.140.1) (2025-07-10)
 
 

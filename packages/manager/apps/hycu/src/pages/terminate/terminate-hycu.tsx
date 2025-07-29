@@ -30,16 +30,21 @@ export const TerminateLicensePage = () => {
     onSuccess: () => {
       closeModal();
       addSuccess(
-        ovhSubsidiary === US_SUBSIDIARY
-          ? t('hycu_terminate_success_message_us')
-          : t('hycu_terminate_success_message', { serviceName }),
+        t(
+          ovhSubsidiary === US_SUBSIDIARY
+            ? 'hycu_terminate_success_message_us'
+            : 'hycu_terminate_success_message',
+          { serviceName },
+        ),
         true,
       );
     },
     onError: () => {
       closeModal();
       addError(
-        t(`${NAMESPACES.ERROR}:error_message`, { message: error?.message || 'Unknown error' }),
+        t(`${NAMESPACES.ERROR}:error_message`, {
+          message: error?.message || 'Unknown error',
+        }),
       );
     },
   });

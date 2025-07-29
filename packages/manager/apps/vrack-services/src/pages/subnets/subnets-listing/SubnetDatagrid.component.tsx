@@ -10,6 +10,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useVrackService, Subnet } from '@ovh-ux/manager-network-common';
 import { SubnetsActionCell } from './SubnetsActionCell.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
   subnetList.sort((s1, s2) => {
@@ -31,7 +32,7 @@ const sortSubnets = (sorting: ColumnSort, subnetList: Subnet[] = []) => {
 };
 
 export const SubnetDatagrid: React.FC = () => {
-  const { t } = useTranslation('vrack-services/subnets');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const { data: vs } = useVrackService();
 
   const { sorting, setSorting } = useDataGrid({

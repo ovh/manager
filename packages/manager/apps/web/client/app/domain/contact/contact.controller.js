@@ -37,7 +37,7 @@ export default class DomainContactDashboardCtrl {
     this.ovhSubsidiary = this.user.ovhSubsidiary;
     this.GUIDE_URL = GUIDE_URLS[this.ovhSubsidiary] || GUIDE_URLS.DEFAULT;
     this.USER_ACCOUNT_INFOS_LINK = this.coreURLBuilder.buildURL(
-      'dedicated',
+      'account',
       '#/useraccount/infos',
     );
   }

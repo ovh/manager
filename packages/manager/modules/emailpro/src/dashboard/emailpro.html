@@ -87,7 +87,7 @@
                 ></changelog-button>
                 <oui-action-menu
                     class="mt-1"
-                    data-ng-if="!currentRegionCA"
+                    data-ng-if="!currentRegionCA && (exchange.renewOptionAvailable || is25g() || exchange.deleteOptionAvailable || exchange.isMXPlan)"
                     data-text="{{:: 'common_actions' | translate }}"
                     data-placement="end"
                 >

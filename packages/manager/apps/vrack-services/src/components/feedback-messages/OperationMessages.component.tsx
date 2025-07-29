@@ -8,12 +8,13 @@ import {
   useVrackServicesList,
 } from '@ovh-ux/manager-network-common';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
   vs.resourceStatus !== VrackServicesResourceStatus.READY;
 
 const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const isError = vs?.resourceStatus === VrackServicesResourceStatus.ERROR;
 
   if (!vs || !shouldDisplayMessage(vs)) {

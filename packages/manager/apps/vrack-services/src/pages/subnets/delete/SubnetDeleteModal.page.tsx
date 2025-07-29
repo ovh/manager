@@ -19,6 +19,7 @@ import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -27,9 +28,9 @@ const sharedTrackingParams: TrackingClickParams = {
 
 export default function SubnetDeleteModal() {
   const { t } = useTranslation([
-    'vrack-services/subnets',
+    TRANSLATION_NAMESPACES.subnets,
     NAMESPACES.ACTIONS,
-    'vrack-services',
+    TRANSLATION_NAMESPACES.common,
   ]);
   const { id, cidr } = useParams();
   const cidrToDelete = cidr.replace('_', '/');
@@ -104,7 +105,7 @@ export default function SubnetDeleteModal() {
         >
           {t('modalError', {
             error: updateError?.response?.data?.message,
-            ns: 'vrack-services',
+            ns: TRANSLATION_NAMESPACES.common,
           })}
         </OdsMessage>
       )}

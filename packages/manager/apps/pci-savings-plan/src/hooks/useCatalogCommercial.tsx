@@ -12,6 +12,7 @@ import {
   CommercialCatalogTechnicalType,
 } from '@/types/commercial-catalog.type';
 import { useServiceId } from './useSavingsPlan';
+import { DeploymentMode } from '@/utils/savingsPlan';
 
 const getCatalogCommercial = async <T,>({
   additionalParams,
@@ -43,38 +44,50 @@ const getCommercialOffers = async ({
 const getTechnicalInfo = async ({
   productCode,
   merchant,
+  deploymentMode,
 }: {
   productCode: string;
   merchant: string;
+  deploymentMode: DeploymentMode;
 }): Promise<CommercialCatalogTechnicalType[]> => {
   return getCatalogCommercial<CommercialCatalogTechnicalType[]>({
-    additionalParams: `nature=REGULAR&productCode=${productCode}`,
+    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_node:${deploymentMode}`,
     merchant,
   });
 };
 
 const useTechnicalInfo = ({
   productCode,
+  deploymentMode,
 }: {
   productCode: InstanceTechnicalName;
+  deploymentMode: DeploymentMode;
 }) => {
   const context = React.useContext(ShellContext);
   const subsidiary = context.environment.getUser().ovhSubsidiary;
 
   return useQuery({
-    queryKey: ['technicalInfo', productCode],
-    queryFn: () => getTechnicalInfo({ productCode, merchant: subsidiary }),
+    queryKey: ['technicalInfo', productCode, deploymentMode],
+    queryFn: () =>
+      getTechnicalInfo({ productCode, merchant: subsidiary, deploymentMode }),
     select: (res) =>
       res
         .map(formatTechnicalInfo)
         .filter((item) => item.id !== '')
         .sort((a, z) => {
           if (a.technical?.cpu?.cores) {
-            return a.technical.cpu.cores - z.technical.cpu.cores;
+            return a.technical.cpu.cores - (z.technical?.cpu?.cores ?? 0);
           }
           return 1;
         }),
   });
+};
+
+export type TPricingInfo = {
+  id: string;
+  code: string;
+  duration: number;
+  price: number;
 };
 
 export const usePricingInfo = ({
@@ -96,7 +109,9 @@ export const usePricingInfo = ({
     },
     select: (res) =>
       res.length > 0
-        ? res.map(formatPricingInfo).filter((item) => item.id !== null)
+        ? res
+            .map(formatPricingInfo)
+            .filter((item): item is TPricingInfo => item !== null)
         : [],
   });
 };

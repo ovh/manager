@@ -2,7 +2,6 @@ import React from 'react';
 import { describe, expect } from 'vitest';
 import ActionButtonOrganization from './ActionButton.component';
 import { render } from '@/utils/test.provider';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { ResourceStatus } from '@/data/api';
 
 describe('Organizations datagrid action menu', () => {
@@ -23,8 +22,8 @@ describe('Organizations datagrid action menu', () => {
 
     expect(menuItems.length).toBe(2);
 
-    expect(menuItems[0]).toHaveAttribute('label', commonTranslation.modify);
+    expect(menuItems[0]).toHaveAttribute('label', 'modify');
 
-    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.delete);
+    expect(menuItems[1]).toHaveAttribute('label', 'delete');
   });
 });

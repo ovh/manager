@@ -51,7 +51,7 @@
   "cloud_connect_pop_port_lock": "Sperren des Ports",
   "cloud_connect_pop_port_id": "Port ID",
   "cloud_connect_pop_optic_status": "Optische Status",
-  "cloud_connect_pop_optic_description": "(Alle 5 Minuten überprüft)",
+  "cloud_connect_pop_optic_description": "Alle 5 Minuten überprüft",
   "cloud_connect_pop_configuration_status": "Konfigurationsstatus",
   "cloud_connect_dc_title": "AZ-Konfiguration",
   "cloud_connect_dc_add_button": "Eine Konfiguration hinzufügen",
@@ -63,8 +63,8 @@
   "cloud_connect_service_key_active": "Serviceschlüssel",
   "cloud_connect_service_key_active_not_found": "Kein gültiger Serviceschlüssel vorhanden",
   "cloud_connect_loa_download_error": "Herunterladen der Ermächtigung (LOA, „letter of authority“) ist fehlgeschlagen: {{message}}",
-  "cloud_connect_datacenter_add_configuration": "Eine Konfiguration hinzufügen",
-  "cloud_connect_datacenter_add_routage_configuration": "Eine Routing-Konfiguration hinzufügen",
+  "cloud_connect_datacenter_add_configuration": "AZ hinzufügen",
+  "cloud_connect_datacenter_add_routage_configuration": "Routing-Regeln",
   "cloud_connect_pop_configure_delete": "Löschen",
   "cloud_connect_pop_port_block": "Den Port sperren",
   "cloud_connect_unblock": "Entsperren",
@@ -131,6 +131,5 @@
   "cloud_connect_old_48_h_status": "Dieser Status ist mehr als 48 Stunden alt und möglicherweise nicht mehr korrekt.",
   "cloud_connect_pop_add_button": "Port konfigurieren",
   "cloud_connect_dc_status": "Konfigurationsstatus",
-  "cloud_connect_dc_config_title": "Konfiguration {{dcName}}",
-  "cloud_connect_specifications": "Spezifikationen"
+  "cloud_connect_dc_config_title": "Konfiguration {{dcName}}"
 }

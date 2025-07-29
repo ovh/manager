@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.0...@ovh-ux/manager-netapp@2.14.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([1bfb74c](https://github.com/ovh/manager/commit/1bfb74c27520b5be52fca4ff809952667509a849))
+
+
+
+
+
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.6...@ovh-ux/manager-netapp@2.14.0) (2025-07-21)
+
+
+### Features
+
+* **netapp:** create a volume from snapshot feedbacks ([835fb6b](https://github.com/ovh/manager/commit/835fb6b758a378a9bcc147f2987852bb6099e956)), closes [#MANAGER-17942](https://github.com/ovh/manager/issues/MANAGER-17942)
+
+
+
+
+
 ## [2.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.5...@ovh-ux/manager-netapp@2.13.6) (2025-07-02)
 
 

@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.0...@ovh-ux/manager-telecom@16.14.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([1bfb74c](https://github.com/ovh/manager/commit/1bfb74c27520b5be52fca4ff809952667509a849))
+
+
+
+
+
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.13.0...@ovh-ux/manager-telecom@16.14.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 576] ([9c7a1ce](https://github.com/ovh/manager/commit/9c7a1cee5dc24099c99279308df37956cba5c317))
+
+
+### Features
+
+* **telephony:** adding voicemail transcript ui ([575c0aa](https://github.com/ovh/manager/commit/575c0aa40081a4310cd3e68c3b76d1aa26bcdfaa)), closes [#MANAGER-18982](https://github.com/ovh/manager/issues/MANAGER-18982)
+
+
+
+
+
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.12.0...@ovh-ux/manager-telecom@16.13.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 576] ([9c7a1ce](https://github.com/ovh/manager/commit/9c7a1cee5dc24099c99279308df37956cba5c317))
+
+
+### Features
+
+* **telephony:** adding voicemail transcript ui ([575c0aa](https://github.com/ovh/manager/commit/575c0aa40081a4310cd3e68c3b76d1aa26bcdfaa)), closes [#MANAGER-18982](https://github.com/ovh/manager/issues/MANAGER-18982)
+
+
+
+
+
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.5...@ovh-ux/manager-telecom@16.12.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **telecom.access:** display no meetings if meeting slots empty ([1369a38](https://github.com/ovh/manager/commit/1369a38a3b9797bb853769a7c5a383d12d3d2c1b)), closes [#UXCT-766](https://github.com/ovh/manager/issues/UXCT-766)
+
+
+### Features
+
+* **pack.access:** check copper vs fiber mentions ([2a2b5e9](https://github.com/ovh/manager/commit/2a2b5e9164cdbbee787d544f518e05c7feb517dc)), closes [#UXCT-763](https://github.com/ovh/manager/issues/UXCT-763)
+* **telecom.access:** display move button only for adsl and ftth ([d46bdf7](https://github.com/ovh/manager/commit/d46bdf794c776e0b7cf3f3a6c33c9dc77dbc0495)), closes [#UXCT-762](https://github.com/ovh/manager/issues/UXCT-762)
+* **telecom.access:** update profile display from api result ([6abf21d](https://github.com/ovh/manager/commit/6abf21d7e04b61b8143945bea0016fa25e18fbb5)), closes [#UXCT-760](https://github.com/ovh/manager/issues/UXCT-760)
+* **telecom.pack:** check can change offer status to enable button ([68537cc](https://github.com/ovh/manager/commit/68537cce0a3ca543fce4737fbb3d6e3465e78ff9)), closes [#UXCT-761](https://github.com/ovh/manager/issues/UXCT-761)
+
+
+
+
+
+## [16.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.4...@ovh-ux/manager-telecom@16.11.5) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.3...@ovh-ux/manager-telecom@16.11.4) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.2...@ovh-ux/manager-telecom@16.11.3) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

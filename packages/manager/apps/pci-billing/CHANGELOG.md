@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.2...@ovh-ux/manager-pci-billing-app@0.9.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.1...@ovh-ux/manager-pci-billing-app@0.9.2) (2025-07-22)
+
+
+### Bug Fixes
+
+* **billing:** incorrect unit on dataplatform ([#18061](https://github.com/ovh/manager/issues/18061)) ([3f9ece5](https://github.com/ovh/manager/commit/3f9ece5c4f03e95c6922a3a892b00a0fbfecc5dc)), closes [#TAPC-4501](https://github.com/ovh/manager/issues/TAPC-4501) [#TAPC-4489](https://github.com/ovh/manager/issues/TAPC-4489)
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.0...@ovh-ux/manager-pci-billing-app@0.9.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.8.0...@ovh-ux/manager-pci-billing-app@0.9.0) (2025-07-16)
+
+
+### Features
+
+* **billing:** enrich storage billing with additional info ([#17980](https://github.com/ovh/manager/issues/17980)) ([cbfbb02](https://github.com/ovh/manager/commit/cbfbb0243ce60ec3a3910d858bba84c508a585cd)), closes [#TAPC-3709](https://github.com/ovh/manager/issues/TAPC-3709)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.7.1...@ovh-ux/manager-pci-billing-app@0.8.0) (2025-07-07)
 
 

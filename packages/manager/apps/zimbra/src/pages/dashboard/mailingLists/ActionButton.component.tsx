@@ -8,6 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -28,7 +29,7 @@ export const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = (
   item,
 }) => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
 
@@ -113,7 +114,7 @@ export const ActionButtonMailingList: React.FC<ActionButtonMailingListProps> = (
       onClick: handleDeleteMailingListClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.mailingList.delete],
-      label: t('delete'),
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: ODS_BUTTON_COLOR.critical,
     },
   ];
