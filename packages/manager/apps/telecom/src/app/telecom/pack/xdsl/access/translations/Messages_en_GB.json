@@ -117,7 +117,7 @@
   "xdsl_modem_comfort_exchange_already_last_model": "You already have the latest modem model.",
   "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "This modem cannot be upgraded for SDSL access.",
   "xdsl_details_modem_profile": "Modem profile",
-  "xdsl_details_modem_profile_detail": "Profile {{ modemProfile }}",
+  "xdsl_details_modem_profile_detail": "{{ modemProfile }} Profile",
   "xdsl_detail_mail_sending": "Send emails via our SMTP server",
   "xdsl_detail_mail_sending_enable": "Enable",
   "xdsl_detail_mail_sending_disable": "Disable",
