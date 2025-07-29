@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.18.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 613] ([41308f2](https://github.com/ovh/manager/commit/41308f28042f0954d5226ef72102e52326deb4e9))
+* **vcd:** fix breadcrumb translation and rerender ([648a573](https://github.com/ovh/manager/commit/648a573c123771a6749a9ec8fd4d1142be2faded)), closes [#MANAGER-18185](https://github.com/ovh/manager/issues/MANAGER-18185)
+* **vcd:** fix resourceStatus type of vrack segment ([1db6440](https://github.com/ovh/manager/commit/1db6440f3f27a501b86abec589d1928a7b937b9e)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+
+
+### Features
+
+* **mrc:** add tooltip in menu item action ([cc3b88d](https://github.com/ovh/manager/commit/cc3b88da86f794c7dc27a5b44359e4ab87c95966)), closes [#17501](https://github.com/ovh/manager/issues/17501)
+* **vcd:** add badge status for vrack segment ([7cac824](https://github.com/ovh/manager/commit/7cac824f4c98217d167abc5e439c6a64ea1b97d2)), closes [#MANAGER-19175](https://github.com/ovh/manager/issues/MANAGER-19175)
+* **vcd:** add delete vrack network ([ea75f52](https://github.com/ovh/manager/commit/ea75f5281a75cd1484e8b8cc08728fea3101be0d)), closes [#MANAGER-17528](https://github.com/ovh/manager/issues/MANAGER-17528)
+* **vcd:** add delete vrack segment ([704b641](https://github.com/ovh/manager/commit/704b641c888a7df0c8e844151f4e05b33427293e)), closes [#MANAGER-17530](https://github.com/ovh/manager/issues/MANAGER-17530)
+* **vcd:** add edit vrack segment modal ([45b3ecd](https://github.com/ovh/manager/commit/45b3ecd35f8727d46fd523c2ecf47e1a6eebe044)), closes [#MANAGER-17521](https://github.com/ovh/manager/issues/MANAGER-17521)
+* **vcd:** add modal to add network for vrack segment ([de6e239](https://github.com/ovh/manager/commit/de6e239481ce02f3fa84b9bf6c016415a29fc571)), closes [#MANAGER-17526](https://github.com/ovh/manager/issues/MANAGER-17526)
+* **vcd:** add vrack column in virtual datacenters datagrid ([bafded6](https://github.com/ovh/manager/commit/bafded65ac5862e51cfdfbe2b3f7578335cce1aa)), closes [#MANAGER-17492](https://github.com/ovh/manager/issues/MANAGER-17492)
+* **vcd:** add vrack feature flipping ([209f8e6](https://github.com/ovh/manager/commit/209f8e663de0687098892c1a5c55925f71fc45ec)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+* **vcd:** add vrack-network page for datacenter ([add27ad](https://github.com/ovh/manager/commit/add27ad4ab7f34a34d2c28cbc5f2c6f98d624d42)), closes [#MANAGER-17508](https://github.com/ovh/manager/issues/MANAGER-17508)
+* **vcd:** disabled deletion of network when is last ([1839315](https://github.com/ovh/manager/commit/18393155199bb1203f3b0d0d34819730598753ab)), closes [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **vcd:** display vrack in dashboard of virtual datacentre ([6da5582](https://github.com/ovh/manager/commit/6da55825b0ec2c2416a304c5061cc906bd47d8a4)), closes [#MANAGER-16821](https://github.com/ovh/manager/issues/MANAGER-16821)
+* **vcd:** improve code to add better a11y ([b189ac4](https://github.com/ovh/manager/commit/b189ac4c42404cd7a879e0402c7942ab05e74e54))
+* **vcd:** improve disable vrack action when status is not ready ([c7b1bc2](https://github.com/ovh/manager/commit/c7b1bc2093396d28df531ec83829dfb1953fc897)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052) [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **vcd:** unmock vrack endpoits ([6a8df58](https://github.com/ovh/manager/commit/6a8df5839b5048f5f4e947c00dd5ff052093da77)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+* **vcd:** update onboarding and compute wording ([204f0c1](https://github.com/ovh/manager/commit/204f0c19dc70cd82e2410b4e08f1d1c89e22a841)), closes [#MANAGER-18258](https://github.com/ovh/manager/issues/MANAGER-18258) [#MANAGER-18189](https://github.com/ovh/manager/issues/MANAGER-18189)
+* **vcd:** upgrade zod to avoid error with package ([31960a8](https://github.com/ovh/manager/commit/31960a82ed6ae9ac40c553db86233d713014d8a9)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+
+
+
+
+
 ## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.5) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

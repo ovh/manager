@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-vcd-api",
-  "version": "0.5.26",
+  "version": "0.6.0",
   "private": true,
   "description": "OVHcloud manager module VCD API.",
   "repository": {
