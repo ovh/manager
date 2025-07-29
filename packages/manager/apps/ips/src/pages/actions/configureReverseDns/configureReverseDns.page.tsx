@@ -4,18 +4,13 @@ import { useTranslation } from 'react-i18next';
 import ipaddr from 'ipaddr.js';
 import {
   OdsButton,
-  OdsMessage,
   OdsModal,
   OdsText,
   OdsLink,
   OdsFormField,
   OdsInput,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
@@ -25,6 +20,7 @@ import {
   useUpdateIpReverse,
   useGetIpReverse,
 } from '@/data/hooks/ip';
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 
 export default function ConfigureReverseDns() {
   const { id, parentId } = useParams();
@@ -174,32 +170,10 @@ export default function ConfigureReverseDns() {
           }}
         />
       </OdsFormField>
-      {(ipReverseError || updateIpReverseError || deleteIpReverseError) && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mb-4"
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          <span
-            className="text-sm"
-            dangerouslySetInnerHTML={{
-              __html: t('managerApiError', {
-                error: (
-                  ipReverseError ||
-                  updateIpReverseError ||
-                  deleteIpReverseError
-                )?.response?.data?.message,
-                ovhQueryId: (
-                  ipReverseError ||
-                  updateIpReverseError ||
-                  deleteIpReverseError
-                )?.response.headers?.['x-ovh-queryid'],
-                ns: 'error',
-              }),
-            }}
-          />
-        </OdsMessage>
-      )}
+      <ApiErrorMessage
+        className="mb-4"
+        error={ipReverseError || updateIpReverseError || deleteIpReverseError}
+      />
       <OdsButton
         slot="actions"
         type="button"
