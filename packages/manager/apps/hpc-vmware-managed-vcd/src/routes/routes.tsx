@@ -3,7 +3,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
 const OnboardingPage = React.lazy(() =>
@@ -96,6 +96,10 @@ const DeleteVrackSegmentPage = React.lazy(() =>
   ),
 );
 
+const TerminateOrganizationPage = React.lazy(() =>
+  import('@/pages/terminate/TerminateOrganization.page'),
+);
+
 export default (
   <Route
     path={urls.root}
@@ -119,7 +123,19 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    />
+    >
+      <Route
+        id="listing-terminate"
+        path={`${subRoutes.terminate}/:id`}
+        Component={TerminateOrganizationPage}
+        handle={{
+          tracking: {
+            pageName: 'terminate',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
     <Route path={urls.dashboard} Component={OrganizationDashboardPage}>
       <Route
         id={'dashboard'}
@@ -161,6 +177,17 @@ export default (
           handle={{
             tracking: {
               pageName: 'reset-password',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id="dashboard-terminate"
+          path={subRoutes.terminate}
+          Component={TerminateOrganizationPage}
+          handle={{
+            tracking: {
+              pageName: 'terminate',
               pageType: PageType.popup,
             },
           }}
