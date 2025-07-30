@@ -14,7 +14,7 @@ import {
   convertHourlyPriceToMonthly,
   Datagrid,
 } from '@ovh-ux/manager-react-components';
-import { TAutoscalingState, NodePoolState } from '@/types';
+import { TScalingState, NodePoolState } from '@/types';
 import { NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
@@ -231,7 +231,7 @@ const NodePoolStep = ({
           <div className="mb-8">
             <NodePoolSize
               isMonthlyBilled={isMonthlyBilled}
-              onScaleChange={(scaling: TAutoscalingState) =>
+              onScaleChange={(scaling: TScalingState) =>
                 setNodePoolState((state) => ({ ...state, scaling }))
               }
               antiAffinity={nodePoolState.antiAffinity}
