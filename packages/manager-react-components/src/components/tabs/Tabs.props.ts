@@ -1,4 +1,4 @@
-export type TProps<Item> = {
+export type TabsProps<Item> = {
   items?: Item[];
   titleElement?: ({
     item,
@@ -10,12 +10,4 @@ export type TProps<Item> = {
   contentElement?: ({ item }: { item: Item }) => JSX.Element;
   className?: string;
   onChange?: (item: Item) => void;
-  TitleComponent?: ({
-    item,
-    isSelected,
-  }: {
-    item: Item;
-    isSelected?: boolean;
-  }) => JSX.Element | string;
-  ContentComponent?: ({ item }: { item: Item }) => JSX.Element;
 };
