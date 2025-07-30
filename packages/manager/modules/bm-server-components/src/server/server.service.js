@@ -395,13 +395,49 @@ export default class Server {
     });
   }
 
-  getFtpBackup(serviceName) {
-    return this.OvhHttp.get('/sws/dedicated/server/{serviceName}/backupFtp', {
-      rootPath: '2api',
+  getFtpBackupFeatures(serviceName) {
+    return this.OvhHttp.get(
+      '/dedicated/server/{serviceName}/features/backupFTP',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    ).catch(() => {
+      return null;
+    });
+  }
+
+  getOrder(serviceName) {
+    return this.OvhHttp.get('/order/dedicated/server/{serviceName}', {
+      rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
+    }).catch(() => {
+      return null;
     });
+  }
+
+  getFtpBackup(serviceName) {
+    return this.$q
+      .all({
+        backupFtp: this.getFtpBackupFeatures(serviceName),
+        order: this.getOrder(serviceName),
+      })
+      .then(({ backupFtp, order }) => {
+        return {
+          activated: !!backupFtp,
+          login: serviceName,
+          canOrder: order?.includes('backupStorage') || false,
+          quota: backupFtp?.quota,
+          usage: backupFtp?.usage,
+          activate: !!backupFtp,
+          typeBackup: backupFtp?.type?.toUpperCase(),
+          name: backupFtp?.ftpBackupName,
+        };
+      });
   }
 
   activateFtpBackup(serviceName) {
