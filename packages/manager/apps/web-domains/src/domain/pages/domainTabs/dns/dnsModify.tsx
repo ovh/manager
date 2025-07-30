@@ -62,6 +62,10 @@ export default function DnsModifyPage() {
     return <Loading />;
   }
 
+  const currentNameServers: string[] = domainResource.currentState?.dnsConfiguration?.nameServers.map(
+    (ns) => ns.nameServer,
+  );
+
   return (
     <BaseLayout
       breadcrumb={
@@ -79,8 +83,8 @@ export default function DnsModifyPage() {
         </Text>
         <Text preset={TEXT_PRESET.paragraph} className="pb-4">
           {t('domain_tab_DNS_modification_DNS_used')}
-          {domainZone?.nameServers?.length > 0 && (
-            <strong>{domainZone.nameServers.join(', ')}</strong>
+          {currentNameServers?.length > 0 && (
+            <strong>{currentNameServers?.join(', ')}</strong>
           )}
         </Text>
         <Message
@@ -112,6 +116,7 @@ export default function DnsModifyPage() {
           data-testid="dnsModify-radio"
           domainResource={domainResource}
           domainZone={domainZone}
+          serviceName={serviceName}
         />
       </section>
     </BaseLayout>

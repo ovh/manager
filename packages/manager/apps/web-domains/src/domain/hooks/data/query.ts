@@ -8,6 +8,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getDomainAnycastOption,
   getDomainResource,
+  updateDomainResource,
 } from '@/domain/data/api/domainResources';
 import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
 import { getDomainZone } from '@/domain/data/api/domainZone';
@@ -90,7 +91,6 @@ export const useTerminateAnycastMutation = (
 ) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const { addSuccess, addError } = useNotifications();
   const updateInfo = restore
     ? ServiceInfoUpdateEnum.Empty
@@ -104,7 +104,9 @@ export const useTerminateAnycastMutation = (
       });
       addSuccess(
         t('domain_dns_tab_terminate_anycast_success', {
-          action: restore ? t('domain_action_restore') : t('domain_action_terminate'),
+          action: restore
+            ? t('domain_action_restore')
+            : t('domain_action_terminate'),
         }),
       );
     },
@@ -116,5 +118,42 @@ export const useTerminateAnycastMutation = (
   return {
     terminateAnycast: mutate,
     isTerminateAnycastPending: isPending,
+  };
+};
+
+export const useUpdateDomainResource = (serviceName: string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({
+      checksum,
+      nameServers,
+    }: {
+      checksum: string;
+      nameServers: {
+        nameServer: string;
+        ipv4?: string;
+        ipv6?: string;
+      }[];
+    }) =>
+      updateDomainResource(serviceName, {
+        checksum,
+        targetSpec: {
+          dnsConfiguration: {
+            nameServers,
+          },
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'resource', serviceName],
+      });
+    },
+    onError: (error) => {},
+  });
+
+  return {
+    updateDomain: mutate,
+    isUpdateDomainPending: isPending,
   };
 };

@@ -27,6 +27,7 @@ describe('DnsConfigurationRadio', () => {
       <DnsConfigurationRadio
         domainResource={baseDomainResource}
         domainZone={domainZoneMock}
+        serviceName={baseDomainResource.currentState.name}
       />,
     );
 
@@ -49,6 +50,7 @@ describe('DnsConfigurationRadio', () => {
       <DnsConfigurationRadio
         domainResource={baseDomainResource}
         domainZone={undefined}
+        serviceName={baseDomainResource.currentState.name}
       />,
     );
 
