@@ -1,6 +1,7 @@
 import { Controller, FieldPath, FieldValues } from 'react-hook-form';
 import { OsdsText, OsdsToggle } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Badge, BadgeProps } from '@ovh-ux/manager-pci-common';
 
 /**
  * Extract boolean properties as a list
@@ -30,9 +31,11 @@ export const ToggleField = <
 >({
   label,
   name,
+  badges,
 }: {
   label: string;
   name: TName;
+  badges?: BadgeProps[];
 }) => {
   return (
     <div>
@@ -52,13 +55,29 @@ export const ToggleField = <
                 onClick={() => onChange(!boolValue)}
                 onBlur={onBlur}
               >
-                <OsdsText
-                  className={'pl-4'}
+                <span
                   slot={'end'}
-                  color={ODS_THEME_COLOR_INTENT.text}
+                  className={'flex flex-row gap-4 flex-wrap items-center'}
                 >
-                  {label}
-                </OsdsText>
+                  <OsdsText
+                    className={'pl-4'}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  >
+                    {label}
+                  </OsdsText>
+
+                  {!!badges && (
+                    <span className={'flex flex-row gap-2 flex-wrap'}>
+                      {badges.map((badge) => (
+                        <Badge
+                          {...badge}
+                          key={badge.label}
+                          size={badge.size ?? 'sm'}
+                        />
+                      ))}
+                    </span>
+                  )}
+                </span>
               </OsdsToggle>
             );
           }
