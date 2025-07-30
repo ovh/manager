@@ -3,15 +3,15 @@ import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputComponent } from '@ovh-ux/manager-react-components';
+import { TilesInputGroupComponent } from '@ovh-ux/manager-react-components';
 import {
   countries as allCountries,
   TCountry,
 } from '@ovh-ux/manager-react-components/src/__mocks__/tiles-input';
 
 export default {
-  title: 'Manager React Components/Components/TilesInput',
-  component: TilesInputComponent,
+  title: 'Manager React Components/Components/TilesInputGroup',
+  component: TilesInputGroupComponent,
   parameters: {
     docs: {
       description: {
@@ -25,7 +25,11 @@ const Template: any = (args) => {
   const [, updateArgs] = useArgs();
 
   return (
-    <TilesInputComponent<TCountry, string, { continent: string; key: string }>
+    <TilesInputGroupComponent<
+      TCountry,
+      string,
+      { continent: string; key: string }
+    >
       {...args}
       onInput={(country) => updateArgs({ value: country })}
     />
