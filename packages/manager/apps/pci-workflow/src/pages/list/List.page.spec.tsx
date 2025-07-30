@@ -1,49 +1,45 @@
-import { render, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
 import { describe, vi } from 'vitest';
-import * as managerComponentsModule from '@ovh-ux/manager-react-components';
+
+import * as osdsComponents from '@ovhcloud/ods-components/react';
+
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import * as osdsComponents from '@ovhcloud/ods-components/react';
 import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
-import { DEFAULT_DATA } from '@/pages/list/data.mock';
+import * as managerComponentsModule from '@ovh-ux/manager-react-components';
+
 import * as useWorkflowsModule from '@/api/hooks/workflows';
 import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
-import ListingPage from './List.page';
+import { DEFAULT_DATA } from '@/pages/list/data.mock';
 import { wrapper } from '@/wrapperRenders';
 
+import ListingPage from './List.page';
+
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     ChangelogButton: vi.fn().mockReturnValue(<div></div>),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
     useProjectUrl: vi.fn(() => 'project_url'),
-    Notifications: vi
-      .fn()
-      .mockReturnValue(<div data-testid="notifications"></div>),
+    Notifications: vi.fn().mockReturnValue(<div data-testid="notifications"></div>),
   };
 });
 
 describe('ListPage', () => {
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
-    const actual =
-      await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
+    const actual = await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
     return {
       ...actual,
       OsdsBreadcrumb: vi
         .fn()
-        .mockImplementation((props) => (
-          <div data-testid="breadcrumb">{JSON.stringify(props)}</div>
-        )),
+        .mockImplementation((props) => <div data-testid="breadcrumb">{JSON.stringify(props)}</div>),
     };
   });
 
   vi.mock('@/api/hooks/workflows', () => ({
-    usePaginatedWorkflows: vi
-      .fn()
-      .mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows),
+    usePaginatedWorkflows: vi.fn().mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows),
   }));
 
   describe('RedirectionGuard', () => {
@@ -51,33 +47,26 @@ describe('ListPage', () => {
       vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue(
         DEFAULT_DATA.emptyPaginatedWorkflows,
       );
-      vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation(
-        (props) => (
-          <div data-testid="guard">
-            {JSON.stringify({
-              condition: props.condition,
-              route: props.route,
-              isLoading: props.isLoading,
-            })}
-          </div>
-        ),
-      );
+      vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation((props) => (
+        <div data-testid="guard">
+          {JSON.stringify({
+            condition: props.condition,
+            route: props.route,
+            isLoading: props.isLoading,
+          })}
+        </div>
+      ));
     });
 
     it('should be rendered with right props', async () => {
       const { getByTestId } = render(<ListingPage />, { wrapper });
       await waitFor(() => {
-        const props = JSON.parse(getByTestId('guard').textContent) as Record<
-          string,
-          unknown
-        >;
+        const props = JSON.parse(getByTestId('guard').textContent) as Record<string, unknown>;
         expect(props.condition).toBe(
           DEFAULT_DATA.emptyPaginatedWorkflows.data.totalRows === 0 &&
             !DEFAULT_DATA.emptyPaginatedWorkflows.isPending,
         );
-        expect(props.isLoading).toBe(
-          DEFAULT_DATA.emptyPaginatedWorkflows.isPending,
-        );
+        expect(props.isLoading).toBe(DEFAULT_DATA.emptyPaginatedWorkflows.isPending);
         expect(props.route).toBe(
           `/pci/projects/${DEFAULT_DATA.project.project_id}/workflow/onboarding`,
         );
@@ -87,9 +76,9 @@ describe('ListPage', () => {
 
   describe('Content', () => {
     beforeAll(() => {
-      vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation(
-        (props) => <>{props.children}</>,
-      );
+      vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation((props) => (
+        <>{props.children}</>
+      ));
 
       vi.spyOn(pciCommonModule, 'useProject').mockImplementation(
         () =>
@@ -104,9 +93,7 @@ describe('ListPage', () => {
       ));
 
       vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue(
-        DEFAULT_DATA.fullPaginationWorkflows as ReturnType<
-          typeof usePaginatedWorkflows
-        >,
+        DEFAULT_DATA.fullPaginationWorkflows as ReturnType<typeof usePaginatedWorkflows>,
       );
     });
 
@@ -123,9 +110,7 @@ describe('ListPage', () => {
 
       await waitFor(() => {
         expect(getByTestId('breadcrumb')).toBeInTheDocument();
-        const props = JSON.parse(
-          getByTestId('breadcrumb').textContent,
-        ) as Record<string, unknown>;
+        const props = JSON.parse(getByTestId('breadcrumb').textContent) as Record<string, unknown>;
         expect(props.items).toEqual([
           {
             href: 'project_url',
@@ -189,9 +174,9 @@ describe('ListPage', () => {
             pageCount: 1,
           },
         });
-        vi.spyOn(managerComponentsModule, 'Datagrid').mockImplementation(
-          (props) => <div data-testid="grid">{JSON.stringify(props)}</div>,
-        );
+        vi.spyOn(managerComponentsModule, 'Datagrid').mockImplementation((props) => (
+          <div data-testid="grid">{JSON.stringify(props)}</div>
+        ));
 
         const { getByTestId } = render(<ListingPage />, { wrapper });
 
@@ -200,13 +185,7 @@ describe('ListPage', () => {
           const props = JSON.parse(el.textContent) as Record<string, unknown>;
 
           expect(Object.keys(props).sort()).toEqual(
-            [
-              'columns',
-              'items',
-              'totalItems',
-              'pagination',
-              'className',
-            ].sort(),
+            ['columns', 'items', 'totalItems', 'pagination', 'className'].sort(),
           );
           expect(props.items).toEqual([DEFAULT_DATA.workflow]);
           expect(props.totalItems).toEqual(1);

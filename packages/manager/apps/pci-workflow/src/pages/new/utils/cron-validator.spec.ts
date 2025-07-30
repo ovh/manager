@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import CronValidator from './cron-validator';
 
 describe('CronValidator', () => {
@@ -41,32 +42,22 @@ describe('CronValidator', () => {
   });
 
   it('validates cron expression with month and weekday aliases', () => {
-    expect(
-      validator.validateCron('0 0 * Jan Mon', { alias: true, seconds: false }),
-    ).toBe(true);
+    expect(validator.validateCron('0 0 * Jan Mon', { alias: true, seconds: false })).toBe(true);
   });
 
   it('rejects cron expression with invalid month alias', () => {
-    expect(
-      validator.validateCron('0 0 * Jam *', { alias: true, seconds: false }),
-    ).toBe(false);
+    expect(validator.validateCron('0 0 * Jam *', { alias: true, seconds: false })).toBe(false);
   });
 
   it('rejects cron expression with invalid weekday alias', () => {
-    expect(
-      validator.validateCron('0 0 * * Monn', { alias: true, seconds: false }),
-    ).toBe(false);
+    expect(validator.validateCron('0 0 * * Monn', { alias: true, seconds: false })).toBe(false);
   });
 
   it('validates cron expression with seconds', () => {
-    expect(
-      validator.validateCron('0 30 4 * * *', { seconds: true, alias: false }),
-    ).toBe(true);
+    expect(validator.validateCron('0 30 4 * * *', { seconds: true, alias: false })).toBe(true);
   });
 
   it('rejects cron expression with invalid seconds', () => {
-    expect(
-      validator.validateCron('60 30 4 * * *', { seconds: true, alias: false }),
-    ).toBe(false);
+    expect(validator.validateCron('60 30 4 * * *', { seconds: true, alias: false })).toBe(false);
   });
 });
