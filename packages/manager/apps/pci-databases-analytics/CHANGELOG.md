@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.23.2...@ovh-ux/manager-pci-databases-analytics-app@1.24.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* **pci.databases:** update yarn.lock ([006b042](https://github.com/ovh/manager/commit/006b04242458a8ca9287e577d80f56702a66d945))
+
+
+### Features
+
+* **pci-databases-analytics:** add Terraform ([10ac281](https://github.com/ovh/manager/commit/10ac28140e3a50008bd86734432828afb77d4705)), closes [#DATATR-2188](https://github.com/ovh/manager/issues/DATATR-2188)
+* **pci.databases:** add datastreaming engines ([e2da610](https://github.com/ovh/manager/commit/e2da610b275576064b8cd2f8500ddfcec3934f43)), closes [#DATATR-509](https://github.com/ovh/manager/issues/DATATR-509)
+* **pci.databases:** move region section in funnel ([adc423f](https://github.com/ovh/manager/commit/adc423f909e58155d543e2ad7653e214f68ed5c8)), closes [#DATATR-2306](https://github.com/ovh/manager/issues/DATATR-2306)
+
+
+
+
+
 ## [1.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.23.1...@ovh-ux/manager-pci-databases-analytics-app@1.23.2) (2025-07-24)
 
 
