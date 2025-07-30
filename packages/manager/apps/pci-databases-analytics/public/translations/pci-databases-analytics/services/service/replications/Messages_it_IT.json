@@ -61,5 +61,7 @@
   "deleteReplicationTitle": "Elimina il flusso di replica",
   "deleteReplicationDescription": "Vuoi davvero eliminare questo flusso di replica?",
   "deleteReplicationButtonCancel": "Annulla",
-  "deleteReplicationButtonConfirm": "Eliminare"
+  "deleteReplicationButtonConfirm": "Eliminare",
+  "deleteReplicationToastErrorTitle": "Si è verificato un errore durante l'eliminazione del flusso di replica",
+  "deleteReplicationToastSuccessDescription": "Il flusso di replica è stato eliminato correttamente"
 }

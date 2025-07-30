@@ -75,9 +75,11 @@ const DeleteConnector = () => {
             {t('deleteConnectorTitle')}
           </DialogTitle>
           <DialogDescription>
-            {t('deleteConnectorDescription', {
-              name: deletedConnector?.name,
-            })}
+            <p className="max-w-md break-words whitespace-normal">
+              {t('deleteConnectorDescription', {
+                name: deletedConnector?.name,
+              })}
+            </p>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="flex justify-end">
