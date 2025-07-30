@@ -41,9 +41,9 @@ export default function ProjectCreation() {
     false,
   );
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [customSubmitButton, setCustomSubmitButton] = useState<string | null>(
-    null,
-  );
+  const [customSubmitButton, setCustomSubmitButton] = useState<
+    string | JSX.Element | null
+  >(null);
 
   const {
     mutate: createAndAssignCart,
@@ -143,63 +143,72 @@ export default function ProjectCreation() {
   const paymentHandlerRef = React.useRef<TPaymentMethodRef>(null);
 
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
-  const handlePaymentNext = useCallback(async () => {
-    if (!cart || !paymentHandlerRef.current) {
-      return;
-    }
 
-    setIsSubmitting(true);
-    try {
-      if (!(await paymentHandlerRef.current.submitPaymentMethod(cart))) {
-        setIsSubmitting(false);
+  const handlePaymentSubmit = useCallback(
+    async (skipRegistration?: boolean) => {
+      if (!cart || !paymentHandlerRef.current) {
         return;
       }
 
-      const cartCheckoutInfo = await getCartCheckout(cart.cartId);
+      setIsSubmitting(true);
+      try {
+        let result;
 
-      if (paymentHandlerRef.current.onCheckoutRetrieved) {
-        if (
-          !(await paymentHandlerRef.current.onCheckoutRetrieved({
+        if (!skipRegistration) {
+          result = await paymentHandlerRef.current.submitPaymentMethod(cart);
+        }
+
+        if (result !== true) {
+          setIsSubmitting(false);
+          return result;
+        }
+        const cartCheckoutInfo = await getCartCheckout(cart.cartId);
+
+        if (paymentHandlerRef.current.onCheckoutRetrieved) {
+          result = await paymentHandlerRef.current.onCheckoutRetrieved({
             ...cartCheckoutInfo,
             cartId: cart.cartId,
-          }))
-        ) {
-          setIsSubmitting(false);
-          return;
-        }
-      }
+          });
 
-      checkoutCart(
-        {
-          cartId: cart.cartId,
-        },
-        {
-          onSuccess: async (cartFinalized: CartSummary) => {
-            if (
-              paymentHandlerRef.current &&
-              paymentHandlerRef.current.onCartFinalized
-            ) {
+          if (result !== true) {
+            setIsSubmitting(false);
+            return result;
+          }
+        }
+
+        checkoutCart(
+          {
+            cartId: cart.cartId,
+          },
+          {
+            onSuccess: async (cartFinalized: CartSummary) => {
               if (
-                !(await paymentHandlerRef.current.onCartFinalized({
+                paymentHandlerRef.current &&
+                paymentHandlerRef.current.onCartFinalized
+              ) {
+                result = await paymentHandlerRef.current.onCartFinalized({
                   ...cartFinalized,
                   cartId: cart.cartId,
-                }))
-              ) {
-                setIsSubmitting(false);
-                return;
+                });
+
+                if (result !== true) {
+                  setIsSubmitting(false);
+                  return result;
+                }
               }
-            }
-            setIsSubmitting(false);
+              setIsSubmitting(false);
+            },
+            onError: () => {
+              setIsSubmitting(false);
+            },
           },
-          onError: () => {
-            setIsSubmitting(false);
-          },
-        },
-      );
-    } catch (error) {
-      setIsSubmitting(false);
-    }
-  }, [paymentHandlerRef, cart, isSubmitting]);
+        );
+      } catch (error) {
+        setIsSubmitting(false);
+      }
+    },
+    [paymentHandlerRef, cart, isSubmitting],
+  );
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
@@ -255,7 +264,7 @@ export default function ProjectCreation() {
             ns: 'new/payment',
           })}
           next={{
-            action: handlePaymentNext,
+            action: () => handlePaymentSubmit(),
             label:
               customSubmitButton ||
               t('pci_project_new_payment_btn_continue_default', {
@@ -276,6 +285,7 @@ export default function ProjectCreation() {
             }}
             handleCustomSubmitButton={(btn) => setCustomSubmitButton(btn)}
             paymentHandler={paymentHandlerRef}
+            onPaymentSubmit={handlePaymentSubmit}
           />
         </StepComponent>
       </div>

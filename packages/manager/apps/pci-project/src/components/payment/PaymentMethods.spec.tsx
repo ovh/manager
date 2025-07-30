@@ -156,7 +156,7 @@ vi.mock('@/data/hooks/payment/useEligibility', () => ({
 
 vi.mock('@/data/hooks/payment/usePaymentMethods', () => ({
   usePaymentMethods: vi.fn(),
-  paymentMathodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
+  paymentMethodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
 }));
 
 // Mock the child components
@@ -250,6 +250,7 @@ describe('PaymentMethods', () => {
     paymentMethodHandler: React.createRef(),
     cartId: 'cart-123',
     itemId: 123,
+    onPaymentSubmit: vi.fn(),
     ...overrides,
   });
 
