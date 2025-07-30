@@ -5,15 +5,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  Autoscaling,
-  AutoscalingState,
-} from '@/components/Autoscaling.component';
+import { TAutoscalingState } from '@/types';
+import { Autoscaling } from '@/components/Autoscaling.component';
 
 export interface NodeSizeStepProps {
   isMonthlyBilled: boolean;
   antiAffinity: boolean;
-  onScaleChange: (scaling: AutoscalingState) => void;
+  onScaleChange: (scaling: TAutoscalingState) => void;
 }
 
 export default function NodePoolSize({

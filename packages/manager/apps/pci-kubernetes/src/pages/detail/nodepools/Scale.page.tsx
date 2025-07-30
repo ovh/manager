@@ -5,25 +5,26 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useMemo, useState } from 'react';
+import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   useClusterNodePools,
   useUpdateNodePoolSize,
 } from '@/api/hooks/node-pools';
 import queryClient from '@/queryClient';
-import {
-  Autoscaling,
-  AutoscalingState,
-} from '@/components/Autoscaling.component';
+import { Autoscaling } from '@/components/Autoscaling.component';
 import { useTrack } from '@/hooks/track';
+import { NODE_RANGE } from '@/constants';
+import { TAutoscalingState } from '@/types';
+import { isScalingValid } from '@/helpers/node-pool';
 
 export default function ScalePage(): JSX.Element {
-  const { projectId, kubeId: clusterId } = useParams();
+  const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
   const [searchParams] = useSearchParams();
-  const poolId = searchParams.get('nodePoolId');
+  const poolId = searchParams.get('nodePoolId') as string;
 
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -35,7 +36,7 @@ export default function ScalePage(): JSX.Element {
 
   const { trackClick } = useTrack();
 
-  const [state, setState] = useState<AutoscalingState>(null);
+  const [state, setState] = useState<TAutoscalingState | null>(null);
 
   const { data: pools, isPending: isPoolsPending } = useClusterNodePools(
     projectId,
@@ -83,6 +84,13 @@ export default function ScalePage(): JSX.Element {
     poolId,
   });
 
+  const isDisabled =
+    isScaling ||
+    (state && !isScalingValid({ scaling: state })) ||
+    (state?.quantity.desired &&
+      pool?.minNodes &&
+      state?.quantity.desired < pool?.minNodes);
+
   return (
     <OsdsModal
       headline={tListing('kube_common_node_pool_autoscaling_title')}
@@ -95,9 +103,9 @@ export default function ScalePage(): JSX.Element {
         {!isPoolsPending && !isScaling ? (
           <Autoscaling
             initialScaling={{
-              min: pool?.minNodes,
-              max: pool?.maxNodes,
-              desired: pool?.desiredNodes,
+              min: pool?.minNodes ?? 0,
+              max: pool?.maxNodes ?? NODE_RANGE.MAX,
+              desired: pool?.desiredNodes ?? NODE_RANGE.MIN,
             }}
             isMonthlyBilling={pool?.monthlyBilled}
             isAntiAffinity={pool?.antiAffinity}
@@ -127,13 +135,15 @@ export default function ScalePage(): JSX.Element {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
           updateSize({
-            autoscale: state.isAutoscale,
-            desiredNodes: state.quantity.desired,
-            maxNodes: state.quantity.max,
-            minNodes: state.quantity.min,
+            autoscale: state?.isAutoscale ?? false,
+            desiredNodes: state?.quantity.desired ?? NODE_RANGE.MIN,
+            ...(Boolean(state?.isAutoscale) && {
+              maxNodes: state?.quantity.max || NODE_RANGE.MAX,
+              minNodes: state?.quantity.min || 0,
+            }),
           });
         }}
-        {...(isScaling ? { disabled: true } : {})}
+        {...(isDisabled ? { disabled: true } : {})}
       >
         {tListing('kube_common_save')}
       </OsdsButton>
