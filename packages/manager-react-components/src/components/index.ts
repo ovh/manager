@@ -5,7 +5,8 @@ export * from './breadcrumb';
 export * from './clipboard';
 export * from './step';
 export * from './tabs';
-export * from './input';
+export * from './tiles-input-group';
+export * from './tiles-input';
 
 export * from './content';
 export * from './navigation';

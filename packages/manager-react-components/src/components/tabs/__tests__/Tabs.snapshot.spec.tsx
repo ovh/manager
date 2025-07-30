@@ -5,10 +5,6 @@ import { TabsComponent } from '../Tabs.component';
 describe('TabsComponent', () => {
   const mockItems = ['tab1', 'tab2', 'tab3'];
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('Snapshot tests', () => {
     it('should match snapshot with default props', () => {
       const { container } = render(<TabsComponent items={mockItems} />);
