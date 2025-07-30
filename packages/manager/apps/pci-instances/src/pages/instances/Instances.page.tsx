@@ -107,6 +107,7 @@ const Instances: FC = () => {
     isFetchingNextPage,
     refresh,
     isFetching,
+    isPending,
     isRefetching,
   } = useInstances({
     limit: 20,
@@ -279,7 +280,7 @@ const Instances: FC = () => {
           )}
         </div>
       </PageLayout>
-      {!isFetching && <Outlet />}
+      {!isPending && <Outlet />}
     </>
   );
 };
