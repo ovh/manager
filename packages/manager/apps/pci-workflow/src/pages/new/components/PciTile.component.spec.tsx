@@ -1,5 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { PciTile } from './PciTile.component';
 
 describe('PciTile Component', () => {
@@ -16,21 +17,15 @@ describe('PciTile Component', () => {
   });
 
   it('executes onClick callback when clicked', () => {
-    const { getByTestId } = render(
-      <PciTile title={title} onClick={onClickMock} />,
-    );
+    const { getByTestId } = render(<PciTile title={title} onClick={onClickMock} />);
     fireEvent.click(getByTestId('pciTile-Tile'));
     expect(onClickMock).toHaveBeenCalled();
   });
 
   it('applies checked class when isChecked is true', () => {
-    const { getByTestId } = render(
-      <PciTile title={title} isChecked onClick={onClickMock} />,
-    );
+    const { getByTestId } = render(<PciTile title={title} isChecked onClick={onClickMock} />);
     const tile = getByTestId('pciTile-Tile');
-    expect(tile).toHaveClass(
-      'bg-[--ods-color-blue-100] border-[--ods-color-blue-600]',
-    );
+    expect(tile).toHaveClass('bg-[--ods-color-blue-100] border-[--ods-color-blue-600]');
   });
 
   it('applies unchecked class when isChecked is false', () => {
@@ -44,9 +39,7 @@ describe('PciTile Component', () => {
   });
 
   it('does not display description when none is provided', () => {
-    const { queryByText } = render(
-      <PciTile title={title} onClick={onClickMock} />,
-    );
+    const { queryByText } = render(<PciTile title={title} onClick={onClickMock} />);
     expect(queryByText(description)).toBeNull();
   });
 });

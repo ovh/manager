@@ -1,15 +1,13 @@
+import { Suspense, useContext } from 'react';
+
 import { Outlet, useRouteError } from 'react-router-dom';
 
-import {
-  ShellContext,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
-import { Suspense, useContext } from 'react';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import HidePreloader from '@/core/HidePreloader';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 
+import HidePreloader from '@/core/HidePreloader';
 import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
