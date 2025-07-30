@@ -52,6 +52,10 @@ const renderActivateRegion = async ({
 };
 
 describe('ActivateRegion test suite', () => {
+  afterEach(() => {
+    vi.resetAllMocks();
+  });
+
   describe('when okms list is not updating', () => {
     it('should render a button to navigate to okms silent creation modal', async () => {
       const user = userEvent.setup();
