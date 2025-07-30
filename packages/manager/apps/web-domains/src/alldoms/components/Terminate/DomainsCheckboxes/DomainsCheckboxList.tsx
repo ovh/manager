@@ -1,6 +1,6 @@
 import React from 'react';
 import { TDomainsInfo } from '@/alldoms/types';
-import DomainsCheckboxItem from './DomainCheckboxItem';
+import DomainsCheckboxItem from '@/alldoms/components/Terminate/DomainsCheckboxes/DomainCheckboxItem';
 
 interface DomainsCheckboxesProps {
   readonly domainsAttached: TDomainsInfo[];
