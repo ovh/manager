@@ -57,5 +57,6 @@
   "telephony_billingAccount_svaWallet_kyc_identity_submit_label": "Etapa seguinte",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_cancel": "Anular",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_lemonway": "LemonWay",
-  "telephony_billingAccount_svaWallet_kyc_identity_error": "Ocorreu um erro aquando do backup das suas informações: {{ errorMessage }}"
+  "telephony_billingAccount_svaWallet_kyc_identity_error": "Ocorreu um erro aquando do backup das suas informações: {{ errorMessage }}",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_registration_date": "Data de criação"
 }
