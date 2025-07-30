@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
   Button,
@@ -13,7 +13,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -30,17 +30,40 @@ interface DnsConfigurationTabProps {
 export default function DnsConfigurationTab({
   domainResource,
 }: DnsConfigurationTabProps) {
-  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { t } = useTranslation([
+    'domain',
+    'web-domains/error',
+    NAMESPACES.ACTIONS,
+  ]);
+  const { state } = useLocation();
+  const [localSuccessMessage, setLocalSuccessMessage] = useState<string | null>(
+    () => {
+      return state?.successMessage || null;
+    },
+  );
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
-  const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<boolean>(false);
+  const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<
+    boolean
+  >(false);
   const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
 
   const onOpenAnycastTerminateModal = () => {
     setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
-  }
+  };
   return (
     <div data-testid="datagrid">
+      {localSuccessMessage && (
+        <Message
+          color={MESSAGE_COLOR.success}
+          className="w-full mt-4"
+          dismissible={true}
+          onRemove={() => setLocalSuccessMessage(null)}
+        >
+          <MessageIcon name={ICON_NAME.circleCheck} />
+          <MessageBody>{t(`${NAMESPACES.ACTIONS}:add`)}</MessageBody>
+        </Message>
+      )}
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
         <Message
           color={MESSAGE_COLOR.warning}

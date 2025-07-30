@@ -1,4 +1,5 @@
 import {
+  DNSConfiguration,
   TDatagridDnsDetails,
   TDomainResource,
   TNameServer,
@@ -30,7 +31,7 @@ const DEDICATED_DNS_PATTERN: Record<string, RegExp> = {
   US: /sdns\d\.ovh\.us/i,
 };
 
-function isInternalDns(value: string): boolean {
+export function isInternalDns(value: string): boolean {
   return Object.values(INTERNAL_DNS_PATTERN).some((pattern) =>
     pattern.test(value),
   );
@@ -130,4 +131,70 @@ export function computeActiveConfiguration(
     default:
       return ActiveConfigurationTypeEnum.INTERNAL;
   }
+}
+
+export function computeDisplayNameServers(
+  currentStateConfig: DNSConfiguration,
+  domainZone: TDomainZone,
+  selectedConfig: ActiveConfigurationTypeEnum,
+): TNameServer[] {
+  const isSameConfig =
+    selectedConfig ===
+    ((currentStateConfig.configurationType as unknown) as ActiveConfigurationTypeEnum);
+
+  if (selectedConfig === ActiveConfigurationTypeEnum.EXTERNAL && isSameConfig) {
+    return currentStateConfig.nameServers as TNameServer[];
+  }
+
+  if (selectedConfig === ActiveConfigurationTypeEnum.MIXED) {
+    if (!isSameConfig) {
+      return domainZone.nameServers.map((ns) => ({ nameServer: ns }));
+    }
+    const sortedNameServers = [
+      ...currentStateConfig.nameServers.filter((ns) =>
+        domainZone.nameServers.includes(ns.nameServer),
+      ),
+      ...currentStateConfig.nameServers.filter(
+        (ns) => !domainZone.nameServers.includes(ns.nameServer),
+      ),
+    ];
+    return sortedNameServers.map(({ nameServer, ipv4, ipv6 }) => ({
+      nameServer,
+      ipv4,
+      ipv6,
+    }));
+  }
+  return [];
+}
+
+export function canSaveNewDnsConfig(
+  initialServers: TNameServer[],
+  newServers: TNameServer[],
+  dnsConfig: DNSConfiguration,
+): boolean {
+  const areServersEqual = (a: TNameServer, b: TNameServer): boolean => {
+    return (
+      a.nameServer === b.nameServer &&
+      (a.ipv4 ?? null) === (b.ipv4 ?? null) &&
+      (a.ipv6 ?? null) === (b.ipv6 ?? null)
+    );
+  };
+
+  const areArraysDifferent = (): boolean => {
+    if (initialServers.length !== newServers.length) return true;
+    const unmatched = [...newServers];
+    return initialServers.some((initial) => {
+      const idx = unmatched.findIndex((ns) => areServersEqual(initial, ns));
+      if (idx === -1) return true;
+      unmatched.splice(idx, 1);
+      return false;
+    });
+  };
+
+  const count = newServers.length;
+  return (
+    count >= dnsConfig.minDNS &&
+    count <= dnsConfig.maxDNS &&
+    areArraysDifferent()
+  );
 }
