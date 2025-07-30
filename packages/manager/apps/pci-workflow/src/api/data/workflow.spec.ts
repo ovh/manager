@@ -1,5 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { deleteWorkflow } from './workflow';
 
 vi.mock('@ovh-ux/manager-core-api');
@@ -21,8 +23,6 @@ describe('deleteWorkflow', () => {
     const errorMessage = 'API call failed';
     vi.mocked(v6.delete).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      deleteWorkflow('project1', 'region1', 'workflow1'),
-    ).rejects.toThrow(errorMessage);
+    await expect(deleteWorkflow('project1', 'region1', 'workflow1')).rejects.toThrow(errorMessage);
   });
 });

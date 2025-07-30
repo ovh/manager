@@ -1,11 +1,14 @@
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { StepState } from '@/pages/new/hooks/useStep';
-import { PciTile } from '@/pages/new/components/PciTile.component';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
 import { CronInput } from '@/pages/new/components/CronInput.component';
+import { PciTile } from '@/pages/new/components/PciTile.component';
+import { StepState } from '@/pages/new/hooks/useStep';
 import { TWorkflowScheduling } from '@/pages/new/hooks/useWorkflowStepper';
 
 interface SchedulingProps {
@@ -47,10 +50,7 @@ const CUSTOM: TWorkflowScheduling = {
   maxExecutionCount: 0,
 };
 
-export function WorkflowScheduling({
-  step,
-  onSubmit,
-}: Readonly<SchedulingProps>) {
+export function WorkflowScheduling({ step, onSubmit }: Readonly<SchedulingProps>) {
   const { t } = useTranslation('workflow-add');
   const { t: tCommon } = useTranslation('pci-common');
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
@@ -72,23 +72,17 @@ export function WorkflowScheduling({
               title={t('pci_workflow_create_schedule_rotate7_title')}
               isChecked={schedule === ROTATE_7}
               onClick={() => setSchedule(ROTATE_7)}
-              description={t(
-                'pci_workflow_create_schedule_rotate_description',
-                {
-                  numEntries: 7,
-                },
-              )}
+              description={t('pci_workflow_create_schedule_rotate_description', {
+                numEntries: 7,
+              })}
             />
             <PciTile
               title={t('pci_workflow_create_schedule_rotate14_title')}
               isChecked={schedule === ROTATE_14}
               onClick={() => setSchedule(ROTATE_14)}
-              description={t(
-                'pci_workflow_create_schedule_rotate_description',
-                {
-                  numEntries: 14,
-                },
-              )}
+              description={t('pci_workflow_create_schedule_rotate_description', {
+                numEntries: 14,
+              })}
             />
             <PciTile
               title={t('pci_workflow_create_schedule_custom_title')}

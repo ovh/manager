@@ -1,4 +1,4 @@
-// import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
@@ -42,8 +42,7 @@ export default [
   tailwindJsxConfig,
   tanStackQueryEslintConfig,
   vitestEslintConfig,
-  // TODO
-  // prettierEslintConfig,
+  prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {

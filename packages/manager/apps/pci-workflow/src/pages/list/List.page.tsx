@@ -1,4 +1,18 @@
+import { Suspense, useRef, useState } from 'react';
+
+import { Outlet, useHref, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_CHIP_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsBreadcrumb,
   OsdsButton,
@@ -11,12 +25,14 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Outlet, useHref, useParams } from 'react-router-dom';
+
+import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
+  DataGridTextCell,
   Datagrid,
   DatagridColumn,
-  DataGridTextCell,
   FilterAdd,
   FilterList,
   Headers,
@@ -27,27 +43,13 @@ import {
   useDataGrid,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useRef, useState } from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_CHIP_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { PciDiscoveryBanner, useProject } from '@ovh-ux/manager-pci-common';
+
+import { TPaginatedWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import Actions from '@/components/actions.component';
-import {
-  TPaginatedWorkflow,
-  usePaginatedWorkflows,
-} from '@/api/hooks/workflows';
 import ExecutionStatusComponent from '@/components/execution-status.component';
+import { CHANGELOG_LINKS } from '@/constants';
 import HidePreloader from '@/core/HidePreloader';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
-import { CHANGELOG_LINKS } from '@/constants';
 
 export default function ListingPage() {
   const { t } = useTranslation('listing');
@@ -72,16 +74,12 @@ export default function ListingPage() {
   const columns: DatagridColumn<TPaginatedWorkflow>[] = [
     {
       id: 'name',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <DataGridTextCell>{workflow.name}</DataGridTextCell>
-      ),
+      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.name}</DataGridTextCell>,
       label: t('pci_workflow_name'),
     },
     {
       id: 'id',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <DataGridTextCell>{workflow.id}</DataGridTextCell>
-      ),
+      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.id}</DataGridTextCell>,
       label: t('pci_workflow_id'),
       isSortable: false,
     },
@@ -106,9 +104,7 @@ export default function ListingPage() {
     },
     {
       id: 'cron',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <DataGridTextCell>{workflow.cron}</DataGridTextCell>
-      ),
+      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.cron}</DataGridTextCell>,
       label: t('pci_workflow_schedule'),
     },
     {
@@ -170,10 +166,7 @@ export default function ListingPage() {
           title={t('pci_workflow_title')}
           headerButton={<PciGuidesHeader category="kubernetes" />}
           changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
+            <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
           }
         />
       </div>
@@ -316,11 +309,7 @@ export default function ListingPage() {
 
       {isPending ? (
         <div className="text-center">
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            data-testid="spinner"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="spinner" />
         </div>
       ) : (
         <Datagrid
