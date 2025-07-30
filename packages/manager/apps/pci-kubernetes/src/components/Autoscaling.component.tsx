@@ -28,7 +28,7 @@ import {
   NODE_RANGE,
   AUTOSCALING_LINK,
 } from '@/constants';
-import { TAutoscalingState } from '@/types';
+import { TScalingState } from '@/types';
 
 function getDesiredQuantity(
   quantity: { min: number; desired: number },
@@ -40,11 +40,11 @@ function getDesiredQuantity(
 }
 
 export interface AutoscalingProps {
-  initialScaling?: TAutoscalingState['quantity'];
+  initialScaling?: TScalingState['quantity'];
   isMonthlyBilling?: boolean;
   isAntiAffinity?: boolean;
-  autoscale?: TAutoscalingState['isAutoscale'];
-  onChange?: (scaling: TAutoscalingState) => void;
+  autoscale?: TScalingState['isAutoscale'];
+  onChange?: (scaling: TScalingState) => void;
 }
 
 export function Autoscaling({

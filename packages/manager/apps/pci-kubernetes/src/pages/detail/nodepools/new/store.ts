@@ -5,7 +5,7 @@ import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import { NODE_RANGE } from '@/constants';
-import { TAutoscalingState } from '@/types';
+import { TScalingState } from '@/types';
 
 type TStep = {
   isOpen: boolean;
@@ -22,7 +22,7 @@ export type TFormStore = {
   };
   flavor?: TComputedKubeFlavor;
   selectedAvailabilityZone: string;
-  autoScaling: TAutoscalingState;
+  scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
   steps: Map<StepsEnum, TStep>;
@@ -30,7 +30,7 @@ export type TFormStore = {
     name: (val: string) => void;
     flavor: (val?: TComputedKubeFlavor) => void;
     selectedAvailabilityZone: (selectedZone: string) => void;
-    autoScaling: (val: TAutoscalingState) => void;
+    scaling: (val: TScalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
   };
@@ -90,7 +90,7 @@ const initialSteps = () =>
     ],
   ]);
 
-const initAutoscale = {
+const initScale = {
   quantity: { desired: NODE_RANGE.MIN, min: 0, max: NODE_RANGE.MAX },
   isAutoscale: false,
 };
@@ -102,7 +102,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     isTouched: false,
   },
   flavor: undefined,
-  autoScaling: initAutoscale,
+  scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
   selectedAvailabilityZone: '',
@@ -126,7 +126,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     },
 
     flavor: (val?: TComputedKubeFlavor) => set({ flavor: val }),
-    autoScaling: (val: TAutoscalingState) => set({ autoScaling: val }),
+    scaling: (val: TScalingState) => set({ scaling: val }),
     antiAffinity: (val: boolean) => set({ antiAffinity: val }),
     isMonthlyBilling: (val: boolean) => set({ isMonthlyBilling: val }),
   },
@@ -207,7 +207,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
         get().uncheck(StepsEnum.TYPE);
         get().unlock(StepsEnum.TYPE);
         // Reset size
-        get().set.autoScaling(initAutoscale);
+        get().set.scaling(initScale);
 
         get().close(StepsEnum.SIZE);
         get().uncheck(StepsEnum.SIZE);
@@ -222,7 +222,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
         break;
       case StepsEnum.TYPE:
         // Reset size
-        get().set.autoScaling(initAutoscale);
+        get().set.scaling(initScale);
 
         get().close(StepsEnum.SIZE);
         get().uncheck(StepsEnum.SIZE);
@@ -252,7 +252,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       ...get(),
       name: { value: '', hasError: false, isTouched: false },
       flavor: undefined,
-      autoScaling: initAutoscale,
+      scaling: initScale,
       antiAffinity: false,
       isMonthlyBilling: false,
       steps: initialSteps(),

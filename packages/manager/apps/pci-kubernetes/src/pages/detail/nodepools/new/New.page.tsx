@@ -129,7 +129,7 @@ export default function NewPage(): JSX.Element {
         getPriceByDesiredScale(
           flavor?.pricingsHourly?.price,
           flavor?.pricingsMonthly?.price,
-          store.autoScaling?.quantity.desired,
+          store.scaling?.quantity.desired,
         ),
     },
   );
@@ -155,7 +155,7 @@ export default function NewPage(): JSX.Element {
       })();
 
       const warnForAutoscaleBilling = Boolean(
-        store.isMonthlyBilling && store.autoScaling?.isAutoscale,
+        store.isMonthlyBilling && store.scaling?.isAutoscale,
       );
 
       setBillingState((prev) => ({
@@ -169,12 +169,7 @@ export default function NewPage(): JSX.Element {
         },
       }));
     }
-  }, [
-    store.flavor,
-    store.isMonthlyBilling,
-    store.autoScaling,
-    isCatalogPending,
-  ]);
+  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending]);
 
   const create = () => {
     trackClick(`details::nodepools::add::confirm`);
@@ -192,12 +187,12 @@ export default function NewPage(): JSX.Element {
       name: store.name.value,
       antiAffinity: store.antiAffinity,
       monthlyBilled: store.isMonthlyBilling,
-      autoscale: Boolean(store.autoScaling?.isAutoscale),
-      ...(Boolean(store.autoScaling?.isAutoscale) && {
-        minNodes: store.autoScaling?.quantity.min ?? 0,
-        maxNodes: store.autoScaling.quantity.max,
+      autoscale: Boolean(store.scaling?.isAutoscale),
+      ...(Boolean(store.scaling?.isAutoscale) && {
+        minNodes: store.scaling?.quantity.min ?? 0,
+        maxNodes: store.scaling.quantity.max,
       }),
-      desiredNodes: store.autoScaling?.quantity.desired ?? 0,
+      desiredNodes: store.scaling?.quantity.desired ?? 0,
     };
     createNodePool(projectId, clusterId, param)
       .then(() => {
@@ -388,7 +383,7 @@ export default function NewPage(): JSX.Element {
         order={3}
         next={{
           action: () => {
-            if (store.autoScaling) {
+            if (store.scaling) {
               store.check(StepsEnum.SIZE);
               store.lock(StepsEnum.SIZE);
               store.open(StepsEnum.BILLING);
@@ -400,8 +395,9 @@ export default function NewPage(): JSX.Element {
             hasInvalidScalingOrAntiAffinityConfig(regionInformations, {
               name: store.name.value,
               isTouched: store.name.isTouched,
-              scaling: store.autoScaling,
+              scaling: store.scaling,
               antiAffinity: store.antiAffinity,
+              selectedAvailabilityZone: store.selectedAvailabilityZone,
             })
           ),
         }}
@@ -426,7 +422,7 @@ export default function NewPage(): JSX.Element {
         )}
         <NodePoolSize
           isMonthlyBilled={store.isMonthlyBilling}
-          onScaleChange={(auto) => store.set.autoScaling(auto)}
+          onScaleChange={(auto) => store.set.scaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
         />
         <>
@@ -434,7 +430,7 @@ export default function NewPage(): JSX.Element {
             !isMultiDeploymentZones(regionInformations.type) && (
               <NodePoolAntiAffinity
                 isChecked={billingState.antiAffinity.isChecked}
-                isEnabled={!store.autoScaling?.isAutoscale}
+                isEnabled={!store.scaling?.isAutoscale}
                 onChange={billingState.antiAffinity.onChange}
               />
             )}

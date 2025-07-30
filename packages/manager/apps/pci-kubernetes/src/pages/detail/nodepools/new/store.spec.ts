@@ -21,7 +21,7 @@ describe('NewPoolStore', () => {
     it('should set autoScaling', () => {
       const { result } = renderHook(() => useNewPoolStore());
       act(() =>
-        result.current.set.autoScaling({
+        result.current.set.scaling({
           isAutoscale: false,
           quantity: {
             desired: 3,
@@ -30,7 +30,7 @@ describe('NewPoolStore', () => {
           },
         }),
       );
-      expect(result.current.autoScaling).toStrictEqual({
+      expect(result.current.scaling).toStrictEqual({
         isAutoscale: false,
         quantity: {
           desired: 3,
@@ -118,7 +118,7 @@ describe('NewPoolStore', () => {
     > => ({
       name: state.name,
       flavor: state.flavor,
-      autoScaling: state.autoScaling,
+      scaling: state.scaling,
       selectedAvailabilityZone: state.selectedAvailabilityZone,
       antiAffinity: state.antiAffinity,
       isMonthlyBilling: state.isMonthlyBilling,
@@ -132,7 +132,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: {
+        scaling: {
           isAutoscale: false,
           quantity: {
             desired: 3,
@@ -192,7 +192,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: {
+        scaling: {
           isAutoscale: false,
           quantity: {
             desired: 3,
@@ -252,7 +252,7 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: {
+        scaling: {
           isAutoscale: false,
           quantity: {
             desired: 3,
