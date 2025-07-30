@@ -35,7 +35,7 @@ const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/create/Create.page'),
 );
 const OrderOkms = React.lazy(() =>
-  import('@/modules/secret-manager/pages/create/OrderOkms/OrderOkms.page'),
+  import('@/common/pages/OrderOkmsModal/OrderOkmsModal.page'),
 );
 
 export default (
