@@ -11,13 +11,13 @@ import { Rule } from '@/types/rule';
 const generateQueryKey = (params: RulesParam) =>
   Object.entries(params).map(([key, value]) => `${key}=${value}`);
 
-export const useRules = (params: RulesParam, fields?: string[]) =>
+export const useRules = <T extends string>(params: RulesParam, fields?: T[]) =>
   useQuery({
     queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
     queryFn: () => getRules(params),
     select: fields
       ? (data) => {
-          const selectedData = {} as Record<string, Rule>;
+          const selectedData = {} as { [K in T]: Rule };
           fields.forEach((field) => {
             if (field in data) {
               selectedData[field] = data[field];

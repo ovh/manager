@@ -28,7 +28,7 @@ import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { User, Country, Subsidiary, UserLocales } from '@ovh-ux/manager-config';
 import { AxiosError } from 'axios';
 import { useRules } from '@/data/hooks/useRules';
@@ -38,7 +38,7 @@ import { putMe } from '@/data/api/me';
 import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
 import {
-  useZodSchemaGenerator,
+  getZodSchemaFromRule,
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 
@@ -95,9 +95,12 @@ export default function AccountDetailsPage() {
     'language',
   ]);
 
-  const zodSchema = useZodSchemaGenerator(rules || {}).extend({
-    confirmSend: z.literal(true),
-  });
+  const zodSchema = useMemo(() => {
+    if (!rules) return null;
+    return getZodSchemaFromRule(rules).extend({
+      confirmSend: z.literal(true),
+    });
+  }, [rules]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -160,8 +163,10 @@ export default function AccountDetailsPage() {
     },
   });
 
-  const handleValidateClick: SubmitHandler<FormData> = (formData) => {
-    addAccountDetails(formData);
+  const handleValidateClick: SubmitHandler<z.infer<typeof zodSchema>> = (
+    formData,
+  ) => {
+    addAccountDetails(formData as FormData);
   };
 
   /**
