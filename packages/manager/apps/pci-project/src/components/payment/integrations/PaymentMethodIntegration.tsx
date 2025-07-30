@@ -1,21 +1,25 @@
-import React, { useImperativeHandle } from 'react';
+import React, { useCallback, useImperativeHandle } from 'react';
 import {
   TPaymentMethod,
   TPaymentMethodIntegrationRef,
+  TPaymentMethodRegisterRef,
   TPaymentMethodType,
 } from '@/data/types/payment/payment-method.type';
 import CreditPaymentMethodIntegration from './CreditPaymentMethodIntegration';
 import { TEligibility } from '@/data/types/payment/eligibility.type';
 import { TCart } from '@/data/types/payment/cart.type';
+import PaypalPaymentMethodIntegration from './PaypalPaymentMethodIntegration';
+import { useAddPaymentMethod } from '@/data/hooks/payment/usePaymentMethods';
 
 type PaymentMethodIntegrationProps = {
   paymentMethod?: TPaymentMethod | null;
   handleValidityChange: (isValid: boolean) => void;
   eligibility: TEligibility;
-  paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
+  paymentHandler: React.Ref<TPaymentMethodRegisterRef>;
   cartId: string;
   itemId: number;
-  handleCustomSubmitButton?: (btn: string) => void;
+  handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
+  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
 };
 
 const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
@@ -26,8 +30,26 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
   cartId,
   itemId,
   handleCustomSubmitButton,
+  onPaymentSubmit,
 }) => {
   const paymentHandlerRef = React.useRef<TPaymentMethodIntegrationRef>(null);
+
+  const { mutateAsync: addPaymentMethod } = useAddPaymentMethod();
+
+  // Helper functions
+  const generateCallbackUrls = useCallback(
+    (paymentType: TPaymentMethodType) => {
+      const baseUrl = window.location.href;
+      return {
+        success: `${baseUrl}?status=success&paymentType=${paymentType}`,
+        error: `${baseUrl}?status=error&paymentType=${paymentType}`,
+        cancel: `${baseUrl}?status=cancel&paymentType=${paymentType}`,
+        pending: `${baseUrl}?status=pending&paymentType=${paymentType}`,
+        failure: `${baseUrl}?status=failure&paymentType=${paymentType}`,
+      };
+    },
+    [],
+  );
 
   useImperativeHandle(
     paymentHandler,
@@ -37,6 +59,15 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           paymentMethodToRegister: TPaymentMethod,
           cart: TCart,
         ) => {
+          const registerPaymentMethod = await addPaymentMethod({
+            paymentType: paymentMethodToRegister.paymentType,
+            default: true,
+            register: true,
+            callbackUrl: generateCallbackUrls(
+              paymentMethodToRegister.paymentType,
+            ),
+          });
+
           if (
             paymentHandlerRef.current &&
             paymentHandlerRef.current.registerPaymentMethod
@@ -44,6 +75,7 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
             return paymentHandlerRef.current.registerPaymentMethod(
               paymentMethodToRegister,
               cart,
+              registerPaymentMethod,
             );
           }
           return true;
@@ -82,6 +114,16 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           cartId={cartId}
           itemId={itemId}
           handleCustomSubmitButton={handleCustomSubmitButton}
+        />
+      );
+
+    case TPaymentMethodType.PAYPAL:
+      return (
+        <PaypalPaymentMethodIntegration
+          paymentHandler={paymentHandlerRef}
+          handleCustomSubmitButton={handleCustomSubmitButton}
+          onPaymentSubmit={onPaymentSubmit}
+          handleValidityChange={handleValidityChange}
         />
       );
 

@@ -7008,23 +7008,6 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.37.0":
-  version "2.37.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.37.0.tgz#7929a1b1672cc13a9905eebf024993a526d747f1"
-  integrity sha512-wu/eoBe5mgAls0x4/Yw/tGRe6zQ5+/4mwk5Moa7npXey4bHS4IIJgXVA2R6cA8zxUSRgK2o7+Dxbyh5tHoj1fA==
-  dependencies:
-    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.56.1"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
 "@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"

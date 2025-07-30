@@ -7,7 +7,7 @@ import {
 } from '@/data/hooks/payment/useEligibility';
 import DefaultPaymentMethod from './DefaultPaymentMethod';
 import {
-  paymentMathodQueryKey,
+  paymentMethodQueryKey,
   usePaymentMethods,
 } from '@/data/hooks/payment/usePaymentMethods';
 import RegisterPaymentMethod from './RegisterPaymentMethod';
@@ -33,14 +33,15 @@ export type PaymentMethodsProps = {
   handleValidityChange?: (isValid: boolean) => void;
   cartId: string;
   itemId: number;
-  handleCustomSubmitButton?: (btn: string) => void;
   preselectedPaymentType?: string | null;
+  handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
+  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
 };
 
 export type TPaymentMethodRef = {
-  submitPaymentMethod: (cart: TCart) => Promise<boolean>;
-  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean>;
-  onCartFinalized?: (cart: TCart) => Promise<boolean>;
+  submitPaymentMethod: (cart: TCart) => Promise<boolean | unknown>;
+  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean | unknown>;
+  onCartFinalized?: (cart: TCart) => Promise<boolean | unknown>;
 };
 
 /**
@@ -116,6 +117,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   itemId,
   handleCustomSubmitButton,
   preselectedPaymentType,
+  onPaymentSubmit,
 }) => {
   const {
     data: eligibility,
@@ -183,6 +185,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   }, [
     isChallengeValid,
     isPaymentMethodIntegrationValid,
+    defaultPaymentMethod,
     handleValidityChange,
     selectedPaymentMethod,
     isSetAsDefault,
@@ -208,7 +211,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
                 // There should not be any default payment method after this
                 // Which will trigger the RegisterPaymentMethod component to be displayed
                 queryClient.invalidateQueries({
-                  queryKey: paymentMathodQueryKey(defaultPaymentMethodsParams),
+                  queryKey: paymentMethodQueryKey(defaultPaymentMethodsParams),
                 });
                 queryClient.invalidateQueries({
                   queryKey: eligibilityQueryKey(),
@@ -269,7 +272,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   }
 
   return (
-    <>
+    <div>
       {defaultPaymentMethod ? (
         <DefaultPaymentMethod method={defaultPaymentMethod} />
       ) : (
@@ -298,10 +301,11 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             cartId={cartId}
             itemId={itemId}
             handleCustomSubmitButton={handleCustomSubmitButton}
+            onPaymentSubmit={onPaymentSubmit}
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

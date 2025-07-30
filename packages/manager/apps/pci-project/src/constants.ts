@@ -213,3 +213,23 @@ export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
   FR:
     'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
 };
+
+export const UCENTS = 1 / 100_000_000;
+
+export const PAYPAL_BUTTON_OPTIONS = {
+  env: 'production',
+  commit: true,
+  locale: 'fr_FR',
+  style: {
+    color: 'blue',
+    label: 'paypal',
+    shape: 'rect',
+    size: 'medium',
+    tagline: false,
+  },
+};
+
+export const PAYPAL_SCRIPT = {
+  src: 'https://www.paypalobjects.com/api/checkout.js',
+  id: 'paypal_checkout_script',
+};

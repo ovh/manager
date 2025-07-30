@@ -35,7 +35,7 @@ const PaypalExplanationTexts: React.FC<BaseExplanationTextsProps> = ({
     <>
       {features.PAYPAL_CHARGE && (
         <OdsMessage
-          className="w-full mb-3 text-justify"
+          className="w-full mb-4 text-justify"
           isDismissible={false}
           color={ODS_MESSAGE_COLOR.warning}
         >
