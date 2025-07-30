@@ -4,5 +4,5 @@ export const useLink = (
   links: Partial<Record<OvhSubsidiary, string>>,
   subsidiary: OvhSubsidiary,
 ): string => {
-  return links[subsidiary] || links.DEFAULT;
+  return links[subsidiary] || links.DEFAULT || '';
 };
