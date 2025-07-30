@@ -1,9 +1,12 @@
+import { VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME } from '../../../vmware-cloud-director/vmware-cloud-director.constants';
+
 export default class {
   /* @ngInject */
   constructor($translate, DedicatedCloud, atInternet) {
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
     this.atInternet = atInternet;
+    this.VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME = VMWARE_CLOUD_FOUNDATION_PRODUCT_NAME;
   }
 
   $onInit() {

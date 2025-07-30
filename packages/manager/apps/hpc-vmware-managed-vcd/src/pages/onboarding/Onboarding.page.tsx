@@ -11,6 +11,7 @@ import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import vmwareBroadcomOVHCloud from '@/assets/VmwareBroadcomxOVHcloud.svg?url';
 import { TRACKING } from '@/tracking.constants';
 import { ORDER_VCD_REDIRECTION_URL } from '@/utils/orderVcdRedirection.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 export default function Onboarding() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS]);
@@ -24,8 +25,12 @@ export default function Onboarding() {
     {
       id: 1,
       texts: {
-        title: t('managed_vcd_onboarding_guide1_title'),
-        description: t('managed_vcd_onboarding_guide1_description'),
+        title: t('managed_vcd_onboarding_guide1_title', {
+          productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+        }),
+        description: t('managed_vcd_onboarding_guide1_description', {
+          productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+        }),
         category: t('managed_vcd_onboarding_guide1_category').toUpperCase(),
       },
       href: link?.discover,
@@ -35,7 +40,9 @@ export default function Onboarding() {
     {
       id: 2,
       texts: {
-        title: t('managed_vcd_onboarding_guide2_title'),
+        title: t('managed_vcd_onboarding_guide2_title', {
+          productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+        }),
         description: t('managed_vcd_onboarding_guide2_description'),
         category: t('managed_vcd_onboarding_guide2_category').toUpperCase(),
       },
@@ -58,7 +65,11 @@ export default function Onboarding() {
 
   const description: React.ReactNode = (
     <OdsText className="text-center">
-      <p>{t('managed_vcd_onboarding_description_part1')}</p>
+      <p>
+        {t('managed_vcd_onboarding_description_part1', {
+          productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+        })}
+      </p>
       {t('managed_vcd_onboarding_description_part2')}
     </OdsText>
   );
@@ -69,7 +80,7 @@ export default function Onboarding() {
   return (
     <div className="pt-8">
       <OnboardingLayout
-        title="Managed VMware Cloud Director"
+        title={VMWARE_CLOUD_DIRECTOR_LABEL}
         img={imgSrc}
         description={description}
         orderButtonLabel={t(`${NAMESPACES.ACTIONS}:order`)}
