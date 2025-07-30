@@ -7,7 +7,7 @@ import {
 } from '@/data/hooks/payment/useEligibility';
 import DefaultPaymentMethod from './DefaultPaymentMethod';
 import {
-  paymentMathodQueryKey,
+  paymentMethodQueryKey,
   usePaymentMethods,
 } from '@/data/hooks/payment/usePaymentMethods';
 import RegisterPaymentMethod from './RegisterPaymentMethod';
@@ -182,7 +182,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
                 // There should not be any default payment method after this
                 // Which will trigger the RegisterPaymentMethod component to be displayed
                 queryClient.invalidateQueries({
-                  queryKey: paymentMathodQueryKey(defaultPaymentMethodsParams),
+                  queryKey: paymentMethodQueryKey(defaultPaymentMethodsParams),
                 });
                 queryClient.invalidateQueries({
                   queryKey: eligibilityQueryKey(),
@@ -207,7 +207,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   }
 
   return (
-    <>
+    <div>
       {defaultPaymentMethod ? (
         <DefaultPaymentMethod method={defaultPaymentMethod} />
       ) : (
@@ -218,16 +218,14 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         />
       )}
       {handlePaymentMethodChallenge && (
-        <div className="mb-6">
-          <PaymentMethodChallenge
-            eligibility={eligibility}
-            challengeHandler={paymentChallengeRef}
-            paymentMethod={defaultPaymentMethod}
-            handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
-          />
-        </div>
+        <PaymentMethodChallenge
+          eligibility={eligibility}
+          challengeHandler={paymentChallengeRef}
+          paymentMethod={defaultPaymentMethod}
+          handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
+        />
       )}
-    </>
+    </div>
   );
 };
 

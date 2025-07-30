@@ -155,7 +155,7 @@ vi.mock('@/data/hooks/payment/useEligibility', () => ({
 
 vi.mock('@/data/hooks/payment/usePaymentMethods', () => ({
   usePaymentMethods: vi.fn(),
-  paymentMathodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
+  paymentMethodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
 }));
 
 // Mock the child components
