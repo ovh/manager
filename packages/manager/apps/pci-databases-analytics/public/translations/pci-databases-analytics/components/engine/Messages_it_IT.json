@@ -11,5 +11,6 @@
   "selectAVersion": "Seleziona una versione",
   "noVersionFound": "Nessuna versione trovata",
   "description-valkey": "Sistema di storage di dati chiave-valore in memoria",
-  "versionTag-endOfSale": "Fine della commercializzazione"
+  "versionTag-endOfSale": "Fine della commercializzazione",
+  "endOfSale": "Fine della commercializzazione prevista il {{ date }}"
 }
