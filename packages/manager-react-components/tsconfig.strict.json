@@ -6,7 +6,12 @@
   },
   "include": [
     "./src/components/Link/Link.props.ts",
-
+    "./src/components/Tabs/Tabs.props.ts",
+    "./src/components/Tabs/Tabs.component.tsx",
+    "./src/components/TilesInput/TilesInput.props.ts",
+    "./src/components/TilesInput/TilesInput.component.tsx",
+    "./src/components/TilesInputGroup/TilesInputGroup.props.ts",
+    "./src/components/TilesInputGroup/TilesInputGroup.component.tsx",
     "./src/components/Breadcrumb/Breadcrumb.props.ts",
     "./src/components/Breadcrumb/Breadcrumb.component.tsx",
     "./src/hooks/breadcrumb/useBreadcrumb.tsx",
