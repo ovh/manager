@@ -1,7 +1,4 @@
-import {
-  LifecycleCapacitiesEnum,
-  ServiceInfoRenewMode,
-} from '@/alldoms/enum/service.enum';
+import { LifecycleCapacitiesEnum, ServiceInfoRenewMode } from '@/alldoms/enum/service.enum';
 import { TServiceInfo } from '@/alldoms/types';
 
 export const serviceInfo: TServiceInfo = {

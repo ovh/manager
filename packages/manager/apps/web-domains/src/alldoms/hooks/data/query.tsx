@@ -1,16 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getAllDomResource,
-  getServiceInformation,
-} from '@/alldoms/data/api/web-domains';
+
+import { getAllDomResource, getServiceInformation } from '@/alldoms/data/api/web-domains';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
-export const useGetServiceInformation = (
-  serviceName: string,
-  serviceRoute: ServiceRoutes,
-) => {
+export const useGetServiceInformation = (serviceName: string, serviceRoute: ServiceRoutes) => {
   return useQuery({
-    queryKey: ['allDom', 'services', serviceName],
+    queryKey: ['allDom', 'services', serviceName, serviceRoute],
     queryFn: () => getServiceInformation(serviceName, serviceRoute),
   });
 };

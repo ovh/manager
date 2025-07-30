@@ -1,8 +1,5 @@
+import { DomainRegistrationStateEnum, ServiceInfoType } from '@/alldoms/enum/service.enum';
 import { AlldomService } from '@/alldoms/types';
-import {
-  DomainRegistrationStateEnum,
-  ServiceInfoType,
-} from '@/alldoms/enum/service.enum';
 
 export const alldomService: AlldomService = {
   currentState: {

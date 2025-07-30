@@ -1,14 +1,14 @@
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTerminateService } from '@/alldoms/hooks/use-terminate-service/useTerminateService';
 import { ModalStepsProps } from '@/alldoms/types';
-import { useTerminateService } from '@/alldoms/hooks/useTerminateService/useTerminateService';
 
 export default function TerminateModalStepTwo({
   domainTerminateList,
@@ -17,10 +17,7 @@ export default function TerminateModalStepTwo({
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
 
-  const terminateService = useTerminateService(
-    serviceName,
-    domainTerminateList,
-  );
+  const { terminateService } = useTerminateService(serviceName, domainTerminateList);
   return (
     <div>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -48,7 +45,7 @@ export default function TerminateModalStepTwo({
           variant={ODS_BUTTON_VARIANT.default}
           color={ODS_BUTTON_COLOR.critical}
           isDisabled={!domainTerminateList}
-          onClick={() => terminateService.mutate()}
+          onClick={() => terminateService}
         />
       </div>
     </div>

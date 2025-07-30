@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { toASCII } from 'punycode';
+import { toASCII } from 'node:punycode';
 import { TOngoingOperations } from '@/types';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { ParentEnum } from '@/enum/parent.enum';
