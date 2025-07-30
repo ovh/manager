@@ -200,7 +200,7 @@ export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
   DEFAULT: string;
 };
 
-export type TAutoscalingState = {
+export type TScalingState = {
   quantity: {
     desired: number;
     min: number;
@@ -212,7 +212,7 @@ export type TAutoscalingState = {
 export type NodePoolState = {
   name: string;
   isTouched: boolean;
-  scaling: TAutoscalingState;
+  scaling: TScalingState;
   antiAffinity: boolean;
   selectedAvailabilityZone?: string;
 };

@@ -18,7 +18,7 @@ import queryClient from '@/queryClient';
 import { Autoscaling } from '@/components/Autoscaling.component';
 import { useTrack } from '@/hooks/track';
 import { NODE_RANGE } from '@/constants';
-import { TAutoscalingState } from '@/types';
+import { TScalingState } from '@/types';
 import { isScalingValid } from '@/helpers/node-pool';
 
 export default function ScalePage(): JSX.Element {
@@ -36,7 +36,7 @@ export default function ScalePage(): JSX.Element {
 
   const { trackClick } = useTrack();
 
-  const [state, setState] = useState<TAutoscalingState | null>(null);
+  const [state, setState] = useState<TScalingState | null>(null);
 
   const { data: pools, isPending: isPoolsPending } = useClusterNodePools(
     projectId,
@@ -61,7 +61,7 @@ export default function ScalePage(): JSX.Element {
     }
   }, [pool]);
 
-  const { updateSize, isPending: isScaling } = useUpdateNodePoolSize({
+  const { updateSize, isPending: isPendingScaling } = useUpdateNodePoolSize({
     onError(cause: Error & { response: { data: { message: string } } }): void {
       addError(
         tScale('kube_node_pool_autoscaling_scale_error', {
@@ -85,11 +85,36 @@ export default function ScalePage(): JSX.Element {
   });
 
   const isDisabled =
-    isScaling ||
-    (state && !isScalingValid({ scaling: state })) ||
-    (state?.quantity.desired &&
+    isPendingScaling || (state && !isScalingValid({ scaling: state }));
+
+  const scaleObject = useMemo(() => {
+    if (state?.isAutoscale) {
+      return {
+        maxNodes: state?.quantity.max || NODE_RANGE.MAX,
+        minNodes: state?.quantity.min || 0,
+      };
+    }
+
+    if (
       pool?.minNodes &&
-      state?.quantity.desired < pool?.minNodes);
+      state?.quantity.desired &&
+      state.quantity.desired < pool.minNodes
+    ) {
+      return {
+        minNodes: state?.quantity.desired,
+      };
+    }
+    if (
+      state?.quantity.desired &&
+      pool?.maxNodes &&
+      state.quantity.desired > pool.maxNodes
+    ) {
+      return {
+        maxNodes: state?.quantity.desired,
+      };
+    }
+    return {};
+  }, [state?.quantity, pool, state?.isAutoscale]);
 
   return (
     <OsdsModal
@@ -100,7 +125,7 @@ export default function ScalePage(): JSX.Element {
       }}
     >
       <slot name="content">
-        {!isPoolsPending && !isScaling ? (
+        {!isPoolsPending && !isPendingScaling ? (
           <Autoscaling
             initialScaling={{
               min: pool?.minNodes ?? 0,
@@ -137,10 +162,7 @@ export default function ScalePage(): JSX.Element {
           updateSize({
             autoscale: state?.isAutoscale ?? false,
             desiredNodes: state?.quantity.desired ?? NODE_RANGE.MIN,
-            ...(Boolean(state?.isAutoscale) && {
-              maxNodes: state?.quantity.max || NODE_RANGE.MAX,
-              minNodes: state?.quantity.min || 0,
-            }),
+            ...scaleObject,
           });
         }}
         {...(isDisabled ? { disabled: true } : {})}
