@@ -1,32 +1,14 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import isEqual from 'lodash.isequal';
-import { TabsComponent } from '../../tabs/Tabs.component';
-
+import { TabsComponent } from '../tabs';
 import {
-  SimpleTilesInputComponent,
-  TSimpleProps,
-} from './components/SimpleTilesInput.component';
+  TilesInputGroupProps,
+  TilesInputGroupState,
+} from './TilesInputGroup.props';
 
-type TProps<T, S = void, G = void> = TSimpleProps<T, S> & {
-  group?: {
-    by: (item: T) => G;
-    label: (group: G, items: T[]) => JSX.Element | string;
-    value?: G;
-    showAllTab: boolean;
-    onChange?: (group: G) => void;
-  };
-};
+import { TilesInputComponent } from '../tiles-input';
 
-type TState<S, G> = {
-  selectedGroup: G | undefined;
-  selectedStack: S | undefined;
-};
-
-export const TilesInputComponent = function TilesInputComponent<
-  T,
-  S = void,
-  G = void,
->({
+function TilesInputGroupComponent<T, S = void, G = void>({
   id,
   items,
   value,
@@ -35,8 +17,8 @@ export const TilesInputComponent = function TilesInputComponent<
   tileClass,
   stack,
   group,
-}: TProps<T, S, G>): JSX.Element {
-  const [state, setState] = useState<TState<S, G>>({
+}: TilesInputGroupProps<T, S, G>): JSX.Element {
+  const [state, seTilesInputGroupState] = useState<TilesInputGroupState<S, G>>({
     selectedGroup: group?.value,
     selectedStack: stack?.value,
   });
@@ -66,7 +48,7 @@ export const TilesInputComponent = function TilesInputComponent<
   const handleGroupChange = useCallback(
     (g: G) => {
       if (!isEqual(state.selectedGroup, g)) {
-        setState((prev) => ({ ...prev, selectedGroup: g }));
+        seTilesInputGroupState((prev) => ({ ...prev, selectedGroup: g }));
         if (group?.onChange) {
           group.onChange(g);
         }
@@ -84,7 +66,7 @@ export const TilesInputComponent = function TilesInputComponent<
             <>{group.label(item, groups.get(item) || [])}</>
           )}
           contentElement={({ item }: { item: G }) => (
-            <SimpleTilesInputComponent
+            <TilesInputComponent
               id={id}
               items={groups.get(item) || []}
               value={value}
@@ -106,7 +88,7 @@ export const TilesInputComponent = function TilesInputComponent<
           onChange={handleGroupChange}
         />
       ) : (
-        <SimpleTilesInputComponent<T, S>
+        <TilesInputComponent<T, S>
           id={id}
           items={items}
           value={value}
@@ -118,6 +100,6 @@ export const TilesInputComponent = function TilesInputComponent<
       )}
     </>
   );
-};
+}
 
-export default TilesInputComponent;
+export { TilesInputGroupComponent };

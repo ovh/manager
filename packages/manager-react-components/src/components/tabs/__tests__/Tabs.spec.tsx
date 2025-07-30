@@ -7,10 +7,6 @@ describe('TabsComponent', () => {
   const mockItems = ['tab1', 'tab2', 'tab3'];
   const mockOnChange = vi.fn();
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('Basic rendering', () => {
     it('should render the component with default items', () => {
       render(<TabsComponent items={mockItems} />);
