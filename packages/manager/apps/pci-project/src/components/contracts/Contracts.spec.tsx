@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import Contracts from './Contracts';
@@ -63,7 +64,7 @@ describe('Contracts', () => {
     );
 
     const checkBox = getByTestId('contracts-checkbox');
-    expect(checkBox).toHaveAttribute('is-disabled', 'true');
+    expect(checkBox).toHaveAttribute('data-disabled', 'true');
   });
 
   it('enables checkbox if contracts are present', () => {
@@ -76,7 +77,7 @@ describe('Contracts', () => {
     );
 
     const checkBox = getByTestId('contracts-checkbox');
-    expect(checkBox).toHaveAttribute('is-disabled', 'false');
+    expect(checkBox).toHaveAttribute('data-disabled', 'false');
   });
 
   it('calls onCheckChanged when checkbox is toggled', () => {

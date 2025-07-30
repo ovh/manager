@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { usePaymentMethods, paymentMathodQueryKey } from './usePaymentMethods';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TPaymentMethodIntegration,
   TPaymentMethodStatus,
@@ -52,7 +53,6 @@ describe('usePaymentMethods', () => {
   const mockGetPaymentMethods = vi.mocked(getPaymentMethods);
 
   beforeEach(() => {
-    vi.clearAllMocks();
     mockGetPaymentMethods.mockResolvedValue(mockPaymentMethods);
   });
 
@@ -74,7 +74,7 @@ describe('usePaymentMethods', () => {
 
   it('should fetch payment methods without parameters', async () => {
     const { result } = renderHook(() => usePaymentMethods(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     expect(result.current.isLoading).toBe(true);
@@ -91,7 +91,7 @@ describe('usePaymentMethods', () => {
     const params: TPaymentMethodParams = { status: TPaymentMethodStatus.VALID };
 
     const { result } = renderHook(() => usePaymentMethods(params), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     expect(result.current.isLoading).toBe(true);
@@ -108,7 +108,7 @@ describe('usePaymentMethods', () => {
     const params: TPaymentMethodParams = { status: TPaymentMethodStatus.VALID };
 
     const { result } = renderHook(() => usePaymentMethods(params), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {

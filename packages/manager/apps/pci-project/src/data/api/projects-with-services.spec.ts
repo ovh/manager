@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import {
   getProjectsWithServices,
@@ -23,10 +24,6 @@ const mockGetProjects = vi.mocked(getProjects);
 const mockGetServices = vi.mocked(getServices);
 
 describe('getProjectsWithServices', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   const mockProjects: TProject[] = [
     {
       project_id: 'project-1',

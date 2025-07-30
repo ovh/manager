@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -11,7 +12,7 @@ import {
   getEligibility,
   checkVoucherEligibility,
 } from '@/data/api/payment/eligibility';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TEligibilityRequiredAction,
   TEligibility,
@@ -28,10 +29,6 @@ const mockGetEligibility = vi.mocked(getEligibility);
 const mockCheckVoucherEligibility = vi.mocked(checkVoucherEligibility);
 
 describe('useEligibility', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should return eligibility data when API call succeeds', async () => {
     const mockEligibility: TEligibility | undefined = {
       actionsRequired: [TEligibilityRequiredAction.ADD_PAYMENT_METHOD],
@@ -59,7 +56,7 @@ describe('useEligibility', () => {
     mockGetEligibility.mockResolvedValue(mockEligibility);
 
     const { result } = renderHook(() => useEligibility(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     expect(result.current.isLoading).toBe(true);
@@ -90,7 +87,7 @@ describe('useEligibility', () => {
     mockGetEligibility.mockResolvedValue(mockEligibility);
 
     const { result } = renderHook(() => useEligibility(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {
@@ -104,10 +101,6 @@ describe('useEligibility', () => {
 });
 
 describe('useCheckVoucherEligibility', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should call onSuccess when voucher eligibility check succeeds', async () => {
     const mockVoucherEligibility: TEligibilityVoucher = {
       credit: {
@@ -127,14 +120,14 @@ describe('useCheckVoucherEligibility', () => {
     const { result } = renderHook(
       () => useCheckVoucherEligibility({ onSuccess, onError }),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       },
     );
 
     expect(result.current.isPending).toBe(false);
     expect(result.current.data).toBeUndefined();
 
-    act(() => {
+    await act(async () => {
       result.current.mutate('VALID_VOUCHER_CODE');
     });
 
@@ -160,11 +153,11 @@ describe('useCheckVoucherEligibility', () => {
     const { result } = renderHook(
       () => useCheckVoucherEligibility({ onSuccess, onError }),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       },
     );
 
-    act(() => {
+    await act(async () => {
       result.current.mutate('INVALID_VOUCHER_CODE');
     });
 
@@ -198,10 +191,10 @@ describe('useCheckVoucherEligibility', () => {
     mockCheckVoucherEligibility.mockResolvedValue(mockVoucherEligibility);
 
     const { result } = renderHook(() => useCheckVoucherEligibility({}), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
-    act(() => {
+    await act(async () => {
       result.current.mutate('VOUCHER_CODE');
     });
 
@@ -231,11 +224,11 @@ describe('useCheckVoucherEligibility', () => {
     const { result } = renderHook(
       () => useCheckVoucherEligibility({ onSuccess }),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       },
     );
 
-    act(() => {
+    await act(async () => {
       result.current.mutate('FREE_VOUCHER');
     });
 

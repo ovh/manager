@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
   getPaymentMethods,
@@ -19,10 +20,6 @@ vi.mock('@ovh-ux/manager-core-api');
 const mockV6Get = vi.mocked(v6.get);
 
 describe('payment-method API', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('getPaymentMethods', () => {
     const mockPaymentMethod: TUserPaymentMethod = {
       billingContactId: 123,

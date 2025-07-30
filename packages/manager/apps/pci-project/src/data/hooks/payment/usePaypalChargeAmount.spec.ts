@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useCreditProvisioningPlan } from './useCreditProvisioningPlan';
 import { usePaypalChargeAmount } from './usePaypalChargeAmount';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 // Mock the dependencies
 vi.mock('./useCreditProvisioningPlan', () => ({
@@ -21,10 +22,6 @@ const mockUseCreditProvisioningPlan = useCreditProvisioningPlan as ReturnType<
 >;
 
 describe('usePaypalChargeAmount', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should calculate PayPal charge amount correctly', () => {
     const mockPlan = 10000000; // 10000000 micro cents
 
@@ -37,7 +34,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,
@@ -58,7 +55,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,
@@ -79,7 +76,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,
@@ -98,7 +95,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,
@@ -119,7 +116,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,
@@ -141,7 +138,7 @@ describe('usePaypalChargeAmount', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useCreditProvisioningPlan>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaypalChargeAmount(), {
       wrapper,

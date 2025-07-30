@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { UseQueryResult } from '@tanstack/react-query';
@@ -8,7 +9,7 @@ import PaymentMethods, {
   PaymentMethodsProps,
   TPaymentMethodRef,
 } from './PaymentMethods';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TPaymentMethod,
   TPaymentMethodType,
@@ -23,6 +24,7 @@ import {
 import { useEligibility } from '@/data/hooks/payment/useEligibility';
 import { usePaymentMethods } from '@/data/hooks/payment/usePaymentMethods';
 import { usePaymentChallenge } from '@/data/hooks/payment/usePaymentChallenge';
+
 import queryClient from '@/queryClient';
 
 // Mock queryClient
@@ -240,10 +242,9 @@ describe('PaymentMethods', () => {
     ...overrides,
   });
 
-  const Wrapper = createWrapper();
+  const Wrapper = createOptimalWrapper({ queries: true });
 
   beforeEach(() => {
-    vi.clearAllMocks();
     mockQueryClient.invalidateQueries.mockClear();
   });
 
@@ -586,16 +587,18 @@ describe('PaymentMethods', () => {
         return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
       });
 
-      render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({
-              handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
-            })}
-          />
-        </Wrapper>,
-      );
+      await act(async () => {
+        render(
+          <Wrapper>
+            <PaymentMethods
+              {...createMockProps({
+                handleValidityChange: mockHandleValidityChange,
+                handlePaymentMethodChallenge: true,
+              })}
+            />
+          </Wrapper>,
+        );
+      });
 
       // Initially should be invalid (payment method exists and is default, but challenge input is empty)
       await waitFor(() => {
@@ -604,14 +607,18 @@ describe('PaymentMethods', () => {
 
       // Type a valid challenge value (6 digits for credit card)
       const challengeInput = screen.getByPlaceholderText('XXXX XX');
-      await user.type(challengeInput, '123456');
+      await act(async () => {
+        await user.type(challengeInput, '123456');
+      });
 
       await waitFor(() => {
         expect(mockHandleValidityChange).toHaveBeenCalledWith(true);
       });
 
       // Clear the input to make it invalid again
-      await user.clear(challengeInput);
+      await act(async () => {
+        await user.clear(challengeInput);
+      });
 
       await waitFor(() => {
         expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
@@ -629,16 +636,18 @@ describe('PaymentMethods', () => {
         createMockPaymentMethodsResult({ data: [] }),
       );
 
-      render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({
-              handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
-            })}
-          />
-        </Wrapper>,
-      );
+      await act(async () => {
+        render(
+          <Wrapper>
+            <PaymentMethods
+              {...createMockProps({
+                handleValidityChange: mockHandleValidityChange,
+                handlePaymentMethodChallenge: true,
+              })}
+            />
+          </Wrapper>,
+        );
+      });
 
       await waitFor(() => {
         expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
@@ -709,34 +718,37 @@ describe('PaymentMethods', () => {
         return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
       });
 
-      const { getByPlaceholderText } = render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({
-              paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: true,
-            })}
-          />
-        </Wrapper>,
-      );
+      await act(async () => {
+        render(
+          <Wrapper>
+            <PaymentMethods
+              {...createMockProps({
+                paymentMethodHandler: paymentMethodRef,
+                handlePaymentMethodChallenge: true,
+              })}
+            />
+          </Wrapper>,
+        );
+      });
 
       await waitFor(() => {
         expect(paymentMethodRef.current).toBeTruthy();
-        expect(getByPlaceholderText('XXXX XX')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('XXXX XX')).toBeInTheDocument();
       });
-
-      if (!paymentMethodRef.current) {
-        throw new Error('Payment method ref is null');
-      }
 
       // Mock the challenge mutate to call onSuccess with 'retry' status
       mockChallengeMutate.mockImplementation((_, { onSuccess }) => {
         onSuccess('retry');
       });
 
-      await expect(
-        paymentMethodRef.current.submitPaymentMethod(),
-      ).rejects.toThrow('challenge_retry');
+      await act(async () => {
+        if (!paymentMethodRef.current) {
+          throw new Error('Payment method ref is null');
+        }
+        await expect(
+          paymentMethodRef.current.submitPaymentMethod(),
+        ).rejects.toThrow('challenge_retry');
+      });
     });
 
     it('should handle payment method deactivated error and invalidate queries', async () => {

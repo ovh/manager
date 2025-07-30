@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { challengePaymentMethod } from './payment-challenge';
 import { TChallengeStatus } from '@/data/types/payment/payment-challenge.type';
@@ -14,10 +15,6 @@ describe('challengePaymentMethod', () => {
   const mockV6Post = vi.mocked(v6.post);
   const mockPaymentMethodId = '123456';
   const mockChallenge = '123456';
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   describe('Success scenarios', () => {
     it('should return "success" when API call succeeds', async () => {

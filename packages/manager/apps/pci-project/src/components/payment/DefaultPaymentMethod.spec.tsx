@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import DefaultPaymentMethod from './DefaultPaymentMethod';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TUserPaymentMethod,
   TPaymentMethodType,
@@ -77,30 +77,34 @@ describe('DefaultPaymentMethod', () => {
     );
   });
 
-  it('should render component without crashing', () => {
+  it('should render component without crashing', async () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
-    const { container } = render(
-      <Wrapper>
-        <DefaultPaymentMethod method={mockMethod} />
-      </Wrapper>,
-    );
+    await act(async () => {
+      render(
+        <Wrapper>
+          <DefaultPaymentMethod method={mockMethod} />
+        </Wrapper>,
+      );
+    });
 
-    expect(container.firstChild).toBeTruthy();
+    expect(screen.getByTestId('ods-card')).toBeInTheDocument();
   });
 
-  it('should display the title correctly', () => {
+  it('should display the title correctly', async () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
-    render(
-      <Wrapper>
-        <DefaultPaymentMethod method={mockMethod} />
-      </Wrapper>,
-    );
+    await act(async () => {
+      render(
+        <Wrapper>
+          <DefaultPaymentMethod method={mockMethod} />
+        </Wrapper>,
+      );
+    });
 
     expect(
       screen.getByText('pci_project_new_payment_default_title'),
@@ -110,7 +114,7 @@ describe('DefaultPaymentMethod', () => {
   it('should display explanation info', () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -129,7 +133,7 @@ describe('DefaultPaymentMethod', () => {
       label: '1234567890123456',
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -146,7 +150,7 @@ describe('DefaultPaymentMethod', () => {
       label: 'FR7612345678901234567890123',
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -163,7 +167,7 @@ describe('DefaultPaymentMethod', () => {
       label: 'user@example.com',
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -179,7 +183,7 @@ describe('DefaultPaymentMethod', () => {
       expirationDate: new Date('2025-12-31'),
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -199,7 +203,7 @@ describe('DefaultPaymentMethod', () => {
       expirationDate: undefined,
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -217,7 +221,7 @@ describe('DefaultPaymentMethod', () => {
   it('should display default badge', () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -233,7 +237,7 @@ describe('DefaultPaymentMethod', () => {
   it('should display link to other payment methods', async () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -259,7 +263,7 @@ describe('DefaultPaymentMethod', () => {
   it('should render PaymentIcon component', () => {
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -278,7 +282,7 @@ describe('DefaultPaymentMethod', () => {
       label: '',
     });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -300,7 +304,7 @@ describe('DefaultPaymentMethod', () => {
 
     const mockMethod = createMockPaymentMethod();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

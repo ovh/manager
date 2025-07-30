@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
@@ -10,7 +11,7 @@ vi.mock('date-fns', () => ({
 
 describe('useConfigForm', () => {
   describe('initial state', () => {
-    it('should initialize with default form state for non-IT subsidiary', () => {
+    it('should initialize with default form state for non-IT subsidiary', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
       expect(result.current.form).toEqual({
@@ -22,7 +23,7 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should initialize with default form state for IT subsidiary', () => {
+    it('should initialize with default form state for IT subsidiary', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.IT));
 
       expect(result.current.form).toEqual({
@@ -34,7 +35,7 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should call format with current date during initialization', () => {
+    it('should call format with current date during initialization', async () => {
       renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
       expect(format).toHaveBeenCalledWith(expect.any(Date), 'yyyy-MM-dd');
@@ -42,7 +43,7 @@ describe('useConfigForm', () => {
   });
 
   describe('form state management', () => {
-    it('should update form state using setForm', () => {
+    it('should update form state using setForm', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
       const newFormState: ConfigFormState = {
@@ -52,17 +53,17 @@ describe('useConfigForm', () => {
         isHdsChecked: true,
       };
 
-      act(() => {
+      await act(async () => {
         result.current.setForm(newFormState);
       });
 
       expect(result.current.form).toEqual(newFormState);
     });
 
-    it('should update form state partially using functional setForm', () => {
+    it('should update form state partially using functional setForm', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Updated Project',
@@ -80,10 +81,10 @@ describe('useConfigForm', () => {
   });
 
   describe('form validation - non-IT subsidiary', () => {
-    it('should be invalid when description is empty', () => {
+    it('should be invalid when description is empty', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: '',
@@ -94,10 +95,10 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should be invalid when description is only whitespace', () => {
+    it('should be invalid when description is only whitespace', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: '   ',
@@ -108,10 +109,10 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should be invalid when contracts are not checked', () => {
+    it('should be invalid when contracts are not checked', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Valid Project',
@@ -122,10 +123,10 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should be valid when all required fields are filled for non-IT subsidiary', () => {
+    it('should be valid when all required fields are filled for non-IT subsidiary', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Valid Project',
@@ -136,10 +137,10 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(true);
     });
 
-    it('should be valid for non-IT subsidiary regardless of hasItalyAgreements', () => {
+    it('should be valid for non-IT subsidiary regardless of hasItalyAgreements', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.DE));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Valid Project',
@@ -153,10 +154,10 @@ describe('useConfigForm', () => {
   });
 
   describe('form validation - IT subsidiary', () => {
-    it('should be invalid when Italy agreements are not checked for IT subsidiary', () => {
+    it('should be invalid when Italy agreements are not checked for IT subsidiary', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.IT));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Valid Project',
@@ -168,10 +169,10 @@ describe('useConfigForm', () => {
       expect(result.current.isConfigFormValid()).toBe(false);
     });
 
-    it('should be valid when all required fields including Italy agreements are filled for IT subsidiary', () => {
+    it('should be valid when all required fields including Italy agreements are filled for IT subsidiary', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.IT));
 
-      act(() => {
+      await act(async () => {
         result.current.setForm((prev) => ({
           ...prev,
           description: 'Valid Project',
@@ -185,7 +186,7 @@ describe('useConfigForm', () => {
   });
 
   describe('return values', () => {
-    it('should provide all expected return values', () => {
+    it('should provide all expected return values', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
       expect(result.current).toEqual({
@@ -195,7 +196,7 @@ describe('useConfigForm', () => {
       });
     });
 
-    it('should provide form state with correct properties', () => {
+    it('should provide form state with correct properties', async () => {
       const { result } = renderHook(() => useConfigForm(OvhSubsidiary.FR));
 
       expect(result.current.form).toEqual({

@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { renderHook } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import { describe, expect, it, vi } from 'vitest';
+import {
+  createOptimalWrapper,
+  shellContext,
+} from '@/test-utils/lightweight-wrappers';
 import {
   useIsAValidHdsSupportLevel,
   useIsHdsFeatureAvailabilityEnabled,
@@ -22,10 +26,6 @@ vi.mock('@/data/api/payment', () => ({
 }));
 
 describe('useHds hooks', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('useIsHdsFeatureAvailabilityEnabled returns true if feature is available', () => {
     vi.mocked(useFeatureAvailability).mockReturnValue(({
       data: { 'public-cloud:hds': true },
@@ -35,7 +35,7 @@ describe('useHds hooks', () => {
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
     const { result } = renderHook(() => useIsHdsFeatureAvailabilityEnabled(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     expect(result.current).toBe(true);
@@ -50,7 +50,7 @@ describe('useHds hooks', () => {
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
     const { result } = renderHook(() => useIsHdsFeatureAvailabilityEnabled(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     expect(result.current).toBe(false);
@@ -68,7 +68,8 @@ describe('useHds hooks', () => {
     const { result: resultEnterprise } = renderHook(
       () => useIsAValidHdsSupportLevel(),
       {
-        wrapper: createWrapper(
+        wrapper: createOptimalWrapper(
+          { queries: true, shell: true },
           (customContext as unknown) as typeof shellContext,
         ),
       },
@@ -87,7 +88,8 @@ describe('useHds hooks', () => {
     const { result: resultBusiness } = renderHook(
       () => useIsAValidHdsSupportLevel(),
       {
-        wrapper: createWrapper(
+        wrapper: createOptimalWrapper(
+          { queries: true, shell: true },
           (customContext2 as unknown) as typeof shellContext,
         ),
       },
@@ -105,7 +107,10 @@ describe('useHds hooks', () => {
       },
     };
     const { result } = renderHook(() => useIsAValidHdsSupportLevel(), {
-      wrapper: createWrapper((customContext as unknown) as typeof shellContext),
+      wrapper: createOptimalWrapper(
+        { queries: true, shell: true },
+        (customContext as unknown) as typeof shellContext,
+      ),
     });
     expect(result.current).toBe(false);
   });

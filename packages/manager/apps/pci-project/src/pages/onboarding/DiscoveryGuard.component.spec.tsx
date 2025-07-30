@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import DiscoveryGuard from './DiscoveryGuard.component';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import {
+  createOptimalWrapper,
+  shellContext,
+} from '@/test-utils/lightweight-wrappers';
 import {
   TEligibilityPaymentMethod,
   TEligibility,
@@ -56,7 +60,7 @@ const mockShellContext = {
   },
 };
 
-const wrapper = createWrapper(mockShellContext);
+const wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
 const mockEligibility = (
   opts: Partial<{
@@ -97,14 +101,7 @@ const mockProject = (
 };
 
 describe('DiscoveryGuard', () => {
-  beforeEach(() => {
-    mockNavigate.mockClear();
-    mockNavigateTo.mockClear();
-    vi.mocked(useEligibility).mockReset();
-    vi.mocked(useActiveProjects).mockReset();
-  });
-
-  it('shows spinner when loading eligibility', () => {
+  it('shows spinner when loading eligibility', async () => {
     vi.mocked(useEligibility).mockReturnValue(
       mockEligibility({ isLoading: true }),
     );

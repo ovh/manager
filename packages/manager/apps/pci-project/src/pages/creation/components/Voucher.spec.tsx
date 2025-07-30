@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { UseMutateFunction } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
@@ -34,21 +35,18 @@ describe('Voucher component', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
     vi.spyOn(useVoucherModule, 'useVoucher').mockReturnValue(defaultMockReturn);
   });
 
-  it('disables add button when voucher is empty', () => {
+  it('disables add button when voucher is empty', async () => {
     render(<Voucher {...defaultProps} />);
 
-    const addVoucherButton = document.querySelector(
-      'ods-button[label="pci_projects_new_voucher_form_add"]',
-    ) as Element;
+    const addVoucherButton = screen.getByTestId('ods-button');
 
-    expect(addVoucherButton).toHaveAttribute('is-disabled', 'true');
+    expect(addVoucherButton).toBeDisabled();
   });
 
-  it('disables input and button when loading', () => {
+  it('disables input and button when loading', async () => {
     vi.spyOn(useVoucherModule, 'useVoucher').mockReturnValue({
       ...defaultMockReturn,
       isPending: true,
@@ -56,16 +54,11 @@ describe('Voucher component', () => {
 
     render(<Voucher {...defaultProps} />);
 
-    const voucherInput = document.querySelector(
-      'ods-input[name="voucher"]',
-    ) as Element;
+    const voucherInput = screen.getByTestId('ods-input');
+    const addVoucherButton = screen.getByTestId('ods-button');
 
-    const addVoucherButton = document.querySelector(
-      'ods-button[label="pci_projects_new_voucher_form_add"]',
-    ) as Element;
-
-    expect(voucherInput).toHaveAttribute('is-disabled', 'true');
-    expect(addVoucherButton).toHaveAttribute('is-disabled', 'true');
+    expect(voucherInput).toBeDisabled();
+    expect(addVoucherButton).toBeDisabled();
   });
 
   it('calls setVoucher on input change', async () => {
@@ -78,23 +71,18 @@ describe('Voucher component', () => {
     render(<Voucher {...defaultProps} />);
 
     const voucherInput = document.querySelector(
-      'ods-input[name="voucher"]',
+      'input[name="voucher"]',
     ) as Element;
 
-    // Simulate ODS input change event
-    fireEvent(
-      voucherInput,
-      new CustomEvent('odsChange', {
-        detail: { value: 'CODE123' },
-      }),
-    );
+    // Simulate input change event
+    fireEvent.change(voucherInput, { target: { value: 'CODE123' } });
 
     await waitFor(() => {
       expect(setVoucher).toHaveBeenCalledWith('CODE123');
     });
   });
 
-  it('shows error message if error is present', () => {
+  it('shows error message if error is present', async () => {
     vi.spyOn(useVoucherModule, 'useVoucher').mockReturnValue({
       ...defaultMockReturn,
       error: 'error_code',
@@ -103,7 +91,7 @@ describe('Voucher component', () => {
     expect(screen.getByText(/error_code/i)).toBeInTheDocument();
   });
 
-  it('shows the voucher section with the voucher data if voucherData is present', () => {
+  it('shows the voucher section with the voucher data if voucherData is present', async () => {
     vi.spyOn(useVoucherModule, 'useVoucher').mockReturnValue({
       ...defaultMockReturn,
       voucherData: {

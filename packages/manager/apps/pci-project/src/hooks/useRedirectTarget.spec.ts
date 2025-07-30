@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useSearchParams } from 'react-router-dom';
 import useRedirectTarget from './useRedirectTarget';
@@ -33,10 +34,6 @@ vi.mock('@/constants', () => ({
 const mockUseSearchParams = vi.mocked(useSearchParams);
 
 describe('useRedirectTarget', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should return redirect required when valid category and state are provided', () => {
     const mockSearchParams = new URLSearchParams();
     mockSearchParams.set(

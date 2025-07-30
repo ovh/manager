@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import SepaExplanationTexts from './SepaExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 describe('SepaExplanationTexts', () => {
@@ -37,7 +38,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render component without crashing', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -50,7 +51,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render both warning and information messages', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -71,7 +72,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render all warning texts', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -98,7 +99,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render all information texts', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -120,7 +121,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render OdsText components with correct CSS classes', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -139,7 +140,7 @@ describe('SepaExplanationTexts', () => {
 
   it('should render messages with correct layout classes', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

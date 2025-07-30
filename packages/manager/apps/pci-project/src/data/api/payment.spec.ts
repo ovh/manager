@@ -1,14 +1,17 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { payWithRegisteredPaymentMean } from './payment';
+
+vi.mock('@ovh-ux/manager-core-api', () => ({
+  v6: {
+    post: vi.fn(),
+  },
+}));
 
 const mockedV6Post = vi.mocked(v6.post);
 
 describe('payWithRegisteredPaymentMean', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should call v6.post with correct endpoint and payload', async () => {
     mockedV6Post.mockResolvedValue({});
     const orderId = 123;

@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { UseMutationResult } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { useVoucher } from './useVoucher';
 import {
   useAttachConfigurationToCartItem,
@@ -149,23 +150,20 @@ describe('useVoucher', () => {
     >);
 
   beforeEach(() => {
-    vi.clearAllMocks();
-
-    (useAttachConfigurationToCartItem as ReturnType<
-      typeof vi.fn
-    >).mockReturnValue(mockAttachConfigMutationResult());
-
-    (useDeleteConfigurationItemFromCart as ReturnType<
-      typeof vi.fn
-    >).mockReturnValue(mockDeleteConfigMutationResult());
-
-    (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockReturnValue(
+    // Default mocks
+    vi.mocked(useAttachConfigurationToCartItem).mockReturnValue(
+      mockAttachConfigMutationResult(),
+    );
+    vi.mocked(useDeleteConfigurationItemFromCart).mockReturnValue(
+      mockDeleteConfigMutationResult(),
+    );
+    vi.mocked(useCheckVoucherEligibility).mockReturnValue(
       mockCheckEligibilityMutationResult(),
     );
   });
 
   describe('initial state', () => {
-    it('should initialize with default state', () => {
+    it('should initialize with default state', async () => {
       const { result } = renderHook(() =>
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
@@ -178,31 +176,31 @@ describe('useVoucher', () => {
   });
 
   describe('voucher state management', () => {
-    it('should update voucher value', () => {
+    it('should update voucher value', async () => {
       const { result } = renderHook(() =>
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
 
-      act(() => {
+      await act(async () => {
         result.current.setVoucher('CODE123');
       });
 
       expect(result.current.voucher).toBe('CODE123');
     });
 
-    it('should clear error when setError is called', () => {
+    it('should clear error when setError is called', async () => {
       const { result } = renderHook(() =>
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
 
       // First set an error
-      act(() => {
+      await act(async () => {
         result.current.setError('Some error');
       });
       expect(result.current.error).toBe('Some error');
 
       // Then clear it
-      act(() => {
+      await act(async () => {
         result.current.setError(undefined);
       });
       expect(result.current.error).toBeUndefined();
@@ -210,7 +208,7 @@ describe('useVoucher', () => {
   });
 
   describe('voucher eligibility checking', () => {
-    it('should call attachConfig on successful eligibility check', () => {
+    it('should call attachConfig on successful eligibility check', async () => {
       const attachConfigMutation = vi.fn();
 
       (useAttachConfigurationToCartItem as ReturnType<
@@ -235,11 +233,11 @@ describe('useVoucher', () => {
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
 
-      act(() => {
+      await act(async () => {
         result.current.setVoucher('VALID_CODE');
       });
 
-      act(() => {
+      await act(async () => {
         result.current.checkEligibility('VALID_CODE');
       });
 
@@ -250,7 +248,7 @@ describe('useVoucher', () => {
       });
     });
 
-    it('should set error on eligibility check failure', () => {
+    it('should set error on eligibility check failure', async () => {
       (useCheckVoucherEligibility as ReturnType<
         typeof vi.fn
       >).mockImplementation((options) => ({
@@ -267,7 +265,7 @@ describe('useVoucher', () => {
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
 
-      act(() => {
+      await act(async () => {
         result.current.checkEligibility('INVALID_CODE');
       });
 
@@ -276,7 +274,7 @@ describe('useVoucher', () => {
       expect(result.current.error).toContain('voucher_invalid');
     });
 
-    it('should handle specific voucher error codes', () => {
+    it('should handle specific voucher error codes', async () => {
       (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockReturnValue(
         mockCheckEligibilityMutationResult(false, undefined, (error) => {
           if (error.message === 'VOUCHER_EXPIRED') {
@@ -290,7 +288,7 @@ describe('useVoucher', () => {
       );
 
       // Simulate the error by directly calling the error handler
-      act(() => {
+      await act(async () => {
         const errorCodeMatch = 'VOUCHER_EXPIRED'.match(/(VOUCHER_\w+)/i);
         const errorCode = errorCodeMatch
           ? errorCodeMatch[1].toLowerCase()
@@ -307,7 +305,7 @@ describe('useVoucher', () => {
   });
 
   describe('voucher removal', () => {
-    it('should call deleteConfig when handleRemove is called with configurationId', () => {
+    it('should call deleteConfig when handleRemove is called with configurationId', async () => {
       (useDeleteConfigurationItemFromCart as ReturnType<
         typeof vi.fn
       >).mockReturnValue(
@@ -322,7 +320,7 @@ describe('useVoucher', () => {
 
       const configurationId = 123;
 
-      act(() => {
+      await act(async () => {
         result.current.handleRemove(configurationId);
       });
 
@@ -336,7 +334,7 @@ describe('useVoucher', () => {
       });
     });
 
-    it('should not call deleteConfig when handleRemove is called without configurationId', () => {
+    it('should not call deleteConfig when handleRemove is called without configurationId', async () => {
       (useDeleteConfigurationItemFromCart as ReturnType<
         typeof vi.fn
       >).mockReturnValue(mockDeleteConfigMutationResult(false));
@@ -345,7 +343,7 @@ describe('useVoucher', () => {
         useVoucher({ cartId, itemId, setVoucherConfiguration }),
       );
 
-      act(() => {
+      await act(async () => {
         result.current.handleRemove(undefined);
       });
 
@@ -355,7 +353,7 @@ describe('useVoucher', () => {
       expect(deleteConfigResult.mutate).not.toHaveBeenCalled();
     });
 
-    it('should clear voucher and configuration on successful removal', () => {
+    it('should clear voucher and configuration on successful removal', async () => {
       (useDeleteConfigurationItemFromCart as ReturnType<
         typeof vi.fn
       >).mockImplementation((options) => ({
@@ -372,13 +370,13 @@ describe('useVoucher', () => {
       );
 
       // First set a voucher
-      act(() => {
+      await act(async () => {
         result.current.setVoucher('CODE123');
       });
       expect(result.current.voucher).toBe('CODE123');
 
       // Then simulate successful removal which should clear the voucher
-      act(() => {
+      await act(async () => {
         result.current.handleRemove(123);
       });
 
@@ -389,7 +387,7 @@ describe('useVoucher', () => {
   });
 
   describe('loading states', () => {
-    it('should reflect pending state from eligibility check', () => {
+    it('should reflect pending state from eligibility check', async () => {
       (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockReturnValue(
         mockCheckEligibilityMutationResult(true),
       );
@@ -401,7 +399,7 @@ describe('useVoucher', () => {
       expect(result.current.isPending).toBe(true);
     });
 
-    it('should not be pending when eligibility check is complete', () => {
+    it('should not be pending when eligibility check is complete', async () => {
       (useCheckVoucherEligibility as ReturnType<typeof vi.fn>).mockReturnValue(
         mockCheckEligibilityMutationResult(false),
       );

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import HdsSection from './HdsSection';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import * as useHdsModule from './useHds';
 import * as useCartModule from '@/data/hooks/useCart';
 import { Cart, CartSummary, PaymentMean } from '@/data/types/cart.type';
@@ -128,11 +129,7 @@ const mockCartSummaryWithContracts: CartSummary = {
 };
 
 describe('HdsSection', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('renders the title and HdsOption', () => {
+  it('renders the title and HdsOption', async () => {
     vi.mocked(useHdsModule.useIsAlreadyHdsCertifiedProject).mockReturnValue(
       mockQueryResult<boolean>(false),
     );
@@ -149,7 +146,9 @@ describe('HdsSection', () => {
       mockMutationResult(),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     expect(
       screen.getByText('pci_projects_project_edit_hds_title'),
@@ -157,7 +156,7 @@ describe('HdsSection', () => {
     expect(screen.getByTestId('hds-checkbox')).toBeInTheDocument();
   });
 
-  it('disables HdsOption if already certified', () => {
+  it('disables HdsOption if already certified', async () => {
     vi.mocked(useHdsModule.useIsAlreadyHdsCertifiedProject).mockReturnValue(
       mockQueryResult<boolean>(true),
     );
@@ -174,10 +173,12 @@ describe('HdsSection', () => {
       mockMutationResult(),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     expect(screen.getByTestId('hds-checkbox')).toHaveAttribute(
-      'is-disabled',
+      'data-disabled',
       'true',
     );
   });
@@ -199,7 +200,9 @@ describe('HdsSection', () => {
       mockMutationResult(),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     const hdsCheckbox = screen.getByTestId('hds-checkbox');
     fireEvent(
@@ -229,7 +232,9 @@ describe('HdsSection', () => {
       mockMutationResult(),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     const hdsCheckbox = screen.getByTestId('hds-checkbox');
     fireEvent(
@@ -244,14 +249,14 @@ describe('HdsSection', () => {
     });
 
     const button = screen.getByTestId('hds-section_submit-button');
-    expect(button).toHaveAttribute('is-disabled', 'true');
+    expect(button).toBeDisabled();
 
     fireEvent(
       contractsCheckbox,
       new CustomEvent('odsChange', { detail: { checked: true } }),
     );
 
-    expect(button).toHaveAttribute('is-disabled', 'false');
+    expect(button).not.toBeDisabled();
   });
 
   it('calls checkoutCart and shows loading on submit', async () => {
@@ -272,7 +277,9 @@ describe('HdsSection', () => {
       mockMutationResult({ mutate, isPending: true }),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     const hdsCheckbox = screen.getByTestId('hds-checkbox');
     fireEvent(
@@ -294,7 +301,7 @@ describe('HdsSection', () => {
     fireEvent.click(button);
 
     expect(mutate).toHaveBeenCalledWith({ cartId: 'cart-1' });
-    expect(button).toHaveAttribute('is-loading', 'true');
+    expect(button).toHaveAttribute('data-loading', 'true');
   });
 
   it('shows skeleton in contracts section when contracts are loading', async () => {
@@ -317,7 +324,9 @@ describe('HdsSection', () => {
       mockMutationResult(),
     );
 
-    render(<HdsSection project={mockProject} />, { wrapper: createWrapper() });
+    render(<HdsSection project={mockProject} />, {
+      wrapper: createOptimalWrapper({ routing: true, shell: true }),
+    });
 
     const hdsCheckbox = screen.getByTestId('hds-checkbox');
     fireEvent(

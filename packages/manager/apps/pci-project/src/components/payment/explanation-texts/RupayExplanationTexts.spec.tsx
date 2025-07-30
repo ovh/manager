@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import RupayExplanationTexts from './RupayExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 // Mock the price formatter
@@ -47,7 +48,7 @@ describe('RupayExplanationTexts', () => {
 
   it('should render component without crashing', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -60,7 +61,7 @@ describe('RupayExplanationTexts', () => {
 
   it('should render OdsMessage with correct props', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -77,7 +78,7 @@ describe('RupayExplanationTexts', () => {
 
   it('should render CreditCardChargesExplanationTexts component', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -95,7 +96,7 @@ describe('RupayExplanationTexts', () => {
 
   it('should pass features prop to CreditCardChargesExplanationTexts', () => {
     const mockFeatures = createMockFeatures({ RUPAY_CHARGE: true });
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

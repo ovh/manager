@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 import usePaymentFeatureAvailabilities from './usePaymentFeatureAvailabilities';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 // Mock constants to avoid PNG import issues - this must be done before the hook import
 vi.mock('@/payment/constants', () => ({
@@ -37,10 +38,6 @@ const mockUseFeatureAvailability = useFeatureAvailability as ReturnType<
 >;
 
 describe('usePaymentFeatureAvailabilities', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should return feature availabilities when loaded', () => {
     const mockAvailabilities = {
       [TPaymentFeatureAvailability.SEPA_DIRECT_DEBIT]: true,
@@ -59,7 +56,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,
@@ -83,7 +80,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,
@@ -111,7 +108,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,
@@ -134,7 +131,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,
@@ -157,7 +154,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,
@@ -181,7 +178,7 @@ describe('usePaymentFeatureAvailabilities', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useFeatureAvailability>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
 
     const { result } = renderHook(() => usePaymentFeatureAvailabilities(), {
       wrapper,

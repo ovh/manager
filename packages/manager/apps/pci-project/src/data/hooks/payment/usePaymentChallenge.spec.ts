@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import {
   usePaymentChallenge,
@@ -6,7 +7,7 @@ import {
 } from './usePaymentChallenge';
 import { challengePaymentMethod } from '@/data/api/payment/payment-challenge';
 import { TChallengeStatus } from '@/data/types/payment/payment-challenge.type';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 // Mock the API function
 vi.mock('@/data/api/payment/payment-challenge', () => ({
@@ -16,14 +17,10 @@ vi.mock('@/data/api/payment/payment-challenge', () => ({
 describe('usePaymentChallenge', () => {
   const mockChallengePaymentMethod = vi.mocked(challengePaymentMethod);
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('Hook initialization', () => {
     it('should initialize with correct default state', () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
 
       // Act
       const { result } = renderHook(() => usePaymentChallenge(), {
@@ -44,7 +41,7 @@ describe('usePaymentChallenge', () => {
 
     it('should provide mutate function', () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
 
       // Act
       const { result } = renderHook(() => usePaymentChallenge(), {
@@ -58,7 +55,7 @@ describe('usePaymentChallenge', () => {
 
     it('should provide mutateAsync function', () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
 
       // Act
       const { result } = renderHook(() => usePaymentChallenge(), {
@@ -74,7 +71,7 @@ describe('usePaymentChallenge', () => {
   describe('Successful mutation', () => {
     it('should handle successful challenge submission', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: '123456',
         challenge: '654321',
@@ -87,7 +84,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -110,7 +107,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle successful challenge with mutateAsync', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'payment-123',
         challenge: 'challenge-456',
@@ -123,7 +120,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      const mutationResult = await act(() =>
+      const mutationResult = await act(async () =>
         result.current.mutateAsync(mockParams),
       );
 
@@ -142,7 +139,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle deactivated status', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: '789012',
         challenge: '123456',
@@ -155,7 +152,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -175,7 +172,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle retry status', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'retry-payment-id',
         challenge: 'retry-challenge',
@@ -188,7 +185,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -210,7 +207,7 @@ describe('usePaymentChallenge', () => {
   describe('Failed mutation', () => {
     it('should handle mutation errors', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'error-payment-id',
         challenge: 'error-challenge',
@@ -223,7 +220,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -245,7 +242,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle mutateAsync errors', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'async-error-id',
         challenge: 'async-error-challenge',
@@ -272,7 +269,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle API errors with specific error objects', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'api-error-id',
         challenge: 'api-error-challenge',
@@ -289,7 +286,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -307,7 +304,7 @@ describe('usePaymentChallenge', () => {
   describe('Mutation with callbacks', () => {
     it('should call onSuccess callback when mutation succeeds', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'success-callback-id',
         challenge: 'success-callback-challenge',
@@ -321,7 +318,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams, {
           onSuccess: onSuccessMock,
         });
@@ -342,7 +339,7 @@ describe('usePaymentChallenge', () => {
 
     it('should call onError callback when mutation fails', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'error-callback-id',
         challenge: 'error-callback-challenge',
@@ -356,7 +353,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams, {
           onError: onErrorMock,
         });
@@ -377,7 +374,7 @@ describe('usePaymentChallenge', () => {
 
     it('should call onSettled callback regardless of mutation outcome', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'settled-callback-id',
         challenge: 'settled-callback-challenge',
@@ -391,7 +388,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams, {
           onSettled: onSettledMock,
         });
@@ -415,7 +412,7 @@ describe('usePaymentChallenge', () => {
   describe('Reset functionality', () => {
     it('should reset mutation state', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'reset-test-id',
         challenge: 'reset-test-challenge',
@@ -428,7 +425,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // First mutation
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -441,7 +438,7 @@ describe('usePaymentChallenge', () => {
       expect(result.current.isSuccess).toBe(true);
 
       // Act - Reset
-      act(() => {
+      await act(async () => {
         result.current.reset();
       });
 
@@ -460,7 +457,7 @@ describe('usePaymentChallenge', () => {
   describe('Multiple mutations', () => {
     it('should handle multiple sequential mutations', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const firstParams: TPaymentChallengeParams = {
         paymentMethodId: 'first-id',
         challenge: 'first-challenge',
@@ -478,7 +475,7 @@ describe('usePaymentChallenge', () => {
 
       // First mutation
       mockChallengePaymentMethod.mockResolvedValueOnce(firstResult);
-      act(() => {
+      await act(async () => {
         result.current.mutate(firstParams);
       });
 
@@ -490,7 +487,7 @@ describe('usePaymentChallenge', () => {
 
       // Second mutation
       mockChallengePaymentMethod.mockResolvedValueOnce(secondResult);
-      act(() => {
+      await act(async () => {
         result.current.mutate(secondParams);
       });
 
@@ -516,7 +513,7 @@ describe('usePaymentChallenge', () => {
   describe('Edge cases', () => {
     it('should handle empty string parameters', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: '',
         challenge: '',
@@ -529,7 +526,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -544,7 +541,7 @@ describe('usePaymentChallenge', () => {
 
     it('should handle special characters in parameters', async () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const mockParams: TPaymentChallengeParams = {
         paymentMethodId: 'payment-id!@#$%^&*()',
         challenge: 'challenge!@#$%^&*()',
@@ -557,7 +554,7 @@ describe('usePaymentChallenge', () => {
       });
 
       // Act
-      act(() => {
+      await act(async () => {
         result.current.mutate(mockParams);
       });
 
@@ -577,7 +574,7 @@ describe('usePaymentChallenge', () => {
   describe('Type safety', () => {
     it('should accept correct parameter types', () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const { result } = renderHook(() => usePaymentChallenge(), {
         wrapper,
       });
@@ -595,7 +592,7 @@ describe('usePaymentChallenge', () => {
 
     it('should return correct TypeScript types', () => {
       // Arrange
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true });
       const { result } = renderHook(() => usePaymentChallenge(), {
         wrapper,
       });

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import {
   render,
@@ -6,10 +7,10 @@ import {
   act,
   waitFor,
 } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import SetAsDefaultPaymentMethod, {
   SetAsDefaultPaymentMethodProps,
 } from './SetAsDefaultPaymentMethod';
@@ -78,14 +79,10 @@ describe('SetAsDefaultPaymentMethod', () => {
     handleSetAsDefaultChange: vi.fn(),
   };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('Visibility conditions', () => {
     it('should not render when payment method is not registerable', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -102,7 +99,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should not render when actions required does not include addPaymentMethod', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -121,7 +118,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should not render when no payment methods available', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -136,7 +133,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should not render when no payment method is selected', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -151,7 +148,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should render when all conditions are met', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -166,7 +163,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   describe('Checkbox functionality', () => {
     it('should render checkbox with correct initial state', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -179,7 +176,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should render checkbox as checked when isSetAsDefault is true', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod {...defaultProps} isSetAsDefault={true} />,
@@ -187,13 +184,13 @@ describe('SetAsDefaultPaymentMethod', () => {
       );
 
       const checkbox = screen.getByTestId('ods-checkbox-set-as-default');
-      expect(checkbox).toHaveAttribute('is-checked', 'true');
+      expect(checkbox).toHaveAttribute('data-checked', 'true');
     });
 
     it('should call handleSetAsDefaultChange when checkbox is clicked', async () => {
       const handleSetAsDefaultChange = vi.fn();
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod
@@ -206,7 +203,7 @@ describe('SetAsDefaultPaymentMethod', () => {
       const checkbox = screen.getByTestId('ods-checkbox-set-as-default');
       expect(checkbox).toBeInTheDocument();
 
-      act(() => {
+      await act(async () => {
         fireEvent(
           checkbox,
           new CustomEvent('odsChange', { detail: { checked: true } }),
@@ -220,7 +217,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should render checkbox label text', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -233,21 +230,21 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should render checkbox as required', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
       });
 
       const checkbox = screen.getByTestId('ods-checkbox-set-as-default');
-      expect(checkbox).toHaveAttribute('is-required', 'true');
+      expect(checkbox).toHaveAttribute('data-required', 'true');
     });
   });
 
   describe('Regional message display', () => {
     it('should display non-US message for non-US regions', () => {
       const mockShellContext = createMockShellContext('FR');
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -268,7 +265,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should not display US message when not in US region and not checked', () => {
       const mockShellContext = createMockShellContext('FR');
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod {...defaultProps} isSetAsDefault={false} />,
@@ -284,7 +281,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should display US message when in US region and checkbox is checked', () => {
       const mockShellContext = createMockShellContext('US');
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod {...defaultProps} isSetAsDefault={true} />,
@@ -300,7 +297,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should not display US message when in US region but checkbox is not checked', () => {
       const mockShellContext = createMockShellContext('US');
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod {...defaultProps} isSetAsDefault={false} />,
@@ -318,7 +315,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   describe('Message display states', () => {
     it('should display information message with correct color', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -330,7 +327,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should display message as non-dismissible', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -344,7 +341,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   describe('Default callback functions', () => {
     it('should work with default callback function', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod
@@ -367,7 +364,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   describe('Edge cases', () => {
     it('should handle undefined selectedPaymentMethod gracefully', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -382,7 +379,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should handle payment method with registerable false', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -399,7 +396,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should handle different eligibility action requirements', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -419,7 +416,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should render when multiple actions are required including addPaymentMethod', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod
@@ -441,7 +438,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should handle empty availablePaymentMethods array', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       const { container } = render(
         <SetAsDefaultPaymentMethod
@@ -456,7 +453,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should handle multiple available payment methods', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(
         <SetAsDefaultPaymentMethod
@@ -483,7 +480,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   describe('Component structure', () => {
     it('should render with correct CSS classes', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
@@ -491,7 +488,7 @@ describe('SetAsDefaultPaymentMethod', () => {
 
       const container = screen
         .getByTestId('ods-checkbox-set-as-default')
-        .closest('div');
+        .closest('[class*="my-6"]');
       expect(container).toHaveClass('my-6');
 
       const label = screen
@@ -505,19 +502,19 @@ describe('SetAsDefaultPaymentMethod', () => {
 
     it('should have correct input attributes', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,
       });
 
       const checkbox = screen.getByTestId('ods-checkbox-set-as-default');
-      expect(checkbox).toHaveAttribute('name', 'setAsDefault');
+      expect(checkbox).toHaveAttribute('data-name', 'setAsDefault');
     });
 
     it('should render OdsText components within message', () => {
       const mockShellContext = createMockShellContext();
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
       render(<SetAsDefaultPaymentMethod {...defaultProps} />, {
         wrapper: Wrapper,

@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { getSavingsPlans } from '@/data/api/savingsPlans';
 import { SavingsPlan } from '@/data/types/savingPlan.type';
-import queryClient from '@/queryClient';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   useHasActiveOrPendingSavingsPlan,
   useSavingsPlans,
@@ -84,18 +84,13 @@ describe('useSavingsPlans hooks', () => {
     },
   ];
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    queryClient.clear();
-  });
-
   describe('useSavingsPlans', () => {
     it('should fetch savings plans when feature is available', async () => {
       vi.mocked(getSavingsPlans).mockResolvedValueOnce(mockSavingsPlans);
 
       const { result } = renderHook(
         () => useSavingsPlans('service-123', true),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -110,7 +105,7 @@ describe('useSavingsPlans hooks', () => {
     it('should not fetch savings plans when feature is not available', async () => {
       const { result } = renderHook(
         () => useSavingsPlans('service-123', false),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -124,7 +119,7 @@ describe('useSavingsPlans hooks', () => {
 
     it('should not fetch savings plans when serviceId is empty', async () => {
       const { result } = renderHook(() => useSavingsPlans('', true), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -143,7 +138,7 @@ describe('useSavingsPlans hooks', () => {
 
       const { result } = renderHook(
         () => useHasActiveOrPendingSavingsPlan('service-123', true),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -184,7 +179,7 @@ describe('useSavingsPlans hooks', () => {
 
       const { result } = renderHook(
         () => useHasActiveOrPendingSavingsPlan('service-123', true),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -225,7 +220,7 @@ describe('useSavingsPlans hooks', () => {
 
       const { result } = renderHook(
         () => useHasActiveOrPendingSavingsPlan('service-123', true),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -240,7 +235,7 @@ describe('useSavingsPlans hooks', () => {
     it('should not fetch savings plans when feature is not available', async () => {
       const { result } = renderHook(
         () => useHasActiveOrPendingSavingsPlan('service-123', false),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -255,7 +250,7 @@ describe('useSavingsPlans hooks', () => {
     it('should not fetch savings plans when serviceId is empty', async () => {
       const { result } = renderHook(
         () => useHasActiveOrPendingSavingsPlan('', true),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getProjectQueryKey } from '@ovh-ux/manager-pci-common';
 import { act, renderHook } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as api from '@/data/api/projects';
 import { getDefaultProjectQueryKey } from '@/data/hooks/useProjects';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import queryClient from '@/queryClient';
-import { createWrapper } from '@/wrapperRenders';
 import { EditProjectParams, useEditProject } from './useEditProject';
 
 const projectId = 'test-project-id';
@@ -22,10 +23,6 @@ describe('useEditProject', () => {
   const unFavProjectMock = vi.spyOn(api, 'unFavProject');
   const invalidateQueriesMock = vi.spyOn(queryClient, 'invalidateQueries');
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('calls editProject when only description changes', async () => {
     editProjectMock.mockResolvedValue(undefined);
     const onSuccess = vi.fn();
@@ -33,7 +30,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -65,7 +62,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -94,7 +91,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -124,7 +121,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -160,7 +157,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -184,7 +181,7 @@ describe('useEditProject', () => {
     const { result } = renderHook(
       () => useEditProject(projectId, onSuccess, onError),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import CreditCardExplanationTexts from './CreditCardExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 describe('CreditCardExplanationTexts', () => {
@@ -37,7 +38,7 @@ describe('CreditCardExplanationTexts', () => {
 
   it('should render component without crashing', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -50,7 +51,7 @@ describe('CreditCardExplanationTexts', () => {
 
   it('should render CreditCardChargesExplanationTexts when RUPAY_CHARGE is true', () => {
     const mockFeatures = createMockFeatures({ RUPAY_CHARGE: true });
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -68,7 +69,7 @@ describe('CreditCardExplanationTexts', () => {
 
   it('should render generic credit card explanations when RUPAY_CHARGE is false', () => {
     const mockFeatures = createMockFeatures({ RUPAY_CHARGE: false });
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -94,7 +95,7 @@ describe('CreditCardExplanationTexts', () => {
       RUPAY_CHARGE: false,
       CREDIT_CARD_CROSS_BORDER: true,
     });
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -114,7 +115,7 @@ describe('CreditCardExplanationTexts', () => {
       RUPAY_CHARGE: false,
       CREDIT_CARD_CROSS_BORDER: false,
     });
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -131,7 +132,7 @@ describe('CreditCardExplanationTexts', () => {
 
   it('should render OdsMessage with correct props', () => {
     const mockFeatures = createMockFeatures();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

@@ -1,15 +1,18 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getSavingsPlans } from './savingsPlans';
 import { SavingsPlan } from '@/data/types/savingPlan.type';
 
+vi.mock('@ovh-ux/manager-core-api', () => ({
+  v6: {
+    get: vi.fn(),
+  },
+}));
+
 const mockedV6Get = vi.mocked(v6.get);
 
 describe('getSavingsPlans', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should call v6.get with correct endpoint', async () => {
     const mockResponse = {
       data: [],

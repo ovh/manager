@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import useActiveProjects from './useActiveProjects';
 import * as projectsApi from '@/data/api/projects-with-services';
 import { TProjectWithService } from '@/data/types/project.type';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 // Mock the API module
 vi.mock('@/data/api/projects-with-services', () => ({
@@ -43,10 +44,6 @@ const mockProjectsData: TProjectWithService[] = [
 ];
 
 describe('useActiveProjects', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should return loading state initially', () => {
     mockGetProjectsWithServices.mockImplementation(() =>
       Promise.resolve({ data: [] }),
@@ -56,7 +53,7 @@ describe('useActiveProjects', () => {
     ]);
 
     const { result } = renderHook(() => useActiveProjects(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     expect(result.current.activeProjects).toEqual([]);
@@ -72,7 +69,7 @@ describe('useActiveProjects', () => {
     ]);
 
     const { result } = renderHook(() => useActiveProjects(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {
@@ -108,7 +105,7 @@ describe('useActiveProjects', () => {
     ]);
 
     const { result } = renderHook(() => useActiveProjects(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {
@@ -127,7 +124,7 @@ describe('useActiveProjects', () => {
     ]);
 
     const { result } = renderHook(() => useActiveProjects(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {
@@ -144,7 +141,7 @@ describe('useActiveProjects', () => {
     ]);
 
     const { result } = renderHook(() => useActiveProjects(), {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true }),
     });
 
     await waitFor(() => {

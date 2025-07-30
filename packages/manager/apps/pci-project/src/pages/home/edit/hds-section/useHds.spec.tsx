@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as cartApi from '@/data/api/cart';
 import * as servicesApi from '@/data/api/services';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   useGetHdsCartServiceOption,
   useIsAlreadyHdsCertifiedProject,
@@ -27,10 +28,6 @@ vi.mock('@/data/api/payment', () => ({
 }));
 
 describe('useHds hooks', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('useIsAlreadyHdsCertifiedProject returns true if project is certified', async () => {
     vi.mocked(servicesApi.getServiceId).mockResolvedValue([1]);
     vi.mocked(servicesApi.getServiceOptions).mockResolvedValue([
@@ -79,7 +76,7 @@ describe('useHds hooks', () => {
     const { result } = renderHook(
       () => useIsAlreadyHdsCertifiedProject('project-1'),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -112,7 +109,7 @@ describe('useHds hooks', () => {
     const { result } = renderHook(
       () => useGetHdsCartServiceOption('project-1'),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -194,7 +191,7 @@ describe('useHds hooks', () => {
           cartServiceHDSOption,
           enabled: true,
         }),
-      { wrapper: createWrapper() },
+      { wrapper: createOptimalWrapper({ queries: true, shell: true }) },
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));

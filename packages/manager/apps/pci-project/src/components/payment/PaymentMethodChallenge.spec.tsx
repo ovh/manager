@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createRef } from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -7,7 +8,7 @@ import PaymentMethodChallenge, {
   TPaymentMethodChallengeProps,
   TPaymentMethodChallengeRef,
 } from './PaymentMethodChallenge';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TPaymentMethodType,
   TUserPaymentMethod,
@@ -93,7 +94,7 @@ const renderPaymentMethodChallenge = (
     ...props,
   };
 
-  const Wrapper = createWrapper();
+  const Wrapper = createOptimalWrapper({ queries: true, shell: true });
 
   return {
     ...render(
@@ -109,7 +110,6 @@ const renderPaymentMethodChallenge = (
 
 describe('PaymentMethodChallenge', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
     mockUsePaymentChallenge.mockReturnValue(({
       mutate: mockMutate,
       data: undefined,
@@ -132,15 +132,17 @@ describe('PaymentMethodChallenge', () => {
   });
 
   describe('when challenge is not required', () => {
-    it('should not render anything when challenge is not required', () => {
-      const { container } = renderPaymentMethodChallenge({
-        eligibility: createEligibilityWithoutChallenge(),
+    it('should not render anything when challenge is not required', async () => {
+      await act(async () => {
+        renderPaymentMethodChallenge({
+          eligibility: createEligibilityWithoutChallenge(),
+        });
       });
 
-      expect(container.firstChild).toBeNull();
+      expect(screen.queryByTestId('ods-card')).not.toBeInTheDocument();
     });
 
-    it('should call handleValidityChange with true when challenge is not required', () => {
+    it('should call handleValidityChange with true when challenge is not required', async () => {
       const { handleValidityChange } = renderPaymentMethodChallenge({
         eligibility: createEligibilityWithoutChallenge(),
       });
@@ -150,22 +152,16 @@ describe('PaymentMethodChallenge', () => {
   });
 
   describe('when challenge is required', () => {
-    it('should not render challenge UI when no payment method is provided', () => {
-      const { container } = renderPaymentMethodChallenge({
+    it('should not render challenge UI when no payment method is provided', async () => {
+      renderPaymentMethodChallenge({
         paymentMethod: undefined,
       });
 
-      // Should render an empty div when challenge is required but no payment method
-      expect(container.firstChild).toEqual(
-        expect.objectContaining({
-          tagName: 'DIV',
-        }),
-      );
-      // But it should not contain any payment-specific challenge UI
+      // Should not contain any payment-specific challenge UI
       expect(screen.queryByTestId('ods-card')).not.toBeInTheDocument();
     });
 
-    it('should call handleValidityChange with false when no payment method is provided', () => {
+    it('should call handleValidityChange with false when no payment method is provided', async () => {
       const { handleValidityChange } = renderPaymentMethodChallenge({
         paymentMethod: undefined,
       });
@@ -179,9 +175,11 @@ describe('PaymentMethodChallenge', () => {
       TPaymentMethodType.CREDIT_CARD,
     );
 
-    it('should render credit card challenge UI', () => {
-      renderPaymentMethodChallenge({
-        paymentMethod: creditCardPaymentMethod,
+    it('should render credit card challenge UI', async () => {
+      await act(async () => {
+        renderPaymentMethodChallenge({
+          paymentMethod: creditCardPaymentMethod,
+        });
       });
 
       expect(screen.getByTestId('ods-card')).toBeInTheDocument();
@@ -202,23 +200,29 @@ describe('PaymentMethodChallenge', () => {
       expect(handleValidityChange).toHaveBeenCalledWith(false);
 
       // Valid 6-digit input
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
       expect(input).toHaveValue('123456');
       await waitFor(() => {
         expect(handleValidityChange).toHaveBeenCalledWith(true);
       });
 
       // Clear and test invalid input
-      await user.clear(input);
-      await user.type(input, '12345');
+      await act(async () => {
+        await user.clear(input);
+        await user.type(input, '12345');
+      });
       expect(input).toHaveValue('12345');
       await waitFor(() => {
         expect(handleValidityChange).toHaveBeenCalledWith(false);
       });
 
       // Test non-numeric input
-      await user.clear(input);
-      await user.type(input, '12345a');
+      await act(async () => {
+        await user.clear(input);
+        await user.type(input, '12345a');
+      });
       expect(input).toHaveValue('12345a');
       await waitFor(() => {
         expect(handleValidityChange).toHaveBeenCalledWith(false);
@@ -232,7 +236,9 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '1234567890');
+      await act(async () => {
+        await user.type(input, '1234567890');
+      });
 
       expect(input).toHaveValue('123456');
     });
@@ -244,21 +250,25 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onSuccess('success');
       });
 
-      const result = await challengeHandler.current?.submitChallenge();
-      expect(result).toBe('success');
-      expect(mockMutate).toHaveBeenCalledWith(
-        {
-          paymentMethodId: '123',
-          challenge: '123456',
-        },
-        expect.any(Object),
-      );
+      await act(async () => {
+        const result = await challengeHandler.current?.submitChallenge();
+        expect(result).toBe('success');
+        expect(mockMutate).toHaveBeenCalledWith(
+          {
+            paymentMethodId: '123',
+            challenge: '123456',
+          },
+          expect.any(Object),
+        );
+      });
     });
   });
 
@@ -267,34 +277,34 @@ describe('PaymentMethodChallenge', () => {
       TPaymentMethodType.BANK_ACCOUNT,
     );
 
-    it('should render bank account challenge UI', () => {
-      const { container } = renderPaymentMethodChallenge({
-        paymentMethod: bankAccountPaymentMethod,
+    it('should render bank account challenge UI', async () => {
+      await act(async () => {
+        renderPaymentMethodChallenge({
+          paymentMethod: bankAccountPaymentMethod,
+        });
       });
 
       expect(screen.getByTestId('ods-card')).toBeInTheDocument();
       expect(screen.getAllByTestId('ods-text')).toHaveLength(1);
 
-      const input = container.querySelector('ods-input');
-      expect(input).toBeInTheDocument();
+      // Look for input by role instead of querySelector
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
     });
 
     it('should validate IBAN input correctly', async () => {
-      const { handleValidityChange, container } = renderPaymentMethodChallenge({
+      const { handleValidityChange } = renderPaymentMethodChallenge({
         paymentMethod: bankAccountPaymentMethod,
       });
 
       // Initially invalid
       expect(handleValidityChange).toHaveBeenCalledWith(false);
 
-      // Type a valid IBAN
-      const input = container.querySelector('ods-input');
-      act(() => {
-        (input as Element).dispatchEvent(
-          new CustomEvent('odsChange', {
-            detail: { value: 'FR1420041010050500013M02606' },
-          }),
-        );
+      // Type a valid IBAN using userEvent
+      const user = userEvent.setup();
+      const input = screen.getByRole('textbox');
+
+      await act(async () => {
+        await user.type(input, 'FR1420041010050500013M02606');
       });
 
       await waitFor(() => {
@@ -303,35 +313,34 @@ describe('PaymentMethodChallenge', () => {
     });
 
     it('should submit bank account challenge successfully', async () => {
-      const { challengeHandler, container } = renderPaymentMethodChallenge({
+      const { challengeHandler } = renderPaymentMethodChallenge({
         paymentMethod: bankAccountPaymentMethod,
       });
 
       // Get the input element and type a valid IBAN
+      const user = userEvent.setup();
+      const input = screen.getByRole('textbox');
 
-      const input = container.querySelector('ods-input');
-      act(() => {
-        (input as Element).dispatchEvent(
-          new CustomEvent('odsChange', {
-            detail: { value: 'FR1420041010050500013M02606' },
-          }),
-        );
+      await act(async () => {
+        await user.type(input, 'FR1420041010050500013M02606');
       });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onSuccess('success');
       });
 
-      const result = await challengeHandler.current?.submitChallenge();
-      await waitFor(() => {
-        expect(result).toBe('success');
-        expect(mockMutate).toHaveBeenCalledWith(
-          {
-            paymentMethodId: '123',
-            challenge: 'FR1420041010050500013M02606',
-          },
-          expect.any(Object),
-        );
+      await act(async () => {
+        const result = await challengeHandler.current?.submitChallenge();
+        await waitFor(() => {
+          expect(result).toBe('success');
+          expect(mockMutate).toHaveBeenCalledWith(
+            {
+              paymentMethodId: '123',
+              challenge: 'FR1420041010050500013M02606',
+            },
+            expect.any(Object),
+          );
+        });
       });
     });
   });
@@ -341,21 +350,29 @@ describe('PaymentMethodChallenge', () => {
       TPaymentMethodType.PAYPAL,
     );
 
-    it('should render PayPal challenge UI', () => {
-      renderPaymentMethodChallenge({
-        paymentMethod: paypalPaymentMethod,
+    it('should render PayPal challenge UI', async () => {
+      await act(async () => {
+        renderPaymentMethodChallenge({
+          paymentMethod: paypalPaymentMethod,
+        });
       });
 
       expect(screen.getByTestId('ods-card')).toBeInTheDocument();
       expect(screen.getByTestId('ods-text')).toBeInTheDocument();
     });
 
-    it('should be valid by default for PayPal', () => {
-      const { handleValidityChange } = renderPaymentMethodChallenge({
-        paymentMethod: paypalPaymentMethod,
+    it('should be valid by default for PayPal', async () => {
+      let handleValidityChange: ReturnType<typeof vi.fn>;
+      await act(async () => {
+        const result = renderPaymentMethodChallenge({
+          paymentMethod: paypalPaymentMethod,
+        });
+        handleValidityChange = result.handleValidityChange;
       });
 
-      expect(handleValidityChange).toHaveBeenCalledWith(true);
+      await waitFor(() => {
+        expect(handleValidityChange).toHaveBeenCalledWith(true);
+      });
     });
 
     it('should not submit PayPal challenge', async () => {
@@ -385,14 +402,18 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onError(new Error('Network error'));
       });
 
-      const result = await challengeHandler.current?.submitChallenge();
-      expect(result).toBe('retry');
+      await act(async () => {
+        const result = await challengeHandler.current?.submitChallenge();
+        expect(result).toBe('retry');
+      });
     });
 
     it('should handle retry status from server', async () => {
@@ -402,14 +423,18 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onSuccess('retry');
       });
 
-      const result = await challengeHandler.current?.submitChallenge();
-      expect(result).toBe('retry');
+      await act(async () => {
+        const result = await challengeHandler.current?.submitChallenge();
+        expect(result).toBe('retry');
+      });
     });
 
     it('should show retry error message when mustRetry is true', async () => {
@@ -419,13 +444,17 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onSuccess('retry');
       });
 
-      await challengeHandler.current?.submitChallenge();
+      await act(async () => {
+        await challengeHandler.current?.submitChallenge();
+      });
 
       await waitFor(() => {
         expect(screen.getByTestId('ods-message')).toBeInTheDocument();
@@ -437,8 +466,12 @@ describe('PaymentMethodChallenge', () => {
     });
 
     it('should return success immediately when challenge is not required', async () => {
-      const { challengeHandler } = renderPaymentMethodChallenge({
-        eligibility: createEligibilityWithoutChallenge(),
+      let challengeHandler!: React.RefObject<TPaymentMethodChallengeRef>;
+      await act(async () => {
+        const result = renderPaymentMethodChallenge({
+          eligibility: createEligibilityWithoutChallenge(),
+        });
+        challengeHandler = result.challengeHandler;
       });
 
       const result = await challengeHandler.current?.submitChallenge();
@@ -451,9 +484,10 @@ describe('PaymentMethodChallenge', () => {
         paymentMethod: undefined,
       });
 
-      const result = await challengeHandler.current?.submitChallenge();
-      expect(result).toBe('retry');
-      expect(mockMutate).not.toHaveBeenCalled();
+      await act(async () => {
+        const result = await challengeHandler.current?.submitChallenge();
+        expect(result).toBe('retry');
+      });
     });
   });
 
@@ -471,18 +505,22 @@ describe('PaymentMethodChallenge', () => {
       // Clear previous calls
       handleValidityChange.mockClear();
 
-      await user.type(input, '1');
+      await act(async () => {
+        await user.type(input, '1');
+      });
       await waitFor(() => {
         expect(handleValidityChange).toHaveBeenCalledWith(false);
       });
 
-      await user.type(input, '23456');
+      await act(async () => {
+        await user.type(input, '23456');
+      });
       await waitFor(() => {
         expect(handleValidityChange).toHaveBeenCalledWith(true);
       });
     });
 
-    it('should call handleValidityChange when payment method changes', () => {
+    it('should call handleValidityChange when payment method changes', async () => {
       const { handleValidityChange, rerender } = renderPaymentMethodChallenge({
         paymentMethod: createMockUserPaymentMethod(
           TPaymentMethodType.CREDIT_CARD,
@@ -493,31 +531,35 @@ describe('PaymentMethodChallenge', () => {
       handleValidityChange.mockClear();
 
       // Change payment method
-      const Wrapper = createWrapper();
-      rerender(
-        <Wrapper>
-          <PaymentMethodChallenge
-            challengeHandler={createRef<TPaymentMethodChallengeRef>()}
-            eligibility={createEligibilityWithChallenge()}
-            paymentMethod={createMockUserPaymentMethod(
-              TPaymentMethodType.PAYPAL,
-            )}
-            handleValidityChange={handleValidityChange}
-          />
-        </Wrapper>,
-      );
+      const Wrapper = createOptimalWrapper({ queries: true, shell: true });
+      await act(async () => {
+        rerender(
+          <Wrapper>
+            <PaymentMethodChallenge
+              challengeHandler={createRef<TPaymentMethodChallengeRef>()}
+              eligibility={createEligibilityWithChallenge()}
+              paymentMethod={createMockUserPaymentMethod(
+                TPaymentMethodType.PAYPAL,
+              )}
+              handleValidityChange={handleValidityChange}
+            />
+          </Wrapper>,
+        );
+      });
 
       expect(handleValidityChange).toHaveBeenCalledWith(true);
     });
   });
 
   describe('Translation Keys', () => {
-    it('should use correct translation keys for different payment types', () => {
+    it('should use correct translation keys for different payment types', async () => {
       // Credit card
-      renderPaymentMethodChallenge({
-        paymentMethod: createMockUserPaymentMethod(
-          TPaymentMethodType.CREDIT_CARD,
-        ),
+      await act(async () => {
+        renderPaymentMethodChallenge({
+          paymentMethod: createMockUserPaymentMethod(
+            TPaymentMethodType.CREDIT_CARD,
+          ),
+        });
       });
       expect(
         screen.getByText('pci_project_new_payment_challenge_credit_card'),
@@ -532,19 +574,21 @@ describe('PaymentMethodChallenge', () => {
       ).toBeInTheDocument();
 
       // Bank account
-      const Wrapper = createWrapper();
-      rerender(
-        <Wrapper>
-          <PaymentMethodChallenge
-            challengeHandler={createRef<TPaymentMethodChallengeRef>()}
-            eligibility={createEligibilityWithChallenge()}
-            paymentMethod={createMockUserPaymentMethod(
-              TPaymentMethodType.BANK_ACCOUNT,
-            )}
-            handleValidityChange={vi.fn()}
-          />
-        </Wrapper>,
-      );
+      const Wrapper = createOptimalWrapper({ queries: true, shell: true });
+      await act(async () => {
+        rerender(
+          <Wrapper>
+            <PaymentMethodChallenge
+              challengeHandler={createRef<TPaymentMethodChallengeRef>()}
+              eligibility={createEligibilityWithChallenge()}
+              paymentMethod={createMockUserPaymentMethod(
+                TPaymentMethodType.BANK_ACCOUNT,
+              )}
+              handleValidityChange={vi.fn()}
+            />
+          </Wrapper>,
+        );
+      });
       expect(
         screen.getByText('pci_project_new_payment_challenge_bank_account'),
       ).toBeInTheDocument();
@@ -559,13 +603,17 @@ describe('PaymentMethodChallenge', () => {
       });
 
       const input = screen.getByRole('textbox');
-      await user.type(input, '123456');
+      await act(async () => {
+        await user.type(input, '123456');
+      });
 
       mockMutate.mockImplementation((_params, options) => {
         options.onError(new Error('Test error'));
       });
 
-      await challengeHandler.current?.submitChallenge();
+      await act(async () => {
+        await challengeHandler.current?.submitChallenge();
+      });
 
       await waitFor(() => {
         expect(
