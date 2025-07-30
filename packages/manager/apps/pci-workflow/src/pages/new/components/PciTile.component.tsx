@@ -1,9 +1,9 @@
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 
 interface PciTileProps {
   title: string;
@@ -18,12 +18,7 @@ const uncheckedClass =
   'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600]';
 
 // @TODO move to pci common
-export function PciTile({
-  title,
-  description,
-  isChecked,
-  onClick,
-}: Readonly<PciTileProps>) {
+export function PciTile({ title, description, isChecked, onClick }: Readonly<PciTileProps>) {
   return (
     <OsdsTile
       className={isChecked ? checkedClass : uncheckedClass}

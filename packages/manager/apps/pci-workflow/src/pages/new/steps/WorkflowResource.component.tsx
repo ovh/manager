@@ -1,11 +1,16 @@
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
 import { TInstance } from '@ovh-ux/manager-pci-common';
-import { StepState } from '@/pages/new/hooks/useStep';
+
 import ResourceSelectorComponent from '@/components/new/ResourceSelector.component';
+import { StepState } from '@/pages/new/hooks/useStep';
+
 import { PciTile } from '../components/PciTile.component';
 
 interface WorkflowResourceProps {
@@ -13,10 +18,7 @@ interface WorkflowResourceProps {
   onSubmit: (instance: TInstance) => void;
 }
 
-export function WorkflowResource({
-  onSubmit,
-  step,
-}: Readonly<WorkflowResourceProps>) {
+export function WorkflowResource({ onSubmit, step }: Readonly<WorkflowResourceProps>) {
   const { t } = useTranslation('pci-common');
   const [instance, setInstance] = useState<TInstance>(null);
   return (
@@ -26,9 +28,7 @@ export function WorkflowResource({
           <PciTile title={instance.id} isChecked />
         </div>
       )}
-      {!step.isLocked && (
-        <ResourceSelectorComponent onSelectInstance={setInstance} />
-      )}
+      {!step.isLocked && <ResourceSelectorComponent onSelectInstance={setInstance} />}
       {!step.isLocked && (
         <OsdsButton
           className="w-fit mt-6"

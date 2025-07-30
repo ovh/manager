@@ -1,4 +1,5 @@
 import { ColumnSort, PaginationState } from '@tanstack/react-table';
+
 import { TWorkflowInstance } from '@/types';
 
 export type TInstanceOptions = {
@@ -6,10 +7,7 @@ export type TInstanceOptions = {
   sorting: ColumnSort;
 };
 
-export const sortResults = (
-  items: TWorkflowInstance[],
-  sorting: ColumnSort,
-) => {
+export const sortResults = (items: TWorkflowInstance[], sorting: ColumnSort) => {
   let data: TWorkflowInstance[];
   if (sorting?.id === 'status') {
     data = [...items].sort((a, b) => (a.statusGroup > b.statusGroup ? 1 : 0));

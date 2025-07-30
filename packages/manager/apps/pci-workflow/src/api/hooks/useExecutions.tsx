@@ -1,16 +1,19 @@
 import { useMemo } from 'react';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import { format, parseISO } from 'date-fns';
-import { useTranslation } from 'react-i18next';
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as dateFnsLocales from 'date-fns/locale';
-import { TWorkflowExecution } from '../data/region-workflow';
-import { useWorkflows } from './workflows';
+import { useTranslation } from 'react-i18next';
+
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import { paginateResults } from '@/helpers';
 
+import { TWorkflowExecution } from '../data/region-workflow';
+import { useWorkflows } from './workflows';
+
 export const defaultCompareFunction =
-  (key: keyof TWorkflowExecution) =>
-  (a: TWorkflowExecution, b: TWorkflowExecution) => {
+  (key: keyof TWorkflowExecution) => (a: TWorkflowExecution, b: TWorkflowExecution) => {
     const aValue = a[key] || '';
     const bValue = b[key] || '';
 
@@ -43,8 +46,7 @@ export const useWorkflowExecutions = (
   const { i18n } = useTranslation('pci-common');
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: workflows, isPending: isWorkflowPending } =
-    useWorkflows(projectId);
+  const { data: workflows, isPending: isWorkflowPending } = useWorkflows(projectId);
 
   return useMemo(() => {
     let mappedExecution: TWorkflowExecution[] = [];
@@ -83,12 +85,5 @@ export const useWorkflowExecutions = (
         workflowName: workflow?.name,
       },
     };
-  }, [
-    userLocale,
-    workflowId,
-    workflows,
-    isWorkflowPending,
-    sorting,
-    pagination,
-  ]);
+  }, [userLocale, workflowId, workflows, isWorkflowPending, sorting, pagination]);
 };

@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { describe, it } from 'vitest';
+
 import { useStep } from './useStep';
 
 describe('useStep hook', () => {

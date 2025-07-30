@@ -1,11 +1,9 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
+
 import { TInstance } from '@ovh-ux/manager-pci-common';
-import {
-  DEFAULT_FORM_STATE,
-  TWorkflowScheduling,
-  useWorkflowStepper,
-} from './useWorkflowStepper';
+
+import { DEFAULT_FORM_STATE, TWorkflowScheduling, useWorkflowStepper } from './useWorkflowStepper';
 
 describe('useWorkflowStepper hook', () => {
   it('initializes with default form state', () => {
@@ -28,9 +26,7 @@ describe('useWorkflowStepper hook', () => {
       result.current.type.submit('exampleType');
       result.current.type.edit();
     });
-    await waitFor(() =>
-      expect(result.current.form).toEqual(DEFAULT_FORM_STATE),
-    );
+    await waitFor(() => expect(result.current.form).toEqual(DEFAULT_FORM_STATE));
   });
 
   it('updates instance and opens scheduling step on resource submit', () => {

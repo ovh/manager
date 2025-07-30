@@ -1,11 +1,11 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
-import { CronInput } from './CronInput.component';
+
+import { OdsInputValueChangeEventDetail, OsdsInput } from '@ovhcloud/ods-components';
+
 import { TWorkflowScheduling } from '@/pages/new/hooks/useWorkflowStepper';
+
+import { CronInput } from './CronInput.component';
 
 describe('CronInput Component', () => {
   const initialScheduling = {
@@ -19,16 +19,12 @@ describe('CronInput Component', () => {
   } as TWorkflowScheduling;
 
   it('renders CronInput component successfully', () => {
-    const { getByText } = render(
-      <CronInput scheduling={initialScheduling} onInput={() => {}} />,
-    );
+    const { getByText } = render(<CronInput scheduling={initialScheduling} onInput={() => {}} />);
     expect(getByText(/pci_workflow_create_cron_title/i)).toBeInTheDocument();
   });
 
   it('updates minute field on user input', () => {
-    const { getByTestId } = render(
-      <CronInput scheduling={initialScheduling} onInput={() => {}} />,
-    );
+    const { getByTestId } = render(<CronInput scheduling={initialScheduling} onInput={() => {}} />);
     const minuteInput = getByTestId(`cronInput-input_minutes`);
     act(() => {
       fireEvent.change(minuteInput, { target: { value: '15' } });
@@ -48,16 +44,12 @@ describe('CronInput Component', () => {
       } as unknown as OdsInputValueChangeEventDetail);
     });
     await waitFor(() => {
-      expect(
-        getByText(/pci_workflow_create_cron_invalid/i),
-      ).toBeInTheDocument();
+      expect(getByText(/pci_workflow_create_cron_invalid/i)).toBeInTheDocument();
     });
   });
 
   it('renders helper components for month and day of week fields', () => {
-    const { getByText } = render(
-      <CronInput scheduling={initialScheduling} onInput={() => {}} />,
-    );
+    const { getByText } = render(<CronInput scheduling={initialScheduling} onInput={() => {}} />);
     expect(getByText('pci_workflow_create_cron_month')).toBeInTheDocument();
     expect(getByText('pci_workflow_create_cron_dow')).toBeInTheDocument();
   });

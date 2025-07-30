@@ -19,10 +19,7 @@ export type TRemoteWorkflow = {
   executions: TWorkflowExecution[] | null;
 };
 
-export const getRegionsWorkflows = async (
-  projectId: string,
-  regionName: string,
-) => {
+export const getRegionsWorkflows = async (projectId: string, regionName: string) => {
   const { data } = await v6.get<TRemoteWorkflow[]>(
     `/cloud/project/${projectId}/region/${regionName}/workflow/backup`,
   );

@@ -1,12 +1,16 @@
-import { describe, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
+
 import { UseQueryResult } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import * as pciCommonModule from '@ovh-ux/manager-pci-common';
 import { TInstance, TProject } from '@ovh-ux/manager-pci-common';
-import OnBoardingPage from './OnBoarding.page';
-import { shellContext, wrapper } from '@/wrapperRenders';
+
 import { useWorkflows } from '@/api/hooks/workflows';
+import { shellContext, wrapper } from '@/wrapperRenders';
+
+import OnBoardingPage from './OnBoarding.page';
 
 vi.mock('@/api/hooks/workflows');
 
@@ -23,21 +27,17 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as UseQueryResult<TInstance[]>);
 
-    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
+    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue({
       description: 'mocked_description',
       planCode: 'project.discovery',
-    } as unknown) as UseQueryResult<TProject, never>);
+    } as unknown as UseQueryResult<TProject, never>);
 
     const { container, getByText } = render(<OnBoardingPage />, {
       wrapper,
     });
     expect(container).toBeDefined();
-    expect(
-      getByText('pci_workflow_onboarding_create_instance'),
-    ).toBeInTheDocument();
-    expect(
-      getByText('pci_workflow_onboarding_no_instance'),
-    ).toBeInTheDocument();
+    expect(getByText('pci_workflow_onboarding_create_instance')).toBeInTheDocument();
+    expect(getByText('pci_workflow_onboarding_no_instance')).toBeInTheDocument();
   });
 
   it('should render children with create button workflow when workflow are empty', () => {
@@ -57,19 +57,17 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as UseQueryResult<TInstance[]>);
 
-    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue(({
+    vi.spyOn(pciCommonModule, 'useProject').mockReturnValue({
       description: 'mocked_description',
       planCode: 'project.discovery',
-    } as unknown) as UseQueryResult<TProject, never>);
+    } as unknown as UseQueryResult<TProject, never>);
 
     const { container, getByText, queryByText } = render(<OnBoardingPage />, {
       wrapper,
     });
     expect(container).toBeDefined();
     expect(getByText('pci_workflow_add')).toBeInTheDocument();
-    expect(
-      queryByText('pci_workflow_onboarding_no_instance'),
-    ).not.toBeInTheDocument();
+    expect(queryByText('pci_workflow_onboarding_no_instance')).not.toBeInTheDocument();
   });
 
   it('should render spinner when isLoading is true', () => {

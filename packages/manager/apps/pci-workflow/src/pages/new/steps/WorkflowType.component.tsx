@@ -1,13 +1,15 @@
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { StepState } from '@/pages/new/hooks/useStep';
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { PciTile } from '@/pages/new/components/PciTile.component';
+import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowTypeProps {
   step: StepState;
@@ -33,9 +35,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
         <PciTile
           title={tListing(`pci_workflow_type_${INSTANCE_BACKUP}_title`)}
           isChecked
-          description={t(
-            `pci_workflow_create_type_${INSTANCE_BACKUP}_description`,
-          )}
+          description={t(`pci_workflow_create_type_${INSTANCE_BACKUP}_description`)}
         ></PciTile>
       </div>
       {!step.isLocked && (

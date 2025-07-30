@@ -1,11 +1,4 @@
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsInput,
-  OsdsQuantity,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -17,6 +10,13 @@ import {
   ODS_ICON_SIZE,
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsInput,
+  OsdsQuantity,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 interface PciNumberInputProps {
   value: number;
@@ -54,11 +54,7 @@ export function PciNumberInput({
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
         >
-          <OsdsIcon
-            name={ODS_ICON_NAME.MINUS}
-            size={ODS_ICON_SIZE.sm}
-            className="mr-2 bg-white"
-          />
+          <OsdsIcon name={ODS_ICON_NAME.MINUS} size={ODS_ICON_SIZE.sm} className="mr-2 bg-white" />
         </OsdsButton>
         <OsdsInput
           type={ODS_INPUT_TYPE.number}
@@ -83,11 +79,7 @@ export function PciNumberInput({
           size={ODS_BUTTON_SIZE.sm}
           text-align="center"
         >
-          <OsdsIcon
-            className="mr-2 bg-white"
-            name={ODS_ICON_NAME.PLUS}
-            size={ODS_ICON_SIZE.xs}
-          />
+          <OsdsIcon className="mr-2 bg-white" name={ODS_ICON_NAME.PLUS} size={ODS_ICON_SIZE.xs} />
         </OsdsButton>
       </OsdsQuantity>
       {description && (

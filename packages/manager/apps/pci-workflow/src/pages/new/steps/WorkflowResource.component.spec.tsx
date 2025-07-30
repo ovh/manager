@@ -1,11 +1,14 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { TInstance } from '@ovh-ux/manager-pci-common';
-import { WorkflowResource } from './WorkflowResource.component';
-import { StepState } from '@/pages/new/hooks/useStep';
-import { wrapper } from '@/wrapperRenders';
+
 import { usePaginatedInstances } from '@/api/hooks/useInstances';
 import { useRegionsWithAutomaticBackup } from '@/hooks/useRegionsWithAutomaticBackup';
+import { StepState } from '@/pages/new/hooks/useStep';
+import { wrapper } from '@/wrapperRenders';
+
+import { WorkflowResource } from './WorkflowResource.component';
 
 vi.mock('@/api/hooks/useInstances');
 
@@ -34,10 +37,7 @@ describe('WorkflowResource Component', () => {
 
   it('renders ResourceSelectorComponent when step is unlocked', () => {
     const { getByTestId } = render(
-      <WorkflowResource
-        step={unlockedStep as StepState}
-        onSubmit={mockOnSubmit}
-      />,
+      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
       { wrapper },
     );
     expect(getByTestId('radio-button-instance1')).toBeInTheDocument();
@@ -45,10 +45,7 @@ describe('WorkflowResource Component', () => {
 
   it('disables next button when no instance is selected', () => {
     const { getByText } = render(
-      <WorkflowResource
-        step={unlockedStep as StepState}
-        onSubmit={mockOnSubmit}
-      />,
+      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
       { wrapper },
     );
     expect(getByText(/common_stepper_next_button_label/i)).toBeDisabled();
@@ -56,10 +53,7 @@ describe('WorkflowResource Component', () => {
 
   it('enables next button when an instance is selected', () => {
     const { getByTestId, getByText } = render(
-      <WorkflowResource
-        step={unlockedStep as StepState}
-        onSubmit={mockOnSubmit}
-      />,
+      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
       { wrapper },
     );
     fireEvent.click(getByTestId('radio-button-instance1')); // Simulate selecting an instance
@@ -68,10 +62,7 @@ describe('WorkflowResource Component', () => {
 
   it('cannot select instance where workflow is not available', () => {
     const { getByTestId } = render(
-      <WorkflowResource
-        step={unlockedStep as StepState}
-        onSubmit={mockOnSubmit}
-      />,
+      <WorkflowResource step={unlockedStep as StepState} onSubmit={mockOnSubmit} />,
       { wrapper },
     );
     expect(getByTestId('radio-button-instance2')).toBeDisabled();

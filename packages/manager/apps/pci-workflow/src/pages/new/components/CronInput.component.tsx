@@ -1,22 +1,22 @@
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useEffect, useRef, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { TWorkflowScheduling } from '@/pages/new/hooks/useWorkflowStepper';
 import CronValidator from '@/pages/new/utils/cron-validator';
-import { PciNumberInput } from './PciNumberInput.component';
+
 import { CronHelper } from './CronHelper.component';
-import { MonthHelper } from './MonthHelper.component';
 import { DowHelper } from './DowHelper.component';
+import { MonthHelper } from './MonthHelper.component';
+import { PciNumberInput } from './PciNumberInput.component';
 
 export interface CronInputProps {
   scheduling: TWorkflowScheduling;
@@ -55,51 +55,43 @@ export function CronInput({ scheduling, onInput }: Readonly<CronInputProps>) {
         size={ODS_THEME_TYPOGRAPHY_SIZE._500}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        <span className="font-bold">{t('pci_workflow_create_cron_title')}</span>{' '}
-        ({t('pci_workflow_create_cron_timezone')})
+        <span className="font-bold">{t('pci_workflow_create_cron_title')}</span> (
+        {t('pci_workflow_create_cron_timezone')})
         <CronHelper />
       </OsdsText>
 
       <div className="flex gap-5">
-        {(
-          [
-            'minutes',
-            'hour',
-            'dom',
-            'month',
-            'dow',
-          ] satisfies (keyof TWorkflowScheduling)[]
-        ).map((field) => (
-          <OsdsFormField key={field} inline>
-            <OsdsText
-              slot="helper"
-              color={ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'text']}
-              className="mt-4"
-            >
-              {errors[field] && `${t('pci_workflow_create_cron_invalid')} `}
-              {t(`pci_workflow_create_cron_${field}`)}
-              {field === 'month' && <MonthHelper />}
-              {field === 'dow' && <DowHelper />}
-            </OsdsText>
-            <OsdsInput
-              value={state[field]}
-              data-testid={`cronInput-input_${field}`}
-              inline
-              color={
-                ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'primary']
-              }
-              error={errors[field]}
-              onOdsValueChange={(e) => {
-                setState((s) => ({
-                  ...s,
-                  [field]: e.detail.value,
-                }));
-              }}
-              type={ODS_INPUT_TYPE.text}
-              className="border"
-            />
-          </OsdsFormField>
-        ))}
+        {(['minutes', 'hour', 'dom', 'month', 'dow'] satisfies (keyof TWorkflowScheduling)[]).map(
+          (field) => (
+            <OsdsFormField key={field} inline>
+              <OsdsText
+                slot="helper"
+                color={ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'text']}
+                className="mt-4"
+              >
+                {errors[field] && `${t('pci_workflow_create_cron_invalid')} `}
+                {t(`pci_workflow_create_cron_${field}`)}
+                {field === 'month' && <MonthHelper />}
+                {field === 'dow' && <DowHelper />}
+              </OsdsText>
+              <OsdsInput
+                value={state[field]}
+                data-testid={`cronInput-input_${field}`}
+                inline
+                color={ODS_THEME_COLOR_INTENT[errors[field] ? 'error' : 'primary']}
+                error={errors[field]}
+                onOdsValueChange={(e) => {
+                  setState((s) => ({
+                    ...s,
+                    [field]: e.detail.value,
+                  }));
+                }}
+                type={ODS_INPUT_TYPE.text}
+                className="border"
+              />
+            </OsdsFormField>
+          ),
+        )}
       </div>
 
       <div className="mt-10">

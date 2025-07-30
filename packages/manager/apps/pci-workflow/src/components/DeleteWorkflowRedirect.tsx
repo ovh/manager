@@ -5,9 +5,7 @@ export default function DeleteWorkflowRedirect() {
   const [searchParams] = useSearchParams();
   return (
     <Navigate
-      to={`/pci/projects/${projectId}/workflow/delete/${searchParams.get(
-        'workflowId',
-      )}`}
+      to={`/pci/projects/${projectId}/workflow/delete/${searchParams.get('workflowId')}`}
       replace
     />
   );

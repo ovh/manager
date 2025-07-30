@@ -1,33 +1,31 @@
-import {
-  Headers,
-  StepComponent,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
-import {
-  OsdsBreadcrumb,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useWorkflowStepper } from './hooks/useWorkflowStepper';
-import { WorkflowType } from './steps/WorkflowType.component';
 import {
-  getCron,
-  WorkflowScheduling,
-} from './steps/WorkflowScheduling.component';
+  Headers,
+  StepComponent,
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+
+import { useAddWorkflow } from '@/api/hooks/workflows';
+
+import { useWorkflowStepper } from './hooks/useWorkflowStepper';
 import { WorkflowName } from './steps/WorkflowName.component';
 import { WorkflowResource } from './steps/WorkflowResource.component';
-import { useAddWorkflow } from '@/api/hooks/workflows';
+import { WorkflowScheduling, getCron } from './steps/WorkflowScheduling.component';
+import { WorkflowType } from './steps/WorkflowType.component';
 
 export default function NewPage() {
   const { t } = useTranslation('workflow-add');
@@ -126,10 +124,7 @@ export default function NewPage() {
             isDisabled: stepper.naming.step.isLocked,
           }}
         >
-          <WorkflowResource
-            step={stepper.resource.step}
-            onSubmit={stepper.resource.submit}
-          />
+          <WorkflowResource step={stepper.resource.step} onSubmit={stepper.resource.submit} />
         </StepComponent>
       </div>
       <div className="mt-8">
@@ -144,10 +139,7 @@ export default function NewPage() {
             isDisabled: stepper.naming.step.isLocked,
           }}
         >
-          <WorkflowScheduling
-            step={stepper.scheduling.step}
-            onSubmit={stepper.scheduling.submit}
-          />
+          <WorkflowScheduling step={stepper.scheduling.step} onSubmit={stepper.scheduling.submit} />
         </StepComponent>
       </div>
       <div className="mt-8">
@@ -172,11 +164,7 @@ export default function NewPage() {
           />
           {isAdding && (
             <div className="mt-5">
-              <OsdsSpinner
-                inline
-                size={ODS_SPINNER_SIZE.md}
-                className="align-middle"
-              />
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="align-middle" />
               <OsdsText
                 className="ml-8"
                 color={ODS_THEME_COLOR_INTENT.text}
