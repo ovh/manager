@@ -9,7 +9,6 @@ import { TProject } from '@ovh-ux/manager-pci-common';
 import { ResponseAPIError } from '@ovh-ux/manager-pci-public-ip-app/src/interface';
 import * as managerComponentsModule from '@ovh-ux/manager-react-components';
 
-import * as useWorkflowsModule from '@/api/hooks/workflows';
 import { TWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import { DEFAULT_DATA } from '@/pages/list/data.mock';
 import { wrapper } from '@/wrapperRenders';
@@ -27,6 +26,10 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   };
 });
 
+vi.mock('@/api/hooks/workflows');
+
+vi.mocked(usePaginatedWorkflows).mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows);
+
 describe('ListPage', () => {
   vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
     const actual = await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
@@ -38,15 +41,9 @@ describe('ListPage', () => {
     };
   });
 
-  vi.mock('@/api/hooks/workflows', () => ({
-    usePaginatedWorkflows: vi.fn().mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows),
-  }));
-
   describe('RedirectionGuard', () => {
     beforeAll(() => {
-      vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue(
-        DEFAULT_DATA.emptyPaginatedWorkflows,
-      );
+      vi.mocked(usePaginatedWorkflows).mockReturnValue(DEFAULT_DATA.emptyPaginatedWorkflows);
       vi.spyOn(managerComponentsModule, 'RedirectionGuard').mockImplementation((props) => (
         <div data-testid="guard">
           {JSON.stringify({
@@ -92,7 +89,7 @@ describe('ListPage', () => {
         <div data-testid="breadcrumb">{JSON.stringify(props)}</div>
       ));
 
-      vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue(
+      vi.mocked(usePaginatedWorkflows).mockReturnValue(
         DEFAULT_DATA.fullPaginationWorkflows as ReturnType<typeof usePaginatedWorkflows>,
       );
     });
@@ -149,7 +146,7 @@ describe('ListPage', () => {
 
     describe('Data display', () => {
       it('should show spinner if data is not fetched yet', async () => {
-        vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue({
+        vi.mocked(usePaginatedWorkflows).mockReturnValue({
           isPending: true,
           data: {
             rows: undefined,
@@ -166,7 +163,7 @@ describe('ListPage', () => {
       });
 
       it('should show data if data is fetched', async () => {
-        vi.spyOn(useWorkflowsModule, 'usePaginatedWorkflows').mockReturnValue({
+        vi.mocked(usePaginatedWorkflows).mockReturnValue({
           isPending: false,
           data: {
             rows: [DEFAULT_DATA.workflow as TWorkflow],
