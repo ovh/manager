@@ -21,7 +21,7 @@ import {
   ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-} from './OrderOkmsModal.component.constants';
+} from './OrderOkmsModal.page.constants';
 
 // custom type for the state
 export type OkmsRegionOrderSuccessful = {
@@ -122,7 +122,7 @@ const TermsAndConditions = ({
   );
 };
 
-export const OrderOkmsModal = () => {
+const OrderOkmsModal = () => {
   const { t } = useTranslation([
     'secret-manager/create',
     NAMESPACES.ERROR,
@@ -180,3 +180,5 @@ export const OrderOkmsModal = () => {
     </OdsModal>
   );
 };
+
+export default OrderOkmsModal;
