@@ -7,6 +7,7 @@ import {
   OsdsLink,
   OsdsIcon,
   OsdsTabBar,
+  OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_TABS_SIZE,
@@ -45,68 +46,137 @@ const RoadmapChangelogDatagrids = () => {
   const { environment } = useContext(ShellContext);
   const isRegionUS = environment.getRegion() === 'US';
 
+  const emptyRoadmapChangelogItem: RoadmapChangelogItem = {
+    title: '',
+    description: '',
+    product: '',
+    releaseDate: '',
+    status: '',
+    changelog: '',
+  };
+  const emptyRoadmapChangelogItems: RoadmapChangelogItem[] = [
+    emptyRoadmapChangelogItem,
+    emptyRoadmapChangelogItem,
+    emptyRoadmapChangelogItem,
+  ];
+
   const columns: DatagridColumn<RoadmapChangelogItem>[] = [
     {
       id: 'product',
       label: t('datagrid_table_head_product'),
-      cell: (item: RoadmapChangelogItem) => (
-        <RoadmapChangelogItemProductCell item={item} />
-      ),
+      cell: (item: RoadmapChangelogItem) =>
+        isLoadingItems ? (
+          <OsdsSkeleton />
+        ) : (
+          <RoadmapChangelogItemProductCell item={item} />
+        ),
     },
     {
       id: 'changelog',
       label: t('datagrid_table_head_changelog'),
-      cell: (item: RoadmapChangelogItem) => (
-        <RoadmapChangelogItemTitleCell item={item} />
-      ),
+      cell: (item: RoadmapChangelogItem) =>
+        isLoadingItems ? (
+          <OsdsSkeleton />
+        ) : (
+          <RoadmapChangelogItemTitleCell item={item} />
+        ),
     },
     {
       id: 'description',
       label: t('datagrid_table_head_description'),
-      cell: (item: RoadmapChangelogItem) => (
-        <RoadmapChangelogItemDescriptionCell item={item} />
-      ),
+      cell: (item: RoadmapChangelogItem) =>
+        isLoadingItems ? (
+          <OsdsSkeleton />
+        ) : (
+          <RoadmapChangelogItemDescriptionCell item={item} />
+        ),
     },
     {
       id: 'realease_date',
       label: t('datagrid_table_head_release_date'),
-      cell: (item: RoadmapChangelogItem) => (
-        <RoadmapChangelogItemReleaseDateCell item={item} />
-      ),
+      cell: (item: RoadmapChangelogItem) =>
+        isLoadingItems ? (
+          <OsdsSkeleton />
+        ) : (
+          <RoadmapChangelogItemReleaseDateCell item={item} />
+        ),
     },
     {
       id: 'status',
       label: t('datagrid_table_head_status'),
-      cell: (item: RoadmapChangelogItem) => (
-        <RoadmapChangelogItemStatusCell item={item} />
-      ),
+      cell: (item: RoadmapChangelogItem) =>
+        isLoadingItems ? (
+          <OsdsSkeleton />
+        ) : (
+          <RoadmapChangelogItemStatusCell item={item} />
+        ),
     },
   ];
 
   return (
-    !isLoadingItems &&
-    roadmapChangelogItems && (
-      <div className="max-w-[100vw] overflow-auto">
-        <OsdsTabs
-          panel="roadmap-changelog-datagrid-tab-cloud"
-          size={ODS_TABS_SIZE.md}
-        >
-          <OsdsTabBar>
-            <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-cloud">
-              {t('datagrid_tab_title_cloud')}
+    <div className="max-w-[100%] overflow-auto">
+      <OsdsTabs
+        panel="roadmap-changelog-datagrid-tab-cloud"
+        size={ODS_TABS_SIZE.md}
+      >
+        <OsdsTabBar>
+          <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-cloud">
+            {t('datagrid_tab_title_cloud')}
+          </OsdsTabBarItem>
+          {!isRegionUS && (
+            <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-hosting-collab">
+              {t('datagrid_tab_title_hosting')}
             </OsdsTabBarItem>
-            {!isRegionUS && (
-              <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-hosting-collab">
-                {t('datagrid_tab_title_hosting')}
-              </OsdsTabBarItem>
-            )}
-          </OsdsTabBar>
-          <OsdsTabPanel name="roadmap-changelog-datagrid-tab-cloud">
+          )}
+        </OsdsTabBar>
+        <OsdsTabPanel name="roadmap-changelog-datagrid-tab-cloud">
+          <Datagrid
+            items={
+              isLoadingItems
+                ? emptyRoadmapChangelogItems
+                : roadmapChangelogItems?.cloud || []
+            }
+            columns={columns}
+            hasNextPage={false}
+            totalItems={ROADMAP_CHANGELOG_PAGES}
+            className={styles['roadmap-changelog-datagrid']}
+          />
+          <div className="mt-6">
+            <OsdsLink
+              role="link"
+              target={OdsHTMLAnchorElementTarget._blank}
+              rel={OdsHTMLAnchorElementRel.external}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              href={EXTERNAL_LINKS.CLOUD_CHANGELOG.url}
+              onClick={() => {
+                trackClick(EXTERNAL_LINKS.CLOUD_CHANGELOG.tracking);
+              }}
+            >
+              {t(EXTERNAL_LINKS.CLOUD_CHANGELOG.label_key)}
+              <span slot="end">
+                <OsdsIcon
+                  name={ODS_ICON_NAME.EXTERNAL_LINK}
+                  className="ml-1"
+                  size={ODS_ICON_SIZE.xxs}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  aria-hidden="true"
+                />
+              </span>
+            </OsdsLink>
+          </div>
+        </OsdsTabPanel>
+        {!isRegionUS && (
+          <OsdsTabPanel name="roadmap-changelog-datagrid-tab-hosting-collab">
             <Datagrid
-              items={roadmapChangelogItems.cloud}
+              items={
+                isLoadingItems
+                  ? emptyRoadmapChangelogItems
+                  : roadmapChangelogItems?.hostingCollab || []
+              }
               columns={columns}
               hasNextPage={false}
               totalItems={ROADMAP_CHANGELOG_PAGES}
+              contentAlignLeft
               className={styles['roadmap-changelog-datagrid']}
             />
             <div className="mt-6">
@@ -115,12 +185,12 @@ const RoadmapChangelogDatagrids = () => {
                 target={OdsHTMLAnchorElementTarget._blank}
                 rel={OdsHTMLAnchorElementRel.external}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                href={EXTERNAL_LINKS.CLOUD_CHANGELOG.url}
+                href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
                 onClick={() => {
-                  trackClick(EXTERNAL_LINKS.CLOUD_CHANGELOG.tracking);
+                  trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
                 }}
               >
-                {t(EXTERNAL_LINKS.CLOUD_CHANGELOG.label_key)}
+                {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
                 <span slot="end">
                   <OsdsIcon
                     name={ODS_ICON_NAME.EXTERNAL_LINK}
@@ -133,44 +203,9 @@ const RoadmapChangelogDatagrids = () => {
               </OsdsLink>
             </div>
           </OsdsTabPanel>
-          {!isRegionUS && (
-            <OsdsTabPanel name="roadmap-changelog-datagrid-tab-hosting-collab">
-              <Datagrid
-                items={roadmapChangelogItems.hostingCollab}
-                columns={columns}
-                hasNextPage={false}
-                totalItems={ROADMAP_CHANGELOG_PAGES}
-                contentAlignLeft
-                className={styles.roadmapchangelogDatagrid}
-              />
-              <div className="mt-6">
-                <OsdsLink
-                  role="link"
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  rel={OdsHTMLAnchorElementRel.external}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  href={EXTERNAL_LINKS.WEB_CHANGELOG.url}
-                  onClick={() => {
-                    trackClick(EXTERNAL_LINKS.WEB_CHANGELOG.tracking);
-                  }}
-                >
-                  {t(EXTERNAL_LINKS.WEB_CHANGELOG.label_key)}
-                  <span slot="end">
-                    <OsdsIcon
-                      name={ODS_ICON_NAME.EXTERNAL_LINK}
-                      className="ml-1"
-                      size={ODS_ICON_SIZE.xxs}
-                      color={ODS_THEME_COLOR_INTENT.primary}
-                      aria-hidden="true"
-                    />
-                  </span>
-                </OsdsLink>
-              </div>
-            </OsdsTabPanel>
-          )}
-        </OsdsTabs>
-      </div>
-    )
+        )}
+      </OsdsTabs>
+    </div>
   );
 };
 
