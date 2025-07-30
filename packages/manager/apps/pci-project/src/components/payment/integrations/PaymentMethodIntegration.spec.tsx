@@ -74,6 +74,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={mockCreditPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 
@@ -88,6 +89,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={mockCardPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 
@@ -99,7 +101,11 @@ describe('PaymentMethodIntegration', () => {
 
   it('should render nothing when paymentMethod is null', () => {
     const { container } = render(
-      <PaymentMethodIntegration {...defaultProps} paymentMethod={null} />,
+      <PaymentMethodIntegration
+        {...defaultProps}
+        paymentMethod={null}
+        onPaymentSubmit={vi.fn()}
+      />,
     );
 
     expect(container.firstChild).toBeNull();
@@ -107,7 +113,11 @@ describe('PaymentMethodIntegration', () => {
 
   it('should render nothing when paymentMethod is undefined', () => {
     const { container } = render(
-      <PaymentMethodIntegration {...defaultProps} paymentMethod={undefined} />,
+      <PaymentMethodIntegration
+        {...defaultProps}
+        paymentMethod={undefined}
+        onPaymentSubmit={vi.fn()}
+      />,
     );
 
     expect(container.firstChild).toBeNull();
@@ -129,6 +139,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={sepaPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 
@@ -151,6 +162,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={paypalPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 
@@ -173,6 +185,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={bankPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 
@@ -195,6 +208,7 @@ describe('PaymentMethodIntegration', () => {
       <PaymentMethodIntegration
         {...defaultProps}
         paymentMethod={deferredPaymentMethod}
+        onPaymentSubmit={vi.fn()}
       />,
     );
 

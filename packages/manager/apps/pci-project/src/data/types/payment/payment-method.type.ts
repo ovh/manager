@@ -86,6 +86,16 @@ export type TUserPaymentMethod = TPaymentMethod & {
   status: TPaymentMethodStatus;
 };
 
+export type TRegisterPaymentMethod = {
+  formSessionId: string;
+  merchantId: string;
+  organizationId: string;
+  paymentMethodId: number;
+  transactionId: number;
+  url: string;
+  validationType: string;
+};
+
 export type TAvailablePaymentMethod = TPaymentMethod & {
   formSessionId?: string;
   merchantId?: string;
@@ -100,7 +110,17 @@ export type TPaymentMethodIntegrationRef = {
   registerPaymentMethod?: (
     paymentMethod: TPaymentMethod,
     cart: TCart,
-  ) => Promise<boolean>;
-  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean>;
-  onCartFinalized?: (cart: TCart) => Promise<boolean>;
+    registerPaymentMethod?: TRegisterPaymentMethod,
+  ) => Promise<boolean | unknown>;
+  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean | unknown>;
+  onCartFinalized?: (cart: TCart) => Promise<boolean | unknown>;
+};
+
+export type TPaymentMethodRegisterRef = {
+  registerPaymentMethod?: (
+    paymentMethod: TPaymentMethod,
+    cart: TCart,
+  ) => Promise<boolean | unknown>;
+  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean | unknown>;
+  onCartFinalized?: (cart: TCart) => Promise<boolean | unknown>;
 };
