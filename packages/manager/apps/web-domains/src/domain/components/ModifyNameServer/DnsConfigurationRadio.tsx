@@ -13,6 +13,7 @@ import {
   Icon,
   BADGE_COLOR,
   ICON_NAME,
+  BUTTON_SIZE,
   BUTTON_VARIANT,
 } from '@ovhcloud/ods-react';
 import React, { useState } from 'react';
@@ -27,19 +28,27 @@ import { TDomainZone } from '@/domain/types/domainZone';
 import config from '@/web-domains.config';
 import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
+import NewDnsConfigModal from './NewDnsConfigModal';
+import DnsConfigurationForm from './DnsConfigurationForm';
 
 interface DnsConfigurationRadioProps {
   readonly domainResource: TDomainResource;
   readonly domainZone: TDomainZone;
+  readonly serviceName: string;
 }
 
 export default function DnsConfigurationRadio({
   domainResource,
   domainZone,
+  serviceName,
 }: DnsConfigurationRadioProps) {
   const { t } = useTranslation('domain');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const activeConfig = computeActiveConfiguration(domainResource, domainZone);
+  const [feedbackMessage, setFeedbackMessage] = useState<{
+    type: 'error';
+    message: string;
+  } | null>(null);
   const [selectedConfiguration, setSelectedConfiguration] = useState(
     activeConfig,
   );
@@ -48,11 +57,15 @@ export default function DnsConfigurationRadio({
     serviceName: domainResource.id,
   });
 
+  const [isSavingModalOpen, setIsSavingModalOpen] = useState(false);
   const { data: zoneUrl } = useNavigationGetUrl([
     config.rootLabel,
     `/domain/${domainResource.id}/zone`,
     {},
   ]);
+
+  const internalServers =
+    domainZone?.nameServers?.map((ns) => ({ nameServer: ns })) ?? [];
 
   return (
     <div>
@@ -85,8 +98,8 @@ export default function DnsConfigurationRadio({
               <RadioLabel
                 className={
                   !domainZone
-                    ? 'text-[var(--ods-color-text-disabled-default)]'
-                    : 'text-[var(--ods-color-text)]'
+                    ? 'text-[var(--ods-color-text-disabled-default)] ml-2'
+                    : 'text-[var(--ods-color-text)] ml-2'
                 }
               >
                 <Badge
@@ -115,11 +128,46 @@ export default function DnsConfigurationRadio({
             >
               {t('domain_tab_DNS_modification_option_default_description')}
             </p>
+            {activeConfig !== selectedConfiguration &&
+              selectedConfiguration ===
+                ActiveConfigurationTypeEnum.INTERNAL && (
+                <div className="flex gap-4 mt-4 ml-8">
+                  <Button
+                    size={BUTTON_SIZE.sm}
+                    onClick={() => setIsSavingModalOpen(true)}
+                  >
+                    {t('domain_tab_DNS_modification_button_apply')}
+                  </Button>
+                  <NewDnsConfigModal
+                    serviceName={serviceName}
+                    nameServers={internalServers}
+                    isModalOpen={isSavingModalOpen}
+                    onClose={() => setIsSavingModalOpen(false)}
+                    onError={(msg) => {
+                      setFeedbackMessage({
+                        type: 'error',
+                        message: `${t(
+                          'domain_tab_DNS_modification_update_error',
+                        )}${msg}`,
+                      });
+                    }}
+                    onSuccess={() =>
+                      navigate(`/domain/${serviceName}/dns`, {
+                        state: {
+                          successMessage: t(
+                            'domain_tab_DNS_modification_update_success',
+                          ),
+                        },
+                      })
+                    }
+                  />
+                </div>
+              )}
           </div>
           <div>
             <Radio value={ActiveConfigurationTypeEnum.EXTERNAL}>
               <RadioControl />
-              <RadioLabel className="text-[var(--ods-color-text)]">
+              <RadioLabel className="text-[var(--ods-color-text)] ml-2">
                 {activeConfig === ActiveConfigurationTypeEnum.EXTERNAL && (
                   <Badge
                     className="mr-4"
@@ -135,6 +183,14 @@ export default function DnsConfigurationRadio({
             <p className="text-[var(--ods-color-text)] text-xs ml-8 my-0 mt-1">
               {t('domain_tab_DNS_modification_option_external_description')}
             </p>
+            {selectedConfiguration === ActiveConfigurationTypeEnum.EXTERNAL && (
+              <DnsConfigurationForm
+                serviceName={serviceName}
+                selectedConfig={selectedConfiguration}
+                domainZone={domainZone}
+                currentState={domainResource.currentState}
+              />
+            )}
           </div>
           {!domainZone && (
             <Message dismissible={false}>
@@ -158,8 +214,8 @@ export default function DnsConfigurationRadio({
               <RadioLabel
                 className={
                   !domainZone
-                    ? 'text-[var(--ods-color-text-disabled-default)]'
-                    : 'text-[var(--ods-color-text)]'
+                    ? 'text-[var(--ods-color-text-disabled-default)] ml-2'
+                    : 'text-[var(--ods-color-text)] ml-2'
                 }
               >
                 <Badge
@@ -187,6 +243,14 @@ export default function DnsConfigurationRadio({
             >
               {t('domain_tab_DNS_modification_option_mixed_description')}
             </p>
+            {selectedConfiguration === ActiveConfigurationTypeEnum.MIXED && (
+              <DnsConfigurationForm
+                serviceName={serviceName}
+                selectedConfig={selectedConfiguration}
+                domainZone={domainZone}
+                currentState={domainResource.currentState}
+              />
+            )}
           </div>
         </div>
       </RadioGroup>
