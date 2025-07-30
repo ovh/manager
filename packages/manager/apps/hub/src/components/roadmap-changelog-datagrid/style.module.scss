@@ -2,4 +2,9 @@
   td {
     vertical-align: top !important;
   }
+
+  &-cell {
+    max-width: 24rem;
+    word-wrap: break-word;
+  }
 }
