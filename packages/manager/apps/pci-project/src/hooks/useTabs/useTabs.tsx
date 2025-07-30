@@ -17,7 +17,7 @@ export function useTabs() {
       },
       {
         name: 'settings',
-        title: t('pci_projects_project_parameters'),
+        title: t('pci_projects_project_settings'),
         to: editPath,
       },
     ],

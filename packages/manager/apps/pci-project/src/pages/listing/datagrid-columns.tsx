@@ -19,7 +19,12 @@ const useProjectUrl = (
   const [url, setUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    getProjectUrl(projectId).then(setUrl);
+    getProjectUrl(projectId)
+      .then(setUrl)
+      .catch(() => {
+        // En cas d'erreur, on garde l'URL null
+        setUrl(null);
+      });
   }, [getProjectUrl, projectId]);
 
   return url;
@@ -91,5 +96,6 @@ export const getDatagridColumns = (
     label: '',
     isSortable: false,
     isSearchable: false,
+    isFilterable: false,
   },
 ];
