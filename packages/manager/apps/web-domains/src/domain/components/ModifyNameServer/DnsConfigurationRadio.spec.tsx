@@ -7,19 +7,14 @@ import {
   baseDomainResource,
   domainZoneMock,
 } from '@/domain/__mocks__/dnsDetails';
-import { computeActiveConfiguration } from '@/domain/utils/dnsUtils';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
-vi.mock('@/domain/utils/dnsUtils', () => ({
-  computeActiveConfiguration: vi.fn(),
+vi.mock('@/domain/components/ModifyNameServer/DnsConfigurationForm', () => ({
+  default: () => <div>DNS form</div>,
 }));
 
 describe('DnsConfigurationRadio', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (computeActiveConfiguration as jest.Mock).mockReturnValue(
-      ActiveConfigurationTypeEnum.EXTERNAL,
-    );
   });
 
   it('should render all radio options', () => {
@@ -27,6 +22,7 @@ describe('DnsConfigurationRadio', () => {
       <DnsConfigurationRadio
         domainResource={baseDomainResource}
         domainZone={domainZoneMock}
+        serviceName={baseDomainResource.currentState.name}
       />,
     );
 
@@ -49,6 +45,7 @@ describe('DnsConfigurationRadio', () => {
       <DnsConfigurationRadio
         domainResource={baseDomainResource}
         domainZone={undefined}
+        serviceName={baseDomainResource.currentState.name}
       />,
     );
 
