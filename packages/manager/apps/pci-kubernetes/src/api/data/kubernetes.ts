@@ -30,10 +30,10 @@ export type NodePool = {
   autoscale: boolean;
   availabilityZones?: string[];
   desiredNodes: number;
-  minNodes: number;
+  minNodes?: number;
   localisation: string | null;
   flavorName: string;
-  maxNodes: number;
+  maxNodes?: number;
   monthlyBilled: boolean;
 };
 
