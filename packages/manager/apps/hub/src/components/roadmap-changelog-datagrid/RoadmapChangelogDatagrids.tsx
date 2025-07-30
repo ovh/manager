@@ -121,11 +121,13 @@ const RoadmapChangelogDatagrids = () => {
       >
         <OsdsTabBar>
           <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-cloud">
-            {t('datagrid_tab_title_cloud')}
+            {t('datagrid_tab_title_cloud', { items: ROADMAP_CHANGELOG_PAGES })}
           </OsdsTabBarItem>
           {!isRegionUS && (
             <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-hosting-collab">
-              {t('datagrid_tab_title_hosting')}
+              {t('datagrid_tab_title_hosting', {
+                items: ROADMAP_CHANGELOG_PAGES,
+              })}
             </OsdsTabBarItem>
           )}
         </OsdsTabBar>
