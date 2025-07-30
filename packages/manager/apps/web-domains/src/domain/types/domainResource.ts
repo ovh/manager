@@ -30,7 +30,7 @@ export interface TDatagridDnsDetails {
   type: PublicNameServerTypeEnum;
 }
 
-interface DNSConfiguration {
+export interface DNSConfiguration {
   configurationType: DnsConfigurationTypeEnum;
   glueRecordIPv6Supported: boolean;
   hostSupported: boolean;
