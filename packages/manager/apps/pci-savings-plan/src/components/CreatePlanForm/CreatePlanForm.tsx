@@ -10,12 +10,12 @@ import {
   OdsInput,
   OdsSpinner,
   OdsText,
+  OdsDatepicker,
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
   PropsWithChildren,
   Suspense,
-  startTransition,
   useCallback,
   useContext,
   useEffect,
@@ -91,6 +91,13 @@ type InstanceInfoWithTechnical = InstanceInfo & {
   technical: TechnicalInfo[];
 };
 
+type CreatePlanParams = {
+  offerId: string;
+  displayName: string;
+  size: number;
+  startDate: Date;
+};
+
 export type CreatePlanFormProps = {
   instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
@@ -101,15 +108,7 @@ export type CreatePlanFormProps = {
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
   setTechnicalModel: (technicalModel: string) => void;
-  onCreatePlan: ({
-    offerId,
-    displayName,
-    size,
-  }: {
-    offerId: string;
-    displayName: string;
-    size: number;
-  }) => void;
+  onCreatePlan: (params: CreatePlanParams) => void;
   isDiscoveryProject: boolean;
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
@@ -212,6 +211,19 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const activeInstance = instanceSelected.technical?.find(
     (item) => item.name === technicalModel,
   );
+  const minStartDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  }, []);
+
+  const maxStartDate = useMemo(() => {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 6);
+    return date;
+  }, []);
+
+  const [startDate, setStartDate] = useState(minStartDate);
 
   const onSetInstanceCategory = useCallback(
     (category: InstanceTechnicalName) => {
@@ -269,6 +281,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         offerId: offerIdSelected,
         displayName: planName,
         size: quantity,
+        startDate,
       });
     }
   };
@@ -290,7 +303,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   return (
     <div>
-      {currentPlanPricing && (
+      {isModalOpen && (
         <CreatePlanConfirmModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
@@ -301,6 +314,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
             resource: selectedResource,
             deploymentMode,
             model: technicalModel,
+            startDate,
             quantity,
             monthlyPrice: currentPlanPricing.monthlyPrice,
             monthlyPercentageDiscount:
@@ -337,12 +351,26 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         quantity={quantity}
         handleQuantityChange={handleQuantityChange}
       />
+
       <CommitmentWrapper
         enrichedPricingByDuration={enrichedPricingByDuration}
         isLoading={isPricingLoading || isTechnicalInfoLoading}
         setOfferIdSelected={setOfferIdSelected}
         offerIdSelected={offerIdSelected}
       />
+      <Block>
+        <Subtitle>{t('choose_date')}</Subtitle>
+        <DescriptionWrapper>{t('choose_date_description')}</DescriptionWrapper>
+        <OdsDatepicker
+          value={startDate}
+          name="savings-plan-start-date"
+          min={minStartDate}
+          max={maxStartDate}
+          onOdsChange={(e) => {
+            setStartDate(e.target.value);
+          }}
+        />
+      </Block>
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
         <OdsInput
