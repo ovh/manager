@@ -112,6 +112,9 @@ const mapEngine = (
       defaultVersion: engineSuggestion.version,
       storageMode: engineCapability.storage,
       versions: [],
+      ...(engineCapability.lifecycle?.endOfSale && {
+        eos: engineCapability.lifecycle.endOfSale,
+      }),
     };
     tree.push(treeEngine);
   }
