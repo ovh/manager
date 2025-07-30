@@ -1,4 +1,5 @@
 import {
+  DNSConfiguration,
   TDatagridDnsDetails,
   TDomainResource,
   TNameServer,
@@ -127,4 +128,36 @@ export function computeActiveConfiguration(
     default:
       return ActiveConfigurationTypeEnum.INTERNAL;
   }
+}
+
+export function computeDisplayNameServers(
+  currentStateConfig: DNSConfiguration,
+  domainZone: TDomainZone,
+  selectedConfig: ActiveConfigurationTypeEnum,
+): TNameServer[] {
+  const isSameConfig = currentStateConfig.configurationType === selectedConfig;
+
+  if (selectedConfig === ActiveConfigurationTypeEnum.EXTERNAL && isSameConfig) {
+    return currentStateConfig.nameServers as TNameServer[];
+  }
+
+  if (selectedConfig === ActiveConfigurationTypeEnum.MIXED) {
+    if (!isSameConfig) {
+      return domainZone.nameServers.map((ns) => ({ nameServer: ns }));
+    }
+    const sortedNameServers = [
+      ...currentStateConfig.nameServers.filter((ns) =>
+        domainZone.nameServers.includes(ns.nameServer),
+      ),
+      ...currentStateConfig.nameServers.filter(
+        (ns) => !domainZone.nameServers.includes(ns.nameServer),
+      ),
+    ];
+    return sortedNameServers.map(({ nameServer, ipv4, ipv6 }) => ({
+      nameServer,
+      ipv4,
+      ipv6,
+    }));
+  }
+  return [];
 }

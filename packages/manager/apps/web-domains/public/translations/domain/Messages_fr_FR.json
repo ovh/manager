@@ -66,6 +66,14 @@
   "domain_tab_DNS_modification_default_activate_dns": "Pour utiliser les DNS par défaut d’OVHcloud, veuillez d’abord activer une zone DNS.",
   "domain_tab_DNS_modification_activate_dns_link": "Activer votre zone DNS",
   "domain_tab_DNS_modification_mixed_activate_dns": "Pour utiliser une configuration mixte incluant les DNS d’OVHcloud, veuillez d’abord activer une zone DNS.",
-  "domain_tab_DNS_modification_mixed_dns_number": "Veuillez renseigner entre 2 et 14 DNS.",
-  "domain_tab_DNS_modification_external_dns_number": "Veuillez renseigner entre 2 et 10 DNS."
+  "domain_tab_DNS_modification_form_mixed_dns_number": "Veuillez renseigner entre 2 et 14 DNS.",
+  "domain_tab_DNS_modification_form_external_dns_number": "Veuillez renseigner entre 2 et 10 DNS.",
+  "domain_tab_DNS_modification_form_server_field": "Serveur DNS",
+  "domain_tab_DNS_modification_form_ip_field": "IP associée",
+  "domain_tab_DNS_modification_form_placeholder": "Input text",
+  "domain_tab_DNS_modification_form_add": "Ajouter",
+  "domain_tab_DNS_modification_form_server_field_mandatory": " - obligatoire",
+  "domain_tab_DNS_modification_form_server_wrong_format": "Veuillez saisir un nom d'hôte valide.",
+  "domain_tab_DNS_modification_form_server_already_used": "Ce nom d'hôte est déjà renseigné.",
+  "domain_tab_DNS_modification_form_ip_wrong_format": "Veuillez saisir une IP valide."
 }

@@ -23,6 +23,7 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { TDomainZone } from '@/domain/types/domainZone';
 import config from '@/web-domains.config';
+import DnsConfigurationForm from './DnsConfigurationForm';
 
 interface DnsConfigurationRadioProps {
   readonly domainResource: TDomainResource;
@@ -75,8 +76,8 @@ export default function DnsConfigurationRadio({
               <RadioLabel
                 className={
                   !domainZone
-                    ? 'text-[var(--ods-color-text-disabled-default)]'
-                    : 'text-[var(--ods-color-text)]'
+                    ? 'text-[var(--ods-color-text-disabled-default)] ml-2'
+                    : 'text-[var(--ods-color-text)] ml-2'
                 }
               >
                 <Badge
@@ -109,7 +110,7 @@ export default function DnsConfigurationRadio({
           <div>
             <Radio value={ActiveConfigurationTypeEnum.EXTERNAL}>
               <RadioControl />
-              <RadioLabel className="text-[var(--ods-color-text)]">
+              <RadioLabel className="text-[var(--ods-color-text)] ml-2">
                 {activeConfig === ActiveConfigurationTypeEnum.EXTERNAL && (
                   <Badge
                     className="mr-4"
@@ -125,6 +126,15 @@ export default function DnsConfigurationRadio({
             <p className="text-[var(--ods-color-text)] text-xs ml-8 my-0 mt-1">
               {t('domain_tab_DNS_modification_option_external_description')}
             </p>
+            {selectedConfiguration === ActiveConfigurationTypeEnum.EXTERNAL && (
+              <DnsConfigurationForm
+                selectedConfig={selectedConfiguration}
+                domainZone={domainZone}
+                currentStateConfig={
+                  domainResource.currentState.dnsConfiguration
+                }
+              />
+            )}
           </div>
           {!domainZone && (
             <Message dismissible={false}>
@@ -148,8 +158,8 @@ export default function DnsConfigurationRadio({
               <RadioLabel
                 className={
                   !domainZone
-                    ? 'text-[var(--ods-color-text-disabled-default)]'
-                    : 'text-[var(--ods-color-text)]'
+                    ? 'text-[var(--ods-color-text-disabled-default)] ml-2'
+                    : 'text-[var(--ods-color-text)] ml-2'
                 }
               >
                 <Badge
@@ -177,6 +187,15 @@ export default function DnsConfigurationRadio({
             >
               {t('domain_tab_DNS_modification_option_mixed_description')}
             </p>
+            {selectedConfiguration === ActiveConfigurationTypeEnum.MIXED && (
+              <DnsConfigurationForm
+                selectedConfig={selectedConfiguration}
+                domainZone={domainZone}
+                currentStateConfig={
+                  domainResource.currentState.dnsConfiguration
+                }
+              />
+            )}
           </div>
         </div>
       </RadioGroup>
