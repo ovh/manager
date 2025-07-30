@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';
-import { TProps } from './Tabs.props';
+import { Tabs, TabList, Tab, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import { TabsProps } from './Tabs.props';
 
 export function TabsComponent<Item>({
   items = [],
@@ -8,8 +8,8 @@ export function TabsComponent<Item>({
   contentElement = ({ item }) => <>{`${item}`}</>,
   className,
   onChange,
-}: TProps<Item>): JSX.Element {
-  const [selectedTabsItem, setSelectedTabsItem] = useState<string>(
+}: TabsProps<Item>): JSX.Element {
+  const [selectedTabItem, setselectedTabItem] = useState<string>(
     items?.[0] as string,
   );
 
@@ -19,25 +19,25 @@ export function TabsComponent<Item>({
   return (
     <div className={className}>
       <Tabs
-        onValueChange={(value) => {
-          setSelectedTabsItem(value?.value);
+        onValueChange={(value: TabsValueChangeEvent) => {
+          setselectedTabItem(value?.value);
           onChange?.(value as Item);
         }}
-        value={selectedTabsItem}
+        value={selectedTabItem}
       >
         <TabList>
           {items.map((item) => (
             <Tab key={item as string} value={item as string}>
               <TitleComponent
                 item={item}
-                isSelected={item === selectedTabsItem}
+                isSelected={item === selectedTabItem}
               />
             </Tab>
           ))}
         </TabList>
       </Tabs>
       <div className="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0">
-        <ContentComponent item={selectedTabsItem as Item} />
+        <ContentComponent item={selectedTabItem as Item} />
       </div>
     </div>
   );
