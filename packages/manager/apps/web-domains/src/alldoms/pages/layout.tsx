@@ -6,6 +6,7 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import Loading from '@/alldoms/components/Loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
@@ -28,7 +29,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <React.Suspense>
+    <React.Suspense fallback={<Loading />}>
       <Outlet />
     </React.Suspense>
   );

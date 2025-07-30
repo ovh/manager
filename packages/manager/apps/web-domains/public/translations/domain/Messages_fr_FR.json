@@ -93,5 +93,18 @@
   "domain_tab_general_information_pending_deletion": "Suppression en cours",
   "domain_tab_general_information_deleted": "Supprimé",
   "domain_tab_general_not_suspended": "Actif",
-  "domain_tab_general_suspended": "Suspendu"
+  "domain_tab_general_suspended": "Suspendu",
+  "domain_tab_DNS_modification_form_dns_number": "Veuillez renseigner entre {{min}} et {{max}} DNS.",
+  "domain_tab_DNS_modification_form_server_field": "Serveur DNS",
+  "domain_tab_DNS_modification_form_ip_field": "IP associée",
+  "domain_tab_DNS_modification_form_placeholder": "ns1.my-domain-is-gre.at",
+  "domain_tab_DNS_modification_form_placeholder_ip": "198.27.92.1",
+  "domain_tab_DNS_modification_form_server_field_mandatory": "obligatoire",
+  "domain_tab_DNS_modification_form_server_wrong_format": "Veuillez saisir un nom d'hôte valide.",
+  "domain_tab_DNS_modification_form_server_already_used": "Ce nom d'hôte est déjà renseigné.",
+  "domain_tab_DNS_modification_form_ip_wrong_format": "Veuillez saisir une IP valide.",
+  "domain_tab_DNS_modification_form_internal_server_error": "Pour utiliser les DNS internes d'OVHcloud, veuillez sélectionner un autre type de configuration.",
+  "domain_tab_DNS_modification_modal_body": "Après validation, les DNS utilisés seront les suivants :",
+  "domain_tab_DNS_modification_update_error": "La mise à jour de vos DNS a échoué pour la raison suivante : ",
+  "domain_tab_DNS_modification_update_success": "Votre demande de mise à jour a bien été prise en considération et sera traitée dans les meilleurs délais."
 }

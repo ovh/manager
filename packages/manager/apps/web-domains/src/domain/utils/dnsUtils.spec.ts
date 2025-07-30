@@ -1,4 +1,3 @@
-import '@/common/setupTests';
 import {
   isIncluded,
   transformCurrent,
