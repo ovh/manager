@@ -73,11 +73,20 @@ export const getPageProps = ({
   level2,
 });
 
+const actionTypes = ['action', 'navigation', 'download', 'exit'] as const;
+export type ActionType = typeof actionTypes[number];
+
+export const isActionType = (
+  maybeActionType: unknown,
+): maybeActionType is ActionType =>
+  typeof maybeActionType === 'string' &&
+  new Set<string>(actionTypes).has(maybeActionType);
+
 export type TrackingClickParams = {
   location?: PageLocation;
   buttonType?: ButtonType;
   actions?: string[];
-  actionType?: 'action' | 'navigation' | 'download' | 'exit';
+  actionType?: ActionType;
 };
 
 export const getClickProps = ({
