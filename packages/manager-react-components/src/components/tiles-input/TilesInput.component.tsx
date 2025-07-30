@@ -1,73 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { OdsCard } from '@ovhcloud/ods-components/react';
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
-import { hashCode } from '../../../../utils';
+import { hashCode } from '../../utils';
+import { TilesInputProps, TilesInputState } from './TilesInput.props';
+import { stackItems } from './TilesInput.utils';
 
-const uniqBy = function uniqBy<I, U>(items: I[], cb: (item: I) => U): I[] {
-  return [
-    ...items
-      .reduce((map: Map<U, I>, item: I) => {
-        if (!map.has(cb(item))) map.set(cb(item), item);
-        return map;
-      }, new Map())
-      .values(),
-  ];
-};
-
-const stackItems = function stackItems<I, U>(
-  items: I[],
-  cb?: (item: I) => U,
-): Map<U | undefined, I[]> {
-  const stacks = new Map<U | undefined, I[]>();
-
-  if (cb) {
-    const uniques = uniqBy<I, U>(items, cb);
-    uniques.forEach((unique) => {
-      const key = cb(unique);
-      stacks.set(key, []);
-      const stackItem = stacks.get(key);
-      if (stackItem) {
-        stackItem.push(...items.filter((item) => isEqual(key, cb(item))));
-      }
-    });
-  } else {
-    stacks.set(undefined, items);
-  }
-
-  return stacks;
-};
-
-export type TSimpleProps<T, S = void> = {
-  id?: (() => string) | string;
-  items: T[];
-  value: T | null;
-  onInput: (value: T) => void;
-  label: (item: T) => JSX.Element | string;
-  tileClass?: {
-    active?: string;
-    inactive?: string;
-  };
-  stack?: {
-    by: (item: T) => S;
-    label: (stack: S, items: T[]) => JSX.Element | string;
-    title: (stack: S, items: T[]) => JSX.Element | string;
-    value?: S;
-    onChange?: (stack: S) => void;
-  };
-};
-
-type IState<T, S> = {
-  stacks: Map<S | undefined, T[]>;
-  selectedStack: S | undefined;
-  activeClass: string;
-  inactiveClass: string;
-};
-
-export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
-  T,
-  S,
->({
+export const TilesInputComponent = <T, S>({
   items,
   value,
   onInput,
@@ -75,8 +14,8 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
   tileClass,
   stack,
   id,
-}: TSimpleProps<T, S>): JSX.Element {
-  const [state, setState] = useState<IState<T, S>>({
+}: TilesInputProps<T, S>): JSX.Element => {
+  const [state, setState] = useState<TilesInputState<T, S>>({
     stacks: stackItems(items, stack?.by),
     selectedStack: stack?.value,
     activeClass: `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
@@ -216,7 +155,7 @@ export const SimpleTilesInputComponent = function SimpleTilesInputComponent<
                 )}
               </span>
             </div>
-            <SimpleTilesInputComponent
+            <TilesInputComponent
               value={value}
               items={state.stacks.get(state.selectedStack) || []}
               label={label}
