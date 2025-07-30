@@ -57,5 +57,6 @@
   "telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner": "My business is crowdfunded",
   "telephony_billingAccount_svaWallet_kyc_identity_company_marketplace": "My company is a marketplace",
   "telephony_billingAccount_svaWallet_kyc_identity_company_websiteUrl": "Website URL",
-  "telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label": "Confirm"
+  "telephony_billingAccount_svaWallet_kyc_identity_submit_edit_label": "Confirm",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_registration_date": "Creation date"
 }
