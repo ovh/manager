@@ -26,6 +26,15 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   };
 });
 
+vi.mock(import('@/domain/utils/dnsUtils'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    computeDisplayNameServers: vi.fn(),
+    canSaveNewDnsConfig: vi.fn(),
+  };
+});
+
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
   Navigate: vi.fn(() => null),
