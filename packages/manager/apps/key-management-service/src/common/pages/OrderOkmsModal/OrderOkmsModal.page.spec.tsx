@@ -18,17 +18,16 @@ import {
 } from '@ovh-ux/manager-module-order';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
-import {
+import OrderOkmsModal, {
   OkmsRegionOrderSuccessful,
-  OrderOkmsModal,
-} from './OrderOkmsModal.component';
+} from './OrderOkmsModal.page';
 import {
   ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
   ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID,
   ORDER_OKMS_CREATE_RETRY_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-} from './OrderOkmsModal.component.constants';
+} from './OrderOkmsModal.page.constants';
 
 let i18nValue: i18n;
 
@@ -116,9 +115,10 @@ const clickOnConfirmButton = async (user: UserEvent) => {
 };
 
 describe('Order Okms Modal test suite', () => {
-  beforeEach(() => {
-    vi.resetAllMocks();
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
+
   describe('on init', () => {
     it('should display a loading state when creating a cart', async () => {
       // GIVEN
@@ -177,7 +177,6 @@ describe('Order Okms Modal test suite', () => {
 
   describe('on terms and conditions', () => {
     beforeEach(() => {
-      vi.resetAllMocks();
       vi.mocked(createCart).mockResolvedValue({
         cartId: 'cart-id',
         contractList: mockedContracts,
