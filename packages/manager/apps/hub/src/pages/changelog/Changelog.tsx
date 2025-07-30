@@ -98,7 +98,7 @@ export default function Changelog() {
                 {t('changelog_paragraph_1')}
               </OsdsText>
             </div>
-            <div className="pt-6">
+            <div className="pt-6 contents max-w-[100%]">
               <RoadmapChangelogDatagrids />
             </div>
             <div className="pt-6">

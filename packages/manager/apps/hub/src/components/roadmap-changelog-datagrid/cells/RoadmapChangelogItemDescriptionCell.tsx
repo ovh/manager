@@ -4,8 +4,9 @@ import { ODS_ICON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import DOMPurify from 'dompurify';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import ReactMarkdown from 'react-markdown';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
-import { ROADMAP_CHANGELOG_DATAGRID_COLLAPSED_LENGTH } from '@/changelog.constants';
+import styles from '../style.module.scss';
 
 export const RoadmapChangelogItemDescriptionCell = ({
   item,
@@ -18,16 +19,16 @@ export const RoadmapChangelogItemDescriptionCell = ({
   }, [item, DOMPurify]);
 
   return (
-    <>
+    <DataGridTextCell>
       {item.title && (
         <div>
           <div className="flex flex-row justify-start items-center">
-            <div
-              className="flex w-[24px] h-[24px] cursor-pointer hover:bg-[--ods-color-blue-100] items-center justify-center mr-2"
-              onClick={() => setIsOpen(!isOpen)}
-              data-testid="chevron-button"
-            >
-              {item.description && (
+            {item.description && (
+              <div
+                className="flex w-[24px] h-[24px] cursor-pointer hover:bg-[--ods-color-blue-100] items-center justify-center mr-2"
+                onClick={() => setIsOpen(!isOpen)}
+                data-testid="chevron-button"
+              >
                 <OsdsIcon
                   className="flex min-w-[24px] max-w-[24px]"
                   color={ODS_THEME_COLOR_INTENT.primary}
@@ -40,14 +41,14 @@ export const RoadmapChangelogItemDescriptionCell = ({
                   data-testid="chevron-icon"
                   aria-hidden="true"
                 ></OsdsIcon>
-              )}
-            </div>
-            <div className="w-[24rem]" style={{ textOverflow: 'ellipsis' }}>
-              {item.title}
-            </div>
+              </div>
+            )}
+            <div className="wrap-break-word">{item.title}</div>
           </div>
           {isOpen && (
-            <div className="w-[24rem]" style={{ textOverflow: 'ellipsis' }}>
+            <div
+              className={`mt-[1rem] ${styles['roadmap-changelog-datagrid-cell']}`}
+            >
               <ReactMarkdown
                 components={{
                   h2: 'strong',
@@ -64,6 +65,6 @@ export const RoadmapChangelogItemDescriptionCell = ({
           )}
         </div>
       )}
-    </>
+    </DataGridTextCell>
   );
 };
