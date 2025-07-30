@@ -186,7 +186,7 @@ const BackupActionPage = ({
   onError,
   isLoading,
 }: TBackupActionPageProps) => {
-  const { t, i18n } = useTranslation('actions');
+  const { t, i18n } = useTranslation(['actions', 'common']);
   const locale = i18n.language.replace('_', '-');
   const dateFormatter = useMemo(
     () =>
@@ -297,6 +297,13 @@ const BackupActionPage = ({
             <ToggleField<TFormFieldsValues>
               label={t('pci_instances_actions_backup_instance_distant_label')}
               name={'distantSnapshot'}
+              badges={[
+                {
+                  label: t('common:pci_instances_common_new'),
+                  backgroundColor: '#47FFFA',
+                  textColor: '#000D1F',
+                },
+              ]}
             />
 
             <DistantSnapshotSection
