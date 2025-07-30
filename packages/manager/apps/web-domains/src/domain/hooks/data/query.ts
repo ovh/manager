@@ -7,6 +7,7 @@ import {
 import {
   getDomainAnycastOption,
   getDomainResource,
+  updateDomainResource,
 } from '@/domain/data/api/domainResources';
 import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
 import { getDomainZone } from '@/domain/data/api/domainZone';
@@ -112,7 +113,7 @@ export const useTerminateAnycastMutation = (
         }),
       );
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       addError(t('domain_dns_tab_terminate_anycast_error', { error }));
     },
   });
@@ -135,5 +136,41 @@ export const useGetServiceInformation = (
   return {
     serviceInfo: data,
     isServiceInfoLoading: isLoading,
+  };
+};
+export const useUpdateDomainResource = (serviceName: string) => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({
+      checksum,
+      nameServers,
+    }: {
+      checksum: string;
+      nameServers: {
+        nameServer: string;
+        ipv4?: string;
+        ipv6?: string;
+      }[];
+    }) =>
+      updateDomainResource(serviceName, {
+        checksum,
+        targetSpec: {
+          dnsConfiguration: {
+            nameServers,
+          },
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'resource', serviceName],
+      });
+    },
+    onError: () => {},
+  });
+
+  return {
+    updateDomain: mutate,
+    isUpdateDomainPending: isPending,
   };
 };
