@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { usePaymentMethods, paymentMathodQueryKey } from './usePaymentMethods';
+import { usePaymentMethods, paymentMethodQueryKey } from './usePaymentMethods';
 import { createWrapper } from '@/wrapperRenders';
 import {
   TPaymentMethodIntegration,
@@ -57,19 +57,14 @@ describe('usePaymentMethods', () => {
   });
 
   it('should generate correct query key without parameters', () => {
-    const queryKey = paymentMathodQueryKey();
-    expect(queryKey).toEqual(['me', 'payment', 'method', []]);
+    const queryKey = paymentMethodQueryKey();
+    expect(queryKey).toEqual(['payment', 'methods', undefined]);
   });
 
   it('should generate correct query key with parameters', () => {
     const params: TPaymentMethodParams = { status: TPaymentMethodStatus.VALID };
-    const queryKey = paymentMathodQueryKey(params);
-    expect(queryKey).toEqual([
-      'me',
-      'payment',
-      'method',
-      [['status', 'VALID']],
-    ]);
+    const queryKey = paymentMethodQueryKey(params);
+    expect(queryKey).toEqual(['payment', 'methods', params]);
   });
 
   it('should fetch payment methods without parameters', async () => {
@@ -116,12 +111,7 @@ describe('usePaymentMethods', () => {
     });
 
     // Verify the query key structure matches what we expect
-    const expectedQueryKey = paymentMathodQueryKey(params);
-    expect(expectedQueryKey).toEqual([
-      'me',
-      'payment',
-      'method',
-      [['status', 'VALID']],
-    ]);
+    const expectedQueryKey = paymentMethodQueryKey(params);
+    expect(expectedQueryKey).toEqual(['payment', 'methods', params]);
   });
 });
