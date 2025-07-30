@@ -14,7 +14,7 @@ import { useOkmsList } from '@/data/hooks/useOkms';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { DomainSelector } from './DomainSelector.component';
 import { RegionSelector } from './RegionSelector.component';
-import { OkmsRegionOrderSuccessful } from '@/common/components/OrderOkmsModal/OrderOkmsModal.component';
+import { OkmsRegionOrderSuccessful } from '@/common/pages/OrderOkmsModal/OrderOkmsModal.page';
 
 type DomainManagementProps = {
   selectedDomainId: string;

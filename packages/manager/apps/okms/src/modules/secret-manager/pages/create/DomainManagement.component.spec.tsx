@@ -39,7 +39,7 @@ import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
 import { ErrorResponse } from '@/types/api.type';
-import { OkmsRegionOrderSuccessful } from '@/common/components/OrderOkmsModal/OrderOkmsModal.component';
+import { OkmsRegionOrderSuccessful } from '@/common/pages/OrderOkmsModal/OrderOkmsModal.page';
 
 let i18nValue: i18n;
 
@@ -286,7 +286,7 @@ describe('Domain management test suite', () => {
         // GIVEN
         useLocationMock = {
           state: {
-            orderRegion: 'new-example-region', // New mocked orderRegion value
+            orderRegion: 'regionId',
           },
         };
 

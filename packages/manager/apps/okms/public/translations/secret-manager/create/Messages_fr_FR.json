@@ -3,7 +3,7 @@
   "domain_section_title": "1. Sélection du domaine",
   "region_selector_title": "Sélectionnez une région",
   "domain_selector_title": "Sélectionnez un domaine",
-  "domain_activation_in_progress": "Veuillez patienter, creation en cours.",
+  "domain_activation_in_progress": "Veuillez patienter, création en cours.",
   "create_domain_tc_title": "Activation de la région",
   "create_domain_tc_description": "Pour activer votre région il est nécessaire de créer un domaine OKMS. Souhaitez-vous continuer l'activation de votre région ?",
   "create_domain_tc_confirm_label": "J'ai pris connaissance et j'accepte les conditions générales, l'annexe relative au traitement des données personnelles et les conditions particulières de services d'OVH.",
