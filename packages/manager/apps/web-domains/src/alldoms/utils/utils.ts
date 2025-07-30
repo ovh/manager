@@ -1,5 +1,5 @@
-import { TServiceInfo } from '@/alldoms/types';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import { TServiceInfo } from '@/alldoms/types';
 
 export const findContact = (
   contacts: TServiceInfo['customer']['contacts'],

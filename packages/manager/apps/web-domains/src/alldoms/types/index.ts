@@ -1,9 +1,9 @@
 import {
   DomainRegistrationStateEnum,
+  LifecycleCapacitiesEnum,
   ServiceInfoRenewMode,
   ServiceInfoType,
   ServiceInfoUpdateEnum,
-  LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
 
 export interface TAllDomDomains {

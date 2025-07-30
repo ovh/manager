@@ -1,16 +1,17 @@
-import {
-  ODS_TEXT_PRESET,
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useNavigate } from 'react-router-dom';
-import { ModalStepsProps } from '@/alldoms/types';
-import DomainsCheckboxList from '@/alldoms/components/Terminate/DomainsCheckboxes/DomainsCheckboxList';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT, ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import DomainsCheckboxList from '@/alldoms/components/terminate/domains-checkboxes/DomainsCheckboxList';
 import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
+import { ModalStepsProps } from '@/alldoms/types';
 
 export default function TerminateModalStepOne({
   services,
@@ -63,11 +64,7 @@ export default function TerminateModalStepOne({
         />
       </div>
 
-      <OdsMessage
-        className="mb-6"
-        color={ODS_MESSAGE_COLOR.information}
-        isDismissible={false}
-      >
+      <OdsMessage className="mb-6" color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
         {t('allDom_modal_step_one_message')}
       </OdsMessage>
 

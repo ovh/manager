@@ -1,24 +1,25 @@
 import React from 'react';
+
 import { Navigate, Route } from 'react-router-dom';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/alldoms/pages/404';
 import { urls } from '@/alldoms/routes/routes.constant';
 
 const LayoutPage = React.lazy(() => import('@/alldoms/pages/layout'));
-const AllDomListingPage = React.lazy(() =>
-  import('@/alldoms/pages/service/serviceList/serviceList'),
+const AllDomListingPage = React.lazy(
+  () => import('@/alldoms/pages/service/service-list/serviceList'),
 );
-const AllDomDetailPage = React.lazy(() =>
-  import('@/alldoms/pages/service/serviceDetail/serviceDetail'),
+const AllDomDetailPage = React.lazy(
+  () => import('@/alldoms/pages/service/service-detail/serviceDetail'),
 );
-const AllDomTerminatePage = React.lazy(() =>
-  import('@/alldoms/pages/service/serviceTerminate/serviceTerminate'),
+const AllDomTerminatePage = React.lazy(
+  () => import('@/alldoms/pages/service/service-terminate/serviceTerminate'),
 );
-const AllDomCancelTerminatePage = React.lazy(() =>
-  import(
-    '@/alldoms/pages/service/serviceCancelTerminate/serviceCancelTerminate'
-  ),
+const AllDomCancelTerminatePage = React.lazy(
+  () => import('@/alldoms/pages/service/service-cancel-terminate/serviceCancelTerminate'),
 );
 
 export default (
