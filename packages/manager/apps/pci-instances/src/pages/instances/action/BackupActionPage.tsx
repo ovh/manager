@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { Input } from '@datatr-ux/uxlib';
 import { useMemo, useState } from 'react';
+import { Input, Text } from '@ovhcloud/ods-react';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { TRescueActionPageProps } from './RescueAction.page';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
@@ -62,24 +62,22 @@ const BackupActionPage = ({
       section={section}
       isLoading={isLoading}
     >
-      <div className="flex flex-col gap-2">
-        <p className="text-sm font-medium">
-          {t('pci_instances_actions_backup_instance_name_label')}
-        </p>
+      <div className="flex flex-col gap-4">
+        <Text>{t('pci_instances_actions_backup_instance_name_label')}</Text>
         <Input
-          type="text"
           name="backup-name"
           value={snapshotName}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setSnapshotName(e.target.value)
           }
+          className="min-h-[40px]"
         />
         {!!price && !isBackupLoading && (
-          <p className="text-sm font-medium">
+          <Text>
             {t('pci_instances_actions_backup_instance_price', {
               price,
             })}
-          </p>
+          </Text>
         )}
       </div>
     </ActionModal>
