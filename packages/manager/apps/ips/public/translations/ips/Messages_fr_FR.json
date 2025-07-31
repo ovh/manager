@@ -2,5 +2,10 @@
   "breadcrumb_root_label": "Toutes les IPs",
   "order": "Commander une IP",
   "byoip": "BYOIP",
-  "free_price": "Gratuit"
+  "free_price": "Gratuit",
+  "export_ips_header": "Exporter mes adresses IP dans un fichier CSV",
+  "export_ips_description": "L'export de vos IP dure quelques secondes (en fonction du nombre d'IP que vous possédez).",
+  "export_ips_confirmation": "Etes-vous sûr de vouloir exporter les IP en format CSV?",
+  "export_ips_success": "L'export de vos IP est terminée",
+  "export_ips_error": "Une erreur s'est produite lors de l'export de vos IP: {{error}}"
 }

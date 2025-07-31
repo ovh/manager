@@ -6,6 +6,7 @@
   "listing_resultats": "résultats",
   "orderIpsButtonLabel": "Commander des IPs",
   "orderByoipButtonLabel": "Bring your own IP",
+  "exportIpsButtonTitle": "Exporter les adresses IP",
   "listingColumnsIp": "Adresse IP",
   "listingColumnsIpType": "IP Type",
   "listingColumnsIpRegion": "Régions",

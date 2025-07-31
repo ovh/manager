@@ -46,6 +46,14 @@ export default function IpListingPage() {
         />
         <IpFilter />
         <TypeFilter />
+        <OdsButton
+          className="ml-auto mb-5"
+          variant={ODS_BUTTON_VARIANT.outline}
+          icon={ODS_ICON_NAME.download}
+          onClick={() => navigate(urls.exportIps)}
+          title={t('exportIpsButtonTitle')}
+          label=""
+        />
       </div>
       <React.Suspense fallback={<Loading />}>
         <IpDatagrid />

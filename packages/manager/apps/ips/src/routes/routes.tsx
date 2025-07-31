@@ -149,6 +149,19 @@ export const Routes: any = [
                   },
                 },
               },
+              {
+                id: 'exportIps',
+                path: urls.exportIps,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/exportIps/exportIps.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'exportIps',
+                    pageType: PageType.popup,
+                  },
+                },
+              }
             ],
           },
           {
