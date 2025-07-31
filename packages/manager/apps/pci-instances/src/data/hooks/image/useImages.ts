@@ -23,7 +23,7 @@ export const useImages = <T>({
   selectFn,
 }: TUseImageProps<T>) =>
   useQuery({
-    queryKey: ['project', projectId, 'images'],
+    queryKey: ['project', projectId, 'region', region, 'images', params],
     queryFn: () => getImages(projectId, region, params || {}),
     select: useCallback(selectFn, [selectFn]),
   });
