@@ -1,4 +1,3 @@
-import odsPlugin from '@datatr-ux/ods-tailwind-config';
 import config from '@ovh-ux/manager-tailwind-config';
 import path from 'path';
 import { createRequire } from 'node:module';
@@ -22,5 +21,4 @@ export default {
   corePlugins: {
     preflight: false,
   },
-  plugins: [odsPlugin],
 };

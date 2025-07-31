@@ -1,10 +1,11 @@
 import {
   Select,
   SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@datatr-ux/uxlib';
+  SelectControl,
+  SelectValueChangeDetail,
+  Text,
+} from '@ovhcloud/ods-react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 type TImageSelectorProps = {
@@ -21,32 +22,30 @@ const ImageSelector = ({
   imageOptions,
 }: TImageSelectorProps) => {
   const { t } = useTranslation('actions');
+
+  const handleSelect = useCallback(
+    (detail: SelectValueChangeDetail) => {
+      setImageId(detail.value[0] ?? '');
+    },
+    [setImageId],
+  );
+
   return (
     <Select
       aria-label="image-id-select"
       name="image"
-      onValueChange={setImageId}
-      value={imageId}
+      onValueChange={handleSelect}
+      value={[imageId]}
+      items={imageOptions}
       disabled={isImageLoading || !imageOptions.length}
     >
-      <p className="text-grey-500 my-2 font-bold text-xs">
-        {t('pci_instances_actions_rescue_start_instance_select_image_label')}
-      </p>
-      <SelectTrigger
-        className="text-foreground whitespace-nowrap overflow-hidden text-ellipsis"
-        id="image"
-      >
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {imageOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            <div className="flex flex-col items-start text-primary-800">
-              <p className={`text-bold text-l`}>{option.label}</p>
-            </div>
-          </SelectItem>
-        ))}
-      </SelectContent>
+      <div className="my-4">
+        <Text preset="label">
+          {t('pci_instances_actions_rescue_start_instance_select_image_label')}
+        </Text>
+      </div>
+      <SelectControl />
+      <SelectContent />
     </Select>
   );
 };
