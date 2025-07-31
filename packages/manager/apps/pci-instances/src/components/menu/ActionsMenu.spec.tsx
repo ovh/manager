@@ -1,8 +1,7 @@
-import { DropdownMenu, DropdownMenuContent } from '@datatr-ux/uxlib';
 import { describe, expect, test, vi } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import { Popover, PopoverContent } from '@ovhcloud/ods-react';
 import {
   ActionsMenu,
   ActionMenuItem,
@@ -15,11 +14,11 @@ vi.mock('react-router-dom', () => ({
 
 const prepareTest = (item: TActionsMenuItem) => {
   render(
-    <DropdownMenu defaultOpen>
-      <DropdownMenuContent>
+    <Popover>
+      <PopoverContent>
         <ActionMenuItem item={item} />
-      </DropdownMenuContent>
-    </DropdownMenu>,
+      </PopoverContent>
+    </Popover>,
   );
   return screen.getByTestId('actions-menu-item');
 };
