@@ -2,6 +2,8 @@ import { Button } from '@datatr-ux/uxlib';
 import Guides from '@/components/guides/Guides.component';
 import Link from '@/components/links/Link.component';
 import onboardingImgSrc from '@/../public/assets/notebooks.png';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks.png';
 import {
   GUIDES,
@@ -15,6 +17,7 @@ import { useQuantum } from '@/hooks/useQuantum.hook';
 const Onboarding = () => {
   const { isQuantum, t } = useQuantum('ai-tools/notebooks/onboarding');
   const locale = useLocale();
+  const track = useTrackAction();
 
   return (
     <div
@@ -35,6 +38,12 @@ const Onboarding = () => {
       <p>{t('description3')}</p>
       <Button data-testid="create-notebook-link" asChild>
         <Link
+          onClick={() => {
+            track(
+              TRACKING.notebooks.onboarding.createNotebookClick(),
+              'onboarding',
+            );
+          }}
           to="../new"
           className="hover:no-underline hover:text-primary-foreground"
         >

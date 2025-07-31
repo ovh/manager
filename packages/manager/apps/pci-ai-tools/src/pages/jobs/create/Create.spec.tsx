@@ -28,7 +28,7 @@ import {
 } from '@/__tests__/helpers/mocks/volume/datastore';
 import * as jobApi from '@/data/api/ai/job/job.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
-import Job, { breadcrumb as Breadcrumb } from './Create.page';
+import Job from './Create.page';
 import {
   mockedPresetImage,
   mockedPresetImageBis,
@@ -87,14 +87,6 @@ describe('Order funnel page', () => {
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('renders the breadcrumb component', async () => {
-    const translationKey = 'breadcrumb';
-    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeTruthy();
-    });
   });
 
   it('renders the skeleton component while loading', async () => {
