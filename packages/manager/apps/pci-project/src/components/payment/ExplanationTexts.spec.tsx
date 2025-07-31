@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ExplanationTexts from './ExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   TAvailablePaymentMethod,
   TPaymentMethodType,
@@ -62,7 +63,7 @@ describe('ExplanationTexts', () => {
     },
   });
 
-  const Wrapper = createWrapper();
+  const Wrapper = createOptimalWrapper({ queries: true, shell: true });
 
   it('should render nothing when selectedPaymentMethod is null', () => {
     const { container } = render(

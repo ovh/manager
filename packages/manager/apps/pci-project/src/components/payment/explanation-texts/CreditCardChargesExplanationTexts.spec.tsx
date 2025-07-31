@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import CreditCardChargesExplanationTexts from './CreditCardChargesExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 // Mock the pricing hook
@@ -23,7 +24,6 @@ const mockUsePricing = vi.mocked(
 
 describe('CreditCardChargesExplanationTexts', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
     mockUsePricing.mockReturnValue({
       formatPrice: vi.fn(() => '2.00 EUR'),
       getPriceDetails: vi.fn(),
@@ -57,7 +57,7 @@ describe('CreditCardChargesExplanationTexts', () => {
       },
     } as unknown) as ShellContextType;
 
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -86,7 +86,7 @@ describe('CreditCardChargesExplanationTexts', () => {
       },
     } as unknown) as ShellContextType;
 
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -127,7 +127,7 @@ describe('CreditCardChargesExplanationTexts', () => {
       },
     } as unknown) as ShellContextType;
 
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -155,7 +155,7 @@ describe('CreditCardChargesExplanationTexts', () => {
       },
     } as unknown) as ShellContextType;
 
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 import RemoveSection from './RemoveSection';
 
 const mockNavigate = vi.fn();
@@ -18,54 +19,58 @@ vi.mock('@/data/hooks/useServices', () => ({
 }));
 
 describe('RemoveSection', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('renders heading and description when not discovery', () => {
+  it('renders heading and description when not discovery', async () => {
     mockUseServiceIds.mockReturnValue({ data: [123], isPending: false });
 
-    const { getByText } = render(<RemoveSection isDiscovery={false} />);
+    render(<RemoveSection isDiscovery={false} />);
 
     expect(
-      getByText(/^pci_projects_project_edit_remove_description$/),
+      screen.getByText('pci_projects_project_edit_remove_description'),
     ).toBeVisible();
-    expect(getByText(/^pci_projects_project_edit_remove$/)).toBeVisible();
+    // Check for heading specifically using test-id and preset
+    const odsTexts = screen.getAllByTestId('ods-text');
+    const headingText = odsTexts.find(
+      (el) => el.getAttribute('data-preset') === 'heading-3',
+    );
+    expect(headingText).toHaveTextContent('pci_projects_project_edit_remove');
+    // Check for button specifically
+    expect(screen.getByTestId('remove-section_remove-button')).toBeVisible();
   });
 
-  it('renders only heading when discovery', () => {
+  it('renders only heading when discovery', async () => {
     mockUseServiceIds.mockReturnValue({ data: [123], isPending: false });
 
     render(<RemoveSection isDiscovery={true} />);
 
+    // Check for heading text using test-id and preset
+    const odsTexts = screen.getAllByTestId('ods-text');
+    const headingText = odsTexts.find(
+      (el) => el.getAttribute('data-preset') === 'heading-3',
+    );
+    expect(headingText).toHaveTextContent('pci_projects_project_edit_remove');
     expect(
-      screen.getByText('pci_projects_project_edit_remove', { exact: true }),
-    ).toBeVisible();
-    expect(
-      screen.queryByText('pci_projects_project_edit_remove_description', {
-        exact: true,
-      }),
+      screen.queryByText('pci_projects_project_edit_remove_description'),
     ).not.toBeInTheDocument();
   });
 
-  it('disables button when serviceIds are loading', () => {
+  it('disables button when serviceIds are loading', async () => {
     mockUseServiceIds.mockReturnValue({ data: undefined, isPending: true });
 
     render(<RemoveSection isDiscovery={false} />);
 
     const button = screen.getByTestId('remove-section_remove-button');
-    expect(button).toHaveAttribute('is-disabled', 'true');
+    expect(button).toBeDisabled();
   });
 
-  it('disables button when no serviceIds', () => {
+  it('disables button when no serviceIds', async () => {
     mockUseServiceIds.mockReturnValue({ data: [], isPending: false });
     render(<RemoveSection isDiscovery={false} />);
 
     const button = screen.getByTestId('remove-section_remove-button');
-    expect(button).toHaveAttribute('is-disabled', 'true');
+    expect(button).toBeDisabled();
   });
 
-  it('navigates to remove page with serviceId on button click', () => {
+  it('navigates to remove page with serviceId on button click', async () => {
     mockUseServiceIds.mockReturnValue({ data: [456], isPending: false });
 
     render(<RemoveSection isDiscovery={false} />);

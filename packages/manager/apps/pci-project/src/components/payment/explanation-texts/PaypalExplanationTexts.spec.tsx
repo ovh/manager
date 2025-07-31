@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { Currency } from '@ovh-ux/manager-config';
 import PaypalExplanationTexts from './PaypalExplanationTexts';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 import { usePaypalChargeAmount } from '@/data/hooks/payment/usePaypalChargeAmount';
 
@@ -54,7 +55,6 @@ describe('PaypalExplanationTexts', () => {
     } as unknown) as ShellContextType);
 
   beforeEach(() => {
-    vi.clearAllMocks();
     mockUsePaypalChargeAmount.mockReturnValue({
       data: 5,
       isLoading: false,
@@ -92,7 +92,7 @@ describe('PaypalExplanationTexts', () => {
   it('should render component without crashing', () => {
     const mockFeatures = createMockFeatures();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>
@@ -133,7 +133,7 @@ describe('PaypalExplanationTexts', () => {
 
     const mockFeatures = createMockFeatures();
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -147,7 +147,7 @@ describe('PaypalExplanationTexts', () => {
   it('should render generic text when not in US region', () => {
     const mockFeatures = createMockFeatures();
     const mockShellContext = createMockShellContext('FR');
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -165,7 +165,7 @@ describe('PaypalExplanationTexts', () => {
   it('should render US-specific text when in US region', () => {
     const mockFeatures = createMockFeatures();
     const mockShellContext = createMockShellContext('US');
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -183,7 +183,7 @@ describe('PaypalExplanationTexts', () => {
   it('should show warning message when PAYPAL_CHARGE feature is enabled', () => {
     const mockFeatures = createMockFeatures({ PAYPAL_CHARGE: true });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -201,7 +201,7 @@ describe('PaypalExplanationTexts', () => {
   it('should not show warning message when PAYPAL_CHARGE feature is disabled', () => {
     const mockFeatures = createMockFeatures({ PAYPAL_CHARGE: false });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -227,7 +227,7 @@ describe('PaypalExplanationTexts', () => {
 
     const mockFeatures = createMockFeatures({ PAYPAL_CHARGE: true });
     const mockShellContext = createMockShellContext('GB');
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     render(
       <Wrapper>
@@ -268,7 +268,7 @@ describe('PaypalExplanationTexts', () => {
 
     const mockFeatures = createMockFeatures({ PAYPAL_CHARGE: true });
     const mockShellContext = createMockShellContext();
-    const Wrapper = createWrapper(mockShellContext);
+    const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
 
     const { container } = render(
       <Wrapper>

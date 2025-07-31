@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getEligibility, checkVoucherEligibility } from './eligibility';
@@ -14,10 +15,6 @@ vi.mock('@ovh-ux/manager-core-api');
 const mockV6 = vi.mocked(v6.get);
 
 describe('eligibility API', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('getEligibility', () => {
     it('should call the correct API endpoint', async () => {
       const mockEligibility: TEligibility = {

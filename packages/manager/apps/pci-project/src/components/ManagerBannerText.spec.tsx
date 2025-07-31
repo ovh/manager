@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import ManagerBannerText from './ManagerBannerText';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 const mockShellContext = {
   environment: {
@@ -12,16 +13,15 @@ const mockShellContext = {
 };
 
 describe('ManagerBannerText', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should render nothing when no message is available', () => {
     mockShellContext.environment.getMessage.mockReturnValue(null);
     mockShellContext.environment.getUserLanguage.mockReturnValue('en');
 
     const { container } = render(<ManagerBannerText />, {
-      wrapper: createWrapper((mockShellContext as unknown) as ShellContextType),
+      wrapper: createOptimalWrapper(
+        { shell: true },
+        (mockShellContext as unknown) as ShellContextType,
+      ),
     });
 
     expect(container.firstChild).toBeNull();
@@ -37,7 +37,10 @@ describe('ManagerBannerText', () => {
     mockShellContext.environment.getUserLanguage.mockReturnValue('fr');
 
     render(<ManagerBannerText />, {
-      wrapper: createWrapper((mockShellContext as unknown) as ShellContextType),
+      wrapper: createOptimalWrapper(
+        { shell: true },
+        (mockShellContext as unknown) as ShellContextType,
+      ),
     });
 
     expect(screen.getByText('Message français')).toBeInTheDocument();
@@ -53,7 +56,10 @@ describe('ManagerBannerText', () => {
     mockShellContext.environment.getUserLanguage.mockReturnValue('de');
 
     render(<ManagerBannerText />, {
-      wrapper: createWrapper((mockShellContext as unknown) as ShellContextType),
+      wrapper: createOptimalWrapper(
+        { shell: true },
+        (mockShellContext as unknown) as ShellContextType,
+      ),
     });
 
     expect(screen.getByText('English fallback message')).toBeInTheDocument();
@@ -68,7 +74,10 @@ describe('ManagerBannerText', () => {
     mockShellContext.environment.getUserLanguage.mockReturnValue('en');
 
     render(<ManagerBannerText />, {
-      wrapper: createWrapper((mockShellContext as unknown) as ShellContextType),
+      wrapper: createOptimalWrapper(
+        { shell: true },
+        (mockShellContext as unknown) as ShellContextType,
+      ),
     });
 
     const messageElement = screen
@@ -82,7 +91,10 @@ describe('ManagerBannerText', () => {
     mockShellContext.environment.getUserLanguage.mockReturnValue('en');
 
     render(<ManagerBannerText />, {
-      wrapper: createWrapper((mockShellContext as unknown) as ShellContextType),
+      wrapper: createOptimalWrapper(
+        { shell: true },
+        (mockShellContext as unknown) as ShellContextType,
+      ),
     });
 
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();

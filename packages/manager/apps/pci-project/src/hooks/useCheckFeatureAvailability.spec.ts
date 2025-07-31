@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import useCheckFeatureAvailability from './useCheckFeatureAvailability';
@@ -12,10 +13,6 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 const mockUseFeatureAvailability = vi.mocked(useFeatureAvailability);
 
 describe('useCheckFeatureAvailability', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should return unavailable state when featureState is undefined', () => {
     mockUseFeatureAvailability.mockReturnValue({
       data: undefined,

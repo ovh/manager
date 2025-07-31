@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, SyntheticEvent } from 'react';
 import { render } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 import ItalyAgreements from '@/components/italy-agreements/ItalyAgreements';
 
@@ -36,10 +37,6 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
 });
 
 describe('ItalyAgreements', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('should render with an enabled checkbox', () => {
     const setHasAgreements = vi.fn();
     const { getByRole } = render(

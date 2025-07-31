@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import {
   TAvailablePaymentMethod,
@@ -12,7 +13,7 @@ import {
 import { TPaymentFeaturesState } from './usePaymentFeatureAvailabilities';
 import { useAvailablePaymentMethods } from './useAvailablePaymentMethods';
 import { useFilteredAvailablePaymentMethods } from './useFilteredAvailablePaymentMethods';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 
 // Mock the dependencies
 vi.mock('./useAvailablePaymentMethods', () => ({
@@ -78,10 +79,6 @@ const PREFERRED_PAYMENT_METHOD_ORDER = [
 
 describe('useFilteredAvailablePaymentMethods', () => {
   const mockUseAvailablePaymentMethods = vi.mocked(useAvailablePaymentMethods);
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   const mockPaymentMethods: TAvailablePaymentMethod[] = [
     {
@@ -166,7 +163,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () => useFilteredAvailablePaymentMethods(mockEligibility, mockFeatures),
       { wrapper },
@@ -217,7 +214,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () =>
         useFilteredAvailablePaymentMethods(
@@ -256,7 +253,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () =>
         useFilteredAvailablePaymentMethods(eligibilityWithCredit, mockFeatures),
@@ -281,7 +278,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () => useFilteredAvailablePaymentMethods(mockEligibility, mockFeatures),
       { wrapper },
@@ -316,7 +313,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () => useFilteredAvailablePaymentMethods(mockEligibility, mockFeatures),
       { wrapper },
@@ -337,7 +334,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () => useFilteredAvailablePaymentMethods(mockEligibility, mockFeatures),
       { wrapper },
@@ -358,7 +355,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       refetch: vi.fn(),
     } as unknown) as ReturnType<typeof useAvailablePaymentMethods>);
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true });
     const { result } = renderHook(
       () => useFilteredAvailablePaymentMethods(mockEligibility, mockFeatures),
       { wrapper },

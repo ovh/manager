@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   useIsAValidHdsSupportLevel,
   useIsHdsFeatureAvailabilityEnabled,
@@ -179,9 +180,7 @@ describe('useHdsManagement', () => {
     } as UseQueryResult<T, ApiError>);
 
   beforeEach(() => {
-    vi.clearAllMocks();
-
-    // Set default mocks
+    // Default mocks
     vi.mocked(useIsHdsFeatureAvailabilityEnabled).mockReturnValue(true);
     vi.mocked(useIsAValidHdsSupportLevel).mockReturnValue(true);
     vi.mocked(useGetHdsAddonOption).mockReturnValue(
@@ -194,13 +193,13 @@ describe('useHdsManagement', () => {
   });
 
   describe('shouldDisplayHdsSection', () => {
-    it('should display HDS section when both feature availability and support level are valid', () => {
+    it('should display HDS section when both feature availability and support level are valid', async () => {
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
       expect(result.current.shouldDisplayHdsSection).toBe(true);
     });
 
-    it('should not display HDS section when feature availability is disabled', () => {
+    it('should not display HDS section when feature availability is disabled', async () => {
       vi.mocked(useIsHdsFeatureAvailabilityEnabled).mockReturnValue(false);
 
       const { result } = renderHook(() => useHdsManagement(defaultProps));
@@ -208,7 +207,7 @@ describe('useHdsManagement', () => {
       expect(result.current.shouldDisplayHdsSection).toBe(false);
     });
 
-    it('should not display HDS section when support level is invalid', () => {
+    it('should not display HDS section when support level is invalid', async () => {
       vi.mocked(useIsAValidHdsSupportLevel).mockReturnValue(false);
 
       const { result } = renderHook(() => useHdsManagement(defaultProps));
@@ -216,7 +215,7 @@ describe('useHdsManagement', () => {
       expect(result.current.shouldDisplayHdsSection).toBe(false);
     });
 
-    it('should not display HDS section when both conditions are false', () => {
+    it('should not display HDS section when both conditions are false', async () => {
       vi.mocked(useIsHdsFeatureAvailabilityEnabled).mockReturnValue(false);
       vi.mocked(useIsAValidHdsSupportLevel).mockReturnValue(false);
 
@@ -227,13 +226,13 @@ describe('useHdsManagement', () => {
   });
 
   describe('isHdsPending', () => {
-    it('should be false when neither adding nor removing HDS', () => {
+    it('should be false when neither adding nor removing HDS', async () => {
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
       expect(result.current.isHdsPending).toBe(false);
     });
 
-    it('should be true when adding HDS', () => {
+    it('should be true when adding HDS', async () => {
       vi.mocked(useAddItemToCart).mockReturnValue(
         mockAddItemMutationResult(true),
       );
@@ -243,7 +242,7 @@ describe('useHdsManagement', () => {
       expect(result.current.isHdsPending).toBe(true);
     });
 
-    it('should be true when removing HDS', () => {
+    it('should be true when removing HDS', async () => {
       vi.mocked(useRemoveItemFromCart).mockReturnValue(
         mockRemoveItemMutationResult(true),
       );
@@ -253,7 +252,7 @@ describe('useHdsManagement', () => {
       expect(result.current.isHdsPending).toBe(true);
     });
 
-    it('should be true when both adding and removing HDS (edge case)', () => {
+    it('should be true when both adding and removing HDS (edge case)', async () => {
       vi.mocked(useAddItemToCart).mockReturnValue(
         mockAddItemMutationResult(true),
       );
@@ -268,7 +267,7 @@ describe('useHdsManagement', () => {
   });
 
   describe('handleHdsToggle', () => {
-    it('should update form state and add HDS to cart when checking HDS', () => {
+    it('should update form state and add HDS to cart when checking HDS', async () => {
       const mockAddMutation = { mutate: vi.fn(), isPending: false };
       vi.mocked(useAddItemToCart).mockReturnValue({
         ...mockAddItemMutationResult(),
@@ -277,7 +276,7 @@ describe('useHdsManagement', () => {
 
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
-      act(() => {
+      await act(async () => {
         result.current.handleHdsToggle(true);
       });
 
@@ -310,7 +309,7 @@ describe('useHdsManagement', () => {
       });
     });
 
-    it('should use fallback values when hdsAddonOption is missing price info', () => {
+    it('should use fallback values when hdsAddonOption is missing price info', async () => {
       const incompleteHdsOption = {
         ...mockHdsAddonOption,
         prices: [], // No prices available
@@ -327,7 +326,7 @@ describe('useHdsManagement', () => {
 
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
-      act(() => {
+      await act(async () => {
         result.current.handleHdsToggle(true);
       });
 
@@ -343,7 +342,7 @@ describe('useHdsManagement', () => {
       });
     });
 
-    it('should not add HDS to cart when unchecking and no HDS item exists', () => {
+    it('should not add HDS to cart when unchecking and no HDS item exists', async () => {
       const mockAddMutation = { mutate: vi.fn(), isPending: false };
       const mockRemoveMutation = { mutate: vi.fn(), isPending: false };
 
@@ -358,7 +357,7 @@ describe('useHdsManagement', () => {
 
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
-      act(() => {
+      await act(async () => {
         result.current.handleHdsToggle(false);
       });
 
@@ -372,7 +371,7 @@ describe('useHdsManagement', () => {
   });
 
   describe('mutation callbacks', () => {
-    it('should handle successful HDS addition', () => {
+    it('should handle successful HDS addition', async () => {
       let onSuccessCallback: (item: OrderedProduct) => void;
       vi.mocked(useAddItemToCart).mockImplementation((options) => {
         if (options?.onSuccess) {
@@ -384,7 +383,7 @@ describe('useHdsManagement', () => {
       renderHook(() => useHdsManagement(defaultProps));
 
       // Simulate successful addition
-      act(() => {
+      await act(async () => {
         onSuccessCallback?.(mockOrderedProduct);
       });
 
@@ -392,7 +391,7 @@ describe('useHdsManagement', () => {
       // This is tested indirectly through the handleHdsToggle behavior
     });
 
-    it('should handle failed HDS addition', () => {
+    it('should handle failed HDS addition', async () => {
       let onErrorCallback: ((error: ApiError) => void) | undefined;
       vi.mocked(useAddItemToCart).mockImplementation((options) => {
         if (options?.onError) {
@@ -404,7 +403,7 @@ describe('useHdsManagement', () => {
       renderHook(() => useHdsManagement(defaultProps));
 
       // Simulate failed addition
-      act(() => {
+      await act(async () => {
         onErrorCallback?.({} as ApiError);
       });
 
@@ -425,7 +424,7 @@ describe('useHdsManagement', () => {
       });
     });
 
-    it('should handle successful HDS removal', () => {
+    it('should handle successful HDS removal', async () => {
       let onSuccessCallback: () => void;
       vi.mocked(useRemoveItemFromCart).mockImplementation((options) => {
         if (options?.onSuccess) {
@@ -437,7 +436,7 @@ describe('useHdsManagement', () => {
       renderHook(() => useHdsManagement(defaultProps));
 
       // Simulate successful removal
-      act(() => {
+      await act(async () => {
         onSuccessCallback?.();
       });
 
@@ -445,7 +444,7 @@ describe('useHdsManagement', () => {
       // This is tested indirectly through the handleHdsToggle behavior
     });
 
-    it('should handle failed HDS removal', () => {
+    it('should handle failed HDS removal', async () => {
       let onErrorCallback: ((error: ApiError) => void) | undefined;
       vi.mocked(useRemoveItemFromCart).mockImplementation((options) => {
         if (options?.onError) {
@@ -457,7 +456,7 @@ describe('useHdsManagement', () => {
       renderHook(() => useHdsManagement(defaultProps));
 
       // Simulate failed removal
-      act(() => {
+      await act(async () => {
         onErrorCallback?.({} as ApiError);
       });
 
@@ -480,7 +479,7 @@ describe('useHdsManagement', () => {
   });
 
   describe('return values', () => {
-    it('should provide all expected return values', () => {
+    it('should provide all expected return values', async () => {
       const { result } = renderHook(() => useHdsManagement(defaultProps));
 
       expect(result.current).toEqual({

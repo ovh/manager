@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { getServices } from './services';
@@ -9,10 +10,6 @@ vi.mock('@ovh-ux/manager-core-api');
 const mockedV6 = vi.mocked(v6.get);
 
 describe('services API', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('getServices', () => {
     it('should call v6.get with correct parameters', async () => {
       const mockResponse: FetchResultV6<TService> = {

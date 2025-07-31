@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { UseQueryResult } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { createWrapper } from '@/wrapperRenders';
+import { describe, expect, it, vi } from 'vitest';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { CartSummary } from '@/data/types/cart.type';
 import { useGetCartSummary } from '@/data/hooks/useCart';
 import { useHdsManagement } from '../hooks/useHdsManagement';
@@ -84,39 +85,44 @@ describe('ConfigStep', () => {
   }
 
   beforeEach(() => {
-    vi.clearAllMocks();
-
-    // Default mock implementations
     vi.mocked(useGetCartSummary).mockReturnValue(
       mockQueryResult(mockCartSummary),
     );
     vi.mocked(useHdsManagement).mockReturnValue({
-      shouldDisplayHdsSection: true,
+      shouldDisplayHdsSection: false,
       isHdsPending: false,
       handleHdsToggle: vi.fn(),
     });
   });
 
   describe('rendering', () => {
-    it('should render the basic form structure', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render the basic form structure', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       expect(
         screen.getByText('pci_project_new_config_description_label'),
       ).toBeInTheDocument();
 
       // Check ODS input by querying the ods-input element directly
-      const odsInput = document.querySelector(
-        'ods-input[name="project-description"]',
-      );
-      expect(odsInput).toHaveAttribute('value', 'Test Project');
+      const odsInput = screen.getByTestId('ods-input');
+      expect(odsInput).toHaveValue('Test Project');
 
       // Look for the contracts component by checking for the actual label it renders
       expect(screen.getByText('order_contracts_label')).toBeInTheDocument();
     });
 
-    it('should render HDS section when shouldDisplayHdsSection is true', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should render HDS section when shouldDisplayHdsSection is true', async () => {
+      vi.mocked(useHdsManagement).mockReturnValue({
+        shouldDisplayHdsSection: true,
+        isHdsPending: false,
+        handleHdsToggle: vi.fn(),
+      });
+
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Look for HDS section text that the real component renders
       expect(
@@ -124,45 +130,51 @@ describe('ConfigStep', () => {
       ).toBeInTheDocument();
     });
 
-    it('should not render HDS section when shouldDisplayHdsSection is false', () => {
+    it('should not render HDS section when shouldDisplayHdsSection is false', async () => {
       vi.mocked(useHdsManagement).mockReturnValue({
         shouldDisplayHdsSection: false,
         isHdsPending: false,
         handleHdsToggle: vi.fn(),
       });
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       expect(
         screen.queryByText('pci_projects_hds_description'),
       ).not.toBeInTheDocument();
     });
 
-    it('should render Italy agreements section for IT subsidiary', () => {
+    it('should render Italy agreements section for IT subsidiary', async () => {
       const propsWithIT = { ...defaultProps, ovhSubsidiary: OvhSubsidiary.IT };
 
-      render(<ConfigStep {...propsWithIT} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...propsWithIT} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Look for Italy agreements by checking for the data-testid that the real component renders
       expect(screen.getByTestId('italy-agreements')).toBeInTheDocument();
     });
 
-    it('should not render Italy agreements section for non-IT subsidiary', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should not render Italy agreements section for non-IT subsidiary', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       expect(screen.queryByTestId('italy-agreements')).not.toBeInTheDocument();
     });
   });
 
   describe('form validation', () => {
-    it('should show error when description is empty', () => {
+    it('should show error when description is empty', async () => {
       const propsWithEmptyDescription = {
         ...defaultProps,
         form: { ...defaultProps.form, description: '' },
       };
 
       render(<ConfigStep {...propsWithEmptyDescription} />, {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       });
 
       // Check for error attribute on ODS form field
@@ -170,14 +182,14 @@ describe('ConfigStep', () => {
       expect(formField).toHaveAttribute('error', 'error_required_field');
     });
 
-    it('should show error when description is only whitespace', () => {
+    it('should show error when description is only whitespace', async () => {
       const propsWithWhitespaceDescription = {
         ...defaultProps,
         form: { ...defaultProps.form, description: '   ' },
       };
 
       render(<ConfigStep {...propsWithWhitespaceDescription} />, {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       });
 
       // Check for error attribute on ODS form field
@@ -185,8 +197,10 @@ describe('ConfigStep', () => {
       expect(formField).toHaveAttribute('error', 'error_required_field');
     });
 
-    it('should not show error when description is valid', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should not show error when description is valid', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Check that error attribute is not present
       const formField = document.querySelector('ods-form-field');
@@ -196,19 +210,14 @@ describe('ConfigStep', () => {
 
   describe('user interactions', () => {
     it('should update description when input changes', async () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
-      const input = document.querySelector(
-        'ods-input[name="project-description"]',
-      ) as Element;
+      const input = screen.getByTestId('ods-input') as Element;
 
       // Simulate ODS input change event
-      fireEvent(
-        input,
-        new CustomEvent('odsChange', {
-          detail: { value: 'New Project Name' },
-        }),
-      );
+      fireEvent.change(input, { target: { value: 'New Project Name' } });
 
       await waitFor(() => {
         expect(mockSetForm).toHaveBeenCalledWith(expect.any(Function));
@@ -224,19 +233,16 @@ describe('ConfigStep', () => {
     });
 
     it('should handle contracts checkbox change', async () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Find the contracts checkbox using the correct selector based on the rendered HTML
-      const contractsCheckbox = document.querySelector(
-        'ods-checkbox[name="contracts"]',
+      const contractsCheckbox = screen.getByTestId(
+        'contracts-checkbox',
       ) as Element;
 
-      fireEvent(
-        contractsCheckbox,
-        new CustomEvent('odsChange', {
-          detail: { checked: true },
-        }),
-      );
+      fireEvent.click(contractsCheckbox);
 
       await waitFor(() => {
         expect(mockSetForm).toHaveBeenCalledWith(expect.any(Function));
@@ -259,19 +265,14 @@ describe('ConfigStep', () => {
         handleHdsToggle: mockHandleHdsToggle,
       });
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Find the HDS checkbox using the correct selector based on the rendered HTML
-      const hdsCheckbox = document.querySelector(
-        'ods-checkbox[name="isHds"]',
-      ) as Element;
+      const hdsCheckbox = screen.getByTestId('hds-checkbox') as Element;
 
-      fireEvent(
-        hdsCheckbox,
-        new CustomEvent('odsChange', {
-          detail: { checked: true },
-        }),
-      );
+      fireEvent.click(hdsCheckbox);
 
       expect(mockHandleHdsToggle).toHaveBeenCalledWith(true);
     });
@@ -279,19 +280,14 @@ describe('ConfigStep', () => {
     it('should handle Italy agreements checkbox change', async () => {
       const propsWithIT = { ...defaultProps, ovhSubsidiary: OvhSubsidiary.IT };
 
-      render(<ConfigStep {...propsWithIT} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...propsWithIT} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Find the Italy agreements checkbox using the correct selector based on the rendered HTML
-      const italyCheckbox = document.querySelector(
-        'ods-checkbox[name="project-italy-agreements"]',
-      );
+      const italyCheckbox = screen.getByTestId('ods-checkbox') as Element;
 
-      fireEvent(
-        italyCheckbox!,
-        new CustomEvent('odsChange', {
-          detail: { checked: true },
-        }),
-      );
+      fireEvent.click(italyCheckbox);
 
       await waitFor(() => {
         expect(mockSetForm).toHaveBeenCalledWith(expect.any(Function));
@@ -308,32 +304,36 @@ describe('ConfigStep', () => {
   });
 
   describe('loading states', () => {
-    it('should pass loading state to contracts when cart summary is fetching', () => {
+    it('should pass loading state to contracts when cart summary is fetching', async () => {
       vi.mocked(useGetCartSummary).mockReturnValue(
         mockQueryResult(mockCartSummary, true),
       );
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Check for skeleton loading component instead of mock loading text
       expect(screen.getByTestId('contracts-skeleton')).toBeInTheDocument();
     });
 
-    it('should pass loading state to HDS when HDS is pending', () => {
+    it('should pass loading state to HDS when HDS is pending', async () => {
       vi.mocked(useHdsManagement).mockReturnValue({
         shouldDisplayHdsSection: true,
         isHdsPending: true,
         handleHdsToggle: vi.fn(),
       });
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Find the HDS checkbox and check if it's disabled using the correct selector
-      const hdsCheckbox = document.querySelector('ods-checkbox[name="isHds"]');
-      expect(hdsCheckbox).toHaveAttribute('is-disabled', 'true');
+      const hdsCheckbox = screen.getByTestId('hds-checkbox');
+      expect(hdsCheckbox).toHaveAttribute('data-disabled', 'true');
     });
 
-    it('should combine loading states (HDS pending + contracts fetching)', () => {
+    it('should combine loading states (HDS pending + contracts fetching)', async () => {
       vi.mocked(useGetCartSummary).mockReturnValue(
         mockQueryResult(mockCartSummary, true),
       );
@@ -343,42 +343,56 @@ describe('ConfigStep', () => {
         handleHdsToggle: vi.fn(),
       });
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       expect(screen.getByTestId('contracts-skeleton')).toBeInTheDocument();
-      const hdsCheckbox = document.querySelector('ods-checkbox[name="isHds"]');
-      expect(hdsCheckbox).toHaveAttribute('is-disabled', 'true');
+      const hdsCheckbox = screen.getByTestId('hds-checkbox');
+      expect(hdsCheckbox).toHaveAttribute('data-disabled', 'true');
     });
   });
 
   describe('component props', () => {
-    it('should pass correct props to HdsOption component', () => {
+    it('should pass correct props to HdsOption component', async () => {
+      vi.mocked(useHdsManagement).mockReturnValue({
+        shouldDisplayHdsSection: true,
+        isHdsPending: false,
+        handleHdsToggle: vi.fn(),
+      });
+
       const propsWithHds = {
         ...defaultProps,
         form: { ...defaultProps.form, isHdsChecked: true },
       };
 
-      render(<ConfigStep {...propsWithHds} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...propsWithHds} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Check that HDS section is rendered with correct state using the correct selector
-      const hdsCheckbox = document.querySelector('ods-checkbox[name="isHds"]');
-      expect(hdsCheckbox).toHaveAttribute('is-checked', 'true');
+      const hdsCheckbox = screen.getByTestId('hds-checkbox');
+      expect(hdsCheckbox).toHaveAttribute('data-checked', 'true');
     });
 
-    it('should pass contracts data correctly', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should pass contracts data correctly', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Check that contracts section is rendered - look for contract links
       expect(screen.getByText('Contract 1')).toBeInTheDocument();
       expect(screen.getByText('Contract 2')).toBeInTheDocument();
     });
 
-    it('should handle missing cart summary gracefully', () => {
+    it('should handle missing cart summary gracefully', async () => {
       vi.mocked(useGetCartSummary).mockReturnValue(
         mockQueryResult(null) as UseQueryResult<CartSummary, Error>,
       );
 
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
       // Check that contracts section still renders even without data using the actual label
       expect(screen.getByText('order_contracts_label')).toBeInTheDocument();
@@ -386,21 +400,21 @@ describe('ConfigStep', () => {
   });
 
   describe('input constraints', () => {
-    it('should enforce maxlength on description input', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should enforce maxLength on description input', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
-      const input = document.querySelector(
-        'ods-input[name="project-description"]',
-      );
+      const input = screen.getByTestId('ods-input');
       expect(input).toHaveAttribute('maxlength', '255');
     });
 
-    it('should have correct input name', () => {
-      render(<ConfigStep {...defaultProps} />, { wrapper: createWrapper() });
+    it('should have correct input name', async () => {
+      render(<ConfigStep {...defaultProps} />, {
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
+      });
 
-      const input = document.querySelector(
-        'ods-input[name="project-description"]',
-      );
+      const input = screen.getByTestId('ods-input');
       expect(input).toHaveAttribute('name', 'project-description');
     });
   });

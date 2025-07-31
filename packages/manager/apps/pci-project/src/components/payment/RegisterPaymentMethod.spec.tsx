@@ -1,11 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import usePaymentFeatureAvailabilities, {
   TPaymentFeaturesState,
 } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 import { useFilteredAvailablePaymentMethods } from '@/data/hooks/payment/useFilteredAvailablePaymentMethods';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import RegisterPaymentMethod, {
   RegisterPaymentMethodProps,
 } from './RegisterPaymentMethod';
@@ -170,9 +171,6 @@ describe('RegisterPaymentMethod', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
-
-    // Mock the hooks with complete query result objects
     vi.mocked(usePaymentFeatureAvailabilities).mockReturnValue({
       features: mockFeatures,
       isLoading: false,
@@ -213,7 +211,7 @@ describe('RegisterPaymentMethod', () => {
         isLoading: true,
       });
 
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
       render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
@@ -247,7 +245,7 @@ describe('RegisterPaymentMethod', () => {
         refetch: vi.fn(),
       });
 
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
       render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
@@ -259,7 +257,7 @@ describe('RegisterPaymentMethod', () => {
         isLoading: false,
       } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
-      const Wrapper = createWrapper(mockShellContext);
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
       render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
 
       expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
@@ -268,8 +266,11 @@ describe('RegisterPaymentMethod', () => {
 
   describe('Content rendering', () => {
     it('should render the main title', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       expect(
         screen.getByText('pci_project_new_payment_register_title'),
@@ -277,8 +278,11 @@ describe('RegisterPaymentMethod', () => {
     });
 
     it('should render explanation text parts', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       expect(
         screen.getByText('pci_project_new_payment_method_save_explain_part_1'),
@@ -289,8 +293,11 @@ describe('RegisterPaymentMethod', () => {
     });
 
     it('should render available payment methods', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       expect(
         screen.getByText('payment_method_credit_card'),
@@ -313,8 +320,11 @@ describe('RegisterPaymentMethod', () => {
         isLoading: false,
       } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       expect(
         screen.getByText('ovh_payment_method_register_antifraud_error_message'),
@@ -327,31 +337,43 @@ describe('RegisterPaymentMethod', () => {
   });
 
   describe('Payment method selection', () => {
-    it('should handle payment method selection', () => {
+    it('should handle payment method selection', async () => {
       const handlePaymentMethodChange = vi.fn();
-      const Wrapper = createWrapper(mockShellContext);
-      render(
-        <RegisterPaymentMethod
-          {...defaultProps}
-          handlePaymentMethodChange={handlePaymentMethodChange}
-        />,
-        { wrapper: Wrapper },
-      );
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(
+          <RegisterPaymentMethod
+            {...defaultProps}
+            handlePaymentMethodChange={handlePaymentMethodChange}
+          />,
+          { wrapper: Wrapper },
+        );
+      });
 
       const creditCardRadio = screen.getAllByTestId('ods-radio')[0];
-      fireEvent.click(creditCardRadio);
+
+      await act(async () => {
+        fireEvent.click(creditCardRadio);
+      });
 
       expect(handlePaymentMethodChange).toHaveBeenCalledWith(
         mockAvailablePaymentMethods[0],
       );
     });
 
-    it('should update selected payment method styling', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should update selected payment method styling', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       const creditCardRadio = screen.getAllByTestId('ods-radio')[0];
-      fireEvent.click(creditCardRadio);
+
+      await act(async () => {
+        fireEvent.click(creditCardRadio);
+      });
 
       const cards = screen.getAllByTestId('ods-card');
       expect(cards[0]).toHaveClass(
@@ -360,16 +382,24 @@ describe('RegisterPaymentMethod', () => {
       );
     });
 
-    it('should pass selected payment method to child components', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should pass selected payment method to child components', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       expect(screen.getByTestId('explanation-texts')).toHaveTextContent(
         'no-selection',
       );
 
       const paypalRadio = screen.getAllByTestId('ods-radio')[1];
-      fireEvent.click(paypalRadio);
+
+      await act(async () => {
+        fireEvent.click(paypalRadio);
+      });
 
       expect(screen.getByTestId('explanation-texts')).toHaveTextContent(
         TPaymentMethodType.PAYPAL,
@@ -378,26 +408,35 @@ describe('RegisterPaymentMethod', () => {
   });
 
   describe('Set as default functionality', () => {
-    it('should handle set as default change', () => {
+    it('should handle set as default change', async () => {
       const handleSetAsDefaultChange = vi.fn();
-      const Wrapper = createWrapper(mockShellContext);
-      render(
-        <RegisterPaymentMethod
-          {...defaultProps}
-          handleSetAsDefaultChange={handleSetAsDefaultChange}
-        />,
-        { wrapper: Wrapper },
-      );
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(
+          <RegisterPaymentMethod
+            {...defaultProps}
+            handleSetAsDefaultChange={handleSetAsDefaultChange}
+          />,
+          { wrapper: Wrapper },
+        );
+      });
 
       const setAsDefaultButton = screen.getByTestId('set-as-default-button');
-      fireEvent.click(setAsDefaultButton);
+
+      await act(async () => {
+        fireEvent.click(setAsDefaultButton);
+      });
 
       expect(handleSetAsDefaultChange).toHaveBeenCalledWith(true);
     });
 
-    it('should pass correct props to SetAsDefaultPaymentMethod', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should pass correct props to SetAsDefaultPaymentMethod', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      render(<RegisterPaymentMethod {...defaultProps} />, {
+        wrapper: Wrapper,
+      });
 
       expect(
         screen.getByTestId('set-as-default-payment-method'),
@@ -407,7 +446,9 @@ describe('RegisterPaymentMethod', () => {
         'Set as default: false',
       );
 
-      fireEvent.click(screen.getByTestId('set-as-default-button'));
+      await act(async () => {
+        fireEvent.click(screen.getByTestId('set-as-default-button'));
+      });
 
       expect(screen.getByTestId('set-as-default-button')).toHaveTextContent(
         'Set as default: true',
@@ -416,16 +457,24 @@ describe('RegisterPaymentMethod', () => {
   });
 
   describe('SEPA information modal', () => {
-    it('should render SEPA modal when SEPA payment method is selected', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should render SEPA modal when SEPA payment method is selected', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       expect(
         screen.queryByTestId('sepa-information-modal'),
       ).not.toBeInTheDocument();
 
       const sepaRadio = screen.getAllByTestId('ods-radio')[2];
-      fireEvent.click(sepaRadio);
+
+      await act(async () => {
+        fireEvent.click(sepaRadio);
+      });
 
       expect(screen.getByTestId('sepa-information-modal')).toBeInTheDocument();
       expect(screen.getByTestId('sepa-modal-trigger')).toHaveTextContent(
@@ -433,57 +482,91 @@ describe('RegisterPaymentMethod', () => {
       );
     });
 
-    it('should not render SEPA modal for non-SEPA payment methods', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should not render SEPA modal for non-SEPA payment methods', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       const creditCardRadio = screen.getAllByTestId('ods-radio')[0];
-      fireEvent.click(creditCardRadio);
+
+      await act(async () => {
+        fireEvent.click(creditCardRadio);
+      });
 
       expect(
         screen.queryByTestId('sepa-information-modal'),
       ).not.toBeInTheDocument();
 
       const paypalRadio = screen.getAllByTestId('ods-radio')[1];
-      fireEvent.click(paypalRadio);
+
+      await act(async () => {
+        fireEvent.click(paypalRadio);
+      });
 
       expect(
         screen.queryByTestId('sepa-information-modal'),
       ).not.toBeInTheDocument();
     });
 
-    it('should handle SEPA modal shown state', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should handle SEPA modal shown state', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       const sepaRadio = screen.getAllByTestId('ods-radio')[2];
-      fireEvent.click(sepaRadio);
+
+      await act(async () => {
+        fireEvent.click(sepaRadio);
+      });
 
       const sepaModalTrigger = screen.getByTestId('sepa-modal-trigger');
       expect(sepaModalTrigger).toHaveTextContent('SEPA Modal not shown');
 
-      fireEvent.click(sepaModalTrigger);
+      await act(async () => {
+        fireEvent.click(sepaModalTrigger);
+      });
 
       expect(sepaModalTrigger).toHaveTextContent('SEPA Modal shown');
     });
   });
 
   describe('Child components integration', () => {
-    it('should pass features to child components', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should pass features to child components', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       expect(screen.getByTestId('explanation-texts')).toBeInTheDocument();
 
       const sepaRadio = screen.getAllByTestId('ods-radio')[2];
-      fireEvent.click(sepaRadio);
+
+      await act(async () => {
+        fireEvent.click(sepaRadio);
+      });
 
       expect(screen.getByTestId('sepa-information-modal')).toBeInTheDocument();
     });
 
-    it('should pass eligibility and available payment methods to SetAsDefaultPaymentMethod', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+    it('should pass eligibility and available payment methods to SetAsDefaultPaymentMethod', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       expect(
         screen.getByTestId('set-as-default-payment-method'),
@@ -492,22 +575,31 @@ describe('RegisterPaymentMethod', () => {
   });
 
   describe('Default callback functions', () => {
-    it('should work with default callback functions', () => {
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod eligibility={mockEligibility} />, {
-        wrapper: Wrapper,
+    it('should work with default callback functions', async () => {
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod eligibility={mockEligibility} />, {
+          wrapper: Wrapper,
+        });
       });
 
       const creditCardRadio = screen.getAllByTestId('ods-radio')[0];
-      expect(() => fireEvent.click(creditCardRadio)).not.toThrow();
+
+      await act(async () => {
+        expect(() => fireEvent.click(creditCardRadio)).not.toThrow();
+      });
 
       const setAsDefaultButton = screen.getByTestId('set-as-default-button');
-      expect(() => fireEvent.click(setAsDefaultButton)).not.toThrow();
+
+      await act(async () => {
+        expect(() => fireEvent.click(setAsDefaultButton)).not.toThrow();
+      });
     });
   });
 
   describe('Edge cases', () => {
-    it('should handle empty payment method names gracefully', () => {
+    it('should handle empty payment method names gracefully', async () => {
       const methodsWithoutNames: TAvailablePaymentMethod[] = [
         {
           paymentType: TPaymentMethodType.CREDIT_CARD,
@@ -530,14 +622,19 @@ describe('RegisterPaymentMethod', () => {
         isLoading: false,
       } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
-      const Wrapper = createWrapper(mockShellContext);
-      render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(<RegisterPaymentMethod {...defaultProps} />, {
+          wrapper: Wrapper,
+        });
+      });
 
       expect(screen.getByTestId('ods-card')).toBeInTheDocument();
       expect(screen.getByTestId('payment-icon')).toBeInTheDocument();
     });
 
-    it('should handle selection of payment methods with different properties', () => {
+    it('should handle selection of payment methods with different properties', async () => {
       const methodWithLimitedProps: TAvailablePaymentMethod[] = [
         {
           paymentType: TPaymentMethodType.CREDIT_CARD,
@@ -564,17 +661,23 @@ describe('RegisterPaymentMethod', () => {
       } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
       const handlePaymentMethodChange = vi.fn();
-      const Wrapper = createWrapper(mockShellContext);
-      render(
-        <RegisterPaymentMethod
-          {...defaultProps}
-          handlePaymentMethodChange={handlePaymentMethodChange}
-        />,
-        { wrapper: Wrapper },
-      );
+      const Wrapper = createOptimalWrapper({ shell: true }, mockShellContext);
+
+      await act(async () => {
+        render(
+          <RegisterPaymentMethod
+            {...defaultProps}
+            handlePaymentMethodChange={handlePaymentMethodChange}
+          />,
+          { wrapper: Wrapper },
+        );
+      });
 
       const radio = screen.getByTestId('ods-radio');
-      fireEvent.click(radio);
+
+      await act(async () => {
+        fireEvent.click(radio);
+      });
 
       expect(handlePaymentMethodChange).toHaveBeenCalledWith(
         methodWithLimitedProps[0],

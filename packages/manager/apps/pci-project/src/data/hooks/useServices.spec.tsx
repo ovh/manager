@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   getCartServiceOption,
   getServiceId,
   getServiceOptions,
 } from '@/data/api/services';
 import { TCartServiceOption, TService } from '@/data/types/service.type';
-import queryClient from '@/queryClient';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   useCartServiceOption,
   useServiceIds,
@@ -90,17 +90,12 @@ describe('useServices hooks', () => {
     },
   ];
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    queryClient.clear();
-  });
-
   describe('useServiceIds', () => {
     it('should fetch service ids when projectId is provided', async () => {
       vi.mocked(getServiceId).mockResolvedValueOnce(mockServiceIds);
 
       const { result } = renderHook(() => useServiceIds('project-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -113,7 +108,7 @@ describe('useServices hooks', () => {
 
     it('should not fetch service ids when projectId is not provided', async () => {
       const { result } = renderHook(() => useServiceIds(undefined), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -130,7 +125,7 @@ describe('useServices hooks', () => {
       vi.mocked(getServiceOptions).mockResolvedValueOnce(mockServiceOptions);
 
       const { result } = renderHook(() => useServiceOptions(1), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -143,7 +138,7 @@ describe('useServices hooks', () => {
 
     it('should not fetch service options when serviceId is not provided', async () => {
       const { result } = renderHook(() => useServiceOptions(undefined), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -162,7 +157,7 @@ describe('useServices hooks', () => {
       );
 
       const { result } = renderHook(() => useCartServiceOption('project-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -175,7 +170,7 @@ describe('useServices hooks', () => {
 
     it('should not fetch cart service option when projectId is not provided', async () => {
       const { result } = renderHook(() => useCartServiceOption(undefined), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {

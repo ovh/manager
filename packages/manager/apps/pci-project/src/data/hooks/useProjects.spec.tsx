@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   getDefaultProject,
   removeProject,
   unFavProject,
 } from '@/data/api/projects';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   useDefaultProjectQuery,
   useIsDefaultProject,
@@ -22,10 +23,6 @@ vi.mock('@/data/api/projects', () => ({
 describe('useProjects hooks', () => {
   const mockDefaultProject = { projectId: 'test-project-123' };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('useRemoveProjectMutation', () => {
     it('should call removeProject when project is not default', async () => {
       const mockRemoveProject = vi.mocked(removeProject);
@@ -40,7 +37,7 @@ describe('useProjects hooks', () => {
             onError,
             isDefault: false,
           }),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       const params = {
@@ -72,7 +69,7 @@ describe('useProjects hooks', () => {
             onError,
             isDefault: true,
           }),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       const params = {
@@ -97,7 +94,7 @@ describe('useProjects hooks', () => {
       vi.mocked(getDefaultProject).mockResolvedValueOnce(mockDefaultProject);
 
       const { result } = renderHook(() => useDefaultProjectQuery(), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       // Wait for the query to resolve
@@ -117,7 +114,7 @@ describe('useProjects hooks', () => {
       const { result } = renderHook(
         () => useIsDefaultProject('test-project-123'),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
@@ -137,7 +134,7 @@ describe('useProjects hooks', () => {
       const { result } = renderHook(
         () => useIsDefaultProject('different-project'),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
@@ -155,7 +152,7 @@ describe('useProjects hooks', () => {
       vi.mocked(getDefaultProject).mockResolvedValueOnce(mockDefaultProject);
 
       const { result } = renderHook(() => useIsDefaultProject(), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       // Wait for the query to resolve

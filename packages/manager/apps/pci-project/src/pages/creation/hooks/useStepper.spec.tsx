@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { useStepper } from './useStepper';
 
 describe('useStepper', () => {
-  it('should initialize with step 0 and correct initial state', () => {
+  it('should initialize with step 0 and correct initial state', async () => {
     const { result } = renderHook(() => useStepper());
 
     expect(result.current.currentStep).toBe(0);
@@ -14,10 +15,10 @@ describe('useStepper', () => {
     expect(result.current.isPaymentLocked).toBe(true);
   });
 
-  it('should update step state when currentStep changes to 1', () => {
+  it('should update step state when currentStep changes to 1', async () => {
     const { result } = renderHook(() => useStepper());
 
-    act(() => {
+    await act(async () => {
       result.current.setCurrentStep(1);
     });
 
@@ -29,7 +30,7 @@ describe('useStepper', () => {
     expect(result.current.isPaymentLocked).toBe(false);
   });
 
-  it('should handle step transitions correctly', () => {
+  it('should handle step transitions correctly', async () => {
     const { result } = renderHook(() => useStepper());
 
     // Start at step 0
@@ -38,7 +39,7 @@ describe('useStepper', () => {
     expect(result.current.isConfigChecked).toBe(false);
 
     // Move to step 1
-    act(() => {
+    await act(async () => {
       result.current.setCurrentStep(1);
     });
 
@@ -49,7 +50,7 @@ describe('useStepper', () => {
     expect(result.current.isPaymentLocked).toBe(false);
 
     // Move back to step 0
-    act(() => {
+    await act(async () => {
       result.current.setCurrentStep(0);
     });
 
@@ -60,10 +61,10 @@ describe('useStepper', () => {
     expect(result.current.isPaymentLocked).toBe(true);
   });
 
-  it('should handle steps beyond the current flow', () => {
+  it('should handle steps beyond the current flow', async () => {
     const { result } = renderHook(() => useStepper());
 
-    act(() => {
+    await act(async () => {
       result.current.setCurrentStep(2);
     });
 
@@ -75,7 +76,7 @@ describe('useStepper', () => {
     expect(result.current.isPaymentLocked).toBe(false);
   });
 
-  it('should provide all expected return values', () => {
+  it('should provide all expected return values', async () => {
     const { result } = renderHook(() => useStepper());
 
     expect(result.current).toEqual({

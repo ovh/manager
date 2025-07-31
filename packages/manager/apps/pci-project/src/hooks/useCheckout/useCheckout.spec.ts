@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import * as cartApi from '@/data/api/cart';
 import * as paymentApi from '@/data/api/payment';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { useCheckoutWithFidelityAccount } from './useCheckout';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -24,10 +25,6 @@ vi.mock('@/data/api/payment', () => ({
 }));
 
 describe('useCheckoutWithFidelityAccount', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it('useCheckoutWithFidelityAccount calls payment API and triggers onSuccess', async () => {
     vi.mocked(cartApi.checkoutCart).mockResolvedValue({
       contracts: [],
@@ -52,7 +49,7 @@ describe('useCheckoutWithFidelityAccount', () => {
     const { result } = renderHook(
       () => useCheckoutWithFidelityAccount({ onSuccess, onError }),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       },
     );
 
@@ -89,11 +86,13 @@ describe('useCheckoutWithFidelityAccount', () => {
     const { result } = renderHook(
       () => useCheckoutWithFidelityAccount({ onSuccess, onError }),
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       },
     );
 
-    result.current.mutate({ cartId: 'cart-1' });
+    await act(async () => {
+      result.current.mutate({ cartId: 'cart-1' });
+    });
 
     await waitFor(() => {
       expect(onError).toHaveBeenCalled();

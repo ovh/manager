@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useQuery } from '@tanstack/react-query';
 import { TCommercialOffer } from '@/data/types/payment/order-catalog.type';
@@ -6,7 +7,8 @@ import {
   useCreditProvisioningPlan,
   creditProvisioningPlanQueryKey,
 } from './useCreditProvisioningPlan';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
+import { shellContext } from '@/test-utils/test-wrappers';
 
 // Mock the order catalog API
 vi.mock('@/data/api/payment/order-catalog', () => ({
@@ -38,10 +40,6 @@ const CREDIT_PROVISIONING = {
 
 describe('useCreditProvisioningPlan', () => {
   const mockUseQuery = vi.mocked(useQuery);
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   const mockCreditPlan: TCommercialOffer = {
     planCode: CREDIT_PROVISIONING.PLAN_CODE,
@@ -102,7 +100,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     const { result } = renderHook(
       () => useCreditProvisioningPlan((plan) => plan),
       {
@@ -142,7 +140,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     const { result } = renderHook(
       () => useCreditProvisioningPlan((plan) => plan),
       {
@@ -184,7 +182,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     const { result } = renderHook(
       () => useCreditProvisioningPlan((plan) => plan),
       {
@@ -224,7 +222,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     const { result } = renderHook(
       () => useCreditProvisioningPlan((plan) => plan),
       {
@@ -264,7 +262,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     renderHook(() => useCreditProvisioningPlan((plan) => plan), {
       wrapper,
     });
@@ -314,7 +312,7 @@ describe('useCreditProvisioningPlan', () => {
       isPaused: false,
     });
 
-    const wrapper = createWrapper();
+    const wrapper = createOptimalWrapper({ queries: true, shell: true });
     const { result } = renderHook(
       () => useCreditProvisioningPlan((plan) => plan),
       {
@@ -400,7 +398,11 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper(customContext);
+      const wrapper = createOptimalWrapper({
+        queries: true,
+        shell: true,
+        shellOverrides: customContext,
+      });
       renderHook(() => useCreditProvisioningPlan((plan) => plan), {
         wrapper,
       });
@@ -455,7 +457,11 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper(contextWithUndefinedUser);
+      const wrapper = createOptimalWrapper({
+        queries: true,
+        shell: true,
+        shellOverrides: contextWithUndefinedUser,
+      });
       renderHook(() => useCreditProvisioningPlan((plan) => plan), {
         wrapper,
       });
@@ -504,7 +510,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () =>
           useCreditProvisioningPlan((plan) => {
@@ -546,7 +552,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan?.planCode),
         {
@@ -599,7 +605,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan),
         {
@@ -643,7 +649,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan),
         {
@@ -684,7 +690,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       renderHook(() => useCreditProvisioningPlan((plan) => plan), {
         wrapper,
       });
@@ -736,7 +742,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan),
         {
@@ -784,7 +790,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan),
         {
@@ -826,7 +832,7 @@ describe('useCreditProvisioningPlan', () => {
         isPaused: false,
       });
 
-      const wrapper = createWrapper();
+      const wrapper = createOptimalWrapper({ queries: true, shell: true });
       const { result } = renderHook(
         () => useCreditProvisioningPlan((plan) => plan),
         {

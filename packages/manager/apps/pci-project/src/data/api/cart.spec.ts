@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import {
   createCart,
@@ -25,15 +26,19 @@ import {
   CartProductType,
 } from '@/data/types/cart.type';
 
+vi.mock('@ovh-ux/manager-core-api', () => ({
+  v6: {
+    get: vi.fn(),
+    post: vi.fn(),
+    delete: vi.fn(),
+  },
+}));
+
 const mockedV6Post = vi.mocked(v6.post);
 const mockedV6Get = vi.mocked(v6.get);
 const mockedV6Delete = vi.mocked(v6.delete);
 
 describe('cart API', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('getPublicCloudOptions', () => {
     it('should call v6.get with correct endpoint and return options', async () => {
       const mockOptions: CartProductOption[] = [

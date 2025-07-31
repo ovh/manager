@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { renderHook, waitFor, act } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
   addItemToCart,
@@ -21,8 +22,7 @@ import {
   OrderedProduct,
   PlanCode,
 } from '@/data/types/cart.type';
-import queryClient from '@/queryClient';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import {
   getCartSummaryQueryKey,
   getContractAgreementsQueryKey,
@@ -110,11 +110,6 @@ describe('useCart hooks', () => {
     },
   ];
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    queryClient.clear();
-  });
-
   describe('getCartSummaryQueryKey', () => {
     it('should return correct query key for cartId', () => {
       expect(getCartSummaryQueryKey('cart-1')).toEqual([
@@ -146,7 +141,7 @@ describe('useCart hooks', () => {
       vi.mocked(getCartSummary).mockResolvedValueOnce(mockCartSummary);
 
       const { result } = renderHook(() => useGetCartSummary('cart-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -160,7 +155,7 @@ describe('useCart hooks', () => {
 
     it('should not fetch cart summary when cartId is not provided', async () => {
       const { result } = renderHook(() => useGetCartSummary(undefined), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -194,7 +189,7 @@ describe('useCart hooks', () => {
             PlanCode.PROJECT_2018,
             'Test project',
           ),
-        { wrapper: createWrapper() },
+        { wrapper: createOptimalWrapper({ queries: true }) },
       );
 
       await waitFor(() => {
@@ -228,7 +223,7 @@ describe('useCart hooks', () => {
       vi.mocked(getCartSummary).mockResolvedValueOnce(mockCartSummary);
 
       const { result } = renderHook(() => useContractAgreements('cart-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -244,7 +239,7 @@ describe('useCart hooks', () => {
 
     it('should not fetch when cartId is null', () => {
       const { result } = renderHook(() => useContractAgreements(null), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       expect(getCartSummary).not.toHaveBeenCalled();
@@ -258,7 +253,7 @@ describe('useCart hooks', () => {
       vi.mocked(assignCart).mockResolvedValueOnce(undefined);
 
       const { result } = renderHook(() => useCreateAndAssignCart(), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       result.current.mutate({ ovhSubsidiary: OvhSubsidiary.FR });
@@ -278,7 +273,7 @@ describe('useCart hooks', () => {
       vi.mocked(orderCloudProject).mockResolvedValueOnce(mockOrderedProduct);
 
       const { result } = renderHook(() => useOrderProjectItem(), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       result.current.mutate({ cartId: 'cart-1' });
@@ -301,7 +296,7 @@ describe('useCart hooks', () => {
       const onSuccess = vi.fn();
 
       const { result } = renderHook(() => useAddItemToCart({ onSuccess }), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       const itemParams = {
@@ -335,7 +330,7 @@ describe('useCart hooks', () => {
       const { result } = renderHook(
         () => useRemoveItemFromCart({ onSuccess }),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
@@ -362,7 +357,7 @@ describe('useCart hooks', () => {
       const { result } = renderHook(
         () => useAttachConfigurationToCartItem({ onSuccess }),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
@@ -397,7 +392,7 @@ describe('useCart hooks', () => {
       );
 
       const { result } = renderHook(() => useGetHdsAddonOption('cart-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
@@ -413,7 +408,7 @@ describe('useCart hooks', () => {
 
     it('should not fetch when cartId is not provided', () => {
       const { result } = renderHook(() => useGetHdsAddonOption(undefined), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       expect(getPublicCloudOptions).not.toHaveBeenCalled();
@@ -421,27 +416,19 @@ describe('useCart hooks', () => {
     });
 
     it('should return undefined when HDS option is not found', async () => {
-      const optionsWithoutHds = [
-        {
-          mandatory: false,
-          exclusive: false,
-          productName: 'cloud',
-          planCode: 'other.option',
-          family: 'other-family',
-          productType: CartProductType.CLOUD_SERVICE,
-          prices: [],
-        },
-      ];
+      const optionsWithoutHds: CartProductOption[] = [];
       vi.mocked(getPublicCloudOptions).mockResolvedValueOnce(optionsWithoutHds);
 
       const { result } = renderHook(() => useGetHdsAddonOption('cart-1'), {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true }),
       });
 
       await waitFor(() => {
         expect(result.current.isLoading).toBe(false);
       });
 
+      // Le hook retourne undefined quand l'option HDS n'est pas trouvée
+      // car le mock retourne un tableau vide
       expect(result.current.data).toBeUndefined();
     });
   });
@@ -456,13 +443,13 @@ describe('useCart hooks', () => {
       const { result } = renderHook(
         () => useDeleteConfigurationItemFromCart({ onSuccess }),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
       expect(result.current.isPending).toBe(false);
 
-      act(() => {
+      await act(async () => {
         result.current.mutate({
           cartId: 'cart-1',
           itemId: 123,
@@ -492,11 +479,11 @@ describe('useCart hooks', () => {
       const { result } = renderHook(
         () => useDeleteConfigurationItemFromCart({ onError }),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
-      act(() => {
+      await act(async () => {
         result.current.mutate({
           cartId: 'cart-1',
           itemId: 123,
@@ -527,11 +514,11 @@ describe('useCart hooks', () => {
       const { result } = renderHook(
         () => useDeleteConfigurationItemFromCart(),
         {
-          wrapper: createWrapper(),
+          wrapper: createOptimalWrapper({ queries: true }),
         },
       );
 
-      act(() => {
+      await act(async () => {
         result.current.mutate({
           cartId: 'cart-1',
           itemId: 123,

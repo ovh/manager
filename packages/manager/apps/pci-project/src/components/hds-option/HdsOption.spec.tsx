@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import HdsOption from './HdsOption';
 import { HDS_INFO } from '@/constants';
 
@@ -14,7 +15,7 @@ describe('HdsOption', () => {
 
   it('renders the correct HDS info link for subsidiary', () => {
     render(<HdsOption {...defaultProps} />, {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     const link = screen.getByTestId('ods-link');
@@ -23,27 +24,29 @@ describe('HdsOption', () => {
 
   it('disables checkbox if already certified', () => {
     render(<HdsOption {...defaultProps} isAlreadyCertifiedProject={true} />, {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     const checkbox = screen.getByTestId('hds-checkbox');
-    expect(checkbox).toHaveAttribute('is-disabled', 'true');
+    expect(checkbox).toHaveAttribute('data-disabled', 'true');
   });
 
   it('disables checkbox if not valid for certification', () => {
     render(<HdsOption {...defaultProps} isValidForCertification={false} />, {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     const checkbox = screen.getByTestId('hds-checkbox');
-    expect(checkbox).toHaveAttribute('is-disabled', 'true');
+    expect(checkbox).toHaveAttribute('data-disabled', 'true');
   });
 
   it('enables checkbox if valid and not already certified', () => {
-    render(<HdsOption {...defaultProps} />, { wrapper: createWrapper() });
+    render(<HdsOption {...defaultProps} />, {
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
+    });
 
     const checkbox = screen.getByTestId('hds-checkbox');
-    expect(checkbox).toHaveAttribute('is-disabled', 'false');
+    expect(checkbox).toHaveAttribute('data-disabled', 'false');
   });
 
   it('calls handleCheckChanged when checkbox is toggled', () => {
@@ -51,7 +54,7 @@ describe('HdsOption', () => {
     render(
       <HdsOption {...defaultProps} onCheckChanged={handleCheckChanged} />,
       {
-        wrapper: createWrapper(),
+        wrapper: createOptimalWrapper({ queries: true, shell: true }),
       },
     );
 
@@ -65,19 +68,19 @@ describe('HdsOption', () => {
 
   it('shows checked state when isChecked is true', () => {
     render(<HdsOption {...defaultProps} isChecked={true} />, {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     const checkbox = screen.getByTestId('hds-checkbox');
-    expect(checkbox).toHaveAttribute('is-checked', 'true');
+    expect(checkbox).toHaveAttribute('data-checked', 'true');
   });
 
   it('shows unchecked state when isChecked is false', () => {
     render(<HdsOption {...defaultProps} isChecked={false} />, {
-      wrapper: createWrapper(),
+      wrapper: createOptimalWrapper({ queries: true, shell: true }),
     });
 
     const checkbox = screen.getByTestId('hds-checkbox');
-    expect(checkbox).toHaveAttribute('is-checked', 'false');
+    expect(checkbox).toHaveAttribute('data-checked', 'false');
   });
 });

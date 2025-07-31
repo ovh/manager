@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { describe, it, expect, vi } from 'vitest';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { getOrderCatalog, TOrderCatalogParams } from './order-catalog';
 import { TOrderCatalog } from '@/data/types/payment/order-catalog.type';
@@ -12,10 +13,6 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
 
 describe('order-catalog API', () => {
   const mockV6Get = vi.mocked(v6.get);
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
 
   describe('getOrderCatalog', () => {
     const mockOrderCatalog: TOrderCatalog = {

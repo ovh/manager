@@ -1,11 +1,16 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import useRedirectAfterProjectSelection from './useRedirectAfterProjectSelection';
 import { TProjectWithService } from '@/data/types/project.type';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import {
+  createOptimalWrapper,
+  shellContext,
+} from '@/test-utils/lightweight-wrappers';
 
 vi.mock('@/constants', () => ({
   PCI_FEATURES_STATES: {
@@ -32,6 +37,12 @@ vi.mock('@/constants', () => ({
   },
 }));
 
+vi.mock('react-router-dom', () => ({
+  useSearchParams: vi.fn(),
+  MemoryRouter: ({ children }: { children: React.ReactNode }) =>
+    React.createElement('div', { 'data-testid': 'memory-router' }, children),
+}));
+
 vi.mock('@tanstack/react-query', async (importOriginal) => {
   const actual: typeof import('@tanstack/react-query') = await importOriginal();
   return {
@@ -39,6 +50,10 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
     useQuery: vi.fn(),
   };
 });
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  useFeatureAvailability: vi.fn(),
+}));
 
 const mockUseSearchParams = vi.mocked(useSearchParams);
 const mockUseQuery = vi.mocked(useQuery);
@@ -67,11 +82,7 @@ const mockProjects: TProjectWithService[] = [
 
 describe('useRedirectAfterProjectSelection', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
-
-    // Default mocks
-    mockUseSearchParams.mockReturnValue([new URLSearchParams(), vi.fn()]);
-
+    // Mock par défaut pour useQuery
     mockUseQuery.mockReturnValue({
       data: { data: mockProjects },
       isError: false,
@@ -80,36 +91,32 @@ describe('useRedirectAfterProjectSelection', () => {
       isSuccess: true,
     } as ReturnType<typeof useQuery>);
 
-    mockUseFeatureAvailability.mockReturnValue({
-      data: {},
+    // Mock par défaut pour useSearchParams
+    mockUseSearchParams.mockReturnValue([new URLSearchParams(), vi.fn()]);
+
+    // Mock par défaut pour useFeatureAvailability
+    mockUseFeatureAvailability.mockReturnValue(({
+      data: { 'test-feature': true },
       isLoading: false,
       error: null,
-    } as ReturnType<typeof useFeatureAvailability>);
-
-    // Mock window.top
-    Object.defineProperty(window, 'top', {
-      value: {
-        location: '',
-      },
-      writable: true,
-    });
+    } as unknown) as ReturnType<typeof useFeatureAvailability>);
   });
 
   const renderHookWithWrapper = () => {
-    const Wrapper = createWrapper();
+    const Wrapper = createOptimalWrapper({ queries: true, shell: true });
     return renderHook(() => useRedirectAfterProjectSelection(), {
       wrapper: Wrapper,
     });
   };
 
-  it('should return no redirect required when no target is provided', () => {
+  it('should return no redirect required when no target is provided', async () => {
     const { result } = renderHookWithWrapper();
 
     expect(result.current.isRedirectRequired).toBe(false);
     expect(typeof result.current.redirect).toBe('function');
   });
 
-  it('should return no redirect required when target is invalid', () => {
+  it('should return no redirect required when target is invalid', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"invalid": true}'),
       vi.fn(),
@@ -120,7 +127,7 @@ describe('useRedirectAfterProjectSelection', () => {
     expect(result.current.isRedirectRequired).toBe(false);
   });
 
-  it('should handle loading state', () => {
+  it('should handle loading state', async () => {
     mockUseQuery.mockReturnValue({
       data: undefined,
       isError: false,
@@ -134,7 +141,7 @@ describe('useRedirectAfterProjectSelection', () => {
     expect(result.current.isRedirectRequired).toBe(false);
   });
 
-  it('should handle error state', () => {
+  it('should handle error state', async () => {
     mockUseQuery.mockReturnValue({
       data: undefined,
       isError: true,
@@ -148,7 +155,7 @@ describe('useRedirectAfterProjectSelection', () => {
     expect(result.current.isRedirectRequired).toBe(false);
   });
 
-  it('should require manual selection when multiple active projects exist', () => {
+  it('should require manual selection when multiple active projects exist', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"category": "test", "state": "enabled"}'),
       vi.fn(),
@@ -187,7 +194,7 @@ describe('useRedirectAfterProjectSelection', () => {
     });
   });
 
-  it('should handle internal navigation correctly', () => {
+  it('should handle internal navigation correctly', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"category": "test", "state": "enabled"}'),
       vi.fn(),
@@ -206,7 +213,7 @@ describe('useRedirectAfterProjectSelection', () => {
     );
   });
 
-  it('should handle external navigation correctly', () => {
+  it('should handle external navigation correctly', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"category": "test", "state": "external"}'),
       vi.fn(),
@@ -219,7 +226,7 @@ describe('useRedirectAfterProjectSelection', () => {
     expect(window.top?.location).toBe('https://external.com/test-project-id');
   });
 
-  it('should handle redirect parameters correctly', () => {
+  it('should handle redirect parameters correctly', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams(
         'target={"category": "test", "state": "withparams", "params": {"key": "value"}}',
@@ -241,7 +248,7 @@ describe('useRedirectAfterProjectSelection', () => {
     );
   });
 
-  it('should check feature availability when required', () => {
+  it('should check feature availability when required', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"category": "test", "state": "withff"}'),
       vi.fn(),
@@ -260,7 +267,7 @@ describe('useRedirectAfterProjectSelection', () => {
     });
   });
 
-  it('should filter only active projects', () => {
+  it('should filter only active projects', async () => {
     mockUseSearchParams.mockReturnValue([
       new URLSearchParams('target={"category": "test", "state": "enabled"}'),
       vi.fn(),
@@ -272,7 +279,7 @@ describe('useRedirectAfterProjectSelection', () => {
     expect(result.current.isRedirectRequired).toBe(true);
   });
 
-  it('should return no redirect when no active projects exist', () => {
+  it('should return no redirect when no active projects exist', async () => {
     const suspendedProjects = [mockProjects[2]]; // Only suspended project
     mockUseQuery.mockReturnValue({
       data: { data: suspendedProjects },

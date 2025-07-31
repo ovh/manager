@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import SepaInformationModal from './SepaInformationModal';
-import { createWrapper } from '@/wrapperRenders';
+import { createOptimalWrapper } from '@/test-utils/lightweight-wrappers';
 import { TPaymentFeaturesState } from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 
 describe('SepaInformationModal', () => {
@@ -19,11 +20,7 @@ describe('SepaInformationModal', () => {
       ...overrides,
     } as unknown) as TPaymentFeaturesState);
 
-  const Wrapper = createWrapper();
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
+  const Wrapper = createOptimalWrapper({ queries: true, shell: true });
 
   it('should render component without crashing', () => {
     const mockFeatures = createMockFeatures({ SEPA_INFO_MSG: true });

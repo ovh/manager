@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, SyntheticEvent } from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import OnboardingPage from './Onboarding.page';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import {
+  createOptimalWrapper,
+  shellContext,
+} from '@/test-utils/lightweight-wrappers';
 
 function createCustomWrapper({
   region,
@@ -22,7 +26,10 @@ function createCustomWrapper({
       kycValidated,
     },
   };
-  return createWrapper((customShellContext as unknown) as ShellContextType);
+  return createOptimalWrapper(
+    { shell: true },
+    (customShellContext as unknown) as ShellContextType,
+  );
 }
 
 vi.mock('react-router-dom', async () => {
@@ -94,7 +101,7 @@ describe('OnboardingPage', () => {
   describe('Regions others than US', () => {
     const wrapper = createCustomWrapper({ region: 'FR', ovhSubsidiary: 'FR' });
 
-    it('does not display the US version of the page', () => {
+    it('does not display the US version of the page', async () => {
       const { queryByTestId } = render(<OnboardingPage />, { wrapper });
       expect(queryByTestId('discovery-page')).toBeVisible();
       expect(queryByTestId('discovery-page-us')).toBeNull();
@@ -104,20 +111,20 @@ describe('OnboardingPage', () => {
   describe('US region', () => {
     const wrapper = createCustomWrapper({ region: 'US', ovhSubsidiary: 'US' });
 
-    it('displays a different page than non-US region', () => {
+    it('displays a different page than non-US region', async () => {
       const { queryByTestId } = render(<OnboardingPage />, { wrapper });
       expect(queryByTestId('discovery-page-us')).toBeVisible();
       expect(queryByTestId('discovery-page')).toBeNull();
     });
 
-    it('show a link to project creation as call to action', () => {
+    it('show a link to project creation as call to action', async () => {
       const { getByTestId } = render(<OnboardingPage />, { wrapper });
       expect(getByTestId('project-creation-redirection-cta')).toBeVisible();
     });
   });
 
   describe('IT subsidiary', () => {
-    it('display italy-specific agreement', () => {
+    it('display italy-specific agreement', async () => {
       const { getByTestId } = render(<OnboardingPage />, {
         wrapper: createCustomWrapper({ region: 'IT', ovhSubsidiary: 'IT' }),
       });
@@ -128,7 +135,7 @@ describe('OnboardingPage', () => {
     });
   });
 
-  it('KYC in Indian subsidiary', () => {
+  it('KYC in Indian subsidiary', async () => {
     const wrapper = createCustomWrapper({ region: 'IN', ovhSubsidiary: 'IN' });
     const { getByTestId } = render(<OnboardingPage />, { wrapper });
     expect(getByTestId('kyc-message')).toBeVisible();
