@@ -31,6 +31,7 @@
     "@ovh-ux/ng-ovh-doc-url": "^2.1.4",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.5",
     "@ovh-ux/ng-ovh-http": "^5.1.4",
+    "@ovh-ux/ng-ovh-payment-method": "^9.17.3",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.4",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.3",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.1.4",
