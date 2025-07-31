@@ -32,11 +32,10 @@ import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { createNodePool, TCreateNodePoolParam } from '@/api/data/node-pools';
+import { createNodePool } from '@/api/data/node-pools';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
-import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
 import queryClient from '@/queryClient';
 import { useTrack } from '@/hooks/track';
 import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
@@ -48,6 +47,8 @@ import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from '@/hooks/useMergedFlavorById';
+import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import { TCreateNodePoolParam } from '@/types';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation([
@@ -121,14 +122,14 @@ export default function NewPage(): JSX.Element {
 
   const price = useMergedFlavorById(
     projectId,
-    cluster?.region,
+    cluster?.region ?? null,
     store.flavor?.id,
     {
       select: (flavor) =>
         getPriceByDesiredScale(
           flavor?.pricingsHourly?.price,
           flavor?.pricingsMonthly?.price,
-          store.autoScaling?.quantity.desired,
+          store.scaling?.quantity.desired,
         ),
     },
   );
@@ -154,7 +155,7 @@ export default function NewPage(): JSX.Element {
       })();
 
       const warnForAutoscaleBilling = Boolean(
-        store.isMonthlyBilling && store.autoScaling?.isAutoscale,
+        store.isMonthlyBilling && store.scaling?.isAutoscale,
       );
 
       setBillingState((prev) => ({
@@ -168,12 +169,7 @@ export default function NewPage(): JSX.Element {
         },
       }));
     }
-  }, [
-    store.flavor,
-    store.isMonthlyBilling,
-    store.autoScaling,
-    isCatalogPending,
-  ]);
+  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending]);
 
   const create = () => {
     trackClick(`details::nodepools::add::confirm`);
@@ -191,15 +187,12 @@ export default function NewPage(): JSX.Element {
       name: store.name.value,
       antiAffinity: store.antiAffinity,
       monthlyBilled: store.isMonthlyBilling,
-      autoscale: Boolean(store.autoScaling?.isAutoscale),
-      minNodes: store.autoScaling?.quantity.min ?? 0,
-      desiredNodes: store.autoScaling?.quantity.desired ?? 0,
-      maxNodes: store.antiAffinity
-        ? Math.min(
-            ANTI_AFFINITY_MAX_NODES,
-            store.autoScaling?.quantity.max ?? 0,
-          )
-        : store.autoScaling?.quantity.max ?? 0,
+      autoscale: Boolean(store.scaling?.isAutoscale),
+      ...(Boolean(store.scaling?.isAutoscale) && {
+        minNodes: store.scaling?.quantity.min ?? 0,
+        maxNodes: store.scaling.quantity.max,
+      }),
+      desiredNodes: store.scaling?.quantity.desired ?? 0,
     };
     createNodePool(projectId, clusterId, param)
       .then(() => {
@@ -245,11 +238,6 @@ export default function NewPage(): JSX.Element {
         }));
       });
   };
-  const hasMax5NodesAntiAffinity =
-    !store.antiAffinity ||
-    (store.antiAffinity &&
-      store.autoScaling &&
-      store.autoScaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
 
   const handleValueChange = (e: OdsInputValueChangeEvent) => {
     if (e.detail.value) store.set.name(e.detail.value);
@@ -395,26 +383,22 @@ export default function NewPage(): JSX.Element {
         order={3}
         next={{
           action: () => {
-            if (store.autoScaling) {
+            if (store.scaling) {
               store.check(StepsEnum.SIZE);
               store.lock(StepsEnum.SIZE);
               store.open(StepsEnum.BILLING);
             }
           },
           label: t('common_stepper_next_button_label'),
-          isDisabled:
-            !hasMax5NodesAntiAffinity ||
-            !store.autoScaling ||
-            (!store.autoScaling.isAutoscale &&
-              store.autoScaling.quantity.desired > NODE_RANGE.MAX) ||
-            (store.autoScaling.isAutoscale &&
-              (store.autoScaling.quantity.min > NODE_RANGE.MAX ||
-                store.autoScaling.quantity.max > NODE_RANGE.MAX ||
-                store.autoScaling.quantity.min >=
-                  store.autoScaling.quantity.max)) ||
-            (regionInformations?.type &&
-              isMultiDeploymentZones(regionInformations.type) &&
-              !store.selectedAvailabilityZone),
+          isDisabled: !!(
+            regionInformations &&
+            hasInvalidScalingOrAntiAffinityConfig(regionInformations, {
+              name: store.name.value,
+              isTouched: store.name.isTouched,
+              scaling: store.scaling,
+              antiAffinity: store.antiAffinity,
+            })
+          ),
         }}
         edit={{
           action: () => {
@@ -437,7 +421,7 @@ export default function NewPage(): JSX.Element {
         )}
         <NodePoolSize
           isMonthlyBilled={store.isMonthlyBilling}
-          onScaleChange={(auto) => store.set.autoScaling(auto)}
+          onScaleChange={(auto) => store.set.scaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
         />
         <>
@@ -445,7 +429,7 @@ export default function NewPage(): JSX.Element {
             !isMultiDeploymentZones(regionInformations.type) && (
               <NodePoolAntiAffinity
                 isChecked={billingState.antiAffinity.isChecked}
-                isEnabled={!store.autoScaling?.isAutoscale}
+                isEnabled={!store.scaling?.isAutoscale}
                 onChange={billingState.antiAffinity.onChange}
               />
             )}

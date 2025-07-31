@@ -15,13 +15,29 @@ describe('NewPoolStore', () => {
     });
     it('should set flavor', () => {
       const { result } = renderHook(() => useNewPoolStore());
-      act(() => result.current.set.flavor(null));
-      expect(result.current.flavor).toBe(null);
+      act(() => result.current.set.flavor(undefined));
+      expect(result.current.flavor).toBe(undefined);
     });
     it('should set autoScaling', () => {
       const { result } = renderHook(() => useNewPoolStore());
-      act(() => result.current.set.autoScaling(undefined));
-      expect(result.current.autoScaling).toBe(undefined);
+      act(() =>
+        result.current.set.scaling({
+          isAutoscale: false,
+          quantity: {
+            desired: 3,
+            max: 100,
+            min: 0,
+          },
+        }),
+      );
+      expect(result.current.scaling).toStrictEqual({
+        isAutoscale: false,
+        quantity: {
+          desired: 3,
+          max: 100,
+          min: 0,
+        },
+      });
     });
     it('should set flavor', () => {
       const { result } = renderHook(() => useNewPoolStore());
@@ -102,7 +118,7 @@ describe('NewPoolStore', () => {
     > => ({
       name: state.name,
       flavor: state.flavor,
-      autoScaling: state.autoScaling,
+      scaling: state.scaling,
       selectedAvailabilityZone: state.selectedAvailabilityZone,
       antiAffinity: state.antiAffinity,
       isMonthlyBilling: state.isMonthlyBilling,
@@ -116,7 +132,14 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: null,
+        scaling: {
+          isAutoscale: false,
+          quantity: {
+            desired: 3,
+            max: 100,
+            min: 0,
+          },
+        },
         flavor: undefined,
         isMonthlyBilling: false,
         name: { value: '', hasError: false, isTouched: false },
@@ -169,7 +192,14 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: null,
+        scaling: {
+          isAutoscale: false,
+          quantity: {
+            desired: 3,
+            max: 100,
+            min: 0,
+          },
+        },
         flavor: undefined,
         isMonthlyBilling: false,
         name: { hasError: false, isTouched: false, value: '' },
@@ -222,7 +252,14 @@ describe('NewPoolStore', () => {
 
       expect(extractState(result.current)).toEqual({
         antiAffinity: false,
-        autoScaling: null,
+        scaling: {
+          isAutoscale: false,
+          quantity: {
+            desired: 3,
+            max: 100,
+            min: 0,
+          },
+        },
         flavor: undefined,
         isMonthlyBilling: false,
         name: {
