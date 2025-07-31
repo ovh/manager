@@ -106,15 +106,13 @@ export default class ServicesActionsCtrl {
           !this.service.isSuspended();
         this.canDisplayCancelCommitmentMenuEntry = this.service.hasPendingEngagement;
         this.canDisplayExchangeSpecificMenuEntries =
-          this.service.serviceType === this.SERVICE_TYPE.EXCHANGE &&
-          !this.isUSRegion;
+          this.service.serviceType === this.SERVICE_TYPE.EXCHANGE;
         this.canDisplayXdslSpecificResiliationMenuEntry =
           this.service.serviceType === this.SERVICE_TYPE.PACK_XDSL &&
           !this.service.shouldDeleteAtExpiration() &&
           !this.service.isResiliated() &&
           !this.service.hasDebt() &&
-          !this.service.hasPendingResiliation() &&
-          !this.isUSRegion;
+          !this.service.hasPendingResiliation();
         this.canDisplayXdslResiliationMenuEntry =
           this.resiliateLink &&
           this.service.hasAdminRights(this.user.auth.account);
@@ -134,8 +132,7 @@ export default class ServicesActionsCtrl {
           this.autorenewLink &&
           (this.service.canBeDeleted() || this.service.isSuspendedHostingWeb());
         this.canDisplaySmsSpecificMenuEntries =
-          this.service.serviceType === this.SERVICE_TYPE.SMS &&
-          !this.isUSRegion;
+          this.service.serviceType === this.SERVICE_TYPE.SMS;
         this.canDisplayCancelResiliationMenuEntry =
           ![
             this.SERVICE_TYPE.VRACK,
