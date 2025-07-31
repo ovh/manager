@@ -5,7 +5,7 @@ import { BillingService as Service } from '@ovh-ux/manager-models';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.resiliationRedirection', {
     url: '/resiliation?serviceId&serviceName&serviceType',
-    redirectTo: 'billing.autorenew.services.resiliation',
+    redirectTo: 'billing.autorenew.resiliation',
   });
 
   $stateProvider.state('billing.autorenew.resiliation', {
