@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['./', '../support-level'],
     },
     resolve: {
-      user: /* @ngInject */ (currentUser) => currentUser,
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       onClickShortcut: /* @ngInject */ (atInternet) => {
         return (shortcut) => {
           if (shortcut.tracking_name_suffix) {
