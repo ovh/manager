@@ -39,6 +39,7 @@ type TDatagridComponentProps = DeepReadonly<{
 }>;
 
 const getPlaceHolderData = (count: number): TAggregatedInstance[] =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   [...new Array(count)].map((_elt, index) => ({
     id: String(index),
     name: '',

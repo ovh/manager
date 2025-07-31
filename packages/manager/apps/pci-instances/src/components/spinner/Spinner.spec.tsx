@@ -1,4 +1,4 @@
-import { describe } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Spinner } from './Spinner.component';

@@ -1,6 +1,8 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { AxiosResponse } from 'axios';
 import {
   TAggregatedInstanceDto,
+  TInstanceDto,
   TRetrieveInstancesQueryParams,
 } from '@/types/instance/api.type';
 import { mapDtoToInstance } from './mapper/instance.mapper';
@@ -50,7 +52,7 @@ export const getInstances = (
         searchValue,
       },
     })
-    .then((response) => response.data);
+    .then((response: AxiosResponse<TAggregatedInstanceDto[]>) => response.data);
 
 export const deleteInstance = (
   projectId: string,
@@ -164,4 +166,6 @@ export const getInstance = async ({
         params: params?.reduce((acc, key) => ({ ...acc, [key]: true }), {}),
       },
     )
-    .then((response) => mapDtoToInstance(response.data));
+    .then((response: AxiosResponse<TInstanceDto>) =>
+      mapDtoToInstance(response.data),
+    );
