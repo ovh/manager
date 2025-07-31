@@ -1,5 +1,10 @@
 import { UseResourcesIcebergV2Result } from '@ovh-ux/manager-react-components';
-import { BillingType, ResourceStatus, Task, WithIam } from './vcd-utility.type';
+import {
+  BillingType,
+  Task,
+  VCDResourceStatus,
+  WithIam,
+} from './vcd-utility.type';
 import { BackupStatus } from './veeam-backup.type';
 
 export type VCDRegion =
@@ -34,7 +39,7 @@ export type VCDOrganizationState = VCDOrganizationTargetSpec & {
 
 export type VCDOrganization = WithIam<{
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: VCDResourceStatus;
   currentState: VCDOrganizationState;
   targetSpec: VCDOrganizationTargetSpec;
   currentTasks?: Task[];
