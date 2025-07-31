@@ -61,6 +61,8 @@ import OrderPrice from '@/components/order/price/OrderPrice.component';
 import CliEquivalent from './CliEquivalent.component';
 import publicCatalog from '@/types/Catalog';
 import { cn } from '@/lib/utils';
+import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -76,6 +78,8 @@ const OrderFunnel = ({
   suggestions,
 }: OrderFunnelProps) => {
   const model = useOrderFunnel(regions, catalog, suggestions);
+  const trackBanner = useTrackBanner();
+  const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks/create');
   const { projectId } = useParams();
   // Manage datastore combobox
@@ -92,6 +96,14 @@ const OrderFunnel = ({
 
   const { addNotebook, isPending: isPendingAddNotebook } = useAddNotebook({
     onError: (err) => {
+      trackBanner(
+        TRACKING.notebooks.banner.errorBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.framework.name,
+        ),
+        'banner',
+      );
       toast({
         title: t('errorCreatingNotebook'),
         variant: 'destructive',
@@ -99,6 +111,14 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (notebook) => {
+      trackBanner(
+        TRACKING.notebooks.banner.successBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.framework.name,
+        ),
+        'banner',
+      );
       toast({
         title: t('successCreatingNotebookTitle'),
         description: t('successCreatingNotebookDescription'),
@@ -131,6 +151,15 @@ const OrderFunnel = ({
     () => {
       const notebookInfos: ai.notebook.NotebookSpecInput = getNotebookSpec(
         model.result,
+      );
+
+      track(
+        TRACKING.notebooks.funnel.createNotebookConfirmClick(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.framework.name,
+        ),
+        'funnel',
       );
       addNotebook(notebookInfos);
     },
@@ -512,6 +541,10 @@ const OrderFunnel = ({
                     mode="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl text-primary-500"
                     onClick={() => {
+                      track(
+                        TRACKING.notebooks.funnel.advancedConfigurationClick(),
+                        'funnel',
+                      );
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
                   >

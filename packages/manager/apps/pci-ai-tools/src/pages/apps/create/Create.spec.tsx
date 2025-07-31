@@ -24,7 +24,7 @@ import {
 } from '@/__tests__/helpers/mocks/volume/datastore';
 import * as appApi from '@/data/api/ai/app/app.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
-import App, { breadcrumb as Breadcrumb } from './Create.page';
+import App from './Create.page';
 import {
   mockedContract,
   mockedPartner,
@@ -82,14 +82,6 @@ describe('Order funnel page', () => {
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('renders the breadcrumb component', async () => {
-    const translationKey = 'breadcrumb';
-    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeTruthy();
-    });
   });
 
   it('renders the skeleton component while loading', async () => {

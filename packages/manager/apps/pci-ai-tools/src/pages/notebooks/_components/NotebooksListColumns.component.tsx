@@ -35,6 +35,8 @@ import {
   isRunningNotebook,
   isStoppedNotebook,
 } from '@/lib/statusHelper';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: ai.notebook.Notebook) => void;
@@ -48,6 +50,7 @@ export const getColumns = ({
   onDeleteClicked,
 }: NotebooksListColumnsProps) => {
   const navigate = useNavigate();
+  const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
   const columns: ColumnDef<ai.notebook.Notebook>[] = [
@@ -59,7 +62,7 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       accessorFn: (row) => `${row.spec.name}-${row.id}`,
-      cell: ({ row }) => {
+      cell: ({ row, column }) => {
         const { id, spec, status } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
@@ -68,7 +71,17 @@ export const getColumns = ({
                 {spec.name}
               </span>
             ) : (
-              <Link to={id}>{spec.name}</Link>
+              <Link
+                onClick={() => {
+                  track(
+                    TRACKING.notebooks.listing.DatagridLinkClick(column.id),
+                    'listing',
+                  );
+                }}
+                to={id}
+              >
+                {spec.name}
+              </Link>
             )}
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
@@ -232,7 +245,13 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="notebook-action-manage-button"
                 variant="primary"
-                onClick={() => navigate(`./${row.original.id}`)}
+                onClick={() => {
+                  track(
+                    TRACKING.notebooks.listing.manageNotebooksDataGridClick(),
+                    'listing',
+                  );
+                  navigate(`./${row.original.id}`);
+                }}
                 disabled={
                   row.original.status.state ===
                   ai.notebook.NotebookStateEnum.DELETING
@@ -248,6 +267,10 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.notebooks.listing.startNotebooksDataGridClick(),
+                    'listing',
+                  );
                   onStartClicked(row.original);
                 }}
               >
@@ -261,6 +284,10 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.notebooks.listing.stopNotebooksDataGridClick(),
+                    'listing',
+                  );
                   onStopClicked(row.original);
                 }}
               >
@@ -279,6 +306,10 @@ export const getColumns = ({
                           isDeletingNotebook(notebook.status.state)
                         }
                         onClick={() => {
+                          track(
+                            TRACKING.notebooks.listing.deleteNotebooksDataGridClick(),
+                            'listing',
+                          );
                           onDeleteClicked(row.original);
                         }}
                       >

@@ -15,6 +15,24 @@ describe('Notebooks Layout', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
 
+    vi.mock('react-router-dom', async (importOriginal) => {
+      const mod = await importOriginal<typeof import('react-router-dom')>();
+      return {
+        ...mod,
+        useMatches: () => [
+          {
+            id: '0',
+            pathname: '/',
+            handle: {
+              tracking: {
+                id: 'layout',
+              },
+            },
+          },
+        ],
+      };
+    });
+
     vi.mock('@/data/api/project/project.api', () => {
       return {
         getProject: vi.fn(() => ({

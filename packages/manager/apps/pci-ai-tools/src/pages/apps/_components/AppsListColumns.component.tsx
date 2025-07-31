@@ -18,6 +18,8 @@ import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import AppStatusBadge from './AppStatusBadge.component';
 import { isDeletingApp, isRunningApp, isStoppedApp } from '@/lib/statusHelper';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface AppsListColumnsProps {
   onStartClicked: (app: ai.app.App) => void;
@@ -33,6 +35,7 @@ export const getColumns = ({
   const navigate = useNavigate();
   const { t } = useTranslation('ai-tools/apps');
   const { t: tRegions } = useTranslation('regions');
+  const track = useTrackAction();
   const columns: ColumnDef<ai.app.App>[] = [
     {
       id: 'name/id',
@@ -42,11 +45,21 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       accessorFn: (row) => `${row.spec.name}-${row.id}`,
-      cell: ({ row }) => {
+      cell: ({ row, column }) => {
         const { id, spec } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
-            <Link to={id}>{spec.name}</Link>
+            <Link
+              onClick={() => {
+                track(
+                  TRACKING.deploy.listing.DatagridLinkClick(column.id),
+                  'listing',
+                );
+              }}
+              to={id}
+            >
+              {spec.name}
+            </Link>
             <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
         );
@@ -187,7 +200,13 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="app-action-manage-button"
                 variant="primary"
-                onClick={() => navigate(`./${row.original.id}`)}
+                onClick={() => {
+                  track(
+                    TRACKING.deploy.listing.manageDeployDataGridClick(),
+                    'listing',
+                  );
+                  navigate(`./${row.original.id}`);
+                }}
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
@@ -199,6 +218,10 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.deploy.listing.startDeployDataGridClick(),
+                    'listing',
+                  );
                   onStartClicked(row.original);
                 }}
               >
@@ -212,6 +235,10 @@ export const getColumns = ({
                 }
                 variant="primary"
                 onClick={() => {
+                  track(
+                    TRACKING.deploy.listing.stopDeployDataGridClick(),
+                    'listing',
+                  );
                   onStopClicked(row.original);
                 }}
               >
@@ -226,6 +253,10 @@ export const getColumns = ({
                   isDeletingApp(app.status.state)
                 }
                 onClick={() => {
+                  track(
+                    TRACKING.deploy.listing.deleteDeployDataGridClick(),
+                    'listing',
+                  );
                   onDeleteClicked(row.original);
                 }}
               >

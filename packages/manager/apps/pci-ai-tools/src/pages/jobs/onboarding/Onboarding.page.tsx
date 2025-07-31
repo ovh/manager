@@ -3,6 +3,8 @@ import { Button } from '@datatr-ux/uxlib';
 import Guides from '@/components/guides/Guides.component';
 import Link from '@/components/links/Link.component';
 import onboardingImgSrc from '@/../public/assets/training.png';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
 import { GUIDES, getGuideUrl, jobGuidesSections } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
@@ -10,7 +12,7 @@ import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.componen
 const Onboarding = () => {
   const { t } = useTranslation('ai-tools/jobs/onboarding');
   const locale = useLocale();
-
+  const track = useTrackAction();
   return (
     <div
       data-testid="onbaording-container"
@@ -28,6 +30,12 @@ const Onboarding = () => {
       <Button data-testid="create-job-link" asChild>
         <Link
           to="../new"
+          onClick={() => {
+            track(
+              TRACKING.training.onboarding.createTrainingClick(),
+              'onboarding',
+            );
+          }}
           className="hover:no-underline hover:text-primary-foreground"
         >
           {t('createJobButton')}
