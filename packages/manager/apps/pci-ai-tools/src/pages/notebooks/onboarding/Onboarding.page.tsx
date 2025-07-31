@@ -14,10 +14,10 @@ import { useLocale } from '@/hooks/useLocale';
 import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 
-const track = useTrackAction();
 const Onboarding = () => {
   const { isQuantum, t } = useQuantum('ai-tools/notebooks/onboarding');
   const locale = useLocale();
+  const track = useTrackAction();
 
   return (
     <div
