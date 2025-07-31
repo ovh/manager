@@ -803,5 +803,4 @@
   "streams_subscriptions_resource_products_account-api": "Área de cliente OVHcloud y API OVHcloud",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
-])
 }

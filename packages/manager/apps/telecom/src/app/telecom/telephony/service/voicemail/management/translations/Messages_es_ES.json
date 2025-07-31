@@ -13,7 +13,7 @@
   "telephony_line_answer_voicemail_directories_transcript": "Ver la transcripción",
   "telephony_line_answer_voicemail_directories_transcript_beta": "(beta)",
   "telephony_line_answer_voicemail_directories_transcript_modal_title": "Transcripción",
-  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Esta transcripción fue generada por IA",
+  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Esta transcripción ha sido generada por inteligencia artificial",
   "telephony_line_answer_voicemail_directories_transcript_modal_download": "Descargar la transcripción",
   "telephony_line_answer_voicemail_directories_transcript_modal_close": "Cerrar"
 }
