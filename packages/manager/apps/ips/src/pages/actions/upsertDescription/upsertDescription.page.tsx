@@ -22,9 +22,12 @@ import Loading from '../../listing/manageOrganisations/components/Loading/Loadin
 
 export default function UpsertDescriptionModal() {
   const navigate = useNavigate();
-  const { id } = useParams();
-  const { ip } = ipFormatter(fromIdToIp(id));
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+  const { id, parentId } = useParams();
+  const { ipAddress: ip } = id
+    ? ipFormatter(fromIdToIp(id))
+    : { ipAddress: undefined };
+  const { ipGroup, isGroup } = ipFormatter(fromIdToIp(parentId));
+  const { ipDetails, isLoading } = useGetIpdetails({ ip: ipGroup });
   const { addSuccess } = useNotifications();
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS, 'error']);
   const MAX_CHARACTERS = 250;
@@ -37,7 +40,7 @@ export default function UpsertDescriptionModal() {
     mutate: upsertIpDescription,
     isPending: upsertIpDescriptionPending,
   } = useUpsertIpDescription({
-    ip,
+    ip: ip ?? ipGroup,
     description,
     onSuccess: () => {
       navigate('..');
