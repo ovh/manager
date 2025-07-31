@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.142.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.141.0...@ovh-ux/manager-container-app@0.142.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **container:** rename Managed VCD to Public VCF as-a-Service ([42575b9](https://github.com/ovh/manager/commit/42575b9bbeefb2704dff3fb954f05c09dca94539)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 # [0.141.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.5...@ovh-ux/manager-container-app@0.141.0) (2025-07-24)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.17.0...@ovh-ux/manager-veeam-backup-app@0.18.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **veeam-backup:** add missing resource status ([eea891b](https://github.com/ovh/manager/commit/eea891b932e0f7be29c4be92a60ea954cd956e01)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+* **veeam-backup:** rename Managed VCD to Public VCF as-a-Service ([c3b96dd](https://github.com/ovh/manager/commit/c3b96dddfc87c7ce0ddab861c6bc5b7d3240fdbd)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 # [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.16.5...@ovh-ux/manager-veeam-backup-app@0.17.0) (2025-07-29)
 
 
