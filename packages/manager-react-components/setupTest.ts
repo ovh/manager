@@ -27,7 +27,27 @@ global.EventTarget = class {
 };
 
 const ResizeObserverMock = vi.fn((callback) => {
-  callback();
+  // Create a mock ResizeObserverEntry with the expected structure
+  const mockEntry = {
+    target: document.createElement('div'),
+    contentRect: {
+      width: 100,
+      height: 100,
+      top: 0,
+      left: 0,
+      bottom: 100,
+      right: 100,
+      x: 0,
+      y: 0,
+    },
+    borderBoxSize: [{ width: 100, height: 100 }],
+    contentBoxSize: [{ width: 100, height: 100 }],
+    devicePixelContentBoxSize: [{ width: 100, height: 100 }],
+  };
+
+  // Call the callback with an array of entries as the real ResizeObserver does
+  callback([mockEntry]);
+
   return {
     observe: vi.fn(),
     unobserve: vi.fn(),
