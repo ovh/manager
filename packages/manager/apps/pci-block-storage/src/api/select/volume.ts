@@ -17,38 +17,42 @@ import {
   getVolumeModelPricings,
   TModelPrice,
 } from '@/api/select/catalog';
+import { isBlockStorageListColumn } from '@/hooks/useDatagridColumn';
 
 export const sortResults = (
   items: TVolume[],
   sorting: ColumnSort | undefined,
 ) => {
   if (!sorting) return items;
+  const sortingColumn = sorting.id;
+  if (!isBlockStorageListColumn(sortingColumn)) return items;
 
-  let sortFn: (a: TVolume, b: TVolume) => number;
-
-  switch (sorting.id) {
-    case 'status':
-      sortFn = (a, b) => (a.statusGroup > b.statusGroup ? 1 : 0);
-      break;
-    case 'attachedTo':
-      sortFn = (a, b) => {
-        const aAttachedTo = a.attachedTo[0] || '';
-        const bAttachedTo = b.attachedTo[0] || '';
-        return aAttachedTo > bAttachedTo ? 1 : 0;
-      };
-      break;
-    default:
-      sortFn = (a, b) => (a[sorting.id] > b[sorting.id] ? 1 : 0);
-      break;
-  }
+  const sortFn = (() => {
+    switch (sortingColumn) {
+      case 'status':
+        return (a, b) => (a.statusGroup > b.statusGroup ? 1 : -1);
+      case 'attachedTo':
+        return (a, b) => {
+          const aAttachedTo = a.attachedTo[0] || '';
+          const bAttachedTo = b.attachedTo[0] || '';
+          return aAttachedTo > bAttachedTo ? 1 : -1;
+        };
+      default:
+        return (a, b) => (a[sortingColumn] > b[sortingColumn] ? 1 : -1);
+    }
+  })();
 
   return [...items].sort(sorting.desc ? (a, b) => -sortFn(a, b) : sortFn);
 };
 
-export const paginateResults = <T>(
+export const paginateResults: <T>(
   items: T[],
   pagination: PaginationState,
-) => ({
+) => {
+  rows: T[];
+  pageCount: number;
+  totalRows: number;
+} = <T>(items: T[], pagination: PaginationState) => ({
   rows: items.slice(
     pagination.pageIndex * pagination.pageSize,
     (pagination.pageIndex + 1) * pagination.pageSize,
