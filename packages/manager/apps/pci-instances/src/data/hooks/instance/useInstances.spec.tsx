@@ -287,7 +287,7 @@ describe('UseInstances hook', () => {
             queryCache.getAll().map((cache) => cache.queryKey)[0],
           ).toStrictEqual(expectedQueryKey);
 
-          act(() => result.current.refresh());
+          act(() => void result.current.refresh());
           expect(
             queryCache.getAll().map((cache) => cache.queryKey).length,
           ).toStrictEqual(1);

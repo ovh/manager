@@ -45,7 +45,7 @@ const mapAddresses = (dto: TInstanceDto) =>
   dto.addresses.reduce((acc, { type, ...rest }) => {
     const foundAddresses = acc.get(type);
     if (foundAddresses) {
-      const ipAlreadyExists = !!foundAddresses.find(({ ip }) => ip === rest.ip);
+      const ipAlreadyExists = foundAddresses.find(({ ip }) => ip === rest.ip);
       if (!ipAlreadyExists)
         foundAddresses.push({ ...rest, subnet: rest.subnet ?? null });
       return acc;

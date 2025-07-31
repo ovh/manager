@@ -19,6 +19,7 @@ export const mapUnknownErrorToBannerError = (
   error: unknown,
 ): ErrorBannerProps['error'] => {
   if (isApiErrorResponse(error) && error.response) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { statusText, config, request, ...rest } = error.response;
     return rest;
   }
