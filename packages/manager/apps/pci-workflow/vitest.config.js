@@ -28,6 +28,11 @@ export default defineConfig({
         'src/wrapperRenders.tsx',
       ],
     },
+    server: {
+      deps: {
+        inline: [/@ovhcloud\/ods-react\/.*/i],
+      },
+    },
   },
   resolve: {
     alias: {

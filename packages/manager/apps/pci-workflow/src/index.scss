@@ -1,3 +1,4 @@
+@import '@ovhcloud/ods-themes/default';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,4 +11,8 @@ code {
   background-color: #f9f2f4 !important;
   border-radius: 6px !important;
   /* eslint-enable css/no-important */
+}
+
+html {
+  font-family: var(--ods-font-family-default);
 }
