@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.13.0...@ovh-ux/manager-veeam-enterprise@1.13.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** add missing dependecy to billing-components ([a397047](https://github.com/ovh/manager/commit/a39704716588662815da58966470f3a8c0065e0d)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.12.0...@ovh-ux/manager-veeam-enterprise@1.13.0) (2025-05-14)
 
 

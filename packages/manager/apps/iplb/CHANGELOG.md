@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.4...@ovh-ux/manager-iplb-app@3.2.5) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** add missing dependecy to billing-components ([a397047](https://github.com/ovh/manager/commit/a39704716588662815da58966470f3a8c0065e0d)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
 ## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb-app@3.2.3...@ovh-ux/manager-iplb-app@3.2.4) (2025-07-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb-app
