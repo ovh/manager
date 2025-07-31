@@ -211,5 +211,5 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durante la transición a su nuevo producto, se creará un pack temporal para garantizar la continuidad del servicio",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Este pack se eliminará automáticamente una vez finalizado el pedido de Fibra.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "No es necesario que realice ninguna acción de modificación o eliminación: el paso a su acceso de fibra se realizará de forma totalmente automatizada.",
-  "telecom_pack_migration_phone_call_for_new_meeting": "La cita en línea no está disponible. Nos pondremos en contacto con usted por teléfono para ofrecerle la fecha y la franja horaria que más le convenga."
+  "telecom_pack_migration_phone_call_for_new_meeting": "El servicio de cita previa en línea no está disponible. Nos pondremos en contacto con usted por teléfono para ofrecerle la fecha y la franja horaria que más le convenga."
 }
