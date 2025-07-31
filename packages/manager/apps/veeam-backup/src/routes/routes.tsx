@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constant';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
@@ -42,17 +43,16 @@ export default (
     <Route
       id="listing"
       path={urls.listing}
-      handle={{ tracking: { pageName: 'listing', pageType: PageType.listing } }}
+      handle={{
+        tracking: TRACKING.listing.page,
+      }}
       Component={ListingPage}
     >
       <Route
         id="delete-veeam"
         path={urls.deleteVeeam}
         handle={{
-          tracking: {
-            pageName: 'delete_veeam-backup',
-            pageType: PageType.popup,
-          },
+          tracking: TRACKING.deleteVeeam.page,
         }}
         Component={DeletePage}
       />
@@ -61,7 +61,7 @@ export default (
       id="dashboard"
       path={urls.dashboard}
       handle={{
-        tracking: { pageName: 'dashboard', pageType: PageType.dashboard },
+        tracking: TRACKING.dashboard.page,
       }}
       Component={DashboardPage}
     >
@@ -69,7 +69,7 @@ export default (
         id="edit-veeam-dashboard"
         path={urls.editVeeamDisplayNameFromDashboard}
         handle={{
-          tracking: { pageName: 'edit_veeam-backup', pageType: PageType.popup },
+          tracking: TRACKING.editVeeamDisplayNameFromDashboard.page,
         }}
         Component={EditDisplayNamePage}
       />
@@ -77,17 +77,16 @@ export default (
         id="delete-veeam-dashboard"
         path={urls.deleteVeeamFromDashboard}
         handle={{
-          tracking: {
-            pageName: 'delete_veeam-backup',
-            pageType: PageType.popup,
-          },
+          tracking: TRACKING.deleteVeeamFromDashboard.page,
         }}
         Component={DeletePage}
       />
-
       <Route
         id="activate-veeam-offer"
         path={urls.activateVeeamBackupOffer}
+        handle={{
+          tracking: TRACKING.activateVeeamBackupOffer.page,
+        }}
         Component={ActivateOfferModal}
       />
     </Route>
@@ -95,7 +94,7 @@ export default (
       id="order-veeam"
       path={urls.orderVeeam}
       handle={{
-        tracking: { pageName: 'order-veeam', pageType: PageType.funnel },
+        tracking: TRACKING.orderVeeam.page,
       }}
       Component={OrderPage}
     />
@@ -103,7 +102,7 @@ export default (
       id="onboarding"
       path={urls.onboarding}
       handle={{
-        tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+        tracking: TRACKING.onboarding.page,
       }}
       Component={OnboardingPage}
     />
