@@ -113,30 +113,6 @@ exports[`GuideMenu > GuideMenu snapshots > should match snapshot with loading st
 </div>
 `;
 
-exports[`GuideMenu > GuideMenu snapshots > should match snapshot with multiple items 1`] = `
-<div>
-  <button
-    aria-controls="popover::r4::content"
-    aria-expanded="false"
-    aria-haspopup="dialog"
-    aria-label="Guides"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
-    data-part="trigger"
-    data-scope="popover"
-    data-state="closed"
-    dir="ltr"
-    id="popover::r4::trigger"
-    type="button"
-  >
-    <span
-      aria-hidden="true"
-      class="_icon_i4xp0_2 _icon--book_i4xp0_52"
-    />
-    Guides
-  </button>
-</div>
-`;
-
 exports[`GuideMenu > GuideMenu snapshots > should match snapshot with single item 1`] = `
 <div>
   <button
