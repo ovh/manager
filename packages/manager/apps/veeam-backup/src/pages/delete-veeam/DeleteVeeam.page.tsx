@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  ButtonType,
-  PageLocation,
-  TrackingClickParams,
   PageType,
   useOvhTracking,
   ShellContext,
@@ -14,12 +11,7 @@ import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { US_SUBSIDIARY } from '@/constants';
 
 import { MessagesContext } from '@/components/Messages/Messages.context';
-import { PageName } from '@/tracking.constant';
-
-export const sharedTrackingParams: TrackingClickParams = {
-  location: PageLocation.popup,
-  buttonType: ButtonType.button,
-};
+import { PageName, TRACKING } from '@/tracking.constant';
 
 export default function DeleteVeeamBackupModal() {
   const { id } = useParams();
@@ -58,20 +50,12 @@ export default function DeleteVeeamBackupModal() {
   });
 
   const onClose = () => {
-    trackClick({
-      ...sharedTrackingParams,
-      actionType: 'exit',
-      actions: ['delete_veeam-backup', 'cancel'],
-    });
+    trackClick(TRACKING.deleteVeeam.clicks.closeModal);
     navigate('..');
   };
 
   const onConfirmDelete = () => {
-    trackClick({
-      ...sharedTrackingParams,
-      actionType: 'action',
-      actions: ['delete_veeam-backup', 'confirm'],
-    });
+    trackClick(TRACKING.deleteVeeam.clicks.confirmDelete);
     terminateService({ resourceName: id });
   };
 
