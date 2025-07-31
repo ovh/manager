@@ -1405,5 +1405,8 @@
   "hosting_tab_FTP_configuration_explorer_info": "Access via the FTP web client (Net2FTP) is no longer available. You can log in to your hosting plan by using an FTP client, like <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> or <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>.",
   "hosting_dashboard_service_cluster": "Cluster",
   "hosting_dashboard_service_cluster_helper": "There is a chance your cluster ID will be modified",
-  "hosting_dashboard_service_filer_helper": "There is a chance your filer ID will be modified"
+  "hosting_dashboard_service_filer_helper": "There is a chance your filer ID will be modified",
+  "hosting_dashboard_service_state_TO_CREATE": "To be created",
+  "hosting_tab_DATABASES_configuration__action_button": "Cancel my database",
+  "hosting_tab_DATABASES_configuration__available_slot": "Database available"
 }
