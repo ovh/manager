@@ -15,5 +15,15 @@
   "error_min_chars": "Please enter a minimum of {{ value }} characters.",
   "error_max_chars": "Please enter a maximum of {{ value }} characters.",
   "error_between_min_max_chars": "The field must contain between {{ min }} and {{ max }} characters.",
-  "error_pattern": "Please enter a valid format."
+  "error_pattern": "Please enter a valid format.",
+  "error_password": "Invalid password",
+  "error_confirm_password": "The passwords must be identical.",
+  "label_mandatory": "Fields marked with an asterisk (*) are mandatory",
+  "lastname": "Name",
+  "firstname": "First name",
+  "login": "Login",
+  "change_password_label_password": "New password",
+  "change_password_label_confirm_password": "New password confirmation",
+  "change_password_helper1": "Please note that the password must meet the following criteria:",
+  "change_password_helper2": "At least 1 lower case letter, 1 upper case letter, 1 number, or 1 special character"
 }

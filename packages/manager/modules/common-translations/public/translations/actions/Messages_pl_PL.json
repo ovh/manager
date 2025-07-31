@@ -49,5 +49,9 @@
   "start": "Zacznij",
   "renew": "Odnów",
   "restore": "Przywróć",
-  "see_details": "Przejdź do szczegółów"
+  "see_details": "Przejdź do szczegółów",
+  "order_users": "Dodaj użytkownika",
+  "edit_account": "Edytuj konto",
+  "change_password": "Zmień hasło",
+  "delete_account": "Usuń konto"
 }
