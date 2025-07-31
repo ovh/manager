@@ -11,15 +11,15 @@ import {
 const roundPrice = (num: number, fractionDigits = 2) =>
   Number(num.toFixed(fractionDigits));
 
-const initMonthlyInstanceList = (data: TCurrentUsage) => {
-  if (!data?.monthlyUsage) {
+const initMonthlyInstanceList = (data: TCurrentUsage['monthlyUsage']) => {
+  if (!data) {
     return {
       monthlyInstanceList: [],
       monthlyInstanceTotalPrice: 0,
     };
   }
 
-  const monthlyInstanceList = data.monthlyUsage.instance.flatMap((instance) =>
+  const monthlyInstanceList = data.instance.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -29,7 +29,7 @@ const initMonthlyInstanceList = (data: TCurrentUsage) => {
   ) as TInstance[];
 
   const monthlyInstanceTotalPrice = roundPrice(
-    data.monthlyUsage.instance.reduce(
+    data.instance.reduce(
       (sum, instance) => sum + roundPrice(instance.totalPrice),
       0,
     ),
@@ -38,6 +38,41 @@ const initMonthlyInstanceList = (data: TCurrentUsage) => {
   return {
     monthlyInstanceList,
     monthlyInstanceTotalPrice,
+  };
+};
+
+const initMonthlySavingsPlanList = (
+  data: TCurrentUsage['monthlyUsage'],
+): {
+  monthlySavingsPlanList: TSavingsPlan[];
+  monthlySavingsPlanTotalPrice: number;
+} => {
+  if (!data) {
+    return {
+      monthlySavingsPlanList: [],
+      monthlySavingsPlanTotalPrice: 0,
+    };
+  }
+
+  const monthlySavingsPlanList = data.savingsPlan.flatMap((svp) =>
+    svp.details.map((detail) => ({
+      ...detail,
+      totalPrice: roundPrice(detail.totalPrice.value),
+      flavor: svp.flavor,
+      size: detail.size,
+    })),
+  );
+
+  const monthlySavingsPlanTotalPrice = roundPrice(
+    data.savingsPlan.reduce(
+      (sum, instance) => sum + roundPrice(instance.totalPrice.value),
+      0,
+    ),
+  );
+
+  return {
+    monthlySavingsPlanList,
+    monthlySavingsPlanTotalPrice,
   };
 };
 
@@ -81,10 +116,10 @@ const initObjectStorageList = (data: TCurrentUsage) => {
   );
 
   const objectStorageTotalPrice = roundPrice(
-    objectStorageList.reduce(
+    objectStorageList?.reduce(
       (sum, storage) => sum + roundPrice(storage.totalPrice),
       0,
-    ),
+    ) || 0,
   );
 
   return {
@@ -106,7 +141,7 @@ const initArchiveStorageList = (data: TCurrentUsage) => {
   );
 
   const archiveStorageTotalPrice = roundPrice(
-    archiveStorageList.reduce(
+    archiveStorageList?.reduce(
       (sum, storage) => sum + roundPrice(storage.totalPrice),
       0,
     ),
@@ -327,6 +362,13 @@ export type TInstance = {
   activation: string;
 };
 
+export type TSavingsPlan = {
+  id: string;
+  size: string;
+  flavor: string;
+  totalPrice: number;
+};
+
 export type TVolume = {
   quantity: TQuantity;
   region: string;
@@ -366,7 +408,7 @@ export type TStorage = {
     quantity: TQuantity;
     totalPrice: number;
   };
-  retrievalFees: {
+  retrievalFees?: {
     quantity: TQuantity;
     totalPrice: {
       value: number;
@@ -394,6 +436,7 @@ export type TSnapshot = {
 export type TConsumptionDetail = {
   hourlyInstances: TInstance[];
   monthlyInstances: TInstance[];
+  monthlySavingsPlanList: TSavingsPlan[];
   objectStorages: TStorage[];
   archiveStorages: TStorage[];
   snapshots: TSnapshot[];
@@ -444,6 +487,7 @@ export type TConsumptionDetail = {
     monthly: {
       total: number;
       instance: number;
+      savingsPlan: number;
     };
   };
 };
@@ -451,6 +495,7 @@ export type TConsumptionDetail = {
 export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   hourlyInstances: [],
   monthlyInstances: [],
+  monthlySavingsPlanList: [],
   objectStorages: [],
   archiveStorages: [],
   snapshots: [],
@@ -501,11 +546,14 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
     monthly: {
       total: 0,
       instance: 0,
+      savingsPlan: 0,
     },
   },
 });
 
-export const getConsumptionDetails = (usage: TCurrentUsage) => {
+export const getConsumptionDetails = (
+  usage: TCurrentUsage,
+): TConsumptionDetail => {
   const resourceMap = [
     { type: 'registry', key: 'privateRegistry' },
     { type: 'loadbalancer', key: 'kubernetesLoadBalancer' },
@@ -540,7 +588,12 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
   const {
     monthlyInstanceList,
     monthlyInstanceTotalPrice,
-  } = initMonthlyInstanceList(usage);
+  } = initMonthlyInstanceList(usage.monthlyUsage);
+
+  const {
+    monthlySavingsPlanList,
+    monthlySavingsPlanTotalPrice,
+  } = initMonthlySavingsPlanList(usage.monthlyUsage);
 
   const {
     hourlyInstanceList,
@@ -568,12 +621,13 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
       archiveStorage: archiveStorageTotalPrice,
       snapshot: snapshotsTotalPrice,
       volume: volumesTotalPrice,
-      bandwidth: bandwidthTotalPrice,
       rancher: rancherTotalPrice,
+      bandwidth: bandwidthTotalPrice,
     },
     monthly: {
-      total: monthlyInstanceTotalPrice,
+      total: monthlyInstanceTotalPrice + monthlySavingsPlanTotalPrice,
       instance: monthlyInstanceTotalPrice,
+      savingsPlan: monthlySavingsPlanTotalPrice,
     },
   };
 
@@ -586,6 +640,7 @@ export const getConsumptionDetails = (usage: TCurrentUsage) => {
   return {
     hourlyInstances: hourlyInstanceList,
     monthlyInstances: monthlyInstanceList,
+    monthlySavingsPlanList,
     objectStorages: objectStorageList,
     archiveStorages: archiveStorageList,
     snapshots: snapshotList,
