@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.0...@ovh-ux/manager-billing-components@4.21.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** added missing translations ([66c730f](https://github.com/ovh/manager/commit/66c730ff5671a9dce15a82558dc24c618e719a59)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
 # [4.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.20.0...@ovh-ux/manager-billing-components@4.21.0) (2025-07-31)
 
 
