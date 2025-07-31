@@ -1,4 +1,4 @@
-import { describe } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { mapAddressesToListItems } from '.';
 import { TAggregatedInstanceAddress } from '@/types/instance/entity.type';
 

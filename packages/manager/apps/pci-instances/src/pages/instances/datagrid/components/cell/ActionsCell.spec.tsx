@@ -1,6 +1,6 @@
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, vi } from 'vitest';
+import { describe, vi, test, expect } from 'vitest';
 import { ActionsCell, TActionsCellProps } from './ActionsCell.component';
 import { mockedInstance } from '@/__mocks__/instance/constants';
 import { TAggregatedInstance } from '@/types/instance/entity.type';

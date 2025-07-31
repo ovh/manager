@@ -1,6 +1,7 @@
 import { TFunction } from 'i18next';
 import { imagesRescueSelector } from './image.selector';
 import { TImageDto } from '@/types/image/api.types';
+import { describe, it, expect } from 'vitest';
 
 const t: TFunction = ((key: string, options?: { name: string }) => {
   if (options && options.name) {
