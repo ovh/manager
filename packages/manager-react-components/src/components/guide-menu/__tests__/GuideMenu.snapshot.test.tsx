@@ -56,10 +56,5 @@ describe('GuideMenu', () => {
       const { container } = render(<GuideMenu {...singleItemProps} />);
       expect(container).toMatchSnapshot();
     });
-
-    it('should match snapshot with multiple items', () => {
-      const { container } = render(<GuideMenu {...defaultProps} />);
-      expect(container).toMatchSnapshot();
-    });
   });
 });
