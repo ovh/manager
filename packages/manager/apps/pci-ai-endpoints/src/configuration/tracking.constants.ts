@@ -6,6 +6,23 @@ import {
   TrackingContextParams,
 } from '@ovh-ux/manager-react-shell-client';
 
+export const LEVEL2 = {
+  EU: {
+    config: {
+      level2: '86',
+    },
+  },
+  CA: {
+    config: {
+      level2: '86',
+    },
+  },
+  US: {
+    config: {
+      level2: '86',
+    },
+  },
+};
 export const PCI_LEVEL2 = '86';
 export const PAGE_PREFIX = 'PublicCloud::pci::projects';
 export const ACTION_PREFIX = `${PAGE_PREFIX}::ai-endpoints`;
