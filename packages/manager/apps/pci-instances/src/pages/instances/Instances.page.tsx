@@ -259,7 +259,7 @@ const Instances: FC = () => {
                         ...addedFilter,
                         label: column.id,
                       });
-                      filterPopoverRef.current?.closeSurface();
+                      void filterPopoverRef.current?.closeSurface();
                     }}
                   />
                 </OsdsPopoverContent>
