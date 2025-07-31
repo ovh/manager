@@ -3,12 +3,12 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { UseMutateFunction } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
-import Voucher from './voucher/Voucher';
-import * as useVoucherModule from '../hooks/useVoucher';
+import Voucher from './Voucher';
+import * as useVoucherModule from '../../hooks/useVoucher';
 import { CartConfiguration } from '@/data/types/cart.type';
 import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
 
-vi.mock('../hooks/useVoucher');
+vi.mock('../../hooks/useVoucher');
 
 describe('Voucher component', () => {
   const defaultProps = {
