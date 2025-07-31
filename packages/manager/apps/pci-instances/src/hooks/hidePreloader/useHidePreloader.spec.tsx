@@ -3,7 +3,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { describe, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { useHidePreloader } from './useHidePreloader';
 
 const shellContext = {

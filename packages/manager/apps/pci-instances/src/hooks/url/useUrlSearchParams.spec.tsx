@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import * as module from 'react-router-dom';
-import { vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { useUrlSearchParams } from './useUrlSearchParams';
 
 const fakeUrlSearchParams = new URLSearchParams('foo=bar&instance=30');
@@ -18,6 +18,11 @@ const expectedResult2 = {
   test: null,
 };
 
+type Data = {
+  names: string[];
+  expectedResult: unknown;
+};
+
 describe('Condidering the useUrlSearchParams hook', () => {
   mockedUseSearchParams.mockReturnValue([
     fakeUrlSearchParams,
@@ -30,7 +35,7 @@ describe('Condidering the useUrlSearchParams hook', () => {
     ${['foo', 'test']}     | ${expectedResult2}
   `(
     `When invoking the useUrlSearchParams() hook, then expect section to be <$expectedResult>`,
-    ({ names, expectedResult }) => {
+    ({ names, expectedResult }: Data) => {
       const { result } = renderHook(() => useUrlSearchParams(...names));
       expect(result.current).toStrictEqual(expectedResult);
     },

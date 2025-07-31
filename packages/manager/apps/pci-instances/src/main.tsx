@@ -41,4 +41,4 @@ const init = async (
   );
 };
 
-init('pci-instances');
+void init('pci-instances');

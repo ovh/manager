@@ -1,3 +1,4 @@
+/* eslint-disable css/no-invalid-properties */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment,  @typescript-eslint/no-unsafe-call */
 import { RouteObject } from 'react-router-dom';
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
@@ -8,6 +9,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 
+    /* eslint-disable @typescript-eslint/no-unsafe-return */
     return {
       Component: moduleDefault,
       ...moduleExports,

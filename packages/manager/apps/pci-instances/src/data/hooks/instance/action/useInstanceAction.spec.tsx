@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SetupServer } from 'msw/lib/node';
+import { SetupServer } from 'msw/node';
 import { FC, PropsWithChildren } from 'react';
-import { describe, test, vi } from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { isAxiosError } from 'axios';
 import { updateInstanceFromCache, useInstances } from '../useInstances';

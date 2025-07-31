@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { BaseTextCell, TextCell } from './TextCell.component';
 
 describe('Considering the text cell components', () => {

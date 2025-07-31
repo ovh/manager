@@ -72,7 +72,7 @@ export const useInstancesPolling = (
     combine: useCallback(
       (results: UseQueryResult<TInstance>[]) =>
         results.map(({ data, error, isLoading }, index) => ({
-          id: pendingTasks[index].instanceId,
+          id: pendingTasks[index]?.instanceId ?? '',
           error,
           isLoading,
           data,

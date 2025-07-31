@@ -13,7 +13,7 @@ export function useSuspendNonMigrateRoutes() {
   const { environment } = useContext(ShellContext);
   const location = useLocation();
 
-  const routes = environment.applications['pci-instances'].container.hashes;
+  const routes = environment.applications['pci-instances']?.container.hashes;
 
   const queryFn = useCallback(() => {
     const isRouteAvailable =
@@ -31,7 +31,6 @@ export function useSuspendNonMigrateRoutes() {
 }
 
 export const withSuspendedMigrateRoutes = (
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   Component: ComponentType<Record<string, never>>,
 ): {
   (): JSX.Element;

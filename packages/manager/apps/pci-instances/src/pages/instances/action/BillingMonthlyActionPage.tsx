@@ -45,12 +45,9 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
   };
 
   const pricingHref = useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    return ovhSubsidiary
-      ? INSTANCE_PRICING_LINKS[
-          ovhSubsidiary as keyof typeof INSTANCE_PRICING_LINKS
-        ]
-      : INSTANCE_PRICING_LINKS.DEFAULT;
+    return INSTANCE_PRICING_LINKS[
+      ovhSubsidiary as keyof typeof INSTANCE_PRICING_LINKS
+    ];
   }, [ovhSubsidiary]);
 
   return (

@@ -56,17 +56,23 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   queries.forEach(([queryKey, queryData]) => {
     if (!queryData) return;
 
-    const updatedPages = queryData.pages.map((page) => {
-      const foundIndex = fp.findIndex(fp.propEq('id', instance.id), page);
-      if (foundIndex === -1) return page;
+    const updatedPages: TAggregatedInstanceDto[][] = queryData.pages.map(
+      (page): TAggregatedInstanceDto[] => {
+        const foundIndex = fp.findIndex(fp.propEq('id', instance.id), page);
+        if (foundIndex === -1) return page;
 
-      const previousInstance = page[foundIndex];
-      const mergedInstance = { ...previousInstance, ...instance };
+        const previousInstance = page[foundIndex];
+        const mergedInstance = { ...previousInstance, ...instance };
 
-      if (isEqual(previousInstance, mergedInstance)) return page;
+        if (isEqual(previousInstance, mergedInstance)) return page;
 
-      return fp.update(foundIndex, () => mergedInstance, page);
-    });
+        return fp.update(
+          foundIndex,
+          () => mergedInstance,
+          page,
+        ) as TAggregatedInstanceDto[];
+      },
+    );
 
     const isPageModified = updatedPages.some(
       (page, i) => page !== queryData.pages[i],
@@ -127,12 +133,12 @@ export const useInstances = ({
   const filtersQueryKey = useMemo(
     () =>
       filters.length > 0
-        ? [
+        ? ([
             'filter',
-            filters[0].label,
-            filters[0].comparator,
-            filters[0].value as string,
-          ]
+            filters[0]?.label,
+            filters[0]?.comparator,
+            filters[0]?.value as string,
+          ].filter(Boolean) as string[])
         : [],
     [filters],
   );
@@ -149,8 +155,8 @@ export const useInstances = ({
   );
 
   const invalidateQuery = useCallback(
-    (queryKeyToInvalidate: QueryKey) => {
-      queryClient.invalidateQueries({
+    async (queryKeyToInvalidate: QueryKey) => {
+      await queryClient.invalidateQueries({
         queryKey: queryKeyToInvalidate,
         exact: true,
       });
@@ -208,7 +214,7 @@ export const useInstances = ({
       resetQueryCacheData(initialQueryKey, queryData);
     }
 
-    invalidateQuery(initialQueryKey);
+    void invalidateQuery(initialQueryKey);
   }, [invalidateQuery, projectId, queryClient, resetQueryCacheData]);
 
   useEffect(() => {
@@ -217,7 +223,7 @@ export const useInstances = ({
     >(queryKey);
     if (queryData?.pageParams && queryData.pageParams.length > 1) {
       resetQueryCacheData(queryKey, queryData);
-      invalidateQuery(queryKey);
+      void invalidateQuery(queryKey);
     }
   }, [
     projectId,
@@ -235,19 +241,19 @@ export const useInstances = ({
     retry: false,
     initialPageParam: 0,
     refetchOnWindowFocus: 'always',
-    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
-      lastPage.length > limit ? lastPageParam + 1 : null,
     queryFn: ({ pageParam }) =>
       getInstances(projectId, {
         limit,
         sort,
         sortOrder,
         offset: pageParam * limit,
-        ...(filters.length > 0 && { searchField: filters[0].label }),
+        ...(filters.length > 0 && { searchField: filters[0]?.label }),
         ...(filters.length > 0 && {
-          searchValue: filters[0].value as string,
+          searchValue: filters[0]?.value as string,
         }),
       }),
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      lastPage.length > limit ? lastPageParam + 1 : null,
     select: useCallback(
       (rawData: InfiniteData<TAggregatedInstanceDto[], number>) =>
         instancesSelector(rawData, limit, projectUrl),
