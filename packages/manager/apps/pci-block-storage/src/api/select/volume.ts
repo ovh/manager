@@ -17,30 +17,46 @@ import {
   getVolumeModelPricings,
   TModelPrice,
 } from '@/api/select/catalog';
+import {
+  BlockStorageListColumn,
+  isBlockStorageListColumn,
+} from '@/hooks/useDatagridColumn';
+
+const volumeComparator = <T>(extractor: (_: TVolume) => T) => (
+  t1: TVolume,
+  t2: TVolume,
+) => (extractor(t1) > extractor(t2) ? 1 : -1);
 
 export const sortResults = (
   items: TVolume[],
   sorting: ColumnSort | undefined,
 ) => {
-  if (!sorting) return items;
+  if (!sorting || items.length === 0) return items;
+  const sortingColumn = sorting.id;
+  if (!isBlockStorageListColumn(sortingColumn)) return items;
 
-  let sortFn: (a: TVolume, b: TVolume) => number;
-
-  switch (sorting.id) {
-    case 'status':
-      sortFn = (a, b) => (a.statusGroup > b.statusGroup ? 1 : 0);
-      break;
-    case 'attachedTo':
-      sortFn = (a, b) => {
-        const aAttachedTo = a.attachedTo[0] || '';
-        const bAttachedTo = b.attachedTo[0] || '';
-        return aAttachedTo > bAttachedTo ? 1 : 0;
-      };
-      break;
-    default:
-      sortFn = (a, b) => (a[sorting.id] > b[sorting.id] ? 1 : 0);
-      break;
-  }
+  const sortFn = (() => {
+    switch (sortingColumn) {
+      case BlockStorageListColumn.STATUS:
+        return volumeComparator((t: TVolume) => t.statusGroup);
+      case BlockStorageListColumn.ATTACHED:
+        return volumeComparator(
+          (t: TVolume) => t.attachedTo[0].toLocaleLowerCase() || '',
+        );
+      case BlockStorageListColumn.ID:
+      case BlockStorageListColumn.NAME:
+      case BlockStorageListColumn.REGION:
+      case BlockStorageListColumn.TYPE:
+      case BlockStorageListColumn.ENCRYPTION:
+        return volumeComparator((t: TVolume) =>
+          (t[sortingColumn] as string).toLocaleLowerCase(),
+        );
+      case BlockStorageListColumn.SIZE:
+        return volumeComparator((t: TVolume) => t[sortingColumn]);
+      default:
+        return () => 0;
+    }
+  })();
 
   return [...items].sort(sorting.desc ? (a, b) => -sortFn(a, b) : sortFn);
 };
@@ -48,7 +64,11 @@ export const sortResults = (
 export const paginateResults = <T>(
   items: T[],
   pagination: PaginationState,
-) => ({
+): {
+  rows: T[];
+  pageCount: number;
+  totalRows: number;
+} => ({
   rows: items.slice(
     pagination.pageIndex * pagination.pageSize,
     (pagination.pageIndex + 1) * pagination.pageSize,
