@@ -167,8 +167,20 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     ipMitigation?.state === 'removalPending';
 
   const items: ActionMenuItem[] = [
-    {
+    !parentIpGroup && {
       id: 0,
+      label: ipDetails?.description
+        ? t('listingActionEditDescription')
+        : t('listingActionAddDescription'),
+      onClick: () =>
+        navigate(
+          urls.upsertDescription
+            .replace(urlDynamicParts.parentId, parentId)
+            .replace(urlDynamicParts.optionalId, isGroup ? '' : id),
+        ),
+    },
+    {
+      id: 1,
       label: t('listingMenuReverseDns'),
       onClick: () =>
         navigate(
@@ -182,7 +194,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
         ipDetails?.type,
       ) && {
-        id: 1,
+        id: 2,
         label: `${t('terminate', {
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
@@ -196,7 +208,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
         ipDetails?.type,
       ) && {
-        id: 1,
+        id: 2,
         label: `${t('terminate', {
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
@@ -204,14 +216,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
       },
-    !parentIpGroup && {
-      id: 2,
-      label: ipDetails?.description
-        ? t('listingActionEditDescription')
-        : t('listingActionAddDescription'),
-      onClick: () =>
-        navigate(urls.upsertDescription.replace(urlDynamicParts.id, id)),
-    },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
