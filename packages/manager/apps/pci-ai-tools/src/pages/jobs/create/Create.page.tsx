@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/configuration/guide';
 import OrderFunnel from './_components/OrderFunnel.component';
@@ -10,15 +9,6 @@ import { useGetRegions } from '@/data/hooks/ai/capabilities/useGetRegions.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetImage } from '@/data/hooks/ai/job/capabilities/useGetImage.hook';
 import { useGetSshkey } from '@/data/hooks/sshkey/useGetSshkey.hook';
-
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem
-      translationKey={`breadcrumb`}
-      namespace="ai-tools/jobs/create"
-    />
-  );
-}
 
 const Job = () => {
   const { t } = useTranslation('ai-tools/jobs/create');
