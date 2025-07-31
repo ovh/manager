@@ -30,6 +30,7 @@ export const useInstance = ({
   const projectId = useProjectId();
 
   return useQuery({
+    ...queryOptions,
     queryKey: instancesQueryKey(projectId, [
       'region',
       String(region),
@@ -38,7 +39,6 @@ export const useInstance = ({
       ...(params ?? []),
     ]),
     queryFn: () => getInstance({ projectId, region, instanceId, params }),
-    ...queryOptions,
   });
 };
 
