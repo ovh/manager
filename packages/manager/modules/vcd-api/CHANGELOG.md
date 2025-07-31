@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.6.0...@ovh-ux/manager-module-vcd-api@0.7.0) (2025-07-31)
+
+
+### Features
+
+* **managed-vcd:** disable all actions for terminated service ([521b5a9](https://github.com/ovh/manager/commit/521b5a9e5b36c791e40a7de237b9db51da01c70e)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+* **vcd-api:** update veeam & vcd resource status ([cb9b61d](https://github.com/ovh/manager/commit/cb9b61d94780d6e8d2352d823307ebd10cc2076a)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.5.26...@ovh-ux/manager-module-vcd-api@0.6.0) (2025-07-29)
 
 

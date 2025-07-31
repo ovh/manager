@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.18.7...@ovh-ux/manager-hub-app@0.19.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **hub:** rename Managed VCD to Public VCF as-a-Service ([6bc6602](https://github.com/ovh/manager/commit/6bc6602f51e2118be17878e5851617078cff2218)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 ## [0.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.18.6...@ovh-ux/manager-hub-app@0.18.7) (2025-07-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

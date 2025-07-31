@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.52.0...@ovh-ux/manager-dedicated@20.53.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **dedicated.pcc:** rename Managed VCD to Public VCF as-a-Service ([f498124](https://github.com/ovh/manager/commit/f498124910cea6fd5ee4cdb33086d943e897edc6)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 # [20.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.51.2...@ovh-ux/manager-dedicated@20.52.0) (2025-07-29)
 
 
