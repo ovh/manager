@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import { Suspense, useContext, FC } from 'react';
 import { useRouteError, Outlet } from 'react-router-dom';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';

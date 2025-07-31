@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { ListCell, TListCellItem } from './ListCell.component';
 
 const items: TListCellItem[] = [
