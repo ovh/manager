@@ -8,6 +8,12 @@
     <div class="row">
         <div class="col-md-9">
             <div ovh-alert></div>
+
+            <ovh-manager-billing-vps-outperform-banner
+                data-service-name="$ctrl.serviceName"
+                data-ng-if="$ctrl.serviceType === $ctrl.SERVICE_TYPE.VPS"
+            ></ovh-manager-billing-vps-outperform-banner>
+
             <dl>
                 <dt data-translate="billing_resiliation_service_name"></dt>
                 <dd data-ng-bind="$ctrl.serviceName"></dd>
@@ -44,29 +50,6 @@
                 data-translate="{{ 'billing_resiliation_details_' + $ctrl.endStrategy}}"
                 data-translate-values="{ 'serviceName': '<strong>' + $ctrl.serviceName + '</strong>' }"
             ></p>
-
-            <oui-message
-                type="info"
-                class="my-3"
-                data-ng-if="$ctrl.serviceType === $ctrl.SERVICE_TYPE.VPS && $ctrl.service.hasOutperformAvailablity"
-            >
-                <strong
-                    data-translate="vps_terminate_outperform_availability_banner_title"
-                ></strong>
-                <p
-                    data-translate="vps_terminate_outperform_availability_banner_info"
-                ></p>
-                <oui-button
-                    variant="link"
-                    icon-right="oui-icon-arrow-right"
-                    data-on-click="$ctrl.service.goToOutperform()"
-                >
-                    <span
-                        class="text-wrap"
-                        data-translate="vps_terminate_outperform_availability_banner_button"
-                    ></span>
-                </oui-button>
-            </oui-message>
 
             <oui-button variant="secondary" on-click="$ctrl.onCancel()">
                 <span data-translate="billing_resiliation_cancel"></span>

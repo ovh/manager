@@ -14,6 +14,11 @@
   }"
     ></div>
 
+    <ovh-manager-billing-vps-outperform-banner
+        data-service-name="$ctrl.service.domain"
+        data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.VPS"
+    ></ovh-manager-billing-vps-outperform-banner>
+
     <oui-message data-type="warning" data-ng-if="$ctrl.hasSpecialConditions()"
         ><span
             data-translate="{{:: 'billing_confirm_termination_information_text_' + $ctrl.user.ovhSubsidiary }}"

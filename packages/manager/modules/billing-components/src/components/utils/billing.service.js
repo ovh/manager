@@ -98,4 +98,11 @@ export default class BillingService {
         (pricing) => new Commitment(pricing, this.coreConfig.getUserLocale()),
       );
   }
+
+  getVPSMigration2020Availability(serviceName) {
+    return this.$http
+      .get(`/vps/${serviceName}/migration2020`)
+      .then(({ data }) => data.availablePlans.length > 0)
+      .catch(() => false);
+  }
 }

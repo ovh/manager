@@ -117,7 +117,10 @@ export default class BillingLinksService {
             : `${autorenewLink}/services/delete-all-dom?serviceId=${service.serviceId}&serviceType=${service.serviceType}`;
           break;
         case SERVICE_TYPE.VPS:
-          links.resiliateLink = resiliationByEndRuleLink;
+          links.resiliateLink = service.canResiliateByEndRule()
+            ? resiliationByEndRuleLink
+            : (getResiliationLink && getResiliationLink()) ||
+              `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           break;
         case SERVICE_TYPE.VRACK:
           if (service.status !== SUSPENDED_SERVICE) {

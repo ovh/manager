@@ -5,6 +5,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-payment-method';
 import '@ovh-ux/ng-translate-async-loader';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
+import vpsOutperformBanner from '../vps-outperform-banner';
 
 import component from './resiliation.component';
 import utils from '../utils';
@@ -21,6 +22,7 @@ angular
     'ovhManagerCore',
     ngAtInternet,
     utils,
+    vpsOutperformBanner,
   ])
   .component(component.name, component)
   .run(/* @ngTranslationsInject:json ./translations */);
