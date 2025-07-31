@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.20.0...@ovh-ux/manager-billing-components@4.21.0) (2025-07-31)
+
+
+### Features
+
+* **billing:** enable terminate action for Managed VCD ([e1f64fa](https://github.com/ovh/manager/commit/e1f64fac725cf5a0ed0d56596dd528fdc9a1483b)), closes [#MANAGER-18174](https://github.com/ovh/manager/issues/MANAGER-18174)
+
+
+
+
+
 # [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.1...@ovh-ux/manager-billing-components@4.20.0) (2025-07-28)
 
 
