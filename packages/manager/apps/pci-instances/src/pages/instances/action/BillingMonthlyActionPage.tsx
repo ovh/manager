@@ -1,11 +1,10 @@
-import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import { FC, useContext, useMemo } from 'react';
 import { Trans } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Icon, ICON_NAME, Link } from '@ovhcloud/ods-react';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useBaseInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
 
@@ -65,8 +64,9 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
           i18nKey={`pci_instances_actions_billing_monthly_activate_instance_confirmation_message`}
           ns={'actions'}
           components={[
-            <OsdsLink
-              key="0"
+            <span key="0" className="text-[--ods-color-text]" />,
+            <Link
+              key="1"
               color={ODS_THEME_COLOR_INTENT.primary}
               href={pricingHref}
               dir="ltr"
@@ -74,12 +74,9 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
             />,
           ]}
         />
-        <OsdsIcon
-          slot="end"
-          className="ml-4"
-          name={ODS_ICON_NAME.EXTERNAL_LINK}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        <Icon
+          className="ml-4 text-[--ods-color-primary-500]"
+          name={ICON_NAME.externalLink}
         />
       </div>
     </ActionModal>

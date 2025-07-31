@@ -1,19 +1,19 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsChip,
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { FC, useMemo } from 'react';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import {
+  BADGE_COLOR,
+  Badge,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 const COLOR_BY_SEVERITY_STATUS = {
-  success: ODS_THEME_COLOR_INTENT.success,
-  error: ODS_THEME_COLOR_INTENT.error,
-  warning: ODS_THEME_COLOR_INTENT.warning,
-  info: ODS_THEME_COLOR_INTENT.info,
-  default: ODS_THEME_COLOR_INTENT.default,
+  success: BADGE_COLOR.success,
+  error: BADGE_COLOR.critical,
+  warning: BADGE_COLOR.warning,
+  info: BADGE_COLOR.information,
+  default: BADGE_COLOR.neutral,
 } as const;
 
 export type TStatusChipSeverity = keyof typeof COLOR_BY_SEVERITY_STATUS;
@@ -34,29 +34,27 @@ const StatusChip: FC<TStatusChipProps> = ({ status, icon, tooltipLabel }) => {
 
   const chip = useMemo(
     () => (
-      <OsdsChip
-        size={ODS_CHIP_SIZE.sm}
-        inline
+      <Badge
         color={COLOR_BY_SEVERITY_STATUS[severity]}
         data-testid="status-chip"
-        className="cursor-default rounded-[--ods-border-radius-sm] h-[26px] min-w-max"
+        className="h-[26px]"
       >
         <div className="flex items-center gap-1">
           {icon}
           <span className="first-letter:uppercase">{label}</span>
         </div>
-      </OsdsChip>
+      </Badge>
     ),
     [icon, label, severity],
   );
 
   return tooltipLabel ? (
-    <OsdsTooltip>
-      {chip}
-      <OsdsTooltipContent slot="tooltip-content" className="break-keep">
+    <Tooltip position="bottom">
+      <TooltipTrigger asChild>{chip}</TooltipTrigger>
+      <TooltipContent slot="tooltip-content" className="break-keep">
         {t(tooltipLabel)}
-      </OsdsTooltipContent>
-    </OsdsTooltip>
+      </TooltipContent>
+    </Tooltip>
   ) : (
     chip
   );
