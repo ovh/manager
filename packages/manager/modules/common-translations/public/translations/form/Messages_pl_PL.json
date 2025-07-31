@@ -15,5 +15,15 @@
   "error_min_chars": "Wprowadź minimum {{value}} znaków.",
   "error_max_chars": "Wprowadź maksymalnie {{value}} znaków.",
   "error_between_min_max_chars": "Pole musi zawierać od {{min}} do {{max}} znaków.",
-  "error_pattern": "Użyj poprawnego formatu."
+  "error_pattern": "Użyj poprawnego formatu.",
+  "error_password": "Nieprawidłowe hasło.",
+  "error_confirm_password": "Hasła muszą być identyczne.",
+  "label_mandatory": "Pola oznaczone gwiazdką * są obowiązkowe.",
+  "lastname": "Nazwa",
+  "firstname": "Imię",
+  "login": "Identyfikator",
+  "change_password_label_password": "Nowe hasło",
+  "change_password_label_confirm_password": "Potwierdzenie nowego hasła",
+  "change_password_helper1": "Uwaga: hasło musi spełniać następujące warunki:",
+  "change_password_helper2": "Co najmniej 1 mała litera, 1 duża litera, 1 cyfra lub 1 znak specjalny"
 }

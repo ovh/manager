@@ -49,5 +49,9 @@
   "start": "Start",
   "renew": "Renew",
   "restore": "Restore",
-  "see_details": "See details"
+  "see_details": "See details",
+  "order_users": "Add user",
+  "edit_account": "Edit account",
+  "change_password": "Modify password",
+  "delete_account": "Delete account"
 }

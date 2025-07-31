@@ -4,5 +4,20 @@
   "subscribed": "Subscrito",
   "to_activate": "A ativar",
   "activation_in_progress": "Ativação em curso",
-  "disabled": "Desativado"
+  "disabled": "Desativado",
+  "ok": "Ativo",
+  "autorenewInProgress": "Renovação em curso",
+  "expired": "Rescindir",
+  "inCreation": "Criação em curso",
+  "inMaintenance": "Manutenção em curso",
+  "pendingDebt": "Fatura por pagar",
+  "deleting": "Eliminação em curso",
+  "suspended": "Suspenso",
+  "suspending": "Suspensão em curso",
+  "errorMessage": "O seu pedido não foi bem-sucedido. {{ error }}",
+  "pay_as_you_go": "Pagamento conforme a utilização",
+  "prepaid": "Pré-pago",
+  "creating": "Criação em curso",
+  "updating": "Atualização",
+  "unconfigured": "Não configurado"
 }
