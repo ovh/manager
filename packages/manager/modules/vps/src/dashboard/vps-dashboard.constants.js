@@ -41,6 +41,7 @@ export const MIGRATION_STATUS = {
   ONGOING: 'ongoing',
   PLANNED: 'planned',
   AVAILABLE: 'available',
+  DONE: 'done',
 };
 
 export const VPS_RANGE_COMPARE_LINKS = {

@@ -142,6 +142,7 @@ export default /* @ngInject */ ($stateProvider) => {
             memory: tile.currentPlan,
             storage: tile.currentPlan,
           },
+          availableUpgrades,
         };
       },
 
