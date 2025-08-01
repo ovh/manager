@@ -108,11 +108,9 @@ export default class LogsStreamsService {
    * @memberof LogsStreamsService
    */
   getOwnStreams(serviceName) {
-    return this.getStreamDetails(serviceName)
-      .then(({ data = [] }) => data.filter((stream) => stream.isEditable))
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_streams_get_error', err, {}),
-      );
+    return this.getStreamDetails(serviceName).then(({ data = [] }) =>
+      data.filter((stream) => stream.isEditable),
+    );
   }
 
   getLastUpdatedStream(serviceName) {
@@ -137,7 +135,14 @@ export default class LogsStreamsService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(10000)
-      .execute().$promise;
+      .execute()
+      .$promise.catch((error) => {
+        this.LogsHelperService.handleError(
+          'logs_streams_get_error',
+          error.data,
+        );
+        return { data: [] };
+      });
   }
 
   getPaginatedStreams(

@@ -52,7 +52,14 @@ export default class LogsEncryptionKeysService {
     return this.iceberg(`/dbaas/logs/${serviceName}/encryptionKey`)
       .query()
       .execute()
-      .$promise.then(({ data }) => data);
+      .$promise.then(({ data }) => data)
+      .catch((error) => {
+        this.LogsHelperService.handleError(
+          'logs_encryption_keys_get_error',
+          error.data,
+        );
+        return [];
+      });
   }
 
   /**
