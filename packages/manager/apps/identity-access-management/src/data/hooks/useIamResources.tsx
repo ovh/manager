@@ -11,15 +11,30 @@ import {
   putIamResource,
 } from '../api/iam-resources';
 import { NotificationList } from '@/components/notificationList/NotificationList.component';
+import { formatTagsForApiFilterParam } from '@/utils/formatTagsForApi';
 
-export const getIamResourceListQueryKey = ['get/iam/resource'];
+export const getIamResourceListQueryKey = (filterWithTags?: string[]) => [
+  `get/iam/resource${
+    filterWithTags ? formatTagsForApiFilterParam(filterWithTags) : ''
+  }`,
+];
 
-export const useIamResourceList = ({ pageSize }: { pageSize?: number }) =>
-  useResourcesIcebergV2<IamResource>({
-    route: '/iam/resource?resourceType=dedicatedServer',
-    queryKey: getIamResourceListQueryKey,
+export const useIamResourceList = ({
+  pageSize,
+  filterWithTags,
+}: {
+  pageSize?: number;
+  filterWithTags?: string[];
+}) => {
+  const route = `/iam/resource${
+    filterWithTags ? formatTagsForApiFilterParam(filterWithTags) : ''
+  }`;
+  return useResourcesIcebergV2<IamResource>({
+    route,
+    queryKey: getIamResourceListQueryKey(filterWithTags),
     pageSize,
   });
+};
 
 export const useIamResourceTypeList = () => {
   return useQuery({
@@ -87,7 +102,7 @@ export const useUpdateIamResources = () => {
     },
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
-        queryKey: getIamResourceListQueryKey,
+        queryKey: getIamResourceListQueryKey(),
       });
 
       if (success.length > 0 && error.length > 0) {

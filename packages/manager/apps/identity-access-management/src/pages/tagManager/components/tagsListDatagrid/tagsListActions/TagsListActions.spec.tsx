@@ -1,11 +1,13 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
-import { describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import * as ReactRouterDom from 'react-router-dom';
 import { getButtonByIcon, getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import TagsListActions from './TagsListActions.component';
 import { IamTagListItem, TagType } from '@/data/api/get-iam-tags';
+import { urls } from '@/routes/routes.constant';
 
 /** RENDER */
 const renderComponent = (item: IamTagListItem) => {
@@ -13,6 +15,15 @@ const renderComponent = (item: IamTagListItem) => {
 };
 
 describe('TagListActionsCell Component', async () => {
+  const mockNavigate = vi.fn();
+
+  beforeEach(() => {
+    mockNavigate.mockReset();
+    vi.spyOn(ReactRouterDom, 'useNavigate').mockImplementation(
+      () => mockNavigate,
+    );
+  });
+
   it('Should display action menu with assign button', async () => {
     const { container } = renderComponent({
       name: 'env:prod',
@@ -55,6 +66,8 @@ describe('TagListActionsCell Component', async () => {
 
     fireEvent.click(manageResourcesButton);
 
-    // Todo: Finish this test when manage resources action is done
+    expect(mockNavigate).toHaveBeenCalledWith(
+      urls.tagDetail.replace(':tag', 'env:prod'),
+    );
   });
 });
