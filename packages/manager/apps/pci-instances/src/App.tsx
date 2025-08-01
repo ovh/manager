@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import queryClient from '@/queryClient';
 import '@ovhcloud/ods-theme-blue-jeans';
+import '@ovh-ux/manager-pci-common/';
 import Router from './routes/Router';
 
 odsSetup();

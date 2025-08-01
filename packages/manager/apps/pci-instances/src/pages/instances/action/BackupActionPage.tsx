@@ -1,11 +1,177 @@
-import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import { Input } from '@datatr-ux/uxlib';
-import { useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import {
+  useCatalogPrice,
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { PropsWithChildren, useCallback, useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { TRescueActionPageProps } from './RescueAction.page';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
+import {
+  TSchemaInput,
+  TSchemaOutput,
+  useInputSchema,
+} from '@/input-validation';
+import {
+  Form,
+  InputField,
+  SelectField,
+  SelectFieldGroup,
+  ToggleField,
+} from '@/components/zod-form';
+
+const useFormSchema = () => {
+  const {
+    object,
+    discriminatedUnion,
+    literal,
+    string,
+    remove,
+    nullableRequired,
+  } = useInputSchema();
+
+  return useMemo(
+    () =>
+      discriminatedUnion('distantSnapshot', [
+        object({
+          snapshotName: string(),
+          distantSnapshot: literal(true),
+          distantRegion: nullableRequired(string()),
+          distantSnapshotName: nullableRequired(string()),
+        }),
+        object({
+          snapshotName: string(),
+          distantSnapshot: literal(false),
+          distantRegion: remove(string()),
+          distantSnapshotName: remove(string()),
+        }),
+      ]).transform(
+        ({
+          snapshotName,
+          distantSnapshot,
+          distantRegion,
+          distantSnapshotName,
+        }) => ({
+          snapshotName,
+          distantSnapshot: distantSnapshot
+            ? { name: distantSnapshotName, region: distantRegion }
+            : undefined,
+        }),
+      ),
+    [object, discriminatedUnion, literal, string, remove, nullableRequired],
+  );
+};
+
+type TFormFieldsValues = TSchemaInput<ReturnType<typeof useFormSchema>>;
+
+const DistantSnapshotSection = ({
+  projectId,
+  continents,
+}: {
+  projectId: string;
+  continents: ReturnType<typeof useInstanceBackupPrice>['distantContinents'];
+}) => {
+  const { t } = useTranslation('actions');
+  const { watch } = useFormContext<TFormFieldsValues>();
+
+  const open = watch('distantSnapshot');
+  const distantRegion = watch('distantRegion');
+
+  const {
+    price: backupPrice,
+    isLoading: isBackupLoading,
+  } = useInstanceBackupPrice(projectId, distantRegion ?? '');
+
+  const { getFormattedCatalogPrice } = useCatalogPrice(3);
+  const price = useMemo(
+    () => (backupPrice ? getFormattedCatalogPrice(backupPrice) : null),
+    [backupPrice, getFormattedCatalogPrice],
+  );
+
+  const regionItems = useMemo(
+    () =>
+      continents
+        .entries()
+        .map<SelectFieldGroup>(([label, regions]) => ({
+          label,
+          items: regions.map((region) => ({
+            label: region.label,
+            value: region.name,
+          })),
+        }))
+        .toArray(),
+    [continents],
+  );
+
+  const showActivateRegionWarning = useMemo(
+    () =>
+      !!distantRegion &&
+      !!continents
+        .values()
+        .find(
+          (regions) =>
+            regions.find((r) => r.name === distantRegion)?.enabled === false,
+        ),
+    [distantRegion, continents],
+  );
+
+  if (!open) return null;
+
+  return (
+    <>
+      <InputField<TFormFieldsValues>
+        label={t('pci_instances_actions_backup_instance_distant_name_label')}
+        name={'distantSnapshotName'}
+        type={'text'}
+        autoFocus
+      />
+
+      <SelectField<TFormFieldsValues>
+        label={t('pci_instances_actions_backup_instance_distant_region_label')}
+        name={'distantRegion'}
+        values={regionItems}
+      />
+
+      {!!price && !isBackupLoading && (
+        <p className="text-sm font-medium">
+          {t('pci_instances_actions_backup_instance_distant_region_price', {
+            price,
+          })}
+        </p>
+      )}
+
+      {showActivateRegionWarning && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          type={ODS_MESSAGE_TYPE.warning}
+          className="mt-6"
+        >
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('pci_instances_actions_backup_instance_region_enable_warning')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+    </>
+  );
+};
+
+const InstanceBackupLink = ({ children }: PropsWithChildren) => {
+  const projectUrl = useProjectUrl('public-cloud');
+
+  return <a href={`${projectUrl}/storages/instance-backups`}>{children}</a>;
+};
 
 type TBackupActionPageProps = Omit<TRescueActionPageProps, 'section'> & {
   section: 'backup';
@@ -18,36 +184,72 @@ const BackupActionPage = ({
   instance,
   projectId,
   onError,
-  onSuccess,
   isLoading,
 }: TBackupActionPageProps) => {
-  const { t, i18n } = useTranslation('actions');
+  const { t, i18n } = useTranslation(['actions', 'common']);
   const locale = i18n.language.replace('_', '-');
-  const defaultSnapshotName = useMemo(
+  const dateFormatter = useMemo(
     () =>
-      `${instance?.name} ${new Date().toLocaleDateString(locale, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}`,
-    [instance?.name, locale],
+      new Intl.DateTimeFormat(locale, {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      }),
+    [locale],
   );
-
-  const [snapshotName, setSnapshotName] = useState(defaultSnapshotName);
+  const defaultSnapshotName = useMemo(
+    () => `${instance?.name} ${dateFormatter.format(new Date())}`,
+    [instance?.name, dateFormatter],
+  );
 
   const {
     price: backupPrice,
     isLoading: isBackupLoading,
+    distantContinents,
   } = useInstanceBackupPrice(projectId, instance?.region ?? '');
 
+  const { addInfo } = useNotifications();
   const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
     onError,
-    onSuccess,
+    onSuccess(_res, { snapshotName, distantSnapshot }) {
+      addInfo(
+        distantSnapshot ? (
+          <Trans
+            components={{
+              InstanceBackupLink: <InstanceBackupLink />,
+            }}
+            i18nKey={
+              'pci_instances_actions_backup_instance_with_distant_success_message'
+            }
+            t={t}
+            values={{
+              name: snapshotName,
+              distantName: distantSnapshot.name,
+            }}
+          />
+        ) : (
+          t('pci_instances_actions_backup_instance_success_message', {
+            name: snapshotName,
+          })
+        ),
+        true,
+      );
+
+      onModalClose();
+    },
   });
 
-  const handleInstanceAction = () => {
-    if (instance) mutationHandler({ instance, snapshotName });
-  };
+  const formSchema = useFormSchema();
+
+  const handleInstanceAction = useCallback(
+    (formValues: TSchemaOutput<typeof formSchema>) => {
+      if (instance)
+        mutationHandler({
+          instance,
+          ...formValues,
+        });
+    },
+    [instance],
+  );
 
   const { getFormattedCatalogPrice } = useCatalogPrice(3);
 
@@ -56,23 +258,30 @@ const BackupActionPage = ({
     <ActionModal
       title={title}
       isPending={isPending}
-      handleInstanceAction={handleInstanceAction}
       onModalClose={onModalClose}
       instance={instance}
       section={section}
       isLoading={isLoading}
+      wrapper={({ children }: PropsWithChildren) => (
+        <Form
+          schema={formSchema}
+          onSubmit={handleInstanceAction}
+          values={{
+            snapshotName: defaultSnapshotName,
+            distantSnapshot: false,
+            distantSnapshotName: defaultSnapshotName,
+            distantRegion: null,
+          }}
+        >
+          {children}
+        </Form>
+      )}
     >
       <div className="flex flex-col gap-2">
-        <p className="text-sm font-medium">
-          {t('pci_instances_actions_backup_instance_name_label')}
-        </p>
-        <Input
+        <InputField<TFormFieldsValues>
+          label={t('pci_instances_actions_backup_instance_name_label')}
+          name={'snapshotName'}
           type="text"
-          name="backup-name"
-          value={snapshotName}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSnapshotName(e.target.value)
-          }
           autoFocus
         />
         {!!price && !isBackupLoading && (
@@ -81,6 +290,27 @@ const BackupActionPage = ({
               price,
             })}
           </p>
+        )}
+
+        {distantContinents.size > 0 && (
+          <>
+            <ToggleField<TFormFieldsValues>
+              label={t('pci_instances_actions_backup_instance_distant_label')}
+              name={'distantSnapshot'}
+              badges={[
+                {
+                  label: t('common:pci_instances_common_new'),
+                  backgroundColor: '#47FFFA',
+                  textColor: '#000D1F',
+                },
+              ]}
+            />
+
+            <DistantSnapshotSection
+              projectId={projectId}
+              continents={distantContinents}
+            />
+          </>
         )}
       </div>
     </ActionModal>
