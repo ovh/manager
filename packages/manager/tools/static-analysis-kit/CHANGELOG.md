@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.4.0...@ovh-ux/manager-static-analysis-kit@0.5.0) (2025-08-01)
+
+
+### Features
+
+* integrate static analysis kit with turbo build and pci workflow ([f35e092](https://github.com/ovh/manager/commit/f35e09204e0ecdeeb57acfe0e587cda6a7bdba01)), closes [#MANAGER-19256](https://github.com/ovh/manager/issues/MANAGER-19256)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.3.1...@ovh-ux/manager-static-analysis-kit@0.4.0) (2025-07-21)
 
 
