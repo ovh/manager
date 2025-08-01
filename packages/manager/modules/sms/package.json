@@ -13,6 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "jsurl": "^0.1.5",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
