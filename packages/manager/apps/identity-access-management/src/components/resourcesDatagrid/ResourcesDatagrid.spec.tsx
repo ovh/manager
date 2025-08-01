@@ -9,6 +9,7 @@ import {
   useResourcesDatagridContext,
 } from './ResourcesDatagridContext';
 import ResourcesListDatagrid, {
+  ResourceDatagridColumn,
   ResourcesListDatagridProps,
 } from './ResourcesDatagrid.component';
 import { iamResourcesListMock } from '@/mocks/iam-resource/iam-resource.mock';
@@ -48,6 +49,8 @@ vi.mock('@/data/hooks/useIamResources', () => ({
 /** RENDER */
 const renderComponent = ({
   topbar,
+  hideColumn,
+  filterWithTags,
   isSelectable,
   selectedResourcesList,
   setSelectedResourcesList,
@@ -60,13 +63,36 @@ const renderComponent = ({
   return render(
     <QueryClientProvider client={queryClient}>
       <ResourcesDatagridContextProvider>
-        <ResourcesListDatagrid topbar={topbar} isSelectable={isSelectable} />
+        <ResourcesListDatagrid
+          topbar={topbar}
+          isSelectable={isSelectable}
+          hideColumn={hideColumn}
+          filterWithTags={filterWithTags}
+        />
       </ResourcesDatagridContextProvider>
     </QueryClientProvider>,
   );
 };
 
 describe('resourcesDatagrid Component', async () => {
+  beforeAll(() => {
+    /* eslint-disable class-methods-use-this */
+    global.ResizeObserver = class ResizeObserver {
+      observe() {
+        // do nothing
+      }
+
+      unobserve() {
+        // do nothing
+      }
+
+      disconnect() {
+        // do nothing
+      }
+    };
+    /* eslint-enable class-methods-use-this */
+  });
+
   it('Should display empty list', async () => {
     const { getByText } = renderComponent({});
 
@@ -124,5 +150,40 @@ describe('resourcesDatagrid Component', async () => {
     fireEvent.click(bulkCheckbox);
 
     expect(setSelectedResourcesListMock).toHaveBeenCalled();
+  });
+
+  it('Should not display tags column', async () => {
+    useIamResourceListMock.mockReturnValue({
+      flattenData: iamResourcesListMock,
+      isLoading: false,
+      error: undefined,
+      isError: undefined,
+    });
+
+    const { queryAllByText } = renderComponent({
+      isSelectable: true,
+      hideColumn: [ResourceDatagridColumn.TAGS],
+    });
+
+    expect((await queryAllByText('displayName')).length).toBe(0);
+  });
+
+  it('Should filter datagrid with tags by default', async () => {
+    useIamResourceListMock.mockReturnValue({
+      flattenData: iamResourcesListMock,
+      isLoading: false,
+      error: undefined,
+      isError: undefined,
+    });
+
+    renderComponent({
+      isSelectable: true,
+      filterWithTags: ['environement:production'],
+    });
+
+    expect(useIamResourceListMock).toHaveBeenCalledWith({
+      pageSize: 20,
+      filterWithTags: ['environement:production'],
+    });
   });
 });
