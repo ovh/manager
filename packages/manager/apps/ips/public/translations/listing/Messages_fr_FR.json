@@ -67,7 +67,7 @@
   "listingActionManageGameMitigation": "Configurer le Game firewall",
   "listingActionAddDescription": "Ajouter une description",
   "listingActionEditDescription": "Editer la description",
-  "listingActionDeleteVirtualMac": "Supprimer MAC virtuelle",
+  "listingActionDeleteVirtualMac": "Supprimer la MAC virtuelle",
   "listingUpsertDescription": "Description",
   "listingUpsertDescriptionSuccessMessage": "La description de l'IP {{value}} a été modifiée.",
   "listingTerminateIp_confirm_Headline": "Résilier mon IP",
