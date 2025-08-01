@@ -21,6 +21,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getOfficeTenantUsageStatisticsQueryKey,
   getOfficeUsageStatistics,
@@ -45,7 +46,7 @@ const periodOptions = [
   Period.LAST_12,
 ];
 export default function Consumption() {
-  const { t } = useTranslation(['dashboard/consumption']);
+  const { t } = useTranslation(['dashboard/consumption', NAMESPACES.DASHBOARD]);
 
   const [selectedPeriod, setSelectedPeriod] = useState('current');
   const [lineChartShow, setLineChartShow] = useState({
@@ -168,7 +169,7 @@ export default function Consumption() {
     <>
       <OdsFormField className="w-full md:w-1/4">
         <label slot="label" htmlFor="period-select">
-          {t('usage_period')}
+          {t(`${NAMESPACES.DASHBOARD}:period`)}
         </label>
         <OdsSelect
           id="period-select"
@@ -177,11 +178,28 @@ export default function Consumption() {
           onOdsChange={(e) => setSelectedPeriod(e.detail.value)}
           data-testid="period-select"
         >
-          {periodOptions.map((period) => (
-            <option key={period} value={period}>
-              {t(`usage_period_${period}`)}
-            </option>
-          ))}
+          {periodOptions.map((period) => {
+            const labelKey = `${NAMESPACES.DASHBOARD}:period_${period}`;
+            let label: string;
+
+            if (period === Period.LAST_3) {
+              label = t(`${NAMESPACES.DASHBOARD}:period_last_months`, {
+                value: 3,
+              });
+            } else if (period === Period.LAST_12) {
+              label = t(`${NAMESPACES.DASHBOARD}:period_last_months`, {
+                value: 12,
+              });
+            } else {
+              label = t(labelKey);
+            }
+
+            return (
+              <option key={period} value={period}>
+                {label}
+              </option>
+            );
+          })}
         </OdsSelect>
       </OdsFormField>
       <div className="mt-12">
@@ -216,7 +234,7 @@ export default function Consumption() {
             <XAxis dataKey="date" tickFormatter={(tick) => tick} />
             <YAxis
               label={{
-                value: t('common:license_number'),
+                value: t(`${NAMESPACES.DASHBOARD}:period`),
                 angle: -90,
                 position: 'insideLeft',
               }}
