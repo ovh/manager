@@ -29,12 +29,12 @@ export default class BillingLinksService {
     } else if (this.$injector.has('shellClient')) {
       this.$injector
         .get('shellClient')
-        .navigation.getURL('dedicated', '#/billing/autorenew')
+        .navigation.getURL('billing', '#/autorenew')
         .then((url) => fetchAutoRenewLink.resolve(url))
         .catch((error) => fetchAutoRenewLink.reject(error));
     } else {
       fetchAutoRenewLink.resolve(
-        this.coreURLBuilder.buildURL('dedicated', '#/billing/autorenew'),
+        this.coreURLBuilder.buildURL('billing', '#/autorenew'),
       );
     }
 
