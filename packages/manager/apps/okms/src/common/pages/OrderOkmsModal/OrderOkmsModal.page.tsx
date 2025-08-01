@@ -103,7 +103,7 @@ const TermsAndConditions = ({
         {error && (
           <OdsMessage color="danger" isDismissible={false} className="w-full">
             {t(`${NAMESPACES.ERROR}:error_message`, {
-              message: error.message,
+              message: error.response.data.message,
             })}
           </OdsMessage>
         )}
