@@ -7,8 +7,8 @@ import {
   useResolvedPath,
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-
 import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
+import { urls } from '@/routes/routes.constant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -26,17 +26,17 @@ export default function DashboardLayout() {
     {
       name: 'communications',
       title: t('tab_communications'),
-      to: useResolvedPath('').pathname,
+      to: useResolvedPath(urls.CommunicationsTab).pathname,
     },
     {
       name: 'contacts',
       title: t('tab_contacts'),
-      to: useResolvedPath('contacts').pathname,
+      to: useResolvedPath(urls.ContactsTab).pathname,
     },
     {
       name: 'settings',
       title: t('tab_settings'),
-      to: useResolvedPath('settings').pathname,
+      to: useResolvedPath(urls.SettingsTab).pathname,
     },
   ];
 
@@ -46,7 +46,6 @@ export default function DashboardLayout() {
       setActivePanel(activeTab.name);
     } else {
       setActivePanel(tabsList[0].name);
-      navigate(`${tabsList[0].to}`);
     }
   }, [location.pathname]);
 
@@ -66,7 +65,7 @@ export default function DashboardLayout() {
               key={`osds-tab-bar-item-${tab.name}`}
               className="select-none"
               isSelected={tab.name === panel}
-              onClick={() => navigate(tab.to)}
+              onOdsTabSelected={() => navigate(tab.to)}
             >
               {tab.title}
             </OdsTab>

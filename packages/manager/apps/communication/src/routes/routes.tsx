@@ -10,6 +10,9 @@ const ContactsPage = lazy(() => import('@/pages/contacts'));
 const CommunicationsPage = lazy(() =>
   import('@/pages/communications/Communications.page'),
 );
+const CommunicationsDetailPage = lazy(() =>
+  import('@/pages/communications/detail/CommunicationsDetail.page'),
+);
 const SettingsPage = lazy(() => import('@/pages/settings'));
 
 export default (
@@ -34,6 +37,10 @@ export default (
             pageType: PageType.listing,
           },
         }}
+      />
+      <Route
+        path={urls.CommunicationsDetail}
+        Component={CommunicationsDetailPage}
       />
       <Route
         path={urls.ContactsTab}

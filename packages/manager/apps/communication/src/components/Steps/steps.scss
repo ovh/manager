@@ -1,0 +1,71 @@
+.steps {
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-rows: 1fr;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  gap: 0.5rem; /* gap between steps, must be equal to the circle size */
+  padding-inline-start: 0;
+  color: var(--ods-color-text);
+
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 40px 1fr; /* circle + content */
+    grid-template-rows: auto;
+    min-height: 4rem;
+    justify-items: start;
+    text-align: left;
+
+    /* vertical connecting line */
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0.5rem; /* start exactly at bottom of circle (circle height) */
+      left: 20px; /* center of 40px column */
+      width: 0.1rem;
+      height: 100%;
+      background-color: var(--ods-color-neutral-200);
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    /* Remove line from last step */
+    &:last-child:before {
+      content: none;
+    }
+
+    /* circle */
+    &:after {
+      content: '';
+      position: relative;
+      z-index: 1;
+      background-color: var(--ods-color-neutral-200);
+      display: grid;
+      place-items: center;
+      border-radius: 9999px;
+      height: 0.5rem;
+      width: 0.5rem;
+      grid-column: 1;
+      grid-row: 1;
+      color: var(--ods-color-neutral-900);
+      font-weight: bold;
+      font-size: small;
+      justify-self: center;
+      align-self: start;
+      margin-top: 0;
+    }
+
+    &[data-content]:after {
+      content: attr(data-content);
+    }
+
+    /* color override for active steps */
+    &-active:before,
+    &-active:after {
+      background-color: var(--ods-color-primary-700);
+      color: var(--ods-color-primary-000);
+    }
+  }
+}
