@@ -85,5 +85,20 @@
                 required
             />
         </oui-field>
+
+        <oui-field data-ng-if="$ctrl.relatedReplicableService">
+            <oui-checkbox
+                name="shouldReplicateContact"
+                data-model="$ctrl.shouldReplicateContact"
+            >
+                <oui-checkbox-label
+                    data-translate="account_contacts_service_edit_replicate_label"
+                    data-translate-values="{
+                        type: $ctrl.getReplicableServiceTranslationType()
+                    }"
+                >
+                </oui-checkbox-label>
+            </oui-checkbox>
+        </oui-field>
     </oui-modal>
 </form>
