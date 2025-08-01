@@ -28,5 +28,6 @@
   "vps_dashboard_migration_2020_info_queue_part_1": "Victim of our success! You are currently at the {{ position }} position in the queue to upgrade your resources.",
   "vps_dashboard_migration_2020_info_queue_part_2": "We will notify you by email as soon as a date is scheduled for the operation. Thank you for your patience and trust.",
   "vps_dashboard_migration_2020_info_with_date_part_1": "Your {{ vpsName }} VPS will be upgraded on {{ date | date:'fullDate' }} at {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "To enable it now,<a href=\"{{url}}\"> click here</a> ."
+  "vps_dashboard_migration_2020_info_with_date_part_2": "To enable it now,<a href=\"{{url}}\"> click here</a> .",
+  "vps_dashboard_migration_2020_info_ongoing": "Your resource increase request has been processed; your VPS will be updated in approximately 15 minutes."
 }
