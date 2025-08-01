@@ -10,6 +10,7 @@ export default {
     getReloadCreditLink: '<',
 
     goToCreditTransfer: '<',
+    goToOrderTime2Chat: '<',
     goToCreditOrder: '<',
 
     trackClick: '<',
