@@ -26,7 +26,7 @@ export enum OkmsCredentialStatus {
   ready = 'READY',
 }
 
-export type CertificateType = 'EC' | 'RSA';
+export type CertificateType = 'ECDSA' | 'RSA';
 
 export type OkmsCredentialCreation = {
   name: string;

@@ -25,6 +25,6 @@ export const credentialMock: OkmsCredential[] = [
     status: OkmsCredentialStatus.ready,
     description: 'credential description',
     privateKeyPEM: 'mock-private-key-pem-2',
-    certificateType: 'EC',
+    certificateType: 'ECDSA',
   },
 ];

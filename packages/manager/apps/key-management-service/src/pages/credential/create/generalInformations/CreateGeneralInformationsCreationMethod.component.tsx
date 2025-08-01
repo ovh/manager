@@ -165,17 +165,17 @@ const CreateGeneralInformationsCreationMethod = ({
           </div>
           <div className="flex gap-2 items-center">
             <OdsRadio
-              inputId="certificateTypeEC"
-              id="certificateTypeEC"
+              inputId="certificateTypeECDSA"
+              id="certificateTypeECDSA"
               data-testid="radio-certificate-type-ec"
               name="certificateType"
               value={certificateType}
-              isChecked={certificateType === 'EC'}
+              isChecked={certificateType === 'ECDSA'}
               onClick={() => {
-                setCertificateType('EC');
+                setCertificateType('ECDSA');
               }}
             ></OdsRadio>
-            <label htmlFor="certificateTypeEC">
+            <label htmlFor="certificateTypeECDSA">
               <OdsText preset={ODS_TEXT_PRESET.span}>
                 {t(
                   'key_management_service_credential_crate_general_information_certificate_type_ec_radio_label',
