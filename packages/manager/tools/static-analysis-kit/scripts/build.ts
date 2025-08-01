@@ -14,6 +14,9 @@ import { pathToFileURL } from 'node:url';
   console.log('🛠️  Building TypeScript...');
   execSync('tsc --project tsconfig.json', { stdio: 'inherit' });
 
+  console.log('🔧 Rewriting imports using tsc-alias config...');
+  execSync('tsc-alias', { stdio: 'inherit' });
+
   console.log('📦 Flattening TypeScript config files...');
 
   const configs: [string, string][] = [
