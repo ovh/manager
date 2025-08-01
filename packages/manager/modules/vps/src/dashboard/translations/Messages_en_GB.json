@@ -24,5 +24,7 @@
   "vps_dashboard_auto_migration_warning_part_1_without_date": "Your {{vps}} VPS is eligible for 1-click migration to the new range.",
   "vps_dashboard_auto_migration_warning_part_1_with_date": "Your {{vps}} VPS will be migrated automatically on {{date}}.",
   "vps_dashboard_auto_migration_warning_part_2": "For more information on the migration, please visit this webpage:",
-  "vps_dashboard_migration_banner_link": "Migrate at any time by clicking here"
+  "vps_dashboard_migration_banner_link": "Migrate at any time by clicking here",
+  "vps_dashboard_state_locked": "Blocked ",
+  "vps_dashboard_service_locked": "Your product has been blocked for non-compliance with our GCUs; to unblock it, contact support."
 }
