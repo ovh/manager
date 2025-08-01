@@ -34,7 +34,7 @@ import { useRules } from '@/data/hooks/useRules';
 import { RulesParam } from '@/data/api/rules';
 import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
-import { Rule } from '@/types/rule';
+import { Rule, RuleField } from '@/types/rule';
 import {
   getZodSchemaFromRule,
   useZodTranslatedError,
@@ -42,7 +42,7 @@ import {
 import { putMe } from '@/data/api/me';
 
 type AccountDetailsFormProps = {
-  rules: Record<string, Rule>;
+  rules: Record<RuleField, Rule>;
   isLoading: boolean;
   currentUser: Partial<User>;
   updateRulesParams: (key: keyof RulesParam, value: string) => void;
@@ -701,25 +701,9 @@ export default function AccountDetailsPage() {
     phoneCountry: currentUser?.country || 'GB',
   });
 
-  const {
-    data: rules,
-    refetch: refetchRules,
-    isLoading,
-  } = useRules(rulesParams, [
-    'firstname',
-    'name',
-    'organisation',
-    'companyNationalIdentificationNumber',
-    'vat',
-    'country',
-    'address',
-    'zip',
-    'city',
-    'phoneType',
-    'phoneCountry',
-    'phone',
-    'language',
-  ]);
+  const { data: rules, refetch: refetchRules, isLoading } = useRules(
+    rulesParams,
+  );
 
   const updateRulesParams = useCallback(
     (key: keyof RulesParam, value: string) => {
