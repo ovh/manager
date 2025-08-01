@@ -1,0 +1,44 @@
+<form novalidate name="modalOrderTime2Chat">
+    <oui-modal
+        data-heading="{{ 'sms_order_time2chat_title' | translate }}"
+        data-loading="$ctrl.loading"
+        data-primary-action="$ctrl.onSubmit()"
+        data-primary-label="{{ 'sms_order_time2chat_action_order' | translate }}"
+        data-primary-disabled="modalOrderTime2Chat.$invalid"
+        data-secondary-action="$ctrl.onCancel()"
+        data-secondary-label="{{ 'sms_order_time2chat_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.onCancel()"
+    >
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_email' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="email"
+                type="email"
+                data-ng-model="$ctrl.model.email"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="name"
+                data-ng-model="$ctrl.model.name"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_phonenumber' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="phonenumber"
+                data-ng-model="$ctrl.model.phonenumber"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
