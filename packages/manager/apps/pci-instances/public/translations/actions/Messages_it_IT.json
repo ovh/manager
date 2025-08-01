@@ -39,7 +39,7 @@
   "pci_instances_actions_backup_instance_error_message": "Si è verificato un errore durante il backup dell'istanza {{ name }}: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "Creazione del backup {{ name }} in corso.",
   "pci_instances_actions_billing_monthly_activate_instance_title": "Passa al forfait mensile",
-  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "Riduci l'importo della tua fattura attivando il forfait mensile sulla tua istanza. <0>Visualizza i prezzi</0>",
+  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "<0>Riduci l'importo della tua fattura attivando il forfait mensile sulla tua istanza.</0> <1>Visualizza i prezzi</1>",
   "pci_instances_actions_billing_monthly_activate_instance_warning_message": "La tua istanza sarà sospesa per qualche secondo. Le operazioni di lettura/scrittura del disco potrebbero essere rallentate fino al completamento del backup",
   "pci_instances_actions_billing_monthly_activate_instance_error_message": "Si è verificato un errore durante l’attivazione del forfait mensile sull’istanza {{ name }}: {{ error }}",
   "pci_instances_actions_billing_monthly_activate_instance_success_message": "Sull’istanza {{ name }} è ora attivo il forfait mensile.",

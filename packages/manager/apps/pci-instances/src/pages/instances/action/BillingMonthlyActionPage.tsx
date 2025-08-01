@@ -65,8 +65,9 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
           i18nKey={`pci_instances_actions_billing_monthly_activate_instance_confirmation_message`}
           ns={'actions'}
           components={[
+            <span key="0" className="text-[--ods-color-text]" />,
             <OsdsLink
-              key="0"
+              key="1"
               color={ODS_THEME_COLOR_INTENT.primary}
               href={pricingHref}
               dir="ltr"
