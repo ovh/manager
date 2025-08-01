@@ -534,9 +534,8 @@ export default class UpscaleController {
           ? 'vps_upscale_elite_upgrade_success'
           : 'vps_upscale_success';
         let key = `${baseKey}_without_payment_method`;
-        const { paymentType } = this.newRangeInformation.pricing;
         if (this.defaultPaymentMethod) {
-          key = `${baseKey}_${paymentType}_with_payment_method`;
+          key = `${baseKey}_${this.newRangeInformation.pricing.paymentType}_with_payment_method`;
         }
         this.atInternet.trackPage({
           name: `vps::upscale-confirm-banner::success::${currentPlanCode}_to_${plan.planCode}`,

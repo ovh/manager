@@ -17,7 +17,7 @@
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
+                data-ng-if="$ctrl.configurationTile.availableUpgrades.length > 0 && !$ctrl.vpsUpgradeTask && !$ctrl.isMaxVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -85,7 +85,7 @@
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
+                data-ng-if="$ctrl.configurationTile.availableUpgrades.length > 0 && !$ctrl.vpsUpgradeTask && !$ctrl.isMaxRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -153,7 +153,7 @@
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxStorage && !$ctrl.isInRescueMode && !$ctrl.isResellerResourceProductName"
+                data-ng-if="$ctrl.configurationTile.availableUpgrades.length > 0 && !$ctrl.vpsUpgradeTask && !$ctrl.isMaxStorage && !$ctrl.isInRescueMode && !$ctrl.isResellerResourceProductName"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"

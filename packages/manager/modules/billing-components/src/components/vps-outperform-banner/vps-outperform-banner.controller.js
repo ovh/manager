@@ -20,7 +20,7 @@ export default class BillingVpsOutperformBannerController {
   goToOutperformPage() {
     this.$window.top.location.href = this.coreURLBuilder.buildURL(
       'dedicated',
-      `#/vps/outperform?vpsname=${this.serviceName}`,
+      `#/vps/outperform?vpsName=${this.serviceName}`,
     );
   }
 }
