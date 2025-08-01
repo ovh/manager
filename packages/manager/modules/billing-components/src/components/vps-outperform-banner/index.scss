@@ -1,0 +1,40 @@
+@import '@ovhcloud/ods-themes/default';
+#banner-outperfom-vps {
+  background-color: var(--ods-color-primary-700);
+  font-family: var(--ods-font-family-default);
+  color: var(--ods-color-primary-000);
+  padding: 16px 56px 16px 56px;
+}
+#banner-outperfom-vps-button {
+  border-color: var(--ods-color-information-100);
+  background-color: var(--ods-color-information-100);
+  color: var(--ods-color-information-700);
+  column-gap: 8px;
+  padding: 7px;
+  min-width: 40px;
+  min-height: 40px;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ods-border-radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#banner-outperfom-vps-button:hover {
+  border-color: var(--ods-color-information-200);
+  background-color: var(--ods-color-information-200);
+}
+
+#banner-outperfom-vps-button:active {
+  border-color: var(--ods-color-information-300);
+  background-color: var(--ods-color-information-300);
+}

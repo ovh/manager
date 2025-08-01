@@ -1,0 +1,30 @@
+<div
+    id="banner-outperfom-vps"
+    class="my-3"
+    data-ng-if="$ctrl.hasOutperformAvailablity"
+>
+    <div class="d-flex">
+        <div class="d-inline oui-icon oui-icon-info_concept mr-5 fa-3x"></div>
+        <div>
+            <strong
+                data-translate="vps_terminate_outperform_availability_banner_title"
+            ></strong>
+            <p
+                data-translate="vps_terminate_outperform_availability_banner_info"
+            ></p>
+            <button
+                data-ng-click="$ctrl.goToOutperformPage()"
+                id="banner-outperfom-vps-button"
+            >
+                <span
+                    class="text-wrap"
+                    data-translate="vps_terminate_outperform_availability_banner_button"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-arrow-right"
+                    aria-hidden="true"
+                ></span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<oui-header class="mb-2">
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1
+                class="oui-header__title"
+                data-translate="vps_outperform_title"
+            ></h1>
+            <changelog-button
+                links="$ctrl.constants.CHANGELOG.vps.links"
+                chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+            ></changelog-button>
+        </div>
+    </oui-header-heading>
+    <oui-back-button
+        aria-label="{{ $ctrl.vpsName ? 'vps_outperform_goback_to_vps_dashboard' : 'vps_outperform_goback_to_vps_list' | translate }}"
+        data-on-click="$ctrl.goBack()"
+        data-previous-page="{{ $ctrl.vpsName ? 'vps_outperform_goback_to_vps_dashboard' : 'vps_outperform_goback_to_vps_list' | translate }}"
+    >
+    </oui-back-button>
+</oui-header>
+
+<form name="vpsCatchUpForm" class="gap-3">
+    <!-- Selection VPS -->
+    <div class="row" data-ng-if="!$ctrl.isLoading || $ctrl.vpsNameSelected">
+        <oui-field
+            class="col-sm-11 col-md-5"
+            data-label="{{ 'vps_outperform_select_vps_label' | translate }}"
+        >
+            <oui-select
+                data-disabled="$ctrl.isLoading"
+                data-items="$ctrl.vpsList"
+                data-match="formatedDisplayName"
+                data-model="$ctrl.vpsNameSelected"
+                data-name="availableAccountsSelect"
+                data-on-change="$ctrl.loadUpgradeAvailable(modelValue)"
+                data-required
+            >
+                <span ng-bind="$item.displayName"></span><br />
+                <small>
+                    <span ng-bind="$item.name "></span>
+                </small>
+            </oui-select>
+        </oui-field>
+    </div>
+
+    <!-- Selection offer -->
+    <div
+        class="row"
+        data-ng-if="(!$ctrl.isLoading && $ctrl.vpsNameSelected) || $ctrl.newOffer"
+    >
+        <oui-select-picker
+            class="col-sm-11 col-md-5 my-3"
+            data-label="{{ :: 'vps_outperform_picker_current_title' | translate }}"
+            data-disabled="true"
+            data-values="['current']"
+        >
+            <!-- current offer -->
+            <oui-select-picker-section>
+                <dl class="oui-description oui-description_horizontal">
+                    <dt data-translate="vps_outperform_cpu"></dt>
+                    <dd>
+                        <span data-ng-bind="$ctrl.oldProduct.cpu.cores"></span>
+                        <span
+                            data-translate="{{:: $ctrl.oldProduct.cpu.cores === 1 ? 'vps_outperform_vcore_1' : 'vps_outperform_vcore_other'}}"
+                        ></span>
+                    </dd>
+                    <dt data-translate="vps_outperform_memory"></dt>
+                    <dd
+                        data-translate="vps_outperform_quantity"
+                        data-translate-values="{
+                                          'unit': $ctrl.oldProduct.memory.size,
+                                        }"
+                    ></dd>
+                    <dt data-translate="vps_outperform_storage"></dt>
+                    <dd>
+                        <span
+                            data-translate="vps_outperform_quantity"
+                            data-translate-values="{
+                                          'unit': $ctrl.oldProduct.storage.disks[0].capacity,
+                                        }"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.oldProduct.storage.disks[0].interface"
+                        ></span>
+                    </dd>
+                    <dt data-translate="vps_outperform_bandwidth"></dt>
+                    <dd>
+                        <span
+                            data-ng-if="$ctrl.oldProduct.bandwidth.unlimited"
+                            data-translate="vps_outperform_bandwidth_unlimited"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.oldProduct.bandwidth.level | bandwidth:'M':'bit'"
+                        ></span>
+                    </dd>
+                </dl>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <small data-ng-bind="$ctrl.price"></small>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+        <!-- New offer -->
+        <oui-select-picker
+            class="col-sm-11 col-md-5 my-3"
+            data-model="$ctrl.newOffer"
+            data-ng-if="$ctrl.newPlanCodeAvailable"
+            data-label="{{ :: 'vps_outperform_picker_new_title' | translate }}"
+            data-values="[$ctrl.newPlanCodeAvailable]"
+            data-disabled="$ctrl.submitting"
+            data-required
+        >
+            <oui-select-picker-section>
+                <dl class="oui-description oui-description_horizontal">
+                    <dt data-translate="vps_outperform_cpu"></dt>
+                    <dd>
+                        <span data-ng-bind="$ctrl.newProduct.cpu.cores"></span>
+                        <span
+                            data-translate="{{:: $ctrl.newProduct.cpu.cores === 1 ? 'vps_outperform_vcore_1' : 'vps_outperform_vcore_other'}}"
+                        ></span>
+                    </dd>
+                    <dt data-translate="vps_outperform_memory"></dt>
+                    <dd
+                        data-translate="vps_outperform_quantity"
+                        data-translate-values="{
+                                          'unit': $ctrl.newProduct.memory.size,
+                                        }"
+                    ></dd>
+                    <dt data-translate="vps_outperform_storage"></dt>
+                    <dd>
+                        <span
+                            data-translate="vps_outperform_quantity"
+                            data-translate-values="{
+                                          'unit': $ctrl.newProduct.storage.disks[0].capacity,
+                                        }"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.newProduct.storage.disks[0].interface"
+                        ></span>
+                    </dd>
+                    <dt data-translate="vps_outperform_bandwidth"></dt>
+                    <dd>
+                        <span
+                            data-ng-if="$ctrl.newProduct.bandwidth.unlimited"
+                            data-translate="vps_outperform_bandwidth_unlimited"
+                        ></span>
+                        <span
+                            data-ng-bind="$ctrl.newProduct.bandwidth.level | bandwidth:'M':'bit'"
+                        ></span>
+                    </dd>
+                </dl>
+            </oui-select-picker-section>
+            <oui-select-picker-footer>
+                <small data-ng-bind="$ctrl.price"></small>
+            </oui-select-picker-footer>
+        </oui-select-picker>
+    </div>
+
+    <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
+
+    <cui-message-container data-messages="$ctrl.messages">
+    </cui-message-container>
+
+    <oui-message
+        type="info"
+        class="mt-3"
+        data-ng-if="(!$ctrl.isLoading && $ctrl.vpsNameSelected && $ctrl.messages.length === 0) || $ctrl.newOffer"
+    >
+        <strong data-translate="vps_outperform_banner_title"></strong>
+        <p data-translate="vps_outperform_banner_info"></p>
+    </oui-message>
+
+    <oui-form-actions
+        class="mt-3"
+        data-submit-text="{{ 'vps_outperform_cta_submit' | translate }}"
+        data-cancel-text="{{ 'common_cancel' | translate }}"
+        data-on-submit="$ctrl.validUpgrade()"
+        data-on-cancel="$ctrl.goBack()"
+        data-disabled="$ctrl.isLoading || !$ctrl.newOffer || $ctrl.submitting"
+    >
+    </oui-form-actions>
+</form>

@@ -8,6 +8,9 @@ export const SERVICE_TYPE = {
   VPS: 'VPS',
 };
 
+export const OUTPERFORM_AVAILABLE_STATUS = 'available';
+
 export default {
+  OUTPERFORM_AVAILABLE_STATUS,
   TERMINATE_OPTIONS,
 };

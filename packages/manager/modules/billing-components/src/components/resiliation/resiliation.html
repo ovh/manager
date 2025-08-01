@@ -8,6 +8,12 @@
     <div class="row">
         <div class="col-md-9">
             <div ovh-alert></div>
+
+            <ovh-manager-billing-vps-outperform-banner
+                data-service-name="$ctrl.serviceName"
+                data-ng-if="$ctrl.serviceType === $ctrl.SERVICE_TYPE.VPS"
+            ></ovh-manager-billing-vps-outperform-banner>
+
             <dl>
                 <dt data-translate="billing_resiliation_service_name"></dt>
                 <dd data-ng-bind="$ctrl.serviceName"></dd>

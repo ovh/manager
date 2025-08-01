@@ -54,6 +54,7 @@ export default class {
     )}${ADD_DOMAIN_LINK_SUFFIX_URL}`;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.MIGRATION_STATUS = MIGRATION_STATUS;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
@@ -305,6 +306,12 @@ export default class {
             serviceName: this.serviceName,
           }),
       },
+      upgrade: {
+        text: this.$translate.instant('vps_tab_veeam_upgrade_offer'),
+      },
+      downgrade: {
+        text: this.$translate.instant('vps_tab_veeam_downgrade_offer'),
+      },
       terminate: {
         text: this.$translate.instant('vps_configuration_desactivate_option'),
       },
@@ -315,9 +322,22 @@ export default class {
     }
   }
 
+  hasUpgradeVeeamAvailable() {
+    return this.VpsService.autoBackupUpgradeAvailable(this.serviceName)
+      .then((data) => !!data.upgradeAvailable)
+      .catch(() => false);
+  }
+
   backupList() {
-    this.VpsService.getTabVeeam(this.serviceName, 'available').then(
-      (backups) => {
+    this.$q
+      .all({
+        automatedBackupInfo: this.VpsService.getVeeamInfo(this.serviceName),
+        backups: this.VpsService.getTabVeeam(this.serviceName, 'available'),
+        hasUpgradeVeeamAvailable: this.hasUpgradeVeeamAvailable(),
+      })
+      .then(({ automatedBackupInfo, backups, hasUpgradeVeeamAvailable }) => {
+        this.isPremiumBackup = automatedBackupInfo.rotation > 1;
+        this.canUpgradeOrDowngradeVeeam = hasUpgradeVeeamAvailable;
         this.lastBackup =
           backups[0] &&
           `${this.$translate.instant(
@@ -325,8 +345,7 @@ export default class {
           )} ${moment(backups[0])
             .utc()
             .format('LLL')}`;
-      },
-    );
+      });
   }
 
   initOptionsActions() {
@@ -426,11 +445,17 @@ export default class {
                 serviceName: this.serviceName,
               },
             ),
-            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
+            isAvailable: () =>
+              !this.loaders.ip &&
+              !this.isMigrationInProgress &&
+              !this.isLocalzone,
           },
           displayIps: {
             text: this.$translate.instant('vps_dashboard_ips_additional'),
-            isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
+            isAvailable: () =>
+              !this.loaders.ip &&
+              !this.isMigrationInProgress &&
+              !this.isLocalzone,
           },
           manageSla: {
             text: this.$translate.instant('vps_common_manage'),
