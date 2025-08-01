@@ -1,0 +1,14 @@
+{
+  "sms_order_time2chat_title": "Merci de remplir les informations ci-dessous afin que l'on puisse traiter votre commande",
+  "sms_order_time2chat_action_order": "Continuer",
+  "sms_order_time2chat_action_cancel": "Annuler",
+  "sms_order_time2chat_label_phonenumber": "Numéro de téléphone",
+  "sms_order_time2chat_label_email": "E-mail",
+  "sms_order_time2chat_label_name": "Nom",
+  "sms_order_time2chat_label_company_name": "Raison sociale",
+  "sms_order_time2chat_label_brand_name": "Marque utilisant le service",
+  "sms_order_time2chat_label_primary_use_case": "Cas d'utilisation principal",
+  "sms_order_time2chat_label_operational_contact_name": "Nom du contact",
+  "sms_order_time2chat_label_operational_contact_email": "Email du contact",
+  "sms_order_time2chat_message_error": "Une erreur est survenue : {{error}}"
+}
