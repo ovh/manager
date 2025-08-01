@@ -8,5 +8,6 @@
   "private_registry_upgrade_core_registry_95": "99,95% core &amp; registry",
   "private_registry_upgrade_other_components": "99,9% w odniesieniu do innych komponentów",
   "private_registry_upgrade_plan_warning": "* Większość oprogramowania klienckiego jest skonfigurowana tak, aby podczas łączenia się z jednym z rejestrów, używać 5 jednoczesnych połączeń http",
-  "private_registry_upgrade_plan_available_storage": "Dostępna przestrzeń dyskowa: "
+  "private_registry_upgrade_plan_available_storage": "Dostępna przestrzeń dyskowa: ",
+  "private_registry_monthly_price": "{{ monthly }} / m-c"
 }

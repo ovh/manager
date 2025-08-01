@@ -11,5 +11,6 @@
   "versionTag-endOfSale": "Fin de commercialisation",
   "versionTag-soonDeprecated": "Bientôt déprécié",
   "selectAVersion": "Selectionnez une version",
-  "noVersionFound": "Aucune version trouvée"
+  "noVersionFound": "Aucune version trouvée",
+  "endOfSale": "Fin de commercialisation prévue le {{ date }}"
 }

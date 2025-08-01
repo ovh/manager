@@ -9,6 +9,7 @@ import {
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
 import { useParam, useProjectId } from './useProject';
+import { toIsoDate } from '@/utils/formatter/date';
 
 const getSubscribedSavingsPlan = async (
   serviceId: number,
@@ -61,11 +62,13 @@ const postSavingsPlan = async ({
   offerId,
   displayName,
   size,
+  startDate,
 }: {
   serviceId: number;
   offerId: string;
   displayName: string;
   size: number;
+  startDate: string;
 }): Promise<SavingsPlanService> => {
   const { data } = await v6.post<SavingsPlanService>(
     `/services/${serviceId}/savingsPlans/subscribe/execute`,
@@ -73,6 +76,7 @@ const postSavingsPlan = async ({
       displayName,
       offerId,
       size,
+      startDate,
     },
   );
   return data;
@@ -158,6 +162,13 @@ export const useSavingsPlanEditName = ({
   });
 };
 
+type MutationCreatePlanParams = {
+  displayName: string;
+  offerId: string;
+  size: number;
+  startDate: Date;
+};
+
 export const useSavingsPlanCreate = (
   onSuccess?: (data: SavingsPlanService) => void,
 ) => {
@@ -182,11 +193,18 @@ export const useSavingsPlanCreate = (
       displayName,
       offerId,
       size,
-    }: {
-      displayName: string;
-      offerId: string;
-      size: number;
-    }) => postSavingsPlan({ serviceId, offerId, displayName, size }),
+      startDate,
+    }: MutationCreatePlanParams) => {
+      const date = toIsoDate(startDate);
+
+      return postSavingsPlan({
+        serviceId,
+        offerId,
+        displayName,
+        size,
+        startDate: date,
+      });
+    },
   });
 };
 

@@ -158,9 +158,15 @@ describe('CreatePlanForm', () => {
     it('should not call onCreatePlan if form not valid', async () => {
       await setupSpecTest();
 
+      // Select duration to have pricing data
+      fireEvent.click(screen.getByText('commitment_month'));
+
       const ctaPlanButton = screen.getByTestId('cta-plan-button');
+
+      // Click button without filling the required fields (name, model)
       fireEvent.click(ctaPlanButton);
 
+      // Modal should open but onCreatePlan should not be called since form is incomplete
       expect(defaultProps.onCreatePlan).not.toHaveBeenCalled();
     });
   });

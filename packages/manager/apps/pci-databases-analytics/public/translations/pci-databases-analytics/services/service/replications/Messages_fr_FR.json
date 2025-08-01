@@ -61,5 +61,7 @@
   "deleteReplicationTitle": "Supprimer le flux de réplication",
   "deleteReplicationDescription": "Êtes-vous sûr de vouloir supprimer ce flux de réplication ?",
   "deleteReplicationButtonCancel": "Annuler",
-  "deleteReplicationButtonConfirm": "Supprimer"
+  "deleteReplicationButtonConfirm": "Supprimer",
+  "deleteReplicationToastErrorTitle": "Une erreur est survenue lors de la suppression du flux de réplication",
+  "deleteReplicationToastSuccessDescription": "Le flux de réplication a été supprimé avec succès"
 }

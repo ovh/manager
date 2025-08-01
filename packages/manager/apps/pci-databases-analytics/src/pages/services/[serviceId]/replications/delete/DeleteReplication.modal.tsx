@@ -46,10 +46,8 @@ const DeleteReplicationModal = () => {
     },
     onSuccess: () => {
       toast.toast({
-        title: t('deleteReplicationToastSuccessTitle'),
-        description: t('deleteReplicationToastSuccessDescription', {
-          name: deleteReplication.name,
-        }),
+        title: t('formReplicationToastSuccessTitle'),
+        description: t('deleteReplicationToastSuccessDescription'),
       });
       navigate('../');
     },

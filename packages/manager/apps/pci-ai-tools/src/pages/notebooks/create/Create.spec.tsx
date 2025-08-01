@@ -9,9 +9,7 @@ import {
 import { useToast } from '@datatr-ux/uxlib';
 import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
-import Notebook, {
-  breadcrumb as Breadcrumb,
-} from '@/pages/notebooks/create/Create.page';
+import Notebook from '@/pages/notebooks/create/Create.page';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { mockedPciProject } from '@/__tests__/helpers/mocks/project';
@@ -91,14 +89,6 @@ describe('Order funnel page', () => {
   });
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it('renders the breadcrumb component', async () => {
-    const translationKey = 'breadcrumb';
-    render(<Breadcrumb />, { wrapper: RouterWithQueryClientWrapper });
-    await waitFor(() => {
-      expect(screen.getByText(translationKey)).toBeTruthy();
-    });
   });
 
   it('renders the skeleton component while loading', async () => {

@@ -83,7 +83,7 @@ const AddEditTopic = ({ service, topics, editedTopic }: AddEditTopicProps) => {
         message: t('formTopicErrorPattern'),
       })
       .min(3, {
-        message: t('formTopicErrorMinLength', { min: 1 }),
+        message: t('formTopicErrorMinLength', { min: 3 }),
       })
       .max(249, {
         message: t('formTopicErrorMaxLength', { max: 249 }),

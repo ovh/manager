@@ -22,6 +22,7 @@ export interface Engine {
   defaultVersion: string;
   storageMode: database.capabilities.engine.storage.StrategyEnum;
   versions: Version[];
+  eos?: string;
 }
 
 export interface Version {

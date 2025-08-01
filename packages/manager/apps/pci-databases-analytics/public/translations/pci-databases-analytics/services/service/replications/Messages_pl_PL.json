@@ -61,5 +61,7 @@
   "deleteReplicationTitle": "Usuń strumień replikacji",
   "deleteReplicationDescription": "Czy na pewno chcesz usunąć ten strumień replikacji?",
   "deleteReplicationButtonCancel": "Anuluj",
-  "deleteReplicationButtonConfirm": "Usuń"
+  "deleteReplicationButtonConfirm": "Usuń",
+  "deleteReplicationToastErrorTitle": "Wystąpił błąd podczas usuwania strumienia replikacji",
+  "deleteReplicationToastSuccessDescription": "Strumień replikacji został usunięty"
 }

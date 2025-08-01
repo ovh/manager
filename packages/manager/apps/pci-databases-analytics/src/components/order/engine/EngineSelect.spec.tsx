@@ -1,6 +1,6 @@
 import {
-  act,
-  fireEvent,
+  // act,
+  // fireEvent,
   render,
   screen,
   waitFor,
@@ -13,6 +13,26 @@ import { Engine } from '@/types/orderFunnel';
 describe('EngineSelect component', () => {
   afterEach(() => {
     vi.clearAllMocks();
+    vi.mock('@ovh-ux/manager-react-shell-client', () => {
+      type CallbackType = (localePros: { locale: string }) => void;
+      let localeChangeCallback: CallbackType | null = null;
+      const onLocaleChange = (callback: CallbackType) => {
+        localeChangeCallback = callback;
+      };
+      return {
+        useShell: vi.fn(() => ({
+          i18n: {
+            getLocale: vi.fn(),
+            onLocaleChange,
+            setLocale: vi.fn((newLocale: string) => {
+              if (localeChangeCallback) {
+                localeChangeCallback({ locale: newLocale });
+              }
+            }),
+          },
+        })),
+      };
+    });
   });
   it('should display the EngineTile', async () => {
     const onChange = vi.fn();
