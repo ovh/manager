@@ -1402,5 +1402,5 @@
   "hosting_tab_STATISTICS_type_allowed": "Zulässige Anfragen",
   "hosting_tab_STATISTICS_type_denied": "Abgelehnte Anfragen",
   "hosting_tab_SSL": "SSL-Zertifikate",
-  "hosting_tab_FTP_configuration_explorer_info": "Der Zugriff über den Web-FTP-Client (Net2FTP) ist nicht mehr verfügbar. Bitte verwenden Sie einen FTP-Client wie <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  und<a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  , um sich mit Ihrem Hosting zu verbinden."
+  "hosting_tab_FTP_configuration_explorer_info": "Der Zugriff über den Web-FTP-Client (Net2FTP) ist nicht mehr verfügbar. Bitte verwenden Sie einen FTP-Client wie <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> und <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>, um sich mit Ihrem Hosting zu verbinden."
 }
