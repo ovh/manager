@@ -1,5 +1,5 @@
 import { Suspense, useRef, useState } from 'react';
-import { Outlet, useParams, useNavigate, Navigate } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ChangelogButton,
@@ -8,7 +8,6 @@ import {
   FilterList,
   Headers,
   Notifications,
-  PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
   useNotifications,
@@ -40,6 +39,7 @@ import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import { StorageGuidesHeader } from '@/pages/list/StorageGuidesHeader.component';
 
 export default function ListingPage() {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
@@ -87,7 +87,7 @@ export default function ListingPage() {
       <div className="header mb-6 mt-8">
         <Headers
           title={t('pci_projects_project_storages_blocks_title')}
-          headerButton={<PciGuidesHeader category="instances" />}
+          headerButton={<StorageGuidesHeader />}
           changelogButton={
             <ChangelogButton
               links={CHANGELOG_LINKS}
