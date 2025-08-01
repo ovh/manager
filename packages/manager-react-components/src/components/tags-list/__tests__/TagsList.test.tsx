@@ -1,10 +1,10 @@
 import React from 'react';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { TagsList } from '../TagsList.component';
-import * as utils from '../TagsList.utils';
+import * as tagsStackUtils from '../tags-stack/TagsStack.utils';
 
-vi.mock('../TagsList.utils', async (importOriginal) => {
+vi.mock('../tags-stack/TagsStack.utils', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
     ...actual,
@@ -34,23 +34,42 @@ describe('TagsList Component - Snapshot Tests', () => {
     'ovh:key2': 'Lorem ipsum dolor',
   };
 
+  const modalHeader = 'Test Resource';
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('displays all tags', () => {
-    vi.mocked(utils.getVisibleTagCount).mockReturnValue(8);
+    vi.mocked(tagsStackUtils.getVisibleTagCount).mockReturnValue(8);
 
-    const { container } = render(<TagsList tags={mockTags} />);
+    const { container } = render(
+      <TagsList tags={mockTags} modalHeading={modalHeader} />,
+    );
 
     expect(container).toMatchSnapshot();
   });
 
   it('displays fewer tags along with Link', () => {
-    vi.mocked(utils.getVisibleTagCount).mockReturnValue(2);
+    vi.mocked(tagsStackUtils.getVisibleTagCount).mockReturnValue(2);
 
-    const { container } = render(<TagsList tags={mockTags} maxLines={2} />);
+    const { container } = render(
+      <TagsList tags={mockTags} maxLines={2} modalHeading={modalHeader} />,
+    );
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('displays modal on click of "More tags" link', async () => {
+    vi.mocked(tagsStackUtils.getVisibleTagCount).mockReturnValue(1);
+
+    const { baseElement } = render(
+      <TagsList tags={mockTags} maxLines={1} modalHeading={modalHeader} />,
+    );
+    const moreTagsLink = screen.getByRole('link');
+    fireEvent.click(moreTagsLink);
+    await waitFor(() => {
+      expect(baseElement).toMatchSnapshot();
+    });
   });
 });
