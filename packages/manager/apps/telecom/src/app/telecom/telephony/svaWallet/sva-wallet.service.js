@@ -37,11 +37,11 @@ export default class SvaWalletService {
   }
 
   saveWallet(wallet, bankAccount) {
-    return this.$http.post('/me/sva/wallet', wallet).then(() => {
+    return this.$http.post('/me/sva/onboarding', wallet).then(({ data }) => {
       if (bankAccount) {
-        return this.saveWalletIban(bankAccount);
+        this.saveWalletIban(bankAccount);
       }
-      return this.$q.resolve();
+      return data;
     });
   }
 
