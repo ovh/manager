@@ -802,5 +802,6 @@
   "logs_iam_setup_message": "Ou opte por controlar os direitos de acesso do serviço com",
   "logs_iam_ovhcloud_iam": "o IAM OVHcloud",
   "logs_iam_enable_iam": "Ativar o IAM OVHcloud",
-  "logs_iam_policies": "Políticas IAM"
+  "logs_iam_policies": "Políticas IAM",
+  "logs_encryption_keys_get_error": "Ocorreu um erro ao carregar as chaves de encriptação: {{message}}"
 }

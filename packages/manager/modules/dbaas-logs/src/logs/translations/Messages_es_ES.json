@@ -802,5 +802,6 @@
   "streams_subscriptions_resource_products_webhosting": "Web hosting",
   "streams_subscriptions_resource_products_account-api": "Área de cliente OVHcloud y API OVHcloud",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
+  "logs_encryption_keys_get_error": "Se ha producido un error al cargar las claves de cifrado: {{message}}"
 }

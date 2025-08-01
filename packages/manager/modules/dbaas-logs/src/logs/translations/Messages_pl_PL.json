@@ -802,5 +802,6 @@
   "streams_subscriptions_resource_products_webhosting": "Hosting",
   "streams_subscriptions_resource_products_account-api": "Panel klienta OVHcloud &amp; OVHcloud API",
   "streams_subscriptions_resource_products_account-audit": "Audyt logów OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "logs_encryption_keys_get_error": "Wystąpił błąd podczas pobierania kluczy szyfrowania: {{message}}"
 }

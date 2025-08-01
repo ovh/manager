@@ -188,6 +188,7 @@
   "logs_encryption_keys_display_details": "Voir les détails",
   "logs_encryption_keys_details": "Détail de votre clé de chiffrement PGP",
   "logs_encryption_keys_recovery_key_tooltip": "Les clés de Recovery vous permette de chiffrer vos archives avec une clé PGP détenue par OVHcloud, en plus de vos clés personelles. Si vous perdez vos clés privées, OVHcloud sera alors toujours en capacité de déchiffrer vos archives via cette clé de Recovery pour vous réstituer ces archives.",
+  "logs_encryption_keys_get_error": "Une erreur est survenue lors du chargement des clés de chiffrement: {{message}}",
   "logs_home_offer_limit": "Seuil de votre offre",
   "logs_home_password": "Mot de passe",
   "logs_home_ssi_configuration": "Configuration SSL",

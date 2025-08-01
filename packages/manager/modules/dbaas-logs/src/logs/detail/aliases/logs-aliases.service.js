@@ -54,7 +54,14 @@ export default class LogsAliasesService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(10000)
-      .execute().$promise;
+      .execute()
+      .$promise.catch((error) => {
+        this.LogsHelperService.handleError(
+          error.data,
+          'logs_aliases_get_error',
+        );
+        return { data: [] };
+      });
   }
 
   getPaginatedAliases(
@@ -88,7 +95,14 @@ export default class LogsAliasesService {
     return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/alias`)
       .query()
       .execute()
-      .$promise.then(({ data }) => data);
+      .$promise.then(({ data }) => data)
+      .catch((error) => {
+        this.LogsHelperService.handleError(
+          'logs_aliases_get_error',
+          error.data,
+        );
+        return [];
+      });
   }
 
   /**
@@ -100,11 +114,9 @@ export default class LogsAliasesService {
    * @memberof LogsStreamsService
    */
   getOwnAliases(serviceName) {
-    return this.getAliases(serviceName)
-      .then(({ data = [] }) => data.filter((alias) => alias.isEditable))
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_aliases_get_error', err, {}),
-      );
+    return this.getAliases(serviceName).then(({ data = [] }) =>
+      data.filter((alias) => alias.isEditable),
+    );
   }
 
   /**
