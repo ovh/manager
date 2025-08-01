@@ -17,38 +17,56 @@ import {
   getVolumeModelPricings,
   TModelPrice,
 } from '@/api/select/catalog';
+import {
+  BlockStorageListColumn,
+  isBlockStorageListColumn,
+} from '@/hooks/useDatagridColumn';
+
+const volumeComparator = <T>(extractor: (_: TVolume) => T) => (
+  t1: TVolume,
+  t2: TVolume,
+) => (extractor(t1) > extractor(t2) ? 1 : -1);
 
 export const sortResults = (
   items: TVolume[],
   sorting: ColumnSort | undefined,
 ) => {
-  if (!sorting) return items;
+  if (!sorting || items.length === 0) return items;
+  const sortingColumn = sorting.id;
+  if (!isBlockStorageListColumn(sortingColumn)) return items;
 
-  let sortFn: (a: TVolume, b: TVolume) => number;
+  const sortFn = (() => {
+    switch (sortingColumn) {
+      case BlockStorageListColumn.STATUS:
+        return volumeComparator((t: TVolume) => t.statusGroup);
+      case BlockStorageListColumn.ATTACHED:
+        return volumeComparator(
+          (t: TVolume) => t.attachedTo[0].toLocaleLowerCase() || '',
+        );
+      default: {
+        const typeOfColumn = typeof items[0][sortingColumn];
+        if (typeOfColumn === 'string') {
+          return volumeComparator((t: TVolume) =>
+            (t[sortingColumn] as string).toLocaleLowerCase(),
+          );
+        }
 
-  switch (sorting.id) {
-    case 'status':
-      sortFn = (a, b) => (a.statusGroup > b.statusGroup ? 1 : 0);
-      break;
-    case 'attachedTo':
-      sortFn = (a, b) => {
-        const aAttachedTo = a.attachedTo[0] || '';
-        const bAttachedTo = b.attachedTo[0] || '';
-        return aAttachedTo > bAttachedTo ? 1 : 0;
-      };
-      break;
-    default:
-      sortFn = (a, b) => (a[sorting.id] > b[sorting.id] ? 1 : 0);
-      break;
-  }
+        return volumeComparator((t: TVolume) => t[sortingColumn]);
+      }
+    }
+  })();
 
   return [...items].sort(sorting.desc ? (a, b) => -sortFn(a, b) : sortFn);
 };
 
-export const paginateResults = <T>(
+export const paginateResults: <T>(
   items: T[],
   pagination: PaginationState,
-) => ({
+) => {
+  rows: T[];
+  pageCount: number;
+  totalRows: number;
+} = <T>(items: T[], pagination: PaginationState) => ({
   rows: items.slice(
     pagination.pageIndex * pagination.pageSize,
     (pagination.pageIndex + 1) * pagination.pageSize,
