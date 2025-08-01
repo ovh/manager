@@ -9,9 +9,11 @@ import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
 import { IpTypeEnum } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { isGameFirewallEnabled } from '../enableCellsUtils';
 import {
   useGetIpdetails,
-  useGetGameMitigation,
+  useGetIpGameFirewall,
   useIpHasForcedMitigation,
   useIpHasServicesAttached,
   useGetAttachedServices,
@@ -80,6 +82,7 @@ export type IpActionsCellParams = {
 */
 
 export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
+  const { expiredIps } = useContext(ListingContext);
   const { shell } = useContext(ShellContext);
   const [vrackPage, setVrackPage] = useState('');
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
@@ -147,9 +150,16 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     window.top.location.href = vrackPage;
   };
 
-  const gameMitigationDetails = useGetGameMitigation({
-    ip: ipAddress,
-    enabled: true,
+  // not expired and additionnal / dedicated Ip linked to a dedicated server
+  const enabled =
+    expiredIps?.indexOf(ip) === -1 &&
+    !isLoading &&
+    isGameFirewallEnabled(ipDetails);
+
+  // Get game firewall info
+  const { ipGameFirewall } = useGetIpGameFirewall({
+    ip: parentIpGroup || ipAddress,
+    enabled,
   });
 
   const { hasForcedMitigation } = useIpHasForcedMitigation({ ip });
@@ -219,7 +229,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
-      Boolean(gameMitigationDetails?.result?.length) && {
+      Boolean(ipGameFirewall?.length) && {
         id: 3,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
