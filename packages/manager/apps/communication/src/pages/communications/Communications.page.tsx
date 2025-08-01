@@ -8,10 +8,12 @@ import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Link } from 'react-router-dom';
 import { Notification } from '@/data/types';
+import { urls } from '@/routes/routes.constant';
 
 import NotificationPriorityChip from '@/components/notificationPriorityChip/NotificationPriorityChip.component';
 import {
@@ -19,6 +21,7 @@ import {
   useNotificationReference,
 } from '@/data/hooks/useNotification/useNotification';
 import NotificationContactStatus from '@/components/notificationContactStatus/NotificationContactStatus.component';
+import { useAuthorization } from '@/hooks/useAuthorization/useAuthorization';
 
 function CommunicationsPage() {
   const { t } = useTranslation('communications');
@@ -26,13 +29,21 @@ function CommunicationsPage() {
   const formatDate = useFormatDate();
   const { data: reference } = useNotificationReference();
 
+  const { isAuthorized } = useAuthorization([
+    'account:apiovh:notification/history/get',
+  ]);
+
   const columns: DatagridColumn<Notification>[] = [
     {
       id: 'title',
       isSearchable: true,
       label: t('table_column_subject'),
       cell: (notification) => (
-        <DataGridTextCell>{notification.title}</DataGridTextCell>
+        <DataGridTextCell>
+          <Link to={`${urls.CommunicationsDetailTo(notification.id)}`}>
+            <OdsLink label={notification.title} href="#" />
+          </Link>
+        </DataGridTextCell>
       ),
     },
     {
@@ -110,6 +121,7 @@ function CommunicationsPage() {
     fetchNextPage,
   } = useNotificationHistory({
     pageSize: 10,
+    enabled: isAuthorized,
   });
 
   return (
