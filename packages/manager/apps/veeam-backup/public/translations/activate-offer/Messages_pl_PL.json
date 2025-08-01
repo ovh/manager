@@ -1,6 +1,6 @@
 {
-  "title": "Aktywuj opcję Gold Backup Storage",
-  "description": "Gold Backup Storage korzysta z Object Storage High Performance, z podstawową przestrzenią dyskową, a następnie kopią w innym regionie. To repozytorium kopii zapasowych jest skonfigurowane z 14-dniową niezmiennością danych.",
+  "title": "Aktywuj repozytorium kopii zapasowych Gold",
+  "description": "Repozytorium kopii zapasowych Gold działa w oparciu o Object Storage High Performance. Dane są zapisywane w pamięci głównej, a następnie replikowane do innego regionu. W repozytorium aktywowana jest 14-dniowa ochrona przed modyfikacjami lub usunięciem danych.",
   "error": "Wystąpił błąd podczas aktywacji repozytorium Gold: {{errorAPI}}",
   "success": "Trwa aktywacja repozytorium Gold"
 }
