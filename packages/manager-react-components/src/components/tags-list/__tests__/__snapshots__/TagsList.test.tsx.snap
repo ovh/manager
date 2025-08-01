@@ -100,3 +100,37 @@ exports[`TagsList Component - Snapshot Tests > displays fewer tags along with Li
   </div>
 </div>
 `;
+
+exports[`TagsList Component - Snapshot Tests > displays modal on click of "More tags" link 1`] = `
+<body>
+  <div>
+    <div
+      class="w-full h-full flex flex-wrap min-w-[85px]"
+    >
+      <span
+        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+        style="max-width: -32px;"
+      >
+        key1:Lorem ipsum dolor
+      </span>
+      <span
+        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+        style="max-width: -32px;"
+      >
+        key2:Lorem ipsum consectetur sit amet consectetur
+      </span>
+      <a
+        class="_link_udbet_2 _link--no-text_udbet_29 text-xs"
+        href="#"
+      >
+        <span>
+          ​
+        </span>
+        <span
+          class="_icon_i4xp0_2 _icon--chevron-double-right_i4xp0_67"
+        />
+      </a>
+    </div>
+  </div>
+</body>
+`;
