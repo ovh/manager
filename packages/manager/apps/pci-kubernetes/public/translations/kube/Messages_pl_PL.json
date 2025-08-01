@@ -11,7 +11,7 @@
   "kube_service_file_more_information": "Więcej informacji znajdziesz tutaj",
   "kube_service_cluster_information": "Informacje o klastrze",
   "kube_service_cluster_plan": "Pakiet",
-  "kube_service_cluster_plan_free": "Free",
+  "kube_service_cluster_plan_free": "Gratis",
   "kube_service_cluster_plan_standard": "Standard",
   "kube_service_cluster_status": "Status",
   "kube_service_cluster_status_READY": "OK",
@@ -82,5 +82,5 @@
   "pci_project_flavors_zone_3az": "3-AZ",
   "pci_project_flavors_zone_3az_tooltip": "Region 3-AZ obejmuje trzy strefy dostępności zlokalizowane w tej samej aglomeracji miejskiej, oddalone od siebie o kilka kilometrów. Spełnia najwyższe wymagania dotyczące odporności systemu i jednocześnie zapewnia bardzo niskie opóźnienia między strefami dostępności.",
   "pci_project_flavors_zone_globalregions_tooltip": "Region 1-AZ (availability zone) obejmuje jedno lub kilka centrów danych w tej samej lokalizacji.",
-  "kube_service_cluster_plan_description": "Poziom usług skojarzony z tym klastrem MKS."
+  "kube_service_cluster_plan_description": "Poziom usługi przypisany do tego klastra MKS."
 }

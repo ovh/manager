@@ -39,7 +39,7 @@
   "pci_projects_project_storages_containers_replication_add_value_placeholder": "Wert eingeben",
   "pci_projects_project_storages_containers_replication_add_tags_subtitle": "Tags",
   "pci_projects_project_storages_containers_replication_add_tags_helper_text": "Der Schlüssel muss zwischen 1 und 128 Zeichen und der Wert zwischen 1 und 256 Zeichen lang sein. Nur alphanumerische Zeichen (von a bis z oder A bis Z und von 0 bis 9) sowie bestimmte Sonderzeichen (+ - = . _ : / @) sind zulässig. Die Werte „aws:“ und „ovh:“ sind reserviert.",
-  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Filter hinzufügen, um den Geltungsbereich der Replikation einzuschränken.",
+  "pci_projects_project_storages_containers_replication_add_tags_title_helper_text": "Filter hinzufügen, um den Geltungsbereich der Replikation einzuschränken. Dabei kann es sich um eine Kombination aus Objekttags oder Präfixen handeln.",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag": "Ein neues Tag hinzufügen",
   "pci_projects_project_storages_containers_replication_add_tags_add_new_tag_tooltip": "Sie können keine Tags hinzufügen, wenn Sie die Löschmarker replizieren möchten.",
   "pci_projects_project_storages_containers_replication_add_tags_replicatDelete_marker_tooltip": "Wenn Sie zum Filtern von Objekten Tags verwenden, können Sie die Löschmarker nicht replizieren.",
@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_replication_add_update": "Regel bearbeiten",
   "pci_projects_project_storages_containers_replication_edit_success_message": "Die Replikationsregel wurde erfolgreich bearbeitet.",
   "pci_projects_project_storages_containers_replication_edit_error_message": "Bei der Bearbeitung Ihrer Replikationsregel ist ein Fehler aufgetreten: {{ message }}.",
-  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "Wenn Sie diese Option auswählen, müssen Sie ein Präfix angeben.",
+  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "Wenn Sie diese Option auswählen, müssen Sie ein Präfix oder einen anderen Filter angeben.",
   "pci_projects_project_storages_containers_replication_add_tags_tag_key_duplicate_error": "Der Schlüssel muss einzigartig sein.",
   "pci_projects_project_storages_containers_replication_add_destination_warning_object_lock": "Die Objektsperre wurde für diesen Container aktiviert. Die Objektsperre im Zielcontainer muss ebenfalls aktiviert werden, wenn sie im Quellcontainer aktiviert wurde.",
   "pci_projects_project_storages_containers_replication_add_use_storageclass_warning": "Im 3-AZ-Bereitstellungsmodus sind nur die Speicherklassen Standard und Infrequent Access verfügbar. In diesem Bereitstellungsmodus ist die „Standard“ die standardmäßige Klasse."
