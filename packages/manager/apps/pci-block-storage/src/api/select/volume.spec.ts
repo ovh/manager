@@ -9,16 +9,16 @@ describe('volume', () => {
       (direction: string) => {
         const isDescending = direction === 'descending';
         const rawVolumes = [
-          { id: '1', name: 'aaa' },
+          { id: '1', name: 'Aaa' },
           { id: '2', name: 'zzz' },
-          { id: '3', name: 'bbb' },
+          { id: '3', name: 'Bbb' },
           { id: '4', name: 'bba' },
         ] as TVolume[];
         const sortedVolumesDescending = [
           { id: '2', name: 'zzz' },
-          { id: '3', name: 'bbb' },
+          { id: '3', name: 'Bbb' },
           { id: '4', name: 'bba' },
-          { id: '1', name: 'aaa' },
+          { id: '1', name: 'Aaa' },
         ] as TVolume[];
 
         const sorting = {
@@ -41,16 +41,16 @@ describe('volume', () => {
       (direction: string) => {
         const isDescending = direction === 'descending';
         const rawVolumes = [
-          { id: '1', name: 'aaa' },
+          { id: '1', name: 'Aaa' },
           { id: '4', name: 'bba' },
-          { id: '3', name: 'bbb' },
+          { id: '3', name: 'Bbb' },
           { id: '2', name: 'zzz' },
         ] as TVolume[];
         const sortedVolumesDescending = [
           { id: '4', name: 'bba' },
-          { id: '3', name: 'bbb' },
+          { id: '3', name: 'Bbb' },
           { id: '2', name: 'zzz' },
-          { id: '1', name: 'aaa' },
+          { id: '1', name: 'Aaa' },
         ] as TVolume[];
 
         const sorting = {
@@ -73,16 +73,16 @@ describe('volume', () => {
       (direction: string) => {
         const isDescending = direction === 'descending';
         const rawVolumes = [
-          { id: '1', regionName: 'aaa' },
+          { id: '1', regionName: 'Aaa' },
           { id: '2', regionName: 'zzz' },
-          { id: '3', regionName: 'bbb' },
+          { id: '3', regionName: 'Bbb' },
           { id: '4', regionName: 'bba' },
         ] as TVolume[];
         const sortedVolumesDescending = [
           { id: '2', regionName: 'zzz' },
-          { id: '3', regionName: 'bbb' },
+          { id: '3', regionName: 'Bbb' },
           { id: '4', regionName: 'bba' },
-          { id: '1', regionName: 'aaa' },
+          { id: '1', regionName: 'Aaa' },
         ] as TVolume[];
 
         const sorting = {
@@ -169,16 +169,16 @@ describe('volume', () => {
       (direction: string) => {
         const isDescending = direction === 'descending';
         const rawVolumes = [
-          { id: '1', attachedTo: ['aaa'] },
+          { id: '1', attachedTo: ['Aaa'] },
           { id: '2', attachedTo: ['zzz'] },
-          { id: '3', attachedTo: ['bbb'] },
+          { id: '3', attachedTo: ['Bbb'] },
           { id: '4', attachedTo: ['bba'] },
         ] as TVolume[];
         const sortedVolumesDescending = [
           { id: '2', attachedTo: ['zzz'] },
-          { id: '3', attachedTo: ['bbb'] },
+          { id: '3', attachedTo: ['Bbb'] },
           { id: '4', attachedTo: ['bba'] },
-          { id: '1', attachedTo: ['aaa'] },
+          { id: '1', attachedTo: ['Aaa'] },
         ] as TVolume[];
 
         const sorting = {
@@ -259,6 +259,31 @@ describe('volume', () => {
         );
       },
     );
+
+    it('should return input given no sorting', () => {
+      const rawVolumes = [
+        { id: '1', name: 'Aaa' },
+        { id: '2', name: 'zzz' },
+        { id: '3', name: 'Bbb' },
+        { id: '4', name: 'bba' },
+      ] as TVolume[];
+
+      const sortedResults = sortResults(rawVolumes, undefined);
+
+      expect(sortedResults).toEqual(rawVolumes);
+    });
+
+    it('should return input given empty array', () => {
+      const rawVolumes = [] as TVolume[];
+      const sorting = {
+        id: BlockStorageListColumn.STATUS,
+        desc: true,
+      };
+
+      const sortedResults = sortResults(rawVolumes, sorting);
+
+      expect(sortedResults).toEqual([]);
+    });
   });
 
   describe('paginateResults', () => {
