@@ -10,8 +10,9 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAllVolumes, TVolume } from '@/api/hooks/useVolume';
+import { TVolume, useAllVolumes } from '@/api/hooks/useVolume';
 import OnBoardingPage from './OnBoarding.page';
+import { renderWithShellAndQueryClient } from '@/__tests__/renderWithShellAndQueryClient';
 
 vi.mock('@/api/hooks/useVolume');
 vi.mock('react-router-dom', () => ({
@@ -67,9 +68,9 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as UseQueryResult<TVolume[]>);
 
-    const { container, getByText } = render(<OnBoardingPage />, {
-      wrapper,
-    });
+    const { container, getByText } = renderWithShellAndQueryClient(
+      <OnBoardingPage />,
+    );
     expect(container).toBeDefined();
     expect(
       getByText('pci_projects_project_storages_blocks_onboarding_action_label'),

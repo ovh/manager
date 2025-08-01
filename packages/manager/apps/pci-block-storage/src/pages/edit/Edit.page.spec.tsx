@@ -1,23 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { it, vi } from 'vitest';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
 import EditPage from './Edit.page';
 
 import * as volumeHook from '@/api/hooks/useVolume';
-
-import queryClient from '@/queryClient';
 import { UseVolumeResult } from '@/api/hooks/useVolume';
+import { renderWithShellAndQueryClient } from '@/__tests__/renderWithShellAndQueryClient';
 
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
@@ -68,20 +57,10 @@ const shellContext = {
   },
 };
 
-const wrapper = ({ children }) => (
-  <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        {children}
-      </ShellContext.Provider>
-    </QueryClientProvider>
-  </BrowserRouter>
-);
+const wrapper = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
 
 const renderEditPage = () => {
-  render(<EditPage />, { wrapper });
+  renderWithShellAndQueryClient(<EditPage />, { wrapper });
 };
 
 describe('Edit volume page', () => {
