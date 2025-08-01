@@ -25,5 +25,8 @@
   "pci_projects_project_storages_blocks_encryption_available": "Verschlüsselung verfügbar",
   "pci_projects_project_storages_blocks_encryption_unavailable": "Verschlüsselung nicht verfügbar",
   "pci_projects_project_storages_blocks_guaranteed": "garantiert",
-  "pci_projects_project_storages_blocks_up_to": "bis zu"
+  "pci_projects_project_storages_blocks_up_to": "bis zu",
+  "pci_projects_project_storages_blocks_guides_header": "Guides",
+  "pci_projects_project_storages_blocks_guides_all_block_storage_guides": "Alle Anleitungen zu Block Storage",
+  "pci_projects_project_storages_blocks_guides_first_steps_with_volumes": "Erste Schritte mit Volumes"
 }
