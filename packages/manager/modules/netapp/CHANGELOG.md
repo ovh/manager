@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.1...@ovh-ux/manager-netapp@2.14.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+
+
+
+
+
 ## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.0...@ovh-ux/manager-netapp@2.14.1) (2025-07-24)
 
 

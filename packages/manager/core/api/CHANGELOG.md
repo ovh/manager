@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.15.0...@ovh-ux/manager-core-api@0.16.0) (2025-08-01)
+
+
+### Bug Fixes
+
+* **core:** update iceberg filter headers ([c40e0de](https://github.com/ovh/manager/commit/c40e0de6e9742f0898b880ea7274c1bf58e1e6d2)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+
+
+### Features
+
+* **core:** add filter by tag feature to iam route ([568acf6](https://github.com/ovh/manager/commit/568acf6fe96d03336e22c2eecd3923345e14fe4f)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.14.0...@ovh-ux/manager-core-api@0.15.0) (2025-07-17)
 
 

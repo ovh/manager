@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.6.0...@ovh-ux/manager-wiki@0.7.0) (2025-08-01)
+
+
+### Features
+
+* **mrc:** datagrid row selection feature ([7961d90](https://github.com/ovh/manager/commit/7961d90e45c1177530fb7f0627f4ee1e6a4250c2)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.5.3...@ovh-ux/manager-wiki@0.6.0) (2025-07-24)
 
 

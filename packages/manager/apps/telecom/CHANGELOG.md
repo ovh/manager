@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.0...@ovh-ux/manager-telecom@16.15.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4225] ([0d8b2ad](https://github.com/ovh/manager/commit/0d8b2adc52284b2c683830a449cf83a477c6d996))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
 # [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.1...@ovh-ux/manager-telecom@16.15.0) (2025-07-28)
 
 
