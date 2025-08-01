@@ -1,8 +1,7 @@
-import { TagsObj } from './TagsList.type';
-
 export type TagsListProps = {
-  tags: TagsObj;
+  tags: { [key: string]: string };
   displayInternalTags?: boolean;
   maxLines?: number;
-  onClick?: () => void;
+  modalHeading: string;
+  onEditTags?: () => void;
 };
