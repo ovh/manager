@@ -26,7 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomain, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
-import { getZimbraPlatformDomainsQueryKey, putZimbraDomain } from '@/data/api';
+import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constants';
 import { EditDomainSchema, editDomainSchema } from '@/utils';
@@ -88,7 +88,7 @@ export const EditDomainModal = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformDomainsQueryKey(platformId),
+        queryKey: getZimbraPlatformDomainQueryKey(platformId, domain?.id),
       });
 
       onClose();

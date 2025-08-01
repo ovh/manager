@@ -10,16 +10,19 @@ export const getZimbraPlatformOrganization = ({
   searchParams,
   pageParam,
   pageSize = APIV2_DEFAULT_PAGESIZE,
+  disableCache,
 }: {
   platformId: string;
   searchParams?: string;
   pageParam?: unknown;
   pageSize?: number;
+  disableCache?: boolean;
 }) =>
   fetchIcebergV2<OrganizationType[]>({
     route: `${getApiPath(platformId)}organization${searchParams}`,
     pageSize,
     cursor: pageParam as string,
+    disableCache,
   });
 
 export const getZimbraPlatformOrganizationDetails = async (

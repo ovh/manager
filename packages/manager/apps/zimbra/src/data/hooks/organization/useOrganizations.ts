@@ -41,6 +41,7 @@ export const useOrganizations = (props: UseOrganizationsParams = {}) => {
         platformId,
         searchParams,
         pageParam,
+        disableCache: !!options.refetchInterval,
         ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>
