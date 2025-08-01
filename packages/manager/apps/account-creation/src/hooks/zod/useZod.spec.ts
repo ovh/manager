@@ -5,7 +5,7 @@ import { Rule } from '@/types/rule';
 const emptyRule: Rule = {
   defaultValue: null,
   examples: null,
-  fieldName: '',
+  fieldName: 'name',
   in: null,
   maxLength: null,
   minLength: null,
