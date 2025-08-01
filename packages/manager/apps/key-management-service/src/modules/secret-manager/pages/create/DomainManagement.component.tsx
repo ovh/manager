@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
@@ -26,6 +27,7 @@ export const DomainManagement = ({
   setSelectedDomainId,
 }: DomainManagementProps) => {
   const { t } = useTranslation(['secret-manager/create', NAMESPACES.ERROR]);
+  const { addSuccess } = useNotifications();
   const { environment } = useContext(ShellContext);
   const {
     data: orderCatalogOKMS,
@@ -37,6 +39,7 @@ export const DomainManagement = ({
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
   const [updatingOkmsList, setUpdatingOkmsList] = useState(false);
+  const [orderSuccessful, setOrderSuccessful] = useState(false);
 
   const location = useLocation();
   const state = location.state as OkmsRegionOrderSuccessful;
@@ -57,15 +60,25 @@ export const DomainManagement = ({
       // refresh the list until there's one okms on the order region.
       const domainList = filterDomainsByRegion(
         query.state.data,
-        state?.orderRegion,
+        state.orderRegion,
       );
       if (domainList.length === 0) return 2000;
 
-      // finish updating the list
+      // handle successfully created domain
       setUpdatingOkmsList(false);
+      setOrderSuccessful(true);
+      setSelectedRegion(state.orderRegion);
+      setSelectedDomainId(domainList[0].id);
       return false;
     },
   });
+
+  useEffect(() => {
+    if (orderSuccessful) {
+      addSuccess(t('create_domain_success'), true);
+      setOrderSuccessful(false);
+    }
+  }, [orderSuccessful]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -95,7 +108,7 @@ export const DomainManagement = ({
 
     setSelectedRegion(domainFromSearchParam.region);
     setSelectedDomainId(domainIdSearchParam);
-  }, [domains, searchParams]);
+  }, [domains, searchParams, selectedRegion]);
 
   const handleRegionSelection = (region: string) => {
     setSelectedRegion(region);
