@@ -21,6 +21,8 @@ export default function Banner() {
 
   const { data: banner, isPending } = useFetchHubBanner(locale);
 
+  console.log('Staging test, DO NOT PROD');
+
   return (
     <>
       {!isLoading && !isPending && !isFreshCustomer && banner && (
