@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test, vi } from 'vitest';
+import { describe, test, vi, expect } from 'vitest';
 import { NameIdCell } from './NameIdCell.component';
 import { mockedInstance } from '@/__mocks__/instance/constants';
 
