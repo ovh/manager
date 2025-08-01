@@ -184,7 +184,7 @@
         </oui-datagrid-column>
 
         <oui-datagrid-column
-            data-title="::'billing_autorenew_service_date' | translate"
+            data-title="::($ctrl.isUSRegion? 'billing_autorenew_service_date_us' : 'billing_autorenew_service_date') | translate"
             data-property="expiration"
             data-type="options"
             data-type-options="$ctrl.filtersOptions.expiration"
