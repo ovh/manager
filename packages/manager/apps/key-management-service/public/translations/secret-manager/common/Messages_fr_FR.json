@@ -8,5 +8,7 @@
   "version_state_active": "Active",
   "version_state_deactivated": "Désactivée",
   "version_state_deleted": "Supprimée",
-  "create_secret": "Créer un secret"
+  "create_secret": "Créer un secret",
+  "actions": "Actions",
+  "reveal_secret": "Afficher la valeur"
 }

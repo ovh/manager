@@ -6,6 +6,7 @@ const URIS = {
   region: 'region',
   versions: 'versions',
   create: 'create',
+  value: 'value',
 };
 
 const URLS = {
@@ -21,6 +22,8 @@ const URLS = {
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
       URIS.versions
     }`,
+  secretValue: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
 };
 
 export const SECRET_MANAGER_URL_PARAMS = {

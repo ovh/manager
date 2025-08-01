@@ -11,5 +11,6 @@ export const useSecretVersions = (domainId: string, path: string) => {
   return useQuery<SecretVersion[], ApiError>({
     queryFn: () => getSecretVersions(domainId, path),
     queryKey: getSecretVersionsQueryKeys(domainId, path),
+    select: (version) => version.sort((a, b) => b.id - a.id),
   });
 };
