@@ -56,7 +56,7 @@ export const getButtonByLabel = async ({
     );
     button = Array.from(buttonList).filter((btn) =>
       [label, altLabel].includes(btn.textContent),
-    )[nth];
+    )[nth] as HTMLElement;
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
@@ -97,7 +97,8 @@ export const getButtonByTestId = async ({
 }) => {
   let button: HTMLElement;
   await waitFor(() => {
-    button = screen.getAllByTestId(testId).at(nth);
+    const buttons = screen.getAllByTestId(testId);
+    button = buttons[nth];
     return disabled
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');

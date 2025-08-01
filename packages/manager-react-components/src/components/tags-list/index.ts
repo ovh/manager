@@ -1,1 +1,3 @@
-export * from './tags-list.component';
+export { TagsList } from './TagsList.component';
+
+export type { TagsListProps } from './TagsList.props';

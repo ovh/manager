@@ -10,14 +10,17 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   DashboardTile,
-  NotificationType,
   BaseLayout,
   GuideButton,
   GuideItem,
   DashboardGridLayout,
   ActionMenu,
+  ChangelogLinks,
+  ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import OdsNotification from '../../../../../manager-react-components/src/components/notifications/ods-notification';
+import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
+
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 const guideItems: GuideItem[] = [
   {
@@ -57,6 +60,17 @@ const rows = [
   },
 ];
 
+const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
+
+const changelogLinks: ChangelogLinks = {
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+  'feature-request':
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
+};
+
 const Tabs = () => (
   <OdsTable>
     <table>
@@ -91,18 +105,15 @@ export const listingTemplateProps = {
   ),
   header: {
     title: 'Vrack Services',
-    headerButton: <GuideButton items={guideItems} />,
+    guideButton: <GuideButton items={guideItems} />,
+    changelogButton: (
+      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+    ),
   },
   description:
     'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <OdsNotification
-      notification={{
-        uid: 87879789,
-        content: 'Votre service a été créé avec succès',
-        type: NotificationType.Success,
-      }}
-    />
+    <Message color={MESSAGE_COLOR.success}>Votre service a été créé</Message>
   ),
   children: <Tabs />,
   subtitle: '',
@@ -122,7 +133,10 @@ const dashboardTemplateProps = {
   ),
   header: {
     title: 'Vrack Services',
-    headerButton: <GuideButton items={guideItems} />,
+    guideButton: <GuideButton items={guideItems} />,
+    changelogButton: (
+      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+    ),
   },
   backLinkLabel: 'Retour à la XXX',
   onClickReturn: () => {
@@ -132,13 +146,9 @@ const dashboardTemplateProps = {
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <OdsNotification
-      notification={{
-        uid: 87879789,
-        content: 'Votre service a été créé avec succès',
-        type: NotificationType.Success,
-      }}
-    />
+    <Message color={MESSAGE_COLOR.success}>
+      <p>Votre service a été créé avec succès</p>
+    </Message>
   ),
   tabs: (
     <OdsTabs>
@@ -206,6 +216,7 @@ export const DashboardTemplate = () => (
 );
 
 const meta: Meta<typeof BaseLayout> = {
+  decorators: [withRouter],
   title: 'Manager React Components/Templates/Base',
   component: BaseLayout,
   argTypes: {},
