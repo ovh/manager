@@ -10,6 +10,9 @@ interface ChangelogLinks {
   tracking: TrackingClickParams | any;
 }
 
+export const ROADMAP_CHANGELOG_PAGES = 10;
+export const ROADMAP_CHANGELOG_DATAGRID_COLLAPSED_LENGTH = 80;
+
 export const EXTERNAL_LINKS: Record<string, ChangelogLinks> = {
   CLOUD_CHANGELOG: {
     url: 'https://github.com/orgs/ovh/projects/16/views/6',
