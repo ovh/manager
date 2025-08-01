@@ -286,8 +286,10 @@ describe('ConfigStep', () => {
         'ods-checkbox[name="project-italy-agreements"]',
       );
 
+      expect(italyCheckbox).toBeInTheDocument();
+
       fireEvent(
-        italyCheckbox!,
+        italyCheckbox as Element,
         new CustomEvent('odsChange', {
           detail: { checked: true },
         }),
