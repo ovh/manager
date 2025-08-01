@@ -22,10 +22,7 @@ export default class ServicesActionsCtrl {
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
     this.coreConfig = coreConfig;
-    this.billingLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/billing/history',
-    );
+    this.billingLink = this.coreURLBuilder.buildURL('billing', '#/history');
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isLoading = true;
@@ -37,6 +34,7 @@ export default class ServicesActionsCtrl {
   $onInit() {
     this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
+    this.isUSRegion = this.coreConfig.isRegion('US');
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
@@ -89,14 +87,16 @@ export default class ServicesActionsCtrl {
           !this.service.hasManualRenew() &&
           this.service.canHandleRenew() &&
           !this.service.canBeEngaged &&
-          !this.service.hasPendingEngagement;
+          !this.service.hasPendingEngagement &&
+          !this.isUSRegion;
         this.canDisplayRenewManuallyMenuEntry =
           this.service.hasManualRenew() &&
           !(
             typeof this.service.isInDebt === 'function' &&
             this.service.isInDebt()
           ) &&
-          this.service.canHandleRenew();
+          this.service.canHandleRenew() &&
+          !this.isUSRegion;
         this.canDisplayManageCommitmentMenuEntry =
           this.service.canBeEngaged &&
           !this.service.hasPendingEngagement &&
