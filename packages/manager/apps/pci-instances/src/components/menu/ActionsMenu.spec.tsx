@@ -2,7 +2,6 @@ import { DropdownMenu, DropdownMenuContent } from '@datatr-ux/uxlib';
 import { describe, expect, test, vi } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 import {
   ActionsMenu,
   ActionMenuItem,
