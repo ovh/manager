@@ -6,7 +6,7 @@ import {
   mockHooks,
   mockConstants,
   mockI18n,
-} from './index';
+} from '../helpers';
 
 // Setup all mocks globally
 export const setupAllMocks = () => {
