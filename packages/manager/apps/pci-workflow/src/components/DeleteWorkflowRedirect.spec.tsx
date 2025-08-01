@@ -1,12 +1,8 @@
+import { HashRouter, Route, Routes, useParams, useSearchParams } from 'react-router-dom';
+
 import { render } from '@testing-library/react';
-import {
-  HashRouter,
-  Route,
-  Routes,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
-import { vi, describe, it } from 'vitest';
+import { describe, it, vi } from 'vitest';
+
 import DeleteWorkflowRedirect from './DeleteWorkflowRedirect';
 
 describe('DeleteWorkflowRedirect', () => {
@@ -34,16 +30,11 @@ describe('DeleteWorkflowRedirect', () => {
       </HashRouter>,
     );
 
-    expect(container.innerHTML).toContain(
-      '/pci/projects/undefined/workflow/delete/workflowId',
-    );
+    expect(container.innerHTML).toContain('/pci/projects/undefined/workflow/delete/workflowId');
   });
 
   it('handles missing workflowId gracefully', () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({}),
-      vi.fn(),
-    ]);
+    vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams({}), vi.fn()]);
 
     const { container } = render(
       <HashRouter basename="/">
@@ -53,8 +44,6 @@ describe('DeleteWorkflowRedirect', () => {
       </HashRouter>,
     );
 
-    expect(container.innerHTML).toContain(
-      '/pci/projects/undefined/workflow/delete/null',
-    );
+    expect(container.innerHTML).toContain('/pci/projects/undefined/workflow/delete/null');
   });
 });

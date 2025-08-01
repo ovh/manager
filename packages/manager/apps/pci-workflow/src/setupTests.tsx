@@ -17,7 +17,7 @@ vi.mock('@/core/HidePreloader', () => ({
 }));
 
 vi.mock('react-router-dom', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
+  const actual = await importOriginal<typeof import('react-router-dom')>();
   return {
     ...actual,
     Navigate: vi.fn(({ to }) => `Redirected to ${to}`),
@@ -36,7 +36,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual = (await importOriginal()) as Record<string, unknown>;
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-pci-common')>();
   return {
     ...actual,
     useProject: vi.fn().mockReturnValue({}),
@@ -55,9 +55,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     }),
     useProjectUrl: () => 'project_url',
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
-    Notifications: vi
-      .fn()
-      .mockReturnValue(<div data-testid="notifications"></div>),
+    Notifications: vi.fn().mockReturnValue(<div data-testid="notifications"></div>),
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),

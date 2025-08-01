@@ -1,22 +1,24 @@
-import { useMemo, useRef } from 'react';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+import { useMemo } from 'react';
+
 import { format, parseISO } from 'date-fns';
-import { useTranslation } from 'react-i18next';
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import * as dateFnsLocales from 'date-fns/locale';
-import { TWorkflowExecution } from '../data/region-workflow';
-import { useWorkflows } from './workflows';
+import { useTranslation } from 'react-i18next';
+
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import { paginateResults } from '@/helpers';
 
-export const defaultCompareFunction = (key: keyof TWorkflowExecution) => (
-  a: TWorkflowExecution,
-  b: TWorkflowExecution,
-) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+import { TWorkflowExecution } from '../data/region-workflow';
+import { useWorkflows } from './workflows';
 
-  return aValue.localeCompare(bValue);
-};
+export const defaultCompareFunction =
+  (key: keyof TWorkflowExecution) => (a: TWorkflowExecution, b: TWorkflowExecution) => {
+    const aValue = a[key] || '';
+    const bValue = b[key] || '';
+
+    return aValue.localeCompare(bValue);
+  };
 
 export const sortExecutions = (
   executions: TWorkflowExecution[],
@@ -42,12 +44,9 @@ export const useWorkflowExecutions = (
   { pagination, sorting }: { pagination: PaginationState; sorting: ColumnSort },
 ) => {
   const { i18n } = useTranslation('pci-common');
-  const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
 
-  const { data: workflows, isPending: isWorkflowPending } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isWorkflowPending } = useWorkflows(projectId);
 
   return useMemo(() => {
     let mappedExecution: TWorkflowExecution[] = [];
@@ -62,7 +61,7 @@ export const useWorkflowExecutions = (
           parseISO(exec.executedAt?.replace(/Z$/, '')),
           'dd MMM yyyy',
           {
-            locale: locales[userLocale],
+            locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
           },
         ),
         executedAtTime: format(
@@ -70,7 +69,7 @@ export const useWorkflowExecutions = (
           parseISO(exec.executedAt?.replace(/Z$/, '')),
           'HH:mm:ss',
           {
-            locale: locales[userLocale],
+            locale: dateFnsLocales[userLocale as keyof typeof dateFnsLocales],
           },
         ),
       }));
@@ -86,5 +85,5 @@ export const useWorkflowExecutions = (
         workflowName: workflow?.name,
       },
     };
-  }, [workflows, isWorkflowPending, sorting, pagination]);
+  }, [userLocale, workflowId, workflows, isWorkflowPending, sorting, pagination]);
 };

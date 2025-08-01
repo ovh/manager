@@ -100,5 +100,5 @@
   "overTheBox_release_channel_deprecated": "Versione obsoleta {{version}}",
   "overTheBox_detail_ips": "IP",
   "overTheBox_model_ips_unknown": "IP non trovati",
-  "overTheBox_enabled_ipv6_error": "Si è verificato un errore durante l'attivazione dell'IPv6. Se l'errore persiste, contatta il supporto."
+  "overTheBox_enabled_ipv6_error": "Si è verificato un errore durante l'attivazione dell'IPv6:"
 }

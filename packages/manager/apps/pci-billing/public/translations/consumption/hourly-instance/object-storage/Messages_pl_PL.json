@@ -9,6 +9,6 @@
   "cpbc_object_storage_output_traffic_info_part2": ". Wykorzystałeś {{amount}} GiB w danym okresie. Ruch przychodzący nie jest fakturowany.",
   "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
   "cpbc_object_storage_col_bucket_name": "Nazwa bucketu",
-  "cpbc_object_storage_col_type": "Oferta",
-  "cpbc_object_storage_col_retrieval_fees": "Koszty pobierania danych"
+  "cpbc_object_storage_col_type": "Pakiet",
+  "cpbc_object_storage_col_retrieval_fees": "Opłaty za pobieranie danych"
 }

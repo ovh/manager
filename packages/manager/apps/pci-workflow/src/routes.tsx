@@ -1,6 +1,10 @@
+import { RouteObject } from 'react-router-dom';
+
 import DeleteWorkflowRedirect from '@/components/DeleteWorkflowRedirect';
 
-const lazyRouteConfig = (importFn: CallableFunction) => ({
+const lazyRouteConfig = (
+  importFn: () => Promise<{ default: RouteObject['Component'] } & Omit<RouteObject, 'Component'>>,
+): Pick<RouteObject, 'lazy'> => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
 
@@ -43,9 +47,7 @@ export default [
           },
           {
             path: ROUTE_PATHS.deleteWorkflow,
-            ...lazyRouteConfig(() =>
-              import('@/pages/delete/DeleteWorkflow.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/delete/DeleteWorkflow.page')),
             handle: {
               tracking: 'delete',
             },
@@ -76,4 +78,4 @@ export default [
     path: '*',
     element: <>Not found page</>,
   },
-];
+] satisfies RouteObject[];

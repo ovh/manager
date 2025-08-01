@@ -108,13 +108,16 @@ const buildHeaders = () => {
     },
     setPaginationFilter: (filters: Filter[]) => {
       if (filters?.length) {
-        headers['x-pagination-filter'] = filters
+        const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
           .map(
             ({ comparator, key, value }) =>
               `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
           )
           .join('&');
+        if (filtersJoin) {
+          headers['x-pagination-filter'] = filtersJoin;
+        }
       }
       return builder;
     },
@@ -146,11 +149,11 @@ export async function fetchIcebergV2<T>({
     .build();
 
   const params = new URLSearchParams();
-
   if (filters?.length) {
     const tagsFilterParams = transformTagsFiltersToQuery(filters);
     if (tagsFilterParams) {
-      params.append('iamTags', tagsFilterParams);
+      const paramName = route.includes('/iam/resource') ? 'tags' : 'iamTags';
+      params.append(paramName, tagsFilterParams);
     }
   }
 

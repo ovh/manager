@@ -1,9 +1,12 @@
 import { useMemo } from 'react';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { getFlavor, TInstance, useInstances } from '@ovh-ux/manager-pci-common';
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
+
+import { UseQueryResult, useQueries } from '@tanstack/react-query';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { TInstance, getFlavor, useInstances } from '@ovh-ux/manager-pci-common';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
-import { sortResults, TInstanceOptions } from '@/api/data/instance';
+
+import { TInstanceOptions, sortResults } from '@/api/data/instance';
 import { paginateResults } from '@/helpers';
 import { TWorkflowInstance } from '@/types';
 
@@ -35,9 +38,7 @@ export const getStatusGroup = (status: string) => {
     return 'PENDING';
   }
 
-  if (
-    ['DELETED', 'ERROR', 'STOPPED', 'SUSPENDED', 'UNKNOWN'].includes(status)
-  ) {
+  if (['DELETED', 'ERROR', 'STOPPED', 'SUSPENDED', 'UNKNOWN'].includes(status)) {
     return 'ERROR';
   }
 
@@ -48,9 +49,9 @@ export const getStatusGroup = (status: string) => {
 };
 
 export const useAllInstances = (projectId: string) => {
-  const { data: instances, isPending } = useInstances(
-    projectId,
-  ) as UseQueryResult<TWorkflowInstance[]>;
+  const { data: instances, isPending } = useInstances(projectId) as UseQueryResult<
+    TWorkflowInstance[]
+  >;
   const { translateMicroRegion } = useTranslatedMicroRegions();
 
   return useQueries({
@@ -62,9 +63,7 @@ export const useAllInstances = (projectId: string) => {
     combine: (results) => ({
       isPending: results.some((r) => r.isPending) || isPending,
       data: instances?.map((instance) => {
-        const flavor = results.find(
-          (result) => result.data?.id === instance.flavorId,
-        )?.data;
+        const flavor = results.find((result) => result.data?.id === instance.flavorId)?.data;
         return {
           ...instance,
           statusGroup: getStatusGroup(instance.status),

@@ -81,6 +81,6 @@
   "kube_add_plan_subtitle": "Wählen Sie das passende Angebot für Ihre Anforderungen aus. Profitieren Sie von einer breiten Auswahl an Instanzen für Ihre Kubernetes-Nodes, die nutzungsbasiert oder im Abo mit Vertragsbindung abgerechnet werden.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Node-Pool benennen",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Der Plan {{ plan }} ist in den Regionen 1-AZ noch nicht verfügbar. Wenn Sie den Plan {{ plan }} nutzen möchten, wählen Sie bitte die 3-AZ-Bereitstellung aus.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Der Plan {{ plan }} ist in den 3-AZ-Regionen noch nicht verfügbar. Wenn Sie den Plan {{ plan }} nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus."
+  "kube_add_plan_content_unavailable_1AZ_banner": "Das {{ plan }} Angebot ist in den 1-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte die 3-AZ-Bereitstellung aus.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Das {{ plan }} Angebot ist in den 3-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus."
 }

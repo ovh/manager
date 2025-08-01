@@ -7,5 +7,10 @@
   "service_state_toDelete": "À supprimer",
   "service_state_toSuspend": "À suspendre",
   "service_state_enabled": "Activé",
-  "service_state_disabled": "Désactivé"
+  "service_state_disabled": "Désactivé",
+  "service_state_creating": "Création",
+  "service_state_deleting": "Suppression",
+  "service_state_error": "Erreur",
+  "service_state_ready": "Actif",
+  "service_state_updating": "Mise à jour"
 }

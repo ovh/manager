@@ -9,7 +9,6 @@
   "cloud_connect_datacenter_add_routing_nexthop_placeholder": "Next hop",
   "cloud_connect_datacenter_add_routing_subnet": "Introduzca la subred de destino",
   "cloud_connect_datacenter_add_routing_subnet_placeholder": "Subred",
-  "cloud_connect_datacenter_add_routing_bgp_area": "Introduzca el ASN del cliente",
   "cloud_connect_datacenter_add_routing_bgp_ip": "Introduzca el IP Neighbor",
   "cloud_connect_datacenter_add_routing_error": "Se ha producido un error al añadir la configuración de enrutamiento: {{message}}",
   "cloud_connect_datacenter_add_routing_success": "La configuración de enrutamiento se ha añadido. <a href=\"{{ tasksUrl }}\">Haga clic aquí para ver el estado.</a>",
