@@ -14,7 +14,7 @@
         <oui-button
             type="button"
             variant="primary"
-            data-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
+            data-ng-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
             data-on-click="$ctrl.askErasureConfirmation()"
         >
             <oui-spinner
@@ -84,7 +84,7 @@
             >
                 <oui-action-menu data-compact>
                     <oui-action-menu-item
-                        disabled="!$row.canConfirm"
+                        data-ng-disabled="!$row.canConfirm"
                         data-on-click="$ctrl.trackAction('datagrid::button::confirm::delete_account')"
                         data-href="{{ $ctrl.$state.href('account.user.gdpr.confirm', {
                         publicId: $row.publicId,
@@ -96,7 +96,7 @@
                     </oui-action-menu-item>
 
                     <oui-action-menu-item
-                        disabled="!$row.canResendCode"
+                        data-ng-disabled="!$row.canResendCode"
                         data-on-click="$ctrl.sendErasureRequestConfirmationEmail($row)"
                     >
                         <span
@@ -107,7 +107,7 @@
                     <oui-action-menu-divider></oui-action-menu-divider>
 
                     <oui-action-menu-item
-                        disabled="!$row.canCancel"
+                        data-ng-disabled="!$row.canCancel"
                         data-on-click="$ctrl.cancelRequestErasure($row)"
                     >
                         <span
@@ -135,7 +135,7 @@
                     <div class="d-flex justify-content-end">
                         <oui-button
                             data-on-click="$ctrl.closeErasureConfirmationModal()"
-                            data-disabled="$ctrl.loading.createErasureRequest"
+                            data-ng-disabled="$ctrl.loading.createErasureRequest"
                         >
                             <span
                                 data-translate="gdpr_erasure_confirmation_modal_cancel"
@@ -145,7 +145,7 @@
                             class="ml-4"
                             data-variant="primary"
                             data-on-click="$ctrl.submitErasureRequest()"
-                            data-disabled="$ctrl.loading.createErasureRequest"
+                            data-ng-disabled="$ctrl.loading.createErasureRequest"
                         >
                             <oui-spinner
                                 data-size="s"
