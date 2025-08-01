@@ -69,7 +69,7 @@ const CreateGeneralInformations = ({
   useEffect(() => {
     if (!isCustomCsr) {
       setCsr(null);
-      setCertificateType('EC');
+      setCertificateType('ECDSA');
     } else {
       setCertificateType(null);
     }
