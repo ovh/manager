@@ -21,5 +21,6 @@
   "sms_statictics_credit_reload": "Recarregar créditos",
   "sms_statistics_sent_number": "Número de SMS enviados",
   "sms_statistics_delivered_number": "Número de SMS emitidos",
-  "sms_statistics_stop_subscribe_number": "Número de assinaturas"
+  "sms_statistics_stop_subscribe_number": "Número de assinaturas",
+  "sms_actions_order_time2chat": "Encomendar um número Time2Chat"
 }
