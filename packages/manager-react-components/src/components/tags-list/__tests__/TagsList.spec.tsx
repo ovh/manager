@@ -1,10 +1,16 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+  within,
+} from '@testing-library/react';
 import { TagsList } from '../TagsList.component';
-import * as utils from '../TagsList.utils';
+import * as TagsStackUtils from '../tags-stack/TagsStack.utils';
 
-vi.mock('../TagsList.utils', async (importOriginal) => {
+vi.mock('../tags-stack/TagsStack.utils', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
     ...actual,
@@ -12,65 +18,77 @@ vi.mock('../TagsList.utils', async (importOriginal) => {
   };
 });
 
-const mockTags = {
-  tag1: 'tag1',
-  tag2: 'tag2',
-  tag3: 'tag3',
-  tag4: 'tag4',
-  'ovh:tag1': 'ovh:tag1',
-  'ovh:tag2': 'ovh:tag2',
-  'ovh:tag3': 'ovh:tag3',
-};
+describe('TagsList Component', () => {
+  const mockTags = {
+    tag1: 'tag1',
+    tag2: 'tag2',
+    tag3: 'tag3',
+    tag4: 'tag4',
+    'ovh:tag1': 'ovh:tag1',
+    'ovh:tag2': 'ovh:tag2',
+    'ovh:tag3': 'ovh:tag3',
+  };
+  const modalHeader = 'Test Resource';
+  const onEditTags = vi.fn();
 
-describe('TagsList', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('renders nothing if tags are empty', () => {
-    const { container, rerender } = render(<TagsList tags={{}} />);
-    expect(container.firstChild).toBeNull();
-  });
-
-  it('renders all tags when maxLines is not provided', () => {
-    render(<TagsList tags={mockTags} />);
-
+  it('renders all tags in TagsList without modal', () => {
+    vi.mocked(TagsStackUtils.getVisibleTagCount).mockReturnValue(6);
+    render(
+      <TagsList
+        tags={mockTags}
+        modalHeading={modalHeader}
+        onEditTags={onEditTags}
+        displayInternalTags={true}
+      />,
+    );
     Object.entries(mockTags).forEach(([key, value]) => {
-      if (!key.includes('ovh:'))
-        expect(screen.getByText(`${key}:${value}`)).toBeInTheDocument();
+      expect(screen.getByText(`${key}:${value}`)).toBeInTheDocument();
     });
-  });
-
-  it('calls getVisibleTagCount when maxLines is provided', () => {
-    vi.mocked(utils.getVisibleTagCount).mockReturnValue(2);
-
-    render(<TagsList tags={mockTags} maxLines={2} />);
-
-    expect(screen.getByText(/tag1/i)).toBeInTheDocument();
-    expect(screen.getByText(/tag2/i)).toBeInTheDocument();
-    expect(screen.getByText(/tag3/i)).toBeInTheDocument();
-    expect(screen.queryByText(/tag4/i)).not.toBeInTheDocument();
-
-    // Should show "more" icon
-    expect(screen.getByRole('link')).toBeInTheDocument();
-  });
-
-  it('does not show more icon if all tags are visible', () => {
-    vi.mocked(utils.getVisibleTagCount).mockReturnValue(3);
-    render(<TagsList tags={mockTags} />);
-
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('calls onClick when more icon is clicked', () => {
-    vi.mocked(utils.getVisibleTagCount).mockReturnValue(1);
+  it('renders Tags with modal (opens and close tags modal)', async () => {
+    vi.mocked(TagsStackUtils.getVisibleTagCount).mockReturnValue(2);
+    const { baseElement } = render(
+      <TagsList
+        tags={mockTags}
+        modalHeading={modalHeader}
+        onEditTags={onEditTags}
+        displayInternalTags={true}
+        maxLines={1}
+      />,
+    );
+    const moreTagsButton = screen.getByRole('link');
+    fireEvent.click(moreTagsButton);
+    await waitFor(() => {
+      expect(
+        screen.getByText(new RegExp(modalHeader, 'gi')),
+      ).toBeInTheDocument();
+      const closeButton = within(baseElement).getByTestId('secondary-button');
+      fireEvent.click(closeButton);
+      expect(
+        screen.queryByText(new RegExp(modalHeader, 'gi')),
+      ).not.toBeInTheDocument();
+    });
+  });
 
-    const handleClick = vi.fn();
-    render(<TagsList tags={mockTags} maxLines={1} onClick={handleClick} />);
-
-    const link = screen.getByRole('link');
-    link.click();
-
-    expect(handleClick).toHaveBeenCalled();
+  it('renders Tags Modal and calls onEditTags callback', async () => {
+    vi.mocked(TagsStackUtils.getVisibleTagCount).mockReturnValue(2);
+    render(
+      <TagsList
+        tags={mockTags}
+        modalHeading={modalHeader}
+        onEditTags={onEditTags}
+        displayInternalTags={true}
+        maxLines={1}
+      />,
+    );
+    const moreTagsButton = screen.getByRole('link');
+    fireEvent.click(moreTagsButton);
+    await waitFor(() => {
+      const editTagsButton = screen.getByTestId('primary-button');
+      fireEvent.click(editTagsButton);
+      expect(onEditTags).toHaveBeenCalled();
+    });
   });
 });

@@ -41,4 +41,3 @@ export * from './order';
 export * from './badge';
 export * from './modal';
 export * from './tags-list';
-export * from './tags-modal';
