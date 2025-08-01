@@ -31,8 +31,8 @@ export * from './price';
 
 export * from './filters';
 
-export * from './ManagerButton/ManagerButton';
-export * from './ManagerText/ManagerText';
+export * from './button';
+export * from './text';
 
 export * from './service-state-badge';
 
