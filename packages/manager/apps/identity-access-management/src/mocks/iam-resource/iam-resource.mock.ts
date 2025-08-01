@@ -31,5 +31,8 @@ export const iamResourcesListMock: IamResource[] = [
     type: 'dedicatedServer',
     urn: 'urn-r3',
     owner: 'mock',
+    tags: {
+      environement: 'production',
+    },
   },
 ];

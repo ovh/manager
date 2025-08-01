@@ -3,6 +3,8 @@
   "description": "Créez des tags en vous basant sur des couples clé:valeur pour catégoriser vos ressources OVHcloud et appliquer des politiques",
   "assignTags": "assigner des tags",
   "assignToResources": "Assigner à des resources",
+  "assignTag": "Assigner le tag",
+  "unassignTag": "Désassigner le tag",
   "tag": "Tag",
   "assignedResources": "Resources assignées",
   "tagType": "Type de Tag",
@@ -27,5 +29,7 @@
   "resourcesTaggedSuccess": "Les resources ont étés correctement assignées",
   "resourcesTaggedError": "Une erreur est survenue lors de l'assignation des resources.",
   "resourcesTaggedSomeError": "Certaines resources n'ont pas été correctement assignées:",
-  "noResourceAvailableForTagging": "Aucune resource n'est disponible pour être assignée"
+  "noResourceAvailableForTagging": "Aucune resource n'est disponible pour être assignée",
+  "tagDetailTitle": "Détail pour {{tag}}",
+  "resourceTaggedWithTag": "Resources taguées avec \"{{tag}}\""
 }
