@@ -2,12 +2,15 @@ import { describe, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { Navigate } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
-import { useAllVolumes, TVolume } from '@/api/hooks/useVolume';
+import { TVolume, useAllVolumes } from '@/api/hooks/useVolume';
 import OnBoardingPage from './OnBoarding.page';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 vi.mock('@/api/hooks/useVolume');
 vi.mock('react-router-dom');
+vi.mock('@/core/HidePreloader', () => ({
+  default: () => <div>HidePeloader</div>,
+}));
 vi.mock('@ovh-ux/manager-pci-common', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
