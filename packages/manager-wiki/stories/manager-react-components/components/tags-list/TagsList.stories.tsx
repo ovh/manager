@@ -32,7 +32,8 @@ export const DisplayAllTags: Story = {
       'ovh:key2': 'Lorem ipsum dolor',
     },
     displayInternalTags: true,
-    onClick: () => {},
+    modalHeading: 'Test Resource',
+    onEditTags: () => {},
   },
   render: (args) => (
     <div className="max-w-[500px]">
@@ -47,12 +48,14 @@ export const TagsInSingleLine: Story = {
       key1: 'Lorem ',
       key2: 'Lorem ipsum ',
       key3: 'Lor',
+      key4: 'Lorem ipsum dolor',
       'ovh:key1': 'Lorem ipsum',
       'ovh:key2': 'Lorem ipsum dolor',
     },
     displayInternalTags: false,
     maxLines: 1,
-    onClick: () => {},
+    modalHeading: 'Test Resource',
+    onEditTags: () => {},
   },
   render: (args) => (
     <div>
@@ -80,7 +83,7 @@ export const TagsInMultipleLines: Story = {
     tags: {
       key1: 'Lorem ipsum dolor',
       key2: 'Lorem ipsum dolor sit amet',
-      key3: 'Lorem ipsum',
+      key3: 'Lorem ipsuma met consectetur',
       key4: 'Lorem ipsum dolor',
       key5: 'Lorem ipsum dolor sit consectetur',
       key6: 'Lorem ipsum',
@@ -92,7 +95,8 @@ export const TagsInMultipleLines: Story = {
     },
     displayInternalTags: false,
     maxLines: 5,
-    onClick: () => {},
+    modalHeading: 'Test Resource',
+    onEditTags: () => {},
   },
   render: (args) => (
     <div>
@@ -109,6 +113,45 @@ export const TagsInMultipleLines: Story = {
           Use <Text preset="code">maxLines: 5</Text>to display the Tags in
           Multiple Lines. <br /> This mode is often used to display the Tags on
           Dashboard Tile.
+        </MessageBody>
+      </Message>
+    </div>
+  ),
+};
+
+export const TagsListWithoutEditTags: Story = {
+  args: {
+    tags: {
+      key1: 'Lorem ',
+      key2: 'Lorem ipsum ',
+      key3: 'Lor',
+      key4: 'Lorem ipsum dolor',
+      key5: 'Lorem ipsum dolor sit consectetur',
+      key6: 'Lorem ipsum',
+      key7: 'Lorem ipsum',
+      key8: 'Lorem ipsum',
+      'ovh:key1': 'Lorem ipsum',
+      'ovh:key2': 'Lorem ipsum dolor',
+    },
+    displayInternalTags: false,
+    maxLines: 1,
+    modalHeading: 'Test Resource',
+  },
+  render: (args) => (
+    <div>
+      <div className="max-w-[300px]">
+        <TagsList {...args} />
+      </div>
+      <Message
+        className="mt-3"
+        color={MESSAGE_COLOR.information}
+        dismissible={false}
+      >
+        <MessageIcon name="circle-info" />
+        <MessageBody>
+          Use <Text preset="code">maxLines: 1</Text>to display the Tags in
+          Single Line. <br /> This mode is often used to display the Tags in
+          Datagrid Column.
         </MessageBody>
       </Message>
     </div>
@@ -132,7 +175,8 @@ export const OverflowingTags: Story = {
     },
     displayInternalTags: false,
     maxLines: 1,
-    onClick: () => {},
+    modalHeading: 'Test Resource',
+    onEditTags: () => {},
   },
   render: (args) => (
     <>
