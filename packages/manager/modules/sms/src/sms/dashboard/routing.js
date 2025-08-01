@@ -27,6 +27,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((statisticsList) => statisticsList.flat()),
       goToCreditTransfer: /* @ngInject */ ($state) => () =>
         $state.go('sms.service.dashboard.creditTransfer'),
+      goToOrderTime2Chat: /* @ngInject */ ($state) => () =>
+        $state.go('sms.service.dashboard.orderTime2Chat'),
       goToCreditOrder: /* @ngInject */ ($state) => () =>
         $state.go('sms.service.order'),
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
