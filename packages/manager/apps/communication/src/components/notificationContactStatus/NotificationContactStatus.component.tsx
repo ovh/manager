@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { clsx } from 'clsx';
 import { Contact } from '@/data/types';
 import { urls } from '@/routes/routes.constant';
-import OdsLinkSubstitution from '../odsLinkSubsitution/OdsLinkSubstitution.component';
+import OdsLinkSubstitution from '../authLink/AuthLink.component';
 
 const STATUS_PRIORITY = {
   SENT: 0,
