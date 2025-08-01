@@ -12,5 +12,6 @@
   "log_streams_colomn_subscriptions": "Abbonamenti",
   "log_streams_no_results": "Nessun flusso di dati su questo account LDP",
   "log_streams_subscribe": "Abbonati",
-  "log_streams_unsubscribe": "Disattivare l'abbonamento"
+  "log_streams_unsubscribe": "Disattivare l'abbonamento",
+  "log_streams_subscription_disabled_tooltip": "L’abbonamento a un sottoflusso non è disponibile."
 }
