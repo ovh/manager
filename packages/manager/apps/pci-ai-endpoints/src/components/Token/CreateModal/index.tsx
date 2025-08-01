@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsModal,
   OsdsButton,
@@ -32,13 +32,13 @@ export default function CreateModal({
   tokens,
   infiniteDate,
 }: CreateModalProps) {
-  const { trackClick } = useOvhTracking();
+  const { trackPage } = useContext(ShellContext).shell.tracking;
   const { t } = useTranslation('token');
   const [createdToken, setCreatedToken] = useState<TokenData | null>(null);
 
   const handleFormSuccess = (token: TokenData) => {
     setCreatedToken(token);
-    trackClick(TRACKING.apikey.successCreatApikeyPopUpShown);
+    trackPage(TRACKING.apikey.successCreatApikeyPopUpShown);
   };
 
   const modalHeadline = createdToken
