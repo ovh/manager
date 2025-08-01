@@ -27,7 +27,10 @@ import {
   commonSortingToNotificationSorting,
 } from '@/utils/queryParam';
 import { Notification, NotificationReference } from '@/data/types';
-import { getNotificationReference } from '@/data/api/notification';
+import {
+  getNotification,
+  getNotificationReference,
+} from '@/data/api/notification';
 
 const defaultPageSize = 10;
 
@@ -153,6 +156,20 @@ export function useNotificationHistory({
     },
   };
 }
+
+export type UseNotificationParams = {
+  notificationId?: string;
+  enabled?: boolean;
+};
+export const useNotification = ({
+  notificationId,
+  enabled = true,
+}: UseNotificationParams): UseQueryResult<Notification, ApiError> =>
+  useQuery({
+    queryKey: [`notification/history/${notificationId}`],
+    queryFn: () => getNotification(notificationId as string),
+    enabled: Boolean(notificationId && enabled),
+  });
 
 export const useNotificationReference = (): UseQueryResult<
   NotificationReference,
