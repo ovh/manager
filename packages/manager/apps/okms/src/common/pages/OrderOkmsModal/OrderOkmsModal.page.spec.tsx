@@ -286,7 +286,9 @@ describe('Order Okms Modal test suite', () => {
     it('should display a notification on error', async () => {
       const user = userEvent.setup();
       // GIVEN
-      const mockError = new Error('Failed to submit order');
+      const mockError = {
+        response: { data: { message: 'Failed to submit order' } },
+      };
       vi.mocked(postOrderCartCartIdCheckout).mockRejectedValueOnce(mockError);
 
       await renderOrderOkmsModal();
@@ -302,7 +304,7 @@ describe('Order Okms Modal test suite', () => {
       await assertTextVisibility(
         labels.common.error.error_message.replace(
           '{{message}}',
-          mockError.message,
+          mockError.response.data.message,
         ),
       );
     });
