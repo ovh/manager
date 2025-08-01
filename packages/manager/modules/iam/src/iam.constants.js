@@ -156,7 +156,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043002',
     US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/14378994761747-How-to-Enable-SSO-Connections-with-your-OVHcloud-Account',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/16487540178195-Enabling-Active-Directory-Federation-Services-AD-FS-SSO-Connections-with-OVHcloud',
     WE:
       'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
     WS:
