@@ -30,5 +30,6 @@
   "vps_dashboard_migration_2020_info_queue_part_1": "Opfer unseres Erfolgs! Sie befinden sich derzeit an Position {{ position }} in der Warteschlange für Upgrades Ihrer Ressourcen.",
   "vps_dashboard_migration_2020_info_queue_part_2": "Wir werden Sie per E-Mail benachrichtigen, sobald ein Termin für die Operation geplant ist. Vielen Dank für Ihre Geduld und Ihr Vertrauen.",
   "vps_dashboard_migration_2020_info_with_date_part_1": "Das Upgrade Ihres VPS {{ vpsName }} erfolgt am {{ date | date:'fullDate' }} bis {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "Um es jetzt zu aktivieren, klicken <a href=\"{{url}}\"> Sie hier</a> ."
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Um es jetzt zu aktivieren, klicken <a href=\"{{url}}\"> Sie hier</a> .",
+  "vps_dashboard_migration_2020_info_ongoing": "Ihre Anfrage zur Erhöhung der Ressourcen wurde registriert. Ihr VPS wird in etwa 15 Minuten aktualisiert."
 }

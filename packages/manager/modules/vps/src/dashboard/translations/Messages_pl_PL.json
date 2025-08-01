@@ -30,5 +30,6 @@
   "vps_dashboard_migration_2020_info_queue_part_1": "Oferta dla naszego sukcesu! Aktualnie jesteś na pozycji {{ position }} w kolejce do przeniesienia Twoich zasobów.",
   "vps_dashboard_migration_2020_info_queue_part_2": "Otrzymasz e-mail z powiadomieniem po upływie zaplanowanej daty operacji. Dziękujemy za cierpliwość i zaufanie.",
   "vps_dashboard_migration_2020_info_with_date_part_1": "Wyższa pozycja Twojego serwera VPS {{ vpsName }} zostanie wykonana {{ date | date:'fullDate' }} o {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "Aby aktywować ją teraz, <a href=\"{{url}}\"> kliknij tutaj</a>."
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Aby aktywować ją teraz, <a href=\"{{url}}\"> kliknij tutaj</a>.",
+  "vps_dashboard_migration_2020_info_ongoing": "Twoje zlecenie zwiększenia zasobów zostało przyjęte. Twój VPS zostanie zaktualizowany w ciągu około 15 minut."
 }
