@@ -1,4 +1,7 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsButton,
   OsdsIcon,
@@ -22,14 +25,14 @@ import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { ONBOARDING_TRACKING_PREFIX, PRIVATE_NETWORK_HELP } from './constant';
+import { PRIVATE_NETWORK_HELP } from './constant';
 
 export default function NoPrivateNetworkPage() {
   const { t } = useTranslation(['onboarding', 'pci-common']);
   const { projectId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
-  const { tracking } = useContext(ShellContext)?.shell || {};
+  const { trackClick } = useOvhTracking();
   const { environment, shell } = useContext(ShellContext);
   const { ovhSubsidiary } = environment.getUser();
   const helpLink =
@@ -62,9 +65,9 @@ export default function NoPrivateNetworkPage() {
           color={ODS_THEME_COLOR_INTENT.primary}
           href={helpLink}
           onClick={() => {
-            tracking?.trackClick({
-              name: `${ONBOARDING_TRACKING_PREFIX}::create-private-network::know-more`,
-              type: 'navigation',
+            trackClick({
+              actions: ['onboarding', 'create-private-network', 'know-more'],
+              actionType: 'navigation',
             });
           }}
           target={OdsHTMLAnchorElementTarget._blank}
@@ -99,9 +102,13 @@ export default function NoPrivateNetworkPage() {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          tracking?.trackClick({
-            name: `${ONBOARDING_TRACKING_PREFIX}::create-private-network::add-private-network`,
-            type: 'navigation',
+          trackClick({
+            actions: [
+              'onboarding',
+              'create-private-network',
+              'add-private-network',
+            ],
+            actionType: 'navigation',
           });
           creationUrlPromise.then((url: string) => window.open(url, '_self'));
         }}
