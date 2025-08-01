@@ -28,7 +28,6 @@ import { getDownloadCredentialParameters } from '@/utils/credential/credentialDo
 import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
 import { useOutletCredential } from '../Credential.page';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
-import { getCredentialTypeLabel } from '@/utils/credential/getCredentialTypeLabel';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -86,7 +85,7 @@ const CredentialGeneralInformations = () => {
       label: t('key_management_service_credential_dashboard_type'),
       value: (
         <OdsText preset={ODS_TEXT_PRESET.span}>
-          {getCredentialTypeLabel(credential)}
+          {credential.certificateType}
         </OdsText>
       ),
     },
