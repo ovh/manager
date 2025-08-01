@@ -15,3 +15,5 @@ export const useHistory = vi.fn((path) => path);
 export const Navigate = vi.fn(() => <></>);
 
 export const useNavigate = vi.fn(() => vi.fn());
+
+export const useRouteLoaderData = vi.fn();

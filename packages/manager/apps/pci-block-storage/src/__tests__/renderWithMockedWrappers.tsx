@@ -19,7 +19,7 @@ const shellContextValue: RecursivePartial<ShellContextType> = {
     },
   },
   environment: {
-    getUser: () => ({ ovhSubsidiary: 'test' }),
+    getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
     getRegion: () => 'EU',
   },
 };

@@ -1,52 +1,27 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { it, vi } from 'vitest';
-import { UseQueryResult, UseMutateFunction } from '@tanstack/react-query';
+import { UseMutateFunction, UseQueryResult } from '@tanstack/react-query';
 import EditPage from './Edit.page';
+
+import {
+  useUpdateVolume,
+  useVolume,
+  UseVolumeResult,
+} from '@/api/hooks/useVolume';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { useVolumeCatalog, useVolumePricing } from '@/api/hooks/useCatalog';
 import { useHas3AZRegion } from '@/api/hooks/useHas3AZRegion';
 import { useVolumeMaxSize } from '@/api/data/quota';
-import {
-  useVolume,
-  useUpdateVolume,
-  UseVolumeResult,
-} from '@/api/hooks/useVolume';
+
+vi.mock('@/core/HidePreloader', () => ({
+  default: () => <div>HidePeloader</div>,
+}));
 
 vi.mock('react-router-dom');
 
 vi.mock('@/api/hooks/useQuota', () => ({
   useRegionsQuota: vi.fn().mockReturnValue({ data: [] }),
 }));
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
-  return {
-    ...mod,
-    useCatalogPrice: vi
-      .fn()
-      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
-    useNotifications: vi.fn().mockReturnValue({
-      addError: vi.fn(),
-      addSuccess: vi.fn(),
-    }),
-    useProjectLocalRegions: vi.fn().mockReturnValue({ data: [] }),
-    useProjectUrl: vi.fn().mockReturnValue('/project-url'),
-    useTranslatedMicroRegions: vi
-      .fn()
-      .mockReturnValue({ translateMicroRegion: vi.fn().mockReturnValue('EU') }),
-  };
-});
-
-vi.mock('@ovh-ux/manager-pci-common', async () => {
-  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
-  return {
-    ...mod,
-    useProject: vi.fn().mockReturnValue({ data: { description: 'Project' } }),
-  };
-});
 
 vi.mock('@/api/hooks/useCatalog');
 vi.mocked(useVolumeCatalog).mockReturnValue({
@@ -85,16 +60,42 @@ vi.mocked(useUpdateVolume).mockReturnValue({
   updateVolume: mockUpdateVolume as UseMutateFunction,
 } as ReturnType<typeof useUpdateVolume>);
 
-const renderEditPage = () => {
-  renderWithMockedWrappers(<EditPage />);
-};
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const mod = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+
+  return {
+    ...mod,
+    useCatalogPrice: vi
+      .fn()
+      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
+    useNotifications: vi.fn().mockReturnValue({
+      addError: vi.fn(),
+      addSuccess: vi.fn(),
+    }),
+    useProjectLocalRegions: vi.fn().mockReturnValue({ data: [] }),
+    useProjectUrl: vi.fn().mockReturnValue('/project-url'),
+    useTranslatedMicroRegions: vi
+      .fn()
+      .mockReturnValue({ translateMicroRegion: vi.fn().mockReturnValue('EU') }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const mod = await vi.importActual('@ovh-ux/manager-pci-common');
+  return {
+    ...mod,
+    useProject: vi.fn().mockReturnValue({ data: { description: 'Project' } }),
+  };
+});
 
 describe('Edit volume page', () => {
   it('renders the component and displays volume information', () => {
     vi.mocked(useVolume).mockReturnValue(
       mockedVolumeData as ReturnType<typeof useVolume>,
     );
-    renderEditPage();
+    renderWithMockedWrappers(<EditPage />);
 
     expect(screen.getByTestId('editPage-input_volumeName')).toHaveValue(
       'Volume',
@@ -105,7 +106,7 @@ describe('Edit volume page', () => {
 
   it('handles name change correctly', async () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
-    renderEditPage();
+    renderWithMockedWrappers(<EditPage />);
 
     fireEvent.change(screen.getByTestId('editPage-input_volumeName'), {
       target: { value: 'New Volume Name' },
@@ -122,14 +123,14 @@ describe('Edit volume page', () => {
       isPending: true,
     } as UseQueryResult<UseVolumeResult>);
 
-    renderEditPage();
+    renderWithMockedWrappers(<EditPage />);
 
     expect(screen.getByTestId('editPage-spinner')).toBeVisible();
   });
 
   it('updates the volume on form submission when valid', async () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolumeData);
-    renderEditPage();
+    renderWithMockedWrappers(<EditPage />);
 
     fireEvent.change(screen.getByTestId('editPage-input_volumeName'), {
       target: { value: 'New Volume Name' },
