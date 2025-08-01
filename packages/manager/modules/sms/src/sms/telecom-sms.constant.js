@@ -257,10 +257,13 @@ const SMS_PHONEBOOKS = {
   },
 };
 
+export const PHONE_NUMBER_FOR_TIME2CHAT_REGEX = /^(\+33|0033)[1-9](?:[\s.-]?\d{2}){4}$/;
+
 export default {
   SMPP_GUIDES,
   SMS_URL,
   SMS_GUIDES,
   SMS_ALERTS,
   SMS_PHONEBOOKS,
+  PHONE_NUMBER_FOR_TIME2CHAT_REGEX,
 };
