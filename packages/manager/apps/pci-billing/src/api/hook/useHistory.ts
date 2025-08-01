@@ -21,7 +21,7 @@ export const useUsageHistoryPeriod = (
     queryKey: [projectId, from, to, 'history', 'usage'],
     queryFn: async () => {
       const historyPeriod = await getUsageHistoryPeriod(projectId, from, to);
-      return historyPeriod?.length
+      return historyPeriod.length
         ? historyPeriod[0]
         : ({} as TUsageHistoryPeriod);
     },
@@ -29,7 +29,7 @@ export const useUsageHistoryPeriod = (
 
 export const useGetUsageHistory = (
   projectId: string,
-  periodDetail: TUsageHistoryPeriod,
+  periodDetail?: TUsageHistoryPeriod,
 ) => {
   const { billingDate } = useComputeDate();
 
@@ -41,12 +41,12 @@ export const useGetUsageHistory = (
 
       if (isSameMonth(new Date(), billingDate)) {
         const currentUsage = await getCurrentUsage(projectId);
-        monthlyDetails = currentUsage?.monthlyUsage;
+        monthlyDetails = currentUsage.monthlyUsage;
       } else if (
-        new Date(periodDetail.period.to).getUTCMonth() ===
+        new Date(periodDetail?.period.to).getUTCMonth() ===
         billingDate.getMonth()
       ) {
-        monthlyDetails = historyUsage?.monthlyUsage;
+        monthlyDetails = historyUsage.monthlyUsage;
       }
 
       const usage = { ...historyUsage, monthlyUsage: monthlyDetails };
