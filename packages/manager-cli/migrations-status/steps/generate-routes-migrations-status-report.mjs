@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { getReactApplications, resolveRoutePath } from '../../utils/AppUtils.mjs';
-import fs from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { buildRoutesReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 
@@ -20,7 +20,7 @@ const getRouteMigrationStatus = async (appName) => {
   if (!routePath || !existsSync(routePath)) return '📝 TODO';
 
   try {
-    const content = await fs.readFile(routePath, 'utf-8');
+    const content = await readFile(routePath, 'utf-8');
     const migrated = content.includes('<Route') && !content.includes('lazyRouteConfig');
     if (isDryRun) {
       console.log(`🔍 ${appName}:`);

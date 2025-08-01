@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { existsSync, readFileSync, } from 'fs';
 import path from 'path';
 import { applicationsBasePath } from './AppUtils.mjs';
 import { EXCLUDED_TESTS_DEPS, readPackageJson } from './DependenciesUtils.mjs';
@@ -17,8 +17,8 @@ export const getTestMigrationStatus = (appName, { verbose }) => {
   let scriptsMigrated = false;
   let depsCleaned = true;
 
-  if (fs.existsSync(vitestConfigPath)) {
-    const content = fs.readFileSync(vitestConfigPath, 'utf-8');
+  if (existsSync(vitestConfigPath)) {
+    const content = readFileSync(vitestConfigPath, 'utf-8');
     configMigrated = content.includes('mergeConfig') && content.includes('@ovh-ux/manager-tests-setup');
     if (verbose) {
       console.log(`📄 ${appName}: vitest.config.js → ${configMigrated ? '✅ uses shared config' : '📝 legacy config'}`);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import fs from 'fs/promises';
+import { readdir, writeFile } from 'fs/promises';
 import prettier from 'prettier';
 
 const appName = process.argv[2];
@@ -23,7 +23,7 @@ const findRouterCallsFiles = async (dir, results) => {
   let entries;
 
   try {
-    entries = await fs.readdir(dir, { withFileTypes: true });
+    entries = await readdir(dir, { withFileTypes: true });
   } catch (err) {
     console.warn(`⚠️  Failed to read directory: ${dir} (${err.message})`);
     return;
@@ -36,7 +36,7 @@ const findRouterCallsFiles = async (dir, results) => {
       await findRouterCallsFiles(fullPath, results);
     } else if (entry.isFile() && entry.name.endsWith('.tsx')) {
       try {
-        const content = await fs.readFile(fullPath, 'utf-8');
+        const content = await readFile(fullPath, 'utf-8');
         if (routerRegex.test(content)) {
           results.push({ path: fullPath, content });
         }
@@ -179,7 +179,7 @@ const updateRoutersInitialization = async () => {
         console.log('--- TRANSFORMED ---');
         console.log(formatted.slice(0, 1000));
       } else {
-        await fs.writeFile(filePath, formatted);
+        await writeFile(filePath, formatted);
         console.log(`✅ Updated: ${filePath}`);
       }
     } catch (err) {

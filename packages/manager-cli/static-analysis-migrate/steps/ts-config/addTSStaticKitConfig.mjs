@@ -1,88 +1,212 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import fs from 'fs/promises';
-import {
-  readPackageJson,
-  writePackageJson,
-} from '../../../utils/DependenciesUtils.mjs';
+import { readFileSync } from 'fs';
+import { unlink, copyFile, writeFile } from 'fs/promises';
+import { readPackageJson, writePackageJson } from '../../../utils/DependenciesUtils.mjs';
 import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+
+// eslint-disable-next-line
+import reactTSBaseConfig from '../../../../manager/tools/static-analysis-kit/dist/tsconfig/react.json' with { type: 'json' };
 
 const appName = process.argv[2];
 const isDryRun = process.argv.includes('--dry-run');
+
+if (!appName || appName.startsWith('--')) {
+  console.error('❌ Missing required <app-name> argument.');
+  process.exit(1);
+}
 
 const appPath = path.resolve(applicationsBasePath, appName);
 const tsconfigPath = path.join(appPath, 'tsconfig.json');
 const tsconfigStrictPath = path.join(appPath, 'tsconfig.strict.json');
 
-const looseTSConfig = {
-  extends: '@ovh-ux/manager-static-analysis-kit/tsconfig/react',
-  compilerOptions: {
-    baseUrl: '.',
-    paths: {
-      '@/public/*': ['./public/*'],
-      '@/*': ['./src/*']
-    },
-    outDir: 'dist',
-    allowJs: true
-  },
-  include: ['src', 'public/**/*.json'],
-  exclude: ['node_modules', 'dist', 'types']
+const basePriorAttributes = new Set(['strict', 'jsx', 'lib', 'module', 'target', 'moduleResolution']);
+
+/**
+ *
+ * Read a JSON file if it exists, returns empty object otherwise.
+ * @param {string} filepath
+ * @returns {any|null}
+ */
+const readJSONFileIfExists = (filepath) => {
+  try {
+    const raw = readFileSync(filepath, 'utf-8');
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error(`Failed to read/parse JSON: ${filepath}`, err.message);
+    return null;
+  }
+}
+
+/**
+ * Backups a file to `<filename>.backup` if it exists.
+ * @param {string} appPath - Absolute path to the app.
+ * @returns {Promise<void>}
+ */
+const backupTSConfigFiles = async (appPath) => {
+  const backup = async (filename) => {
+    const filePath = path.join(appPath, filename);
+    const backupPath = path.join(appPath, `${filename}.backup`);
+    try {
+      await copyFile(filePath, backupPath);
+      console.log(`🧪 Backed up ${filename} → ${filename}.backup`);
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+    }
+  };
+  await Promise.all(['tsconfig.json', 'tsconfig.strict.json'].map(backup));
 };
 
-const strictTSConfig = {
-  extends: '@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict',
-  compilerOptions: looseTSConfig.compilerOptions,
-  include: looseTSConfig.include,
-  exclude: looseTSConfig.exclude
+/**
+ * Removes backup files if they exist.
+ * @param {string} appPath - Absolute path to the app.
+ * @returns {Promise<void>}
+ */
+const removeTSConfigBackups = async (appPath) => {
+  const remove = async (filename) => {
+    const backupPath = path.join(appPath, `${filename}.backup`);
+    try {
+      await unlink(backupPath);
+      console.log(`🧹 Removed ${filename}.backup`);
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+    }
+  };
+  await Promise.all(['tsconfig.json', 'tsconfig.strict.json'].map(remove));
 };
 
-async function addTSStaticKitConfig() {
+/**
+ * Returns a deep cloned version of the given object.
+ * @template T
+ * @param {T} obj - Object to clone.
+ * @returns {T}
+ */
+const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
+
+/**
+ * Computes the delta between app config and base config,
+ * excluding overridden attributes and preserving custom ones.
+ *
+ * @param {object} base - Base tsconfig (from static-kit).
+ * @param {object} app - App’s existing tsconfig.
+ * @returns {object} - Delta config.
+ */
+const computeDelta = (base, app) => {
+  const delta = { compilerOptions: {} };
+  const baseCompiler = base.compilerOptions || {};
+  const appCompiler = app.compilerOptions || {};
+
+  for (const key in appCompiler) {
+    if (basePriorAttributes.has(key)) continue;
+    if (JSON.stringify(appCompiler[key]) !== JSON.stringify(baseCompiler[key])) {
+      delta.compilerOptions[key] = appCompiler[key];
+    }
+  }
+
+  for (const key of ['paths', 'baseUrl']) {
+    if (appCompiler[key]) {
+      delta.compilerOptions[key] = appCompiler[key];
+    }
+  }
+
+  if (app.include) delta.include = app.include;
+  if (app.exclude) delta.exclude = app.exclude;
+
+  return delta;
+};
+
+/**
+ * Logs a JSON object with a label.
+ * @param {string} label - Section label.
+ * @param {object} data - Object to log.
+ */
+const logBlock = (label, data) => {
+  console.log(`\n📄 ${label}:\n${JSON.stringify(data, null, 2)}`);
+};
+
+/**
+ * Logs differences between two config objects.
+ * @param {string} label - Section label.
+ * @param {object} a - Original object.
+ * @param {object} b - New object.
+ */
+const logDiff = (label, a, b) => {
+  const diff = {};
+  const allKeys = new Set([...Object.keys(a), ...Object.keys(b)]);
+  for (const key of allKeys) {
+    const av = JSON.stringify(a[key]);
+    const bv = JSON.stringify(b[key]);
+    if (av !== bv) {
+      diff[key] = { before: a[key], after: b[key] };
+    }
+  }
+  console.log(`\n🧩 Diff: ${label}\n${JSON.stringify(diff, null, 2)}`);
+};
+
+/**
+ * Main function: migrates tsconfig and package.json to use static-kit.
+ * Applies both loose and strict configs with appropriate extension.
+ */
+const addTSStaticKitConfig = async () => {
   const pkg = readPackageJson(appPath);
   if (!pkg) {
-    console.error(`❌ Could not read package.json in ${appPath}`);
+    console.error(`❌ Could not read package.json at ${appPath}`);
     process.exit(1);
+  }
+
+  if (!isDryRun) {
+    await backupTSConfigFiles(appPath);
+  }
+
+  const staticKitBase = reactTSBaseConfig;
+  const appLoose = readJSONFileIfExists(tsconfigPath);
+  const looseDelta = computeDelta(staticKitBase, appLoose);
+  const strictDelta = deepClone(looseDelta);
+
+  const looseFinal = {
+    extends: '@ovh-ux/manager-static-analysis-kit/tsconfig/react',
+    ...looseDelta,
+  };
+
+  const strictFinal = {
+    extends: '@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict',
+    ...strictDelta,
+  };
+
+  if (isDryRun) {
+    logBlock('Original tsconfig.json', appLoose);
+    logBlock('Static-kit merged base', staticKitBase);
+    logBlock('Computed delta', looseDelta);
+    logBlock('Final tsconfig.json', looseFinal);
+    logBlock('Final tsconfig.strict.json', strictFinal);
+    logDiff('tsconfig.json diff', appLoose, looseFinal);
+    console.log('\n🧪 [dry-run] No changes written.');
+    return;
   }
 
   pkg.devDependencies ||= {};
   pkg.devDependencies['@ovh-ux/manager-static-analysis-kit'] = '*';
-
   pkg.scripts ||= {};
-
   if (!pkg.scripts['build:strict']) {
-    const scripts = Object.entries(pkg.scripts);
-    const newScripts = {};
-
-    for (let i = 0; i < scripts.length; i++) {
-      const [key, value] = scripts[i];
-      newScripts[key] = value;
-
-      // Insert build:strict right after build
-      if (key === 'build') {
-        newScripts['build:strict'] = 'tsc --project tsconfig.strict.json && vite build';
-      }
-    }
-
-    // If no 'build' script exists, fallback to appending
-    if (!newScripts['build'] && !newScripts['build:strict']) {
-      newScripts['build:strict'] = 'tsc --project tsconfig.strict.json && vite build';
-    }
-
-    pkg.scripts = newScripts;
+    pkg.scripts['build:strict'] = 'tsc --project tsconfig.strict.json && vite build';
   }
 
-  if (!isDryRun) {
-    writePackageJson(appPath, pkg);
-    await fs.writeFile(tsconfigPath, JSON.stringify(looseTSConfig, null, 2));
-    await fs.writeFile(tsconfigStrictPath, JSON.stringify(strictTSConfig, null, 2));
+  writePackageJson(appPath, pkg);
+
+  try {
+    await writeFile(tsconfigPath, JSON.stringify(looseFinal, null, 2));
+    await writeFile(tsconfigStrictPath, JSON.stringify(strictFinal, null, 2));
+    await removeTSConfigBackups(appPath);
+  } catch (err) {
+    console.error('❌ Failed to write tsconfig files:', err);
+    process.exit(1);
   }
 
-  console.log(`\n✅ TypeScript static kit added to "${appName}"`);
-  console.log(`➕ build:strict script and tsconfig files configured.`);
-  console.log(`📘 Reminder: only override app-specific fields like include/exclude/paths.`);
-}
+  console.log(`\n✅ Static-kit config applied to "${appName}"`);
+};
 
 addTSStaticKitConfig().catch((err) => {
-  console.error('❌ Failed to apply TypeScript static kit:', err);
+  console.error('❌ Unexpected error:', err);
   process.exit(1);
 });

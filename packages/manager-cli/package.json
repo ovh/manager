@@ -13,6 +13,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "check-duplicated-translations": "node ./translations-checker/check-duplicated-translations.mjs",

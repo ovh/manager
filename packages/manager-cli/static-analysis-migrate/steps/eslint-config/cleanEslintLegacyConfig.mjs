@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import fs from 'fs/promises';
+import { rm } from 'fs/promises';
 import {
   ESLINT_DEP_REGEX,
   EXCLUDED_ESLINT_FILES,
@@ -45,7 +45,7 @@ const cleanEslintLegacyConfig = async () => {
       if (isDryRun) {
         console.log(`🧪 [dry-run] Would remove: ${file}`);
       } else {
-        await fs.rm(filePath);
+        await rm(filePath);
         console.log(`🧹 Removed: ${file}`);
       }
       removedFiles.push(file);

@@ -19,6 +19,7 @@ runMigration({
     'node ./static-analysis-migrate/steps/eslint-config/addEslintStaticKitConfig.mjs',
     'node ./static-analysis-migrate/steps/ts-config/cleanTSLegacyConfig.mjs',
     'node ./static-analysis-migrate/steps/ts-config/addTSStaticKitConfig.mjs',
+    'node ./static-analysis-migrate/steps/ide-config/generateIDEIntegrationConfig.mjs',
   ],
   dryRun: isDryRun,
   docLink: '/development-guidelines/static-analysis-kit-migration/',

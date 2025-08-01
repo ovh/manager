@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import fs from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
 import parser from '@babel/parser';
@@ -320,7 +320,7 @@ const transformRoutesToJsx = async () => {
     process.exit(1);
   }
 
-  const actualSourceCode = await fs.readFile(applicationRoutePath, 'utf-8');
+  const actualSourceCode = await readFile(applicationRoutePath, 'utf-8');
   const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } = generateTransformedRoutes(
     removeLazyRouteConfig(actualSourceCode),
   );
@@ -352,7 +352,7 @@ ${routesTransformedBlock}
     console.log('ℹ️  Dry run output:');
     console.log(formatted);
   } else {
-    await fs.writeFile(applicationRoutePath, formatted);
+    await writeFile(applicationRoutePath, formatted);
     console.log(`✅ Successfully written JSX tree to ${applicationRoutePath}`);
   }
 };

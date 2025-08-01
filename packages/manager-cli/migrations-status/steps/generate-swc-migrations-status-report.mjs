@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
 import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
 import { babelConfigurationFiles, REQUIRED_DEP_VERSIONS, satisfiesVersion } from '../../utils/DependenciesUtils.mjs';
@@ -38,14 +38,14 @@ const getSwcMigrationStatus = (appName) => {
   const depsErrors = [];
 
   for (const file of babelConfigurationFiles) {
-    if (fs.existsSync(path.join(appPath, file))) {
+    if (existsSync(path.join(appPath, file))) {
       babelFilesCleaned = false;
       if (isDryRun) console.log(`🛑 ${appName}: Babel config found → ${file}`);
     }
   }
 
-  if (fs.existsSync(pkgPath)) {
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+  if (existsSync(pkgPath)) {
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
     const allDeps = { ...pkg.dependencies, ...pkg.devDependencies };
 
     Object.keys(allDeps).forEach((dep) => {
