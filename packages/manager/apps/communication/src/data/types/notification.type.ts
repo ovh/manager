@@ -8,6 +8,7 @@ export type Notification = {
   contacts: Contact[];
   createdAt: string;
   html: string | null;
+  shortText: string | null;
   id: string;
   priority: NotificationPriority;
   text: string | null;
