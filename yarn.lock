@@ -7198,6 +7198,28 @@
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
 
+"@paypal/paypal-js@*", "@paypal/paypal-js@^8.1.2":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-8.2.0.tgz#0c6dc9777ef2400e6d9bbc310d53b431d17d1682"
+  integrity sha512-hLg5wNORW3WiyMiRNJOm6cN2IqjPlClpxd971bEdm0LNpbbejQZYtesb0/0arTnySSbGcxg7MxjkZ/N5Z5qBNQ==
+  dependencies:
+    promise-polyfill "^8.3.0"
+
+"@paypal/react-paypal-js@^8.8.3":
+  version "8.8.3"
+  resolved "https://registry.yarnpkg.com/@paypal/react-paypal-js/-/react-paypal-js-8.8.3.tgz#2f8e28fb1151d53060bf19afc43804f096a422e3"
+  integrity sha512-H5s3EU7S+RFaLad3BmV9nSAmD3iaJI14mCtbngpqMm4ruMNGHjOTaSTX3jAAk/ghmzGAda2GMfyiYondO4F21Q==
+  dependencies:
+    "@paypal/paypal-js" "^8.1.2"
+    "@paypal/sdk-constants" "^1.0.122"
+
+"@paypal/sdk-constants@^1.0.122":
+  version "1.0.155"
+  resolved "https://registry.yarnpkg.com/@paypal/sdk-constants/-/sdk-constants-1.0.155.tgz#acccec7769fb5dfd5445c5cbdd96f24bb2216814"
+  integrity sha512-kETprri+6j9eBOXKXH3IStiGmgTXcIUL7ST3DTOuDXmnneQUUq1m3rHm1md9bNahC4qWay/EdKy3d/fB8MUZcA==
+  dependencies:
+    hi-base32 "^0.5.0"
+
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
@@ -10846,6 +10868,18 @@
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.2.tgz#5950e50960793055845e956c427fc2b0d70c5239"
   integrity sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==
+
+"@types/paypal__paypal-js@^2.0.1":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@types/paypal__paypal-js/-/paypal__paypal-js-2.1.0.tgz#de3d3c4934056b715b2297197f391db235258ab8"
+  integrity sha512-6jExroICzbJp2ieIqCrdI5H7bM2cdQu/epvSoZKAR81z+XxVadjN0dLOy+EPBKAE2CMinqCdwSpvUQlBUmeYiw==
+  dependencies:
+    "@paypal/paypal-js" "*"
+
+"@types/prettier@^2.0.0":
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.7.3.tgz#3e51a17e291d01d17d3fc61422015a933af7a08f"
+  integrity sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==
 
 "@types/pretty-hrtime@^1.0.0":
   version "1.0.3"
@@ -19985,6 +20019,11 @@ hey-listen@^1.0.8:
   resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
   integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
 
+hi-base32@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.1.tgz#1279f2ddae2673219ea5870c2121d2a33132857e"
+  integrity sha512-EmBBpvdYh/4XxsnUybsPag6VikPYnN30td+vQk+GI3qpahVEG9+gTkG0aXVxTjBqQ5T6ijbWIu77O+C5WFWsnA==
+
 highlight.js@11.8.0:
   version "11.8.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
@@ -25885,6 +25924,11 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==
+
+promise-polyfill@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.3.0.tgz#9284810268138d103807b11f4e23d5e945a4db63"
+  integrity sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==
 
 promise-retry@^2.0.1:
   version "2.0.1"

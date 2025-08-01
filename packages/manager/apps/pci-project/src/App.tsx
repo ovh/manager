@@ -7,9 +7,24 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import Routes from './routes/routes';
 import queryClient from './queryClient';
 import FullPageSpinner from './components/FullPageSpinner';
+
+const getPayPalClientId = () => {
+  return process.env.NODE_ENV === 'production'
+    ? 'YOUR_PRODUCTION_CLIENT_ID'
+    : 'sb';
+};
+
+const initialOptions = {
+  clientId: getPayPalClientId(),
+  locale: 'fr_FR',
+  intent: 'capture',
+  disableFunding: 'card',
+  components: 'buttons,marks',
+};
 
 function App() {
   const { shell } = useContext(ShellContext);
@@ -20,12 +35,14 @@ function App() {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<FullPageSpinner />}>
-        <RouterProvider router={router} />
-      </Suspense>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <PayPalScriptProvider options={initialOptions}>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<FullPageSpinner />}>
+          <RouterProvider router={router} />
+        </Suspense>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </PayPalScriptProvider>
   );
 }
 
