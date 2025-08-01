@@ -41,12 +41,16 @@ const toZodField = (field: Rule): RuleZodSchema => {
   return zodSchema;
 };
 
-export const useZodSchemaGenerator = (fields: Record<string, Rule>) =>
+export const getZodSchemaFromRule = <T extends Record<string, Rule>>(
+  fields: T,
+) =>
   z.object(
     Object.keys(fields).reduce((acc, fieldName) => {
       acc[fieldName] = toZodField(fields[fieldName]);
       return acc;
-    }, {} as Record<string, RuleZodSchema>),
+    }, {} as Record<string, RuleZodSchema>) as {
+      [K in keyof T]: RuleZodSchema;
+    },
   );
 
 export const useZodTranslatedError = (errorMessage: string, rule: Rule) => {
