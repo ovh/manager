@@ -2,7 +2,7 @@
   "autorenew_agora_terminate_service_success_LICENSE_HYCU": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Riceverai un’email per confermarla.",
   "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "La richiesta di disattivazione del tuo servizio \"{{serviceName}}\" è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_LICENSE_HYCU": "Si è verificato un errore durante la richiesta di disattivazione della tua licenza HYCU: {{error}}",
-  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "La richiesta di disattivazione del KMS è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "La richiesta di disattivazione del tuo KMS è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "La richiesta di disattivazione del tuo KMS è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Si è verificato un errore durante la richiesta di disattivazione del KMS: {{error}}",
   "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "La tua richiesta di disattivazione di vRack Services è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
@@ -29,5 +29,5 @@
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La disattivazione del servizio è stata presa in carico. Riceverai un'email con i dettagli della procedura da seguire.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La disattivazione del servizio è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "La tua richiesta di disattivazione non è stata presa in carico: {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Inserisci \"TERMINATE\" nel campo qui sotto per confermare"
+  "autorenew_agora_terminate_service_confirm_input": "Inserisci \"TERMINATE\" nel campo qui sotto per confermare l’operazione"
 }

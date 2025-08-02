@@ -1,0 +1,9 @@
+{
+  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Sie werden eine E-Mail erhalten, um diese zu bestätigen.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
+  "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Bei der Anfrage zur Kündigung von Managed VCD ist ein Fehler aufgetreten. {{error}}",
+  "autorenew_agora_terminate_service_success_LICENSE_HYCU": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Sie werden eine E-Mail erhalten, um diese zu bestätigen.",
+  "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
+  "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_BACKUP": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Sie werden eine E-Mail erhalten, um diese zu bestätigen.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_BACKUP": "Die Anfrage zum Kündigen Ihres Dienstes „{{serviceName}}“ wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet."
+}

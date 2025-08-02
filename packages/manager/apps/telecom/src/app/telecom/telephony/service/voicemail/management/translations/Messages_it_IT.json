@@ -10,10 +10,10 @@
   "telephony_line_answer_voicemail_directories_caller": "Chiamante",
   "telephony_line_answer_voicemail_directories_date": "Data",
   "telephony_line_answer_voicemail_directories_duration": "Durata",
-  "telephony_line_answer_voicemail_directories_transcript": "Visualizza la trascrizione",
+  "telephony_line_answer_voicemail_directories_transcript": "Visualizzare la trascrizione",
   "telephony_line_answer_voicemail_directories_transcript_beta": "(Beta)",
   "telephony_line_answer_voicemail_directories_transcript_modal_title": "Trascrizione",
-  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Questa trascrizione è stata generata da Intelligenza Artificiale",
-  "telephony_line_answer_voicemail_directories_transcript_modal_download": "Scarica la trascrizione",
+  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Questa trascrizione è stata generata con l’Intelligenza Artificiale",
+  "telephony_line_answer_voicemail_directories_transcript_modal_download": "Scaricare la trascrizione",
   "telephony_line_answer_voicemail_directories_transcript_modal_close": "Chiudere"
 }

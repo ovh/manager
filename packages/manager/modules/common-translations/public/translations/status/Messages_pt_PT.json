@@ -19,5 +19,6 @@
   "prepaid": "Pré-pago",
   "creating": "Criação em curso",
   "updating": "Atualização",
-  "unconfigured": "Não configurado"
+  "unconfigured": "Não configurado",
+  "unPaid": "Fatura por pagar"
 }

@@ -2,9 +2,9 @@
   "autorenew_agora_terminate_service_success_LICENSE_HYCU": "Dyspozycja rezygnacji z usługi \"{{serviceName}}\" została przyjęta. Otrzymasz e-mail z prośbą o jej potwierdzenie.",
   "autorenew_agora_terminate_service_success_ftc_LICENSE_HYCU": "Dyspozycja rezygnacji z usługi \"{{serviceName}}\" została przyjęta. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
   "autorenew_agora_terminate_service_error_LICENSE_HYCU": "Wystąpił błąd podczas składania rezygnacji z licencji HYCU. {{error}}",
-  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Zlecenie rezygnacji z usługi KMS zostało zarejestrowane. Informacje dotyczące procedury zostały wysłane na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_OKMS_RESOURCE": "Rezygnacja z KMS została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
   "autorenew_agora_terminate_service_success_ftc_OKMS_RESOURCE": "Rezygnacja z KMS została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
-  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Wystąpił błąd podczas zlecania rezygnacji z serwera KMS. {{error}}",
+  "autorenew_agora_terminate_service_error_OKMS_RESOURCE": "Wystąpił błąd podczas składania dyspozycji rezygnacji z KMS. {{error}}",
   "autorenew_agora_terminate_service_success_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRAck Services została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
   "autorenew_agora_terminate_service_success_ftc_VRACK_SERVICES_RESOURCE": "Rezygnacja z vRack Services została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
   "autorenew_agora_terminate_service_error_VRACK_SERVICES_RESOURCE": "Wystąpił błąd podczas rezygnacji z vRack Services. {{error}}",
@@ -27,7 +27,7 @@
   "autorenew_agora_terminate_service_success_ftc_IP": "Rezygnacja z usługi Additional IP „{{serviceName}}” została zarejestrowana. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail.",
   "autorenew_agora_terminate_service_error_IP": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Rezygnacja z usługi została zarejestrowana. Otrzymasz e-mail ze szczegółami procedury.",
-  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Rezygnacja z usługi została zarejestrowana. Wiadomość z potwierdzeniem została wysłana na Twój adres e-mail.",
+  "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Rezygnacja z usługi została zarejestrowana. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail.",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Dyspozycja rezygnacji nie została zarejestrowana: {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Wprowadź \"TERMINATE\" w poniższym polu, aby potwierdzić operację"
+  "autorenew_agora_terminate_service_confirm_input": "Aby potwierdzić, wprowadź „TERMINATE” w poniższym polu"
 }
