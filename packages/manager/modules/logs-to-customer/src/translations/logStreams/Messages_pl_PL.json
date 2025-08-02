@@ -12,5 +12,6 @@
   "log_streams_colomn_subscriptions": "Subskrypcje",
   "log_streams_no_results": "Brak strumieni danych na tym koncie LDP",
   "log_streams_subscribe": "Subskrybuj",
-  "log_streams_unsubscribe": "Rezygnacja z subskrypcji"
+  "log_streams_unsubscribe": "Rezygnacja z subskrypcji",
+  "log_streams_subscription_disabled_tooltip": "Subskrypcja podstrumienia danych jest niedostępna."
 }

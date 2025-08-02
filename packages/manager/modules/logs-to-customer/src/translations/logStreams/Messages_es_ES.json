@@ -12,5 +12,6 @@
   "log_streams_colomn_subscriptions": "Suscripciones",
   "log_streams_no_results": "No hay ningún flujo de datos en esta cuenta LDP",
   "log_streams_subscribe": "Suscribirse",
-  "log_streams_unsubscribe": "Anular la suscripción"
+  "log_streams_unsubscribe": "Anular la suscripción",
+  "log_streams_subscription_disabled_tooltip": "La suscripción a un subflujo de datos no está disponible."
 }
