@@ -19,5 +19,6 @@
   "prepaid": "Pre-paid",
   "creating": "Creating",
   "updating": "Updating",
-  "unconfigured": "Not configured"
+  "unconfigured": "Not configured",
+  "unPaid": "Unpaid bill"
 }

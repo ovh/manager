@@ -19,5 +19,6 @@
   "prepaid": "Przedpłata",
   "creating": "Trwa tworzenie",
   "updating": "Aktualizacja",
-  "unconfigured": "Brak konfiguracji"
+  "unconfigured": "Brak konfiguracji",
+  "unPaid": "Niezapłacona faktura"
 }
