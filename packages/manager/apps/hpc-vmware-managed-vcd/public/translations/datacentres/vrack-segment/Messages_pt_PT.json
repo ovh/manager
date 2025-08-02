@@ -5,7 +5,7 @@
   "managed_vcd_dashboard_vrack_description": "Os segmentos vRack facilitam a organização e a interligação dos seus diferentes serviços OVHcloud com o seu vDC. Depois de associar o seu vDC a um vRack, dispõe por predefinição de 5 segmentos para estruturar a sua infraestrutura e segmentar eficazmente a sua rede entre os produtos da OVHcloud.",
   "managed_vcd_dashboard_vrack_edit_vlan": "Alterar o ID da VLAN",
   "managed_vcd_dashboard_vrack_add_network": "Adicionar uma sub-rede",
-  "managed_vcd_dashboard_vrack_network_address": "Endereço da sub-rede",
+  "managed_vcd_dashboard_vrack_network_address": "Endereço da sub-rede no formato endereço gateway / máscara",
   "managed_vcd_dashboard_vrack_network": "Sub-rede",
   "managed_vcd_dashboard_vrack_vlan_id": "ID da VLAN",
   "managed_vcd_dashboard_vrack_vlan_id_helper": "O ID da VLAN deve estar compreendida entre 1 e 4095",
