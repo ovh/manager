@@ -31,5 +31,7 @@
   "resourcesTaggedSomeError": "Certaines resources n'ont pas été correctement assignées:",
   "noResourceAvailableForTagging": "Aucune resource n'est disponible pour être assignée",
   "tagDetailTitle": "Détail pour {{tag}}",
-  "resourceTaggedWithTag": "Resources taguées avec \"{{tag}}\""
+  "resourceTaggedWithTag": "Resources taguées avec \"{{tag}}\"",
+  "assignTagToResources": "Assigner \"{{tag}}\" à des resources",
+  "backToTagDetail": "Retour au détail du tag"
 }
