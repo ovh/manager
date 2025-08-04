@@ -333,17 +333,6 @@ export default function InstallationStepServerConfig() {
           <RhfField.Input />
           <RhfField.HelperAuto />
         </RhfField>
-        <Controller
-          control={control}
-          name="encryptPassword"
-          render={({ field }) => (
-            <RhfToggleField
-              field={fieldWithHandler(field)}
-              label={t('server_config_toggle_password_encryption')}
-              tooltip={t('server_config_tooltip_password_encryption')}
-            />
-          )}
-        />
         <OdsText preset="heading-3">{LABELS.SAP_HANA}</OdsText>
         <Controller
           name="hanaServerOva"

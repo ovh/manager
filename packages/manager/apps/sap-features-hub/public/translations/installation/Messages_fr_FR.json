@@ -96,8 +96,6 @@
   "server_config_helper_gateway_ip": "La passerelle par défaut doit être au format IPv4",
   "server_config_input_thick_storage": "Politique de stockage Thick",
   "server_config_error_thick_storage": "Veuillez sélectionner une politique de stockage Thick.",
-  "server_config_toggle_password_encryption": "Mot de passe Root chiffré",
-  "server_config_tooltip_password_encryption": "Indique si les mots de passe Root sont fournis en clair ou hashés",
   "server_config_input_ova_model": "Modèle OVA",
   "server_config_error_ova_model": "Veuillez sélectionner un OVA Template.",
   "server_config_error_datastore": "Veuillez sélectionner un Datastore.",

@@ -69,7 +69,6 @@ export const SERVER_CONFIG_COMMON_SCHEMA = z.object({
   netmask: z.string().ip({ version: 'v4' }),
   gateway: z.string().ip({ version: 'v4' }),
   thickDatastorePolicy: z.string().nonempty(),
-  encryptPassword: z.boolean(),
   hanaServerOva: z.string().nonempty(),
   hanaServerDatastore: z.string().nonempty(),
   applicationServerOva: z.string().nonempty(),

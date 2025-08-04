@@ -35,7 +35,6 @@ export const mockedValues: InstallationFormValues = {
   network: 'network',
   netmask: '1.1.1.1',
   gateway: '3.3.3.3',
-  encryptPassword: false,
   thickDatastorePolicy: 'storePolicy',
   hanaServerOva: 'hanaOva',
   hanaServerDatastore: 'hanaStore',
