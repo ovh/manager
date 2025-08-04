@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.6...@ovh-ux/manager-iam@1.18.0) (2025-08-04)
+
+
+### Features
+
+* **iam:** update SSO US guide link ([bbc5b37](https://github.com/ovh/manager/commit/bbc5b3751337b53fc1e21f19c6e8e98bfda034ad)), closes [#MANAGER-19264](https://github.com/ovh/manager/issues/MANAGER-19264)
+
+
+
+
+
 ## [1.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.5...@ovh-ux/manager-iam@1.17.6) (2025-07-16)
 
 
