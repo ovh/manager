@@ -12,22 +12,26 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import {
-  OdsBadge,
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsSkeleton,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 
-import { useTabs } from '@/hooks/useTabs/useTabs';
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
+import { PROJECT_TABS } from '@/constants/tabs.constant';
 
 export default function ProjectHeader() {
   const { t } = useTranslation('project');
 
   const hrefProject = useProjectUrl('public-cloud');
   const { data: project, isLoading, error } = useProject();
-  const { tabs } = useTabs();
+
+  const tabs = PROJECT_TABS.map((tab) => ({
+    ...tab,
+    title: t(tab.titleKey),
+  }));
+
   const isDiscovery = isDiscoveryProject(project);
 
   if (error) throw error;
@@ -47,17 +51,21 @@ export default function ProjectHeader() {
         )
       }
       header={{
-        title: ((
-          <div className="flex gap-4">
-            <OdsText preset="heading-1">{project?.description}</OdsText>
-            {isDiscovery && (
-              <OdsBadge label={t('pci_projects_project_label_discovery')} />
-            )}
-          </div>
-        ) as unknown) as string,
+        title: project?.description,
+        badge: isDiscovery
+          ? {
+              color: ODS_BADGE_COLOR.information,
+              size: ODS_BADGE_SIZE.md,
+              label: t('pci_projects_project_label_discovery'),
+            }
+          : undefined,
         changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
       }}
-      tabs={<TabsPanel tabs={tabs} />}
+      tabs={
+        <nav aria-label={t('pci_project_project_main_navigation')}>
+          <TabsPanel tabs={tabs} />
+        </nav>
+      }
     >
       <Outlet />
     </BaseLayout>
