@@ -111,7 +111,7 @@ class DedicatedCloudDatacenterZertoService {
       .get(
         `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/disasterRecovery/zerto/status`,
       )
-      .then(({ data }) => data);
+      .then(({ data }) => ({ ...data, serviceName, datacenterId }));
   }
 
   getDefaultLocalVraNetwork(serviceInformations) {
