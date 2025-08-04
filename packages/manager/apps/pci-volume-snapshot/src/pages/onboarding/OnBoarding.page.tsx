@@ -16,15 +16,16 @@ import { useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useAllSnapshots } from '@/api/hooks/useSnapshots';
-import { TRANSFER_VOLUME_BACKUP_FROM_ONE_DATACENTRE_TO_ANOTHER_URL } from './onboarding.constants';
+import { ONBOARDING_GUIDES } from './onboarding.constants';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'volumes']);
 
-  const { shell } = useContext(ShellContext);
+  const { shell, environment } = useContext(ShellContext);
+  const { ovhSubsidiary } = environment.getUser();
   const { projectId } = useParams();
-
   const { data: project } = useProject();
+
   const hrefProject = useProjectUrl('public-cloud');
 
   const { data: allSnapshots, isLoading } = useAllSnapshots(
@@ -89,19 +90,21 @@ export default function OnBoardingPage() {
             )
           }
         >
-          <Card
-            key="transfer-volume-backup"
-            href={TRANSFER_VOLUME_BACKUP_FROM_ONE_DATACENTRE_TO_ANOTHER_URL}
-            texts={{
-              title: t(
-                'pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title',
-              ),
-              description: t(
-                'pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_description',
-              ),
-              category: t('onboarding_guide_title'),
-            }}
-          />
+          {ONBOARDING_GUIDES.map((guide) => (
+            <Card
+              key={guide.id}
+              href={guide.links[ovhSubsidiary] || guide.links.DEFAULT}
+              texts={{
+                title: t(
+                  `pci_projects_project_storages_snapshots_onboarding_guides_${guide.id}_title`,
+                ),
+                description: t(
+                  `pci_projects_project_storages_snapshots_onboarding_guides_${guide.id}_description`,
+                ),
+                category: t('onboarding_guide_title'),
+              }}
+            />
+          ))}
         </OnboardingLayout>
       </BaseLayout>
     </RedirectionGuard>
