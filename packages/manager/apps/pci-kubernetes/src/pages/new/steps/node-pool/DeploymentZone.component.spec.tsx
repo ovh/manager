@@ -4,14 +4,14 @@ import DeploymentZone from './DeploymentZone.component';
 
 describe('DeploymentZone component', () => {
   const availabilityZones = ['zone1', 'zone2', 'zone3'];
-  const selectedAvailabilityZone = 'zone1';
+  const selectedAvailibilityZone = 'zone1';
   const setNodePoolState = vi.fn();
 
   it('renders correctly', () => {
     const { getByText } = render(
       <DeploymentZone
         onSelect={setNodePoolState}
-        selectedAvailabilityZone={selectedAvailabilityZone}
+        selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,
     );
@@ -29,7 +29,7 @@ describe('DeploymentZone component', () => {
     const { getAllByRole } = render(
       <DeploymentZone
         onSelect={setNodePoolState}
-        selectedAvailabilityZone={selectedAvailabilityZone}
+        selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,
     );
@@ -44,7 +44,7 @@ describe('DeploymentZone component', () => {
     const { getAllByRole } = render(
       <DeploymentZone
         onSelect={setNodePoolState}
-        selectedAvailabilityZone={selectedAvailabilityZone}
+        selectedAvailibilityZone={selectedAvailibilityZone}
         availabilityZones={availabilityZones}
       />,
     );
