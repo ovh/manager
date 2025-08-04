@@ -4,6 +4,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
+import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -53,6 +54,16 @@ export default (
       handle={{
         tracking: {
           pageName: 'tag',
+          pageType: PageType.listing,
+        },
+      }}
+    />
+    <Route
+      path={urls.tagDetailAssign}
+      Component={TagDetailAssign}
+      handle={{
+        tracking: {
+          pageName: 'assign-tag',
           pageType: PageType.listing,
         },
       }}
