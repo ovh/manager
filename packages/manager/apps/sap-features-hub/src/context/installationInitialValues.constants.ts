@@ -12,7 +12,7 @@ export const installationInitialValues: InstallationFormValues = {
   clusterId: null,
   applicationVersion: '',
   applicationType: '',
-  deploymentType: 'Standard',
+  deploymentType: null,
   sapSid: '',
   sapHanaSid: '',
   masterSapPassword: '',
