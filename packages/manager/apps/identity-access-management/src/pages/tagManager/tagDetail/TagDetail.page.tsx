@@ -16,6 +16,7 @@ import ResourcesListDatagrid, {
   ResourceDatagridColumn,
 } from '@/components/resourcesDatagrid/ResourcesDatagrid.component';
 import TagDetailTopbar from './components/TagDetailTopbar.component';
+import { tagTofilter } from '@/utils/formatFiltersForApi';
 
 export default function TagDetail() {
   const { tag } = useParams();
@@ -59,7 +60,7 @@ export default function TagDetail() {
                 topbar={<TagDetailTopbar tag={tag} />}
                 isSelectable={true}
                 hideColumn={[ResourceDatagridColumn.TAGS]}
-                filterWithTags={[tag]}
+                initFilters={[tagTofilter(tag, true)]}
               />
             </ResourcesDatagridContextProvider>
           </div>

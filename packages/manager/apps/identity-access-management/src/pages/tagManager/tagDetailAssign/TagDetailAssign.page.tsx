@@ -16,7 +16,6 @@ import appConfig from '@/identity-access-management.config';
 import ResourcesListDatagrid from '@/components/resourcesDatagrid/ResourcesDatagrid.component';
 import { ResourcesDatagridContextProvider } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import AssignTagTopbar from '../assignTag/components/AssignTagTopbar.component';
-import { getIamResourceListQueryKey } from '@/data/hooks/useIamResources';
 
 export default function TagDetailAssign() {
   const { t } = useTranslation('tag-manager');
@@ -27,7 +26,6 @@ export default function TagDetailAssign() {
     title: t('assignTagToResources', { tag }),
   };
 
-  const invalidateQueryKeyAfterAssign = getIamResourceListQueryKey([tag]);
   const onSuccessUrl = urls.tagDetail.replace(':tag', tag);
 
   return (
@@ -60,11 +58,7 @@ export default function TagDetailAssign() {
             <ResourcesDatagridContextProvider>
               <ResourcesListDatagrid
                 topbar={
-                  <AssignTagTopbar
-                    tags={[tag]}
-                    invalidateQueryKey={invalidateQueryKeyAfterAssign}
-                    onSuccessUrl={onSuccessUrl}
-                  />
+                  <AssignTagTopbar tags={[tag]} onSuccessUrl={onSuccessUrl} />
                 }
                 isSelectable={true}
               />

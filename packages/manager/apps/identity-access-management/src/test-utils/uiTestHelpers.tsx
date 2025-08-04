@@ -44,7 +44,6 @@ export const getButtonByLabel = async ({
   )?.[nth] as HTMLElement;
 
   expect(button).toBeDefined();
-
   const disabledAttribute = button.getAttribute('is-disabled') === 'true';
 
   if (disabled) expect(disabledAttribute).toBeTruthy();
