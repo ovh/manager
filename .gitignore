@@ -30,3 +30,5 @@ static-dynamic-quality-reports/**/**
 target
 CLAUDE.md
 .mcp.json
+.claude
+.cursor
