@@ -1402,5 +1402,5 @@
   "hosting_tab_STATISTICS_type_allowed": "Richieste autorizzate",
   "hosting_tab_STATISTICS_type_denied": "Richieste rifiutate",
   "hosting_tab_SSL": "Certificati SSL",
-  "hosting_tab_FTP_configuration_explorer_info": "L'accesso tramite il client FTP web (Net2FTP) non è più disponibile. Utilizza un client FTP come <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  e <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  per accedere al tuo hosting."
+  "hosting_tab_FTP_configuration_explorer_info": "L'accesso tramite il client FTP web (Net2FTP) non è più disponibile. Utilizza un client FTP come <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> e <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> per connetterti al tuo hosting."
 }

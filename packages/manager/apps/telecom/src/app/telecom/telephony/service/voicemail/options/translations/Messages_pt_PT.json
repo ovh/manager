@@ -30,5 +30,6 @@
   "telephony_line_answer_voicemail_options_mail_limit": "Vous pouvez notifier un maximum de 5 adresses e-mail.",
   "telephony_line_answer_voicemail_options_mail_type_attachment": "Mensagem anexada",
   "telephony_line_answer_voicemail_options_mail_type_simple": "Notificação apenas",
-  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transcrição em apego (Beta, gerada pela Inteligência Artificial.)"
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transcrição em apego (Beta, gerada pela Inteligência Artificial.)",
+  "telephony_line_answer_voicemail_options_mail_type_attachment+transcript": "Transcrição e mensagem anexada (Beta, gerada pela Inteligência Artificial.)"
 }

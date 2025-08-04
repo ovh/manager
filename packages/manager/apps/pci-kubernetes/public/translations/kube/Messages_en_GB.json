@@ -82,5 +82,5 @@
   "pci_project_flavors_zone_3az": "3-AZ",
   "pci_project_flavors_zone_3az_tooltip": "A 3-AZ region comprises three availability zones situated a few miles apart within the same city. It offers maximum resilience while maintaining extremely low latency between availability zones.",
   "pci_project_flavors_zone_globalregions_tooltip": "A 1-AZ (availability zone) region groups one or more datacentres located on the same site.",
-  "kube_service_cluster_plan_description": "The service level associated with this MKS cluster."
+  "kube_service_cluster_plan_description": "The service level for this MKS cluster."
 }
