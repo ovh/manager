@@ -78,7 +78,6 @@ export default class {
   checkMessages(vps) {
     this.isExpired(vps);
     this.displayWarningForRescueMode(this.isInRescueMode);
-    this.checkIsLockedStatus(vps);
   }
 
   isExpired(vps) {
@@ -117,18 +116,15 @@ export default class {
     }
   }
 
-  checkIfStopNotification(message, isArray, vps) {
-    const item = vps.name;
-    return this.VpsNotificationService.checkIfStopNotification(
-      STOP_NOTIFICATION_USER_PREF[message],
-      isArray,
-      item,
-    )
-      .then((showNotification) => {
-        this.stopNotification[message] = showNotification;
-      })
-      .catch(() => {
-        this.stopNotification[message] = false;
-      });
+  stopNotificationIpV6() {
+    this.stopNotification.ipV6 = true;
+    this.VpsNotificationIpv6.stopNotification(
+      STOP_NOTIFICATION_USER_PREF.ipV6,
+      this.vps.name,
+    ).catch(() =>
+      this.CucCloudMessage.error(
+        this.$translate.instant('vps_stop_bother_error'),
+      ),
+    );
   }
 }
