@@ -9,6 +9,7 @@ export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
     'installation',
     'dashboard/installation',
   ]);
+  const listingHref = useHref(urls.listing);
   const wizardHref = useHref(urls.installationWizard);
 
   const { stepId } = useParams();
@@ -17,6 +18,7 @@ export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
     {
       id: subRoutes.listing,
       label: t('listing:sap_hub_history_list'),
+      href: listingHref,
     },
     {
       id: subRoutes.report,
