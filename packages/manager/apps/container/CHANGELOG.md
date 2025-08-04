@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.143.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.1...@ovh-ux/manager-container-app@0.143.0) (2025-08-04)
+
+
+### Features
+
+* **container:** add new livechat interactions ([a7e69b6](https://github.com/ovh/manager/commit/a7e69b6f5729968f03d8f6050dc86341c5372edd)), closes [#MANAGER-18948](https://github.com/ovh/manager/issues/MANAGER-18948)
+
+
+
+
+
 ## [0.142.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.0...@ovh-ux/manager-container-app@0.142.1) (2025-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
