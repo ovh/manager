@@ -32,6 +32,7 @@ const types = [
 
 const MIN_CHAR_LENGTH = 2;
 const MAX_CHAR_LENGTH = 100;
+const MAX_HEADER_LENGTH = 72;
 
 // Common validation functions
 const validators = {
@@ -193,6 +194,14 @@ function collectCliAnswers(context) {
   };
 }
 
+function getHeaderLength(type, scope) {
+  return `${type}(${scope}): `.length;
+}
+
+function ansiGray(str) {
+  return `\x1b[90m${str}\x1b[0m`;
+}
+
 function buildQuestionsList(context) {
   const baseQuestions = [
     {
@@ -213,6 +222,12 @@ function buildQuestionsList(context) {
       name: 'title',
       message: 'Title of commit:',
       validate: validators.title,
+      transformer: (input, answers, flags) => {
+        const headerLength = getHeaderLength(answers.type, answers.scope);
+        const remaining = MAX_HEADER_LENGTH - headerLength - input.length;
+        const prefix = ansiGray(`(characters left: ${remaining}) `);
+        return flags.isFinal ? input : prefix + input;
+      },
     },
     {
       type: 'input',
