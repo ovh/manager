@@ -12,5 +12,5 @@
   "pci_projects_project_public_gateway_go_to_private_networks": "Visualizza la tua rete privata",
   "pci_projects_project_public_gateway_delete": "Elimina",
   "pci_projects_project_public_gateway_no_data": "Nessun dato disponibile",
-  "pci_projects_project_public_gateways_intro": "Il servizio Gateway offre connettività alle istanze private, permettendo un accesso sicuro alle reti esterne o l'esposizione dell'applicazione ad un accesso esterno."
+  "pci_projects_project_public_gateways_intro": "Il servizio Gateway offre connettività alle istanze private, permettendo un accesso sicuro alle reti esterne o l’esposizione delle applicazioni a un accesso esterno."
 }

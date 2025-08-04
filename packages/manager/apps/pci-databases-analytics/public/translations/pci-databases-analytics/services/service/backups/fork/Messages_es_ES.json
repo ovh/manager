@@ -39,7 +39,7 @@
   "orderSectionTitleService": "Servicio",
   "orderSectionDescriptionService": "Seleccione el tipo de servicio de base de datos que desea crear y la versión.",
   "orderSectionTitleSource": "Origen",
-  "orderSectionTitleRegion": "Centro de datos",
+  "orderSectionTitleRegion": "Datacenter",
   "orderSectionTitlePlan": "Plan",
   "orderSectionTitleFlavor": "Instancia",
   "orderSectionTitleStorage": "Almacenamiento",

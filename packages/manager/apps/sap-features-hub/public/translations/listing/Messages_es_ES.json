@@ -1,11 +1,11 @@
 {
-  "sap_hub_history_title": "Consulte la lista de preinstalaciones SAP realizadas o en curso.",
+  "sap_hub_history_title": "Consulte la lista de preinstalaciones SAP realizadas o en proceso.",
   "sap_hub_history_list": "Lista de preinstalaciones SAP",
   "sap_hub_history_installation_date": "Fecha",
   "sap_hub_history_application_version": "Versión de la aplicación",
   "sap_hub_history_application_type": "Tipo de aplicación",
-  "sap_hub_history_deployment_type": "Tipo de implementación",
+  "sap_hub_history_deployment_type": "Tipo de despliegue",
   "sap_hub_history_installation_status": "Estado",
-  "sap_hub_history_installation_RETRY": "Reintento",
-  "sap_hub_history_installation_see_detail": "Ver en detalle"
+  "sap_hub_history_installation_RETRY": "Nuevo intento",
+  "sap_hub_history_installation_see_detail": "Ver el detalle"
 }

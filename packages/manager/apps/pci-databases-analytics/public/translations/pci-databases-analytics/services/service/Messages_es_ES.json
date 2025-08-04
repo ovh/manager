@@ -31,7 +31,7 @@
   "deleteServiceIntegrationsDescription": "Si elimina este servicio, también se eliminarán las siguientes asociaciones de integración:",
   "deleteServiceConfirmation": "Introduzca «TERMINATE» para confirmar esta acción.",
   "IndexPatternsTab": "Índices de patterns",
-  "TopicsTab": "Temas",
+  "TopicsTab": "Topics",
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Conectores",
   "ReplicationsTab": "Flujo de replicación"
