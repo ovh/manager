@@ -1,7 +1,7 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import { iamResourcesListMock } from '@/mocks/iam-resource/iam-resource.mock';
@@ -13,13 +13,7 @@ import {
 import TagDetailTopbar, {
   TagDetailTopbarProps,
 } from './TagDetailTopbar.component';
-
-const updateResourceMock = vi.hoisted(() => vi.fn());
-vi.mock('@/data/hooks/useIamResources', () => ({
-  useUpdateIamResources: () => ({
-    mutate: updateResourceMock,
-  }),
-}));
+import { urls } from '@/routes/routes.constant';
 
 vi.mock(
   '@/components/resourcesDatagrid/ResourcesDatagridContext',
@@ -28,6 +22,12 @@ vi.mock(
     useResourcesDatagridContext: vi.fn(),
   }),
 );
+
+const navigateMock = vi.hoisted(() => vi.fn());
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...importOriginal(),
+  useNavigate: () => navigateMock,
+}));
 
 const queryClient = new QueryClient();
 
@@ -66,9 +66,10 @@ describe('TagDetailTopbar Component', async () => {
     async ({ selectedResourcesList, assignTag, unassignTag }) => {
       const { container } = renderComponent({
         selectedResourcesList,
+        tag: 'env:prod',
       });
 
-      await getButtonByLabel({
+      const assignTagButton = await getButtonByLabel({
         container,
         label: 'assignTag',
         disabled: assignTag === 'disabled',
@@ -80,7 +81,16 @@ describe('TagDetailTopbar Component', async () => {
         disabled: unassignTag === 'disabled',
       });
 
-      // TODO to finish while assign / unassign action is done
+      if (assignTag === 'enabled') {
+        fireEvent.click(assignTagButton);
+        waitFor(() => {
+          expect(navigateMock).toHaveBeenCalledWith(
+            urls.tagDetailAssign.replace(':tag', 'env:prod'),
+          );
+        });
+      }
+
+      // TODO to finish while unassign action is done
     },
   );
 });

@@ -27,7 +27,7 @@ export const useIamResourceList = ({
   filterWithTags?: string[];
 }) => {
   const route = `/iam/resource${
-    filterWithTags ? formatTagsForApiFilterParam(filterWithTags) : ''
+    filterWithTags?.length ? formatTagsForApiFilterParam(filterWithTags) : ''
   }`;
   return useResourcesIcebergV2<IamResource>({
     route,
@@ -60,7 +60,13 @@ export type UseUpdateIamResourceResponse = {
   }>;
 };
 
-export const useUpdateIamResources = () => {
+export type UseUpdateIamResourcesProps = {
+  invalidateQueryKey?: string[];
+};
+
+export const useUpdateIamResources = ({
+  invalidateQueryKey,
+}: UseUpdateIamResourcesProps) => {
   const { addWarning, addSuccess, addError } = useNotifications();
   const { t } = useTranslation('tag-manager');
   const queryClient = useQueryClient();
@@ -102,7 +108,7 @@ export const useUpdateIamResources = () => {
     },
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
-        queryKey: getIamResourceListQueryKey(),
+        queryKey: invalidateQueryKey || getIamResourceListQueryKey(),
       });
 
       if (success.length > 0 && error.length > 0) {

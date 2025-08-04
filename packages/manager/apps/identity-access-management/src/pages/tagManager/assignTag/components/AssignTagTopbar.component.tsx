@@ -5,19 +5,29 @@ import {
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { formatTagsForApi } from '@/utils/formatTagsForApi';
 import { useUpdateIamResources } from '@/data/hooks/useIamResources';
 import { useResourcesDatagridContext } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 
 export type AssignTagTopbarProps = {
   tags: string[];
+  invalidateQueryKey?: string[];
+  onSuccessUrl?: string;
 };
 
 /** Should be use inside ResourceDatagridContext */
-export default function AssignTagTopbar({ tags }: AssignTagTopbarProps) {
+export default function AssignTagTopbar({
+  tags,
+  invalidateQueryKey,
+  onSuccessUrl,
+}: AssignTagTopbarProps) {
   const { t } = useTranslation('tag-manager');
   const { selectedResourcesList } = useResourcesDatagridContext();
-  const { mutate: updateResource } = useUpdateIamResources();
+  const navigate = useNavigate();
+  const { mutate: updateResource, isSuccess } = useUpdateIamResources({
+    invalidateQueryKey,
+  });
 
   const onClick = () => {
     updateResource({
@@ -25,6 +35,12 @@ export default function AssignTagTopbar({ tags }: AssignTagTopbarProps) {
       tags: formatTagsForApi(tags),
     });
   };
+
+  useEffect(() => {
+    if (isSuccess && onSuccessUrl) {
+      navigate(onSuccessUrl);
+    }
+  }, [isSuccess]);
 
   return (
     <ManagerButton

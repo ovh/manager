@@ -1,8 +1,9 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import exp from 'constants';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import AssignTagTopbar, {
   AssignTagTopbarProps,
@@ -14,11 +15,9 @@ import {
   useResourcesDatagridContext,
 } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 
-const updateResourceMock = vi.hoisted(() => vi.fn());
+const useUpdateIamResourcesMock = vi.hoisted(() => vi.fn());
 vi.mock('@/data/hooks/useIamResources', () => ({
-  useUpdateIamResources: () => ({
-    mutate: updateResourceMock,
-  }),
+  useUpdateIamResources: useUpdateIamResourcesMock,
 }));
 
 vi.mock(
@@ -28,6 +27,12 @@ vi.mock(
     useResourcesDatagridContext: vi.fn(),
   }),
 );
+
+const navigateMock = vi.hoisted(() => vi.fn());
+vi.mock('react-router-dom', async (importOriginal) => ({
+  ...importOriginal(),
+  useNavigate: () => navigateMock,
+}));
 
 const queryClient = new QueryClient();
 
@@ -59,6 +64,12 @@ describe('AssignTagTopbar Component', async () => {
   ])(
     'Should call onclick callback with formatted tag object with selected resources length : $selectedResourcesList.length',
     async ({ selectedResourcesList, state }) => {
+      const updateResourceMock = vi.fn();
+      useUpdateIamResourcesMock.mockImplementation(() => ({
+        mutate: updateResourceMock,
+        isSuccess: false,
+      }));
+
       const { container } = renderComponent({
         tags: ['tag1:1', 'tag2:2', 'tag3:3'],
         selectedResourcesList,
@@ -82,4 +93,34 @@ describe('AssignTagTopbar Component', async () => {
       });
     },
   );
+
+  it('Should redirect to given url', () => {
+    useUpdateIamResourcesMock.mockImplementation(() => ({
+      mutate: vi.fn(),
+      isSuccess: true,
+    }));
+
+    renderComponent({
+      tags: ['tag1:1', 'tag2:2', 'tag3:3'],
+      selectedResourcesList: iamResourcesListMock,
+      onSuccessUrl: 'test',
+    });
+
+    waitFor(() => {
+      expect(navigateMock).toHaveBeenCalledWith('test');
+    });
+  });
+
+  it('Should invalidate given query', () => {
+    const invalidateQueryKey = ['test'];
+    renderComponent({
+      tags: ['tag1:1', 'tag2:2', 'tag3:3'],
+      selectedResourcesList: iamResourcesListMock,
+      invalidateQueryKey,
+    });
+
+    expect(useUpdateIamResourcesMock).toHaveBeenCalledWith({
+      invalidateQueryKey,
+    });
+  });
 });

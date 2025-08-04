@@ -11,8 +11,7 @@ export default function TagsListActions(item: IamTagListItem) {
   const navigate = useNavigate();
 
   const assignTag = () => {
-    // eslint-disable-next-line no-console
-    console.log('TODO: Assign tag');
+    navigate(urls.tagDetailAssign.replace(':tag', item.name));
   };
 
   const manageResources = () => {

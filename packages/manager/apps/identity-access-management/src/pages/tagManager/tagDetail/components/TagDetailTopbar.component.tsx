@@ -1,7 +1,9 @@
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useResourcesDatagridContext } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
+import { urls } from '@/routes/routes.constant';
 
 export type TagDetailTopbarProps = {
   tag?: string;
@@ -10,11 +12,11 @@ export type TagDetailTopbarProps = {
 /** Should be use inside ResourceDatagridContext */
 export default function TagDetailTopbar({ tag }: TagDetailTopbarProps) {
   const { t } = useTranslation('tag-manager');
+  const navigate = useNavigate();
   const { selectedResourcesList } = useResourcesDatagridContext();
 
   const onClickAssign = () => {
-    // eslint-disable-next-line no-console
-    console.log('TODO: Assign', tag);
+    navigate(urls.tagDetailAssign.replace(':tag', tag));
   };
 
   const onClickUnassign = () => {
