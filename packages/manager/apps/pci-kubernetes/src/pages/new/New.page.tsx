@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -8,7 +8,6 @@ import {
   TProject,
   isDiscoveryProject,
   useProject,
-  useParam as useSafeParams,
 } from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
@@ -62,7 +61,7 @@ export default function NewPage() {
   const is3AZAvailable = use3AZPlanAvailable();
   const has3AZ = contains3AZ && is3AZAvailable;
 
-  const { projectId } = useSafeParams('projectId');
+  const { projectId } = useParams();
   const { data: project } = useProject();
   const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
@@ -76,7 +75,7 @@ export default function NewPage() {
     createCluster,
     isPending: isCreationPending,
   } = useCreateKubernetesCluster({
-    projectId,
+    projectId: project?.project_id ?? '',
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -200,7 +199,7 @@ export default function NewPage() {
       )}
 
       <div className="mb-5 sticky top-0 z-50">
-        {project && <PciDiscoveryBanner project={project} />}
+        <PciDiscoveryBanner project={project} />
       </div>
 
       <div className="mt-8">

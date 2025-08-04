@@ -15,13 +15,13 @@ import {
 
 type DeploymentZoneProps = {
   onSelect: (zone: string) => void;
-  selectedAvailabilityZone: string;
+  selectedAvailibilityZone: string;
   availabilityZones: string[];
 };
 
 const DeploymentZone = ({
   onSelect,
-  selectedAvailabilityZone,
+  selectedAvailibilityZone,
   availabilityZones,
 }: DeploymentZoneProps) => {
   const { t } = useTranslation('node-pool');
@@ -52,7 +52,7 @@ const DeploymentZone = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             className={clsx(
               tileClass,
-              zone === selectedAvailabilityZone ? selectedTileClass : null,
+              zone === selectedAvailibilityZone ? selectedTileClass : null,
               'selectedTileClass',
             )}
             onClick={() => onSelect(zone)}

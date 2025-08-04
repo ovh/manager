@@ -34,7 +34,7 @@ const uncheckedClass =
 const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 
 export type TBillingStepProps = {
-  price: number | null;
+  price: number;
   monthlyPrice?: number;
   monthlyBilling: {
     isComingSoon: boolean;
@@ -108,8 +108,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
             size={ODS_TEXT_SIZE._400}
           >
             {t('add:kube_add_billing_type_description')}{' '}
-            {props.monthlyPrice &&
-              props.monthlyPrice > 0 &&
+            {props.monthlyPrice > 0 &&
               t('add:kubernetes_add_billing_type_description_monthly')}
           </OsdsText>
         )}
@@ -146,7 +145,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                   'pci_project_flavors_billing_price_hourly_price_label',
                 )}
               </strong>
-              {` ${getFormattedHourlyCatalogPrice(Number(props.price))}`}
+              {` ${getFormattedHourlyCatalogPrice(props.price)}`}
             </OsdsText>
           </div>
         </OsdsTile>

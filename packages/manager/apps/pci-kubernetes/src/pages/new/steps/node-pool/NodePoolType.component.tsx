@@ -8,13 +8,13 @@ import {
 } from '@ovhcloud/ods-components';
 import {
   FlavorSelector,
-  TComputedKubeFlavor,
+  KubeFlavor,
 } from '@/components/flavor-selector/FlavorSelector.component';
 
 export interface NodeTypeStepProps {
   projectId: string;
   region: string;
-  onSelect: Dispatch<SetStateAction<TComputedKubeFlavor | null>>;
+  onSelect: Dispatch<SetStateAction<KubeFlavor | null>>;
 }
 
 type FlavorSelectorProps = Parameters<typeof FlavorSelector>[0];
