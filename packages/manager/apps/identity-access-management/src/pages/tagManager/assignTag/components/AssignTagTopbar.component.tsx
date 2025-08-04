@@ -19,15 +19,12 @@ export type AssignTagTopbarProps = {
 /** Should be use inside ResourceDatagridContext */
 export default function AssignTagTopbar({
   tags,
-  invalidateQueryKey,
   onSuccessUrl,
 }: AssignTagTopbarProps) {
   const { t } = useTranslation('tag-manager');
   const { selectedResourcesList } = useResourcesDatagridContext();
   const navigate = useNavigate();
-  const { mutate: updateResource, isSuccess } = useUpdateIamResources({
-    invalidateQueryKey,
-  });
+  const { mutate: updateResource, isSuccess } = useUpdateIamResources();
 
   const onClick = () => {
     updateResource({

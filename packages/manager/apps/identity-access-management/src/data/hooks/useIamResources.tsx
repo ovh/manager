@@ -11,38 +11,49 @@ import {
   putIamResource,
 } from '../api/iam-resources';
 import { NotificationList } from '@/components/notificationList/NotificationList.component';
-import { formatTagsForApiFilterParam } from '@/utils/formatTagsForApi';
+import { ResourcesDatagridFilter } from '@/components/resourcesDatagridTopbar/ResourcesDatagridTopbar.component';
+import { formatFiltersForApi } from '@/utils/formatFiltersForApi';
 
-export const getIamResourceListQueryKey = (filterWithTags?: string[]) => [
-  `get/iam/resource${
-    filterWithTags ? formatTagsForApiFilterParam(filterWithTags) : ''
-  }`,
-];
+export type GetIamResourceListQueryKeyParams = {
+  filters?: ResourcesDatagridFilter[];
+};
+
+export const getIamResourceListQueryKey = ({
+  filters,
+}: GetIamResourceListQueryKeyParams) => {
+  const queryKey = ['get/iam/resource'];
+
+  if (filters) {
+    return queryKey.concat(filters.map((filter) => filter.id));
+  }
+
+  return queryKey;
+};
 
 export const useIamResourceList = ({
   pageSize,
-  filterWithTags,
+  filters,
 }: {
   pageSize?: number;
-  filterWithTags?: string[];
+  filters?: ResourcesDatagridFilter[];
 }) => {
-  const route = `/iam/resource${
-    filterWithTags?.length ? formatTagsForApiFilterParam(filterWithTags) : ''
-  }`;
+  const queryParams = formatFiltersForApi(filters);
+  const route = `/iam/resource${queryParams !== '' ? `?${queryParams}` : ''}`;
   return useResourcesIcebergV2<IamResource>({
     route,
-    queryKey: getIamResourceListQueryKey(filterWithTags),
+    queryKey: getIamResourceListQueryKey({ filters }),
     pageSize,
   });
 };
 
 export const useIamResourceTypeList = () => {
+  const { t } = useTranslation('resource-type');
   return useQuery({
     queryKey: getIamResourcetypeQueryKey,
     queryFn: getIamResourceType,
     select: ({ data }) => {
       return data.map((type) => ({
-        label: type,
+        label: t(`iam_resource_type_${type}`),
         value: type,
       }));
     },
@@ -60,13 +71,7 @@ export type UseUpdateIamResourceResponse = {
   }>;
 };
 
-export type UseUpdateIamResourcesProps = {
-  invalidateQueryKey?: string[];
-};
-
-export const useUpdateIamResources = ({
-  invalidateQueryKey,
-}: UseUpdateIamResourcesProps) => {
+export const useUpdateIamResources = () => {
   const { addWarning, addSuccess, addError } = useNotifications();
   const { t } = useTranslation('tag-manager');
   const queryClient = useQueryClient();
@@ -108,7 +113,7 @@ export const useUpdateIamResources = ({
     },
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
-        queryKey: invalidateQueryKey || getIamResourceListQueryKey(),
+        queryKey: getIamResourceListQueryKey({}),
       });
 
       if (success.length > 0 && error.length > 0) {
