@@ -9,6 +9,6 @@
   "hostings_onboarding_guide1_description": "Saiba como começar a usar e a gerir um alojamento web",
   "hostings_onboarding_guide2_title": "Partilhar um alojamento entre vários sites",
   "hostings_onboarding_guide2_description": "Saiba como alojar diferentes websites no seu alojamento web",
-  "hostings_onboarding_guide3_title": "Ativar o alojamento gratuito Start 10M",
-  "hostings_onboarding_guide3_description": "Saiba como ativar o alojamento Start 10M"
+  "hostings_onboarding_guide3_title": "Ativar o alojamento gratuito Start {{value}}",
+  "hostings_onboarding_guide3_description": "Saiba como ativar o seu alojamento Start {{value}}"
 }

@@ -9,6 +9,6 @@
   "hostings_onboarding_guide1_description": "Hier erfahren Sie, wie Sie Ihr Webhosting verwenden",
   "hostings_onboarding_guide2_title": "Mehrere Websites auf einem Webhosting einrichten",
   "hostings_onboarding_guide2_description": "Hier erfahren Sie, wie Sie verschiedene Websites auf Ihrem Webhosting hosten",
-  "hostings_onboarding_guide3_title": "Kostenloses Start 10M Hosting aktivieren",
-  "hostings_onboarding_guide3_description": "So aktivieren Sie Ihr Start 10M Hosting"
+  "hostings_onboarding_guide3_title": "Kostenloses Start {{value}} Hosting aktivieren",
+  "hostings_onboarding_guide3_description": "So aktivieren Sie Ihr Start {{value}} Hosting"
 }
