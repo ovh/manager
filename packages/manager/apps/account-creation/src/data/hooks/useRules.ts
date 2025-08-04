@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRules, RulesParam } from '@/data/api/rules';
-import { Rule } from '@/types/rule';
+import { Rule, RuleField } from '@/types/rule';
 
 /**
  * Query key generation in the format of ['key1=value1', 'key2=value2'] since some
@@ -11,13 +11,16 @@ import { Rule } from '@/types/rule';
 const generateQueryKey = (params: RulesParam) =>
   Object.entries(params).map(([key, value]) => `${key}=${value}`);
 
-export const useRules = (params: RulesParam, fields?: string[]) =>
+export const useRules = <T extends RuleField>(
+  params: RulesParam,
+  fields?: T[],
+) =>
   useQuery({
     queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
     queryFn: () => getRules(params),
     select: fields
       ? (data) => {
-          const selectedData = {} as Record<string, Rule>;
+          const selectedData = {} as { [K in T]: Rule };
           fields.forEach((field) => {
             if (field in data) {
               selectedData[field] = data[field];
