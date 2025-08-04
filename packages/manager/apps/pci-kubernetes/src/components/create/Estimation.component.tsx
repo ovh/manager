@@ -3,7 +3,10 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  convertHourlyPriceToMonthly,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_COLOR_INTENT,
@@ -12,8 +15,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { NodePoolPrice } from '@/api/data/kubernetes';
 import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
+import { TClusterPlanEnum } from '@/types';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { TClusterCreationForm } from '@/pages/new/useCusterCreationStepper';
+import { TClusterCreationForm } from '@/pages/new/hooks/useCusterCreationStepper';
+import usePlanData from '@/pages/new/hooks/usePlanData';
 
 type EstimationProps = {
   nodePools?: NodePoolPrice[];
@@ -28,6 +33,14 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
   });
   const showSavingPlan = useSavingsPlanAvailable();
   const has3AZ = use3AZPlanAvailable();
+  const { plans } = usePlanData();
+
+  const getPrice = (actualPlan: TClusterPlanEnum): number => {
+    if (actualPlan === TClusterPlanEnum.FREE) {
+      return 0;
+    }
+    return plans.find((pl) => pl.value === plan)?.price ?? 0;
+  };
 
   return (
     <div className="flex flex-col gap-6 mb-8">
@@ -57,8 +70,10 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
         >
           <strong> {t('kube_common_cluster_estimation_price')}</strong>{' '}
           {t(
-            plan === 'standard'
-              ? 'kube_common_estimation_price'
+            plan === TClusterPlanEnum.STANDARD
+              ? getFormattedMonthlyCatalogPrice(
+                  convertHourlyPriceToMonthly(getPrice(plan)),
+                )
               : 'kube_common_estimation_price_free',
           )}
         </OsdsText>
