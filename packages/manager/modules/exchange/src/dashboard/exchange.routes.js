@@ -2,6 +2,7 @@ import set from 'lodash/set';
 
 import template from './exchange.html';
 import orderTemplate from '../order/order.html';
+import { FEATURES } from '../exchange.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   const getNavigationInformations = (
@@ -55,6 +56,12 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('exchange.dashboard.shared', $transition$.params()),
       taskLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('exchange.dashboard.task', $transition$.params()),
+      logsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('exchange.dashboard.logs', $transition$.params()),
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability(Object.values(FEATURES)),
+      isLogsAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(FEATURES.LOGS),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (productId) => productId,
