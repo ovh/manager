@@ -1,10 +1,12 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import Estimation from './Estimation.component';
 import { wrapper } from '@/wrapperRenders';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import { TClusterPlanEnum } from '@/types';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -16,12 +18,37 @@ vi.mock('@/hooks/use3azPlanAvaible', () => ({
   default: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  ...vi.importActual('@ovh-ux/manager-pci-common'),
+  useCatalog: vi.fn(),
+}));
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
+  ...vi.importActual('@ovh-ux/manager-react-components'),
   useCatalogPrice: vi.fn(),
 }));
 
 describe('Estimation Component', () => {
   beforeEach(() => {
+    vi.mocked(useCatalog).mockReturnValue({
+      data: {
+        addons: [
+          {
+            planCode: 'mks.free.hour.consumption',
+            pricings: [{ price: 0 }],
+          },
+          {
+            planCode: 'mks.standard.hour.consumption.3az',
+            pricings: [{ price: 123 }],
+          },
+          {
+            planCode: 'mks.standard.hour.consumption.4az',
+            pricings: [{ price: 123 }],
+          },
+        ],
+      },
+      isPending: false,
+    } as ReturnType<typeof useCatalog>);
     vi.clearAllMocks();
   });
 
@@ -30,7 +57,9 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
-    const { getByText } = render(<Estimation plan="free" />, { wrapper });
+    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
+      wrapper,
+    });
 
     expect(
       getByText('kube_common_node_pool_estimated_cost'),
@@ -42,7 +71,9 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
     });
 
-    const { getByText } = render(<Estimation plan="free" />, { wrapper });
+    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
+      wrapper,
+    });
 
     expect(
       getByText('kube_common_node_pool_estimation_text'),
@@ -71,7 +102,7 @@ describe('Estimation Component', () => {
     });
 
     const { getByText } = render(
-      <Estimation nodePools={mockNodePools} plan="free" />,
+      <Estimation nodePools={mockNodePools} plan={TClusterPlanEnum.FREE} />,
       {
         wrapper,
       },
@@ -93,7 +124,9 @@ describe('Estimation Component', () => {
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
     });
 
-    const { getByText } = render(<Estimation plan="free" />, { wrapper });
+    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
+      wrapper,
+    });
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(0);
     expect(
