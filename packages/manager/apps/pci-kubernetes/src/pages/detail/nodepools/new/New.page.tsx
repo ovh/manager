@@ -23,11 +23,8 @@ import {
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import {
-  useCatalog,
-  useParam as useSafeParams,
-} from '@ovh-ux/manager-pci-common';
-import { useNavigate } from 'react-router-dom';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
@@ -45,9 +42,6 @@ import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
 import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
 import { isMultiDeploymentZones } from '@/helpers';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import useMergedFlavorById, {
-  getPriceByDesiredScale,
-} from '@/hooks/useMergedFlavorById';
 
 export default function NewPage(): JSX.Element {
   const { t } = useTranslation([
@@ -63,7 +57,7 @@ export default function NewPage(): JSX.Element {
 
   const store = useNewPoolStore();
 
-  const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
+  const { projectId, kubeId: clusterId } = useParams();
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
   const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(
     projectId,
@@ -80,7 +74,7 @@ export default function NewPage(): JSX.Element {
 
   const { data: regionInformations } = useRegionInformations(
     projectId,
-    cluster?.region ?? null,
+    cluster?.region,
   );
 
   const [billingState, setBillingState] = useState<
@@ -119,20 +113,6 @@ export default function NewPage(): JSX.Element {
     warn: false,
   });
 
-  const price = useMergedFlavorById(
-    projectId,
-    cluster?.region,
-    store.flavor?.id,
-    {
-      select: (flavor) =>
-        getPriceByDesiredScale(
-          flavor?.pricingsHourly?.price,
-          flavor?.pricingsMonthly?.price,
-          store.autoScaling?.quantity.desired,
-        ),
-    },
-  );
-
   // reset store on mount
   useEffect(() => {
     store.reset();
@@ -144,7 +124,7 @@ export default function NewPage(): JSX.Element {
       const monthlyBillingState = (() => {
         if (store.flavor) {
           const addon = catalog?.addons.find(
-            (add) => add.planCode === store.flavor?.planCodes?.hourly,
+            (add) => add.planCode === store.flavor?.planCodes.hourly,
           );
           return addon?.blobs?.tags?.includes('coming_soon')
             ? 'coming_soon'
@@ -153,15 +133,27 @@ export default function NewPage(): JSX.Element {
         return 'available';
       })();
 
-      const warnForAutoscaleBilling = Boolean(
-        store.isMonthlyBilling && store.autoScaling?.isAutoscale,
-      );
+      const warn = store.isMonthlyBilling && store.autoScaling.isAutoscale;
+
+      const isAntiAffinityEnabled =
+        !(
+          !store.autoScaling?.isAutoscale &&
+          store.autoScaling?.quantity.desired > ANTI_AFFINITY_MAX_NODES
+        ) &&
+        !(
+          store.autoScaling?.isAutoscale &&
+          store.autoScaling?.quantity.max > ANTI_AFFINITY_MAX_NODES
+        );
 
       setBillingState((prev) => ({
         ...prev,
-        warn: warnForAutoscaleBilling,
-        price: store.flavor?.pricingsHourly?.price ?? 0,
-        monthlyPrice: store.flavor?.pricingsMonthly?.price ?? 0,
+        warn,
+        price: store.flavor?.pricingsHourly?.price || 0,
+        monthlyPrice: store.flavor?.pricingsMonthly?.price,
+        antiAffinity: {
+          ...prev.antiAffinity,
+          isEnabled: isAntiAffinityEnabled,
+        },
         monthlyBilling: {
           ...prev.monthlyBilling,
           isComingSoon: monthlyBillingState === 'coming_soon',
@@ -185,22 +177,20 @@ export default function NewPage(): JSX.Element {
 
     const param: TCreateNodePoolParam = {
       flavorName: store.flavor?.name || '',
-      ...(store.selectedAvailabilityZone && {
-        availabilityZones: [store.selectedAvailabilityZone],
+      ...(store.selectedAvailibilityZone && {
+        availabilityZones: [store.selectedAvailibilityZone],
       }),
       name: store.name.value,
       antiAffinity: store.antiAffinity,
       monthlyBilled: store.isMonthlyBilling,
-      autoscale: Boolean(store.autoScaling?.isAutoscale),
-      minNodes: store.autoScaling?.quantity.min ?? 0,
-      desiredNodes: store.autoScaling?.quantity.desired ?? 0,
+      autoscale: store.autoScaling.isAutoscale,
+      minNodes: store.autoScaling.quantity.min,
+      desiredNodes: store.autoScaling.quantity.desired,
       maxNodes: store.antiAffinity
-        ? Math.min(
-            ANTI_AFFINITY_MAX_NODES,
-            store.autoScaling?.quantity.max ?? 0,
-          )
-        : store.autoScaling?.quantity.max ?? 0,
+        ? Math.min(ANTI_AFFINITY_MAX_NODES, store.autoScaling.quantity.max)
+        : store.autoScaling.quantity.max,
     };
+
     createNodePool(projectId, clusterId, param)
       .then(() => {
         addSuccess(
@@ -252,7 +242,7 @@ export default function NewPage(): JSX.Element {
       store.autoScaling.quantity.desired <= ANTI_AFFINITY_MAX_NODES);
 
   const handleValueChange = (e: OdsInputValueChangeEvent) => {
-    if (e.detail.value) store.set.name(e.detail.value);
+    store.set.name(e.detail.value);
   };
 
   return (
@@ -266,23 +256,23 @@ export default function NewPage(): JSX.Element {
         {t('listing:kube_common_create_node_pool')}
       </OsdsText>
 
-      <div ref={store.steps.get(StepsEnum.NAME)?.ref}></div>
+      <div ref={store.steps.get(StepsEnum.NAME).ref}></div>
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
-        title={t('add:kubernetes_add_name_title')}
-        isOpen={!!store.steps.get(StepsEnum.NAME)?.isOpen}
-        isChecked={!!store.steps.get(StepsEnum.NAME)?.isChecked}
-        isLocked={!!store.steps.get(StepsEnum.NAME)?.isLocked}
+        title={t('add:kube_add_node_pool_name_title')}
+        isOpen={store.steps.get(StepsEnum.NAME).isOpen}
+        isChecked={store.steps.get(StepsEnum.NAME).isChecked}
+        isLocked={store.steps.get(StepsEnum.NAME).isLocked}
         next={{
-          isDisabled: !store.name.isTouched || !!store.name.hasError,
-          action: () => {
-            if (store.name.isTouched && !store.name.hasError) {
-              store.check(StepsEnum.NAME);
-              store.lock(StepsEnum.NAME);
-              store.open(StepsEnum.TYPE);
-            }
-          },
+          action:
+            store.name.isTouched && !store.name.hasError
+              ? () => {
+                  store.check(StepsEnum.NAME);
+                  store.lock(StepsEnum.NAME);
+                  store.open(StepsEnum.TYPE);
+                }
+              : undefined,
           label: t('common_stepper_next_button_label'),
         }}
         edit={{
@@ -314,41 +304,35 @@ export default function NewPage(): JSX.Element {
           >
             {t('add:kubernetes_add_name')}
           </OsdsText>
-          <div className="w-fit">
-            <OsdsInput
-              data-testid="name-input"
-              value={store.name.value}
-              inline
-              color={
-                store.name.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.primary
-              }
-              onOdsValueChange={handleValueChange}
-              type={ODS_INPUT_TYPE.text}
-              error={store.name.hasError}
-              className="border"
-            />
-          </div>
+          <OsdsInput
+            data-testid="name-input"
+            value={store.name.value}
+            inline
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onOdsValueChange={handleValueChange}
+            type={ODS_INPUT_TYPE.text}
+            error={store.name.hasError}
+            placeholder={t('add:kubernetes_add_nodepool_name_placeholder')}
+            className="border"
+          />
         </OsdsFormField>
       </StepComponent>
-      <div ref={store.steps.get(StepsEnum.TYPE)?.ref}></div>
+      <div ref={store.steps.get(StepsEnum.TYPE).ref}></div>
       <StepComponent
         id={StepsEnum.TYPE}
         title={t('add-form:kube_common_node_pool_model_type_selector')}
-        isOpen={Boolean(store.steps.get(StepsEnum.TYPE)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.TYPE)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.TYPE)?.isLocked)}
+        isOpen={store.steps.get(StepsEnum.TYPE).isOpen}
+        isChecked={store.steps.get(StepsEnum.TYPE).isChecked}
+        isLocked={store.steps.get(StepsEnum.TYPE).isLocked}
         order={2}
         next={{
-          isDisabled: !store.flavor,
-          action: () => {
-            if (store.flavor) {
-              store.check(StepsEnum.TYPE);
-              store.lock(StepsEnum.TYPE);
-              store.open(StepsEnum.SIZE);
-            }
-          },
+          action: store.flavor
+            ? () => {
+                store.check(StepsEnum.TYPE);
+                store.lock(StepsEnum.TYPE);
+                store.open(StepsEnum.SIZE);
+              }
+            : undefined,
           label: t('common_stepper_next_button_label'),
         }}
         edit={{
@@ -373,34 +357,34 @@ export default function NewPage(): JSX.Element {
         >
           {t('add-form:kubernetes_add_node_pool_node_type')}
         </OsdsText>
-        <>
-          {!isClusterPending && cluster?.region && (
+        {!isClusterPending && (
+          <>
             <FlavorSelector
               projectId={projectId}
-              region={cluster?.region}
+              region={cluster.region}
               onSelect={(flavor) => {
                 store.set.flavor(flavor);
               }}
             />
-          )}
-        </>
+          </>
+        )}
       </StepComponent>
-      <div ref={store.steps.get(StepsEnum.SIZE)?.ref}></div>
+      <div ref={store.steps.get(StepsEnum.SIZE).ref}></div>
       <StepComponent
         id={StepsEnum.SIZE}
         title={t('node-pool:kube_node_pool')}
-        isOpen={Boolean(store.steps.get(StepsEnum.SIZE)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.SIZE)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.SIZE)?.isLocked)}
+        isOpen={store.steps.get(StepsEnum.SIZE).isOpen}
+        isChecked={store.steps.get(StepsEnum.SIZE).isChecked}
+        isLocked={store.steps.get(StepsEnum.SIZE).isLocked}
         order={3}
         next={{
-          action: () => {
-            if (store.autoScaling) {
-              store.check(StepsEnum.SIZE);
-              store.lock(StepsEnum.SIZE);
-              store.open(StepsEnum.BILLING);
-            }
-          },
+          action: store.autoScaling
+            ? () => {
+                store.check(StepsEnum.SIZE);
+                store.lock(StepsEnum.SIZE);
+                store.open(StepsEnum.BILLING);
+              }
+            : undefined,
           label: t('common_stepper_next_button_label'),
           isDisabled:
             !hasMax5NodesAntiAffinity ||
@@ -412,9 +396,8 @@ export default function NewPage(): JSX.Element {
                 store.autoScaling.quantity.max > NODE_RANGE.MAX ||
                 store.autoScaling.quantity.min >=
                   store.autoScaling.quantity.max)) ||
-            (regionInformations?.type &&
-              isMultiDeploymentZones(regionInformations.type) &&
-              !store.selectedAvailabilityZone),
+            (isMultiDeploymentZones(regionInformations?.type) &&
+              !store.selectedAvailibilityZone),
         }}
         edit={{
           action: () => {
@@ -423,46 +406,40 @@ export default function NewPage(): JSX.Element {
           label: t('common_stepper_modify_this_step'),
         }}
       >
-        {regionInformations?.type &&
-        isMultiDeploymentZones(regionInformations.type) ? (
+        {isMultiDeploymentZones(regionInformations?.type) && (
           <div className="mb-8 flex gap-4">
             <DeploymentZone
-              onSelect={store.set.selectedAvailabilityZone}
+              onSelect={store.set.selectedAvailibilityZone}
               availabilityZones={regionInformations?.availabilityZones}
-              selectedAvailabilityZone={store.selectedAvailabilityZone}
+              selectedAvailibilityZone={store.selectedAvailibilityZone}
             />
           </div>
-        ) : (
-          <div />
         )}
         <NodePoolSize
           isMonthlyBilled={store.isMonthlyBilling}
           onScaleChange={(auto) => store.set.autoScaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
         />
-        <>
-          {regionInformations?.type &&
-            !isMultiDeploymentZones(regionInformations.type) && (
-              <NodePoolAntiAffinity
-                isChecked={billingState.antiAffinity.isChecked}
-                isEnabled={!store.autoScaling?.isAutoscale}
-                onChange={billingState.antiAffinity.onChange}
-              />
-            )}
-        </>
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <NodePoolAntiAffinity
+            isChecked={billingState.antiAffinity.isChecked}
+            isEnabled={!store.autoScaling?.isAutoscale}
+            onChange={billingState.antiAffinity.onChange}
+          />
+        )}
       </StepComponent>
-      <div ref={store.steps.get(StepsEnum.BILLING)?.ref}></div>
+      <div ref={store.steps.get(StepsEnum.BILLING).ref}></div>
       <StepComponent
         id={StepsEnum.BILLING}
         title={t('kube:kube_service_billing')}
-        isOpen={Boolean(store.steps.get(StepsEnum.BILLING)?.isOpen)}
-        isChecked={Boolean(store.steps.get(StepsEnum.BILLING)?.isChecked)}
-        isLocked={Boolean(store.steps.get(StepsEnum.BILLING)?.isLocked)}
+        isOpen={store.steps.get(StepsEnum.BILLING).isOpen}
+        isChecked={store.steps.get(StepsEnum.BILLING).isChecked}
+        isLocked={store.steps.get(StepsEnum.BILLING).isLocked}
         order={4}
       >
         <BillingStep
-          price={price?.hour ?? 0}
-          monthlyPrice={price?.month}
+          price={billingState.price}
+          monthlyPrice={billingState.monthlyPrice}
           monthlyBilling={billingState.monthlyBilling}
           warn={billingState.warn}
         />

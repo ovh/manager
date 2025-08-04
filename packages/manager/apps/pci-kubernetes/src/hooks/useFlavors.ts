@@ -78,7 +78,7 @@ export const useKubeFlavors = (projectId: string, region: string) =>
   useQuery({
     queryKey: getKubeFlavorsQueryKey(projectId, region),
     queryFn: () => getKubeFlavors(projectId, region),
-    enabled: !!projectId && !!region,
+    enabled: !!projectId,
   });
 
 export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
@@ -91,10 +91,7 @@ export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
   return true;
 };
 
-export const useMergedKubeFlavors = (
-  projectId: string,
-  region: string | null,
-) => {
+export const useMergedKubeFlavors = (projectId: string, region: string) => {
   const { data: flavors, isPending: isFlavorsPending } = useFlavors(
     projectId,
     region,

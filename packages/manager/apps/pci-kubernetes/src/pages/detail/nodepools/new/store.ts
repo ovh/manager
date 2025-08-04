@@ -1,15 +1,15 @@
 import { create } from 'zustand';
-import { createRef, RefObject } from 'react';
+import { TFlavor } from '@ovh-ux/manager-pci-common';
+import { createRef, MutableRefObject } from 'react';
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
-import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 
 type TStep = {
   isOpen: boolean;
   isLocked: boolean;
   isChecked: boolean;
-  ref: RefObject<HTMLDivElement>;
+  ref: MutableRefObject<HTMLDivElement>;
 };
 
 export type TFormStore = {
@@ -18,17 +18,17 @@ export type TFormStore = {
     isTouched: boolean;
     hasError: boolean;
   };
-  flavor?: TComputedKubeFlavor;
-  selectedAvailabilityZone: string;
-  autoScaling: AutoscalingState | null;
+  flavor: TFlavor;
+  selectedAvailibilityZone: string;
+  autoScaling: AutoscalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
   steps: Map<StepsEnum, TStep>;
   set: {
     name: (val: string) => void;
-    flavor: (val?: TComputedKubeFlavor) => void;
-    selectedAvailabilityZone: (selectedZone: string) => void;
-    autoScaling: (val: AutoscalingState | null) => void;
+    flavor: (val: TFlavor) => void;
+    selectedAvailibilityZone: (selectedZone: string) => void;
+    autoScaling: (val: AutoscalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
   };
@@ -98,12 +98,12 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   autoScaling: null,
   antiAffinity: false,
   isMonthlyBilling: false,
-  selectedAvailabilityZone: '',
+  selectedAvailibilityZone: '',
   steps: initialSteps(),
   set: {
-    selectedAvailabilityZone: (val: string) => {
+    selectedAvailibilityZone: (val: string) => {
       set({
-        selectedAvailabilityZone: val,
+        selectedAvailibilityZone: val,
       });
     },
     name: (val: string) => {
@@ -118,8 +118,8 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       }
     },
 
-    flavor: (val?: TComputedKubeFlavor) => set({ flavor: val }),
-    autoScaling: (val: AutoscalingState | null) => set({ autoScaling: val }),
+    flavor: (val: TFlavor) => set({ flavor: val }),
+    autoScaling: (val: AutoscalingState) => set({ autoScaling: val }),
     antiAffinity: (val: boolean) => set({ antiAffinity: val }),
     isMonthlyBilling: (val: boolean) => set({ isMonthlyBilling: val }),
   },
@@ -254,7 +254,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scrollToStep: (id: StepsEnum) => {
     get()
       .steps.get(id)
-      ?.ref.current?.scrollIntoView({
+      .ref.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });

@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
 import { z } from 'zod';
-
 import {
   compareFunction,
   formatIP,
@@ -14,7 +13,7 @@ import {
   parseCommaSeparated,
   generateUniqueName,
 } from '@/helpers/index';
-import { NodePoolPrice } from '@/api/data/kubernetes';
+import { NodePool } from '@/api/data/kubernetes';
 
 describe('helper', () => {
   it('compares two objects based on a key', () => {
@@ -201,7 +200,7 @@ describe('generateUniqueName', () => {
     (baseName, existingNodePools, expectedResult) => {
       const result = generateUniqueName(
         baseName,
-        existingNodePools as NodePoolPrice[],
+        existingNodePools as NodePool[],
       );
       expect(result).toBe(expectedResult);
     },
