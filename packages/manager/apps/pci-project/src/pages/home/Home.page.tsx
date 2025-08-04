@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { OdsDivider } from '@ovhcloud/ods-components/react';
+
+import { useProjectIdFromRoute } from '@/hooks/useProjectIdFromRoute';
 
 import { QuickAccess } from './components/QuickAccess.component';
 import { QuickAccessItem } from './components/QuickAccessCard.component';
@@ -19,7 +20,7 @@ import IconBlockStorage from '@/assets/home/block_storage.svg?url';
 
 export default function Home() {
   const { t } = useTranslation('project');
-  const { projectId } = useParams<{ projectId: string }>();
+  const projectId = useProjectIdFromRoute();
 
   const quickAccessItems: QuickAccessItem[] = useMemo(
     () => [
@@ -95,7 +96,7 @@ export default function Home() {
       <QuickAccess items={quickAccessItems} />
       <Others items={otherActionsItems} />
       <OdsDivider className="my-8 block" />
-      {projectId && <DashboardTiles projectId={projectId} />}
+      <DashboardTiles projectId={projectId} />
     </>
   );
 }
