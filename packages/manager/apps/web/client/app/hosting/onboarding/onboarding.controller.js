@@ -15,8 +15,10 @@ export default class HostingsOnboardingController {
       return guide.region ? guide.region.includes(region) : true;
     }).map((guide) => ({
       link: guide.links[this.ovhSubsidiary] || guide.links.DEFAULT,
-      description: this.$translate.instant(guide.description),
-      title: this.$translate.instant(guide.title),
+      title: this.$translate.instant(guide.title, { value: '100M' }),
+      description: this.$translate.instant(guide.description, {
+        value: '100M',
+      }),
     }));
     this.cta = CTAS[this.ovhSubsidiary] || CTAS.DEFAULT;
   }
