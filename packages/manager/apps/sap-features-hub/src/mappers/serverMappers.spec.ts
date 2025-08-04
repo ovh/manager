@@ -57,7 +57,6 @@ describe('serverMappers.toBase test suite', () => {
     'network',
     'netmask',
     'gateway',
-    'encryptPassword',
     'thickDatastorePolicy',
     'ovaTemplate',
     'datastoreName',
