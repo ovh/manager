@@ -16,7 +16,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE, TAGS_BLOB } from '@/constants';
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';

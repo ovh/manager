@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import ListPage from '@/pages/list/List.page';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
-import { TClusterPlan, TKube } from '@/types';
+import { TClusterPlan, TClusterPlanEnum, TKube } from '@/types';
 
 type TKubesPaginated = {
   data: { rows: TKube[]; pageCount: number; totalRows: number };
@@ -12,7 +12,10 @@ type TKubesPaginated = {
   error: Error;
 };
 
-const clusterPlans: TClusterPlan[] = ['free', 'standard'];
+const clusterPlans: TClusterPlan[] = [
+  TClusterPlanEnum.FREE,
+  TClusterPlanEnum.STANDARD,
+];
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: any = await importOriginal();

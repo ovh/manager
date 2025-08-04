@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepState } from '../useStep';
+import { StepState } from '../hooks/useStep';
 import NetworkClusterStep, {
   TNetworkFormState,
 } from './NetworkClusterStep.component';
