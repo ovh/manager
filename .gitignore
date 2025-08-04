@@ -31,3 +31,5 @@ target
 packages/manager-tools/manager-muk-cli/target/**/**/**
 CLAUDE.md
 .mcp.json
+.claude
+.cursor
