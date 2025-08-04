@@ -80,7 +80,6 @@ export default class {
   checkMessages(vps) {
     this.isExpired(vps);
     this.displayWarningForRescueMode(this.isInRescueMode);
-    this.checkIfStopNotification('ipV6', true, vps);
   }
 
   isExpired(vps) {
@@ -123,22 +122,6 @@ export default class {
         'vps.detail.dashboard',
       );
     }
-  }
-
-  checkIfStopNotification(message, isArray, vps) {
-    const item = vps.name;
-    return this.VpsNotificationIpv6.checkIfStopNotification(
-      STOP_NOTIFICATION_USER_PREF[message],
-      isArray,
-      item,
-    )
-      .then((showNotification) => {
-        this.stopNotification[message] = showNotification;
-        this.showIpV6Banner(vps.version, vps.ipv6);
-      })
-      .catch(() => {
-        this.stopNotification[message] = false;
-      });
   }
 
   stopNotificationIpV6() {
