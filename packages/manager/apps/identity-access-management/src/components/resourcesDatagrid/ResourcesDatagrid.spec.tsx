@@ -1,7 +1,7 @@
 import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ResourcesDatagridContextProvider,
@@ -50,14 +50,18 @@ vi.mock('@/data/hooks/useIamResources', () => ({
 const renderComponent = ({
   topbar,
   hideColumn,
-  filterWithTags,
   isSelectable,
   selectedResourcesList,
   setSelectedResourcesList,
+  initFilters,
 }: ResourcesListDatagridProps & Partial<ResourcesDatagridContextType>) => {
   vi.mocked(useResourcesDatagridContext).mockReturnValue({
     selectedResourcesList: selectedResourcesList || [],
     setSelectedResourcesList: setSelectedResourcesList || vi.fn(),
+    filters: [],
+    addFilter: vi.fn(),
+    removeFilter: vi.fn(),
+    setFilters: vi.fn(),
   });
 
   return render(
@@ -67,7 +71,7 @@ const renderComponent = ({
           topbar={topbar}
           isSelectable={isSelectable}
           hideColumn={hideColumn}
-          filterWithTags={filterWithTags}
+          initFilters={initFilters}
         />
       </ResourcesDatagridContextProvider>
     </QueryClientProvider>,
@@ -116,6 +120,10 @@ describe('resourcesDatagrid Component', async () => {
     vi.mocked(useResourcesDatagridContext).mockReturnValue({
       selectedResourcesList: [],
       setSelectedResourcesList: vi.fn(),
+      filters: [],
+      addFilter: vi.fn(),
+      removeFilter: vi.fn(),
+      setFilters: vi.fn(),
     });
 
     useIamResourceListMock.mockReturnValue({
@@ -178,12 +186,28 @@ describe('resourcesDatagrid Component', async () => {
 
     renderComponent({
       isSelectable: true,
-      filterWithTags: ['environement:production'],
+      initFilters: [
+        {
+          id: 'test',
+          column: 'tags',
+          tagKey: 'env',
+          value: 'prod',
+        },
+      ],
     });
 
-    expect(useIamResourceListMock).toHaveBeenCalledWith({
-      pageSize: 20,
-      filterWithTags: ['environement:production'],
+    waitFor(() => {
+      expect(useIamResourceListMock).toHaveBeenCalledWith({
+        pageSize: 20,
+        filters: [
+          {
+            id: 'test',
+            column: 'tags',
+            tagKey: 'env',
+            value: 'prod',
+          },
+        ],
+      });
     });
   });
 });

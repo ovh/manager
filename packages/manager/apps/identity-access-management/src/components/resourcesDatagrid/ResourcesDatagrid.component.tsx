@@ -4,7 +4,7 @@ import {
   DatagridColumn,
   DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IamResource } from '@/data/api/iam-resources';
 import {
@@ -13,10 +13,13 @@ import {
 } from '@/data/hooks/useIamResources';
 import DatagridTagsCell from '../datagridTagsCell/TagsCell.component';
 import { useResourcesDatagridContext } from './ResourcesDatagridContext';
+import ResourcesDatagridTopbar, {
+  ResourcesDatagridFilter,
+} from '../resourcesDatagridTopbar/ResourcesDatagridTopbar.component';
 
 export enum ResourceDatagridColumn {
-  DISPLAYNAME = 'displayName',
-  TYPE = 'type',
+  DISPLAYNAME = 'resourceName',
+  TYPE = 'resourceType',
   TAGS = 'tags',
 }
 
@@ -24,18 +27,28 @@ export type ResourcesListDatagridProps = {
   isSelectable?: boolean;
   topbar?: ReactNode;
   hideColumn?: ResourceDatagridColumn[];
-  filterWithTags?: string[];
+  initFilters?: ResourcesDatagridFilter[];
 };
 
 export default function ResourcesListDatagrid({
   isSelectable,
   topbar,
   hideColumn = [],
-  filterWithTags = [],
+  initFilters = [],
 }: ResourcesListDatagridProps) {
   const { t } = useTranslation('tag-manager');
   const [rowSelection, setRowSelection] = useState({});
-  const { setSelectedResourcesList } = useResourcesDatagridContext();
+  const {
+    setSelectedResourcesList,
+    filters,
+    setFilters,
+  } = useResourcesDatagridContext();
+
+  useEffect(() => {
+    if (initFilters.length !== 0) {
+      setFilters(initFilters);
+    }
+  }, []);
 
   const {
     flattenData,
@@ -44,9 +57,7 @@ export default function ResourcesListDatagrid({
     isLoading,
     sorting,
     setSorting,
-    search,
-    filters,
-  } = useIamResourceList({ pageSize: 20, filterWithTags });
+  } = useIamResourceList({ pageSize: 20, filters });
 
   const { data: resourceTypeList } = useIamResourceTypeList();
 
@@ -58,11 +69,13 @@ export default function ResourcesListDatagrid({
             cell: (item: IamResource) => (
               <DataGridTextCell>{item.displayName}</DataGridTextCell>
             ),
-            label: t('displayname'),
+            label: t(
+              `resourceDatagridColumn_${ResourceDatagridColumn.DISPLAYNAME}`,
+            ),
             type: FilterTypeCategories.String,
-            isSearchable: true,
-            isSortable: true,
-            isFilterable: true,
+            isSearchable: false,
+            isSortable: false,
+            isFilterable: false,
           },
         ]
       : []),
@@ -73,11 +86,11 @@ export default function ResourcesListDatagrid({
             cell: (item: IamResource) => (
               <DataGridTextCell>{item.type}</DataGridTextCell>
             ),
-            label: t('service'),
+            label: t(`resourceDatagridColumn_${ResourceDatagridColumn.TYPE}`),
             type: FilterTypeCategories.Options,
             filterOptions: resourceTypeList || [],
-            isSortable: true,
-            isFilterable: true,
+            isSortable: false,
+            isFilterable: false,
           },
         ]
       : []),
@@ -85,7 +98,7 @@ export default function ResourcesListDatagrid({
       ? [
           {
             id: ResourceDatagridColumn.TAGS,
-            label: t('tags'),
+            label: t(`resourceDatagridColumn_${ResourceDatagridColumn.TAGS}`),
             cell: (item: IamResource) => (
               <DatagridTagsCell
                 tags={item.tags}
@@ -95,7 +108,7 @@ export default function ResourcesListDatagrid({
             ),
             isSortable: false,
             type: FilterTypeCategories.Tags,
-            isFilterable: true,
+            isFilterable: false,
           },
         ]
       : []),
@@ -108,7 +121,11 @@ export default function ResourcesListDatagrid({
   return (
     <React.Suspense>
       <Datagrid
-        topbar={topbar || undefined}
+        topbar={
+          <ResourcesDatagridTopbar columns={columns}>
+            {topbar}
+          </ResourcesDatagridTopbar>
+        }
         isLoading={isLoading}
         columns={columns}
         items={flattenData || []}
@@ -118,8 +135,6 @@ export default function ResourcesListDatagrid({
         sorting={sorting}
         onSortChange={setSorting}
         manualSorting={false}
-        search={search}
-        filters={filters}
         contentAlignLeft
         {...(isSelectable
           ? {
