@@ -32,6 +32,11 @@
   "noResourceAvailableForTagging": "Aucune resource n'est disponible pour être assignée",
   "tagDetailTitle": "Détail pour {{tag}}",
   "resourceTaggedWithTag": "Resources taguées avec \"{{tag}}\"",
+  "resourceDatagridColumnFilter": "Colonne",
+  "resourceDatagridColumnValue": "Valeur",
+  "resourceDatagridColumn_resourceName": "Nom",
+  "resourceDatagridColumn_resourceType": "Type de resource",
+  "resourceDatagridColumn_tags": "Tags",
   "assignTagToResources": "Assigner \"{{tag}}\" à des resources",
   "backToTagDetail": "Retour au détail du tag"
 }
