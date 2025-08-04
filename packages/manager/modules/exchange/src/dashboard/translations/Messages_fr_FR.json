@@ -73,6 +73,7 @@
   "exchange_ACTION_export_confirm": "Etes-vous certain de vouloir exporter vos comptes ?",
   "exchange_ACTION_add_domain_invalid_domain": "Le domaine saisi n'est pas valide",
   "exchange_tab_INFORMATION": "Informations générales",
+  "exchange_tab_LOGS": "Logs",
   "exchange_tab_DOMAIN": "Domaines associés",
   "exchange_tab_ACCOUNT": "Comptes e-mail",
   "exchange_tab_SHARED_ACCOUNT": "Comptes partagés",
