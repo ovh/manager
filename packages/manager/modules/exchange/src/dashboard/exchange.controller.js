@@ -4,6 +4,7 @@ import isObject from 'lodash/isObject';
 import set from 'lodash/set';
 
 import { EXCHANGE_CONTAINER_MESSAGING } from './exchange.constants';
+import { FEATURES } from '../exchange.constants';
 
 export default class ExchangeCtrl {
   /* @ngInject */
@@ -38,6 +39,8 @@ export default class ExchangeCtrl {
     sharedLink,
     sharedAccountLink,
     taskLink,
+    logsLink,
+    features,
   ) {
     this.services = {
       $q,
@@ -107,6 +110,8 @@ export default class ExchangeCtrl {
     this.disclaimerLink = disclaimerLink;
     this.sharedLink = sharedLink;
     this.taskLink = taskLink;
+    this.logsLink = logsLink;
+    this.features = features;
   }
 
   $onInit() {
@@ -139,6 +144,8 @@ export default class ExchangeCtrl {
         });
       }
     });
+    this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
+    this.BETA = 'Beta';
   }
 
   retrievingWizardPreference() {
