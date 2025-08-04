@@ -1,0 +1,61 @@
+<div>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-ng-if="ctrl.tasksList.messages.length > 0"
+    >
+        <div>
+            <strong data-translate="exchange_tab_TASKS_warning"></strong>
+            <span data-translate="exchange_tab_TASKS_partial"></span>
+        </div>
+    </div>
+
+    <div
+        class="alert alert-info"
+        role="alert"
+        data-translate="exchange_tab_TASKS_table_empty"
+        data-ng-if="ctrl.tasksList.results.length === 0"
+    ></div>
+
+    <oui-datagrid data-rows-loader="ctrl.loadPaginated($config)">
+        <oui-datagrid-column
+            data-title="'exchange_tab_TASKS_table_function' | translate"
+            data-property="function"
+        >
+            <span
+                data-ng-bind="`exchange_tab_TASKS_${ctrl.constructor.toUpperSnakeCase($row.function))}` | translate"
+                data-ng-if="$row.status === ctrl.states.done"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_TASKS_table_state' | translate"
+            data-property="status"
+        >
+            <span
+                class="fa fa-lg"
+                data-ng-attr-title="{{('exchange_tab_TASKS_' + $row.status.toUpperCase()) | translate}}"
+                data-ng-class="{
+                                'fa-hourglass-half text-info': $row.status === ctrl.states.doing || $row.status === ctrl.states.todo,
+                                'fa-times-circle text-danger': $row.status === ctrl.states.error,
+                                'fa-ban text-danger': $row.status === ctrl.states.cancelled}"
+                data-ng-if="$row.status === ctrl.states.doing || $row.status === ctrl.states.todo || $row.status === ctrl.states.error || $row.status === ctrl.states.cancelled"
+            ></span>
+            <span
+                data-ng-bind="('exchange_tab_TASKS_'+ $row.status.toUpperCase()) | translate"
+                data-ng-if="$row.status === ctrl.states.done"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_TASKS_table_start_date' | translate"
+            data-property="todoDate"
+        >
+            <span data-ng-bind="::$row.todoDate | date:'short'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'exchange_tab_TASKS_table_finish_date' | translate"
+            data-property="finishDate"
+        >
+            <span data-ng-bind="::$row.finishDate | date:'short'"></span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>
