@@ -24,22 +24,22 @@ export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   return data;
 };
 
-export type NodePool = {
+export interface NodePool {
   name: string;
   antiAffinity: boolean;
   autoscale: boolean;
-  availabilityZones?: string[];
+  availabilityZones: string[];
   desiredNodes: number;
   minNodes: number;
-  localisation: string | null;
+  localisation: string; // will change with 3AZ
   flavorName: string;
   maxNodes: number;
   monthlyBilled: boolean;
-};
+}
 
 export type NodePoolPrice = NodePool & { monthlyPrice: number };
 
-export type KubeClusterCreationParams = {
+export interface KubeClusterCreationParams {
   name: string;
   region: string;
   plan: TClusterPlan;
@@ -53,7 +53,7 @@ export type KubeClusterCreationParams = {
     defaultVrackGateway?: string;
     privateNetworkRoutingAsDefault?: boolean;
   };
-};
+}
 
 export const createKubernetesCluster = async (
   projectId: string,
