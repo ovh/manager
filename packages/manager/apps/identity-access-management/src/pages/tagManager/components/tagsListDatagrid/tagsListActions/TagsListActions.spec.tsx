@@ -44,6 +44,10 @@ describe('TagListActionsCell Component', async () => {
     });
 
     fireEvent.click(assignButton);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      urls.tagDetailAssign.replace(':tag', 'env:prod'),
+    );
   });
 
   it('Should display action menu with manage resources button', async () => {
