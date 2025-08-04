@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.4...@ovh-ux/manager-account@0.14.5) (2025-08-04)
+
+
+### Bug Fixes
+
+* **account:** added angular-messages dependency ([54fd775](https://github.com/ovh/manager/commit/54fd7757b046620ba08fb217f3df2d5f7be59a52)), closes [#MANAGER-19220](https://github.com/ovh/manager/issues/MANAGER-19220) [#PRB0042689](https://github.com/ovh/manager/issues/PRB0042689)
+* **account:** make disabled attribute dynamic for gdpr actions ([0baba09](https://github.com/ovh/manager/commit/0baba09a70509a195e42dcb5ba35e60e8e0a7628)), closes [#MANAGER-19306](https://github.com/ovh/manager/issues/MANAGER-19306)
+
+
+
+
+
 ## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.3...@ovh-ux/manager-account@0.14.4) (2025-07-17)
 
 

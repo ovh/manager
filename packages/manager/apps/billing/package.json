@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-app",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "private": true,
   "description": "OVHcloud Billing app",
   "repository": {
