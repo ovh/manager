@@ -16,7 +16,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TScalingState, NodePoolState } from '@/types';
 import { NODE_RANGE, TAGS_BLOB } from '@/constants';
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 import NodePoolToggle from './node-pool/NodePoolToggle.component';
