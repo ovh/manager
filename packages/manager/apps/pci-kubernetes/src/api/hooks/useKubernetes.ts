@@ -1,4 +1,4 @@
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
+import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { PaginationState } from '@ovh-ux/manager-react-components';
 import {
   UndefinedInitialDataOptions,
@@ -574,7 +574,7 @@ export const useRemoveSubscription = ({
 
 export interface CreateClusterProps {
   projectId: string;
-  onError: (cause: Error) => void;
+  onError: (cause: ApiError) => void;
   onSuccess: () => void;
 }
 

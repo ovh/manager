@@ -1,4 +1,4 @@
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
 import { ClusterNameStep } from './ClusterNameStep.component';
 import { LocationStep } from './LocationStep.component';

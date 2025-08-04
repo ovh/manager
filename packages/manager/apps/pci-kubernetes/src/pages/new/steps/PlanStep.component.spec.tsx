@@ -1,17 +1,52 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
+import { useCatalog } from '@ovh-ux/manager-pci-common';
 import PlanTile from './PlanStep.component';
-import { StepState } from '../useStep';
-import { DeploymentMode, TClusterPlan } from '@/types';
+import { StepState } from '../hooks/useStep';
+import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
+
+vi.mock('@ovh-ux/manager-pci-common', () => ({
+  ...vi.importActual('@ovh-ux/manager-pci-common'),
+  useCatalog: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    useCatalogPrice: () => ({
+      getFormattedHourlyCatalogPrice: (price: number) => `€${price}/h`,
+      getFormattedMonthlyCatalogPrice: (price: number) => `€${price}/mo`,
+    }),
+    convertHourlyPriceToMonthly: (price: number) => price * 730,
+  };
+});
 
 describe('PlanTile Component', () => {
   const mockOnSubmit = vi.fn();
   let step: StepState;
 
-  const plans: TClusterPlan[] = ['free', 'standard'];
+  const plans: TClusterPlan[] = [
+    TClusterPlanEnum.FREE,
+    TClusterPlanEnum.STANDARD,
+  ];
 
   beforeEach(() => {
     step = { isLocked: false } as StepState;
+    vi.mocked(useCatalog).mockReturnValue({
+      data: {
+        addons: [
+          {
+            planCode: 'mks.free.hour.consumption',
+            pricings: [{ price: 0 }],
+          },
+          {
+            planCode: 'mks.standard.hour.consumption.3az',
+            pricings: [{ price: 123 }],
+          },
+        ],
+      },
+    } as ReturnType<typeof useCatalog>);
     mockOnSubmit.mockClear();
   });
 

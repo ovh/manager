@@ -10,7 +10,7 @@ import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import Estimation from '@/components/create/Estimation.component';
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import { TClusterCreationForm } from '../useCusterCreationStepper';
+import { TClusterCreationForm } from '../hooks/useCusterCreationStepper';
 
 export interface BillingStepProps {
   onSubmit: () => void;

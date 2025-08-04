@@ -66,7 +66,12 @@ export type TClusterCustomization = {
   apiServer: TApiServerCustomization;
 };
 
-export type TClusterPlan = 'free' | 'standard';
+export enum TClusterPlanEnum {
+  FREE = 'free',
+  STANDARD = 'standard',
+}
+
+export type TClusterPlan = typeof TClusterPlanEnum[keyof typeof TClusterPlanEnum];
 
 export type TNetworkConfiguration = {
   privateNetworkRoutingAsDefault: boolean;

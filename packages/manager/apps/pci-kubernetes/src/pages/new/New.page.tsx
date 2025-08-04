@@ -30,7 +30,7 @@ import {
   TClusterCreationForm,
   TNonNullableForm,
   useClusterCreationStepper,
-} from './useCusterCreationStepper';
+} from './hooks/useCusterCreationStepper';
 
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
@@ -38,7 +38,7 @@ import stepsConfig from './steps/stepsConfig';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 const formIsNonNullable = (
   form: TClusterCreationForm,
@@ -144,7 +144,7 @@ export default function NewPage() {
     if (formIsNonNullable(stepper.form))
       createCluster({
         name: stepper.form.clusterName,
-        plan: stepper.form.plan ?? 'free',
+        plan: stepper.form.plan ?? TClusterPlanEnum.FREE,
         region: stepper.form.region.name,
         version: stepper.form.version,
         updatePolicy: stepper.form.updatePolicy,
