@@ -27,7 +27,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
-import { StepState } from '../useStep';
+import { StepState } from '../hooks/useStep';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
 import { DEPLOYMENT_URL } from '@/constants';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';

@@ -16,7 +16,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StepState } from '../useStep';
+import { StepState } from '../hooks/useStep';
 import { isClusterNameValid } from '@/helpers/matchers/matchers';
 
 export interface ClusterNameStepProps {
