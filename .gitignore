@@ -29,3 +29,5 @@ static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json
 CLAUDE.md
 .mcp.json
+.claude
+.cursor
