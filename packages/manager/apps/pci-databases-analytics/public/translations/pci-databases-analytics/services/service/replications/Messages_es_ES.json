@@ -61,5 +61,7 @@
   "deleteReplicationTitle": "Eliminar el flujo de replicación",
   "deleteReplicationDescription": "¿Está seguro de que desea eliminar este flujo de replicación?",
   "deleteReplicationButtonCancel": "Cancelar",
-  "deleteReplicationButtonConfirm": "Eliminar"
+  "deleteReplicationButtonConfirm": "Eliminar",
+  "deleteReplicationToastErrorTitle": "Se ha producido un error al eliminar el flujo de replicación",
+  "deleteReplicationToastSuccessDescription": "El flujo de replicación se ha eliminado correctamente"
 }

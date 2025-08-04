@@ -2,5 +2,9 @@
   "cpbc_monthly_instance_detail_title": "Servidores",
   "cpbc_monthly_instance_col_name": "Apellido",
   "cpbc_monthly_instance_col_total": "Cuota mensual",
-  "cpbc_monthly_instance_col_total_tooltip": "Facturación a principios del mes."
+  "cpbc_monthly_instance_col_total_tooltip": "Facturación a principios del mes.",
+  "cpbc_savings_plan_col_name": "Nombre",
+  "cpbc_savings_plan_col_size": "Tamaño del Savings Plan",
+  "cpbc_savings_plan_col_flavor": "Flavor",
+  "cpbc_savings_plan_col_price": "Precio"
 }
