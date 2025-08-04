@@ -1,3 +1,8 @@
+/**
+ * Format tag list to use it in update resource api call
+ * @param tags
+ * @returns
+ */
 export const formatTagsForApi = (tags: string[]) => {
   return tags.reduce((formatted, tag) => {
     const [key, ...value] = tag.split(':');
@@ -6,20 +11,4 @@ export const formatTagsForApi = (tags: string[]) => {
       [key]: value.join(':'),
     };
   }, {});
-};
-
-export const formatTagsForApiFilterParam = (tags: string[]) => {
-  const queryParams = tags.reduce((formatted, tag) => {
-    const [key, ...value] = tag.split(':');
-    return {
-      ...formatted,
-      [key]: [
-        {
-          operator: 'EQ',
-          value: value.join(':'),
-        },
-      ],
-    };
-  }, {});
-  return `?tags=${encodeURIComponent(JSON.stringify(queryParams))}`;
 };

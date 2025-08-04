@@ -43,6 +43,10 @@ const renderComponent = (
   vi.mocked(useResourcesDatagridContext).mockReturnValue({
     selectedResourcesList: props.selectedResourcesList || [],
     setSelectedResourcesList: props.setSelectedResourcesList || vi.fn(),
+    filters: [],
+    setFilters: vi.fn(),
+    addFilter: vi.fn(),
+    removeFilter: vi.fn(),
   });
 
   return render(
@@ -108,19 +112,6 @@ describe('AssignTagTopbar Component', async () => {
 
     waitFor(() => {
       expect(navigateMock).toHaveBeenCalledWith('test');
-    });
-  });
-
-  it('Should invalidate given query', () => {
-    const invalidateQueryKey = ['test'];
-    renderComponent({
-      tags: ['tag1:1', 'tag2:2', 'tag3:3'],
-      selectedResourcesList: iamResourcesListMock,
-      invalidateQueryKey,
-    });
-
-    expect(useUpdateIamResourcesMock).toHaveBeenCalledWith({
-      invalidateQueryKey,
     });
   });
 });

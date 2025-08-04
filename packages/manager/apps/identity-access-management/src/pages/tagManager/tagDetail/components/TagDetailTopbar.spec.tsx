@@ -38,6 +38,10 @@ const renderComponent = (
   vi.mocked(useResourcesDatagridContext).mockReturnValue({
     selectedResourcesList: props.selectedResourcesList || [],
     setSelectedResourcesList: props.setSelectedResourcesList || vi.fn(),
+    addFilter: vi.fn(),
+    filters: [],
+    setFilters: vi.fn(),
+    removeFilter: vi.fn(),
   });
 
   return render(
