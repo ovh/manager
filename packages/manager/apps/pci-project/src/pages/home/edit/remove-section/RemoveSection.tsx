@@ -1,8 +1,9 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import { useServiceIds } from '@/data/hooks/useServices';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 
 type RemoveSectionProps = {
   isDiscovery: boolean;
@@ -11,7 +12,7 @@ type RemoveSectionProps = {
 export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
   const { t } = useTranslation('edit');
 
-  const { projectId } = useParams();
+  const projectId = useProjectIdFromParams();
   const navigate = useNavigate();
 
   const { data: serviceIds, isPending: isServiceIdsPending } = useServiceIds(

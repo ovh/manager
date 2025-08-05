@@ -1,3 +1,4 @@
+// Route URLs
 export const urls = {
   root: '/pci/projects',
   listing: '',
@@ -8,4 +9,4 @@ export const urls = {
   creation: 'new',
   creating: 'creating/:orderId/:voucherCode',
   remove: 'remove',
-};
+} as const;
