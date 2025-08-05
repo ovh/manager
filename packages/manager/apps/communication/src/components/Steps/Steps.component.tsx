@@ -11,7 +11,7 @@ export default function Steps({ steps }: Props) {
       {steps.map((step, index) => (
         <li
           key={index}
-          className={`step ${step.active ? 'step-active' : ''}`}
+          className={`step ${step.isActive ? 'step-active' : ''}`}
           data-content={step.label}
         >
           <div>{step.children}</div>
