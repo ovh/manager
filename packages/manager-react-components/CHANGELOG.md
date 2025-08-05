@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.34.0...@ovh-ux/manager-react-components@2.35.0) (2025-08-05)
+
+### Features
+
+- **core:** export filter tag form ([ecedfa7](https://github.com/ovh/manager/commit/ecedfa734dffe235664693e7eebc85309b75bc90)), closes [#MANAGER-15304](https://github.com/ovh/manager/issues/MANAGER-15304)
+
 # [2.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.33.0...@ovh-ux/manager-react-components@2.34.0) (2025-08-01)
 
 ### Bug Fixes

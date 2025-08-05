@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.5.0...@ovh-ux/manager-static-analysis-kit@0.6.0) (2025-08-05)
+
+
+### Features
+
+* add IDE integration and static kit migration CLI ([4a90cea](https://github.com/ovh/manager/commit/4a90cead62dcf90287ef45b35d389fed74cea14f)), closes [#MANAGER-19256](https://github.com/ovh/manager/issues/MANAGER-19256)
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.4.0...@ovh-ux/manager-static-analysis-kit@0.5.0) (2025-08-01)
 
 
