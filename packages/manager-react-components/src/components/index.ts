@@ -2,7 +2,7 @@ export * from './action-banner';
 export * from './action-menu';
 export * from './redirection-guard';
 export * from './breadcrumb';
-
+export * from './base-layout';
 export * from './clipboard';
 export * from './step';
 export * from './tabs';
@@ -41,7 +41,7 @@ export * from './region/region.component';
 export * from './order';
 
 export * from './badge';
-export * from './Modal';
+export * from './modal';
 export * from './tags-list';
 export * from './tags-modal';
 export * from './tags-tile';
