@@ -10,13 +10,15 @@ import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 
 import { PciTile } from '@/pages/new/components/PciTile.component';
 import { StepState } from '@/pages/new/hooks/useStep';
+import {
+  TWorkflowCreationForm,
+  WorkflowType as WorkflowTypeEnum,
+} from '@/pages/new/hooks/useWorkflowStepper';
 
 interface WorkflowTypeProps {
   step: StepState;
-  onSubmit: (workflowType: string) => void;
+  onSubmit: (workflowType: TWorkflowCreationForm['type']) => void;
 }
-
-const INSTANCE_BACKUP = 'instance_backup';
 
 export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
   const { t } = useTranslation('workflow-add');
@@ -33,9 +35,11 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
       </OsdsText>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-8">
         <PciTile
-          title={tListing(`pci_workflow_type_${INSTANCE_BACKUP}_title`)}
+          title={tListing(`pci_workflow_type_${WorkflowTypeEnum.INSTANCE_BACKUP}_title`)}
           isChecked
-          description={t(`pci_workflow_create_type_${INSTANCE_BACKUP}_description`)}
+          description={t(
+            `pci_workflow_create_type_${WorkflowTypeEnum.INSTANCE_BACKUP}_description`,
+          )}
         ></PciTile>
       </div>
       {!step.isLocked && (
@@ -43,7 +47,7 @@ export function WorkflowType({ step, onSubmit }: Readonly<WorkflowTypeProps>) {
           className="w-fit mt-6"
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => onSubmit(INSTANCE_BACKUP)}
+          onClick={() => onSubmit(WorkflowTypeEnum.INSTANCE_BACKUP)}
         >
           {tCommon('common_stepper_next_button_label')}
         </OsdsButton>

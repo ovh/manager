@@ -1,61 +1,55 @@
-import { useMemo } from 'react';
-
-import { useQueries } from '@tanstack/react-query';
+import { usePrefetchQuery, useQueries } from '@tanstack/react-query';
 
 import { getCatalogQuery, getProductAvailabilityQuery } from '@ovh-ux/manager-pci-common';
-import { useMe } from '@ovh-ux/manager-react-components';
 
+import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
+import { useMe } from '@/api/hooks/user';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
-export const useProjectSnapshotAddons = (projectId: string) => {
+export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInstance['id']) => {
   const { me } = useMe();
   return useQueries({
     queries: [
-      { ...getCatalogQuery(me?.ovhSubsidiary), enabled: !!me?.ovhSubsidiary },
-      {
-        ...getProductAvailabilityQuery(projectId, me?.ovhSubsidiary, {
-          addonFamily: 'snapshot',
-        }),
-        enabled: !!me?.ovhSubsidiary,
-      },
+      getCatalogQuery(me.ovhSubsidiary),
+      getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
+        addonFamily: 'snapshot',
+      }),
     ],
 
-    combine: ([
-      { data: catalog, isFetching: isCatalogFetching },
-      { data: snapshotAvailabilities, isFetching: isPlansFetching },
-    ]) => {
-      const snapshotRegionPlans = new Map(
-        snapshotAvailabilities?.plans
-          ?.filter(({ code }) => isSnapshotConsumption(code))
-          .map(({ code, regions }) => [code, regions]) ?? [],
-      );
+    combine: ([{ data: catalog }, { data: snapshotAvailabilities }]) => {
+      if (!snapshotAvailabilities || !catalog)
+        return {
+          isPending: true,
+          pricing: null,
+        };
+
+      const snapshotPlan =
+        snapshotAvailabilities.plans.find(
+          ({ code, regions }) =>
+            isSnapshotConsumption(code) && regions.find((r) => r.name === instanceId.region),
+        ) ?? null;
+      const catalogAddon = snapshotPlan
+        ? catalog.addons.find(({ planCode }) => planCode === snapshotPlan.code)
+        : null;
 
       return {
-        addons: catalog?.addons
-          .filter(({ planCode }) => snapshotRegionPlans.has(planCode))
-          .map((addon) => ({
-            ...addon,
-            regions: snapshotRegionPlans.get(addon.planCode),
-          })),
-        isFetching: isCatalogFetching || isPlansFetching,
+        isPending: false,
+        pricing:
+          catalogAddon?.pricings.find(
+            ({ intervalUnit }) => intervalUnit === 'none' || intervalUnit === 'hour',
+          ) ?? null,
       };
     },
   });
 };
 
-export const useInstanceSnapshotPricing = (projectId: string, instanceRegion: string) => {
-  const { addons, ...query } = useProjectSnapshotAddons(projectId);
+export const usePrefetchSnapshotPricing = (projectId: string) => {
+  const { me } = useMe();
 
-  const price = useMemo(
-    () =>
-      addons
-        ?.find(({ regions }) => regions.find(({ name }) => name === instanceRegion))
-        ?.pricings.find(({ intervalUnit }) => intervalUnit === 'none' || intervalUnit === 'hour'),
-    [addons, instanceRegion],
+  usePrefetchQuery(getCatalogQuery(me?.ovhSubsidiary));
+  usePrefetchQuery(
+    getProductAvailabilityQuery(projectId, me?.ovhSubsidiary, {
+      addonFamily: 'snapshot',
+    }),
   );
-
-  return {
-    ...query,
-    data: price,
-  };
 };

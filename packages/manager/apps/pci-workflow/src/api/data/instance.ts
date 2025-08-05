@@ -1,26 +1,10 @@
-import { ColumnSort, PaginationState } from '@tanstack/react-table';
+import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TWorkflowInstance } from '@/types';
+import { mapDtoToInstance } from '@/api/data/mapper/instance.mapper';
+import { TInstanceDto } from '@/types/instance/api';
 
-export type TInstanceOptions = {
-  pagination: PaginationState;
-  sorting: ColumnSort;
-};
+export const getInstances = async (projectId: string) => {
+  const { data } = await v6.get<TInstanceDto[]>(`/cloud/project/${projectId}/instance`);
 
-export const sortResults = (items: TWorkflowInstance[], sorting: ColumnSort) => {
-  let data: TWorkflowInstance[];
-  if (sorting?.id === 'status') {
-    data = [...items].sort((a, b) => (a.statusGroup > b.statusGroup ? 1 : 0));
-  } else {
-    data = [...items].sort((a, b) => (a[sorting?.id] > b[sorting?.id] ? 1 : 0));
-  }
-
-  if (sorting) {
-    const { desc } = sorting;
-
-    if (desc) {
-      data.reverse();
-    }
-  }
-  return data;
+  return data.map(mapDtoToInstance);
 };
