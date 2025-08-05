@@ -1,17 +1,17 @@
 import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
-import { managedCmsResourceWebsiteMock } from '@/data/__mocks__';
+import { managedWordpressWebsitesDetailsMock } from '@/data/__mocks__';
 import { useManagedWordpressWebsiteDetails } from './useManagedWordpressWebsiteDetails';
 import { wrapper } from '@/utils/test.provider';
 
-describe('useManagedWordpressResource', () => {
+describe('useManagedWordpressWebsiteDetails', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
-  it('should return resource list', async () => {
+  it('should return details website', async () => {
     const { result } = renderHook(
-      () => useManagedWordpressWebsiteDetails('test'),
+      () => useManagedWordpressWebsiteDetails('test', 'websiteTestId'),
       {
         wrapper,
       },
@@ -20,6 +20,6 @@ describe('useManagedWordpressResource', () => {
       expect(result.current.isSuccess).toBe(true);
     });
 
-    expect(result.current.data).toEqual(managedCmsResourceWebsiteMock);
+    expect(result.current.data).toEqual(managedWordpressWebsitesDetailsMock);
   });
 });

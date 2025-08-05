@@ -1,11 +1,11 @@
+import { Status } from '@/types/ssl';
 import {
   ManagedWordpressResourceType,
-  ManagedWordpressWebsiteDetailsType,
   ResourceStatus,
   ManagedWordpressCmsType,
-  ManagedWordpressLanguage,
-  ManagedWordpressPhpVersion,
+  ManagedWordpressWebsites,
   TaskStatus,
+  ManagedWordpressWebsiteDetails,
 } from '../type';
 
 export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
@@ -114,9 +114,9 @@ export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
     ],
   },
 ];
-export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[] = [
+export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
   {
-    websiteId: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
+    id: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
     resourceStatus: ResourceStatus.READY,
     checksum: 'aaaaa',
     currentState: {
@@ -125,7 +125,7 @@ export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[]
       defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',
       diskUsageBytes: 1073741824,
       import: null,
-      phpVersion: ManagedWordpressPhpVersion.v8_4,
+      phpVersion: '8.4',
       id: 'b698cfa5-21bd-466a-9d8f-80eca2e3f844',
     },
     currentTasks: [
@@ -146,7 +146,7 @@ export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[]
     targetSpec: null,
   },
   {
-    websiteId: 'f9c60740-5e93-45a1-9cee-87987c4ddfe5',
+    id: 'f9c60740-5e93-45a1-9cee-87987c4ddfe5',
     resourceStatus: ResourceStatus.CREATING,
     checksum: 'aaaaa',
     currentState: {
@@ -154,7 +154,7 @@ export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[]
       createdAt: '2025-01-01T08:00:00+01:00',
       defaultFQDN: 'test.fr',
       diskUsageBytes: 0,
-      phpVersion: ManagedWordpressPhpVersion.v8_3,
+      phpVersion: '8.3',
       id: 'b698cfa5-21bd-466a-9d8f-80eca2e3f844',
       import: {
         checkResult: {
@@ -188,10 +188,10 @@ export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[]
         cms: ManagedWordpressCmsType.WORD_PRESS,
         cmsSpecific: {
           wordPress: {
-            language: ManagedWordpressLanguage.fr_FR,
+            language: 'fr_FR',
           },
         },
-        phpVersion: ManagedWordpressPhpVersion.v8_3,
+        phpVersion: '8.3',
       },
       import: {
         adminLogin: 'admin@admin.com',
@@ -216,3 +216,49 @@ export const managedCmsResourceWebsiteMock: ManagedWordpressWebsiteDetailsType[]
     },
   },
 ];
+
+export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails = {
+  id: '88f3766f-7951-45fc-8336-fea9418c14f4',
+  resourceStatus: ResourceStatus.CREATING,
+  checksum: 'aaaaa',
+  targetSpec: {
+    import: {
+      adminURL: 'https://someexternalwordpress.com/wp-admin.php',
+      adminLogin: 'admin',
+      cms: ManagedWordpressCmsType.WORD_PRESS,
+    },
+  },
+  currentState: {
+    cms: ManagedWordpressCmsType.WORD_PRESS,
+    createdAt: '2025-01-01T08:00:00+01:00',
+    defaultFQDN: 'example.com',
+    diskUsageBytes: 0,
+    import: {
+      checkResult: {
+        cmsSpecific: {
+          wordPress: {
+            plugins: [
+              { name: 'plugin1', version: '1.0', enabled: true },
+              { name: 'plugin2', version: '2.0', enabled: false },
+            ],
+            themes: [
+              { name: 'theme1', version: '1.0', active: true },
+              { name: 'theme2', version: '2.0', active: false },
+            ],
+          },
+        },
+      },
+    },
+    phpVersion: '8.1',
+    serviceId: 'service123',
+  },
+  currentTasks: [
+    {
+      id: '663d955c-9063-46d7-bd4c-e92c3c8d50af',
+      link:
+        '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/88f3766f-7951-45fc-8336-fea9418c14f4',
+      status: Status.RUNNING,
+      type: 'WEBSITE_IMPORT',
+    },
+  ],
+};

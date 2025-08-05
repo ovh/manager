@@ -1,15 +1,23 @@
-import { Links, LinkType, Title } from '@ovh-ux/manager-react-components';
+import {
+  Links,
+  LinkType,
+  Notifications,
+  Title,
+} from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
 
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import ImportForm from './steps/ImportForm.component';
 
 export default function ImportPage() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.FORM]);
   const goBackUrl = useGenerateUrl('..', 'href');
   return (
-    <>
+    <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
       <Title>{t('import_website')}</Title>
       <Links
         type={LinkType.back}
@@ -17,7 +25,11 @@ export default function ImportPage() {
         label={t('web_hosting_common_sites_backlink')}
         className="mb-4"
       />
+      <Notifications />
+      <OdsText preset={ODS_TEXT_PRESET.span}>
+        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
+      </OdsText>
       <ImportForm />
-    </>
+    </div>
   );
 }

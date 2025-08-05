@@ -130,7 +130,7 @@ webCloudUniverse.children = [
         serviceType: 'WEB_HOSTING',
         routing: {
           application: 'web-hosting',
-          hash: '#/managed-wordpress',
+          hash: '#/managed-hosting-for-wordpress',
         },
         features: ['web-hosting:managed-wordpress'],
       },
