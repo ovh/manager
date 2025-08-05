@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.4...@ovh-ux/manager-vrack@1.20.5) (2025-08-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix dedicatedServerInterface vrack page ([b8bf8a8](https://github.com/ovh/manager/commit/b8bf8a81b3d266032ac36d42da6f40665c1dfafe)), closes [#MANAGER-19039](https://github.com/ovh/manager/issues/MANAGER-19039)
+
+
+
+
+
 ## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.3...@ovh-ux/manager-vrack@1.20.4) (2025-07-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.49.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.2...@ovh-ux/manager-vps@2.49.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** replace ipv4 message by locked status message ([f8cc7e5](https://github.com/ovh/manager/commit/f8cc7e5c336558744ee1dc87f2e2cf81368f78a1)), closes [#MANAGER-17104](https://github.com/ovh/manager/issues/MANAGER-17104)
+
+
+
+
+
 ## [2.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.1...@ovh-ux/manager-vps@2.49.2) (2025-07-24)
 
 
