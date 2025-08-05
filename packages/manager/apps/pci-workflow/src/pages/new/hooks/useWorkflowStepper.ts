@@ -14,6 +14,7 @@ export type TWorkflowCreationForm = {
   instanceId: TInstance['id'] | null;
   scheduling: TWorkflowScheduling | null;
   name: string;
+  distantRegion: string | null;
 };
 
 export type TWorkflowScheduling = {
@@ -32,6 +33,7 @@ export const DEFAULT_FORM_STATE: TWorkflowCreationForm = {
   instanceId: null,
   scheduling: null,
   name: '',
+  distantRegion: null,
 };
 
 // eslint-disable-next-line max-lines-per-function
@@ -142,12 +144,19 @@ export function useWorkflowStepper() {
     },
     scheduling: {
       step: schedulingStep,
-      submit: (scheduling: TWorkflowScheduling) => {
+      submit: (
+        scheduling: TWorkflowScheduling,
+        distantRegion: TWorkflowCreationForm['distantRegion'],
+      ) => {
         schedulingStep.lock();
         setForm((f) => ({
           ...f,
           scheduling,
+          distantRegion,
         }));
+      },
+      onSubmitError: () => {
+        schedulingStep.unlock();
       },
     },
   };

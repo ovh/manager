@@ -5,7 +5,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { getInstance, useProjectRegions } from '@ovh-ux/manager-pci-common';
+import {
+  getCatalogQuery,
+  getInstance,
+  getProductAvailabilityQuery,
+  useProductAvailability,
+  useProjectRegions,
+} from '@ovh-ux/manager-pci-common';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 
 import {
@@ -17,6 +23,10 @@ import {
 import { deleteWorkflow } from '@/api/data/workflow';
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { paginateResults } from '@/helpers';
+import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
+
+import { enableRegion } from '../data/region';
+import { useMe } from './user';
 
 export const WORKFLOW_TYPE = 'instance_backup';
 
@@ -223,6 +233,7 @@ interface UseAddWorkflowProps {
   name: string;
   rotation: number;
   maxExecutionCount: number;
+  distantRegion: string | null;
 }
 
 export const useAddWorkflow = ({
@@ -235,12 +246,42 @@ export const useAddWorkflow = ({
   onError: (error: Error) => void;
 }) => {
   const queryClient = useQueryClient();
+  const { me } = useMe();
+
+  const { data: productAvailability } = useProductAvailability(projectId, {
+    addonFamily: 'snapshot',
+  });
+
   const mutation = useMutation({
-    mutationFn: async ({ instanceId, ...type }: UseAddWorkflowProps) =>
-      addWorkflow(projectId, instanceId.region, { ...type, instanceId: instanceId.id }),
+    mutationFn: async ({ instanceId, distantRegion, ...type }: UseAddWorkflowProps) => {
+      if (
+        distantRegion &&
+        productAvailability?.plans.find(
+          (p) =>
+            isSnapshotConsumption(p.code) &&
+            p.regions.some((r) => r.name === distantRegion && !r.enabled),
+        )
+      ) {
+        await enableRegion({ projectId, region: distantRegion });
+      }
+
+      return addWorkflow(projectId, instanceId.region, {
+        ...type,
+        instanceId: instanceId.id,
+        distantRegion,
+      });
+    },
     onError,
     onSuccess: async (_res, { instanceId }) => {
-      await queryClient.invalidateQueries(getWorkflowQueryOptions(projectId, instanceId.region));
+      await Promise.all(
+        [
+          getWorkflowQueryOptions(projectId, instanceId.region),
+          getCatalogQuery(me.ovhSubsidiary),
+          getProductAvailabilityQuery(projectId, me.ovhSubsidiary, {
+            addonFamily: 'snapshot',
+          }),
+        ].map((query) => queryClient.invalidateQueries(query)),
+      );
       onSuccess();
     },
   });
