@@ -16,6 +16,7 @@ import {
   shadowColor,
 } from './region-selector.utils';
 import './region-selector.scss';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type RegionSelectorProps = {
   regionList: string[];
@@ -29,7 +30,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
   setSelectedRegion,
 }) => {
   const [currentFilter, setCurrentFilter] = React.useState(RegionFilter.all);
-  const { t } = useTranslation('region-selector');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.regionSelector);
   return (
     <div>
       {!hasOnlyOneRegion(regionList) && (

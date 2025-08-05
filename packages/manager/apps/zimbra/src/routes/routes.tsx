@@ -2,6 +2,7 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { UIMatch, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import OnboardingConfigureLayout from '@/pages/onboarding/configure/Configure.layout';
@@ -53,6 +54,9 @@ import {
   VERIFY_DOMAIN,
   ONBOARDING_CONFIGURE_DOMAIN,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
+  CANCEL_SLOT,
+  UNDO_CANCEL_SLOT,
+  UPGRADE_SLOT,
 } from '@/tracking.constants';
 
 export type RouteHandle = {
@@ -107,6 +111,15 @@ const AddEmailAccountPage = React.lazy(() =>
 );
 const EmailAccountSettingsPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
+);
+const CancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/cancel/Cancel.modal'),
+);
+const UndoCancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
+);
+const UpgradeAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
 );
 const AliasPage = React.lazy(() =>
   import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
@@ -192,7 +205,7 @@ export default (
             pageType: PageType.dashboard,
           },
           breadcrumb: {
-            label: 'common:general_informations',
+            label: `${NAMESPACES.DASHBOARD}:general_information`,
           },
         }}
       />
@@ -415,6 +428,46 @@ export default (
             },
             breadcrumb: {
               label: 'common:add_email_account',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/cancel'}
+          Component={CancelSlotPage}
+          handle={{
+            tracking: {
+              pageName: CANCEL_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:cancel_slot',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/undo_cancel'}
+          Component={UndoCancelSlotPage}
+          handle={{
+            tracking: {
+              pageName: UNDO_CANCEL_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:undo_cancel_slot',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/upgrade'}
+          Component={UpgradeAccountPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: UPGRADE_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_upgrade',
             },
           }}
         />

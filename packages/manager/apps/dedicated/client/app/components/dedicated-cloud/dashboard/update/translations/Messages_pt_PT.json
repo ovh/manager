@@ -9,7 +9,6 @@
   "dedicatedCloud_dashboard_update_software_VCSA": "vCSA",
   "dedicatedCloud_dashboard_update_description": "Esta operação tornará o acesso à administração da sua plataforma vSphere indisponível durante cerca de duas horas.",
   "dedicatedCloud_dashboard_update_info": "A data de atualização ser-lhe-á comunicada por e-mail. Pode alterá-la a qualquer momento, antes de expirar.",
-  "dedicatedCloud_dashboard_update_insufficient_rights": "Não possui permissões suficientes para efetuar esta operação.",
   "dedicatedCloud_dashboard_update_cancel": "Cancelar",
   "dedicatedCloud_dashboard_update_confirm": "Programação da atualização",
   "dedicatedCloud_dashboard_update_error": "Ocorreu um erro durante a tentativa de planeamento da atualização do vSphere: {{ message }}",

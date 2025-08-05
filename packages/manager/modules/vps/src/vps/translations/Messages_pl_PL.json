@@ -543,7 +543,7 @@
   "vps_dashboard_state_maintenance": "Trwają prace konserwacyjne",
   "vps_dashboard_state_rescued": "Tryb rescue",
   "vps_dashboard_state_rebooting": "Trwa uruchamianie",
-  "vps_dashboard_state_running": "Aktywny",
+  "vps_dashboard_state_running": "Aktywna",
   "vps_dashboard_state_stopped": "Zatrzymano",
   "vps_dashboard_state_stopping": "Wygasanie w trakcie",
   "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie"

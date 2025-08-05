@@ -52,7 +52,7 @@
         >
             <oui-select
                 data-disabled="$ctrl.manualSnaphost.length === 1"
-                data-placeholder="{{:: 'netapp_volume_create_snapshot_selection_placeholder' | translate }}"
+                data-placeholder="{{:: 'netapp_volume_create_snapshot_selection_custom' | translate }}"
                 data-items="$ctrl.manualSnaphost"
                 data-match="key"
                 data-model="$ctrl.snapshot"
@@ -80,7 +80,7 @@
                 max="{{:: $ctrl.availableVolumeSize }}"
                 data-ng-model="$ctrl.newVolume.size"
                 data-ng-required="true"
-                data-ng-disabled="$ctrl.snapshot && $ctrl.snapshot.key !== $ctrl.CUSTOM_SELECTION"
+                data-ng-disabled="$ctrl.snapshot && $ctrl.snapshot.type !== $ctrl.CUSTOM_SELECTION"
             />
         </oui-field>
         <oui-field

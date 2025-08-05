@@ -837,5 +837,7 @@
   "domain_tab_TASKS_status_PROBLEM": "Połączenie nieudane",
   "domain_dashboard_general_information_suspended_by_procedure_message": "Twoja domena jest zawieszona w związku z procedurą weryfikacji danych kontaktowych. Zapoznaj się z bieżącymi operacjami, aby ustalić, czy jest wymagane jakieś działanie z Twojej strony. ",
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Trwa procedura weryfikacji danych kontaktowych przypisanych do Twojej domeny. Zapoznaj się z bieżącymi operacjami, aby ustalić, czy jest wymagane jakieś działanie z Twojej strony. ",
-  "domain_dashboard_general_information_see_operations": "Wyświetl operacje w trakcie"
+  "domain_dashboard_general_information_see_operations": "Wyświetl operacje w trakcie",
+  "domain_tab_DNS_state_error": "Błąd",
+  "domain_tab_DNS_error_warning": "Podczas aktualizacji rekordów DNS został wykryty błąd. Prosimy o jego skorygowanie."
 }

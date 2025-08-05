@@ -5,7 +5,7 @@ import { EditService, editService } from '@/data/api/database/service.api';
 import { CdbError } from '@/data/api/database';
 
 interface UseEditService<T extends database.Service = database.Service> {
-  onError: (cause: CdbError) => void;
+  onError: (cause: CdbError, variables?: EditService) => void;
   onEditSuccess: (service: T) => void;
 }
 export function useEditService<T extends database.Service = database.Service>({

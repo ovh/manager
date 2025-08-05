@@ -78,6 +78,7 @@
                 <oui-tile-button
                     data-ng-repeat="shortcut in ::$ctrl.shortcuts track by $index"
                     data-href="{{:: shortcut.href }}"
+                    ng-click="$ctrl.onClickShortcut(shortcut)"
                     external="shortcut.isExternal"
                 >
                     <span
@@ -99,18 +100,45 @@
             >
                 <oui-tile-definition
                     data-term="{{:: 'user_account_dashboard_last_bill_reference' | translate }}"
-                    data-description="{{:: $ctrl.lastBill.billId }}"
                 >
+                    <oui-tile-description>
+                        <oui-skeleton
+                            data-ng-if="$ctrl.loaders.lastBill"
+                            size="xs"
+                        ></oui-skeleton>
+                        <span
+                            data-ng-if="!$ctrl.loaders.lastBill"
+                            data-ng-bind=":: $ctrl.lastBill.billId"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'user_account_dashboard_last_bill_date' | translate }}"
-                    data-description="{{:: $ctrl.lastBill.date | date}}"
                 >
+                    <oui-tile-description>
+                        <oui-skeleton
+                            data-ng-if="$ctrl.loaders.lastBill"
+                            size="xs"
+                        ></oui-skeleton>
+                        <span
+                            data-ng-if="!$ctrl.loaders.lastBill"
+                            data-ng-bind=":: $ctrl.lastBill.date | date"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'user_account_dashboard_last_bill_amount' | translate }}"
-                    data-description="{{:: $ctrl.lastBill.priceWithTax.text }}"
                 >
+                    <oui-tile-description>
+                        <oui-skeleton
+                            data-ng-if="$ctrl.loaders.lastBill"
+                            size="xs"
+                        ></oui-skeleton>
+                        <span
+                            data-ng-if="!$ctrl.loaders.lastBill"
+                            data-ng-bind=":: $ctrl.lastBill.priceWithTax.text"
+                        ></span>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <a
                     class="oui-button oui-button_secondary mx-auto my-5 d-block"

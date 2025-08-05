@@ -19,7 +19,8 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { AliasType, ResourceStatus } from '@/data/api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { AliasType } from '@/data/api';
 import { usePlatform, useAliases } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl } from '@/hooks';
 import ActionButtonAlias from './ActionButton.component';
@@ -27,12 +28,7 @@ import { BadgeStatus } from '@/components';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-
-export type AliasItem = {
-  id: string;
-  alias: string;
-  status: keyof typeof ResourceStatus;
-};
+import { AliasItem } from './Aliases.types';
 
 const columns: DatagridColumn<AliasItem>[] = [
   {
@@ -46,7 +42,7 @@ const columns: DatagridColumn<AliasItem>[] = [
   {
     id: 'status',
     cell: (item: AliasItem) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -57,7 +53,7 @@ const columns: DatagridColumn<AliasItem>[] = [
 
 export const Aliases = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation(['accounts/alias', 'common']);
+  const { t } = useTranslation(['accounts/alias', 'common', NAMESPACES.STATUS]);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
 

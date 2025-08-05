@@ -1,45 +1,24 @@
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@datatr-ux/uxlib';
-import Price from '@/components/price/Price.component';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { Badge, RadioTile, Separator } from '@datatr-ux/uxlib';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import * as database from '@/types/cloud/project/database';
 import { Plan } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
 
-export const PlanTile = ({
-  plan,
-  selected,
-  onChange,
-  showMonthlyPrice = false,
-}: {
-  plan: Plan;
-  selected: boolean;
-  onChange: (newPlan: string) => void;
-  showMonthlyPrice: boolean;
-}) => {
+export const PlanTile = ({ plan }: { plan: Plan }) => {
   const { t } = useTranslation('pci-databases-analytics/components/plan');
-  const { t: tPricing } = useTranslation('pricing');
-  const pricingUnit = showMonthlyPrice ? 'monthly' : 'hourly';
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
   );
   return (
     <RadioTile
       data-testid={`plan-tile-radio-tile-${plan.name}`}
-      name="plan-select"
-      onChange={() => onChange(plan.name)}
       value={plan.name}
-      checked={selected}
     >
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex justify-between w-full">
-            <h5
-              className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-            >
-              {plan.name}
-            </h5>
+            <h5 className="capitalize font-normal">{plan.name}</h5>
             <div>
               {plan.tags.map((tag) => (
                 <Badge
@@ -53,7 +32,7 @@ export const PlanTile = ({
               ))}
             </div>
           </div>
-          <RadioTile.Separator />
+          <Separator className="my-2" />
         </div>
         <div className="text-xs flex flex-col">
           <PlanTile.Ram ram={plan.ram} />
@@ -62,22 +41,6 @@ export const PlanTile = ({
           <PlanTile.Nodes nodes={plan.nodes} />
           {plan.backups && <span>{t('backupsSpec')}</span>}
           {hasPrivateNetwork && <span>{t('privateNetworkSpec')}</span>}
-        </div>
-        <div>
-          <RadioTile.Separator />
-          <p className="text-sm">
-            <span data-testid="plan-tile-price">{t('priceStartingFrom')} </span>
-            <Price
-              priceInUcents={
-                plan.minPricing[pricingUnit].price * plan.nodes.minimum
-              }
-              taxInUcents={
-                plan.minPricing[pricingUnit].tax * plan.nodes.minimum
-              }
-              decimals={showMonthlyPrice ? 2 : 3}
-            />
-            <b> {tPricing(`pricing_unit_${pricingUnit}`)}</b>
-          </p>
         </div>
       </div>
     </RadioTile>

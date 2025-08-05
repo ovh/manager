@@ -295,5 +295,6 @@
   "pack_move_ont_shipping_addresses_error": "An error has occurred loading your contacts. {{error}}",
   "pack_move_confirm_temporary_pack_creation_line_1": "During the transition to your new solution, a temporary pack will be created to ensure continuity of service.",
   "pack_move_confirm_temporary_pack_creation_line_2": "This pack will be automatically deleted once your Fiber order is finalized.",
-  "pack_move_confirm_temporary_pack_creation_line_3": "No modification or deletion action is necessary on your part: the switch to your Fiber access will be fully automated."
+  "pack_move_confirm_temporary_pack_creation_line_3": "No modification or deletion action is necessary on your part: the switch to your Fiber access will be fully automated.",
+  "pack_move_phone_call_for_new_meeting": "Online appointment booking is not available. We will contact you via phone to arrange a convenient date and time slot for you."
 }

@@ -3,6 +3,223 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.11...@ovh-ux/manager-zimbra-app@0.31.12) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.10...@ovh-ux/manager-zimbra-app@0.31.11) (2025-07-28)
+
+
+### Bug Fixes
+
+* **zimbra:** fix translations ([204888b](https://github.com/ovh/manager/commit/204888b107e23ffd34e9273ce9ee85ec814b04d1)), closes [#MANAGER-19222](https://github.com/ovh/manager/issues/MANAGER-19222)
+
+
+
+
+
+## [0.31.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.9...@ovh-ux/manager-zimbra-app@0.31.10) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.8...@ovh-ux/manager-zimbra-app@0.31.9) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.7...@ovh-ux/manager-zimbra-app@0.31.8) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.6...@ovh-ux/manager-zimbra-app@0.31.7) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.5...@ovh-ux/manager-zimbra-app@0.31.6) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.4...@ovh-ux/manager-zimbra-app@0.31.5) (2025-07-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.3...@ovh-ux/manager-zimbra-app@0.31.4) (2025-07-07)
+
+
+### Bug Fixes
+
+* **zimbra:** show upgrade button only for non-pro ([d04bc66](https://github.com/ovh/manager/commit/d04bc6600a37bc8ceb3812f22a9aab8d77eed7a1)), closes [#MANAGER-18954](https://github.com/ovh/manager/issues/MANAGER-18954)
+
+
+
+
+
+## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.2...@ovh-ux/manager-zimbra-app@0.31.3) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4153] ([16d9603](https://github.com/ovh/manager/commit/16d96031daa8ef51d7ad9d3030f9b5174b4caf9d))
+
+
+
+
+
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.1...@ovh-ux/manager-zimbra-app@0.31.2) (2025-07-02)
+
+
+### Bug Fixes
+
+* **zimbra:** fix account upgrade redirection ([e68115c](https://github.com/ovh/manager/commit/e68115c8acabbb4684225e6f31896ef3fd6ad4b3)), closes [#MANAGER-18835](https://github.com/ovh/manager/issues/MANAGER-18835)
+
+
+
+
+
+## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.0...@ovh-ux/manager-zimbra-app@0.31.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.3...@ovh-ux/manager-zimbra-app@0.31.0) (2025-06-23)
+
+
+### Features
+
+* **zimbra:** upgrade account to zimbra PRO ([6eea148](https://github.com/ovh/manager/commit/6eea1486a79bbe8031612dc2a317038d66442e84)), closes [#MANAGER-17310](https://github.com/ovh/manager/issues/MANAGER-17310)
+
+
+
+
+
+## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.2...@ovh-ux/manager-zimbra-app@0.30.3) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.1...@ovh-ux/manager-zimbra-app@0.30.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.30.0...@ovh-ux/manager-zimbra-app@0.30.1) (2025-06-19)
+
+
+### Bug Fixes
+
+* **zimbra:** fix password update in account edit form ([165d93a](https://github.com/ovh/manager/commit/165d93af9267a36b9e527748716c201d857c5adb)), closes [#MANAGER-18755](https://github.com/ovh/manager/issues/MANAGER-18755)
+
+
+
+
+
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.8...@ovh-ux/manager-zimbra-app@0.30.0) (2025-06-17)
+
+
+### Features
+
+* **zimbra:** add pro beta banner ([#17263](https://github.com/ovh/manager/issues/17263)) ([eaf97cd](https://github.com/ovh/manager/commit/eaf97cddf87e2ee43d65884cde2594d995cf13a8)), closes [#MANAGER-18253](https://github.com/ovh/manager/issues/MANAGER-18253)
+* **zimbra:** add slot selection in add account ([#17218](https://github.com/ovh/manager/issues/17218)) ([f0018df](https://github.com/ovh/manager/commit/f0018df21bd2725611a8380e1893bfa951b3f78d)), closes [#MANAGER-17311](https://github.com/ovh/manager/issues/MANAGER-17311)
+* **zimbra:** cancel & revert account subscription ([#17322](https://github.com/ovh/manager/issues/17322)) ([b4a6230](https://github.com/ovh/manager/commit/b4a6230413d8a0373b705bbf0a24d3d5d39b91f5)), closes [#MANAGER-18252](https://github.com/ovh/manager/issues/MANAGER-18252)
+* **zimbra:** display unconfigured accounts ([#17095](https://github.com/ovh/manager/issues/17095)) ([79c1a16](https://github.com/ovh/manager/commit/79c1a163753da1e6a2b20d1c170d8cbaefae9a27)), closes [#MANAGER-18250](https://github.com/ovh/manager/issues/MANAGER-18250)
+* **zimbra:** enhance delete modals with targeted entity info ([#17191](https://github.com/ovh/manager/issues/17191)) ([d41b2d1](https://github.com/ovh/manager/commit/d41b2d1d16ed1bd6021c9ffed8e14f2d1e9ec5b1)), closes [#MANAGER-18228](https://github.com/ovh/manager/issues/MANAGER-18228)
+
+
+
+
+
+## [0.29.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.7...@ovh-ux/manager-zimbra-app@0.29.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.6...@ovh-ux/manager-zimbra-app@0.29.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.5...@ovh-ux/manager-zimbra-app@0.29.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.4...@ovh-ux/manager-zimbra-app@0.29.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.3...@ovh-ux/manager-zimbra-app@0.29.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.2...@ovh-ux/manager-zimbra-app@0.29.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.1...@ovh-ux/manager-zimbra-app@0.29.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.29.0...@ovh-ux/manager-zimbra-app@0.29.1) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

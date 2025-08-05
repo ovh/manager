@@ -74,7 +74,7 @@ export default class HostingGeneralInformationsCtrl {
     this.defaultRuntime = null;
     this.isAvailableOfferOrDetach = false;
     this.contactManagementLink = this.coreConfig.isRegion('EU')
-      ? this.coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+      ? this.coreURLBuilder.buildURL('account', '#/contacts/services', {
           serviceName: this.serviceName,
           category: 'HOSTING',
         })
@@ -173,6 +173,8 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   retrievingSSLCertificate() {
+    if (this.$scope.hosting.multipleSSL) return null;
+
     this.isRetrievingSSLCertificate = true;
 
     return this.hostingSSLCertificate

@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.17.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.17.2...@ovh-ux/ng-ovh-payment-method@9.17.3) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
+
+
+
+
+
+## [9.17.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.17.1...@ovh-ux/ng-ovh-payment-method@9.17.2) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method
+
+
+
+
+
+## [9.17.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.17.0...@ovh-ux/ng-ovh-payment-method@9.17.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "fix(*): fix usage of useOvhPaymentMethod in apps and packages" ([22a0034](https://github.com/ovh/manager/commit/22a003476308e34e1975c0fef8d2ed8b7766adfb))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
+# [9.17.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.16.8...@ovh-ux/ng-ovh-payment-method@9.17.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* fix usage of useOvhPaymentMethod in apps and packages ([14cf10c](https://github.com/ovh/manager/commit/14cf10cb5b73962f41c462187f42b8ef088291f4)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+### Features
+
+* incorporate procedure changes, fix config ([5bd9e38](https://github.com/ovh/manager/commit/5bd9e388efd0ed1a46934f04c8182aab31d56d9c)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [9.16.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.16.7...@ovh-ux/ng-ovh-payment-method@9.16.8) (2025-06-05)
 
 

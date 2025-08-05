@@ -4,5 +4,13 @@
   "service_state_suspended": "Suspenso",
   "service_state_toActivate": "A ativar",
   "service_state_toDelete": "Eliminação pendente",
-  "service_state_toSuspend": "Suspensão pendente"
+  "service_state_toSuspend": "Suspensão pendente",
+  "service_state_enabled": "Ativado",
+  "service_state_disabled": "Desativado",
+  "service_state_draft": "A configurar",
+  "service_state_creating": "Criação",
+  "service_state_deleting": "Supressão",
+  "service_state_error": "Erro",
+  "service_state_ready": "Ativo",
+  "service_state_updating": "Atualização"
 }

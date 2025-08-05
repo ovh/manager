@@ -1,9 +1,10 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
+import { useReket } from '@ovh-ux/ovh-reket';
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
 import { links, tracking } from './constants';
@@ -12,8 +13,6 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import { UserLink } from './UserLink';
-import { Procedures } from '@/types/procedure';
-import { fetchProcedureStatus } from '@/api/procedure/procedure';
 
 type Props = {
   defaultPaymentMethod?: unknown;
@@ -32,6 +31,7 @@ const UserAccountMenu = ({
   const region = environment.getRegion();
   const { closeAccountSidebar } = useProductNavReshuffle();
   const [allLinks, setAllLinks] = useState<UserLink[]>(links);
+  const reketInstance = useReket();
   const [isKycDocumentsVisible, setIsDocumentsVisible] = useState<boolean>(
     false,
   );
@@ -78,32 +78,18 @@ const UserAccountMenu = ({
         'procedures:fraud',
       ]);
       if (featureAvailability['identity-documents']) {
-        try {
-          const identityProcedure = await fetchProcedureStatus(Procedures.INDIA);
-          isIdentityDocumentsAvailable = identityProcedure?.status && ['required', 'open'].includes(identityProcedure.status);
-        } catch {}
+        const { status } = await reketInstance.get(`/me/procedure/identity`);
+        isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
       }
       if (featureAvailability['procedures:fraud']) {
-        try {
-          const fraudProcedure = await fetchProcedureStatus(Procedures.FRAUD);
-          setIsDocumentsVisible(fraudProcedure?.status && ['required', 'open'].includes(fraudProcedure.status));
-        } catch {}
+        const { status } = await reketInstance.get(`/me/procedure/fraud`);
+        setIsDocumentsVisible(['required', 'open'].includes(status));
       }
-
-      const myServicesIndex = links.indexOf(
-        links.find((link: UserLink) => link.key === 'myServices'),
-      );
-      const myAssistanceTickets = {
-        app: 'new-account',
-        key: 'myAssistanceTickets',
-        hash: '#/ticket',
-        i18nKey: 'user_account_menu_my_assistance_tickets',
-      };
 
       const myIdentityDocuments = isIdentityDocumentsAvailable
         ? [
             {
-              app: 'new-account',
+              app: 'account',
               key: 'myIdentityDocuments',
               hash: '#/identity-documents',
               i18nKey: 'user_account_menu_my_identity_documents',
@@ -111,25 +97,7 @@ const UserAccountMenu = ({
           ]
         : [];
 
-      const myContracts = {
-        app: 'new-billing',
-        key: 'myContracts',
-        hash: '#/autorenew/agreements',
-        i18nKey: 'user_account_menu_my_contracts',
-        trackingHit: tracking.contracts,
-      };
-
-      const computedLinks =
-        region !== 'US'
-          ? [
-              ...links.slice(0, myServicesIndex),
-              myContracts,
-              ...links.slice(myServicesIndex, links.length),
-              ...myIdentityDocuments,
-            ]
-          : [...links, ...myIdentityDocuments, myAssistanceTickets];
-
-      setAllLinks(computedLinks);
+      setAllLinks([...links, ...myIdentityDocuments].filter((link: UserLink) => !link.region || link.region.includes(region)));
     };
 
     fetchData();
@@ -196,7 +164,7 @@ const UserAccountMenu = ({
             >
               <span>{t('user_account_menu_support')}</span>
               <a
-                href={getUrl('new-account', '#/useraccount/support/level')}
+                href={getUrl('account', '#/useraccount/support/level')}
                 onClick={() => onTrackNavigation(tracking.supportLevel)}
               >
                 <OsdsChip
@@ -238,7 +206,7 @@ const UserAccountMenu = ({
               id={'account_kyc_documents'}
               onClick={() =>
                 onLinkClick({
-                  app: 'new-account',
+                  app: 'account',
                   key: 'account_kyc_documents',
                   hash: '#/documents',
                   i18nKey: 'sidebar_account_kyc_documents',
@@ -247,7 +215,7 @@ const UserAccountMenu = ({
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}
-              href={getUrl('new-account', '#/documents')}
+              href={getUrl('account', '#/documents')}
               target="_top"
             >
               {sidebarTranslation.t('sidebar_account_kyc_documents')}

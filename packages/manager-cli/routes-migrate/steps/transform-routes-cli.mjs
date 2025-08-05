@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import fs from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
 import parser from '@babel/parser';
@@ -13,16 +13,19 @@ import {
   isCodeFileExists,
   splitImportsAndBody,
 } from '../../utils/CodeTransformUtils.mjs';
+import { resolveRoutePath } from '../../utils/AppUtils.mjs';
 
 const traverse = traverseModule.default;
 
 const appName = process.argv[2];
-
+const isDryRun = process.argv.includes('--dry-run');
 const NOT_FOUND_ROUTE = '@/pages/404';
 
-const basePath = path.resolve('../manager/apps');
-const filePath = path.join(basePath, appName, 'src/routes/routes.tsx');
-const outputFilePath = path.join(basePath, appName, 'src/routes/routes.tsx');
+/**
+ * Resolve all possible applications routes path
+ * @type {string|null}
+ */
+const applicationRoutePath = resolveRoutePath(appName, { verbose: isDryRun });
 
 /**
  * Find routes export start line
@@ -312,12 +315,12 @@ const generateTransformedRoutes = (code) => {
  * @returns {Promise<void>}
  */
 const transformRoutesToJsx = async () => {
-  if (!(await isCodeFileExists(filePath))) {
-    console.error(`❌ Error: routes.tsx file not found at ${filePath}`);
+  if (!(await isCodeFileExists(applicationRoutePath))) {
+    console.error(`❌ Error: routes.tsx file not found at ${applicationRoutePath}`);
     process.exit(1);
   }
 
-  const actualSourceCode = await fs.readFile(filePath, 'utf-8');
+  const actualSourceCode = await readFile(applicationRoutePath, 'utf-8');
   const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } = generateTransformedRoutes(
     removeLazyRouteConfig(actualSourceCode),
   );
@@ -345,13 +348,12 @@ ${routesTransformedBlock}
     endOfLine: 'lf',
   });
 
-  const isDryRun = process.argv.includes('--dry-run');
   if (isDryRun) {
     console.log('ℹ️  Dry run output:');
     console.log(formatted);
   } else {
-    await fs.writeFile(outputFilePath, formatted);
-    console.log(`✅ Successfully written JSX tree to ${outputFilePath}`);
+    await writeFile(applicationRoutePath, formatted);
+    console.log(`✅ Successfully written JSX tree to ${applicationRoutePath}`);
   }
 };
 

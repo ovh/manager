@@ -16,7 +16,6 @@ export default {
   FAILURE: 'FAILURE',
   SUCCESS: 'SUCCESS',
   suffixPattern: '^[a-z0-9_-]+$',
-  LOGS_DOCS_NAME: 'logs-data-platform',
   LOGS_PRODUCT_URL: '/data-platforms/logs/',
   OPENSEARCH_API_URL: 'OPENSEARCH_API',
   SERVICE_STATE_TO_CONFIG: 'TO_CONFIG',
@@ -94,7 +93,7 @@ export default {
   URLS: {
     GRAYLOG_WEBUI: 'GRAYLOG_WEBUI',
     GRAYLOG_API: 'GRAYLOG_API',
-    ELASTICSEARCH_API: 'ELASTICSEARCH_API',
+    OPENSEARCH_API: 'OPENSEARCH_API',
   },
   PORT_TYPES: {
     TCP_TLS: 'TCP/TLS',

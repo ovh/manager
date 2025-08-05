@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.5.0...@ovh-ux/manager-cli@0.6.0) (2025-07-21)
+
+
+### Features
+
+* static kit enhancement after v1 publish ([ce8d80d](https://github.com/ovh/manager/commit/ce8d80d6747771d7cad0b7470e64a52d5262f782)), closes [#MANAGER-17954](https://github.com/ovh/manager/issues/MANAGER-17954)
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.4.0...@ovh-ux/manager-cli@0.5.0) (2025-07-17)
+
+
+### Features
+
+* static analysis kit v1 - socle, architecture, eslint, tsconfig and deps ([5771071](https://github.com/ovh/manager/commit/577107168272904bf8a7a53a14a40b9ae52916ab)), closes [#MANAGER-17954](https://github.com/ovh/manager/issues/MANAGER-17954)
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.3.0...@ovh-ux/manager-cli@0.4.0) (2025-07-10)
+
+
+### Bug Fixes
+
+* **manager-cli:** include caret version in compare versions function ([ea9b862](https://github.com/ovh/manager/commit/ea9b86270ebc38f2f2b39bec12cf3a1df2dcd253))
+
+
+### Features
+
+* **manager-cli:** add check duplicated translations script ([b2dde52](https://github.com/ovh/manager/commit/b2dde527e19f090c5e0f733cd3a861173ae4e9eb)), closes [#MANAGER-17403](https://github.com/ovh/manager/issues/MANAGER-17403)
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.2.0...@ovh-ux/manager-cli@0.3.0) (2025-06-26)
+
+
+### Features
+
+* enhance html report and exclude non react applications ([db033f8](https://github.com/ovh/manager/commit/db033f8b9c67e3bb2995f4d40b4a43c9da230717))
+* **manager-cli:** add json and html export ([10aa6d5](https://github.com/ovh/manager/commit/10aa6d5674866a7b5530c2a7268bf220bc531186))
+* **manager-cli:** add migration status monitor cli ([a06961b](https://github.com/ovh/manager/commit/a06961bb3cd689a25be186491a20d205bddfaf82))
+* **manager-cli:** add swc migration status monitor cli ([038d7c3](https://github.com/ovh/manager/commit/038d7c370bbecfa2a059cbc27d290a15f0e9dcd0))
+* **manager-cli:** enhance merged report title ([2a3e008](https://github.com/ovh/manager/commit/2a3e0087299e0738e38cff6b5961c8bc3dabff3a))
+* **manager-cli:** migration status global report ([d06f889](https://github.com/ovh/manager/commit/d06f88908fa0ab7e6566560966d0fa01fd39b237))
+* **manager-cli:** update swc migration status monitor cli ([c069717](https://github.com/ovh/manager/commit/c069717cda1c0db5711b51b997087632fe20d6f0))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.1.1...@ovh-ux/manager-cli@0.2.0) (2025-06-05)
 
 

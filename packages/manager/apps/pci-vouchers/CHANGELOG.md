@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.13.3...@ovh-ux/manager-pci-vouchers-app@0.13.4) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.13.2...@ovh-ux/manager-pci-vouchers-app@0.13.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.13.1...@ovh-ux/manager-pci-vouchers-app@0.13.2) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.13.0...@ovh-ux/manager-pci-vouchers-app@0.13.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.7...@ovh-ux/manager-pci-vouchers-app@0.13.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.6...@ovh-ux/manager-pci-vouchers-app@0.12.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.5...@ovh-ux/manager-pci-vouchers-app@0.12.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.4...@ovh-ux/manager-pci-vouchers-app@0.12.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.3...@ovh-ux/manager-pci-vouchers-app@0.12.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.2...@ovh-ux/manager-pci-vouchers-app@0.12.3) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.1...@ovh-ux/manager-pci-vouchers-app@0.12.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.12.0...@ovh-ux/manager-pci-vouchers-app@0.12.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-vouchers-app
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-vouchers-app@0.11.10...@ovh-ux/manager-pci-vouchers-app@0.12.0) (2025-06-05)
 
 

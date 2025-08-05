@@ -51,10 +51,15 @@ describe('createTree function', () => {
     // Check the version level
     const version = engine.versions[0];
     expect(version.name).toEqual(mockedAvailabilities[0].version);
-    expect(version.plans).toHaveLength(2);
+    expect(version.regions).toHaveLength(1);
+
+    // Check the region level
+    const region = version.regions[0];
+    expect(region.name).toEqual(mockedAvailabilities[0].region);
+    expect(region.plans).toHaveLength(2);
 
     // Check the plan level
-    const plan = version.plans[0];
+    const plan = region.plans[0];
     expect(plan.name).toEqual(mockedAvailabilities[0].plan);
     expect(plan.networks).toEqual([
       mockedAvailabilities[0].specifications.network,
@@ -66,22 +71,13 @@ describe('createTree function', () => {
       mockedAvailabilities[0].specifications.nodes.maximum,
     );
 
-    // Check the region level
-    const region = plan.regions[0];
-    expect(region.name).toEqual(mockedAvailabilities[0].region);
-    expect(region.flavors).toHaveLength(1);
-
     // Check the flavor level
-    const flavor = region.flavors[0];
+    const flavor = plan.flavors[0];
     expect(flavor.name).toEqual(mockedAvailabilities[0].specifications.flavor);
     expect(flavor.ram).toEqual({
       unit: 'GB',
       value: 0,
     });
     expect(flavor.vcores).toEqual(0);
-
-    // Check pricing
-    expect(flavor.pricing.hourly.price).toEqual(1);
-    expect(flavor.pricing.monthly.price).toEqual(1);
   });
 });

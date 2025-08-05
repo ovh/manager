@@ -3,6 +3,175 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.3...@ovh-ux/manager-pci-gateway-app@0.25.4) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.2...@ovh-ux/manager-pci-gateway-app@0.25.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **pci-gateway:** remove extra info from title ([953bf9e](https://github.com/ovh/manager/commit/953bf9ec6c24454240414d86e692e9a05f3b5078)), closes [#TAPC-4613](https://github.com/ovh/manager/issues/TAPC-4613)
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.1...@ovh-ux/manager-pci-gateway-app@0.25.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.0...@ovh-ux/manager-pci-gateway-app@0.25.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.1...@ovh-ux/manager-pci-gateway-app@0.25.0) (2025-07-16)
+
+
+### Features
+
+* **pci-gateway:** remove connected networks link ([#17912](https://github.com/ovh/manager/issues/17912)) ([d392ffa](https://github.com/ovh/manager/commit/d392ffa5b242992feedf50a27f4a6d47ba6d96c1)), closes [#TAPC-4480](https://github.com/ovh/manager/issues/TAPC-4480)
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.24.0...@ovh-ux/manager-pci-gateway-app@0.24.1) (2025-07-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4166] ([cd0badf](https://github.com/ovh/manager/commit/cd0badfa9d93d0bbeff624cca1dfc11c39a9238c))
+
+
+
+
+
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.23.1...@ovh-ux/manager-pci-gateway-app@0.24.0) (2025-07-07)
+
+
+### Features
+
+* **gateway:** handle error for private network ([bb5c967](https://github.com/ovh/manager/commit/bb5c9677cebf39c9ccf1f63a39edbcc4512245e1)), closes [#TAPC-4452](https://github.com/ovh/manager/issues/TAPC-4452)
+
+
+
+
+
+## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.23.0...@ovh-ux/manager-pci-gateway-app@0.23.1) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.22.1...@ovh-ux/manager-pci-gateway-app@0.23.0) (2025-07-02)
+
+
+### Features
+
+* **gateway:** improve quota message error ([#17654](https://github.com/ovh/manager/issues/17654)) ([02ce4bf](https://github.com/ovh/manager/commit/02ce4bf38d6f6614bdf9242da927673d02de40cd)), closes [#TAPC-4100](https://github.com/ovh/manager/issues/TAPC-4100)
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.22.0...@ovh-ux/manager-pci-gateway-app@0.22.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.7...@ovh-ux/manager-pci-gateway-app@0.22.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.6...@ovh-ux/manager-pci-gateway-app@0.21.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.5...@ovh-ux/manager-pci-gateway-app@0.21.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.4...@ovh-ux/manager-pci-gateway-app@0.21.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.3...@ovh-ux/manager-pci-gateway-app@0.21.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.2...@ovh-ux/manager-pci-gateway-app@0.21.3) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.1...@ovh-ux/manager-pci-gateway-app@0.21.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.21.0...@ovh-ux/manager-pci-gateway-app@0.21.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.20.0...@ovh-ux/manager-pci-gateway-app@0.21.0) (2025-06-05)
 
 

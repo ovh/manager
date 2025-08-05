@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
   useToast,
-  Label,
 } from '@datatr-ux/uxlib';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import * as database from '@/types/cloud/project/database';
@@ -27,7 +25,6 @@ import { useEditService } from '@/hooks/api/database/service/useEditService.hook
 import Price from '@/components/price/Price.component';
 import StorageConfig from '@/components/order/cluster-configuration/StorageConfig.component';
 import { formatStorage } from '@/lib/bytesHelper';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
 import PricingDetails from '../_components/PricingDetails.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
@@ -35,7 +32,6 @@ import { useUpdateFlavor } from './useUpdateFlavor.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
 
 const UpdateFlavor = () => {
-  const [showMonthly, setShowMonthly] = useState(false);
   const navigate = useNavigate();
   const { service, projectId } = useServiceData();
   const toast = useToast();
@@ -104,7 +100,7 @@ const UpdateFlavor = () => {
       isLoading={!listFlavors || !initialFlavorObject || !newPrice || !oldPrice}
     >
       <DialogContent className="sm:max-w-2xl">
-        <ScrollArea className="max-h-[80vh] px-6">
+        <ScrollArea className="max-h-[80vh]">
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateFlavorForm">
               <DialogHeader className="mb-2">
@@ -112,12 +108,6 @@ const UpdateFlavor = () => {
                   {t('updateFlavorTitle')}
                 </DialogTitle>
               </DialogHeader>
-              <Label>{t('priceUnitSwitchLabel')}</Label>
-              <PriceUnitSwitch
-                showMonthly={showMonthly}
-                onChange={setShowMonthly}
-              />
-
               <FormField
                 control={form.control}
                 name="flavor"
@@ -130,7 +120,6 @@ const UpdateFlavor = () => {
                         flavors={listFlavors}
                         value={field.value}
                         onChange={field.onChange}
-                        showMonthlyPrice={showMonthly}
                       />
                     </FormControl>
                     <FormMessage />
@@ -175,36 +164,18 @@ const UpdateFlavor = () => {
           <div className="flex-col w-full">
             <div className="flex items-center gap-2">
               <Price
-                priceInUcents={
-                  oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                    .price
-                }
-                taxInUcents={
-                  oldPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
-                }
-                decimals={showMonthly ? 2 : 3}
+                priceInUcents={oldPrice?.servicePrice.hourly.price}
+                taxInUcents={oldPrice?.servicePrice.hourly.tax}
+                decimals={3}
               />
-              <PricingDetails
-                service={service}
-                pricing={oldPrice}
-                showMonthly={showMonthly}
-              />
+              <PricingDetails service={service} pricing={oldPrice} />
               <ArrowRight className="size-4" />
               <Price
-                priceInUcents={
-                  newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly']
-                    .price
-                }
-                taxInUcents={
-                  newPrice?.servicePrice[showMonthly ? 'monthly' : 'hourly'].tax
-                }
-                decimals={showMonthly ? 2 : 3}
+                priceInUcents={newPrice?.servicePrice.hourly.price}
+                taxInUcents={newPrice?.servicePrice.hourly.tax}
+                decimals={3}
               />
-              <PricingDetails
-                service={service}
-                pricing={newPrice}
-                showMonthly={showMonthly}
-              />
+              <PricingDetails service={service} pricing={newPrice} />
             </div>
             <div className="flex gap-2 mt-2 justify-end">
               <DialogClose asChild>

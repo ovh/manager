@@ -26,11 +26,13 @@ import {
   useDissociateVrack,
   useVrackService,
 } from '@ovh-ux/manager-network-common';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageName } from '@/utils/tracking';
 import { LoadingText } from '@/components/LoadingText.component';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
 import { SuccessMessage } from '@/components/feedback-messages/SuccessMessage.component';
 import { getDisplayName } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type AssociateAnotherVrackProps = {
   vrackList: string[];
@@ -45,8 +47,11 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
   const { data: vs } = useVrackService();
   const queryClient = useQueryClient();
   const { addSuccessMessage } = React.useContext(MessagesContext);
-  const { t } = useTranslation('vrack-services/associate');
-  const { t: tDissociate } = useTranslation('vrack-services/dissociate');
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.associate,
+    TRANSLATION_NAMESPACES.dissociate,
+    NAMESPACES.ACTIONS,
+  ]);
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
@@ -123,7 +128,8 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
       )}
       {isDissociateSuccess && (
         <SuccessMessage
-          message={tDissociate('vrackServicesDissociateSuccess', {
+          message={t('vrackServicesDissociateSuccess', {
+            ns: TRANSLATION_NAMESPACES.dissociate,
             vs: getDisplayName(vs),
             vrack: vrackId,
           })}
@@ -135,7 +141,9 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
           description={
             isAssociatePending
               ? t('addVrackServicesToVrack')
-              : tDissociate('removeVrackServicesFromVrack')
+              : t('removeVrackServicesFromVrack', {
+                  ns: TRANSLATION_NAMESPACES.dissociate,
+                })
           }
         />
       )}
@@ -178,7 +186,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
             type="button"
             isDisabled={isDissociatePending || isAssociatePending}
             variant={ODS_BUTTON_VARIANT.ghost}
-            label={t('modalAssociateCancelButton')}
+            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             onClick={closeModal}
           />
           <OdsButton

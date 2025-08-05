@@ -1,5 +1,7 @@
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { TWorkflowExecution } from '@/api/data/region-workflow';
 import ExecutionStatusComponent from '@/components/execution-status.component';
 
@@ -24,9 +26,7 @@ export const useExecutionDatagridColumns = () => {
     },
     {
       id: 'state',
-      cell: (props: TWorkflowExecution) => (
-        <ExecutionStatusComponent status={props.state} />
-      ),
+      cell: (props: TWorkflowExecution) => <ExecutionStatusComponent status={props.state} />,
       label: tExecution('pci_workflow_executions_status'),
     },
   ];

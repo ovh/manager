@@ -3,6 +3,197 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.0...@ovh-ux/manager-telecom@16.15.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4225] ([0d8b2ad](https://github.com/ovh/manager/commit/0d8b2adc52284b2c683830a449cf83a477c6d996))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.1...@ovh-ux/manager-telecom@16.15.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix directory form ([44ebbee](https://github.com/ovh/manager/commit/44ebbeef16209db26ef4c461c645a72219dff979)), closes [#MANAGER-19198](https://github.com/ovh/manager/issues/MANAGER-19198)
+
+
+### Features
+
+* **xdsl-access:** adding the GTR display on the access display ([860fbae](https://github.com/ovh/manager/commit/860fbaeb7084e353e5ab5fe0ba8eb00f7fdfe36b)), closes [#UXCT-767](https://github.com/ovh/manager/issues/UXCT-767)
+
+
+
+
+
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.0...@ovh-ux/manager-telecom@16.14.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([1bfb74c](https://github.com/ovh/manager/commit/1bfb74c27520b5be52fca4ff809952667509a849))
+
+
+
+
+
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.13.0...@ovh-ux/manager-telecom@16.14.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 576] ([9c7a1ce](https://github.com/ovh/manager/commit/9c7a1cee5dc24099c99279308df37956cba5c317))
+
+
+### Features
+
+* **telephony:** adding voicemail transcript ui ([575c0aa](https://github.com/ovh/manager/commit/575c0aa40081a4310cd3e68c3b76d1aa26bcdfaa)), closes [#MANAGER-18982](https://github.com/ovh/manager/issues/MANAGER-18982)
+
+
+
+
+
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.12.0...@ovh-ux/manager-telecom@16.13.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 576] ([9c7a1ce](https://github.com/ovh/manager/commit/9c7a1cee5dc24099c99279308df37956cba5c317))
+
+
+### Features
+
+* **telephony:** adding voicemail transcript ui ([575c0aa](https://github.com/ovh/manager/commit/575c0aa40081a4310cd3e68c3b76d1aa26bcdfaa)), closes [#MANAGER-18982](https://github.com/ovh/manager/issues/MANAGER-18982)
+
+
+
+
+
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.5...@ovh-ux/manager-telecom@16.12.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **telecom.access:** display no meetings if meeting slots empty ([1369a38](https://github.com/ovh/manager/commit/1369a38a3b9797bb853769a7c5a383d12d3d2c1b)), closes [#UXCT-766](https://github.com/ovh/manager/issues/UXCT-766)
+
+
+### Features
+
+* **pack.access:** check copper vs fiber mentions ([2a2b5e9](https://github.com/ovh/manager/commit/2a2b5e9164cdbbee787d544f518e05c7feb517dc)), closes [#UXCT-763](https://github.com/ovh/manager/issues/UXCT-763)
+* **telecom.access:** display move button only for adsl and ftth ([d46bdf7](https://github.com/ovh/manager/commit/d46bdf794c776e0b7cf3f3a6c33c9dc77dbc0495)), closes [#UXCT-762](https://github.com/ovh/manager/issues/UXCT-762)
+* **telecom.access:** update profile display from api result ([6abf21d](https://github.com/ovh/manager/commit/6abf21d7e04b61b8143945bea0016fa25e18fbb5)), closes [#UXCT-760](https://github.com/ovh/manager/issues/UXCT-760)
+* **telecom.pack:** check can change offer status to enable button ([68537cc](https://github.com/ovh/manager/commit/68537cce0a3ca543fce4737fbb3d6e3465e78ff9)), closes [#UXCT-761](https://github.com/ovh/manager/issues/UXCT-761)
+
+
+
+
+
+## [16.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.4...@ovh-ux/manager-telecom@16.11.5) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.3...@ovh-ux/manager-telecom@16.11.4) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.2...@ovh-ux/manager-telecom@16.11.3) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.1...@ovh-ux/manager-telecom@16.11.2) (2025-06-26)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([da96e0d](https://github.com/ovh/manager/commit/da96e0d4fe902579661531f2ba319c6f26a8aae4))
+
+
+
+
+
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.11.0...@ovh-ux/manager-telecom@16.11.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.8...@ovh-ux/manager-telecom@16.11.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* **telecom.softphone:** remove possibility to delete device one by one ([f2979a1](https://github.com/ovh/manager/commit/f2979a1efb9de3d90fea273ed5f4af0f27bf1984)), closes [#MANAGER-18433](https://github.com/ovh/manager/issues/MANAGER-18433)
+* **telecom.voip:** add url image for phone grandstream ht802 ([17b602f](https://github.com/ovh/manager/commit/17b602ffda7d7539eb2009f1e9567c734d4b862c)), closes [#MANAGER-18427](https://github.com/ovh/manager/issues/MANAGER-18427)
+
+
+### Features
+
+* **web:** remove old skipnav ([3bab04b](https://github.com/ovh/manager/commit/3bab04b4325c08b9ca9c42d992dd31e60c2501d7)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
+## [16.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.7...@ovh-ux/manager-telecom@16.10.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.6...@ovh-ux/manager-telecom@16.10.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.5...@ovh-ux/manager-telecom@16.10.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.4...@ovh-ux/manager-telecom@16.10.5) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.3...@ovh-ux/manager-telecom@16.10.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.10.2...@ovh-ux/manager-telecom@16.10.3) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

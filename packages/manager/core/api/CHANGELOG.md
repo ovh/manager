@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.15.0...@ovh-ux/manager-core-api@0.16.0) (2025-08-01)
+
+
+### Bug Fixes
+
+* **core:** update iceberg filter headers ([c40e0de](https://github.com/ovh/manager/commit/c40e0de6e9742f0898b880ea7274c1bf58e1e6d2)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+
+
+### Features
+
+* **core:** add filter by tag feature to iam route ([568acf6](https://github.com/ovh/manager/commit/568acf6fe96d03336e22c2eecd3923345e14fe4f)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.14.0...@ovh-ux/manager-core-api@0.15.0) (2025-07-17)
+
+
+### Features
+
+* **core:** iceberg v2 disabled pagination mode ([6cf5ad4](https://github.com/ovh/manager/commit/6cf5ad439854ff114c09e93fa797a63c4839bc52)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+* **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.13.0...@ovh-ux/manager-core-api@0.14.0) (2025-07-04)
+
+
+### Features
+
+* **core:** refactor api update iceberg header request ([258f02e](https://github.com/ovh/manager/commit/258f02e2f8dad8766866ef4882faccf58c08bc0d)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+* **core:** update iceberg api client for v2 ([7973f2f](https://github.com/ovh/manager/commit/7973f2f7d9622b87e1bedbcfcbc431c90684715f)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+* **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.12.1...@ovh-ux/manager-core-api@0.13.0) (2025-06-20)
+
+
+### Features
+
+* **core-api:** add ovh  api typguard ([e7de36c](https://github.com/ovh/manager/commit/e7de36ce84f1a560e450c3df36f37049d3e04cff))
+* **core-api:** enhance folder architecture ([f35e4d2](https://github.com/ovh/manager/commit/f35e4d22239f72664a79516ec877ba4fc28b1c6d))
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.12.0...@ovh-ux/manager-core-api@0.12.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-api
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.11.1...@ovh-ux/manager-core-api@0.12.0) (2025-05-15)
 
 

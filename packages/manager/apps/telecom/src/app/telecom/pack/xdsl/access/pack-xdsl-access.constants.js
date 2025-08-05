@@ -32,6 +32,8 @@ export const PROVIDER_INFRA = {
 export const ACCESS_TYPE = {
   vdsl: 'vdsl',
   ftth: 'ftth',
+  ftte: 'ftte',
+  ftto: 'ftto',
 };
 
 export const MAIL_SENDING_STATUS = {

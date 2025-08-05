@@ -3,6 +3,121 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.15...@ovh-ux/manager-pci-common@2.6.16) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.14...@ovh-ux/manager-pci-common@2.6.15) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.13...@ovh-ux/manager-pci-common@2.6.14) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.12...@ovh-ux/manager-pci-common@2.6.13) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.11...@ovh-ux/manager-pci-common@2.6.12) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.10...@ovh-ux/manager-pci-common@2.6.11) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.9...@ovh-ux/manager-pci-common@2.6.10) (2025-07-10)
+
+
+### Bug Fixes
+
+* **manager-pci-common:** add undefined type to the project on isDiscoveryProject ([a8a8446](https://github.com/ovh/manager/commit/a8a8446a856c905f2f89d4de41b0e39f48e646c9)), closes [#17727](https://github.com/ovh/manager/issues/17727)
+
+
+
+
+
+## [2.6.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.8...@ovh-ux/manager-pci-common@2.6.9) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.7...@ovh-ux/manager-pci-common@2.6.8) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.6...@ovh-ux/manager-pci-common@2.6.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.5...@ovh-ux/manager-pci-common@2.6.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.4...@ovh-ux/manager-pci-common@2.6.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.3...@ovh-ux/manager-pci-common@2.6.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
+## [2.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.2...@ovh-ux/manager-pci-common@2.6.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
 ## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.1...@ovh-ux/manager-pci-common@2.6.2) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.4...@ovh-ux/manager-vrack@1.20.5) (2025-08-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix dedicatedServerInterface vrack page ([b8bf8a8](https://github.com/ovh/manager/commit/b8bf8a81b3d266032ac36d42da6f40665c1dfafe)), closes [#MANAGER-19039](https://github.com/ovh/manager/issues/MANAGER-19039)
+
+
+
+
+
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.3...@ovh-ux/manager-vrack@1.20.4) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** add missing dependecy to billing-components ([a397047](https://github.com/ovh/manager/commit/a39704716588662815da58966470f3a8c0065e0d)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
+## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.2...@ovh-ux/manager-vrack@1.20.3) (2025-07-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4117] ([690efd3](https://github.com/ovh/manager/commit/690efd38bb2feec2429f7bf726e12369a7405b3a))
+* **vrack-listing:** defining translations for the headers of the vrack's listing ([26867af](https://github.com/ovh/manager/commit/26867af6cdcc673d5c2d2041857b10e8e1d5cce7)), closes [#MANAGER-18167](https://github.com/ovh/manager/issues/MANAGER-18167)
+
+
+
+
+
 ## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.1...@ovh-ux/manager-vrack@1.20.2) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack

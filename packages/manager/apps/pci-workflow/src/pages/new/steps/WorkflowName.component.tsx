@@ -1,28 +1,29 @@
-import {
-  OsdsButton,
-  OsdsText,
-  OsdsFormField,
-  OsdsInput,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_INPUT_TYPE,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import {
-  useCatalogPrice,
-  convertHourlyPriceToMonthly,
-} from '@ovh-ux/manager-react-components';
-import { useParams } from 'react-router-dom';
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 import { StepState } from '@/pages/new/hooks/useStep';
@@ -56,19 +57,10 @@ export function WorkflowName({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { data: pricing, isFetching } = useInstanceSnapshotPricing(
-    projectId,
-    region,
-  );
+  const { data: pricing, isFetching } = useInstanceSnapshotPricing(projectId, region);
 
   if (isFetching) {
-    return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="loading-spinner"
-      />
-    );
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="loading-spinner" />;
   }
 
   return (
@@ -86,11 +78,7 @@ export function WorkflowName({
           color={ODS_THEME_COLOR_INTENT[hasError ? 'error' : 'text']}
           className="mt-4"
         >
-          {hasError && (
-            <span className="block">
-              {tCommon('common_field_error_pattern')}
-            </span>
-          )}
+          {hasError && <span className="block">{tCommon('common_field_error_pattern')}</span>}
           {t('pci_workflow_create_name_help')}
         </OsdsText>
         <OsdsInput
@@ -121,16 +109,12 @@ export function WorkflowName({
           {pricing && (
             <span className="font-bold">
               {t('pci_workflow_create_price_monthly', {
-                price: getFormattedCatalogPrice(
-                  convertHourlyPriceToMonthly(pricing?.price),
-                ),
+                price: getFormattedCatalogPrice(convertHourlyPriceToMonthly(pricing?.price)),
               })}
             </span>
           )}
           {!pricing && (
-            <span className="font-bold">
-              {t('pci_workflow_create_price_not_available')}{' '}
-            </span>
+            <span className="font-bold">{t('pci_workflow_create_price_not_available')} </span>
           )}
         </OsdsText>
       </div>

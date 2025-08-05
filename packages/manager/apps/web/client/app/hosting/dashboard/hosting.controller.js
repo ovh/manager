@@ -37,6 +37,7 @@ export default class {
     coreURLBuilder,
     cronLink,
     currentActiveLink,
+    databaseIds,
     databaseLink,
     emailOptionIds,
     emailOptionDetachInformation,
@@ -82,6 +83,7 @@ export default class {
     this.$scope.cdnProperties = cdnProperties;
     this.$scope.cdnServiceInfo = cdnServiceInfo;
     this.$scope.cdnRange = cdnRange;
+    this.$scope.databaseIds = databaseIds;
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
     this.$scope.HOSTING_FLUSH_STATE = HOSTING_FLUSH_STATE;
@@ -140,6 +142,11 @@ export default class {
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
     this.HOSTING_ORDER_URL = HOSTING_ORDER_URL;
     this.serviceName = serviceName;
+    this.sslCertificateLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/ssl',
+      { serviceName },
+    );
   }
 
   $onInit() {

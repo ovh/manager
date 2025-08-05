@@ -3,6 +3,161 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.20...@ovh-ux/manager-pci-volume-backup-app@0.1.21) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.19...@ovh-ux/manager-pci-volume-backup-app@0.1.20) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.18...@ovh-ux/manager-pci-volume-backup-app@0.1.19) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.17...@ovh-ux/manager-pci-volume-backup-app@0.1.18) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.16...@ovh-ux/manager-pci-volume-backup-app@0.1.17) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.15...@ovh-ux/manager-pci-volume-backup-app@0.1.16) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.14...@ovh-ux/manager-pci-volume-backup-app@0.1.15) (2025-07-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.13...@ovh-ux/manager-pci-volume-backup-app@0.1.14) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.12...@ovh-ux/manager-pci-volume-backup-app@0.1.13) (2025-07-02)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** use specs name instead of catalog name ([dd69f79](https://github.com/ovh/manager/commit/dd69f790dc4067c9972ceb0b04965700be2597df)), closes [#TAPC-4446](https://github.com/ovh/manager/issues/TAPC-4446)
+
+
+
+
+
+## [0.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.11...@ovh-ux/manager-pci-volume-backup-app@0.1.12) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.10...@ovh-ux/manager-pci-volume-backup-app@0.1.11) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.9...@ovh-ux/manager-pci-volume-backup-app@0.1.10) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.8...@ovh-ux/manager-pci-volume-backup-app@0.1.9) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.7...@ovh-ux/manager-pci-volume-backup-app@0.1.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.6...@ovh-ux/manager-pci-volume-backup-app@0.1.7) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.5...@ovh-ux/manager-pci-volume-backup-app@0.1.6) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.4...@ovh-ux/manager-pci-volume-backup-app@0.1.5) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.3...@ovh-ux/manager-pci-volume-backup-app@0.1.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
+## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.2...@ovh-ux/manager-pci-volume-backup-app@0.1.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.1.1...@ovh-ux/manager-pci-volume-backup-app@0.1.2) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app

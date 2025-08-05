@@ -15,51 +15,34 @@ function Rewrite({ to }: { to: string }): JSX.Element {
 export function Redirections(
   configuration: Record<string, Application>,
 ): JSX.Element {
-  const isNewAccountAvailable = !!configuration?.['new-account'];
-  const isNewBillingAvailable = !!configuration?.['new-billing'];
-
   return (
     <>
-      {isNewAccountAvailable ? (
-        <>
-          <Route
-            path="/useraccount/*"
-            element={<Rewrite to="/account/useraccount/*" />}
-          />
-          <Route
-            path="/dedicated/useraccount/*"
-            element={<Rewrite to="/account/useraccount/*" />}
-          />
-          <Route
-            path="/dedicated/contacts/*"
-            element={<Rewrite to="/account/contacts/*" />}
-          />
-          <Route
-            path="/dedicated/identity-documents/*"
-            element={<Rewrite to="/account/identity-documents/*" />}
-          />
-          <Route
-            path="/dedicated/documents/*"
-            element={<Rewrite to="/account/documents/*" />}
-          />
-        </>
-      ) : (
+      <>
         <Route
           path="/useraccount/*"
-          element={<Rewrite to="/dedicated/useraccount/*" />}
+          element={<Rewrite to="/account/useraccount/*" />}
         />
-      )}
-      {isNewBillingAvailable ? (
         <Route
-          path="/dedicated/billing/*"
-          element={<Rewrite to="/billing/*" />}
+          path="/dedicated/useraccount/*"
+          element={<Rewrite to="/account/useraccount/*" />}
         />
-      ) : (
         <Route
-          path="/billing/*"
-          element={<Rewrite to="/dedicated/billing/*" />}
+          path="/dedicated/contacts/*"
+          element={<Rewrite to="/account/contacts/*" />}
         />
-      )}
+        <Route
+          path="/dedicated/identity-documents/*"
+          element={<Rewrite to="/account/identity-documents/*" />}
+        />
+        <Route
+          path="/dedicated/documents/*"
+          element={<Rewrite to="/account/documents/*" />}
+        />
+      </>
+      <Route
+        path="/dedicated/billing/*"
+        element={<Rewrite to="/billing/*" />}
+      />
       <Route path="/freefax">
         <Route path=":id/*" element={<Rewrite to="/telecom/freefax/:id/*" />} />
         <Route index element={<Rewrite to="/telecom/freefax/" />} />
@@ -81,7 +64,10 @@ export function Redirections(
         <Route index element={<Rewrite to="/telecom/telephony/" />} />
       </Route>
       <Route path="/orders" element={<Rewrite to="/telecom/orders" />} />
-      <Route path="/dedicated/metrics/*" element={<Rewrite to="/dedicated/dbaas/logs/*" />} />
+      <Route
+        path="/dedicated/metrics/*"
+        element={<Rewrite to="/dedicated/dbaas/logs/*" />}
+      />
       <Route path="/overTheBox">
         <Route
           path=":id/*"

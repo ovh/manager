@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.0...@ovh-ux/manager-cloud-connect@1.24.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+* remove unused translations [CDS] ([23bc535](https://github.com/ovh/manager/commit/23bc535da7105fbc892afe6fb95470d7206ef15f))
+
+
+
+
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.1...@ovh-ux/manager-cloud-connect@1.24.0) (2025-07-29)
+
+
+### Features
+
+* **dedicated.cloud-connect:** enable logs for ovh cloud-connect ([d865758](https://github.com/ovh/manager/commit/d865758a0a92711e21d9380f49afcb3b086ab7c9)), closes [#MANAGER-18859](https://github.com/ovh/manager/issues/MANAGER-18859)
+
+
+
+
+
+## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.0...@ovh-ux/manager-cloud-connect@1.23.1) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-connect
+
+
+
+
+
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.4...@ovh-ux/manager-cloud-connect@1.23.0) (2025-07-24)
+
+
+### Features
+
+* **cloud-connect:** display tooltip and timestamp on pop config ([4866e7c](https://github.com/ovh/manager/commit/4866e7cca0ce92035e9bf62ed51547acee3afbed)), closes [#UXCT-756](https://github.com/ovh/manager/issues/UXCT-756)
+
+
+
+
+
+## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.3...@ovh-ux/manager-cloud-connect@1.22.4) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+* **occ.statistics:** display bgp road statitics with good params ([b5a41d5](https://github.com/ovh/manager/commit/b5a41d58f2438960c3b39b84cc34ea00d9bd38d2))
+
+
+
+
+
+## [1.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.2...@ovh-ux/manager-cloud-connect@1.22.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4104] ([c5ec28f](https://github.com/ovh/manager/commit/c5ec28f9e10113cfa86ffbd7d7be51676a5003ad))
+* **i18n:** add missing translations [CDS 4113] ([be9c942](https://github.com/ovh/manager/commit/be9c9421f3e293cf914ad00f2f2c25f4da791efc))
+* **i18n:** add missing translations [CDS 4120] ([cf64c55](https://github.com/ovh/manager/commit/cf64c55dc192aeeeb8be6fa3a764243337c6d5b3))
+
+
+
+
+
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.1...@ovh-ux/manager-cloud-connect@1.22.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4100] ([5ae216d](https://github.com/ovh/manager/commit/5ae216d093757f9965fff45050251b7147c8d474))
+
+
+
+
+
+## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.22.0...@ovh-ux/manager-cloud-connect@1.22.1) (2025-06-11)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([0f0d52c](https://github.com/ovh/manager/commit/0f0d52c68f326df755362478cea63c7377532e23))
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.21.3...@ovh-ux/manager-cloud-connect@1.22.0) (2025-06-03)
 
 

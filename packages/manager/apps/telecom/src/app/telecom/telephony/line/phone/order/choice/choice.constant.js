@@ -35,6 +35,10 @@ export const TELEPHONY_LINE_PHONE_CHOICE = {
     url: `${PATH_URL_INFO}gigaset_S650`,
     img: `${PATH_URL_IMG}gigaset/phone-gigaset-n670-packed-s650h-90-90.png`,
   },
+  'grandstream.ht802': {
+    url: `${PATH_URL_INFO}grandstream-ht802`,
+    img: `${PATH_URL_IMG}grandstream/phone-grandstream-ht802-90-90.png`,
+  },
   'yealink.t53': {
     url: `${PATH_URL_INFO}yealink_T53`,
     img: `${PATH_URL_IMG}yealink/phone-yealink-t53-90-90.png`,

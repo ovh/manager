@@ -6,30 +6,12 @@ import {
   waitFor,
 } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import { RadioGroup } from '@datatr-ux/uxlib';
 import { PlanTile } from '@/components/order/plan/PlanTile.component';
 import { mockedBasicOrderFunnelPlan } from '@/__tests__/helpers/mocks/order-funnel';
 import { Plan } from '@/types/orderFunnel';
 
 describe('PlanTile component', () => {
-  beforeEach(() => {
-    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
-      return {
-        useGetCatalog: vi.fn(() => ({
-          isSuccess: true,
-          data: {
-            locale: {
-              currencyCode: 'EUR',
-            },
-          },
-        })),
-      };
-    });
-    vi.mock('@/hooks/useLocale', () => {
-      return {
-        useLocale: vi.fn(() => 'fr_FR'),
-      };
-    });
-  });
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -52,12 +34,9 @@ describe('PlanTile component', () => {
       },
     };
     render(
-      <PlanTile
-        plan={fullPlan}
-        selected={false}
-        onChange={onChange}
-        showMonthlyPrice={true}
-      />,
+      <RadioGroup>
+        <PlanTile plan={fullPlan} />
+      </RadioGroup>,
     );
     await waitFor(() => {
       const BadgeTestId = `plan-tile-badge-${fullPlan.tags[0]}`;
@@ -71,7 +50,6 @@ describe('PlanTile component', () => {
       expect(screen.getByTestId('plan-tile-cpu-range')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-storage-range')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-nodes-range')).toBeInTheDocument();
-      expect(screen.getByTestId('plan-tile-price')).toBeInTheDocument();
     });
   });
 
@@ -85,12 +63,9 @@ describe('PlanTile component', () => {
       },
     };
     render(
-      <PlanTile
-        plan={noNodesPlan}
-        selected={true}
-        onChange={onChange}
-        showMonthlyPrice={true}
-      />,
+      <RadioGroup>
+        <PlanTile plan={noNodesPlan} />
+      </RadioGroup>,
     );
     await waitFor(() => {
       expect(screen.queryByTestId('plan-tile-ram')).toBeNull();
@@ -122,40 +97,15 @@ describe('PlanTile component', () => {
       },
     };
     render(
-      <PlanTile
-        plan={noRangePlan}
-        selected={true}
-        onChange={onChange}
-        showMonthlyPrice={false}
-      />,
+      <RadioGroup>
+        <PlanTile plan={noRangePlan} />
+      </RadioGroup>,
     );
     await waitFor(() => {
       expect(screen.getByTestId('plan-tile-ram-spec')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-cpu-spec')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-storage-spec')).toBeInTheDocument();
       expect(screen.getByTestId('plan-tile-nodes-spec')).toBeInTheDocument();
-    });
-  });
-
-  it('should trigger callback when selected', async () => {
-    const onChange = vi.fn();
-    render(
-      <PlanTile
-        plan={mockedBasicOrderFunnelPlan}
-        selected={false}
-        onChange={onChange}
-        showMonthlyPrice={false}
-      />,
-    );
-    act(() => {
-      fireEvent.click(
-        screen.getByTestId(
-          `plan-tile-radio-tile-${mockedBasicOrderFunnelPlan.name}`,
-        ),
-      );
-    });
-    await waitFor(() => {
-      expect(onChange).toHaveBeenCalled();
     });
   });
 });

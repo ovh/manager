@@ -7,8 +7,6 @@ import uiRouter from '@uirouter/angularjs';
 import component from './email.component';
 import routing from './email.routing';
 
-import terminate from '../terminate/terminate.module';
-
 const moduleName = 'ovhManagerBillingAutorenewTerminateEmail';
 
 angular
@@ -16,7 +14,6 @@ angular
     angularTranslate,
     ngTranslateAsyncLoader,
     'oui',
-    terminate,
     uiRouter,
   ])
   .config(routing)

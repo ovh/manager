@@ -3,6 +3,148 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.4...@ovh-ux/manager-account@0.14.5) (2025-08-04)
+
+
+### Bug Fixes
+
+* **account:** added angular-messages dependency ([54fd775](https://github.com/ovh/manager/commit/54fd7757b046620ba08fb217f3df2d5f7be59a52)), closes [#MANAGER-19220](https://github.com/ovh/manager/issues/MANAGER-19220) [#PRB0042689](https://github.com/ovh/manager/issues/PRB0042689)
+* **account:** make disabled attribute dynamic for gdpr actions ([0baba09](https://github.com/ovh/manager/commit/0baba09a70509a195e42dcb5ba35e60e8e0a7628)), closes [#MANAGER-19306](https://github.com/ovh/manager/issues/MANAGER-19306)
+
+
+
+
+
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.3...@ovh-ux/manager-account@0.14.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* **account:** remove one time binding on contact change requests ([dec871a](https://github.com/ovh/manager/commit/dec871a9e64b524cbb5b8523dcf45ec29c619de3)), closes [#MANAGER-18762](https://github.com/ovh/manager/issues/MANAGER-18762) [#INC0136987](https://github.com/ovh/manager/issues/INC0136987)
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.2...@ovh-ux/manager-account@0.14.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.1...@ovh-ux/manager-account@0.14.2) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4148] ([a9398e8](https://github.com/ovh/manager/commit/a9398e8e404133deca51e04f43d8383a37c29db1))
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.0...@ovh-ux/manager-account@0.14.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* **container:** fix redirection to contacts ([afffff0](https://github.com/ovh/manager/commit/afffff03811fca200cdd31487e2b0cf2d2bbf113)), closes [#MANAGER-18915](https://github.com/ovh/manager/issues/MANAGER-18915)
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.2...@ovh-ux/manager-account@0.14.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **account:** kyc add retry for upload link retrieval ([4701f15](https://github.com/ovh/manager/commit/4701f15c007d75e4a9c998893dd568a544c4e4f3)), closes [#MANAGER-18499](https://github.com/ovh/manager/issues/MANAGER-18499)
+
+
+### Features
+
+* **account:** add retry loop on KYC fraud ([4b2788d](https://github.com/ovh/manager/commit/4b2788d7adba1348285f3d306fead8fd81d2b038)), closes [#MANAGER-17734](https://github.com/ovh/manager/issues/MANAGER-17734)
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.1...@ovh-ux/manager-account@0.13.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.13.0...@ovh-ux/manager-account@0.13.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.4...@ovh-ux/manager-account@0.13.0) (2025-06-16)
+
+
+### Features
+
+* **account:** add a shorcut to the contracts page ([1efae96](https://github.com/ovh/manager/commit/1efae96c4863115aa086c13fc32bc06e3c053721)), closes [#MANAGER-18361](https://github.com/ovh/manager/issues/MANAGER-18361)
+
+
+
+
+
+## [0.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.3...@ovh-ux/manager-account@0.12.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.2...@ovh-ux/manager-account@0.12.3) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(account): add retry loop on KYC fraud" ([30e1b40](https://github.com/ovh/manager/commit/30e1b40356c22d03aa5759ccf0b56aff97f8b0d4))
+
+
+
+
+
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.1...@ovh-ux/manager-account@0.12.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.12.0...@ovh-ux/manager-account@0.12.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.1...@ovh-ux/manager-account@0.12.0) (2025-06-11)
+
+
+### Features
+
+* **account:** add retry loop on KYC fraud ([048ab2e](https://github.com/ovh/manager/commit/048ab2e5f9fa522932f04d3b22365406f0332ec3)), closes [#MANAGER-17734](https://github.com/ovh/manager/issues/MANAGER-17734)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.11.0...@ovh-ux/manager-account@0.11.1) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

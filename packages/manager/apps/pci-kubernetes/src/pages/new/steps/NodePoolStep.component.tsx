@@ -15,12 +15,7 @@ import {
   Datagrid,
 } from '@ovh-ux/manager-react-components';
 import { AutoscalingState } from '@/components/Autoscaling.component';
-import {
-  ANTI_AFFINITY_MAX_NODES,
-  NAME_INPUT_CONSTRAINTS,
-  NODE_RANGE,
-  TAGS_BLOB,
-} from '@/constants';
+import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE, TAGS_BLOB } from '@/constants';
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import BillingStep from '@/components/create/BillingStep.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
@@ -40,6 +35,7 @@ import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import DeploymentZone from './node-pool/DeploymentZone.component';
 import { KubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
 
 const getPrice = (flavor: KubeFlavor, scaling: AutoscalingState | null) => {
   if (flavor && scaling) {
@@ -83,9 +79,8 @@ const NodePoolStep = ({
     scaling: null,
   });
 
-  const isValidName =
-    nodePoolState.name?.length <= NAME_INPUT_CONSTRAINTS.MAX_LENGTH &&
-    NAME_INPUT_CONSTRAINTS.PATTERN.exec(nodePoolState.name);
+  const isValidName = isNodePoolNameValid(nodePoolState.name);
+
   const hasError = nodePoolState.isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
   const [flavor, setFlavor] = useState<KubeFlavor | null>(null);
@@ -162,8 +157,6 @@ const NodePoolStep = ({
     if (!nodePoolEnabled) {
       setNodePoolState((state) => ({
         ...state,
-        scaling: null,
-        flavor: null,
 
         name: '',
         isTouched: false,

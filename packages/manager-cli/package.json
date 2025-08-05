@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli",
-  "version": "0.2.0",
+  "version": "0.6.0",
   "private": true,
   "description": "Manager CLI automation packages",
   "bugs": {
@@ -13,11 +13,18 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "check-duplicated-translations": "node ./translations-checker/check-duplicated-translations.mjs",
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
     "manager-cli": "node ./manager-cli.mjs",
+    "migrations-status": "node migrations-status/generate-migrations-status-reports.mjs",
+    "routes-migrations-status": "node migrations-status/steps/generate-routes-migrations-status-report.mjs",
+    "static-analysis-migration": "node ./static-analysis-migrate/static-analysis-migration.mjs",
+    "swc-migrations-status": "node migrations-status/steps/generate-swc-migrations-status-report.mjs",
+    "tests-migrations-status": "node migrations-status/steps/generate-tests-migrations-status-report.mjs",
     "transform-routes": "node routes/steps/transform-routes-cli.mjs",
     "update-routers-init": "node routes/steps/update-routers-init-cli.mjs"
   },
@@ -29,7 +36,8 @@
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "strip-json-comments": "^5.0.2"
   },
   "engines": {
     "node": "^22",

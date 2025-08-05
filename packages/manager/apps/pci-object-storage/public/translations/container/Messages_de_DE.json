@@ -45,12 +45,12 @@
   "pci_projects_project_storages_containers_container_storage_class_HIGH_PERF": "High Performance",
   "pci_projects_project_storages_containers_container_maintenance_message": "Wir führen gerade Wartungsarbeiten durch, um die S3-kompatiblen Endpunkte zusammenzuführen. Das Hinzufügen von Objekten wurde vorübergehend ausgesetzt.",
   "pci_projects_project_storages_containers_container_region": "Standort: <strong>{{ region }}</strong>",
-  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Bitte beachten Sie, dass die externe Replikation Ihrer Daten bei Ihrem Container nicht enthalten ist. Wenn Ihr Use Case diese zusätzliche Schutzebene erfordert, erwägen Sie die Verwendung unserer asynchronen Replikation in einer oder mehreren Regionen (derzeit nur über die API verfügbar).",
+  "pci_projects_project_storages_containers_container_add_replication_rules_info": "Bitte beachten Sie, dass die externe Replikation Ihrer Daten bei Ihrem Container nicht enthalten ist. Wenn Ihr Use Case diese zusätzliche Resilienz erfordert, sollten Sie die &lt;1>asynchrone Replikation&lt;/1> in einer oder mehreren Regionen verwenden. &lt;2>Weitere Informationen&lt;/2>.",
   "pci_projects_project_storages_containers_container_offsite_replication_title": "Replikation:",
   "pci_projects_project_storages_containers_container_offsite_replication_enabled": "Konfiguriert",
   "pci_projects_project_storages_containers_container_offsite_replication_disabled": "Nicht konfiguriert",
   "pci_projects_project_storages_containers_container_offsite_replication_tooltip": "Für diesen Container wurde eine automatische oder manuelle Replikationsregel konfiguriert oder nicht.",
-  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Standard AI",
+  "pci_projects_project_storages_containers_container_storage_class_STANDARD_IA": "Infrequent Access",
   "pci_projects_project_storages_containers_container_enable_encryption": "Verschlüsselung aktivieren (SSE-OMK)",
   "pci_projects_project_storages_containers_container_delete_marker": "Löschkennzeichnung",
   "pci_projects_project_storages_containers_container_show_versions": "Versionen anzeigen",
@@ -59,5 +59,5 @@
   "pci_projects_project_storages_containers_container_objects_sort_warining": "Sortiervorgänge in der Objektauflistung werden nur für die aktuell angezeigten Ergebnisse ausgeführt. Verwenden Sie „Mehr laden“, um die Sortierung auf mehr Ergebnisse anzuwenden.",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD": "Standard",
   "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_HIGH_PERF": "High Performance",
-  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Standard Infrequent Access"
+  "pci_projects_project_storages_containers_container_storage_class_standard_infrequent_access_STANDARD_IA": "Infrequent Access"
 }

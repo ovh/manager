@@ -1,37 +1,40 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccounts } from '@/data/hooks';
+import { useAccounts, useDomain } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import {
   deleteZimbraPlatformDomain,
   getZimbraPlatformDomainsQueryKey,
 } from '@/data/api';
-import { Modal } from '@/components';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_DOMAIN } from '@/tracking.constants';
 
 export const DeleteDomainModal = () => {
-  const { t } = useTranslation(['domains', 'common']);
+  const { t } = useTranslation(['domains', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { platformId, domainId } = useParams();
-  const { data: accounts, isLoading } = useAccounts({
+  const { data: domain, isLoading: isDomainLoading } = useDomain({
+    domainId,
+  });
+  const { data: accounts, isLoading: isAccountsLoading } = useAccounts({
     domainId,
   });
 
@@ -101,27 +104,28 @@ export const DeleteDomainModal = () => {
 
   return (
     <Modal
-      title={t('common:delete_domain')}
-      color={ODS_MODAL_COLOR.critical}
-      onClose={onClose}
-      isDismissible
-      isLoading={isLoading}
+      heading={t('common:delete_domain')}
+      type={ODS_MODAL_COLOR.critical}
+      onDismiss={onClose}
+      isLoading={isDomainLoading || isAccountsLoading}
       isOpen
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        label: t('common:delete'),
-        onClick: handleDeleteClick,
-        isDisabled: accounts?.length > 0 || !domainId,
-        isLoading: isSending,
-        testid: 'delete-btn',
-      }}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
+      primaryButtonTestId="delete-btn"
+      isPrimaryButtonLoading={isSending}
+      isPrimaryButtonDisabled={accounts?.length > 0 || !domainId}
+      onPrimaryButtonClick={handleDeleteClick}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onSecondaryButtonClick={handleCancelClick}
     >
       <>
         <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4">
-          {t('zimbra_domains_delete_modal_content')}
+          <Trans
+            t={t}
+            i18nKey={'zimbra_domains_delete_modal_content'}
+            values={{
+              domain: domain?.currentState.name,
+            }}
+          />
         </OdsText>
         {accounts?.length > 0 && (
           <OdsMessage

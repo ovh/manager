@@ -1,5 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { ITEMS_PER_PAGE } from '@/constants';
+import { ITEMS_PER_PAGE, ReplicationStorageClass } from '@/constants';
 
 export type TObject = {
   key: string;
@@ -44,13 +44,26 @@ export type TServerContainer = {
   versioning: {
     status: string;
   };
+  objectLock: {
+    status: string;
+  };
   virtualHost: string;
   staticUrl: string;
   replication: {
     rules: {
-      status: string;
+      id: string;
+      status: 'enabled' | 'disabled';
+      priority: number;
+      destination: {
+        name: string;
+        region: string;
+        storageClass: ReplicationStorageClass;
+      };
+      deleteMarkerReplication: 'enabled' | 'disabled';
+      filter?: { prefix: string; tags: { [key: string]: string } };
     }[];
   };
+  deploymentMode?: string;
 };
 
 export const getServerContainer = async (

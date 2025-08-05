@@ -71,7 +71,7 @@
   "iplb_modify": "Zmień",
   "iplb_select": "Wybierz",
   "iplb_add": "Dodaj",
-  "iplb_delete": "Usuń",
+  "iplb_delete": "Zakończ",
   "iplb_remove": "Usuń",
   "iplb_modal_ok": "OK",
   "iplb_tile_subscription": "Czas trwania umowy",
@@ -84,5 +84,6 @@
   "iplb_preview_see": "Wyświetl podgląd",
   "iplb_complete_order": "Ureguluj płatność za zamówienie",
   "iplb_tile_subscription_autorenew": "Automatyczne odnowienie",
-  "iplb_tile_subscription_expiration_date": "Data wygasania"
+  "iplb_tile_subscription_expiration_date": "Data wygasania",
+  "iplb_tab_logs": "Logi"
 }

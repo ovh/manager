@@ -18,6 +18,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomains, usePlatform, useOrganizations } from '@/data/hooks';
 import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
 import ActionButtonDomain from './ActionButton.component';
@@ -27,16 +28,7 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { AccountStatistics, ResourceStatus, DomainType } from '@/data/api';
 import { ADD_DOMAIN } from '@/tracking.constants';
-
-export type DomainItem = {
-  id: string;
-  name: string;
-  organizationId: string;
-  organizationLabel: string;
-  account: number;
-  status: keyof typeof ResourceStatus;
-  cnameToCheck?: string;
-};
+import { DomainItem } from './Domains.types';
 
 const columns: DatagridColumn<DomainItem>[] = [
   {
@@ -69,7 +61,7 @@ const columns: DatagridColumn<DomainItem>[] = [
       ) : (
         <BadgeStatus status={item.status}></BadgeStatus>
       ),
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -79,7 +71,7 @@ const columns: DatagridColumn<DomainItem>[] = [
 ];
 
 export const Domains = () => {
-  const { t } = useTranslation(['domains', 'common']);
+  const { t } = useTranslation(['domains', 'common', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
@@ -143,7 +135,7 @@ export const Domains = () => {
   return (
     <div>
       <Outlet />
-      {platformUrn && !isOverridedPage && (
+      {!isOverridedPage && (
         <Datagrid
           topbar={
             <div className="flex items-center justify-between">

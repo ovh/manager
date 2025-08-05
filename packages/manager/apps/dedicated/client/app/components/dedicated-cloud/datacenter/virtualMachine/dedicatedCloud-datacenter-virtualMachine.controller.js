@@ -1,5 +1,10 @@
-import pick from 'lodash/pick';
-import { VIRTUAL_MACHINES_GUEST_OS, VIRTUAL_MACHINES_TITLE } from './constants';
+import {
+  TRACKING_ACTION_DATAGRID_PREFIX,
+  TRACKING_DISPLAY_DATAGRID_PREFIX,
+  VIRTUAL_MACHINES_ID,
+  VIRTUAL_MACHINES_VCPU,
+  TRACKING_DISPLAY_PREFIX,
+} from './constants';
 
 export default class {
   /* @ngInject */
@@ -7,8 +12,15 @@ export default class {
     this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
     this.$translate = $translate;
-    this.virtualMachinesTitle = VIRTUAL_MACHINES_TITLE;
-    this.virtualMachinesGuesOS = VIRTUAL_MACHINES_GUEST_OS;
+    this.virtualMachinesId = VIRTUAL_MACHINES_ID;
+    this.virtualMachinesVcpu = VIRTUAL_MACHINES_VCPU;
+  }
+
+  trackDatagridAction(hit) {
+    this.trackClick(
+      `${TRACKING_ACTION_DATAGRID_PREFIX}${hit}`,
+      `${TRACKING_DISPLAY_PREFIX}${TRACKING_DISPLAY_DATAGRID_PREFIX}`,
+    );
   }
 
   loadVirtualMachines(config) {
@@ -32,10 +44,20 @@ export default class {
     )
       .then((res) => {
         const data = res.data.map((item) => ({
-          ...pick(item, ['vmId', 'license', 'name', 'guestOsFamily']),
+          ...item,
           allowEditLicense: item.guestOsFamily
             ?.toLowerCase()
             .includes('windows'),
+          guestOs: item.guestOsFamily
+            ?.replace(/(_?\d+)?Guest$/, '')
+            ?.replace(/([a-zA-Z])(\d+)/g, '$1 $2')
+            ?.replace(/(\d+)([a-zA-Z])/g, '$1 $2'),
+          backupState: item.backup?.state,
+          disksSize: item.filers?.reduce(
+            (total, filer) =>
+              total + filer.disks.reduce((sum, disk) => sum + disk.capacity, 0),
+            0,
+          ),
         }));
 
         return {

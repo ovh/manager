@@ -4,11 +4,7 @@ import * as database from '@/types/cloud/project/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { compareStorage } from './bytesHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
-import {
-  PRICING_APAC_SUFFIX,
-  PRICING_PREFIX,
-  PRICING_SUFFIX,
-} from '@/configuration/pricing.constants';
+import { PRICING_PREFIX } from '@/configuration/pricing.constants';
 
 function updatePlanStorage(
   availability: database.Availability,
@@ -143,7 +139,7 @@ const mapVersion = (
       tags: versionCapability.tags,
       order: engineCapability.versions.indexOf(versionCapability),
       default: engineSuggestion.version === availability.version,
-      plans: [],
+      regions: [],
     };
     treeEngine.versions.push(treeVersion);
   }
@@ -151,12 +147,12 @@ const mapVersion = (
 };
 
 const mapPlan = (
-  treeVersion: Version,
+  treeRegion: Region,
   availability: database.Availability,
   capabilities: FullCapabilities,
   engineSuggestion: database.availability.Suggestion,
 ) => {
-  let treePlan = treeVersion.plans.find((p) => p.name === availability.plan);
+  let treePlan = treeRegion.plans.find((p) => p.name === availability.plan);
   if (!treePlan) {
     const planCapability = capabilities.plans.find(
       (p) => p.name === availability.plan,
@@ -172,9 +168,9 @@ const mapPlan = (
         minimum: availability.specifications.nodes.minimum,
         maximum: availability.specifications.nodes.maximum,
       },
-      regions: [],
+      flavors: [],
     };
-    treeVersion.plans.push(treePlan);
+    treeRegion.plans.push(treePlan);
   }
   // once the plan is in the tree, we can compute range values
   const flavorSpec = capabilities.flavors.find(
@@ -189,12 +185,14 @@ const mapPlan = (
 };
 
 const mapRegion = (
-  treePlan: Plan,
+  treeVersion: Version,
   availability: database.Availability,
   capabilities: FullCapabilities,
   engineSuggestion: database.availability.Suggestion,
 ) => {
-  let treeRegion = treePlan.regions.find((r) => r.name === availability.region);
+  let treeRegion = treeVersion.regions.find(
+    (r) => r.name === availability.region,
+  );
   if (!treeRegion) {
     const regionCapability = capabilities.regions.find(
       (r) => r.name === availability.region,
@@ -204,15 +202,16 @@ const mapRegion = (
       default: engineSuggestion.region === availability.region,
       order: regionCapability.order,
       tags: regionCapability.tags,
-      flavors: [],
+      type: regionCapability.type,
+      plans: [],
     };
-    treePlan.regions.push(treeRegion);
+    treeVersion.regions.push(treeRegion);
   }
   return treeRegion;
 };
 
 const mapFlavor = (
-  treeRegion: Region,
+  treePlan: Plan,
   availability: database.Availability,
   capabilities: FullCapabilities,
   engineSuggestion: database.availability.Suggestion,
@@ -220,7 +219,7 @@ const mapFlavor = (
   const flavorSpec = capabilities.flavors.find(
     (f) => f.name === availability.specifications.flavor,
   );
-  let treeFlavor = treeRegion.flavors.find(
+  let treeFlavor = treePlan.flavors.find(
     (f) => f.name === availability.specifications.flavor,
   );
   if (!treeFlavor) {
@@ -234,28 +233,14 @@ const mapFlavor = (
       default: engineSuggestion.flavor === availability.specifications.flavor,
       pricing: {},
     };
-    treeRegion.flavors.push(treeFlavor);
+    treePlan.flavors.push(treeFlavor);
   }
   return treeFlavor;
-};
-
-// handle plan code with or without .apac
-const getPlanCodeFromString = (planCode: string) => {
-  const hasApac = planCode.includes(`.${PRICING_APAC_SUFFIX}`);
-  const normalizedPlanCode = hasApac
-    ? planCode.replace(`.${PRICING_APAC_SUFFIX}`, '')
-    : planCode;
-
-  return (consumption: string) =>
-    `${PRICING_PREFIX}.${normalizedPlanCode}.${consumption}${
-      hasApac ? `.${PRICING_APAC_SUFFIX}` : ''
-    }`;
 };
 
 const setPrices = (
   availability: database.Availability,
   catalog: order.publicOrder.Catalog,
-  plan: Plan,
   flavor: Flavor,
 ) => {
   // Default pricing if not found in the catalog
@@ -265,9 +250,6 @@ const setPrices = (
   } as order.publicOrder.Pricing;
 
   const hasStorage = flavor.storage?.step;
-  const isNewPricingFormat = availability.planCode.includes(
-    '.hour.consumption',
-  );
 
   let hourlyPricing = defaultPricing;
   let monthlyPricing = defaultPricing;
@@ -278,50 +260,28 @@ const setPrices = (
     catalog.addons.find((addon) => addon.planCode === pricingPlanCode)
       ?.pricings?.[0] || defaultPricing;
 
-  // new format
-  if (isNewPricingFormat) {
-    hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
-    monthlyPricing = findPricing(
-      `${PRICING_PREFIX}.${availability.planCode.replace(
+  hourlyPricing = findPricing(`${PRICING_PREFIX}.${availability.planCode}`);
+  monthlyPricing = findPricing(
+    `${PRICING_PREFIX}.${availability.planCode.replace(
+      '.hour.consumption',
+      '.month.consumption',
+    )}`,
+  );
+  if (hasStorage) {
+    hourlyStoragePricing = findPricing(
+      `${PRICING_PREFIX}.${availability.planCodeStorage}`,
+    );
+    monthlyStoragePricing = findPricing(
+      `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
         '.hour.consumption',
         '.month.consumption',
       )}`,
     );
-    if (hasStorage) {
-      hourlyStoragePricing = findPricing(
-        `${PRICING_PREFIX}.${availability.planCodeStorage}`,
-      );
-      monthlyStoragePricing = findPricing(
-        `${PRICING_PREFIX}.${availability.planCodeStorage.replace(
-          '.hour.consumption',
-          '.month.consumption',
-        )}`,
-      );
-    }
-  } else {
-    const planCode = getPlanCodeFromString(availability.planCode);
-    const planCodeStorage = getPlanCodeFromString(availability.planCodeStorage);
-
-    // Extract pricing for hourly and monthly consumption
-    hourlyPricing = findPricing(planCode(PRICING_SUFFIX.HOUR));
-    monthlyPricing = findPricing(planCode(PRICING_SUFFIX.MONTH));
-
-    if (hasStorage) {
-      hourlyStoragePricing = findPricing(planCodeStorage(PRICING_SUFFIX.HOUR));
-      monthlyStoragePricing = findPricing(
-        planCodeStorage(PRICING_SUFFIX.MONTH),
-      );
-    }
   }
 
   // Assign extracted pricing to the flavor
   flavor.pricing.hourly = hourlyPricing;
   flavor.pricing.monthly = monthlyPricing;
-
-  // Update plan's minimum pricing if needed
-  if (!plan.minPricing || plan.minPricing.hourly.price > hourlyPricing.price) {
-    plan.minPricing = { hourly: hourlyPricing, monthly: monthlyPricing };
-  }
 
   // Handle storage pricing if flavor has storage with step
   if (hasStorage) {
@@ -351,27 +311,36 @@ export function createTree(
       engineSuggestion,
     );
     treeEngine.versions.sort((a, b) => a.order - b.order);
-    // Map plan
-    const treePlan = mapPlan(treeVersion, curr, capabilities, engineSuggestion);
-    treeVersion.plans.sort((a, b) => a.order - b.order);
     // Map region
     const treeRegion = mapRegion(
+      treeVersion,
+      curr,
+      capabilities,
+      engineSuggestion,
+    );
+    // Map plan
+    treeRegion.plans.sort((a, b) => a.order - b.order);
+    const treePlan = mapPlan(treeRegion, curr, capabilities, engineSuggestion);
+    // // Map plan
+    // const treePlan = mapPlan(treeVersion, curr, capabilities, engineSuggestion);
+    // treeVersion.plans.sort((a, b) => a.order - b.order);
+    // // Map region
+    // const treeRegion = mapRegion(
+    //   treePlan,
+    //   curr,
+    //   capabilities,
+    //   engineSuggestion,
+    // );
+    treePlan.flavors.sort((a, b) => a.order - b.order);
+    // Map flavor
+    const treeFlavor = mapFlavor(
       treePlan,
       curr,
       capabilities,
       engineSuggestion,
     );
-    treePlan.regions.sort((a, b) => a.order - b.order);
-    // Map flavor
-    const treeFlavor = mapFlavor(
-      treeRegion,
-      curr,
-      capabilities,
-      engineSuggestion,
-    );
-    treeRegion.flavors.sort((a, b) => a.order - b.order);
     // Set prices
-    setPrices(curr, catalog, treePlan, treeFlavor);
+    setPrices(curr, catalog, treeFlavor);
     return acc;
   }, [] as Engine[]);
   // sanitize: if default version returned from suggestions by api does not exist,

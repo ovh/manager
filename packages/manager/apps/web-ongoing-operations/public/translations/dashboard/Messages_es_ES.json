@@ -137,5 +137,13 @@
   "domain_operations_upload_error_wrong-format": "Formato de archivo no permitido",
   "domain_operations_update_key_validationToken": "Token de validación",
   "domain_operations_update_key_document": "Documento",
-  "domain_operations_update_title": "Actualización de la operación para el dominio {{t0}}"
+  "domain_operations_update_title": "Actualización de la operación para el dominio {{t0}}",
+  "domain_operations_nicOperation_ContactControlNotify": "Notificación de verificación del contacto",
+  "domain_operations_upload_file_template_1": "Solo los archivos que sigan este ",
+  "domain_operations_upload_file_template_link": "modelo de documento",
+  "domain_operations_upload_file_template_2": " serán aceptados.",
+  "domain_operations_update_dns_click": "Haga clic aquí para corregir la configuración de sus servidores DNS",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Envío de la notificación RDRP",
+  "domain_operations_guides": "Información general",
+  "domain_operations_update_field_bad_value": "El valor introducido en el campo {{t0}} no es válido"
 }

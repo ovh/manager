@@ -1,9 +1,19 @@
 import kebabCase from 'lodash/kebabCase';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.account.billing.autorenew.update', {
+  $stateProvider.state('billing.autorenew.update', {
     url: '/update?serviceId&serviceType',
-    component: 'billingAutorenewUpdate',
+    redirectTo: 'billing.autorenew.services.update',
+  });
+
+  $stateProvider.state('billing.autorenew.services.update', {
+    url: '/update?serviceId&serviceType',
+    views: {
+      modal: {
+        component: 'billingAutorenewUpdate',
+      },
+    },
+    layout: 'modal',
     redirectTo: (transition) =>
       transition
         .injector()
@@ -15,16 +25,16 @@ export default /* @ngInject */ ($stateProvider) => {
           if (migrationDates) {
             return moment().isBefore(moment(migrationDates.START, 'MM/DD/YYYY'))
               ? null
-              : 'app.account.billing.autorenew.configure-renew-impossible';
+              : 'billing.autorenew.services.configure-renew-impossible';
           }
           return null;
         })
         .catch(() => null),
     resolve: {
       addPaymentMean: /* @ngInject */ ($state) => () =>
-        $state.go('app.account.billing.payment.method.add'),
+        $state.go('billing.payment.method.add'),
       /* @ngInject */
-      autorenewAgreements: (BillingAutoRenew) =>
+      autoRenewAgreements: (BillingAutoRenew) =>
         BillingAutoRenew.getAutorenewAgreements(),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>

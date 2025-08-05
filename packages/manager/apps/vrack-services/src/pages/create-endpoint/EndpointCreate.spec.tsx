@@ -1,9 +1,9 @@
 import { describe, it } from 'vitest';
-import { waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { iamResourcesMocks } from '@/data/mocks/iam';
+import { iamResourcesMocks } from '../../../__mocks__';
 import {
   changeSelectValueByLabelText,
   getButtonByLabel,
@@ -11,6 +11,7 @@ import {
   renderTest,
   assertDisabled,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 import { urls } from '@/routes/routes.constants';
 
@@ -39,14 +40,21 @@ describe('Vrack Services endpoint creation page test suite', () => {
     });
     await assertDisabled(submitButton);
 
-    await changeSelectValueByLabelText({
-      selectLabel: labels.endpoints.subnetLabel,
-      value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
-    });
+    await doActionOnElementUntil(
+      () =>
+        changeSelectValueByLabelText({
+          selectLabel: labels.endpoints.subnetLabel,
+          value: vrackServicesListMocks[20].currentState.subnets[0].cidr,
+        }),
+      () => assertEnabled(submitButton),
+    );
 
-    await assertEnabled(submitButton);
-    await waitFor(() => userEvent.click(submitButton));
-
-    await assertTextVisibility(labels.endpoints.endpointsOnboardingDescription);
+    await doActionOnElementUntil(
+      () => userEvent.click(submitButton),
+      () =>
+        expect(
+          screen.getByText(labels.endpoints.endpointsOnboardingDescription),
+        ).toBeVisible(),
+    );
   });
 });

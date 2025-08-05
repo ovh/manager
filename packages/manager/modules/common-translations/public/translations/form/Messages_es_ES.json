@@ -15,5 +15,16 @@
   "error_min_chars": "Introduzca un mínimo de {{ value }} caracteres.",
   "error_max_chars": "Introduzca un máximo de {{ value }} caracteres.",
   "error_between_min_max_chars": "El campo debe contener entre {{ min }} y {{ max }} caracteres.",
-  "error_pattern": "Introduzca un formato válido."
+  "error_pattern": "Introduzca un formato válido.",
+  "error_password": "Contraseña no válida",
+  "error_confirm_password": "Las contraseñas deben ser idénticas.",
+  "label_mandatory": "Los campos marcados con un asterisco (*) son obligatorios.",
+  "lastname": "Apellido",
+  "firstname": "Nombre",
+  "login": "Identificador",
+  "change_password_label_password": "Nueva contraseña",
+  "change_password_label_confirm_password": "Confirmación de la nueva contraseña",
+  "change_password_helper1": "Atención: La contraseña debe cumplir los siguientes criterios:",
+  "change_password_helper2": "Al menos una letra minúscula, una letra mayúscula, un número o un carácter especial",
+  "price": "Precio"
 }

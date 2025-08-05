@@ -6,6 +6,7 @@ import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
 
 import component from './component';
+import service from './service';
 
 const moduleName = 'ovhManagerBmServerComponentsInterventionsComponent';
 
@@ -17,6 +18,7 @@ angular
     'ngTranslateAsyncLoader',
   ])
   .component('serverInterventions', component)
+  .service('serverIntervention', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

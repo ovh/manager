@@ -40,7 +40,6 @@ export const isRunningJob = (currentState: ai.job.JobStateEnum) =>
     ai.job.JobStateEnum.INITIALIZING,
     ai.job.JobStateEnum.PENDING,
     ai.job.JobStateEnum.QUEUED,
-    ai.job.JobStateEnum.INTERRUPTING,
   ].includes(currentState);
 
 export const isStoppedJob = (currentState: ai.job.JobStateEnum) =>
@@ -53,4 +52,22 @@ export const isStoppedJob = (currentState: ai.job.JobStateEnum) =>
     ai.job.JobStateEnum.TIMEOUT,
     ai.job.JobStateEnum.FINALIZING,
     ai.job.JobStateEnum.INTERRUPTING,
+  ].includes(currentState);
+
+export const isDeletingApp = (currentState: ai.app.AppStateEnum) =>
+  [ai.app.AppStateEnum.DELETING].includes(currentState);
+
+export const isRunningApp = (currentState: ai.app.AppStateEnum) =>
+  [
+    ai.app.AppStateEnum.RUNNING,
+    ai.app.AppStateEnum.SCALING,
+    ai.app.AppStateEnum.INITIALIZING,
+    ai.app.AppStateEnum.QUEUED,
+  ].includes(currentState);
+
+export const isStoppedApp = (currentState: ai.app.AppStateEnum) =>
+  [
+    ai.app.AppStateEnum.ERROR,
+    ai.app.AppStateEnum.FAILED,
+    ai.app.AppStateEnum.STOPPED,
   ].includes(currentState);

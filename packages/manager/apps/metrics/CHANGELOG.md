@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.54](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.53...@ovh-ux/manager-metrics-app@3.0.54) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.53](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.52...@ovh-ux/manager-metrics-app@3.0.53) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.52](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.51...@ovh-ux/manager-metrics-app@3.0.52) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.51](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.50...@ovh-ux/manager-metrics-app@3.0.51) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.49...@ovh-ux/manager-metrics-app@3.0.50) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.49](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.48...@ovh-ux/manager-metrics-app@3.0.49) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
+## [3.0.48](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.47...@ovh-ux/manager-metrics-app@3.0.48) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-metrics-app
+
+
+
+
+
 ## [3.0.47](https://github.com/ovh/manager/compare/@ovh-ux/manager-metrics-app@3.0.46...@ovh-ux/manager-metrics-app@3.0.47) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-metrics-app

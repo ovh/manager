@@ -1,2 +1,2 @@
-export { renderTest } from './render-test';
+export { renderTest } from './renderTest';
 export { labels } from './labels';

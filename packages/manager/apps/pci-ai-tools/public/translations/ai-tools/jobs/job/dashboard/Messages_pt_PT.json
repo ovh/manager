@@ -7,8 +7,8 @@
   "lifeCycleTitle": "Ciclo de vida",
   "configurationTitle": "Configuração",
   "cliTitle": "CLI",
-  "cliCodeTitle": "Pode relançar o mesmo job utilizando estas linhas de comando no seu ovhai CLI.",
-  "cliEquivalentToastMessage": "Encomenda copiada",
+  "cliCodeTitle": "Pode relançar o mesmo job através destas linhas de comando no seu ovhai CLI.",
+  "cliEquivalentToastMessage": "Comando copiado",
   "durationTitle": "Duração de funcionamento",
   "jobIdLabel": "Id do job",
   "jobIdCopyToast": "O identificador do job foi copiado",
@@ -16,5 +16,5 @@
   "accessTitle": "Acesso HTTP",
   "accessTooltip": "O acesso HTTP permite que o seu browser seja reencaminhado para a porta 80 do container se este ainda estiver a ser executado. Para aceder à interface web terá de se identificar.",
   "grafanaTitle": "Seguimento do consumo",
-  "grafanaButton": "Dashboard grafana"
+  "grafanaButton": "Dashboard Grafana"
 }

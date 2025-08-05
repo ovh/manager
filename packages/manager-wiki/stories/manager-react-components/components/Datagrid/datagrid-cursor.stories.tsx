@@ -35,6 +35,7 @@ const DatagridStory = (args) => {
   const [searchParams] = useSearchParams();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
+  const [rowSelection, setRowSelection] = useState({});
 
   const fetchNextPage = () => {
     const itemsIndex = data?.length;
@@ -121,6 +122,17 @@ const DatagridStory = (args) => {
               manualSorting: false,
             }
           : {})}
+        rowSelection={
+          args.rowSelection
+            ? {
+                rowSelection,
+                setRowSelection,
+                enableRowSelection: args.enableRowSelection,
+                onToggleAllRowsSelection: args.onToggleAllRowsSelection,
+                onRowSelectionChange: args.onRowSelectionChange,
+              }
+            : undefined
+        }
       />
     </>
   );
@@ -264,6 +276,7 @@ Topbar.args = {
     label: `Item #${i}`,
     price: Math.floor(1 + Math.random() * 100),
     status: `Status #${i}`,
+    anotherStatus: `AnotherStatus #${i}`,
   })),
   columns: columnsSearchAndFilters,
   search: {
@@ -273,6 +286,37 @@ Topbar.args = {
   },
   topbar: <TopbarComponent />,
   onColumnVisibilityChange: undefined,
+};
+
+export const RowSelection = DatagridStory.bind({});
+
+RowSelection.args = {
+  columns,
+  items: [...Array(pageSize).keys()].map((_, i) => ({
+    label: `Item #${i}`,
+    price: Math.floor(1 + Math.random() * 100),
+  })),
+  rowSelection: true,
+  enableRowSelection: (row) => row.original.price > 50,
+  onRowSelectionChange: () => {},
+};
+
+RowSelection.argTypes = {
+  rowSelection: {
+    description: `this control does not exist on datagrid and simulate the use rowSelection Datagrid prop with the attributes rowSelection and setRowSelection which is a state manage by the parent component.
+    When true pass "rowSelection={{rowSelection, setRowSelection}}" as an attribute of the datagrid`,
+  },
+  enableRowSelection: {
+    description: `takes the current row as param and if return true, the selection is enable. If false it is disabled.
+    the function should be of type (row: Row<T>) => boolean.
+    On this example, the function is (row) => row.orginal.price > 50
+    `,
+  },
+  onRowSelectionChange: {
+    description: `callback used by datagrid whenever a change has been made on row selection.
+    the function should be of type (rows: Row<T>[]) => void
+    `,
+  },
 };
 
 export const WithSubComponent = DatagridStory.bind({});
@@ -338,11 +382,15 @@ WithDatagridSubComponent.args = {
               label: 'sub component label',
               price: 10,
               status: '',
+              anotherStatus: '',
+              iam: {} as IamObject,
             },
             {
               label: 'sub component label #2',
               price: 100,
               status: '',
+              anotherStatus: '',
+              iam: {} as IamObject,
             },
           ]}
           totalItems={2}

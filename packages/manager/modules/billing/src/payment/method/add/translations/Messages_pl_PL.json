@@ -37,5 +37,6 @@
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "Gromadzone dane są przetwarzane przez firmę OVHcloud występującą w charakterze administratora danych w celu realizacji polecenia zapłaty SEPA.",
   "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "Ustanowienie polecenia zapłaty SEPA wymaga Twojego pełnomocnictwa opatrzonego podpisem elektronicznym wygenerowanym za pomocą rozwiązania dostarczonego przez Worldline - dostawcę zaufanych usług określonych w rozporządzeniu eDIAS nr 910/2014 z dnia 23 lipca 2014 r. Dane przekazywane są Worldline wyłącznie do wskazanego wyżej celu.",
   "billing_payment_method_add_credit_card_selected_explain_ovh_transaction": "Transakcja mająca na celu rejestrację Twojej karty zostanie przetworzona przez OVH S.A.S.",
-  "billing_payment_method_add_credit_card_registration_charges_info": "W celu sprawdzenia prawidłowego działania Twojej karty pobierzemy płatność w maksymalnej kwocie {{RegistrationCharges}}. Całość kwoty zwrócimy Ci w ciągu 48 godzin."
+  "billing_payment_method_add_credit_card_registration_charges_info": "W celu sprawdzenia prawidłowego działania Twojej karty pobierzemy płatność w maksymalnej kwocie {{RegistrationCharges}}. Całość kwoty zwrócimy Ci w ciągu 48 godzin.",
+  "billing_payment_method_add_default_info_auto_renew": "Jeśli któraś z usług była odnawiana automatycznie, konieczne może być ponowne włączenie automatycznego odnawiania. W tym celu przejdź na <a href=\"{{autorenewLink}}\">tę stronę</a>."
 }

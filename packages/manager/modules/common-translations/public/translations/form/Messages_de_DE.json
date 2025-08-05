@@ -15,5 +15,16 @@
   "error_min_chars": "Bitte geben Sie mindestens {{ value }} Zeichen ein.",
   "error_max_chars": "Bitte geben Sie maximal {{ value }} Zeichen ein.",
   "error_between_min_max_chars": "Das Feld muss zwischen {{ min }} und {{ max }} Zeichen enthalten.",
-  "error_pattern": "Bitte wählen Sie ein gültiges Format."
+  "error_pattern": "Bitte wählen Sie ein gültiges Format.",
+  "error_password": "Ungültiges Passwort",
+  "error_confirm_password": "Die Passwörter müssen identisch sein.",
+  "label_mandatory": "Die mit einem Stern * gekennzeichneten Felder sind Pflichtfelder.",
+  "lastname": "Name",
+  "firstname": "Vorname",
+  "login": "Kennung",
+  "change_password_label_password": "Neues Passwort",
+  "change_password_label_confirm_password": "Bestätigung des neuen Passworts",
+  "change_password_helper1": "Bitte beachten Sie, dass das Passwort nach folgenden Regeln vergeben werden muss:",
+  "change_password_helper2": "Mindestens 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Ziffer oder 1 Sonderzeichen",
+  "price": "Preis"
 }

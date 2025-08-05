@@ -164,14 +164,13 @@ export default class KycDocumentsCtrl {
   // The procedure finalization consist of documents upload and finalization
   // request
   finalizeProcedure(uploadLinks) {
-    const flattenFiles = Object.values(this.documents).flatMap(
-      ({ files }) => files,
-    );
-
     return this.$q
       .all(
         uploadLinks.map((uploadLink, index) =>
-          this.$http.put(uploadLink.link, flattenFiles[index], {
+          this.$http({
+            method: uploadLink.method,
+            url: uploadLink.link,
+            data: this.documents[index],
             headers: { ...uploadLink.headers },
           }),
         ),

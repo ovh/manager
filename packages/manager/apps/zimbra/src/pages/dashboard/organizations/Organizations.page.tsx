@@ -18,22 +18,15 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ResourceStatus } from '@/data/api';
-import { useGenerateUrl, useDebouncedValue } from '@/hooks';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useGenerateUrl, useDebouncedValue, useOverridePage } from '@/hooks';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import ActionButton from './ActionButton.component';
 import { BadgeStatus, LabelChip, IdLink } from '@/components';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { ADD_ORGANIZATION } from '@/tracking.constants';
-
-export type OrganizationItem = {
-  id: string;
-  name: string;
-  label: string;
-  account: number;
-  status: keyof typeof ResourceStatus;
-};
+import { OrganizationItem } from './Organizations.types';
 
 const columns: DatagridColumn<OrganizationItem>[] = [
   {
@@ -58,7 +51,7 @@ const columns: DatagridColumn<OrganizationItem>[] = [
   {
     id: 'status',
     cell: (item: OrganizationItem) => <BadgeStatus status={item.status} />,
-    label: 'zimbra_organization_status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -68,10 +61,11 @@ const columns: DatagridColumn<OrganizationItem>[] = [
 ];
 
 export default function Organizations() {
-  const { t } = useTranslation('organizations');
+  const { t } = useTranslation(['organizations', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
+  const isOverridedPage = useOverridePage();
 
   const [
     searchInput,
@@ -120,7 +114,7 @@ export default function Organizations() {
   return (
     <div>
       <Outlet />
-      {platformUrn && (
+      {!isOverridedPage && (
         <Datagrid
           topbar={
             <ManagerButton

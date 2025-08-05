@@ -31,6 +31,14 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      checkRedirect: /* @ngInject */ (featureAvailability, shellClient) =>
+        shellClient.navigation
+          .getURL('dedicated-servers', '#/cluster')
+          .then((url) => {
+            if (featureAvailability?.isFeatureAvailable('dedicated-servers')) {
+              window.top.location.href = url;
+            }
+          }),
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('threeAZClusterOrder'),
       getClusterDashboardLink: /* @ngInject */ ($state) => ({ id }) =>

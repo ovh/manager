@@ -14,6 +14,9 @@ import OutgoingTrafficList from './OutgoingTrafficList.component';
 import ResourceUsageList from './ResourceUsageList.component';
 import SnapshotList from './SnapshotList.component';
 import VolumeList from './VolumeList.component';
+import { ResourcesColumn } from './useResourceUsageListColumns';
+import AiEndpointList from './AiEndpointList.component';
+import DataPlatformUsageList from './DataPlatformUsageList.component';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -39,21 +42,25 @@ export default function HourlyConsumption({
           colTotalLabel={t('cpbc_hourly_instance_col_consumption')}
         />
       ),
+      condition: true,
     },
     {
       key: 'snapshot',
       title: t('cpbc_snapshot_detail_title'),
       component: <SnapshotList snapshots={consumption?.snapshots} />,
+      condition: true,
     },
     {
       key: 'volume',
       title: t('cpbc_volume_detail_title'),
       component: <VolumeList volumes={consumption?.volumes} />,
+      condition: true,
     },
     {
       key: 'objectStorage',
       title: t('cpbc_object_storage_detail_title'),
       component: <ObjectStorageList storages={consumption?.objectStorages} />,
+      condition: true,
     },
 
     {
@@ -76,12 +83,24 @@ export default function HourlyConsumption({
           instanceBandwidths={consumption?.bandwidthByRegions}
         />
       ),
+      condition: true,
     },
     {
       key: 'privateRegistry',
       title: t('cpbc_hourly_private_registry_title'),
       component: (
         <ResourceUsageList resourcesUsage={consumption?.privateRegistry} />
+      ),
+      condition: !isTrustedZone,
+    },
+    {
+      key: 'rancher',
+      title: t('cpbc_hourly_rancher_title'),
+      component: (
+        <ResourceUsageList
+          resourcesUsage={consumption.rancher}
+          disabledColumns={[ResourcesColumn.region]}
+        />
       ),
       condition: !isTrustedZone,
     },
@@ -105,6 +124,7 @@ export default function HourlyConsumption({
       key: 'notebooks',
       title: t('cpbc_hourly_notebooks_title'),
       component: <ResourceUsageList resourcesUsage={consumption?.notebooks} />,
+      condition: true,
     },
     {
       key: 'aiDeploy',
@@ -113,10 +133,24 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
+      key: 'aiEndpoints',
+      title: t('cpbc_hourly_ai_endpoints_title'),
+      component: <AiEndpointList resourcesUsage={consumption.aiEndpoints} />,
+      condition: !isTrustedZone,
+    },
+    {
       key: 'dataProcessing',
       title: t('cpbc_hourly_data_processing_title'),
       component: (
         <ResourceUsageList resourcesUsage={consumption?.dataProcessing} />
+      ),
+      condition: !isTrustedZone,
+    },
+    {
+      key: 'dataplatform',
+      title: t('cpbc_hourly_data_platform_title'),
+      component: (
+        <DataPlatformUsageList resourcesUsage={consumption.dataplatform} />
       ),
       condition: !isTrustedZone,
     },
@@ -152,10 +186,10 @@ export default function HourlyConsumption({
       ),
       condition: !isTrustedZone,
     },
-  ];
+  ] as const;
 
   const renderAccordion = (
-    key: string,
+    key: keyof typeof consumption.totals.hourly,
     title: string,
     component: React.ReactNode,
   ) => (
@@ -167,7 +201,7 @@ export default function HourlyConsumption({
         slot="summary"
         className="my-2"
       >
-        {`${title} (${consumption?.totals?.hourly?.[key]?.toFixed(2)} ${
+        {`${title} (${consumption.totals.hourly[key].toFixed(2)} ${
           currency.symbol
         })`}
       </OsdsText>
@@ -178,7 +212,7 @@ export default function HourlyConsumption({
   return (
     <div className="flex flex-col gap-5">
       {items
-        .filter((item) => item.condition !== false)
+        .filter((item) => item.condition)
         .map(({ key, title, component }) =>
           renderAccordion(key, title, component),
         )}

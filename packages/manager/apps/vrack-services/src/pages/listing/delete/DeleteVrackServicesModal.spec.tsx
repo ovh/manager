@@ -11,11 +11,12 @@ import {
   labels,
   renderTest,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 
 describe('Vrack Services delete test suite', () => {
   it('should delete a vrack service', async () => {
-    const { container } = await renderTest({
+    const { container, getByTestId } = await renderTest({
       nbVs: 2,
       initialRoute: urls.listing,
     });
@@ -34,17 +35,17 @@ describe('Vrack Services delete test suite', () => {
 
     await assertModalText({
       container,
-      text: labels.deleteModal.deleteModalDescription,
+      text: labels.common.modalDeleteVrackServicesServiceTypeName,
     });
 
-    const submitButton = await getButtonByLabel({
-      container,
-      value: labels.deleteModal.deleteModalDeleteButton,
-    });
+    const deleteButton = getByTestId('manager-delete-modal-confirm');
 
-    await assertEnabled(submitButton);
-    await waitFor(() => userEvent.click(submitButton));
-
-    await assertModalVisibility({ container, isVisible: false });
+    await assertEnabled(deleteButton);
+    const modal = container.querySelector('ods-modal');
+    await waitFor(() => userEvent.click(deleteButton));
+    await doActionOnElementUntil(
+      () => userEvent.click(deleteButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 });

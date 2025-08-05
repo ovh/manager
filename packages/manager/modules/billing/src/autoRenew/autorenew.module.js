@@ -23,7 +23,6 @@ import exchangeRenew from './actions/exchange/exchange-renew.module';
 import enable from './enable/enable.module';
 import resiliation from './resiliation';
 import ssh from './ssh/ssh.module';
-import terminate from './actions/terminate/terminate.module';
 import terminateEmail from './actions/terminateEmail/email.module';
 import terminateAgoraService from './actions/terminate-agora-service';
 import terminateEnterpriseCloudDatabase from './actions/terminate-enterprise-cloud-database/terminate-enterprise-cloud-database.module';
@@ -31,10 +30,11 @@ import terminateHostingWeb from './actions/terminateHostingWeb/hosting-web.modul
 import terminatePrivateDatabase from './actions/terminatePrivateDatabase/private-database.module';
 import terminateWebCoach from './actions/terminate-webcoach/terminate-webcoach.module';
 import terminateAllDOm from './actions/terminate-all-dom/module';
-import terminateVrack from './actions/terminate-vrack';
 import update from './actions/update/update.module';
+import terminateVrack from './actions/terminate-vrack';
 import warnNicBilling from './actions/warnNicBilling/warnNicBilling.module';
 import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
+import services from './services/services.module';
 
 import component from './autorenew.component';
 import routing from './autorenew.routing';
@@ -65,7 +65,6 @@ angular
     'oui',
     resiliation,
     ssh,
-    terminate,
     terminateEmail,
     terminateAgoraService,
     terminateEnterpriseCloudDatabase,
@@ -73,11 +72,12 @@ angular
     terminatePrivateDatabase,
     terminateWebCoach,
     terminateAllDOm,
-    terminateVrack,
     uiRouter,
+    terminateVrack,
     update,
     warnNicBilling,
     warnPendingDebt,
+    services,
   ])
   .config(routing)
   .component('autoRenew', component)

@@ -57,6 +57,8 @@
   "domain_operations_nicOperation_ContactControl": "Vérification du contact",
   "domain_operations_nicOperation_ContactControlAcknowledge": "Confirmation du contact",
   "domain_operations_nicOperation_ContactControlCorrect": "Correction du contact",
+  "domain_operations_nicOperation_ContactControlNotify": "Notification de vérification du contact",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Envoi de la notice RDRP",
   "domain_operations_statusOperation_cancelled": "Annulée",
   "domain_operations_statusOperation_doing": "En cours",
   "domain_operations_statusOperation_done": "Terminée",
@@ -72,6 +74,7 @@
   "domain_operations_update_nicowner_click_whoisContactBilling": "Changez les informations du contact facturation en cliquant ici",
   "domain_operations_update_nicowner_click_whoisContactTech": "Changez les informations du contact technique en cliquant ici",
   "domain_operations_update_nicowner_click_identityEvidence": "Fournir une copie de la carte d'identité, du permis de conduire ou du passeport de la personne inscrite.",
+  "domain_operations_update_dns_click": "Cliquez ici pour corriger la configuration de vos serveurs DNS",
   "domain_operations_update_contact_administrator": "Contactez votre administrateur pour corriger ce problème.",
   "tracking_transfert_domain_title": "Suivi du transfert pour le domaine \"{{t0}}\"",
   "tracking_transfert_last_update": "Dernière mise à jour : {{t0}}",
@@ -96,6 +99,9 @@
   "domain_operations_progress_instructions_7": "Vous pouvez contacter le prestataire actuel de votre domaine afin que celui-ci donne son accord.",
   "domain_operations_progress_step_askForAuthInfo": "Authinfo incorrect",
   "domain_operations_upload_title": "Ajout de documents pour le domaine \"{{t0}}\"",
+  "domain_operations_upload_file_template_1": "Seuls les fichiers suivant ce ",
+  "domain_operations_upload_file_template_link": "modèle de document",
+  "domain_operations_upload_file_template_2": " seront acceptés.",
   "domain_operations_upload_max_size_label": "Le poids maximum du fichier autorisé est de :",
   "domain_operations_upload_file_label": "Rechercher les fichiers",
   "domain_operations_upload_dropzone_label": "Glisser & déposer un fichier",
@@ -112,6 +118,7 @@
   "domain_operations_update_key_memberContactXXX": "Identifiant du membre",
   "domain_operations_update_key_validationToken": "Jeton de validation",
   "domain_operations_update_key_document": "Document",
+  "domain_operations_update_field_bad_value": "La valeur saisie dans le champ {{t0}} est invalide",
   "domain_operations_update_title": "Mise à jour de l'opération pour le domaine {{t0}}",
   "domain_operations_update_me_fields": "Modification du {{t0}}",
   "domain_operations_update_contact_not_me": "Seul(s) le(s) {{t0}} peuvent changer {{t1}}",
@@ -122,5 +129,6 @@
   "domain_operations_cancel_success": "L'opération a été annulée avec succès.",
   "domain_operations_relaunch_success": "L'opération a été relancée avec succès.",
   "wizard_confirm": "Confirmer",
-  "wizard_cancel": "Annuler"
+  "wizard_cancel": "Annuler",
+  "domain_operations_guides": "Informations générales"
 }

@@ -7,19 +7,19 @@ import '@testing-library/jest-dom';
 
 import { render } from '@/utils/testProvider';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn().mockReturnValue('€10.00'),
-  }),
-}));
-
 const defaultProps = {
-  duration: 1,
-  price: '1',
   hourlyPriceWithoutCommitment: 0.01,
   isActive: false,
+  planPricing: {
+    id: '1',
+    code: '1',
+    duration: 1,
+    price: 1,
+    monthlyPercentageDiscount: '86',
+    monthlyPrice: '1',
+    monthlyPriceWithoutDiscount: '10.00',
+  },
   onClick: vi.fn(),
-  quantity: 1,
 };
 
 const trackingSpy = vi.fn();
@@ -31,19 +31,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
     useOvhTracking: () => ({
       trackClick: trackingSpy,
     }),
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
-  return {
-    ...mod,
-    useCatalogPrice: vi
-      .fn()
-      .mockReturnValue({ getTextPrice: vi.fn().mockReturnValue('€10.00') }),
   };
 });
 
@@ -63,6 +50,6 @@ describe('Commitment', () => {
 
   it('should render the hourly price without commitment', () => {
     setupSpecTest();
-    expect(screen.getByText('~ €10.00')).toBeInTheDocument();
+    expect(screen.getByText('~ 10.00')).toBeInTheDocument();
   });
 });

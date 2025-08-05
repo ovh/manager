@@ -15,13 +15,9 @@ import { Procedures } from '@/types/procedure';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
-const newAccount = 'new-account';
-const newBilling = 'new-billing';
 const accountFeatures = [
   kycIndiaFeature,
   kycFraudFeature,
-  newAccount,
-  newBilling,
 ];
 
 export default function AccountSidebar() {
@@ -65,8 +61,6 @@ export default function AccountSidebar() {
     }
 
     const isEUOrCA = ['EU', 'CA'].includes(region);
-    const isNewAccountAvailable = !!availability['new-account'];
-    const isNewBillingAvailable = !!availability['new-billing'];
 
     menu.push({
       id: 'back-to-home',
@@ -77,13 +71,11 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-account',
       label: t('sidebar_account'),
-      href: navigation.getURL(
-        isNewAccountAvailable ? 'new-account' : 'dedicated',
+      href: navigation.getURL('account',
         '/useraccount/dashboard',
       ),
       routeMatcher: new RegExp('^/useraccount'),
     });
-
     if (
       availability[kycIndiaFeature] &&
       ['required', 'open'].includes(kycIndiaProcedure?.status)
@@ -91,8 +83,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-identity-documents',
         label: t('sidebar_account_identity_documents'),
-        href: navigation.getURL(
-          isNewAccountAvailable ? 'new-account' : 'dedicated',
+        href: navigation.getURL('account',
           '/identity-documents',
         ),
         routeMatcher: new RegExp('^/identity-documents'),
@@ -106,8 +97,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'kyc-documents',
         label: t('sidebar_account_kyc_documents'),
-        href: navigation.getURL(
-          isNewAccountAvailable ? 'new-account' : 'dedicated',
+        href: navigation.getURL('account',
           '/documents',
         ),
         routeMatcher: new RegExp('^/documents'),
@@ -118,9 +108,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-bills',
         label: t('sidebar_billing'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          `${!isNewBillingAvailable ? '/billing' : ''}/history`,
+        href: navigation.getURL('billing', '/history',
         ),
         routeMatcher: new RegExp(
           '^/billing/(history|payAsYouGo|payments|refunds)',
@@ -131,9 +119,7 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-services',
       label: t('sidebar_billing_services'),
-      href: navigation.getURL(
-        isNewBillingAvailable ? 'new-billing' : 'dedicated',
-        `${!isNewBillingAvailable ? '/billing' : ''}/autorenew${
+      href: navigation.getURL('billing', `/autorenew${
           isEnterprise ? '/ssh' : '/'
         }`,
       ),
@@ -144,18 +130,14 @@ export default function AccountSidebar() {
       menu.push({
         id: 'payment-method',
         label: t('sidebar_billing_payment'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          `${!isNewBillingAvailable ? '/billing' : ''}/payment`,
+        href: navigation.getURL('billing', '/payment',
         ),
         routeMatcher: new RegExp('^/billing/payment[^s]'),
       });
       menu.push({
         id: 'my-orders',
         label: t('sidebar_orders'),
-        href: navigation.getURL(
-          isNewBillingAvailable ? 'new-billing' : 'dedicated',
-          `${!isNewBillingAvailable ? '/billing' : ''}/orders`,
+        href: navigation.getURL('billing', '/orders',
         ),
         routeMatcher: new RegExp('^/billing/orders'),
       });
@@ -165,8 +147,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
-        href: navigation.getURL(
-          isNewAccountAvailable ? 'new-account' : 'dedicated',
+        href: navigation.getURL('account',
           '/contacts',
         ),
         routeMatcher: new RegExp('^/contacts'),

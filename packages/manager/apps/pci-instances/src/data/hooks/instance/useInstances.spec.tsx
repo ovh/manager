@@ -6,16 +6,22 @@ import { renderHook, waitFor, act } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { useInstances, TUseInstancesQueryParams } from './useInstances';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TInstance, TInstanceStatus } from '@/types/instance/entity.type';
+import {
+  TAggregatedInstance,
+  TAggregatedInstanceStatus,
+} from '@/types/instance/entity.type';
 
 // builders
 const instanceDtoBuilder = (
-  addresses: TInstanceDto['addresses'],
+  addresses: TAggregatedInstanceDto['addresses'],
   status: TInstanceStatusDto,
-): TInstanceDto => ({
+): TAggregatedInstanceDto => ({
   id: `fake-id`,
   name: `fake-instance-name`,
   flavorId: `fake-flavor-id`,
@@ -34,10 +40,10 @@ const instanceDtoBuilder = (
 });
 
 const instanceBuilder = (
-  instanceDto: TInstanceDto,
-  addresses: TInstance['addresses'],
-  status: TInstanceStatus,
-): TInstance => ({
+  instanceDto: TAggregatedInstanceDto,
+  addresses: TAggregatedInstance['addresses'],
+  status: TAggregatedInstanceStatus,
+): TAggregatedInstance => ({
   ...instanceDto,
   addresses,
   status,
@@ -63,10 +69,10 @@ const initQueryClient = () => {
 // test data
 type Data = {
   queryParamaters: TUseInstancesQueryParams;
-  queryPayload?: TInstanceDto[];
-  expectedInstances: TInstance[];
+  queryPayload?: TAggregatedInstanceDto[];
+  expectedInstances: TAggregatedInstance[];
   expectedQueryHasNext: boolean;
-  expectedInstancesAfterRefetch: TInstance[];
+  expectedInstancesAfterRefetch: TAggregatedInstance[];
   expectedQueryKey: string[];
 };
 
@@ -102,17 +108,24 @@ const fakeQueryParamaters4: TUseInstancesQueryParams = {
   ],
 };
 
-const fakeInstanceDto1: TInstanceDto = instanceDtoBuilder([], 'ACTIVE');
-const fakeInstance1: TInstance = instanceBuilder(fakeInstanceDto1, new Map(), {
-  label: 'ACTIVE',
-  severity: 'success',
-});
+const fakeInstanceDto1: TAggregatedInstanceDto = instanceDtoBuilder(
+  [],
+  'ACTIVE',
+);
+const fakeInstance1: TAggregatedInstance = instanceBuilder(
+  fakeInstanceDto1,
+  new Map(),
+  {
+    label: 'ACTIVE',
+    severity: 'success',
+  },
+);
 
-const fakeInstanceDto2: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto2: TAggregatedInstanceDto = instanceDtoBuilder(
   [{ type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 }],
   'ERROR',
 );
-const fakeInstance2: TInstance = instanceBuilder(
+const fakeInstance2: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto2,
   new Map().set('private', [
     {
@@ -124,7 +137,7 @@ const fakeInstance2: TInstance = instanceBuilder(
   { label: 'ERROR', severity: 'error' },
 );
 
-const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto3: TAggregatedInstanceDto = instanceDtoBuilder(
   [
     { type: 'private', ip: '192.00.123.34', gatewayIp: '', version: 1 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
@@ -132,7 +145,7 @@ const fakeInstanceDto3: TInstanceDto = instanceDtoBuilder(
   ],
   'DELETING',
 );
-const fakeInstance3: TInstance = instanceBuilder(
+const fakeInstance3: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto3,
   new Map()
     .set('private', [
@@ -149,14 +162,14 @@ const fakeInstance3: TInstance = instanceBuilder(
   { label: 'DELETING', severity: 'info' },
 );
 
-const fakeInstanceDto4: TInstanceDto = instanceDtoBuilder(
+const fakeInstanceDto4: TAggregatedInstanceDto = instanceDtoBuilder(
   [
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 2 },
     { type: 'public', ip: '193.02.689.00', gatewayIp: '', version: 7 },
   ],
   'BUILD',
 );
-const fakeInstance4: TInstance = instanceBuilder(
+const fakeInstance4: TAggregatedInstance = instanceBuilder(
   fakeInstanceDto4,
   new Map().set('public', [
     {
@@ -230,7 +243,7 @@ describe('UseInstances hook', () => {
     }: Data) => {
       describe('useInstances() hook', () => {
         afterEach(() => {
-          server?.close();
+          server.close();
         });
         test(`When invoking useInstances() hook', then, expect the computed instances to be '${JSON.stringify(
           expectedInstances,

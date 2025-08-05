@@ -128,5 +128,7 @@
   "domain_operations_nicOperation_ContactControlAcknowledge": "Contact confirmation",
   "domain_operations_nicOperation_ContactControlCorrect": "Contact correction",
   "domain_operations_table_header_creationDate": "Created on",
-  "domain_operations_statusOperation_problem": "Failed"
+  "domain_operations_statusOperation_problem": "Failed",
+  "domain_operations_nicOperation_ContactControlNotify": "Contact verification notification",
+  "domain_operations_nicOperation_DomainSendRDRPNotice": "Sending the RDRP instruction manual"
 }

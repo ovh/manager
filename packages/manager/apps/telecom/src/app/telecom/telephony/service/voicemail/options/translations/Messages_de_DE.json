@@ -28,6 +28,8 @@
   "telephony_line_answer_voicemail_options_mail_type": "Art der Benachrichtigung...",
   "telephony_line_answer_voicemail_options_mail_empty": "Sie haben noch keine E-Mail-Adresse zur Benachrichtigung konfiguriert.",
   "telephony_line_answer_voicemail_options_mail_limit": "Sie können bis zu 5 E-Mail-Adressen zur Benachrichtigung eintragen.",
-  "telephony_line_answer_voicemail_options_mail_type_attachment": "Nachricht im Anhang angefügt",
-  "telephony_line_answer_voicemail_options_mail_type_simple": "Nur Benachrichtigung"
+  "telephony_line_answer_voicemail_options_mail_type_attachment": "Anlage der Nachricht",
+  "telephony_line_answer_voicemail_options_mail_type_simple": "Nur Benachrichtigung",
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transkription als Anhang (Beta, durch künstliche Intelligenz generiert)",
+  "telephony_line_answer_voicemail_options_mail_type_attachment+transcript": "Transkription und Nachricht als Anhang (Beta, durch künstliche Intelligenz generiert)"
 }

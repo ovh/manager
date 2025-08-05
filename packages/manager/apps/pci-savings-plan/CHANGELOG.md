@@ -3,6 +3,229 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.4...@ovh-ux/manager-pci-savings-plan-app@1.19.5) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.3...@ovh-ux/manager-pci-savings-plan-app@1.19.4) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.2...@ovh-ux/manager-pci-savings-plan-app@1.19.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.1...@ovh-ux/manager-pci-savings-plan-app@1.19.2) (2025-07-23)
+
+
+### Bug Fixes
+
+* **savings-plan:** fix close cross and title issue ([268639c](https://github.com/ovh/manager/commit/268639c10e8d764d0cdab00e94c938e960ad135c)), closes [#TAPC-2811](https://github.com/ovh/manager/issues/TAPC-2811)
+
+
+
+
+
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.0...@ovh-ux/manager-pci-savings-plan-app@1.19.1) (2025-07-22)
+
+
+### Bug Fixes
+
+* **savings-plan:** issue on modal type from mrc ([88765d8](https://github.com/ovh/manager/commit/88765d821785d5e437c9655d0e44ff3adf20a919))
+
+
+
+
+
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.3...@ovh-ux/manager-pci-savings-plan-app@1.19.0) (2025-07-22)
+
+
+### Features
+
+* **savings-plan:** add confirm modal for order ([#18126](https://github.com/ovh/manager/issues/18126)) ([28f034f](https://github.com/ovh/manager/commit/28f034ff286e9c77d0b4dbf6efe6db9e85e03470)), closes [#TAPC-2811](https://github.com/ovh/manager/issues/TAPC-2811)
+* **savings-plan:** use api to get technical 3AZ or 1AZ ([#18153](https://github.com/ovh/manager/issues/18153)) ([0bac4a6](https://github.com/ovh/manager/commit/0bac4a61b85dba148fd16ce127c2fdfab41bdab3)), closes [#TAPC-3558](https://github.com/ovh/manager/issues/TAPC-3558)
+
+
+
+
+
+## [1.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.2...@ovh-ux/manager-pci-savings-plan-app@1.18.3) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.1...@ovh-ux/manager-pci-savings-plan-app@1.18.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.18.0...@ovh-ux/manager-pci-savings-plan-app@1.18.1) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.4...@ovh-ux/manager-pci-savings-plan-app@1.18.0) (2025-07-16)
+
+
+### Features
+
+* **savings-plan:** enrich stats value and add strict mode ([#18001](https://github.com/ovh/manager/issues/18001)) ([b5ee003](https://github.com/ovh/manager/commit/b5ee003c8b2007e5d8143331085fea4e80feecd5)), closes [#TAPC-4392](https://github.com/ovh/manager/issues/TAPC-4392)
+
+
+
+
+
+## [1.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.3...@ovh-ux/manager-pci-savings-plan-app@1.17.4) (2025-07-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.2...@ovh-ux/manager-pci-savings-plan-app@1.17.3) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.1...@ovh-ux/manager-pci-savings-plan-app@1.17.2) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.17.0...@ovh-ux/manager-pci-savings-plan-app@1.17.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.2...@ovh-ux/manager-pci-savings-plan-app@1.17.0) (2025-06-23)
+
+
+### Features
+
+* **pci.svp:** wording svp ([#16156](https://github.com/ovh/manager/issues/16156)) ([10aac20](https://github.com/ovh/manager/commit/10aac20d6b19ef6fdce9110f7290e9ed7398ea4a)), closes [#TAPC-2510](https://github.com/ovh/manager/issues/TAPC-2510)
+
+
+
+
+
+## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.1...@ovh-ux/manager-pci-savings-plan-app@1.16.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.16.0...@ovh-ux/manager-pci-savings-plan-app@1.16.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.7...@ovh-ux/manager-pci-savings-plan-app@1.16.0) (2025-06-17)
+
+
+### Features
+
+* **pci.savings-plan:** add colors ([1b34584](https://github.com/ovh/manager/commit/1b34584b043f68e61aca321fe3c38cceedb7c73c)), closes [#TAPC-4094](https://github.com/ovh/manager/issues/TAPC-4094)
+
+
+
+
+
+## [1.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.6...@ovh-ux/manager-pci-savings-plan-app@1.15.7) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.5...@ovh-ux/manager-pci-savings-plan-app@1.15.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.4...@ovh-ux/manager-pci-savings-plan-app@1.15.5) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.3...@ovh-ux/manager-pci-savings-plan-app@1.15.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.2...@ovh-ux/manager-pci-savings-plan-app@1.15.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.1...@ovh-ux/manager-pci-savings-plan-app@1.15.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.15.0...@ovh-ux/manager-pci-savings-plan-app@1.15.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.14.4...@ovh-ux/manager-pci-savings-plan-app@1.15.0) (2025-06-05)
 
 

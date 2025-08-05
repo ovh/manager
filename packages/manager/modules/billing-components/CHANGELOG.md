@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.0...@ovh-ux/manager-billing-components@4.21.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** added missing translations ([66c730f](https://github.com/ovh/manager/commit/66c730ff5671a9dce15a82558dc24c618e719a59)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
+# [4.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.20.0...@ovh-ux/manager-billing-components@4.21.0) (2025-07-31)
+
+
+### Features
+
+* **billing:** enable terminate action for Managed VCD ([e1f64fa](https://github.com/ovh/manager/commit/e1f64fac725cf5a0ed0d56596dd528fdc9a1483b)), closes [#MANAGER-18174](https://github.com/ovh/manager/issues/MANAGER-18174)
+
+
+
+
+
+# [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.1...@ovh-ux/manager-billing-components@4.20.0) (2025-07-28)
+
+
+### Features
+
+* **billing:** cancelation page rework ([27018f5](https://github.com/ovh/manager/commit/27018f5e739616c1197528f71b63bbf50969a8e0)), closes [#MANAGER-17520](https://github.com/ovh/manager/issues/MANAGER-17520)
+* **billing:** update terminate service message on hycu/vcd/veeam-backup ([b7158d7](https://github.com/ovh/manager/commit/b7158d72df30b8f4920d12f05f984757acaedd75)), closes [#MANAGER-18543](https://github.com/ovh/manager/issues/MANAGER-18543)
+
+
+
+
+
+## [4.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.0...@ovh-ux/manager-billing-components@4.19.1) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.6...@ovh-ux/manager-billing-components@4.19.0) (2025-07-09)
+
+
+### Features
+
+* **billing:** add renewal modal replacing page in my services ([a451936](https://github.com/ovh/manager/commit/a451936dbf4dfde3f4c6762a4e4345d59d923422)), closes [#MANAGER-16119](https://github.com/ovh/manager/issues/MANAGER-16119)
+* **billing:** domain show restorable status & replace renew button ([1574ee8](https://github.com/ovh/manager/commit/1574ee8c39c89dfb7d88e9805778fcc7fbd01775)), closes [#MANAGER-16774](https://github.com/ovh/manager/issues/MANAGER-16774)
+
+
+
+
+
+## [4.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.5...@ovh-ux/manager-billing-components@4.18.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.4...@ovh-ux/manager-billing-components@4.18.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.3...@ovh-ux/manager-billing-components@4.18.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* **billing:** display API error message on unsuccessful termination ([9450b06](https://github.com/ovh/manager/commit/9450b06a613546203bbcd7ab01e38d08e0f849a6)), closes [#PRB0041386](https://github.com/ovh/manager/issues/PRB0041386) [#MANAGER-18445](https://github.com/ovh/manager/issues/MANAGER-18445)
+
+
+
+
+
 ## [4.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.18.2...@ovh-ux/manager-billing-components@4.18.3) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

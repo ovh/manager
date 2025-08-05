@@ -51,11 +51,11 @@ export default function ScalePage(): JSX.Element {
     if (pool) {
       setState({
         quantity: {
-          desired: pool?.desiredNodes,
-          min: pool?.minNodes,
-          max: pool?.maxNodes,
+          desired: pool.desiredNodes,
+          min: pool.minNodes,
+          max: pool.maxNodes,
         },
-        isAutoscale: pool?.autoscale,
+        isAutoscale: pool.autoscale,
       });
     }
   }, [pool]);
@@ -66,6 +66,7 @@ export default function ScalePage(): JSX.Element {
         tScale('kube_node_pool_autoscaling_scale_error', {
           message: cause?.response?.data?.message,
         }),
+        true,
       );
       goBack();
     },
@@ -74,7 +75,7 @@ export default function ScalePage(): JSX.Element {
       await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
       });
-      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'));
+      addSuccess(tScale('kube_node_pool_autoscaling_scale_success'), true);
       goBack();
     },
     projectId,

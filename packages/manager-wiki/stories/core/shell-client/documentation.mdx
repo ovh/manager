@@ -1,0 +1,130 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../manager-wiki/components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+import Links from '../../../../manager-wiki/components/external-links';
+
+<Meta title="Core/manager-react-shell-client/Documentation" />
+
+# Shell Client Documentation
+
+## Tracking Implementation
+
+The shell client provides a built-in tracking solution through the `useOvhTracking` hook. This hook provides two main methods for tracking user interactions: `trackClick` for click events and `trackPage` for page views.
+
+### Available Enums
+
+```tsx
+enum ButtonType {
+  BUTTON = 'button',
+  LINK = 'link',
+  SUBMIT = 'submit',
+  RESET = 'reset',
+}
+
+enum PageLocation {
+  HEADER = 'header',
+  SIDEBAR = 'sidebar',
+  CONTENT = 'content',
+  FOOTER = 'footer',
+}
+
+enum PageType {
+  DASHBOARD = 'dashboard',
+  LIST = 'list',
+  DETAIL = 'detail',
+  FORM = 'form',
+  SETTINGS = 'settings',
+}
+```
+
+### Basic Usage
+
+```tsx
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+
+const MyComponent = () => {
+  const { trackClick, trackPage } = useOvhTracking();
+
+  const handleClick = () => {
+    trackClick({
+      name: 'submit',
+      type: ButtonType.BUTTON,
+      page: PageType.funnel,
+      location: PageLocation.funnel,
+    });
+  };
+
+  return <button onClick={handleClick}>Submit</button>;
+};
+```
+
+### Tracking Configuration
+
+The tracking is automatically configured with the following context:
+- Application name
+- Environment
+- User information
+- Page information
+
+No additional configuration is required as it's handled by the shell client.
+
+### Common Use Cases
+
+#### 1. Page Views
+
+```tsx
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useEffect } from 'react';
+
+const Page = () => {
+  const { trackPage } = useOvhTracking();
+
+  useEffect(() => {
+    trackPage({
+      name: 'listing',
+      type: PageType.listing,
+    });
+  }, []);
+
+  return <div>Page Content</div>;
+};
+```
+
+#### 2. User Actions
+
+```tsx
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+
+const ActionButton = ({ name, onClick }) => {
+  const { trackClick } = useOvhTracking();
+
+  const handleClick = (e) => {
+    trackClick({
+      name: 'submit',
+      type: ButtonType.button,
+      page: PageType.funnel,
+      location: PageLocation.funnel,
+    });
+    onClick?.(e);
+  };
+
+  return <button onClick={handleClick}>{name}</button>;
+};
+```
+
+### Code Review Checklist
+
+- [ ] Page views are tracked using `trackPage` with proper enums
+- [ ] Click events are tracked using `trackClick` with proper enums
+- [ ] Event properties use the provided enums
+
+

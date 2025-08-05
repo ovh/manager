@@ -46,5 +46,12 @@
   "modify_name": "Alterar o nome",
   "modify_name_success": "O nome foi modificado com êxito",
   "retry": "Tentar novamente",
-  "start": "Começar"
+  "start": "Começar",
+  "renew": "Renovar",
+  "restore": "Restaurar",
+  "see_details": "Ver detalhes",
+  "order_users": "Adicionar um utilizador",
+  "edit_account": "Editar a conta",
+  "change_password": "Alterar palavra-passe",
+  "delete_account": "Eliminar conta"
 }

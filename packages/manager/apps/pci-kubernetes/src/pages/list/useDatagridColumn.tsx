@@ -6,13 +6,18 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { useHref, useParams } from 'react-router-dom';
 import ActionsComponent from '@/components/listing/actions.component';
 import { TKube } from '@/types';
 import ClusterStatus from '@/components/service/ClusterStatus.component';
 
+import Mode from './Mode';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+
 export const useDatagridColumn = () => {
   const { t } = useTranslation(['listing', 'kube']);
+  const { projectId = '' } = useParams();
+  const has3AZ = use3AZPlanAvailable();
 
   const columns: DatagridColumn<TKube>[] = [
     {
@@ -39,12 +44,32 @@ export const useDatagridColumn = () => {
       label: t('kube_list_id'),
     },
     {
+      id: 'plan',
+      cell: (props: TKube) => (
+        <DataGridTextCell>
+          {t(`kube:kube_service_cluster_plan_${props.plan}`)}
+        </DataGridTextCell>
+      ),
+      label: t('kube:kube_service_cluster_plan'),
+    },
+    {
       id: 'region',
       cell: (props: TKube) => (
         <DataGridTextCell>{props.region}</DataGridTextCell>
       ),
       label: t('kube_list_region'),
     },
+    ...(has3AZ
+      ? [
+          {
+            id: 'mode',
+            cell: (props: TKube) => (
+              <Mode projectId={projectId} region={props.region} />
+            ),
+            label: t('kubernetes_containers_deployment_mode_label'),
+          },
+        ]
+      : []),
     {
       id: 'attachedTo',
       cell: (props: TKube) => (

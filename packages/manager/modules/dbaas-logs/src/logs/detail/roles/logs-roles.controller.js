@@ -1,4 +1,5 @@
 import addTemplate from './add/logs-role-add.html';
+import iamTemplate from './enable-iam/logs-iam-enable.html';
 import overviewTemplate from './overview/logs-role-overview.html';
 import datagridToIcebergFilter from '../logs-iceberg.utils';
 
@@ -34,6 +35,25 @@ export default class LogsRolesCtrl {
       { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
       filters,
     );
+  }
+
+  showEnableIam() {
+    this.CucCloudMessage.flushChildMessage();
+    this.CucControllerHelper.modal
+      .showModal({
+        modalConfig: {
+          template: iamTemplate,
+          controller: 'LogsIamEnableModalCtrl',
+          controllerAs: 'ctrl',
+          backdrop: 'static',
+          resolve: {
+            serviceName: () => this.serviceName,
+          },
+        },
+      })
+      .finally(() => {
+        this.ouiDatagridService.refresh('roles-datagrid', true);
+      });
   }
 
   add(info) {

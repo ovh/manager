@@ -1,12 +1,15 @@
 import { InfiniteData } from '@tanstack/react-query';
-import { TInstanceDto, TInstanceStatusDto } from '@/types/instance/api.type';
 import {
-  TAddress,
-  TInstance,
-  TInstanceAction,
-  TInstanceActions,
+  TAggregatedInstanceDto,
+  TInstanceStatusDto,
+} from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceAddress,
+  TAggregatedInstance,
+  TAggregatedInstanceAction,
+  TAggregatedInstanceActions,
   TInstanceAddressType,
-  TInstanceStatus,
+  TAggregatedInstanceStatus,
   TInstanceStatusSeverity,
 } from '@/types/instance/entity.type';
 import { TActionName } from '@/types/instance/common.type';
@@ -51,10 +54,14 @@ const getInstanceStatusSeverity = (
   }
 };
 
-const getInstanceTaskState = (taskState: string): TInstance['taskState'] =>
+const getInstanceTaskState = (
+  taskState: string,
+): TAggregatedInstance['taskState'] =>
   taskState.length > 0 ? taskState : null;
 
-const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
+const getInstanceStatus = (
+  status: TInstanceStatusDto,
+): TAggregatedInstanceStatus => ({
   label: status,
   severity: getInstanceStatusSeverity(status),
 });
@@ -62,8 +69,8 @@ const getInstanceStatus = (status: TInstanceStatusDto): TInstanceStatus => ({
 const getActionHrefByName = (
   projectUrl: string,
   name: TActionName,
-  { region, id }: Pick<TInstance, 'id' | 'region'>,
-): TInstanceAction['link'] => {
+  { region, id }: Pick<TAggregatedInstance, 'id' | 'region'>,
+): TAggregatedInstanceAction['link'] => {
   if (name === 'details') {
     return { path: id, isExternal: false };
   }
@@ -153,7 +160,7 @@ const getActionHrefByName = (
   return { path: '', isExternal: false };
 };
 
-const mapInstanceAddresses = (instance: TInstanceDto) =>
+const mapInstanceAddresses = (instance: TAggregatedInstanceDto) =>
   instance.addresses.reduce((acc, { type, ...rest }) => {
     const foundAddresses = acc.get(type);
     if (foundAddresses) {
@@ -162,13 +169,13 @@ const mapInstanceAddresses = (instance: TInstanceDto) =>
       return acc;
     }
     return acc.set(type, [rest]);
-  }, new Map<TInstanceAddressType, TAddress[]>());
+  }, new Map<TInstanceAddressType, TAggregatedInstanceAddress[]>());
 
 const mapInstanceActions = (
-  instance: TInstanceDto,
+  instance: TAggregatedInstanceDto,
   projectUrl: string,
-): TInstanceActions =>
-  instance.actions.reduce<TInstanceActions>((acc, action) => {
+): TAggregatedInstanceActions =>
+  instance.actions.reduce<TAggregatedInstanceActions>((acc, action) => {
     const { group, name } = action;
     const newAction = {
       label: `pci_instances_list_action_${name}`,
@@ -178,13 +185,13 @@ const mapInstanceActions = (
     if (!foundAction) return acc.set(group, [newAction]);
     foundAction.push(newAction);
     return acc;
-  }, new Map() as TInstanceActions);
+  }, new Map() as TAggregatedInstanceActions);
 
 export const instancesSelector = (
-  { pages }: InfiniteData<TInstanceDto[], number>,
+  { pages }: InfiniteData<TAggregatedInstanceDto[], number>,
   limit: number,
   projectUrl: string,
-): TInstance[] =>
+): TAggregatedInstance[] =>
   pages
     .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
     .map((instanceDto) => ({

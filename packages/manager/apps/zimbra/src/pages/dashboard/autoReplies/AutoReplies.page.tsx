@@ -23,6 +23,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import ActionButtonAutoReply from './ActionButton.component';
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
@@ -33,15 +34,7 @@ import {
   ADD_AUTO_REPLY,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constants';
-
-export type AutoReplyItem = {
-  id: string;
-  name: string;
-  from: string;
-  until: string;
-  copyTo: string;
-  status: keyof typeof ResourceStatus;
-};
+import { AutoReplyItem } from './AutoReplies.types';
 
 const items: AutoReplyItem[] = [
   {
@@ -85,7 +78,7 @@ const columns: DatagridColumn<AutoReplyItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'actions',
@@ -96,7 +89,12 @@ const columns: DatagridColumn<AutoReplyItem>[] = [
 
 export const AutoReplies = () => {
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation(['auto-replies', 'common']);
+  const { t } = useTranslation([
+    'auto-replies',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.STATUS,
+  ]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
   const location = useLocation();
@@ -122,7 +120,7 @@ export const AutoReplies = () => {
   return (
     <div data-testid="autoreplies">
       <Outlet />
-      {platformUrn && !shouldHide && (
+      {!shouldHide && (
         <>
           {accountId && (
             <div className="mb-6">

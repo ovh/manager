@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.43...@ovh-ux/ng-ovh-pci-universe-components@1.2.0) (2025-08-01)
+
+
+### Features
+
+* integrate static analysis kit with turbo build and pci workflow ([f35e092](https://github.com/ovh/manager/commit/f35e09204e0ecdeeb57acfe0e587cda6a7bdba01)), closes [#MANAGER-19256](https://github.com/ovh/manager/issues/MANAGER-19256)
+
+
+
+
+
 ## [1.1.43](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-pci-universe-components@1.1.42...@ovh-ux/ng-ovh-pci-universe-components@1.1.43) (2025-05-29)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-pci-universe-components

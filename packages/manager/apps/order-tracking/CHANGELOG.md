@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.34](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.33...@ovh-ux/order-tracking-app@3.0.34) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [3.0.33](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.32...@ovh-ux/order-tracking-app@3.0.33) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [3.0.32](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.31...@ovh-ux/order-tracking-app@3.0.32) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [3.0.31](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.30...@ovh-ux/order-tracking-app@3.0.31) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [3.0.30](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.29...@ovh-ux/order-tracking-app@3.0.30) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [3.0.29](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.28...@ovh-ux/order-tracking-app@3.0.29) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
 ## [3.0.28](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@3.0.27...@ovh-ux/order-tracking-app@3.0.28) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/order-tracking-app

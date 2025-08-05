@@ -21,7 +21,7 @@
   "pci_instances_status_resize": "Actualización en progreso",
   "pci_instances_status_build": "Creación",
   "pci_instances_status_shutoff": "Apagada",
-  "pci_instances_status_rescue": "En rescue",
+  "pci_instances_status_rescue": "Rescue",
   "pci_instances_status_shelved": "Suspendida",
   "pci_instances_status_shelving": "Suspendiendo...",
   "pci_instances_status_unshelving": "Reactivando...",

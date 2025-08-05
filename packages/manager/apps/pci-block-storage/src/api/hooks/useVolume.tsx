@@ -2,20 +2,15 @@ import { useCallback, useMemo } from 'react';
 import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import {
   ColumnSort,
-  getMacroRegion,
   PaginationState,
+  useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
-import {
-  useMutation,
-  useQueries,
-  useQuery,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { pipe } from 'lodash/fp';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   addVolume,
-  AddVolumeProps,
   attachVolume,
   deleteVolume,
   detachVolume,
@@ -28,22 +23,34 @@ import {
 } from '@/api/data/volume';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
-import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
 import {
-  mapVolumeStatus,
-  sortResults,
-  paginateResults,
+  getVolumeCatalogQuery,
+  useVolumeCatalog,
+} from '@/api/hooks/useCatalog';
+import {
   mapVolumeAttach,
-  WithAttach,
+  mapVolumeEncryption,
+  mapVolumePricing,
+  mapVolumeRegion,
+  mapVolumeStatus,
+  mapVolumeToAdd,
+  mapVolumeToEdit,
+  paginateResults,
+  sortResults,
+  TVolumeAttach,
+  TVolumeEncryption,
+  TVolumePricing,
+  TVolumeRegion,
+  TVolumeStatus,
+  TVolumeToAdd,
 } from '@/api/select/volume';
-import { TVolumeCatalog } from '@/api/data/catalog';
 
-export type TVolume = WithAttach<
-  TAPIVolume & {
-    statusGroup: string;
+export type TVolume = TAPIVolume &
+  TVolumeAttach &
+  TVolumeEncryption &
+  TVolumeStatus & {
     regionName: string;
-  }
->;
+  };
 
 export const getVolumesQueryKey = (projectId: string | null) => [
   'project',
@@ -52,42 +59,9 @@ export const getVolumesQueryKey = (projectId: string | null) => [
 ];
 
 export const useAllVolumes = (projectId: string | null) => {
-  const { t } = useTranslation('region');
+  const { t } = useTranslation(['region', 'common']);
 
-  const mapVolumeRegionName = useCallback(
-    <V extends TAPIVolume>(volume: V): V & { regionName: string } => ({
-      ...volume,
-      regionName: t(
-        `manager_components_region_${getMacroRegion(volume.region)}_micro`,
-        {
-          micro:
-            volume.availabilityZone && volume.availabilityZone !== 'any'
-              ? volume.availabilityZone
-              : volume.region,
-        },
-      ),
-    }),
-    [t],
-  );
-
-  const combine = useCallback(
-    ([{ data, ...restQuery }, { data: catalogData }]: [
-      UseQueryResult<TAPIVolume[]>,
-      UseQueryResult<TVolumeCatalog>,
-    ]) => ({
-      data: data?.map(
-        pipe(
-          mapVolumeStatus,
-          mapVolumeRegionName,
-          mapVolumeAttach(catalogData),
-        ),
-      ),
-      ...restQuery,
-    }),
-    [mapVolumeRegionName],
-  );
-
-  return useQueries({
+  const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
       {
         queryKey: getVolumesQueryKey(projectId),
@@ -96,8 +70,23 @@ export const useAllVolumes = (projectId: string | null) => {
       },
       getVolumeCatalogQuery(projectId),
     ],
-    combine,
   });
+
+  const select = useMemo(
+    () =>
+      pipe(
+        mapVolumeStatus(t),
+        mapVolumeRegion(t),
+        mapVolumeAttach(catalogData),
+        mapVolumeEncryption(t, catalogData),
+      ),
+    [t, catalogData],
+  );
+
+  return {
+    data: useMemo(() => data?.map<TVolume>(select), [data, select]),
+    ...restQuery,
+  };
 };
 
 export type VolumeOptions = {
@@ -137,23 +126,51 @@ export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   enabled: !!volumeId,
 });
 
-export type UseVolumeResult = WithAttach<TAPIVolume>;
+export type UseVolumeResult =
+  | (TAPIVolume &
+      TVolumeAttach &
+      TVolumeEncryption &
+      TVolumeStatus &
+      TVolumeRegion &
+      TVolumePricing)
+  | undefined;
 
-export const useVolume = (projectId: string, volumeId: string) =>
-  useQueries({
+export const useVolume = (
+  projectId: string,
+  volumeId: string,
+  capacity?: number,
+) => {
+  const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
       getVolumeQuery(projectId, volumeId),
       getVolumeCatalogQuery(projectId),
     ],
-    combine: ([{ data, ...restQuery }, { data: catalogData }]) => {
-      const mapAttach = mapVolumeAttach(catalogData);
-
-      return {
-        data: data ? mapAttach(data) : undefined,
-        ...restQuery,
-      };
-    },
   });
+  const { t } = useTranslation(['common', 'add', NAMESPACES.BYTES]);
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
+
+  const select = useMemo(
+    () =>
+      pipe(
+        mapVolumeAttach(catalogData),
+        mapVolumeEncryption(t, catalogData),
+        mapVolumeStatus(t),
+        mapVolumeRegion(t),
+        mapVolumePricing(catalogData, getFormattedCatalogPrice, t, capacity),
+      ),
+    [catalogData, t, getFormattedCatalogPrice, capacity],
+  );
+
+  return {
+    data: useMemo<UseVolumeResult>(() => (data ? select(data) : undefined), [
+      select,
+      data,
+    ]),
+    ...restQuery,
+  };
+};
 
 export const getVolumeSnapshotQueryKey = (projectId: string) => [
   'volume-snapshot',
@@ -204,7 +221,7 @@ interface AttachVolumeProps {
   volumeId: string;
   instanceId: string;
   onError: (cause: Error) => void;
-  onSuccess: (volume: TVolume) => void;
+  onSuccess: () => void;
 }
 
 export const useAttachVolume = ({
@@ -217,7 +234,7 @@ export const useAttachVolume = ({
   const mutation = useMutation({
     mutationFn: async () => attachVolume(projectId, volumeId, instanceId),
     onError,
-    onSuccess: (volume: TVolume) => {
+    onSuccess: (volume) => {
       queryClient.setQueryData(
         getVolumesQueryKey(projectId),
         (data: { id: string }[]) =>
@@ -229,7 +246,7 @@ export const useAttachVolume = ({
         ...volume,
         attachedTo: [instanceId],
       }));
-      onSuccess(volume);
+      onSuccess();
     },
   });
   return {
@@ -254,7 +271,7 @@ export const useDetachVolume = (options?: {
     mutationFn: async ({ projectId, volumeId, instanceId }: DetachParams) =>
       detachVolume(projectId, volumeId, instanceId),
     onError,
-    onSuccess: (volume: TVolume, { projectId, instanceId, volumeId }) => {
+    onSuccess: (volume, { projectId, instanceId, volumeId }) => {
       const newVolume = {
         ...volume,
         attachedTo: volume.attachedTo.filter((id) => id !== instanceId),
@@ -287,8 +304,8 @@ export const convertUcentsToCurrency = (value: number, interval = 1) =>
 
 interface UpdateVolumeProps {
   projectId: string;
-  volumeToEdit: Partial<TAPIVolume>;
-  originalVolume: TAPIVolume;
+  volumeToEdit: Pick<TVolume, 'name' | 'size' | 'bootable'>;
+  originalVolume: TVolume;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
@@ -301,8 +318,10 @@ export const useUpdateVolume = ({
   onSuccess,
 }: UpdateVolumeProps) => {
   const mutation = useMutation({
-    mutationFn: async () =>
-      updateVolume(projectId, volumeToEdit, originalVolume),
+    mutationFn: () =>
+      updateVolume(
+        mapVolumeToEdit({ projectId, originalVolume, volumeToEdit }),
+      ),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -320,31 +339,29 @@ export const useUpdateVolume = ({
   };
 };
 
-type UseAddVolumeProps = AddVolumeProps & {
+type UseAddVolumeProps = {
+  projectId: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
 
 export const useAddVolume = ({
-  name,
   projectId,
-  regionName,
-  volumeCapacity,
-  volumeType,
-  availabilityZone,
   onError,
   onSuccess,
 }: UseAddVolumeProps) => {
+  const { data: catalog } = useVolumeCatalog(projectId);
+
+  const mutationFn = useCallback<(volumeToAdd: TVolumeToAdd) => Promise<void>>(
+    (volumeToAdd) =>
+      catalog
+        ? addVolume(mapVolumeToAdd(projectId, catalog)(volumeToAdd))
+        : Promise.reject(),
+    [catalog, projectId],
+  );
+
   const mutation = useMutation({
-    mutationFn: async () =>
-      addVolume({
-        name,
-        projectId,
-        regionName,
-        volumeCapacity,
-        volumeType,
-        availabilityZone,
-      }),
+    mutationFn,
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -355,7 +372,7 @@ export const useAddVolume = ({
   });
 
   return {
-    addVolume: () => mutation.mutate(),
+    addVolume: mutation.mutate,
     ...mutation,
   };
 };

@@ -22,6 +22,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomain, usePlatform } from '@/data/hooks';
 import { Loading, InlineEmailAccountFormItem } from '@/components';
 import {
@@ -43,7 +44,7 @@ import {
 import queryClient from '@/queryClient';
 
 export const ConfigureEmailAccounts: React.FC = () => {
-  const { t } = useTranslation(['onboarding', 'common']);
+  const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess } = useNotifications();
@@ -78,6 +79,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
     resolver: zodResolver(addEmailAccountsSchema),
     defaultValues: {
       accounts: [
+        // @TODO: remove offer when backend doesn't require that anymore
         { domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER },
       ],
     },
@@ -225,7 +227,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
             isDisabled={
               !methods.formState.isDirty || !methods.formState.isValid
             }
-            label={t('common:configure')}
+            label={t(`${NAMESPACES.ACTIONS}:configure`)}
           />
           <OdsButton
             id="skip"

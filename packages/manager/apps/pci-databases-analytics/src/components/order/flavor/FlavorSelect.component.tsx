@@ -9,7 +9,6 @@ import {
   TableRow,
   Badge,
 } from '@datatr-ux/uxlib';
-import Price from '@/components/price/Price.component';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/types/orderFunnel';
 import { getTagVariant } from '@/lib/tagsHelper';
@@ -19,15 +18,12 @@ interface FlavorsSelectProps {
   flavors: Flavor[];
   value: string;
   onChange: (newFlavor: string) => void;
-  showMonthlyPrice?: boolean;
   className?: string;
 }
 
 const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
-  ({ flavors, value, onChange, showMonthlyPrice = false, className }, ref) => {
+  ({ flavors, value, onChange, className }, ref) => {
     const { t } = useTranslation('pci-databases-analytics/components/flavor');
-    const priceUnit = showMonthlyPrice ? 'monthly' : 'hourly';
-    const decimals = showMonthlyPrice ? 2 : 3;
 
     const Storage = ({ flavor }: { flavor: Flavor }) => {
       const { storage } = flavor;
@@ -59,28 +55,31 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
         clickInput(flavorName);
       }
     };
+    const classNameTableHead =
+      'h-10 px-2 border font-semibold text-primary-800';
+    const classNameTableCell = 'text-[#4d5592] border';
     return (
       <Table
         data-testid="flavor-select-table"
         ref={ref}
-        className={cn('table-auto max-w-full overflow-x-auto', className)}
+        className={cn('table-fixed max-w-full overflow-x-auto', className)}
       >
-        <TableHeader data-testid="flavor-select-table-header">
-          <TableRow className="bg-primary-100 hover:bg-primary-10">
-            <TableHead className="font-bold text-base text-[#4d5592]">
+        <TableHeader
+          data-testid="flavor-select-table-header"
+          className="border bg-[#f7f8f8]"
+        >
+          <TableRow>
+            <TableHead className={classNameTableHead}>
               {t('tableHeadType')}
             </TableHead>
-            <TableHead className="font-bold text-base text-[#4d5592]">
+            <TableHead className={classNameTableHead}>
               {t('tableHeadCores')}
             </TableHead>
-            <TableHead className="font-bold text-base text-[#4d5592]">
+            <TableHead className={classNameTableHead}>
               {t('tableHeadMemory')}
             </TableHead>
-            <TableHead className="font-bold text-base text-[#4d5592]">
+            <TableHead className={classNameTableHead}>
               {t('tableHeadStorage')}
-            </TableHead>
-            <TableHead className="font-bold text-base text-[#4d5592]">
-              {t(`tableHeadPrice-${priceUnit}`)}
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -92,8 +91,10 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
               onClick={() => clickInput(flavor.name)}
               onKeyDown={(e) => handleKeyDown(e, flavor.name)}
               key={flavor.name}
-              className={`border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-                value === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
+              className={`border hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
+                value === flavor.name
+                  ? 'bg-primary-50 font-semibold !border-2 border-primary-500'
+                  : ''
               }`}
             >
               <td className="hidden">
@@ -107,7 +108,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                   checked={value === flavor.name}
                 />
               </td>
-              <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
+              <TableCell className={cn(classNameTableCell, 'capitalize')}>
                 <div className="flex gap-2 w-full justify-between items-center flex-nowrap">
                   <span>{flavor.name}</span>
                   <div className="hidden md:flex gap-1">
@@ -123,21 +124,14 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="text-[#4d5592] border border-primary-100">
+              <TableCell className={classNameTableCell}>
                 {flavor.vcores ?? '-'}
               </TableCell>
-              <TableCell className="text-[#4d5592] border border-primary-100">
+              <TableCell className={classNameTableCell}>
                 {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
               </TableCell>
-              <TableCell className="text-[#4d5592] border border-primary-100">
+              <TableCell className={classNameTableCell}>
                 <Storage flavor={flavor} />
-              </TableCell>
-              <TableCell className="text-[#4d5592] border border-primary-100">
-                <Price
-                  priceInUcents={flavor.pricing[priceUnit].price}
-                  taxInUcents={flavor.pricing[priceUnit].tax}
-                  decimals={decimals}
-                />
               </TableCell>
             </TableRow>
           ))}

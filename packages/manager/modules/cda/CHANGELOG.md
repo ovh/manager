@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.10.0...@ovh-ux/manager-cda@1.10.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* **cda-listing:** defining translations for the headers of the cloud disk array's listing ([0ac99fe](https://github.com/ovh/manager/commit/0ac99fe6d0e6fe664e480414ebcfc0851e12f863)), closes [#MANAGER-18177](https://github.com/ovh/manager/issues/MANAGER-18177)
+* **i18n:** add missing translations [CDS 4125] ([7d3904f](https://github.com/ovh/manager/commit/7d3904f5592bb4d0d9010b10f548d4b4d452ddd6))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.9.1...@ovh-ux/manager-cda@1.10.0) (2025-02-20)
 
 

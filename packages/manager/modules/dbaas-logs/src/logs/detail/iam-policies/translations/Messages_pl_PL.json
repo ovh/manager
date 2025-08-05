@@ -1,0 +1,8 @@
+{
+  "logs_iam_policies_description": "Wymienione polityki IAM mają zastosowanie do Twojej usługi „{{serviceName}}”. Polityki te mogą mieć również zastosowanie do innych zasobów OVHcloud.",
+  "logs_iam_policies_create": "Utwórz politykę IAM",
+  "logs_iam_policies_column_actions": "Liczba akcji",
+  "logs_iam_policies_column_identities": "Liczba tożsamości",
+  "logs_iam_policies_column_description": "Opis",
+  "logs_iam_policies_column_name": "Nazwa"
+}

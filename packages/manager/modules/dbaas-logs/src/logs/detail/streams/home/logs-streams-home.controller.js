@@ -37,6 +37,12 @@ export default class LogsStreamsHomeCtrl {
     this.initLoaders();
   }
 
+  $onInit() {
+    this.columnsParameters = [
+      { name: 'isEditable', hidden: this.service.isIamEnabled },
+    ];
+  }
+
   /**
    * initializes streams object by making API call to get data
    *

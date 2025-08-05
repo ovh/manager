@@ -1,11 +1,13 @@
-import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   getVcdDatacentreStorageRoute,
   getVdcStorageQueryKey,
+  isStatusTerminated,
+  useVcdDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import DatagridContainer from '@/components/datagrid/container/DatagridContainer.component';
 import { STORAGE_LABEL } from '../datacentreDashboard.constants';
@@ -29,6 +31,7 @@ export default function StorageListingPage() {
   const { t: tCompute } = useTranslation('datacentres/compute');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -72,7 +75,7 @@ export default function StorageListingPage() {
       cell: ActionDeleteCell,
       isSortable: false,
     },
-  ];
+  ] as DatagridColumn<unknown>[];
 
   return (
     <DatagridContainer
@@ -90,6 +93,7 @@ export default function StorageListingPage() {
         <OdsButton
           label={t('managed_vcd_vdc_storage_order_cta')}
           variant="outline"
+          isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
           onClick={() => {
             trackClick(TRACKING.storage.addStorage);
             navigate(subRoutes.order);

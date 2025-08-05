@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.48](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.47...@ovh-ux/manager-vrack-app@3.0.48) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.47](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.46...@ovh-ux/manager-vrack-app@3.0.47) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** add missing dependecy to billing-components ([a397047](https://github.com/ovh/manager/commit/a39704716588662815da58966470f3a8c0065e0d)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
+## [3.0.46](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.45...@ovh-ux/manager-vrack-app@3.0.46) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.44...@ovh-ux/manager-vrack-app@3.0.45) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.44](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.43...@ovh-ux/manager-vrack-app@3.0.44) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.42...@ovh-ux/manager-vrack-app@3.0.43) (2025-06-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.41...@ovh-ux/manager-vrack-app@3.0.42) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.40...@ovh-ux/manager-vrack-app@3.0.41) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.39...@ovh-ux/manager-vrack-app@3.0.40) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
+## [3.0.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.38...@ovh-ux/manager-vrack-app@3.0.39) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-app
+
+
+
+
+
 ## [3.0.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-app@3.0.37...@ovh-ux/manager-vrack-app@3.0.38) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-app

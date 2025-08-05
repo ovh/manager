@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.11...@ovh-ux/manager-core-test-utils@0.4.12) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.10...@ovh-ux/manager-core-test-utils@0.4.11) (2025-07-24)
+
+
+### Bug Fixes
+
+* **core-test-utils:** add react import ([458b8ed](https://github.com/ovh/manager/commit/458b8ed7537252382f362c8b7757be8294993279))
+* **core-test-utils:** ods button test utils ([81d82ca](https://github.com/ovh/manager/commit/81d82ca97c6a07e9cecd9f721e7f384a1b04606d))
+
+
+
+
+
+## [0.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.9...@ovh-ux/manager-core-test-utils@0.4.10) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.8...@ovh-ux/manager-core-test-utils@0.4.9) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.7...@ovh-ux/manager-core-test-utils@0.4.8) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.6...@ovh-ux/manager-core-test-utils@0.4.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
 ## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.5...@ovh-ux/manager-core-test-utils@0.4.6) (2025-05-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-test-utils

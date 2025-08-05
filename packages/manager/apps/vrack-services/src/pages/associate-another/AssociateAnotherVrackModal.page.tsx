@@ -17,16 +17,21 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useVrackList } from '@ovh-ux/manager-network-common';
 import { AssociateAnotherVrack } from './AssociateAnotherVrack.component';
 import { CreateVrack } from '@/components/CreateVrack.component';
 import { LoadingText } from '@/components/LoadingText.component';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function AssociateAnotherVrackModal() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('vrack-services/associate');
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.associate,
+    NAMESPACES.ACTIONS,
+  ]);
   const { vrackList, isError, isLoading, error } = useVrackList();
   const closeModal = () => {
     trackClick({
@@ -39,7 +44,8 @@ export default function AssociateAnotherVrackModal() {
   };
 
   if (!id) {
-    return closeModal();
+    closeModal();
+    return <></>;
   }
 
   return (
@@ -71,7 +77,7 @@ export default function AssociateAnotherVrackModal() {
           type="button"
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={closeModal}
-          label={t('modalAssociateCancelButton')}
+          label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         />
       )}
     </OdsModal>

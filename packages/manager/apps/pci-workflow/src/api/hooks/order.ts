@@ -1,10 +1,10 @@
-import { useQueries } from '@tanstack/react-query';
-import {
-  getCatalogQuery,
-  getProductAvailabilityQuery,
-} from '@ovh-ux/manager-pci-common';
 import { useMemo } from 'react';
+
+import { useQueries } from '@tanstack/react-query';
+
+import { getCatalogQuery, getProductAvailabilityQuery } from '@ovh-ux/manager-pci-common';
 import { useMe } from '@ovh-ux/manager-react-components';
+
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
 
 export const useProjectSnapshotAddons = (projectId: string) => {
@@ -43,22 +43,14 @@ export const useProjectSnapshotAddons = (projectId: string) => {
   });
 };
 
-export const useInstanceSnapshotPricing = (
-  projectId: string,
-  instanceRegion: string,
-) => {
+export const useInstanceSnapshotPricing = (projectId: string, instanceRegion: string) => {
   const { addons, ...query } = useProjectSnapshotAddons(projectId);
 
   const price = useMemo(
     () =>
       addons
-        ?.find(({ regions }) =>
-          regions.find(({ name }) => name === instanceRegion),
-        )
-        ?.pricings.find(
-          ({ intervalUnit }) =>
-            intervalUnit === 'none' || intervalUnit === 'hour',
-        ),
+        ?.find(({ regions }) => regions.find(({ name }) => name === instanceRegion))
+        ?.pricings.find(({ intervalUnit }) => intervalUnit === 'none' || intervalUnit === 'hour'),
     [addons, instanceRegion],
   );
 

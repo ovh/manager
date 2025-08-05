@@ -3,6 +3,315 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.1...@ovh-ux/manager-web@19.22.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [19.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.0...@ovh-ux/manager-web@19.22.1) (2025-07-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.2...@ovh-ux/manager-web@19.22.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** add info message eol net2ftp ([a2e69e2](https://github.com/ovh/manager/commit/a2e69e2e69809e13e0a2c56a93138b9cf483013e)), closes [#MANAGER-18586](https://github.com/ovh/manager/issues/MANAGER-18586)
+
+
+### Features
+
+* **web-domains:** remove nic handle check in dns tab ([d9496c2](https://github.com/ovh/manager/commit/d9496c2a3ad0094806c2a922272734bc811660c0)), closes [#MANAGER-18980](https://github.com/ovh/manager/issues/MANAGER-18980)
+
+
+
+
+
+## [19.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.1...@ovh-ux/manager-web@19.21.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+* **i18n:** add missing translations [CDS 4215] ([4a16f1a](https://github.com/ovh/manager/commit/4a16f1a2ed28334746fb5400555eb1e230fba02f))
+
+
+
+
+
+## [19.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.0...@ovh-ux/manager-web@19.21.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix error on upgrade hosting if detach mode ([3522b14](https://github.com/ovh/manager/commit/3522b143b7a9df99830c0f6fadbe8d2d42e3134f)), closes [#MANAGER-19160](https://github.com/ovh/manager/issues/MANAGER-19160)
+
+
+
+
+
+# [19.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.20.0...@ovh-ux/manager-web@19.21.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4164] ([c05cdc9](https://github.com/ovh/manager/commit/c05cdc9aa5830d53ae12c3d2c600dee8e09e12c0))
+
+
+### Features
+
+* **web-hosting:** configure columns on list layout ([f7a7868](https://github.com/ovh/manager/commit/f7a7868f4a433b8cc3f008f150031553f447163e)), closes [#WEB-20306](https://github.com/ovh/manager/issues/WEB-20306)
+
+
+
+
+
+# [19.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.19.0...@ovh-ux/manager-web@19.20.0) (2025-07-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4164] ([c05cdc9](https://github.com/ovh/manager/commit/c05cdc9aa5830d53ae12c3d2c600dee8e09e12c0))
+
+
+### Features
+
+* **web-hosting:** configure columns on list layout ([f7a7868](https://github.com/ovh/manager/commit/f7a7868f4a433b8cc3f008f150031553f447163e)), closes [#WEB-20306](https://github.com/ovh/manager/issues/WEB-20306)
+
+
+
+
+
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.2...@ovh-ux/manager-web@19.19.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **web:** fix hosting multisite for ssl ([897a47c](https://github.com/ovh/manager/commit/897a47c268c857f5f9ce9718e71495658a6bc567)), closes [#INC0141499](https://github.com/ovh/manager/issues/INC0141499)
+* **web:** replace some dedicated url by account url ([64ea41e](https://github.com/ovh/manager/commit/64ea41ef89846503cc4ffae2a908d6be2b3b4afa)), closes [#MANAGER-17815](https://github.com/ovh/manager/issues/MANAGER-17815)
+
+
+### Features
+
+* **hosting:** change api for upgrade hosting plan ([6634e06](https://github.com/ovh/manager/commit/6634e069ec59e4799837890cb0290234ec7b0a3d)), closes [#MANAGER-18335](https://github.com/ovh/manager/issues/MANAGER-18335)
+
+
+
+
+
+## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.1...@ovh-ux/manager-web@19.18.2) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.18.0...@ovh-ux/manager-web@19.18.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4180] ([b868db1](https://github.com/ovh/manager/commit/b868db140e6e5e00066a97b686a393f1a5432fcc))
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+# [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.17.0...@ovh-ux/manager-web@19.18.0) (2025-07-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4136] ([6e93849](https://github.com/ovh/manager/commit/6e938490a45196eefc6a0c66ad7cee999bf47154))
+
+
+### Features
+
+* **web-hosting:** add banner on multisite ([d6f3fa9](https://github.com/ovh/manager/commit/d6f3fa971152f9824ce360c684929e509691bec9)), closes [#MANAGER-17759](https://github.com/ovh/manager/issues/MANAGER-17759)
+* **web-hosting:** create react layout and tabs ([896e051](https://github.com/ovh/manager/commit/896e0516504252dc555d9768bd596433a4b95179)), closes [#MANAGER-17888](https://github.com/ovh/manager/issues/MANAGER-17888)
+* **web-hosting:** delete ssl section on general informations ([d23c82a](https://github.com/ovh/manager/commit/d23c82a23e8f2dfc2def38b6c0ee75299c55976c)), closes [#MANAGER-17755](https://github.com/ovh/manager/issues/MANAGER-17755)
+* **web-hosting:** enable ssl by default on multisite ([b16bf8a](https://github.com/ovh/manager/commit/b16bf8a3e75c464e4b6f47be7b060993ccec79ab)), closes [#MANAGER-17846](https://github.com/ovh/manager/issues/MANAGER-17846)
+* **web-hosting:** remove ssl column on multisite ([57a5113](https://github.com/ovh/manager/commit/57a5113a82726d70727f4022e93d3d2893b11e3e)), closes [#MANAGER-17757](https://github.com/ovh/manager/issues/MANAGER-17757)
+* **web-hosting:** replace actions on multisite ([fa3df60](https://github.com/ovh/manager/commit/fa3df60fd0fd47ffb4597dff66f3f7fd4fc9df42)), closes [#MANAGER-17845](https://github.com/ovh/manager/issues/MANAGER-17845)
+
+
+
+
+
+# [19.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.16.0...@ovh-ux/manager-web@19.17.0) (2025-07-07)
+
+
+### Features
+
+* **dashboard:** increased customer visibility when an error is detected on DNS update ([0f023e6](https://github.com/ovh/manager/commit/0f023e67f11e6e20fc135472597e63e6a081d1fd)), closes [#MANAGER-18331](https://github.com/ovh/manager/issues/MANAGER-18331)
+
+
+
+
+
+# [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.15.1...@ovh-ux/manager-web@19.16.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* **web.zone:** check if mailing list tab is available ([4d717b3](https://github.com/ovh/manager/commit/4d717b32bc14781bd27c518e0df22ca037ce71fa)), closes [#MANAGER-18899](https://github.com/ovh/manager/issues/MANAGER-18899)
+
+
+### Features
+
+* **web.private-database:** add and update translate for datacenter name ([5c6e121](https://github.com/ovh/manager/commit/5c6e121820f3b12e29350d5c5bc0438efc250fd9)), closes [#MANAGER-17622](https://github.com/ovh/manager/issues/MANAGER-17622)
+
+
+
+
+
+## [19.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.15.0...@ovh-ux/manager-web@19.15.1) (2025-07-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4153] ([16d9603](https://github.com/ovh/manager/commit/16d96031daa8ef51d7ad9d3030f9b5174b4caf9d))
+
+
+
+
+
+# [19.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.14.1...@ovh-ux/manager-web@19.15.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 527] ([d848ed0](https://github.com/ovh/manager/commit/d848ed01b40b9a1d3744b5c61106b538437bf45d))
+* **web:** clean angularjs office code ([645947c](https://github.com/ovh/manager/commit/645947c6891f279ac0471349009d8d447dcbf73c)), closes [#MANAGER-18620](https://github.com/ovh/manager/issues/MANAGER-18620)
+
+
+### Features
+
+* **web.hosting:** add chart for hosting database ([818d59e](https://github.com/ovh/manager/commit/818d59e6d46d5e1e476647e6784c5fbdde8f1de9)), closes [#MANAGER-17885](https://github.com/ovh/manager/issues/MANAGER-17885)
+
+
+
+
+
+## [19.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.14.0...@ovh-ux/manager-web@19.14.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.13.1...@ovh-ux/manager-web@19.14.0) (2025-06-23)
+
+
+### Bug Fixes
+
+* **web:** use RedirectionService to handle redirections ([f9f01c1](https://github.com/ovh/manager/commit/f9f01c1deec9075fb972414f98d3ea163bf9134b)), closes [#MANAGER-18722](https://github.com/ovh/manager/issues/MANAGER-18722)
+
+
+### Features
+
+* **web-hosting:** change m4m query for mail charts ([6592c56](https://github.com/ovh/manager/commit/6592c568c6724a94f0dde490e2216755bd6b35a1)), closes [#WEB-20483](https://github.com/ovh/manager/issues/WEB-20483)
+* **web-hosting:** change query for mailout total ([504ad51](https://github.com/ovh/manager/commit/504ad51412629bdccd52198460ca0faa3c549731)), closes [#WEB-20574](https://github.com/ovh/manager/issues/WEB-20574)
+* **web:** translations added for Task tab ([65299ca](https://github.com/ovh/manager/commit/65299ca3244bce3ffea9224a37aec3c6359320b1)), closes [#MANAGER-18509](https://github.com/ovh/manager/issues/MANAGER-18509)
+
+
+
+
+
+## [19.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.13.0...@ovh-ux/manager-web@19.13.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.10...@ovh-ux/manager-web@19.13.0) (2025-06-17)
+
+
+### Features
+
+* **hub:** add translate Valkey caching ([3f6cb4b](https://github.com/ovh/manager/commit/3f6cb4bd7c30e51f699e8b3d14b9091348437a27)), closes [#MANAGER-18654](https://github.com/ovh/manager/issues/MANAGER-18654)
+* **web:** remove old skipnav ([3bab04b](https://github.com/ovh/manager/commit/3bab04b4325c08b9ca9c42d992dd31e60c2501d7)), closes [#MANAGER-15487](https://github.com/ovh/manager/issues/MANAGER-15487)
+
+
+
+
+
+## [19.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.9...@ovh-ux/manager-web@19.12.10) (2025-06-17)
+
+
+### Bug Fixes
+
+* **web:** delete test tag from page template ([#17634](https://github.com/ovh/manager/issues/17634)) ([5157235](https://github.com/ovh/manager/commit/5157235919460c4c1e1630b2ebf2bbf71374a7b2)), closes [#INC0136185](https://github.com/ovh/manager/issues/INC0136185)
+
+
+
+
+
+## [19.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.8...@ovh-ux/manager-web@19.12.9) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.7...@ovh-ux/manager-web@19.12.8) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.6...@ovh-ux/manager-web@19.12.7) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.5...@ovh-ux/manager-web@19.12.6) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.4...@ovh-ux/manager-web@19.12.5) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.12.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.3...@ovh-ux/manager-web@19.12.4) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.12.2...@ovh-ux/manager-web@19.12.3) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

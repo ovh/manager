@@ -18,13 +18,13 @@ import { generateName } from '@/lib/nameGenerator';
 import { useVrack } from '@/hooks/useVrack';
 import { useServiceData } from '../../../Service.context';
 import { ForkInitialValue } from '../Fork.page';
-import { Pricing, computeServicePrice } from '@/lib/pricingHelper';
+import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.availability.Suggestion,
-  item: 'plan' | 'region' | 'flavor',
-  listItems: Plan[] | Region[] | Flavor[],
+  item: 'plan' | 'region' | 'flavor' | 'version',
+  listItems: Plan[] | Region[] | Flavor[] | Version[],
   currentValue?: string,
 ) => {
   if (listItems.length === 0) return '';
@@ -91,10 +91,8 @@ export function useFork(
         },
         { message: t('errorSourceBackupFieldEmpty'), path: ['backupId'] },
       ),
-    engineWithVersion: z.object({
-      engine: z.string(),
-      version: z.string(),
-    }),
+    engine: z.string(),
+    version: z.string(),
     plan: z.string(),
     region: z.string(),
     flavor: z.string(),
@@ -126,7 +124,10 @@ export function useFork(
           message: t('errorNetworkFieldMissingId'),
         },
       ),
-    name: z.string(),
+    name: z
+      .string()
+      .min(1)
+      .max(50),
   });
   const form = useForm({
     resolver: zodResolver(orderSchema),
@@ -138,10 +139,8 @@ export function useFork(
         pointInTime: initialValue.source.pointInTime,
       },
       name: generateName(),
-      engineWithVersion: {
-        engine: service.engine as string,
-        version: service.version,
-      },
+      engine: service.engine as string,
+      version: service.version,
       plan: service.plan,
       region: service.nodes[0].region,
       flavor: service.flavor,
@@ -161,7 +160,8 @@ export function useFork(
 
   const forkFrom = form.watch('forkFrom');
   const name = form.watch('name');
-  const engineWithVersion = form.watch('engineWithVersion');
+  const engine = form.watch('engine');
+  const version = form.watch('version');
   const plan = form.watch('plan');
   const region = form.watch('region');
   const flavor = form.watch('flavor');
@@ -172,9 +172,19 @@ export function useFork(
 
   const networksData = useVrack(projectId, region, network.networkId);
 
-  const [price, setPrice] = useState<Pricing>({
-    hourly: { price: 0, tax: 0 },
-    monthly: { price: 0, tax: 0 },
+  const [price, setPrice] = useState<ServicePricing>({
+    flavorPrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    servicePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
+    storagePrice: {
+      hourly: { price: 0, tax: 0 },
+      monthly: { price: 0, tax: 0 },
+    },
   });
 
   // Create the list of available engines
@@ -189,40 +199,47 @@ export function useFork(
       ),
     [availabilities, capabilities],
   );
-  // Create the list of available plans
-  const listPlans = useMemo(
+  // Create the list of available versions
+  const listVersions = useMemo(
     () =>
       listEngines
-        ?.find((e: Engine) => e.name === engineWithVersion.engine)
-        ?.versions.find((v: Version) => v.name === engineWithVersion.version)
-        ?.plans.sort((a, b) => a.order - b.order) || [],
-    [listEngines, engineWithVersion],
+        ?.find((e: Engine) => e.name === engine)
+        ?.versions.sort((a, b) => a.order - b.order) || [],
+    [listEngines, engine],
   );
   // Create the list of available regions
   const listRegions = useMemo(
     () =>
-      listPlans
-        ?.find((p: Plan) => p.name === plan)
+      listVersions
+        ?.find((v: Version) => v.name === version)
         ?.regions.sort((a, b) => a.order - b.order) || [],
-    [listPlans, plan],
+    [listVersions, version],
   );
-  // Create the list of available flavors
-  const listFlavors = useMemo(
+  // Create the list of available plans
+  const listPlans = useMemo(
     () =>
       listRegions
         ?.find((r: Region) => r.name === region)
-        ?.flavors.sort((a, b) => a.order - b.order) || [],
+        ?.plans.sort((a, b) => a.order - b.order) || [],
     [listRegions, region],
   );
 
+  // Create the list of available flavors
+  const listFlavors = useMemo(
+    () =>
+      listPlans
+        ?.find((p: Plan) => p.name === plan)
+        ?.flavors.sort((a, b) => a.order - b.order) || [],
+    [listPlans, plan],
+  );
+
   const engineObject: Engine | undefined = useMemo(
-    () => listEngines.find((e) => e.name === engineWithVersion.engine),
-    [listEngines, engineWithVersion.engine],
+    () => listEngines.find((e) => e.name === engine),
+    [listEngines, engine],
   );
   const versionObject: Version | undefined = useMemo(
-    () =>
-      engineObject?.versions.find((v) => v.name === engineWithVersion.version),
-    [engineObject, engineWithVersion.version],
+    () => listVersions.find((v) => v.name === version),
+    [listVersions, version],
   );
   const planObject: Plan | undefined = useMemo(
     () => listPlans.find((p) => p.name === plan),
@@ -250,13 +267,13 @@ export function useFork(
     () =>
       availabilities.find(
         (a) =>
-          a.engine === engineWithVersion.engine &&
-          a.version === engineWithVersion.version &&
-          a.plan === plan &&
+          a.engine === engine &&
+          a.version === version &&
           a.region === region &&
+          a.plan === plan &&
           a.specifications.flavor === flavor,
       ),
-    [availabilities, engineWithVersion, plan, region, flavor],
+    [availabilities, engine, version, region, plan, flavor],
   );
 
   // compute pricing when availability, nbNodes and additionalStorage changes
@@ -269,62 +286,70 @@ export function useFork(
         storagePricing: flavorObject.storage?.pricing,
         additionalStorage,
         storageMode: engineObject.storageMode,
-      }).servicePrice,
+      }),
     );
   }, [availability, nbNodes, additionalStorage, engineObject]);
 
   // select an engine and a version when listEngines is changed
   useEffect(() => {
-    const engineAndVersion = { engine: '', version: '' };
     const suggestedEngine = [initialValue].find((s) => s.default);
     const defaultEngine =
       listEngines.find((e) => e.name === suggestedEngine.engine) ??
       listEngines[0];
-    const { defaultVersion } = defaultEngine;
-    engineAndVersion.engine = defaultEngine.name;
-    engineAndVersion.version = defaultVersion;
-    form.setValue('engineWithVersion', engineAndVersion);
-  }, [listEngines]);
-  // update plan
+    form.setValue('engine', defaultEngine.name);
+  }, [listEngines, initialValue]);
+  // update version
   useEffect(() => {
     form.setValue(
-      'plan',
+      'version',
       getSuggestedItemOrDefault(
-        [initialValue].find((s) => s.engine === engineWithVersion.engine),
-        'plan',
-        listPlans,
+        [initialValue].find((s) => s.engine === engine),
+        'version',
+        listVersions,
       ),
     );
-  }, [listPlans, initialValue, engineWithVersion.engine]);
-  // update nodes when plan changes
-  useEffect(() => {
-    if (!planObject) return;
-    form.setValue('nbNodes', planObject.nodes.minimum);
-  }, [plan, listPlans]);
+  }, [listVersions, initialValue, engine]);
   // update region
   useEffect(() => {
     form.setValue(
       'region',
       getSuggestedItemOrDefault(
-        [initialValue].find((s) => s.engine === engineWithVersion.engine),
+        [initialValue].find((s) => s.engine === engine),
         'region',
         listRegions,
         region,
       ),
     );
-  }, [listRegions, initialValue, engineWithVersion.engine, region]);
+  }, [listRegions, initialValue, engine, region]);
+  // update plan
+  useEffect(() => {
+    form.setValue(
+      'plan',
+      getSuggestedItemOrDefault(
+        [initialValue].find((s) => s.engine === engine),
+        'plan',
+        listPlans,
+        plan,
+      ),
+    );
+  }, [listPlans, initialValue, engine, plan]);
+  // update nodes when plan changes
+  useEffect(() => {
+    if (!planObject) return;
+    form.setValue('nbNodes', planObject.nodes.minimum);
+  }, [plan, listPlans]);
   // update flavor
   useEffect(() => {
     form.setValue(
       'flavor',
       getSuggestedItemOrDefault(
-        [initialValue].find((s) => s.engine === engineWithVersion.engine),
+        [initialValue].find((s) => s.engine === engine),
         'flavor',
         listFlavors,
         flavor,
       ),
     );
-  }, [listFlavors, initialValue, engineWithVersion.engine, flavor]);
+  }, [listFlavors, initialValue, engine, flavor]);
   // reset storage when flavor is changed
   useEffect(() => {
     form.setValue('additionalStorage', 0);
@@ -361,6 +386,7 @@ export function useFork(
     lists: {
       backups,
       engines: listEngines,
+      version: listVersions,
       plans: listPlans,
       regions: listRegions,
       flavors: listFlavors,

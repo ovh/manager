@@ -2,8 +2,10 @@ import { OdsCard } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import React from 'react';
 
-export const Block: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className="my-8">{children}</div>
+export const Block: React.FC<React.PropsWithChildren<{
+  className?: string;
+}>> = ({ children, className }) => (
+  <div className={clsx('my-8', className)}>{children}</div>
 );
 
 const SimpleTile: React.FC<React.PropsWithChildren<{
@@ -17,8 +19,8 @@ const SimpleTile: React.FC<React.PropsWithChildren<{
       {
         'cursor-pointer': onClick,
         'cursor-default': !onClick,
-        'border-[--ods-color-primary-500] border-2': isActive,
-        'hover:border-2': !isActive,
+        'border-[--ods-color-primary-500] border-2 bg-[--ods-color-primary-050]': isActive,
+        'hover:border-2 hover:border-[--ods-color-primary-500] hover:bg-[--ods-color-primary-050]': !isActive,
       },
       className,
     )}

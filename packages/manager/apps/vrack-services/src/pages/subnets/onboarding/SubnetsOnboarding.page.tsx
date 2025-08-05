@@ -8,9 +8,10 @@ import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 import { urls } from '@/routes/routes.constants';
 import { hasSubnet, isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function SubnetsOnboarding() {
-  const { t } = useTranslation('vrack-services/subnets');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
   const { id } = useParams();
   const { data: vs } = useVrackService();
   const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();

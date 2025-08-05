@@ -1,0 +1,6 @@
+{
+  "manager_components_resource_tagging_list_modal_title": "Tags: {{resourceName}}",
+  "manager_components_resource_tagging_list_modal_search": "Procurar",
+  "manager_components_resource_tagging_list_modal_cancel": "Retroceder",
+  "manager_components_resource_tagging_list_modal_edit": "Gerir tags"
+}

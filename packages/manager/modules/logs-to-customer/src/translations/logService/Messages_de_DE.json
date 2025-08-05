@@ -1,4 +1,6 @@
 {
   "log_service_displayname_tile_label": "Anzeigename",
-  "log_service_username_tile_label": "Nutzer"
+  "log_service_username_tile_label": "Nutzer",
+  "log_service_create": "Account erstellen",
+  "log_service_no_service_description": "Um diese Übertragung zu aktivieren, müssen Sie zuerst einen Logs Data Platform Account und einen ersten Stream erstellen."
 }

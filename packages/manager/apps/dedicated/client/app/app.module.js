@@ -52,7 +52,7 @@ import './css/source.scss';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import set from 'lodash/set';
-import * as dateFnsLocales from 'date-fns/locale';
+import { enGB, fr, frCA, de, es, it, pl, pt } from 'date-fns/locale';
 import isString from 'lodash/isString';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 import '@ovh-ux/ng-at-internet';
@@ -81,7 +81,6 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { serverBandwidth, changelogButton } from '@ovh-ux/manager-components';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
-import ovhManagerBilling from '@ovh-ux/manager-billing';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
 import ovhManagerNetapp from '@ovh-ux/manager-netapp';
@@ -102,7 +101,6 @@ import ovhManagerAccountMigration from '@ovh-ux/manager-account-migration';
 import ovhManagerNutanix from '@ovh-ux/manager-nutanix';
 import { pollingService } from '@ovh-ux/manager-bm-server-components';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
-import account from './account';
 import cdn from './cdn';
 import moduleLicense from './license';
 import config, { getConstants } from './config/config';
@@ -123,6 +121,8 @@ import otrs from './otrs';
 import networkSecurity from './network-security';
 
 import { TRACKING } from './at-internet.constants';
+
+const dateFnsLocales = { enGB, fr, frCA, de, es, it, pl, pt };
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
@@ -164,11 +164,9 @@ export default async (containerEl, shellClient) => {
       moduleName,
       [
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
-        account,
         registerCoreModule(environment, coreCallbacks),
         registerAtInternet(shellClient.tracking),
         ovhManagerAtInternetConfiguration,
-        ovhManagerBilling,
         'controllers',
         cdn,
         dedicatedCloud,

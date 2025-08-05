@@ -8,7 +8,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { DomainItem } from './Domains.page';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
@@ -18,6 +18,7 @@ import {
   DOMAIN_DIAGNOSTICS,
   EDIT_DOMAIN,
 } from '@/tracking.constants';
+import { DomainItem } from './Domains.types';
 
 interface ActionButtonDomainProps {
   item: DomainItem;
@@ -26,7 +27,7 @@ interface ActionButtonDomainProps {
 export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
   item,
 }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
@@ -71,7 +72,7 @@ export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     {
       id: 1,
       onclick: handleEditDomainClick,
-      label: t('common:configure'),
+      label: t(`${NAMESPACES.ACTIONS}:configure`),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.edit],
     },
@@ -85,7 +86,7 @@ export const ActionButtonDomain: React.FC<ActionButtonDomainProps> = ({
     {
       id: 3,
       onclick: handleDeleteDomainClick,
-      label: t('common:delete'),
+      label: t(`${NAMESPACES.ACTIONS}:delete`),
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.domain.delete],
       color: ODS_BUTTON_COLOR.critical,

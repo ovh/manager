@@ -8,5 +8,6 @@
   "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
   "managed_vcd_vdc_id": "ID",
   "managed_vcd_vdc_usage": "Verwendung",
-  "managed_vcd_vdc_contact_support": "Bitte kontaktieren Sie den Support."
+  "managed_vcd_vdc_contact_support": "Bitte kontaktieren Sie den Support.",
+  "managed_vcd_vdc_associate_vrack": "vRack verbinden"
 }

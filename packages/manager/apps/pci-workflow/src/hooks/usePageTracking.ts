@@ -1,7 +1,10 @@
 import { useContext, useEffect } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { PAGE_PREFIX, PCI_LEVEL2 } from '@/tracking.constants';
 
 const DISCOVERY_PLANCODE = 'project.discovery';
@@ -9,9 +12,7 @@ const DISCOVERY_PLANCODE = 'project.discovery';
 export default function usePageTracking() {
   const location = useLocation();
   const { data: project } = useProject();
-  const { setPciProjectMode, trackPage } = useContext(
-    ShellContext,
-  ).shell.tracking;
+  const { setPciProjectMode, trackPage } = useContext(ShellContext).shell.tracking;
 
   useEffect(() => {
     if (project) {
@@ -20,7 +21,7 @@ export default function usePageTracking() {
         isDiscoveryProject: project.planCode === DISCOVERY_PLANCODE,
       });
     }
-  }, [project]);
+  }, [project, setPciProjectMode]);
 
   useEffect(() => {
     const pageId = location.pathname.split('/').pop();
@@ -29,5 +30,5 @@ export default function usePageTracking() {
       name: `${PAGE_PREFIX}::workflow${pageKey}`,
       level2: PCI_LEVEL2,
     });
-  }, [location]);
+  }, [location, trackPage]);
 }

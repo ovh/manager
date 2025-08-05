@@ -129,7 +129,7 @@
 
         <!-- MITIGATION::SWITCH DEFAULT > PERMANENT -->
         <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
         >
             <button
                 type="button"
@@ -140,7 +140,7 @@
         </li>
         <!-- MITIGATION::SWITCH PERMANENT > DEFAULT -->
         <li
-            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING'"
+            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
         >
             <button
                 type="button"
@@ -319,7 +319,7 @@
             <button
                 type="button"
                 class="btn btn-link"
-                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : tracking['delete-failover']})"
+                data-ng-click="goToDeleteIpService(ipBlock.ipBlock)"
                 data-ng-disabled="!ipBlock.canBeTerminated"
                 data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
                 data-oui-tooltip-placement="left"

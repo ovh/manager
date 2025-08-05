@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.33.0...@ovh-ux/manager-react-components@2.34.0) (2025-08-01)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+- **mrc:** tag modal make edite tag callback optional ([916217b](https://github.com/ovh/manager/commit/916217b72d9db76b9a40c59fdd098fbd465c925e)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+### Features
+
+- **manager-react-components:** deprecate guide button and guide header ([91dad87](https://github.com/ovh/manager/commit/91dad879a9ca3996f4400ef35cd16b75b3fbcf7f)), closes [#MANAGER-18839](https://github.com/ovh/manager/issues/MANAGER-18839)
+- **manager-react-components:** deprecate pci maintenance banner component ([94d25bb](https://github.com/ovh/manager/commit/94d25bb5d1e5d0c5c4a1e48875b67a5115fce52a)), closes [#MANAGER-18964](https://github.com/ovh/manager/issues/MANAGER-18964)
+- **manager-react-components:** deprecate typography title and subtitle ([c4b02a6](https://github.com/ovh/manager/commit/c4b02a65782c1521af20b11a242a89a796b59c0b)), closes [#MANAGER-18712](https://github.com/ovh/manager/issues/MANAGER-18712)
+- **mrc:** datagrid row selection feature ([7961d90](https://github.com/ovh/manager/commit/7961d90e45c1177530fb7f0627f4ee1e6a4250c2)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+# [2.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.3...@ovh-ux/manager-react-components@2.33.0) (2025-07-24)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4199] ([c502cd6](https://github.com/ovh/manager/commit/c502cd6b93d5a53b2351ec723623aa78a9802abe))
+- **mrc:** remove margin on baselayout when no tabs are set ([5996498](https://github.com/ovh/manager/commit/59964986d85cff79eba754db97a1499f990f81c0))
+- **mrc:** update deprecation notice for dashboard-tile component ([1d736b6](https://github.com/ovh/manager/commit/1d736b63be01a977172a0c29e33bd970669633d6)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+
+### Features
+
+- **mrc:** add drawer component ([ebfa65d](https://github.com/ovh/manager/commit/ebfa65d2a39b40bae9545a5dc575b1539c029729)), closes [#MANAGER-17872](https://github.com/ovh/manager/issues/MANAGER-17872)
+- **mrc:** add tooltip on dashboardtile labels ([bf1c9f1](https://github.com/ovh/manager/commit/bf1c9f1d55576e744fed4605efc780969bc5973f)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+- **mrc:** add tooltip on manager-tile labels ([cd39790](https://github.com/ovh/manager/commit/cd39790ff78ba6ebc63cb753b870f667e61663f5)), closes [#17927](https://github.com/ovh/manager/issues/17927)
+
+## [2.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.2...@ovh-ux/manager-react-components@2.32.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.1...@ovh-ux/manager-react-components@2.32.2) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.0...@ovh-ux/manager-react-components@2.32.1) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.31.0...@ovh-ux/manager-react-components@2.32.0) (2025-07-17)
+
+### Features
+
+- **manager-react-component:** add badge within the header of base layout ([d5d113c](https://github.com/ovh/manager/commit/d5d113c577ee599af96ba2a8e426411a494fa31d)), closes [#MANAGER-18077](https://github.com/ovh/manager/issues/MANAGER-18077)
+- **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
+# [2.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.30.0...@ovh-ux/manager-react-components@2.31.0) (2025-07-10)
+
+### Features
+
+- add aria label on action menu ([11d986c](https://github.com/ovh/manager/commit/11d986c10a69c1c779a27a2ce2a6f81b5c4bf919)), closes [#18041](https://github.com/ovh/manager/issues/18041)
+
+# [2.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.2...@ovh-ux/manager-react-components@2.30.0) (2025-07-04)
+
+### Bug Fixes
+
+- **mrc.datagrid:** fix flex alignment ([5d1e9d7](https://github.com/ovh/manager/commit/5d1e9d7104985ef927f6f92b8226180dc6afd90d)), closes [#MANAGER-15793](https://github.com/ovh/manager/issues/MANAGER-15793)
+
+### Features
+
+- **core:** refactor api update iceberg header request ([258f02e](https://github.com/ovh/manager/commit/258f02e2f8dad8766866ef4882faccf58c08bc0d)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add test for useIcebergV2 filter and search ([d26717c](https://github.com/ovh/manager/commit/d26717cd0774d94d7758cf8e24fcd4db7917d277)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **manager-react-components:** add useIcebergV2 hook ([4d1c87a](https://github.com/ovh/manager/commit/4d1c87a8e6fd0ae02f6f783f9aaee366645e609e)), closes [#MANAGER-16509](https://github.com/ovh/manager/issues/MANAGER-16509)
+- **mrc:** add onClick props to PciGuideHeader ([65fbd3b](https://github.com/ovh/manager/commit/65fbd3b7baa0db8b2afd8a70d609390a211dda91)), closes [#DTCORE-3308](https://github.com/ovh/manager/issues/DTCORE-3308)
+
+## [2.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.1...@ovh-ux/manager-react-components@2.29.2) (2025-07-02)
+
+### Bug Fixes
+
+- **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+
+## [2.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.29.0...@ovh-ux/manager-react-components@2.29.1) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.28.0...@ovh-ux/manager-react-components@2.29.0) (2025-06-20)
+
+### Bug Fixes
+
+- **mrc:** white page when multiple FilterCategories.Options filters [#17449](https://github.com/ovh/manager/issues/17449) ([6ab5d58](https://github.com/ovh/manager/commit/6ab5d58f6a1d34127674068f166c4af5df62a4ed)), closes [#MANAGER-18548](https://github.com/ovh/manager/issues/MANAGER-18548)
+
+### Features
+
+- **docs:** add documentation react templates ([88fb974](https://github.com/ovh/manager/commit/88fb974fe31aa73aa47c340fc8b22c9da72b678b)), closes [#MANAGER-17263](https://github.com/ovh/manager/issues/MANAGER-17263)
+
+# [2.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.2...@ovh-ux/manager-react-components@2.28.0) (2025-06-12)
+
+### Features
+
+- **manager-react-component:** add service state badge component ([58f0ee8](https://github.com/ovh/manager/commit/58f0ee86dbca4507a3f4e114d9e3ec935d148dbc)), closes [#15090](https://github.com/ovh/manager/issues/15090)
+
+## [2.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.1...@ovh-ux/manager-react-components@2.27.2) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.27.0...@ovh-ux/manager-react-components@2.27.1) (2025-06-11)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4075] ([3767ecc](https://github.com/ovh/manager/commit/3767ecc118a72aa312c3e3bc856454cb60c3f42a))
+- **i18n:** add missing translations [CDS 4087] ([1d5a0e2](https://github.com/ovh/manager/commit/1d5a0e2ec2f652734a31bfd19c502cab443e809a))
+- **i18n:** add missing translations [CDS 4094] ([ad15f88](https://github.com/ovh/manager/commit/ad15f88b3927485c9e2603541ff313808074b1b4))
+- **mrc:** fix onclick event on tags-list and export tags-modal ([18f56b7](https://github.com/ovh/manager/commit/18f56b76fb706f5aa244f2821a35f140ec8acad1)), closes [#MANAGER-18147](https://github.com/ovh/manager/issues/MANAGER-18147)
+
 # [2.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.26.0...@ovh-ux/manager-react-components@2.27.0) (2025-06-05)
 
 ### Bug Fixes

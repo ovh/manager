@@ -34,6 +34,7 @@ import {
 import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Loading } from '@/components';
 import { useOrderCatalog, usePlatform } from '@/data/hooks';
 import { order, ZimbraPlanCodes, generateOrderURL } from '@/data/api';
@@ -52,7 +53,7 @@ type OrderGeneratedTileProps = {
 const OrderGeneratedTile = ({
   orderURL,
 }: Readonly<OrderGeneratedTileProps>) => {
-  const { t } = useTranslation('accounts/order');
+  const { t } = useTranslation(['accounts/order', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const goBackUrl = useGenerateUrl('..', 'path');
@@ -117,7 +118,7 @@ const OrderCatalogForm = ({
   const [orderURL, setOrderURL] = useState('');
   const starterPlan = useMemo(() => {
     const starter = (catalog?.plans || []).find(
-      (plan) => plan.planCode === ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER,
+      (plan) => plan.planCode === ZimbraPlanCodes.ZIMBRA_STARTER,
     );
 
     if (!starter) {
@@ -142,7 +143,7 @@ const OrderCatalogForm = ({
     defaultValues: {
       consent: false,
       commitment: '1',
-      [ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER]: 0,
+      [ZimbraPlanCodes.ZIMBRA_STARTER as string]: 0,
     },
     mode: 'onTouched',
     resolver: zodResolver(orderEmailAccountSchema),
@@ -158,8 +159,8 @@ const OrderCatalogForm = ({
 
     const products = [
       {
-        planCode: ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER,
-        quantity: data[ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER] || 0,
+        planCode: ZimbraPlanCodes.ZIMBRA_STARTER,
+        quantity: data[ZimbraPlanCodes.ZIMBRA_STARTER] || 0,
         platformId,
       },
     ];
@@ -192,7 +193,7 @@ const OrderCatalogForm = ({
       </OdsText>
       <Controller
         control={control}
-        name={ZimbraPlanCodes.ZIMBRA_ACCOUNT_PP_STARTER}
+        name={ZimbraPlanCodes.ZIMBRA_STARTER}
         render={({ field: { name, value, onChange, onBlur } }) => (
           <OdsFormField
             className="flex flex-col gap-4"
@@ -314,7 +315,7 @@ const OrderCatalogForm = ({
         color={ODS_BUTTON_COLOR.primary}
         isDisabled={!isDirty || !isValid}
         data-testid="order-account-confirm-btn"
-        label={t('common:pay')}
+        label={t(`${NAMESPACES.ACTIONS}:pay`)}
       />
     </form>
   );

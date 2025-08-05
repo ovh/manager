@@ -125,8 +125,8 @@ export default class CloudConnectStatisticsCtrl {
         .then((stats) => {
           if (stats.down.length > 0 || stats.up.length > 0) {
             this.updateStats(type, interfaceId, stats);
-            this.isLoading = false;
           }
+          this.isLoading = false;
         });
     });
   }
@@ -193,7 +193,7 @@ export default class CloudConnectStatisticsCtrl {
         })
         .then((stats) => {
           if (stats.accepted.length > 0) {
-            this.updateStats(interfaceId, stats, pop.id);
+            this.updateStats(this.TYPE.BGP_ROAD, interfaceId, stats, pop.id);
           }
           this.isLoading = false;
         });

@@ -4,8 +4,16 @@
     <oui-datagrid
         id="roles-datagrid"
         data-rows-loader="ctrl.loadRoles($config)"
+        data-ng-if="!ctrl.service.isIamEnabled"
     >
         <oui-datagrid-topbar>
+            <button
+                type="button"
+                class="oui-button oui-button_primary"
+                data-ng-click="ctrl.showEnableIam()"
+            >
+                <span data-translate="logs_iam_enable_iam"></span>
+            </button>
             <button
                 type="button"
                 class="oui-button oui-button_secondary"

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -12,8 +12,8 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
-import { Modal } from '@/components';
 import {
   deleteZimbraPlatformAlias,
   getZimbraPlatformAliasQueryKey,
@@ -24,13 +24,19 @@ import {
   CONFIRM,
   EMAIL_ACCOUNT_DELETE_ALIAS,
 } from '@/tracking.constants';
+import { useAlias } from '@/data/hooks';
 
 export const DeleteAlias = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts/alias', 'common']);
+  const { t } = useTranslation([
+    'accounts/alias',
+    'common',
+    NAMESPACES.ACTIONS,
+  ]);
   const navigate = useNavigate();
   const { platformId, aliasId } = useParams();
   const { addError, addSuccess } = useNotifications();
+  const { data: alias, isLoading } = useAlias();
 
   const goBackUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(goBackUrl);
@@ -93,24 +99,26 @@ export const DeleteAlias = () => {
 
   return (
     <Modal
-      title={t('common:delete_alias')}
-      color={ODS_MODAL_COLOR.critical}
-      onClose={onClose}
+      heading={t('common:delete_alias')}
+      type={ODS_MODAL_COLOR.critical}
+      onDismiss={onClose}
       isOpen
-      isDismissible
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        label: t('common:delete'),
-        onClick: handleDeleteClick,
-        isLoading: isDeleting,
-        testid: 'delete-btn',
-      }}
+      isLoading={isLoading}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
+      onPrimaryButtonClick={handleDeleteClick}
+      isPrimaryButtonLoading={isDeleting}
+      primaryButtonTestId="delete-btn"
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onSecondaryButtonClick={handleCancelClick}
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {t('zimbra_account_alias_delete_modal_description')}
+        <Trans
+          t={t}
+          i18nKey={'zimbra_account_alias_delete_modal_description'}
+          values={{
+            alias: alias?.currentState.alias.name,
+          }}
+        />
       </OdsText>
     </Modal>
   );

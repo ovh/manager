@@ -1,0 +1,12 @@
+{
+  "updateImageTitle": "Image ändern",
+  "updateImageDesc1": "Sie können das Docker-Image Ihrer Anwendung aktualisieren und so eine stets aktuelle Version Ihrer Dienstleistung anbieten. Die Updates erfolgen schrittweise und ohne Unterbrechung. Sie behalten Ihre aktuelle Konfiguration, wie zum Beispiel den HTTP-Endpoint und Ihre Deployment-Strategie.",
+  "updateImageDesc2": "Bitte geben Sie ein anderes Tag ein, damit das Docker-Image aktualisiert wird.",
+  "fieldImageLabel": "Zugriffspfad zu Ihrem Docker-Image",
+  "imageInfo": "Geben Sie den Zugriffspfad für Ihr Docker-Image ein. Angenommen werden Images, die in einer privaten oder öffentlichen Registry gehostet werden (Github, GitLab, DockerHub …)",
+  "updateImageButtonCancel": "Abbrechen",
+  "updateImageButtonConfirm": "Ändern",
+  "updateImageToastErrorTitle": "Es ist ein Fehler aufgetreten",
+  "updateImageToastSuccessTitle": "Erfolg",
+  "updateImageToastSuccessDescription": "Das Image wurde aktualisiert"
+}

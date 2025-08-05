@@ -11,19 +11,19 @@ import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
 import BaseInstanceActionPage from './BaseAction.page';
-import { useCachedInstanceAction } from '@/data/hooks/instance/action/useCachedInstanceAction';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import BackupActionPage from './BackupActionPage';
 import { RescueActionPage } from './RescueAction.page';
 import BillingMonthlyActionPage from './BillingMonthlyActionPage';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import ReinstallActionPage from './ReinstallActionPage';
+import { useInstanceActionModal } from './hooks/useInstanceActionModal';
 
 const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
   const projectId = useProjectId();
-  const { instanceId } = useParams();
+  const { instanceId, regionId } = useParams();
   const { addError, addInfo } = useNotifications();
   const section = useActionSection();
 
@@ -32,11 +32,15 @@ const InstanceAction: FC = () => {
     [section],
   );
 
-  const { instance, isLoading } = useCachedInstanceAction(instanceId, section);
+  const { instance, isLoading } = useInstanceActionModal(
+    regionId,
+    instanceId,
+    section,
+  );
 
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
-    const newInstance = { ...instance, pendingTask: true };
+    const newInstance = { id: instance.id, pendingTask: true, actions: [] };
     updateInstanceFromCache(queryClient, {
       projectId,
       instance: newInstance,
@@ -56,19 +60,15 @@ const InstanceAction: FC = () => {
           i18nKey={`pci_instances_actions_rescue_start_instance_info_message`}
           values={{
             name: instance?.name,
-            ip: instance?.addresses[0].ip,
+            ip: instance?.ip,
           }}
           ns={'actions'}
-          components={
-            isRescue
-              ? [
-                  <code
-                    key="0"
-                    className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
-                  />,
-                ]
-              : []
-          }
+          components={[
+            <code
+              key="0"
+              className="px-1 py-0.5 text-[90%] text-[#c7254e] bg-[#f9f2f4] rounded"
+            />,
+          ]}
         />,
         true,
       );

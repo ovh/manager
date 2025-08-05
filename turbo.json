@@ -9,7 +9,13 @@
       "outputLogs": "new-only",
       "env": ["VERSION"]
     },
-    "test": {},
+    "test": {
+      "dependsOn": [
+        "^test",
+        "@ovh-ux/manager-static-analysis-kit#build"
+      ],
+      "outputs": []
+    },
     "dev": {
       "dependsOn": ["^dev"],
       "outputs": ["dist/**", "types/**"]
@@ -27,6 +33,20 @@
         "VITE_CONTAINER_APP"
       ],
       "dependsOn": ["^dev"]
+    },
+    "lint:modern": {
+      "outputs": [],
+      "dependsOn": [
+        "^lint:modern",
+        "^build"
+      ]
+    },
+    "lint:modern:fix": {
+      "outputs": [],
+      "dependsOn": [
+        "^lint:modern",
+        "^build"
+      ]
     }
   }
 }

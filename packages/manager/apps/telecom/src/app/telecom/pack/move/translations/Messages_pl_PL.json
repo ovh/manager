@@ -295,5 +295,6 @@
   "pack_move_ont_shipping_addresses_error": "Wystąpił błąd podczas pobierania kontaktów. {{error}}",
   "pack_move_confirm_temporary_pack_creation_line_1": "W trakcie przejścia na Twoją nową ofertę zostanie stworzony tymczasowy pakiet, aby zapewnić ciągłość usługi.",
   "pack_move_confirm_temporary_pack_creation_line_2": "Ten pakiet zostanie automatycznie usunięty po sfinalizowaniu zamówienia Fibre.",
-  "pack_move_confirm_temporary_pack_creation_line_3": "Nie musisz wykonywać żadnych czynności związanych z modyfikacją lub usuwaniem danych: migracja na dostęp światłowodowy zostanie wykonana w pełni automatycznie."
+  "pack_move_confirm_temporary_pack_creation_line_3": "Nie musisz wykonywać żadnych czynności związanych z modyfikacją lub usuwaniem danych: migracja na dostęp światłowodowy zostanie wykonana w pełni automatycznie.",
+  "pack_move_phone_call_for_new_meeting": "Rezerwacja terminu spotkania online jest niedostępna.  Skontaktujemy się z Tobą telefonicznie, aby zaproponować dogodną datę i godzinę spotkania."
 }

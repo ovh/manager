@@ -37,8 +37,8 @@ import {
   useHref,
   useRouteLoaderData,
 } from 'react-router-dom';
+import clsx from 'clsx';
 import NotFoundPage from '../404/NotFound.page';
-import DatagridComponent from '@/components/datagrid/Datagrid.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
@@ -46,6 +46,7 @@ import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
+import DatagridComponent from './datagrid/components/Datagrid.component';
 
 const initialSorting = {
   id: 'name',
@@ -91,16 +92,18 @@ const SearchBar = ({
 const Instances: FC = () => {
   const { t } = useTranslation(['list', 'common']);
 
-  const project = useRouteLoaderData('root') as TProject;
+  const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('./new');
   const [sorting, setSorting] = useState(initialSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
   const section = useActionSection();
-  const routeLoaderData = useRouteLoaderData(section ?? '') as {
-    notFoundAction?: boolean;
-  };
+  const routeLoaderData = useRouteLoaderData(section ?? '') as
+    | {
+        notFoundAction?: boolean;
+      }
+    | undefined;
 
   const {
     data,
@@ -263,7 +266,7 @@ const Instances: FC = () => {
               </OsdsPopover>
             </div>
           </div>
-          <div className="my-5">
+          <div className={clsx({ 'mt-8': filters.length })}>
             <FilterList filters={filters} onRemoveFilter={removeFilter} />
           </div>
           <DatagridComponent

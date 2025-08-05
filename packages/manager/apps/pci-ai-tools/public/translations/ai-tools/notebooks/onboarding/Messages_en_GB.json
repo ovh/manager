@@ -14,7 +14,7 @@
   "cardTuto3Description": "Getting started with AI Notebooks",
   "cardTuto3Content": "Find out how to get started quickly with your Notebook via the OVHcloud Control Panel, command line, or API.",
   "quantumTitle": "Quantum Emulators",
-  "quantumDescription1": "Explore quantum computing in total freedom with our ready-to-use notebooks in the cloud",
-  "quantumDescription2": "Simulate up to 20 qubits in a few seconds, without installation or configuration constraints.",
-  "quantumDescription3": "Access a preconfigured environment, compatible with the main frameworks (Qiskit, Pulser, MyQLM, Perceval, ...) and easily collaborate with your teams via a shared and secure interface"
+  "quantumDescription1": "Dive into quantum computing with complete freedom using our turnkey, cloud-based notebooks.",
+  "quantumDescription2": "Run 20-qubit simulations in seconds—no installation or configuration needed.",
+  "quantumDescription3": "Access a preconfigured environment compatible with major frameworks (Qiskit, Pulser, MyQLM, Perceval, etc.) and easily collaborate with your team via a secure, shared interface."
 }

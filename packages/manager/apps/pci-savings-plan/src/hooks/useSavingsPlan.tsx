@@ -1,7 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useServices } from './useService';
 import {
   UseSavingsPlanParams,
   SavingsPlanContract,
@@ -9,8 +8,9 @@ import {
   SavingsPlanService,
 } from '@/types/api.type';
 import { getSavingsPlansListingUrl } from '@/utils/routes';
+import { useParam, useProjectId } from './useProject';
 
-export const getSubscribedSavingsPlan = async (
+const getSubscribedSavingsPlan = async (
   serviceId: number,
 ): Promise<SavingsPlanService[]> => {
   const { data } = await v6.get<SavingsPlanService[]>(
@@ -19,7 +19,7 @@ export const getSubscribedSavingsPlan = async (
   return data;
 };
 
-export const postSubscribedSavingsPlanChangePeriod = async (
+const postSubscribedSavingsPlanChangePeriod = async (
   serviceId: number,
   savingsPlanId: string,
   periodEndAction: SavingsPlanPlanedChangeStatus,
@@ -33,7 +33,7 @@ export const postSubscribedSavingsPlanChangePeriod = async (
   return data;
 };
 
-export const putSubscribedSavingsPlanEditName = async (
+const putSubscribedSavingsPlanEditName = async (
   serviceId: number,
   savingsPlanId: string,
   displayName: string,
@@ -47,7 +47,7 @@ export const putSubscribedSavingsPlanEditName = async (
   return data;
 };
 
-export const getSavingsPlanContracts = async (
+const getSavingsPlanContracts = async (
   serviceId: number,
 ): Promise<SavingsPlanContract[]> => {
   const { data } = await v6.get<SavingsPlanContract[]>(
@@ -56,7 +56,7 @@ export const getSavingsPlanContracts = async (
   return data;
 };
 
-export const postSavingsPlan = async ({
+const postSavingsPlan = async ({
   serviceId,
   offerId,
   displayName,
@@ -78,12 +78,12 @@ export const postSavingsPlan = async ({
   return data;
 };
 
-export const useServiceId = () => {
-  const { projectId } = useParams();
-  const { data: services } = useServices({
-    projectId,
-  });
-  return services?.[0];
+export const useServiceId = (): number => {
+  const { serviceId } = useRouteLoaderData('savings-plan') as {
+    serviceId: number;
+  };
+
+  return serviceId;
 };
 
 export const useSavingsPlan = () => {
@@ -96,7 +96,7 @@ export const useSavingsPlan = () => {
   });
 };
 
-export const getMutationKeySPChangePeriod = (
+const getMutationKeySPChangePeriod = (
   savingsPlanId: string,
   serviceId: number,
 ) => ['savings-plan', serviceId, 'change-period', savingsPlanId];
@@ -127,10 +127,12 @@ export const useSavingsPlanChangePeriod = ({
   });
 };
 
-export const getMutationKeySPEditName = (
-  savingsPlanId: string,
-  serviceId: number,
-) => ['savings-plan', serviceId, 'edit-name', savingsPlanId];
+const getMutationKeySPEditName = (savingsPlanId: string, serviceId: number) => [
+  'savings-plan',
+  serviceId,
+  'edit-name',
+  savingsPlanId,
+];
 
 export const getMutationKeyCreateSavingsPlan = (serviceId: number) => [
   'savings-plan',
@@ -162,7 +164,7 @@ export const useSavingsPlanCreate = (
   const { refetch } = useSavingsPlan();
   const serviceId = useServiceId();
   const navigate = useNavigate();
-  const { projectId } = useParams();
+  const projectId = useProjectId();
 
   return useMutation({
     onSuccess: async (res) => {
@@ -196,3 +198,5 @@ export const useSavingsPlanContract = () => {
     queryFn: () => getSavingsPlanContracts(serviceId),
   });
 };
+
+export const useSavingsPlanId = (): string => useParam('savingsPlanId');

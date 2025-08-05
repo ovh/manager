@@ -7,5 +7,8 @@
   "cpbc_object_storage_consumption_info_part2": "Twoje zużycie odpowiada dokładnie {{amount}} GiBGodzinom (liczba GiB składowanych w rozliczanych godzinach).",
   "cpbc_object_storage_output_traffic_info_part1": "Każdy gigabajt wychodzący (bez względu na adres docelowy) jest płatny",
   "cpbc_object_storage_output_traffic_info_part2": ". Wykorzystałeś {{amount}} GiB w danym okresie. Ruch przychodzący nie jest fakturowany.",
-  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji."
+  "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
+  "cpbc_object_storage_col_bucket_name": "Nazwa bucketu",
+  "cpbc_object_storage_col_type": "Pakiet",
+  "cpbc_object_storage_col_retrieval_fees": "Opłaty za pobieranie danych"
 }

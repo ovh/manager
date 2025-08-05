@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.5...@ovh-ux/manager-dbaas-logs@1.31.6) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4225] ([0d8b2ad](https://github.com/ovh/manager/commit/0d8b2adc52284b2c683830a449cf83a477c6d996))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [1.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.4...@ovh-ux/manager-dbaas-logs@1.31.5) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+## [1.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.3...@ovh-ux/manager-dbaas-logs@1.31.4) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+* **i18n:** add missing translations [CDS 4210] ([ad2c40f](https://github.com/ovh/manager/commit/ad2c40f539802971eaf696ecb14daba73a7f0dc3))
+* remove unused translations [CDS] ([1bfb74c](https://github.com/ovh/manager/commit/1bfb74c27520b5be52fca4ff809952667509a849))
+
+
+
+
+
+## [1.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.2...@ovh-ux/manager-dbaas-logs@1.31.3) (2025-07-24)
+
+
+### Bug Fixes
+
+* **ldp:** opensearch api url ([509a882](https://github.com/ovh/manager/commit/509a8823ab91f6e9c456572832919cc3eb1d7853)), closes [#OB-7401](https://github.com/ovh/manager/issues/OB-7401)
+
+
+
+
+
+## [1.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.1...@ovh-ux/manager-dbaas-logs@1.31.2) (2025-07-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+## [1.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.0...@ovh-ux/manager-dbaas-logs@1.31.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.30.1...@ovh-ux/manager-dbaas-logs@1.31.0) (2025-07-16)
+
+
+### Features
+
+* **dedicated.ldp:** display IAM policies associated to ldp account ([8a32c9a](https://github.com/ovh/manager/commit/8a32c9ae5ece51706d99acb6ae4c2aff7d82b487)), closes [#MANAGER-18661](https://github.com/ovh/manager/issues/MANAGER-18661)
+
+
+
+
+
+## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.30.0...@ovh-ux/manager-dbaas-logs@1.30.1) (2025-07-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4174] ([5a36b7e](https://github.com/ovh/manager/commit/5a36b7e82c6120425e65670e6985b697734a4930))
+* **i18n:** add missing translations [CDS 4177] ([359683e](https://github.com/ovh/manager/commit/359683e95653a99c292968033b705c71cc692685))
+
+
+
+
+
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.29.0...@ovh-ux/manager-dbaas-logs@1.30.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **ldp:** fix guide links ([7f8cd94](https://github.com/ovh/manager/commit/7f8cd94374d9864f04e51934597dddeb90d91ab1)), closes [#MANAGER-18334](https://github.com/ovh/manager/issues/MANAGER-18334)
+
+
+### Features
+
+* **ldp:** enable iam ([84a354b](https://github.com/ovh/manager/commit/84a354b09dfb7e8d770064b4324a891535339bbf)), closes [#OB-5678](https://github.com/ovh/manager/issues/OB-5678)
+
+
+
+
+
 # [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.28.1...@ovh-ux/manager-dbaas-logs@1.29.0) (2025-05-13)
 
 

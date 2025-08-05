@@ -2,30 +2,31 @@ import React, { useMemo } from 'react';
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 import { DashboardTile, ManagerText } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { AccountStatistics } from '@/data/api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOrganization, usePlatform } from '@/data/hooks';
 import { Guide, GUIDES_LIST } from '@/guides.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import { BadgeStatus, GuideLink } from '@/components';
 import { OngoingTasks } from './OngoingTasks.component';
 import { capitalize } from '@/utils';
+import { useAccountsStatistics } from '@/hooks';
 
 export const GeneralInformations = () => {
-  const { t } = useTranslation(['dashboard', 'common']);
-  const { data: platform, platformUrn } = usePlatform();
+  const { t } = useTranslation([
+    'dashboard',
+    'common',
+    NAMESPACES.STATUS,
+    NAMESPACES.DASHBOARD,
+  ]);
+  const { platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
+  const { accountsStatistics } = useAccountsStatistics();
 
   const links: Record<string, Guide> = {
     'common:webmail': GUIDES_LIST.webmail,
     zimbra_dashboard_administrator_guide: GUIDES_LIST.administrator_guide,
     zimbra_dashboard_user_guides: GUIDES_LIST.user_guide,
   };
-
-  const accountsStatistics: AccountStatistics[] = useMemo(() => {
-    return organisation
-      ? organisation?.currentState?.accountsStatistics
-      : platform?.currentState?.accountsStatistics;
-  }, [organisation, platform]);
 
   const itemsStatus = useMemo(() => {
     return [
@@ -113,7 +114,7 @@ export const GeneralInformations = () => {
       <div className="p-3">
         <DashboardTile
           data-testid="status"
-          title={t('common:status')}
+          title={t(`${NAMESPACES.STATUS}:status`)}
           items={itemsStatus}
         />
       </div>

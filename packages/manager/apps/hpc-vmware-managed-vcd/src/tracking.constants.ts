@@ -127,6 +127,14 @@ export const TRACKING = defineTrackingConfig({
       actions: ['datacenter_add_storage', 'cancel'],
     },
   },
+  common: {
+    order: {
+      location: PageLocation.page,
+      buttonType: ButtonType.externalLink,
+      actionType: 'action',
+      actions: ['order_managed_vcd'],
+    },
+  },
 });
 
 export const TRACKING_TABS_ACTIONS = {
@@ -135,6 +143,7 @@ export const TRACKING_TABS_ACTIONS = {
   datacentreDashboard: ['datacenter', 'general-informations'],
   compute: ['datacenter', 'compute'],
   storage: ['datacenter', 'storage'],
+  vrack: ['datacenter', 'vrack'],
 };
 
 export const getTabTrackingParams = (

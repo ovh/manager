@@ -1,6 +1,9 @@
-import head from 'lodash/head';
-
-import { USER_DASHBOARD_SHORTCUTS } from './user-dashboard.constants';
+import {
+  USER_DASHBOARD_SHORTCUTS,
+  TRACKING_PAGE,
+  TRACKING_PAGE_CATEGORY,
+  TRACKING_SHORTCUT_ACTION_PREFIX_NAME,
+} from './user-dashboard.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('account.user.dashboard', {
@@ -12,15 +15,21 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       user: /* @ngInject */ (currentUser) => currentUser,
+      onClickShortcut: /* @ngInject */ (atInternet) => {
+        return (shortcut) => {
+          if (shortcut.tracking_name_suffix) {
+            atInternet.trackClick({
+              name: `${TRACKING_SHORTCUT_ACTION_PREFIX_NAME}::${shortcut.tracking_name_suffix}`,
+              type: 'action',
+              page_category: TRACKING_PAGE_CATEGORY,
+              page: {
+                name: TRACKING_PAGE,
+              },
+            });
+          }
+        };
+      },
       authMethodProvider: /* @ngInject */ () => 'provider',
-      lastBill: /* @ngInject */ (OvhApiMeBillIceberg) =>
-        OvhApiMeBillIceberg.query()
-          .expand('CachedObjectList-Pages')
-          .sort('date', 'DESC')
-          .limit(1)
-          .execute(null, true)
-          .$promise.then((lastBill) => head(lastBill.data))
-          .catch(() => ({})),
       shortcuts: /* @ngInject */ (
         $state,
         coreConfig,

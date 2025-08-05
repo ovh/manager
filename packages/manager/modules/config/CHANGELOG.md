@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.4.1...@ovh-ux/manager-config@8.5.0) (2025-06-20)
+
+
+### Bug Fixes
+
+* fix issue with new subsidiary type ([ae64695](https://github.com/ovh/manager/commit/ae6469540f442231c25869ebca1b0955730347e9)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+### Features
+
+* **config:** extend error response to general unavailability ([0909ce9](https://github.com/ovh/manager/commit/0909ce971a865a4f20f05c2b00d2aea868532643)), closes [#MANAGER-18615](https://github.com/ovh/manager/issues/MANAGER-18615)
+* **manager-config:** added user related types ([76a0cb1](https://github.com/ovh/manager/commit/76a0cb1e34eba52f9d814023b784fccc4f502068)), closes [#MANAGER-17333](https://github.com/ovh/manager/issues/MANAGER-17333)
+
+
+
+
+
+## [8.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.4.0...@ovh-ux/manager-config@8.4.1) (2025-06-13)
+
+
+### Reverts
+
+* Revert "feat(*): remove last occurances of reket" ([5fcc1e0](https://github.com/ovh/manager/commit/5fcc1e0e2348528194b73e4833c51ba901c71cde))
+* Revert "feat(*): incorporate procedure changes, fix config" ([0f0faaa](https://github.com/ovh/manager/commit/0f0faaaae2e03b97e92d0becded7a8e0d0c7e287))
+
+
+
+
+
+# [8.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.3.2...@ovh-ux/manager-config@8.4.0) (2025-06-11)
+
+
+### Features
+
+* incorporate procedure changes, fix config ([5bd9e38](https://github.com/ovh/manager/commit/5bd9e388efd0ed1a46934f04c8182aab31d56d9c)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+* remove last occurances of reket ([af0883e](https://github.com/ovh/manager/commit/af0883e36655bc0defcc9122db92073254f1566b)), closes [#MANAGER-15627](https://github.com/ovh/manager/issues/MANAGER-15627)
+
+
+
+
+
 ## [8.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.3.1...@ovh-ux/manager-config@8.3.2) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

@@ -29,7 +29,7 @@ export interface Version {
   tags: database.capabilities.TagEnum[];
   default: boolean;
   order: number;
-  plans: Plan[];
+  regions: Region[];
 }
 
 export interface Plan {
@@ -50,16 +50,12 @@ export interface Plan {
     minimum: number;
     maximum: number;
   };
-  minPricing?: {
-    hourly?: order.publicOrder.Pricing;
-    monthly?: order.publicOrder.Pricing;
-  };
   order: number;
   default: boolean;
   networks: database.NetworkTypeEnum[];
   backups: boolean;
   tags: database.capabilities.TagEnum[];
-  regions: Region[];
+  flavors: Flavor[];
 }
 
 export interface Region {
@@ -67,7 +63,8 @@ export interface Region {
   order: number;
   tags: database.capabilities.TagEnum[];
   default: boolean;
-  flavors: Flavor[];
+  plans: Plan[];
+  type: database.capabilities.RegionTypeEnum;
 }
 
 export interface Flavor {

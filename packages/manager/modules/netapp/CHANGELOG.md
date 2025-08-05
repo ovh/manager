@@ -3,6 +3,74 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.1...@ovh-ux/manager-netapp@2.14.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+
+
+
+
+
+## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.0...@ovh-ux/manager-netapp@2.14.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([1bfb74c](https://github.com/ovh/manager/commit/1bfb74c27520b5be52fca4ff809952667509a849))
+
+
+
+
+
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.6...@ovh-ux/manager-netapp@2.14.0) (2025-07-21)
+
+
+### Features
+
+* **netapp:** create a volume from snapshot feedbacks ([835fb6b](https://github.com/ovh/manager/commit/835fb6b758a378a9bcc147f2987852bb6099e956)), closes [#MANAGER-17942](https://github.com/ovh/manager/issues/MANAGER-17942)
+
+
+
+
+
+## [2.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.5...@ovh-ux/manager-netapp@2.13.6) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+
+
+
+
+
+## [2.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.4...@ovh-ux/manager-netapp@2.13.5) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.3...@ovh-ux/manager-netapp@2.13.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.2...@ovh-ux/manager-netapp@2.13.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.13.1...@ovh-ux/manager-netapp@2.13.2) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

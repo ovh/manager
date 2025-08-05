@@ -1,7 +1,0 @@
-{
-  "billing_payment_method_delete_title": "Delete a payment method",
-  "billing_payment_method_delete_explain": "You are about to delete the payment method <strong>{{ label }}</strong>.",
-  "billing_payment_method_delete_question": "Are you sure you want to continue?",
-  "billing_payment_method_delete_error": "An error has occurred deleting your payment method: {{ errorMessage }}",
-  "billing_payment_method_delete_success": "Your payment method has been deleted."
-}

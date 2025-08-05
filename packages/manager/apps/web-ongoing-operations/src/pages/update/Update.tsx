@@ -6,10 +6,12 @@ import {
 import React, { useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
+import { toUnicode } from 'punycode';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
 import { saveFile } from '@/data/api/document';
@@ -23,6 +25,8 @@ import UpdateContentComponent from '@/components/Update/UpdateContent.component'
 import UpdateActions from '@/components/Update/Content/UpdateActions.component';
 import { TFiles } from '@/types';
 import { urls } from '@/routes/routes.constant';
+import { domainDnsUpdate } from '@/constants';
+import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.component';
 
 export default function Update() {
   const { t } = useTranslation('dashboard');
@@ -205,7 +209,7 @@ export default function Update() {
     >
       <SubHeader
         title={t('domain_operations_update_title', {
-          t0: domain.domain,
+          t0: toUnicode(domain.domain),
         })}
       />
       <section>
@@ -231,6 +235,12 @@ export default function Update() {
             />
           </OdsText>
         </div>
+
+        {domain.function === domainDnsUpdate && (
+          <div className="flex flex-col gap-y-4">
+            <ActionMeDnsComponent domainName={domain.domain} />
+          </div>
+        )}
 
         {operationArguments?.data?.length > 0 && (
           <div className="flex flex-col gap-y-4">

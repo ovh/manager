@@ -75,9 +75,7 @@ export default /* @ngInject */ ($stateProvider) => {
             .then(() => currentDrp);
         }),
       datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
-        DedicatedCloud.getDatacenters($stateParams.productId).then(
-          ({ results }) => results,
-        ),
+        DedicatedCloud.getDatacenters($stateParams.productId),
 
       dedicatedCloud: /* @ngInject */ (
         $stateParams,

@@ -1,5 +1,3 @@
-import { MutationStatus } from '@tanstack/react-query';
-
 export interface PciProject {
   projectId: string;
   projectName: string;
@@ -13,7 +11,6 @@ export interface PciProject {
 }
 
 export enum PciProjectPlanCode {
-  DISCOVERY = 'project.discovery',
   STANDARD = 'project.2018',
 }
 
@@ -26,17 +23,6 @@ export enum SavingsPlanStatus {
 export enum SavingsPlanPlanedChangeStatus {
   REACTIVATE = 'REACTIVATE',
   TERMINATE = 'TERMINATE',
-}
-
-export enum SavingsPlanTaskType {
-  SAVINGS_PLAN_UPDATE = 'SAVINGS_PLAN_UPDATE',
-  SAVINGS_PLAN_CREATE = 'SAVINGS_PLAN_CREATE',
-  SAVINGS_PLAN_DELETE = 'SAVINGS_PLAN_DELETE',
-}
-
-export interface SavingsPlanTask {
-  id: string;
-  type: SavingsPlanTaskType;
 }
 
 export interface SavingsPlanContract {
@@ -68,15 +54,6 @@ export interface SavingsPlanService {
   startDate: string;
   status: SavingsPlanStatus;
 }
-
-export type MutationInfo<T = void> = {
-  submittedAt: number;
-  error?: {
-    code: string;
-  };
-  status: MutationStatus;
-  data?: T;
-};
 
 export type UseSavingsPlanParams = {
   savingsPlanId: string;

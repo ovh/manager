@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.49.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.2...@ovh-ux/manager-vps@2.49.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** replace ipv4 message by locked status message ([f8cc7e5](https://github.com/ovh/manager/commit/f8cc7e5c336558744ee1dc87f2e2cf81368f78a1)), closes [#MANAGER-17104](https://github.com/ovh/manager/issues/MANAGER-17104)
+
+
+
+
+
+## [2.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.1...@ovh-ux/manager-vps@2.49.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix the pagination on vps listing ([1edc4b0](https://github.com/ovh/manager/commit/1edc4b00203522862cc1224e89285cba083972e1)), closes [#MANAGER-19200](https://github.com/ovh/manager/issues/MANAGER-19200)
+
+
+
+
+
+## [2.49.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.0...@ovh-ux/manager-vps@2.49.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **vps:** fix url for order secondary domain ([39e5c32](https://github.com/ovh/manager/commit/39e5c320348adc5bf518ea4788549ae29ca46805)), closes [#MANAGER-19068](https://github.com/ovh/manager/issues/MANAGER-19068)
+
+
+
+
+
+# [2.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.48.1...@ovh-ux/manager-vps@2.49.0) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue on upscale funnel ([8a24091](https://github.com/ovh/manager/commit/8a24091d1123f777657dcc59e6579c96732ab288)), closes [#MANAGER-18856](https://github.com/ovh/manager/issues/MANAGER-18856)
+
+
+### Features
+
+* **dedicated.vps:** hide error message on listing page when a vps is expired ([6e397d1](https://github.com/ovh/manager/commit/6e397d12fad6c4048a38109b8b4f9071ec0e399f)), closes [#MANAGER-18613](https://github.com/ovh/manager/issues/MANAGER-18613)
+
+
+
+
+
+## [2.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.48.0...@ovh-ux/manager-vps@2.48.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4100] ([5ae216d](https://github.com/ovh/manager/commit/5ae216d093757f9965fff45050251b7147c8d474))
+
+
+
+
+
 # [2.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.47.4...@ovh-ux/manager-vps@2.48.0) (2025-06-10)
 
 

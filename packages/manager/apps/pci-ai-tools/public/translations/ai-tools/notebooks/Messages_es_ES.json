@@ -16,5 +16,5 @@
   "tableActionStop": "Detener",
   "tableActionDelete": "Eliminar",
   "deleteTableTooltip": "El notebook debe estar en estado detenido",
-  "quantumTitle": "Emulators"
+  "quantumTitle": "Emuladores"
 }

@@ -1,4 +1,5 @@
-import { VIRTUAL_MACHINES_TITLE } from '../../../components/dedicated-cloud/datacenter/virtualMachine/constants';
+import { TRACKING_DISPLAY_LISTING_VIRTUAL_MACHINES_PREFIX } from './constants';
+import { TRACKING_PREFIX_DATACENTER } from '../dedicatedCloud-datacenter.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -9,11 +10,15 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         pccDatacenterView: 'ovhManagerDedicatedCloudDatacenterVirtualMachine',
       },
+      atInternet: {
+        rename: `${TRACKING_PREFIX_DATACENTER}${TRACKING_DISPLAY_LISTING_VIRTUAL_MACHINES_PREFIX}`,
+      },
       resolve: {
         serviceId: /* @ngInject */ (currentService) =>
           currentService.serviceInfos.serviceId,
 
-        breadcrumb: () => VIRTUAL_MACHINES_TITLE,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('dedicatedCloud_tab_virtualmachine'),
         goToDeleteLicense: /* @ngInject */ (
           $state,
           currentService,
@@ -25,6 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
               serviceName: currentService.serviceName,
               datacenterId,
               vmId: vm.vmId,
+              guestOsFamily: vm.guestOsFamily,
+              license: vm.license,
             },
           );
         },
@@ -39,6 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
               serviceName: currentService.serviceName,
               datacenterId,
               vmId: vm.vmId,
+              guestOsFamily: vm.guestOsFamily,
             },
           );
         },

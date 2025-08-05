@@ -4,5 +4,6 @@
   "pci_billing_private_registry_type": "Type",
   "pci_billing_private_registry_price": "Price",
   "pci_billing_private_registry_consumption": "Usage",
-  "pci_billing_private_registry_consumption_value": "{{value}} hours"
+  "pci_billing_private_registry_consumption_value": "{{value}} hours",
+  "pci_billing_private_registry_tokens": "Number of tokens"
 }

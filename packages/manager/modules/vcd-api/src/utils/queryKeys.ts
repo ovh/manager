@@ -9,6 +9,7 @@ export const getVeeamBackupQueryKey = (id: string) => [
   ...veeamBackupListQueryKey,
   id,
 ];
+
 export const veeamBackupCatalogQueryKey = [veeamBackupBaseKey, 'catalog'];
 
 // VCD organizations
@@ -67,3 +68,18 @@ export const updateVdcDetailsMutationKey = (vdcId: string) => [
   'put',
   ...getVdcQueryKey(vdcId),
 ];
+
+export const getVrackSegmentListQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'vrackSegment',
+];
+
+export const getVrackSegmentQueryKey = ({
+  id,
+  vdcId,
+  vrackSegmentId,
+}: {
+  id: string;
+  vdcId: string;
+  vrackSegmentId: string;
+}) => [...getVrackSegmentListQueryKey(id, vdcId), vrackSegmentId];

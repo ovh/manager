@@ -1,8 +1,5 @@
 {
   "pci_projects_project_public_gateway_title": "Gateway",
-  "pci_projects_project_public_gateways_intro_part_1": "Il servizio Gateway fornisce connettività alle istanze private, permettendo di accedere in modo sicuro alle reti esterne o esporre le applicazioni a un accesso esterno.",
-  "pci_projects_project_public_gateways_intro_part_2": "Nel primo caso, Gateway funziona come un gateway SNAT, che autorizza le istanze a raggiungere Internet, ma non il contrario.",
-  "pci_projects_project_public_gateways_intro_part_3": "Nel secondo esempio, l’utente ha la possibilità di esporre un servizio da un'istanza privata o un Load Balancer verso Internet utilizzando dei Floating IP.",
   "pci_projects_project_public_gateway_create": "Creare Gateway",
   "pci_projects_project_public_gateway_name": "Nome/ID",
   "pci_projects_project_public_gateway_region": "Region",
@@ -14,5 +11,6 @@
   "pci_projects_project_public_gateway_modify": "Modificare il tuo Gateway",
   "pci_projects_project_public_gateway_go_to_private_networks": "Visualizza la tua rete privata",
   "pci_projects_project_public_gateway_delete": "Elimina",
-  "pci_projects_project_public_gateway_no_data": "Nessun dato disponibile"
+  "pci_projects_project_public_gateway_no_data": "Nessun dato disponibile",
+  "pci_projects_project_public_gateways_intro": "Il servizio Gateway offre connettività alle istanze private, permettendo un accesso sicuro alle reti esterne o l’esposizione delle applicazioni a un accesso esterno."
 }

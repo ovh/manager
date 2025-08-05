@@ -12,13 +12,14 @@ import { VrackServicesWithIAM } from '@ovh-ux/manager-network-common';
 import { urls } from '@/routes/routes.constants';
 import { EndpointItem } from './useEndpointList.hook';
 import { isEditable } from '@/utils/vrack-services';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export const ActionCell: React.FC<{
   vs: VrackServicesWithIAM;
   endpoint: EndpointItem;
 }> = ({ vs, endpoint }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation('vrack-services/endpoints');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.endpoints);
   const { trackClick } = useOvhTracking();
   const disabled = !isEditable(vs);
   return (
@@ -28,23 +29,6 @@ export const ActionCell: React.FC<{
       isDisabled={disabled}
       variant={ODS_BUTTON_VARIANT.ghost}
       items={[
-        {
-          id: 0,
-          label: t('action-editServiceDisplayName'),
-          onClick: () => {
-            trackClick({
-              location: PageLocation.datagrid,
-              buttonType: ButtonType.button,
-              actionType: 'navigation',
-              actions: ['edit-endpoints'],
-            });
-            navigate(
-              urls.endpointsEdit
-                .replace(':id', vs.id)
-                .replace(':urn', endpoint.managedServiceURN),
-            );
-          },
-        },
         {
           id: 1,
           label: t('action-deleteServiceEndpoint'),

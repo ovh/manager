@@ -17,6 +17,7 @@ import Sharepoint from './sharepoint.svg';
 import Exchange from './exchange.svg';
 import Zimbra from './zimbra.svg';
 import Headset from './headset.svg';
+import Wordpress from './wordpress.svg';
 
 import BareMetalCloud from './container/bare _metal_cloud.svg';
 import HostedPrivateCloud from './container/hosted_private_cloud.svg';
@@ -45,8 +46,10 @@ import ShoppingCartPlus from './container/shopping-cart-plus.svg';
 import Star from './container/star.svg';
 import CloudChangelog from './container/cloud_changelog.svg';
 import HostingChangelog from './container/hosting_changelog.svg';
+import OVHLogo from './container/OVHcloud_logo.svg';
+import OVHShortLogo from './container/icon-logo-ovh.svg';
 
-export { Hosting, Office365, Sharepoint, Exchange, Zimbra };
+export { Hosting, Office365, Sharepoint, Exchange, Zimbra, Wordpress };
 export { TelecomEthernet, Telephony, Headset };
 
 export { Helpe, Leaf, LiveChat, NetworkStatus, Store, Email };
@@ -73,6 +76,8 @@ export {
   Star,
   CloudChangelog,
   HostingChangelog,
+  OVHLogo,
+  OVHShortLogo,
 };
 
 export {

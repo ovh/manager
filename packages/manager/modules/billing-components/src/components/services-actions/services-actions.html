@@ -53,14 +53,15 @@
         <!-- Service in manual renew  -->
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayRenewManuallyMenuEntry"
+            ng-init="renewActionTranslationKey = $ctrl.service.isRestorable ? 'billing_services_actions_menu_restore' : 'billing_services_actions_menu_renew'"
             disabled="::$ctrl.service.hasForcedRenew()"
-            aria-label="{{:: 'billing_services_actions_menu_renew_label' | translate: { serviceName: $ctrl.service.serviceId } }}"
+            aria-label="{{:: (renewActionTranslationKey + '_label') | translate: { serviceName: $ctrl.service.serviceId } }}"
             href="{{:: $ctrl.getRenewUrl() }}"
             external
             on-click="$ctrl.trackAction('go-to-renew-manually')"
             data-navi-id="go-to-renew-manually"
         >
-            <span data-translate="billing_services_actions_menu_renew"></span>
+            <span data-translate="{{:: renewActionTranslationKey }}"></span>
         </oui-action-menu-item>
         <!-- /Service in manual renew  -->
     </div>

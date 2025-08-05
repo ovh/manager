@@ -1,7 +1,7 @@
 {
-  "fieldDockerCommandLabel": "Encomendas",
+  "fieldDockerCommandLabel": "Commands",
   "fieldDockedCommandDescription": "Introduza o comando Docker a executar no container.",
-  "commandInputLabel": "Encomendas Docker",
+  "commandInputLabel": "Comandos Docker",
   "commandInputHelper": "Introduza os argumentos (separados por espaços) que passarão ao comando Docker. As aspas simples (`) não são suportadas e devem ser substituídas por aspas.",
   "commandSumupTitle": "Comando específico",
   "formDockerCommandErrorPattern": "As aspas simples (`) não são suportadas e devem ser substituídas por aspas.",

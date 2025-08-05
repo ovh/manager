@@ -22,5 +22,6 @@
   "dedicated_cluster_dashboard_region_ap-south-mum": "Asia Pacific (India – Mumbai)",
   "dedicated_cluster_dashboard_region_labeu-west-1-preprod": "LABEU (France – Croix) (PREPROD)",
   "dedicated_cluster_dashboard_region_labeu-west-1-dev-1": "LABEU (France – Croix) (DEV-1)",
-  "dedicated_cluster_dashboard_region_labeu-west-1-dev-2": "LABEU (France – Croix) (DEV-2)"
+  "dedicated_cluster_dashboard_region_labeu-west-1-dev-2": "LABEU (France – Croix) (DEV-2)",
+  "dedicated_cluster_dashboard_region_eu-south-mil": "Europe (Italy - Milan)"
 }

@@ -20,8 +20,8 @@ import {
   useProductMaintenance,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useBytes, useProject } from '@ovh-ux/manager-pci-common';
+import { Trans, useTranslation } from 'react-i18next';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   ShellContext,
   useOvhTracking,
@@ -49,11 +49,6 @@ import {
   OBJECT_CONTAINER_MODE_MONO_ZONE,
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_ASYNC_REPLICATION_LINK,
-  TRACKING,
-  MUMBAI_REGION_NAME,
-  STATUS_ENABLED,
-  STATUS_DISABLED,
-  STATUS_SUSPENDED,
   UNIVERSE,
   SUB_UNIVERSE,
   APP_NAME,
@@ -70,6 +65,7 @@ import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
 import { ContainerInfoPanel } from './ContainerInfoPanel';
 import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
+import { useMergedContainer } from '@/hooks/useContainerMemo';
 
 export type TContainer = {
   id: string;
@@ -127,14 +123,9 @@ export default function ObjectPage() {
 
   const { me } = useMe();
 
-  const { formatBytes } = useBytes();
-
   const hrefProject = useProjectUrl('public-cloud');
-  const { t: tObjects } = useTranslation('objects');
-  const { t: tContainer } = useTranslation('container');
-  const { t: tCommon } = useTranslation('pci-common');
 
-  const { t: tAdd } = useTranslation('containers/add');
+  const { t } = useTranslation(['objects', 'container', 'pci-common']);
 
   const objectStorageHref = useHref('..');
   const enableVersioningHref = useHref(
@@ -142,6 +133,10 @@ export default function ObjectPage() {
   );
   const enableEncryptionHref = useHref(
     `./enableEncryption?region=${searchParams.get('region')}`,
+  );
+
+  const manageReplicationsHref = useHref(
+    `./replications?region=${searchParams.get('region')}`,
   );
 
   const { data: region } = useGetRegion(
@@ -164,27 +159,12 @@ export default function ObjectPage() {
     targetContainer?.id,
   );
 
-  const container = useMemo((): TContainer => {
-    if (!serverContainer) return undefined;
-    const s3StorageType = targetContainer?.s3StorageType;
-
-    return {
-      ...serverContainer,
-      id: serverContainer?.id || targetContainer?.id,
-      name: serverContainer?.name || targetContainer?.name,
-      objectsCount:
-        serverContainer?.storedObjects || serverContainer?.objectsCount,
-      usedSpace: formatBytes(
-        serverContainer?.storedBytes || serverContainer?.objectsSize,
-        2,
-        1024,
-      ),
-      publicUrl: url,
-      s3StorageType,
-      regionDetails: s3StorageType ? region : undefined,
-      staticUrl: serverContainer?.staticUrl || serverContainer?.virtualHost,
-    };
-  }, [serverContainer, region, targetContainer, url]);
+  const container = useMergedContainer(
+    serverContainer,
+    targetContainer,
+    url,
+    region,
+  );
 
   const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
 
@@ -292,22 +272,22 @@ export default function ObjectPage() {
     () => [
       {
         id: 'name',
-        label: tContainer(
-          'pci_projects_project_storages_containers_container_name_label',
+        label: t(
+          'container:pci_projects_project_storages_containers_container_name_label',
         ),
         comparators: FilterCategories.String,
       },
       {
         id: 'lastModified',
-        label: tContainer(
-          'pci_projects_project_storages_containers_container_lastModified_label',
+        label: t(
+          'container:pci_projects_project_storages_containers_container_lastModified_label',
         ),
         comparators: FilterCategories.Date,
       },
       {
         id: 'storageClass',
-        label: tContainer(
-          'pci_projects_project_storages_containers_container_storage_class_label',
+        label: t(
+          'container:pci_projects_project_storages_containers_container_storage_class_label',
         ),
         comparators: FilterCategories.String,
       },
@@ -370,8 +350,8 @@ export default function ObjectPage() {
           <OdsBreadcrumbItem href={hrefProject} label={project?.description} />
           <OdsBreadcrumbItem
             href={objectStorageHref}
-            label={tObjects(
-              'pci_projects_project_storages_containers_object_title',
+            label={t(
+              'objects:pci_projects_project_storages_containers_object_title',
             )}
           />
           <OdsBreadcrumbItem href="" label={container?.name} />
@@ -386,8 +366,8 @@ export default function ObjectPage() {
         ),
       }}
       backLinkLabel={`
-        ${tCommon('common_back_button_back_to')} ${tContainer(
-        'pci_projects_project_storages_containers_container_back_button_label',
+        ${t('pci-common:common_back_button_back_to')} ${t(
+        'container:pci_projects_project_storages_containers_container_back_button_label',
       )}`}
       hrefPrevious={objectStorageHref}
     >
@@ -398,21 +378,28 @@ export default function ObjectPage() {
       )}
 
       {is.replicationRulesBannerShown && (
-        <OdsMessage color="information" className="mt-6" isDismissible={false}>
-          <OdsText>
-            {tContainer(
-              'pci_projects_project_storages_containers_container_add_replication_rules_info',
-            )}
-            <Links
-              className="ml-4"
-              href={REPLICATION_LINK}
-              target="_blank"
-              type={LinkType.external}
-              label={tAdd(
-                'pci_projects_project_storages_containers_add_replication_rules_info_link',
-              )}
+        <OdsMessage
+          color="information"
+          className="mt-6 inline-flex items-start"
+          isDismissible={false}
+        >
+          <span>
+            <Trans
+              i18nKey={
+                'container:pci_projects_project_storages_containers_container_add_replication_rules_info'
+              }
+              components={{
+                1: <Links href={manageReplicationsHref} />,
+                2: (
+                  <Links
+                    href={REPLICATION_LINK}
+                    target="_blank"
+                    type={LinkType.external}
+                  />
+                ),
+              }}
             />
-          </OdsText>
+          </span>
         </OdsMessage>
       )}
 
@@ -431,6 +418,7 @@ export default function ObjectPage() {
             tracking={tracking}
             trackClick={trackClick}
             trackAction={trackAction}
+            manageReplicationsHref={manageReplicationsHref}
           />
 
           <ContainerDatagrid

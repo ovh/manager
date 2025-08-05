@@ -1,0 +1,6 @@
+{
+  "title": "Gold Backup-Repository aktivieren",
+  "description": "Das Gold Backup-Repository verwendet High Performance Object Storage mit einer primären Speicherung und anschließender Kopie in eine andere Region. Dieses Backup-Repository ist mit einer 14-tägigen Datenunveränderlichkeit eingerichtet.",
+  "error": "Bei der Aktivierung Ihres Gold-Repositorys ist ein Fehler aufgetreten: {{errorAPI}}",
+  "success": "Ihr Gold Repository wird aktiviert"
+}

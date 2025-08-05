@@ -9,10 +9,21 @@ import {
   getElementByTestId,
   assertOdsModalText,
 } from '@ovh-ux/manager-core-test-utils';
+import { vi } from 'vitest';
 
 import { labels, renderTest, mockEditInputValue } from '../../../test-utils';
 import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useNavigationGetUrl: vi.fn(([basePath, pathWithId]) => ({
+      data: `${basePath}${pathWithId}`,
+    })),
+  };
+});
 
 describe('Datacentre Dashboard Page', () => {
   it('display the datacentre dashboard page', async () => {
@@ -105,5 +116,13 @@ describe('Datacentre Dashboard Page', () => {
         'Datacentre update error',
       ),
     });
+  });
+
+  it('display a warning message when the service is suspended', async () => {
+    await renderTest({
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[1].id}`,
+    });
+
+    await assertTextVisibility('cancel_service_success');
   });
 });

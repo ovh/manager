@@ -1,4 +1,4 @@
-import { ResourceStatus, Task, WithIam } from './vcd-utility.type';
+import { VCDResourceStatus, Task, WithIam } from './vcd-utility.type';
 
 export type VCDDatacentreTargetSpec = {
   vCPUSpeed: number;
@@ -13,11 +13,12 @@ export type VCDDatacentreState = VCDDatacentreTargetSpec & {
   region: string;
   memoryQuota: number;
   name: string;
+  vrack?: string;
 };
 
 export type VCDDatacentre = WithIam<{
   id: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: VCDResourceStatus;
   currentState: VCDDatacentreState;
   targetSpec: VCDDatacentreTargetSpec;
   currentTasks?: Task[];

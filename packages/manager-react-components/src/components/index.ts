@@ -17,6 +17,9 @@ export * from './datagrid/useDatagrid';
 export * from './datagrid/useDatagridSearchParams';
 export * from './datagrid/clipboard-cell.component';
 
+export * from './drawer/Drawer.component';
+export * from './drawer/DrawerCollapsible.component';
+
 export * from './guides-header';
 
 export * from './notifications/notifications.component';
@@ -27,6 +30,8 @@ export * from './filters';
 export * from './ManagerButton/ManagerButton';
 export * from './ManagerLink/ManagerLink.component';
 export * from './ManagerText/ManagerText';
+
+export * from './ServiceStateBadge/ServiceStateBadge.component';
 
 export * from './pci-maintenance-banner';
 export * from './region/region.component';

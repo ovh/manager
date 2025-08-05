@@ -35,5 +35,14 @@
   "errorSourceTypeFieldInvalid": "Este tipo de punto de restauración no está disponible para este servicio.",
   "errorSourcePITFieldInvalidDate": "La fecha seleccionada no es válida.",
   "errorSourceBackupFieldEmpty": "Seleccione un backup",
-  "breadcrumb": "Fork"
+  "breadcrumb": "Fork",
+  "orderSectionTitleService": "Servicio",
+  "orderSectionDescriptionService": "Seleccione el tipo de servicio de base de datos que desea crear y la versión.",
+  "orderSectionTitleSource": "Origen",
+  "orderSectionTitleRegion": "Datacenter",
+  "orderSectionTitlePlan": "Plan",
+  "orderSectionTitleFlavor": "Instancia",
+  "orderSectionTitleStorage": "Almacenamiento",
+  "orderSectionTitleOptions": "Opciones",
+  "fieldNameLabel": "Nombre"
 }

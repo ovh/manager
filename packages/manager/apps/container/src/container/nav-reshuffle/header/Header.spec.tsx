@@ -1,4 +1,5 @@
 import { render, screen, waitFor, act } from '@testing-library/react';
+import { useReket } from '@ovh-ux/ovh-reket';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import { KeyPairName } from '@ovh-ux/manager-config';
@@ -8,7 +9,7 @@ import { links as constantLinks } from './user-account-menu/constants';
 import UserAccountMenuButton from './user-account-menu/Button';
 import HeaderComponent from './index';
 import UserAccountMenu from './user-account-menu/Content';
-import { fetchProcedureStatus } from '@/api/procedure/procedure';
+import { UserLink } from './user-account-menu/UserLink';
 
 /**
  * Mocked Data
@@ -32,6 +33,8 @@ const mockedUser = {
 };
 
 let mockedRegion = 'EU';
+
+vi.mock('@ovh-ux/ovh-reket');
 /**
  * Mocking hooks instead of queries/apies since there are a lot and hooks should be tested
  * in isolation instead of replicated in each test
@@ -39,8 +42,6 @@ let mockedRegion = 'EU';
 vi.mock('@ovh-ux/manager-react-components', async () => ({
   useFeatureAvailability: vi.fn().mockReturnValue([]),
   fetchFeatureAvailabilityData: vi.fn().mockReturnValue({
-    'new-billing': true,
-    'new-account': true,
     'identity-documents': false,
     'procedures:fraud': false,
   }),
@@ -51,8 +52,6 @@ vi.mock('@/core/notifications/useNotifications', () => ({
     notifications: [],
   }),
 }));
-
-vi.mock('@/api/procedure/procedure');
 
 vi.mock('@/hooks/useOnboardingPreferences', () => ({
   useOnboardingPreferences: vi.fn().mockReturnValue({
@@ -138,7 +137,8 @@ describe('Header.component', () => {
     }));
 
     await act(async () => {
-      render(<HeaderComponent />);
+      const iframeRef = { current: document.createElement("iframe")};
+      render(<HeaderComponent iframeRef={iframeRef} />);
     });
 
     await waitFor(() => {
@@ -161,7 +161,8 @@ describe('Header.component', () => {
     async (_, legalForm) => {
       mockedUser.legalform = legalForm;
       await act(async () => {
-        render(<HeaderComponent />);
+        const iframeRef = { current: document.createElement("iframe")};
+        render(<HeaderComponent iframeRef={iframeRef} />);
       });
       if (legalForm === LEGAL_FORMS.CORPORATION) {
         expect(screen.getByText(/Testcompany/)).toBeInTheDocument();
@@ -186,7 +187,9 @@ describe('Header.component', () => {
         vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
           [feature]: isEnabled,
         });
-        vi.mocked(fetchProcedureStatus).mockResolvedValue({ status: 'open', ticketId: 'XXXXXX' });
+        vi.mocked(useReket).mockReturnValue({
+          get: () => Promise.resolve({ status: 'open' }),
+        });
 
         await act(async () => {
           render(
@@ -211,7 +214,7 @@ describe('Header.component', () => {
           }
         });
 
-        constantLinks.forEach((link) => {
+        constantLinks.filter((link: UserLink) => !link.region || link.region.includes(mockedRegion)).forEach((link) => {
           const linkElement = screen.getByText(link.i18nKey);
           expect(linkElement).toBeInTheDocument();
           expect(linkElement.closest('a').getAttribute('aria-label')).toBe(
@@ -239,8 +242,8 @@ describe('Header.component', () => {
     );
 
     it.each([
-      ['new-billing', true, 'https://mockedurl.mock/new-billing'],
-      ['new-account', true, 'https://mockedurl.mock/new-account']
+      ['billing', true, 'https://mockedurl.mock/billing'],
+      ['account', true, 'https://mockedurl.mock/account']
     ])(
       'should render all expected links in the document for %s feature being %s',
       async (feature, isEnabled, specialUrl) => {

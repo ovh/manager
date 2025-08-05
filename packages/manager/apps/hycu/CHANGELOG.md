@@ -3,6 +3,145 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.14.3...@ovh-ux/manager-hycu-app@0.14.4) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.14.2...@ovh-ux/manager-hycu-app@0.14.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.14.1...@ovh-ux/manager-hycu-app@0.14.2) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.14.0...@ovh-ux/manager-hycu-app@0.14.1) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.12...@ovh-ux/manager-hycu-app@0.14.0) (2025-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4176] ([9252994](https://github.com/ovh/manager/commit/92529948befd22b11a0f68eb850a8723e5d23c3d)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+
+
+### Features
+
+* **hycu:** update terminate service translation ([f38aa4f](https://github.com/ovh/manager/commit/f38aa4f4f08391db2416758756e3f0b49c296100)), closes [#MANAGER-18432](https://github.com/ovh/manager/issues/MANAGER-18432)
+
+
+
+
+
+## [0.13.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.11...@ovh-ux/manager-hycu-app@0.13.12) (2025-07-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.10...@ovh-ux/manager-hycu-app@0.13.11) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.9...@ovh-ux/manager-hycu-app@0.13.10) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.8...@ovh-ux/manager-hycu-app@0.13.9) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.7...@ovh-ux/manager-hycu-app@0.13.8) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.6...@ovh-ux/manager-hycu-app@0.13.7) (2025-06-18)
+
+
+### Bug Fixes
+
+* update svg import for svgr plugin ([91773fd](https://github.com/ovh/manager/commit/91773fde810627253d39739ad4ad8086f18619cf)), closes [#MANAGER-17397](https://github.com/ovh/manager/issues/MANAGER-17397)
+
+
+
+
+
+## [0.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.5...@ovh-ux/manager-hycu-app@0.13.6) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.4...@ovh-ux/manager-hycu-app@0.13.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.3...@ovh-ux/manager-hycu-app@0.13.4) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.2...@ovh-ux/manager-hycu-app@0.13.3) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.1...@ovh-ux/manager-hycu-app@0.13.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hycu-app
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hycu-app@0.13.0...@ovh-ux/manager-hycu-app@0.13.1) (2025-06-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-hycu-app

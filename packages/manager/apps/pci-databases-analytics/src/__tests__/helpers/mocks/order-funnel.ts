@@ -52,13 +52,27 @@ export const mockedBasicOrderFunnelFlavor: Flavor = {
     },
   },
 };
+export const mockedBasicOrderFunnelPlan: Plan = {
+  name: 'planName',
+  nodes: {
+    minimum: 1,
+    maximum: 3,
+  },
+  order: 1,
+  default: false,
+  networks: [database.NetworkTypeEnum.private],
+  backups: true,
+  tags: [database.capabilities.TagEnum.current],
+  flavors: [mockedBasicOrderFunnelFlavor],
+};
 
 export const mockedOrderFunnelRegion: Region = {
   name: 'regionName',
   order: 1,
   tags: [database.capabilities.TagEnum.current],
   default: true,
-  flavors: [mockedBasicOrderFunnelFlavor],
+  type: database.capabilities.RegionTypeEnum['1AZ'],
+  plans: [mockedBasicOrderFunnelPlan],
 };
 
 export const mockedOrderFunnelRegionBis: Region = {
@@ -66,7 +80,8 @@ export const mockedOrderFunnelRegionBis: Region = {
   order: 2,
   tags: [database.capabilities.TagEnum.current],
   default: false,
-  flavors: [mockedBasicOrderFunnelFlavor],
+  type: database.capabilities.RegionTypeEnum['1AZ'],
+  plans: [mockedBasicOrderFunnelPlan],
 };
 
 export const mockedPricing = {
@@ -112,27 +127,12 @@ export const mockedPricing = {
   },
 };
 
-export const mockedBasicOrderFunnelPlan: Plan = {
-  name: 'planName',
-  nodes: {
-    minimum: 1,
-    maximum: 3,
-  },
-  minPricing: mockedPricing,
-  order: 1,
-  default: false,
-  networks: [database.NetworkTypeEnum.private],
-  backups: true,
-  tags: [database.capabilities.TagEnum.current],
-  regions: [mockedOrderFunnelRegion],
-};
-
 export const mockedEngineVersion: Version = {
   name: 'versionName',
   tags: [database.capabilities.TagEnum.current],
   default: true,
   order: 1,
-  plans: [mockedBasicOrderFunnelPlan],
+  regions: [mockedOrderFunnelRegion, mockedOrderFunnelRegionBis],
 };
 
 export const mockedOrderFunnelEngine: Engine = {

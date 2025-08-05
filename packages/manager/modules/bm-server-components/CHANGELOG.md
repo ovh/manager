@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.2...@ovh-ux/manager-bm-server-components@2.13.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.1...@ovh-ux/manager-bm-server-components@2.13.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **dedicated:** clarify partition size ([30cdd5b](https://github.com/ovh/manager/commit/30cdd5b5a08a4e3cca6f1d2aaa2dd6955ad8c1c4)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+* **dedicated:** re-enable existing tooltips ([3158e65](https://github.com/ovh/manager/commit/3158e6554ccd5daa0a6e9aa3e055bfa255e5b210)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+
+
+
+
+
+## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.0...@ovh-ux/manager-bm-server-components@2.13.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dedicated:** prevent choosing raid 10 when odd number of disks ([8e68c95](https://github.com/ovh/manager/commit/8e68c952d7227459895122d38c7297d225799ed3)), closes [#MANAGER-18917](https://github.com/ovh/manager/issues/MANAGER-18917)
+* **dedicated:** wrong size overview for software raid 10 ([47ded4a](https://github.com/ovh/manager/commit/47ded4a97866359425d09875374004633494566a)), closes [#MANAGER-18917](https://github.com/ovh/manager/issues/MANAGER-18917)
+
+
+
+
+
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.12.2...@ovh-ux/manager-bm-server-components@2.13.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* **dedicated-server-ip:** adding missing mapping and translations for the eu-south-mil datacenter ([2844d56](https://github.com/ovh/manager/commit/2844d56e8d1814784996dc71e828c38e2c9e8fe6)), closes [#MANAGER-18359](https://github.com/ovh/manager/issues/MANAGER-18359)
+
+
+### Features
+
+* **dedicated:** remove 2API sws-dedicated-server-interventions ([9a8afc8](https://github.com/ovh/manager/commit/9a8afc80ba9aa90c99d82ca0c1dbccc23973369b)), closes [#MANAGER-17409](https://github.com/ovh/manager/issues/MANAGER-17409)
+
+
+
+
+
+## [2.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.12.1...@ovh-ux/manager-bm-server-components@2.12.2) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.12.0...@ovh-ux/manager-bm-server-components@2.12.1) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.11.1...@ovh-ux/manager-bm-server-components@2.12.0) (2025-06-12)
+
+
+### Features
+
+* **dedicated:** bare metal tagging project ([#17435](https://github.com/ovh/manager/issues/17435)) ([b727e9e](https://github.com/ovh/manager/commit/b727e9e38051b2b67dc3f8b160d9ac8f50e49474)), closes [#MANAGER-12894](https://github.com/ovh/manager/issues/MANAGER-12894)
+
+
+
+
+
+## [2.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.11.0...@ovh-ux/manager-bm-server-components@2.11.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.10.1...@ovh-ux/manager-bm-server-components@2.11.0) (2025-06-10)
 
 

@@ -29,5 +29,7 @@
   "telephony_line_answer_voicemail_options_mail_empty": "Todavía no ha configurado ninguna dirección de correo electrónico de notificación.",
   "telephony_line_answer_voicemail_options_mail_limit": "Puede notificar a un máximo de 5 direcciones de correo electrónico.",
   "telephony_line_answer_voicemail_options_mail_type_attachment": "Mensaje adjunto",
-  "telephony_line_answer_voicemail_options_mail_type_simple": "Solo notificación"
+  "telephony_line_answer_voicemail_options_mail_type_simple": "Sólo notificación",
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transcripción adjunta (beta, generada por inteligencia artificial).",
+  "telephony_line_answer_voicemail_options_mail_type_attachment+transcript": "Transcripción y mensaje adjuntos (beta, generado por inteligencia artificial)."
 }

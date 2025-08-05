@@ -28,6 +28,8 @@
   "telephony_line_answer_voicemail_options_mail_type": "Type de notification...",
   "telephony_line_answer_voicemail_options_mail_empty": "Vous n'avez pas encore configuré d'adresse e-mail à notifier.",
   "telephony_line_answer_voicemail_options_mail_limit": "Vous pouvez notifier un maximum de 5 adresses e-mail.",
-  "telephony_line_answer_voicemail_options_mail_type_attachment": "Message joint en attachement",
-  "telephony_line_answer_voicemail_options_mail_type_simple": "Notification uniquement"
+  "telephony_line_answer_voicemail_options_mail_type_attachment": "Załączona wiadomość",
+  "telephony_line_answer_voicemail_options_mail_type_simple": "Tylko powiadomienie",
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transkrypcja w załączeniu (wygenerowana przez sztuczną inteligencję, beta).",
+  "telephony_line_answer_voicemail_options_mail_type_attachment+transcript": "Transkrypcja i wiadomość w załączeniu (wygenerowane przez sztuczną inteligencję, beta)."
 }

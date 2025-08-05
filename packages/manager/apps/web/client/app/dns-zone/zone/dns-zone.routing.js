@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         serviceName,
       ) =>
         coreConfig.isRegion('EU')
-          ? coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+          ? coreURLBuilder.buildURL('account', '#/contacts/services', {
               serviceName,
             })
           : '',
@@ -37,6 +37,11 @@ export default /* @ngInject */ ($stateProvider) => {
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      hasEmailDomain: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(`/email/domain/${serviceName}`)
+          .then(() => true)
+          .catch(() => false),
       emailLink: /* @ngInject */ (coreURLBuilder, serviceName) =>
         coreURLBuilder.buildURL(
           'web',

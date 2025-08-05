@@ -51,7 +51,6 @@
                 data-ng-href="{{ $ctrl.getOrderTrackingHref($row, $ctrl.filter) }}"
                 data-ng-if="$ctrl.allowOrderTracking"
                 data-translate-attr="{ title: 'orders_tracking' }"
-                target="_top"
             >
                 <span
                     class="oui-badge"
@@ -65,6 +64,7 @@
                         'oui-badge_warning': $value === 'documentsRequested'
                                            || $value === 'unknown',
                         'oui-badge_success': $value === 'delivered',
+                        'oui-badge_sold-out': $value === 'orderExpired'
                       }"
                     data-ng-bind="('orders_order_status_' + $value) | translate"
                 >
@@ -84,6 +84,7 @@
                     'oui-badge_warning': $value === 'documentsRequested'
                                        || $value === 'unknown',
                     'oui-badge_success': $value === 'delivered',
+                    'oui-badge_sold-out': $value === 'orderExpired'
                   }"
                 data-ng-bind="('orders_order_status_' + $value) | translate"
             >

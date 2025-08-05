@@ -13,5 +13,10 @@ export const NAMESPACES = {
   REGION: `${NAMESPACE_PREFIX}/region`,
   DASHBOARD: `${NAMESPACE_PREFIX}/dashboard`,
   ONBOARDING: `${NAMESPACE_PREFIX}/onboarding`,
+  ORDER: `${NAMESPACE_PREFIX}/order`,
   CONTACT: `${NAMESPACE_PREFIX}/contact`,
+  COUNTRIES: `${NAMESPACE_PREFIX}/countries`,
+  COUNTRY: `${NAMESPACE_PREFIX}/country`,
+  LANGUAGE: `${NAMESPACE_PREFIX}/language`,
+  UPLOAD: `${NAMESPACE_PREFIX}/upload`,
 };

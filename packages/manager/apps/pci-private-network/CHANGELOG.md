@@ -3,6 +3,142 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.21.4...@ovh-ux/manager-pci-private-network-app@0.21.5) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.21.3...@ovh-ux/manager-pci-private-network-app@0.21.4) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+
+
+
+
+
+## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.21.2...@ovh-ux/manager-pci-private-network-app@0.21.3) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4191] ([15508a6](https://github.com/ovh/manager/commit/15508a6e81fa21e913136bb0f3809fe4fe87c283))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.21.1...@ovh-ux/manager-pci-private-network-app@0.21.2) (2025-07-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4166] ([cd0badf](https://github.com/ovh/manager/commit/cd0badfa9d93d0bbeff624cca1dfc11c39a9238c))
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.21.0...@ovh-ux/manager-pci-private-network-app@0.21.1) (2025-07-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.20.1...@ovh-ux/manager-pci-private-network-app@0.21.0) (2025-07-02)
+
+
+### Features
+
+* **network:** add quota error message ([#17656](https://github.com/ovh/manager/issues/17656)) ([a3fff9d](https://github.com/ovh/manager/commit/a3fff9d5bcb10d4574ae65ffba3f3f95abecff95)), closes [#TAPC-4098](https://github.com/ovh/manager/issues/TAPC-4098)
+
+
+
+
+
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.20.0...@ovh-ux/manager-pci-private-network-app@0.20.1) (2025-07-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.7...@ovh-ux/manager-pci-private-network-app@0.20.0) (2025-06-23)
+
+
+### Features
+
+* **pci-common:** use new config cards ([ddd6c33](https://github.com/ovh/manager/commit/ddd6c33ddc65543fee27e30a3c3f02f6b319f13b)), closes [#TAPC-3456](https://github.com/ovh/manager/issues/TAPC-3456)
+
+
+
+
+
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.6...@ovh-ux/manager-pci-private-network-app@0.19.7) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.5...@ovh-ux/manager-pci-private-network-app@0.19.6) (2025-06-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.4...@ovh-ux/manager-pci-private-network-app@0.19.5) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.3...@ovh-ux/manager-pci-private-network-app@0.19.4) (2025-06-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.2...@ovh-ux/manager-pci-private-network-app@0.19.3) (2025-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.1...@ovh-ux/manager-pci-private-network-app@0.19.2) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.19.0...@ovh-ux/manager-pci-private-network-app@0.19.1) (2025-06-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-network-app
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-network-app@0.18.3...@ovh-ux/manager-pci-private-network-app@0.19.0) (2025-06-05)
 
 

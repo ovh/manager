@@ -4,19 +4,33 @@ import {
   Clipboard,
   DashboardTile,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { VCDDatacentre, VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+import {
+  isStatusTerminated,
+  VCDDatacentre,
+  VCDOrganization,
+} from '@ovh-ux/manager-module-vcd-api';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  useOvhTracking,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import EditableTileItem from '../editable-tile-item/EditableTileItem.component';
+import {
+  VRACK_PATH,
+  DEDICATED_PATH,
+  VRACK_ONBOARDING_PATH,
+} from '../../../pages/listing/datacentres/Datacentres.constants';
+
 import { capitalize } from '@/utils/capitalize';
-import { ID_LABEL } from '@/pages/dashboard/dashboard.constants';
+import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/app.constants';
 
 type TTileProps = {
   vcdDatacentre: VCDDatacentre;
@@ -31,6 +45,17 @@ export default function DatacentreGenerationInformationTile({
   const { t: tVdc } = useTranslation('datacentres');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+  const { data: featuresAvailable } = useFeatureAvailability([
+    FEATURE_FLAGS.VRACK,
+  ]);
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
+
+  const { data: urlVrack } = useNavigationGetUrl([
+    DEDICATED_PATH,
+    `/${VRACK_PATH}/${vcdDatacentre.currentState?.vrack ||
+      VRACK_ONBOARDING_PATH}`,
+    {},
+  ]);
 
   return (
     <DashboardTile
@@ -48,6 +73,7 @@ export default function DatacentreGenerationInformationTile({
               ]}
               urn={vcdDatacentre?.iam?.urn}
               onClickEdit={() => navigate(subRoutes.editDescription)}
+              isDisabled={isStatusTerminated(vcdOrganization.resourceStatus)}
             />
           ),
         },
@@ -107,6 +133,20 @@ export default function DatacentreGenerationInformationTile({
             />
           ),
         },
+        isVrackFeatureAvailable && {
+          id: 'vRack',
+          label: VRACK_LABEL,
+          value: (
+            <Links
+              href={urlVrack as string}
+              type={LinkType.next}
+              label={
+                vcdDatacentre.currentState?.vrack ||
+                tVdc('managed_vcd_vdc_associate_vrack')
+              }
+            />
+          ),
+        },
         {
           id: 'apiUrl',
           label: t('managed_vcd_dashboard_api_url'),
@@ -122,7 +162,7 @@ export default function DatacentreGenerationInformationTile({
           label: ID_LABEL,
           value: <Clipboard value={vcdDatacentre?.id} className="w-full" />,
         },
-      ]}
+      ].filter(Boolean)}
     />
   );
 }

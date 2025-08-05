@@ -1,8 +1,10 @@
 import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy.js';
 import { format } from 'date-fns';
-import * as dateFnsLocales from 'date-fns/locale';
+import { enGB, fr, frCA, de, es, it, pl, pt } from 'date-fns/locale';
 import { PREFIX_KEYS, LEVEL_LABELS } from './constants';
+
+const dateFnsLocales = { enGB, fr, frCA, de, es, it, pl, pt };
 
 export default class LogLiveTailCtrl {
   /* @ngInject */
