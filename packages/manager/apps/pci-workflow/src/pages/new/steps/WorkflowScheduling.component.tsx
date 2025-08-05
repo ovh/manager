@@ -2,10 +2,9 @@ import { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { Button } from '@ovhcloud/ods-react';
 
+import { ButtonLink } from '@/components/button-link/ButtonLink.component';
 import { CronInput } from '@/pages/new/components/CronInput.component';
 import { PciTile } from '@/pages/new/components/PciTile.component';
 import { StepState } from '@/pages/new/hooks/useStep';
@@ -51,8 +50,7 @@ const CUSTOM: TWorkflowScheduling = {
 };
 
 export function WorkflowScheduling({ step, onSubmit }: Readonly<SchedulingProps>) {
-  const { t } = useTranslation('workflow-add');
-  const { t: tCommon } = useTranslation('pci-common');
+  const { t } = useTranslation(['workflow-add', 'pci-common']);
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const isCustom = [ROTATE_7, ROTATE_14].indexOf(schedule) < 0;
   return (
@@ -99,15 +97,20 @@ export function WorkflowScheduling({ step, onSubmit }: Readonly<SchedulingProps>
         </div>
       )}
       {!step.isLocked && (
-        <OsdsButton
-          className="w-fit mt-6"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          {...(schedule ? {} : { disabled: true })}
-          onClick={() => schedule && onSubmit(schedule)}
-        >
-          {tCommon('common_stepper_next_button_label')}
-        </OsdsButton>
+        <div className="flex flex-row mt-6 gap-4">
+          <Button
+            size={'md'}
+            color={'primary'}
+            disabled={!schedule}
+            onClick={() => schedule && onSubmit(schedule)}
+          >
+            {t('pci_workflow_create')}
+          </Button>
+
+          <ButtonLink to={'..'} variant={'ghost'}>
+            {t('pci-common:common_stepper_cancel_button_label')}
+          </ButtonLink>
+        </div>
       )}
     </>
   );
