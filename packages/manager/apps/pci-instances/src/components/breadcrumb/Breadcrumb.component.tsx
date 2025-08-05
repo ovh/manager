@@ -1,5 +1,9 @@
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  BreadcrumbItem,
+  Breadcrumb as ODSBreadcrumb,
+  BreadcrumbLink,
+} from '@ovhcloud/ods-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
@@ -22,19 +26,19 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({
   const projectUrl = useProjectUrl('public-cloud');
   const { t } = useTranslation('common');
 
+  const breadcrumbItems = [
+    { label: projectLabel, href: projectUrl },
+    { label: t('pci_instances_common_instances_title'), href: backHref },
+    ...items,
+  ];
+
   return (
-    <OsdsBreadcrumb
-      items={[
-        {
-          href: projectUrl,
-          label: projectLabel,
-        },
-        {
-          href: backHref,
-          label: t('pci_instances_common_instances_title'),
-        },
-        ...items,
-      ]}
-    />
+    <ODSBreadcrumb>
+      {breadcrumbItems.map((item) => (
+        <BreadcrumbItem key={item.href}>
+          <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+        </BreadcrumbItem>
+      ))}
+    </ODSBreadcrumb>
   );
 };
