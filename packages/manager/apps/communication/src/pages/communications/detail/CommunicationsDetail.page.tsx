@@ -6,19 +6,22 @@ import {
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
+import { useAuthorization, useCategories } from '@/hooks';
+import {
+  EmailDisplay,
+  ClickLink,
+  NotificationPriorityChip,
+  ContactHistory,
+} from '@/components';
 import { urls } from '@/routes/routes.constant';
-import { useNotification } from '@/data/hooks/useNotification/useNotification';
+import { useNotification } from '@/data';
 import { getFirstCleanEmail } from '@/utils/notifications';
-import NotificationPriorityChip from '@/components/notificationPriorityChip/NotificationPriorityChip.component';
-import EmailDisplay from '@/components/emailDisplay/EmailDisplay.component';
-import ContactHistory from '@/components/emailDisplay/contactHistory/ContactHistory.component';
-import { useAuthorization } from '@/hooks/useAuthorization/useAuthorization';
-import ClickLink from '@/components/clickLink/ClickLink.component';
 
 export default function CommunicationsDetailPage() {
   const { notificationId } = useParams();
   const formatDate = useFormatDate();
   const { t } = useTranslation('detail');
+  const { t: tCommon } = useTranslation('common');
   const [showHistoryDrawer, setShowHistoryDrawer] = useState(false);
 
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
@@ -80,14 +83,17 @@ export default function CommunicationsDetailPage() {
             <div className="flex flex-col gap-4">
               <div className="flex flex-row gap-6 items-center">
                 <OdsText preset="span">
-                  Date:{' '}
+                  {tCommon('date_label')}:{' '}
                   {formatDate({ date: notification.createdAt, format: 'Pp' })}
                 </OdsText>
                 <NotificationPriorityChip priority={notification.priority} />
               </div>
               {Boolean(notification.categories?.length) && (
-                <OdsText preset="paragraph">
-                  {notification.categories.join(', ')}
+                <OdsText
+                  preset="paragraph"
+                  data-testid="notification-categories"
+                >
+                  {useCategories(tCommon, notification.categories)}
                 </OdsText>
               )}
             </div>

@@ -12,7 +12,7 @@ describe('HtmlViewer.component', () => {
       <embed src="https://it.do.be.spyware.ovh" />
     `;
 
-    render(<HtmlViewer html={maliciousHtml} />);
+    render(<HtmlViewer html={maliciousHtml} isVisible={true} />);
 
     const iframe = screen.getByTestId('html-viewer') as HTMLIFrameElement;
 
