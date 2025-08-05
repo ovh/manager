@@ -1,7 +1,14 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * The hooks will be available in the `@ovh-ux/manager-pci-common` package.
+ */
 import { useQuery } from '@tanstack/react-query';
 
 import { v6 } from '@ovh-ux/manager-core-api';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type TProjectQuota = {
   region: string;
   instance: {
@@ -46,6 +53,9 @@ export type TProjectQuota = {
   share: any | null;
 };
 
+/**
+ * @deprecated This function is deprecated and will be removed in MRC V3.
+ */
 export const getProjectQuota = async (projectId: string) => {
   const { data } = await v6.get<TProjectQuota[]>(
     `/cloud/project/${projectId}/quota`,
@@ -54,6 +64,9 @@ export const getProjectQuota = async (projectId: string) => {
   return data;
 };
 
+/**
+ * @deprecated This hook is deprecated and will be removed in MRC V3.
+ */
 export const useProjectQuota = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'quota'],
