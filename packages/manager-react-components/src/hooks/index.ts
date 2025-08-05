@@ -1,6 +1,5 @@
 import { TRegion as Region } from './useProjectRegions';
 
-export * from './pci-project-provider';
 export * from './breadcrumb/useBreadcrumb';
 export * from './useCatalogPrice';
 export * from './useMe';
@@ -15,7 +14,6 @@ export * from './tasks';
 export * from './date';
 export * from './iam';
 export * from './bytes/useBytes';
-export { useProductMaintenance } from './pci/useMaintenance';
 export {
   getMacroRegion,
   useTranslatedMicroRegions,
