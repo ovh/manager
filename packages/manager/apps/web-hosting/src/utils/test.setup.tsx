@@ -115,8 +115,11 @@ vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResource: vi.fn(() =>
     Promise.resolve(managedWordpressResourceMock),
   ),
+  getManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesMock),
+  ),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
-    Promise.resolve(managedCmsResourceWebsiteMock),
+    Promise.resolve(managedWordpressWebsitesDetailsMock),
   ),
 }));
 afterEach(() => {

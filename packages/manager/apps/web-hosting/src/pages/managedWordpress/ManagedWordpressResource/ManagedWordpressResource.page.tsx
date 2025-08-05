@@ -2,6 +2,7 @@ import {
   BaseLayout,
   GuideButton,
   ChangelogButton,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
@@ -55,6 +56,7 @@ export default function ManagedWordpressResourcePage() {
           ),
         }
       }
+      message={<Notifications />}
       tabs={!isOverridedPage && <TabsPanel tabs={tabsList} />}
     >
       <Outlet />
