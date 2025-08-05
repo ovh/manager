@@ -1,13 +1,23 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * The hooks will be available in the `@ovh-ux/manager-pci-common` package.
+ */
 import { useMemo } from 'react';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { Region } from './useProjectRegions';
 
+/**
+ * @deprecated The interface is deprecated and will be removed in MRC V3.
+ */
 export interface Subnet {
   region: string;
   id: string;
 }
 
+/**
+ * @deprecated The interface is deprecated and will be removed in MRC V3.
+ */
 interface Network {
   id: string;
   name: string;
@@ -16,10 +26,16 @@ interface Network {
   vlanId: number;
 }
 
+/**
+ * @deprecated The interface is deprecated and will be removed in MRC V3.
+ */
 export interface AggregatedNetwork {
   resources: Network[];
 }
 
+/**
+ * @deprecated This function is deprecated and will be removed in MRC V3.
+ */
 export const getAggregatedNetwork = async (
   projectId: string,
 ): Promise<AggregatedNetwork> => {
@@ -29,11 +45,16 @@ export const getAggregatedNetwork = async (
   return data;
 };
 
-export const getAggregatedPrivateNetworksQueryKey = (projectId: string) => [
-  'aggregated-network',
-  projectId,
-];
+/**
+ * @deprecated This function is deprecated and will be removed in MRC V3.
+ */
+export const getAggregatedPrivateNetworksQueryKey = (projectId: string) => {
+  return ['aggregated-network', projectId];
+};
 
+/**
+ * @deprecated This hook is deprecated and will be removed in MRC V3.
+ */
 export const useAggregatedPrivateNetworks = (
   projectId: string,
   customerRegions: Region[],
@@ -72,6 +93,9 @@ export const useAggregatedPrivateNetworks = (
   });
 };
 
+/**
+ * @deprecated This hook is deprecated and will be removed in MRC V3.
+ */
 export const useAggregatedPrivateNetworksRegions = (
   projectId: string,
   customerRegions: Region[],
