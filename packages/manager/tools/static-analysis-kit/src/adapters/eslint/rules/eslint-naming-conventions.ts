@@ -45,9 +45,5 @@ export const checkFileEslintConfig: Linter.FlatConfig[] = [
         },
       ],
     },
-
-    settings: {
-      'check-file/ignores': ['**/__tests__/**', '**/__mocks__/**'],
-    },
   },
 ];

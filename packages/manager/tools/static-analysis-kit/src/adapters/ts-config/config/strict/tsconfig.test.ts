@@ -7,7 +7,7 @@ export default {
     module: 'ESNext',
     moduleResolution: 'NodeNext',
     jsx: 'react-jsx',
-    types: ['node', 'vite/client', 'vitest/globals', '@testing-library/jest-dom'],
+    types: ['vitest/globals', 'vite/client', 'node'],
   },
   include: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx', 'vitest.setup.ts'],
 };

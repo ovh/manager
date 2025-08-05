@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import {readFileSync, existsSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import stripJsonComments from 'strip-json-comments';
 import { getReactApplications, applicationsBasePath } from '../../utils/AppUtils.mjs';
@@ -16,7 +16,7 @@ const REQUIRED_SCRIPTS = ['lint:modern', 'lint:modern:fix', 'build:strict'];
 
 const parseJsonWithComments = (filePath, appName) => {
   try {
-    const raw = readFileSync(filePath, 'utf-8');
+    const raw = fs.readFileSync(filePath, 'utf-8');
     const cleaned = stripJsonComments(raw);
     return JSON.parse(cleaned);
   } catch (err) {
@@ -39,7 +39,7 @@ const checkStaticKitCompliance = (appName) => {
   let eslintUsesStaticKit = false;
 
   // Check package.json
-  if (!existsSync(pkgPath)) return { eslint: '📝 TODO', ts: '📝 TODO' };
+  if (!fs.existsSync(pkgPath)) return { eslint: '📝 TODO', ts: '📝 TODO' };
   const pkg = parseJsonWithComments(pkgPath, appName);
   if (!pkg) return { eslint: '📝 TODO', ts: '📝 TODO' };
 
@@ -71,8 +71,8 @@ const checkStaticKitCompliance = (appName) => {
   }
 
   // 4. eslint.config.mjs contains static-kit usage
-  if (existsSync(eslintConfigPath)) {
-    const rawEslintConfig = readFileSync(eslintConfigPath, 'utf-8');
+  if (fs.existsSync(eslintConfigPath)) {
+    const rawEslintConfig = fs.readFileSync(eslintConfigPath, 'utf-8');
     const content = stripJsonComments(rawEslintConfig).trim();
     if (
       content.includes("from '@ovh-ux/manager-static-analysis-kit") ||
@@ -91,7 +91,7 @@ const checkStaticKitCompliance = (appName) => {
   eslintOk = eslintOk && eslintUsesStaticKit;
 
   // 5. tsconfig.json extends static-kit base
-  if (!existsSync(tsconfigPath)) {
+  if (!fs.existsSync(tsconfigPath)) {
     tsOk = false;
     if (isDryRun) console.log(`❌ ${appName}: tsconfig.json missing`);
   } else {
@@ -112,7 +112,7 @@ const checkStaticKitCompliance = (appName) => {
   }
 
   // 6. tsconfig.strict.json must exist
-  if (!existsSync(tsconfigStrictPath)) {
+  if (!fs.existsSync(tsconfigStrictPath)) {
     tsOk = false;
     if (isDryRun) console.log(`❌ ${appName}: tsconfig.strict.json missing`);
   }

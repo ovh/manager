@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import prettier from 'prettier';
 import { parse } from '@babel/parser';
@@ -17,14 +17,14 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
   const appName = path.basename(appPath);
   const configPath = path.join(appPath, 'vitest.config.js');
 
-  if (!existsSync(configPath)) {
+  if (!fs.existsSync(configPath)) {
     console.warn(`⚠️ No vitest.config.js found in ${configPath}`);
     return;
   }
 
   console.log(`🧠 Rewriting vitest.config.js for: ${appName}`);
 
-  const rawCode = readFileSync(configPath, 'utf-8');
+  const rawCode = fs.readFileSync(configPath, 'utf-8');
   const ast = parse(rawCode, {
     sourceType: 'module',
     plugins: ['typescript'],
@@ -141,7 +141,7 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
   if (dryRun) {
     console.log(`🧪 [dry-run] Would rewrite vitest.config.js:\n\n${formatted}`);
   } else {
-    writeFileSync(configPath, formatted, 'utf-8');
+    fs.writeFileSync(configPath, formatted, 'utf-8');
     console.log(`✅ Rewrote vitest.config.js at ${configPath}`);
   }
 };

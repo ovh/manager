@@ -91,8 +91,8 @@
   "scripts": {
     "build": "tsx scripts/build.ts",
     "postinstall": "tsx scripts/build.ts",
-    "lint:modern": "manager-lint --config eslint.config.mts ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "prepare": "tsx scripts/build.ts",
     "test": "echo \"No tests yet.\" && exit 0"
   },
@@ -121,12 +121,10 @@
     "eslint-plugin-storybook": "^9.0.13",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "globals": "^16.2.0",
-    "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwind-csstree": "^0.1.1",
     "tailwindcss": "^3.4.4",
-    "tsc-alias": "^1.8.16",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.35.0"

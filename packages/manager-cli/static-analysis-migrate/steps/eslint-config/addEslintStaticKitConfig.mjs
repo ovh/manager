@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import path, { dirname } from 'path';
-import { writeFile, access } from 'fs/promises';
+import fs from 'fs/promises';
 import { getPackageNameFromApp, readPackageJson, writePackageJson } from '../../../utils/DependenciesUtils.mjs';
 import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
 import { spawn } from 'node:child_process';
@@ -135,14 +135,14 @@ export default [
 const addEslintStaticKitConfig = async () => {
   // 1. Create eslint.config.mjs if not exists
   try {
-    await access(eslintConfigPath);
+    await fs.access(eslintConfigPath);
     console.warn(`⚠️  ${eslintConfigPath} already exists. Skipping creation.`);
   } catch {
     const content = getEslintConfigContent();
     if (isDryRun) {
       console.log(`🧪 [dry-run] Would create eslint.config.mjs with:\n\n${content.slice(0, 1000)}\n...`);
     } else {
-      await writeFile(eslintConfigPath, content, 'utf-8');
+      await fs.writeFile(eslintConfigPath, content, 'utf-8');
       console.log(`✅ Created eslint.config.mjs`);
     }
   }

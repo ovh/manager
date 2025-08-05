@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import path from 'path';
+import fs from 'fs/promises';
 import {
   readPackageJson,
   TS_EXCLUDED_DEPENDENCIES,
@@ -22,15 +23,7 @@ if (!appName || appName.startsWith('--')) {
 
 const applicationPath = path.resolve(applicationsBasePath, appName);
 
-/**
- * Removes legacy or deprecated TypeScript-related devDependencies
- * and creates backups of tsconfig files.
- *
- * TS_EXCLUDED_DEPENDENCIES is a RegExp to match known legacy tools.
- *
- * @returns {Promise<void>}
- */
-const cleanTSLegacyConfig = async () => {
+async function cleanTSLegacyConfig() {
   const removedDeps = [];
 
   const pkg = readPackageJson(applicationPath);
@@ -46,7 +39,6 @@ const cleanTSLegacyConfig = async () => {
       delete devDeps[dep];
     }
   }
-
   pkg.devDependencies = devDeps;
 
   if (!isDryRun) {
@@ -54,14 +46,10 @@ const cleanTSLegacyConfig = async () => {
   }
 
   console.log(`\n✅ TypeScript legacy cleanup complete for "${appName}"`);
-  if (removedDeps.length) {
-    console.log(`📦 Removed devDependencies: ${removedDeps.join(', ')}`);
-  } else {
-    console.log('✅ No legacy TypeScript dependencies found.');
-  }
+  if (removedDeps.length) console.log(`📦 Removed devDependencies: ${removedDeps.join(', ')}`);
+  else console.log('✅ No legacy TypeScript dependencies found.');
 }
 
-// Run main
 cleanTSLegacyConfig().catch((err) => {
   console.error('❌ Unexpected error during cleanup:', err);
   process.exit(1);

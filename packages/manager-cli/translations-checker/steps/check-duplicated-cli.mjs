@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -24,28 +24,12 @@ const appFolder = path.resolve(
 const targetFileName = 'Messages_fr_FR.json';
 
 /**
- *
- * Read a JSON file if it exists, returns empty object otherwise.
- * @param {string} filepath
- * @returns {any|null}
- */
-const readJSONFileIfExists = (filepath) => {
-  try {
-    const raw = readFileSync(filepath, 'utf-8');
-    return JSON.parse(raw);
-  } catch (err) {
-    console.error(`Failed to read/parse JSON: ${filepath}`, err.message);
-    return null;
-  }
-}
-
-/**
  * Recursively collect all target JSON files named `Messages_fr_FR.json`.
  */
-const getAllTargetJsonFiles = (folderPath) => {
+function getAllTargetJsonFiles(folderPath) {
   let results = [];
 
-  const entries = readdirSync(folderPath, { withFileTypes: true });
+  const entries = fs.readdirSync(folderPath, { withFileTypes: true });
 
   entries.forEach((entry) => {
     const fullPath = path.join(folderPath, entry.name);
@@ -60,15 +44,27 @@ const getAllTargetJsonFiles = (folderPath) => {
 }
 
 /**
+ * Safely read and parse a JSON file.
+ */
+function readJSON(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+  } catch (err) {
+    console.error(`Failed to read/parse JSON: ${filePath}`, err.message);
+    return null;
+  }
+}
+
+/**
  * Load all values from matching common translation files.
  * Maps each value to the file(s) it appears in.
  */
-const loadCommonValueMap = (folder) => {
+function loadCommonValueMap(folder) {
   const valueMap = new Map();
   const files = getAllTargetJsonFiles(folder);
 
   files.forEach((file) => {
-    const content = readJSONFileIfExists(file);
+    const content = readJSON(file);
     if (!content) return;
 
     Object.values(content).forEach((val) => {
@@ -85,12 +81,12 @@ const loadCommonValueMap = (folder) => {
 /**
  * Scan source folder for duplicate values, mapped to common file locations.
  */
-const findDuplicatesGroupedByCommonFiles = (sourceDir, commonValueMap) => {
+function findDuplicatesGroupedByCommonFiles(sourceDir, commonValueMap) {
   const files = getAllTargetJsonFiles(sourceDir);
   const report = [];
 
   files.forEach((file) => {
-    const data = readJSONFileIfExists(file);
+    const data = readJSON(file);
     if (!data) return;
 
     const grouped = new Map(); // commonFilesKey => [ { key, value } ]
@@ -126,13 +122,13 @@ const findDuplicatesGroupedByCommonFiles = (sourceDir, commonValueMap) => {
 // -------------------- Main Script --------------------
 const checkDuplicatedTranslations = async () => {
   if (
-    !existsSync(commonFolder) ||
-    !statSync(commonFolder).isDirectory()
+    !fs.existsSync(commonFolder) ||
+    !fs.statSync(commonFolder).isDirectory()
   ) {
     console.error('Common folder path is invalid or does not exist.');
     process.exit(1);
   }
-  if (!existsSync(appFolder) || !statSync(appFolder).isDirectory()) {
+  if (!fs.existsSync(appFolder) || !fs.statSync(appFolder).isDirectory()) {
     console.error('Source folder path is invalid or does not exist.');
     process.exit(1);
   }
