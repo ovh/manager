@@ -1,4 +1,4 @@
-import fs, { readFileSync } from 'fs';
+import { readFileSync, existsSync, writeFileSync } from 'fs';
 import path from 'path';
 import { applicationsBasePath } from './AppUtils.mjs';
 
@@ -44,8 +44,8 @@ export const ESLINT_DEP_REGEX = /^(eslint|@typescript-eslint|eslint-plugin|@html
  */
 export const readPackageJson = (appPath) => {
   const pkgPath = path.join(appPath, 'package.json');
-  if (!fs.existsSync(pkgPath)) return null;
-  return JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+  if (!existsSync(pkgPath)) return null;
+  return JSON.parse(readFileSync(pkgPath, 'utf-8'));
 };
 
 /**
@@ -56,8 +56,8 @@ export const readPackageJson = (appPath) => {
  */
 export const writePackageJson = (appPath, pkg) => {
   const pkgPath = path.join(appPath, 'package.json');
-  if (!fs.existsSync(pkgPath)) return false;
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+  if (!existsSync(pkgPath)) return false;
+  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
   return true;
 };
 
