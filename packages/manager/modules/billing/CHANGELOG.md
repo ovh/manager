@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.2...@ovh-ux/manager-billing@0.47.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **billing:** implementation outperform banner for vps ([81a9274](https://github.com/ovh/manager/commit/81a9274b5e26adf91d810459af30bd1cc86ee094)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+
+
+
+
+
 ## [0.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.1...@ovh-ux/manager-billing@0.47.2) (2025-08-05)
 
 
