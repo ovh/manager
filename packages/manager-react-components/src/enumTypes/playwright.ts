@@ -1,3 +1,6 @@
+/**
+ * @deprecated Handler type will be removed in @ovh-ux/manager-react-components v3
+ */
 export type Handler<T = any> = {
   url: string;
   response?: T;
