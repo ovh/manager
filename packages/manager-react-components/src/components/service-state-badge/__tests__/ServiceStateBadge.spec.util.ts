@@ -1,4 +1,4 @@
-import { ResourceStatus } from '../../../hooks';
+import { ResourceStatus } from '../ServiceStateBadge.props';
 
 export const SERVICE_STATES = [
   {
