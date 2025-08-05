@@ -1,27 +1,23 @@
 import React from 'react';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { HeadersProps } from './Headers.props';
+import { HeaderProps } from './Header.props';
 
-export const Headers: React.FC<HeadersProps> = ({
+export const Header: React.FC<HeaderProps> = ({
   title,
-  GuideMenu,
+  guideMenu,
   changelogButton,
 }) => {
   return (
     <header className="flex items-start justify-between">
-      {title && (
-        <Text preset={TEXT_PRESET.heading1} data-testid="title">
-          {title}
-        </Text>
-      )}
-      {(GuideMenu || changelogButton) && (
+      {title && <Text preset={TEXT_PRESET.heading1}>{title}</Text>}
+      {(guideMenu || changelogButton) && (
         <div className="flex flex-wrap justify-end items-center">
           {changelogButton}
-          {GuideMenu}
+          {guideMenu}
         </div>
       )}
     </header>
   );
 };
 
-export default Headers;
+export default Header;
