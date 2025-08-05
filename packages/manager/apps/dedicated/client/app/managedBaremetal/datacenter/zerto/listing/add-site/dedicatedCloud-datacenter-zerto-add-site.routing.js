@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
-    'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite',
+    'app.managedBaremetal.details.datacenters.datacenter.zerto.listing.addSite',
     {
       url: '/add-site',
       views: {
-        'pccDatacenterView@app.dedicatedCloud.details.datacenter.details': {
+        'pccDatacenterView@app.managedBaremetal.details.datacenters.datacenter': {
           component: 'dedicatedCloudDatacenterZertoAddSite',
         },
       },
@@ -19,7 +19,7 @@ export default /* @ngInject */ ($stateProvider) => {
           zertoMultiSites.find(({ id }) => id === Number(zertoSiteId)),
         goBackToListing: /* @ngInject */ ($state) => (reload = false) =>
           $state.go(
-            'app.dedicatedCloud.details.datacenter.details.zerto.listing',
+            'app.managedBaremetal.details.datacenters.datacenter.zerto.listing',
             undefined,
             { reload },
           ),
@@ -27,7 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
           message,
         ) => {
           goBackToListing(true);
-          Alerter.success(message, 'dedicatedCloud_dashboard_alert');
+          Alerter.success(message, 'managedBaremetal_dashboard_alert');
         },
       },
     },
