@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { DashboardTile, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 import { useDashboardSections } from './useDashboardSections.hook';
 import TileItemContent from './TileItemContent.component';
 
-export default function DashboardTiles({ projectId }: { projectId: string }) {
+export default function DashboardTiles() {
+  const projectId = useProjectIdFromParams();
   const { t } = useTranslation('project');
   const { sections, isLoading, isError, error } = useDashboardSections(
     projectId,
