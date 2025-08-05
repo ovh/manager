@@ -4,19 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { Notification } from '@/data/types';
 import HtmlViewer from './htmlViewer/HtmlViewer.component';
 import TextViewer from './textViewer/TextViewer.component';
+import { PADDING_OFFSET, EmailFormat } from './emailDisplay.constants';
 
-type Format = 'SHORT' | 'LONG' | 'HTML';
 type Props = {
   notification: Notification;
   header?: React.ReactNode;
 };
-const PADDING_OFFSET = 100;
 
 export default function EmailDisplay({ notification, header }: Props) {
+  const { t } = useTranslation('detail');
+  const [format, setFormat] = useState<EmailFormat>('SHORT');
+
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
-  const { t } = useTranslation('detail');
-  const [format, setFormat] = useState<Format>('SHORT');
+
   // If the notification has a short text, we display it as a short text
   useEffect(() => {
     if (notification?.shortText) {
@@ -86,16 +87,10 @@ export default function EmailDisplay({ notification, header }: Props) {
       {notification.html && (
         <HtmlViewer
           html={notification.html}
-          visible={format === 'HTML'}
+          isVisible={format === 'HTML'}
           className="h-full"
         />
       )}
-      <style>{`
-          .bg-white::part(textarea) {
-            background-color: #fefefe;
-            height: 100%;
-          }
-        `}</style>
       {format !== 'HTML' && <TextViewer text={notification.text || ''} />}
     </div>
   );

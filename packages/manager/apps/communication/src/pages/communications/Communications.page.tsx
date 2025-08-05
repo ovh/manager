@@ -8,7 +8,7 @@ import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsMessage } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from 'react-router-dom';
@@ -22,14 +22,16 @@ import {
 } from '@/data/hooks/useNotification/useNotification';
 import NotificationContactStatus from '@/components/notificationContactStatus/NotificationContactStatus.component';
 import { useAuthorization } from '@/hooks/useAuthorization/useAuthorization';
+import useCategories from '@/hooks/useCategories/useCategories';
 
 function CommunicationsPage() {
   const { t } = useTranslation('communications');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t: tCommon } = useTranslation('common');
   const formatDate = useFormatDate();
   const { data: reference } = useNotificationReference();
 
-  const { isAuthorized } = useAuthorization([
+  const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/history/get',
   ]);
 
@@ -66,7 +68,7 @@ function CommunicationsPage() {
       type: FilterTypeCategories.Options,
       comparator: [FilterComparator.IsEqual],
       filterOptions: reference?.priorities?.map(({ name }) => ({
-        label: t(`priority_${name.toLowerCase()}`),
+        label: tCommon(`priority_${name.toLowerCase()}`),
         value: name,
       })),
       cell: (notification) => (
@@ -95,13 +97,13 @@ function CommunicationsPage() {
       type: FilterTypeCategories.Options,
       comparator: [FilterComparator.IsEqual],
       filterOptions: reference?.categories?.map(({ name }) => ({
-        label: name,
+        label: tCommon(`category_${name.toLowerCase()}`),
         value: name,
       })),
       cell: (notification) => (
-        <div className="max-w-min">
+        <div className="min-w-[200px] max-w-min">
           <DataGridTextCell>
-            {notification.categories.join(', ')}
+            {useCategories(tCommon, notification.categories)}
           </DataGridTextCell>
         </div>
       ),
@@ -110,7 +112,7 @@ function CommunicationsPage() {
 
   const {
     flattenData,
-    isLoading,
+    isLoading: isLoadingNotificationHistory,
     isRefetching,
     refetch,
     sorting,
@@ -124,8 +126,20 @@ function CommunicationsPage() {
     enabled: isAuthorized,
   });
 
+  const isLoading = isLoadingNotificationHistory || isLoadingAuthorization;
+
   return (
     <>
+      {!isLoading && !isAuthorized && (
+        <OdsMessage
+          color="warning"
+          isDismissible={false}
+          className="mb-8 w-full"
+        >
+          {tCommon('iam_display_content_message')}
+        </OdsMessage>
+      )}
+
       <Datagrid
         items={flattenData}
         columns={columns}

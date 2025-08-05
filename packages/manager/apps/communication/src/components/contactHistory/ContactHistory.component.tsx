@@ -28,6 +28,7 @@ export default function ContactHistory({ contacts, isOpen, onClose }: Props) {
       <OdsButton
         variant="ghost"
         label=""
+        aria-label={t('history_overlay_close')}
         icon="xmark"
         size="sm"
         color="neutral"
@@ -42,7 +43,7 @@ export default function ContactHistory({ contacts, isOpen, onClose }: Props) {
 
       <Steps
         steps={contacts.map((contact) => ({
-          active: true,
+          isActive: true,
           children: (
             <>
               <OdsText preset="paragraph">

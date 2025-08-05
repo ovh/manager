@@ -1,5 +1,5 @@
 export type Step = {
   label?: string;
-  active?: boolean;
+  isActive?: boolean;
   children: React.ReactNode;
 };
