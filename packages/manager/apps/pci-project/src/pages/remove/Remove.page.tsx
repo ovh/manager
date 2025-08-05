@@ -11,7 +11,7 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   useFeatureAvailability,
   useNotifications,
@@ -24,18 +24,17 @@ import {
 } from '@/data/hooks/useProjects';
 import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 
 export default function RemovePage() {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation('remove');
 
-  const { projectId: projectIdParam } = useParams();
-
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const goBack = () => navigate('..');
 
-  const [searchParams] = useSearchParams();
-  const projectId = projectIdParam || searchParams.get('projectId') || '';
+  const projectId = useProjectIdFromParams();
   const serviceId = searchParams.get('serviceId') || '';
 
   const { addSuccess, addError } = useNotifications();
