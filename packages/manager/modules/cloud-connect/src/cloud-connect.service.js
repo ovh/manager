@@ -691,4 +691,16 @@ export default class CloudConnectService {
       })
       .catch(() => []);
   }
+
+  getMigrationAvailable(cloudConnectId) {
+    return this.$http
+      .get(`/ovhCloudConnect/${cloudConnectId}/migration`)
+      .then(({ data }) => data);
+  }
+
+  migrateService(cloudConnectId) {
+    return this.$http
+      .post(`/ovhCloudConnect/${cloudConnectId}/migration`)
+      .then(({ data }) => data);
+  }
 }
