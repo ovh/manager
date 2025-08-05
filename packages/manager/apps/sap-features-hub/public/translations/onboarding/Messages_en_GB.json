@@ -1,13 +1,13 @@
 {
-  "title": "sap-features-hub",
-  "description": "Explore managed storage services that are based on the OpenZFS file system. Get centralized storage spaces in just a few clicks to store or back up your data and files.",
-  "orderButtonLabel": "Order a sap-features-hub",
-  "moreInfoButtonLabel": "Find out more about sap-features-hub",
+  "title": "The SAP Features Hub",
+  "description": "Explore managed storage services that are based on the OpenZFS file system. Use centralised storage spaces in just a few clicks to store or back up your data and files.",
+  "orderButtonLabel": "Order a SAP Features Hub",
+  "moreInfoButtonLabel": "Find out more about the SAP Features Hub",
   "guideCategory": "Tutorial",
-  "guide1Title": "Getting started with a sap-features-hub",
-  "guide1Description": "Find out how to manage a HA-NAS solution in the OVHcloud Control Panel",
-  "guide2Title": "Mounting your NAS via an NFS share",
+  "guide1Title": "Getting started with the SAP Features Hub",
+  "guide1Description": "Find out how to manage a HA-NAS via the OVHcloud Control Panel",
+  "guide2Title": "Mount your NAS via an NFS share",
   "guide2Description": "Find out how to mount a NAS via an NFS share",
-  "guide3Title": "Mounting your NAS on Windows Server via CIFS",
-  "guide3Description": "Find out how to mount a NAS on Windows Server using CIFS protocol"
+  "guide3Title": "Mounting a NAS solution on Windows Server via CIFS",
+  "guide3Description": "Find out how to mount a NAS on Windows Server via CIFS"
 }
