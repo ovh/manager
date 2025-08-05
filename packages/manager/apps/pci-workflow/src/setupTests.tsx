@@ -62,3 +62,15 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     }),
   };
 });
+
+// Patch for ODS
+vi.stubGlobal('PointerEvent', MouseEvent);
+
+vi.stubGlobal(
+  'ResizeObserver',
+  class {
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+  },
+);
