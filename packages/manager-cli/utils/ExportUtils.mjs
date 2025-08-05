@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { existsSync, writeFileSync, mkdirSync, readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -41,8 +41,8 @@ export const buildMergedReportFileName = (outputFormat) =>
  */
 const ensureDirectory = (filePath) => {
   const dir = dirname(filePath);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
   }
 };
 
@@ -86,14 +86,14 @@ export const renderReport = (report, { title, statusKeys, format, filename }) =>
   }
 
   if (format === 'json') {
-    fs.writeFileSync(filename, JSON.stringify(report, null, 2));
+    writeFileSync(filename, JSON.stringify(report, null, 2));
     console.log(`✅ JSON report saved to ${filename}`);
     return;
   }
 
   if (format === 'html') {
     const html = renderHtml(title, report);
-    fs.writeFileSync(filename, html, 'utf-8');
+    writeFileSync(filename, html, 'utf-8');
     console.log(`✅ HTML report saved to ${filename}`);
     return;
   }
@@ -133,7 +133,7 @@ const buildMergedMigrationReport = () => {
 
   for (const [label, filePath] of Object.entries(reportSources)) {
     try {
-      const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      const content = JSON.parse(readFileSync(filePath, 'utf-8'));
       for (const entry of content) {
         const app = entry.Application;
         if (!mergedMap.has(app)) mergedMap.set(app, { Application: app });

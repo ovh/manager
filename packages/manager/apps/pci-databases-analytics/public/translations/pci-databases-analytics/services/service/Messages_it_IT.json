@@ -31,8 +31,8 @@
   "deleteServiceIntegrationsDescription": "L'eliminazione di questo servizio comporterà la rimozione delle seguenti associazioni di integrazione:",
   "deleteServiceConfirmation": "Inserisci \"TERMINATE\" per confermare la tua scelta.",
   "IndexPatternsTab": "Pattern dell’indice",
-  "TopicsTab": "Argomento",
+  "TopicsTab": "Topic",
   "TopicAclsTab": "ACL",
-  "ConnectorsTab": "Connectors",
-  "ReplicationsTab": "Flusso di replica"
+  "ConnectorsTab": "Connector",
+  "ReplicationsTab": "Fattore di replica"
 }

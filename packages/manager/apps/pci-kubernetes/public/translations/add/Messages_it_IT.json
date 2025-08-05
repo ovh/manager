@@ -59,7 +59,7 @@
   "kubernetes_add_region_description_region-3-az": "Deploy ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità.",
   "kube_add_plan_footer_free": "Gratis",
   "kube_add_plan_footer_standard": "Gratis durante la fase Beta",
-  "kube_add_plan_title_free": "Free",
+  "kube_add_plan_title_free": "Gratis",
   "kube_add_plan_description_free": "Usufruisci di costi ottimizzati per le tue risorse di calcolo associati alla semplicità operativa di una soluzione Kubernetes gestita e gratuita per sempre.",
   "kube_add_plan_content_free_control": "Control plane gestito, altamente disponibile",
   "kube_add_plan_content_free_high_availability": "Alta disponibilità (1-AZ)",
@@ -81,6 +81,6 @@
   "kube_add_plan_subtitle": "Scegli il piano più adatto alle tue esigenze. Usufruisci di un'ampia scelta di istanze utilizzate come nodi Kubernetes, fatturate a consumo o con impegno contrattuale.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Assegna un nome al tuo pool di nodi",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 1-AZ. Per usufruire del piano {{ plan }}, seleziona il deploy in 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 3-AZ. Per usufruire del piano {{ plan }}, seleziona un deploy in 1-AZ."
+  "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 1-AZ. Per utilizzare il piano {{ plan }}, seleziona il deploy in 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 3-AZ. Per utilizzare il piano {{ plan }}, seleziona un deploy in 1-AZ."
 }

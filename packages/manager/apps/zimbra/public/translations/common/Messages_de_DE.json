@@ -113,7 +113,7 @@
   "upgrade_btn_account": "Auf Zimbra Pro upgraden",
   "email_account_upgrade": "Das Angebot ändern",
   "service_state_creating": "Erstellung",
-  "service_state_deleting": "Löschung",
+  "service_state_deleting": "Löschen",
   "service_state_suspended": "Ausgesetzt",
   "service_state_error": "Fehler",
   "service_state_ready": "Aktiv",
