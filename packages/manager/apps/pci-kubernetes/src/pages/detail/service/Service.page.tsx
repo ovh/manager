@@ -23,10 +23,8 @@ import {
   PROCESSING_STATUS,
   STATUS,
 } from '@/constants';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones, REFETCH_INTERVAL_DURATION } from '@/helpers';
-import ClusterBeta3AZBanner from '@/components/service/ClusterBeta3AZBanner.component';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+
+import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
 export default function ServicePage() {
   const { t } = useTranslation('service');
@@ -35,13 +33,9 @@ export default function ServicePage() {
   const { data: kubeDetail, isPending } = useKubeDetail(projectId, kubeId, {
     refetchInterval: REFETCH_INTERVAL_DURATION,
   });
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail?.region,
-  );
+
   const { data: cloudSchema } = useGetCloudSchema();
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
-  const featureFlipping3az = use3AZPlanAvailable();
   const isVersionSupported = useMemo<boolean>(() => {
     if (kubeDetail?.version && cloudSchema) {
       const [majorVersion, minorVersion] = kubeDetail.version.split('.');
@@ -72,10 +66,6 @@ export default function ServicePage() {
                 <ClusterSecurityUpgradeBanner
                   isDisabled={isProcessing(kubeDetail?.status) || undefined}
                 />
-              )}
-            {featureFlipping3az &&
-              isMultiDeploymentZones(regionInformations?.type) && (
-                <ClusterBeta3AZBanner />
               )}
           </div>
 

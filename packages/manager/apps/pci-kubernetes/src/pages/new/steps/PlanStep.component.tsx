@@ -1,11 +1,9 @@
 import {
   OsdsMessage,
   OsdsText,
-  OsdsChip,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import {
-  ODS_CHIP_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
@@ -234,17 +232,6 @@ PlanTile.Header = function PlanTileHeader({
         <h5 data-testid="plan-header" className="capitalize font-bold">
           {t(title)}
         </h5>
-        {value === TClusterPlanEnum.STANDARD && (
-          <div className="flex items-baseline gap-3">
-            <OsdsChip
-              color={ODS_THEME_COLOR_INTENT.success}
-              size={ODS_CHIP_SIZE.sm}
-              inline
-            >
-              {t('add:kubernetes_add_deployment_mode_card_beta')}
-            </OsdsChip>
-          </div>
-        )}
       </div>
 
       <div className="mt-2 flex flex-col">
