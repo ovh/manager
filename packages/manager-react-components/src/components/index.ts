@@ -36,7 +36,7 @@ export * from './tile';
 export * from './order';
 
 export * from './badge';
-export * from './Modal';
+export * from './modal';
 export * from './tags-list';
 export * from './tags-tile';
 export * from './changelog-menu';
