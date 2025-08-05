@@ -383,7 +383,7 @@ if(tC.getParamURL("mix_redirect") === "true"){
           tC.msr.src += '&ref=' + tC.msr.hdoc.referrer;
       }
   }
-  tC.msr.px.src = 'https://' + tC.msr.dns + '/mix/s3/?tcs=' + tC.msr.id_site + '&rand=' + tC.msr.rand + tC.msr.src;
+  tC.msr.px.src = 'https://' + tC.msr.dns + '/mix/o3/?tcs=' + tC.msr.id_site + '&rand=' + tC.msr.rand + tC.msr.src;
   (document.getElementsByTagName('body')[0] || document.getElementsByTagName('head')[0]).appendChild(tC.msr.px);
 } else {
   tC.trackPage("${clientId}", "${region}");
