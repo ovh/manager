@@ -1,6 +1,7 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 import { WorkflowScheduling } from './WorkflowScheduling.component';
@@ -15,7 +16,7 @@ describe('WorkflowScheduling Component', () => {
   });
 
   it('renders rotation options when step is unlocked', () => {
-    const { getByText } = render(
+    const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling step={stepUnlocked as StepState} onSubmit={mockOnSubmit} />,
     );
     expect(getByText('pci_workflow_create_schedule_rotate7_title')).toBeInTheDocument();
@@ -24,7 +25,7 @@ describe('WorkflowScheduling Component', () => {
   });
 
   it('renders selected schedule title when step is locked', () => {
-    const { getByText } = render(
+    const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling step={stepLocked as StepState} onSubmit={mockOnSubmit} />,
     );
     // Assuming ROTATE_7 is the default selected schedule
@@ -32,15 +33,15 @@ describe('WorkflowScheduling Component', () => {
   });
 
   it('submits selected schedule when next button is clicked', () => {
-    const { getByText } = render(
+    const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling step={stepUnlocked as StepState} onSubmit={mockOnSubmit} />,
     );
-    fireEvent.click(getByText('common_stepper_next_button_label'));
+    fireEvent.click(getByText('pci_workflow_create'));
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
   it('allows changing to custom schedule when custom option is clicked', () => {
-    const { getByText } = render(
+    const { getByText } = renderWithMockedWrappers(
       <WorkflowScheduling step={stepUnlocked as StepState} onSubmit={mockOnSubmit} />,
     );
     fireEvent.click(getByText('pci_workflow_create_schedule_custom_title'));
