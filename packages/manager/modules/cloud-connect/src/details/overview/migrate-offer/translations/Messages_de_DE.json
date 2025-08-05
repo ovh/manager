@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Upgrade Ihres OVHcloud Connect Dienstes",
+  "cloud_connect_apply": "Bestätigen",
+  "cloud_connect_migrate_provider_bandwidth": "Mit diesem Upgrade können Sie ohne Mehrkosten* von {{prevProductName}} auf {{newProductName}} umstellen.",
+  "cloud_connect_migrate_provider_no_service_cut": "Dieser Vorgang dauert nur wenige Augenblicke und verursacht keine Dienstunterbrechung.",
+  "cloud_connect_migrate_provider_email_confirm": "Nach Abschluss des Upgrades erhalten Sie eine Bestätigungs-E-Mail. Um Ihre neue Bandbreite zu nutzen, genügt es dann, bei {{provider}} mit einem neuen OVHcloud Connect Serviceschlüssel eine neue Schaltung zu erstellen.",
+  "cloud_connect_migrate_provider_launch_process": "Wenn Sie auf „Bestätigen“ klicken, beginnt der Upgrade-Prozess.",
+  "cloud_connect_migrate_provider_price_and_commitment": "* Der Preis, die Vertragslaufzeit und alle damit verbundenen Sonderangebote sind von diesem Upgrade-Vorgang nicht betroffen.",
+  "cloud_connect_migrate_direct_bandwidth": "Mit diesem Upgrade können Sie die maximale Bandbreite dieses Dienstes ohne Mehrkosten* von 1 Gbit/s auf 10 Gbit/s erhöhen.",
+  "cloud_connect_migrate_direct_configuration_preserved": "Der Vorgang dauert nur wenige Augenblicke und Ihre aktuelle Konfiguration bleibt erhalten.",
+  "cloud_connect_migrate_direct_email_confirm": "Nach Abschluss des Upgrades erhalten Sie eine Bestätigungs-E-Mail.",
+  "cloud_connect_migrate_direct_warning_title": "Achtung",
+  "cloud_connect_migrate_direct_actions_expected": "Sie müssen Ihrerseits etwas tun. Der Netzwerk-Port auf den OVHcloud Randgeräten im PoP wird von 1 Gbit/s auf 10 Gbit/s umgestellt. Dies führt zu einer Unterbrechung der Verbindung, bis der Netzwerk-Port Ihres Randgeräts auf 10 Gbit/s gestellt wurde. Zur Erinnerung: Die Autonegotiation wird bei OVHcloud Connect nicht unterstützt. Bitte starten Sie das Upgrade, sobald Ihre Infrastruktur bereit ist, um die Dienstunterbrechung so gering wie möglich zu halten. Der Upgrade-Vorgang bei OVHcloud dauert nur wenige Augenblicke.",
+  "cloud_connect_migrate_direct_launch_process": "Wenn Sie auf „Bestätigen“ klicken, beginnt der Upgrade-Prozess.",
+  "cloud_connect_migrate_direct_price_and_commitment": "* Der Preis, die Vertragslaufzeit und alle damit verbundenen Sonderangebote sind von diesem Upgrade-Vorgang nicht betroffen.",
+  "cloud_connect_migrate_offer_success": "Die Anfrage zum Upgraden Ihres Dienstes wurde erfolgreich registriert. Bitte gedulden Sie sich einen Augenblick.",
+  "cloud_connect_migrate_offer_error": "Das Upgrade Ihres Dienstes konnte nicht durchgeführt werden: {{ message }}"
+}

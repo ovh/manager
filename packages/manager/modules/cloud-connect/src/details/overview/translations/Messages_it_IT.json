@@ -131,5 +131,7 @@
   "cloud_connect_old_48_h_status": "Questo stato ha più di 48 ore e potrebbe non essere più esatto.",
   "cloud_connect_pop_add_button": "Configurare la porta",
   "cloud_connect_dc_status": "Stato della configurazione",
-  "cloud_connect_dc_config_title": "Configurazione {{dcName}}"
+  "cloud_connect_dc_config_title": "Configurazione {{dcName}}",
+  "cloud_connect_subscriptions": "Sottoscrizioni",
+  "cloud_connect_migrate_offer": "Migrare l’offerta"
 }

@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Mise à niveau de votre service OVHcloud Connect",
+  "cloud_connect_apply": "Confirmer",
+  "cloud_connect_migrate_provider_bandwidth": "Cette mise à niveau vous permettra de passer du produit {{prevProductName}} au produit {{newProductName}} sans surcoût*.",
+  "cloud_connect_migrate_provider_no_service_cut": "L’opération ne durera que quelques instants et n’occasionnera pas de coupure de service.",
+  "cloud_connect_migrate_provider_email_confirm": "Une fois la mise à niveau terminée, vous receverez un email de confirmation. Dès lors, pour profiter de votre nouvelle bande passante, il vous suffira de recréer un nouveau circuit auprès de {{provider}} en utilisant une nouvelle clé de service OVHcloud Connect.",
+  "cloud_connect_migrate_provider_launch_process": "Lorsque vous cliquerez sur « Confirmer » le processus de mise à niveau débutera.",
+  "cloud_connect_migrate_provider_price_and_commitment": "*Le prix, la durée d’engagement et les éventuelles promotions associées ne seront pas affectés par cette opération de mise à niveau.",
+  "cloud_connect_migrate_direct_bandwidth": "Cette mise à niveau vous permettra d’augmenter la bande bassante maximum de ce service de 1 Gbps à 10 Gbps sans surcoût*.",
+  "cloud_connect_migrate_direct_configuration_preserved": "L’opération ne durera que quelques instants et votre configuration actuelle sera conservée.",
+  "cloud_connect_migrate_direct_email_confirm": "Une fois la mise à niveau terminée, vous recevrez un email de confirmation.",
+  "cloud_connect_migrate_direct_warning_title": "Attention",
+  "cloud_connect_migrate_direct_actions_expected": "Des actions sont à prévoir de votre côté. Le port réseau sur l’équipement de bordure OVHcloud dans le PoP sera basculé de 1 Gbps à 10 Gbps. Cela occasionera une coupure du lien jusqu’à ce que le port réseau de votre équipement de bordure soit en 10 Gbps. Pour rappel, l’autoneg n’est pas supporté sur OVHcloud Connect. Nous vous invitons à déclencher cette mise à niveau une fois que votre infrastructure est prête afin de minimiser au maximum la coupure de service. L’opération de mise à niveau ne durera que quelques instants côté OVHcloud.",
+  "cloud_connect_migrate_direct_launch_process": "Lorsque vous cliquerez sur « Confirmer » le processus de mise à niveau débutera.",
+  "cloud_connect_migrate_direct_price_and_commitment": "*Le prix, la durée d’engagement et les éventuelles promotions associées ne seront pas affectés par cette opération de mise à niveau.",
+  "cloud_connect_migrate_offer_success": "La demande de mise à niveau de votre service a bien été prise en compte. Veuillez patienter.",
+  "cloud_connect_migrate_offer_error": "Impossible d'effectuer la mise à niveau de votre service: {{ message }}"
+}

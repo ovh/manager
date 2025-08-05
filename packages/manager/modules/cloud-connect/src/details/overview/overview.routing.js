@@ -156,6 +156,8 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       breadcrumb: () => null,
+      goToMigrateOffer: /* @ngInject */ ($state) => () =>
+        $state.go('cloud-connect.details.overview.migrate-offer'),
     },
     atInternet: {
       ignore: true,

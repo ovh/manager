@@ -61,6 +61,8 @@ export default class CloudConnectOverviewCtrl {
 
     this.locale = this.constructor.getDateFnsLocale(this.$locale.localeID);
     this.dateFnsLocale = dateFnsLocales[this.locale];
+
+    this.getMigrationAvailable();
   }
 
   static getDateFnsLocale(ovhLocale) {
@@ -309,5 +311,24 @@ export default class CloudConnectOverviewCtrl {
       return true;
     }
     return false;
+  }
+
+  getMigrationAvailable() {
+    return this.cloudConnectService
+      .getMigrationAvailable(this.cloudConnect.id)
+      .then((data) => {
+        this.availableMigration = data;
+        this.isMigrationAvailable = false;
+        if (
+          !this.availableMigration.creationDate ||
+          (this.availableMigration.creationDate &&
+            !this.availableMigration.doneDate)
+        ) {
+          this.isMigrationAvailable = true;
+        }
+      })
+      .catch(() => {
+        this.isMigrationAvailable = false;
+      });
   }
 }

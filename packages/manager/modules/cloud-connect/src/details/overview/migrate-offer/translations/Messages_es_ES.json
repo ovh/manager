@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Actualización del servicio OVHcloud Connect",
+  "cloud_connect_apply": "Confirmar",
+  "cloud_connect_migrate_provider_bandwidth": "Esta actualización le permitirá pasar del servicio {{prevProductName}} a {{newProductName}} sin coste adicional*.",
+  "cloud_connect_migrate_provider_no_service_cut": "La operación solo durará unos instantes y no ocasionará cortes en el servicio.",
+  "cloud_connect_migrate_provider_email_confirm": "Una vez completada la actualización, recibirá un correo electrónico de confirmación. A partir de ese momento, para disfrutar de su nuevo ancho de banda, solo tendrá que volver a crear un nuevo circuito con {{provider}} utilizando una nueva clave de servicio de OVHcloud Connect.",
+  "cloud_connect_migrate_provider_launch_process": "Al hacer clic en «Confirmar», comenzará el proceso de actualización.",
+  "cloud_connect_migrate_provider_price_and_commitment": "*El precio, la duración del compromiso y las promociones asociadas no se verán afectados por esta operación de actualización.",
+  "cloud_connect_migrate_direct_bandwidth": "Esta actualización le permitirá aumentar el ancho de banda máximo de este servicio de 1 Gbps a 10 Gbps sin coste adicional*.",
+  "cloud_connect_migrate_direct_configuration_preserved": "La operación solo durará unos instantes y se conservará la configuración actual.",
+  "cloud_connect_migrate_direct_email_confirm": "Una vez finalizada la actualización, recibirá un mensaje de correo electrónico de confirmación.",
+  "cloud_connect_migrate_direct_warning_title": "Atención",
+  "cloud_connect_migrate_direct_actions_expected": "Deberá realizar algunas acciones necesarias. El puerto de red en el dispositivo perimetral de borde de OVHcloud en el PoP pasará de 1 Gbps a 10 Gbps. Esto provocará una interrupción de la conexión hasta que el puerto de red de su dispositivo de borde o perimetral alcance los 10 Gbps. Le recordamos que la autonegociación no es compatible con OVHcloud Connect. Para minimizar el corte del servicio, debe activar esta actualización cuando la infraestructura esté lista. La operación de actualización de OVHcloud solo durará unos instantes.",
+  "cloud_connect_migrate_direct_launch_process": "Al hacer clic en «Confirmar», comenzará el proceso de actualización.",
+  "cloud_connect_migrate_direct_price_and_commitment": "*El precio, la duración del compromiso y las promociones asociadas no se verán afectados por esta operación de actualización.",
+  "cloud_connect_migrate_offer_success": "La solicitud de actualización del servicio se ha enviado correctamente. Por favor, espere.",
+  "cloud_connect_migrate_offer_error": "No se ha podido actualizar el servicio: {{ message }}"
+}

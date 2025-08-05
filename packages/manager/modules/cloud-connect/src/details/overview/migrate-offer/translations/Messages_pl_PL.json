@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Upgrade usługi OVHcloud Connect",
+  "cloud_connect_apply": "Zatwierdź",
+  "cloud_connect_migrate_provider_bandwidth": "Dzięki upgrade'owi będziesz mógł zmienić produkt {{prevProductName}} na {{newProductName}} bez dodatkowych kosztów*.",
+  "cloud_connect_migrate_provider_no_service_cut": "Operacja potrwa kilka minut i nie spowoduje przerwy w działaniu usługi.",
+  "cloud_connect_migrate_provider_email_confirm": "Po zakończeniu upgrade'u otrzymasz e-mail z potwierdzeniem. Od tej chwili, aby móc korzystać z nowej przepustowości, wystarczy utworzyć nowe połączenie {{provider}}, używając nowego klucza usługi OVHcloud Connect.",
+  "cloud_connect_migrate_provider_launch_process": "Po kliknięciu przycisku „Potwierdź” rozpocznie się proces upgrade'u.",
+  "cloud_connect_migrate_provider_price_and_commitment": "*Operacja nie będzie miała wpływu na cenę, czas trwania umowy terminowej ani na żadne powiązane z usługą promocje.",
+  "cloud_connect_migrate_direct_bandwidth": "Upgrade umożliwi zwiększenie maksymalnej przepustowości z 1 Gbps do 10 Gbps bez dodatkowych kosztów*.",
+  "cloud_connect_migrate_direct_configuration_preserved": "Operacja potrwa kilka minut. Aktualna konfiguracja zostanie zachowana.",
+  "cloud_connect_migrate_direct_email_confirm": "Po zakończeniu upgrade'u otrzymasz e-mail z potwierdzeniem.",
+  "cloud_connect_migrate_direct_warning_title": "Uwaga",
+  "cloud_connect_migrate_direct_actions_expected": "Po Twojej stronie konieczne będzie przeprowadzenie odpowiednich działań. Port sieciowy w urządzeniu brzegowym OVHcloud w danym PoP zostanie przełączony z 1 Gbps na 10 Gbps. Spowoduje to przerwę w działaniu łącza do czasu, aż Twój port zostanie skonfigurowany do obsługi 10 Gbps. Przypominamy, że autonegocjacja prędkości nie jest obsługiwana w OVHcloud Connect. Prosimy o uruchomienie operacji upgrade'u, gdy Twoja infrastruktura będzie gotowa. Pozwoli to ograniczyć do minimum przerwę w działaniu usługi. Aktualizacja zajmie tylko kilka minut.",
+  "cloud_connect_migrate_direct_launch_process": "Po kliknięciu przycisku „Potwierdź” rozpocznie się proces upgrade'u.",
+  "cloud_connect_migrate_direct_price_and_commitment": "*Operacja nie będzie miała wpływu na cenę, czas trwania umowy terminowej ani na żadne powiązane z usługą promocje.",
+  "cloud_connect_migrate_offer_success": "Dyspozycja upgrade'u usługi została przyjęta. Proszę czekać...",
+  "cloud_connect_migrate_offer_error": "Nie można przeprowadzić upgrade'u usługi: {{message}}"
+}
