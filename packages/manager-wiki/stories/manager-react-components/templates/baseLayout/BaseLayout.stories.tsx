@@ -1,13 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-  OdsTab,
-  OdsTabs,
-  OdsTable,
-  OdsBadge,
-} from '@ovhcloud/ods-components/react';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import {
   DashboardTile,
   BaseLayout,
@@ -18,7 +11,19 @@ import {
   ChangelogLinks,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
-import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
+import {
+  Message,
+  MESSAGE_COLOR,
+  MessageIcon,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Tabs,
+  TabList,
+  Tab,
+  Table,
+  Badge,
+} from '@ovhcloud/ods-react';
 
 import { withRouter } from 'storybook-addon-react-router-v6';
 
@@ -71,9 +76,9 @@ const changelogLinks: ChangelogLinks = {
     'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
 };
 
-const Tabs = () => (
-  <OdsTable>
-    <table>
+const SampleTable = () => (
+  <Table>
+    <table className="w-full">
       <thead>
         <tr>
           <th scope="col">Nom</th>
@@ -87,21 +92,66 @@ const Tabs = () => (
             <td scope="row">{element.name}</td>
             <td scope="row">{element.description}</td>
             <td scope="row">
-              <OdsBadge label="Ready" />
+              <Badge>Ready</Badge>
             </td>
           </tr>
         ))}
       </tbody>
     </table>
-  </OdsTable>
+  </Table>
 );
 
-export const listingTemplateProps = {
+const SampleBreadcrumb = ({ items }) => (
+  <Breadcrumb>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="#">{items[0]}</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="#">{items[1]}</BreadcrumbLink>
+    </BreadcrumbItem>
+  </Breadcrumb>
+);
+
+const SampleTabs = () => (
+  <Tabs defaultValue="tab1">
+    <TabList>
+      <Tab value="tab1">General Information</Tab>
+      <Tab value="tab2">Tabs 2</Tab>
+    </TabList>
+  </Tabs>
+);
+
+export const completeBaseLayoutExample = {
+  breadcrumb: <SampleBreadcrumb items={['App Name', 'Current Page Name']} />,
+  header: {
+    title: 'Title of the Page',
+    GuideMenu: <GuideMenu items={guideItems} />,
+    changelogButton: (
+      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+    ),
+  },
+  backLink: {
+    label: 'Backlink Label',
+    onClick: () => {
+      console.log('back link click');
+    },
+  },
+  description:
+    'Description of the Page: Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+  message: (
+    <Message color={MESSAGE_COLOR.success}>
+      <MessageIcon name="circle-check" />
+      Sample Message: Sit amet consectetur adipiscing elit quisque faucibus ex.
+    </Message>
+  ),
+  tabs: <SampleTabs />,
+  subtitle: 'Sub-heading of the Page',
+  children: <main>Render Main content here</main>,
+};
+
+const listingTemplateProps = {
   breadcrumb: (
-    <OdsBreadcrumb>
-      <OdsBreadcrumbItem href="/vrack-services" label="Vrack Services" />
-      <OdsBreadcrumbItem href="/vrs-abc-def-ghi" label="vrs-abc-def-ghi" />
-    </OdsBreadcrumb>
+    <SampleBreadcrumb items={['Vrack Services', 'vrs-abc-def-ghi']} />
   ),
   header: {
     title: 'Vrack Services',
@@ -113,23 +163,18 @@ export const listingTemplateProps = {
   description:
     'Description de la listing, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
-    <Message color={MESSAGE_COLOR.success}>Votre service a été créé</Message>
+    <Message color={MESSAGE_COLOR.success}>
+      Votre service a été créé avec succès
+    </Message>
   ),
-  children: <Tabs />,
-  subtitle: '',
-  backLinkLabel: '',
-  onClickReturn: () => {
-    console.log('back link click');
-  },
-  subdescription: '',
+  children: <SampleTable />,
 };
+
+export const ListingTemplate = () => <BaseLayout {...listingTemplateProps} />;
 
 const dashboardTemplateProps = {
   breadcrumb: (
-    <OdsBreadcrumb>
-      <OdsBreadcrumbItem href="/vrack-services" label="Vrack Services" />
-      <OdsBreadcrumbItem href="/vrs-abc-def-ghi" label="vrs-abc-def-ghi" />
-    </OdsBreadcrumb>
+    <SampleBreadcrumb items={['Vrack Services', 'vrs-abc-def-ghi']} />
   ),
   header: {
     title: 'Vrack Services',
@@ -138,26 +183,21 @@ const dashboardTemplateProps = {
       <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
     ),
   },
-  backLinkLabel: 'Retour à la XXX',
-  onClickReturn: () => {
-    console.log('back link click');
+  backLink: {
+    label: 'Retour à la XXX',
+    onClick: () => {
+      console.log('back link click');
+    },
   },
-  subdescription: '',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   message: (
     <Message color={MESSAGE_COLOR.success}>
-      <p>Votre service a été créé avec succès</p>
+      <MessageIcon name="circle-check" />
+      Votre service a été créé avec succès
     </Message>
   ),
-  tabs: (
-    <OdsTabs>
-      <OdsTab is-selected="true" id="tab1">
-        Informations générales
-      </OdsTab>
-      <OdsTab id="tab2">Tabs 2</OdsTab>
-    </OdsTabs>
-  ),
+  tabs: <SampleTabs />,
   children: (
     <DashboardGridLayout>
       <DashboardTile
@@ -217,10 +257,10 @@ export const DashboardTemplate = () => (
 
 const meta: Meta<typeof BaseLayout> = {
   decorators: [withRouter],
-  title: 'Manager React Components/Templates/Base',
+  title: 'Manager React Components/Templates/Base Layout',
   component: BaseLayout,
   argTypes: {},
-  args: listingTemplateProps,
+  args: completeBaseLayoutExample,
 };
 
 export default meta;
