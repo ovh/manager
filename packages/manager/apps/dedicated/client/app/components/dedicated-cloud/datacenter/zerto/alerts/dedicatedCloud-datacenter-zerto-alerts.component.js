@@ -10,6 +10,6 @@ export default {
     pccType: '<',
   },
   controller,
-  name: 'ovhManagerdedicatedCloudDatacenterZertoAlerts',
+  name: 'ovhManagerDedicatedCloudDatacenterZertoAlerts',
   template,
 };

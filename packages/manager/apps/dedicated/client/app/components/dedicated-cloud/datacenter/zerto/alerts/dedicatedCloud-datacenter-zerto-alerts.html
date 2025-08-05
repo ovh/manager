@@ -5,20 +5,20 @@
     data-on-dismiss="$ctrl.disableSuccessAlert()"
 >
     <span
-        data-ng-bind=":: ('dedicatedCloud_options_drp_delivered_message_part_one_' + $ctrl.pccType) | translate"
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_one_' + $ctrl.pccType) | translate"
     ></span>
     <span
-        data-ng-bind=":: ('dedicatedCloud_options_drp_delivered_message_part_two_ovh_' + $ctrl.pccType) | translate: {
+        data-ng-bind=":: ('dedicatedCloud_options_zerto_delivered_message_part_two_ovh_' + $ctrl.pccType) | translate: {
             pccId: $ctrl.currentZerto.remoteSiteInformation.serviceName
         }"
         data-ng-if="$ctrl.currentZerto.drpType === $ctrl.DRP_OPTIONS.ovh"
     ></span>
     <span
-        data-translate="dedicatedCloud_options_drp_delivered_message_part_two_onPremise"
+        data-translate="dedicatedCloud_options_zerto_delivered_message_part_two_onPremise"
         data-ng-if="$ctrl.currentZerto.drpType === $ctrl.DRP_OPTIONS.onPremise"
     ></span>
     <span
-        data-translate="dedicatedCloud_options_drp_delivered_message_part_three"
+        data-translate="dedicatedCloud_options_zerto_delivered_message_part_three"
         data-translate-values="{ 'email': $ctrl.currentUser.email }"
     ></span>
 </oui-message>
@@ -40,18 +40,18 @@
 
 <oui-message
     class="mb-3"
-    data-type="error"
+    data-type="warning"
     data-ng-if="$ctrl.currentZerto.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
 >
     <div data-ng-if="!$ctrl.isOnSummaryState()">
         <span
-            data-translate="dedicatedCloud_options_drp_waiting_vpn_message_part_one"
+            data-translate="dedicatedCloud_options_zerto_waiting_vpn_message_part_one"
         ></span>
         <button
             type="button"
             class="oui-link"
             data-ng-click="$ctrl.goToVpnConfiguration()"
-            data-translate="dedicatedCloud_options_drp_waiting_vpn_message_part_two"
+            data-translate="dedicatedCloud_options_zerto_waiting_vpn_message_part_two"
         ></button>
     </div>
     <span
