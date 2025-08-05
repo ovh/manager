@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {
   BaseLayout,
   Datagrid,
@@ -21,6 +21,18 @@ export default function ManagedWordpressPage() {
     NAMESPACES.ACTIONS,
     NAMESPACES.STATUS,
   ]);
+  const navigate = useNavigate();
+
+  const firstItemUrl = useGenerateUrl(
+    `/managed-hosting-for-wordpress/${data?.[0]?.id ?? ''}`,
+    'path',
+  );
+
+  useEffect(() => {
+    if (!isLoading && data?.length === 1) {
+      navigate(firstItemUrl);
+    }
+  }, [data, isLoading, navigate, firstItemUrl]);
 
   const columns: DatagridColumn<ManagedWordpressResourceType>[] = useMemo(
     () => [
@@ -28,14 +40,19 @@ export default function ManagedWordpressPage() {
         id: 'id',
         cell: (item) => {
           const href = useGenerateUrl(`./${item.id}`, 'href');
-
-          return <Links href={href} label={item.id}></Links>;
+          return <Links href={href} label={item.id} />;
         },
         label: t('common:web_hosting_status_header_resource'),
       },
       {
         id: 'plan',
-        cell: (item) => <span>{item.currentState.plan}</span>,
+        cell: (item) => {
+          const match = item.currentState.plan.match(/managed-cms-(\d+)/);
+          const numberOfSites = match ? match[1] : '?';
+          return (
+            <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>
+          );
+        },
         label: t('common:web_hosting_status_header_offer'),
       },
       {
@@ -44,7 +61,7 @@ export default function ManagedWordpressPage() {
         label: t(`${NAMESPACES.STATUS}:status`),
       },
     ],
-    [],
+    [t],
   );
 
   return (
