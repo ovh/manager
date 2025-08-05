@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.16.0...@ovh-ux/manager-core-api@0.17.0) (2025-08-05)
+
+
+### Features
+
+* **core:** add units test for filters core api ([ab9437d](https://github.com/ovh/manager/commit/ab9437dcaef498672422fd423914745f0e829221)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+* **core:** refactor and tests iceberg ([f72b86a](https://github.com/ovh/manager/commit/f72b86a00cd6f805b50893dd1bd8bc3c4aed4b9e)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.15.0...@ovh-ux/manager-core-api@0.16.0) (2025-08-01)
 
 
