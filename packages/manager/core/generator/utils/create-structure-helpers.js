@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { join } from 'node:path';
 
 /**
@@ -6,18 +5,10 @@ import { join } from 'node:path';
  * into src/api/**
  * Corresponding to the api used by apiv6
  */
-export const createApiQueryFilesActions = ({
-  endpoints,
-  apiVersion,
-  appDirectory,
-  appName,
-}) =>
+export const createApiQueryFilesActions = ({ endpoints, apiVersion, appDirectory, appName }) =>
   Object.entries(endpoints).map(([method, data]) => ({
     type: 'add',
-    path: join(
-      appDirectory,
-      `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`,
-    ),
+    path: join(appDirectory, `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`),
     templateFile: join(
       appDirectory,
       `./conditional-templates/api/services-template${
@@ -42,10 +33,7 @@ export const createPages = (templates, appDirectory, isApiV6) =>
 
     return {
       type: 'addMany',
-      destination: join(
-        appDirectory,
-        `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
-      ),
+      destination: join(appDirectory, `../../../apps/{{dashCase appName}}/src/pages/${template}/`),
       templateFiles: join(appDirectory, templatePath),
       base: join(appDirectory, templatePath),
       globOptions: {

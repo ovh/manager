@@ -1,19 +1,14 @@
-/* eslint-disable import/extensions, no-param-reassign */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getApiPaths, isV2Endpoint } from '../utils/api.js';
+
 import { getApiTemplateData } from '../utils/api-template.js';
+import { getApiPaths, isV2Endpoint } from '../utils/api.js';
 import {
+  createApiQueryFilesActions,
   createPages,
   createTranslations,
-  createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
-import {
-  UNIVERSES,
-  SUB_UNIVERSES,
-  LEVEL2,
-  REGIONS,
-} from './universes.constant.js';
+import { LEVEL2, REGIONS, SUB_UNIVERSES, UNIVERSES } from './universes.constant.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -22,10 +17,7 @@ const toChoice = ({ apiPath, functionName }) => ({
   value: `${apiPath}-${functionName}`,
 });
 
-const getApiV2AndV6GetEndpointsChoices = ({
-  apiV6Endpoints,
-  apiV2Endpoints,
-}) => [
+const getApiV2AndV6GetEndpointsChoices = ({ apiV6Endpoints, apiV2Endpoints }) => [
   { type: 'separator', line: 'V2 endpoints' },
   ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
   { type: 'separator' },
@@ -41,11 +33,8 @@ const apiComputed = (data) => {
     apiV6Computed = {
       get: {
         ...data.apiV6Endpoints.get,
-        operationList: data.apiV6Endpoints.get?.operationList?.filter(
-          ({ apiPath }) =>
-            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
-              apiPath,
-            ),
+        operationList: data.apiV6Endpoints.get?.operationList?.filter(({ apiPath }) =>
+          [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath),
         ),
       },
     };
@@ -56,9 +45,8 @@ const apiComputed = (data) => {
         ...data.apiV2Endpoints.get,
         operationList: data.apiV2Endpoints.get?.operationList?.filter(
           ({ apiPath }) =>
-            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
-              apiPath,
-            ) || apiPath.includes('/serviceInfos'),
+            [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath) ||
+            apiPath.includes('/serviceInfos'),
         ),
       },
     };
@@ -72,11 +60,11 @@ export default (plop) => {
    * @param {string} name
    * @returns {string}
    */
-  plop.handlebars.registerHelper('quoteIfNeeded', function(name) {
+  plop.handlebars.registerHelper('quoteIfNeeded', function (name) {
     return name.includes('-') ? `'${name}'` : name;
   });
   // Register a custom Handlebars helper for equality check
-  plop.handlebars.registerHelper('eq', function(a, b) {
+  plop.handlebars.registerHelper('eq', function (a, b) {
     return a === b;
   });
 
@@ -142,12 +130,8 @@ export default (plop) => {
             },
             { v2: [], v6: [] },
           );
-          data.apiV6Endpoints = await getApiTemplateData(
-            data.apiPathsByApiVersion.v6,
-          );
-          data.apiV2Endpoints = await getApiTemplateData(
-            data.apiPathsByApiVersion.v2,
-          );
+          data.apiV6Endpoints = await getApiTemplateData(data.apiPathsByApiVersion.v6);
+          data.apiV2Endpoints = await getApiTemplateData(data.apiPathsByApiVersion.v2);
           return true;
         },
         choices: getApiV2AndV6GetEndpointsChoices,
@@ -171,8 +155,7 @@ export default (plop) => {
           data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
           data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
 
-          const [listingPath, listingFn] =
-            data.listingEndpoint?.split('-') || [];
+          const [listingPath, listingFn] = data.listingEndpoint?.split('-') || [];
           data.listingEndpointPath = listingPath;
           data.listingEndpointFn = listingFn;
           data.mainApiPath = listingPath;
@@ -185,12 +168,11 @@ export default (plop) => {
           if (data.isPCI) {
             data.mainApiPathPci = listingPath.replace(
               data.isApiV2 ? '{projectId}' : '{serviceName}',
-              // eslint-disable-next-line no-template-curly-in-string
+
               '${projectId}',
             );
           }
-          const [dashboardPath, dashboardFn] =
-            data.dashboardEndpoint?.split('-') || [];
+          const [dashboardPath, dashboardFn] = data.dashboardEndpoint?.split('-') || [];
           data.dashboardEndpointPath = dashboardPath;
           data.dashboardEndpointFn = dashboardFn;
 

@@ -11,16 +11,8 @@
   },
   "scripts": {
     "dev": "bash ./presets/dev-generate-app.sh",
-    "format": "run-p format:*",
-    "format:css": "yarn run lint:css --fix",
-    "format:html": "yarn run lint:html && prettier --parser=html --write \"**/*.html\"",
-    "format:js": "yarn run lint:js --fix",
-    "format:md": "yarn run lint:md --fix",
-    "lint": "run-p lint:*",
-    "lint:css": "stylelint \"**/*.{css,less,scss}\"",
-    "lint:html": "htmlhint \"**/*.html\" --ignore \"**/{dist,www,coverage,screenshot,docs-api}\"",
-    "lint:js": "eslint --cache --quiet --format=pretty .",
-    "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md .",
+    "lint:modern": "manager-lint --config eslint.config.js .",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.js .",
     "start": "plop"
   },
   "dependencies": {
@@ -30,5 +22,7 @@
     "minimist": "^1.2.8",
     "plop": "^3.1.1"
   },
-  "preferGlobal": true
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*"
+  }
 }
