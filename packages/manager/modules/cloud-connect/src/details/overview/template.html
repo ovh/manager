@@ -402,43 +402,39 @@
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isPopConfigurationExists()"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                 >
                                     <span
-                                        data-ng-bind="$ctrl.getPopTypeName($pop.type)"
+                                        data-ng-bind="$ctrl.getPopTypeName($ctrl.cloudConnect.popConfiguration[interface.id].type)"
                                     ></span>
                                 </td>
                                 <!-- ASN utilisateur -->
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                 >
                                     <span
-                                        data-ng-bind="$pop.customerBgpArea"
-                                        data-ng-if="$pop.isL3Type()"
+                                        data-ng-bind="$ctrl.cloudConnect.popConfiguration[interface.id].customerBgpArea"
+                                        data-ng-if="$ctrl.cloudConnect.popConfiguration[interface.id].isL3Type()"
                                     ></span>
                                 </td>
                                 <!-- ASN OVHcloud -->
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                 >
                                     <span
-                                        data-ng-bind="$pop.ovhBgpArea"
-                                        data-ng-if="$pop.isL3Type()"
+                                        data-ng-bind="$ctrl.cloudConnect.popConfiguration[interface.id].ovhBgpArea"
+                                        data-ng-if="$ctrl.cloudConnect.popConfiguration[interface.id].isL3Type()"
                                     ></span>
                                 </td>
                                 <!-- Subnet -->
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                 >
                                     <span
-                                        data-ng-bind="$pop.subnet"
-                                        data-ng-if="$pop.isL3Type()"
+                                        data-ng-bind="$ctrl.cloudConnect.popConfiguration[interface.id].subnet"
+                                        data-ng-if="$ctrl.cloudConnect.popConfiguration[interface.id].isL3Type()"
                                     ></span>
                                 </td>
                                 <!-- Optical status -->
@@ -501,22 +497,21 @@
                                 <td
                                     class="oui-datagrid__cell"
                                     data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                 >
                                     <div
                                         class="oui-badge"
                                         data-ng-class="{
-                                            'oui-badge_success': $pop.isBgpStatusUp(),
-                                            'oui-badge_error': $pop.isBgpStatusDown(),
+                                            'oui-badge_success': $ctrl.cloudConnect.popConfiguration[interface.id].isBgpStatusUp(),
+                                            'oui-badge_error': $ctrl.cloudConnect.popConfiguration[interface.id].isBgpStatusDown(),
                                         }"
-                                        data-ng-bind="'cloud_connect_status_' +  $pop.bgpStatus | translate"
-                                        data-ng-if="$pop"
-                                        data-oui-tooltip="{{::$ctrl.formatTimestamp($pop.lastUpdateBgpStatus)}}"
+                                        data-ng-bind="'cloud_connect_status_' +  $ctrl.cloudConnect.popConfiguration[interface.id].bgpStatus | translate"
+                                        data-ng-if="$ctrl.cloudConnect.popConfiguration[interface.id]"
+                                        data-oui-tooltip="{{::$ctrl.formatTimestamp($ctrl.cloudConnect.popConfiguration[interface.id].lastUpdateBgpStatus)}}"
                                         data-oui-tooltip-placement="bottom"
                                     ></div>
                                     <span
                                         class="oui-color-ae-500"
-                                        data-ng-if="$pop && $ctrl.constructor.is48hOlder($pop.lastUpdateBgpStatus)"
+                                        data-ng-if="$ctrl.cloudConnect.popConfiguration[interface.id] && $ctrl.constructor.is48hOlder($ctrl.cloudConnect.popConfiguration[interface.id].lastUpdateBgpStatus)"
                                     >
                                         <span
                                             class="oui-icon oui-icon-info-circle"
@@ -533,21 +528,17 @@
                                     ></span>
                                     <span
                                         data-ng-if="$ctrl.cloudConnect.isPopConfigured(interface.id)"
-                                        data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                         class="oui-badge"
                                         data-ng-class="{
-                                        'oui-badge_error': $pop.isError(),
-                                        'oui-badge_success': $pop.isActive(),
-                                        'oui-badge_warning': !$pop.isActive()
+                                        'oui-badge_error': $ctrl.cloudConnect.popConfiguration[interface.id].isError(),
+                                        'oui-badge_success': $ctrl.cloudConnect.popConfiguration[interface.id].isActive(),
+                                        'oui-badge_warning': !$ctrl.cloudConnect.popConfiguration[interface.id].isActive()
                                     }"
-                                        data-ng-bind="'cloud_connect_pop_status_' +  $pop.status | translate"
+                                        data-ng-bind="'cloud_connect_pop_status_' +  $ctrl.cloudConnect.popConfiguration[interface.id].status | translate"
                                     ></span>
                                 </td>
                                 <!-- Action buttons -->
-                                <td
-                                    class="oui-datagrid__cell"
-                                    data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
-                                >
+                                <td class="oui-datagrid__cell">
                                     <div
                                         data-ng-if="!$ctrl.cloudConnect.isPopConfigured(interface.id)"
                                     >
@@ -612,16 +603,15 @@
                                         </oui-action-menu-item>
                                         <oui-action-menu-item
                                             data-ng-if="$ctrl.cloudConnect.isL3PopType()"
-                                            data-ng-click="$ctrl.runBGPPeeringDiagnostic($pop.id ,$ctrl.datacenters.id)"
+                                            data-ng-click="$ctrl.runBGPPeeringDiagnostic($ctrl.cloudConnect.popConfiguration[interface.id].id ,$ctrl.datacenters.id)"
                                             ><span
                                                 data-translate="cloud_connect_pop_diagnostic_check"
                                             ></span
                                         ></oui-action-menu-item>
                                         <oui-action-menu-item
                                             data-ng-if="$ctrl.cloudConnect.isL2PopType()"
-                                            data-ng-click="$ctrl.getMacList($pop)"
+                                            data-ng-click="$ctrl.getMacList($ctrl.cloudConnect.popConfiguration[interface.id])"
                                             data-disabled="$ctrl.getMacLoading"
-                                            data-ng-init="$pop = $ctrl.cloudConnect.getPopConfiguration(interface.id);"
                                             ><span
                                                 data-translate="cloud_connect_pop_get_mac_list"
                                             ></span
