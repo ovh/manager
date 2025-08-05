@@ -15,6 +15,7 @@
   "pci_workflow_execution_status_SUCCESS": "Operacja zakończona pomyślnie",
   "pci_workflow_execution_status_ERROR": "Błąd",
   "pci_workflow_execution_status_PAUSED": "Zatrzymany",
+  "pci_workflow_execution_status_CANCELED": "Anulowane",
   "pci_workflow_executions_title": "Uruchomienie workflowu '{{ workflowName }}'",
   "pci_workflow_executions_empty": "Nie znaleziono żadnych wykonanych workflowów.",
   "pci_workflow_executions_ececution_date": "Data (UTC)",
@@ -22,5 +23,9 @@
   "pci_workflow_executions_status": "Status",
   "pci_workflow_add": "Utwórz harmonogram",
   "pci_workflow_executions": "Uruchomienia",
-  "pci_workflow_id": "ID"
+  "pci_workflow_id": "ID",
+  "pci_workflow_backup": "Backup",
+  "pci_workflow_backup_local": "Lokalny",
+  "pci_workflow_backup_local_and_distant": "Lokalny, zdalny",
+  "pci_workflow_localisation": "Lokalizacja"
 }
