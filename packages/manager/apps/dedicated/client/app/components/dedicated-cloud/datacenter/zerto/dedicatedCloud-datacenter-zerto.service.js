@@ -15,7 +15,7 @@ import {
 
 const moduleName = 'dedicatedCloudDatacenterZertoService';
 
-class DedicatedCloudDatacenterZertoService {
+export class DedicatedCloudDatacenterZertoService {
   /* @ngInject */
   constructor(
     $http,
@@ -668,7 +668,7 @@ class DedicatedCloudDatacenterZertoService {
       return null;
     }
 
-    const otherZertoInformations = DedicatedCloudDatacenterZertoService.isDeliveredOrDelivering(
+    const otherZertoInformations = DedicatedCloudDatacenterZertoService.getIsDeliveredOrDelivering(
       zerto.state,
     )
       ? DedicatedCloudDatacenterZertoService.formatPlanInformations(
@@ -754,7 +754,7 @@ class DedicatedCloudDatacenterZertoService {
     };
   }
 
-  static isDeliveredOrDelivering(state) {
+  static getIsDeliveredOrDelivering(state) {
     return [
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering,
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered,
@@ -767,6 +767,7 @@ class DedicatedCloudDatacenterZertoService {
     return [
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.toDisable,
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabling,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
     ].includes(zertoState);
   }
 }
