@@ -3,6 +3,7 @@ import { vi } from 'vitest';
 
 import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 
+import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 
 import { WorkflowName } from './WorkflowName.component';
@@ -22,8 +23,8 @@ describe('WorkflowName', () => {
       getFormattedMonthlyCatalogPrice: () => '',
     });
     vi.mocked(useInstanceSnapshotPricing).mockReturnValueOnce({
-      data: { price: 0 },
-      isFetching: true,
+      pricing: { price: 0 },
+      isPending: true,
     } as ReturnType<typeof useInstanceSnapshotPricing>);
   });
 
@@ -31,11 +32,10 @@ describe('WorkflowName', () => {
     const { getByTestId } = render(
       <WorkflowName
         name="foo"
-        region="EU"
+        instanceId={buildInstanceId('instance1', 'region1')}
         step={{ isOpen: true, isChecked: false, isLocked: false }}
         onNameChange={null}
         onSubmit={null}
-        onCancel={null}
       />,
     );
     expect(getByTestId('loading-spinner')).toBeDefined();

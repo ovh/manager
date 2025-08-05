@@ -9,12 +9,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE, ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -25,30 +20,28 @@ import {
 
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
+import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useInstanceSnapshotPricing } from '@/api/hooks/order';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowNameProps {
   name: string;
-  region: string;
+  instanceId: TInstance['id'];
   step: StepState;
   onNameChange: (name: string) => void;
   onSubmit: () => void;
-  onCancel: () => void;
 }
 
 const VALID_NAME_PATTERN = /^[a-zA-Z0-9_.-]+$/;
 
 export function WorkflowName({
   name,
-  region,
+  instanceId,
   step,
   onNameChange,
   onSubmit,
-  onCancel,
 }: Readonly<WorkflowNameProps>) {
-  const { t } = useTranslation('workflow-add');
-  const { t: tCommon } = useTranslation('pci-common');
+  const { t } = useTranslation(['workflow-add', 'pci-common']);
   const { projectId } = useParams();
   const [workflowName, setWorkflowName] = useState(name);
   const [hasError, setHasError] = useState(false);
@@ -57,9 +50,9 @@ export function WorkflowName({
   const { getFormattedCatalogPrice } = useCatalogPrice(3, {
     hideTaxLabel: true,
   });
-  const { data: pricing, isFetching } = useInstanceSnapshotPricing(projectId, region);
+  const { pricing, isPending } = useInstanceSnapshotPricing(projectId, instanceId);
 
-  if (isFetching) {
+  if (isPending) {
     return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="loading-spinner" />;
   }
 
@@ -78,7 +71,7 @@ export function WorkflowName({
           color={ODS_THEME_COLOR_INTENT[hasError ? 'error' : 'text']}
           className="mt-4"
         >
-          {hasError && <span className="block">{tCommon('common_field_error_pattern')}</span>}
+          {hasError && <span className="block">{t('pci-common:common_field_error_pattern')}</span>}
           {t('pci_workflow_create_name_help')}
         </OsdsText>
         <OsdsInput
@@ -127,16 +120,7 @@ export function WorkflowName({
             onClick={() => !hasError && onSubmit()}
             {...(isValid ? {} : { disabled: true })}
           >
-            {t('pci_workflow_create')}
-          </OsdsButton>
-          <OsdsButton
-            className="mt-6 w-fit"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            onClick={onCancel}
-          >
-            {tCommon('common_stepper_cancel_button_label')}
+            {t('pci-common:common_stepper_next_button_label')}
           </OsdsButton>
         </div>
       )}

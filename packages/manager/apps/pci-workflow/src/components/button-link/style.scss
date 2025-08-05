@@ -1,0 +1,40 @@
+@use '@ovhcloud/ods-react/style' as ods;
+
+$sizes: xs, sm, md;
+$colors: ctricila, information, neutral, primary, success, warning;
+
+.button-link {
+  $button: &;
+  @include ods.ods-button();
+  position: relative;
+
+  @each $size in $sizes {
+    &--#{$size} {
+      @include ods.ods-button-size($size);
+    }
+  }
+
+  &--default {
+    @each $color in $colors {
+      &#{$button}--#{$color} {
+        @include ods.ods-button-variant-default($color);
+      }
+    }
+  }
+
+  &--ghost {
+    @each $color in $colors {
+      &#{$button}--#{$color} {
+        @include ods.ods-button-variant-ghost($color);
+      }
+    }
+  }
+
+  &--outline {
+    @each $color in $colors {
+      &#{$button}--#{$color} {
+        @include ods.ods-button-variant-outline($color);
+      }
+    }
+  }
+}

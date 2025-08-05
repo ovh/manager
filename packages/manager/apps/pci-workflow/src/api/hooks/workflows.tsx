@@ -15,6 +15,7 @@ import {
   getRegionsWorkflows,
 } from '@/api/data/region-workflow';
 import { deleteWorkflow } from '@/api/data/workflow';
+import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { paginateResults } from '@/helpers';
 
 export const WORKFLOW_TYPE = 'instance_backup';
@@ -217,38 +218,35 @@ export const useDeleteWorkflow = ({
 };
 
 interface UseAddWorkflowProps {
-  projectId: string;
-  region: string;
-  type: {
-    cron: string;
-    instanceId: string;
-    name: string;
-    rotation: number;
-    maxExecutionCount: number;
-  };
-  onError: (error: Error) => void;
-  onSuccess: () => void;
+  cron: string;
+  instanceId: TInstance['id'];
+  name: string;
+  rotation: number;
+  maxExecutionCount: number;
 }
 
 export const useAddWorkflow = ({
   projectId,
-  region,
-  type,
   onError,
   onSuccess,
-}: UseAddWorkflowProps) => {
+}: {
+  projectId: string;
+  onSuccess: () => void;
+  onError: (error: Error) => void;
+}) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: async () => addWorkflow(projectId, region, type),
+    mutationFn: async ({ instanceId, ...type }: UseAddWorkflowProps) =>
+      addWorkflow(projectId, instanceId.region, { ...type, instanceId: instanceId.id }),
     onError,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries(getWorkflowQueryOptions(projectId, region));
+    onSuccess: async (_res, { instanceId }) => {
+      await queryClient.invalidateQueries(getWorkflowQueryOptions(projectId, instanceId.region));
       onSuccess();
     },
   });
 
   return {
-    addWorkflow: () => mutation.mutate(),
+    addWorkflow: mutation.mutate,
     ...mutation,
   };
 };
