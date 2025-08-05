@@ -60,13 +60,13 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
     }, [] as BreadcrumbItem[]);
 
     if (
-      window.location.hash.match(/^#\/?managed-wordpress\/[^/]+/) &&
+      window.location.hash.match(/^#\/?managed-hosting-for-wordpress\/[^/]+/) &&
       !crumbs.some((c) => c.label === t('managed_wordpress'))
     ) {
       crumbs = [
         {
           label: t('managed_wordpress'),
-          href: '#/managed-wordpress',
+          href: '#/managed-hosting-for-wordpress',
         },
         ...crumbs,
       ];

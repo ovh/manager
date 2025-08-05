@@ -14,8 +14,8 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 
-import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
-import { ManagedWordpressWebsiteDetailsType } from '@/data/type';
+import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
+import { ManagedWordpressWebsites } from '@/data/type';
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { useGenerateUrl } from '@/hooks';
 
@@ -35,8 +35,8 @@ export default function MyWebsitesPage() {
     NAMESPACES.STATUS,
   ]);
   const { serviceName } = useParams();
-  const { data } = useManagedWordpressWebsiteDetails(serviceName);
-  const columns: DatagridColumn<ManagedWordpressWebsiteDetailsType>[] = useMemo(
+  const { data } = useManagedWordpressWebsites(serviceName);
+  const columns: DatagridColumn<ManagedWordpressWebsites>[] = useMemo(
     () => [
       {
         id: 'defaultFQDN',
@@ -75,7 +75,7 @@ export default function MyWebsitesPage() {
               ]}
               isCompact
               variant={ODS_BUTTON_VARIANT.ghost}
-              id={item.websiteId}
+              id={item.id}
             />
           );
         },
