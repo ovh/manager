@@ -10,11 +10,3 @@ export const urls = {
   creating: 'creating/:orderId/:voucherCode',
   remove: 'remove',
 } as const;
-
-// Route IDs for React Router
-export const ROUTE_IDS = {
-  PROJECT: 'projectRoute',
-} as const;
-
-// Route data types
-export type ProjectRouteData = { projectId: string };

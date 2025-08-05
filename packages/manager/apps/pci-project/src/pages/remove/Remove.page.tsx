@@ -24,7 +24,7 @@ import {
 } from '@/data/hooks/useProjects';
 import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
-import { useProjectIdFromRoute } from '@/hooks/useProjectIdFromRoute';
+import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 
 export default function RemovePage() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -34,7 +34,7 @@ export default function RemovePage() {
   const [searchParams] = useSearchParams();
   const goBack = () => navigate('..');
 
-  const projectId = useProjectIdFromRoute();
+  const projectId = useProjectIdFromParams();
   const serviceId = searchParams.get('serviceId') || '';
 
   const { addSuccess, addError } = useNotifications();

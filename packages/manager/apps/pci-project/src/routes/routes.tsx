@@ -2,9 +2,8 @@ import { lazy } from 'react';
 import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
-import { urls, ROUTE_IDS } from '@/routes/routes.constant';
+import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
-import { projectIdLoader } from '@/routes/loader/projectIdLoader';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
@@ -58,12 +57,7 @@ export default (
         },
       }}
     />
-    <Route
-      path={urls.project}
-      Component={MainPage}
-      id={ROUTE_IDS.PROJECT}
-      loader={projectIdLoader}
-    >
+    <Route path={urls.project} Component={MainPage}>
       <Route
         path={urls.home}
         Component={HomePage}
