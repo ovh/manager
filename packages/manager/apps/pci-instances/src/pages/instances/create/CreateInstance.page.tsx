@@ -37,7 +37,7 @@ const CreateInstance: FC = () => {
             </Text>
           </section>
         </section>
-        <aside className="min-w-[321px]">
+        <aside className="min-w-[320px] w-full max-w-[640px]">
           <Cart />
         </aside>
       </div>
