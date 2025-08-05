@@ -1402,5 +1402,8 @@
   "hosting_tab_STATISTICS_type_allowed": "Zulässige Anfragen",
   "hosting_tab_STATISTICS_type_denied": "Abgelehnte Anfragen",
   "hosting_tab_SSL": "SSL-Zertifikate",
-  "hosting_tab_FTP_configuration_explorer_info": "Der Zugriff über den Web-FTP-Client (Net2FTP) ist nicht mehr verfügbar. Bitte verwenden Sie einen FTP-Client wie <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> und <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>, um sich mit Ihrem Hosting zu verbinden."
+  "hosting_tab_FTP_configuration_explorer_info": "Der Zugriff über den Web-FTP-Client (Net2FTP) ist nicht mehr verfügbar. Bitte verwenden Sie einen FTP-Client wie <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  und<a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  , um sich mit Ihrem Hosting zu verbinden.",
+  "hosting_dashboard_service_cluster": "Cluster",
+  "hosting_dashboard_service_cluster_helper": "Die Kennung Ihres Clusters kann geändert werden",
+  "hosting_dashboard_service_filer_helper": "Die Kennung Ihres Filers kann geändert werden"
 }

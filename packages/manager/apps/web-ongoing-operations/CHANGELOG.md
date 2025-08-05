@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.1...@ovh-ux/manager-web-ongoing-operations-app@1.10.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** remove unused translation initialisation ([8c2397b](https://github.com/ovh/manager/commit/8c2397b4e3200230f3bfff036e5754986fc93d44)), closes [#MANAGER-19241](https://github.com/ovh/manager/issues/MANAGER-19241)
+
+
+
+
+
 ## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.0...@ovh-ux/manager-web-ongoing-operations-app@1.10.1) (2025-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

@@ -146,7 +146,16 @@
                         </oui-tile-description>
                     </oui-tile-definition>
                     <oui-tile-definition
+                        data-term="{{ ::'hosting_dashboard_service_cluster' | translate }}"
+                        data-term-popover="{{ :: 'hosting_dashboard_service_cluster_helper' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span data-ng-bind="::hosting.cluster"></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_service_filer' | translate }}"
+                        data-term-popover="{{ :: 'hosting_dashboard_service_filer_helper' | translate }}"
                         data-ng-if="!hosting.isCloudWeb"
                     >
                         <oui-tile-description>
