@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.2...@ovh-ux/manager-web@19.22.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **web.hosting:** add cluster info in general information ([51a63ef](https://github.com/ovh/manager/commit/51a63ef20dc856a2e9f4fd61ff3ceb3dacba6e1c)), closes [#MANAGER-17914](https://github.com/ovh/manager/issues/MANAGER-17914)
+
+
+
+
+
 ## [19.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.1...@ovh-ux/manager-web@19.22.2) (2025-08-01)
 
 
