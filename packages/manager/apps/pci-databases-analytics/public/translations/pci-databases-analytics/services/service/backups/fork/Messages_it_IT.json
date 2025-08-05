@@ -36,13 +36,13 @@
   "errorSourcePITFieldInvalidDate": "La data scelta non è valida",
   "errorSourceBackupFieldEmpty": "Scegli un backup",
   "breadcrumb": "Fork",
-  "orderSectionTitleService": "Servizi",
-  "orderSectionDescriptionService": "Selezionare il tipo e la versione del servizio di database che si desidera creare.",
-  "orderSectionTitleSource": "Fonte",
+  "orderSectionTitleService": "Servizio",
+  "orderSectionDescriptionService": "Selezionare il tipo di servizio di database che si desidera creare e la versione.",
+  "orderSectionTitleSource": "Source",
   "orderSectionTitleRegion": "Datacenter",
   "orderSectionTitlePlan": "Piano",
   "orderSectionTitleFlavor": "Istanza",
   "orderSectionTitleStorage": "Storage",
   "orderSectionTitleOptions": "Opzioni",
-  "fieldNameLabel": "Nome"
+  "fieldNameLabel": "Cognome"
 }

@@ -117,5 +117,5 @@
   "service_state_suspended": "Suspendido",
   "service_state_error": "Error",
   "service_state_ready": "Activo",
-  "service_state_updating": "Actualización"
+  "service_state_updating": "Actualizada"
 }

@@ -1,13 +1,13 @@
 {
   "title": "sap-features-hub",
   "description": "Descubra os serviços de armazenamento geridos que se baseiam no sistema de ficheiros OpenZFS. Usufrua de espaços de armazenamento centralizados em apenas alguns cliques para armazenar ou salvaguardar os seus dados e ficheiros.",
-  "orderButtonLabel": "Encomendar uma sap-features-hub",
-  "moreInfoButtonLabel": "Saber mais sobre o SAP-features-hub",
+  "orderButtonLabel": "Encomendar um sap-features-hub",
+  "moreInfoButtonLabel": "Saber mais sobre o sap-features-hub",
   "guideCategory": "Tutorial",
-  "guide1Title": "Primeiros passos com um sap-features-hub",
+  "guide1Title": "Introdução ao sap-features-hub",
   "guide1Description": "Saiba como gerir um NAS-HA a partir da Área de Cliente OVHcloud",
-  "guide2Title": "Montar o seu NAS através de um NFS",
+  "guide2Title": "Montar um NAS através de NFS",
   "guide2Description": "Saiba como montar um NAS através de NFS",
-  "guide3Title": "Montar o seu NAS no Windows Server através do CIFS",
+  "guide3Title": "Configure o seu NAS-HA no Windows Server através do CIFS",
   "guide3Description": "Saiba como montar um NAS no Windows Server através do protocolo CIFS"
 }

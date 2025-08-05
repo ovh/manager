@@ -13,7 +13,7 @@
   "dashboard_installation_progress_step_sap_install": "Instalação do sistema SAP e configuração das opções pedidas",
   "dashboard_installation_progress_step_clean_resources": "Eliminação dos recursos temporários na sua infraestrutura",
   "dashboard_installation_progress_step_success": "Etapa concluída com êxito",
-  "dashboard_installation_progress_step_failure": "Etapa com falha",
+  "dashboard_installation_progress_step_failure": "Etapa mal-sucedida",
   "dashboard_installation_progress_step_pending": "Etapa em curso de execução",
   "dashboard_installation_progress_step_waiting": "Etapa em espera",
   "dashboard_installation_progress_status_label": "Estado da instalação",

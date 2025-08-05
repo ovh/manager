@@ -22,7 +22,7 @@
   "numberOfConfiguredIps_zero": "{{count}} IP configurati",
   "numberOfConfiguredIps_one": "{{count}} IP configurato",
   "numberOfConfiguredIps_other": "{{count}} IP configurati",
-  "ipAddButtonLabel": "Aggiungi",
+  "ipAddButtonLabel": "Aggiungere",
   "ipTableHeaderIp": "Indirizzo IP",
   "ipTableHeaderDescription": "Descrizione",
   "commonlyUsedIps": "Indirizzi IP comunemente utilizzati",

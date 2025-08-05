@@ -54,7 +54,7 @@
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region-3-az": "Regiones 3-AZ",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_region": "Regiones",
   "pci_projects_project_storages_containers_add_deployment_mode_flipping_localzone": "Local Zones",
-  "pci_projects_project_storages_containers_add_replication_rules_info": "¡Enhorabuena, su contenedor está listo para su uso! Si su uso requiere la replicación multisitio de sus datos para una mayor resiliencia y disponibilidad, considere la posibilidad de utilizar nuestra replicación asíncrona en una o varias regiones.",
+  "pci_projects_project_storages_containers_add_replication_rules_info": "¡Enhorabuena! Ya puede empezar a utilizar su contenedor. Si necesita una replicación multisitio de los datos para una mayor resiliencia y disponibilidad, puede utilizar nuestra replicación asíncrona en una o varias regiones (disponible por API).",
   "pci_projects_project_storages_containers_add_replication_rules_info_link": "Para saber más y empezar",
   "pci_projects_project_storages_containers_disclaimer": "*S3 es una marca registrada propiedad de Amazon Technologies, Inc. Los servicios de OVHcloud no están patrocinados, aprobados ni afiliados de ninguna manera.",
   "pci_projects_project_storages_containers_project_banner_message": "Para acceder a las siguientes etapas",
