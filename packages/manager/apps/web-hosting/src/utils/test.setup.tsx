@@ -4,7 +4,8 @@ import {
   attachedDomainDigStatusMock,
   managedWordpressResourceMock,
   websitesMocks,
-  managedCmsResourceWebsiteMock,
+  managedWordpressWebsitesMock,
+  managedWordpressWebsitesDetailsMock,
 } from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -102,6 +103,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
     useMatches: vi.fn(() => []),
     useHref: vi.fn((url) => url),
+    useParams: vi.fn(() => []),
   };
 });
 
@@ -120,8 +122,11 @@ vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResource: vi.fn(() =>
     Promise.resolve(managedWordpressResourceMock),
   ),
+  getManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesMock),
+  ),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
-    Promise.resolve(managedCmsResourceWebsiteMock),
+    Promise.resolve(managedWordpressWebsitesDetailsMock),
   ),
 }));
 afterEach(() => {
