@@ -1,4 +1,5 @@
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
+import { Status } from '@/types/ssl';
 
 export enum ResourceStatus {
   CREATING = 'CREATING',
@@ -72,8 +73,8 @@ export type WebsiteType = {
     };
     git?: {
       status?: GitStatus;
-      vcsBranch?: string | null;
-      vcsUrl?: string | null;
+      vcsBranch?: string;
+      vcsUrl?: string;
     };
     ssl?: {
       status: ServiceStatus;
@@ -82,14 +83,14 @@ export type WebsiteType = {
       serviceName?: string;
       displayName?: string;
       offer?: string;
-      boostOffer?: string | null;
+      boostOffer?: string;
     };
-    ownLog?: string | null;
+    ownLog?: string;
   };
   currentTasks?: {
     id?: string;
     link?: string;
-    status?: TaskStatus | null;
+    status?: TaskStatus;
     type?: TaskType;
   }[];
 };
@@ -145,32 +146,39 @@ export enum ManagedWordpressCmsType {
   WORD_PRESS = 'WORD_PRESS',
 }
 
-export enum ManagedWordpressPhpVersion {
-  v7_4 = '7.4',
-  v8_1 = '8.1',
-  v8_2 = '8.2',
-  v8_3 = '8.3',
-  v8_4 = '8.4',
-}
+export type PostImportPayload = {
+  adminLogin: string;
+  adminPassword: string;
+  adminURL?: string;
+  cms: 'WORD_PRESS';
+  cmsSpecific?: {
+    wordPress?: {
+      language?: string;
+      url?: string;
+    };
+  };
+};
+export type PostImportTaskPayload = {
+  'import.cmsSpecific.wordPress.selection': {
+    plugins: { name: string; version: string; enabled: boolean }[];
+    themes: { name: string; version: string; active: boolean }[];
+    wholeDatabase: boolean;
+    media: boolean;
+    posts: boolean;
+    pages: boolean;
+    comments: boolean;
+    tags: boolean;
+    users: boolean;
+  };
+};
 
-export enum ManagedWordpressLanguage {
-  de_DE = 'de_DE',
-  en_GB = 'en_GB',
-  en_US = 'en_US',
-  es_ES = 'es_ES',
-  fr_CA = 'fr_CA',
-  fr_FR = 'fr_FR',
-  it_IT = 'it_IT',
-  pl_PL = 'pl_PL',
-  pt_PT = 'pt_PT',
-}
-
-export type ManagedWordpressWebsiteDetailsType = {
+export type ManagedWordpressWebsiteDetails = {
+  id: string;
   checksum: string;
   currentState: {
-    cms: ManagedWordpressCmsType | null;
+    cms: ManagedWordpressCmsType;
     createdAt: string;
-    defaultFQDN: string | null;
+    defaultFQDN: string;
     diskUsageBytes: number;
     import: {
       checkResult: {
@@ -186,39 +194,36 @@ export type ManagedWordpressWebsiteDetailsType = {
               name: string;
               version: string;
             }[];
-          } | null;
-        } | null;
-      } | null;
-    } | null;
-    phpVersion: ManagedWordpressPhpVersion | null;
+          };
+        };
+      };
+    };
+    phpVersion: string;
     serviceId: string;
   };
   currentTasks: {
     id: string;
     link: string;
-    status: TaskStatus | null;
+    status: Status;
     type: string;
   }[];
-  iam: {
-    displayName: string | null;
-    id: string;
-    tags: Record<string, string> | null;
-    urn: string;
-  } | null;
   resourceStatus: ResourceStatus;
-  targetSpec: {
+  targetSpec?: {
     creation?: {
       adminLogin: string;
       cms: ManagedWordpressCmsType;
+      adminPassword?: string;
       cmsSpecific?: {
         wordPress?: {
-          language: ManagedWordpressLanguage | null;
-        } | null;
-      } | null;
-      phpVersion: ManagedWordpressPhpVersion | null;
-    } | null;
+          language?: string;
+          url?: string;
+        };
+      };
+      phpVersion?: string;
+    };
     import?: {
       adminLogin: string;
+      adminPassword?: string;
       adminURL: string;
       cms: ManagedWordpressCmsType;
       cmsSpecific?: {
@@ -241,12 +246,97 @@ export type ManagedWordpressWebsiteDetailsType = {
             }[];
             users?: boolean;
             wholeDatabase: boolean;
-          } | null;
-        } | null;
-      } | null;
-    } | null;
-  } | null;
-  websiteId: string;
+          };
+        };
+      };
+    };
+  };
+};
+export type ManagedWordpressWebsites = {
+  id: string;
+  checksum: string;
+  currentState: {
+    cms?: ManagedWordpressCmsType;
+    createdAt: string;
+    defaultFQDN?: string;
+    diskUsageBytes: number;
+    import: {
+      checkResult: {
+        cmsSpecific: {
+          wordPress: {
+            plugins: {
+              enabled: boolean;
+              name: string;
+              version: string;
+            }[];
+            themes: {
+              active: boolean;
+              name: string;
+              version: string;
+            }[];
+          };
+        };
+      };
+    };
+    phpVersion: string;
+    id: string;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: TaskStatus;
+    type: string;
+  }[];
+  iam: {
+    displayName?: string;
+    id: string;
+    tags?: Record<string, string>;
+    urn: string;
+  };
+  resourceStatus: ResourceStatus;
+  targetSpec?: {
+    creation?: {
+      adminLogin: string;
+      cms: ManagedWordpressCmsType;
+      adminPassword?: string;
+      cmsSpecific?: {
+        wordPress?: {
+          language?: string;
+          url?: string;
+        };
+      };
+      phpVersion?: string;
+    };
+    import?: {
+      adminLogin: string;
+      adminPassword?: string;
+      adminURL: string;
+      cms: ManagedWordpressCmsType;
+      cmsSpecific?: {
+        wordPress?: {
+          selection?: {
+            comments?: boolean;
+            media?: boolean;
+            pages?: boolean;
+            plugins?: {
+              enabled: boolean;
+              name: string;
+              version: string;
+            }[];
+            posts?: boolean;
+            tags?: boolean;
+            themes?: {
+              active: boolean;
+              name: string;
+              version: string;
+            }[];
+            users?: boolean;
+            wholeDatabase: boolean;
+          };
+        };
+      };
+    };
+  };
 };
 export enum HostingState {
   ACTIVE = 'active',

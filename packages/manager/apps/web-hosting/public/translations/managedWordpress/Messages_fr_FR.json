@@ -1,0 +1,16 @@
+{
+  "web_hosting_managed_wordpress_import_select_element": "Sélectionner les éléments à importer",
+  "web_hosting_managed_wordpress_import_select_element_description": "Configurez votre import en choisissant les plugins, thèmes et bases de données nécessaires.",
+  "web_hosting_managed_wordpress_import_select_plugins_description": "Sélectionnez les plugins à importer",
+  "web_hosting_managed_wordpress_import_select_themes_description": "Sélectionez au moins un thème",
+  "web_hosting_managed_wordpress_import_select_medias_description": "Sélectionnez les médias à importer",
+  "web_hosting_managed_wordpress_import_select_database_description": "Choisissez les bases de données à importer",
+  "web_hosting_managed_wordpress_import_select_wholedatabase_select": "Toute la base de données",
+  "web_hosting_managed_wordpress_import_select_wholedatabase_description": "Inclut toutes les catégories ci-dessous + les données spécifiques aux plugins.",
+  "web_hosting_managed_wordpress_import_select_database_category_select": "Je choisis les catégories à importer",
+  "web_hosting_managed_wordpress_import_select_database_category_description": "Choix parmi les catégories ci-dessous.",
+  "web_hosting_managed_wordpress_import_select_category_description": "Sélectionnez les catégories à importer:",
+  "web_hosting_managed_wordpress_import_warning_message_part_1": "Les modifications effectuées sur le site source aprés la migration ne seront pas transférées vers le site de destination.",
+  "web_hosting_managed_wordpress_import_warning_message_part_2": "Veuillez activer le mode maintenance sur les sites e-commerce ou prendre les mesures nécessaires pour éviter toute divergence.",
+  "web_hosting_managed_wordpress_import_success_message": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches."
+}
