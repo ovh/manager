@@ -1,6 +1,13 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, all code will be move in @ovh-ux/manager-module-common-api' or already moved
+ */
 import { CurrencyCode } from '../../../enumTypes';
 import { ServiceDetails } from '../services.type';
 
+/**
+ * @deprecated The constant is deprecated and will be removed in MRC V3.
+ */
 export const servicesMockErrors = {
   delete: 'Delete services error',
   update: 'Update services error',
@@ -8,6 +15,9 @@ export const servicesMockErrors = {
   getDetails: 'Get services details error',
 };
 
+/**
+ * @deprecated The constant is deprecated and will be removed in MRC V3.
+ */
 export const defaultServiceResponse: ServiceDetails = {
   route: {
     path: '/api/path/{id}',
