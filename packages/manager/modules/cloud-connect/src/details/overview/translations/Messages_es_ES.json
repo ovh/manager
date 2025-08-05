@@ -131,5 +131,7 @@
   "cloud_connect_old_48_h_status": "Este estado tiene más de 48 horas y puede que no esté actualizado.",
   "cloud_connect_pop_add_button": "Configurar el puerto",
   "cloud_connect_dc_status": "Estado de la configuración",
-  "cloud_connect_dc_config_title": "Configuración {{dcName}}"
+  "cloud_connect_dc_config_title": "Configuración {{dcName}}",
+  "cloud_connect_subscriptions": "Suscripciones",
+  "cloud_connect_migrate_offer": "Migrar mi plan"
 }
