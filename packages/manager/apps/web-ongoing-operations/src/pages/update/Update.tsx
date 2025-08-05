@@ -6,8 +6,7 @@ import {
 import React, { useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
@@ -25,7 +24,7 @@ import UpdateContentComponent from '@/components/Update/UpdateContent.component'
 import UpdateActions from '@/components/Update/Content/UpdateActions.component';
 import { TFiles } from '@/types';
 import { urls } from '@/routes/routes.constant';
-import { domainDnsUpdate } from '@/constants';
+import { DomainOperationsEnum } from '@/constants';
 import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.component';
 
 export default function Update() {
@@ -236,7 +235,7 @@ export default function Update() {
           </OdsText>
         </div>
 
-        {domain.function === domainDnsUpdate && (
+        {domain.function === DomainOperationsEnum.DomainDnsUpdate && (
           <div className="flex flex-col gap-y-4">
             <ActionMeDnsComponent domainName={domain.domain} />
           </div>

@@ -4,6 +4,7 @@ import {
   OdsRadio,
   OdsText,
   OdsFormField,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { useCallback } from 'react';
 import { TTagMap } from './ReplicationRuleTag.component';
@@ -81,13 +82,6 @@ export function ReplicationRuleApplication({
               </OdsText>
             </label>
           </div>
-          {isReplicationApplicationLimited && (
-            <OdsText slot="helper" preset="caption" className="ml-8">
-              {t(
-                'containers/replication/add:pci_projects_project_storages_containers_replication_add_application_limited_helper_text',
-              )}
-            </OdsText>
-          )}
         </div>
 
         <div className="flex items-center gap-4">
@@ -109,6 +103,19 @@ export function ReplicationRuleApplication({
           </label>
         </div>
       </div>
+
+      {isReplicationApplicationLimited && (
+        <OdsMessage
+          color="information"
+          className="mt-6"
+          isDismissible={false}
+          variant="default"
+        >
+          {t(
+            'containers/replication/add:pci_projects_project_storages_containers_replication_add_application_limited_helper_text',
+          )}
+        </OdsMessage>
+      )}
     </OdsFormField>
   );
 }

@@ -59,7 +59,9 @@
   "addReplicationConfirm": "Crea un flusso di replica",
   "editReplicationConfirm": "Aggiorna il flusso di replica",
   "deleteReplicationTitle": "Elimina il flusso di replica",
-  "deleteReplicationDescription": "Eliminare questo flusso di replica?",
   "deleteReplicationButtonCancel": "Annullare",
-  "deleteReplicationButtonConfirm": "Eliminare"
+  "deleteReplicationButtonConfirm": "Eliminare",
+  "deleteReplicationDescription": "Vuoi davvero eliminare questo flusso di replica?",
+  "deleteReplicationToastErrorTitle": "Si è verificato un errore durante l'eliminazione del flusso di replica",
+  "deleteReplicationToastSuccessDescription": "Il flusso di replica è stato eliminato correttamente"
 }

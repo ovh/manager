@@ -47,6 +47,7 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
         platformId,
         searchParams: urlSearchParams,
         pageParam,
+        disableCache: !!options.refetchInterval,
         ...(allPages ? { pageSize: APIV2_MAX_PAGESIZE } : {}),
       }),
     enabled: (q) =>

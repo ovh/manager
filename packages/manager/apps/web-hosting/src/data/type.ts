@@ -59,6 +59,7 @@ export type WebsiteType = {
   id: string;
   checksum?: string;
   currentState?: {
+    isDefault?: boolean;
     resourceStatus: ResourceStatus;
     fqdn?: string;
     path?: string;

@@ -50,6 +50,8 @@ import { useGetCommand } from '@/data/hooks/ai/job/useGetCommand.hook';
 import { getJobSpec } from '@/lib/orderFunnelHelper';
 import JobImagesSelect from '@/components/order/job-image/JobImageSelect.component';
 import DockerCommand from '@/components/order/docker-command/DockerCommand.component';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
 
 interface OrderJobsFunnelProps {
   regions: ai.capabilities.Region[];
@@ -76,12 +78,21 @@ const OrderFunnel = ({
   const accordionContentRef = useRef(null);
   const cliEquivalentModale = useModale('cli');
   const navigate = useNavigate();
-
+  const trackBanner = useTrackBanner();
+  const track = useTrackAction();
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>({ command: '' });
 
   const { addJob, isPending: isPendingAddJob } = useAddJob({
     onError: (err) => {
+      trackBanner(
+        TRACKING.training.banner.errorBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+        ),
+        'banner',
+      );
       toast({
         title: t('errorCreatingJob'),
         variant: 'destructive',
@@ -89,6 +100,14 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (job) => {
+      trackBanner(
+        TRACKING.training.banner.successBannerInfo(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+        ),
+        'banner',
+      );
       toast({
         title: t('successCreatingJobTitle'),
         description: t('successCreatingJobDescription'),
@@ -118,6 +137,15 @@ const OrderFunnel = ({
   const onSubmit = model.form.handleSubmit(
     () => {
       const jobInfos: ai.job.JobSpecInput = getJobSpec(model.result);
+
+      track(
+        TRACKING.training.funnel.createTrainingConfirmClick(
+          model.result.region.id,
+          model.result.flavor.type,
+          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+        ),
+        'funnel',
+      );
       addJob(jobInfos);
     },
     (error) => {
@@ -361,6 +389,10 @@ const OrderFunnel = ({
                     mode="ghost"
                     className="w-full flex flex-row items-center justify-between font-semibold text-xl"
                     onClick={() => {
+                      track(
+                        TRACKING.training.funnel.advancedConfigurationClick(),
+                        'funnel',
+                      );
                       setShowAdvancedConfiguration((prevValue) => !prevValue);
                     }}
                   >

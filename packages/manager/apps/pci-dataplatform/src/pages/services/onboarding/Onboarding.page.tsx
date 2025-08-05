@@ -7,6 +7,7 @@ import OnboardingTile from './_components/OnboardingTile.component';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
 import { PlanCode } from '@/types/cloud/Project';
 import OvhLink from '@/components/links/OvhLink.component';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('dataplatform/services');
@@ -21,7 +22,7 @@ const Onboarding = () => {
       data-testid="onboarding-container-test"
       className="flex flex-col items-center gap-4"
     >
-      {isProjectDiscoveryMode && (
+      {isProjectDiscoveryMode ? (
         <Alert variant="warning">
           <AlertDescription className="text-base">
             <div
@@ -45,6 +46,10 @@ const Onboarding = () => {
             </div>
           </AlertDescription>
         </Alert>
+      ) : (
+        <div className="w-full flex flex-row justify-end">
+          <RoadmapChangelog />
+        </div>
       )}
       <img
         src={onboardingImgSrc}
@@ -76,6 +81,7 @@ const Onboarding = () => {
         </a>
       </Button>
       <h3 className="mt-8">{t('card_section_title')}</h3>
+
       <div className="flex flex-col md:grid md:grid-cols-3 gap-2">
         <OnboardingTile
           title={t('card_top_guide')}
