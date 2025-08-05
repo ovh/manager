@@ -9,7 +9,6 @@
   "dedicatedCloud_dashboard_update_software_VCSA": "vCSA",
   "dedicatedCloud_dashboard_update_description": "Questa operazione comporterà la mancata disponibilità dell'accesso alla gestione della piattaforma vSphere per circa due ore.",
   "dedicatedCloud_dashboard_update_info": "La data di aggiornamento verrà comunicata via email. È possibile modificarla in qualsiasi momento, prima della sua scadenza.",
-  "dedicatedCloud_dashboard_update_insufficient_rights": "Non disponi dei diritti necessari per effettuare questa operazione.",
   "dedicatedCloud_dashboard_update_cancel": "Annulla",
   "dedicatedCloud_dashboard_update_confirm": "Pianifica l'aggiornamento",
   "dedicatedCloud_dashboard_update_error": "Si è verificato un errore durante il tentativo di pianificazione dell'aggiornamento di vSphere: {{ message }}",
