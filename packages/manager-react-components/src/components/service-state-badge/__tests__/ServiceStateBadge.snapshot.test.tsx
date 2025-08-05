@@ -1,7 +1,7 @@
 import React from 'react';
 import { vitest } from 'vitest';
 import { render } from '@testing-library/react';
-import { ResourceStatus } from '../../../hooks';
+import { ResourceStatus } from '../ServiceStateBadge.props';
 import { ServiceStateBadge } from '../ServiceStateBadge.component';
 import { SERVICE_STATES } from './ServiceStateBadge.spec.util';
 
