@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.14.1...@ovh-ux/manager-pci-object-storage-app@0.15.0) (2025-08-05)
+
+
+### Features
+
+* **pci-object-storage:** replace helper with banner ([decafd9](https://github.com/ovh/manager/commit/decafd97ba3adeee3701b3a2c99e49a0a87d8d82)), closes [#TAPC-4659](https://github.com/ovh/manager/issues/TAPC-4659)
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.14.0...@ovh-ux/manager-pci-object-storage-app@0.14.1) (2025-08-01)
 
 
