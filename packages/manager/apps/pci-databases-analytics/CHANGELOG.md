@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.25.0...@ovh-ux/manager-pci-databases-analytics-app@1.25.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.24.1...@ovh-ux/manager-pci-databases-analytics-app@1.25.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* **pci-db-analytics:** fixing translation minor issues in kafka ([3b16b84](https://github.com/ovh/manager/commit/3b16b84bc7a1dc219061fb6b655f11d8f7cbc576)), closes [#DATATR-2408](https://github.com/ovh/manager/issues/DATATR-2408) [#DATATR-2409](https://github.com/ovh/manager/issues/DATATR-2409)
+
+
+### Features
+
+* **pci-databases-analytics:** add eos information on engine card ([6a3c4c0](https://github.com/ovh/manager/commit/6a3c4c0ca51557a2f9986903f4732cf240645c99)), closes [#DATATR-2380](https://github.com/ovh/manager/issues/DATATR-2380)
+
+
+
+
+
 ## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.24.0...@ovh-ux/manager-pci-databases-analytics-app@1.24.1) (2025-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

@@ -26,5 +26,10 @@
   "vps_dashboard_auto_migration_warning_part_1_with_date": "Votre vps {{vps}} sera migré automatiquement à la date du {{date}}.",
   "vps_dashboard_auto_migration_warning_part_2": "Pour plus d'informations sur la migration veuillez consulter cette page web :",
   "vps_dashboard_migration_banner_link": "Migrer à tout moment en cliquant ici",
-  "vps_dashboard_service_locked": "Votre produit a été bloqué pour non-respect de nos CGU ; pour le débloquer, contactez le support."
+  "vps_dashboard_service_locked": "Votre produit a été bloqué pour non-respect de nos CGU ; pour le débloquer, contactez le support.",
+  "vps_dashboard_migration_2020_info_queue_part_1": "Victime de notre succès ! Vous êtes actuellement à la position {{ position }} dans la file d'attente pour le surclassement de vos ressources.",
+  "vps_dashboard_migration_2020_info_queue_part_2": "Nous vous notifierons par e-mail dès qu'une date sera planifiée pour l'opération. Merci pour votre patience et votre confiance.",
+  "vps_dashboard_migration_2020_info_with_date_part_1": "Le surclassement de votre VPS {{ vpsName }} sera réalisé le {{ date | date:'fullDate' }} à {{ time | date:'HH:mm:ss' }}.",
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Pour l'activer dès maintenant, <a href=\"{{url}}\">cliquez ici</a>.",
+  "vps_dashboard_migration_2020_info_ongoing": "Votre demande d'augmentation de ressources a bien été prise en compte ; votre VPS sera mis à jour dans environ 15 minutes."
 }

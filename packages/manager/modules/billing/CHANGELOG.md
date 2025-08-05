@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.2...@ovh-ux/manager-billing@0.47.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **billing:** implementation outperform banner for vps ([81a9274](https://github.com/ovh/manager/commit/81a9274b5e26adf91d810459af30bd1cc86ee094)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+
+
+
+
+
+## [0.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.1...@ovh-ux/manager-billing@0.47.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
 ## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.0...@ovh-ux/manager-billing@0.47.1) (2025-07-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.0...@ovh-ux/manager-pci-billing-app@0.10.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.4...@ovh-ux/manager-pci-billing-app@0.10.0) (2025-08-05)
+
+
+### Features
+
+* **billing:** add savings plan billing info ([#18305](https://github.com/ovh/manager/issues/18305)) ([4528d31](https://github.com/ovh/manager/commit/4528d31374a64a617bc43234dbc92aab51765475)), closes [#TAPC-4106](https://github.com/ovh/manager/issues/TAPC-4106)
+
+
+
+
+
 ## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.9.3...@ovh-ux/manager-pci-billing-app@0.9.4) (2025-08-01)
 
 

@@ -13,5 +13,8 @@
   "vps_terminate_activate_delete_at_expiration_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęte.",
   "vps_terminate_activate_delete_at_expiration_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
   "vps_terminate_deactivate_delete_at_expiration_success": "Dyspozycja rezygnacji z usługi w dniu jej wygaśnięcia została zawieszona.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania dyspozycji rezygnacji z usługi w dniu jej wygaśnięcia:"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Wystąpił błąd podczas anulowania dyspozycji rezygnacji z usługi w dniu jej wygaśnięcia:",
+  "vps_terminate_outperform_availability_banner_title": "Chcesz wiedzieć więcej?",
+  "vps_terminate_outperform_availability_banner_info": "Możesz skorzystać z przydziału większej ilości zasobów w tej samej cenie. Będziesz mieć większą wydajność i nie będziesz musiał zmieniać instalacji.",
+  "vps_terminate_outperform_availability_banner_button": "Zachowaj moją usługę i pobierz wyższą pozycję za darmo"
 }

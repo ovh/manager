@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.7...@ovh-ux/manager-pci-private-registry-app@0.9.8) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.6...@ovh-ux/manager-pci-private-registry-app@0.9.7) (2025-08-05)
+
+
+### Bug Fixes
+
+* **pci-private-registry:** add conversion rate per month to plan ([3b74e13](https://github.com/ovh/manager/commit/3b74e1325aacf1a4ffa271d2f3b13bf0ed136ed8)), closes [#TAPC-2065](https://github.com/ovh/manager/issues/TAPC-2065)
+
+
+
+
+
 ## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.5...@ovh-ux/manager-pci-private-registry-app@0.9.6) (2025-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
