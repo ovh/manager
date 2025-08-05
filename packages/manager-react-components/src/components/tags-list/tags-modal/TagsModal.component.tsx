@@ -14,7 +14,7 @@ import {
   MODAL_COLOR,
   ModalContent,
 } from '@ovhcloud/ods-react';
-import { Modal } from '../../Modal';
+import { Modal } from '../../modal';
 import './translations';
 import { TagsStack } from '../tags-stack/TagsStack.component';
 import { TagsModalProps } from './TagsModal.props';
