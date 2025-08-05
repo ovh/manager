@@ -15,12 +15,12 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ ($state) => () =>
           $state.go('dedicated_cloud_zerto.dashboard.nodes.all'),
         handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) => {
-          Alerter.success(message, 'managedBaremetal_dashboard_alert');
           goBack();
+          Alerter.success(message, 'managedBaremetal_dashboard_alert');
         },
         handleError: /* @ngInject */ (Alerter, goBack) => (message) => {
-          Alerter.error(message, 'managedBaremetal_dashboard_alert');
           goBack();
+          Alerter.error(message, 'managedBaremetal_dashboard_alert');
         },
         deleteSite: /* @ngInject */ (
           managedBaremetalZerto,

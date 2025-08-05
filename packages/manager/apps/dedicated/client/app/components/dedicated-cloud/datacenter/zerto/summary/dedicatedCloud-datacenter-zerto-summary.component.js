@@ -11,6 +11,6 @@ export default {
     site: '<',
   },
   controller,
-  name: 'dedicatedCloudDatacenterZertoSummarySite',
+  name: 'dedicatedCloudDatacenterZertoSummary',
   template,
 };

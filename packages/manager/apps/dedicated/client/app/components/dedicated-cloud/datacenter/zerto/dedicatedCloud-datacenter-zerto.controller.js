@@ -1,3 +1,4 @@
+import { DedicatedCloudDatacenterZertoService } from './dedicatedCloud-datacenter-zerto.service';
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
@@ -16,14 +17,21 @@ export default class {
   $onInit() {
     this.initializeTransitions();
 
-    this.isDisablingZerto = this.dedicatedCloudZerto.getIsDisablingZerto(
+    console.log({
+      state: this.currentZerto.state,
+      isDisablingZerto: DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
+        this.currentZerto.state,
+      ),
+    });
+
+    this.isDisablingZerto = DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
       this.currentZerto.state,
     );
 
     this.isInstallationInError =
       this.currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
-    if (this.isDisablingZerto) {
+    if (!this.isDisablingZerto) {
       this.goToSummary(this.zertoInformations);
     }
   }

@@ -6,7 +6,6 @@ import ovhConfiguration from './configuration/ovh';
 import routing from './zerto.routing';
 import summary from './summary';
 import listing from './listing';
-import addSite from './add-site';
 
 const moduleName = 'managedBaremetalDatacenterZertoModule';
 
@@ -17,7 +16,6 @@ angular
     ovhConfiguration,
     summary,
     listing,
-    addSite,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
