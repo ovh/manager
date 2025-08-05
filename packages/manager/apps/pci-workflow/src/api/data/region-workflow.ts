@@ -35,6 +35,7 @@ export const addWorkflow = async (
     name: string;
     rotation: number;
     maxExecutionCount: number;
+    distantRegion: string | null;
   },
 ) => {
   const { data } = await v6.post<TRemoteWorkflow[]>(

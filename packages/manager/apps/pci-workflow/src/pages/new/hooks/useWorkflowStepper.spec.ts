@@ -75,7 +75,7 @@ describe('useWorkflowStepper hook', () => {
       result.current.type.submit(WorkflowType.INSTANCE_BACKUP);
       result.current.resource.update(INSTANCE_MOCK.BASE);
       result.current.resource.submit();
-      result.current.scheduling.submit(scheduling);
+      result.current.scheduling.submit(scheduling, null);
     });
     expect(result.current.form.scheduling).toBe(scheduling);
     expect(result.current.naming.step.isOpen).toBe(true);

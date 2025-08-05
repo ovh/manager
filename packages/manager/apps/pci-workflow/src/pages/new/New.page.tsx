@@ -14,6 +14,7 @@ import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
+  Notifications,
   StepComponent,
   useNotifications,
   useProjectUrl,
@@ -49,7 +50,7 @@ export default function NewPage() {
   const { addWorkflow, isPending: isAdding } = useAddWorkflow({
     projectId,
     onError: (err) => {
-      navigate('..');
+      stepper.scheduling.onSubmitError();
       addError(
         <Translation ns="workflow-add">
           {(tr) =>
@@ -160,16 +161,19 @@ export default function NewPage() {
           title={t('pci_workflow_create_schedule_title')}
         >
           <>
+            <Notifications />
             <WorkflowScheduling
+              instanceId={stepper.form.instanceId}
               step={stepper.scheduling.step}
-              onSubmit={(scheduling) => {
-                stepper.scheduling.submit(scheduling);
+              onSubmit={(scheduling, distantRegion) => {
+                stepper.scheduling.submit(scheduling, distantRegion);
                 addWorkflow({
                   cron: getCron(scheduling),
                   instanceId: stepper.form.instanceId,
                   name: stepper.form.name,
                   rotation: scheduling.rotation,
                   maxExecutionCount: scheduling.maxExecutionCount,
+                  distantRegion,
                 });
               }}
             />

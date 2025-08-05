@@ -29,5 +29,15 @@ export const useRegionTranslation = () => {
       },
       [t, i18n],
     ),
+    translateContinent: useCallback(
+      (region: string) => {
+        const macro = getMacroRegion(region);
+        if (i18n.exists(`region:manager_components_region_continent_${macro}`)) {
+          return t(`manager_components_region_continent_${macro}`);
+        }
+        return '';
+      },
+      [t, i18n],
+    ),
   };
 };
