@@ -1,0 +1,64 @@
+<form
+    id="migrateOffer"
+    name="migrateOffer"
+    data-ng-submit="$ctrl.migrateOffer()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_offer_update' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_apply' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <div data-ng-if="$ctrl.cloudConnect.isDirectService()">
+            <div class="mb-2">
+                <div
+                    data-translate="cloud_connect_migrate_direct_bandwidth"
+                ></div>
+                <div
+                    data-translate="cloud_connect_migrate_direct_configuration_preserved"
+                ></div>
+            </div>
+            <p data-translate="cloud_connect_migrate_direct_email_confirm"></p>
+
+            <oui-message type="warning">
+                <h4
+                    class="oui-color-aw-500"
+                    data-translate="cloud_connect_migrate_direct_warning_title"
+                ></h4>
+                <p
+                    data-translate="cloud_connect_migrate_direct_actions_expected"
+                ></p>
+            </oui-message>
+
+            <p data-translate="cloud_connect_migrate_direct_launch_process"></p>
+            <p
+                data-translate="cloud_connect_migrate_direct_price_and_commitment"
+            ></p>
+        </div>
+        <div data-ng-if="!$ctrl.cloudConnect.isDirectService()">
+            <div class="mb-2">
+                <div
+                    data-translate="cloud_connect_migrate_provider_bandwidth"
+                    data-translate-values="{ prevProductName: $ctrl.cloudConnect.productName, newProductName: $ctrl.productName }"
+                ></div>
+                <div
+                    data-translate="cloud_connect_migrate_provider_no_service_cut"
+                ></div>
+            </div>
+            <p
+                data-translate="cloud_connect_migrate_provider_email_confirm"
+                data-translate-values="{provider: $ctrl.constructor.capitalizeFirstLetter($ctrl.cloudConnect.provider)}"
+            ></p>
+            <p
+                data-translate="cloud_connect_migrate_provider_launch_process"
+            ></p>
+            <p
+                data-translate="cloud_connect_migrate_provider_price_and_commitment"
+            ></p>
+        </div>
+    </oui-modal>
+</form>
