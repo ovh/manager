@@ -1,17 +1,30 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, all code will be move in @ovh-ux/manager-module-common-api' or already moved
+ */
 import { CurrencyCode } from '../../enumTypes';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type EndRuleStrategy =
   | 'CANCEL_SERVICE'
   | 'REACTIVATE_ENGAGEMENT'
   | 'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE'
   | 'STOP_ENGAGEMENT_KEEP_PRICE';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type LifecycleAction =
   | 'earlyRenewal'
   | 'terminate'
   | 'terminateAtEngagementDate'
   | 'terminateAtExpirationDate';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type LifecycleState =
   | 'active'
   | 'error'
@@ -21,6 +34,9 @@ export type LifecycleState =
   | 'unpaid'
   | 'unrenewed';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type PricingCapacity =
   | 'consumption'
   | 'detach'
@@ -30,23 +46,41 @@ export type PricingCapacity =
   | 'renew'
   | 'upgrade';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type EndAction =
   | 'CANCEL_SERVICE'
   | 'REACTIVATE_ENGAGEMENT'
   | 'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE'
   | 'STOP_ENGAGEMENT_KEEP_PRICE';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type RenewMode = 'automatic' | 'manual';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type EngagementType = 'periodic' | 'upfront';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type PricingType = 'consumption' | 'purchase' | 'rental';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type CustomerContact = {
   customerCode: string;
   type: 'administrator' | 'billing' | 'technical';
 };
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type ResourceStatus =
   | 'active'
   | 'deleted'
@@ -55,6 +89,9 @@ export type ResourceStatus =
   | 'toDelete'
   | 'toSuspend';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type ServiceDetails = {
   billing: {
     engagement: {
