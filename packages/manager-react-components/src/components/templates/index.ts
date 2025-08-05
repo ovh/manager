@@ -1,4 +1,3 @@
-export * from './base/base.component';
 export * from './error/error.component';
 export * from './error/error.types';
 export * from './error-boundary/error-boundary.component';
