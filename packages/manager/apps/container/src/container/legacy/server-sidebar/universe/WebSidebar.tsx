@@ -173,10 +173,10 @@ export default function WebSidebar() {
           height: 16,
         }),
         badge: 'alpha',
-        routeMatcher: new RegExp('^/managed-wordpress'),
+        routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
         href: navigation.getURL(
           'web-hosting',
-          '#/managed-wordpress',
+          '#/managed-hosting-for-wordpress',
         ),
       });
     }
