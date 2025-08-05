@@ -103,6 +103,21 @@ export default /* @ngInject */ ($stateProvider) => {
                 )} ${get(error, 'data.message', error.message)}`,
               );
             }),
+        zertoInformations: /* @ngInject */ (
+          dedicatedCloudZerto,
+          serviceName,
+          datacenterOfZerto,
+          currentZerto,
+          datacenterHosts,
+          storedZertoInformations,
+        ) =>
+          dedicatedCloudZerto.constructor.buildZertoInformations(
+            serviceName,
+            datacenterOfZerto,
+            currentZerto,
+            datacenterHosts,
+            storedZertoInformations,
+          ),
         storedZertoInformations: /* @ngInject */ (
           currentService,
           dedicatedCloudZerto,
@@ -110,7 +125,6 @@ export default /* @ngInject */ ($stateProvider) => {
           dedicatedCloudZerto.checkForZertoOptionOrder(
             currentService.serviceName,
           ),
-
         storeZertoOptionOrderInUserPref: /* @ngInject */ (
           dedicatedCloudZerto,
         ) => (zertoInformations, enableZerto) =>
@@ -118,7 +132,6 @@ export default /* @ngInject */ ($stateProvider) => {
             zertoInformations,
             enableZerto,
           ),
-
         displayErrorMessage: /* @ngInject */ (Alerter) => (errorMessage) =>
           Alerter.error(errorMessage, 'dedicatedCloudDatacenterZertoAlert'),
         displayInfoMessage: /* @ngInject */ (Alerter) => (infoMessage) =>
@@ -139,7 +152,7 @@ export default /* @ngInject */ ($stateProvider) => {
               zertoInformations,
             },
           ),
-        goToSummary: /* @ngInject */ ($state) => (zertoInformations) =>
+        goToSummary: /* @ngInject */ ($state, zertoInformations) => () =>
           $state.go(
             'app.managedBaremetal.details.datacenters.datacenter.zerto.summary',
             {
@@ -155,12 +168,18 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => dedicatedCloudZerto.getZertoState({ serviceName, datacenterId }),
         isZertoOnPremise: /* @ngInject */ (zertoState) =>
           zertoState.drpType === 'onPremise',
-        goToAddSite: /* @ngInject */ ($state, productId, datacenterId) => () =>
+        goToAddSite: /* @ngInject */ (
+          $state,
+          zertoInformations,
+          productId,
+          datacenterId,
+        ) => () =>
           $state.go(
-            'app.managedBaremetal.details.datacenters.datacenter.zerto.addSite',
+            'app.managedBaremetal.details.datacenter.details.zerto.listing.addSite',
             {
               productId,
               datacenterId,
+              zertoInformations,
             },
           ),
       },
