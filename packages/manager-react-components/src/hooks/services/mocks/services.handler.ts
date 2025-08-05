@@ -1,8 +1,13 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, all code will be move in @ovh-ux/manager-module-common-api' or already moved
+ */
 import { ServiceDetails } from '../services.type';
 import { defaultServiceResponse, servicesMockErrors } from './services.mock';
 
 /**
  * @deprecated Move GetServicesMocksParams out of mrc
+ * @deprecated The type is deprecated and will be removed in MRC V3.
  */
 export type GetServicesMocksParams = {
   getServicesKo?: boolean;
@@ -14,6 +19,7 @@ export type GetServicesMocksParams = {
 
 /**
  * @deprecated Move getServicesMocks out of mrc
+ * @deprecated This function is deprecated and will be removed in MRC V3.
  */
 export const getServicesMocks = ({
   getServicesKo,

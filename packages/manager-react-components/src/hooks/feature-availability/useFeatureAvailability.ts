@@ -1,3 +1,8 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, use useFeatureAvailability from @ovh-ux/manager-module-common-api'
+ */
+
 import { apiClient, ApiError } from '@ovh-ux/manager-core-api';
 import {
   DefinedInitialDataOptions,
