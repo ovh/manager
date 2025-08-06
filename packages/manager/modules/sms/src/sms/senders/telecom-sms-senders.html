@@ -34,47 +34,18 @@
         </header>
 
         <div class="mb-3 clearfix">
-            <div class="btn-group float-left mr-3" data-uib-dropdown>
-                <button
-                    id="btn-sms-senders-actions"
-                    type="button"
-                    class="oui-button oui-button_dropdown"
-                    data-uib-dropdown-toggle
-                >
-                    <span data-translate="sms_common_actions"></span>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </button>
-                <ul
-                    class="dropdown-menu"
-                    role="menu"
-                    aria-labelledby="btn-sms-senders-actions"
-                    data-uib-dropdown-menu
-                >
-                    <li role="menuitem">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            data-ui-sref="sms.service.senders.add"
-                            data-translate="sms_common_add"
-                        ></button>
-                    </li>
-                    <li role="menuitem">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            data-ng-click="SmsSendersCtrl.refresh()"
-                            data-translate="sms_common_refresh"
-                        ></button>
-                    </li>
-                </ul>
-            </div>
             <button
                 type="button"
-                class="btn btn-default btn-block-xs-only"
-                data-ng-disabled="SmsSendersCtrl.getSelection().length === 0 || SmsSendersCtrl.senders.isDeleting"
+                class="btn btn-primary mr-2"
+                data-ui-sref="sms.service.senders.add"
+            >
+                <i class="oui-icon oui-icon-plus mr-2" aria-hidden="true"></i>
+                <span data-translate="sms_senders_add_sender"></span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default btn-block-xs-only mr-2"
+                data-ng-if="SmsSendersCtrl.getSelection().length !== 0 && !SmsSendersCtrl.senders.isDeleting"
                 data-ng-click="SmsSendersCtrl.deleteSelectedSenders()"
             >
                 <span
@@ -99,6 +70,25 @@
                         }"
                 >
                 </span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary mr-2"
+                data-ui-sref="sms.service.dashboard.orderTime2Chat"
+            >
+                <i class="oui-icon oui-icon-cart mr-2" aria-hidden="true"></i>
+                <span data-translate="sms_senders_order_time2chat"></span>
+            </button>
+            <button
+                type="button"
+                class="btn btn-default mr-2"
+                data-ng-click="SmsSendersCtrl.refresh()"
+            >
+                <i
+                    class="oui-icon oui-icon-refresh mr-2"
+                    aria-hidden="true"
+                ></i>
+                <span data-translate="sms_common_refresh"></span>
             </button>
         </div>
 
