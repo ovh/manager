@@ -35,7 +35,10 @@ export type IamTagApiError = {
   message: string;
 };
 
+export const getAllIamTagsQueryKey = () => ['/iam/tags'];
+
 export const getIamTagsQueryKey = (params: IamTagRequest) => [
+  ...getAllIamTagsQueryKey(),
   `/iam/tags?internalTags=${params.internalTags}&resourcetype=${params.resourceType}&resourceURN=${params.resourceURN}&emptyTags=${params.unassignedResources}`,
 ];
 

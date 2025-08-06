@@ -54,11 +54,7 @@ export const TagManagerContextProvider = ({ children }: PropsWithChildren) => {
       selectedTagsList,
       setSelectedTagsList,
     }),
-    [
-      isShowSystemChecked,
-      isShowUnassignedResourcesChecked,
-      JSON.stringify(selectedTagsList),
-    ],
+    [isShowSystemChecked, isShowUnassignedResourcesChecked, selectedTagsList],
   );
 
   return (

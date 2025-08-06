@@ -3,6 +3,7 @@ import React from 'react';
 import { describe, it, vi } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import * as ReactRouterDom from 'react-router-dom';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import { iamResourcesListMock } from '@/mocks/iam-resource/iam-resource.mock';
 import {
@@ -22,12 +23,6 @@ vi.mock(
     useResourcesDatagridContext: vi.fn(),
   }),
 );
-
-const navigateMock = vi.hoisted(() => vi.fn());
-vi.mock('react-router-dom', async (importOriginal) => ({
-  ...importOriginal(),
-  useNavigate: () => navigateMock,
-}));
 
 const queryClient = new QueryClient();
 
@@ -54,6 +49,15 @@ const renderComponent = (
 };
 
 describe('TagDetailTopbar Component', async () => {
+  const mockNavigate = vi.fn();
+
+  beforeEach(() => {
+    mockNavigate.mockReset();
+    vi.spyOn(ReactRouterDom, 'useNavigate').mockImplementation(
+      () => mockNavigate,
+    );
+  });
+
   it.each([
     {
       selectedResourcesList: [],
@@ -79,7 +83,7 @@ describe('TagDetailTopbar Component', async () => {
         disabled: assignTag === 'disabled',
       });
 
-      await getButtonByLabel({
+      const unassignTagButton = await getButtonByLabel({
         container,
         label: 'unassignTag',
         disabled: unassignTag === 'disabled',
@@ -87,14 +91,26 @@ describe('TagDetailTopbar Component', async () => {
 
       if (assignTag === 'enabled') {
         fireEvent.click(assignTagButton);
-        waitFor(() => {
-          expect(navigateMock).toHaveBeenCalledWith(
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(
             urls.tagDetailAssign.replace(':tag', 'env:prod'),
           );
         });
       }
 
-      // TODO to finish while unassign action is done
+      if (unassignTag === 'enabled') {
+        fireEvent.click(unassignTagButton);
+        await waitFor(() => {
+          expect(mockNavigate).toHaveBeenCalledWith(
+            urls.tagdetailUnassign.replace(':tag', 'env:prod'),
+            {
+              state: {
+                resources: iamResourcesListMock,
+              },
+            },
+          );
+        });
+      }
     },
   );
 });
