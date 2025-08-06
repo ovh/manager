@@ -1,7 +1,9 @@
 {
   "managed_vcd_vdc_order_storage_title": "Commander de la capacité de stockage",
-  "managed_vcd_vdc_order_compute_subtitle": "Vous pouvez personnaliser votre Virtual Datacenter en ajoutant des Virtual Hosts. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande. Sélectionner un type de Virtual Host.",
-  "managed_vcd_vdc_order_storage_subtitle": "Vous pouvez personnaliser votre Virtual Datacenter en ajoutant de la capacité de stockage. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande. Sélectionner votre capacité de stockage.",
+  "managed_vcd_vdc_order_compute_subtitle": "Vous pouvez personnaliser votre Virtual Datacenter en ajoutant des Virtual Hosts. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande.",
+  "managed_vcd_vdc_order_compute_subtitle2": "Sélectionnez un type de Virtual Host.",
+  "managed_vcd_vdc_order_storage_subtitle": "Vous pouvez personnaliser votre Virtual Datacenter en ajoutant de la capacité de stockage. Vous serez ensuite redirigé vers un nouvel onglet pour finaliser votre commande.",
+  "managed_vcd_vdc_order_storage_subtitle2": "Sélectionnez votre capacité de stockage.",
   "managed_vcd_vdc_order_unavailable": "Veuillez contacter le support OVHcloud",
   "managed_vcd_vdc_order_vhost": "Virtual Host",
   "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",

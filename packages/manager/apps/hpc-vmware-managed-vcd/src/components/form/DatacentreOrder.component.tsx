@@ -37,7 +37,7 @@ interface DatacentreOrderProps<T extends OrderType> {
   orderType: T;
   columns: OrderColumns<T>;
   title: string;
-  subtitle: string;
+  subtitles: string[];
   backLink: string;
   minQuantity?: number;
   maxQuantity?: number;
@@ -47,7 +47,7 @@ export const DatacentreOrder = <T extends OrderType>({
   orderType,
   columns,
   title,
-  subtitle,
+  subtitles,
   backLink,
   minQuantity = 1,
   maxQuantity = 100,
@@ -121,7 +121,13 @@ export const DatacentreOrder = <T extends OrderType>({
     >
       <div className="px-10 my-4 flex flex-col">
         <OdsText preset="heading-3">{title}</OdsText>
-        <OdsText className="my-6">{subtitle}</OdsText>
+        {subtitles && (
+          <div className="my-6 flex flex-col">
+            {subtitles.map((text) => (
+              <OdsText key={text}>{text}</OdsText>
+            ))}
+          </div>
+        )}
         <Datagrid
           columns={columns}
           items={pricedResources}

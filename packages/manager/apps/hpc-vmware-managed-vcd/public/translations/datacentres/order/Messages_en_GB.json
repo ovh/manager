@@ -1,7 +1,7 @@
 {
   "managed_vcd_vdc_order_storage_title": "Order storage capacity",
-  "managed_vcd_vdc_order_compute_subtitle": "You can customise your Virtual Datacentre by adding Virtual Hosts. You will then be redirected to a new tab to complete your order. Select a type of Virtual Host.",
-  "managed_vcd_vdc_order_storage_subtitle": "You can customise your Virtual Datacentre by adding storage capacity. You will then be redirected to a new tab to complete your order. Select your storage capacity.",
+  "managed_vcd_vdc_order_compute_subtitle": "You can customise your Virtual Datacentre by adding Virtual Hosts. You will then be redirected to a new tab to complete your order.",
+  "managed_vcd_vdc_order_storage_subtitle": "You can customise your Virtual Datacentre by adding storage capacity. You will then be redirected to a new tab to complete your order.",
   "managed_vcd_vdc_order_unavailable": "Please contact OVHcloud support",
   "managed_vcd_vdc_order_vhost": "Virtual Host",
   "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",
@@ -15,5 +15,7 @@
   "managed_vcd_vdc_order_quantity_label": "Quantity",
   "managed_vcd_vdc_order_cancel_cta": "Cancel",
   "managed_vcd_vdc_order_confirm_cta": "Order",
-  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/TB"
+  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/TB",
+  "managed_vcd_vdc_order_compute_subtitle2": "Select a type of Virtual Host.",
+  "managed_vcd_vdc_order_storage_subtitle2": "Select your storage capacity."
 }
