@@ -24,7 +24,7 @@
             price: $ctrl.findRenewCapacity($ctrl.upgradeAvailable.prices).price.text,
             duration: $ctrl.getDuration($ctrl.upgradeAvailable),
         }"
-        data-ng-if="$ctrl.serviceOptionId"
+        data-ng-if="$ctrl.serviceOptionId && !$ctrl.details.totalPrice.value === 0"
     ></p>
     <ovh-contracts-summary
         name="agreeContracts"

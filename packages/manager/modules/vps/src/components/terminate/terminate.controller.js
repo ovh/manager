@@ -60,8 +60,9 @@ export default class VpsOptionTerminateCtrl {
             this.serviceOptionId,
             this.upgradeAvailable.planCode,
             { quantity: 1, duration, pricingMode },
-          ).then(({ order: { contracts } }) => {
+          ).then(({ order: { contracts, details } }) => {
             this.contracts = contracts;
+            this.details = details;
             this.optionServiceProcessLoading = false;
           });
         });
