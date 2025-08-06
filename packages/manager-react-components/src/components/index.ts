@@ -43,3 +43,4 @@ export * from './tags-modal';
 export * from './tags-tile';
 export * from './changelog-menu';
 export * from './link-card';
+export * from './error';
