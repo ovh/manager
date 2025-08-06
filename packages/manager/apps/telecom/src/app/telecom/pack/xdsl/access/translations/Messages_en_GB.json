@@ -146,6 +146,6 @@
   "xdsl_details_mean_time_to_repair_4ho": "4 business hours (4HO)",
   "xdsl_details_mean_time_to_repair_5m_10ho": "10 business hours (10HO)",
   "xdsl_details_mean_time_to_repair_5m_4ho": "4 business hours (4HO)",
-  "xdsl_details_mean_time_to_repair_dplus1": "1 working day (D+1)",
+  "xdsl_details_mean_time_to_repair_dplus1": "1 business day (D+1)",
   "xdsl_details_mean_time_to_repair_none": "None"
 }

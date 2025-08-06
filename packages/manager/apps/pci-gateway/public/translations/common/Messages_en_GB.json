@@ -12,5 +12,5 @@
   "pci_projects_project_public_gateway_go_to_private_networks": "View my private network",
   "pci_projects_project_public_gateway_delete": "Delete",
   "pci_projects_project_public_gateway_no_data": "No data available.",
-  "pci_projects_project_public_gateways_intro": "Gateways provide connectivity to private instances, allowing secure access to external networks or exposing the application to external access."
+  "pci_projects_project_public_gateways_intro": "Gateways provide connectivity to private instances, enabling secure access to external networks or exposing the application to external access."
 }
