@@ -38,7 +38,7 @@
   "pci_instances_actions_backup_instance_distant_label": "Ajouter un backup distant (Option)",
   "pci_instances_actions_backup_instance_distant_name_label": "Nom du backup distant",
   "pci_instances_actions_backup_instance_distant_region_label": "Sélectionnez une localisation",
-  "pci_instances_actions_backup_instance_distant_region_price": "Chaque sauvegarde sera facturée : ~{{price}} € HT/mois/Go",
+  "pci_instances_actions_backup_instance_distant_region_price": "Chaque sauvegarde sera facturée : ~{{price}}/mois/Go",
   "pci_instances_actions_backup_instance_region_enable_warning": "La localisation sélectionnée n’est pas activée. En cliquant sur \"confirmer\" vous l'ajouterez à votre projet.",
   "pci_instances_actions_backup_instance_warning_message": "Votre instance sera suspendue pendant quelques secondes, puis les performances en lecture/écriture du disque pourront être affectées jusqu'à la finalisation du backup",
   "pci_instances_actions_backup_instance_error_message": "Une erreur est survenue lors de la sauvegarde de l'instance {{ name }} : {{ error }}",
