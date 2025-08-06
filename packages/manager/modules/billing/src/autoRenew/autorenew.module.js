@@ -35,6 +35,7 @@ import terminateVrack from './actions/terminate-vrack';
 import warnNicBilling from './actions/warnNicBilling/warnNicBilling.module';
 import warnPendingDebt from './actions/warnPendingDebt/pending-debt.module';
 import services from './services/services.module';
+import debtWarningModal from './debt-warning-modal/debt-warning-modal.module';
 
 import component from './autorenew.component';
 import routing from './autorenew.routing';
@@ -78,6 +79,7 @@ angular
     warnNicBilling,
     warnPendingDebt,
     services,
+    debtWarningModal,
   ])
   .config(routing)
   .component('autoRenew', component)
