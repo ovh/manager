@@ -18,6 +18,7 @@ import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsit
 import { ManagedWordpressWebsites } from '@/data/type';
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { useGenerateUrl } from '@/hooks';
+import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -36,6 +37,10 @@ export default function MyWebsitesPage() {
   ]);
   const { serviceName } = useParams();
   const { data } = useManagedWordpressWebsites(serviceName);
+  const { data: dataResourceDetails } = useManagedWordpressResourceDetails(
+    serviceName,
+  );
+
   const columns: DatagridColumn<ManagedWordpressWebsites>[] = useMemo(
     () => [
       {
@@ -93,6 +98,11 @@ export default function MyWebsitesPage() {
     window.location.href = importPage;
   };
 
+  const handleManageClick = () => {
+    const url = dataResourceDetails?.currentState?.dashboards?.wordPress;
+    window.open(url, '_blank');
+  };
+
   return (
     <Datagrid
       columns={columns}
@@ -113,10 +123,11 @@ export default function MyWebsitesPage() {
             ></ManagerButton>
             <ManagerButton
               id={'my-websites-manage'}
-              isDisabled
               label={t('common:web_hosting_action_manage_my_sites')}
               icon={ODS_ICON_NAME.externalLink}
-            ></ManagerButton>
+              onClick={handleManageClick}
+              isDisabled={!data}
+            />
           </div>
         </div>
       }
