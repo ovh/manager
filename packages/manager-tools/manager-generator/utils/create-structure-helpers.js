@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { join } from 'node:path';
 
 /**
@@ -6,18 +5,10 @@ import { join } from 'node:path';
  * into src/api/**
  * Corresponding to the api used by apiv6
  */
-export const createApiQueryFilesActions = ({
-  endpoints,
-  apiVersion,
-  appDirectory,
-  appName,
-}) =>
+export const createApiQueryFilesActions = ({ endpoints, apiVersion, appDirectory, appName }) =>
   Object.entries(endpoints).map(([method, data]) => ({
     type: 'add',
-    path: join(
-      appDirectory,
-      `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`,
-    ),
+    path: join(appDirectory, `../../../apps/{{dashCase appName}}/src/data/api/${appName}.ts`),
     templateFile: join(
       appDirectory,
       `./conditional-templates/api/services-template${
@@ -38,18 +29,12 @@ export const createPages = (templates, appDirectory, isApiV6) =>
     template === 'listing'
       ? {
           type: 'addMany',
-          destination: join(
-            appDirectory,
-            `../../../apps/{{dashCase appName}}/src/pages/listing/`,
-          ),
+          destination: join(appDirectory, `../../../apps/{{dashCase appName}}/src/pages/listing/`),
           templateFiles: join(
             appDirectory,
             `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
           ),
-          base: join(
-            appDirectory,
-            `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`,
-          ),
+          base: join(appDirectory, `./conditional-templates/listing/${isApiV6 ? 'v6' : 'v2'}`),
         }
       : {
           type: 'addMany',
@@ -57,10 +42,7 @@ export const createPages = (templates, appDirectory, isApiV6) =>
             appDirectory,
             `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
           ),
-          templateFiles: join(
-            appDirectory,
-            `./conditional-templates/${template}`,
-          ),
+          templateFiles: join(appDirectory, `./conditional-templates/${template}`),
           base: join(appDirectory, `./conditional-templates/${template}`),
         },
   );
