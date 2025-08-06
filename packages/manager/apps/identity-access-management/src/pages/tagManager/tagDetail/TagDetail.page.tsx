@@ -6,7 +6,7 @@ import {
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { urls } from '@/routes/routes.constant';
@@ -48,6 +48,7 @@ export default function TagDetail() {
         onClickReturn={() => navigate(urls.tagManager)}
         message={<Notifications />}
       >
+        <Outlet />
         <React.Suspense>
           <OdsText preset={ODS_TEXT_PRESET.heading5}>
             {t('resourceTaggedWithTag', {

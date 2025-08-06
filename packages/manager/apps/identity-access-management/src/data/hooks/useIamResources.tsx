@@ -13,6 +13,7 @@ import {
 import { NotificationList } from '@/components/notificationList/NotificationList.component';
 import { ResourcesDatagridFilter } from '@/components/resourcesDatagridTopbar/ResourcesDatagridTopbar.component';
 import { formatFiltersForApi } from '@/utils/formatFiltersForApi';
+import { getAllIamTagsQueryKey } from '../api/get-iam-tags';
 
 export type GetIamResourceListQueryKeyParams = {
   filters?: ResourcesDatagridFilter[];
@@ -113,6 +114,9 @@ export const useUpdateIamResources = () => {
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
         queryKey: getAllIamResourceQueryKey(),
+      });
+      queryClient.invalidateQueries({
+        queryKey: getAllIamTagsQueryKey(),
       });
 
       if (success.length > 0 && error.length > 0) {

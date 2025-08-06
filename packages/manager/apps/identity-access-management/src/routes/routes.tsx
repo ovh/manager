@@ -5,6 +5,7 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
+import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -57,7 +58,18 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    />
+    >
+      <Route
+        path={urls.tagdetailUnassign}
+        Component={TagDetailUnassign}
+        handle={{
+          tracking: {
+            pageName: 'unassign-tag',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
     <Route
       path={urls.tagDetailAssign}
       Component={TagDetailAssign}
