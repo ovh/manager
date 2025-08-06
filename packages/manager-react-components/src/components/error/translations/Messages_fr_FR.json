@@ -1,0 +1,14 @@
+{
+  "manager_error_page_title": "Oops …!",
+  "manager_error_page_button_cancel": "Annuler",
+  "manager_error_page_detail_code": "Code d'erreur : ",
+  "manager_error_page_action_reload_label": "Réessayer",
+  "manager_error_page_action_home_label": "Retour à la page d'accueil",
+  "manager_error_page_default": "Une erreur est survenue lors du chargement de la page.",
+  "manager_error_page_404_title": "Oups ! Page introuvable.",
+  "manager_error_page_404_description": "Erreur 404. La page que vous recherchez semble introuvable.",
+  "manager_error_api_page_title": "Oups ! Une erreur interne est survenue",
+  "manager_error_page_api_description": "Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.",
+  "manager_error_page_boundary_title": "Oups ! Une erreur est survenue.",
+  "manager_error_page_boundary_description": "Une erreur s'est produite, veuillez réessayer plus tard."
+}
