@@ -39,8 +39,8 @@
         </oui-action-menu-item>
         <oui-action-menu-item
             ng-if="::$ctrl.canDisplayAnticipateRenewMenuEntry"
-            href="{{:: $ctrl.getRenewUrl() }}"
-            external
+            href="{{:: $ctrl.service.hasDebt() ? $ctrl.debtWarningModalLink : $ctrl.getRenewUrl() }}"
+            external="!$ctrl.service.hasDebt()"
             on-click="$ctrl.trackAction('go-to-anticipate-payment')"
             data-navi-id="go-to-anticipate-payment"
         >
