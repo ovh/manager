@@ -1,0 +1,582 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with 401 unauthorized error 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+    Oups ! Une erreur interne est survenue
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
+  </h2>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+    />
+    <div
+      class="_message-body_fe7x3_2"
+    >
+      <p
+        class="m-0 p-O"
+      >
+        <span
+          class="block"
+        >
+          <strong>
+            Unauthorized access
+          </strong>
+        </span>
+        <span
+          class="block py-[10px]"
+        >
+          Code d'erreur : 
+          987654321
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with 500 server error 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+    Oups ! Une erreur interne est survenue
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
+  </h2>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+    />
+    <div
+      class="_message-body_fe7x3_2"
+    >
+      <p
+        class="m-0 p-O"
+      >
+        <span
+          class="block"
+        >
+          <strong>
+            Internal server error
+          </strong>
+        </span>
+        <span
+          class="block py-[10px]"
+        >
+          Code d'erreur : 
+          555666777
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with all props 1`] = `
+<section
+  class="full-test-class"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+    Oups ! Une erreur interne est survenue
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
+  </h2>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+    data-tracking="full-props-test"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+    />
+    <div
+      class="_message-body_fe7x3_2"
+    >
+      <p
+        class="m-0 p-O"
+      >
+        <span
+          class="block"
+        >
+          <strong>
+            Forbidden access
+          </strong>
+        </span>
+        <span
+          class="block py-[10px]"
+        >
+          Code d'erreur : 
+          000111222
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with complex error message 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+    Oups ! Une erreur interne est survenue
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
+  </h2>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+    />
+    <div
+      class="_message-body_fe7x3_2"
+    >
+      <p
+        class="m-0 p-O"
+      >
+        <span
+          class="block"
+        >
+          <strong>
+            This is a very long error message that might contain special characters like é, ñ, or symbols like @#$%^&*() and should be displayed properly in the error banner component
+          </strong>
+        </span>
+        <span
+          class="block py-[10px]"
+        >
+          Code d'erreur : 
+          complex123
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with custom className 1`] = `
+<section
+  class="custom-error-class"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Page introuvable.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Erreur 404. La page que vous recherchez semble introuvable.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with custom label tracking 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Page introuvable.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Erreur 404. La page que vous recherchez semble introuvable.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with default 404 error 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Page introuvable.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Erreur 404. La page que vous recherchez semble introuvable.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with error without data message 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+    Oups ! Une erreur interne est survenue
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
+  </h2>
+  <div
+    class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+  >
+    <span
+      class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+    />
+    <div
+      class="_message-body_fe7x3_2"
+    >
+      <p
+        class="m-0 p-O"
+      >
+        <span
+          class="block py-[10px]"
+        >
+          Code d'erreur : 
+          111222333
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with error without query ID 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Page introuvable.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Erreur 404. La page que vous recherchez semble introuvable.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with minimal error object 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Page introuvable.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+    Erreur 404. La page que vous recherchez semble introuvable.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
+
+exports[`ErrorBanner Snapshot Tests > should match snapshot with null error 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Une erreur est survenue.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+     
+    Une erreur s'est produite, veuillez réessayer plus tard.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
