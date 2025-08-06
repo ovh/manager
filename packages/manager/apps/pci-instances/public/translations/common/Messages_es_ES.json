@@ -8,5 +8,7 @@
   "pci_instances_common_confirm": "Confirmar",
   "pci_instances_common_404_error_message": "Se ha producido un error 404 «File Not Found».",
   "pci_instances_common_pending": "En curso...",
-  "pci_instances_common_search": "Buscar"
+  "pci_instances_common_search": "Buscar",
+  "pci_instances_common_instance_title": "Instancia",
+  "pci_instances_common_instance_name": "Nombre de la instancia"
 }
