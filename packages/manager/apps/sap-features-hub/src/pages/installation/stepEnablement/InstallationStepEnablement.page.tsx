@@ -108,9 +108,8 @@ export default function InstallationStepEnablement() {
     }
   }, []);
 
-  const { isValid } = formState;
-
   const [hasBackup, hasLogsInLdpOvh] = watch(['hasBackup', 'hasLogsInLdpOvh']);
+  const isStepValid = formState.isValid || (!hasBackup && !hasLogsInLdpOvh);
 
   const getEnablementFormValues = () => {
     const values = getValues();
@@ -164,7 +163,7 @@ export default function InstallationStepEnablement() {
         title={t('enablement_title')}
         subtitle={t('enablement_subtitle')}
         submitLabel={t('enablement_cta')}
-        isSubmitDisabled={!isValid || !!serverErrorMessage}
+        isSubmitDisabled={!isStepValid || !!serverErrorMessage}
         isSubmitLoading={isValidationPending}
         serverErrorMessage={serverErrorMessage}
         onSubmit={() => {
