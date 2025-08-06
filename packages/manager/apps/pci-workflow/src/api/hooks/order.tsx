@@ -8,6 +8,7 @@ import {
   getProductAvailabilityQuery,
 } from '@ovh-ux/manager-pci-common';
 
+import { useIsDistantBackupAvailable } from '@/api/hooks/feature';
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
 import { useRegionTranslation } from '@/api/hooks/region';
 import { useMe } from '@/api/hooks/user';
@@ -20,6 +21,7 @@ export type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name
 export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInstance['id']) => {
   const { me } = useMe();
   const { translateMicroRegion, translateContinent } = useRegionTranslation();
+  const isDistantBackupAvailable = useIsDistantBackupAvailable();
 
   const [{ data: catalog }, { data: snapshotAvailabilities }] = useQueries({
     queries: [
@@ -63,7 +65,8 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
         !snapshotAvailabilities ||
         !currentRegion ||
         // Only 1AZ and 3AZ can have distant backups for now
-        (currentRegion.type !== 'region' && currentRegion.type !== 'region-3-az')
+        (currentRegion.type !== 'region' && currentRegion.type !== 'region-3-az') ||
+        !isDistantBackupAvailable
       )
         return new Map<string, ContinentRegion[]>();
 
@@ -89,6 +92,7 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
       instanceId,
       translateMicroRegion,
       translateContinent,
+      isDistantBackupAvailable,
     ]),
   };
 };
