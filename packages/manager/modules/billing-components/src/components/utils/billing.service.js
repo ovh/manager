@@ -102,7 +102,7 @@ export default class BillingService {
   getVPSMigration2020Availability(serviceName) {
     return this.$http
       .get(`/vps/${serviceName}/migration2020`)
-      .then(({ data }) => data.availablePlans.length > 0)
+      .then(({ data }) => data.status === 'available')
       .catch(() => false);
   }
 }
