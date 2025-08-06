@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useMemo, useRef, useState } from 'react';
 
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
@@ -44,6 +44,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 
+import { useRegionTranslation } from '@/api/hooks/region';
 import { TPaginatedWorkflow, usePaginatedWorkflows } from '@/api/hooks/workflows';
 import Actions from '@/components/actions.component';
 import ExecutionStatusComponent from '@/components/execution-status.component';
@@ -70,70 +71,96 @@ export default function ListingPage() {
     filters,
     searchQueries,
   });
+  const { translateMicroRegion } = useRegionTranslation();
 
-  const columns: DatagridColumn<TPaginatedWorkflow>[] = [
-    {
-      id: 'name',
-      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.name}</DataGridTextCell>,
-      label: t('pci_workflow_name'),
-    },
-    {
-      id: 'id',
-      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.id}</DataGridTextCell>,
-      label: t('pci_workflow_id'),
-      isSortable: false,
-    },
-    {
-      id: 'type',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <DataGridTextCell>{workflow.typeLabel}</DataGridTextCell>
-      ),
-      label: t('pci_workflow_type'),
-    },
-    {
-      id: 'instanceName',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <OsdsLink
-          color={ODS_THEME_COLOR_INTENT.primary}
-          href={`${projectUrl}/instances/${workflow.instanceId}`}
-        >
-          {workflow.instanceName}
-        </OsdsLink>
-      ),
-      label: t('pci_workflow_resource'),
-    },
-    {
-      id: 'cron',
-      cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.cron}</DataGridTextCell>,
-      label: t('pci_workflow_schedule'),
-    },
-    {
-      id: 'lastExecution',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <DataGridTextCell>{workflow.lastExecution}</DataGridTextCell>
-      ),
-      label: t('pci_workflow_last_execution'),
-    },
-    {
-      id: 'lastExecutionStatus',
-      cell: (workflow: TPaginatedWorkflow) =>
-        workflow.lastExecutionStatus ? (
-          <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
-        ) : null,
-      label: t('pci_workflow_last_execution_status'),
-      isSortable: false,
-    },
-    {
-      id: 'actions',
-      cell: (workflow: TPaginatedWorkflow) => (
-        <div className="min-w-16">
-          <Actions workflow={workflow} />
-        </div>
-      ),
-      label: '',
-      isSortable: false,
-    },
-  ];
+  const columns: DatagridColumn<TPaginatedWorkflow>[] = useMemo(
+    () => [
+      {
+        id: 'name',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <DataGridTextCell>{workflow.name}</DataGridTextCell>
+        ),
+        label: t('pci_workflow_name'),
+      },
+      {
+        id: 'id',
+        cell: (workflow: TPaginatedWorkflow) => <DataGridTextCell>{workflow.id}</DataGridTextCell>,
+        label: t('pci_workflow_id'),
+        isSortable: false,
+      },
+      {
+        id: 'backup',
+        label: t('pci_workflow_backup'),
+        cell: (workflow) => (
+          <DataGridTextCell>
+            {t('pci_workflow_backup', { context: workflow.backup })}
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'regions',
+        label: t('pci_workflow_localisation'),
+        cell: (workflow) => (
+          <DataGridTextCell>
+            {workflow.regions.map(translateMicroRegion).join(', ')}
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'type',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <DataGridTextCell>{workflow.typeLabel}</DataGridTextCell>
+        ),
+        label: t('pci_workflow_type'),
+      },
+      {
+        id: 'instanceName',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <OsdsLink
+            color={ODS_THEME_COLOR_INTENT.primary}
+            href={`${projectUrl}/instances/${workflow.instanceId}`}
+          >
+            {workflow.instanceName}
+          </OsdsLink>
+        ),
+        label: t('pci_workflow_resource'),
+      },
+      {
+        id: 'cron',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <DataGridTextCell>{workflow.cron}</DataGridTextCell>
+        ),
+        label: t('pci_workflow_schedule'),
+      },
+      {
+        id: 'lastExecution',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <DataGridTextCell>{workflow.lastExecution}</DataGridTextCell>
+        ),
+        label: t('pci_workflow_last_execution'),
+      },
+      {
+        id: 'lastExecutionStatus',
+        cell: (workflow: TPaginatedWorkflow) =>
+          workflow.lastExecutionStatus ? (
+            <ExecutionStatusComponent status={workflow.lastExecutionStatus} />
+          ) : null,
+        label: t('pci_workflow_last_execution_status'),
+        isSortable: false,
+      },
+      {
+        id: 'actions',
+        cell: (workflow: TPaginatedWorkflow) => (
+          <div className="min-w-16">
+            <Actions workflow={workflow} />
+          </div>
+        ),
+        label: '',
+        isSortable: false,
+      },
+    ],
+    [t, projectUrl, translateMicroRegion],
+  );
 
   return (
     <RedirectionGuard
