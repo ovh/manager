@@ -8,3 +8,11 @@ export const getInstances = async (projectId: string) => {
 
   return data.map(mapDtoToInstance);
 };
+
+export const getInstance = async (projectId: string, region: string, instanceId: string) => {
+  const { data } = await v6.get<TInstanceDto>(
+    `/cloud/project/${projectId}/region/${region}/instance/${instanceId}`,
+  );
+
+  return mapDtoToInstance(data);
+};
