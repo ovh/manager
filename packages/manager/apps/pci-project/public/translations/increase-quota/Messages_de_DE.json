@@ -1,0 +1,6 @@
+{
+  "pci_project_new_error_contact_support": "Kundendienst kontaktieren",
+  "pci_project_new_error_ask_increase_projects_quota": "Sie können kein Projekt mehr erstellen. Bitte kontaktieren Sie den Support um Ihr Quota zu erhöhen und so ein neues Projekt erstellen zu können.",
+  "pci_project_new_error_verify_paypal": "Sie können mit Ihrem PayPal-Konto kein Public Cloud Projekt erstellen, da das Konto noch nicht verifiziert wurde. Bitte ergreifen Sie die notwendigen Maßnahmen bei PayPal, um Ihr Konto zu verifizieren, und versuchen Sie es erneut. Wahlweise können Sie auch ein anderes <a href=\"{{ href }}\">Standardzahlungsmittel</a> verwenden.",
+  "pci_project_new_error_cancel": "Abbrechen"
+}

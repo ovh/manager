@@ -1,10 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import {
-  getCreditBalance,
-  getStartupProgram,
-  getCreditDetails,
-} from '@/data/api/credit';
+import { getCreditBalance, getStartupProgram } from '@/data/api/credit';
 import { createWrapper } from '@/wrapperRenders';
 import {
   useIsStartupProgramAvailable,
@@ -20,7 +16,6 @@ vi.mock('@/data/api/credit', () => ({
 
 const mockGetCreditBalance = vi.mocked(getCreditBalance);
 const mockGetStartupProgram = vi.mocked(getStartupProgram);
-const mockGetCreditDetails = vi.mocked(getCreditDetails);
 
 describe('useCredit hooks', () => {
   beforeEach(() => {
