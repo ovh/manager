@@ -1,4 +1,4 @@
-/* eslint-disable import/extensions */
+/* eslint-disable */
 import {
   isArrayType,
   cleanTypeSyntax,
