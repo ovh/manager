@@ -144,6 +144,53 @@ export type ManagedWordpressResourceType = {
 export enum ManagedWordpressCmsType {
   WORD_PRESS = 'WORD_PRESS',
 }
+export type ManagedWordpressResourceDetailsType = {
+  id: string;
+  resourceStatus: ResourceStatus;
+  checksum: string;
+  iam: {
+    displayName?: string;
+    id: string;
+    tags: Record<string, unknown>;
+    urn: string;
+  } | null;
+  currentState: {
+    plan: string;
+    createdAt: string;
+    dashboards: {
+      wordPress?: string;
+    };
+    quotas: {
+      disk: {
+        additionalQuotaBytes: number;
+        planQuotaBytes: number;
+        totalQuotaBytes: number;
+        totalUsageBytes: number;
+      };
+      visits: {
+        totalAdditionalQuota: number;
+        boosts: {
+          createdAt: string;
+          currentAmount: number;
+          expiresAt: string;
+          initialAmount: number;
+        }[];
+      };
+      websites: {
+        additionalQuota: number;
+        planQuota: number;
+        totalQuota: number;
+        totalUsage: number;
+      };
+    };
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: Status;
+    type: string;
+  }[];
+};
 
 export type PostImportPayload = {
   adminLogin: string;
