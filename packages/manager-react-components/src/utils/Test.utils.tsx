@@ -16,13 +16,6 @@ export const shellContext = {
     tracking: {
       trackPage: mockTrackPage,
     },
-    navigation: {
-      navigateTo: vitest.fn(),
-      reload: vitest.fn(),
-    },
-    ux: {
-      hidePreloader: vitest.fn(),
-    },
   },
 };
 
