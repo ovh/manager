@@ -125,6 +125,7 @@
   "status_PENDING": "Oczekujący",
   "status_REVOKED": "Anulowany",
   "status_FAILURE": "Błąd",
-  "status_STARTED": "W realizacji",
-  "installation_error_server_message": "Błąd podczas przesyłania informacji. Komunikat błędu: \"{{error}}\""
+  "status_STARTED": "W trakcie",
+  "installation_error_server_message": "Błąd podczas przesyłania informacji. Komunikat błędu: \"{{error}}\"",
+  "os_config_tooltip_update": "Wymaga klucza licencyjnego SUSE"
 }

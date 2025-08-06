@@ -65,6 +65,7 @@
   "os_config_input_suse": "Clé de licence SUSE",
   "os_config_helper_suse": "La clé doit être au format alphanumérique et comprendre entre 16 et 32 caractères",
   "os_config_toggle_update": "Réaliser une mise à jour des paquets OS avant l'installation",
+  "os_config_tooltip_update": "Nécessite une clé de licence SUSE",
   "os_config_toggle_firewall_service": "Activer le firewall pour les services centraux",
   "os_config_tooltip_firewall_service": "Autorise toutes les communications sur la SCS en provenance des autres serveurs de ce système SAP",
   "os_config_toggle_firewall_server": "Activer le firewall pour les serveurs d'application",
