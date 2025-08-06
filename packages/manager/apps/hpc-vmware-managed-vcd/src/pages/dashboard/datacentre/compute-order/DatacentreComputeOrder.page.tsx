@@ -66,7 +66,10 @@ export default function ComputeOrderPage() {
         orderType="compute"
         columns={columns}
         title={tCompute('managed_vcd_vdc_compute_order_cta')}
-        subtitle={t('managed_vcd_vdc_order_compute_subtitle')}
+        subtitles={[
+          t('managed_vcd_vdc_order_compute_subtitle'),
+          t('managed_vcd_vdc_order_compute_subtitle2'),
+        ]}
         backLink={`../${subRoutes.datacentreCompute}`}
         minQuantity={COMPUTE_ORDER_MIN_QUANTITY}
         maxQuantity={COMPUTE_ORDER_MAX_QUANTITY}
