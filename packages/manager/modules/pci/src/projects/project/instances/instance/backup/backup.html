@@ -32,11 +32,20 @@
             ></span>
         </oui-field>
 
-        <label data-ng-if="$ctrl.distantBackupRegions.length > 0" class="mb-3">
+        <label
+            data-ng-if="$ctrl.distantBackupRegions.length > 0"
+            class="mb-3 d-flex align-items-center"
+        >
             <oui-switch data-model="$ctrl.distantSnapshot"> </oui-switch>
-            &nbsp;
+
             <span
+                class="ml-2"
                 data-translate="pci_projects_project_instances_instance_backup_distant_label"
+            ></span>
+
+            <span
+                class="oui-badge oui-badge_new ml-2"
+                data-translate="pci_projects_project_is_new"
             ></span>
         </label>
 
