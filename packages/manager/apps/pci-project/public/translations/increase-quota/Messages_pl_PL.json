@@ -1,0 +1,6 @@
+{
+  "pci_project_new_error_contact_support": "Skontaktuj się z pomocą techniczną",
+  "pci_project_new_error_ask_increase_projects_quota": "Brak możliwości utworzenia kolejnych projektów. Skontaktuj się z Działem Wsparcia, aby zwiększyć limit i utworzyć nowy projekt.",
+  "pci_project_new_error_verify_paypal": "Niestety, nie możesz utworzyć projektu Public Cloud, używając Twojego konta PayPal, ponieważ nie zostało ono zweryfikowane.  Prosimy o wykonanie kroków niezbędnych do zatwierdzenia konta PayPal i podjęcie nowej próby utworzenia projektu. Możesz również zmienić <a href=\"{{ href }}\">Twój domyślny sposób płatności</a>.",
+  "pci_project_new_error_cancel": "Anuluj"
+}
