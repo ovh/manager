@@ -5,17 +5,20 @@ export interface ErrorObject {
   data: any;
   headers: any;
 }
+
 export interface ErrorMessage {
   message?: string;
   status?: number;
   detail?: any;
 }
+
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
   UNAUTHORIZED: 'unauthorized',
   PAGE_LOAD: 'error_during_page_loading',
 };
-export interface ErrorBannerProps extends React.HTMLProps<HTMLDivElement> {
+
+export interface ErrorProps extends React.HTMLProps<HTMLDivElement> {
   error: {
     status?: number;
     data?: any;

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { ErrorBanner } from '../error/error.component';
+import { Error } from '../../error/Error.component';
 import { useRouteError } from 'react-router-dom';
 import {
   ShellContext,
@@ -60,7 +60,7 @@ export const ErrorBoundary = ({
 
   return (
     <>
-      <ErrorBanner
+      <Error
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
         error={{
