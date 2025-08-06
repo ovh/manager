@@ -239,7 +239,7 @@ export default (plop) => {
       return [
         {
           type: 'addMany',
-          destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
+          destination: join(appDirectory, '../../../manager/apps/{{dashCase appName}}'),
           templateFiles: join(appDirectory, './templates/**'),
           base: join(appDirectory, './templates'),
         },
