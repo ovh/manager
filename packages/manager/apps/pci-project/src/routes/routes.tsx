@@ -4,6 +4,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
+import CreationGuard from '@/components/creation-guard/CreationGuard';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
@@ -11,8 +12,10 @@ const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
 const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const CreationPage = lazy(() => import('@/pages/creation/Creation.page'));
 const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
+const IncreaseQuotaPage = lazy(() =>
+  import('@/pages/increase-quota/IncreaseQuota'),
+);
 const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
 
 export default (
@@ -102,10 +105,20 @@ export default (
     />
     <Route
       path={urls.creation}
-      Component={CreationPage}
+      Component={CreationGuard}
       handle={{
         tracking: {
           pageName: 'new',
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      path={urls.increaseQuota}
+      Component={IncreaseQuotaPage}
+      handle={{
+        tracking: {
+          pageName: 'increase-quota',
           pageType: PageType.dashboard,
         },
       }}
