@@ -7,6 +7,7 @@ import {
   resetUserPassword,
   getRoles,
   editUser,
+  getUserAccess,
 } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 
@@ -105,6 +106,19 @@ describe('user management functions', () => {
     });
     expect(apiClient.v6.post).toHaveBeenCalledWith(
       '/cloud/project/projectId/database/mongodb/serviceId/user/userId/credentials/reset',
+    );
+  });
+
+  it('should call getUserAccess', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getUserAccess({
+      projectId: 'projectId',
+      engine: database.EngineEnum.kafka,
+      serviceId: 'serviceId',
+      userId: 'userId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/database/kafka/serviceId/user/userId/access',
     );
   });
 

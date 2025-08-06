@@ -20,6 +20,8 @@ interface UserListColumnsProps {
   onDeleteClicked: (user: GenericUser) => void;
   onResetPasswordClicked: (user: GenericUser) => void;
   onEditClicked: (user: GenericUser) => void;
+  onShowAccessTokenClicked: (user: GenericUser) => void;
+  onViewCertificatesClicked: (user: GenericUser) => void;
 }
 
 export const getColumns = ({
@@ -33,6 +35,8 @@ export const getColumns = ({
   onDeleteClicked,
   onResetPasswordClicked,
   onEditClicked,
+  onShowAccessTokenClicked,
+  onViewCertificatesClicked,
 }: UserListColumnsProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
@@ -202,6 +206,8 @@ export const getColumns = ({
         onDeleteClicked={onDeleteClicked}
         onResetPasswordClicked={onResetPasswordClicked}
         onEditClicked={onEditClicked}
+        onShowAccessTokenClicked={onShowAccessTokenClicked}
+        onViewCertificatesClicked={onViewCertificatesClicked}
       />
     ),
   };
