@@ -31,4 +31,5 @@ export enum CapabilityEnum {
   'restApi' = 'restApi',
   'schemaRegistry' = 'schemaRegistry',
   'topics' = 'topics',
+  'userAccess' = 'userAccess',
 }

@@ -111,5 +111,13 @@
   "resetUserPasswordCode": "User password",
   "resetUserConnectionTitle": "The URL to use for a fast connection",
   "resetUserConnectionCode": "Connection string",
-  "resetUserConnectionCodeCopy": "Connection URL copied to clipboard"
+  "resetUserConnectionCodeCopy": "Connection URL copied to clipboard",
+  "userButtonClose": "Close",
+  "tableActionsMenuViewCertificate": "View certificate",
+  "tableActionsMenuShowAccessKey": "View access key",
+  "viewCertificatesTitle": "Certificate",
+  "downloadButton": "Download",
+  "viewCertificateCopy": "The certificate has been copied",
+  "showAccessKeyTitle": "Access key",
+  "showAccessKeyCopy": "Access key copied"
 }

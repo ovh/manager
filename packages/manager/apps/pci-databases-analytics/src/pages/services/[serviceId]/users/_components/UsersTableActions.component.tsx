@@ -18,6 +18,8 @@ interface UserActionsProps {
   onDeleteClicked: (user: GenericUser) => void;
   onResetPasswordClicked: (user: GenericUser) => void;
   onEditClicked: (user: GenericUser) => void;
+  onViewCertificatesClicked: (user: GenericUser) => void;
+  onShowAccessTokenClicked: (user: GenericUser) => void;
 }
 
 const UserActions = ({
@@ -25,6 +27,8 @@ const UserActions = ({
   onDeleteClicked,
   onResetPasswordClicked,
   onEditClicked,
+  onShowAccessTokenClicked,
+  onViewCertificatesClicked,
 }: UserActionsProps) => {
   const { service } = useServiceData();
   const { t } = useTranslation(
@@ -64,6 +68,32 @@ const UserActions = ({
           >
             {t('tableActionsMenuResetPassword')}
           </DropdownMenuItem>
+          {service.capabilities.userAccess?.read && (
+            <>
+              <DropdownMenuItem
+                data-testid="user-action-view-certificate-button"
+                variant="primary"
+                disabled={
+                  service.capabilities.userAccess?.read ===
+                  database.service.capability.StateEnum.disabled
+                }
+                onClick={() => onViewCertificatesClicked(user)}
+              >
+                {t('tableActionsMenuViewCertificate')}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                data-testid="user-action-show-access-key"
+                variant="primary"
+                disabled={
+                  service.capabilities.userAccess?.read ===
+                  database.service.capability.StateEnum.disabled
+                }
+                onClick={() => onShowAccessTokenClicked(user)}
+              >
+                {t('tableActionsMenuShowAccessKey')}
+              </DropdownMenuItem>
+            </>
+          )}
           <DropdownMenuSeparator />
           {service.capabilities.users?.delete && (
             <DropdownMenuItem
