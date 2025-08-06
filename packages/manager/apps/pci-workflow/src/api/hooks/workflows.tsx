@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { queryOptions, useMutation, useQueries, useQueryClient } from '@tanstack/react-query';
 import { addMinutes, format, parseISO } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
@@ -6,14 +8,15 @@ import { useTranslation } from 'react-i18next';
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import {
+  TRegion,
   getCatalogQuery,
-  getInstance,
   getProductAvailabilityQuery,
   useProductAvailability,
   useProjectRegions,
 } from '@ovh-ux/manager-pci-common';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 
+import { getInstance } from '@/api/data/instance';
 import {
   TExecutionState,
   TRemoteWorkflow,
@@ -32,6 +35,7 @@ export const WORKFLOW_TYPE = 'instance_backup';
 
 export type TWorkflow = TRemoteWorkflow & {
   instanceName: string;
+  region: string;
   lastExecution: string;
   lastExecutionStatus: TExecutionState;
 };
@@ -48,18 +52,28 @@ export const useWorkflows = (projectId: string) => {
 
   const { data: regions, isPending: isRegionsPending } = useProjectRegions(projectId);
 
+  const filteredRegionNames = useMemo(
+    () =>
+      (regions || [])
+        .filter((region) =>
+          region.services.some(({ name, status }) => name === 'workflow' && status === 'UP'),
+        )
+        .map((region) => region.name),
+    [regions],
+  );
+
   return useQueries({
-    queries: (regions || [])
-      .filter((region) =>
-        region.services.some(({ name, status }) => name === 'workflow' && status === 'UP'),
-      )
-      .map((region) => region.name)
-      .map((regionName) => getWorkflowQueryOptions(projectId, regionName)),
+    queries: filteredRegionNames.map((regionName) =>
+      getWorkflowQueryOptions(projectId, regionName),
+    ),
     combine: (results) => ({
       data: (() =>
         results
-          .map((result) => result.data)
-          .flat(1)
+          .flatMap((result, i) =>
+            result.data
+              ? result.data.map((workflow) => ({ ...workflow, region: filteredRegionNames[i] }))
+              : null,
+          )
           .filter((w) => !!w)
           .map((w) => {
             if (!w.executions) {
@@ -143,9 +157,16 @@ export const sortWorkflows = (
   return data;
 };
 
+export const enum TWorkflowBackup {
+  LOCAL = 'local',
+  LOCAL_AND_DISTANT = 'local_and_distant',
+}
+
 export type TPaginatedWorkflow = TWorkflow & {
   type: string;
   typeLabel: string;
+  backup: TWorkflowBackup;
+  regions: TRegion['name'][];
 };
 
 export const usePaginatedWorkflows = (
@@ -168,7 +189,7 @@ export const usePaginatedWorkflows = (
   return useQueries({
     queries: workflows.map((workflow) => ({
       queryKey: [projectId, 'instances', workflow.instanceId],
-      queryFn: async () => getInstance(projectId, workflow.instanceId),
+      queryFn: async () => getInstance(projectId, workflow.region, workflow.instanceId),
       staleTime: Infinity,
       enabled: !isWorkflowsPending,
     })),
@@ -178,6 +199,12 @@ export const usePaginatedWorkflows = (
         type: WORKFLOW_TYPE,
         typeLabel: t(`pci_workflow_type_${WORKFLOW_TYPE}_title`),
         instanceName: results[i].data?.name,
+        backup: !!workflow.distantRegion
+          ? TWorkflowBackup.LOCAL_AND_DISTANT
+          : TWorkflowBackup.LOCAL,
+        regions: []
+          .concat(results[i].data ? [results[i].data.region] : [])
+          .concat(workflow.distantRegion ? [workflow.distantRegion] : []),
       }));
 
       return {
