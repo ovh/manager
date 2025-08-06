@@ -2,7 +2,6 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { getCreditDetails } from '@/data/api/credit';
 import { CreditDetailsResponse } from '@/data/types/credit.type';
 import { getCreditBalance, getStartupProgram } from '../api/credit';
-import { TStartupProgram } from '../types/credit';
 
 export interface VoucherCreditDetail {
   voucher: string;
