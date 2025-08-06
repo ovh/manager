@@ -161,3 +161,13 @@ export const putIamResource = async ({
     },
   });
 };
+
+export const deleteResourceTag = async ({
+  resource,
+  tagKey,
+}: {
+  resource: IamResource;
+  tagKey: string;
+}) => {
+  return apiClient.v2.delete(`/iam/resource/${resource.urn}/tag/${tagKey}`);
+};
