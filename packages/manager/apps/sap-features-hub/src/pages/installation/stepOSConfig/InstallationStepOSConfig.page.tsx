@@ -49,8 +49,18 @@ export default function InstallationStepOSConfig() {
     !!values.domainName && !errors.domainName && !errors.osLicense;
 
   const handleValueChange = (e: OdsToggleChangeEvent | OdsInputChangeEvent) => {
-    setValues((val) => ({ ...val, [e.detail.name]: e.detail.value }));
+    const { name, value } = e.detail;
+    if (name === 'osLicense') {
+      setValues((prev) => ({
+        ...prev,
+        osLicense: value as string,
+        osUpdate: value ? prev.osUpdate : false,
+      }));
+      return;
+    }
+    setValues((val) => ({ ...val, [name]: value }));
   };
+
   const handleChange = ({ e, error, isValid }: HandleInputChangeProps) => {
     handleValueChange(e);
     clearServerErrorMessage();
@@ -128,6 +138,8 @@ export default function InstallationStepOSConfig() {
         checked={values.osUpdate}
         onOdsChange={handleValueChange}
         label={t('os_config_toggle_update')}
+        isDisabled={!values.osLicense}
+        tooltip={!values.osLicense && t('os_config_tooltip_update')}
       />
       <ToggleField
         name={'firewallService'}

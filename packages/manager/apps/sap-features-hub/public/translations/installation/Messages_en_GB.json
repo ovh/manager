@@ -126,5 +126,6 @@
   "status_REVOKED": "Revoked",
   "status_FAILURE": "Error",
   "status_STARTED": "In progress",
-  "installation_error_server_message": "An error has occurred submitting information. Error message: \"{{error}}\""
+  "installation_error_server_message": "An error has occurred submitting information. Error message: \"{{error}}\"",
+  "os_config_tooltip_update": "Requires a SUSE licence key"
 }
