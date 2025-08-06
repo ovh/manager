@@ -7,5 +7,7 @@
   "pci_instances_common_cancel": "Cancel",
   "pci_instances_common_confirm": "Confirm",
   "pci_instances_common_404_error_message": "A 404 “File Not Found” error was encountered.",
-  "pci_instances_common_pending": "In progress"
+  "pci_instances_common_pending": "In progress",
+  "pci_instances_common_instance_title": "Instance",
+  "pci_instances_common_instance_name": "Instance name"
 }
