@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { formatISO } from 'date-fns';
 
 import { FLAVORS_TYPE, HOURS_PER_MONTH } from './backup.contants';
 import {
@@ -36,15 +37,9 @@ export default class PciInstanceBackupController {
 
   $onInit() {
     this.backup = {
-      name: `${this.instance.name} ${this.$filter('date')(
-        new Date(),
-        'short',
-      )}`,
+      name: `${this.instance.name} ${formatISO(new Date())}`,
       distantRegion: null,
-      distantSnapshotName: `${this.instance.name} ${this.$filter('date')(
-        new Date(),
-        'short',
-      )}`,
+      distantSnapshotName: `${this.instance.name} ${formatISO(new Date())}`,
     };
     this.distantSnapshot = false;
 
