@@ -35,7 +35,7 @@ vi.mock('@/queryClient', () => ({
 const mockQueryClient = vi.mocked(queryClient);
 
 // Type definitions for mock return values
-type MockEligibilityResult = UseQueryResult<TEligibility | undefined, Error>;
+type MockEligibilityResult = UseQueryResult<TEligibility, Error>;
 type MockPaymentMethodsResult = UseQueryResult<
   FetchResultV6<TUserPaymentMethod>,
   Error
