@@ -9,6 +9,7 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { useIsDistantBackupAvailable } from '@/data/hooks/feature';
 
 type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name'> & {
   label: string;
@@ -20,6 +21,7 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
     translateMicroRegion,
     translateContinentRegion,
   } = useTranslatedMicroRegions();
+  const isDistantBackupAvailable = useIsDistantBackupAvailable();
 
   const locale = i18n.language.replace('_', '-');
   const {
@@ -64,7 +66,9 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
       !productAvailability ||
       !currentRegion ||
       // Only 1AZ and 3AZ can have distant backups for now
-      (currentRegion.type !== 'region' && currentRegion.type !== 'region-3-az')
+      (currentRegion.type !== 'region' &&
+        currentRegion.type !== 'region-3-az') ||
+      !isDistantBackupAvailable
     )
       return new Map<string, ContinentRegion[]>();
 
