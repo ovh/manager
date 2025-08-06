@@ -1,0 +1,6 @@
+{
+  "pci_project_new_error_contact_support": "Contatta il supporto",
+  "pci_project_new_error_ask_increase_projects_quota": "Non è possibile creare altri progetti. Contatta il supporto per aumentare la quota disponibile e creare un nuovo progetto.",
+  "pci_project_new_error_verify_paypal": "Al momento non è possibile creare altri progetti Public Cloud con questo conto PayPal in quanto l’account non risulta verificato. Ti consigliamo di eseguire il processo di verifica nell’interfaccia PayPal e riprovare a effettuare l’operazione. È inoltre possibile modificare <a href=\"{{ href }}\">il metodo di pagamento predefinito</a>.",
+  "pci_project_new_error_cancel": "Annulla"
+}
