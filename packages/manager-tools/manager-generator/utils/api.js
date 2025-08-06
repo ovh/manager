@@ -8,8 +8,7 @@ const v6Prefix = 'v6-';
 
 export const isV2Endpoint = (apiPath) => apiPath?.startsWith(v2Prefix);
 
-export const removeApiVersionPrefix = (apiPath) =>
-  apiPath.substring(v2Prefix.length);
+export const removeApiVersionPrefix = (apiPath) => apiPath.substring(v2Prefix.length);
 
 /**
  * @returns the list of API v6 and v2 services endpoints
@@ -47,8 +46,6 @@ export const getApiPaths = async () => {
  */
 export const getApiServiceOperations = async (apiPath) => {
   const endpoint = isV2Endpoint(apiPath) ? v2Endpoint : v6Endpoint;
-  const response = await axios.get(
-    `${endpoint}${removeApiVersionPrefix(apiPath)}.json`,
-  );
+  const response = await axios.get(`${endpoint}${removeApiVersionPrefix(apiPath)}.json`);
   return response.data.apis;
 };

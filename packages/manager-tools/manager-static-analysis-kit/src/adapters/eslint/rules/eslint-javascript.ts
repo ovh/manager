@@ -20,7 +20,6 @@ export const javascriptEslintConfig: Linter.FlatConfig = {
     ...js.languageOptions,
     sourceType: 'module',
   },
-  plugins: js.plugins,
   rules: {
     ...js.configs.recommended.rules,
   },

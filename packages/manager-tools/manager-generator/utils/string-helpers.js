@@ -15,9 +15,7 @@ export const removeTypeBrackets = (typeStr) =>
  * @returns Cleaned up type string
  */
 export const cleanUpType = (originalType) => {
-  const typeStr = originalType
-    .replace(/:[a-zA-Z]+/g, '')
-    .replace(/<[a-zA-Z]+>/g, '');
+  const typeStr = originalType.replace(/:[a-zA-Z]+/g, '').replace(/<[a-zA-Z]+>/g, '');
   return typeStr[0].toUpperCase() + typeStr.substring(1);
 };
 
@@ -45,9 +43,7 @@ export const transformTypeToTypescript = (originalType) => {
  * @returns the last part of a Java type
  */
 export const getTypeFromString = (typeStr) =>
-  typeStr
-    ? transformTypeToTypescript(typeStr.split('.').slice(-1)[0])
-    : 'unknown';
+  typeStr ? transformTypeToTypescript(typeStr.split('.').slice(-1)[0]) : 'unknown';
 
 /**
  * @returns true if the string is not a valid Typescript type
