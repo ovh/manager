@@ -1,0 +1,3 @@
+{
+  "pci_instance_creation_name_rule": "Deve apenas conter números, letras, underscores, hífenes ou pontos."
+}
