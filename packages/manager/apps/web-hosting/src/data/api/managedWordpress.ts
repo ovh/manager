@@ -1,6 +1,7 @@
 import { proxyV2 } from '../../../../../core/api'; // @todo: to change soon we have prod api
 
 import {
+  ManagedWordpressResourceDetailsType,
   ManagedWordpressResourceType,
   ManagedWordpressWebsiteDetails,
   ManagedWordpressWebsites,
@@ -11,6 +12,14 @@ import {
 export const getManagedCmsResource = async (): Promise<ManagedWordpressResourceType[]> => {
   const { data } = await proxyV2.get<ManagedWordpressResourceType[]>( // @todo: to change soon we have prod api
     '/managedCMS/resource',
+  );
+  return data;
+};
+export const getManagedCmsResourceDetails = async (
+  serviceName: string,
+): Promise<ManagedWordpressResourceDetailsType> => {
+  const { data } = await proxyV2.get<ManagedWordpressResourceDetailsType>( // @todo: to change soon we have prod api
+    `/managedCMS/resource/${serviceName}`,
   );
   return data;
 };
