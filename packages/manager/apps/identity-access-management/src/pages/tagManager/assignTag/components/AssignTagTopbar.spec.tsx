@@ -4,6 +4,7 @@ import { describe, it, vi } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import exp from 'constants';
+import * as ReactRouterDom from 'react-router-dom';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import AssignTagTopbar, {
   AssignTagTopbarProps,
@@ -27,12 +28,6 @@ vi.mock(
     useResourcesDatagridContext: vi.fn(),
   }),
 );
-
-const navigateMock = vi.hoisted(() => vi.fn());
-vi.mock('react-router-dom', async (importOriginal) => ({
-  ...importOriginal(),
-  useNavigate: () => navigateMock,
-}));
 
 const queryClient = new QueryClient();
 
@@ -59,6 +54,15 @@ const renderComponent = (
 };
 
 describe('AssignTagTopbar Component', async () => {
+  const mockNavigate = vi.fn();
+
+  beforeEach(() => {
+    mockNavigate.mockReset();
+    vi.spyOn(ReactRouterDom, 'useNavigate').mockImplementation(
+      () => mockNavigate,
+    );
+  });
+
   it.each([
     { selectedResourcesList: [], state: 'disabled' },
     {
@@ -98,7 +102,7 @@ describe('AssignTagTopbar Component', async () => {
     },
   );
 
-  it('Should redirect to given url', () => {
+  it('Should redirect to given url', async () => {
     useUpdateIamResourcesMock.mockImplementation(() => ({
       mutate: vi.fn(),
       isSuccess: true,
@@ -110,8 +114,8 @@ describe('AssignTagTopbar Component', async () => {
       onSuccessUrl: 'test',
     });
 
-    waitFor(() => {
-      expect(navigateMock).toHaveBeenCalledWith('test');
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('test');
     });
   });
 });

@@ -5,7 +5,6 @@ import {
   Breadcrumb,
   Notifications,
   RedirectionGuard,
-  updateServiceNameMutationKey,
 } from '@ovh-ux/manager-react-components';
 
 import { useNavigate, useParams } from 'react-router-dom';

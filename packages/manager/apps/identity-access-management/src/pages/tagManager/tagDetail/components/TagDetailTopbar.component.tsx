@@ -20,8 +20,11 @@ export default function TagDetailTopbar({ tag }: TagDetailTopbarProps) {
   };
 
   const onClickUnassign = () => {
-    // eslint-disable-next-line no-console
-    console.log('TODO: Unassign', tag);
+    navigate(urls.tagdetailUnassign.replace(':tag', tag), {
+      state: {
+        resources: selectedResourcesList,
+      },
+    });
   };
 
   return (
