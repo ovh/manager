@@ -1,4 +1,4 @@
-/* eslint-disable import/extensions, no-param-reassign */
+/* eslint-disable */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getApiPaths, isV2Endpoint } from '../utils/api.js';
