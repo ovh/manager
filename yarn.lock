@@ -6923,6 +6923,15 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-pci-common@^0.18.2":
+  version "0.18.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.18.3.tgz#29633de4e841d8b02c424f127526398253d7b8d0"
+  integrity sha512-LRe20WKrAUlcm2WWWB8So3fquIq7a8qq1du/Ku0vT2GreJ1sLXf0so5RxQFQckRlF05dE2C/r5iJ3AOnPyweOw==
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
 "@ovh-ux/manager-react-components@^1.41.1":
   version "1.45.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.45.0.tgz#e48f51c2d225660fbd37a99e9eda5a8e86262ab3"
@@ -7002,20 +7011,6 @@
     sass "1.71.0"
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
-
-"@ovh-ux/manager-react-shell-client@^0.8.5", "@ovh-ux/manager-react-shell-client@^0.8.7":
-  version "0.8.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
-  integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
-  dependencies:
-    "@ovh-ux/manager-config" "^8.2.1"
-    "@ovh-ux/ovh-at-internet" "^0.21.6"
-    "@ovh-ux/request-tagger" "^0.4.0"
-    "@ovh-ux/shell" "^4.1.0"
-    "@ovh-ux/url-builder" "^2.0.0"
-    "@tanstack/react-query" "^5.64.1"
-    i18next "^23.8.2"
-    i18next-http-backend "^2.4.2"
 
 "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
