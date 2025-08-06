@@ -9,5 +9,6 @@ export const urls = {
   creation: 'new',
   creating: 'creating/:orderId',
   creatingWithVoucher: 'creating/:orderId/:voucherCode',
+  increaseQuota: 'increase-quota',
   remove: 'remove',
 } as const;
