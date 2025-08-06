@@ -1,11 +1,16 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, Mock } from 'vitest';
+import { UseQueryResult } from '@tanstack/react-query';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import ClusterNetwork, {
   ClusterNetworkProps,
 } from './ClusterNetwork.component';
 import { wrapper } from '@/wrapperRenders';
+import { PROCESSING_STATUS } from '@/constants';
+
+import { TRegionInformations } from '@/types/region';
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 vi.mock('@/api/hooks/useSubnets', () => ({
   useRegionSubnets: vi.fn(),
@@ -16,6 +21,16 @@ vi.mock('@/api/hooks/useRegionInformations', () => ({
 }));
 
 describe('ClusterNetwork Component', () => {
+  const initialProps = {
+    projectId: 'project-123',
+    kubeDetail: {
+      region: 'region-1',
+      privateNetworkId: 'network-123',
+      nodesSubnetId: 'subnet-123',
+      loadBalancersSubnetId: 'subnet-456',
+    },
+  } as ClusterNetworkProps;
+
   beforeEach(() => {
     vi.mocked(useRegionSubnets as Mock).mockReturnValue({
       data: [],
@@ -125,8 +140,24 @@ describe('ClusterNetwork Component', () => {
       ).toBeInTheDocument(),
     );
   });
+  it.each(PROCESSING_STATUS)(
+    'must disable the button when the status is not %s',
+    (status) => {
+      const props = {
+        ...initialProps,
+        kubeDetail: {
+          ...initialProps.kubeDetail,
+          status,
+        },
+      };
+      render(<ClusterNetwork {...props} />, { wrapper });
+      expect(screen.getByTestId('cluster-network-edit-button')).toHaveAttribute(
+        'disabled',
+      );
+    },
+  );
 
-  it('shows subnet information when available', () => {
+  it('shows subnet information when available in Az and 3az', () => {
     const props = {
       projectId: 'project-123',
       kubeDetail: {
@@ -150,4 +181,49 @@ describe('ClusterNetwork Component', () => {
     expect(screen.getByText('subnet-123 - 192.168.1.0/24')).toBeInTheDocument();
     expect(screen.getByText('subnet-456 - 192.168.2.0/24')).toBeInTheDocument();
   });
+
+  it.each([
+    {
+      regionType: 'region',
+      privateNetworkId: 'network-region',
+      nodesSubnetId: 'subnet-region-123',
+    },
+    {
+      regionType: 'region-3-az',
+      privateNetworkId: 'network-3az',
+      nodesSubnetId: 'subnet-3az-123',
+    },
+  ])(
+    'shows subnet information when available in $regionType',
+    ({ regionType, privateNetworkId, nodesSubnetId }) => {
+      const props = {
+        projectId: 'project-123',
+        kubeDetail: {
+          region: 'region-1',
+          privateNetworkId,
+          nodesSubnetId,
+          loadBalancersSubnetId: 'subnet-456',
+        },
+      } as ClusterNetworkProps;
+      vi.mocked(useRegionInformations).mockReturnValue({
+        data: { type: regionType },
+        isPending: false,
+      } as UseQueryResult<TRegionInformations>);
+      vi.mocked(useRegionSubnets).mockReturnValue({
+        data: [
+          { id: nodesSubnetId, cidr: '192.168.1.0/24' },
+          { id: 'subnet-456', cidr: '192.168.2.0/24' },
+        ],
+        isPending: false,
+      } as UseQueryResult<TPrivateNetworkSubnet[]>);
+      render(<ClusterNetwork {...props} />, { wrapper });
+
+      expect(
+        screen.getByText(`${nodesSubnetId} - 192.168.1.0/24`),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('subnet-456 - 192.168.2.0/24'),
+      ).toBeInTheDocument();
+    },
+  );
 });
