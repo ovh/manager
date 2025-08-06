@@ -4,8 +4,10 @@ import {
   TEligibilityVoucher,
 } from '@/data/types/payment/eligibility.type';
 
-export const getEligibility = async (): Promise<TEligibility | undefined> => {
-  return v6.get(`/cloud/eligibility`).then((d) => d?.data);
+export const getEligibility = async (): Promise<TEligibility> => {
+  const { data } = await v6.get(`/cloud/eligibility`);
+
+  return data;
 };
 
 export const checkVoucherEligibility = async (
