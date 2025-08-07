@@ -17,6 +17,7 @@ import {
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
   DEFAULT_IP,
+  DISTANT_BACKUP_FEATURE,
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
   FLAVORS_WITHOUT_SOFT_REBOOT,
@@ -48,6 +49,7 @@ export default class PciProjectInstanceService {
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
     PciProject,
+    ovhFeatureFlipping,
   ) {
     this.$http = $http;
     this.$q = $q;
@@ -72,6 +74,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
     this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.licensePriceFormatter = new Intl.NumberFormat(
       this.coreConfig.getUserLocale().replace('_', '-'),
@@ -626,41 +629,44 @@ export default class PciProjectInstanceService {
   }
 
   getDistantBackupAvailableRegions(projectId, instanceRegionName) {
-    return this.getProductAvailability(projectId, undefined, 'snapshot').then(
-      (productAvailability) => {
-        const instancePlan = productAvailability.plans.find(
-          (p) =>
-            p.code.startsWith('snapshot.consumption') &&
-            p.regions.some((r) => r.name === instanceRegionName),
-        );
+    return Promise.all([
+      this.getProductAvailability(projectId, undefined, 'snapshot'),
+      this.ovhFeatureFlipping.checkFeatureAvailability(DISTANT_BACKUP_FEATURE),
+    ]).then(([productAvailability, feature]) => {
+      if (!feature.isFeatureAvailable(DISTANT_BACKUP_FEATURE)) return [];
 
-        const instanceRegion = instancePlan?.regions.find(
-          (r) => r.name === instanceRegionName,
-        );
+      const instancePlan = productAvailability.plans.find(
+        (p) =>
+          p.code.startsWith('snapshot.consumption') &&
+          p.regions.some((r) => r.name === instanceRegionName),
+      );
 
-        if (
-          !instanceRegion ||
-          (instanceRegion.type !== THREE_AZ_REGION &&
-            instanceRegion.type !== ONE_AZ_REGION)
+      const instanceRegion = instancePlan?.regions.find(
+        (r) => r.name === instanceRegionName,
+      );
+
+      if (
+        !instanceRegion ||
+        (instanceRegion.type !== THREE_AZ_REGION &&
+          instanceRegion.type !== ONE_AZ_REGION)
+      )
+        return [];
+
+      const regions = productAvailability.plans
+        .filter((p) => p.code.startsWith('snapshot.consumption'))
+        .flatMap((p) => p.regions);
+
+      return regions
+        .filter(
+          (r) =>
+            r.name !== instanceRegionName &&
+            (r.type === THREE_AZ_REGION || r.type === ONE_AZ_REGION),
         )
-          return [];
-
-        const regions = productAvailability.plans
-          .filter((p) => p.code.startsWith('snapshot.consumption'))
-          .flatMap((p) => p.regions);
-
-        return regions
-          .filter(
-            (r) =>
-              r.name !== instanceRegionName &&
-              (r.type === THREE_AZ_REGION || r.type === ONE_AZ_REGION),
-          )
-          .map((r) => ({
-            ...r,
-            ...this.ovhManagerRegionService.getRegion(r.name),
-          }));
-      },
-    );
+        .map((r) => ({
+          ...r,
+          ...this.ovhManagerRegionService.getRegion(r.name),
+        }));
+    });
   }
 
   getProductAvailability(
