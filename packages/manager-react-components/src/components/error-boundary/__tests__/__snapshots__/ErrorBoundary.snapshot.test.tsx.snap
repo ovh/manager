@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorBoundary Tests > should render Error component when error occurs 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <div
+    class="py-2"
+  >
+    <h1
+      class="_text--heading-1_1aw48_13"
+    >
+      Oops …!
+    </h1>
+  </div>
+  <div>
+    <div
+      class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9 w-full"
+    >
+      <span
+        class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+      />
+      <div
+        class="_message-body_fe7x3_2"
+      >
+        <p
+          class="m-0 p-O"
+        >
+          <span
+            class="block"
+          >
+            Une erreur est survenue lors du chargement de la page.
+          </span>
+          <span
+            class="block"
+          >
+            <strong>
+              Service not found
+            </strong>
+          </span>
+          <span
+            class="block py-[10px]"
+          >
+            Code d'erreur : 
+            123456789
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
