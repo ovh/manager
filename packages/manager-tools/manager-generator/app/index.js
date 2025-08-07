@@ -1,19 +1,15 @@
-/* eslint-disable import/extensions, no-param-reassign */
+/* eslint-disable */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getApiPaths, isV2Endpoint } from '../utils/api.js';
+
 import { getApiTemplateData } from '../utils/api-template.js';
+import { getApiPaths, isV2Endpoint } from '../utils/api.js';
 import {
+  createApiQueryFilesActions,
   createPages,
   createTranslations,
-  createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
-import {
-  UNIVERSES,
-  SUB_UNIVERSES,
-  LEVEL2,
-  REGIONS,
-} from './universes.constant.js';
+import { LEVEL2, REGIONS, SUB_UNIVERSES, UNIVERSES } from './universes.constant.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -22,10 +18,7 @@ const toChoice = ({ apiPath, functionName }) => ({
   value: `${apiPath}-${functionName}`,
 });
 
-const getApiV2AndV6GetEndpointsChoices = ({
-  apiV6Endpoints,
-  apiV2Endpoints,
-}) => [
+const getApiV2AndV6GetEndpointsChoices = ({ apiV6Endpoints, apiV2Endpoints }) => [
   { type: 'separator', line: 'V2 endpoints' },
   ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
   { type: 'separator' },
@@ -41,11 +34,8 @@ const apiComputed = (data) => {
     apiV6Computed = {
       get: {
         ...data.apiV6Endpoints.get,
-        operationList: data.apiV6Endpoints.get?.operationList?.filter(
-          ({ apiPath }) =>
-            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
-              apiPath,
-            ),
+        operationList: data.apiV6Endpoints.get?.operationList?.filter(({ apiPath }) =>
+          [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath),
         ),
       },
     };
@@ -56,9 +46,8 @@ const apiComputed = (data) => {
         ...data.apiV2Endpoints.get,
         operationList: data.apiV2Endpoints.get?.operationList?.filter(
           ({ apiPath }) =>
-            [data.listingEndpointPath, data.dashboardEndpointPath].includes(
-              apiPath,
-            ) || apiPath.includes('/serviceInfos'),
+            [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath) ||
+            apiPath.includes('/serviceInfos'),
         ),
       },
     };
@@ -131,12 +120,8 @@ export default (plop) => {
             },
             { v2: [], v6: [] },
           );
-          data.apiV6Endpoints = await getApiTemplateData(
-            data.apiPathsByApiVersion.v6,
-          );
-          data.apiV2Endpoints = await getApiTemplateData(
-            data.apiPathsByApiVersion.v2,
-          );
+          data.apiV6Endpoints = await getApiTemplateData(data.apiPathsByApiVersion.v6);
+          data.apiV2Endpoints = await getApiTemplateData(data.apiPathsByApiVersion.v2);
           return true;
         },
         choices: getApiV2AndV6GetEndpointsChoices,
@@ -159,8 +144,7 @@ export default (plop) => {
           data.isApiV6 = data.apiV6Endpoints.get?.operationList.length > 0;
           data.isApiV2 = data.apiV2Endpoints.get?.operationList.length > 0;
 
-          const [listingPath, listingFn] =
-            data.listingEndpoint?.split('-') || [];
+          const [listingPath, listingFn] = data.listingEndpoint?.split('-') || [];
           data.listingEndpointPath = listingPath;
           data.listingEndpointFn = listingFn;
           data.mainApiPath = listingPath;
@@ -176,8 +160,7 @@ export default (plop) => {
               '${projectId}',
             );
           }
-          const [dashboardPath, dashboardFn] =
-            data.dashboardEndpoint?.split('-') || [];
+          const [dashboardPath, dashboardFn] = data.dashboardEndpoint?.split('-') || [];
           data.dashboardEndpointPath = dashboardPath;
           data.dashboardEndpointFn = dashboardFn;
 
@@ -257,7 +240,7 @@ export default (plop) => {
       return [
         {
           type: 'addMany',
-          destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
+          destination: join(appDirectory, '../../../manager/apps/{{dashCase appName}}'),
           templateFiles: join(appDirectory, './templates/**'),
           base: join(appDirectory, './templates'),
         },

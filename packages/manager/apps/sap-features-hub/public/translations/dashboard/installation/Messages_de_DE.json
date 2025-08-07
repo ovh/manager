@@ -13,10 +13,10 @@
   "dashboard_installation_progress_step_sap_install": "Installation des SAP-Systems und Konfiguration der angeforderten Optionen",
   "dashboard_installation_progress_step_clean_resources": "Temporäre Ressourcen aus Ihrer Infrastruktur löschen",
   "dashboard_installation_progress_step_success": "Schritt erfolgreich abgeschlossen",
-  "dashboard_installation_progress_step_failure": "Fehlgeschlagener Schritt",
+  "dashboard_installation_progress_step_failure": "Schritt fehlgeschlagen",
   "dashboard_installation_progress_step_pending": "Schritt wird ausgeführt",
-  "dashboard_installation_progress_step_waiting": "Ausstehender Schritt",
+  "dashboard_installation_progress_step_waiting": "Schritt ausstehend",
   "dashboard_installation_progress_status_label": "Status der Installation",
-  "dashboard_installation_error_message": "Fehler in Schritt „{{stepName}}“. Weitere Details finden Sie weiter unten.",
+  "dashboard_installation_error_message": "Fehler bei Schritt „{{stepName}}“. Weitere Details finden Sie weiter unten.",
   "dashboard_installation_go_back_to_list": "Zurück zur Liste der SAP-Vorinstallationen"
 }

@@ -1,3 +1,7 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, all code will be move in @ovh-ux/manager-module-common-api' or already moved
+ */
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import {
@@ -6,8 +10,14 @@ import {
   getResourceServiceIdQueryKey,
 } from '../api';
 
+/**
+ * @deprecated The constant is deprecated and will be removed in MRC V3.
+ */
 export const updateServiceNameMutationKey = ['put/services/displayName'];
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type UpdateServiceNameMutationParams = {
   /** Resource name or id */
   resourceName: string;
@@ -15,12 +25,18 @@ export type UpdateServiceNameMutationParams = {
   displayName?: string;
 };
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type UseUpdateServiceDisplayNameParams = {
   onSuccess?: () => void;
   onError?: (result: ApiError) => void;
   mutationKey?: string[];
 };
 
+/**
+ * @deprecated This hook is deprecated and will be removed in MRC V3.
+ */
 export const useUpdateServiceDisplayName = ({
   onSuccess,
   onError,

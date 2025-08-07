@@ -1,13 +1,13 @@
 {
   "title": "sp-features-hub",
-  "description": "Entdecken Sie gemanagte Speicherdienste, die auf dem Dateisystem OpenZFS basieren. Mit wenigen Klicks verfügen Sie über zentralisierte Speicherplätze für Speicherung und Backup Ihrer Daten und Dateien.",
+  "description": "Lernen Sie die gemanagten Storage-Dienste auf Basis des Dateisystems OpenZFS kennen. Mit wenigen Klicks stehen zentralisierte Storage-Bereiche bereit, um Ihre Daten und Dateien zu speichern oder zu sichern.",
   "orderButtonLabel": "Einen sap-features-hub bestellen",
   "moreInfoButtonLabel": "Mehr Informationen zu sap-features-hub",
   "guideCategory": "Anleitung",
   "guide1Title": "Erste Schritte mit einem sap-features-hub",
-  "guide1Description": "Hier erfahren Sie, wie Sie einen HA-NAS über das OVHcloud Kundencenter verwalten",
+  "guide1Description": "Wie Sie einen HA-NAS über Ihr OVHcloud Kundencenter verwalten",
   "guide2Title": "NAS über NFS-Freigabe mounten",
-  "guide2Description": "So mounten Sie einen NAS über eine NFS-Freigabe",
-  "guide3Title": "Mounten Ihres NAS auf Windows Server mit CIFS",
-  "guide3Description": "Hier erfahren Sie, wie Sie einen NAS über CIFS auf Windows Server mounten"
+  "guide2Description": "Hier erfahren Sie, wie Sie ein NAS über eine NFS-Freigabe mounten.",
+  "guide3Title": "NAS auf Windows Server mit CIFS mounten",
+  "guide3Description": "Wie Sie einen NAS über CIFS auf Windows Server mounten"
 }

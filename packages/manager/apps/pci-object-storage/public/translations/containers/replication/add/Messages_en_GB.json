@@ -50,7 +50,7 @@
   "pci_projects_project_storages_containers_replication_add_update": "Edit the rule",
   "pci_projects_project_storages_containers_replication_edit_success_message": "Your replication rule has successfully been edited.",
   "pci_projects_project_storages_containers_replication_edit_error_message": "An error has occurred editing your replication rule: {{ message }}.",
-  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "You will need to specify a prefix or other filter if you choose this option.",
+  "pci_projects_project_storages_containers_replication_add_application_limited_helper_text": "You need to specify a prefix or other filter if you choose this option.",
   "pci_projects_project_storages_containers_replication_add_tags_tag_key_duplicate_error": "The key must be unique.",
   "pci_projects_project_storages_containers_replication_add_destination_warning_object_lock": "The object lock has been enabled on this container. The object lock on the destination container must also be enabled if it has been enabled on the source container.",
   "pci_projects_project_storages_containers_replication_add_use_storageclass_warning": "Only Standard and Infrequent Access storage classes are available on 3-AZ deployment mode. For this deployment mode, the default class is Standard."

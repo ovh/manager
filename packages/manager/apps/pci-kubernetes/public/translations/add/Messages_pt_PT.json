@@ -81,6 +81,6 @@
   "kube_add_plan_subtitle": "Escolha o plano mais adequado às suas necessidades. Usufrua de uma vasta escolha de instâncias usadas como nós Kubernetes, faturadas consoante a utilização ou então com compromisso.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Dê um nome ao seu pool de nós",
-  "kube_add_plan_content_unavailable_1AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 1-AZ. Se pretender beneficiar do plano {{ plan }}, selecione a implementação em 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 3-AZ. Se pretender beneficiar do plano {{ plan }}, selecione uma implementação em 1-AZ."
+  "kube_add_plan_content_unavailable_1AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 1-AZ. Se pretender beneficiar do plano {{ plan }}, escolha a implementação em 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 3-AZ. Se pretender beneficiar do plano {{ plan }}, escolha uma implementação em 1-AZ."
 }
