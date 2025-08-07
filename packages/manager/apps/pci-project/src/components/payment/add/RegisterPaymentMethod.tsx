@@ -16,12 +16,12 @@ import {
 import { TEligibility } from '@/data/types/payment/eligibility.type';
 import usePaymentFeatureAvailabilities from '@/data/hooks/payment/usePaymentFeatureAvailabilities';
 import { useFilteredAvailablePaymentMethods } from '@/data/hooks/payment/useFilteredAvailablePaymentMethods';
-import PaymentIcon from './PaymentIcon';
+import PaymentIcon from '../choose/PaymentIcon';
 import {
   TAvailablePaymentMethod,
   TPaymentMethodType,
 } from '@/data/types/payment/payment-method.type';
-import SetAsDefaultPaymentMethod from './SetAsDefaultPaymentMethod';
+import SetAsDefaultPaymentMethod from '../choose/SetAsDefaultPaymentMethod';
 import ExplanationTexts from './ExplanationTexts';
 import SepaInformationModal from './SepaInformationModal';
 
@@ -108,8 +108,8 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
           >
             <OdsCard
               color={ODS_CARD_COLOR.neutral}
-              className={`flex items-center p-6 gap-6 
-                          group-hover:bg-[var(--ods-color-primary-100)] 
+              className={`flex items-center p-6 gap-6
+                          group-hover:bg-[var(--ods-color-primary-100)]
                           group-hover:border-[var(--ods-color-primary-700)]
                           ${
                             selectedPaymentMethod?.paymentType ===

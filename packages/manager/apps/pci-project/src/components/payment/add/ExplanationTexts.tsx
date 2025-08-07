@@ -1,10 +1,10 @@
 import React from 'react';
 import { TAvailablePaymentMethod } from '@/data/types/payment/payment-method.type';
-import CreditCardExplanationTexts from './explanation-texts/CreditCardExplanationTexts';
-import SepaExplanationTexts from './explanation-texts/SepaExplanationTexts';
-import PaypalExplanationTexts from './explanation-texts/PaypalExplanationTexts';
-import RupayExplanationTexts from './explanation-texts/RupayExplanationTexts';
-import { BaseExplanationTextsProps } from './explanation-texts/base-explanation-texts-props.type';
+import CreditCardExplanationTexts from '../explanation-texts/CreditCardExplanationTexts';
+import SepaExplanationTexts from '../explanation-texts/SepaExplanationTexts';
+import PaypalExplanationTexts from '../explanation-texts/PaypalExplanationTexts';
+import RupayExplanationTexts from '../explanation-texts/RupayExplanationTexts';
+import { BaseExplanationTextsProps } from '../explanation-texts/base-explanation-texts-props.type';
 
 type ExplanationTextsProps = BaseExplanationTextsProps & {
   selectedPaymentMethod?: TAvailablePaymentMethod | null;

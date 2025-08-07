@@ -5,16 +5,16 @@ import {
   eligibilityQueryKey,
   useEligibility,
 } from '@/data/hooks/payment/useEligibility';
-import DefaultPaymentMethod from './DefaultPaymentMethod';
+import DefaultPaymentMethod from './choose/DefaultPaymentMethod';
 import {
   paymentMathodQueryKey,
   usePaymentMethods,
 } from '@/data/hooks/payment/usePaymentMethods';
-import RegisterPaymentMethod from './RegisterPaymentMethod';
+import RegisterPaymentMethod from './add/RegisterPaymentMethod';
 import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
 import PaymentMethodChallenge, {
   TPaymentMethodChallengeRef,
-} from './PaymentMethodChallenge';
+} from './challenge/PaymentMethodChallenge';
 import queryClient from '@/queryClient';
 
 export type TPaymentMethodError =

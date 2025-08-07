@@ -196,7 +196,7 @@ describe('ExplanationTexts', () => {
 
   it('should pass features prop to explanation components', async () => {
     const { default: CreditCardExplanationTexts } = await import(
-      './explanation-texts/CreditCardExplanationTexts'
+      '../explanation-texts/CreditCardExplanationTexts'
     );
 
     const mockPaymentMethod = createMockPaymentMethod(
