@@ -3,6 +3,7 @@ import {
   UpdateNameModal,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -24,7 +25,12 @@ import {
 
 export default function UpdateDisplayNameModal() {
   const navigate = useNavigate();
-  const { t } = useTranslation(['dashboard/general-information', 'common']);
+  const { t } = useTranslation([
+    'dashboard/general-information',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.STATUS,
+  ]);
   const { serviceName } = useParams();
   const serviceType = useServiceType(serviceName);
   const isPrepaid = serviceType === 'prepaid';
@@ -55,7 +61,7 @@ export default function UpdateDisplayNameModal() {
     onError: (error: ApiError) => {
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:error_message', {
+          {t(`${NAMESPACES.STATUS}:errorMessage`, {
             error: error.response?.data?.message,
           })}
         </OdsText>,
@@ -80,8 +86,8 @@ export default function UpdateDisplayNameModal() {
       description={t('dashboard_modal_update_description')}
       inputLabel={t('dashboard_modal_update_input_label')}
       defaultValue={getData?.displayName}
-      confirmButtonLabel={t('common:cta_confirm')}
-      cancelButtonLabel={t('common:cta_cancel')}
+      confirmButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
+      cancelButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       updateDisplayName={handleSaveClick}
     />
   );

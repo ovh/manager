@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { StateEnum } from '@/data/api/serviceInfos';
 import { UserStateEnum } from '@/data/api/api.type';
 
@@ -10,7 +11,7 @@ export type OfficeStateProps = {
 } & Record<string, string>;
 
 export const OfficeServiceState = ({ state, ...props }: OfficeStateProps) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(NAMESPACES.STATUS);
 
   const { size, ...otherProps } = props;
 
@@ -20,44 +21,44 @@ export const OfficeServiceState = ({ state, ...props }: OfficeStateProps) => {
   switch (state) {
     case StateEnum.OK:
     case UserStateEnum.OK:
-      label = t('state_ok');
+      label = t('ok');
       color = ODS_BADGE_COLOR.success;
       break;
     case StateEnum.AUTO_RENEW_IN_PROGRESS:
-      label = t('state_autorenewInProgress');
+      label = t('autorenewInProgress');
       color = ODS_BADGE_COLOR.information;
       break;
     case StateEnum.EXPIRED:
-      label = t('state_expired');
+      label = t('expired');
       color = ODS_BADGE_COLOR.critical;
       break;
     case StateEnum.IN_CREATION:
     case UserStateEnum.CREATING:
-      label = t('state_inCreation');
+      label = t('inCreation');
       color = ODS_BADGE_COLOR.information;
       break;
     case UserStateEnum.IN_MAINTENANCE:
-      label = t('state_inMaintenance');
+      label = t('inMaintenance');
       color = ODS_BADGE_COLOR.information;
       break;
     case StateEnum.UNPAID:
-      label = t('state_unPaid');
+      label = t('unPaid');
       color = ODS_BADGE_COLOR.critical;
       break;
     case UserStateEnum.SUSPENDED:
-      label = t('state_suspended');
+      label = t('suspended');
       color = ODS_BADGE_COLOR.critical;
       break;
     case UserStateEnum.SUSPENDING:
-      label = t('state_suspending');
+      label = t('suspending');
       color = ODS_BADGE_COLOR.critical;
       break;
     case UserStateEnum.DELETING:
-      label = t('state_deleting');
+      label = t('deleting');
       color = ODS_BADGE_COLOR.critical;
       break;
     case StateEnum.PENDING_DEBT:
-      label = t('state_pendingDebt');
+      label = t('pendingDebt');
       color = ODS_BADGE_COLOR.information;
       break;
     default:
