@@ -31,13 +31,13 @@ export const useDashboardPolling = ({
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
       if (!instance) return;
-      const { task } = instance;
+      const { task, actions, addresses, volumes, status } = instance;
 
       updateDashboardCache({
         projectId,
         region,
         instanceId,
-        payload: { ...instance },
+        payload: { actions, addresses, volumes, status, task },
       });
 
       if (!task.isPending) {
