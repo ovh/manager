@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { useZodSchemaGenerator, useZodTranslatedError } from './useZod';
+import { getZodSchemaFromRule, useZodTranslatedError } from './useZod';
 import { Rule } from '@/types/rule';
 
 const emptyRule: Rule = {
   defaultValue: null,
   examples: null,
-  fieldName: '',
+  fieldName: 'name',
   in: null,
   maxLength: null,
   minLength: null,
@@ -20,7 +20,7 @@ describe('useZodSchemaGenerator', () => {
       name: emptyRule,
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // Should pass
     expect(() => schema.parse({ name: 'John' })).not.toThrow();
@@ -38,7 +38,7 @@ describe('useZodSchemaGenerator', () => {
       },
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // All should pass
     expect(() => schema.parse({})).not.toThrow();
@@ -55,7 +55,7 @@ describe('useZodSchemaGenerator', () => {
       },
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // Should pass
     expect(() => schema.parse({ name: 'John' })).not.toThrow();
@@ -73,7 +73,7 @@ describe('useZodSchemaGenerator', () => {
       },
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // Should pass
     expect(() => schema.parse({ country: 'FR' })).not.Throw();
@@ -90,7 +90,7 @@ describe('useZodSchemaGenerator', () => {
       },
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // Should pass
     expect(() => schema.parse({ email: 'test@example.com' })).not.toThrow();
@@ -107,7 +107,7 @@ describe('useZodSchemaGenerator', () => {
       },
     };
 
-    const schema = useZodSchemaGenerator(fields);
+    const schema = getZodSchemaFromRule(fields);
 
     // Should pass
     expect(() => schema.parse({ phone: '+1234567890' })).not.toThrow();
