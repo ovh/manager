@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { getApiServiceOperations, isV2Endpoint } from './api.js';
 import {
   cleanTypeSyntax,
