@@ -12,6 +12,7 @@ import { useCallback, useState } from 'react';
 export type TCartProduct = {
   title: string;
   designation?: string;
+  quantity?: number;
   expanded?: boolean;
 };
 
@@ -57,7 +58,11 @@ export const GenericCart = ({ products }: TCartProps) => {
               )}
             </AccordionTrigger>
             <AccordionContent className="bg-[--ods-color-neutral-050] py-5 px-8">
-              content
+              {product.quantity && (
+                <Text className="text-[--ods-color-heading]">
+                  {product.quantity} x
+                </Text>
+              )}
             </AccordionContent>
           </AccordionItem>
         ))}

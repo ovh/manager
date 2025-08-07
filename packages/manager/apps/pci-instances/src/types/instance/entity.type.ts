@@ -124,6 +124,7 @@ export type TInstanceAddresses = Map<TInstanceAddressType, TInstanceAddress[]>;
 export type TInstance = {
   id: string;
   name: string;
+  quantity: number;
   region: TInstanceRegion;
   status: TInstanceStatus;
   task: TInstanceTaskStatus;
