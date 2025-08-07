@@ -87,7 +87,7 @@ describe('RestoreVolume Page', () => {
     const submitButton = getByTestId('pciModal-button_submit');
 
     expect(spinner).toBeVisible();
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should render loading state when the volume is loading', () => {
@@ -99,7 +99,7 @@ describe('RestoreVolume Page', () => {
     const submitButton = getByTestId('pciModal-button_submit');
 
     expect(spinner).toBeVisible();
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should navigate back when cancel button is clicked', () => {
@@ -211,6 +211,6 @@ describe('RestoreVolume Page', () => {
     const { getByTestId } = render(<Restore />);
 
     const submitButton = getByTestId('pciModal-button_submit');
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 });
