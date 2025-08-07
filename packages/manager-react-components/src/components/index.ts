@@ -44,3 +44,4 @@ export * from './tags-tile';
 export * from './changelog-menu';
 export * from './link-card';
 export * from './error';
+export * from './error-boundary';
