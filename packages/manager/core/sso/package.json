@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-sso",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -19,7 +19,7 @@
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-tests-setup": "^0.3.0",
     "typescript": "^5.1.6"
   }
 }

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.35.0...@ovh-ux/manager-react-components@2.36.0) (2025-08-07)
+
+### Features
+
+- **manager-react-components:** deprecate hooks ([c5a7a78](https://github.com/ovh/manager/commit/c5a7a78ae5be7a31400fcc315daea6d5cdfee2a2)), closes [#MANAGER-19191](https://github.com/ovh/manager/issues/MANAGER-19191)
+- **manager-react-components:** deprecate pci hooks ([26ff5c4](https://github.com/ovh/manager/commit/26ff5c4225ec88f57b3df11c464314a9287df1d3)), closes [#MANAGER-19193](https://github.com/ovh/manager/issues/MANAGER-19193)
+- **manager-react-components:** deprecate playwright enum ([e99c333](https://github.com/ovh/manager/commit/e99c333e63f532549420c117d2bab1e7f7492ddb)), closes [#MANAGER-19188](https://github.com/ovh/manager/issues/MANAGER-19188)
+
 # [2.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.34.0...@ovh-ux/manager-react-components@2.35.0) (2025-08-05)
 
 ### Features

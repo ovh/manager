@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.16](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.15...@ovh-ux/ng-shell-tracking@0.7.16) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-shell-tracking
+
+
+
+
+
 ## [0.7.15](https://github.com/ovh/manager/compare/@ovh-ux/ng-shell-tracking@0.7.14...@ovh-ux/ng-shell-tracking@0.7.15) (2025-07-02)
 
 **Note:** Version bump only for package @ovh-ux/ng-shell-tracking

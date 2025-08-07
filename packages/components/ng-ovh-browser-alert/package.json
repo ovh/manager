@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-browser-alert",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Display an alert when your browser isn't supported",
   "keywords": [
     "angularjs",
@@ -36,7 +36,7 @@
     "bowser": "^1.8.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3"
+    "@ovh-ux/component-rollup-config": "^13.1.0"
   },
   "peerDependencies": {
     "angular": "^1.7.5"

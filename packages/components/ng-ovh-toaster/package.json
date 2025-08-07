@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-toaster",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "Show a hot toast for user",
   "keywords": [
     "angularjs",
@@ -36,7 +36,7 @@
     "set-value": "^2.0.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3"
+    "@ovh-ux/component-rollup-config": "^13.1.0"
   },
   "peerDependencies": {
     "angular": "~1.6",

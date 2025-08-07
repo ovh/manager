@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.1.3...@ovh-ux/manager-sap-features-hub-app@0.1.4) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4246] ([3309bac](https://github.com/ovh/manager/commit/3309bac5768d340ab4d0b180e100e57add0a33ef))
+
+
+
+
+
 ## [0.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.1.2...@ovh-ux/manager-sap-features-hub-app@0.1.3) (2025-08-05)
 
 

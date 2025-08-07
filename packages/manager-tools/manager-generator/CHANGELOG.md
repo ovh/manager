@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.31.0...@ovh-ux/manager-generator@0.32.0) (2025-08-07)
+
+
+### Features
+
+* integrate static kit to lint generator js files ([ac98cd1](https://github.com/ovh/manager/commit/ac98cd1667b08c727b9e7fcb1c175cf4fc7c6c39)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* refactor and reorganise manager tools ([d9948a8](https://github.com/ovh/manager/commit/d9948a8340a727bf77d8e5156647d6de47b4e227)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* temporary disable lint on generator template ([aa56155](https://github.com/ovh/manager/commit/aa561556b57e7c18c938302fda0bcbc95e32e8af)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* temporary disable of lint ([3cb83a4](https://github.com/ovh/manager/commit/3cb83a456508b6cbce8ad87ae7eb5efd2112e93f)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 # [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.30.1...@ovh-ux/manager-generator@0.31.0) (2025-06-05)
 
 

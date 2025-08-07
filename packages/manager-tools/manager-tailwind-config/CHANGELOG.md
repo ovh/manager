@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.3.0...@ovh-ux/manager-tailwind-config@0.4.0) (2025-08-07)
+
+
+### Features
+
+* refactor and reorganise manager tools ([d9948a8](https://github.com/ovh/manager/commit/d9948a8340a727bf77d8e5156647d6de47b4e227)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.2.1...@ovh-ux/manager-tailwind-config@0.3.0) (2025-04-03)
 
 

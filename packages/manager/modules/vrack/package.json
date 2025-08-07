@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "1.20.5",
+  "version": "1.20.6",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -27,7 +27,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3",
+    "@ovh-ux/component-rollup-config": "^13.1.0",
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {

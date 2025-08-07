@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.10.1...@ovh-ux/manager-vite-config@0.11.0) (2025-08-07)
+
+
+### Features
+
+* refactor and reorganise manager tools ([d9948a8](https://github.com/ovh/manager/commit/d9948a8340a727bf77d8e5156647d6de47b4e227)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.10.0...@ovh-ux/manager-vite-config@0.10.1) (2025-06-12)
 
 

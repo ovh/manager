@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "private": true,
   "description": "Sign-Up form component.",
   "repository": {
@@ -19,12 +19,12 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.5.0",
+    "@ovh-ux/manager-config": "^8.5.1",
     "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3"
+    "@ovh-ux/component-rollup-config": "^13.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
