@@ -1,3 +1,7 @@
 {
-  "pci_instance_creation_name_rule": "Może zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki."
+  "pci_instance_creation_name_rule": "Może zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki.",
+  "pci_instances_creation_advanced_parameters": "Zaawansowane parametry",
+  "pci_instances_creation_quantity_title": "Wybierz ilość",
+  "pci_instances_creation_quantity_label": "Liczba instancji do utworzenia",
+  "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji(ów) typu {{ type }} dla regionu {{ region }}."
 }
