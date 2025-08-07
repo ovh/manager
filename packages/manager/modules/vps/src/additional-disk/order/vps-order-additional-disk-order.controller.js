@@ -120,10 +120,14 @@ export default class VpsOrderDiskCtrl {
         // then map the filtered options by adding a capacity attribute
         // this attribute is calculated from the planCode of the options
         diskOptions = map(diskOptions, (diskOption) => {
+          const match = diskOption.planCode.match(/-(\d{2,4})g$/);
+          const capacity = match ? parseInt(match[1], 10) : 0;
+
           set(diskOption, 'capacity', {
-            value: parseInt(diskOption.planCode.replace(/[a-zA-Z-]*/g, ''), 10),
+            value: capacity,
             unit: 'Go',
           });
+
           return diskOption;
         });
 
