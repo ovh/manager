@@ -106,21 +106,26 @@ export default class ImagesList {
     flavorType,
     osTypes,
     snapshotsPlans,
+    distantBackupAvailability,
   ) {
     if (image.isBackup()) {
       const targetRegion = snapshotsPlans
         .flatMap((p) => p.regions)
         .find((r) => r.name === targetRegionName);
 
-      if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(targetRegion.type))
-        return false;
+      if (targetRegionName !== image.region) {
+        if (!distantBackupAvailability) return false;
 
-      const imageRegion = snapshotsPlans
-        .find((p) => p.code === image.planCode)
-        .regions.find((r) => r.name === image.region);
+        if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(targetRegion.type))
+          return false;
 
-      if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(imageRegion.type))
-        return false;
+        const imageRegion = snapshotsPlans
+          .find((p) => p.code === image.planCode)
+          .regions.find((r) => r.name === image.region);
+
+        if (![ONE_AZ_REGION, THREE_AZ_REGION].includes(imageRegion.type))
+          return false;
+      }
     } else if (!image.isAvailableInRegion(targetRegionName)) {
       return false;
     }
