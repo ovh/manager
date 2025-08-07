@@ -1,40 +1,16 @@
 import { useContext, useEffect } from 'react';
-import { Error } from '../../error/Error.component';
 import { useRouteError } from 'react-router-dom';
 import {
   ShellContext,
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
-
-export interface ResponseAPIError {
-  message: string;
-  stack: string;
-  name: string;
-  code: string;
-  response?: {
-    headers?: {
-      [key: string]: string;
-      'x-ovh-queryid': string;
-    };
-    data?: {
-      message?: string;
-    };
-  };
-}
+import { ErrorBoundaryProps, ResponseAPIError } from './ErrorBoundary.props';
+import { Error } from '../error/Error.component';
 
 const ShellRoutingSync = () => {
   useRouteSynchro();
   return null;
 };
-
-export interface ErrorBoundaryProps {
-  /** application name to redirect */
-  redirectionApp: string;
-  /** Trigger the preloader hiding */
-  isPreloaderHide?: boolean;
-  /** Trigger the routes sync beetween shell and the app */
-  isRouteShellSync?: boolean;
-}
 
 export const ErrorBoundary = ({
   redirectionApp,
@@ -43,10 +19,18 @@ export const ErrorBoundary = ({
 }: ErrorBoundaryProps) => {
   const error = useRouteError() as ResponseAPIError;
   const shell = useContext(ShellContext)?.shell;
-
   const navigateToHomePage = () => {
     shell?.navigation.navigateTo(redirectionApp, '', {});
   };
+  const errorObject =
+    typeof error === 'object' && Object.keys(error)?.length > 0
+      ? {
+          data: {
+            message: error?.response?.data?.message || error?.message,
+          },
+          headers: error?.response?.headers || {},
+        }
+      : {};
 
   const reloadPage = () => {
     shell?.navigation.reload();
@@ -63,10 +47,7 @@ export const ErrorBoundary = ({
       <Error
         onReloadPage={reloadPage}
         onRedirectHome={navigateToHomePage}
-        error={{
-          data: { message: error?.response?.data?.message || error?.message },
-          headers: error?.response?.headers || {},
-        }}
+        error={errorObject}
       />
       {isRouteShellSync && <ShellRoutingSync />}
     </>
