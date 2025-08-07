@@ -1,4 +1,4 @@
-import { Outlet, useHref, useParams } from 'react-router-dom';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ChangelogButton,
@@ -11,18 +11,13 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import {
-  OsdsBreadcrumb,
-  OsdsButton,
-  OsdsMessage,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Button,
+  Message,
+  Spinner,
+} from '@ovhcloud/ods-react';
 
 import {
   isDiscoveryProject,
@@ -37,6 +32,7 @@ import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 export default function ListingPage() {
   const { t } = useTranslation('common');
   const { t: tError } = useTranslation('error');
+  const navigate = useNavigate();
 
   const { projectId } = useParams();
   const projectUrl = useProjectUrl('public-cloud');
@@ -56,23 +52,21 @@ export default function ListingPage() {
     sorting,
   });
 
-  const hrefAdd = useHref('./add');
-  const hrefCredit = useHref('./credit/buy');
-
   return (
     <>
       {project && (
-        <OsdsBreadcrumb
-          items={[
-            {
-              href: projectUrl,
-              label: project.description,
-            },
-            {
-              label: t('cpb_project_management_credit_vouchers'),
-            },
-          ]}
-        ></OsdsBreadcrumb>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={projectUrl}>
+              {project.description}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="#">
+              {t('cpb_project_management_credit_vouchers')}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </Breadcrumb>
       )}
       <div className="mt-4">
         <Headers
@@ -93,41 +87,37 @@ export default function ListingPage() {
       <PciDiscoveryBanner project={project} />
 
       <div className="flex mb-3 mt-6">
-        <OsdsButton
+        <Button
           className="mr-1"
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          href={!isDiscoveryProject(project) ? hrefAdd : ''}
-          {...(!isDiscoveryProject(project) ? {} : { disabled: true })}
+          size="sm"
+          variant="outline"
+          color="primary"
+          onClick={() => navigate('./add')}
+          disabled={isDiscoveryProject(project)}
         >
           {t('cpb_vouchers_add_button')}
-        </OsdsButton>
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
+        </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          color="primary"
           className="ml-0.5"
-          href={!isDiscoveryProject(project) ? hrefCredit : ''}
-          {...(!isDiscoveryProject(project) ? {} : { disabled: true })}
+          onClick={() => navigate('./credit/buy')}
+          disabled={isDiscoveryProject(project)}
         >
           {t('cpb_vouchers_add_credit_button')}
-        </OsdsButton>
+        </Button>
       </div>
 
       {error && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
+        <Message className="mt-4" color="critical">
           {tError('manager_error_page_default')}
-        </OsdsMessage>
+        </Message>
       )}
 
       {isLoading && !error && (
         <div className="text-center mt-8">
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            data-testid="ListingPage-spinner"
-          />
+          <Spinner size="md" data-testid="ListingPage-spinner" />
         </div>
       )}
 

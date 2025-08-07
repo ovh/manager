@@ -9,6 +9,9 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.ts',
+    deps: {
+      inline: ['@ovhcloud/ods-react'],
+    },
     coverage: {
       include: ['src'],
       exclude: [

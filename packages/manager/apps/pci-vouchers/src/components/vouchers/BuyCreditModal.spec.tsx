@@ -5,10 +5,6 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
-import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
@@ -69,15 +65,11 @@ describe('Buy credit modal', () => {
     act(() => {
       fireEvent.change(amountInput, {
         target: {
-          value: 25,
+          value: '25',
         },
       });
-      // it seems we have to manually trigger the ods event
-      ((amountInput as unknown) as OsdsInput).odsValueChange.emit({
-        value: '25',
-      } as OdsInputValueChangeEventDetail);
     });
-    expect(((amountInput as unknown) as OsdsInput).value).toBe(25);
+    expect((amountInput as HTMLInputElement).value).toBe('25');
     act(() => {
       fireEvent.click(submitButton);
     });
@@ -94,15 +86,11 @@ describe('Buy credit modal', () => {
     act(() => {
       fireEvent.change(amountInput, {
         target: {
-          value: 0,
+          value: '0',
         },
       });
-      // it seems we have to manually trigger the ods event
-      ((amountInput as unknown) as OsdsInput).odsValueChange.emit(({
-        value: 0,
-      } as unknown) as OdsInputValueChangeEventDetail);
     });
-    expect(((amountInput as unknown) as OsdsInput).value).toBe(0);
+    expect((amountInput as HTMLInputElement).value).toBe('0');
     expect(submitButton).toHaveAttribute('disabled');
   });
 
@@ -117,13 +105,9 @@ describe('Buy credit modal', () => {
           value: 'hello',
         },
       });
-      // it seems we have to manually trigger the ods event
-      // it seems we have to manually trigger the ods event
-      ((amountInput as unknown) as OsdsInput).odsValueChange.emit({
-        value: 'hello',
-      } as OdsInputValueChangeEventDetail);
     });
-    expect(((amountInput as unknown) as OsdsInput).value).toBe(NaN);
+    // HTML5 number inputs filter out non-numeric values, so 'hello' becomes ''
+    expect((amountInput as HTMLInputElement).value).toBe('');
     expect(submitButton).toHaveAttribute('disabled');
   });
 
@@ -135,15 +119,11 @@ describe('Buy credit modal', () => {
     act(() => {
       fireEvent.change(amountInput, {
         target: {
-          value: 123456789,
+          value: '123456789',
         },
       });
-      // it seems we have to manually trigger the ods event
-      ((amountInput as unknown) as OsdsInput).odsValueChange.emit(({
-        value: 123456789,
-      } as unknown) as OdsInputValueChangeEventDetail);
     });
-    expect(((amountInput as unknown) as OsdsInput).value).toBe(123456789);
+    expect((amountInput as HTMLInputElement).value).toBe('123456789');
     expect(submitButton).toHaveAttribute('disabled');
   });
 });

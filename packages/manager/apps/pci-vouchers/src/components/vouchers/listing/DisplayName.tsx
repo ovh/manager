@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { Spinner } from '@ovhcloud/ods-react';
 import { TVoucher } from '@/interface';
 import { getBill } from '@/api/data/bill';
 import style from '@/components/common.module.css';
@@ -34,13 +33,7 @@ export default function DisplayName({
             }}
           ></span>
         )}
-        {!data && (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.sm}
-            data-testid="spinner"
-          />
-        )}
+        {!data && <Spinner size="sm" data-testid="spinner" />}
       </DataGridTextCell>
     );
   }

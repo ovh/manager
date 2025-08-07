@@ -1,6 +1,32 @@
+@import '@ovhcloud/ods-themes/default';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+.text-critical {
+  @apply text-[var(--ods-color-critical-700)];
+}
+
+.text-primary {
+  @apply text-[var(--ods-color-primary-700)];
+}
+
+.text-warning {
+  @apply text-[var(--ods-color-warning-700)];
+}
+
+.text-success {
+  @apply text-[var(--ods-color-success-700)];
+}
+
+.text-info {
+  @apply text-[var(--ods-color-info-700)];
+}
 
 .application {
   @apply mx-11 mt-8;

@@ -1,17 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { Button, Message, Text } from '@ovhcloud/ods-react';
 
 import oopsImage from './oops.png';
 
@@ -41,62 +29,44 @@ export default function ErrorPage({
         <div className="text-center mb-3">
           <img src={oopsImage} alt="" className="mw-100 inline mb-4" />
         </div>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.default}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-        >
-          {t('manager_error_page_title')}
-        </OsdsText>
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="mt-4 mb-4">
+        <Text preset="heading-4">{t('manager_error_page_title')}</Text>
+        <Message color="critical" className="mt-4 mb-4">
           <div>
-            <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
-              {t('manager_error_page_default')}
-            </OsdsText>
+            <Text color="critical">{t('manager_error_page_default')}</Text>
             {errorMessage && (
               <>
                 <br />
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.error}
-                  size={ODS_TEXT_SIZE._600}
-                >
-                  {errorMessage}
-                </OsdsText>
+                <Text color="critical">{errorMessage}</Text>
               </>
             )}
             {xOvhQueryId && (
               <>
                 <br />
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.error}
-                  size={ODS_TEXT_SIZE._600}
-                >
+                <Text color="critical">
                   {t('manager_error_page_detail_code', { code: xOvhQueryId })}
-                </OsdsText>
+                </Text>
               </>
             )}
           </div>
-        </OsdsMessage>
+        </Message>
 
         <div className="flex justify-end">
-          <OsdsButton
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_BUTTON_SIZE.sm}
-            inline
+          <Button
+            variant="ghost"
+            color="primary"
+            size="sm"
             onClick={() => navigateToHomepage()}
           >
             {t('manager_error_page_action_home_label')}
-          </OsdsButton>
-          <OsdsButton
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_BUTTON_SIZE.sm}
-            inline
+          </Button>
+          <Button
+            variant="outline"
+            color="primary"
+            size="sm"
             onClick={() => reloadPage()}
           >
             {t('manager_error_page_action_reload_label')}
-          </OsdsButton>
+          </Button>
         </div>
       </div>
     </div>

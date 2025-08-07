@@ -8,10 +8,6 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
 import AddVoucherModal from '@/components/vouchers/AddVoucherModal';
 
 const add = vi.fn(() => {});
@@ -72,12 +68,8 @@ describe('Add voucher modal', () => {
           value: 'hello',
         },
       });
-      // it seems we have to manually trigger the ods event
-      ((voucherInput as unknown) as OsdsInput).odsValueChange.emit({
-        value: 'hello',
-      } as OdsInputValueChangeEventDetail);
     });
-    expect(((voucherInput as unknown) as OsdsInput).value).toBe('hello');
+    expect((voucherInput as HTMLInputElement).value).toBe('hello');
     act(() => {
       fireEvent.click(submitButton);
     });

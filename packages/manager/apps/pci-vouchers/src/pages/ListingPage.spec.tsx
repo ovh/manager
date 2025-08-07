@@ -34,6 +34,7 @@ vi.mock('@/api/hooks/useVouchers', () => ({
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
   useParams: vi.fn(),
+  useNavigate: vi.fn(() => vi.fn()),
   Outlet: vi.fn().mockReturnValue(<div></div>),
 }));
 
