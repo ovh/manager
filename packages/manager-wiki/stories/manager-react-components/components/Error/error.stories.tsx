@@ -1,9 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import {
-  ErrorBanner,
-  ErrorBannerProps,
-} from '@ovh-ux/manager-react-components';
+import { Error, ErrorProps } from '@ovh-ux/manager-react-components';
 
 export const defaultProps: ErrorBannerProps = {
   error: {
@@ -13,12 +10,15 @@ export const defaultProps: ErrorBannerProps = {
   },
 };
 
-const meta: Meta<typeof ErrorBanner> = {
-  title: 'Manager React Components/Templates/Errors',
-  decorators: [(story) => <div className="w-2/3">{story()}</div>],
-  component: ErrorBanner,
+const meta: Meta<typeof Error> = {
+  title: 'Manager React Components/Errors',
+  decorators: [(story) => <div>{story()}</div>],
+  component: Error,
   argTypes: {},
   args: defaultProps,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export default meta;
