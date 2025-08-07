@@ -145,15 +145,11 @@ export default function Layout() {
     headerButton: <EndpointsGuide />,
   };
   const { trackClick } = useOvhTracking();
+
   usePageTracking();
 
   const handleTabClick = (tab: string) => {
     trackClick(TRACKING.metrics.tabClick(tab));
-    if (tab === 'token') {
-      trackClick(TRACKING.apikey.gotoApikeyClick);
-    } else if (tab === 'metrics') {
-      trackClick(TRACKING.metrics.gotometricsClick);
-    }
   };
   return (
     <div className="application">

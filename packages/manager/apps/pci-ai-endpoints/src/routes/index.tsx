@@ -51,7 +51,7 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/token.page')),
         handle: {
           tracking: {
-            pageName: Route.Metrics,
+            pageName: Route.Token,
           },
         },
       },
