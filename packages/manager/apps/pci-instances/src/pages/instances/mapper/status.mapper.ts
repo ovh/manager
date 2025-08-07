@@ -4,42 +4,42 @@ import {
   TStatusSeverity,
 } from '@/types/instance/common.type';
 
+export const severityToStatus: Record<TSeverity, TStatus[]> = {
+  warning: [
+    'BUILDING',
+    'REBOOT',
+    'REBUILD',
+    'REVERT_RESIZE',
+    'SOFT_DELETED',
+    'VERIFY_RESIZE',
+    'MIGRATING',
+    'RESIZE',
+    'BUILD',
+    'SHUTOFF',
+    'RESCUE',
+    'SHELVED',
+    'SHELVED_OFFLOADED',
+    'RESCUING',
+    'UNRESCUING',
+    'SNAPSHOTTING',
+    'RESUMING',
+    'HARD_REBOOT',
+    'PASSWORD',
+    'PAUSED',
+  ],
+  error: ['DELETED', 'ERROR', 'STOPPED', 'SUSPENDED', 'UNKNOWN'],
+  success: ['ACTIVE', 'RESCUED', 'RESIZED'],
+  info: [],
+};
+
 const getInstanceStatusSeverity = (status: TStatus): TSeverity => {
-  switch (status) {
-    case 'BUILDING':
-    case 'REBOOT':
-    case 'REBUILD':
-    case 'REVERT_RESIZE':
-    case 'SOFT_DELETED':
-    case 'VERIFY_RESIZE':
-    case 'MIGRATING':
-    case 'RESIZE':
-    case 'BUILD':
-    case 'SHUTOFF':
-    case 'RESCUE':
-    case 'SHELVED':
-    case 'SHELVED_OFFLOADED':
-    case 'RESCUING':
-    case 'UNRESCUING':
-    case 'SNAPSHOTTING':
-    case 'RESUMING':
-    case 'HARD_REBOOT':
-    case 'PASSWORD':
-    case 'PAUSED':
-      return 'warning';
-    case 'DELETED':
-    case 'ERROR':
-    case 'STOPPED':
-    case 'SUSPENDED':
-    case 'UNKNOWN':
-      return 'error';
-    case 'ACTIVE':
-    case 'RESCUED':
-    case 'RESIZED':
-      return 'success';
-    default:
-      return 'info';
-  }
+  const severities = Object.keys(severityToStatus) as TSeverity[];
+
+  return (
+    severities.find((severity) =>
+      severityToStatus[severity].some((s) => s === status),
+    ) ?? 'info'
+  );
 };
 
 export const getInstanceStatus = (status: TStatus): TStatusSeverity => ({
