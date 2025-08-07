@@ -96,7 +96,7 @@ describe('DeleteBackup Modal', () => {
     const submitButton = getByTestId('pciModal-button_submit');
 
     expect(spinner).toBeVisible();
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should call deleteBackup when confirm button is clicked', async () => {
@@ -188,6 +188,6 @@ describe('DeleteBackup Modal', () => {
     const { getByTestId } = render(<DeletePage />);
 
     const submitButton = getByTestId('pciModal-button_submit');
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 });

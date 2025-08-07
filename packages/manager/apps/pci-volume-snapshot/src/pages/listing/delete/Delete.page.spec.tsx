@@ -53,7 +53,7 @@ describe('DeletePage', () => {
     ).toBeInTheDocument();
     // Buttons should be disabled in loading state
     const submitButton = getByTestId('pciModal-button_submit');
-    expect(submitButton).toBeDisabled();
+    expect(submitButton.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should display snapshot name when data is loaded', () => {
@@ -226,6 +226,6 @@ describe('DeletePage', () => {
     const { getByTestId } = render(<DeletePage />);
 
     const confirmButton = getByTestId('pciModal-button_submit');
-    expect(confirmButton).toBeDisabled();
+    expect(confirmButton.getAttribute('is-disabled')).toBe('true');
   });
 });
