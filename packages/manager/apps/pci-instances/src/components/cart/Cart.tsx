@@ -7,6 +7,9 @@ import { TInstanceCreationForm } from '@/pages/instances/create/CreateInstance.p
 export const Cart = () => {
   const { control } = useFormContext<TInstanceCreationForm>();
   const instanceName = useWatch({ control, name: 'name' });
+  const instanceQuantity = String(
+    useWatch({ control, name: 'quantity', defaultValue: 1 }),
+  );
   const { t } = useTranslation();
 
   const products: TCartProduct[] = useMemo(
@@ -14,10 +17,11 @@ export const Cart = () => {
       {
         title: t('pci_instances_common_instance_title'),
         designation: instanceName,
+        quantity: instanceQuantity,
         expanded: true,
       },
     ],
-    [instanceName, t],
+    [instanceName, instanceQuantity, t],
   );
 
   return <GenericCart products={products} />;
