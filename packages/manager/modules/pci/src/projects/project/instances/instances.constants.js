@@ -25,6 +25,8 @@ export const POLLER_INSTANCE_NAMESPACE = {
   UNSHELVE: 'cloud.project.instance.unshelve',
 };
 
+export const DISTANT_BACKUP_FEATURE = 'public-cloud:distant-backup';
+
 export const POLLER_INSTANCES = [
   {
     needsPolling: (i) => i.isShelving(),
