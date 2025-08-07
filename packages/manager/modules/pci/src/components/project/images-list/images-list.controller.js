@@ -8,13 +8,20 @@ import some from 'lodash/some';
 import groupBy from 'lodash/groupBy';
 
 import { IMAGE_ASSETS } from './images.constants';
+import { DISTANT_BACKUP_FEATURE } from '../../../projects/project/instances/instances.constants';
 
 export default class ImagesListController {
   /* @ngInject */
-  constructor($q, PciProjectsProjectInstanceService, PciProjectImages) {
+  constructor(
+    $q,
+    PciProjectsProjectInstanceService,
+    PciProjectImages,
+    ovhFeatureFlipping,
+  ) {
     this.$q = $q;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProjectImages = PciProjectImages;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.IMAGE_ASSETS = IMAGE_ASSETS;
   }
@@ -118,15 +125,25 @@ export default class ImagesListController {
   }
 
   loadSnapshotRegions() {
-    return this.PciProjectsProjectInstanceService.getProductAvailability(
-      this.serviceName,
-      undefined,
-      'snapshot',
-    ).then((productAvailability) => {
-      this.snapshotsPlans = productAvailability.plans.filter((p) =>
-        p.code.startsWith('snapshot.consumption'),
-      );
-    });
+    return this.$q
+      .all([
+        this.PciProjectsProjectInstanceService.getProductAvailability(
+          this.serviceName,
+          undefined,
+          'snapshot',
+        ),
+        this.ovhFeatureFlipping.checkFeatureAvailability(
+          DISTANT_BACKUP_FEATURE,
+        ),
+      ])
+      .then(([productAvailability, feature]) => {
+        this.snapshotsPlans = productAvailability.plans.filter((p) =>
+          p.code.startsWith('snapshot.consumption'),
+        );
+        this.distantBackupAvailability = feature.isFeatureAvailable(
+          DISTANT_BACKUP_FEATURE,
+        );
+      });
   }
 
   computeUnavailableSnapshots() {
@@ -226,6 +243,7 @@ export default class ImagesListController {
       this.flavorType,
       this.osTypes,
       this.snapshotsPlans,
+      this.distantBackupAvailability,
     );
   }
 }
