@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.6.0...@ovh-ux/manager-static-analysis-kit@0.7.0) (2025-08-07)
+
+
+### Features
+
+* integrate static kit to lint generator js files ([ac98cd1](https://github.com/ovh/manager/commit/ac98cd1667b08c727b9e7fcb1c175cf4fc7c6c39)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* refactor and reorganise manager tools ([d9948a8](https://github.com/ovh/manager/commit/d9948a8340a727bf77d8e5156647d6de47b4e227)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.5.0...@ovh-ux/manager-static-analysis-kit@0.6.0) (2025-08-05)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-generator",
-  "version": "0.31.0",
+  "version": "0.32.0",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -10,9 +10,9 @@
     "omg": "./index.js"
   },
   "scripts": {
-    "start": "plop",
     "lint:modern": "manager-lint --config eslint.config.js ./**/**.js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.js ./**/**.js"
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.js ./**/**.js",
+    "start": "plop"
   },
   "dependencies": {
     "axios": "^1.1.2",
@@ -22,6 +22,6 @@
     "plop": "^3.1.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*"
+    "@ovh-ux/manager-static-analysis-kit": "^0.7.0"
   }
 }
