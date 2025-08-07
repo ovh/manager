@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorBoundary Tests > should render Error Boundary component when error occurs 1`] = `
+<section
+  class="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
+>
+  <img
+    alt="OOPS"
+    class="w-full"
+    src="/public/assets/error-banner-oops.png"
+  />
+  <h1
+    class="_text--heading-1_1aw48_13 pt-2"
+  >
+     
+    Oups ! Une erreur est survenue.
+  </h1>
+  <h2
+    class="_text--heading-2_1aw48_19 pt-1 pb-2"
+  >
+     
+    Une erreur s'est produite, veuillez réessayer plus tard.
+  </h2>
+  <div
+    class="overflow-hidden mt-5 py-2"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 error-template-actions w-full"
+      data-testid="error-template-action-home"
+      type="button"
+    >
+      Retour à la page d'accueil
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 error-template-actions w-full"
+      data-testid="error-template-action-reload"
+      type="button"
+    >
+      Réessayer
+    </button>
+  </div>
+</section>
+`;
