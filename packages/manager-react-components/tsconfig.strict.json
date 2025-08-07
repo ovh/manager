@@ -7,6 +7,7 @@
   },
   "include": [
     "./src/components/error/**/*",
+    "./src/components/error-boundary/**/*",
     "./src/components/link-card/LinkCard.props.tsx",
     "./src/components/link-card/LinkCard.component.tsx",
     "./src/components/link-card/index.ts",
