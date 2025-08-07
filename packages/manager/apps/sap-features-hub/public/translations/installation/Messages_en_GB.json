@@ -109,7 +109,7 @@
   "server_config_helper_ram_applications_vm": "The amount of RAM must be a whole number between 1 and 4096.",
   "server_config_input_root_password": "Root password",
   "server_config_helper_root_password": "The password must contain between 8 and 128 characters, including uppercase letters, lowercase letters and numbers. Special characters are allowed, except $, \\, \", ', and `.",
-  "server_config_input_ipv4_address": "IPv4 address ",
+  "server_config_input_ipv4_address": "IPv4 address",
   "server_config_helper_ipv4_address": "The IP address must be in IPv4 format.",
   "server_config_input_instance_number": "Instance number",
   "server_config_helper_instance_number": "The instance number must be between 00 and 97.",
