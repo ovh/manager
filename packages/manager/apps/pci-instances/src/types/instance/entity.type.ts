@@ -123,6 +123,7 @@ type TInstanceBackup = TBackup;
 export type TInstance = {
   id: string;
   name: string;
+  quantity: number;
   region: TInstanceRegion;
   status: TInstanceStatus;
   task: TInstanceTaskStatus;
