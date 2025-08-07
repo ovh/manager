@@ -41,7 +41,7 @@ const StatusChip: FC<TStatusChipProps> = ({ status, icon, tooltipLabel }) => {
       >
         <div className="flex items-center gap-1">
           {icon}
-          <span className="first-letter:uppercase">{label}</span>
+          <span className="first-letter:uppercase text-nowrap">{label}</span>
         </div>
       </Badge>
     ),
