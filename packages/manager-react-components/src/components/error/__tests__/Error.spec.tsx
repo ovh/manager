@@ -8,7 +8,7 @@ import {
   renderWithContext,
   mockTrackPage,
   mockGetEnvironment,
-} from '../../../utils/test.utils';
+} from '../../../utils/Test.utils';
 
 const defaultProps: ErrorProps = {
   error: {
