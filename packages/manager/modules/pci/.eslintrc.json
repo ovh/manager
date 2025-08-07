@@ -1,5 +1,8 @@
 {
   "globals": {
     "moment": true
+  },
+  "rules": {
+    "class-methods-use-this": "off"
   }
 }
