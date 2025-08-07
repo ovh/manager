@@ -1,3 +1,7 @@
 {
-  "pci_instance_creation_name_rule": "Deve apenas conter números, letras, underscores, hífenes ou pontos."
+  "pci_instance_creation_name_rule": "Deve apenas conter números, letras, underscores, hífenes ou pontos.",
+  "pci_instances_creation_advanced_parameters": "Configurações avançadas",
+  "pci_instances_creation_quantity_title": "Escolher uma quantidade",
+  "pci_instances_creation_quantity_label": "Número de instâncias a criar",
+  "pci_instance_creation_quantity_rule": "O seu limite atual permite-lhe criar simultaneamente até {{ quota }} instância(s) de tipo {{ type }} para a região de {{ region }}."
 }
