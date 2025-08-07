@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@6.1.3...@ovh-ux/manager-dev-server-config@6.2.0) (2025-08-07)
+
+
+### Features
+
+* refactor and reorganise manager tools ([d9948a8](https://github.com/ovh/manager/commit/d9948a8340a727bf77d8e5156647d6de47b4e227)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dev-server-config@6.1.2...@ovh-ux/manager-dev-server-config@6.1.3) (2025-03-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-dev-server-config

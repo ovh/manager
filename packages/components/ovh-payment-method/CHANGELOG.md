@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.6.1...@ovh-ux/ovh-payment-method@0.6.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/ovh-payment-method
+
+
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.6.0...@ovh-ux/ovh-payment-method@0.6.1) (2025-06-13)
 
 
