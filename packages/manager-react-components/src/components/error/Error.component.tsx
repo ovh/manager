@@ -47,6 +47,7 @@ export const Error = ({
     });
   }, []);
 
+  console.info('ErrorComponent error : ', error);
   return (
     <section
       className="mx-auto w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5"
