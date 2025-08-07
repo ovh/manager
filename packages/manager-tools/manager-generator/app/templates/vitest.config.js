@@ -1,9 +1,6 @@
 import path from 'path';
-import {
-  sharedConfig,
-  mergeConfig,
-  createConfig,
-} from '@ovh-ux/manager-tests-setup';
+
+import { createConfig, mergeConfig, sharedConfig } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
@@ -22,5 +19,5 @@ export default mergeConfig(
         '@': path.resolve(__dirname, 'src'),
       },
     },
-  })
+  }),
 );
