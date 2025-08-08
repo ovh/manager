@@ -222,12 +222,18 @@ export type PostImportTaskPayload = {
 export type ManagedWordpressWebsiteDetails = {
   id: string;
   checksum: string;
+  iam?: {
+    displayName: string;
+    id: string;
+    tags: Record<string, unknown>;
+    urn: string;
+  };
   currentState: {
     cms: ManagedWordpressCmsType;
     createdAt: string;
     defaultFQDN: string;
     diskUsageBytes: number;
-    import: {
+    import?: {
       checkResult: {
         cmsSpecific: {
           wordPress: {

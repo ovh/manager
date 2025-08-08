@@ -225,8 +225,8 @@ export default function ImportForm() {
     onError: (error: ApiError) => {
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(`${NAMESPACES.ERROR}error_message`, {
-            error: error?.response?.data?.message,
+          {t(`${NAMESPACES.ERROR}:error_message`, {
+            message: error?.response?.data?.message,
           })}
         </OdsText>,
         true,

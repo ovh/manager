@@ -12,5 +12,7 @@
   "web_hosting_managed_wordpress_import_select_category_description": "Sélectionnez les catégories à importer:",
   "web_hosting_managed_wordpress_import_warning_message_part_1": "Les modifications effectuées sur le site source aprés la migration ne seront pas transférées vers le site de destination.",
   "web_hosting_managed_wordpress_import_warning_message_part_2": "Veuillez activer le mode maintenance sur les sites e-commerce ou prendre les mesures nécessaires pour éviter toute divergence.",
+  "web_hosting_managed_wordpress_delete_website_success_message": "Votre site internet {{website}} a été supprimé avec succès",
+  "web_hosting_managed_wordpress_delete_websites_success_message": "Vos sites internet {{website}} ont été supprimés avec succès",
   "web_hosting_managed_wordpress_import_success_message": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches."
 }

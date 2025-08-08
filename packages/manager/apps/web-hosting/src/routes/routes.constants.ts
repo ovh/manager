@@ -12,6 +12,7 @@ export const urls = {
   managedWordpressResourceGeneralInformation: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
   managedWordpressResourceImport: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/import`,
   managedWordpressResourceTasks: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/tasks`,
+  managedWordpressResourceDeleteModal: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/delete-modal`,
   dashboard: `/${subRoutes.serviceName}`,
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
   addDomain: `/${subRoutes.serviceName}/add-domain`,

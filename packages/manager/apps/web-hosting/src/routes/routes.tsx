@@ -21,6 +21,7 @@ import {
   GENERAL_INFORMATION,
   TASKS,
   IMPORT,
+  DELETE,
 } from '@/utils/tracking.constants';
 
 export type RouteHandle = {
@@ -58,6 +59,12 @@ const ManagedWordpressServiceTasksPage = React.lazy(() =>
 const ManagedWordpressServiceImportPage = React.lazy(() =>
   import(
     '@/pages/managedWordpress/ManagedWordpressResource/import/Import.page'
+  ),
+);
+
+const ManagedWordpressServiceDelete = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/delete/Delete.modal'
   ),
 );
 const OnboardingPage = React.lazy(() =>
@@ -132,7 +139,20 @@ export default (
             pageType: PageType.listing,
           },
         }}
-      />
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
       <Route
         id={TASKS}
         path={urls.managedWordpressResourceTasks}

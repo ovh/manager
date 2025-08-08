@@ -331,3 +331,32 @@ export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails
     },
   ],
 };
+
+export const managedWordpressWebsitesDeleteMock: ManagedWordpressWebsiteDetails = {
+  id: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
+  resourceStatus: ResourceStatus.DELETING,
+  checksum: 'bbbbb',
+  currentState: {
+    cms: ManagedWordpressCmsType.WORD_PRESS,
+    phpVersion: '8.4',
+    createdAt: '2025-01-01T08:00:00+01:00',
+    defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',
+    diskUsageBytes: 1073741824,
+    serviceId: 'b698cfa5-21bd-466a-9d8f-80eca2e3f844',
+  },
+  currentTasks: [
+    {
+      id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
+      link:
+        '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/214daed5-19d9-45ea-8d2c-5281b1f7a943',
+      status: Status.PENDING,
+      type: 'WEBSITE_DELETE',
+    },
+  ],
+  iam: {
+    displayName: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
+    id: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
+    tags: {},
+    urn: '214daed5-19d9-45ea-8d2c-5281b1f7a943',
+  },
+};
