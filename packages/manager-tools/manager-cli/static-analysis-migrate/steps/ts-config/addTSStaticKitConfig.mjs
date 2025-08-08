@@ -7,7 +7,7 @@ import { readPackageJson, writePackageJson } from '../../../utils/DependenciesUt
 import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
 
 // eslint-disable-next-line
-import reactTSBaseConfig from '../../../../manager/tools/static-analysis-kit/dist/tsconfig/react.json' with { type: 'json' };
+import reactTSBaseConfig from '../../../../../manager-tools/manager-static-analysis-kit/dist/tsconfig/react.json' with { type: 'json' };
 
 const appName = process.argv[2];
 const isDryRun = process.argv.includes('--dry-run');
