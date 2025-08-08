@@ -12,6 +12,7 @@ import NotFound from '@/pages/404';
 import {
   ADD_DOMAIN,
   DASHBOARD,
+  DELETE,
   DISABLE_SSL,
   GENERAL_INFORMATION,
   IMPORT_SSL,
@@ -42,7 +43,13 @@ import {
 } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
 import { urls } from './routes.constants';
-import { ManagedWordpressPage, ManagedWordpressResourcePage, ManagedWordpressServiceGeneralInformationPage, ManagedWordpressServiceTasksPage } from './pages/managedWordpress';
+import {
+  ManagedWordpressPage,
+  ManagedWordpressResourcePage,
+  ManagedWordpressServiceDelete,
+  ManagedWordpressServiceGeneralInformationPage,
+  ManagedWordpressServiceTasksPage,
+} from './pages/managedWordpress';
 
 export type RouteHandle = {
   isOverridePage?: boolean;
@@ -106,7 +113,20 @@ export default (
             pageType: PageType.listing,
           },
         }}
-      />
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
       <Route
         id={TASKS}
         path={urls.managedWordpressResourceTasks}
