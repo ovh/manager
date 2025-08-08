@@ -77,7 +77,7 @@
   "kube_service_cluster_network_vrack_customer_gateway": "Gateway: {{vRackGatewayIp}}",
   "kube_service_cluster_network_tile_title": "Network",
   "kube_service_cluster_network_attached_network": "Attached network",
-  "kube_service_cluster_network_subnet": "Subnetwork",
+  "kube_service_cluster_network_subnet": "Subnet",
   "kube_service_cluster_network_lb_subnet": "Load Balancer subnet",
   "kube_service_cluster_network_error": "An error has occurred loading the network information: {{ error }}",
   "kube_service_network_edit": "Change network settings",

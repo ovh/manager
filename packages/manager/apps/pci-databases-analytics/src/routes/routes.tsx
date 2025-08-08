@@ -114,6 +114,24 @@ export default [
                   ),
                 ),
               },
+              {
+                id: 'service.{service.engine}.users.view-certificates',
+                path: 'view-certificates/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/viewCertificates/ViewCertificates.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.users.show-access-key',
+                path: 'show-access-key/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/showAccessKey/ShowAccessKey.modal'
+                  ),
+                ),
+              },
             ],
           },
           {

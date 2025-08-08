@@ -3,13 +3,8 @@ import {
   PageLocation,
   TrackingClickParams,
   PageType,
-  TrackingContextParams,
 } from '@ovh-ux/manager-react-shell-client';
 
-export const PCI_LEVEL2 = '86';
-export const PAGE_PREFIX = 'PublicCloud::pci::projects::project';
-export const ACTION_PREFIX = `${PAGE_PREFIX}::ai-endpoints`;
-export const DISCOVERY_PLANCODE = 'project.discovery';
 export const LEVEL2 = {
   EU: {
     config: {
@@ -27,85 +22,63 @@ export const LEVEL2 = {
     },
   },
 };
+export const PCI_LEVEL2 = '86';
+export const PAGE_PREFIX = 'PublicCloud::pci::projects';
+export const ACTION_PREFIX = `${PAGE_PREFIX}::ai-endpoints`;
+export const DISCOVERY_PLANCODE = 'project.discovery';
+
 export const UNIVERSE = 'PublicCloud';
 export const SUB_UNIVERSE = 'ai_machine_learning';
 export const APP_NAME = 'ai_endpoints';
 
-export const TRACKING: Record<
-  string,
-  Record<string, TrackingClickParams | any | TrackingContextParams>
-> = {
+export const TRACKING = {
   metrics: {
-    tabClick: (
-      tabname: string,
-    ): TrackingClickParams | TrackingContextParams | any => {
-      return {
-        actions: ['main-tabnav', `${tabname}`],
-        actionType: 'action',
-        appName: APP_NAME,
-        pageTheme: UNIVERSE,
-        level2: PCI_LEVEL2,
-      };
-    },
-
-    gotometricsClick: {
-      actions: [`${PageType.dashboard}`, 'metrics'],
+    tabClick: (tabname: string): TrackingClickParams => ({
+      actions: ['main-tabnav', tabname],
       actionType: 'action',
-      appName: APP_NAME,
-      pageTheme: UNIVERSE,
-      level2: PCI_LEVEL2,
-    },
+    }),
   },
 
   apikey: {
-    gotoApikeyClick: {
-      actions: [`${APP_NAME}`, `${PageType.listing}`],
-      actionType: 'action',
-      appName: APP_NAME,
-      pageTheme: UNIVERSE,
-      level2: PCI_LEVEL2,
-    },
     createNewApikeyClick: {
       actions: [
         PageLocation.page,
-        `${ButtonType.button}`,
+        ButtonType.button,
         'create_api-key',
-        `${APP_NAME}`,
-      ],
+        APP_NAME,
+      ] as string[],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
       level2: PCI_LEVEL2,
+      pageType: PageType.listing,
     },
+
     createNewApikeyPopUpShow: {
-      actions: [`${APP_NAME}`, `${PageLocation.popup}`, `create_api-key`],
-      actionType: 'action',
-      appName: APP_NAME,
+      pageName: `create_api-key`,
+      pageType: PageType.popup,
+      pageTheme: UNIVERSE,
+      level2: PCI_LEVEL2,
+    },
+
+    successCreatApikeyPopUpShown: {
+      name: `create_api-key_success`,
+      pageType: PageType.popup,
       pageTheme: UNIVERSE,
       level2: PCI_LEVEL2,
     },
 
     confirmClick: {
       actions: [
-        `${PageLocation.popup}`,
-        `${ButtonType.button}`,
-        `create_api-key`,
-        `confirm`,
-      ],
+        PageLocation.popup,
+        ButtonType.button,
+        'create_api-key',
+        'confirm',
+      ] as string[],
       actionType: 'action',
       appName: APP_NAME,
       pageTheme: UNIVERSE,
-      level2: PCI_LEVEL2,
-    },
-    successCreatApikeyPopUpShown: {
-      actions: [
-        `${APP_NAME}`,
-        `${PageLocation.popup}`,
-        `create_api-key_success`,
-      ],
-      actionType: 'action',
-      appName: APP_NAME,
-      pageTheme: UNIVERSE,
+      pageType: PageType.popup,
       level2: PCI_LEVEL2,
     },
   },

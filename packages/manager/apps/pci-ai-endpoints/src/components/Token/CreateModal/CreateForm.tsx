@@ -81,7 +81,7 @@ const CreateForm = ({
       onSuccess(newToken);
     },
   });
-  const { trackClick } = useOvhTracking();
+  const { trackClick, trackPage } = useOvhTracking();
   const {
     control,
     handleSubmit,
@@ -99,7 +99,6 @@ const CreateForm = ({
     mode: 'onChange',
   });
 
-  // Surveillance des valeurs du formulaire
   const tokenNameValue = watch('tokenName');
   const isChecked = watch('isChecked');
   const expirationDate = watch('expirationDate');
@@ -108,7 +107,7 @@ const CreateForm = ({
     if (!isChecked) {
       setValue('expirationDate', infiniteDate);
     }
-    trackClick(TRACKING.apikey.createNewApikeyPopUpShow);
+    trackPage(TRACKING.apikey.createNewApikeyPopUpShow);
   }, [isChecked, infiniteDate, setValue]);
 
   const onSubmit = (data: FormValues) => {

@@ -32,13 +32,13 @@ export default function CreateModal({
   tokens,
   infiniteDate,
 }: CreateModalProps) {
-  const { trackClick } = useOvhTracking();
+  const { trackPage } = useOvhTracking();
   const { t } = useTranslation('token');
   const [createdToken, setCreatedToken] = useState<TokenData | null>(null);
 
   const handleFormSuccess = (token: TokenData) => {
     setCreatedToken(token);
-    trackClick(TRACKING.apikey.successCreatApikeyPopUpShown);
+    trackPage(TRACKING.apikey.successCreatApikeyPopUpShown);
   };
 
   const modalHeadline = createdToken

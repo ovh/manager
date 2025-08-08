@@ -1,9 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
-import {
-  ResetUserPassword,
-  resetUserPassword,
-} from '@/data/api/database/user.api';
+import { ManageUser, resetUserPassword } from '@/data/api/database/user.api';
 import { CdbError } from '@/data/api/database';
 
 interface UseResetUserPassword {
@@ -15,7 +12,7 @@ export function useResetUserPassword({
   onSuccess,
 }: UseResetUserPassword) {
   const mutation = useMutation({
-    mutationFn: (userInfo: ResetUserPassword) => {
+    mutationFn: (userInfo: ManageUser) => {
       return resetUserPassword(userInfo);
     },
     onError,
@@ -23,7 +20,7 @@ export function useResetUserPassword({
   });
 
   return {
-    resetUserPassword: (userInfo: ResetUserPassword) => {
+    resetUserPassword: (userInfo: ManageUser) => {
       return mutation.mutate(userInfo);
     },
     ...mutation,

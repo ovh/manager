@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { DefaultError, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -99,7 +99,7 @@ export const useInstanceActionModal = (
     if (!instance && error) {
       const errorMessage = isApiErrorResponse(error)
         ? error.response?.data.message
-        : (error as DefaultError).message;
+        : error.message;
       addError(
         t('pci_instances_actions_instance_unknown_error_message', {
           error: errorMessage,

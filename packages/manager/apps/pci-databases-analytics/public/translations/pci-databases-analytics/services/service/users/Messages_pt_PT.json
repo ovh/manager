@@ -85,5 +85,13 @@
   "resetUserPasswordCode": "Palavra-passe do utilizador",
   "resetUserConnectionTitle": "URI a utilizar para uma ligação rápida",
   "resetUserConnectionCode": "Cadeia de ligação",
-  "resetUserConnectionCodeCopy": "URI de ligação copiada para a área de transferência"
+  "resetUserConnectionCodeCopy": "URI de ligação copiada para a área de transferência",
+  "userButtonClose": "Fechar",
+  "tableActionsMenuViewCertificate": "Mostrar o certificado",
+  "tableActionsMenuShowAccessKey": "Mostrar a chave de acesso",
+  "viewCertificatesTitle": "Certificado",
+  "downloadButton": "Descarregar",
+  "viewCertificateCopy": "O certificado foi copiado",
+  "showAccessKeyTitle": "Chave de acesso",
+  "showAccessKeyCopy": "A chave de acesso foi copiada"
 }
