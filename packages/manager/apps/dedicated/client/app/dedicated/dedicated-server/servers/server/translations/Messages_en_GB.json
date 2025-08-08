@@ -509,7 +509,7 @@
   "server_cancel_traffic_cancel_success": "You have been sent an email.",
   "server_cancel_traffic_cancel_error": "An error has occurred cancelling the option.",
   "server_order_bandwidth_vrack_plan_text": "private bandwidth, unlimited traffic (vRack)",
-  "server_order_bandwidth_declaration": "Your option’s renewal date will be aligned with your server’s renewal date. The amount displayed corresponds to your option’s first billing month, calculated on a pro rata basis for the current month.",
+  "server_order_bandwidth_declaration": "Your option’s renewal date will be aligned with your server’s renewal date. The amount displayed corresponds to your option’s first billing month, calculated on a pro-rata basis for the current month.",
   "server_order_bandwidth_info": "The amount displayed is the total that will be billed on your option’s next renewal date.",
   "server_order_bandwidth_warning": "Your bandwidth will be modified a few minutes after you have enabled the option.",
   "server_order_bandwidth_auto_pay": "Update the default payment method",
