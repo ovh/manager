@@ -1,15 +1,15 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { Links, useNotifications } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { saveAs } from 'file-saver';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { FormStepSummary } from '@/components/Form/FormStepSummary.component';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
-import { testIds } from '@/utils/testIds.constants';
 import { useInstallationCreation } from '@/data/hooks/useInstallationCreation';
 import { getSummaryBlob, getSummaryFileName } from '@/utils/summaryExport';
 import { TRACKING } from '@/tracking.constants';
@@ -43,25 +43,7 @@ export default function InstallationStepSummary() {
   return (
     <FormLayout
       title={t('summary_title')}
-      subtitle={
-        <Trans
-          t={t}
-          i18nKey={'summary_subtitle'}
-          components={{
-            DownloadLink: (
-              <Links
-                onClickReturn={() =>
-                  saveAs(
-                    getSummaryBlob(values),
-                    getSummaryFileName(values.sapSid),
-                  )
-                }
-                data-testid={testIds.summaryDownloadLink}
-              />
-            ),
-          }}
-        ></Trans>
-      }
+      subtitle={t('summary_subtitle')}
       submitLabel={t('summary_cta_submit')}
       isSubmitLoading={isPending}
       onSubmit={() => {
@@ -78,6 +60,13 @@ export default function InstallationStepSummary() {
           <FormStepSummary key={step.id} step={step} />
         ))}
       </div>
+      <OdsButton
+        label={t('summary_cta_download')}
+        className="mt-4"
+        onClick={() => {
+          saveAs(getSummaryBlob(values), getSummaryFileName(values.sapSid));
+        }}
+      />
     </FormLayout>
   );
 }
