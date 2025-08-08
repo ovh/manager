@@ -87,7 +87,7 @@ const canDeleteInstance = (actions: TInstanceAction[]) =>
 const getActionHrefByName = (
   projectUrl: string,
   name: TActionName,
-  { region, id }: Pick<TInstance, 'id' | 'region'>,
+  { region: { name: region }, id }: Pick<TInstance, 'id' | 'region'>,
 ): TAction['link'] => {
   if (name === 'edit') {
     return {
@@ -103,7 +103,7 @@ const getActionHrefByName = (
   if (name === 'assign_floating_ip') {
     const searchParams = new URLSearchParams({
       ipType: 'floating_ip',
-      region: region.name,
+      region,
       instance: id,
     });
 
