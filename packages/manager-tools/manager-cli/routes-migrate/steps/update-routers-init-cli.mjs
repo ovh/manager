@@ -24,7 +24,7 @@ const findRouterCallsFiles = async (dir, results) => {
   let entries;
 
   try {
-    entries = await readdir(dir, { withFileTypes: true });
+    entries = await fs.readdir(dir, { withFileTypes: true });
   } catch (err) {
     console.warn(`⚠️  Failed to read directory: ${dir} (${err.message})`);
     return;
