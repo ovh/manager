@@ -17,6 +17,7 @@ export type TRemoteWorkflow = {
   instanceId: string;
   cron: string;
   executions: TWorkflowExecution[] | null;
+  distantRegion?: string;
 };
 
 export const getRegionsWorkflows = async (projectId: string, regionName: string) => {
@@ -35,6 +36,7 @@ export const addWorkflow = async (
     name: string;
     rotation: number;
     maxExecutionCount: number;
+    distantRegion: string | null;
   },
 ) => {
   const { data } = await v6.post<TRemoteWorkflow[]>(
