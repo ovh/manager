@@ -43,6 +43,17 @@ export const getManagedCmsResourceWebsiteDetails = async (
   return data;
 };
 
+export const deleteManagedCmsResourceWebsite = async (
+  serviceName: string,
+  websiteId: string,
+) => {
+  const { data } = await proxyV2.delete(
+    // @todo: to change soon we have prod api
+    `/managedCMS/resource/${serviceName}/website/${websiteId}`,
+  );
+  return data;
+};
+
 export const postManagedCmsResourceWebsite = async (
   serviceName: string,
   payload: PostImportPayload,
