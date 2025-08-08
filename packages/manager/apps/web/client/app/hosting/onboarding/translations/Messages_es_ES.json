@@ -9,6 +9,6 @@
   "hostings_onboarding_guide1_description": "Cómo empezar con un alojamiento web",
   "hostings_onboarding_guide2_title": "Alojar varios sitios web en un mismo hosting",
   "hostings_onboarding_guide2_description": "Cómo utilizar un plan de hosting para alojar varios sitios web",
-  "hostings_onboarding_guide3_title": "Activar el alojamiento web gratuito Start 10M",
-  "hostings_onboarding_guide3_description": "Esta guía explica cómo activar su alojamiento web Start 10M"
+  "hostings_onboarding_guide3_title": "Activar el alojamiento gratuito Start {{value}}",
+  "hostings_onboarding_guide3_description": "Cómo activar el alojamiento Start {{value}}"
 }
