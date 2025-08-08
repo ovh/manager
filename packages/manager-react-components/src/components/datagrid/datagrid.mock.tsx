@@ -1,5 +1,5 @@
 import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { DataGridTextCell } from './text-cell.component';
 import { ActionMenu } from '../action-menu';
 import { DatagridColumn, DatagridColumnTypes } from './datagrid.component';
@@ -114,7 +114,7 @@ export const columnsVisibility = [
                 label: `Action on ${item.label}`,
               },
             ]}
-            variant={ODS_BUTTON_VARIANT.ghost}
+            variant={BUTTON_VARIANT.ghost}
             isCompact
           />
         </div>
