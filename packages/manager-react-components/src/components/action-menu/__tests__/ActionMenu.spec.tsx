@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
 import { act, waitFor, screen, fireEvent } from '@testing-library/react';
-import { ODS_ICON_NAME, ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
+import { POPOVER_POSITION, ICON_NAME } from '@ovhcloud/ods-react';
 import { ActionMenu, ActionMenuProps } from '../index';
 import { render } from '../../../utils/test.provider';
 import { useAuthorizationIam } from '../../../hooks/iam';
@@ -96,7 +96,7 @@ describe('ActionMenu', () => {
 
   it('renders compact menu with custom icon menu correctly', async () => {
     const { container } = setupSpecTest({
-      icon: ODS_ICON_NAME.ellipsisHorizontal,
+      icon: ICON_NAME.ellipsisHorizontal,
     });
     const icon = container.querySelector('span[class*="ellipsis-horizontal"]');
     expect(icon).toBeInTheDocument();
@@ -104,7 +104,7 @@ describe('ActionMenu', () => {
 
   it('renders compact menu with popover position right', () => {
     const { container } = setupSpecTest({
-      popoverPosition: ODS_POPOVER_POSITION.right,
+      popoverPosition: POPOVER_POSITION.right,
     });
 
     act(() => {
