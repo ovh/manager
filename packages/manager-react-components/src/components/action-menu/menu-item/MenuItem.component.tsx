@@ -23,11 +23,13 @@ export const MenuItem = ({
   if (item.href) {
     return (
       <Link
+        type={item.linktype}
         href={item.href}
         download={item.download}
         target={item.target}
         urn={item.urn}
         iamActions={item.iamActions}
+        onClick={item.onClick}
       >
         {item.label}
       </Link>
