@@ -9,22 +9,22 @@ import { useVolumes } from '@/data/hooks/volume/useVolume';
 
 type TUseUnattachedResource = {
   projectId: string;
-  regionId: string;
+  region: string;
   instanceId: string;
 };
 
 export const useUnattachedPrivateNetworks = ({
   projectId,
-  regionId,
+  region,
   instanceId,
 }: TUseUnattachedResource) => {
   const { instance, isPending: isInstancePending } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
   const { data: networks, isPending: isNetworkPending } = useNetworks(
     projectId,
-    regionId,
+    region,
   );
 
   return useMemo(
@@ -42,16 +42,16 @@ export const useUnattachedPrivateNetworks = ({
 
 export const useUnattachedVolumes = ({
   projectId,
-  regionId,
+  region,
   instanceId,
 }: TUseUnattachedResource) => {
   const { instance, isPending: isInstancePending } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
   const { data: volumes, isPending: isVolumePending } = useVolumes(
     projectId,
-    regionId,
+    region,
   );
 
   return useMemo(
