@@ -66,8 +66,9 @@ const SuggestionModal: FC = () => {
   const closeModal = () => useCallback(() => {
     setShowModal(false);
     ux.notifyModalActionDone(SuggestionModal.displayName);
-    // Update preference so the modal is not display until 60 days later, time for the update to be done on our side
-    updatePreference(time + 60 * 24 * 60 * 60);
+    // Update preference so the modal is not display until 30 days later, time for the update to be done on our side
+    const DAYS_DELAY = 30;
+    updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
     // @TODO: Handle tracking (ECAN-2228)
   }, [ux, time]);
   const goToProfileEdition = useCallback(() => {

@@ -29,7 +29,12 @@ export const useSuggestions = (enabled: boolean) => useQuery({
 });
 
 export const useSuggestionsCheck = (user: User) => useCallback(
-  (suggestions: Suggestion[]) => 
-    suggestions.some((suggestion) => isSuggestionRelevant(suggestion, user)),
+  (suggestions: Suggestion[]) => {
+    const ninSuggestion = suggestions.find((suggestion) => suggestion.type === 'NIN');
+    if (ninSuggestion?.isActive) {
+      return false;
+    }
+    return suggestions.some((suggestion) => isSuggestionRelevant(suggestion, user));
+  },
   [user],
 );

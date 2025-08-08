@@ -1,0 +1,9 @@
+{
+  "suggestion_modal_title": "Update your SIRET/VAT number",
+  "suggestion_modal_description": "To ensure compliance with French e-billing regulations, we are required to verify your company details to confirm the accuracy of your tax information. We have searched for and found information related to your company.",
+  "suggestion_modal_description_sub": "If this information is correct, please click ‘Confirm this information’. If not, click ‘Update profile’.",
+  "suggestion_modal_listed_type_SIRET": "SIRET",
+  "suggestion_modal_listed_type_VAT": "Intra-Community VAT number",
+  "suggestion_modal_action_modify": "Update profile",
+  "suggestion_modal_action_confirm": "Confirm this information"
+}
