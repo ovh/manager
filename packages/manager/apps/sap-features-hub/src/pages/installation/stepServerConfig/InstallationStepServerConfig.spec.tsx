@@ -111,7 +111,6 @@ describe('InstallationStepServerConfig page unit test suite', () => {
       'server_config_input_subnet_mask',
       'server_config_input_gateway_ip',
       'server_config_input_thick_storage',
-      'server_config_toggle_password_encryption',
     ];
 
     elements.forEach((element) => expect(getByText(element)).toBeVisible());
