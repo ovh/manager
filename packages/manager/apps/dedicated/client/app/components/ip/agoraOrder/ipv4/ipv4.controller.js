@@ -16,12 +16,13 @@ import {
   IP_TYPE_TITLE,
   TRACKING_PREFIX,
   FUNNEL_TRACKING_PREFIX,
+  ASIAN_PACIFIC_DATACENTERS,
+  PRODUCT_TYPES,
 } from '../ip-ip-agoraOrder.constant';
 
 import {
   IP_LOCATION_GROUPS,
   IP_SERVICETYPE__PARK,
-  PRODUCT_TYPES,
   VPS_MAX_QUANTITY,
   IP_AGORA,
   ADDITIONAL_IP,
@@ -70,6 +71,7 @@ export default class AgoraIpV4OrderController {
     this.ADDITIONAL_IP = ADDITIONAL_IP;
     this.BLOCK_ADDITIONAL_IP = BLOCK_ADDITIONAL_IP;
     this.ALERT_ID = ALERT_ID;
+    this.ASIAN_PACIFIC_DATACENTERS = ASIAN_PACIFIC_DATACENTERS;
     this.region = coreConfig.getRegion();
     this.type = IP_TYPE_TITLE.IPv4;
     this.ovhManagerRegionService = ovhManagerRegionService;
@@ -122,6 +124,26 @@ export default class AgoraIpV4OrderController {
       ['renew', 'installation'].every((capacity) =>
         price.capacities.includes(capacity),
       ),
+    );
+  }
+
+  isVrackAndAPACRegion(region) {
+    const isVrack =
+      this.model?.selectedService?.type === PRODUCT_TYPES.vrack.typeName;
+    return (
+      isVrack && this.ASIAN_PACIFIC_DATACENTERS.includes(region.datacenter)
+    );
+  }
+
+  getRegionLabelDisplay(region) {
+    return this.isVrackAndAPACRegion(region)
+      ? `${region.location} *`
+      : region.location;
+  }
+
+  hasAPACRegionInCatalog() {
+    return this.catalogByLocation?.some((region) =>
+      this.isVrackAndAPACRegion(region),
     );
   }
 
