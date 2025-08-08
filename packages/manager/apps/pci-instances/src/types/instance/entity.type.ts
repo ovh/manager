@@ -115,7 +115,7 @@ export type TInstanceFlavor = {
 
 export type TInstancePrice = TPrice;
 
-type TInstanceImageDto = TImage;
+export type TInstanceImage = TImage;
 
 type TInstanceBackup = TBackup;
 
@@ -130,7 +130,7 @@ export type TInstance = {
   volumes: TInstanceVolume[] | null;
   flavor: TInstanceFlavor | null;
   pricings: TInstancePrice[] | null;
-  image: TInstanceImageDto | null;
+  image: TInstanceImage | null;
   backups: TInstanceBackup[] | null;
   sshKey: string | null;
   login: string | null;
