@@ -8,23 +8,22 @@ import {
   isApiCustomError,
   isMaxQuotaReachedError,
 } from '@ovh-ux/manager-core-api';
-import { LOAD_BALANCER_CREATION_TRACKING } from '@/constants';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import queryClient from '@/queryClient';
 import { getAllLoadBalancersQueryKey } from '@/api/hook/useLoadBalancer';
-import { useTracking } from '@/pages/create/hooks/useTracking';
 import GuideLink from '@/components/GuideLink/GuideLink.component';
 
 export const useCreateCallbacks = () => {
   const navigate = useNavigate();
   const hrefProject = useProjectUrl('public-cloud');
-  const { trackPage } = useTracking();
+  const { trackPage } = useOvhTracking();
   const { addError, addInfo } = useNotifications();
   const { projectId } = useParams();
   return {
     onSuccess: () => {
       trackPage({
-        name: LOAD_BALANCER_CREATION_TRACKING.SUCCESS,
-        type: 'navigation',
+        pageType: PageType.bannerInfo,
+        pageName: 'add_loadbalancer_pending',
       });
       addInfo(
         <Translation ns="load-balancer/create">
@@ -39,8 +38,8 @@ export const useCreateCallbacks = () => {
     },
     onError: (error: unknown) => {
       trackPage({
-        name: LOAD_BALANCER_CREATION_TRACKING.ERROR,
-        type: 'navigation',
+        pageType: PageType.bannerError,
+        pageName: 'add_loadbalancer_error',
       });
 
       if (isApiCustomError(error)) {

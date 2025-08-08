@@ -1,17 +1,21 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 
-import usePageTracking from '@/hooks/usePageTracking';
-
 export default function Layout() {
+  const location = useLocation();
+  const { trackCurrentPage } = useOvhTracking();
+
   const { projectId } = useParams();
   const { isSuccess } = useProject(projectId || '', { retry: false });
 
-  usePageTracking();
+  useEffect(() => {
+    trackCurrentPage();
+  }, [location]);
 
   return (
     <div className="application">

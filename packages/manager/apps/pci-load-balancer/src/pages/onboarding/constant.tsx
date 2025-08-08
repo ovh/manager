@@ -1,6 +1,3 @@
-export const ONBOARDING_TRACKING_PREFIX =
-  'PublicCloud::pci::projects::project::octavia-loadbalancer::onboarding';
-
 export const GUIDES = [
   {
     title: 'octavia_load_balancer_onboarding_guide1_title',
