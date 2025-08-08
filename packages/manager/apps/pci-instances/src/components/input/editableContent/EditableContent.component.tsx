@@ -39,9 +39,8 @@ const EditableContent: FC<TEditableContentProps> = ({
       {isEditing ? (
         <InputCancellable
           value={text}
-          autoFocus
           onChange={(e) => setText(e.target.value)}
-          onClear={handleCancel}
+          onCancel={handleCancel}
           onSubmit={handleSubmit}
           {...props}
         />
