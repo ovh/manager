@@ -26,7 +26,7 @@ import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { instanceId, regionId } = useParam('regionId', 'instanceId');
+  const { instanceId, region } = useParam('region', 'instanceId');
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
   const hrefBillingMonthlyActivate = useHref(
     `../${instanceId}/billing/monthly/activate`,
@@ -34,12 +34,12 @@ const InstanceGeneralInfoBlock: FC = () => {
   const hrefDeleteInstance = useHref(`../${instanceId}/delete`);
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
 
   const polling = useDashboardPolling({
-    region: regionId,
+    region,
     instanceId,
     taskStatus: instance?.task,
   });
