@@ -1,31 +1,16 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
     },
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "outDir": "dist",
+    "allowJs": true,
+    "resolveJsonModule": true
   },
-  "include": ["src", "setupTests.ts"],
-  "exclude": [
-    "node_modules",
-    "public",
-    "types",
-    "src/**/*.spec.ts",
-    "__mocks__"
-  ]
+  "include": ["src", "public/**/*.json"],
+  "exclude": ["node_modules", "dist", "types"]
 }
