@@ -54,5 +54,8 @@
   "vrack_select_dialog_modal_description_for_ipv6": "Tenha em conta que os blocos IPv6 suplementares só podem ser adicionados/eliminados um de cada vez.",
   "vrack_select_dialog_modal_description_for_vs": "Tenha em conta que a adição e a eliminação dos produtos vRack Services só podem ser efetuadas um de cada vez.",
   "vrack_terminate_modal_success_banner": "O seu pedido de eliminação do seu vRack foi registado. Um e-mail com o procedimento foi-lhe enviado.",
-  "vrack_terminate_modal_error_banner": "A eliminação do seu vRack falhou, queira verificar se o seu vRack está vazio."
+  "vrack_terminate_modal_error_banner": "A eliminação do seu vRack falhou, queira verificar se o seu vRack está vazio.",
+  "vrack_terminate_title": "Rescindir o meu vRack",
+  "vrack_terminate_description": "Para rescindir o seu vRack, deve desligar previamente todos os serviços que estão associados ao mesmo.",
+  "vrack_terminate": "Rescindir"
 }

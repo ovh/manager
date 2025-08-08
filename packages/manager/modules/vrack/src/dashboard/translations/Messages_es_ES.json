@@ -54,5 +54,8 @@
   "vrack_select_dialog_modal_description_for_ipv6": "Tenga en cuenta que los bloques de IPv6 adicionales solo pueden añadirse o eliminarse de uno en uno.",
   "vrack_select_dialog_modal_description_for_vs": "Tenga en cuenta que los productos vRack Services solo pueden añadirse o eliminarse de uno en uno.",
   "vrack_terminate_modal_success_banner": "La solicitud de eliminación del vRack se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
-  "vrack_terminate_modal_error_banner": "No ha sido posible eliminar el vRack. Por favor, compruebe que el vRack esté vacío."
+  "vrack_terminate_modal_error_banner": "No ha sido posible eliminar el vRack. Por favor, compruebe que el vRack esté vacío.",
+  "vrack_terminate_title": "Eliminar el vRack",
+  "vrack_terminate_description": "Para eliminar el vRack, deberá desconectar previamente todos los servicios asociados",
+  "vrack_terminate": "Eliminar"
 }
