@@ -1405,5 +1405,8 @@
   "hosting_tab_FTP_configuration_explorer_info": "Der Zugriff über den Web-FTP-Client (Net2FTP) ist nicht mehr verfügbar. Bitte verwenden Sie einen FTP-Client wie <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  und<a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  , um sich mit Ihrem Hosting zu verbinden.",
   "hosting_dashboard_service_cluster": "Cluster",
   "hosting_dashboard_service_cluster_helper": "Die Kennung Ihres Clusters kann geändert werden",
-  "hosting_dashboard_service_filer_helper": "Die Kennung Ihres Filers kann geändert werden"
+  "hosting_dashboard_service_filer_helper": "Die Kennung Ihres Filers kann geändert werden",
+  "hosting_dashboard_service_state_TO_CREATE": "Zu erstellen",
+  "hosting_tab_DATABASES_configuration__action_button": "Meine Datenbank kündigen",
+  "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar"
 }
