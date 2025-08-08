@@ -31,13 +31,10 @@ export default /* @ngInject */ ($stateProvider) => {
         bankAccount,
       ) => TelephonySvaWalletService.saveWalletIban(bankAccount),
 
-      saveWallet: /* @ngInject */ (TelephonySvaWalletService, $state) => (
+      saveWallet: /* @ngInject */ (TelephonySvaWalletService) => (
         wallet,
         bankAccount,
-      ) =>
-        TelephonySvaWalletService.saveWallet(wallet, bankAccount).then(() =>
-          $state.reload(),
-        ),
+      ) => TelephonySvaWalletService.saveWallet(wallet, bankAccount),
 
       putWallet: /* @ngInject */ (TelephonySvaWalletService, $state) => (
         wallet,
