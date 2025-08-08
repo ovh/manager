@@ -3,7 +3,6 @@ import React from 'react';
 import { describe, it, vi } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import exp from 'constants';
 import * as ReactRouterDom from 'react-router-dom';
 import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
 import AssignTagTopbar, {
