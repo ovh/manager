@@ -32,7 +32,7 @@ if (!appName) {
 }
 
 // Path to the monorepo root
-const workspaceRootPath = path.resolve(__dirname, '../../../../..');
+const workspaceRootPath = path.resolve(__dirname, '../../../../../..');
 
 // Path to the input .vscode/settings.json
 const vscodeInputPath = path.join(workspaceRootPath, '.vscode/settings.json');
