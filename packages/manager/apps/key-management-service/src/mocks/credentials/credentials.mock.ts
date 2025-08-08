@@ -13,6 +13,7 @@ export const credentialMock: OkmsCredential[] = [
     name: 'credential-name-1',
     status: OkmsCredentialStatus.ready,
     description: 'credential description',
+    certificateType: 'RSA',
   },
   {
     createdAt: '2024-10-23T15:24:23Z',
@@ -24,5 +25,6 @@ export const credentialMock: OkmsCredential[] = [
     status: OkmsCredentialStatus.ready,
     description: 'credential description',
     privateKeyPEM: 'mock-private-key-pem-2',
+    certificateType: 'ECDSA',
   },
 ];
