@@ -1,23 +1,11 @@
 import { vi, describe, it, expect } from 'vitest';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import RoadmapChangelogDatagrids from './RoadmapChangelogDatagrids';
+import { renderWithShellContext } from '@/__mocks__/ShellContextWrapper';
 
 const trackClickMock = vi.fn();
-
-const mocks: any = vi.hoisted(() => ({
-  shellContext: {
-    region: 'EU',
-    environment: {
-      getRegion: vi.fn(() => mocks.region),
-    },
-  },
-}));
 
 vi.mock('@/data/hooks/roadmapChangelog/useRoadmapChangelog', () => ({
   useRoadmapChangelog: () => ({
@@ -76,13 +64,7 @@ vi.mock('react-i18next', () => ({
 }));
 
 const renderComponent = () =>
-  render(
-    <ShellContext.Provider
-      value={(mocks.shellContext as unknown) as ShellContextType}
-    >
-      <RoadmapChangelogDatagrids />
-    </ShellContext.Provider>,
-  );
+  renderWithShellContext(<RoadmapChangelogDatagrids />);
 
 describe('Roadmap Changelog Datagrids', () => {
   it('should render', () => {
