@@ -31,6 +31,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       <div>loaded content</div>
     );
   },
+  useAuthorizationIam: vi.fn().mockReturnValue({
+    isAuthorized: true,
+    data: {},
+  }),
 }));
 
 vi.mock('@/data/hooks/useNotification/useNotification', () => ({

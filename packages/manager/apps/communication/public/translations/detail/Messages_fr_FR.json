@@ -1,0 +1,12 @@
+{
+  "button_go_back": "Retour à la page précédente",
+  "history_banner": "Ce message vous a été envoyé le <strong>{{ date }}</strong> sur <strong>{{ email }}</strong>. <anchor>Consulter l'historique</anchor>",
+  "button_download_attachment": "Télécharger la pièce-jointe",
+  "format_switch_short": "Court",
+  "format_switch_long": "Long",
+  "format_switch_html": "Format HTML",
+  "history_overlay_headline": "Suivi des envois",
+  "history_overlay_description": "Retrouvez ici l'ensemble des informations relatives à l'envoi de ce message. Si vous constatez un problème, vous pouvez gérer les paramètres de communication.",
+  "history_overlay_settings_link": "Accéder aux paramètres de diffusion",
+  "history_overlay_close": "Fermer"
+}

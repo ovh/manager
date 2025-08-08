@@ -2,6 +2,8 @@ export const urls = {
   root: '/',
   // Dashboard Layout
   CommunicationsTab: '/',
-  ContactsTab: 'contacts',
-  SettingsTab: 'settings',
+  CommunicationsDetail: '/:notificationId',
+  CommunicationsDetailTo: (notificationId: string) => `/${notificationId}`,
+  ContactsTab: '/contacts',
+  SettingsTab: '/settings',
 };

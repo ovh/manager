@@ -4,7 +4,16 @@
   "tab_communications": "Mes communications",
   "tab_contacts": "Contacts",
   "tab_settings": "Paramètres de diffusion",
+  "date_label": "Date",
   "priority_high": "Élevé",
   "priority_medium": "Moyen",
-  "priority_low": "Faible"
+  "priority_low": "Faible",
+  "category_product": "Produit",
+  "category_product_lifecycle": "Vie du produit",
+  "category_billing": "Facturation",
+  "category_account": "Compte",
+  "category_account_lifecycle": "Vie du compte",
+  "category_security": "Sécurité",
+  "category_legal": "Légal",
+  "iam_display_content_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur."
 }
