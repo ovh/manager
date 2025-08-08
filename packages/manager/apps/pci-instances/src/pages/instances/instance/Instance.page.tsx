@@ -20,12 +20,12 @@ import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
 const Instance: FC = () => {
   const { t } = useTranslation('dashboard');
   const project = useRouteLoaderData('root') as TProject;
-  const { instanceId, regionId } = useParam('regionId', 'instanceId');
+  const { instanceId, region } = useParam('region', 'instanceId');
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath(`../${instanceId}/vnc`); // vnc will be redirect to the legacy page until migration done
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
 
