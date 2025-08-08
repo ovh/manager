@@ -1,5 +1,3 @@
-import AssignTag from '@/pages/tagManager/assignTag/AssignTag.page';
-
 export const subRoutes = {
   tagManager: 'tag-manager',
   assignTag: 'assign-tag',

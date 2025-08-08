@@ -2,12 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
-  Breadcrumb,
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BADGE_COLOR,
@@ -15,10 +14,11 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
-import appConfig from '@/identity-access-management.config';
+import appConfig, { SubApp } from '@/identity-access-management.config';
 import ResourcesListDatagrid from '@/components/resourcesDatagrid/ResourcesDatagrid.component';
 import { ResourcesDatagridContextProvider } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import AssignTagTopbar from './components/AssignTagTopbar.component';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 
 export default function AssignTag() {
   const { t } = useTranslation('tag-manager');
@@ -41,6 +41,7 @@ export default function AssignTag() {
             rootLabel={appConfig.rootLabel}
             appName="identity-access-management"
             hideRootLabel={true}
+            subApp={SubApp.TAG_MANAGER}
           />
         }
         header={header}

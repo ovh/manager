@@ -71,7 +71,28 @@ export type UseUpdateIamResourceResponse = {
   }>;
 };
 
-export const useUpdateIamResources = () => {
+export type UseUpdateIamResourcesParams = {
+  onSuccess?: (
+    data: UseUpdateIamResourceResponse,
+    variables: {
+      resources: IamResource[];
+      tags: Record<string, string>;
+    },
+    context: unknown,
+  ) => unknown;
+  onError?: (
+    error: Error,
+    variables: {
+      resources: IamResource[];
+      tags: Record<string, string>;
+    },
+    context: unknown,
+  ) => unknown;
+};
+export const useUpdateIamResources = ({
+  onSuccess,
+  onError,
+}: UseUpdateIamResourcesParams) => {
   const { addWarning, addSuccess, addError } = useNotifications();
   const { t } = useTranslation('tag-manager');
   const queryClient = useQueryClient();
@@ -111,6 +132,8 @@ export const useUpdateIamResources = () => {
         { success: [], error: [] },
       );
     },
+    onSuccess,
+    onError,
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
         queryKey: getAllIamResourceQueryKey(),
