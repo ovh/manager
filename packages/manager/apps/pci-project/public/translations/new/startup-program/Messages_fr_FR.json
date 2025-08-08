@@ -1,5 +1,5 @@
 {
-  "pci_project_new_payment_startup_program_title": "Startup Program",
+  "pci_project_new_payment_startup_program_title": "OVHcloud Startup Program",
   "pci_project_new_payment_startup_program_info": "Dans le cadre du Startup Program, vous disposez d'un compte prépayé dédié.",
   "pci_project_new_payment_startup_program_amount_available": "Montant du compte : {{ amount }}",
   "pci_project_new_payment_startup_program_explain": "Ce montant sera utilisé pour le paiement de la consommation de votre projet Public Cloud. Notez que ces crédits sont seulement disponibles pour des produits spécifiques. Vous pouvez trouver plus d'informations sur les produits éligibles dans ce <guideLink label='guide'></guideLink>. Une fois cette somme épuisée, le moyen de paiement enregistré ci-dessus sera automatiquement utilisé pour assurer la continuité de vos instances créées."
