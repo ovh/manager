@@ -12,7 +12,8 @@ const mocks = vi.hoisted(() => ({
   user: {
     legalform: 'corporation',
     country: 'FR',
-    companyNationalIdentificationNumber: 'suggestedNIN',
+    companyNationalIdentificationNumber: 'suggestedSIRET',
+    nationalIdentificationNumber: 'suggestedNIN',
     vat: 'suggestedVAT',
   },
   data: [] as Suggestion[],
@@ -161,11 +162,18 @@ describe('SuggestionModal', () => {
     mocks.data = [
       {
         type: 'SIRET',
-        id: 'suggestedNIN',
+        id: 'suggestedSIRET',
+        isActive: true,
       },
       {
         type: 'VAT',
         id: 'suggestedVAT',
+        isActive: true,
+      },
+      {
+        type: 'NIN',
+        id: 'suggestedNIN',
+        isActive: true,
       },
     ];
 
@@ -180,11 +188,18 @@ describe('SuggestionModal', () => {
     mocks.data = [
       {
         type: 'SIRET',
-        id: 'differentNIN',
+        id: 'differentSIRET',
+        isActive: true,
       },
       {
         type: 'VAT',
         id: 'differentVAT',
+        isActive: true,
+      },
+      {
+        type: 'NIN',
+        id: 'differentNIN',
+        isActive: false,
       },
     ];
 
@@ -192,6 +207,64 @@ describe('SuggestionModal', () => {
 
     await waitFor(() => {
       expect(queryByTestId('suggestion-modal')).not.toBeNull();
+    });
+  });
+
+  it('should not render if SIRET suggestion is inactive', async () => {
+    mocks.data = [
+      {
+        type: 'SIRET',
+        id: 'differentSIRET',
+        isActive: false,
+      },
+    ];
+    const { queryByTestId } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('suggestion-modal')).toBeNull();
+    });
+  });
+
+  it('should not render if VAT suggestion is inactive', async () => {
+    mocks.data = [
+      {
+        type: 'VAT',
+        id: 'differentVAT',
+        isActive: false,
+      },
+    ];
+    const { queryByTestId } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('suggestion-modal')).toBeNull();
+    });
+  });
+
+  it('should not render if NIN suggestion is inactive', async () => {
+    mocks.data = [
+      {
+        type: 'NIN',
+        id: 'someNIN',
+        isActive: false,
+      },
+    ];
+    mocks.user.nationalIdentificationNumber = 'someNIN';
+    const { queryByTestId } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('suggestion-modal')).toBeNull();
+    });
+  });
+
+  it('should not render if NIN suggestion is active', async () => {
+    mocks.data = [
+      {
+        type: 'NIN',
+        id: 'someNIN',
+        isActive: true,
+      },
+    ];
+    mocks.user.nationalIdentificationNumber = 'someNIN';
+    const { queryByTestId } = renderComponent();
+    await waitFor(() => {
+      expect(queryByTestId('suggestion-modal')).toBeNull();
     });
   });
 });

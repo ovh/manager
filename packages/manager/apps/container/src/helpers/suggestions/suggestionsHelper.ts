@@ -8,6 +8,6 @@ export const isUserConcernedBySuggestion = (user: User) =>
 
 export const isSuggestionRelevant = (suggestion: Suggestion, user: User) => {
   const userField = user[SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]];
-  return Boolean(SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]) &&
-    (!userField || userField !== suggestion.id);
+  return suggestion.isActive && Boolean(SUGGESTION_TYPE_USER_FIELD_MAP[suggestion.type]) &&
+    (!userField || userField !== suggestion.id );
 };

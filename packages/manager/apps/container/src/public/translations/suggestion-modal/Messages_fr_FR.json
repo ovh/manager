@@ -4,6 +4,7 @@
   "suggestion_modal_description_sub": "Si vous ne constatez aucune erreur dans ces informations, cliquez sur le bouton Je valide ces informations. Sinon merci de cliquer sur le bouton Je mets à jour dans mon profil.",
   "suggestion_modal_listed_type_SIRET": "SIRET",
   "suggestion_modal_listed_type_VAT": "Numéro de TVA Intracommunautaire",
+  "suggestion_modal_listed_type_NIN": "Numéro d'identification national",
   "suggestion_modal_action_modify": "Je mets à jour dans mon profil",
   "suggestion_modal_action_confirm": "Je valide ces informations"
 }
