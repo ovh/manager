@@ -7,18 +7,17 @@ const handleClear = vi.fn();
 const handleValidate = vi.fn();
 const handleChange = vi.fn();
 
-const InputComponent = ({ isValid }: { isValid?: boolean }) => (
+const InputComponent = () => (
   <InputCancellable
     value="NAME"
     onChange={handleChange}
-    onClear={handleClear}
+    onCancel={handleClear}
     onSubmit={handleValidate}
-    isValid={isValid}
   />
 );
 
 describe('Input Component', () => {
-  it('should render input with its default value', async () => {
+  it('should render input with its default value', () => {
     render(<InputComponent />);
 
     expect(screen.getByDisplayValue('NAME')).toBeInTheDocument();
@@ -46,11 +45,5 @@ describe('Input Component', () => {
     await userEvent.click(screen.getByLabelText('Submit'));
 
     expect(handleValidate).toHaveBeenCalled();
-  });
-
-  it('should disabled validate button when input is not valid', async () => {
-    render(<InputComponent isValid={false} />);
-
-    expect(screen.getByLabelText('Submit')).toBeDisabled();
   });
 });
