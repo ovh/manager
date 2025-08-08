@@ -2,7 +2,15 @@ import { FC } from 'react';
 import { useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
+import {
+  Input,
+  Quantity,
+  QuantityControl,
+  QuantityInput,
+  FormField,
+  FormFieldLabel,
+  Text,
+} from '@ovhcloud/ods-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,6 +22,10 @@ import { instanceNameRegex } from '@/constants';
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
   name: z.string().regex(instanceNameRegex),
+  quantity: z
+    .number()
+    .min(1)
+    .max(793),
 });
 
 const CreateInstance: FC = () => {
@@ -24,6 +36,7 @@ const CreateInstance: FC = () => {
     resolver: zodResolver(instanceCreationSchema),
     defaultValues: {
       name: 'default name to add',
+      quantity: 1,
     },
     mode: 'onChange',
   });
@@ -31,6 +44,8 @@ const CreateInstance: FC = () => {
   const {
     formState: { errors },
     register,
+    getValues,
+    setValue,
   } = formMethods;
 
   const breadcrumbItems = [
@@ -62,7 +77,7 @@ const CreateInstance: FC = () => {
                 mandatory) Si besoin d’un texte d’introduction... .
               </Text>
             </section>
-            <section className="w-1/2">
+            <section className="flex flex-col w-full mb-8">
               {/* TODO: Pre-fill name with combination of {flavor_name region_id month day hour minute} */}
               <div className="pt-3 pb-4">
                 <FormField>
@@ -83,6 +98,45 @@ const CreateInstance: FC = () => {
                 preset="span"
               >
                 {t('creation:pci_instance_creation_name_rule')}
+              </Text>
+            </section>
+            <section className="flex flex-col w-full mb-8">
+              <Text preset="heading-2">
+                {t('creation:pci_instances_creation_quantity_title')}
+              </Text>
+              <div className="pt-3 pb-4">
+                <FormField>
+                  <FormFieldLabel>
+                    {t('creation:pci_instances_creation_quantity_label')}
+                  </FormFieldLabel>
+                  <Quantity
+                    {...register('quantity', { required: true })}
+                    onValueChange={({ value }) => {
+                      setValue('quantity', Number(value));
+                    }}
+                    min={1}
+                    max={793}
+                    defaultValue={String(getValues('quantity'))}
+                    invalid={!!errors.quantity}
+                    required
+                  >
+                    <QuantityControl>
+                      <QuantityInput />
+                    </QuantityControl>
+                  </Quantity>
+                </FormField>
+              </div>
+              <Text
+                className={clsx('text-sm', {
+                  'text-[--ods-color-critical-500]': !!errors.quantity,
+                })}
+                preset="span"
+              >
+                {t('creation:pci_instance_creation_quantity_rule', {
+                  quota: 5,
+                  type: 'type',
+                  region: 'region',
+                })}
               </Text>
             </section>
           </section>
