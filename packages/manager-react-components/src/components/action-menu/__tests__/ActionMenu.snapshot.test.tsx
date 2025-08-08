@@ -8,10 +8,10 @@ import {
 } from 'vitest';
 import { act, screen, fireEvent } from '@testing-library/react';
 import {
-  ODS_ICON_NAME,
-  ODS_POPOVER_POSITION,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
+  POPOVER_POSITION,
+  ICON_NAME,
+  BUTTON_VARIANT,
+} from '@ovhcloud/ods-react';
 import { ActionMenu } from '../index';
 import { render } from '../../../utils/test.provider';
 import { useAuthorizationIam } from '../../../hooks/iam';
@@ -114,7 +114,7 @@ describe('ActionMenu Snapshot Tests', () => {
             id="compact-custom-icon"
             items={baseItems}
             isCompact={true}
-            icon={ODS_ICON_NAME.ellipsisHorizontal}
+            icon={ICON_NAME.ellipsisHorizontal}
           />
         </div>,
       );
@@ -129,7 +129,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="outline-variant"
             items={baseItems}
-            variant={ODS_BUTTON_VARIANT.outline}
+            variant={BUTTON_VARIANT.outline}
           />
         </div>,
       );
@@ -142,7 +142,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="ghost-variant"
             items={baseItems}
-            variant={ODS_BUTTON_VARIANT.ghost}
+            variant={BUTTON_VARIANT.ghost}
           />
         </div>,
       );
@@ -155,7 +155,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="default-variant"
             items={baseItems}
-            variant={ODS_BUTTON_VARIANT.default}
+            variant={BUTTON_VARIANT.default}
           />
         </div>,
       );
@@ -217,7 +217,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="custom-icon-menu"
             items={baseItems}
-            icon={ODS_ICON_NAME.plus}
+            icon={ICON_NAME.plus}
           />
         </div>,
       );
@@ -231,7 +231,7 @@ describe('ActionMenu Snapshot Tests', () => {
             id="custom-label-icon-menu"
             items={baseItems}
             label="Settings"
-            icon={ODS_ICON_NAME.plus}
+            icon={ICON_NAME.plus}
           />
         </div>,
       );
@@ -246,7 +246,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="top-position-menu"
             items={baseItems}
-            popoverPosition={ODS_POPOVER_POSITION.top}
+            popoverPosition={POPOVER_POSITION.top}
           />
         </div>,
       );
@@ -265,7 +265,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="right-position-menu"
             items={baseItems}
-            popoverPosition={ODS_POPOVER_POSITION.right}
+            popoverPosition={POPOVER_POSITION.right}
           />
         </div>,
       );
@@ -284,7 +284,7 @@ describe('ActionMenu Snapshot Tests', () => {
           <ActionMenu
             id="left-position-menu"
             items={baseItems}
-            popoverPosition={ODS_POPOVER_POSITION.left}
+            popoverPosition={POPOVER_POSITION.left}
           />
         </div>,
       );
