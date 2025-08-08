@@ -10,17 +10,12 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAllVolumes, TVolume } from '@/api/hooks/useVolume';
+import { TVolume, useAllVolumes } from '@/api/hooks/useVolume';
 import OnBoardingPage from './OnBoarding.page';
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 vi.mock('@/api/hooks/useVolume');
-vi.mock('react-router-dom', () => ({
-  Navigate: vi.fn(() => null),
-  useParams: () => ({ projectId: 'mocked_projectId' }),
-  useNavigate: () => vi.fn(),
-  useRouteLoaderData: vi.fn(),
-  Outlet: vi.fn(() => 'Test Child'),
-}));
+vi.mock('react-router-dom');
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
 }));
@@ -67,9 +62,9 @@ describe('OnBoardingPage', () => {
       isPending: false,
     } as UseQueryResult<TVolume[]>);
 
-    const { container, getByText } = render(<OnBoardingPage />, {
-      wrapper,
-    });
+    const { container, getByText } = renderWithMockedWrappers(
+      <OnBoardingPage />,
+    );
     expect(container).toBeDefined();
     expect(
       getByText('pci_projects_project_storages_blocks_onboarding_action_label'),
