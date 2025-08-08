@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
 import path from 'path';
-import { readdir, writeFile } from 'fs/promises';
+import fs from 'fs/promises';
 import prettier from 'prettier';
+import { applicationsBasePath } from '../../utils/AppUtils.mjs';
 
 const appName = process.argv[2];
 const isDryRun = process.argv.includes('--dry-run');
 
-const appPath = path.resolve('../manager/apps', appName);
+const applicationPath = path.resolve(applicationsBasePath, appName);
 const foldersToScan = ['src'];
 const routerRegex = /\bcreate(Hash|Memory)Router\s*\(/;
 
@@ -36,7 +37,7 @@ const findRouterCallsFiles = async (dir, results) => {
       await findRouterCallsFiles(fullPath, results);
     } else if (entry.isFile() && entry.name.endsWith('.tsx')) {
       try {
-        const content = await readFile(fullPath, 'utf-8');
+        const content = await fs.readFile(fullPath, 'utf-8');
         if (routerRegex.test(content)) {
           results.push({ path: fullPath, content });
         }
@@ -57,7 +58,7 @@ const findRouterInitFiles = async () => {
   const results = [];
 
   for (const folder of foldersToScan) {
-    const fullPath = path.join(appPath, folder);
+    const fullPath = path.join(applicationPath, folder);
     await findRouterCallsFiles(fullPath, results);
   }
 
@@ -179,7 +180,7 @@ const updateRoutersInitialization = async () => {
         console.log('--- TRANSFORMED ---');
         console.log(formatted.slice(0, 1000));
       } else {
-        await writeFile(filePath, formatted);
+        await fs.writeFile(filePath, formatted);
         console.log(`✅ Updated: ${filePath}`);
       }
     } catch (err) {

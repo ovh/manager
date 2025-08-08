@@ -4,6 +4,7 @@ import { existsSync } from 'fs';
 import { updateDependencies } from './steps/updateDependencies.mjs';
 import { updateTestScripts } from './steps/updateScripts.mjs';
 import { updateConfiguration } from './steps/updateConfiguration.mjs';
+import { applicationsBasePath } from '../../utils/AppUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,10 +19,10 @@ if (!appName) {
   process.exit(1);
 }
 
-const appPath = path.resolve(__dirname, '../../../manager/apps', appName);
+const applicationPath = path.resolve(applicationsBasePath, appName);
 
-if (!existsSync(appPath)) {
-  console.error(`❌ App not found at: ${appPath}`);
+if (!existsSync(applicationPath)) {
+  console.error(`❌ App not found at: ${applicationPath}`);
   process.exit(1);
 }
 
@@ -29,9 +30,9 @@ console.log(`🚀 Starting Vitest migration for: ${appName}`);
 if (dryRun) console.log('🧪 Running in dry-run mode');
 
 (async () => {
-  await updateDependencies(appPath, dryRun);
-  await updateTestScripts(appPath, dryRun);
-  await updateConfiguration(appPath, dryRun);
+  await updateDependencies(applicationPath, dryRun);
+  await updateTestScripts(applicationPath, dryRun);
+  await updateConfiguration(applicationPath, dryRun);
 
   console.log(`✅ Finished Vitest migration for: ${appName}`);
 })();

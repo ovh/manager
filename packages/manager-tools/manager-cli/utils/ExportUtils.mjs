@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-export const reportOutputBasePath = resolve(__dirname, '../../../migration-status-reports');
+export const reportOutputBasePath = resolve(__dirname, '../../../../migration-status-reports');
 
 export const buildRoutesReportFileName = (outputFormat) => outputFormat === 'json'
   ? `${reportOutputBasePath}/routes-migration-report.json`

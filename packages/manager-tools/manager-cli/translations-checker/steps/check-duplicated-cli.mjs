@@ -3,6 +3,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { applicationsBasePath, modulesBasePath } from '../../utils/AppUtils.mjs';
 
 // Helpers to get dirname equivalent in ESM
 const filename = fileURLToPath(import.meta.url);
@@ -11,7 +12,7 @@ const dirname = path.dirname(filename);
 // Hardcoded common folder path (constant)
 const commonFolder = path.resolve(
   dirname,
-  '../../../manager/modules/common-translations/public/translations/',
+  `${modulesBasePath}/common-translations/public/translations/`,
 );
 
 const args = process.argv.slice(2);
@@ -19,7 +20,7 @@ const appName = args[0];
 const projectRoot = process.cwd();
 const appFolder = path.resolve(
   dirname,
-  `../../../manager/apps/${appName}/public/translations/`,
+  `${applicationsBasePath}/${appName}/public/translations/`,
 );
 const targetFileName = 'Messages_fr_FR.json';
 
