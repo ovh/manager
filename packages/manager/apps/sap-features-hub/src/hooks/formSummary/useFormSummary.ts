@@ -152,16 +152,16 @@ export const useFormSummary = (values: InstallationFormValues) => {
             value: values.gateway,
             label: t('server_config_input_gateway_ip'),
           },
-          {
-            value: values.thickDatastorePolicy,
-            label: t('server_config_input_thick_storage'),
-          },
           { type: 'subtitle', label: LABELS.SAP_HANA },
           {
             value: values.hanaServerOva,
             label: t('server_config_input_ova_model'),
           },
           { value: values.hanaServerDatastore, label: FORM_LABELS.datastore },
+          {
+            value: values.thickDatastorePolicy,
+            label: t('server_config_input_thick_storage'),
+          },
           ...(values.hanaServers?.length
             ? getVMFields(values.hanaServers)
             : []),
