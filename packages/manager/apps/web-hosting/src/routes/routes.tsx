@@ -23,6 +23,7 @@ import {
   GENERAL_INFORMATION,
   TASKS,
   IMPORT,
+  DELETE,
 } from '@/utils/tracking.constants';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
@@ -101,7 +102,20 @@ export default (
             pageType: PageType.listing,
           },
         }}
-      />
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
       <Route
         id={TASKS}
         path={urls.managedWordpressResourceTasks}
