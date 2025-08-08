@@ -7,6 +7,7 @@ import {
   managedWordpressWebsitesMock,
   managedWordpressWebsitesDetailsMock,
   managedWordpressResourceDetailsMock,
+  managedWordpressWebsitesDeleteMock,
 } from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -131,6 +132,9 @@ vi.mock('@/data/api/managedWordpress', () => ({
   ),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDetailsMock),
+  ),
+  deleteManagedCmsResourceWebsite: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesDeleteMock),
   ),
 }));
 afterEach(() => {
