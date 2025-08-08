@@ -1,7 +1,8 @@
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { Route } from 'react-router-dom';
+import { Route, UIMatch } from 'react-router-dom';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
@@ -14,11 +15,58 @@ import {
   ORDER_DOMAIN,
   SSL,
   WEBSITE,
+  WORDPRESS_MANAGED,
+  WORDPRESS_MANAGED_SERVICE,
   SAN_SSL,
+  GENERAL_INFORMATION,
+  TASKS,
+  IMPORT,
+  DELETE,
 } from '@/utils/tracking.constants';
+
+export type RouteHandle = {
+  isOverridePage?: boolean;
+  tracking?: {
+    pageName?: string;
+    pageType?: PageType;
+  };
+  breadcrumb?: {
+    label: string;
+    icon?: ODS_ICON_NAME;
+  };
+};
+
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
+const ManagedWordpressPage = React.lazy(() =>
+  import('@/pages/managedWordpress/ManagedWordpress.page'),
+);
+const ManagedWordpressResourcePage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/ManagedWordpressResource.page'
+  ),
+);
+const ManagedWordpressServiceGeneralInformationPage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/myWebsites/MyWebsites.page'
+  ),
+);
+const ManagedWordpressServiceTasksPage = React.lazy(() =>
+  import('@/pages/managedWordpress/ManagedWordpressResource/tasks/Tasks.page'),
+);
+const ManagedWordpressServiceImportPage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/import/Import.page'
+  ),
+);
+
+const ManagedWordpressServiceDelete = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/delete/Delete.modal'
+  ),
+);
 const OnboardingPage = React.lazy(() =>
   import('@/pages/onboarding/Onboarding.page'),
 );
@@ -42,7 +90,6 @@ const AddDomainPage = React.lazy(() =>
 const OrderDomainPage = React.lazy(() =>
   import('@/pages/dashboard/OrderDomain.page'),
 );
-
 export default (
   <Route
     id={'root'}
@@ -56,6 +103,84 @@ export default (
       />
     }
   >
+    <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.managedWordpress}
+      Component={ManagedWordpressPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'managed_wordpress',
+        },
+      }}
+    />
+
+    <Route
+      id={WORDPRESS_MANAGED_SERVICE}
+      path={urls.managedWordpressResource}
+      Component={ManagedWordpressResourcePage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: ':serviceName',
+        },
+      }}
+    >
+      <Route
+        id={GENERAL_INFORMATION}
+        path={urls.managedWordpressResource}
+        Component={ManagedWordpressServiceGeneralInformationPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
+      <Route
+        id={TASKS}
+        path={urls.managedWordpressResourceTasks}
+        Component={ManagedWordpressServiceTasksPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:web_hosting_header_tasks',
+          },
+        }}
+      />
+      <Route
+        id={IMPORT}
+        path={urls.managedWordpressResourceImport}
+        Component={ManagedWordpressServiceImportPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:import_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+    </Route>
     <Route
       id={WEBSITE}
       path={urls.websites}
