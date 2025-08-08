@@ -7,6 +7,7 @@ export const urls = {
   edit: 'edit',
   onboarding: 'onboarding',
   creation: 'new',
+  increaseQuota: 'increase-quota',
   creating: 'creating/:orderId/:voucherCode',
   remove: 'remove',
 } as const;
