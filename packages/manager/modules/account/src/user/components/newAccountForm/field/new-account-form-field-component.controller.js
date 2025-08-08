@@ -149,7 +149,7 @@ export default class NewAccountFormFieldController {
           if (
             this.rule.prefix &&
             value &&
-            this.fieldName !== this.FIELD_NAME_LIST.zip
+            this.rule.fieldName !== this.FIELD_NAME_LIST.zip
           ) {
             value = this.rule.prefix + value;
           }
@@ -234,7 +234,11 @@ export default class NewAccountFormFieldController {
         };
       } else if (this.getFieldType() === 'date') {
         value = moment(this.rule.initialValue, 'YYYY-MM-DD').toDate();
-      } else if (this.rule.prefix && startsWith(value, this.rule.prefix)) {
+      } else if (
+        this.rule.prefix &&
+        startsWith(value, this.rule.prefix) &&
+        this.rule.fieldName !== this.FIELD_NAME_LIST.zip
+      ) {
         value = value.slice(this.rule.prefix.length);
       }
       this.value = value;
