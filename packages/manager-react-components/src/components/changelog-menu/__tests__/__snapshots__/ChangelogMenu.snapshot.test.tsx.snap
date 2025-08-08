@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with chapters prop 1`] = `
+<button
+  aria-controls="popover::r1::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r1::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with custom prefixes 1`] = `
+<button
+  aria-controls="popover::r2::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r2::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with default props 1`] = `
+<button
+  aria-controls="popover::r0::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r0::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with different link URLs 1`] = `
+<button
+  aria-controls="popover::r3::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r3::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with long URLs 1`] = `
+<button
+  aria-controls="popover::r5::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r5::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;
+
+exports[`ChangelogMenu Snapshot Tests > should match snapshot with single chapter 1`] = `
+<button
+  aria-controls="popover::r4::content"
+  aria-expanded="false"
+  aria-haspopup="dialog"
+  class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+  data-part="trigger"
+  data-scope="popover"
+  data-state="closed"
+  dir="ltr"
+  id="popover::r4::trigger"
+  type="button"
+>
+  Roadmap & Changelog
+</button>
+`;

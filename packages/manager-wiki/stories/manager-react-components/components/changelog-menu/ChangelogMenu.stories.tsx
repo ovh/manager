@@ -1,14 +1,13 @@
-import React from 'react';
 import { Meta } from '@storybook/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import {
-  ChangelogButton,
-  ChangelogLinks,
-  ChangelogButtonProps,
+  ChangelogMenu,
+  ChangelogMenuLinks,
+  ChangelogMenuProps,
 } from '@ovh-ux/manager-react-components';
 
 const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
-const changelogLinks: ChangelogLinks = {
+const changelogLinks: ChangelogMenuLinks = {
   roadmap:
     'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
   changelog:
@@ -17,17 +16,17 @@ const changelogLinks: ChangelogLinks = {
     'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
 };
 
-export const changelogButton: ChangelogButtonProps = {
+export const changelogMenu: ChangelogMenuProps = {
   links: changelogLinks,
   chapters: changelogChapters,
 };
 
-const meta: Meta<ChangelogButtonProps> = {
-  title: 'Manager React Components/Navigation/Menus',
+const meta: Meta<ChangelogMenuProps> = {
+  title: 'Manager React Components/Components/ChangelogMenu',
   decorators: [withRouter],
-  component: ChangelogButton,
+  component: ChangelogMenu,
   argTypes: {},
-  args: changelogButton,
+  args: changelogMenu,
 };
 
 export default meta;
