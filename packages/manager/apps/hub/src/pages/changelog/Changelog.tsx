@@ -128,7 +128,7 @@ export default function Changelog() {
               </OsdsText>
             </div>
 
-            <div className="grid gap-y-6 grid-cols-1 xxl:grid-cols-2 xxl:gap-x-10">
+            <div className="grid gap-y-6 grid-cols-1 xxl:grid-cols-2 xxl:gap-x-10 items-start">
               <div className="grid gap-y-6">
                 <OsdsTabs
                   panel="roadmap-changelog-tab-tiles-cloud"
