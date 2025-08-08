@@ -24,6 +24,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   variant = BUTTON_VARIANT.outline,
   isDisabled = false,
   isLoading = false,
+  displayIcon = true,
   popoverPosition = POPOVER_POSITION.bottom,
   label,
 }) => {
@@ -40,18 +41,20 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           size={BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
         >
-          <Icon
-            name={
-              icon ||
-              (isCompact ? ICON_NAME.ellipsisVertical : ICON_NAME.chevronDown)
-            }
-          />
+          {displayIcon && (
+            <Icon
+              name={
+                icon ||
+                (isCompact ? ICON_NAME.ellipsisVertical : ICON_NAME.chevronDown)
+              }
+            />
+          )}
           {!isCompact && (label || t('common_actions'))}
         </Button>
       </PopoverTrigger>
       <PopoverContent>
         <ul className="menu-item-ul">
-          {items.map(({ id, onClick, ...item }) => (
+          {items.map(({ id, ...item }) => (
             <li key={id}>
               <MenuItem id={id} key={id} item={item} isTrigger={isTrigger} />
             </li>

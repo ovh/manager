@@ -2,10 +2,7 @@ import { vitest, describe, it } from 'vitest';
 import { render } from '@testing-library/react';
 import { BaseLayout } from '..';
 import { GuideMenu, GuideMenuItem } from '../../guide-menu';
-import {
-  ChangelogButton,
-  ChangelogLinks,
-} from '../../navigation/menus/changelog/changelog.component';
+import { ChangelogMenu, ChangelogMenuLinks } from '../../changelog-menu';
 import { Breadcrumb } from '../../breadcrumb';
 import { TabsComponent } from '../../tabs';
 import { Notifications } from '../../notifications';
@@ -46,14 +43,14 @@ const guideMenu = (
   />
 );
 
-const changelogButton = (
-  <ChangelogButton
+const ChangelogMenuComponent = (
+  <ChangelogMenu
     links={
       {
         changelog: '',
         roadmap: '',
         'feature-request': '',
-      } as ChangelogLinks
+      } as ChangelogMenuLinks
     }
   />
 );
@@ -74,7 +71,7 @@ describe('BaseLayout component - Snapshot tests', () => {
       header: {
         title: 'Title of the page',
         guideMenu,
-        changelogButton,
+        ChangelogMenuComponent,
       },
       breadcrumb,
       tabs,
