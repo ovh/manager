@@ -19,6 +19,7 @@ type ToggleFieldProps = {
   checked: boolean;
   onOdsChange: (e: OdsToggleChangeEvent) => void;
   tooltip?: string;
+  isDisabled?: boolean;
 };
 
 // OdsToggle web component seems to have an issue where the new value is not always detected
@@ -30,6 +31,7 @@ export const ToggleField = ({
   checked,
   onOdsChange,
   tooltip,
+  isDisabled = false,
 }: ToggleFieldProps) => {
   const [internalChecked, setInternalChecked] = React.useState(!!checked);
 
@@ -50,6 +52,7 @@ export const ToggleField = ({
         id={toggleId}
         name={name}
         value={internalChecked}
+        isDisabled={isDisabled}
         onOdsChange={(e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>) => {
           const newValue = !!e.detail.value;
           setInternalChecked(newValue);
