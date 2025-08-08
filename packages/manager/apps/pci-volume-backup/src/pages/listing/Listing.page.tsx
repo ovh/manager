@@ -22,10 +22,9 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDatagridColumn } from '@/pages/listing/useDatagridColumn';
 import { TProjectParams, TVolumeBackup } from '@/data/api/api.types';
-import { getVolumeBackups, refetchInterval } from '@/data/api/volumeBackup';
 import config from '@/pci-volume-backup.config';
-import { getBackupsQueryKey } from '@/data/hooks/useVolumeBackup';
 import { VOLUME_BACKUP_TRACKING } from '@/tracking.constant';
+import { getBackupsResourcesV6QueryOptions } from '@/data/hooks/useVolumeBackup';
 
 export default function Listing() {
   const columns = useDatagridColumn();
@@ -52,19 +51,8 @@ export default function Listing() {
     setSorting,
     filters,
   } = useResourcesV6<TVolumeBackup>({
+    ...getBackupsResourcesV6QueryOptions(projectId),
     columns,
-    route: `/cloud/project/${projectId}/aggregated/volumeBackup`,
-    queryFn: async () =>
-      getVolumeBackups(projectId)().then(({ data }) => {
-        return {
-          data: data.map((volume: TVolumeBackup) => ({
-            ...volume,
-            search: `${volume.id} ${volume.name} ${volume.region}`,
-          })),
-        };
-      }),
-    refetchInterval,
-    queryKey: getBackupsQueryKey(projectId)[0],
     pageSize: 10,
     defaultSorting: {
       id: 'creationDate',

@@ -1,10 +1,18 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
+import {
+  QueryObserverLoadingErrorResult,
+  QueryObserverLoadingResult,
+  QueryObserverSuccessResult,
+} from '@tanstack/react-query';
+import { TVolume } from '@ovh-ux/manager-pci-common';
 import Actions from './Actions.component';
 import { TVolumeBackup } from '@/data/api/api.types';
 import { VOLUME_BACKUP_STATUS } from '@/constants';
+import { useVolume } from '@/data/hooks/useVolume';
 
-// Mock ActionMenu component
+vi.mock('@/data/hooks/useVolume');
+
 vi.mock('@ovh-ux/manager-react-components', () => ({
   ActionMenu: ({
     id,
@@ -25,7 +33,6 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-// Sample backup data
 const mockBackup: TVolumeBackup = {
   id: 'backup-123',
   name: 'Test Backup',
@@ -51,6 +58,11 @@ const mockBackup: TVolumeBackup = {
   },
   search: 'Test Backup backup-123 us-east-1',
 };
+
+vi.mocked(useVolume).mockReturnValue({
+  data: {} as TVolume,
+  isLoading: false,
+} as ReturnType<typeof useVolume>);
 
 describe('Actions Component', () => {
   beforeEach(() => {
@@ -133,6 +145,44 @@ describe('Actions Component', () => {
       expect(menuItem).toBeNull();
     },
   );
+
+  it("should remove 'restore backup' item from the actions list when it's loading volume info", () => {
+    vi.mocked(useVolume).mockReturnValue({
+      isLoading: true,
+    } as ReturnType<typeof useVolume>);
+
+    const { queryByText } = render(<Actions backup={mockBackup} />);
+    const menuItem = queryByText(
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
+    );
+    expect(menuItem).toBeNull();
+  });
+
+  it("should remove 'restore backup' item from the actions list when there is no volume", () => {
+    vi.mocked(useVolume).mockReturnValue({
+      isLoading: false,
+      data: undefined,
+    } as ReturnType<typeof useVolume>);
+
+    const { queryByText } = render(<Actions backup={mockBackup} />);
+    const menuItem = queryByText(
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
+    );
+    expect(menuItem).toBeNull();
+  });
+
+  it("should remove 'restore backup' item from the actions list when the volume is deleting", () => {
+    vi.mocked(useVolume).mockReturnValue({
+      isLoading: false,
+      data: { status: 'deleting' },
+    } as ReturnType<typeof useVolume>);
+
+    const { queryByText } = render(<Actions backup={mockBackup} />);
+    const menuItem = queryByText(
+      'pci_projects_project_storages_volume_backup_list_datagrid_menu_action_restore',
+    );
+    expect(menuItem).toBeNull();
+  });
 
   it.each([
     VOLUME_BACKUP_STATUS.CREATING,
