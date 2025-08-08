@@ -15,6 +15,7 @@ export default class ServicesActionsCtrl {
     BillingLinksService,
     $element,
     BillingService,
+    $state,
   ) {
     this.SERVICE_ACTIVE_STATUS = SERVICE_ACTIVE_STATUS;
     this.$injector = $injector;
@@ -32,11 +33,18 @@ export default class ServicesActionsCtrl {
     this.BillingLinksService = BillingLinksService;
     this.$element = $element;
     this.BillingService = BillingService;
+    this.$state = $state;
   }
 
   $onInit() {
     this.initActionMenuClick();
     this.user = this.coreConfig.getUser();
+    this.debtWarningModalLink = this.$state.href(
+      'billing.autorenew.debt-warning-modal',
+      {},
+      { inherit: false },
+    );
+
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
