@@ -37,6 +37,7 @@ export const DATAGRID_LINK = 'details_';
 export const GENERAL_INFORMATION = 'general-information';
 export const TASKS = 'tasks';
 export const IMPORT = 'import';
+export const DELETE = 'delete';
 export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';
 export const DASHBOARD = 'dashboard';
