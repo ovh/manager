@@ -57,12 +57,12 @@ describe('useUpdateInstanceName', () => {
       { wrapper },
     );
 
-    await act(async () =>
-      result.current.mutate({ instanceName: 'new_instanceName' }),
-    );
+    act(() => result.current.mutate({ instanceName: 'new_instanceName' }));
 
-    expect(updateInstanceName).toHaveBeenCalled();
-    expect(mockSuccess).toHaveBeenCalled();
-    expect(mockError).not.toHaveBeenCalled();
+    await waitFor(() => {
+      expect(updateInstanceName).toHaveBeenCalled();
+      expect(mockSuccess).toHaveBeenCalled();
+      expect(mockError).not.toHaveBeenCalled();
+    });
   });
 });
