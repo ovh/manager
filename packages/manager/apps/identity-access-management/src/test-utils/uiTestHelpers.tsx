@@ -74,3 +74,19 @@ export const getOdsCheckbox = async ({
 
   return checkbox;
 };
+
+export const getOdsBreadcrumbItemByLabel = async ({
+  container,
+  label,
+}: {
+  container: HTMLElement;
+  label: string;
+}) => {
+  const item: HTMLOdsBreadcrumbItemElement = Array.from(
+    container.querySelectorAll('ods-breadcrumb-item'),
+  )?.find((_item) => _item.label === label);
+
+  expect(item).toBeDefined();
+
+  return item;
+};

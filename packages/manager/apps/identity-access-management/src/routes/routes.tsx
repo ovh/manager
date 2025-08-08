@@ -6,6 +6,7 @@ import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
+import { TrackPageName } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -34,7 +35,7 @@ export default (
       Component={TagManager}
       handle={{
         tracking: {
-          pageName: 'tag-manager',
+          pageName: TrackPageName.TAG_MANAGEMENT,
           pageType: PageType.listing,
         },
       }}
@@ -44,7 +45,7 @@ export default (
       Component={AssignTag}
       handle={{
         tracking: {
-          pageName: 'assign-tag',
+          pageName: TrackPageName.TAG_MANAGEMENT_ASSIGN_TAG,
           pageType: PageType.listing,
         },
       }}
@@ -54,7 +55,7 @@ export default (
       Component={TagDetail}
       handle={{
         tracking: {
-          pageName: 'tag',
+          pageName: TrackPageName.TAG_MANAGEMENT_TAG_DETAIL,
           pageType: PageType.listing,
         },
       }}
@@ -64,7 +65,7 @@ export default (
         Component={TagDetailUnassign}
         handle={{
           tracking: {
-            pageName: 'unassign-tag',
+            pageName: TrackPageName.TAG_MANAGEMENT_UNASSIGN_TAG,
             pageType: PageType.popup,
           },
         }}
@@ -75,7 +76,7 @@ export default (
       Component={TagDetailAssign}
       handle={{
         tracking: {
-          pageName: 'assign-tag',
+          pageName: 'tag-management_assign-tag',
           pageType: PageType.listing,
         },
       }}

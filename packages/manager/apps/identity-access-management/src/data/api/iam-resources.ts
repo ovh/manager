@@ -147,7 +147,7 @@ export const getIamResourceType = () => {
   return apiClient.v2.get<string[]>('/iam/reference/resource/type');
 };
 
-export const putIamResource = async ({
+export const putIamResource = ({
   resource,
   tags,
 }: {
@@ -162,7 +162,7 @@ export const putIamResource = async ({
   });
 };
 
-export const deleteResourceTag = async ({
+export const deleteResourceTag = ({
   resource,
   tagKey,
 }: {
