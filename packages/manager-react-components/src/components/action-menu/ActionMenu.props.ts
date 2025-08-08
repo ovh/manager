@@ -1,9 +1,10 @@
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_BUTTON_COLOR,
-  ODS_POPOVER_POSITION,
-} from '@ovhcloud/ods-components';
+  POPOVER_POSITION,
+  BUTTON_VARIANT,
+  BUTTON_COLOR,
+  ICON_NAME,
+} from '@ovhcloud/ods-react';
+import { LinkType } from '../Link';
 
 export interface ActionMenuItem {
   id: number;
@@ -13,24 +14,26 @@ export interface ActionMenuItem {
   target?: string;
   onClick?: () => void;
   label: string;
-  variant?: ODS_BUTTON_VARIANT;
+  variant?: BUTTON_VARIANT;
   iamActions?: string[];
   urn?: string;
   className?: string;
+  linktype?: LinkType;
   isDisabled?: boolean;
   isLoading?: boolean;
-  color?: ODS_BUTTON_COLOR;
+  color?: BUTTON_COLOR;
   'data-testid'?: string;
 }
 
 export interface ActionMenuProps {
   items: ActionMenuItem[];
   isCompact?: boolean;
-  icon?: ODS_ICON_NAME;
-  variant?: ODS_BUTTON_VARIANT;
+  icon?: ICON_NAME;
+  variant?: BUTTON_VARIANT;
+  displayIcon?: boolean;
   id: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  popoverPosition?: ODS_POPOVER_POSITION;
+  popoverPosition?: POPOVER_POSITION;
   label?: string;
 }
