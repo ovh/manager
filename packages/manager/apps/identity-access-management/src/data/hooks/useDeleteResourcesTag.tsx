@@ -6,7 +6,29 @@ import { getAllIamResourceQueryKey } from './useIamResources';
 import { getAllIamTagsQueryKey } from '../api/get-iam-tags';
 import { NotificationList } from '@/components/notificationList/NotificationList.component';
 
-export const useDeleteResourcesTag = () => {
+export type UseDeleteResourcesTagParams = {
+  onSuccess?: (
+    data: unknown,
+    variables: {
+      resources: IamResource[];
+      tagKey: string;
+    },
+    context: unknown,
+  ) => unknown;
+  onError?: (
+    error: Error,
+    variables: {
+      resources: IamResource[];
+      tagKey: string;
+    },
+    context: unknown,
+  ) => unknown;
+};
+
+export const useDeleteResourcesTag = ({
+  onSuccess,
+  onError,
+}: UseDeleteResourcesTagParams) => {
   const { addWarning, addSuccess, addError } = useNotifications();
   const { t } = useTranslation('tag-manager');
   const queryClient = useQueryClient();
@@ -46,6 +68,8 @@ export const useDeleteResourcesTag = () => {
         { success: [], error: [] },
       );
     },
+    onSuccess,
+    onError,
     onSettled: ({ success, error }) => {
       queryClient.invalidateQueries({
         queryKey: getAllIamResourceQueryKey(),
