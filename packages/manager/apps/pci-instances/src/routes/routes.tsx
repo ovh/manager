@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment,  @typescript-eslint/no-unsafe-call */
 import { RouteObject } from 'react-router-dom';
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import queryClient from '@/queryClient';
-import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
+import {
+  suspendNonMigratedRoutesLoader,
+  withSuspendedMigrateRoutes,
+} from '@/hooks/migration/useSuspendNonMigratedRoutes';
 import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
 import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 
@@ -18,7 +22,11 @@ const lazyRouteConfig = (importFn: CallableFunction) => ({
   },
 });
 
-function getRouteWithMigrationWrapper<R extends RouteObject>(route: R): R {
+const getRouteWithMigrationWrapper = (shell: ShellContextType) => <
+  R extends RouteObject
+>(
+  route: R,
+): R => {
   const newRoute = {
     ...route,
   };
@@ -27,9 +35,19 @@ function getRouteWithMigrationWrapper<R extends RouteObject>(route: R): R {
     newRoute.Component = withSuspendedMigrateRoutes(route.Component);
   }
 
-  if (route.lazy) {
+  newRoute.loader = suspendNonMigratedRoutesLoader(shell, newRoute.loader);
+
+  const parentLazy = route.lazy;
+  if (parentLazy) {
     newRoute.lazy = async () => {
-      const lazyValues = await (route.lazy as NonNullable<typeof route.lazy>)();
+      const lazyValues = await parentLazy();
+
+      if (lazyValues.loader) {
+        lazyValues.loader = suspendNonMigratedRoutesLoader(
+          shell,
+          lazyValues.loader,
+        );
+      }
 
       if (lazyValues.Component) {
         lazyValues.Component = withSuspendedMigrateRoutes(lazyValues.Component);
@@ -41,12 +59,12 @@ function getRouteWithMigrationWrapper<R extends RouteObject>(route: R): R {
 
   if (route.children) {
     newRoute.children = route.children.map((subRoute) =>
-      getRouteWithMigrationWrapper(subRoute),
+      getRouteWithMigrationWrapper(shell)(subRoute),
     );
   }
 
   return newRoute;
-}
+};
 
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
 export const REGION_PATH = 'region/:regionId';
@@ -114,7 +132,7 @@ const instanceActionsRoutes = instanceActionsSections.map((section) => ({
   ),
 }));
 
-const routes: RouteObject[] = [
+export const getRoutes = (shell: ShellContextType): RouteObject[] => [
   {
     path: '/',
     ...lazyRouteConfig(() => import('@/components/layout/Layout.component')),
@@ -193,12 +211,10 @@ const routes: RouteObject[] = [
         path: '*',
         ...lazyRouteConfig(() => import('@/pages/404/NotFound.page')),
       },
-    ].map(getRouteWithMigrationWrapper),
+    ].map(getRouteWithMigrationWrapper(shell)),
   },
   {
     path: '*',
     ...lazyRouteConfig(() => import('@/pages/404/NotFound.page')),
   },
 ];
-
-export default routes;
