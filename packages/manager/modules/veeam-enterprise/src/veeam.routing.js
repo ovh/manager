@@ -24,6 +24,21 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('veeam_enterprise_title'),
       changelog: () => 'veeam_enterprise',
       customizableColumns: () => true,
+      columns: /* @ngInject */ ($translate) => {
+        return [
+          {
+            title: $translate.instant('veeam_enterprise_list_service_name'),
+            property: 'serviceName',
+            template: `<a data-ng-href="{{ :: $ctrl.getServiceNameLink($row) }}" data-ng-bind="$row.serviceName"></a>`,
+          },
+          {
+            title: $translate.instant(
+              'veeam_enterprise_list_activation_status',
+            ),
+            property: 'activationStatus',
+          },
+        ];
+      },
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('veeam-enterprise.details', {
           serviceName,
