@@ -9,22 +9,11 @@ import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
 import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
 import DestinationNameCell from './DestinationNameCell';
+import { TReplication } from './ReplicationList.page';
 
 export type TIndexedObject = TObject & { index: string };
 
-export type TIndexedBackupConfiguration = {
-  id: string;
-  status: 'enabled' | 'disabled';
-  priority: number;
-  destination: {
-    name: string;
-    region: string;
-    storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
-  };
-  deleteMarkerReplication: 'enabled' | 'disabled';
-  filter?: { prefix: string; tags: { [key: string]: string } };
-  index?: string;
-};
+export type TIndexedBackupConfiguration = TReplication & { index?: string };
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation('containers/replication');
