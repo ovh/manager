@@ -2,6 +2,7 @@ import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useResourcesDatagridContext } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import { urls } from '@/routes/routes.constant';
 
@@ -13,13 +14,22 @@ export type TagDetailTopbarProps = {
 export default function TagDetailTopbar({ tag }: TagDetailTopbarProps) {
   const { t } = useTranslation('tag-manager');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const { selectedResourcesList } = useResourcesDatagridContext();
 
   const onClickAssign = () => {
+    trackClick({
+      actionType: 'action',
+      actions: ['page', ButtonType.button, 'assign-ressource'],
+    });
     navigate(urls.tagDetailAssign.replace(':tag', tag));
   };
 
   const onClickUnassign = () => {
+    trackClick({
+      actionType: 'action',
+      actions: ['page', ButtonType.button, 'unassign_tag'],
+    });
     navigate(urls.tagdetailUnassign.replace(':tag', tag), {
       state: {
         resources: selectedResourcesList,

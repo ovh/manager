@@ -1,36 +1,38 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { SubApp } from '@/identity-access-management.config';
 
 export type BreadcrumbItem = {
   label: string | undefined;
-  href?: string;
+  hideLabel?: boolean;
+  navigate?: string;
 };
 
-export interface BreadcrumbProps {
+export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
-  projectId?: string;
-  items?: BreadcrumbItem[];
+  subApp?: SubApp;
+  hideRootLabel?: boolean;
 }
-export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
+export const useBreadcrumb = ({
+  rootLabel,
+  appName,
+  hideRootLabel = false,
+  subApp,
+}: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter((x) => x);
 
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(
-          appName as string,
-          '#/',
-          {},
-        );
         const rootItem = {
           label: rootLabel,
-          href: String(response),
+          hideLabel: hideRootLabel,
+          navigate: '/',
         };
         setRoot([rootItem]);
       } catch {
@@ -41,12 +43,17 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {
-    const pathsTab = pathnames.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-    }));
+    const pathnames = location?.pathname.split('/').filter((x) => x);
+    const pathsTab = pathnames?.map((value) => {
+      const navigate = subApp === value ? `/${value}` : `/${subApp}/${value}`;
+      return {
+        label: value,
+        hideLabel: false,
+        navigate,
+      };
+    });
     setPaths(pathsTab);
-  }, [location]);
+  }, [location.pathname]);
 
   return [...root, ...paths];
 };
