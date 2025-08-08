@@ -3,6 +3,7 @@ import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
 import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
+import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -51,7 +52,7 @@ export const INSTANCE_PATH = 'instance/:instanceId';
 export const SECTIONS = {
   onboarding: 'onboarding',
   new: 'new',
-  instance: ':instanceId',
+  instanceLegacy: ':instanceId',
   delete: 'delete',
   stop: 'stop',
   start: 'start',
@@ -90,8 +91,21 @@ const instanceActionLegacyRoutes: RouteObject[] = instanceActionsSections.map(
   }),
 );
 
-const instanceActionRoutes = instanceActionsSections.map((section) => ({
+const instancesActionsRoutes = instanceActionsSections.map((section) => ({
   path: `${REGION_PATH}/${INSTANCE_PATH}/${section}`,
+  ...lazyRouteConfig(() =>
+    import('@/pages/instances/action/InstanceAction.page'),
+  ),
+}));
+
+const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
+  (section) => ({
+    path: section,
+  }),
+);
+
+const instanceActionsRoutes = instanceActionsSections.map((section) => ({
+  path: section,
   ...lazyRouteConfig(() =>
     import('@/pages/instances/action/InstanceAction.page'),
   ),
@@ -112,7 +126,7 @@ const routes: RouteObject[] = [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: [...instanceActionLegacyRoutes, ...instanceActionRoutes],
+        children: [...instanceActionLegacyRoutes, ...instancesActionsRoutes],
       },
       {
         path: SECTIONS.onboarding,
@@ -127,10 +141,24 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: SECTIONS.instance,
+        path: SECTIONS.instanceLegacy,
+        children: [...instanceLegacyRoutes],
+        loader: instanceLegacyRedirectionLoader,
+      },
+      {
+        path: 'region/:regionId/instance/:instanceId',
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),
+        children: [
+          {
+            path: '',
+            ...lazyRouteConfig(() =>
+              import('@/pages/instances/instance/dashboard/Dashboard.page'),
+            ),
+            children: [...instanceActionsRoutes],
+          },
+        ],
       },
       {
         path: SECTIONS.edit,
