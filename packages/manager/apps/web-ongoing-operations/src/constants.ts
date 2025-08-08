@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const taskMeDomain = ['me', 'task', 'domain'];
 export const taskMeDns = ['me', 'task', 'dns'];
+export const taskMeAllDom = ['me', 'task', 'allDom'];
 
 export enum DomainOperationsEnum {
   ContactControlAcknowledge = 'ContactControlAcknowledge',
@@ -92,11 +93,18 @@ export const DNSOperations = [
   DNSOperationsEnum.ZoneImport,
   DNSOperationsEnum.ZoneRestore,
 ];
+
+export enum AlldomOperationsEnum {
+  AlldomDelete = 'AlldomDelete',
+}
+
+export const AlldomOperations = [AlldomOperationsEnum.AlldomDelete];
+
 export const editableArgument: Record<string, z.ZodString> = {
   authInfo: z
     .string()
     .min(5)
-    .max(50),
+    .max(65),
   legitimacyAfnic: z.string(),
   processId: z
     .string()
@@ -114,3 +122,6 @@ export const editableArgument: Record<string, z.ZodString> = {
   validationToken: z.string(),
   default: z.string(),
 };
+
+export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
+export const allDomFeatureAvailibility = 'web-domains:alldoms';

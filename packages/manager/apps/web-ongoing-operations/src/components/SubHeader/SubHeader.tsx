@@ -11,12 +11,13 @@ interface SubHeaderProps {
 
 export default function SubHeader({ title }: SubHeaderProps) {
   const { t } = useTranslation('dashboard');
-  const { data: url } = useNavigationGetUrl([config.rootLabel, '', {}]);
+  const { data: customUrl } = useNavigationGetUrl([config.rootLabel, '', {}]);
+  const url = `${customUrl as string}/domain`;
 
   return (
     <section className="mb-8 flex flex-col gap-y-2">
       <OdsLink
-        href={`${url}/domain`}
+        href={url}
         icon="arrow-left"
         iconAlignment="left"
         label={t('back_link')}

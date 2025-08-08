@@ -13,7 +13,7 @@ export default function ActionMeDnsComponent({
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
 
-  const url = `${webUrl}/domain/${domainName}/dns-modify`;
+  const url = `${webUrl as string}/domain/${domainName}/dns-modify`;
   return (
     <OdsLink
       href={url}

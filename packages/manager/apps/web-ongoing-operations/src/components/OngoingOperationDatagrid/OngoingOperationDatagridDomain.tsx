@@ -4,7 +4,7 @@ import React from 'react';
 import { toUnicode } from 'punycode';
 import { OngoingOperationDatagridDomainProps } from '@/types';
 import { useDatagridColumnUrl } from '@/hooks/url/useDatagridColumnUrl';
-import { DomainOperations, DomainOperationsEnum } from '@/constants';
+import { DomainOperationsEnum } from '@/constants';
 
 export default function OngoingOperationDatagridDomain({
   parent,
