@@ -2,13 +2,12 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName =
-  'ovhManagerManagedBaremetalDatacenterZertoAddSiteLazyloading';
+const moduleName = 'ovhManagerDedicatedCloudDatacenterZertoAddSiteLazyloading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'app.managedBaremetal.details.datacenters.datacenter.zerto.addSite.**',
+      'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite.**',
       {
         url: '/add-site',
         lazyLoad: ($transition$) => {

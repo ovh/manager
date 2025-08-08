@@ -5,9 +5,10 @@ export default {
   bindings: {
     currentZerto: '<',
     currentUser: '<',
-    goToDeleteZertoModal: '<',
-    goBackToDashboard: '<',
+    goToDeleteSiteZertoModal: '<',
+    goBackToListing: '<',
     pccType: '<',
+    site: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterZertoSummary',
