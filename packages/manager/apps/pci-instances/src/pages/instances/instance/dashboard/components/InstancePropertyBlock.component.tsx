@@ -11,20 +11,20 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useHref } from 'react-router-dom';
-import { useParam } from '@ovh-ux/manager-pci-common';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
+import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
   const projectUrl = useProjectUrl('public-cloud');
-  const { regionId, instanceId } = useParam('regionId', 'instanceId');
+  const { region, instanceId } = useInstanceParams();
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
   const hrefAttachVolume = useHref('./attach');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
 

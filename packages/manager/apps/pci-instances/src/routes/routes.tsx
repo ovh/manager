@@ -7,7 +7,6 @@ import {
   suspendNonMigratedRoutesLoader,
   withSuspendedMigrateRoutes,
 } from '@/hooks/migration/useSuspendNonMigratedRoutes';
-import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
 import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
@@ -67,12 +66,13 @@ const getRouteWithMigrationWrapper = (shell: ShellContextType) => <
 };
 
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
-export const REGION_PATH = 'region/:regionId';
+export const REGION_PATH = 'region/:region';
 export const INSTANCE_PATH = 'instance/:instanceId';
 export const SECTIONS = {
   onboarding: 'onboarding',
   new: 'new',
   instanceLegacy: ':instanceId',
+  instance: `${REGION_PATH}/${INSTANCE_PATH}`,
   delete: 'delete',
   stop: 'stop',
   start: 'start',
@@ -107,20 +107,17 @@ const instanceActionLegacyRoutes: RouteObject[] = instanceActionsSections.map(
   (section) => ({
     id: section,
     path: section,
-    loader: instanceActionLegacyLoader,
+    loader: instanceLegacyRedirectionLoader,
+    ...lazyRouteConfig(() =>
+      import('@/pages/instances/action/InstanceAction.page'),
+    ),
   }),
 );
-
-const instancesActionsRoutes = instanceActionsSections.map((section) => ({
-  path: `${REGION_PATH}/${INSTANCE_PATH}/${section}`,
-  ...lazyRouteConfig(() =>
-    import('@/pages/instances/action/InstanceAction.page'),
-  ),
-}));
 
 const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
   (section) => ({
     path: section,
+    loader: instanceLegacyRedirectionLoader,
   }),
 );
 
@@ -147,7 +144,7 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: [...instanceActionLegacyRoutes, ...instancesActionsRoutes],
+        children: instanceActionLegacyRoutes,
       },
       {
         path: SECTIONS.onboarding,
@@ -167,7 +164,7 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
         loader: instanceLegacyRedirectionLoader,
       },
       {
-        path: 'region/:regionId/instance/:instanceId',
+        path: SECTIONS.instance,
         ...lazyRouteConfig(() =>
           import('@/pages/instances/instance/Instance.page'),
         ),

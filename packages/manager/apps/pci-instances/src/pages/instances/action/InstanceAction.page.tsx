@@ -23,7 +23,7 @@ const InstanceAction: FC = () => {
   const { t } = useTranslation(['actions', 'common']);
   const navigate = useNavigate();
   const projectId = useProjectId();
-  const { instanceId, regionId } = useParams();
+  const { instanceId, region } = useParams();
   const { addError, addInfo } = useNotifications();
   const section = useActionSection();
 
@@ -33,7 +33,7 @@ const InstanceAction: FC = () => {
   );
 
   const { instance, isLoading } = useInstanceActionModal(
-    regionId,
+    region,
     instanceId,
     section,
   );

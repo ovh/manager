@@ -12,7 +12,6 @@ import {
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
 import { Text } from '@ovhcloud/ods-react';
-import { useParam } from '@ovh-ux/manager-pci-common';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
@@ -22,6 +21,7 @@ import NetworkItem from './NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useReverseDns } from '@/data/hooks/network/useNetwork';
+import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const ReverseDNS: FC<{ ip: string }> = ({ ip }) => {
   const { t } = useTranslation('dashboard');
@@ -45,13 +45,13 @@ const ReverseDNS: FC<{ ip: string }> = ({ ip }) => {
 
 const InstanceNetworkingBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
-  const { regionId, instanceId } = useParam('regionId', 'instanceId');
+  const { region, instanceId } = useInstanceParams();
   const dedicatedUrl = useDedicatedUrl();
   const projectId = useProjectId();
   const projectUrl = useProjectUrl('public-cloud');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
 

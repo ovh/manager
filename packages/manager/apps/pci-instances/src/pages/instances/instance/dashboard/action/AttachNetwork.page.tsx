@@ -2,7 +2,6 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useParam } from '@ovh-ux/manager-pci-common';
 import { DefaultError } from '@tanstack/react-query';
 import Modal from '@/components/modal/Modal.component';
 import { useAttachNetwork } from '@/data/hooks/instance/useInstance';
@@ -11,11 +10,12 @@ import { isApiErrorResponse } from '@/utils';
 import NetworkSelector from '../components/NetworkSelector.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useUnattachedPrivateNetworks } from '../hooks/useDashboardAction';
+import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const AttachNetworkModal: FC = () => {
   const { t } = useTranslation('actions');
   const projectId = useProjectId();
-  const { instanceId, regionId } = useParam('regionId', 'instanceId');
+  const { instanceId, region } = useInstanceParams();
   const navigate = useNavigate();
   const handleModalClose = () => navigate('..');
   const [networkId, setNetworkId] = useState<string>('');
@@ -25,12 +25,12 @@ const AttachNetworkModal: FC = () => {
     networks,
     instance,
     isPending: isNetworkPending,
-  } = useUnattachedPrivateNetworks({ projectId, regionId, instanceId });
+  } = useUnattachedPrivateNetworks({ projectId, region, instanceId });
 
   const { isPending: isAttaching, mutate: attachNetwork } = useAttachNetwork({
     projectId,
     instanceId,
-    regionId,
+    region,
     callbacks: {
       onSuccess: (_data, variables) => {
         const network = networks.find(

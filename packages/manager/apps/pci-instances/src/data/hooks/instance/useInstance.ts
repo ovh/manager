@@ -96,18 +96,18 @@ type TUseAttachNetworkCallbacks = DeepReadonly<{
 type TInstanceArgs = {
   projectId: string;
   instanceId: string;
-  regionId: string;
+  region: string;
 };
 
 const resetInstanceCache = ({
   projectId,
-  regionId,
+  region,
   instanceId,
 }: TInstanceArgs) =>
   queryClient.invalidateQueries({
     queryKey: instancesQueryKey(projectId, [
       'region',
-      regionId,
+      region,
       'instance',
       instanceId,
       'withBackups',
@@ -120,7 +120,7 @@ const resetInstanceCache = ({
 export const useAttachNetwork = ({
   projectId,
   instanceId,
-  regionId,
+  region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachNetworkCallbacks }) => {
   const { onSuccess, onError } = callbacks;
@@ -129,7 +129,7 @@ export const useAttachNetwork = ({
     mutationFn: ({ networkId }: TAttachNetworkMutationFnVariables) =>
       attachNetwork({ projectId, instanceId, networkId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, regionId, instanceId });
+      void resetInstanceCache({ projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },
@@ -150,7 +150,7 @@ type TUseAttachVolumeCallbacks = DeepReadonly<{
 export const useAttachVolume = ({
   projectId,
   instanceId,
-  regionId,
+  region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachVolumeCallbacks }) => {
   const { onSuccess, onError } = callbacks;
@@ -159,7 +159,7 @@ export const useAttachVolume = ({
     mutationFn: ({ volumeId }: TAttachVolumeMutationFnVariables) =>
       attachVolume({ projectId, instanceId, volumeId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, regionId, instanceId });
+      void resetInstanceCache({ projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },

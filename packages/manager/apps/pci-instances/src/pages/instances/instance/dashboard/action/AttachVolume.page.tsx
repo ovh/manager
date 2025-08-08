@@ -1,7 +1,6 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useParam } from '@ovh-ux/manager-pci-common';
 import { DefaultError } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import Modal from '@/components/modal/Modal.component';
@@ -11,11 +10,12 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import VolumeSelector from '../components/VolumeSelector.component';
 import { useAttachVolume } from '@/data/hooks/instance/useInstance';
 import { isApiErrorResponse } from '@/utils';
+import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const AttachVolume: FC = () => {
   const { t } = useTranslation('actions');
   const projectId = useProjectId();
-  const { instanceId, regionId } = useParam('regionId', 'instanceId');
+  const { instanceId, region } = useInstanceParams();
   const navigate = useNavigate();
   const handleModalClose = () => navigate('..');
   const [volumeId, setVolumeId] = useState<string>('');
@@ -27,14 +27,14 @@ const AttachVolume: FC = () => {
     isPending: isVolumePending,
   } = useUnattachedVolumes({
     projectId,
-    regionId,
+    region,
     instanceId,
   });
 
   const { isPending: isAttaching, mutate: attachVolume } = useAttachVolume({
     projectId,
     instanceId,
-    regionId,
+    region,
     callbacks: {
       onSuccess: (_data, variables) => {
         const volume = volumes.find(

@@ -11,7 +11,7 @@ import {
   TileBlock,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { RegionChipByType, useParam } from '@ovh-ux/manager-pci-common';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
@@ -23,11 +23,12 @@ import {
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
+import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { instanceId, regionId } = useParam('regionId', 'instanceId');
+  const { instanceId, region } = useInstanceParams();
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
   const hrefBillingMonthlyActivate = useHref(
     `../${instanceId}/billing/monthly/activate`,
@@ -35,12 +36,12 @@ const InstanceGeneralInfoBlock: FC = () => {
   const hrefDeleteInstance = useHref(`../${instanceId}/delete`);
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
-    region: regionId,
+    region,
     instanceId,
   });
 
   const polling = useDashboardPolling({
-    region: regionId,
+    region,
     instanceId,
     taskStatus: instance?.task,
   });
