@@ -148,7 +148,7 @@ const addEslintStaticKitConfig = async () => {
   }
 
   // 2. Run the build script using yarn workspace command
-  console.log(`🛠 Running build script inside 'manager/packages/manager/tools/static-analysis-kit'...`);
+  console.log(`🛠 Running build script inside 'manager/packages/manager-tools/manager-static-analysis-kit'...`);
   const buildProc = spawn('yarn', ['workspace', '@ovh-ux/manager-static-analysis-kit', 'build'], {
     shell: true,
     stdio: 'inherit',
