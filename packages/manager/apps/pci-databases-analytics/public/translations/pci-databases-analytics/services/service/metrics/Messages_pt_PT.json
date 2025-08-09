@@ -4,7 +4,7 @@
   "description": "Para o ajudar a seguir e controlar a sua instância de base de dados, encontrará de seguida as principais métricas e estatísticas. A duração da sua retenção depende da oferta do serviço.",
   "autoRefreshInputLabel": "Auto-Refresh",
   "interval-lastHour": "hora",
-  "interval-lastDay": "dias",
+  "interval-lastDay": "dia",
   "interval-lastWeek": "semana",
   "interval-lastMonth": "mês",
   "interval-lastYear": "ano",
