@@ -549,6 +549,6 @@
   "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso...",
   "vps_tab_veeam_offer_standard": "Standard",
   "vps_tab_veeam_offer_premium": "Premium",
-  "vps_tab_veeam_upgrade_offer": "Passa all'opzione premium",
-  "vps_tab_veeam_downgrade_offer": "Torna all'opzione standard"
+  "vps_tab_veeam_upgrade_offer": "Passare all'opzione Premium",
+  "vps_tab_veeam_downgrade_offer": "Tornare all'opzione Standard"
 }

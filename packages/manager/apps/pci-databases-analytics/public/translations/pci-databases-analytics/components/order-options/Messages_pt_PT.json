@@ -26,6 +26,6 @@
   "ipTableHeaderIp": "Endereço IP",
   "ipTableHeaderDescription": "Descrição",
   "commonlyUsedIps": "Endereços IP frequentemente utilizados",
-  "commonlyUsedIpsDatatplatform": "OVHcloud Dataplatform IP",
+  "commonlyUsedIpsDatatplatform": "OVHcloud Data Platform IP",
   "commonlyUsedIpsCurrentIp": "IP atual"
 }

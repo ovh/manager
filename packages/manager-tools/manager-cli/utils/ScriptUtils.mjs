@@ -7,10 +7,10 @@ import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import path, { dirname, resolve, join } from 'path';
 import { isCodeFileExistsSync } from './CodeTransformUtils.mjs';
+import { applicationsBasePath } from './AppUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const basePath = path.resolve('../manager/apps');
 
 /**
  * Runs a migration or setup process for a specific app or globally.
@@ -47,7 +47,7 @@ export const runMigration = ({
   enableLintFix = true,
   onEnd = () => {},
 }) => {
-  const appPath = appName ? path.join(basePath, appName) : null;
+  const appPath = appName ? path.join(applicationsBasePath, appName) : null;
 
   if (appName) {
     const isValidAppName = /^[a-zA-Z0-9_-]+$/.test(appName);
