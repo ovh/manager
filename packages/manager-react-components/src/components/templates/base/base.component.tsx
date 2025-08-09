@@ -8,7 +8,7 @@ export type BaseLayoutProps = React.PropsWithChildren<{
   breadcrumb?: React.ReactElement;
   header?: HeadersProps;
   message?: React.ReactElement;
-  description?: string;
+  description?: string | React.ReactElement;
   subtitle?: string;
   subDescription?: string;
   backLinkLabel?: string;
