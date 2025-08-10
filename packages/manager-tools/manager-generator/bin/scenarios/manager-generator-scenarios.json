@@ -1,0 +1,124 @@
+[
+  {
+    "name": "smoke: full EU en React (dry-run)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName demo --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"{OUT}\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "\\(dry-run\\) (write|mkdir)",
+      "package\\.json",
+      "README\\.md",
+      "src/Routes|src/routes/Routes"
+    ],
+    "forbidStdoutRegex": [
+      "serviceKey:\\s*['\\\"]\\{\\{",
+      "appName:\\s*['\\\"]\\{\\{"
+    ]
+  },
+  {
+    "name": "type: pci EU en React (dry-run)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName demo-pci --appType pci   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me/list --dashboardEndpointPath /me/details   --out \"{OUT}\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "\\(dry-run\\) (write|mkdir)",
+      "src/pages",
+      "src/routes/Routes"
+    ]
+  },
+  {
+    "name": "invalid region (should fail)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName bad-region --appType full   --universe Manager --subUniverse Manager   --region MARS --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"{OUT}\" ",
+    "expectExit": 1,
+    "expectStderrRegex": [
+      "region must be one of: CA, EU, US"
+    ]
+  },
+  {
+    "name": "missing mainApiPath (should fail)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName missing-api --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --listingEndpointPath /me --dashboardEndpointPath /me   --out \"{OUT}\" ",
+    "expectExit": 1,
+    "expectStderrRegex": [
+      "(mainApiPath.*(required|min|must start))|Invalid input: expected string, received undefined"
+    ]
+  },
+  {
+    "name": "existing non-empty out dir (dry-run)",
+    "cmd": "OUTDIR=\"{OUT}\"; touch \"$OUTDIR/.keep\"; yarn manager-generator --non-interactive --dry-run   --appName exists-dir --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"$OUTDIR\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "\\(dry-run\\) (write|mkdir)"
+    ]
+  },
+  {
+    "name": "real run writes files",
+    "cmd": "yarn manager-generator --non-interactive   --appName realrun --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"{OUT}\" && test -n \"$(find '{OUT}' -mindepth 1 -print -quit)\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "create|write|generate|✔|✓"
+    ]
+  },
+  {
+    "name": "invalid appType (should fail)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName bad-type --appType nonsense   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"{OUT}\" ",
+    "expectExit": 1,
+    "expectStderrRegex": [
+      "(Invalid|invalid|Unrecognized|unrecognized|Expected enum|must be one of).*appType|appType"
+    ]
+  },
+  {
+    "name": "api path must start with slash (should fail)",
+    "cmd": "yarn manager-generator --non-interactive --dry-run --appName bad-path --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath me --listingEndpointPath /me --dashboardEndpointPath /me --out \"{OUT}\" ",
+    "expectExit": 1,
+    "expectStderrRegex": [
+      "mainApiPath[\\s\\S]*must start with[\\s\\S]*\\/"
+    ]
+  },
+  {
+    "name": "dry-run: no unresolved tokens",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName tokencheck --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /v2/users/list --dashboardEndpointPath /v2/users/details   --out \"{OUT}\" ",
+    "expectExit": 0,
+    "forbidStdoutRegex": [
+      "\\{\\{\\s*[^}]+\\s*\\}\\}"
+    ]
+  },
+  {
+    "name": "serviceKey derived from listingEndpointPath",
+    "cmd": "yarn manager-generator --non-interactive --dry-run   --appName svc-deriv --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /v2/users/list --dashboardEndpointPath /v2/users/details   --out \"{OUT}\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "serviceKey:\\s*'v2-users-list'"
+    ]
+  },
+  {
+    "name": "serviceKey fallback when listing is '/'",
+    "cmd": "yarn manager-generator --non-interactive --dry-run --appName My-App --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath / --dashboardEndpointPath /me/details --out \"{OUT}\" ",
+    "expectExit": 0,
+    "expectStdoutRegex": [
+      "serviceKey:\\s*'my-app-listing'"
+    ]
+  },
+  {
+    "name": "isPci renders boolean (unquoted)",
+    "cmd": "OUT=\"{OUT}\"; yarn manager-generator --non-interactive --appName pci-demo --appType pci --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath /me/list --dashboardEndpointPath /me/details --out \"$OUT\" && grep -E 'isPci:[[:space:]]*true' \"$OUT/src/App.constants.ts\"",
+    "expectExit": 0
+  },
+  {
+    "name": "isPci boolean present in App.constants.ts only",
+    "cmd": "OUT=\"{OUT}\"; yarn manager-generator --non-interactive --appName pci-demo-2 --appType pci --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath /me/list --dashboardEndpointPath /me/details --out \"$OUT\" && grep -E 'isPci:[[:space:]]*true([^A-Za-z_]|$)' \"$OUT/src/App.constants.ts\"",
+    "expectExit": 0
+  },
+  {
+    "name": "idempotency: real run twice produces stable file count",
+    "cmd": "OUT=\"{OUT}\"; yarn manager-generator --non-interactive   --appName idem --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"$OUT\" && C1=$(find \"$OUT\" -type f | wc -l | tr -d ' ') && yarn manager-generator --non-interactive   --appName idem --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"$OUT\" && C2=$(find \"$OUT\" -type f | wc -l | tr -d ' ') && test \"$C1\" -eq \"$C2\" ",
+    "expectExit": 0
+  },
+  {
+    "name": "real run: required files exist in folder",
+    "cmd": "OUT=\"{OUT}\"; yarn manager-generator --non-interactive   --appName realfiles --appType full   --universe Manager --subUniverse Manager   --region EU --flavor generic --language en --framework React   --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me   --out \"$OUT\" && test -f \"$OUT/package.json\" && test -f \"$OUT/src/App.constants.ts\" && test -f \"$OUT/src/routes/Routes.tsx\" ",
+    "expectExit": 0
+  },
+  {
+    "name": "real run uses default OUTPUT_BASE_DIR",
+    "cmd": "yarn manager-generator --non-interactive --appName default-out-test --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me && test -f ./packages/manager/apps/default-out-test/package.json",
+    "expectExit": 0
+  }
+]

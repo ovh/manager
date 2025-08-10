@@ -14,7 +14,7 @@ export default defineConfig({
       exclude: [
         'src/types',
         'src/__tests__',
-        'src/**/*constants.ts',
+        'src/**/*playbook-constants.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/index.tsx',

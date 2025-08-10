@@ -17,7 +17,7 @@ export default defineConfig({
         'src/vite-*.ts',
         'src/App.tsx',
         'src/index.tsx',
-        'src/tracking.constants.ts',
+        'src/tracking.playbook-constants.ts',
         '404.tsx',
         'src/**/*.spec.ts',
         'src/**/*.spec.tsx',

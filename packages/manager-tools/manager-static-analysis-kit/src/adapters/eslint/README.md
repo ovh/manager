@@ -272,7 +272,7 @@ With Flat Config enabled, use the following script definitions:
 | Hook           | `use*.ts`, `use*.tsx`           | `CAMEL_CASE`         |
 | Hook Test      | `use*.spec.ts`, `use*.test.ts`  | `CAMEL_CASE`         |
 | Test           | `*.spec.tsx`, `*.test.tsx`      | `PASCAL_CASE`        |
-| Constants      | `*.constants.ts`                | `PASCAL_CASE`        |
+| Constants      | `*.playbook-constants.ts`                | `PASCAL_CASE`        |
 | Types          | `*.type.ts`, `*.interface.ts`   | `PASCAL_CASE`        |
 | Translations   | `Messages_en_GB.json`           | `SCREAMING_SNAKE_CASE` |
 | Styles         | `*.css`, `*.scss`               | `KEBAB_CASE`         |

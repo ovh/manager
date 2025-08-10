@@ -13,7 +13,7 @@ export default defineConfig({
       exclude: [
         'src/interface',
         'src/__tests__',
-        'src/**/*constants.ts',
+        'src/**/*playbook-constants.ts',
         'src/**/*enum.ts',
         'src/vite-*.ts',
         'src/App.tsx',

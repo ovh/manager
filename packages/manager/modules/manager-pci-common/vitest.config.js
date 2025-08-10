@@ -16,7 +16,7 @@ export default defineConfig({
         'src/**/translations/index.ts',
         'src/**/index.ts',
         'src/constants/*',
-        'src/**/*constants.ts',
+        'src/**/*playbook-constants.ts',
       ],
     },
   },
