@@ -4,7 +4,7 @@ import { ZodObject, ZodRawShape } from 'zod';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
-import { NodePool } from '@/api/data/kubernetes';
+import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL =
@@ -164,7 +164,7 @@ export const transformKey = (key: string): string =>
   key.replace(/([A-Z])/g, '_$1').toLowerCase();
 
 const isNotEmptyString = (str: string): boolean => str.trim() !== '';
-const isNotEmptyArray = (arr: any[]): boolean => arr.length > 0;
+const isNotEmptyArray = (arr: unknown[]): boolean => arr.length > 0;
 
 export const isOptionalValue = (
   value: string | string[] | SigningAlgorithms[] | null | undefined,
@@ -175,7 +175,7 @@ export const isOptionalValue = (
   return true;
 };
 export const getValidOptionalKeys = (oidcProvider: TOidcProvider) =>
-  Object.entries(oidcProvider ?? {}).reduce((acc, [key, value]) => {
+  Object.entries(oidcProvider ?? {}).reduce<string[]>((acc, [key, value]) => {
     if (isOptionalValue(value) && key !== 'issuerUrl' && key !== 'clientId') {
       acc.push(key);
     }
@@ -191,7 +191,7 @@ export const getValidOptionalKeys = (oidcProvider: TOidcProvider) =>
  */
 export function generateUniqueName(
   baseName: string,
-  existingNodePools: NodePool[],
+  existingNodePools: NodePoolPrice[],
 ) {
   let newName = baseName;
   let copyNumber = 1;

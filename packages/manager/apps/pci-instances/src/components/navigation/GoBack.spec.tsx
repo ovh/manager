@@ -1,4 +1,4 @@
-import { describe, test, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { GoBack } from './GoBack.component';

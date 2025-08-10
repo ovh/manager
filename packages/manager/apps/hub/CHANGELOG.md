@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.20.1...@ovh-ux/manager-hub-app@0.20.2) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4254] ([158a5e3](https://github.com/ovh/manager/commit/158a5e3b5357ada1cd98c14cf863acdd468f94fa))
+* **i18n:** add missing translations [CDS 4261] ([ad3cc8d](https://github.com/ovh/manager/commit/ad3cc8de8ec0e1220d8052de50fa84575e9e41dc))
+
+
+
+
+
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.20.0...@ovh-ux/manager-hub-app@0.20.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **hub:** generate proper link for breadcrumb ([9eec5de](https://github.com/ovh/manager/commit/9eec5dea1cae8e1c79141c14b4b12404dcd04a28)), closes [#MANAGER-19416](https://github.com/ovh/manager/issues/MANAGER-19416)
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.19.3...@ovh-ux/manager-hub-app@0.20.0) (2025-08-11)
 
 

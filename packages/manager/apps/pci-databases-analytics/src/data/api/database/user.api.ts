@@ -78,7 +78,7 @@ export const deleteUser = async ({
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}`,
   );
 
-export interface ResetUserPassword extends ServiceData {
+export interface ManageUser extends ServiceData {
   userId: string;
 }
 export const resetUserPassword = async ({
@@ -86,12 +86,24 @@ export const resetUserPassword = async ({
   engine,
   serviceId,
   userId,
-}: ResetUserPassword) =>
+}: ManageUser) =>
   apiClient.v6
     .post(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
     )
     .then((res) => res.data as database.service.UserWithPassword);
+
+export const getUserAccess = async ({
+  projectId,
+  engine,
+  serviceId,
+  userId,
+}: ManageUser) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/access`,
+    )
+    .then((res) => res.data as database.kafka.user.Access);
 
 export const getRoles = async ({
   projectId,

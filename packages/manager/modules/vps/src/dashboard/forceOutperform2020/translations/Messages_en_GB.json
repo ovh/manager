@@ -1,6 +1,6 @@
 {
-  "vps_dashboard_force_outperform_2020_title": "Enable resource augmentation",
-  "vps_dashboard_force_outperform_2020_description": "Do you want to enable resource augmentation now",
-  "vps_dashboard_force_outperform_2020_success_message": "Your request to increase resources has been processed. It will be executed in a few moments.",
-  "vps_dashboard_force_outperform_2020_error_message": "Your request to increase resources could not be completed. {{ error }}"
+  "vps_dashboard_force_outperform_2020_title": "Enable resource increase",
+  "vps_dashboard_force_outperform_2020_description": "Do you want to enable resource increase now?",
+  "vps_dashboard_force_outperform_2020_success_message": "Your resource increase request has been processed. It will be executed in a few moments.",
+  "vps_dashboard_force_outperform_2020_error_message": "Your resource increase request could not be completed. {{ error }}"
 }

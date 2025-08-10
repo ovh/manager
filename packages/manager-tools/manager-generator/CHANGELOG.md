@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.32.0...@ovh-ux/manager-generator@0.32.1) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-generator
+
+
+
+
+
 # [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.31.0...@ovh-ux/manager-generator@0.32.0) (2025-08-07)
 
 

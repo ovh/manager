@@ -222,5 +222,7 @@
   "sidebar_public_networking": "Rede pública",
   "sidebar_private_networking": "Rede privada",
   "sidebar_network_services": "Serviços de rede",
-  "sidebar_sap_features_hub": "SAP Features Hub"
+  "sidebar_sap_features_hub": "SAP Features Hub",
+  "sidebar_alldom": "Alldoms",
+  "sidebar_alldom_list": "Os meus Alldoms"
 }

@@ -85,5 +85,13 @@
   "resetUserPasswordCode": "Hasło użytkownika",
   "resetUserConnectionTitle": "URI do szybkiego logowania",
   "resetUserConnectionCode": "Ciąg połączenia",
-  "resetUserConnectionCodeCopy": "URI połączenia został skopiowany do schowka"
+  "resetUserConnectionCodeCopy": "URI połączenia został skopiowany do schowka",
+  "userButtonClose": "Zamknij",
+  "tableActionsMenuViewCertificate": "Wyświetl certyfikat",
+  "tableActionsMenuShowAccessKey": "Wyświetl klucz dostępu",
+  "viewCertificatesTitle": "Certyfikat",
+  "downloadButton": "Pobierz",
+  "viewCertificateCopy": "Certyfikat został skopiowany",
+  "showAccessKeyTitle": "Klucz dostępu",
+  "showAccessKeyCopy": "Klucz dostępu został skopiowany"
 }

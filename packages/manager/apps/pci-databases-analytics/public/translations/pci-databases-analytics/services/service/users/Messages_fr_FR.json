@@ -2,6 +2,7 @@
   "title": "Utilisateurs & Rôles",
   "breadcrumb": "Utilisateurs & Rôles",
   "addButtonLabel": "Ajouter un utilisateur",
+  "userButtonClose": "Fermer",
   "tableHeadName": "Nom d'utilisateur",
   "tableHeadGroup": "Groupe",
   "tableHeadRoles": "Rôles",
@@ -16,6 +17,8 @@
   "tableHeadPermission": "Permission",
   "tableActionsMenuEdit": "Modifier",
   "tableActionsMenuResetPassword": "Regénérer le mot de passe",
+  "tableActionsMenuViewCertificate": "Afficher le certificat",
+  "tableActionsMenuShowAccessKey": "Afficher la clé d'accès",
   "tableActionsMenuDelete": "Supprimer",
   "deleteUserTitle": "Supprimer un utilisateur",
   "deleteUserDescription": "Voulez-vous vraiment supprimer l'utilisateur {{name}} ?",
@@ -28,7 +31,6 @@
   "resetUserPasswordDescription": "Êtes-vous sûr de vouloir regénérer le mot de passe de l'utilisateur {{name}} ?",
   "resetUserPasswordButtonCancel": "Annuler",
   "resetUserPasswordButtonConfirm": "Confirmer",
-  "resetUserPasswordButtonClose": "Fermer",
   "resetUserPasswordToastErrorTitle": "Une erreur est survenue lors de la regénération du mot de passe de l'utilisateur",
   "resetUserPasswordToastSuccessTitle": "Succès",
   "resetUserPasswordToastSuccessDescription": "Le mot de passe de l'utilisateur {{name}} a correctement été regénéré.",
@@ -85,5 +87,10 @@
   "formUserRoleInputAdminRoles": "Rôles administrateur",
   "formUserRoleInputCustomRoles": "Rôles custom",
   "formUserRoleDatabaseInputPlaceholder": "Custom database",
-  "formUserRoleDatabaseConfiguredRoles": "Rôles configurés :"
+  "formUserRoleDatabaseConfiguredRoles": "Rôles configurés :",
+  "viewCertificatesTitle": "Certificat",
+  "downloadButton": "Télécharger",
+  "viewCertificateCopy": "Le certificat a été copié",
+  "showAccessKeyTitle": "Clé d'accès",
+  "showAccessKeyCopy": "La clé d'accès a été copiée"
 }

@@ -37,12 +37,12 @@
   "errorSourceBackupFieldEmpty": "Bitte wählen Sie ein Backup aus.",
   "breadcrumb": "Fork",
   "orderSectionTitleService": "Dienst",
-  "orderSectionDescriptionService": "Wählen Sie den Typ des zu erstellenden Datenbankdiensts und die Version aus.",
+  "orderSectionDescriptionService": "Wählen Sie den Typ des zu erstellenden Datenbankdienstes und dessen Version aus.",
   "orderSectionTitleSource": "Quelle",
   "orderSectionTitleRegion": "Rechenzentrum",
   "orderSectionTitlePlan": "Angebot",
   "orderSectionTitleFlavor": "Instanz",
-  "orderSectionTitleStorage": "Storage",
+  "orderSectionTitleStorage": "Speicher",
   "orderSectionTitleOptions": "Optionen",
   "fieldNameLabel": "Name"
 }
