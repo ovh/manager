@@ -110,7 +110,7 @@ export default function UpsertDescriptionModal() {
             slot="actions"
             type="button"
             isDisabled={upsertIpDescriptionPending}
-            label={t('confirm', { ns: NAMESPACES.ACTIONS })}
+            label={t('validate', { ns: NAMESPACES.ACTIONS })}
             onClick={confirm}
             data-testid="confirm-button"
           />
