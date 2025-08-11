@@ -14,10 +14,10 @@ export default /* @ngInject */ ($stateProvider) => {
         siteId: /* @ngInject */ ($transition$) => $transition$.params().siteId,
         goBack: /* @ngInject */ ($state) => () =>
           $state.go('dedicated_cloud_zerto.dashboard.nodes.all'),
-        handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) => {
-          goBack();
-          Alerter.success(message, 'managedBaremetal_dashboard_alert');
-        },
+        handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) =>
+          goBack(true).then(() =>
+            Alerter.success(message, 'dedicatedCloud_dashboard_alert'),
+          ),
         handleError: /* @ngInject */ (Alerter, goBack) => (message) => {
           goBack();
           Alerter.error(message, 'managedBaremetal_dashboard_alert');
