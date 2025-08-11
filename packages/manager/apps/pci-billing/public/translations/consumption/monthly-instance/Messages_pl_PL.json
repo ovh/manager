@@ -4,7 +4,7 @@
   "cpbc_monthly_instance_col_total": "Abonament miesięczny",
   "cpbc_monthly_instance_col_total_tooltip": "Płatne na początku miesiąca.",
   "cpbc_savings_plan_col_name": "Nazwa",
-  "cpbc_savings_plan_col_size": "Rozmiar Savings Plan",
-  "cpbc_savings_plan_col_flavor": "Flawor",
+  "cpbc_savings_plan_col_size": "Poziom Savings Plan",
+  "cpbc_savings_plan_col_flavor": "Wariant",
   "cpbc_savings_plan_col_price": "Cena"
 }
