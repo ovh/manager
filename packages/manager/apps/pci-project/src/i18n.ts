@@ -21,6 +21,9 @@ export default async function initI18n(
       supportedLngs: availableLocales,
       defaultNS: 'common',
       ns: ['common'], // namespaces to load by default
+      react: {
+        transSupportBasicHtmlNodes: true,
+      },
       backend: {
         loadPath: (langs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${

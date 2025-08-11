@@ -1,5 +1,7 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
+export const QUOTA_THRESHOLD = 80;
+
 export const ROADMAP_CHANGELOG_LINKS = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
   roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
@@ -188,3 +190,26 @@ export const PCI_PROJECT_DISCOVERY_ORDER_CART = {
 
 export const STARTUP_PROGRAM_GUIDE_URL =
   'https://community.ovhcloud.com/community/en/what-products-are-available-to-use-with-startup-program-credits?id=community_question&sys_id=99d01d508d61d2902d4cc9575bde90ae&view_source=featuredList';
+
+export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050840',
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050838',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050852',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050844',
+  WE:
+    'https://help.ovhcloud.com/csm/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050845',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
+};
