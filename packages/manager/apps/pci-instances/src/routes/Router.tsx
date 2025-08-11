@@ -1,9 +1,14 @@
-import { FC } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import routes from '@/routes/routes';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { getRoutes } from '@/routes/routes';
 
-const router = createHashRouter(routes);
+const Router: FC = () => {
+  const shell = useContext(ShellContext);
 
-const Router: FC = () => <RouterProvider router={router} />;
+  const router = useMemo(() => createHashRouter(getRoutes(shell)), [shell]);
+
+  return <RouterProvider router={router} />;
+};
 
 export default Router;
