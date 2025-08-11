@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.6...@ovh-ux/manager-vrack@1.21.0) (2025-08-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4207] ([89cbd9a](https://github.com/ovh/manager/commit/89cbd9a71d46638ee7235f394d8cd900c209da3c))
+
+
+### Features
+
+* **dedicated.vrack:** migrate to ftc cancel modal ([da60a58](https://github.com/ovh/manager/commit/da60a58c3d5c304da7fbc605bd0708baa5cab532)), closes [#MANAGER-18201](https://github.com/ovh/manager/issues/MANAGER-18201) [#MANAGER-18196](https://github.com/ovh/manager/issues/MANAGER-18196)
+
+
+
+
+
 ## [1.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.5...@ovh-ux/manager-vrack@1.20.6) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack

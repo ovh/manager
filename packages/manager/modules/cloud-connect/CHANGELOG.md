@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.1...@ovh-ux/manager-cloud-connect@1.24.2) (2025-08-11)
+
+
+### Bug Fixes
+
+* **cloud-connect.statistics:** display charts for available ports ([4aff5a4](https://github.com/ovh/manager/commit/4aff5a4df527ef4cc22bdc581e775e812417b270)), closes [#UXCT-771](https://github.com/ovh/manager/issues/UXCT-771)
+
+
+
+
+
 ## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.0...@ovh-ux/manager-cloud-connect@1.24.1) (2025-08-01)
 
 
