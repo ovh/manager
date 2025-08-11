@@ -14,6 +14,8 @@ import {
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
+import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
+import queryClient from '@/queryClient';
 
 export type TMutationFnType =
   | 'delete'
@@ -26,8 +28,11 @@ export type TMutationFnType =
   | 'reinstall'
   | 'billing/monthly/activate';
 
-export type TUseInstanceActionCallbacks = DeepReadonly<{
-  onSuccess?: (data?: null) => void;
+export type TUseInstanceActionCallbacks<
+  TData = unknown,
+  TVariables = unknown
+> = DeepReadonly<{
+  onSuccess?: (data: TData, variables: TVariables) => void;
   onError?: (error: unknown) => void;
 }>;
 
@@ -37,10 +42,13 @@ type TUseInstanceActionParams<V, R> = {
   projectId: string;
   mutationKeySuffix: string | null;
   mutationFn: (variables: V) => Promise<R>;
-  callbacks?: TUseInstanceActionCallbacks;
+  callbacks?: TUseInstanceActionCallbacks<R, V>;
 };
 
-const useInstanceAction = <V, R extends null>({
+const useInstanceAction = <
+  V extends { instance: { id: string } },
+  R extends null
+>({
   projectId,
   mutationKeySuffix,
   mutationFn,
@@ -56,7 +64,19 @@ const useInstanceAction = <V, R extends null>({
     mutationKey,
     mutationFn,
     onError,
-    onSuccess,
+    onSuccess: (data, variables) => {
+      const newInstance = {
+        id: variables.instance.id,
+        pendingTask: true,
+        actions: [],
+      };
+      updateInstanceFromCache(queryClient, {
+        projectId,
+        instance: newInstance,
+      });
+
+      return onSuccess?.(data, variables);
+    },
   });
 
   return {
@@ -72,7 +92,10 @@ type TBackupMutationFnVariables = {
 
 export const useInstanceBackupAction = (
   projectId: string,
-  callbacks: TUseInstanceActionCallbacks = {},
+  callbacks: TUseInstanceActionCallbacks<
+    unknown,
+    TBackupMutationFnVariables
+  > = {},
 ) =>
   useInstanceAction<TBackupMutationFnVariables, null>({
     projectId,
@@ -139,13 +162,11 @@ export const useBaseInstanceAction = (
   projectId: string,
   callbacks: TUseInstanceActionCallbacks = {},
 ) =>
-  useInstanceAction<{ id: string; imageId: string }, null>({
+  useInstanceAction<{ instance: { id: string; imageId: string } }, null>({
     projectId,
     mutationKeySuffix: type,
     mutationFn: useCallback(
-      (instance?: { id: string; imageId: string }) => {
-        if (!instance) return Promise.reject(unknownError);
-        const { id, imageId } = instance;
+      ({ instance: { id, imageId } }) => {
         switch (type) {
           case 'delete':
             return deleteInstance(projectId, id);

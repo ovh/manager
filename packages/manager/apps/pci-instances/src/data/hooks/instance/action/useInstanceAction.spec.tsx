@@ -154,9 +154,9 @@ describe('Considering the useInstanceAction hook', () => {
         );
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
         act(() =>
-          useInstanceActionResult.current.mutationHandler(
-            instance as TAggregatedInstanceDto,
-          ),
+          useInstanceActionResult.current.mutationHandler({
+            instance: instance as TAggregatedInstanceDto,
+          }),
         );
 
         if (mutationPayload === undefined) {
