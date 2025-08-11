@@ -17,13 +17,6 @@ export default class {
   $onInit() {
     this.initializeTransitions();
 
-    console.log({
-      state: this.currentZerto.state,
-      isDisablingZerto: DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
-        this.currentZerto.state,
-      ),
-    });
-
     this.isDisablingZerto = DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
       this.currentZerto.state,
     );
@@ -31,7 +24,10 @@ export default class {
     this.isInstallationInError =
       this.currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
-    if (!this.isDisablingZerto) {
+    if (
+      !this.isDisablingZerto &&
+      this.currentZerto.state !== DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled
+    ) {
       this.goToSummary(this.zertoInformations);
     }
   }

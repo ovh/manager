@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
         url: '/mainPcc',
         views: {
           'innerView@app.managedBaremetal.details.datacenters.datacenter.zerto': {
-            component: 'ovhManagerdedicatedCloudDatacenterZertoMainPcc',
+            component: 'ovhManagerDedicatedCloudDatacenterZertoMainPcc',
           },
         },
         params: {
