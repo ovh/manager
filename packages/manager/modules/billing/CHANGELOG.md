@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.4...@ovh-ux/manager-billing@0.47.5) (2025-08-11)
+
+
+### Bug Fixes
+
+* **billing:** add missing translation for hosting_web_cdn service ([429d197](https://github.com/ovh/manager/commit/429d1978701dc4773356f8d39e13e1f0b6fcb71f)), closes [#MANAGER-19065](https://github.com/ovh/manager/issues/MANAGER-19065)
+
+
+
+
+
 ## [0.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.3...@ovh-ux/manager-billing@0.47.4) (2025-08-07)
 
 
