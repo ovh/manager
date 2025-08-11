@@ -1,4 +1,9 @@
-import { UseQueryOptions, useQuery, useQueries } from '@tanstack/react-query';
+import {
+  UseQueryOptions,
+  useQuery,
+  useQueries,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getGameFirewallRuleQueryKey,
@@ -17,6 +22,7 @@ export const useIpGameFirewallRules = ({
   ipOnGame?: string;
   refetchInterval?: number;
 }) => {
+  const queryClient = useQueryClient();
   const ruleListQuery = useQuery<ApiResponse<number[]>, ApiError>({
     queryKey: getGameFirewallRuleQueryKey({ ip, ipOnGame }),
     queryFn: () => getGameFirewallRuleList({ ip, ipOnGame }),
@@ -34,10 +40,23 @@ export const useIpGameFirewallRules = ({
             queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
             queryFn: () => getGameFirewallRuleDetails(ruleParams),
             enabled: !!ip && !!ipOnGame,
-            refetchInterval: (query) =>
-              query.state.data?.data?.state !== 'ok'
+            retry: false,
+            refetchInterval: (query) => {
+              if (query.state.error) {
+                queryClient.invalidateQueries({
+                  queryKey: getGameFirewallRuleQueryKey(ruleParams),
+                  exact: true,
+                });
+                queryClient.removeQueries({
+                  queryKey: getGameFirewallRuleDetailsQueryKey(ruleParams),
+                  exact: true,
+                });
+                return undefined;
+              }
+              return query.state.data?.data?.state !== 'ok'
                 ? refetchInterval
-                : undefined,
+                : undefined;
+            },
           };
         },
       ) || [],

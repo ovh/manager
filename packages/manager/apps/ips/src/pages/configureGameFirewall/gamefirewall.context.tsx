@@ -102,6 +102,7 @@ export const GameFirewallContextProvider: React.FC<{
   } = useIpGameFirewallRules({
     ip: ipGroup,
     ipOnGame,
+    refetchInterval: 5000,
   });
 
   const value = {
