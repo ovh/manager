@@ -11,15 +11,16 @@ import {
   ChangelogButton,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 import { PROJECT_TABS } from '@/constants/tabs.constant';
+import QuotaAlert from './components/QuotaAlert.component';
 
 export default function ProjectHeader() {
   const { t } = useTranslation('project');
@@ -67,6 +68,7 @@ export default function ProjectHeader() {
         </nav>
       }
     >
+      <QuotaAlert />
       <Outlet />
     </BaseLayout>
   );
