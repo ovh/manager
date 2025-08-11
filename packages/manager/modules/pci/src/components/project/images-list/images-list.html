@@ -118,7 +118,7 @@
             <oui-tabs-item
                 data-ng-repeat="(localisation, snapshots) in $ctrl.snapshots track by localisation"
                 data-id="snapshots-{{localisation}}"
-                data-ng-if="snapshots.length > 0"
+                data-ng-if="snapshots.length > 0 && (localisation !== 'distant' || $ctrl.distantBackupAvailability)"
                 data-heading="{{:: 'pci_project_instances_shapshots_' + localisation | translate }}"
                 data-on-active="$ctrl.onTabChange({ tab: 'snapshots-' + localisation })"
             >

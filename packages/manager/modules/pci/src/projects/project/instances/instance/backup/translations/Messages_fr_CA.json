@@ -9,5 +9,11 @@
   "pci_projects_project_instances_instance_backup_success_message": "Le backup {{ backup }} est en cours de création. Pour visualiser son statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
   "pci_projects_project_instances_instance_backup_error_backup": "Une erreur est survenue lors de la création du backup {{ backup }} : {{ message }}",
   "pci_projects_project_instances_instance_backup_warning_iops_message": "La sauvegarde ne concerne que votre disque racine (système d'exploitation). Aucune donnée ne sera sauvegardée à partir de périphériques NVMe. Veuillez utiliser vos propres outils pour cela.",
-  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Le prix affiché correspond au prix du service. La majoration liée à la zone de confiance est ajoutée à la facturation mensuelle globale."
+  "pci_projects_project_instances_instance_backup_trusted_zone_extra_amount_charge_message": "Le prix affiché correspond au prix du service. La majoration liée à la zone de confiance est ajoutée à la facturation mensuelle globale.",
+  "pci_projects_project_instances_instance_backup_distant_label": "Ajouter un backup distant (Option)",
+  "pci_projects_project_instances_instance_backup_distant_name_label": "Nom du backup distant",
+  "pci_projects_project_instances_instance_backup_distant_region_label": "Sélectionnez une localisation",
+  "pci_projects_project_instances_instance_backup_distant_region_price": "Chaque sauvegarde sera facturée : {{price}} HT/mois/Go",
+  "pci_projects_project_instances_instance_backup_region_enable_warning": "La localisation sélectionnée n’est pas activée. En cliquant sur \"confirmer\" vous l'ajouterez à votre projet.",
+  "pci_projects_project_instances_instance_backup_with_distant_success_message": "Le backup {{ backup }} est en cours de création. Une fois ce backup local créé, nous procéderons à la création du backup distant nommé {{ distantName }}. Pour visualiser le statut et les détails de l'opération, veuillez vous rendre sur la page 'Instance Backup'. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste."
 }
