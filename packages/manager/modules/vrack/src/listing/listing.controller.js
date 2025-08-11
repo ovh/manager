@@ -50,6 +50,6 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
       ...VRACK_TRACKING_CONTEXT,
       type: 'action',
     });
-    this.$state.go('vrack.index.terminateVrack', { service: serviceName });
+    this.$state.go('vrack.index.terminateVrack', { serviceName });
   }
 }

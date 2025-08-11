@@ -54,5 +54,8 @@
   "vrack_select_dialog_modal_description_for_ipv6": "Please note that additional IPv6 blocks can only be added/removed one at a time.",
   "vrack_select_dialog_modal_description_for_vs": "Please note that you can only add and remove vRack Services products at one time.",
   "vrack_terminate_modal_success_banner": "Your vRack deletion request has been submitted. You have been sent an email detailing the steps to follow.",
-  "vrack_terminate_modal_error_banner": "Your Vrack could not be deleted. Please check if your Vrack is empty."
+  "vrack_terminate_modal_error_banner": "Your Vrack could not be deleted. Please check if your Vrack is empty.",
+  "vrack_terminate_title": "Cancel vRack",
+  "vrack_terminate_description": "To cancel your vRack, you have to first disconnect all of the services linked to it",
+  "vrack_terminate": "Cancel"
 }

@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "Cancel {{serviceName}}",
+  "vrack_not_empty_description": "To cancel your vRack, you have to first disconnect all of the services linked to it",
+  "vrack_not_empty_close": "Close"
+}
