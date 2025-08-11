@@ -2,13 +2,16 @@ import {
   generatePath,
   LoaderFunction,
   matchPath,
+  PathMatch,
   redirect,
 } from 'react-router-dom';
+import { validate as uuidValidate } from 'uuid';
 
 type RedirectPattern = {
   expectedPath: string;
   redirectPath: string;
   queryParams?: string[];
+  validate?: (match: PathMatch) => boolean;
 };
 
 const REDIRECT_ROUTES: RedirectPattern[] = [
@@ -16,6 +19,10 @@ const REDIRECT_ROUTES: RedirectPattern[] = [
     expectedPath: '/pci/projects/:projectId/instances/:instanceId',
     redirectPath:
       '/pci/projects/:projectId/instances/region/:region/instance/:instanceId',
+    validate: (match: PathMatch) =>
+      'instanceId' in match.params &&
+      typeof match.params.instanceId === 'string' &&
+      uuidValidate(match.params.instanceId),
   },
   {
     expectedPath: '/pci/projects/:projectId/instances/:instanceId/:action',
@@ -34,18 +41,16 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
 }) => {
   const { pathname, searchParams } = new URL(request.url);
 
-  for (let i = 0; i < REDIRECT_ROUTES.length; i += 1) {
-    const { expectedPath, redirectPath, queryParams } = REDIRECT_ROUTES[i];
+  for (const { expectedPath, redirectPath, queryParams, validate} of REDIRECT_ROUTES) {
 
     const match = matchPath(expectedPath, pathname);
 
-    if (match !== null) {
+    if (match !== null && (!validate || validate(match))) {
       const redirectAvailableParams = {
         // Set all required parameters to null by default
         ...Object.fromEntries(
           [...redirectPath.matchAll(PARAMS_REGEX)]
-            .map(([, paramName]) => paramName)
-            .map((paramName) => [paramName, 'null']),
+            .map(([, paramName]) => [paramName, 'null'] as [string, string]),
         ),
         // If available from search params we use it
         ...Object.fromEntries(searchParams.entries()),
@@ -54,7 +59,9 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
       };
 
       const search = new URLSearchParams(
-        queryParams?.map((param) => [param, redirectAvailableParams[param]]),
+        queryParams
+          ?.map((param) => [param, redirectAvailableParams[param]])
+          .filter((param): param is [string, string] => !!param[1]),
       );
       const redirectUrl = generatePath(
         redirectPath,

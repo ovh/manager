@@ -8,7 +8,7 @@ import { updateInstancesFromCache, useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
+import { useBaseInstanceAction } from './useInstanceAction';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 // initializers
@@ -31,7 +31,7 @@ const initQueryClient = () => {
 type Data = {
   projectId: string;
   instance: TAggregatedInstanceDto | null;
-  type: TMutationFnType | null;
+  type: string | null;
   queryPayload?: TAggregatedInstanceDto[];
   mutationPayload?: null;
 };
@@ -153,9 +153,9 @@ describe('Considering the useInstanceAction hook', () => {
         );
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
         act(() =>
-          useInstanceActionResult.current.mutationHandler(
-            instance as TAggregatedInstanceDto,
-          ),
+          useInstanceActionResult.current.mutationHandler({
+            instance: instance as TAggregatedInstanceDto,
+          }),
         );
 
         if (mutationPayload === undefined) {

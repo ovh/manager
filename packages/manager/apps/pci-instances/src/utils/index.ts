@@ -49,11 +49,3 @@ export const replaceToSnakeCase = (str: string): string =>
 
 export const isCustomUrlSection = (str: string): boolean =>
   str.includes('-') || str.includes('/');
-
-export const getPathMatch = <T extends string>(
-  pathname: string,
-  regex: RegExp,
-): T | null => {
-  const match = pathname.match(regex);
-  return match ? (match[0] as T) : null;
-};

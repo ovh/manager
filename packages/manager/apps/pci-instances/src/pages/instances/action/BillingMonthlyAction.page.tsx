@@ -1,34 +1,72 @@
-import { FC, useContext, useMemo } from 'react';
-import { Trans } from 'react-i18next';
+import { useContext, useMemo } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Icon, ICON_NAME, Link } from '@ovhcloud/ods-react';
+import { DefaultError } from '@tanstack/react-query';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNavigate } from 'react-router-dom';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useBaseInstanceAction } from '@/data/hooks/instance/action/useInstanceAction';
 
-import { TRescueActionPageProps } from './RescueAction.page';
 import { INSTANCE_PRICING_LINKS } from '@/constants';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { isApiErrorResponse } from '@/utils';
+import {
+  useInstanceActionModal,
+  useInstanceParams,
+} from '@/pages/instances/action/hooks/useInstanceActionModal';
 
-type TBillingMonthlyActionPageProps = Omit<
-  TRescueActionPageProps,
-  'section'
-> & {
-  section: 'billing/monthly/activate';
-};
+const section = 'billing/monthly/activate';
 
-const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
-  title,
-  onModalClose,
-  section,
-  instance,
-  projectId,
-  onError,
-  onSuccess,
-  isLoading,
-}) => {
+const BillingMonthlyActionPage = () => {
+  const projectId = useProjectId();
+  const { instanceId, region } = useInstanceParams();
+
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { addError, addInfo } = useNotifications();
+  const navigate = useNavigate();
+  const { t } = useTranslation(['actions']);
+
+  const { instance, isLoading } = useInstanceActionModal(
+    region,
+    instanceId,
+    section,
+  );
+
+  const closeModal = () => navigate('..');
+
+  const onSuccess = () => {
+    addInfo(
+      t(
+        `pci_instances_actions_billing_monthly_activate_instance_success_message`,
+        {
+          name: instance?.name,
+        },
+      ),
+      true,
+    );
+
+    closeModal();
+  };
+
+  const onError = (rawError: unknown) => {
+    const errorMessage = isApiErrorResponse(rawError)
+      ? rawError.response?.data.message
+      : (rawError as DefaultError).message;
+    addError(
+      t(
+        `pci_instances_actions_billing_monthly_activate_instance_error_message`,
+        {
+          name: instance?.name,
+          error: errorMessage,
+        },
+      ),
+      true,
+    );
+  };
 
   const { mutationHandler, isPending } = useBaseInstanceAction(
     section,
@@ -40,7 +78,7 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
   );
   const handleInstanceAction = () => {
     if (!instance) return;
-    mutationHandler(instance);
+    mutationHandler({ instance });
   };
 
   const pricingHref = useMemo(() => {
@@ -52,10 +90,10 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
   return (
     <ActionModal
       isLoading={isLoading}
-      title={title}
+      title={t(`pci_instances_actions_billing_monthly_activate_instance_title`)}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
-      onModalClose={onModalClose}
+      onModalClose={closeModal}
       instance={instance}
       section={section}
     >
