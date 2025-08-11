@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.0...@ovh-ux/manager-vps@2.50.1) (2025-08-11)
+
+
+### Bug Fixes
+
+* **vps:** fix message for downgrade autobackup ([0b7d107](https://github.com/ovh/manager/commit/0b7d107395c7e49303e1bf7f4d3fa4e2fbeb094d)), closes [#MANAGER-19357](https://github.com/ovh/manager/issues/MANAGER-19357)
+* **vps:** fixed value for additional disk 2025 ([f3e14aa](https://github.com/ovh/manager/commit/f3e14aa1910f423d2c252bd5e9bdcace53a521fb)), closes [#MANAGER-19385](https://github.com/ovh/manager/issues/MANAGER-19385)
+
+
+
+
+
 # [2.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.3...@ovh-ux/manager-vps@2.50.0) (2025-08-05)
 
 
