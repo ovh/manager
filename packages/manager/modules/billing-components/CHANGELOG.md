@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.4...@ovh-ux/manager-billing-components@4.22.0) (2025-08-11)
+
+
+### Features
+
+* **dedicated.vrack:** migrate to ftc cancel modal ([da60a58](https://github.com/ovh/manager/commit/da60a58c3d5c304da7fbc605bd0708baa5cab532)), closes [#MANAGER-18201](https://github.com/ovh/manager/issues/MANAGER-18201) [#MANAGER-18196](https://github.com/ovh/manager/issues/MANAGER-18196)
+
+
+
+
+
 ## [4.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.3...@ovh-ux/manager-billing-components@4.21.4) (2025-08-07)
 
 
