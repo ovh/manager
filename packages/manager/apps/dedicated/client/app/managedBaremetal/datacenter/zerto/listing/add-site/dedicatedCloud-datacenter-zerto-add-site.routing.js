@@ -26,8 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
         handleSuccess: /* @ngInject */ (Alerter, goBackToListing) => (
           message,
         ) => {
-          goBackToListing(true);
-          Alerter.success(message, 'managedBaremetal_dashboard_alert');
+          goBackToListing(true).then(() =>
+            Alerter.success(message, 'managedBaremetal_dashboard_alert'),
+          );
         },
       },
     },
