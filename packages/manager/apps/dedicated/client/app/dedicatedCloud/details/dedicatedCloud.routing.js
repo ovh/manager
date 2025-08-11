@@ -211,14 +211,27 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.dedicatedCloud.details', {}, { reload }),
-      goToVpnConfiguration: /* @ngInject */ ($state, currentZerto) => () =>
-        $state.go(
-          'app.dedicatedCloud.details.datacenter.details.zerto.summary',
-          {
-            datacenterId: currentZerto.datacenterId,
-            zertoInformations: currentZerto,
-          },
-        ),
+      goToVpnConfiguration: /* @ngInject */ ($state, currentZerto) => {
+        return () => {
+          if (currentZerto.drpType === 'onPremise') {
+            $state.go(
+              'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite',
+              {
+                datacenterId: currentZerto.datacenterId,
+                zertoInformations: currentZerto,
+              },
+            );
+          } else {
+            $state.go(
+              'app.dedicatedCloud.details.datacenter.details.zerto.summary',
+              {
+                datacenterId: currentZerto.datacenterId,
+                zertoInformations: currentZerto,
+              },
+            );
+          }
+        };
+      },
       goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
         $state.go('app.dedicatedCloud.details.datacenter.details', {
           productId,
