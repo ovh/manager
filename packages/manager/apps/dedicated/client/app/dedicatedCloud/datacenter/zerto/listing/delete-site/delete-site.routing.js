@@ -18,10 +18,10 @@ export default /* @ngInject */ ($stateProvider) => {
             undefined,
             { reload },
           ),
-        handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) => {
-          Alerter.success(message, 'dedicatedCloud_dashboard_alert');
-          goBack(true);
-        },
+        handleSuccess: /* @ngInject */ (Alerter, goBack) => (message) =>
+          goBack(true).then(() =>
+            Alerter.success(message, 'dedicatedCloud_dashboard_alert'),
+          ),
         handleError: /* @ngInject */ (Alerter, goBack) => (message) => {
           Alerter.error(message, 'dedicatedCloud_dashboard_alert');
           goBack();
