@@ -12,5 +12,5 @@
   "noVersionFound": "Nie znaleziono żadnej wersji",
   "description-valkey": "System przechowywania danych klucz-wartość w pamięci",
   "versionTag-endOfSale": "Zakończenie komercjalizacji",
-  "endOfSale": "Zakończenie sprzedaży przewidziane na {{ date }}"
+  "endOfSale": "Zakończenie sprzedaży przewidziane na {{date}}"
 }
