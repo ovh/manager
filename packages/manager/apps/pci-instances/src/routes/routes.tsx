@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,  @typescript-eslint/no-unsafe-call */
 import { RouteObject } from 'react-router-dom';
 import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
@@ -8,14 +7,19 @@ import {
   withSuspendedMigrateRoutes,
 } from '@/hooks/migration/useSuspendNonMigratedRoutes';
 import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
+import { ComponentType } from 'react';
+import { TSectionType } from '@/types/instance/action/action.type';
 
-const lazyRouteConfig = (importFn: CallableFunction) => ({
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+const lazyRouteConfig = <ComponentProps extends {} = {}>(
+  importFn: () => Promise<{ default: ComponentType<ComponentProps> } & Omit<RouteObject, 'Component'>>,
+  componentParameters: ComponentProps = {} as ComponentProps,
+): Pick<RouteObject, 'lazy'> => ({
   lazy: async () => {
-    const { default: moduleDefault, ...moduleExports } = await importFn();
+    const { default: ComponentDefault, ...moduleExports } = await importFn();
 
-    /* eslint-disable @typescript-eslint/no-unsafe-return */
     return {
-      Component: moduleDefault,
+      element: <ComponentDefault {...componentParameters} />,
       ...moduleExports,
     };
   },
@@ -32,6 +36,11 @@ const getRouteWithMigrationWrapper = (shell: ShellContextType) => <
 
   if (route.Component) {
     newRoute.Component = withSuspendedMigrateRoutes(route.Component);
+  }
+  if (route.element) {
+    const routeElement = route.element;
+    newRoute.Component = withSuspendedMigrateRoutes(() => routeElement);
+    delete newRoute.element;
   }
 
   newRoute.loader = suspendNonMigratedRoutesLoader(shell, newRoute.loader);
@@ -51,9 +60,25 @@ const getRouteWithMigrationWrapper = (shell: ShellContextType) => <
       if (lazyValues.Component) {
         lazyValues.Component = withSuspendedMigrateRoutes(lazyValues.Component);
       }
+      if (lazyValues.element) {
+        const lazyElement = lazyValues.element;
+        lazyValues.Component = withSuspendedMigrateRoutes(() => lazyElement);
+        delete lazyValues.element;
+      }
+
+      if (
+        !route.Component &&
+        !route.element &&
+        !lazyValues.Component &&
+        !lazyValues.element
+      ) {
+        lazyValues.Component = withSuspendedMigrateRoutes();
+      }
 
       return lazyValues;
     };
+  } else if (!route.Component && !route.element) {
+    newRoute.Component = withSuspendedMigrateRoutes();
   }
 
   if (route.children) {
@@ -68,11 +93,8 @@ const getRouteWithMigrationWrapper = (shell: ShellContextType) => <
 export const ROOT_PATH = '/pci/projects/:projectId/instances';
 export const REGION_PATH = 'region/:region';
 export const INSTANCE_PATH = 'instance/:instanceId';
-export const SECTIONS = {
-  onboarding: 'onboarding',
-  new: 'new',
-  instanceLegacy: ':instanceId',
-  instance: `${REGION_PATH}/${INSTANCE_PATH}`,
+
+const ACTIONS_SECTIONS = {
   delete: 'delete',
   stop: 'stop',
   start: 'start',
@@ -84,49 +106,46 @@ export const SECTIONS = {
   rescue: 'rescue/start',
   rescueEnd: 'rescue/end',
   createBackup: 'backup',
-  edit: ':instanceId/edit',
   activateMonthlyBilling: 'billing/monthly/activate',
+  attachNetwork: 'network/private/attach',
+  attachVolume: 'attach',
+} satisfies Record<string, TSectionType>;
+
+export const SECTIONS = {
+  ...ACTIONS_SECTIONS,
+  onboarding: 'onboarding',
+  new: 'new',
+  instanceLegacy: ':instanceId',
+  instance: `${REGION_PATH}/${INSTANCE_PATH}`,
+  edit: ':instanceId/edit',
 };
 
-const instanceActionsSections = [
-  SECTIONS.delete,
-  SECTIONS.start,
-  SECTIONS.stop,
-  SECTIONS.shelve,
-  SECTIONS.unshelve,
-  SECTIONS.softReboot,
-  SECTIONS.hardReboot,
-  SECTIONS.reinstall,
-  SECTIONS.rescue,
-  SECTIONS.rescueEnd,
-  SECTIONS.createBackup,
-  SECTIONS.activateMonthlyBilling,
-];
+const getActionComponentBySection = (section: string) => {
+  switch (section) {
+    case SECTIONS.createBackup:
+      return import('@/pages/instances/action/BackupAction.page');
+    case SECTIONS.activateMonthlyBilling:
+      return import('@/pages/instances/action/BillingMonthlyAction.page');
+    case SECTIONS.rescue:
+    case SECTIONS.rescueEnd:
+      return import('@/pages/instances/action/RescueAction.page');
+    case SECTIONS.reinstall:
+      return import('@/pages/instances/action/ReinstallAction.page');
+    case SECTIONS.attachNetwork:
+      return import('@/pages/instances/instance/dashboard/action/AttachNetwork.page');
+    case SECTIONS.attachVolume:
+      return import('@/pages/instances/instance/dashboard/action/AttachVolume.page');
+    default:
+      return import('@/pages/instances/action/BaseAction.page');
+  }
+};
 
-const instanceActionLegacyRoutes: RouteObject[] = instanceActionsSections.map(
-  (section) => ({
-    id: section,
-    path: section,
-    loader: instanceLegacyRedirectionLoader,
-    ...lazyRouteConfig(() =>
-      import('@/pages/instances/action/InstanceAction.page'),
-    ),
-  }),
-);
-
-const instanceLegacyRoutes: RouteObject[] = instanceActionsSections.map(
-  (section) => ({
-    path: section,
-    loader: instanceLegacyRedirectionLoader,
-  }),
-);
-
-// TODO: add it the same way as the other actions
-const instanceActionsRoutes = instanceActionsSections.map((section) => ({
-  path: `action/${section}`,
-  ...lazyRouteConfig(() =>
-    import('@/pages/instances/action/InstanceAction.page'),
-  ),
+const instanceActionsRoutes: RouteObject[] = Object.values(
+  ACTIONS_SECTIONS,
+).map<RouteObject>((section) => ({
+  path: section,
+  ...lazyRouteConfig<{section: TSectionType}>(() => getActionComponentBySection(section), { section }),
+  loader: instanceLegacyRedirectionLoader,
 }));
 
 export const getRoutes = (shell: ShellContextType): RouteObject[] => [
@@ -144,7 +163,7 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/instances/Instances.page')),
-        children: instanceActionLegacyRoutes,
+        children: instanceActionsRoutes,
       },
       {
         path: SECTIONS.onboarding,
@@ -160,8 +179,14 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
       },
       {
         path: SECTIONS.instanceLegacy,
-        children: [...instanceLegacyRoutes],
+        children: [
+          {
+            path: '*',
+            loader: instanceLegacyRedirectionLoader,
+          },
+        ],
         loader: instanceLegacyRedirectionLoader,
+        ...lazyRouteConfig(() => import('@/pages/404/NotFound.page')),
       },
       {
         path: SECTIONS.instance,
@@ -174,27 +199,7 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
             ...lazyRouteConfig(() =>
               import('@/pages/instances/instance/dashboard/Dashboard.page'),
             ),
-            children: [
-              ...instanceActionsRoutes,
-              {
-                // TODO: add it the same way as the other actions
-                path: 'network/private/attach',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/instances/instance/dashboard/action/AttachNetwork.page'
-                  ),
-                ),
-              },
-              {
-                // TODO: add it the same way as the other actions
-                path: 'attach',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/instances/instance/dashboard/action/AttachVolume.page'
-                  ),
-                ),
-              },
-            ],
+            children: instanceActionsRoutes,
           },
         ],
       },
