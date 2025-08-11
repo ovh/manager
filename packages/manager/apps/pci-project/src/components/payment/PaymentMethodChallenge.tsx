@@ -22,6 +22,7 @@ import {
   TPaymentMethodType,
   TUserPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
+import { CHALLENGE_CREDIT_CARD_LENGTH } from '@/payment/constants';
 
 const PAYMENT_TYPES_TO_SUBMIT_IN_CHALLENGE = [
   TPaymentMethodType.CREDIT_CARD,
@@ -67,7 +68,10 @@ const PaymentMethodChallenge: React.FC<TPaymentMethodChallengeProps> = ({
   const isValidValue = () => {
     switch (paymentMethod?.paymentType) {
       case TPaymentMethodType.CREDIT_CARD:
-        return value.length === 6 && /^[0-9]+$/.test(value);
+        return (
+          value.length === CHALLENGE_CREDIT_CARD_LENGTH &&
+          /^[0-9]+$/.test(value)
+        );
       case TPaymentMethodType.BANK_ACCOUNT:
         return value.length > 0 && isIBAN(value);
       default:
@@ -170,7 +174,7 @@ const PaymentMethodChallenge: React.FC<TPaymentMethodChallengeProps> = ({
                           leading-[1.29] tracking-[1.86px]
                           text-[var(--ods-color-text)] top-[68px] left-[10px]"
               placeholder="XXXX XX"
-              maxLength={6}
+              maxLength={CHALLENGE_CREDIT_CARD_LENGTH}
               value={value}
               onChange={(e) => setValue(e.target.value)}
               aria-label={t('pci_project_new_payment_challenge_credit_card')}
