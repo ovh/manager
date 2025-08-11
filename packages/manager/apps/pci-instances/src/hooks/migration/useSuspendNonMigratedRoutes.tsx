@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { LoaderFunction, matchPath, useLoaderData } from 'react-router-dom';
 
@@ -23,9 +23,9 @@ export const suspendNonMigratedRoutesLoader = (
 
 export const withSuspendedMigrateRoutes = (
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  Component: ComponentType<Record<string, never>>,
+  Component?: ComponentType<Record<string, never>>,
 ): {
-  (): JSX.Element;
+  (): ReactNode;
   displayName: string;
 } => {
   function WithSuspendedMigratedRoutes() {
@@ -40,11 +40,13 @@ export const withSuspendedMigrateRoutes = (
     // If we need to move to angular app we suspend with a 1s promise to let the container receive the event and display a loader
     if (needsSuspense)
       throw new Promise((resolve) => setTimeout(resolve, 1000, 42));
-    return <Component />;
+    return !!Component && <Component />;
   }
 
-  WithSuspendedMigratedRoutes.displayName = `withSuspendedMigratedRoutesHoC(${Component.displayName ??
-    Component.name})`;
+  WithSuspendedMigratedRoutes.displayName = Component
+    ? `withSuspendedMigratedRoutesHoC(${Component.displayName ??
+        Component.name})`
+    : 'withSuspendedMigratedRoutesHoC';
 
   return WithSuspendedMigratedRoutes;
 };
