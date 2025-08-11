@@ -73,19 +73,6 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-  const actual: typeof import('@ovh-ux/manager-pci-common') = await importOriginal();
-  return {
-    ...actual,
-    isDiscoveryProject: vi.fn(),
-    useProject: () => ({
-      data: { status: 'ok' },
-    }),
-    PciTrustedZoneBanner: () => <div data-testid="pci-trusted-zone-banner" />,
-    useTrustedZoneBanner: vi.fn(),
-  };
-});
-
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
   return {
@@ -128,6 +115,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addError: vi.fn(),
     })),
     useFeatureAvailability: vi.fn(),
+    useProjectUrl: () => '#/pci/projects/123',
     ActionMenu: ({
       id,
       items,
