@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.19.3...@ovh-ux/manager-hub-app@0.20.0) (2025-08-11)
+
+
+### Bug Fixes
+
+* **hub:** fix grid vertical alignment on roadmap changelog ([c649865](https://github.com/ovh/manager/commit/c649865ae2fc99ff310c272ad1170cee30751cf0)), closes [#MANAGER-19374](https://github.com/ovh/manager/issues/MANAGER-19374)
+* **i18n:** add missing translations [CDS 624] ([d0a7db6](https://github.com/ovh/manager/commit/d0a7db6459ef4ef14318344f36731c8a333e2681))
+
+
+### Features
+
+* **hub:** add a skeleton ([e7b6b91](https://github.com/ovh/manager/commit/e7b6b91f9f3a72ef8236f31d79fca77a67652c79)), closes [#MANAGER-18687](https://github.com/ovh/manager/issues/MANAGER-18687)
+* **hub:** add datagrids with github data into roadmap changelog ([8c168c6](https://github.com/ovh/manager/commit/8c168c63b850a171d1952bd9384d0442f6841caf)), closes [#MANAGER-18687](https://github.com/ovh/manager/issues/MANAGER-18687)
+* **hub:** change translations ([4591592](https://github.com/ovh/manager/commit/4591592fd536d676d58d4cadf8643fc68e4faf23)), closes [#MANAGER-18687](https://github.com/ovh/manager/issues/MANAGER-18687)
+* **hub:** change translations ([faea70c](https://github.com/ovh/manager/commit/faea70cc4634e6777b4e860affbfd2c02826d316)), closes [#MANAGER-18687](https://github.com/ovh/manager/issues/MANAGER-18687)
+
+
+
+
+
 ## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.19.2...@ovh-ux/manager-hub-app@0.19.3) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
