@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType, ReactNode } from 'react';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { LoaderFunction, matchPath, useLoaderData } from 'react-router-dom';
 
@@ -22,9 +22,9 @@ export const suspendNonMigratedRoutesLoader = (
 };
 
 export const withSuspendedMigrateRoutes = (
-  Component: ComponentType<Record<string, never>>,
+  Component?: ComponentType<Record<string, never>>,
 ): {
-  (): JSX.Element;
+  (): ReactNode;
   displayName: string;
 } => {
   function WithSuspendedMigratedRoutes() {
@@ -40,11 +40,13 @@ export const withSuspendedMigrateRoutes = (
     if (needsSuspense)
       // eslint-disable-next-line @typescript-eslint/only-throw-error
       throw new Promise((resolve) => setTimeout(resolve, 1000, 42));
-    return <Component />;
+    return !!Component && <Component />;
   }
 
-  WithSuspendedMigratedRoutes.displayName = `withSuspendedMigratedRoutesHoC(${Component.displayName ??
-    Component.name})`;
+  WithSuspendedMigratedRoutes.displayName = Component
+    ? `withSuspendedMigratedRoutesHoC(${Component.displayName ??
+        Component.name})`
+    : 'withSuspendedMigratedRoutesHoC';
 
   return WithSuspendedMigratedRoutes;
 };
