@@ -8,6 +8,7 @@ vi.mock('react-i18next', () => ({
     i18n: {
       changeLanguage: () => new Promise(() => {}),
       language: 'fr_FR',
+      exists: () => true,
     },
   }),
 }));
@@ -62,3 +63,15 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     }),
   };
 });
+
+// Patch for ODS
+vi.stubGlobal('PointerEvent', MouseEvent);
+
+vi.stubGlobal(
+  'ResizeObserver',
+  class {
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+  },
+);
