@@ -8,8 +8,6 @@ export * from './step';
 export * from './tabs';
 export * from './tiles-input-group';
 export * from './tiles-input';
-
-export * from './navigation';
 export * from './templates';
 
 export * from './Link';
@@ -44,3 +42,4 @@ export * from './tags-list';
 export * from './tags-modal';
 export * from './tags-tile';
 export * from './changelog-menu';
+export * from './link-card';
