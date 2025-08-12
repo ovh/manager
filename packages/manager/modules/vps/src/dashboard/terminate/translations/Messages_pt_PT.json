@@ -13,8 +13,5 @@
   "vps_terminate_activate_delete_at_expiration_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
   "vps_terminate_activate_delete_at_expiration_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
   "vps_terminate_deactivate_delete_at_expiration_success": "O pedido de rescisão deste serviço na data de expiração foi suspenso.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Ocorreu um erro aquando da suspensão do pedido de rescisão do serviço na data de expiração:",
-  "vps_terminate_outperform_availability_banner_title": "Sabia?",
-  "vps_terminate_outperform_availability_banner_info": "É elegível para beneficiar da atribuição de mais recursos ao mesmo preço. Disporá de melhores performances e não terá necessidade de modificar a sua instalação.",
-  "vps_terminate_outperform_availability_banner_button": "Manter o meu serviço e sobrescrever gratuitamente"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Ocorreu um erro aquando da suspensão do pedido de rescisão do serviço na data de expiração:"
 }

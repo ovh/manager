@@ -13,8 +13,5 @@
   "vps_terminate_activate_delete_at_expiration_success": "La solicitud para dar de baja este servicio en la fecha de expiración se ha registrado correctamente.",
   "vps_terminate_activate_delete_at_expiration_error": "Se ha producido un error al solicitar la baja del servicio en la fecha de expiración:",
   "vps_terminate_deactivate_delete_at_expiration_success": "La solicitud de baja de este servicio en la fecha de expiración se ha cancelado correctamente.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "Se ha producido un error al cancelar la solicitud de baja en la fecha de expiración del servicio:",
-  "vps_terminate_outperform_availability_banner_title": "¿Sabía que...?",
-  "vps_terminate_outperform_availability_banner_info": "Puede optar a la asignación de más recursos al mismo precio. Obtendrá un mejor rendimiento y no tendrá que modificar la instalación.",
-  "vps_terminate_outperform_availability_banner_button": "Conservar mi servicio y mejorar gratuitamente"
+  "vps_terminate_deactivate_delete_at_expiration_error": "Se ha producido un error al cancelar la solicitud de baja en la fecha de expiración del servicio:"
 }

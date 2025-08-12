@@ -13,8 +13,5 @@
   "vps_terminate_activate_delete_at_expiration_success": "Your request to cancel this service on its expiry date has been processed.",
   "vps_terminate_activate_delete_at_expiration_error": "An error has occurred submitting the request to cancel this service on its expiry date:",
   "vps_terminate_deactivate_delete_at_expiration_success": "The request to cancel this service on its expiry date has been suspended.",
-  "vps_terminate_deactivate_delete_at_expiration_error": "An error has occurred suspending the cancellation request for this service on its expiry date:",
-  "vps_terminate_outperform_availability_banner_title": "Did you know?",
-  "vps_terminate_outperform_availability_banner_info": "You are eligible to receive more resources at the same price. You will have better performance and will not need to modify your installation.",
-  "vps_terminate_outperform_availability_banner_button": "Keep my service and upgrade for free"
+  "vps_terminate_deactivate_delete_at_expiration_error": "An error has occurred suspending the cancellation request for this service on its expiry date:"
 }
