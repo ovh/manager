@@ -57,7 +57,6 @@ export default function PaymentStep({
         handleSetAsDefaultChange={() => {}}
         paymentMethodHandler={() => {}}
         handleValidityChange={() => {}}
-        handlePaymentMethodChallenge={true}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
