@@ -501,7 +501,7 @@ describe('PaymentMethods', () => {
   });
 
   describe('Payment Method Challenge', () => {
-    it('should render PaymentMethodChallenge when handlePaymentMethodChallenge is true', () => {
+    it('should render PaymentMethodChallenge', () => {
       const mockEligibility = createMockEligibility({
         actionsRequired: ['challengePaymentMethod'],
       });
@@ -523,46 +523,13 @@ describe('PaymentMethods', () => {
 
       render(
         <Wrapper>
-          <PaymentMethods
-            {...createMockProps({ handlePaymentMethodChallenge: true })}
-          />
+          <PaymentMethods {...createMockProps()} />
         </Wrapper>,
       );
 
       // Check that the challenge component is rendered by looking for challenge elements
       expect(screen.getByPlaceholderText('XXXX XX')).toBeInTheDocument();
       expect(screen.getByDisplayValue('')).toBeInTheDocument(); // The challenge input
-    });
-
-    it('should not render PaymentMethodChallenge when handlePaymentMethodChallenge is false', () => {
-      const mockEligibility = createMockEligibility({
-        actionsRequired: ['challengePaymentMethod'],
-      });
-      const mockPaymentMethod = createMockUserPaymentMethod({
-        paymentType: TPaymentMethodType.CREDIT_CARD,
-        default: true,
-      });
-
-      mockUseEligibility.mockReturnValue(
-        createMockEligibilityResult(mockEligibility),
-      );
-      mockUsePaymentMethods.mockImplementation((params) => {
-        if (params?.default) {
-          return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
-        }
-        return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
-      });
-
-      render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({ handlePaymentMethodChallenge: false })}
-          />
-        </Wrapper>,
-      );
-
-      // Challenge component should not be rendered when disabled
-      expect(screen.queryByPlaceholderText('XXXX XX')).not.toBeInTheDocument();
     });
 
     it('should handle challenge validity changes and call handleValidityChange', async () => {
@@ -591,7 +558,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -634,7 +600,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -664,7 +629,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -714,7 +678,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -771,7 +734,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -798,41 +760,6 @@ describe('PaymentMethods', () => {
       expect(mockQueryClient.invalidateQueries).toHaveBeenCalledTimes(2);
     });
 
-    it('should resolve immediately when handlePaymentMethodChallenge is false', async () => {
-      const mockEligibility = createMockEligibility();
-      const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
-      const paymentMethodRef = React.createRef<TPaymentMethodRef>();
-
-      mockUseEligibility.mockReturnValue(
-        createMockEligibilityResult(mockEligibility),
-      );
-      mockUsePaymentMethods.mockReturnValue(
-        createMockPaymentMethodsResult({ data: [mockPaymentMethod] }),
-      );
-
-      render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({
-              paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: false,
-            })}
-          />
-        </Wrapper>,
-      );
-
-      await waitFor(() => {
-        expect(paymentMethodRef.current).toBeTruthy();
-      });
-
-      if (!paymentMethodRef.current) {
-        throw new Error('Payment method ref is null');
-      }
-
-      const result = await paymentMethodRef.current.submitPaymentMethod();
-      expect(result).toBe(true);
-    });
-
     it('should handle submission when no payment method challenge handler exists', async () => {
       const mockEligibility = createMockEligibility();
       const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
@@ -850,7 +777,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               paymentMethodHandler: paymentMethodRef,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -888,7 +814,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -916,7 +841,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: true,
             })}
           />
         </Wrapper>,
@@ -927,7 +851,7 @@ describe('PaymentMethods', () => {
       });
     });
 
-    it('should be valid when challenge is disabled and payment method conditions are met', async () => {
+    it('should be valid when payment method conditions are met', async () => {
       const mockHandleValidityChange = vi.fn();
       const mockEligibility = createMockEligibility();
       const mockPaymentMethod = createMockUserPaymentMethod({ default: true });
@@ -944,7 +868,6 @@ describe('PaymentMethods', () => {
           <PaymentMethods
             {...createMockProps({
               handleValidityChange: mockHandleValidityChange,
-              handlePaymentMethodChallenge: false,
             })}
           />
         </Wrapper>,
