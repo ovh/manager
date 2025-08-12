@@ -1,7 +1,16 @@
+/**
+ * @deprecated Use useFormatDate with date fns format instead
+ */
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @deprecated Use useFormatDate with date fns format instead
+ */
 export const defaultUnknownDateLabel = 'N/A';
 
+/**
+ * @deprecated Use useFormatDate with date fns format instead
+ */
 export enum DateFormat {
   /**
    * dd/MM/YYYY
