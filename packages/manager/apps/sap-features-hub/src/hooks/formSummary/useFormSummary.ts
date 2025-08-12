@@ -156,10 +156,6 @@ export const useFormSummary = (values: InstallationFormValues) => {
             value: values.thickDatastorePolicy,
             label: t('server_config_input_thick_storage'),
           },
-          {
-            value: values.encryptPassword ? t('yes') : t('no'),
-            label: t('server_config_toggle_password_encryption'),
-          },
           { type: 'subtitle', label: LABELS.SAP_HANA },
           {
             value: values.hanaServerOva,
