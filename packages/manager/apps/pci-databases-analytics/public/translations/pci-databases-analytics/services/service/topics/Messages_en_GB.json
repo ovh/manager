@@ -12,7 +12,7 @@
   "formTopicErrorRetentionBytesMin": "Must be greater than or equal to {{min}}",
   "addTopicTitle": "Create a topic",
   "editTopicTitle": "Modify a topic",
-  "addTopicDescription": "Create a new Kafka topic to manage data flows between services.",
+  "addTopicDescription": "Create a new Kafka topic to manage data streams between services.",
   "editTopicDescription": "Edit an existing Kafka topic.",
   "addTopicInputNameLabel": "Topic name",
   "addTopicAdvancedConfigurationTrigger": "Advanced configuration",
@@ -27,7 +27,7 @@
   "editTopicButtonConfirm": "Edit topic",
   "addTopicToastErrorTitle": "An error has occurred adding your topic",
   "addTopicToastSuccessTitle": "Success",
-  "addTopicToastSuccessDescription": "Your topic \"{{name}}\" has been added.",
+  "addTopicToastSuccessDescription": "Your topic “{{name}}” has been added.",
   "deleteTopicToastErrorTitle": "An error has occurred deleting your topic",
   "deleteTopicToastSuccessTitle": "Success",
   "deleteTopicToastSuccessDescription": "Your topic has been deleted.",
@@ -44,7 +44,7 @@
   "tableHeadDeletePolicy": "Deletion policy",
   "tableValueUnlimited": "unlimited",
   "tableActionDelete": "Delete",
-  "tableActionEdit": "Modify",
+  "tableActionEdit": "Edit",
   "breadcrumb": "Topics",
-  "formTopicErrorPattern": "Must contain between 1 and 249 alphanumeric characters, dashes (-), underscores (_) or full stops (.) only"
+  "formTopicErrorPattern": "Must contain 1 to 249 alphanumeric characters, dashes (-), underscores (_) or full stops (.) only"
 }
