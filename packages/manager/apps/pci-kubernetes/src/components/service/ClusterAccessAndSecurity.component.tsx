@@ -17,6 +17,8 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
+import { isApiCustomError } from '@ovh-ux/manager-core-api';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import {
   OsdsAccordion,
   OsdsButton,
@@ -30,10 +32,10 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useMemo, useState } from 'react';
-import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import { Translation, useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import { TKube } from '@/types';
+
 import {
   downloadContent,
   getValidOptionalKeys,
@@ -63,7 +65,7 @@ export default function ClusterAccessAndSecurity({
 }: Readonly<ClusterAccessAndSecurityProps>) {
   const { t } = useTranslation('service');
 
-  const { kubeId, projectId } = useParams();
+  const { kubeId, projectId } = useParam('projectId', 'kubeId');
   const { addError } = useNotifications();
   const [isOptional, setIsOptional] = useState(true);
 
@@ -91,12 +93,14 @@ export default function ClusterAccessAndSecurity({
         fileContent: config.content,
         fileName: `${CONFIG_FILENAME}.yml`,
       }),
-    onError: (error: ResponseAPIError) =>
+    onError: (error: Error) =>
       addError(
         <Translation ns="service">
           {(_t) =>
             _t('kube_service_file_error', {
-              message: error?.response?.data?.message || error?.message || null,
+              message: isApiCustomError(error)
+                ? error?.response?.data?.message
+                : error?.message ?? null,
             })
           }
         </Translation>,
@@ -109,10 +113,18 @@ export default function ClusterAccessAndSecurity({
     kubeDetail?.region,
   );
 
-  const validOptionalKeys = useMemo(() => getValidOptionalKeys(oidcProvider), [
-    oidcProvider,
-  ]);
+  const validOptionalKeys = useMemo(
+    () => (oidcProvider ? getValidOptionalKeys(oidcProvider) : []),
+    [oidcProvider],
+  );
   const hasOptionalValues = validOptionalKeys.length > 0;
+
+  const getClusterRestrictionLabel = (length?: number) => {
+    const suffixes = ['no_count', 'one', 'count'];
+    const len = length ?? 0;
+    const suffix = suffixes[Math.min(len, 2)];
+    return t(`kube_service_restrictions_${suffix}`, { count: len });
+  };
 
   return (
     <OsdsTile
@@ -159,14 +171,7 @@ export default function ClusterAccessAndSecurity({
                   level={ODS_TEXT_LEVEL.body}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {clusterRestrictions.length === 0 &&
-                    t('kube_service_restrictions_no_count')}
-                  {clusterRestrictions.length === 1 &&
-                    t('kube_service_restrictions_one')}
-                  {clusterRestrictions.length > 1 &&
-                    t('kube_service_restrictions_count', {
-                      count: clusterRestrictions.length,
-                    })}
+                  {getClusterRestrictionLabel(clusterRestrictions?.length)}
                 </OsdsText>
               )}
               <Links
@@ -295,10 +300,12 @@ export default function ClusterAccessAndSecurity({
               <div className="flex items-baseline justify-between">
                 {isOidcDefined ? (
                   <div className="w-full">
-                    <Clipboard
-                      aria-label="clipboard"
-                      value={oidcProvider.issuerUrl}
-                    />
+                    {oidcProvider && (
+                      <Clipboard
+                        aria-label="clipboard"
+                        value={oidcProvider.issuerUrl}
+                      />
+                    )}
                     <div className="mt-6">
                       <OsdsText
                         className="mr-2 font-semibold"
@@ -314,7 +321,7 @@ export default function ClusterAccessAndSecurity({
                         level={ODS_TEXT_LEVEL.body}
                         color={ODS_THEME_COLOR_INTENT.text}
                       >
-                        {oidcProvider.clientId}
+                        {oidcProvider?.clientId}
                       </OsdsText>
                     </div>
 
@@ -331,38 +338,39 @@ export default function ClusterAccessAndSecurity({
                               : t('kube_service_hide_optional')}
                           </span>
                           <>
-                            {Object.entries(oidcProvider)
-                              .filter(
-                                ([key, value]) =>
-                                  isOptionalValue(value) &&
-                                  key !== 'issuerUrl' &&
-                                  key !== 'clientId',
-                              )
-                              .map(([key, value]) => (
-                                <div
-                                  key={key}
-                                  className="mb-4 mt-4 flex flex-col max-w-[400px]"
-                                >
-                                  <OsdsText
-                                    className="font-semibold"
-                                    size={ODS_TEXT_SIZE._200}
-                                    level={ODS_TEXT_LEVEL.heading}
-                                    color={ODS_THEME_COLOR_INTENT.text}
+                            {oidcProvider &&
+                              Object.entries(oidcProvider)
+                                .filter(
+                                  ([key, value]) =>
+                                    isOptionalValue(value) &&
+                                    key !== 'issuerUrl' &&
+                                    key !== 'clientId',
+                                )
+                                .map(([key, value]) => (
+                                  <div
+                                    key={key}
+                                    className="mb-4 mt-4 flex flex-col max-w-[400px]"
                                   >
-                                    {key}
-                                  </OsdsText>
-                                  <OsdsText
-                                    className="mb-4 truncate"
-                                    size={ODS_TEXT_SIZE._400}
-                                    level={ODS_TEXT_LEVEL.body}
-                                    color={ODS_THEME_COLOR_INTENT.text}
-                                  >
-                                    {Array.isArray(value)
-                                      ? value.join(', ')
-                                      : value}
-                                  </OsdsText>
-                                </div>
-                              ))}
+                                    <OsdsText
+                                      className="font-semibold"
+                                      size={ODS_TEXT_SIZE._200}
+                                      level={ODS_TEXT_LEVEL.heading}
+                                      color={ODS_THEME_COLOR_INTENT.text}
+                                    >
+                                      {key}
+                                    </OsdsText>
+                                    <OsdsText
+                                      className="mb-4 truncate"
+                                      size={ODS_TEXT_SIZE._400}
+                                      level={ODS_TEXT_LEVEL.body}
+                                      color={ODS_THEME_COLOR_INTENT.text}
+                                    >
+                                      {Array.isArray(value)
+                                        ? value.join(', ')
+                                        : value}
+                                    </OsdsText>
+                                  </div>
+                                ))}
                           </>
                         </OsdsAccordion>
                       </div>
