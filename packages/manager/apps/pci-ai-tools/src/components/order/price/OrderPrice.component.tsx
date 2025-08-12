@@ -6,13 +6,22 @@ interface OrderPriceProps {
   minuteConverter: number;
   price: publicCatalog.Pricing;
   quantity: number;
+  section?: string;
+  showPriceLabel?: boolean;
 }
-const OrderPrice = ({ minuteConverter, price, quantity }: OrderPriceProps) => {
+const OrderPrice = ({
+  minuteConverter,
+  price,
+  quantity,
+  section,
+  showPriceLabel = true,
+}: OrderPriceProps) => {
   const { t } = useTranslation('ai-tools/pricing');
   return (
     <div data-testid="order-price-container" className="flex flex-col gap-2">
-      <p>{t('pricingLabel')}</p>
+      {showPriceLabel && <p>{t('pricingLabel')}</p>}
       <div className="inline-block">
+        <span className="font-bold">{section}</span>
         <Price
           decimals={2}
           priceInUcents={minuteConverter * quantity * price.price}
