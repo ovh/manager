@@ -31,6 +31,15 @@ describe('Order', async () => {
         "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE_1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
     },
     {
+      case: 'vRack (Without Organisation)',
+      ipVersion: IpVersion.ipv4,
+      serviceName: resourceMockList[2].name,
+      region: 'eu-west-lim',
+      offer: IpOffer.blockAdditionalIp,
+      expectedOrderLink:
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
+    },
+    {
       case: 'vRack in UK',
       ipVersion: IpVersion.ipv4,
       serviceName: resourceMockList[3].name,
@@ -68,6 +77,15 @@ describe('Order', async () => {
       organisation: organisationMockList[0],
       expectedOrderLink:
         "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'parking)~(label~'country~value~'FR)~(label~'organisation~value~'ARIN_1)~(label~'datacenter~value~'PAR))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'PAR))",
+    },
+    {
+      case: 'Parking + Block additional IP(Without Organisation)',
+      ipVersion: IpVersion.ipv4,
+      serviceName: ipParkingOptionValue,
+      region: 'eu-west-par',
+      offer: IpOffer.blockAdditionalIp,
+      expectedOrderLink:
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'parking)~(label~'country~value~'FR)~(label~'datacenter~value~'PAR))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'PAR))",
     },
     {
       case: 'Dedicated Cloud',
