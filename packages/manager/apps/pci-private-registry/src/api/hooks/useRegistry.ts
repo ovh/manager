@@ -71,19 +71,27 @@ export const useSuspenseRegistry = (
   return useSuspenseQuery(params);
 };
 
-export const useGetRegistryPlan = (projectId: string, registryId: string) =>
+export const useGetRegistryPlan = (
+  projectId: string,
+  registryId?: string | null,
+) =>
   useQuery({
-    queryKey: getRegistryPlanQueryKey(projectId, registryId),
-    queryFn: () => getRegistryPlan(projectId, registryId),
+    queryKey: getRegistryPlanQueryKey(projectId, registryId as string),
+    queryFn: () => getRegistryPlan(projectId, registryId as string),
+    enabled: !!projectId && !!registryId,
   });
 
 export const useGetRegistryAvailablePlans = (
   projectId: string,
-  registryId: string,
+  registryId?: string | null,
 ) =>
   useQuery({
-    queryKey: getRegistryAvailablePlansQueryKey(projectId, registryId),
-    queryFn: () => getRegistryAvailablePlans(projectId, registryId),
+    queryKey: getRegistryAvailablePlansQueryKey(
+      projectId,
+      registryId as string,
+    ),
+    queryFn: () => getRegistryAvailablePlans(projectId, registryId as string),
+    enabled: !!projectId && !!registryId,
   });
 
 export const sortRegistries = (
@@ -212,8 +220,8 @@ export const usePostRegistryCredentials = ({
 
 export type TUpdatePlanParam = {
   projectId: string;
-  registryId: string;
-  planId: string;
+  registryId: string | null;
+  planId?: string | null;
   onError: (e: {
     response: { data: { message: never } };
     error: { message: never };
@@ -230,7 +238,8 @@ export const useUpdatePlan = ({
   onSuccess,
 }: TUpdatePlanParam) => {
   const mutation = useMutation({
-    mutationFn: async () => updatePlan(projectId, registryId, planId),
+    mutationFn: async () =>
+      updatePlan(projectId, registryId as string, planId as string),
     onError,
     onSuccess: async () => {
       queryClient.invalidateQueries({
@@ -245,14 +254,15 @@ export const useUpdatePlan = ({
   };
 };
 
-export const useRegistry = (projectId: string, registryId: string) =>
+export const useRegistry = (projectId: string, registryId?: string) =>
   useQuery({
-    queryKey: getRegistryQueryKey(projectId, registryId),
-    queryFn: () => getRegistry(projectId, registryId),
+    queryKey: getRegistryQueryKey(projectId, registryId as string),
+    queryFn: () => getRegistry(projectId, registryId as string),
     initialData: () => {
       const registries = queryClient.getQueryData<TRegistry[]>(
         getAllRegistriesQueryKey(projectId),
       );
       return registries?.find((registry) => registry.id === registryId);
     },
+    enabled: !!projectId && !!registryId,
   });
