@@ -7,11 +7,10 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   OdsSelect,
-  OdsSpinner,
   OdsText,
   OdsQuantity,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   DEFAULT_PRICING_MODE,

@@ -8,6 +8,8 @@ import {
   isBlockIpPlan,
 } from './catalog.utils';
 import {
+  isRegionInAp,
+  isRegionInCa,
   isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
@@ -74,8 +76,9 @@ export const useAdditionalIpPricings = ({
     } as UseAdditionalIpPricingsResult;
   }
 
-  const isEu = isRegionInEu(region);
   const isUs = isRegionInUs(region);
+  const isCa = isRegionInCa(region);
+  const isApac = isRegionInAp(region);
 
   return {
     ...query,
@@ -93,9 +96,12 @@ export const useAdditionalIpPricings = ({
         if (isUs) {
           return plan.invoiceName.includes('USA');
         }
-        return isEu
-          ? plan.invoiceName.includes('EUROPE')
-          : !plan.invoiceName.includes('EUROPE');
+        if (isCa) {
+          return plan.invoiceName.includes('CANADA');
+        }
+        return isApac
+          ? plan.invoiceName.includes('APAC')
+          : plan.invoiceName.includes('EUROPE');
       })
       .sort((planA: CatalogIpPlan, planB: CatalogIpPlan) =>
         planA.details.pricings.default[0].price.value >
