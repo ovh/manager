@@ -5,7 +5,6 @@ import Datacenter from '../../../../../components/project/regions-list/datacente
 import Quota from '../../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
-import { BAREMETAL_LABEL, PUBLIC_NETWORK_TYPE_NAMES } from './add.constants';
 import { THREE_AZ_REGION } from '../../../project.constants';
 
 export default class PciInstancesAddController {
@@ -28,7 +27,7 @@ export default class PciInstancesAddController {
       imageId: this.backup.id,
       region: this.backup.region,
       monthlyBilling: false,
-      sshKeyId: null,
+      sshKey: null,
     });
 
     this.region = new Datacenter({
@@ -141,30 +140,6 @@ export default class PciInstancesAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
-  isBareMetalBackup() {
-    return !!this.backup.type.includes(BAREMETAL_LABEL);
-  }
-
-  onPrivateNetworkChange(modelValue) {
-    const networkId = get(modelValue, 'id');
-    const publicNetwork = this.publicNetworks?.find((network) => {
-      const networkName = this.isBareMetalBackup()
-        ? PUBLIC_NETWORK_TYPE_NAMES.BAREMETAL
-        : PUBLIC_NETWORK_TYPE_NAMES.CLASSIC;
-      return network.name === networkName;
-    });
-    this.instance.networks = networkId
-      ? [
-          {
-            networkId,
-          },
-          {
-            networkId: publicNetwork?.id,
-          },
-        ]
-      : [];
-  }
-
   create() {
     this.isLoading = true;
 
@@ -172,13 +147,40 @@ export default class PciInstancesAddController {
       this.instance.userData = null;
     }
 
-    this.instance.sshKeyId = get(this.model.sshKey, 'id');
+    this.instance.sshKey = this.model.sshKey;
 
-    return this.PciProjectsProjectInstanceService.save(
-      this.projectId,
-      this.instance,
-      this.model.number,
+    return (this.model.privateNetwork.id
+      ? this.PciProjectsProjectInstanceService.getSubnets(
+          this.projectId,
+          this.model.privateNetwork.id,
+        )
+      : Promise.resolve()
     )
+      .then((data) => {
+        const network = {
+          private: this.model.privateNetwork.id
+            ? {
+                network: {
+                  id: this.model.privateNetwork.regions.find(
+                    (r) => r.region === this.instance.region,
+                  ).openstackId,
+                  subnetId: data.find(
+                    (subnet) =>
+                      subnet.ipPools[0].region === this.instance.region,
+                  )?.id,
+                },
+              }
+            : null,
+          public: true,
+        };
+
+        return this.PciProjectsProjectInstanceService.save(
+          this.projectId,
+          this.instance.region,
+          { ...this.instance, network },
+          this.model.number,
+        );
+      })
       .then(() => {
         const message =
           this.model.number === 1
