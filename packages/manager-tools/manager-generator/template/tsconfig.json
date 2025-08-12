@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
     },
     "outDir": "dist",
     "resolveJsonModule": true

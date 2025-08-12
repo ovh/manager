@@ -2,6 +2,10 @@ import type { OnboardingConfigType } from '@/types/Onboarding.type';
 
 import type { ListingItemType } from './types/Listing.type';
 
+export type OnboardingApi = 'v2' | 'v6';
+
+export type ListingApi = 'v6Iceberg' | 'v2' | 'v6';
+
 /** Short, unique identifier for the app (used in tracking, tagging, etc.). */
 export const appName = '{{appName}}';
 
@@ -72,8 +76,8 @@ export const LISTING_PLACEHOLDER_ITEMS: ReadonlyArray<ListingItemType> = Object.
  * Change these per flavor; everything else computes from here.
  */
 export const APP_FEATURES = {
-  listingApi: '{{listingApi}}', // 'v6Iceberg' | 'v2' | 'v6'
-  onboardingApi: '{{onboardingApi}}', // 'v2' | 'v6'
+  listingApi: '{{listingApi}}' as ListingApi, // 'v6Iceberg' | 'v2' | 'v6'
+  onboardingApi: '{{onboardingApi}}' as OnboardingApi, // 'v2' | 'v6'
   isPci: '{{isPci}}', // true | false
 
   /**

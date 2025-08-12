@@ -46,11 +46,11 @@ describe('useBreadcrumb', () => {
 
     expect(result.current).toHaveLength(3);
 
-    const root = result.current[0] as Item;
-    const projects = result.current[1]! as Item;
-    const alpha = result.current[2]! as Item;
+    const root = result.current[0];
+    const projects = result.current[1];
+    const alpha = result.current[2];
 
-    expect(root).toEqual<Item>({ id: 'root', label: 'Home', href: '' });
+    expect(root).toEqual({ id: 'root', label: 'Home', href: '' });
 
     expect(projects.id).toBe('projects');
     expect(projects.label).toBe('Projects');

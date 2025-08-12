@@ -12,10 +12,10 @@ import { subRoutes, urls } from '@/routes/Routes.constant';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/DashboardListing.page'));
 const DashboardOverviewPage = React.lazy(
-  () => import('@/pages/dashboard-overview/DashboardOverview.page'),
+  () => import('@/pages/dashboard/overview/DashboardOverview.page'),
 );
 const DashboardSettingsPage = React.lazy(
-  () => import('@/pages/dashboard-settings/DashboardSettings.page'),
+  () => import('@/pages/dashboard/settings/DashboardSettings.page'),
 );
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 

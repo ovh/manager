@@ -1,20 +1,23 @@
 import { APP_FEATURES, appName } from '@/App.constants';
 
+type RouteFlavor = 'generic' | 'pci' | 'platformParam';
+
 const {
   isPci,
-  routeFlavor,
   basePrefix,
   serviceParam = ':serviceName',
   platformParam = ':platformId',
   appSlug = appName,
 } = APP_FEATURES;
 
+const routeFlavor: RouteFlavor = (APP_FEATURES.routeFlavor ?? 'generic') as RouteFlavor;
+
 /**
  * Compute the root path from the flavor config.
  * This is the ONLY place where flavor differences are handled.
  */
 function getRoot(): string {
-  const prefix = basePrefix ? `/${basePrefix as string}` : '';
+  const prefix = basePrefix ? `/${String(basePrefix)}` : '';
 
   if (routeFlavor === 'pci') {
     return `${prefix}/pci/projects/:projectId/${appSlug}`;
@@ -50,9 +53,9 @@ export const urls = {
  * These remain relative to the dashboard route.
  */
 export const subRoutes = {
-  overview: '',
-  settings: 'settings',
-  ...(isPci && { quota: 'quota' }), // PCI-only tabs
+  overview: '' as const,
+  settings: 'settings' as const,
+  ...(isPci ? { quota: 'quota' as const } : {}),
 } as const;
 
 /**
@@ -74,5 +77,5 @@ export const DASHBOARD_TAB_CONFIG = Object.freeze([
     pathMatchers: [/\/settings$/],
     trackingActions: ['click::settings-tab'],
   },
-  // You can add PCI-only tabs here if needed
+  // Add PCI-only tabs here if needed
 ]);
