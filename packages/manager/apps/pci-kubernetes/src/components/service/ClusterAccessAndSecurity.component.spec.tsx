@@ -157,4 +157,17 @@ describe('ClusterAccessAndSecurity', () => {
       getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'),
     ).toBeDisabled();
   });
+
+  it('renders nodes URL with clipboard component', () => {
+    const { container } = render(
+      <ClusterAccessAndSecurity
+        kubeDetail={{ status: 'READY', nodesUrl: 'http://nodes.url' } as TKube}
+      />,
+      { wrapper },
+    );
+    const clipboardElement = container.querySelector(
+      '[value="http://nodes.url"]',
+    );
+    expect(clipboardElement).toBeVisible();
+  });
 });
