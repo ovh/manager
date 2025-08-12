@@ -89,9 +89,6 @@ export default function ClusterInformation({
           {t('service:kube_service_cluster_information')}
         </OsdsText>
         <OsdsDivider separator />
-        <TileLine label={t('listing:kube_list_id')}>
-          <Clipboard aria-label="clipboard" value={kubeDetail.id} />
-        </TileLine>
 
         <TileLine label={t('kube_service_name')}>
           <OsdsText
@@ -102,6 +99,10 @@ export default function ClusterInformation({
           >
             {kubeDetail.name}
           </OsdsText>
+        </TileLine>
+
+        <TileLine label={t('listing:kube_list_id')}>
+          <Clipboard aria-label="clipboard" value={kubeDetail.id} />
         </TileLine>
 
         <div className="flex">
@@ -152,10 +153,6 @@ export default function ClusterInformation({
 
         <OsdsDivider separator />
 
-        <TileLine label={t('service:kube_service_cluster_status')}>
-          <ClusterStatus status={kubeDetail.status} />
-        </TileLine>
-
         <TileLine label={t('service:kube_service_cluster_version')}>
           <OsdsText
             className="mb-4"
@@ -166,15 +163,9 @@ export default function ClusterInformation({
             {kubeDetail.version}
           </OsdsText>
         </TileLine>
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
-        )}
 
-        <TileLine label={t('service:kube_service_cluster_admission_plugins')}>
-          <AdmissionPlugins
-            plugins={kubeDetail.plugins}
-            isProcessing={isProcessing(kubeDetail.status)}
-          />
+        <TileLine label={t('service:kube_service_cluster_status')}>
+          <ClusterStatus status={kubeDetail.status} />
         </TileLine>
 
         <TileLine label={t('service:kube_service_cluster_region')}>
@@ -201,10 +192,15 @@ export default function ClusterInformation({
         </TileLine>
 
         {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileLine label={t('service:kube_service_cluster_nodes_url')}>
-            <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
-          </TileLine>
+          <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
         )}
+
+        <TileLine label={t('service:kube_service_cluster_admission_plugins')}>
+          <AdmissionPlugins
+            plugins={kubeDetail.plugins}
+            isProcessing={isProcessing(kubeDetail.status)}
+          />
+        </TileLine>
       </div>
     </OsdsTile>
   );
