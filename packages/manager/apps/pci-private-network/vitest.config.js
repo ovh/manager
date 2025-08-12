@@ -29,7 +29,7 @@ export default defineConfig({
       exclude: [
         'src/interface',
         'src/__tests__',
-        'src/**/*playbook-constants.ts',
+        'src/**/*constants.ts',
         'src/vite-*.ts',
         'src/App.tsx',
         'src/core/ShellRoutingSync.tsx',

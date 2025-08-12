@@ -12,7 +12,7 @@ export default defineConfig({
     coverage: {
       include: ['src'],
       exclude: [
-        'src/**/*playbook-constants.ts',
+        'src/**/*constants.ts',
         'src/**/*enum.ts',
         'src/vite-*.ts',
         'src/App.tsx',

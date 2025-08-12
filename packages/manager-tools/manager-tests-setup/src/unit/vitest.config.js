@@ -34,7 +34,7 @@ export const defaultExcludedFiles = [
   'src/vite-*.ts',
   'src/App.tsx',
   'src/index.tsx',
-  'src/**/*playbook-constants.ts',
+  'src/**/*constants.ts',
   'src/**/*enum.ts',
   'src/interface',
   'src/i18n.ts',

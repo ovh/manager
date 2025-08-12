@@ -24,7 +24,7 @@ export default defineConfig({
         'src/components/ui',
         'src/components/data-table/translations',
         'src/configuration',
-        'src/**/*playbook-constants.ts',
+        'src/**/*constants.ts',
         'src/main.tsx',
         'src/routes',
       ],

@@ -99,7 +99,7 @@ The routing
 export default {
   resolve: {
     catalog: /* @ngInject */ (HostingDatabaseOrderPublicService) =>
-      HostingDatabaseOrderPublicService.getCatalogApi(),
+      HostingDatabaseOrderPublicService.getCatalog(),
   },
 };
 ```

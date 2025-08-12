@@ -15,7 +15,7 @@ export default defineConfig({
         'src/interface',
         'src/__tests__',
         'src/__tests__',
-        'src/**/*playbook-constants.ts',
+        'src/**/*constants.ts',
         'src/vite-*.ts',
         'src/vite-*.ts',
         'src/App.tsx',

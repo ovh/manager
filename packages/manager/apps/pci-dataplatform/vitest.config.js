@@ -21,7 +21,7 @@ export default defineConfig({
         'src/routes/Router.tsx',
         'src/query.client.ts',
         'src/configuration',
-        'src/**/*playbook-constants.ts',
+        'src/**/*constants.ts',
         'src/main.tsx',
         'src/types',
       ],

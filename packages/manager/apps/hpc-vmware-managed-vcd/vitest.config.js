@@ -17,7 +17,7 @@ export default mergeConfig(
           // App-specific exclusions (not in shared config):
           'src/types',
           'src/test-utils',
-          'src/tracking.playbook-constants.ts',
+          'src/tracking.constants.ts',
           '404.tsx',
           'src/**/*.spec.ts',
           'src/**/*.spec.tsx',
