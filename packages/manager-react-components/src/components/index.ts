@@ -36,7 +36,6 @@ export * from './text';
 export * from './service-state-badge';
 
 export * from './tile';
-export * from './region/region.component';
 export * from './order';
 
 export * from './badge';
