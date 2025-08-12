@@ -33,7 +33,7 @@ describe('ClusterAccessAndSecurity', () => {
     vi.spyOn(useKubernetesModule, 'useClusterRestrictions').mockReturnValue({
       isPending: false,
       data: [],
-    } as UseQueryResult<string[]>);
+    } as UseQueryResult<[]>);
 
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
