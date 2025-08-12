@@ -4,7 +4,7 @@ import {
   OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -36,6 +36,14 @@ const SetAsDefaultPaymentMethod: React.FC<SetAsDefaultPaymentMethodProps> = ({
   );
   const isPaymentMethodRegisterable = !!selectedPaymentMethod?.registerable;
   const isInUSRegion = ovhSubsidiary === 'US';
+
+  useEffect(() => {
+    // When the component mounts, we check if the payment method can be set as default
+    // If not, we force it
+    if (selectedPaymentMethod && !isPaymentMethodRegisterable) {
+      handleSetAsDefaultChange(true);
+    }
+  }, [selectedPaymentMethod, isPaymentMethodRegisterable]);
 
   if (
     !isPaymentMethodRegisterable ||
