@@ -1,13 +1,53 @@
-import { v2Prefix, v6Prefix } from '../config/kernel-constants';
+import { v2Prefix, v6Prefix } from '../commons/config/kernel-constants';
+import {
+  ensureLeadingSlash,
+  normalizePath,
+  stripApiVersionPrefix,
+} from '../commons/utils/paths-utils';
 import { ServiceOperations } from '../types/api-types';
-import { countOperations, normalizeApiSelections, prefixApiVersion } from './api-helper';
 import { getApiServiceOperations } from './api-main';
+
+/**
+ * Prefix a bare path with the given API version prefix.
+ */
+function prefixApiVersion(apiVersion: 'v2' | 'v6', path: string): string {
+  const p = ensureLeadingSlash(path);
+  return apiVersion === 'v2' ? `${v2Prefix}${p}` : `${v6Prefix}${p}`;
+}
+
+/**
+ * Count total operations (all HTTP methods) in a list of ServiceOperations.
+ */
+function countOperations(services: ServiceOperations[]): number {
+  return services.reduce((acc, svc) => acc + (svc.operations ?? []).length, 0);
+}
+
+/**
+ * Normalize selection strings into per-version arrays of normalized base paths.
+ * Example input:
+ *   ["v2-/iam", "v6-/cloud", "v6-/cloud/project"]
+ * Output:
+ *   { v2: ["/iam"], v6: ["/cloud", "/cloud/project"] }  // brace-aware normalized
+ */
+function normalizeApiSelections(selections: string[]): { v2: string[]; v6: string[] } {
+  const out = { v2: [] as string[], v6: [] as string[] };
+  for (const sel of selections) {
+    if (sel.startsWith(v2Prefix)) {
+      const base = normalizePath(stripApiVersionPrefix(sel), { braceAware: true });
+      out.v2.push(base);
+    } else if (sel.startsWith(v6Prefix)) {
+      const base = normalizePath(stripApiVersionPrefix(sel), { braceAware: true });
+      out.v6.push(base);
+    }
+  }
+  return out;
+}
 
 /**
  * Assemble API data for generator templates:
  *  - Accepts an apiVersion hint ("v2" | "v6") and a list of apiPaths.
  *  - Any bare paths ("/iam") are prefixed with the provided apiVersion.
- *  - Fetches each service JSON and returns the legacy "apis" shape.
+ *  - Fetches each service JSON and returns the legacy "apis" shape (with normalized paths).
  *  - Logs useful debug information (normalized selections, op counts).
  *
  * The returned `endpoints` is what downstream expects:
@@ -28,7 +68,7 @@ export const getApiTemplateData = async (
 
   console.log('[generator] selected apiPaths:', resolvedSelections);
 
-  // Pretty logs for humans
+  // Pretty logs for humans (brace-aware normalized bases)
   const norm = normalizeApiSelections(resolvedSelections);
   console.log('[generator] normalized v2:', norm.v2);
   console.log('[generator] normalized v6:', norm.v6);

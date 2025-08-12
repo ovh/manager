@@ -1,14 +1,30 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { v2Endpoint, v2Prefix, v6Endpoint, v6Prefix } from '../config/kernel-constants';
+import { v2Endpoint, v2Prefix, v6Endpoint, v6Prefix } from '../commons/config/kernel-constants';
+import {
+  ensureLeadingSlash,
+  normalizePath,
+  stripApiVersionPrefix,
+} from '../commons/utils/paths-utils';
 import { ApiPathChoice, ServiceOperations } from '../types/api-types';
-import { ensureLeadingSlash, isV2Endpoint, removeApiVersionPrefix } from './api-helper';
 
 /**
  * Subset of Swagger service doc we care about.
  */
 interface SwaggerServiceDoc {
   apis?: ServiceOperations[];
+}
+
+/**
+ * Normalize a list of ServiceOperations by fixing their `path` fields.
+ */
+function normalizeServiceOperations(list: ServiceOperations[] | undefined): ServiceOperations[] {
+  const apis = list ?? [];
+  return apis.map((svc) => ({
+    ...svc,
+    // Normalize server-returned paths for consistent downstream matching
+    path: normalizePath(svc.path, { braceAware: true }),
+  }));
 }
 
 /**
@@ -25,15 +41,15 @@ interface SwaggerServiceDoc {
  * @returns Service list in legacy shape, ready for prompt consumption
  */
 export const getApiServiceOperations = async (apiPath: string): Promise<ServiceOperations[]> => {
-  const isV2 = isV2Endpoint(apiPath);
+  const isV2 = apiPath.startsWith(v2Prefix);
   const endpoint = isV2 ? v2Endpoint : v6Endpoint;
-  const servicePath = removeApiVersionPrefix(apiPath); // "/iam"
+  const servicePath = stripApiVersionPrefix(apiPath); // "/iam"
   const url = `${endpoint}${servicePath}.json`;
 
   try {
     const { data }: AxiosResponse<SwaggerServiceDoc> = await axios.get(url);
-    // Return the legacy shape as-is (downstream expects `apis` with nested operations).
-    return data?.apis ?? [];
+    // Normalize paths before returning (downstream expects `apis` with nested operations).
+    return normalizeServiceOperations(data?.apis);
   } catch (err) {
     console.warn(
       `[generator] Failed to load swagger for ${apiPath} at ${url}:`,
@@ -49,7 +65,19 @@ export const getApiServiceOperations = async (apiPath: string): Promise<ServiceO
 async function fetchRootServicePaths(endpoint: string): Promise<string[]> {
   try {
     const { data } = await axios.get<{ apis?: Array<{ path: string }> }>(endpoint);
-    return (data?.apis ?? []).map((a) => a.path).filter(Boolean);
+    const raw = (data?.apis ?? []).map((a) => a.path).filter(Boolean);
+    // Normalize base paths eagerly
+    const normalized = raw.map((p) => normalizePath(p));
+    // De-duplicate while preserving order
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const p of normalized) {
+      if (!seen.has(p)) {
+        seen.add(p);
+        out.push(p);
+      }
+    }
+    return out;
   } catch (err) {
     console.warn(
       `[generator] Failed to fetch root API index from ${endpoint}:`,
@@ -79,7 +107,10 @@ export async function getApiPaths(): Promise<ApiPathChoice[]> {
 
   const toChoices = (ver: 'v2' | 'v6'): ApiPathChoice[] => {
     const pref = ver === 'v2' ? v2Prefix : v6Prefix;
-    return basePaths.map((p) => ({ name: p, value: `${pref}${ensureLeadingSlash(p)}` }));
+    return basePaths.map((p) => {
+      const norm = normalizePath(p); // ensure consistent formatting
+      return { name: norm, value: `${pref}${ensureLeadingSlash(norm)}` };
+    });
   };
 
   return [

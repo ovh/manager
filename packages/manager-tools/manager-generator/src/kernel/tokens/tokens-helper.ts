@@ -2,57 +2,8 @@
  * @file tokens-helper.ts
  * @description Low-level helpers for token resolution and replacement.
  */
+import { asDict } from '../commons/utils/strings-utils';
 import { type TokenMap, TokenMod } from '../types/tokens-types';
-
-/**
- * Narrower type guard for plain objects (excludes null and arrays).
- * @param val - Value to test.
- * @returns True if `val` is a non-null object and not an array.
- */
-export function isPlainObject(val: unknown): val is Record<string, unknown> {
-  return typeof val === 'object' && val !== null && !Array.isArray(val);
-}
-
-/**
- * Deep-merge two plain objects.
- * - Nested plain objects are merged recursively.
- * - Arrays and primitives in `patch` overwrite values in `base`.
- *
- * @typeParam T - Base object type.
- * @typeParam U - Patch object type.
- * @param base - Original object.
- * @param patch - Patch values to merge in.
- * @returns A new object containing the merged result.
- */
-export function deepMerge<T extends Record<string, unknown>, U extends Record<string, unknown>>(
-  base: T,
-  patch: U,
-): T & U {
-  const out: Record<string, unknown> = { ...base };
-  for (const [k, v] of Object.entries(patch)) {
-    const current = out[k];
-    if (isPlainObject(v) && isPlainObject(current)) {
-      out[k] = deepMerge(current, v);
-    } else if (v !== undefined) {
-      out[k] = v;
-    }
-  }
-  return out as T & U;
-}
-
-/**
- * Trim a string while preserving `undefined`.
- * @param s - Input string or undefined.
- * @returns Trimmed string or the original `undefined`.
- */
-export const trim = (s?: string) => (typeof s === 'string' ? s.trim() : s);
-
-/**
- * Lowercase a string while preserving `undefined`.
- * @param s - Input string or undefined.
- * @returns Lowercased string or the original `undefined`.
- */
-export const lower = (s?: string) => (typeof s === 'string' ? s.toLowerCase() : s);
 
 /**
  * Safe `hasOwnProperty` check.
@@ -318,41 +269,6 @@ export function splitCombinedEndpoint(value?: string): string {
 export function sanitizePathForSchema(rawPath?: string): string {
   const withSlash = ensureLeadingSlash(rawPath ?? '');
   return withSlash.replace(/\{([^}]+)\}/g, '$1');
-}
-
-/**
- * Non-null object guard (dictionary-like).
- * @param v - Value to test.
- * @returns True if `v` is a non-null object.
- */
-export function asDict(v: unknown): v is Record<string, unknown> {
-  return typeof v === 'object' && v !== null;
-}
-
-/**
- * Read a string property from an unknown object.
- * @param obj - Source value.
- * @param key - Property name.
- * @returns String value if present and of type string; otherwise `undefined`.
- */
-export function readString(obj: unknown, key: string): string | undefined {
-  if (!asDict(obj)) return undefined;
-  const v = obj[key];
-  return typeof v === 'string' ? v : undefined;
-}
-
-/**
- * Read a string[] property from an unknown object.
- * @param obj - Source value.
- * @param key - Property name.
- * @returns String array if all elements are strings; otherwise `undefined`.
- */
-export function readStringArray(obj: unknown, key: string): string[] | undefined {
-  if (!asDict(obj)) return undefined;
-  const v = obj[key];
-  if (!Array.isArray(v)) return undefined;
-  const allStrings = v.every((x) => typeof x === 'string');
-  return allStrings ? v : undefined;
 }
 
 /**

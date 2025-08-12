@@ -5,7 +5,7 @@
 import inquirer from 'inquirer';
 import autocomplete from 'inquirer-autocomplete-prompt';
 
-import { MANUAL_ENDPOINT_VALUE } from '../kernel/config/kernel-constants';
+import { MANUAL_ENDPOINT_VALUE } from '../kernel/commons/config/kernel-constants';
 import {
   applyDerivations,
   buildEndpointChoiceValues,

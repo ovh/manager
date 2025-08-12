@@ -1,3 +1,9 @@
+/**
+ * @file prompts-helper.ts
+ * @description Helpers used by prompts & endpoint preparation.
+ */
+import { normalizePath } from 'src/kernel/commons/utils/paths-utils';
+
 import { AugmentedAnswers, GeneratorAnswers } from '../../playbook/types/playbook-types';
 import { normalizeSelectedApiPath } from '../api/api-helper';
 import { getApiTemplateData } from '../api/get-api-template-data';
@@ -46,6 +52,9 @@ export function isSeparatorLike(x: unknown): x is { type: 'separator'; line?: st
 /**
  * Normalize ApiPath choices (which may include separators) to our local PromptChoice[]
  * without using inquirer.Separator (we use disabled items as headers).
+ *
+ * NOTE: When choices are plain strings (paths), we keep them as-is because we’ll normalize
+ * them again at selection time via `normalizeSelectedApiPath` and `normalizePath`.
  */
 export function normalizeApiPathChoices(items: ApiPathChoice[]): PromptChoice[] {
   return items.map((it) => {
@@ -65,12 +74,14 @@ export function normalizeApiPathChoices(items: ApiPathChoice[]): PromptChoice[] 
 
 /**
  * Split selected API base paths into v2 / v6 buckets.
+ * Uses normalizeSelectedApiPath, then brace-aware normalization for consistent matching.
  */
 export function splitApiPathsByVersion(paths: string[]): VersionSplit {
   const out: VersionSplit = { v2: [], v6: [] };
   for (const p of paths) {
     const { version, base } = normalizeSelectedApiPath(p);
-    out[version].push(base);
+    const normBase = normalizePath(base, { braceAware: true });
+    out[version].push(normBase);
   }
   return out;
 }
@@ -105,12 +116,15 @@ function readOptionalString(obj: Record<string, unknown>, key: string): string |
 /**
  * Convert swagger service entries to our MethodGroup (GET-only for prompts).
  * Avoids `any` by reading unknown fields via guards/Record lookups.
+ * Normalizes `apiPath` using `normalizePath(..., { braceAware: true })` for consistency.
  */
 function servicesToMethodGroup(services: ServiceOperations[]): MethodGroup {
   const opList: OperationItem[] = [];
 
   for (const svc of services) {
-    const basePath = svc.path;
+    const basePathRaw = svc.path;
+    const apiPath = normalizePath(basePathRaw, { braceAware: true });
+
     const ops = svc.operations ?? [];
     for (const op of ops) {
       const opRec = op as unknown as Record<string, unknown>;
@@ -123,10 +137,10 @@ function servicesToMethodGroup(services: ServiceOperations[]): MethodGroup {
 
       const nickname = typeof op.nickname === 'string' ? op.nickname : undefined;
       const operationId = readOptionalString(opRec, 'operationId');
-      const functionName = nickname ?? operationId ?? fallbackFunctionName(methodRaw, basePath);
+      const functionName = nickname ?? operationId ?? fallbackFunctionName(methodRaw, apiPath);
 
       const item: OperationItem = {
-        apiPath: basePath,
+        apiPath,
         functionName,
       };
       opList.push(item);
@@ -143,9 +157,9 @@ function servicesToMethodGroup(services: ServiceOperations[]): MethodGroup {
 /**
  * Prepare endpoints prior to the listing/dashboard prompts:
  * - set `templates`
- * - split apiPaths per version
+ * - split apiPaths per version (normalized)
  * - fetch template data for v2 / v6
- * - convert to MethodGroup the prompts expect
+ * - convert to MethodGroup the prompts expect (normalized paths)
  * - derive final package name for templates (`packageNameResolved`)
  */
 export async function prepareEndpointsForListing(data: GeneratorAnswers): Promise<void> {
@@ -160,12 +174,11 @@ export async function prepareEndpointsForListing(data: GeneratorAnswers): Promis
   const v6Data = await getApiTemplateData('v6', byVersion.v6);
   const v2Data = await getApiTemplateData('v2', byVersion.v2);
 
-  // Adapt to MethodGroup
+  // Adapt to MethodGroup (normalize inside)
   d.apiV6Endpoints = servicesToMethodGroup(v6Data.endpoints);
   d.apiV2Endpoints = servicesToMethodGroup(v2Data.endpoints);
 
   // Resolve final package name once, for templates
-  // (Use wherever you render package.json)
   d.packageNameResolved = derivePkgName(d.appName ?? '', d.packageName);
 
   // (optional) debug
@@ -196,7 +209,7 @@ export function computeFlags(d: AugmentedAnswers): void {
 
 /**
  * Extract the selected listing/dashboard paths & functions from user picks,
- * and set `mainApiPath` from listing.
+ * normalize them, and set `mainApiPath` from listing.
  */
 export function extractSelectedPaths(d: AugmentedAnswers): {
   listingPath: string;
@@ -204,10 +217,14 @@ export function extractSelectedPaths(d: AugmentedAnswers): {
   dashboardPath: string;
   dashboardFn: string;
 } {
-  const [listingPath = '', listingFn = ''] =
+  const [listingPathRaw = '', listingFn = ''] =
     (d as unknown as { listingEndpoint?: string }).listingEndpoint?.split('-') ?? [];
-  const [dashboardPath = '', dashboardFn = ''] =
+  const [dashboardPathRaw = '', dashboardFn = ''] =
     (d as unknown as { dashboardEndpoint?: string }).dashboardEndpoint?.split('-') ?? [];
+
+  // Normalize for downstream matching/derivation
+  const listingPath = normalizePath(listingPathRaw, { braceAware: true });
+  const dashboardPath = normalizePath(dashboardPathRaw, { braceAware: true });
 
   d.listingEndpointPath = listingPath;
   d.listingEndpointFn = listingFn;
@@ -220,6 +237,7 @@ export function extractSelectedPaths(d: AugmentedAnswers): {
 
 /**
  * Mark whether the main API path is v2 or v6 and compute `mainApiPathPci` when needed.
+ * Assumes endpoints in `d.apiV2Endpoints` / `d.apiV6Endpoints` are already normalized.
  */
 export function setMainApiVersion(d: AugmentedAnswers, listingPath: string): void {
   const apiV2Ops = d.apiV2Endpoints?.get?.operationList ?? [];

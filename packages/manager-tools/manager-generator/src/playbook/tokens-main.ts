@@ -2,17 +2,23 @@
  * @file tokens-main.ts
  * @description Validate answers, merge presets/env, derive API knobs, coerce, and validate TokenMap.
  */
+import { chooseApis } from 'src/kernel/commons/utils/api-policy';
+import { deepMerge } from 'src/kernel/commons/utils/merge-utils';
+import {
+  braceAwareBasePath,
+  normalizePath,
+  sanitizePathForSchema,
+} from 'src/kernel/commons/utils/paths-utils';
+import { deriveServiceKey } from 'src/kernel/commons/utils/service-key';
 import {
   asDict,
-  deepMerge,
-  extractApiPaths,
   lower,
   readString,
   readStringArray,
-  sanitizePathForSchema,
-  splitCombinedEndpoint,
   trim,
-} from '../kernel/tokens/tokens-helper';
+} from 'src/kernel/commons/utils/strings-utils';
+
+import { extractApiPaths } from '../kernel/tokens/tokens-helper';
 import { type TokenMap } from '../kernel/types/tokens-types';
 import { loadPreset } from '../presets/presets';
 import { type Preset, type ResolveContext } from '../presets/presets-types';
@@ -55,27 +61,21 @@ export function buildBaseTokens(answers: ValidAnswers): TokenMap {
         : 'none';
 
   // Sanitize listing/dashboard for constants:
-  // - split combined "-fn" suffix
-  // - remove `{param}` braces (schema-safe), ensure leading slash
+  // - brace-aware base (drop suffix after "}")
+  // - schema-safe (no braces, "/" → "__")
   const listingEndpointForConstants = sanitizePathForSchema(
-    splitCombinedEndpoint(answers.listingEndpointPath ?? ''),
-  ).replace(/\{([^}]+)\}/g, '$1');
+    braceAwareBasePath(answers.listingEndpointPath ?? ''),
+  );
 
   const dashboardEndpointForConstants = sanitizePathForSchema(
-    splitCombinedEndpoint(answers.dashboardEndpointPath ?? ''),
-  ).replace(/\{([^}]+)\}/g, '$1');
+    braceAwareBasePath(answers.dashboardEndpointPath ?? ''),
+  );
 
   // Derive a stable serviceKey from the listing path (brace-aware)
-  const listingPathForKey = splitCombinedEndpoint(answers.listingEndpointPath ?? '');
-  const serviceKey =
-    listingPathForKey
-      .replace(/\{[^}]*\}/g, '') // drop {param}
-      .replace(/-+[a-z][a-zA-Z0-9]*$/, '') // drop "-getX"/"-listX"
-      .replace(/^\//, '') // remove leading slash
-      .replace(/\/+/g, '-') // slashes → dashes
-      .replace(/--+/g, '-') // collapse doubles
-      .replace(/^-|-$/g, '') || // trim edges
-    `${appNameKebab}-listing`;
+  const serviceKey = deriveServiceKey({
+    listingEndpointPath: answers.listingEndpointPath ?? '',
+    appName: answers.appName,
+  });
 
   return {
     // UPPER_SNAKE (legacy)
@@ -90,7 +90,7 @@ export function buildBaseTokens(answers: ValidAnswers): TokenMap {
     LANGUAGE: answers.language ?? 'en',
     FRAMEWORK: answers.framework ?? 'React',
     MAIN_API_PATH: answers.mainApiPath ?? '',
-    // For constants files we want schema-safe (no braces) and no "-fn" suffix
+    // For constants files we want schema-safe (no braces) and brace-aware base
     LISTING_ENDPOINT: listingEndpointForConstants,
     DASHBOARD_ENDPOINT: dashboardEndpointForConstants,
 
@@ -115,7 +115,7 @@ export function buildBaseTokens(answers: ValidAnswers): TokenMap {
     platformParam: 'platformId',
     appSlug: appNameKebab,
 
-    // APIs (defaults; overlaid later)
+    // APIs (defaults; will be overridden by policy later)
     listingApi,
     onboardingApi,
 
@@ -147,7 +147,7 @@ export function buildBaseTokens(answers: ValidAnswers): TokenMap {
  * 4) Load presets
  * 5) Merge defaults → presets.defaults → user
  * 6) Build base tokens and merge with presets.tokens and envTokens
- * 7) Overlay derived API/PCI tokens
+ * 7) Apply centralized API selection policy
  * 8) Coerce known booleans (as strings)
  * 9) Validate final TokenMap with zod
  */
@@ -213,7 +213,7 @@ export async function resolveTokens(
   };
 
   /* ---------------------------------------------------------------------- */
-  /* 3) API version derivation (brace-aware listing path)                    */
+  /* 3) API version/membership + presence detection (normalized)             */
   /* ---------------------------------------------------------------------- */
   // Prefer original (possibly combined) listing value to detect membership
   const originalListingValue =
@@ -222,26 +222,24 @@ export async function resolveTokens(
     parsed.listingEndpointPath;
 
   const listingPathWithBraces =
-    typeof originalListingValue === 'string' ? splitCombinedEndpoint(originalListingValue) : '';
+    typeof originalListingValue === 'string'
+      ? normalizePath(originalListingValue, { braceAware: true })
+      : '';
 
-  const apiV2Ops = extractApiPaths(rawDict, 'apiV2Endpoints');
-  const apiV6Ops = extractApiPaths(rawDict, 'apiV6Endpoints');
+  // Normalize ops for comparison (brace-aware)
+  const apiV2Ops = extractApiPaths(rawDict, 'apiV2Endpoints').map((p) =>
+    normalizePath(p, { braceAware: true }),
+  );
+  const apiV6Ops = extractApiPaths(rawDict, 'apiV6Endpoints').map((p) =>
+    normalizePath(p, { braceAware: true }),
+  );
 
-  // v2 if listing path is found in v2 GET operations; else v6
-  const mainApiPathApiVersion: 'v2' | 'v6' = apiV2Ops.includes(listingPathWithBraces) ? 'v2' : 'v6';
+  // Membership: v2 if listing is listed in v2 ops; else v6
+  const listingBelongsTo: 'v2' | 'v6' = apiV2Ops.includes(listingPathWithBraces) ? 'v2' : 'v6';
 
-  const isApiV2 = apiV2Ops.length > 0;
-  const isApiV6 = apiV6Ops.length > 0;
-
-  // Prefer v6Iceberg when any v6 GET exists; else v2 if only v2 exists; else default v6Iceberg
-  const derivedListingApi: 'v6Iceberg' | 'v2' | 'v6' = isApiV6
-    ? 'v6Iceberg'
-    : isApiV2
-      ? 'v2'
-      : 'v6Iceberg';
-
-  // Onboarding API follows detected version from listing path membership
-  const derivedOnboardingApi: 'v2' | 'v6' = mainApiPathApiVersion;
+  // Presence flags
+  const hasV2 = apiV2Ops.length > 0;
+  const hasV6 = apiV6Ops.length > 0;
 
   /* ---------------------------------------------------------------------- */
   /* 4) Load presets                                                         */
@@ -269,25 +267,34 @@ export async function resolveTokens(
   /* ---------------------------------------------------------------------- */
   const baseTokens = buildBaseTokens(answersMerged);
 
+  /* ---------------------------------------------------------------------- */
+  /* 7) Apply centralized API selection policy                               */
+  /* ---------------------------------------------------------------------- */
+  const { listingApi, onboardingApi } = chooseApis({
+    hasV2,
+    hasV6,
+    listingBelongsTo,
+  });
+
   const mergedTokens = [
     baseTokens,
     ...appliedPresets.map((p) => p.tokens ?? {}),
     ctx.envTokens ?? {},
     {
-      listingApi: derivedListingApi,
-      onboardingApi: derivedOnboardingApi,
+      listingApi,
+      onboardingApi,
       isPci: isPci.toString(),
       routeFlavor: isPci ? 'pci' : 'generic',
-      isApiV2: isApiV2.toString(),
-      isApiV6: isApiV6.toString(),
-      mainApiPathApiVersion,
+      isApiV2: hasV2.toString(),
+      isApiV6: hasV6.toString(),
+      mainApiPathApiVersion: listingBelongsTo,
       APP_TYPE: isPci ? 'pci' : 'full',
       pciName: pciName ?? '',
     },
   ].reduce<TokenMap>((acc, part) => ({ ...acc, ...part }), {});
 
   /* ---------------------------------------------------------------------- */
-  /* 7) Coerce booleans as strings where expected                            */
+  /* 8) Coerce booleans as strings where expected                            */
   /* ---------------------------------------------------------------------- */
   const asBoolString = (v: unknown): string => {
     if (typeof v === 'string') return (v.trim().toLowerCase() === 'true').toString();
@@ -301,7 +308,7 @@ export async function resolveTokens(
   };
 
   /* ---------------------------------------------------------------------- */
-  /* 8) Final validation                                                     */
+  /* 9) Final validation                                                     */
   /* ---------------------------------------------------------------------- */
   return TokenMapSchema.parse(withCoercedBooleans);
 }
