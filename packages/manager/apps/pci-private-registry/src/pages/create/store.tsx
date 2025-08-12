@@ -11,7 +11,7 @@ type TStore = {
       value: (val: string) => void;
       touched: (val: boolean) => void;
     };
-    region: (val: TLocalisation) => void;
+    region: (val: TLocalisation | null) => void;
     plan: (val: TCapability['plans'][0]) => void;
   };
   stepsState: TStepsState;
@@ -37,6 +37,25 @@ type TStore = {
     },
   ) => Promise<void>;
 };
+
+type DeploymentParams = {
+  name: string;
+  planID: string;
+  region: string;
+};
+
+function isValidDeploymentParams(params: {
+  name: string;
+  planID?: string;
+  region?: string;
+}): params is DeploymentParams {
+  return (
+    typeof params.planID === 'string' &&
+    typeof params.region === 'string' &&
+    params.planID.trim() !== '' &&
+    params.region.trim() !== ''
+  );
+}
 
 export const useStore = create<TStore>((set, get) => ({
   state: {
@@ -72,7 +91,7 @@ export const useStore = create<TStore>((set, get) => ({
         }));
       },
     },
-    region(val: TLocalisation) {
+    region(val: TLocalisation | null) {
       set(() => ({
         state: {
           ...get().state,
@@ -199,12 +218,15 @@ export const useStore = create<TStore>((set, get) => ({
   ) => {
     const payload = {
       name: get().state.name.value,
-      region: get().state.region.name,
-      planID: get().state.plan.id,
+      region: get()?.state?.region?.name,
+      planID: get()?.state?.plan?.id,
     };
 
     try {
-      await createRegistry(projectId, payload);
+      if (isValidDeploymentParams(payload)) {
+        await createRegistry(projectId, payload);
+      }
+
       callbacks.success();
     } catch (e) {
       callbacks.error(e);

@@ -19,8 +19,9 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation, Translation } from 'react-i18next';
 import { useContext } from 'react';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { StepEnum } from '@/pages/create/types';
 import { useStore } from '@/pages/create/store';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
@@ -28,6 +29,8 @@ import { PRIVATE_REGISTRY_CREATE_PLAN } from '@/pages/create/constants';
 import PlanChooser from '@/components/PlanChooser.component';
 import queryClient from '@/queryClient';
 import { getRegistryQueryPrefix } from '@/api/hooks/useRegistry';
+
+import { DeploymentMode } from '@/types';
 
 export default function PlanStep({
   isCreationDisabled,
@@ -40,7 +43,7 @@ export default function PlanStep({
 
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const navigate = useNavigate();
 
   const store = useStore();
@@ -137,6 +140,7 @@ export default function PlanStep({
         )}
         {!isPending && store.state.region && (
           <PlanChooser
+            type={store.state.region.type as DeploymentMode}
             plan={store.state.plan}
             plans={
               capabilities?.find(

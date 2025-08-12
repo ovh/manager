@@ -31,6 +31,7 @@ describe('NameStep', () => {
 
   vi.mock('@ovh-ux/manager-pci-common', (importOriginal) => ({
     ...importOriginal,
+    useParam: vi.fn().mockReturnValue({ projectId: 'projectId' }),
     useProjectLocalisation: vi.fn().mockReturnValue({ data: [] }),
     usePCIFeatureAvailability: vi.fn().mockReturnValue({ data: new Map() }),
     DeploymentTilesInput: vi

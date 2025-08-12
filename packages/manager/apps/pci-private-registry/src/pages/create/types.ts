@@ -8,12 +8,12 @@ export enum StepEnum {
 }
 
 export type TState = {
-  region: TLocalisation;
+  region: TLocalisation | null;
   name: {
     value: string;
     touched: boolean;
   };
-  plan: TCapability['plans'][0];
+  plan?: TCapability['plans'][0];
 };
 
 export type TStepsState = {

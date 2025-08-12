@@ -1,5 +1,5 @@
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useProject, useParam } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
   Datagrid,
@@ -30,7 +30,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import queryClient from '@/queryClient';
 import {
   getRegistryQueryPrefix,
@@ -43,7 +43,7 @@ import { CHANGELOG_LINKS } from '@/constants';
 export default function ListPage() {
   const { t } = useTranslation();
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
