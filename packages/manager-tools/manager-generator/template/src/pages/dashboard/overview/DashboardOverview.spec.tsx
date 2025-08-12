@@ -83,11 +83,11 @@ describe('DashboardOverviewPage (typed, clean)', () => {
     const lastArgs = datagridPropsSpy.mock.calls[datagridPropsSpy.mock.calls.length - 1] ?? [];
     const call = lastArgs[0];
 
-    expect(call.columns.map((c) => c.label)).toEqual(['listing:col.name', 'listing:col.status']);
-    expect(call.items).toHaveLength(2);
-    expect(call.totalItems).toBe(2);
-    expect(call.isLoading).toBe(false);
-    expect(call.hasNextPage).toBe(true);
+    expect(call?.columns.map((c) => c.label)).toEqual(['listing:col.name', 'listing:col.status']);
+    expect(call?.items).toHaveLength(2);
+    expect(call?.totalItems).toBe(2);
+    expect(call?.isLoading).toBe(false);
+    expect(call?.hasNextPage).toBe(true);
   });
 
   it('falls back to an auto column when no base columns', () => {
@@ -95,12 +95,22 @@ describe('DashboardOverviewPage (typed, clean)', () => {
 
     renderWithRouter(<DashboardOverviewPage />);
 
-    const { columns } = datagridPropsSpy.mock.calls.at(-1)[0];
+    // Ensure the Datagrid was invoked and safely grab the last call
+    expect(datagridPropsSpy).toHaveBeenCalled();
+    const lastCall = datagridPropsSpy.mock.calls.at(-1);
+    expect(lastCall).toBeDefined();
 
+    const [props] = lastCall!;
+    const { columns } = props;
+
+    expect(Array.isArray(columns)).toBe(true);
     expect(columns).toHaveLength(1);
-    const first = columns[0];
-    expect(first.id).toBe('auto');
-    expect(first.label).toBe('Result');
+
+    const first = columns.at(0);
+    expect(first).toBeDefined();
+
+    expect(first!.id).toBe('auto');
+    expect(first!.label).toBe('Result');
   });
 
   it('wires onFetchNextPage to the hook function', () => {

@@ -52,13 +52,13 @@ describe('useBreadcrumb', () => {
 
     expect(root).toEqual({ id: 'root', label: 'Home', href: '' });
 
-    expect(projects.id).toBe('projects');
-    expect(projects.label).toBe('Projects');
-    expect(projects.href).toBe('/projects');
+    expect(projects?.id).toBe('projects');
+    expect(projects?.label).toBe('Projects');
+    expect(projects?.href).toBe('/projects');
 
-    expect(alpha.id).toBe('alpha');
-    expect(alpha.label).toBe('Alpha');
-    expect(alpha.href).toBe('/projects/alpha');
+    expect(alpha?.id).toBe('alpha');
+    expect(alpha?.label).toBe('Alpha');
+    expect(alpha?.href).toBe('/projects/alpha');
   });
 
   it('handles deeper paths and keeps accumulating hrefs', () => {
