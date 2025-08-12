@@ -16,6 +16,7 @@ import PaymentMethodChallenge, {
   TPaymentMethodChallengeRef,
 } from './PaymentMethodChallenge';
 import queryClient from '@/queryClient';
+import PaymentMethodIntegration from './integrations/PaymentMethodIntegration';
 
 export type TPaymentMethodError =
   | 'challenge_retry'
@@ -118,6 +119,10 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     false,
   );
   const [
+    isPaymentMethodIntegrationValid,
+    setIsPaymentMethodIntegrationValid,
+  ] = React.useState<boolean>(false);
+  const [
     selectedPaymentMethod,
     setSelectedPaymentMethod,
   ] = React.useState<TPaymentMethod | null>(null);
@@ -148,11 +153,15 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     // A payment method is selected and is set as default
     const hasValidPaymentMethod = !!selectedPaymentMethod && isSetAsDefault;
 
-    const isValid = isChallengeValid && hasValidPaymentMethod;
+    const isValid =
+      isChallengeValid &&
+      hasValidPaymentMethod &&
+      isPaymentMethodIntegrationValid;
 
     handleValidityChange(isValid);
   }, [
     isChallengeValid,
+    isPaymentMethodIntegrationValid,
     handleValidityChange,
     selectedPaymentMethod,
     isSetAsDefault,
@@ -204,18 +213,27 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
       ) : (
         <RegisterPaymentMethod
           eligibility={eligibility}
-          handlePaymentMethodChange={handlePaymentMethodChange}
-          handleSetAsDefaultChange={handleSetAsDefaultChange}
+          handlePaymentMethodChange={onHandlePaymentMethodChange}
+          handleSetAsDefaultChange={onHandleSetAsDefaultChange}
         />
       )}
-      <div className="mb-6">
-        <PaymentMethodChallenge
-          eligibility={eligibility}
-          challengeHandler={paymentChallengeRef}
-          paymentMethod={defaultPaymentMethod}
-          handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
-        />
-      </div>
+      <PaymentMethodChallenge
+        eligibility={eligibility}
+        challengeHandler={paymentChallengeRef}
+        paymentMethod={defaultPaymentMethod}
+        handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
+      />
+      {!defaultPaymentMethod && (
+        <div className="mb-6">
+          <PaymentMethodIntegration
+            paymentMethod={selectedPaymentMethod}
+            handleValidityChange={(isValid) =>
+              setIsPaymentMethodIntegrationValid(isValid)
+            }
+            eligibility={eligibility}
+          />
+        </div>
+      )}
     </>
   );
 };
