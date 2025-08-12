@@ -120,5 +120,30 @@
     "name": "real run uses default OUTPUT_BASE_DIR",
     "cmd": "yarn manager-generator --non-interactive --appName default-out-test --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me && test -f ./packages/manager/apps/default-out-test/package.json",
     "expectExit": 0
+  },
+  {
+    "name": "v6-only → listingApi v6Iceberg, onboardingApi v6",
+    "cmd": "OUT=\"{OUT}\"; JSON_FILE=$(mktemp); cat > \"$JSON_FILE\" <<'JSON'\n{\"apiV6Endpoints\":{\"get\":{\"operationList\":[{\"apiPath\":\"/dns/zone\"}]}},\"apiV2Endpoints\":{\"get\":{\"operationList\":[]}}}\nJSON\nexport MGR_GEN_INJECT_JSON=\"$(cat \"$JSON_FILE\")\"; yarn manager-generator --non-interactive --appName v6-app --appType full --universe Hub --subUniverse Hub --region EU --flavor generic --language en --framework React --mainApiPath /dns --listingEndpointPath /dns/zone --dashboardEndpointPath /dns/zone --out \"$OUT\" && grep -E \"listingApi:[[:space:]]*'v6Iceberg'\" \"$OUT/src/App.constants.ts\" && grep -E \"onboardingApi:[[:space:]]*'v6'\" \"$OUT/src/App.constants.ts\"; RC=$?; rm -f \"$JSON_FILE\"; exit $RC",
+    "expectExit": 0
+  },
+  {
+    "name": "mix v6 present but listing in v2 → onboardingApi v2",
+    "cmd": "OUT=\"{OUT}\"; JSON_FILE=$(mktemp); cat > \"$JSON_FILE\" <<'JSON'\n{\"apiV6Endpoints\":{\"get\":{\"operationList\":[{\"apiPath\":\"/domain/v6only\"}]}},\"apiV2Endpoints\":{\"get\":{\"operationList\":[{\"apiPath\":\"/domain\"}]}}}\nJSON\nexport MGR_GEN_INJECT_JSON=\"$(cat \"$JSON_FILE\")\"; yarn manager-generator --non-interactive --appName mix-app --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /domain --listingEndpointPath /domain --dashboardEndpointPath /domain --out \"$OUT\" && grep -E \"listingApi:[[:space:]]*'v6Iceberg'\" \"$OUT/src/App.constants.ts\" && grep -E \"onboardingApi:[[:space:]]*'v2'\" \"$OUT/src/App.constants.ts\"; RC=$?; rm -f \"$JSON_FILE\"; exit $RC",
+    "expectExit": 0
+  },
+  {
+    "name": "combined endpoint split (brace-aware detection)",
+    "cmd": "OUT=\"{OUT}\"; JSON_FILE=$(mktemp); cat > \"$JSON_FILE\" <<'JSON'\n{\"apiV6Endpoints\":{\"get\":{\"operationList\":[{\"apiPath\":\"/cloud/project/{serviceName}\"}]}},\"apiV2Endpoints\":{\"get\":{\"operationList\":[]}}}\nJSON\nexport MGR_GEN_INJECT_JSON=\"$(cat \"$JSON_FILE\")\"; yarn manager-generator --non-interactive --appName combo --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /cloud --listingEndpointPath '/cloud/project/{serviceName}-getProject' --dashboardEndpointPath '/cloud/project/{serviceName}-getProject' --out \"$OUT\" && grep -E \"listingApi:[[:space:]]*'v6Iceberg'\" \"$OUT/src/App.constants.ts\" && grep -E \"onboardingApi:[[:space:]]*'v6'\" \"$OUT/src/App.constants.ts\" && grep -E \"serviceKey:[[:space:]]*'cloud-project-serviceName'\" \"$OUT/src/App.constants.ts\"; RC=$?; rm -f \"$JSON_FILE\"; exit $RC",
+    "expectExit": 0
+  },
+  {
+    "name": "strip version prefix in mainApiPath (assert via serviceKey)",
+    "cmd": "OUT=\"{OUT}\"; yarn manager-generator --non-interactive --appName strip-v6 --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath v6-/ovhCloudConnect --listingEndpointPath /ovhCloudConnect --dashboardEndpointPath /ovhCloudConnect --out \"$OUT\" && grep -E \"serviceKey:[[:space:]]*'ovhCloudConnect'\" \"$OUT/src/App.constants.ts\"",
+    "expectExit": 0
+  },
+  {
+    "name": "no v2/v6 lists → default listing v6Iceberg",
+    "cmd": "OUT=\"{OUT}\"; JSON_FILE=$(mktemp); cat > \"$JSON_FILE\" <<'JSON'\n{\"apiV6Endpoints\":{\"get\":{\"operationList\":[]}},\"apiV2Endpoints\":{\"get\":{\"operationList\":[]}}}\nJSON\nexport MGR_GEN_INJECT_JSON=\"$(cat \"$JSON_FILE\")\"; yarn manager-generator --non-interactive --appName nolists --appType full --universe Manager --subUniverse Manager --region EU --flavor generic --language en --framework React --mainApiPath /me --listingEndpointPath /me --dashboardEndpointPath /me --out \"$OUT\" && grep -E \"listingApi:[[:space:]]*'v6Iceberg'\" \"$OUT/src/App.constants.ts\"; RC=$?; rm -f \"$JSON_FILE\"; exit $RC",
+    "expectExit": 0
   }
 ]
