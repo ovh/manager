@@ -15,6 +15,7 @@ import {
 export type PaymentStepProps = {
   cart: Cart;
   cartProjectItem: OrderedProduct;
+  handleIsPaymentMethodValid: (isValid: boolean) => void;
 };
 
 export type PaymentForm = {
@@ -24,6 +25,7 @@ export type PaymentForm = {
 export default function PaymentStep({
   cart,
   cartProjectItem,
+  handleIsPaymentMethodValid,
 }: PaymentStepProps) {
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
@@ -56,7 +58,7 @@ export default function PaymentStep({
         handlePaymentMethodChange={() => {}}
         handleSetAsDefaultChange={() => {}}
         paymentMethodHandler={() => {}}
-        handleValidityChange={() => {}}
+        handleValidityChange={handleIsPaymentMethodValid}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (

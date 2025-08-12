@@ -60,3 +60,5 @@ export const CONFIRM_CREDIT_CARD_TEST_AMOUNT = 2;
 export const LANGUAGE_OVERRIDE = { IN: `en-IN`, ASIA: `en-GB` };
 
 export const CHALLENGE_CREDIT_CARD_LENGTH = 6;
+
+export const CREDITS_PREDEFINED_AMOUNT_SEQUENCE = [3, 5, 10, 30];
