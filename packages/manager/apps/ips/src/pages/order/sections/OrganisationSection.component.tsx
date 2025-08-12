@@ -12,12 +12,14 @@ import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { useGetOrganisationsList } from '@/data/hooks/organisation';
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
+import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 
 export const OrganisationSection: React.FC = () => {
   const {
     selectedOrganisation,
     setSelectedOrganisation,
     selectedPlanCode,
+    selectedRegion,
   } = React.useContext(OrderContext);
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('order');
@@ -26,7 +28,12 @@ export const OrganisationSection: React.FC = () => {
   return (
     <OrderSection
       title={t('organisation_selection_title')}
-      description={t('organisation_selection_description')}
+      description={
+        t('organisation_selection_description') +
+        (isRegionInEu(selectedRegion)
+          ? t('organisation_selection_description_no_organisation_RIPE')
+          : t('organisation_selection_description_no_organisation_ARIN'))
+      }
     >
       <OdsMessage
         isDismissible={false}
@@ -43,7 +50,7 @@ export const OrganisationSection: React.FC = () => {
           className="block w-full max-w-[384px] mb-1"
           name="ip-organisation"
           onOdsChange={(event) =>
-            setSelectedOrganisation(event.target.value as string)
+            setSelectedOrganisation(event.detail.value as string)
           }
           value={selectedOrganisation}
           placeholder={t('organisation_select_placeholder')}
