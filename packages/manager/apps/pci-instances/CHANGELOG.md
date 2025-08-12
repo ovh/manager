@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.3.6...@ovh-ux/manager-pci-instances-app@0.3.7) (2025-08-12)
+
+
+### Bug Fixes
+
+* **pci-instances:** make instance status text no wrap ([1993c3a](https://github.com/ovh/manager/commit/1993c3a06842f6f78fb68f819673ff56c3f45331)), closes [#TAPC-4640](https://github.com/ovh/manager/issues/TAPC-4640)
+
+
+
+
+
 ## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.3.5...@ovh-ux/manager-pci-instances-app@0.3.6) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
