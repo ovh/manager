@@ -20,7 +20,6 @@ export const Ipv4Order: React.FC = () => {
     selectedRegion,
     selectedPlanCode,
     selectedGeolocation,
-    selectedOrganisation,
     addDisabledService,
   } = React.useContext(OrderContext);
 
@@ -68,8 +67,7 @@ export const Ipv4Order: React.FC = () => {
       !!(selectedRegion || region) &&
       !!selectedOffer &&
       !!selectedPlanCode &&
-      !!selectedGeolocation &&
-      (!isOrganisationSectionVisible || !!selectedOrganisation),
+      !!selectedGeolocation,
   };
 
   if (ipVersion !== IpVersion.ipv4) {
