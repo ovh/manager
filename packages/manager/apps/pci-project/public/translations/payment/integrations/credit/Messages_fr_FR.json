@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Chaque projet Public Cloud possède un compte de crédits qui lui est propre. Si le montant du crédit est insuffisant, vous devrez régler la somme restant due avec un moyen de paiement enregistré dans les plus brefs délais.",
+  "pci_project_new_payment_credit_info": "* Les crédits ne sont pas transférables ni remboursables et ne possèdent aucune valeur monétaire. Tout crédit non utilisé dans les 13 mois suivant leur achat sont perdus. En cliquant sur « Créditer et créer mon projet », vous allez être redirigé vers un bon de commande pour régler vos crédits par carte bancaire ou Paypal.",
+  "pci_project_new_payment_credit_amount_other": "Autre montant",
+  "pci_project_new_payment_credit_amount_other_label": "Montant à créditer"
+}

@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Cada projeto Public Cloud dispõe de uma própria conta de créditos. Se o montante do crédito for insuficiente, deverá pagar o montante restante devido através de um método de pagamento registado o mais rápido possível.",
+  "pci_project_new_payment_credit_info": "* Os créditos não podem ser transferidos nem são reembolsáveis, e não possuem qualquer valor monetário. Qualquer crédito não utilizado nos 13 meses a seguir à compra será perdido. Ao clicar em “Creditar e criar o meu projeto”, vai ser redirecionado para um voucher para pagar os seus créditos por cartão de crédito ou PayPal.",
+  "pci_project_new_payment_credit_amount_other": "Outro montante",
+  "pci_project_new_payment_credit_amount_other_label": "Montante a creditar"
+}

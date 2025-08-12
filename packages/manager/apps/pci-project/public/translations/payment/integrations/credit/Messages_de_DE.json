@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Jedes Public Cloud Projekt verfügt über ein eigenes Guthabenkonto. Wenn das Guthaben nicht ausreicht, begleichen Sie den ausstehenden Betrag so schnell wie möglich mit einem eingetragenen Zahlungsmittel.",
+  "pci_project_new_payment_credit_info": "*Das Guthaben kann nicht übertragen oder rückerstattet werden und hat keinerlei Geldwert. Jedes Guthaben, das 13 Monate nach Erwerb nicht genutzt wird, verfällt. Wenn Sie auf „Guthaben aufladen und mein Projekt erstellen“ klicken, werden Sie auf einen Bestellschein geleitet, um Ihr Guthaben mit Kreditkarte oder per PayPal aufzuladen.",
+  "pci_project_new_payment_credit_amount_other": "Anderer Betrag",
+  "pci_project_new_payment_credit_amount_other_label": "Aufzuladender Betrag"
+}
