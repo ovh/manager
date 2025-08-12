@@ -21,13 +21,13 @@ import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones } from '@/helpers';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
   const { t: tDetail } = useTranslation('detail');
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
+  const [activePanelTranslation, setActivePanelTranslation] = useState<
+    string | null
+  >(null);
 
   const { data: project } = useProject();
   const { projectId, kubeId } = useParams();
@@ -37,10 +37,6 @@ export default function DetailPage() {
   const location = useLocation();
 
   const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail?.region,
-  );
 
   const tabs = [
     {
@@ -78,13 +74,13 @@ export default function DetailPage() {
       ),
       to: useResolvedPath('logs').pathname,
       tracking: TRACKING_TABS.LOGS,
-      isHidden: isMultiDeploymentZones(regionInformations?.type),
+      isHidden: false,
     },
   ];
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
-    setActivePanelTranslation(tDetail(activeTab?.name));
+    if (activeTab) setActivePanelTranslation(tDetail(activeTab?.name));
   }, [location.pathname]);
 
   return (
@@ -104,7 +100,7 @@ export default function DetailPage() {
               label: kubeDetail?.name,
               href: hrefService,
             },
-            { label: activePanelTranslation },
+            { label: activePanelTranslation ?? '' },
           ]}
         />
       )}
