@@ -13,19 +13,20 @@ import { ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useParams } from 'react-router-dom';
 import {
   DeploymentTilesInput,
   RegionSummary,
   TDeployment,
   TLocalisation,
   useProjectLocalisation,
+  useParam,
 } from '@ovh-ux/manager-pci-common';
 import { PRIVATE_REGISTRY_CREATE_LOCATION_NEXT } from '@/pages/create/constants';
 import { StepEnum } from '@/pages/create/types';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
 import { useStore } from '@/pages/create/store';
 import { use3AZFeatureAvailability } from '@/hooks/features/use3AZFeatureAvailability';
+import { DeploymentMode } from '@/types';
 
 export default function RegionStep({
   isLocked,
@@ -41,7 +42,7 @@ export default function RegionStep({
 
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
 
   const store = useStore();
 
@@ -58,6 +59,9 @@ export default function RegionStep({
   const regions = useMemo(() => {
     if (Array.isArray(localisations?.regions)) {
       return localisations.regions
+        .filter((region) =>
+          is3AZEnabled ? region : region.type !== DeploymentMode.MULTI_ZONES,
+        )
         .filter((region) =>
           (capabilities || [])
             .map((capacity) => capacity.regionName)
@@ -113,7 +117,7 @@ export default function RegionStep({
   useEffect(() => {
     if (!!capabilities?.length && store.state.region) {
       const regionCapability = capabilities.find(
-        (c) => c.regionName === store.state.region.name,
+        (c) => store.state.region && c.regionName === store.state.region.name,
       );
       if (regionCapability) {
         const plan =
@@ -195,7 +199,7 @@ export default function RegionStep({
             </div>
           )}
 
-          {isLocked ? (
+          {isLocked && store.state.region ? (
             <RegionSummary region={store.state.region} />
           ) : (
             <TilesInputComponent
