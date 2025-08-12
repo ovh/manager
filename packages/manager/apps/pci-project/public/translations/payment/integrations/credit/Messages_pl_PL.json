@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Do każdego projektu Public Cloud przypisane jest oddzielne konto przedpłacone. Jeśli kwota zasilenia jest niewystarczająca, ureguluj jak najszybciej pozostałą należną kwotę, używając zarejestrowanego sposobu płatności.",
+  "pci_project_new_payment_credit_info": "* Środki z zasileń nie mogą być przenoszone między kontami, nie podlegają zwrotom i nie posiadają wartości pieniężnej.  Zasilenie niewykorzystane w ciągu 13 miesięcy od zakupu traci swoją ważność. Po kliknięciu na „Zasil i utwórz projekt” zostaniesz przekierowany do zamówienia, abyś mógł uregulować należność za pomocą karty kredytowej lub PayPal.",
+  "pci_project_new_payment_credit_amount_other": "Inna kwota",
+  "pci_project_new_payment_credit_amount_other_label": "Kwota zasilenia"
+}
