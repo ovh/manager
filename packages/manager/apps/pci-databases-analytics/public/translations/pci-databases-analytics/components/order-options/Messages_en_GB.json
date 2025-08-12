@@ -26,6 +26,6 @@
   "ipTableHeaderIp": "IP address",
   "ipTableHeaderDescription": "Description",
   "commonlyUsedIps": "Commonly used IP addresses",
-  "commonlyUsedIpsDatatplatform": "OVHcloud Dataplatform IP",
+  "commonlyUsedIpsDatatplatform": "OVHcloud Data Platform IP",
   "commonlyUsedIpsCurrentIp": "Current IP"
 }

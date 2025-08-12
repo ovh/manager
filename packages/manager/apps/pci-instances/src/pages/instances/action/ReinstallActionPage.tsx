@@ -47,7 +47,7 @@ const ReinstallActionPage: FC<TReinstallActionPageProps> = ({
 
   useEffect(() => {
     if (images && images.length > 0) {
-      setImageId(images[0].value);
+      setImageId(images[0]?.value ?? '');
     }
   }, [images]);
 

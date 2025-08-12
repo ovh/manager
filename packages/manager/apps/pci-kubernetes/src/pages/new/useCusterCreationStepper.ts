@@ -156,10 +156,10 @@ export function useClusterCreationStepper(has3AZRegions = false) {
         nodeStep.unlock();
         [confirmStep].forEach(stepReset);
       },
-      submit: (nodePools: NodePoolPrice[]) => {
+      submit: (nodePools: NodePoolPrice[] | null) => {
         setForm((f) => ({
           ...f,
-          nodePools,
+          ...(nodePools && { nodePools }),
         }));
         nodeStep.check();
         nodeStep.lock();

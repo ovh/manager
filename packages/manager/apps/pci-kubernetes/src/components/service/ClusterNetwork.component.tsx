@@ -46,9 +46,10 @@ export default function ClusterNetwork({
     isPending: isPendingRegionInformation,
   } = useRegionInformations(projectId, kubeDetail.region);
 
-  const shouldLoadSubnets =
-    !!kubeDetail.privateNetworkId &&
-    isMonoDeploymentZone(regionInformations?.type);
+  const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
+
+  const shoulShowChangePrivateNetwork =
+    regionInformations?.type && isMonoDeploymentZone(regionInformations?.type);
 
   const ip = kubeDetail?.privateNetworkConfiguration?.defaultVrackGateway;
 
@@ -175,7 +176,7 @@ export default function ClusterNetwork({
           </>
         )}
 
-        {shouldLoadSubnets && (
+        {shouldLoadSubnets && shoulShowChangePrivateNetwork && (
           <OsdsButton
             data-testid="cluster-network-edit-button"
             color={ODS_THEME_COLOR_INTENT.primary}

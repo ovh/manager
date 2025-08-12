@@ -2,8 +2,6 @@ import { useMemo, useState } from 'react';
 import { Loader } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   Tooltip,
@@ -153,6 +151,7 @@ const MetricChart = ({
                 fillOpacity={0.2}
                 strokeWidth={2}
                 dot={false}
+                connectNulls
                 hide={activeSeries.includes(hostMetric.hostname)}
               />
             ))}

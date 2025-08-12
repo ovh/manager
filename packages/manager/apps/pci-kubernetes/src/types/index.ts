@@ -199,3 +199,32 @@ export enum DeploymentMode {
 export type UrlRecord = { [Key in OvhSubsidiary]?: string } & {
   DEFAULT: string;
 };
+
+export type TScalingState = {
+  quantity: {
+    desired: number;
+    min: number;
+    max: number;
+  };
+  isAutoscale: boolean;
+};
+
+export type NodePoolState = {
+  name: string;
+  isTouched: boolean;
+  scaling: TScalingState;
+  antiAffinity: boolean;
+  selectedAvailabilityZone?: string;
+};
+
+export type TCreateNodePoolParam = {
+  flavorName: string;
+  name: string;
+  availabilityZones?: string[];
+  antiAffinity: boolean;
+  monthlyBilled: boolean;
+  autoscale: boolean;
+  minNodes?: number;
+  desiredNodes: number;
+  maxNodes?: number;
+};

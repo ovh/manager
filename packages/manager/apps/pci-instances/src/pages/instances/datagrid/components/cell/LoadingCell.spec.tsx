@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { LoadingCell } from './LoadingCell.component';
 
 describe('Considering the loading cell component', () => {
+  type Data = {
+    isLoading: boolean;
+  };
   test.each`
     isLoading
     ${false}
     ${true}
   `(
     'Should render component correctly depending on isLoading property <$isLoading>',
-    ({ isLoading }) => {
+    ({ isLoading }: Data) => {
       render(
         <LoadingCell isLoading={isLoading}>
           <div>Foo</div>

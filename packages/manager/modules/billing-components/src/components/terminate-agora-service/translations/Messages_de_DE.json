@@ -29,5 +29,8 @@
   "autorenew_agora_terminate_service_success_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Kündigung Ihres Dienstes wurde erfolgreich registriert. Sie erhalten eine E-Mail mit den Details zum weiteren Vorgehen.",
   "autorenew_agora_terminate_service_success_ftc_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Die Kündigung Ihres Dienstes wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
   "autorenew_agora_terminate_service_error_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}",
-  "autorenew_agora_terminate_service_confirm_input": "Geben Sie im folgenden Feld „TERMINATE\" ein, um den Vorgang zu bestätigen."
+  "autorenew_agora_terminate_service_confirm_input": "Geben Sie im folgenden Feld „TERMINATE\" ein, um den Vorgang zu bestätigen.",
+  "autorenew_agora_terminate_service_success_VRACK": "Die Kündigung Ihres vRack „{{serviceName}}“ wurde registriert. Sie erhalten eine E-Mail mit den Details zum weiteren Vorgehen.",
+  "autorenew_agora_terminate_service_success_ftc_VRACK": "Die Kündigung Ihres vRack „{{serviceName}}“ wurde registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
+  "autorenew_agora_terminate_service_error_VRACK": "Ihre Kündigungsanfrage wurde nicht registriert: {{error}}"
 }

@@ -38,7 +38,7 @@
   "advancedConfigurationErrorMin": "Must be greater than {{min}}",
   "advancedConfigurationErrorMax": "Must be less than {{max}}",
   "advancedConfigurationErrorRequired": "This field is required",
-  "toggleKafkaSettingsErrorTitle": "An error has occurred updating your service",
+  "toggleKafkaSettingsErrorTitle": "An error occurred while updating your service",
   "toggleRestApiSuccessTitle": "Success",
   "toggleRestApiEnabledDescription": "Kafka REST API is now enabled for your service",
   "toggleRestApiDisabledDescription": "Kafka REST API is now disabled for your service",
@@ -46,7 +46,7 @@
   "toggleSchemaRegistryEnabledDescription": "Schema Registry is now enabled for your service",
   "toggleSchemaRegistryDisabledDescription": "Schema Registry is now disabled for your service",
   "kafkaSettingsRestApiTitle": "Kafka REST API",
-  "kafkaSettingsRestApiDescription": "HTTP REST interface for a Kafka cluster (based on the <anchor> Karapace</anchor> project)",
+  "kafkaSettingsRestApiDescription": "HTTP REST interface for a Kafka cluster (based on the <anchor>Karapace</anchor> project)",
   "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
-  "kafkaSettingsSchemaRegistryDescription": "HTTP REST service interface for storing Apache Kafka schemas (based on <anchor> Karapace</anchor> project )"
+  "kafkaSettingsSchemaRegistryDescription": "HTTP REST service interface for storing Apache Kafka schemas (based on <anchor>Karapace</anchor> project)"
 }

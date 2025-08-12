@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import { Suspense, useContext, FC } from 'react';
 import { useRouteError, Outlet } from 'react-router-dom';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
@@ -10,7 +11,7 @@ const Layout: FC = () => {
   useHidePreloader();
   useShellRoutingSync();
   return (
-    <div className="md:mx-9 mt-8">
+    <div className="mt-8">
       <Suspense>
         <Outlet />
       </Suspense>

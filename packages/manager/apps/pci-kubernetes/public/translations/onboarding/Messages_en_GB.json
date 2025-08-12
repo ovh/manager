@@ -6,7 +6,7 @@
   "pci_projects_project_kubernetes_onboarding_action_label": "Create a cluster",
   "pci_projects_project_kubernetes_onboarding_guides_configure_title": "Configuring kubectl on an OVH Managed Kubernetes cluster",
   "pci_projects_project_kubernetes_onboarding_guides_configure_description": "",
-  "pci_projects_project_kubernetes_onboarding_guides_nodes_title": "Adding nodes to a OVH Managed Kubernetcluster",
+  "pci_projects_project_kubernetes_onboarding_guides_nodes_title": "Adding nodes to a OVH Managed Kubernetes cluster",
   "pci_projects_project_kubernetes_onboarding_guides_nodes_description": "",
   "pci_projects_project_kubernetes_onboarding_guides_deploy-app_title": "Deploying an application",
   "pci_projects_project_kubernetes_onboarding_guides_deploy-app_description": "",
