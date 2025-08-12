@@ -18,7 +18,7 @@ export enum TEligibilityPaymentMethod {
 
 export type ProjectPrice = {
   currencyCode: CurrencyCode;
-  priceInUcents: number | null;
+  priceInUcents?: number | null | undefined;
   text: string;
   value: number;
 };

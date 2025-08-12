@@ -3,7 +3,7 @@ import { OvhSubsidiary, StepComponent } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -30,6 +30,9 @@ export default function ProjectCreation() {
   const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
 
   const { form, setForm, isConfigFormValid } = useConfigForm(ovhSubsidiary);
+  const [isPaymentMethodValid, setIsPaymentMethodValid] = useState<boolean>(
+    false,
+  );
 
   const { mutate: createAndAssignCart, data: cart } = useCreateAndAssignCart();
   const { mutate: orderProjectItem, data: projectItem } = useOrderProjectItem();
@@ -139,14 +142,21 @@ export default function ProjectCreation() {
             label: t('pci_project_new_payment_btn_continue_default', {
               ns: 'new/payment',
             }),
-            isDisabled: false,
+            isDisabled: !isPaymentMethodValid,
           }}
           skip={{
             action: handleCancel,
             label: t('cancel', { ns: NAMESPACES.ACTIONS }),
           }}
         >
-          <PaymentStep cart={cart} cartProjectItem={projectItem} />
+          <PaymentStep
+            cart={cart}
+            cartProjectItem={projectItem}
+            handleIsPaymentMethodValid={(isValid) => {
+              console.log('Payment method validity changed:', isValid);
+              setIsPaymentMethodValid(isValid);
+            }}
+          />
         </StepComponent>
       </div>
     </div>
