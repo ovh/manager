@@ -9,7 +9,6 @@ export * from './tabs';
 export * from './tiles-input-group';
 export * from './tiles-input';
 
-export * from './content';
 export * from './navigation';
 export * from './templates';
 
