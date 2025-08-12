@@ -14,7 +14,6 @@ export default {
     includeCategories: '<?',
     projectId: '@',
     privateNetworks: '<',
-    publicNetwork: '<',
     regions: '<',
     prices: '<',
     quotaLink: '<',
