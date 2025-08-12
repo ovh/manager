@@ -100,13 +100,14 @@ export default function ClusterManagement({
           isDisabled={isProcessing(kubeDetail?.status)}
           href={hrefCreateNodePool}
         />
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileButton
-            title={t('kube_service_reset_kubeconfig')}
-            isDisabled={isProcessing(kubeDetail?.status)}
-            href={hrefResetClusterConfig}
-          />
-        )}
+        {regionInformations?.type &&
+          !isMultiDeploymentZones(regionInformations.type) && (
+            <TileButton
+              title={t('kube_service_reset_kubeconfig')}
+              isDisabled={isProcessing(kubeDetail?.status)}
+              href={hrefResetClusterConfig}
+            />
+          )}
 
         <TileButton
           title={t('kube_service_common_edit_security_update_policy')}
@@ -123,7 +124,8 @@ export default function ClusterManagement({
         )}
 
         {parseFloat(clusterMinorVersion) !== highestVersion &&
-          !isMultiDeploymentZones(regionInformations?.type) && (
+          regionInformations?.type &&
+          !isMultiDeploymentZones(regionInformations.type) && (
             <TileButton
               title={t('kube_service_minor_version_upgrade')}
               isDisabled={isProcessing(kubeDetail?.status)}
