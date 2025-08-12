@@ -17,6 +17,12 @@ vi.mock(
   }),
 );
 
+vi.mock('@/hooks/useHubNavigation/useHubNavigation', () => ({
+  useHubNavigation: vi.fn(() => ({
+    data: 'https://ovh.com/manager/#/hub',
+  })),
+}));
+
 const mocks: any = vi.hoisted(() => ({
   isAccountSidebarVisible: false,
   region: 'EU',
