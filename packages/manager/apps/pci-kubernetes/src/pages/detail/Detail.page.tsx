@@ -1,4 +1,4 @@
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useProject, useParam } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
   Headers,
@@ -14,51 +14,50 @@ import {
   Outlet,
   useHref,
   useLocation,
-  useParams,
   useResolvedPath,
 } from 'react-router-dom';
 import TabsPanel from '@/components/detail/TabsPanel.component';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones } from '@/helpers';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
   const { t: tDetail } = useTranslation('detail');
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
+  const [activePanelTranslation, setActivePanelTranslation] = useState<
+    string | null
+  >(null);
 
   const { data: project } = useProject();
-  const { projectId, kubeId } = useParams();
+  const { projectId, kubeId } = useParam('projectId', 'kubeId');
   const hrefProject = useProjectUrl('public-cloud');
   const hrefBack = useHref('..');
   const hrefService = useHref('./service');
   const location = useLocation();
+  const servicePath = useResolvedPath('service').pathname;
+  const nodepoolsPath = useResolvedPath('nodepools').pathname;
+  const restrictionsPath = useResolvedPath('restrictions').pathname;
+  const logsPath = useResolvedPath('logs').pathname;
 
   const { data: kubeDetail } = useKubeDetail(projectId, kubeId);
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail?.region,
-  );
 
   const tabs = [
     {
       name: 'kube_service',
       title: tDetail('kube_service'),
-      to: useResolvedPath('service').pathname,
+      to: servicePath,
       tracking: TRACKING_TABS.SERVICE,
     },
     {
       name: 'kube_node_pools',
       title: tDetail('kube_node_pools'),
-      to: useResolvedPath('nodepools').pathname,
+      to: nodepoolsPath,
       tracking: TRACKING_TABS.NODE_POOL,
     },
     {
       name: 'kube_restrictions',
       title: tDetail('kube_restrictions'),
-      to: useResolvedPath('restrictions').pathname,
+      to: restrictionsPath,
       tracking: TRACKING_TABS.API_SERVER,
     },
     {
@@ -76,16 +75,16 @@ export default function DetailPage() {
           </OsdsChip>
         </span>
       ),
-      to: useResolvedPath('logs').pathname,
+      to: logsPath,
       tracking: TRACKING_TABS.LOGS,
-      isHidden: isMultiDeploymentZones(regionInformations?.type),
+      isHidden: false,
     },
   ];
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
-    setActivePanelTranslation(tDetail(activeTab?.name));
-  }, [location.pathname]);
+    if (activeTab) setActivePanelTranslation(tDetail(activeTab?.name));
+  }, [location.pathname, tDetail, tabs]);
 
   return (
     <>
@@ -104,7 +103,7 @@ export default function DetailPage() {
               label: kubeDetail?.name,
               href: hrefService,
             },
-            { label: activePanelTranslation },
+            { label: activePanelTranslation ?? '' },
           ]}
         />
       )}
