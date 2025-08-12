@@ -27,7 +27,7 @@ const applicationPath = path.resolve(applicationsBasePath, appName);
 
 /**
  * Cleans up legacy ESLint configuration from the target app
- * - Removes legacy config files (.eslintrc*, eslint.config.mjs, etc.)
+ * - Removes legacy config files (.eslintrc*, eslint.config.js, etc.)
  * - Removes ESLint-related devDependencies
  * - Removes lint-related npm scripts
  *

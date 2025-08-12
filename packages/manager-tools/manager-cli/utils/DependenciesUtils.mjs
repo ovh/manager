@@ -31,7 +31,7 @@ export const EXCLUDED_ESLINT_FILES = [
   '.eslintrc.js',
   '.eslintrc.cjs',
   '.eslintrc.json',
-  'eslint.config.mjs',
+  'eslint.config.js',
   '.eslintignore',
 ];
 
