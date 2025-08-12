@@ -701,67 +701,38 @@ export default class PciProjectInstanceService {
 
   save(
     serviceName,
+    region,
     {
       autobackup,
       flavorId,
       imageId,
       monthlyBilling,
       name,
-      networks,
-      region,
-      sshKeyId,
+      network,
+      sshKey,
       userData,
       availabilityZone,
     },
     number = 1,
-    isPrivateMode,
   ) {
-    const saveInstanceNamespace = 'instance-creation';
-    const status = 'ACTIVE';
-    if (number > 1) {
-      return this.$http
-        .post(`/cloud/project/${serviceName}/instance/bulk`, {
-          autobackup,
-          flavorId,
-          imageId,
-          monthlyBilling,
-          name,
-          networks,
-          region,
-          sshKeyId,
-          userData,
-          number,
-          availabilityZone,
-        })
-        .then(({ data }) => {
-          return data;
-        });
-    }
     return this.$http
-      .post(`/cloud/project/${serviceName}/instance`, {
+      .post(`/cloud/project/${serviceName}/region/${region}/instance`, {
+        bulk: number,
         autobackup,
-        flavorId,
-        imageId,
-        monthlyBilling,
+        flavor: {
+          id: flavorId,
+        },
+        bootFrom: {
+          imageId,
+        },
+        billingPeriod: monthlyBilling ? 'monthly' : 'hourly',
         name,
-        networks,
-        region,
-        sshKeyId,
+        network,
+        sshKey: sshKey ? { name: sshKey.name } : null,
         userData,
         availabilityZone,
       })
       .then(({ data }) => {
-        if (isPrivateMode) {
-          const url = `/cloud/project/${serviceName}/instance/${data.id}`;
-          return this.checkOperationStatus(
-            url,
-            saveInstanceNamespace,
-            status,
-          ).then((res) => {
-            this.Poller.kill({ namespace: saveInstanceNamespace });
-            return res;
-          });
-        }
         return data;
       });
   }
@@ -1058,7 +1029,7 @@ export default class PciProjectInstanceService {
       )
       .then(({ resourceId }) => {
         this.Poller.kill({ namespace: 'private-network-creation' });
-        return this.getCreatedSubnet(projectId, region, resourceId);
+        return resourceId;
       });
   }
 
@@ -1074,14 +1045,6 @@ export default class PciProjectInstanceService {
         namespace: 'private-network-creation',
       },
     );
-  }
-
-  getCreatedSubnet(projectId, region, networkId) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
-      )
-      .then(({ data }) => data);
   }
 
   associateGatewayToNetwork(projectId, region, gatewayId, subnetId) {
