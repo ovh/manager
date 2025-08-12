@@ -176,6 +176,22 @@ describe('resourcesDatagrid Component', async () => {
     expect((await queryAllByText('displayName')).length).toBe(0);
   });
 
+  it('Should display actions column', async () => {
+    useIamResourceListMock.mockReturnValue({
+      flattenData: iamResourcesListMock,
+      isLoading: false,
+      error: undefined,
+      isError: undefined,
+    });
+
+    const { queryAllByText } = renderComponent({
+      isSelectable: true,
+      rowActions: (item) => <>{item.name}</>,
+    });
+
+    expect((await queryAllByText('r1')).length).toBe(1);
+  });
+
   it('Should filter datagrid with tags by default', async () => {
     useIamResourceListMock.mockReturnValue({
       flattenData: iamResourcesListMock,
