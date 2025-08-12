@@ -3,11 +3,22 @@ import { describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import ClusterManagement from '@/components/service/ClusterManagement.component';
 import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
+import { DeploymentMode, TKube } from '@/types';
 import * as useCloudModule from '@/api/hooks/useCloud';
 import { TCloudSchema } from '@/api/data/cloud';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { TRegionInformations } from '@/types/region';
+
+vi.mock('@/api/hooks/useRegionInformations', () => ({
+  useRegionInformations: vi.fn(),
+}));
 
 describe('ClusterManagement', () => {
+  beforeEach(() => {
+    vi.mocked(useRegionInformations).mockReturnValue({
+      data: { type: DeploymentMode.MONO_ZONE },
+    } as UseQueryResult<TRegionInformations, Error>);
+  });
   it('renders manage title with correct text', () => {
     const { getByText } = render(
       <ClusterManagement
