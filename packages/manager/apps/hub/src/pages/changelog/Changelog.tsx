@@ -32,17 +32,18 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { EXTERNAL_LINKS } from '@/changelog.constants';
 import RoadmapChangelogDatagrids from '@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrids';
+import { useHubNavigation } from '@/hooks/useHubNavigation/useHubNavigation';
 
 export default function Changelog() {
   const { t } = useTranslation('changelog');
   const { trackClick } = useOvhTracking();
-
+  const { data: rootUrl } = useHubNavigation('/');
   const header: HeadersProps = {
     title: t('changelog_title'),
   };
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
-      href: '/',
+      href: rootUrl,
       icon: ODS_ICON_NAME.HOME,
     },
     {
