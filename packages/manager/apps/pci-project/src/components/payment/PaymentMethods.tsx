@@ -25,7 +25,6 @@ export type PaymentMethodsProps = {
   paymentMethodHandler: React.Ref<TPaymentMethodRef>;
   handlePaymentMethodChange?: (method: TPaymentMethod) => void;
   handleSetAsDefaultChange?: (value: boolean) => void;
-  handlePaymentMethodChallenge?: boolean;
   handleValidityChange?: (isValid: boolean) => void;
 };
 
@@ -81,7 +80,6 @@ export type TPaymentMethodRef = {
  *     paymentMethodHandler={paymentMethodRef}
  *     handlePaymentMethodChange={(method) => console.log('Selected method:', method)}
  *     handleSetAsDefaultChange={(isDefault) => console.log('Set as default:', isDefault)}
- *     handlePaymentMethodChallenge={true}
  *     handleValidityChange={handlePaymentValidityChange}
  *   />
  *   <button onClick={handleSubmit} disabled={!isPaymentValid}>
@@ -94,7 +92,6 @@ export type TPaymentMethodRef = {
  * @param props.paymentMethodHandler - Ref to access payment method submission functionality
  * @param props.handlePaymentMethodChange - Optional callback when payment method selection changes
  * @param props.handleSetAsDefaultChange - Optional callback when default payment method setting changes
- * @param props.handlePaymentMethodChallenge - Whether to handle payment method challenges (default: true)
  * @param props.handleValidityChange - Optional callback when payment method validity state changes
  *
  * @returns JSX element containing payment method components
@@ -102,7 +99,6 @@ export type TPaymentMethodRef = {
 const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   handlePaymentMethodChange = () => {},
   handleSetAsDefaultChange = () => {},
-  handlePaymentMethodChallenge = true,
   handleValidityChange = () => {},
   paymentMethodHandler,
 }) => {
@@ -149,20 +145,15 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   useEffect(() => {
     // Here we check if everything is ok about the payment method
 
-    // The challenge has passed (or is not required)
-    const isPaymentChallengeValid =
-      !handlePaymentMethodChallenge || isChallengeValid;
-
     // A payment method is selected and is set as default
     const hasValidPaymentMethod = !!selectedPaymentMethod && isSetAsDefault;
 
-    const isValid = isPaymentChallengeValid && hasValidPaymentMethod;
+    const isValid = isChallengeValid && hasValidPaymentMethod;
 
     handleValidityChange(isValid);
   }, [
     isChallengeValid,
     handleValidityChange,
-    handlePaymentMethodChallenge,
     selectedPaymentMethod,
     isSetAsDefault,
   ]);
@@ -174,7 +165,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     () => {
       return {
         submitPaymentMethod: async () => {
-          if (handlePaymentMethodChallenge && paymentChallengeRef.current) {
+          if (paymentChallengeRef.current) {
             const status = await paymentChallengeRef.current.submitChallenge();
             switch (status) {
               case 'deactivated':
@@ -199,7 +190,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         },
       };
     },
-    [handlePaymentMethodChallenge],
+    [paymentChallengeRef],
   );
 
   if (isLoadingDefault || isLoadingEligibility || !eligibility) {
@@ -217,16 +208,14 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
           handleSetAsDefaultChange={handleSetAsDefaultChange}
         />
       )}
-      {handlePaymentMethodChallenge && (
-        <div className="mb-6">
-          <PaymentMethodChallenge
-            eligibility={eligibility}
-            challengeHandler={paymentChallengeRef}
-            paymentMethod={defaultPaymentMethod}
-            handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
-          />
-        </div>
-      )}
+      <div className="mb-6">
+        <PaymentMethodChallenge
+          eligibility={eligibility}
+          challengeHandler={paymentChallengeRef}
+          paymentMethod={defaultPaymentMethod}
+          handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
+        />
+      </div>
     </>
   );
 };
