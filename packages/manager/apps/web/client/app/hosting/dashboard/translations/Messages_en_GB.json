@@ -1399,7 +1399,11 @@
   "hosting_dashboard_service_activate_email_tooltip": "To create an email address, you’ll need to link a domain name to your hosting plan.",
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
-  "hosting_tab_STATISTICS_type_allowed": "Authorised requests",
-  "hosting_tab_STATISTICS_type_denied": "Declined requests",
-  "hosting_tab_SSL": "SSL certificates "
+  "hosting_tab_STATISTICS_type_allowed": "Authorized requests",
+  "hosting_tab_STATISTICS_type_denied": "Requests declined",
+  "hosting_tab_SSL": "SSL certificates ",
+  "hosting_tab_FTP_configuration_explorer_info": "Access via the FTP web client (Net2FTP) is no longer available. You can log in to your hosting plan by using an FTP client, like <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a> or <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"></span></a>.",
+  "hosting_dashboard_service_cluster": "Cluster",
+  "hosting_dashboard_service_cluster_helper": "There is a chance your cluster ID will be modified",
+  "hosting_dashboard_service_filer_helper": "There is a chance your filer ID will be modified"
 }

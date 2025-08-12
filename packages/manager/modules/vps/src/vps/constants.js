@@ -24,6 +24,12 @@ export const CHANGE_OWNER_URL = {
 
 export const FEATURE_CLOUDDATABASE = 'cloudDatabase';
 
+export const NO_AVAILABLE_ON_LOCALZONE = [
+  'monitoring',
+  'cloud-database',
+  'additional-disk',
+];
+
 export const PRODUCT_NAME = 'VPS';
 
 export const RENEW_URL = {
@@ -42,11 +48,17 @@ export const VPS = {
   },
 };
 
+export const ZONE_TYPE = {
+  LOCALZONE: 'localzone',
+};
+
 export default {
   BOOT_MODE,
   CHANGE_OWNER_URL,
   FEATURE_CLOUDDATABASE,
+  NO_AVAILABLE_ON_LOCALZONE,
   PRODUCT_NAME,
   RENEW_URL,
   VPS,
+  ZONE_TYPE,
 };

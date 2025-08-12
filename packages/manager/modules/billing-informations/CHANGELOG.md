@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.20](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.19...@ovh-ux/billing-informations@1.2.20) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.2.19](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.18...@ovh-ux/billing-informations@1.2.19) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.2.18](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.17...@ovh-ux/billing-informations@1.2.18) (2025-08-01)
+
+
+### Bug Fixes
+
+* **billing-informations:** fix missing translations files ([189f92f](https://github.com/ovh/manager/commit/189f92f608695fd46e9e6e4f44036f2ff4d83303)), closes [#MANAGER-16644](https://github.com/ovh/manager/issues/MANAGER-16644)
+
+
+
+
+
 ## [1.2.17](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.16...@ovh-ux/billing-informations@1.2.17) (2025-07-24)
 
 

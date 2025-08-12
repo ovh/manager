@@ -53,5 +53,6 @@
   "managed_vcd_dashboard_password_renew_success": "La richiesta di rinnovo della tua password amministratore è stata presa in carico. Riceverai un’email con un link che ti permetterà di consultare la tua password.",
   "managed_vcd_dashboard_password_renew_error": "Si è verificato un errore durante il rinnovo della password amministratore. Riprova più tardi o contatta il nostro supporto clienti.",
   "managed_vcd_dashboard_edit_modal_cta_validate": "Confermare",
-  "managed_vcd_dashboard_cancellation_tooltip": "Per disattivare il servizio, contatta il nostro supporto."
+  "managed_vcd_dashboard_cancellation_tooltip": "Per disattivare il servizio, contatta il nostro supporto.",
+  "managed_vcd_dashboard_vrack_title": "Reti vRack"
 }

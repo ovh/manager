@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.12.4",
+  "version": "0.12.5",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {
@@ -17,8 +17,8 @@
     "start": "tsc && vite"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.5.0",
-    "@ovh-ux/manager-vite-config": "^0.10.1",
+    "@ovh-ux/manager-config": "^8.5.1",
+    "@ovh-ux/manager-vite-config": "^0.11.0",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "5.0.0",
@@ -33,7 +33,7 @@
     "react-use": "^17.4.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-dev-server-config": "^6.1.3",
+    "@ovh-ux/manager-dev-server-config": "^6.2.0",
     "@types/dompurify": "^2.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-legacy": "^1.3.2",

@@ -1,6 +1,6 @@
+import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { describe, it, vi, expect, afterEach, vitest } from 'vitest';
-import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ShellContext,
@@ -38,7 +38,13 @@ afterEach(() => {
   vitest.resetAllMocks();
 });
 
-const renderComponent = () => {
+const renderComponent = ({
+  isDisabled,
+  isLicenseActive,
+}: {
+  isDisabled: boolean;
+  isLicenseActive: boolean;
+}) => {
   const queryClient = new QueryClient();
 
   return render(
@@ -46,7 +52,10 @@ const renderComponent = () => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <OrganizationOptionsTile isLicenseActive={false} />
+        <OrganizationOptionsTile
+          isLicenseActive={isLicenseActive}
+          isDisabled={isDisabled}
+        />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );
@@ -55,7 +64,7 @@ const renderComponent = () => {
 describe('OrganizationOptionsTile component unit test suite', () => {
   it('should define tileTitle and sections', async () => {
     // when
-    renderComponent();
+    renderComponent({ isDisabled: false, isLicenseActive: false });
 
     // then
     const elements = [
@@ -71,7 +80,7 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     vi.spyOn(window, 'open');
 
     // when
-    renderComponent();
+    renderComponent({ isDisabled: false, isLicenseActive: false });
 
     // then
     const menu = screen.getByTestId('navigation-action-trigger-action');
@@ -87,5 +96,26 @@ describe('OrganizationOptionsTile component unit test suite', () => {
       TRACKING.dashboard.activateWindowsLicence,
     );
     expect(window.open).toHaveBeenCalledOnce();
+  });
+
+  it('should not be able to activate license when service is disabled', async () => {
+    // when
+    renderComponent({ isDisabled: true, isLicenseActive: false });
+
+    // then
+    const menu = screen.getByTestId('navigation-action-trigger-action');
+    expect(menu.getAttribute('is-disabled')).toBe('true');
+  });
+
+  it('should not display action menu when licence is active', async () => {
+    // when
+    renderComponent({ isDisabled: true, isLicenseActive: true });
+
+    // then
+    expect(
+      screen.queryByText('managed_vcd_dashboard_windows_license_active'),
+    ).toBeDefined();
+    const menu = screen.queryByTestId('navigation-action-trigger-action');
+    expect(menu).not.toBeInTheDocument();
   });
 });

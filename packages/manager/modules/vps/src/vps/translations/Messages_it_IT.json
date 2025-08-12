@@ -546,5 +546,9 @@
   "vps_dashboard_state_running": "Attivo",
   "vps_dashboard_state_stopped": "Cancellato",
   "vps_dashboard_state_stopping": "Cancellazione in corso...",
-  "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso..."
+  "vps_dashboard_state_upgrading": "Modifica dell'offerta in corso...",
+  "vps_tab_veeam_offer_standard": "Standard",
+  "vps_tab_veeam_offer_premium": "Premium",
+  "vps_tab_veeam_upgrade_offer": "Passare all'opzione Premium",
+  "vps_tab_veeam_downgrade_offer": "Tornare all'opzione Standard"
 }

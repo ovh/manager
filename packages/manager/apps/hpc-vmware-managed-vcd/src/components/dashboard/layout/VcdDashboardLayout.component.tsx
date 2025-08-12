@@ -19,6 +19,7 @@ export type TDashboardLayoutProps = {
   tabs: DashboardTab[];
   breadcrumbItems: BreadcrumbItem[];
   header: HeadersProps;
+  message?: React.ReactElement;
   backLinkLabel?: string;
   onClickReturn?: () => void;
 };
@@ -27,6 +28,7 @@ export default function VcdDashboardLayout({
   tabs,
   breadcrumbItems,
   header,
+  message,
   backLinkLabel,
   onClickReturn,
 }: TDashboardLayoutProps) {
@@ -56,7 +58,7 @@ export default function VcdDashboardLayout({
                   trackClick(getTabTrackingParams(tab.trackingActions))
                 }
               >
-                <OdsTab isSelected={tab.name === activeTab.name}>
+                <OdsTab isSelected={tab?.name === activeTab?.name}>
                   {tab.title}
                 </OdsTab>
               </NavLink>
@@ -64,7 +66,16 @@ export default function VcdDashboardLayout({
           </OdsTabs>
         }
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-        message={<MessageList />}
+        message={
+          message ? (
+            <>
+              {message}
+              <MessageList />
+            </>
+          ) : (
+            <MessageList />
+          )
+        }
         backLinkLabel={backLinkLabel}
         onClickReturn={onClickReturn}
       />

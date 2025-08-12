@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.47.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.4...@ovh-ux/manager-billing@0.47.5) (2025-08-11)
+
+
+### Bug Fixes
+
+* **billing:** add missing translation for hosting_web_cdn service ([429d197](https://github.com/ovh/manager/commit/429d1978701dc4773356f8d39e13e1f0b6fcb71f)), closes [#MANAGER-19065](https://github.com/ovh/manager/issues/MANAGER-19065)
+
+
+
+
+
+## [0.47.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.3...@ovh-ux/manager-billing@0.47.4) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [0.47.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.2...@ovh-ux/manager-billing@0.47.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **billing:** implementation outperform banner for vps ([81a9274](https://github.com/ovh/manager/commit/81a9274b5e26adf91d810459af30bd1cc86ee094)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+
+
+
+
+
+## [0.47.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.1...@ovh-ux/manager-billing@0.47.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+## [0.47.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.0...@ovh-ux/manager-billing@0.47.1) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing
+
+
+
+
+
+# [0.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.46.0...@ovh-ux/manager-billing@0.47.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4090] ([aa349cd](https://github.com/ovh/manager/commit/aa349cd81214431420b67f4e32296e7141af6478))
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **billing:** enable terminate action for Managed VCD ([e1f64fa](https://github.com/ovh/manager/commit/e1f64fac725cf5a0ed0d56596dd528fdc9a1483b)), closes [#MANAGER-18174](https://github.com/ovh/manager/issues/MANAGER-18174)
+* **billing:** rename Managed VCD to Public VCF as-a-Service ([75e71fa](https://github.com/ovh/manager/commit/75e71fa528d04047b99f7c081b54ee8301eb8583)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 # [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.45.0...@ovh-ux/manager-billing@0.46.0) (2025-07-28)
 
 

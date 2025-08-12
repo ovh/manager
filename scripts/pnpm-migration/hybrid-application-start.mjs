@@ -1,5 +1,4 @@
 import { existsSync, readdirSync, readFileSync, copyFileSync } from 'fs';
-import fs from 'fs/promises';
 import { basename, resolve, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import concurrently from 'concurrently';

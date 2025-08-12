@@ -3,6 +3,75 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.6...@ovh-ux/manager-pci-kubernetes-app@0.28.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** calculate multiple node price ([1acec53](https://github.com/ovh/manager/commit/1acec5300328e1bb2137baa7fe4ef49245e9b37c)), closes [#TAPC-3341](https://github.com/ovh/manager/issues/TAPC-3341) [#TAPC-2791](https://github.com/ovh/manager/issues/TAPC-2791)
+* **pci-kubernetes:** correct typos kube ([9c99e50](https://github.com/ovh/manager/commit/9c99e5057258a50ffcd40a5b36082194665caec2)), closes [#TAPC-4621](https://github.com/ovh/manager/issues/TAPC-4621) [#TAPC-4642](https://github.com/ovh/manager/issues/TAPC-4642)
+* **pci-kubernetes:** modify max or min node on desired node and autoscaling off ([c82d76b](https://github.com/ovh/manager/commit/c82d76ba38ec22b27d24bb3797b65342ce7739fd)), closes [#TAPC-4662](https://github.com/ovh/manager/issues/TAPC-4662)
+* **pci-kubernetes:** remove tooltip on cluster creation page ([460e86d](https://github.com/ovh/manager/commit/460e86d43dd88efc798ccfa798f7ceda5141c82f)), closes [#TAPC-4008](https://github.com/ovh/manager/issues/TAPC-4008)
+* **pci-kubernetes:** retrieve min max node from nodepool api ([c8d84af](https://github.com/ovh/manager/commit/c8d84af8da95deb35a4a22187bd3dd65e6042841)), closes [#TAPC-4453](https://github.com/ovh/manager/issues/TAPC-4453)
+
+
+### Features
+
+* **pci-kubernetes:** enable netork setting 3az ([181f4b3](https://github.com/ovh/manager/commit/181f4b3d2307ca9e22081acf3c1b0c1dc48514b0)), closes [#TAPC-4620](https://github.com/ovh/manager/issues/TAPC-4620)
+
+
+
+
+
+## [0.27.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.5...@ovh-ux/manager-pci-kubernetes-app@0.27.6) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [0.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.4...@ovh-ux/manager-pci-kubernetes-app@0.27.5) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+
+
+
+
+
+## [0.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.3...@ovh-ux/manager-pci-kubernetes-app@0.27.4) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4221] ([2913e21](https://github.com/ovh/manager/commit/2913e21b31067cda1b18895404bef8f8de7c6ef7))
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4226] ([d6cc4df](https://github.com/ovh/manager/commit/d6cc4dfc16b82db18edc6301a7da4d8caaf556b9))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [0.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.2...@ovh-ux/manager-pci-kubernetes-app@0.27.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **ldp:** update of the message field for kube/lb ([f2396aa](https://github.com/ovh/manager/commit/f2396aa4aebd39137c2b065d0f88e721fb5849c1)), closes [#MANAGER-16582](https://github.com/ovh/manager/issues/MANAGER-16582)
+* **pci-kubernetes:** add close action to modal ([6ae0907](https://github.com/ovh/manager/commit/6ae09070f3916ba68392f6ec14fc6432bc81e8c3)), closes [#TAPC-4456](https://github.com/ovh/manager/issues/TAPC-4456)
+
+
+
+
+
 ## [0.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.27.1...@ovh-ux/manager-pci-kubernetes-app@0.27.2) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

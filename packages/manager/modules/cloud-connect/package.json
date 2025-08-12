@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect",
-  "version": "1.23.1",
+  "version": "1.24.2",
   "private": true,
   "description": "OVHcloud CloudConnect product",
   "repository": {
@@ -19,9 +19,11 @@
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/manager-log-to-customer": "^2.6.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.1",
+    "@ovh-ux/ng-log-live-tail": "^2.6.0",
     "@ovh-ux/ng-ovh-chart": "^1.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.8.2",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",

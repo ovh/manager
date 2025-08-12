@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix",
-  "version": "2.9.0",
+  "version": "2.10.2",
   "private": true,
   "description": "OVHcloud Nutanix product",
   "repository": {
@@ -12,14 +12,14 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/manager-models": "^2.5.5",
+    "@ovh-ux/manager-models": "^2.5.6",
     "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.9.1",
     "jsurl": "^0.1.4",
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",
+    "@ovh-ux/manager-billing-components": "^4.19.1",
     "@ovh-ux/manager-bm-server-components": "^0.0.0 || ^1.0.0",
     "@ovh-ux/manager-components": "^1.0.0",
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

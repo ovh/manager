@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.8...@ovh-ux/manager-pci-block-storage-app@0.19.9) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.7...@ovh-ux/manager-pci-block-storage-app@0.19.8) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.6...@ovh-ux/manager-pci-block-storage-app@0.19.7) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.5...@ovh-ux/manager-pci-block-storage-app@0.19.6) (2025-07-29)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** keep encryptionType when editing ([175c81a](https://github.com/ovh/manager/commit/175c81a0bd61644d728be0c38333beeff1c40fc3)), closes [#TAPC-4633](https://github.com/ovh/manager/issues/TAPC-4633)
+
+
+
+
+
 ## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.4...@ovh-ux/manager-pci-block-storage-app@0.19.5) (2025-07-24)
 
 

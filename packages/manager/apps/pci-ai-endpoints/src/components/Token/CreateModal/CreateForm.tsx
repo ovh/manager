@@ -2,6 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OsdsFormField,
   OsdsText,
@@ -23,6 +24,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { z } from 'zod';
+import { TRACKING } from '@/configuration/tracking.constants';
 import getLocaleForDatePicker from '@/components/utils/getLocaleForDatepicker';
 import { useCreateToken } from '@/hooks/api/database/token/useToken.hook';
 import { TokenData } from '@/types/cloud/project/database/token/index';
@@ -79,7 +81,7 @@ const CreateForm = ({
       onSuccess(newToken);
     },
   });
-
+  const { trackClick, trackPage } = useOvhTracking();
   const {
     control,
     handleSubmit,
@@ -97,7 +99,6 @@ const CreateForm = ({
     mode: 'onChange',
   });
 
-  // Surveillance des valeurs du formulaire
   const tokenNameValue = watch('tokenName');
   const isChecked = watch('isChecked');
   const expirationDate = watch('expirationDate');
@@ -106,6 +107,7 @@ const CreateForm = ({
     if (!isChecked) {
       setValue('expirationDate', infiniteDate);
     }
+    trackPage(TRACKING.apikey.createNewApikeyPopUpShow);
   }, [isChecked, infiniteDate, setValue]);
 
   const onSubmit = (data: FormValues) => {
@@ -260,7 +262,10 @@ const CreateForm = ({
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.flat}
-        onClick={handleSubmit(onSubmit)}
+        onClick={() => {
+          handleSubmit(onSubmit)();
+          trackClick(TRACKING.apikey.confirmClick);
+        }}
         disabled={!isValid || undefined}
       >
         {t('ai_endpoints_token_create')}

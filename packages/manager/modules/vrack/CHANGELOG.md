@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.6...@ovh-ux/manager-vrack@1.21.0) (2025-08-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4207] ([89cbd9a](https://github.com/ovh/manager/commit/89cbd9a71d46638ee7235f394d8cd900c209da3c))
+
+
+### Features
+
+* **dedicated.vrack:** migrate to ftc cancel modal ([da60a58](https://github.com/ovh/manager/commit/da60a58c3d5c304da7fbc605bd0708baa5cab532)), closes [#MANAGER-18201](https://github.com/ovh/manager/issues/MANAGER-18201) [#MANAGER-18196](https://github.com/ovh/manager/issues/MANAGER-18196)
+
+
+
+
+
+## [1.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.5...@ovh-ux/manager-vrack@1.20.6) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack
+
+
+
+
+
+## [1.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.4...@ovh-ux/manager-vrack@1.20.5) (2025-08-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix dedicatedServerInterface vrack page ([b8bf8a8](https://github.com/ovh/manager/commit/b8bf8a81b3d266032ac36d42da6f40665c1dfafe)), closes [#MANAGER-19039](https://github.com/ovh/manager/issues/MANAGER-19039)
+
+
+
+
+
+## [1.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.3...@ovh-ux/manager-vrack@1.20.4) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** add missing dependecy to billing-components ([a397047](https://github.com/ovh/manager/commit/a39704716588662815da58966470f3a8c0065e0d)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
 ## [1.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.2...@ovh-ux/manager-vrack@1.20.3) (2025-07-02)
 
 

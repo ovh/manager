@@ -3,6 +3,120 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.53.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.8...@ovh-ux/manager-dedicated@20.53.9) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.7...@ovh-ux/manager-dedicated@20.53.8) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.6...@ovh-ux/manager-dedicated@20.53.7) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.5...@ovh-ux/manager-dedicated@20.53.6) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [20.53.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.4...@ovh-ux/manager-dedicated@20.53.5) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.3...@ovh-ux/manager-dedicated@20.53.4) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+* remove unused translations [CDS] ([adbe314](https://github.com/ovh/manager/commit/adbe31460ff5a89b0dddf103b96a5899765fe4e5))
+
+
+
+
+
+## [20.53.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.2...@ovh-ux/manager-dedicated@20.53.3) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.1...@ovh-ux/manager-dedicated@20.53.2) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.53.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.0...@ovh-ux/manager-dedicated@20.53.1) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.52.0...@ovh-ux/manager-dedicated@20.53.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **dedicated.pcc:** rename Managed VCD to Public VCF as-a-Service ([f498124](https://github.com/ovh/manager/commit/f498124910cea6fd5ee4cdb33086d943e897edc6)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
+# [20.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.51.2...@ovh-ux/manager-dedicated@20.52.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4193] ([600c5d1](https://github.com/ovh/manager/commit/600c5d11b6dc098025a2cb5f80beaa6975e71088))
+
+
+### Features
+
+* **dedicated.pcc:** remove nic check on software update ([5569040](https://github.com/ovh/manager/commit/5569040f6264c43c1686d65c9ddb6cc6ccc7ea21)), closes [#MANAGER-18833](https://github.com/ovh/manager/issues/MANAGER-18833)
+* **dedicated:** add scope on datastore datagrid ([c4574b8](https://github.com/ovh/manager/commit/c4574b8b3548e6d860d278f2b82a2bb3fb4beb6d)), closes [#MANAGER-16898](https://github.com/ovh/manager/issues/MANAGER-16898)
+
+
+
+
+
 ## [20.51.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.51.1...@ovh-ux/manager-dedicated@20.51.2) (2025-07-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

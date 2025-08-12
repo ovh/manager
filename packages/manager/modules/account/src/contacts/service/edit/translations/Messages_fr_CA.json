@@ -11,5 +11,8 @@
   "account_contacts_service_edit_success": "La demande de changement de contact a été effectuée avec succès. Les contacts concernés par la demande recevront un e-mail contenant la procédure de validation.",
   "account_contacts_service_edit_warn_debt": "Vous ne pouvez pas modifier le contact de facturation, car une facture est en attente de règlement pour ce service. Nous vous invitons à la régler afin d’effectuer ce changement.",
   "account_contacts_service_edit_pay": "Régler la facture",
-  "account_contacts_service_edit_warn_contact_billing": "Vous ne pouvez pas modifier le contact de facturation, car une facture est en attente de règlement pour ce service. Nous vous invitons à joindre le contact de facturation actuel {{ nicBilling }} afin qu’il effectue ce changement."
+  "account_contacts_service_edit_warn_contact_billing": "Vous ne pouvez pas modifier le contact de facturation, car une facture est en attente de règlement pour ce service. Nous vous invitons à joindre le contact de facturation actuel {{ nicBilling }} afin qu’il effectue ce changement.",
+  "account_contacts_service_edit_replicate_label": "Répliquer cette modification de contact sur le service {{type}} associé.",
+  "account_contacts_service_edit_replicate_type_DOMAIN": "Domaine",
+  "account_contacts_service_edit_replicate_type_ZONE": "DNS"
 }

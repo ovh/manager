@@ -74,7 +74,7 @@ export const organizationList: VCDOrganization[] = [
     },
     currentTasks: [],
     id: 'org-ca-east-bhs-70ebdcec-0623-4a61-834f-a1719cd475b4',
-    resourceStatus: 'READY',
+    resourceStatus: 'SUSPENDED',
     targetSpec: {
       description: 'My VCD Organization',
       fullName: 'Company VCD C',

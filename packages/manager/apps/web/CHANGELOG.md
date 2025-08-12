@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.3...@ovh-ux/manager-web@19.22.4) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [19.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.2...@ovh-ux/manager-web@19.22.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **web.hosting:** add cluster info in general information ([51a63ef](https://github.com/ovh/manager/commit/51a63ef20dc856a2e9f4fd61ff3ceb3dacba6e1c)), closes [#MANAGER-17914](https://github.com/ovh/manager/issues/MANAGER-17914)
+
+
+
+
+
+## [19.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.1...@ovh-ux/manager-web@19.22.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [19.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.0...@ovh-ux/manager-web@19.22.1) (2025-07-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.2...@ovh-ux/manager-web@19.22.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** add info message eol net2ftp ([a2e69e2](https://github.com/ovh/manager/commit/a2e69e2e69809e13e0a2c56a93138b9cf483013e)), closes [#MANAGER-18586](https://github.com/ovh/manager/issues/MANAGER-18586)
+
+
+### Features
+
+* **web-domains:** remove nic handle check in dns tab ([d9496c2](https://github.com/ovh/manager/commit/d9496c2a3ad0094806c2a922272734bc811660c0)), closes [#MANAGER-18980](https://github.com/ovh/manager/issues/MANAGER-18980)
+
+
+
+
+
 ## [19.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.21.1...@ovh-ux/manager-web@19.21.2) (2025-07-24)
 
 

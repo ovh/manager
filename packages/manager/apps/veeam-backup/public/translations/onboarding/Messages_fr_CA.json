@@ -6,7 +6,7 @@
   "guide_category": "Tutoriel",
   "guide1_title": "Sauvegarde avec Veeam Data Platform",
   "guide1_description": "Découvrez comment effectuer des sauvegardes et restaurations avec l'intégration Veeam Data Platform",
-  "guide2_title": "Premiers pas pour utiliser Managed VCD",
+  "guide2_title": "Premiers pas pour utiliser {{productName}}",
   "guide2_description": "Les principes fondamentaux de Veeam. Découvrez les concepts de base du Veeam",
   "guide2_link_label": "Voir la documentation",
   "guide3_title": "Questions fréquentes",

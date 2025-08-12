@@ -1,11 +1,8 @@
 import assign from 'lodash/assign';
-import find from 'lodash/find';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import pickBy from 'lodash/pickBy';
-import some from 'lodash/some';
 import startsWith from 'lodash/startsWith';
-import words from 'lodash/words';
 import head from 'lodash/head';
 
 import {
@@ -52,7 +49,6 @@ export default class TelecomTelephonyServiceContactCtrl {
   $onInit() {
     this.isLoading = true;
 
-    this.directoryCodes = null;
     this.autoCompletePostCode = null;
     this.autoCompleteCity = null;
     this.autoCompleteStreetName = null;
@@ -78,7 +74,7 @@ export default class TelecomTelephonyServiceContactCtrl {
         this.autoCompletePostCode =
           autoCompletePostCode?.length > 0 ? autoCompletePostCode.sort() : [];
 
-        this.directory = this.buildWayInfo(directory);
+        this.directory = directory;
 
         this.directoryForm = angular.copy(this.directory);
 
@@ -98,16 +94,6 @@ export default class TelecomTelephonyServiceContactCtrl {
           const [outward, inward] = this.directoryForm.postCode.split(' ');
           this.ukPostCode.outwardPostCode = outward;
           this.ukPostCode.inwardPostCode = inward;
-        }
-
-        if (this.directory.ape && this.directory.directoryServiceCode) {
-          return this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
-            this.billingAccount,
-            this.serviceName,
-            this.directory.ape,
-          ).then((result) => {
-            this.directoryCodes = result;
-          });
         }
 
         this.directoryProperties = get(
@@ -150,27 +136,6 @@ export default class TelecomTelephonyServiceContactCtrl {
     return this.availableField;
   }
 
-  buildWayInfo(directory) {
-    const newDirectory = directory;
-    if (!directory.wayNumber.length) {
-      newDirectory.wayNumber = directory.address.replace(/\D/g, '');
-    }
-
-    if (!directory.wayNumberExtra.length) {
-      newDirectory.wayNumberExtra = find(this.wayNumberExtraEnum, (extra) =>
-        some(words(directory.address), (word) => word === extra),
-      );
-    }
-
-    if (!directory.wayName.length) {
-      newDirectory.wayName = directory.address
-        .replace(/\d+/g, '')
-        .replace(directory.wayNumberExtra, '');
-    }
-
-    return newDirectory;
-  }
-
   /**
    * Some attributes are not shared between different legal form so we have to reset
    * them when user choose another legal form.
@@ -187,8 +152,6 @@ export default class TelecomTelephonyServiceContactCtrl {
         this.directoryForm.ape = '';
         this.directoryForm.socialNomination = '';
         this.directoryForm.socialNominationExtra = '';
-        this.directoryForm.directoryServiceCode = '';
-        this.directoryForm.PJSocialNomination = '';
         this.directoryForm.occupation = '';
         break;
       case 'professional':
@@ -205,7 +168,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
   }
 
-  onSiretChange() {
+  onSiretChange(form) {
     if (this.directoryForm.siret?.match(this.REGEX.siret)) {
       // we have to poll because api call is not synchronous :(
       this.fetchEntrepriseInformations(
@@ -217,23 +180,14 @@ export default class TelecomTelephonyServiceContactCtrl {
           if (infos.informations.isValid) {
             this.directoryForm.ape = infos.informations.ape;
             this.directoryForm.socialNomination = infos.informations.name;
-            this.directoryCodes = null;
-
-            // fetch directory codes for given APE
-            if (this.directoryForm.ape) {
-              this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
-                this.billingAccount,
-                this.serviceName,
-                this.directoryForm.ape,
-              ).then((result) => {
-                this.directoryCodes = result;
-              });
-            }
           } else {
             this.directoryForm.ape = null;
             this.directoryForm.socialNomination = null;
-            this.directoryCodes = null;
           }
+          TelecomTelephonyServiceContactCtrl.setDirty(form, [
+            'socialNomination',
+            'ape',
+          ]);
         })
         .catch((err) => new this.TucToastError(err));
     }
@@ -267,13 +221,21 @@ export default class TelecomTelephonyServiceContactCtrl {
     );
   }
 
-  onPostCodeChange() {
+  onPostCodeChange(form) {
     this.directoryForm.city = '';
     this.directoryForm.cedex = '';
     this.directoryForm.wayNumber = '';
     this.directoryForm.wayNumberExtra = '';
     this.directoryForm.wayName = '';
     this.directoryForm.addressExtra = '';
+    TelecomTelephonyServiceContactCtrl.setDirty(form, [
+      'city',
+      'cedex',
+      'wayNumber',
+      'wayNumberExtra',
+      'wayName',
+      'addressExtra',
+    ]);
 
     if (this.directoryForm.postCode !== this.directory.postCode) {
       this.directoryForm.urbanDistrict =
@@ -322,19 +284,31 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
   }
 
-  onUKPostCodeChange() {
+  onUKPostCodeChange(form) {
     this.directoryForm.postCode = this.ukPostCode.outwardPostCode;
-    this.onPostCodeChange();
+    this.onPostCodeChange(form);
   }
 
-  onCityChange(modelValue) {
+  onCityChange(modelValue, form) {
     this.directoryForm.city = modelValue.name;
     this.directoryForm.cedex = '';
     this.directoryForm.wayNumber = '';
     this.directoryForm.wayNumberExtra = '';
     this.directoryForm.wayName = '';
     this.directoryForm.addressExtra = '';
+    TelecomTelephonyServiceContactCtrl.setDirty(form, [
+      'city',
+      'cedex',
+      'wayNumber',
+      'wayNumberExtra',
+      'wayName',
+      'addressExtra',
+    ]);
     this.getStreetNameList(modelValue.administrationCode);
+  }
+
+  static setDirty(form, fields) {
+    fields.map((field) => form[field]?.$setDirty());
   }
 
   // districts for Paris (75xxx), Marseille (130xx) and Lyon (6900x)
@@ -388,20 +362,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     }`;
   }
 
-  findDirectoryService() {
-    return find(
-      this.directoryCodes,
-      (info) =>
-        `${info.directoryServiceCode}` ===
-        `${this.directory.directoryServiceCode}`,
-    );
-  }
-
-  applyChanges() {
-    if (this.directoryForm.legalForm !== 'individual') {
-      this.directoryForm.PJSocialNomination = this.directoryForm.socialNomination;
-    }
-
+  applyChanges(form) {
     if (this.directoryForm.wayNumberExtra) {
       this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
         /&nbsp;/g,
@@ -417,13 +378,16 @@ export default class TelecomTelephonyServiceContactCtrl {
       this.directoryForm.postCode = `${this.ukPostCode.outwardPostCode} ${this.ukPostCode.inwardPostCode}`;
     }
 
-    const modified = assign(this.directory, this.directoryForm);
     this.isUpdating = true;
 
     return this.TelecomTelephonyServiceContactService.putDirectory(
       this.billingAccount,
       this.serviceName,
-      omit(modified, 'inseeCode'),
+      Object.entries(this.directoryForm).reduce(
+        (acc, [key, value]) =>
+          form[key]?.$dirty ? { ...acc, [key]: value } : acc,
+        {},
+      ),
     )
       .then(() => {
         this.directory = angular.copy(this.directoryForm);

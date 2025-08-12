@@ -80,6 +80,7 @@
 /packages/manager/modules @ovh/dev-manager-control-tower
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
 /packages/manager/modules/bm-server-components @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
 /packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-all

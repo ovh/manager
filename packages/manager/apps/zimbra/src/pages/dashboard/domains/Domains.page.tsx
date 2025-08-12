@@ -18,6 +18,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDomains, usePlatform, useOrganizations } from '@/data/hooks';
 import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
 import ActionButtonDomain from './ActionButton.component';
@@ -60,7 +61,7 @@ const columns: DatagridColumn<DomainItem>[] = [
       ) : (
         <BadgeStatus status={item.status}></BadgeStatus>
       ),
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -70,7 +71,7 @@ const columns: DatagridColumn<DomainItem>[] = [
 ];
 
 export const Domains = () => {
-  const { t } = useTranslation(['domains', 'common']);
+  const { t } = useTranslation(['domains', 'common', NAMESPACES.STATUS]);
   const { trackClick } = useOvhTracking();
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();

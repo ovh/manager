@@ -25,4 +25,16 @@ export const storageList: VCDStorage[] = [
     },
     currentTasks: [],
   },
+  {
+    id: 'b683b2d1-2387-46da-8e1b-76ebbee0dbae5',
+    resourceStatus: 'SUSPENDED',
+    currentState: {
+      billingType: 'MONTHLY',
+      capacity: 300,
+      name: 'vcd-datastore-300',
+      profile: 'vcd-datastore-300',
+      type: 'DEFAULT',
+    },
+    currentTasks: [],
+  },
 ];

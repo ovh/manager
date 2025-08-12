@@ -12,6 +12,7 @@ import {
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import ActionButton from './ActionButton.component';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { usePlatform } from '@/data/hooks';
@@ -56,7 +57,7 @@ const columns: DatagridColumn<RedirectionItem>[] = [
   {
     id: 'status',
     cell: (item) => <BadgeStatus status={item.status} />,
-    label: 'common:status',
+    label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
@@ -68,7 +69,7 @@ const columns: DatagridColumn<RedirectionItem>[] = [
 ];
 
 export const Redirections = () => {
-  const { t } = useTranslation(['redirections', 'common']);
+  const { t } = useTranslation(['redirections', 'common', NAMESPACES.STATUS]);
   const navigate = useNavigate();
   const { platformUrn } = usePlatform();
   const isOverridedPage = useOverridePage();

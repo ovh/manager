@@ -1,10 +1,16 @@
-import { describe, expect, it, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { useDeleteWorkflow } from './workflows';
+import { describe, expect, it, vi } from 'vitest';
+
 import { deleteWorkflow } from '@/api/data/workflow';
 import { wrapper } from '@/wrapperRenders';
 
+import { useDeleteWorkflow } from './workflows';
+
 vi.mock('@/api/data/workflow');
+
+afterEach(() => {
+  vi.clearAllMocks();
+});
 
 describe('useDeleteWorkflow', () => {
   const onSuccessMock = vi.fn();
@@ -26,7 +32,7 @@ describe('useDeleteWorkflow', () => {
 
     act(() => result.current.deleteWorkflow());
 
-    waitFor(() => expect(onSuccessMock).toHaveBeenCalled());
+    await waitFor(() => expect(onSuccessMock).toHaveBeenCalled());
     expect(onErrorMock).not.toHaveBeenCalled();
   });
 

@@ -46,15 +46,10 @@ export default class CronValidator {
     return value === undefined || value.search(/[^\d]/) === -1;
   }
 
-  static convertAliasToNumber(
-    aliasName = '',
-    aliasMap: Record<string, string>,
-  ) {
+  static convertAliasToNumber(aliasName = '', aliasMap: Record<string, string>) {
     return aliasName
       .toLowerCase()
-      .replace(/[a-z]{3}/g, (match) =>
-        aliasMap[match] === undefined ? match : aliasMap[match],
-      );
+      .replace(/[a-z]{3}/g, (match) => (aliasMap[match] === undefined ? match : aliasMap[match]));
   }
 
   isWildcard(value = '') {
@@ -65,10 +60,7 @@ export default class CronValidator {
     const sides = value.split('-');
     switch (sides.length) {
       case 1:
-        return (
-          this.isWildcard(value) ||
-          CronValidator.isInRange(parseInt(value, 10), start, stop)
-        );
+        return this.isWildcard(value) || CronValidator.isInRange(parseInt(value, 10), start, stop);
       case 2: {
         const sidesmap = sides?.map((side) => parseInt(side, 10));
         const small = sidesmap[0];
@@ -96,10 +88,7 @@ export default class CronValidator {
       }
       const left = splits[0];
       const right = splits[1];
-      return (
-        this.validateRange(left, start, stop) &&
-        CronValidator.isValidStep(right)
-      );
+      return this.validateRange(left, start, stop) && CronValidator.isValidStep(right);
     });
   }
 
@@ -125,10 +114,7 @@ export default class CronValidator {
       return false;
     }
     if (alias) {
-      const remappedMonths = CronValidator.convertAliasToNumber(
-        months,
-        this.monthAlias,
-      );
+      const remappedMonths = CronValidator.convertAliasToNumber(months, this.monthAlias);
       return this.validateRanges(remappedMonths, 1, 12);
     }
     return this.validateRanges(months, 1, 12);
@@ -140,10 +126,7 @@ export default class CronValidator {
       return false;
     }
     if (alias) {
-      const remappedWeekdays = CronValidator.convertAliasToNumber(
-        weekdays,
-        this.weekdaysAlias,
-      );
+      const remappedWeekdays = CronValidator.convertAliasToNumber(weekdays, this.weekdaysAlias);
       return this.validateRanges(remappedWeekdays, 0, 6);
     }
     return this.validateRanges(weekdays, 0, 6);

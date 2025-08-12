@@ -154,7 +154,7 @@
   "billing_autorenew_service_type_DEDICATED_CLUSTER": " 3-AZ Region",
   "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS",
   "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services",
-  "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Managed VCD",
+  "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_ORGANIZATION": "Public VCF as-a-Service",
   "billing_autorenew_service_type_LICENSE_HYCU": "HYCU",
   "billing_autorenew_service_type_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD",
   "billing_autorenew_service_frequency": "Renewal frequency",
@@ -165,5 +165,6 @@
   "billing_autorenew_service_every_12_month": "Every year",
   "billing_autorenew_engagement_none": "No commitment",
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
-  "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra Personal SQL"
+  "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra Personal SQL",
+  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN"
 }

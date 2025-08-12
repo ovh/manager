@@ -3,6 +3,99 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.3) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4238] ([bf0f5fa](https://github.com/ovh/manager/commit/bf0f5fa9e57f4d6869ca5977c1c0501b2275871b))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.18.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4090] ([aa349cd](https://github.com/ovh/manager/commit/aa349cd81214431420b67f4e32296e7141af6478))
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+* **i18n:** add missing translations [CDS 619] ([c6b41bb](https://github.com/ovh/manager/commit/c6b41bbc46af25c8805b86fea373151da68bdcbd)), closes [#MANAGER-19286](https://github.com/ovh/manager/issues/MANAGER-19286)
+* **managed-vcd:** fix error during reload of termination modal ([842a7c6](https://github.com/ovh/manager/commit/842a7c6380cfd956f12d460af370e41ec6911824)), closes [#MANAGER-19040](https://github.com/ovh/manager/issues/MANAGER-19040)
+
+
+### Features
+
+* **managed-vcd:** add terminate modal on vcd dashboard ([9ea874f](https://github.com/ovh/manager/commit/9ea874fb24e7e5effe30dedf03311b7a66770eec)), closes [#MANAGER-17946](https://github.com/ovh/manager/issues/MANAGER-17946)
+* **managed-vcd:** add terminate modal on vcd listing page ([ec8bd9e](https://github.com/ovh/manager/commit/ec8bd9e857b749d37498430ef10c978cb703f597)), closes [#MANAGER-18158](https://github.com/ovh/manager/issues/MANAGER-18158)
+* **managed-vcd:** disable all actions for terminated service ([521b5a9](https://github.com/ovh/manager/commit/521b5a9e5b36c791e40a7de237b9db51da01c70e)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+* **managed-vcd:** rename Managed VCD to Public VCF as-a-Service ([9152cbc](https://github.com/ovh/manager/commit/9152cbc32e1a10e7a56d32d60fc631a7ed78eb5f)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+* **vcd:** add order cta redirection in onboarding pages ([6d40b39](https://github.com/ovh/manager/commit/6d40b395a7edbb6755277d8ac5edb2b0dcf1d1ea)), closes [#MANAGER-15367](https://github.com/ovh/manager/issues/MANAGER-15367)
+* **vcd:** add order vcd cta in listing page ([317eed3](https://github.com/ovh/manager/commit/317eed3ff40b115b7e0d165c694c509e05a92b48)), closes [#MANAGER-15369](https://github.com/ovh/manager/issues/MANAGER-15369)
+* **vcd:** add tracking when order cta action ([09a2bca](https://github.com/ovh/manager/commit/09a2bca1c9e4422781e03dc74881064331da359f)), closes [#MANAGER-16917](https://github.com/ovh/manager/issues/MANAGER-16917)
+* **vcd:** update public vcf-aas url ([e4058b3](https://github.com/ovh/manager/commit/e4058b38839849cd0d5ea37e3fc3b0747bbee674)), closes [#MANAGER-18768](https://github.com/ovh/manager/issues/MANAGER-18768)
+* **veeam-backup:** add missing resource status ([eea891b](https://github.com/ovh/manager/commit/eea891b932e0f7be29c4be92a60ea954cd956e01)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.18.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 613] ([41308f2](https://github.com/ovh/manager/commit/41308f28042f0954d5226ef72102e52326deb4e9))
+* **vcd:** fix breadcrumb translation and rerender ([648a573](https://github.com/ovh/manager/commit/648a573c123771a6749a9ec8fd4d1142be2faded)), closes [#MANAGER-18185](https://github.com/ovh/manager/issues/MANAGER-18185)
+* **vcd:** fix resourceStatus type of vrack segment ([1db6440](https://github.com/ovh/manager/commit/1db6440f3f27a501b86abec589d1928a7b937b9e)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+
+
+### Features
+
+* **mrc:** add tooltip in menu item action ([cc3b88d](https://github.com/ovh/manager/commit/cc3b88da86f794c7dc27a5b44359e4ab87c95966)), closes [#17501](https://github.com/ovh/manager/issues/17501)
+* **vcd:** add badge status for vrack segment ([7cac824](https://github.com/ovh/manager/commit/7cac824f4c98217d167abc5e439c6a64ea1b97d2)), closes [#MANAGER-19175](https://github.com/ovh/manager/issues/MANAGER-19175)
+* **vcd:** add delete vrack network ([ea75f52](https://github.com/ovh/manager/commit/ea75f5281a75cd1484e8b8cc08728fea3101be0d)), closes [#MANAGER-17528](https://github.com/ovh/manager/issues/MANAGER-17528)
+* **vcd:** add delete vrack segment ([704b641](https://github.com/ovh/manager/commit/704b641c888a7df0c8e844151f4e05b33427293e)), closes [#MANAGER-17530](https://github.com/ovh/manager/issues/MANAGER-17530)
+* **vcd:** add edit vrack segment modal ([45b3ecd](https://github.com/ovh/manager/commit/45b3ecd35f8727d46fd523c2ecf47e1a6eebe044)), closes [#MANAGER-17521](https://github.com/ovh/manager/issues/MANAGER-17521)
+* **vcd:** add modal to add network for vrack segment ([de6e239](https://github.com/ovh/manager/commit/de6e239481ce02f3fa84b9bf6c016415a29fc571)), closes [#MANAGER-17526](https://github.com/ovh/manager/issues/MANAGER-17526)
+* **vcd:** add vrack column in virtual datacenters datagrid ([bafded6](https://github.com/ovh/manager/commit/bafded65ac5862e51cfdfbe2b3f7578335cce1aa)), closes [#MANAGER-17492](https://github.com/ovh/manager/issues/MANAGER-17492)
+* **vcd:** add vrack feature flipping ([209f8e6](https://github.com/ovh/manager/commit/209f8e663de0687098892c1a5c55925f71fc45ec)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+* **vcd:** add vrack-network page for datacenter ([add27ad](https://github.com/ovh/manager/commit/add27ad4ab7f34a34d2c28cbc5f2c6f98d624d42)), closes [#MANAGER-17508](https://github.com/ovh/manager/issues/MANAGER-17508)
+* **vcd:** disabled deletion of network when is last ([1839315](https://github.com/ovh/manager/commit/18393155199bb1203f3b0d0d34819730598753ab)), closes [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **vcd:** display vrack in dashboard of virtual datacentre ([6da5582](https://github.com/ovh/manager/commit/6da55825b0ec2c2416a304c5061cc906bd47d8a4)), closes [#MANAGER-16821](https://github.com/ovh/manager/issues/MANAGER-16821)
+* **vcd:** improve code to add better a11y ([b189ac4](https://github.com/ovh/manager/commit/b189ac4c42404cd7a879e0402c7942ab05e74e54))
+* **vcd:** improve disable vrack action when status is not ready ([c7b1bc2](https://github.com/ovh/manager/commit/c7b1bc2093396d28df531ec83829dfb1953fc897)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052) [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **vcd:** unmock vrack endpoits ([6a8df58](https://github.com/ovh/manager/commit/6a8df5839b5048f5f4e947c00dd5ff052093da77)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+* **vcd:** update onboarding and compute wording ([204f0c1](https://github.com/ovh/manager/commit/204f0c19dc70cd82e2410b4e08f1d1c89e22a841)), closes [#MANAGER-18258](https://github.com/ovh/manager/issues/MANAGER-18258) [#MANAGER-18189](https://github.com/ovh/manager/issues/MANAGER-18189)
+* **vcd:** upgrade zod to avoid error with package ([31960a8](https://github.com/ovh/manager/commit/31960a82ed6ae9ac40c553db86233d713014d8a9)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+
+
+
+
+
 ## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.17.5) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

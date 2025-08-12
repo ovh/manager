@@ -14,6 +14,7 @@ import UpscaleService from './upscale.service';
 import {
   PRICING_MODES,
   RANGES,
+  RANGES_2025,
   LE_RANGES,
   UPSCALE_TRACKING_PREFIX,
 } from './upscale.constants';
@@ -42,7 +43,7 @@ export default class UpscaleController {
 
     this.isEliteUpgrade = UpscaleController.isRangeElite(this.currentVpsRange);
 
-    let upscaleRanges = UpscaleController.groupRanges(
+    let upscaleRanges = this.groupRanges(
       this.upscaleOptions,
       this.vps.model.name,
     );
@@ -77,7 +78,7 @@ export default class UpscaleController {
   }
 
   getCurrentRangeInformation() {
-    this.currentRangeConfiguration = UpscaleController.parseRangeConfiguration(
+    this.currentRangeConfiguration = this.parseRangeConfiguration(
       this.vps.model.name,
     );
 
@@ -193,9 +194,14 @@ export default class UpscaleController {
     const rangeName = this.range.formattedName.toLowerCase();
     const plans = this.catalog.plans.map((plan) => plan.planCode);
 
-    const vpsUpgradeRange = LE_RANGES.includes(rangeName)
-      ? `vps-${rangeName}-${memory}-${storage}`
-      : `vps-${rangeName}-${cores}-${memory}-${storage}`;
+    let vpsUpgradeRange = '';
+    if (LE_RANGES.includes(rangeName)) {
+      vpsUpgradeRange = `vps-${rangeName}-${memory}-${storage}`;
+    } else if (RANGES_2025.includes(rangeName)) {
+      vpsUpgradeRange = `vps-${rangeName}`;
+    } else {
+      vpsUpgradeRange = `vps-${rangeName}-${cores}-${memory}-${storage}`;
+    }
 
     return !plans.includes(vpsUpgradeRange) || storage < this.vps.model.disk;
   }
@@ -249,6 +255,9 @@ export default class UpscaleController {
     if (LE_RANGES.includes(rangeName)) {
       return `vps-${rangeName}-${memory}-${storage}`;
     }
+    if (RANGES_2025.includes(rangeName)) {
+      return `vps-${rangeName}`;
+    }
     return `vps-${rangeName}-${cores}-${memory}-${storage}`;
   }
 
@@ -260,19 +269,13 @@ export default class UpscaleController {
     return this.upscaleOptions.find((option) => option.planCode === planCode);
   }
 
-  static groupRanges(ranges, currentPlanCode) {
+  groupRanges(ranges, currentPlanCode) {
     let groupedRanges = ranges
       .filter(({ planCode }) =>
-        UpscaleController.filterPlanCodeByConfiguration(
-          planCode,
-          currentPlanCode,
-        ),
+        this.filterPlanCodeByConfiguration(planCode, currentPlanCode),
       )
       .sort((rangeA, rangeB) =>
-        UpscaleController.sortPlanCodesByConfiguration(
-          rangeA.planCode,
-          rangeB.planCode,
-        ),
+        this.sortPlanCodesByConfiguration(rangeA.planCode, rangeB.planCode),
       );
 
     groupedRanges = UpscaleController.groupRangesByName(groupedRanges);
@@ -298,6 +301,9 @@ export default class UpscaleController {
         },
       ),
       formattedName: rangeName,
+      displayName: rangeName.includes('2025-model')
+        ? rangeName.replace(/2025-model/, 'VPS-')
+        : rangeName,
     }));
   }
 
@@ -326,28 +332,24 @@ export default class UpscaleController {
     };
   }
 
-  static filterPlanCodeByConfiguration(planCode, basePlanCode) {
-    const [
-      cores,
-      memory,
-      storage,
-    ] = UpscaleController.extractConfigurationFromPlanCode(planCode);
-    const [
-      bCores,
-      bMemory,
-      bStorage,
-    ] = UpscaleController.extractConfigurationFromPlanCode(basePlanCode);
+  filterPlanCodeByConfiguration(planCode, basePlanCode) {
+    const [cores, memory, storage] = this.extractConfigurationFromPlanCode(
+      planCode,
+    );
+    const [bCores, bMemory, bStorage] = this.extractConfigurationFromPlanCode(
+      basePlanCode,
+    );
 
     return cores >= bCores && memory >= bMemory && storage >= bStorage;
   }
 
-  static sortPlanCodesByConfiguration(planCodeA, planCodeB) {
+  sortPlanCodesByConfiguration(planCodeA, planCodeB) {
     const numericPlanCodeA = parseInt(
-      UpscaleController.extractConfigurationFromPlanCode(planCodeA).join(''),
+      this.extractConfigurationFromPlanCode(planCodeA).join(''),
       10,
     );
     const numericPlanCodeB = parseInt(
-      UpscaleController.extractConfigurationFromPlanCode(planCodeB).join(''),
+      this.extractConfigurationFromPlanCode(planCodeB).join(''),
       10,
     );
 
@@ -370,23 +372,30 @@ export default class UpscaleController {
     );
   }
 
-  static parseRangeConfiguration(rangeFullName) {
-    const [
-      cores,
+  parseRangeConfiguration(rangeFullName) {
+    const { cpu, memory, storage, bandwidth } = this.catalog.products.find(
+      ({ name }) => name === rangeFullName,
+    ).blobs.technical;
+    return {
+      cpu,
       memory,
       storage,
-    ] = UpscaleController.extractConfigurationFromPlanCode(rangeFullName);
-
-    return {
-      cpu: { cores },
-      memory: { size: memory },
-      storage: { disks: [{ capacity: storage }] },
+      bandwidth,
     };
   }
 
-  static extractConfigurationFromPlanCode(planCode) {
-    const [cores, memory, storage] = planCode.match(/\d+/g);
-    return [parseInt(cores, 10), parseInt(memory, 10), parseInt(storage, 10)];
+  extractConfigurationFromPlanCode(planCode) {
+    const {
+      cpu: { cores },
+      memory: { size },
+      storage: {
+        disks: [{ capacity: storage }],
+      },
+    } = this.catalog.products.find(
+      ({ name }) => name === planCode,
+    ).blobs.technical;
+
+    return [parseInt(cores, 10), parseInt(size, 10), parseInt(storage, 10)];
   }
 
   initRangeConfiguration(values, path) {
@@ -525,9 +534,8 @@ export default class UpscaleController {
           ? 'vps_upscale_elite_upgrade_success'
           : 'vps_upscale_success';
         let key = `${baseKey}_without_payment_method`;
-        const { paymentType } = this.newRangeInformation.pricing;
         if (this.defaultPaymentMethod) {
-          key = `${baseKey}_${paymentType}_with_payment_method`;
+          key = `${baseKey}_${this.newRangeInformation.pricing.paymentType}_with_payment_method`;
         }
         this.atInternet.trackPage({
           name: `vps::upscale-confirm-banner::success::${currentPlanCode}_to_${plan.planCode}`,

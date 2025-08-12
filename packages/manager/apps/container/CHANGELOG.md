@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.143.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.1...@ovh-ux/manager-container-app@0.143.2) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4246] ([3309bac](https://github.com/ovh/manager/commit/3309bac5768d340ab4d0b180e100e57add0a33ef))
+
+
+
+
+
+## [0.143.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.0...@ovh-ux/manager-container-app@0.143.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.143.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.1...@ovh-ux/manager-container-app@0.143.0) (2025-08-04)
+
+
+### Features
+
+* **container:** add new livechat interactions ([a7e69b6](https://github.com/ovh/manager/commit/a7e69b6f5729968f03d8f6050dc86341c5372edd)), closes [#MANAGER-18948](https://github.com/ovh/manager/issues/MANAGER-18948)
+
+
+
+
+
+## [0.142.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.0...@ovh-ux/manager-container-app@0.142.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.142.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.141.0...@ovh-ux/manager-container-app@0.142.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **container:** rename Managed VCD to Public VCF as-a-Service ([42575b9](https://github.com/ovh/manager/commit/42575b9bbeefb2704dff3fb954f05c09dca94539)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
 # [0.141.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.5...@ovh-ux/manager-container-app@0.141.0) (2025-07-24)
 
 

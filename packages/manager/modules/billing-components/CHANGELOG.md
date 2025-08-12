@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.22.0...@ovh-ux/manager-billing-components@4.22.1) (2025-08-11)
+
+
+### Bug Fixes
+
+* **vps:** change banner outperform status ([4517446](https://github.com/ovh/manager/commit/4517446aa6007a60e06741408d393bc21b5c6380)), closes [#MANAGER-19372](https://github.com/ovh/manager/issues/MANAGER-19372)
+
+
+
+
+
+# [4.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.4...@ovh-ux/manager-billing-components@4.22.0) (2025-08-11)
+
+
+### Features
+
+* **dedicated.vrack:** migrate to ftc cancel modal ([da60a58](https://github.com/ovh/manager/commit/da60a58c3d5c304da7fbc605bd0708baa5cab532)), closes [#MANAGER-18201](https://github.com/ovh/manager/issues/MANAGER-18201) [#MANAGER-18196](https://github.com/ovh/manager/issues/MANAGER-18196)
+
+
+
+
+
+## [4.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.3...@ovh-ux/manager-billing-components@4.21.4) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [4.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.2...@ovh-ux/manager-billing-components@4.21.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **billing:** implementation outperform banner for vps ([81a9274](https://github.com/ovh/manager/commit/81a9274b5e26adf91d810459af30bd1cc86ee094)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+* **dedicated.vps:** add outperform banner in billing componant ([f000ec4](https://github.com/ovh/manager/commit/f000ec40b9bc8f0e1d9335fead89432b711edd62)), closes [#MANAGER-19102](https://github.com/ovh/manager/issues/MANAGER-19102)
+* **dedicated.vps:** change redirection for vps terminate ([9e82922](https://github.com/ovh/manager/commit/9e829229ec8e8d6a503a66580a7d32b53537d826)), closes [#MANAGER-17940](https://github.com/ovh/manager/issues/MANAGER-17940)
+* **dedicated.vps:** fix link outperform banner ([3882de4](https://github.com/ovh/manager/commit/3882de4a70629defc62b458cc60c2067ba5d9bf4)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+* **i18n:** add missing translations [CDS 625] ([45d5c92](https://github.com/ovh/manager/commit/45d5c927e00d5ad6c1302a2c7a6ec649dfcec52e))
+
+
+
+
+
+## [4.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.1...@ovh-ux/manager-billing-components@4.21.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+## [4.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.21.0...@ovh-ux/manager-billing-components@4.21.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* **vrack:** added missing translations ([66c730f](https://github.com/ovh/manager/commit/66c730ff5671a9dce15a82558dc24c618e719a59)), closes [#MANAGER-19185](https://github.com/ovh/manager/issues/MANAGER-19185)
+
+
+
+
+
+# [4.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.20.0...@ovh-ux/manager-billing-components@4.21.0) (2025-07-31)
+
+
+### Features
+
+* **billing:** enable terminate action for Managed VCD ([e1f64fa](https://github.com/ovh/manager/commit/e1f64fac725cf5a0ed0d56596dd528fdc9a1483b)), closes [#MANAGER-18174](https://github.com/ovh/manager/issues/MANAGER-18174)
+
+
+
+
+
 # [4.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.19.1...@ovh-ux/manager-billing-components@4.20.0) (2025-07-28)
 
 

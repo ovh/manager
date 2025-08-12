@@ -1,13 +1,13 @@
 import React from 'react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  Order,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsMessage,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { OdsMessage, OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
 import {
   getVeeamBackupProductSettings,
   useOrderURL,
@@ -30,6 +30,7 @@ import {
   RegionCell,
 } from './VCDOrganiationDatagridCell.component';
 import { NoOrganizationMessage } from '@/components/NoOrganizationMessage/NoOrganizationMessage.component';
+import { VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME } from '@/veeam-backup.config';
 
 const useExpressOrderLink = () => {
   const orderBaseUrl = useOrderURL('express_review_base');
@@ -129,64 +130,62 @@ export const OrderVeeamStep2: React.FC = () => {
   );
 
   return (
-    <>
-      <OdsText preset="heading-1" className="block mb-9">
-        {t('choose_org_title')}
-      </OdsText>
-      {isLoading && <Loading className="mb-5" />}
-      {!isLoading && !isError && (
-        <NoOrganizationMessage organizationList={data?.pages[0].data} />
-      )}
-      {isError && (
-        <OdsMessage className="mb-9" color="danger">
-          {error.message}
-        </OdsMessage>
-      )}
-      {!isLoading && allOrgsBackedUp && (
-        <OdsMessage className="mb-9" color="warning">
-          {t(
-            hasNextPage
-              ? 'all_organization_backed_up_message_fetch_next_page'
-              : 'all_organization_backed_up_message',
+    <Order>
+      <Order.Configuration
+        onCancel={() => navigate(urls.listing)}
+        onConfirm={() => {}}
+        isValid={!!selectedVcdOrg}
+      >
+        <>
+          <OdsText preset="heading-1" className="block mb-9">
+            {t('choose_org_title', {
+              vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+            })}
+          </OdsText>
+          {isLoading && <Loading className="mb-5" />}
+          {!isLoading && !isError && (
+            <NoOrganizationMessage organizationList={data?.pages[0].data} />
           )}
-        </OdsMessage>
-      )}
-      <React.Suspense fallback={<Loading />}>
-        {!isLoading && flattenData?.length > 0 && (
-          <div className="mb-9">
-            <Datagrid
-              columns={columns}
-              items={flattenData}
-              totalItems={flattenData.length}
-              hasNextPage={hasNextPage}
-              onFetchNextPage={fetchNextPage}
-              contentAlignLeft
-            />
-          </div>
-        )}
-      </React.Suspense>
-      <div>
-        <OdsButton
-          label={t('cancel_button')}
-          variant="ghost"
-          onClick={() => navigate(urls.listing)}
-        />
-        <OdsButton
-          label={t('order_button')}
-          className="ml-6"
-          onClick={() => {
-            window.open(
-              getVeeamBackupOrderLink({
-                orgId: getOrganizationUuid(selectedVcdOrg),
-                datacenterZone: getAvailabilityZone(selectedVcdOrg),
-              }),
-              '_blank',
-            );
-            navigate(urls.listing);
-          }}
-          isDisabled={!selectedVcdOrg}
-        />
-      </div>
-    </>
+          {isError && (
+            <OdsMessage className="mb-9" color="danger">
+              {error.message}
+            </OdsMessage>
+          )}
+          {!isLoading && allOrgsBackedUp && (
+            <OdsMessage className="mb-9" color="warning">
+              {t(
+                hasNextPage
+                  ? 'all_organization_backed_up_message_fetch_next_page'
+                  : 'all_organization_backed_up_message',
+                { vcdProductName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME },
+              )}
+            </OdsMessage>
+          )}
+          <React.Suspense fallback={<Loading />}>
+            {!isLoading && flattenData?.length > 0 && (
+              <div className="mb-9">
+                <Datagrid
+                  columns={columns}
+                  items={flattenData}
+                  totalItems={flattenData.length}
+                  hasNextPage={hasNextPage}
+                  onFetchNextPage={fetchNextPage}
+                  contentAlignLeft
+                />
+              </div>
+            )}
+          </React.Suspense>
+        </>
+      </Order.Configuration>
+      <Order.Summary
+        onFinish={() => {
+          navigate(urls.listing);
+        }}
+        orderLink={getVeeamBackupOrderLink({
+          orgId: getOrganizationUuid(selectedVcdOrg),
+          datacenterZone: getAvailabilityZone(selectedVcdOrg),
+        })}
+      ></Order.Summary>
+    </Order>
   );
 };

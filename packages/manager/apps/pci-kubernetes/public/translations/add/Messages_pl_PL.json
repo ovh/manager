@@ -59,7 +59,7 @@
   "kubernetes_add_region_description_region-3-az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności.",
   "kube_add_plan_footer_free": "Gratis",
   "kube_add_plan_footer_standard": "Gratis w fazie beta",
-  "kube_add_plan_title_free": "Free",
+  "kube_add_plan_title_free": "Gratis",
   "kube_add_plan_description_free": "Korzystaj ze zoptymalizowanych cen zasobów obliczeniowych i w prosty sposób obsługuj darmowe, zarządzane rozwiązanie Kubernetes.",
   "kube_add_plan_content_free_control": "Zarządzany control plane o wysokiej dostępności",
   "kube_add_plan_content_free_high_availability": "Wysoka dostępność (1-AZ)",
@@ -80,7 +80,7 @@
   "kube_add_plan_content_coming_very_soon": "Dostępne wkrótce",
   "kube_add_plan_subtitle": "Wybierz pakiet dostosowany do Twoich potrzeb. Korzystaj z szerokiej gamy instancji używanych jako węzły Kubernetes, fakturowanych według zużycia lub na podstawie umowy terminowej.",
   "kubernetes_add_deployment_mode_card_beta": "Wersja beta",
-  "kube_add_node_pool_name_title": "Nazwij pulę węzłów",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Plan {{ plan }} nie jest jeszcze dostępny w regionach 1-AZ. Jeśli chcesz skorzystać z planu {{ plan }}, wybierz wdrożenie 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Plan {{ plan }} nie jest jeszcze dostępny w regionach 3-AZ. Jeśli chcesz skorzystać z planu {{ plan }}, wybierz wdrożenie w 1-AZ."
+  "kube_add_node_pool_name_title": "Nadaj nazwę puli węzłów",
+  "kube_add_plan_content_unavailable_1AZ_banner": "Oferta {{plan}} nie jest jeszcze dostępna w regionach 1-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Oferta {{plan}} nie jest jeszcze dostępna w regionach 3-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 1-AZ."
 }

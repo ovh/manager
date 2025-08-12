@@ -15,7 +15,10 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   OsdsTabs,
@@ -39,6 +42,7 @@ import usePageTracking from '@/hooks/usePageTracking';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import EndpointsGuide from '@/components/Guides';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import { TRACKING } from '@/configuration/tracking.constants';
 
 export type TabItemProps = {
   name: string;
@@ -140,9 +144,13 @@ export default function Layout() {
     title: titleHeader,
     headerButton: <EndpointsGuide />,
   };
+  const { trackClick } = useOvhTracking();
 
   usePageTracking();
 
+  const handleTabClick = (tab: string) => {
+    trackClick(TRACKING.metrics.tabClick(tab));
+  };
   return (
     <div className="application">
       <Suspense
@@ -171,6 +179,9 @@ export default function Layout() {
                             key={tab.name}
                             to={tab.to}
                             className="no-underline"
+                            onClick={() => {
+                              handleTabClick(tab.name);
+                            }}
                           >
                             <OsdsTabBarItem
                               panel={tab.name}

@@ -155,7 +155,7 @@ const ResetUserPassword = () => {
                 mode="outline"
                 data-testid="reset-password-close-button"
               >
-                {t('resetUserPasswordButtonClose')}
+                {t('userButtonClose')}
               </Button>
             </DialogClose>
           ) : (

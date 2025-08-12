@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "1.20.3",
+  "version": "1.21.0",
   "private": true,
   "description": "vRack product.",
   "keywords": [
@@ -27,10 +27,11 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3",
+    "@ovh-ux/component-rollup-config": "^13.1.0",
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-billing-components": "^4.19.1",
     "@ovh-ux/manager-cloud-styles": "^0.4.0 || ^1.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",

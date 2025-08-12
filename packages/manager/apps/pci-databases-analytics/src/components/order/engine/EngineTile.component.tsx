@@ -1,43 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Badge } from '@datatr-ux/uxlib';
-import RadioTile from '@/components/radio-tile/RadioTile.component';
-import VersionSelector from './EngineTileVersion.component';
-import { Engine, Version } from '@/types/orderFunnel';
+import { Badge, RadioTile } from '@datatr-ux/uxlib';
+import { format } from 'date-fns';
+import { Engine } from '@/types/orderFunnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { getTagVariant } from '@/lib/tagsHelper';
 import { EngineIcon } from '@/components/engine-icon/EngineIcon.component';
+import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 
-export const EngineTile = ({
-  engine,
-  version,
-  selected,
-  onChange,
-}: {
-  engine: Engine;
-  version: Version;
-  selected: boolean;
-  onChange: (engine: Engine, version: Version) => void;
-}) => {
+export const EngineTile = ({ engine }: { engine: Engine }) => {
+  const locale = useDateFnsLocale();
   const { t } = useTranslation('pci-databases-analytics/components/engine');
-  const [selectedVersion, setSelectedVersion] = useState<Version>(version);
-  const handleEngineClick = () => {
-    onChange(engine, selectedVersion);
-  };
-  useEffect(() => {
-    onChange(engine, selectedVersion);
-  }, [selectedVersion]);
 
   return (
     <RadioTile
       data-testid="engine-radio-tile"
-      name="engine-select"
-      onChange={handleEngineClick}
       value={engine.name}
-      checked={selected}
+      className="flex flex-col gap-2 p-4"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center w-full">
         <div className="flex gap-2">
           <h5 className={'capitalize'}>
             {humanizeEngine(engine.name as database.EngineEnum)}
@@ -63,17 +44,13 @@ export const EngineTile = ({
       <p className="text-sm">
         {t(`description-${engine.name}`, engine.description)}
       </p>
-      <RadioTile.Separator />
-      <VersionSelector
-        versions={engine.versions}
-        selectedVersion={selectedVersion.name}
-        isEngineSelected={selected}
-        onChange={(versionName) =>
-          setSelectedVersion(
-            engine.versions.find((v) => v.name === versionName),
-          )
-        }
-      />
+      {engine.eos && (
+        <p className="text-xs font-italic text-orange-500">
+          {t('endOfSale', {
+            date: format(new Date(engine.eos), 'PP', { locale }),
+          })}
+        </p>
+      )}
     </RadioTile>
   );
 };

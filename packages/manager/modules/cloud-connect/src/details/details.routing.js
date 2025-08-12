@@ -1,3 +1,5 @@
+import { FEATURES } from '../cloud-connect.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('cloud-connect.details', {
     url: '/:ovhCloudConnectId',
@@ -17,6 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ (cloudConnectId) => cloudConnectId,
       notifications: /* @ngInject */ (cloudConnectId, cloudConnectService) =>
         cloudConnectService.getNotifications(cloudConnectId),
+      isLogsAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(FEATURES.LOGS),
     },
   });
 };

@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { PciNumberInput } from './PciNumberInput.component';
 
 describe('PciNumberInput Component', () => {
@@ -17,12 +18,7 @@ describe('PciNumberInput Component', () => {
 
   it('displays description when provided', () => {
     const { getByText } = render(
-      <PciNumberInput
-        value={5}
-        label={label}
-        description={description}
-        onChange={onChangeMock}
-      />,
+      <PciNumberInput value={5} label={label} description={description} onChange={onChangeMock} />,
     );
     expect(getByText(description)).toBeInTheDocument();
   });

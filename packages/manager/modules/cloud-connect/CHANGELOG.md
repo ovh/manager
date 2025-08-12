@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.1...@ovh-ux/manager-cloud-connect@1.24.2) (2025-08-11)
+
+
+### Bug Fixes
+
+* **cloud-connect.statistics:** display charts for available ports ([4aff5a4](https://github.com/ovh/manager/commit/4aff5a4df527ef4cc22bdc581e775e812417b270)), closes [#UXCT-771](https://github.com/ovh/manager/issues/UXCT-771)
+
+
+
+
+
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.0...@ovh-ux/manager-cloud-connect@1.24.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+* remove unused translations [CDS] ([23bc535](https://github.com/ovh/manager/commit/23bc535da7105fbc892afe6fb95470d7206ef15f))
+
+
+
+
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.1...@ovh-ux/manager-cloud-connect@1.24.0) (2025-07-29)
+
+
+### Features
+
+* **dedicated.cloud-connect:** enable logs for ovh cloud-connect ([d865758](https://github.com/ovh/manager/commit/d865758a0a92711e21d9380f49afcb3b086ab7c9)), closes [#MANAGER-18859](https://github.com/ovh/manager/issues/MANAGER-18859)
+
+
+
+
+
 ## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.23.0...@ovh-ux/manager-cloud-connect@1.23.1) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-connect

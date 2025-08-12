@@ -1,0 +1,25 @@
+{
+  "title_fallback": "Bem-vindo ao Strip-Version-Test",
+  "description_part1": "Saiba como tirar o máximo partido de Strip-Version-Test, a plataforma Public Cloud da OVHcloud.",
+  "description_part2": "Siga os nossos guias para começar rapidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Descobrir",
+      "title": "Primeiros passos com Strip-Version-Test",
+      "description": "Aprenda o básico para começar.",
+      "cta": "Descobrir"
+    },
+    "guide2": {
+      "category": "Tutoriais",
+      "title": "Configurar o seu ambiente",
+      "description": "Siga o nosso guia passo a passo.",
+      "cta": "Ver tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Perguntas frequentes",
+      "description": "Encontre respostas para as perguntas mais comuns.",
+      "cta": "Ler FAQ"
+    }
+  }
+}

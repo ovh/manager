@@ -10,5 +10,7 @@
   "versionTag-soonDeprecated": "Wkrótce wersja przestarzała",
   "selectAVersion": "Wybierz wersję",
   "noVersionFound": "Nie znaleziono żadnej wersji",
-  "description-valkey": "System przechowywania danych klucz-wartość w pamięci"
+  "description-valkey": "System przechowywania danych klucz-wartość w pamięci",
+  "versionTag-endOfSale": "Zakończenie komercjalizacji",
+  "endOfSale": "Zakończenie sprzedaży przewidziane na {{date}}"
 }

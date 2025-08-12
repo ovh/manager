@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.11...@ovh-ux/manager-dedicated-servers-app@0.3.12) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.10...@ovh-ux/manager-dedicated-servers-app@0.3.11) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.9...@ovh-ux/manager-dedicated-servers-app@0.3.10) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.8...@ovh-ux/manager-dedicated-servers-app@0.3.9) (2025-07-29)
+
+
+### Bug Fixes
+
+* **dedicated-server:** add missing order links ([2a20d5b](https://github.com/ovh/manager/commit/2a20d5bc56b522507256245e6a435c05e5e85860)), closes [#MANAGER-19146](https://github.com/ovh/manager/issues/MANAGER-19146)
+
+
+
+
+
 ## [0.3.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.3.7...@ovh-ux/manager-dedicated-servers-app@0.3.8) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

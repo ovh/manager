@@ -15,23 +15,22 @@ import {
   getOrganizationIdFromBackup,
   getRegionNameFromAzName,
   getVeeamBackupDisplayName,
+  isStatusTerminated,
   useVeeamBackup,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { MessagesViewer } from '@/components/Messages/MessageViewer.component';
 import { OrganizationCell } from '../listing/DatagridCell.component';
 import { DisplayNameWithEditButton } from './DisplayName.component';
-import { ConsumedVms } from './ConsumedVms.component';
-import { OfferProgress } from './OfferProgress.component';
 import { SubscriptionTile } from './SubscriptionTile.component';
-import { ComingSoonBadge } from '@/components/ComingSoonBadge/ComingSoonBadge';
-import { BillingLink } from '@/components/Links/BillingLink.component';
+import { BillingTile } from './BillingTile.component';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 
 import { CHANGELOG_LINKS } from '@/constants';
 import VeeamGuidesHeader from '@/components/Guide/VeeamGuidesHeader';
+import { VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME } from '@/veeam-backup.config';
 
 export default function DashboardPage() {
   const { id } = useParams();
@@ -54,12 +53,10 @@ export default function DashboardPage() {
       breadcrumb={<Breadcrumb />}
       message={
         <>
-          {['DISABLED', 'DISABLING', 'REMOVED'].includes(
-            data?.data?.resourceStatus,
-          ) && (
+          {isStatusTerminated(data?.data?.resourceStatus) && (
             <OdsMessage color="warning">{t('terminated_service')}</OdsMessage>
           )}
-          <SuccessMessages id={id} />
+          <MessagesViewer id={id} />
         </>
       }
       backLinkLabel={t('back_to_listing_label')}
@@ -87,10 +84,12 @@ export default function DashboardPage() {
                 },
                 {
                   id: 'vcdOrg',
-                  label: t('vcd_org'),
+                  label: t('vcd_org', {
+                    productName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+                  }),
                   value: (
                     <OrganizationCell
-                      className="mt-4"
+                      className="mt-4 tile__link--breakable"
                       withLink
                       organizationId={getOrganizationIdFromBackup(data?.data)}
                     />
@@ -121,34 +120,8 @@ export default function DashboardPage() {
                 },
               ]}
             />
-            <DashboardTile
-              title={t('billing')}
-              items={[
-                {
-                  id: 'consumedVms',
-                  label: t('consumed_vms'),
-                  value: <ConsumedVms id={id} backup={data?.data} />,
-                },
-                ...(data?.data?.currentState?.offers?.map((offer) => ({
-                  id: offer.name,
-                  label: `${offer.name
-                    .at(0)
-                    .toUpperCase()}${offer.name.substring(1).toLowerCase()}`,
-                  value: <OfferProgress offer={offer} id={id} />,
-                })) || []),
-                data?.data?.currentState.offers.every(
-                  (offer) => offer.name !== 'GOLD',
-                ) && {
-                  id: 'gold',
-                  label: 'Gold',
-                  value: <ComingSoonBadge />,
-                },
-                {
-                  id: 'bilingModalities',
-                  value: <BillingLink />,
-                },
-              ].filter(Boolean)}
-            />
+
+            <BillingTile backup={data?.data} id={id} />
             <SubscriptionTile {...data?.data} />
           </DashboardGridLayout>
         </React.Suspense>

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.0...@ovh-ux/manager-public-cloud@7.4.1) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [7.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.3.5...@ovh-ux/manager-public-cloud@7.4.0) (2025-08-05)
+
+
+### Features
+
+* **pci-databases-analytics:** update datastreaming deeplinks ([be533f6](https://github.com/ovh/manager/commit/be533f6516dd452e7215a027198e5f0cfd918bda)), closes [#DATATR-2410](https://github.com/ovh/manager/issues/DATATR-2410)
+
+
+
+
+
+## [7.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.3.4...@ovh-ux/manager-public-cloud@7.3.5) (2025-07-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.3.3...@ovh-ux/manager-public-cloud@7.3.4) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

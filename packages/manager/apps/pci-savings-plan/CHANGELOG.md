@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.1...@ovh-ux/manager-pci-savings-plan-app@1.20.2) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.0...@ovh-ux/manager-pci-savings-plan-app@1.20.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.5...@ovh-ux/manager-pci-savings-plan-app@1.20.0) (2025-08-05)
+
+
+### Features
+
+* **savings-plan:** savings plan in future date ([#18213](https://github.com/ovh/manager/issues/18213)) ([fdcede7](https://github.com/ovh/manager/commit/fdcede7261d09f1665980af4561870155a6b9233)), closes [#TAPC-4102](https://github.com/ovh/manager/issues/TAPC-4102)
+
+
+
+
+
+## [1.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.4...@ovh-ux/manager-pci-savings-plan-app@1.19.5) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
 ## [1.19.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.19.3...@ovh-ux/manager-pci-savings-plan-app@1.19.4) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

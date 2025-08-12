@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.2...@ovh-ux/manager-telecom@16.15.3) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4243] ([55cd9e8](https://github.com/ovh/manager/commit/55cd9e814a10c6faaec414396acc7e8e7acf4eaa))
+
+
+
+
+
+## [16.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.1...@ovh-ux/manager-telecom@16.15.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4235] ([251d076](https://github.com/ovh/manager/commit/251d076ac33133088a2e6457ba9d0f5a249a5d3c))
+* **i18n:** add missing translations [CDS 4238] ([bf0f5fa](https://github.com/ovh/manager/commit/bf0f5fa9e57f4d6869ca5977c1c0501b2275871b))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.0...@ovh-ux/manager-telecom@16.15.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4223] ([e134065](https://github.com/ovh/manager/commit/e13406591aacc67fd13c3c688547a2db7f142e26))
+* **i18n:** add missing translations [CDS 4225] ([0d8b2ad](https://github.com/ovh/manager/commit/0d8b2adc52284b2c683830a449cf83a477c6d996))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.1...@ovh-ux/manager-telecom@16.15.0) (2025-07-28)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix directory form ([44ebbee](https://github.com/ovh/manager/commit/44ebbeef16209db26ef4c461c645a72219dff979)), closes [#MANAGER-19198](https://github.com/ovh/manager/issues/MANAGER-19198)
+
+
+### Features
+
+* **xdsl-access:** adding the GTR display on the access display ([860fbae](https://github.com/ovh/manager/commit/860fbaeb7084e353e5ab5fe0ba8eb00f7fdfe36b)), closes [#UXCT-767](https://github.com/ovh/manager/issues/UXCT-767)
+
+
+
+
+
 ## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.14.0...@ovh-ux/manager-telecom@16.14.1) (2025-07-24)
 
 

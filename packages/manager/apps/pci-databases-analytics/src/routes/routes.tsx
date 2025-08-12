@@ -114,6 +114,24 @@ export default [
                   ),
                 ),
               },
+              {
+                id: 'service.{service.engine}.users.view-certificates',
+                path: 'view-certificates/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/viewCertificates/ViewCertificates.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.users.show-access-key',
+                path: 'show-access-key/:userId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/users/showAccessKey/ShowAccessKey.modal'
+                  ),
+                ),
+              },
             ],
           },
           {
@@ -302,7 +320,126 @@ export default [
               },
             ],
           },
-
+          {
+            path: 'connectors',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/connectors/Connectors.layout'
+              ),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.connectors',
+                path: '',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/Connectors.page'
+                  ),
+                ),
+                children: [
+                  {
+                    id: 'service.{service.engine}.connectors.delete',
+                    path: 'delete/:connectorId',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/connectors/delete/DeleteConnector.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
+                id: 'service.{service.engine}.connectors.tasks',
+                path: 'tasks/:connectorId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/tasks/Tasks.page'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.connectors.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/add/AddConnector.page'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.connectors.edit',
+                path: 'edit/:connectorId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/connectors/edit/EditConnector.page'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'topics',
+            id: 'service.{service.engine}.topics',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/topics/Topics.page'),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.topics.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/add/AddTopic.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topics.edit',
+                path: 'edit/:topicId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/edit/EditTopic.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topics.delete',
+                path: 'delete/:topicId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topics/delete/DeleteTopic.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'topicAcls',
+            id: 'service.{service.engine}.topicAcls',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/topicAcls/TopicAcls.page'),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.topicAcls.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topicAcls/add/AddTopicAcl.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.topicAcls.delete',
+                path: 'delete/:topicAclId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/topicAcls/delete/DeleteTopicAcl.modal'
+                  ),
+                ),
+              },
+            ],
+          },
           {
             path: 'integrations',
             id: 'service.{service.engine}.integrations',
@@ -327,6 +464,44 @@ export default [
                 ...lazyRouteConfig(() =>
                   import(
                     '@/pages/services/[serviceId]/integrations/delete/DeleteIntegration.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'replications',
+            id: 'service.{service.engine}.replications',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/services/[serviceId]/replications/Replications.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'service.{service.engine}.replications.add',
+                path: 'add',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/add/AddReplication.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.replications.edit',
+                path: 'edit/:replicationId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/edit/EditReplication.modal'
+                  ),
+                ),
+              },
+              {
+                id: 'service.{service.engine}.replications.delete',
+                path: 'delete/:replicationId',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/services/[serviceId]/replications/delete/DeleteReplication.modal'
                   ),
                 ),
               },

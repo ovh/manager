@@ -26,7 +26,7 @@ export default function usePageTracking() {
     const pageId = location.pathname.split('/').pop();
     const pageKey = pageId === 'public-gateway' ? '' : `::${pageId}`;
     trackPage({
-      name: `${PAGE_PREFIX}::public-gateway${pageKey}`,
+      name: `${PAGE_PREFIX}::ai_endpoints${pageKey}`,
       level2: PCI_LEVEL2,
     });
   }, [location]);

@@ -117,7 +117,7 @@
   "xdsl_modem_comfort_exchange_already_last_model": "Posiadasz już najnowszy model modemu.",
   "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Nie można zastąpić tego modemu w celu uzyskania dostępu SDSL.",
   "xdsl_details_modem_profile": "Profil modemu",
-  "xdsl_details_modem_profile_detail": "Profil {{ modemProfile }}",
+  "xdsl_details_modem_profile_detail": "Profil {{modemProfile}}",
   "xdsl_detail_mail_sending": "Wysyłka e-maili przez serwer SMTP",
   "xdsl_detail_mail_sending_enable": "Włącz",
   "xdsl_detail_mail_sending_disable": "Wyłącz",
@@ -137,5 +137,15 @@
   "xdsl_detail_mail_sending_update_running": "Trwa przetwarzanie dyspozycji zmiany wysyłki e-maili.",
   "xdsl_detail_mail_sending_update_succeed": "Dyspozycja zmiany wysyłki została przyjęta. Trwa jej przetwarzanie.",
   "xdsl_detail_mail_sending_update_failed": "Wystąpił błąd podczas zmiany wysyłki e-maili. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Dowiedz się więcej"
+  "xdsl_detail_mail_sending_guide": "Dowiedz się więcej",
+  "xdsl_details_mean_time_to_repair": "Gwarancja czasu przywrócenia usługi (GTR)",
+  "xdsl_details_mean_time_to_repair_10ho": "10 godzin w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_20m_10ho": "10 godzin w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_20m_4ho": "4 godziny w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_4hno": "4 godziny poza standardowymi godzinami pracy",
+  "xdsl_details_mean_time_to_repair_4ho": "4 godziny w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_5m_10ho": "10 godzin w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_5m_4ho": "4 godziny w godzinach pracy",
+  "xdsl_details_mean_time_to_repair_dplus1": "1 dzień roboczy (D+1)",
+  "xdsl_details_mean_time_to_repair_none": "Brak"
 }

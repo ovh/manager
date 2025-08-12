@@ -4,5 +4,21 @@
   "subscribed": "Abonniert",
   "to_activate": "Zu aktivieren",
   "activation_in_progress": "Wird aktiviert",
-  "disabled": "Deaktiviert"
+  "disabled": "Deaktiviert",
+  "ok": "Aktiv",
+  "autorenewInProgress": "Wird verlängert",
+  "expired": "Löschen",
+  "inCreation": "Wird erstellt",
+  "inMaintenance": "Wartungsarbeiten laufen",
+  "pendingDebt": "Ausstehende Rechnung",
+  "deleting": "Wird gelöscht",
+  "suspended": "Ausgesetzt",
+  "suspending": "Wird ausgesetzt",
+  "errorMessage": "Ihre Anfrage ist fehlgeschlagen. {{ error }}",
+  "pay_as_you_go": "Nutzungsbasierte Abrechnung",
+  "prepaid": "Prepaid",
+  "creating": "Wird erstellt",
+  "updating": "Update",
+  "unconfigured": "Nicht konfiguriert",
+  "unPaid": "Unbezahlte Rechnung"
 }

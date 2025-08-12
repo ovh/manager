@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.5.1...@ovh-ux/manager-web-hosting-app@0.5.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.5.0...@ovh-ux/manager-web-hosting-app@0.5.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.4.8...@ovh-ux/manager-web-hosting-app@0.5.0) (2025-08-05)
+
+
+### Features
+
+* **web-hosting:** remove default attached domain on ssl activation selector ([a77e558](https://github.com/ovh/manager/commit/a77e5580ce2999f728ba7932ce9642da3cd2f4fe)), closes [#MANAGER-19128](https://github.com/ovh/manager/issues/MANAGER-19128)
+* **web-hosting:** remove regenerate action on active ssl ([53950bc](https://github.com/ovh/manager/commit/53950bcd0e8c8752dfa90819769eb6b5792fe059)), closes [#WEB-20925](https://github.com/ovh/manager/issues/WEB-20925)
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.4.7...@ovh-ux/manager-web-hosting-app@0.4.8) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
 ## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.4.6...@ovh-ux/manager-web-hosting-app@0.4.7) (2025-07-24)
 
 

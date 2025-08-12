@@ -281,19 +281,6 @@ export default class VrackMoveDialogCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  openTerminateVrackModal() {
-    this.atInternet.trackClick({
-      name: `${VRACK_TRACKING_PREFIX}page::button::delete_vrack-private-network`,
-      type: 'action',
-      ...VRACK_TRACKING_CONTEXT,
-      page: {
-        name: `${VRACK_TRACKING_PREFIX}vrack-private-network::detail`,
-      },
-      page_category: 'detail',
-    });
-    this.terminateVrackModalOpen = true;
-  }
-
   // Disable terminate option if the vrack is suspended or if its not empty
   getTerminateOption() {
     this.vrackService
@@ -438,17 +425,28 @@ export default class VrackMoveDialogCtrl {
                 dedicatedServerInterfaceUpdate,
               );
               return dedicatedServerInterfaceUpdate;
+            })
+            .catch(() => {
+              return null;
             });
         }),
       )
       .then((dedicatedServerInterfaces) => {
         // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (dedicatedServerInterfaces.length > 0) {
+        const validServers = dedicatedServerInterfaces.filter(Boolean);
+        if (validServers.length > 0) {
           if (!this.data.eligibleServices.dedicatedServer) {
             this.data.eligibleServices.dedicatedServer = [];
           }
+          const readyExist = this.data.eligibleServices.dedicatedServer.map(
+            (item) => item.name,
+          );
+
+          const filtredService = validServers.filter(
+            (item) => !readyExist.includes(item.name),
+          );
           this.data.eligibleServices.dedicatedServer = this.data.eligibleServices.dedicatedServer.concat(
-            dedicatedServerInterfaces,
+            filtredService,
           );
           this.data.eligibleServices.dedicatedServerInterface = [];
         }
@@ -771,15 +769,13 @@ export default class VrackMoveDialogCtrl {
               }
             }
           });
-        } else {
-          // add fields
-          this.updateEligibleServices(data.result);
         }
         if (data.status === API_STATUS.pending) {
           this.pollerEligible = this.$timeout(() => {
             this.getEligibleServices();
           }, ELIGIBLE_POLLING_INTERVAL);
         } else {
+          this.updateEligibleServices(data.result);
           // Update IP and IPv6
           this.updateIpAndIpv6();
 

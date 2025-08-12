@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.3...@ovh-ux/manager-web-ongoing-operations-app@1.10.4) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.2...@ovh-ux/manager-web-ongoing-operations-app@1.10.3) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.1...@ovh-ux/manager-web-ongoing-operations-app@1.10.2) (2025-08-05)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** remove unused translation initialisation ([8c2397b](https://github.com/ovh/manager/commit/8c2397b4e3200230f3bfff036e5754986fc93d44)), closes [#MANAGER-19241](https://github.com/ovh/manager/issues/MANAGER-19241)
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.0...@ovh-ux/manager-web-ongoing-operations-app@1.10.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.9.4...@ovh-ux/manager-web-ongoing-operations-app@1.10.0) (2025-07-28)
+
+
+### Features
+
+* **web-ongoing-operations:** add zod to check value on update input ([2495ed4](https://github.com/ovh/manager/commit/2495ed459e1c8e524e97234cf75f7b8efa9da853)), closes [#MANAGER-18199](https://github.com/ovh/manager/issues/MANAGER-18199)
+
+
+
+
+
 ## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.9.3...@ovh-ux/manager-web-ongoing-operations-app@1.9.4) (2025-07-24)
 
 

@@ -59,7 +59,7 @@
   "kubernetes_add_region_description_region-3-az": "Despliegue de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad.",
   "kube_add_plan_footer_free": "Gratis",
   "kube_add_plan_footer_standard": "Gratuito durante la fase beta",
-  "kube_add_plan_title_free": "Free",
+  "kube_add_plan_title_free": "Gratis",
   "kube_add_plan_description_free": "Optimice los costes de sus recursos de cálculo, combinados con la simplicidad de una solución Kubernetes gestionada y gratuita de por vida.",
   "kube_add_plan_content_free_control": "Plan de control administrado, de alta disponibilidad",
   "kube_add_plan_content_free_high_availability": "Alta disponibilidad (1-AZ)",

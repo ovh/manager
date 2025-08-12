@@ -1,21 +1,20 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Suspense } from 'react';
+
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useInstances, useProject } from '@ovh-ux/manager-pci-common';
 import {
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { Suspense } from 'react';
-import { useInstances, useProject } from '@ovh-ux/manager-pci-common';
+
 import { useWorkflows } from '@/api/hooks/workflows';
 
 export default function OnBoardingPage() {
@@ -27,13 +26,9 @@ export default function OnBoardingPage() {
   const navigate = useNavigate();
   const projectUrl = useProjectUrl('public-cloud');
 
-  const { data: instances, isPending: isPendingInstances } = useInstances(
-    projectId,
-  );
+  const { data: instances, isPending: isPendingInstances } = useInstances(projectId);
 
-  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(projectId);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {

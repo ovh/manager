@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Subtitle } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsButton } from '@ovhcloud/ods-components/react';
@@ -25,16 +25,16 @@ import CreateGeneralInformationsCreationMethod from './generalInformations/Creat
 import { validateCredentialCreationMethod } from '@/utils/credential/validateCredentialCreationMethod';
 
 type CreateGeneralInformationsProps = {
-  name: string;
-  setName: Dispatch<SetStateAction<string>>;
+  name: string | null;
+  setName: (name: string | null) => void;
   validity: number;
-  setValidity: Dispatch<SetStateAction<number>>;
+  setValidity: (validity: number) => void;
   description: string | null;
-  setDescription: Dispatch<SetStateAction<string | null>>;
+  setDescription: (description: string | null) => void;
   csr: string | null;
-  setCsr: Dispatch<SetStateAction<string | null>>;
+  setCsr: (csr: string | null) => void;
   isCustomCsr: boolean;
-  setIsCustomCsr: Dispatch<SetStateAction<boolean>>;
+  setIsCustomCsr: (isCustomCsr: boolean) => void;
   nextStep: () => void;
 };
 
@@ -52,7 +52,7 @@ const CreateGeneralInformations = ({
   nextStep,
 }: CreateGeneralInformationsProps) => {
   const { t } = useTranslation('key-management-service/credential');
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 

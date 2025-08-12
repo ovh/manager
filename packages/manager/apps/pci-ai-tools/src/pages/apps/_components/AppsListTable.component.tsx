@@ -7,6 +7,8 @@ import ai from '@/types/AI';
 import { getColumns } from './AppsListColumns.component';
 import { getFilters } from './AppsListFilters.component';
 import DataTable from '@/components/data-table';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 
 interface AppsListProps {
   apps: ai.app.App[];
@@ -29,7 +31,7 @@ export default function AppsList({ apps }: AppsListProps) {
   });
 
   const appsFilters = getFilters();
-
+  const track = useTrackAction();
   return (
     <DataTable.Provider
       columns={columns}
@@ -42,6 +44,7 @@ export default function AppsList({ apps }: AppsListProps) {
           <Button
             data-testid="create-app-button"
             onClick={() => {
+              track(TRACKING.deploy.listing.createDeployClick(), 'listing');
               navigate('./new');
             }}
           >

@@ -1,0 +1,6 @@
+{
+  "title": "Enable Gold backup repository",
+  "description": "The Gold backup repository uses High-Performance Object Storage for main storage and then duplicates it to another region. This backup repository is configured with a 14-day data immutability period.",
+  "error": "An error has occurred activating your Gold repository: {{errorAPI}}",
+  "success": "Activating your Gold repository..."
+}

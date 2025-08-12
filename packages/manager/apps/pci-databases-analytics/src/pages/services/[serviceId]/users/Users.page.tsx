@@ -65,6 +65,12 @@ const Users = () => {
     onEditClicked: (user: GenericUser) => {
       navigate(`./edit/${user.id}`);
     },
+    onShowAccessTokenClicked: (user: GenericUser) => {
+      navigate(`./show-access-key/${user.id}`);
+    },
+    onViewCertificatesClicked: (user: GenericUser) => {
+      navigate(`./view-certificates/${user.id}`);
+    },
   });
   let rowExpension = null;
 

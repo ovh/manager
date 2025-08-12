@@ -11,9 +11,9 @@
   "telephony_line_answer_voicemail_directories_date": "Data",
   "telephony_line_answer_voicemail_directories_duration": "Czas trwania",
   "telephony_line_answer_voicemail_directories_transcript": "Wyświetl transkrypcję",
-  "telephony_line_answer_voicemail_directories_transcript_beta": "(Beta)",
+  "telephony_line_answer_voicemail_directories_transcript_beta": "(beta)",
   "telephony_line_answer_voicemail_directories_transcript_modal_title": "Transkrypcja",
-  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Transkrypcja została stworzona przez sztuczną inteligencję",
+  "telephony_line_answer_voicemail_directories_transcript_modal_subtitle": "Transkrypcja została wygenerowana przez sztuczną inteligencję",
   "telephony_line_answer_voicemail_directories_transcript_modal_download": "Pobierz transkrypcję",
   "telephony_line_answer_voicemail_directories_transcript_modal_close": "Zamknij"
 }

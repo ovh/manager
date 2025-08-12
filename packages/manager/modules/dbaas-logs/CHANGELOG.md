@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.5...@ovh-ux/manager-dbaas-logs@1.31.6) (2025-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4225] ([0d8b2ad](https://github.com/ovh/manager/commit/0d8b2adc52284b2c683830a449cf83a477c6d996))
+* **i18n:** add missing translations [CDS 4227] ([feb537f](https://github.com/ovh/manager/commit/feb537f990dfc10aaa715a29fddcdff08baa91c8))
+
+
+
+
+
+## [1.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.4...@ovh-ux/manager-dbaas-logs@1.31.5) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
 ## [1.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.3...@ovh-ux/manager-dbaas-logs@1.31.4) (2025-07-24)
 
 

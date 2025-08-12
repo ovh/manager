@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.0...@ovh-ux/manager-vps@2.50.1) (2025-08-11)
+
+
+### Bug Fixes
+
+* **vps:** fix message for downgrade autobackup ([0b7d107](https://github.com/ovh/manager/commit/0b7d107395c7e49303e1bf7f4d3fa4e2fbeb094d)), closes [#MANAGER-19357](https://github.com/ovh/manager/issues/MANAGER-19357)
+* **vps:** fixed value for additional disk 2025 ([f3e14aa](https://github.com/ovh/manager/commit/f3e14aa1910f423d2c252bd5e9bdcace53a521fb)), closes [#MANAGER-19385](https://github.com/ovh/manager/issues/MANAGER-19385)
+
+
+
+
+
+# [2.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.3...@ovh-ux/manager-vps@2.50.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* **billing:** implementation outperform banner for vps ([81a9274](https://github.com/ovh/manager/commit/81a9274b5e26adf91d810459af30bd1cc86ee094)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+* **dedicated.vps:** add banner outperform on terminate modal ([470d1a9](https://github.com/ovh/manager/commit/470d1a9bd15d1349bc78815116620d2ac201c4e2)), closes [#MANAGER-18556](https://github.com/ovh/manager/issues/MANAGER-18556)
+* **dedicated.vps:** add outperform banner in billing componant ([f000ec4](https://github.com/ovh/manager/commit/f000ec40b9bc8f0e1d9335fead89432b711edd62)), closes [#MANAGER-19102](https://github.com/ovh/manager/issues/MANAGER-19102)
+* **dedicated.vps:** autobackup for vps new range ([49e0596](https://github.com/ovh/manager/commit/49e0596542058095892bf1da773762cd8c0a312a)), closes [#MANAGER-17934](https://github.com/ovh/manager/issues/MANAGER-17934)
+* **dedicated.vps:** catch error on migration2020 call api ([7ffab1d](https://github.com/ovh/manager/commit/7ffab1d21df7e41da03b7c01d2e1ed4450f6aac9)), closes [#MANAGER-18545](https://github.com/ovh/manager/issues/MANAGER-18545)
+* **dedicated.vps:** change redirection for vps terminate ([9e82922](https://github.com/ovh/manager/commit/9e829229ec8e8d6a503a66580a7d32b53537d826)), closes [#MANAGER-17940](https://github.com/ovh/manager/issues/MANAGER-17940)
+* **dedicated.vps:** fix issue with force outperform link ([a1536a2](https://github.com/ovh/manager/commit/a1536a29aa3f1daf34dfd009eeac8b162ce2d4d4)), closes [#MANAGER-18545](https://github.com/ovh/manager/issues/MANAGER-18545)
+* **dedicated.vps:** fix link outperform banner ([3882de4](https://github.com/ovh/manager/commit/3882de4a70629defc62b458cc60c2067ba5d9bf4)), closes [#MANAGER-18744](https://github.com/ovh/manager/issues/MANAGER-18744)
+* **dedicated.vps:** fix order autobackup order button ([8e1ae96](https://github.com/ovh/manager/commit/8e1ae96eeda6a4c3f0fae1178dc22516eafb9680)), closes [#MANAGER-17934](https://github.com/ovh/manager/issues/MANAGER-17934)
+* **dedicated.vps:** fix the upscale funnel for vps 2025 ([1bc939a](https://github.com/ovh/manager/commit/1bc939aab97b8c44af0a0c2c8a2977beca109457)), closes [#MANAGER-18970](https://github.com/ovh/manager/issues/MANAGER-18970)
+* **dedicated.vps:** hide some feature for localzone ([3511329](https://github.com/ovh/manager/commit/3511329aa660367a57cfb219f305f5db413af191)), closes [#MANAGER-17455](https://github.com/ovh/manager/issues/MANAGER-17455)
+* **dedicated.vps:** remove terminate button on info tile ([7c34dc6](https://github.com/ovh/manager/commit/7c34dc6f9fbb56a6380898ee6991667d26652271)), closes [#MANAGER-17940](https://github.com/ovh/manager/issues/MANAGER-17940)
+* **i18n:** add missing translations [CDS 595] ([5f68281](https://github.com/ovh/manager/commit/5f68281ecbb1d0b9e7d234293a4bbc3e56312472))
+* **i18n:** add missing translations [CDS 627] ([fa11cfd](https://github.com/ovh/manager/commit/fa11cfd573ca445caa3d66dfb355b5ebd46dfae6))
+* **vps:** delete vps ipv6 banner ([1190900](https://github.com/ovh/manager/commit/11909000b41dcefed45e829371a4b37f812a2c7d)), closes [#MANAGER-17934](https://github.com/ovh/manager/issues/MANAGER-17934)
+
+
+### Features
+
+* **dedicated.vps:** new page for outperform vps 2020 ([650d91c](https://github.com/ovh/manager/commit/650d91c59af9556fd6e6246892a1a3cdd99b3349)), closes [#MANAGER-18545](https://github.com/ovh/manager/issues/MANAGER-18545)
+
+
+
+
+
+## [2.49.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.2...@ovh-ux/manager-vps@2.49.3) (2025-08-05)
+
+
+### Bug Fixes
+
+* **vps.dashboard:** replace ipv4 message by locked status message ([f8cc7e5](https://github.com/ovh/manager/commit/f8cc7e5c336558744ee1dc87f2e2cf81368f78a1)), closes [#MANAGER-17104](https://github.com/ovh/manager/issues/MANAGER-17104)
+
+
+
+
+
 ## [2.49.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.49.1...@ovh-ux/manager-vps@2.49.2) (2025-07-24)
 
 

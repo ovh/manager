@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "0.46.0",
+  "version": "0.47.5",
   "private": true,
   "description": "Manager billing section",
   "repository": {
@@ -46,6 +46,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.3.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.1",
     "@ovh-ux/ui-kit": "^6.10.5",
+    "@ovhcloud/ods-themes": "18.6.4",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",
     "angular-route": "1.7.x",

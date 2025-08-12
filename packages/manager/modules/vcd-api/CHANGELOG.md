@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.2...@ovh-ux/manager-module-vcd-api@0.7.3) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.1...@ovh-ux/manager-module-vcd-api@0.7.2) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.0...@ovh-ux/manager-module-vcd-api@0.7.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.6.0...@ovh-ux/manager-module-vcd-api@0.7.0) (2025-07-31)
+
+
+### Features
+
+* **managed-vcd:** disable all actions for terminated service ([521b5a9](https://github.com/ovh/manager/commit/521b5a9e5b36c791e40a7de237b9db51da01c70e)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+* **vcd-api:** update veeam & vcd resource status ([cb9b61d](https://github.com/ovh/manager/commit/cb9b61d94780d6e8d2352d823307ebd10cc2076a)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052)
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.5.26...@ovh-ux/manager-module-vcd-api@0.6.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* **vcd:** fix resourceStatus type of vrack segment ([1db6440](https://github.com/ovh/manager/commit/1db6440f3f27a501b86abec589d1928a7b937b9e)), closes [#MANAGER-18426](https://github.com/ovh/manager/issues/MANAGER-18426)
+
+
+### Features
+
+* **vcd:** add delete vrack segment ([704b641](https://github.com/ovh/manager/commit/704b641c888a7df0c8e844151f4e05b33427293e)), closes [#MANAGER-17530](https://github.com/ovh/manager/issues/MANAGER-17530)
+* **vcd:** add edit vrack segment modal ([45b3ecd](https://github.com/ovh/manager/commit/45b3ecd35f8727d46fd523c2ecf47e1a6eebe044)), closes [#MANAGER-17521](https://github.com/ovh/manager/issues/MANAGER-17521)
+* **vcd:** add modal to add network for vrack segment ([de6e239](https://github.com/ovh/manager/commit/de6e239481ce02f3fa84b9bf6c016415a29fc571)), closes [#MANAGER-17526](https://github.com/ovh/manager/issues/MANAGER-17526)
+* **vcd:** add vrack column in virtual datacenters datagrid ([bafded6](https://github.com/ovh/manager/commit/bafded65ac5862e51cfdfbe2b3f7578335cce1aa)), closes [#MANAGER-17492](https://github.com/ovh/manager/issues/MANAGER-17492)
+* **vcd:** add vrack-network page for datacenter ([add27ad](https://github.com/ovh/manager/commit/add27ad4ab7f34a34d2c28cbc5f2c6f98d624d42)), closes [#MANAGER-17508](https://github.com/ovh/manager/issues/MANAGER-17508)
+* **vcd:** disabled deletion of network when is last ([1839315](https://github.com/ovh/manager/commit/18393155199bb1203f3b0d0d34819730598753ab)), closes [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **vcd:** improve code to add better a11y ([b189ac4](https://github.com/ovh/manager/commit/b189ac4c42404cd7a879e0402c7942ab05e74e54))
+* **vcd:** improve disable vrack action when status is not ready ([c7b1bc2](https://github.com/ovh/manager/commit/c7b1bc2093396d28df531ec83829dfb1953fc897)), closes [#MANAGER-19052](https://github.com/ovh/manager/issues/MANAGER-19052) [#MANAGER-19025](https://github.com/ovh/manager/issues/MANAGER-19025)
+* **veeam-backup:** activate gold offer action in veeam backup ([a538618](https://github.com/ovh/manager/commit/a538618dce45c3fc7e7d15596cdf7bd353872a87)), closes [#MANAGER-17140](https://github.com/ovh/manager/issues/MANAGER-17140)
+
+
+
+
+
 ## [0.5.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.5.25...@ovh-ux/manager-module-vcd-api@0.5.26) (2025-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api

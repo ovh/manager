@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.35.0...@ovh-ux/manager-react-components@2.36.0) (2025-08-07)
+
+### Features
+
+- **manager-react-components:** deprecate hooks ([c5a7a78](https://github.com/ovh/manager/commit/c5a7a78ae5be7a31400fcc315daea6d5cdfee2a2)), closes [#MANAGER-19191](https://github.com/ovh/manager/issues/MANAGER-19191)
+- **manager-react-components:** deprecate pci hooks ([26ff5c4](https://github.com/ovh/manager/commit/26ff5c4225ec88f57b3df11c464314a9287df1d3)), closes [#MANAGER-19193](https://github.com/ovh/manager/issues/MANAGER-19193)
+- **manager-react-components:** deprecate playwright enum ([e99c333](https://github.com/ovh/manager/commit/e99c333e63f532549420c117d2bab1e7f7492ddb)), closes [#MANAGER-19188](https://github.com/ovh/manager/issues/MANAGER-19188)
+
+# [2.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.34.0...@ovh-ux/manager-react-components@2.35.0) (2025-08-05)
+
+### Features
+
+- **core:** export filter tag form ([ecedfa7](https://github.com/ovh/manager/commit/ecedfa734dffe235664693e7eebc85309b75bc90)), closes [#MANAGER-15304](https://github.com/ovh/manager/issues/MANAGER-15304)
+
+# [2.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.33.0...@ovh-ux/manager-react-components@2.34.0) (2025-08-01)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+- **mrc:** tag modal make edite tag callback optional ([916217b](https://github.com/ovh/manager/commit/916217b72d9db76b9a40c59fdd098fbd465c925e)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+### Features
+
+- **manager-react-components:** deprecate guide button and guide header ([91dad87](https://github.com/ovh/manager/commit/91dad879a9ca3996f4400ef35cd16b75b3fbcf7f)), closes [#MANAGER-18839](https://github.com/ovh/manager/issues/MANAGER-18839)
+- **manager-react-components:** deprecate pci maintenance banner component ([94d25bb](https://github.com/ovh/manager/commit/94d25bb5d1e5d0c5c4a1e48875b67a5115fce52a)), closes [#MANAGER-18964](https://github.com/ovh/manager/issues/MANAGER-18964)
+- **manager-react-components:** deprecate typography title and subtitle ([c4b02a6](https://github.com/ovh/manager/commit/c4b02a65782c1521af20b11a242a89a796b59c0b)), closes [#MANAGER-18712](https://github.com/ovh/manager/issues/MANAGER-18712)
+- **mrc:** datagrid row selection feature ([7961d90](https://github.com/ovh/manager/commit/7961d90e45c1177530fb7f0627f4ee1e6a4250c2)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
 # [2.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.32.3...@ovh-ux/manager-react-components@2.33.0) (2025-07-24)
 
 ### Bug Fixes

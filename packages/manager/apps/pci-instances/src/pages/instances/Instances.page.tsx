@@ -26,8 +26,8 @@ import {
   OsdsPopoverContent,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Button, Input } from '@datatr-ux/uxlib';
-import { Search, X } from 'lucide-react';
+import { Button, Input } from '@ovhcloud/ods-react';
+import { Search } from 'lucide-react';
 
 import { FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -39,7 +39,6 @@ import {
 } from 'react-router-dom';
 import clsx from 'clsx';
 import NotFoundPage from '../404/NotFound.page';
-import DatagridComponent from '@/components/datagrid/Datagrid.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
@@ -47,6 +46,7 @@ import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
+import DatagridComponent from './datagrid/components/Datagrid.component';
 
 const initialSorting = {
   id: 'name',
@@ -70,20 +70,17 @@ const SearchBar = ({
 
   return (
     <form
-      className="flex justify-end w-full relative"
+      className="flex justify-end items-center w-full relative"
       onSubmit={onSearchHandler}
     >
       <Input
         value={searchField}
         disabled={isDisabled}
         onChange={(e) => setSearchField(e.target.value)}
-        className="focus:bg-[#bef1ff] max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8 mr-4"
+        className="min-h-[40px] focus:bg-[#bef1ff] max-w-full sm:max-w-72  focus-visible:ring-transparent focus-visible:bg-primary-300 text-primary-100 pr-8 mr-4"
+        clearable
       />
-      <X
-        onClick={() => setSearchField('')}
-        className="absolute right-[68px] top-[8px] text-blue-500 cursor-pointer"
-      />
-      <Button className="rounded-l-none" disabled={isDisabled}>
+      <Button disabled={isDisabled}>
         <Search />
       </Button>
     </form>
@@ -259,7 +256,7 @@ const Instances: FC = () => {
                         ...addedFilter,
                         label: column.id,
                       });
-                      filterPopoverRef.current?.closeSurface();
+                      void filterPopoverRef.current?.closeSurface();
                     }}
                   />
                 </OsdsPopoverContent>

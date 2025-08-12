@@ -26,7 +26,7 @@ import {
 import ErrorBanner from '@/components/Error/Error';
 import { Breadcrumb } from '@/components/Breadcrumb/Breadcrumb';
 import { urls } from '@/routes/routes.constant';
-import { SuccessMessages } from '@/components/Messages/SuccessMessage.component';
+import { MessagesViewer } from '@/components/Messages/MessageViewer.component';
 import {
   DisplayNameCell,
   ActionCell,
@@ -36,7 +36,10 @@ import {
   OrganizationCell,
   LocationCell,
 } from './DatagridCell.component';
-import { productName } from '@/veeam-backup.config';
+import {
+  productName,
+  VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+} from '@/veeam-backup.config';
 import { Loading } from '@/components/Loading/Loading';
 import { BackupStatusBadge } from '@/components/BackupStatus/BackupStatusBadge.component';
 import { CHANGELOG_LINKS } from '@/constants';
@@ -102,6 +105,7 @@ export default function Listing() {
         { label: t('veeam-backup:status-DISABLED'), value: 'DISABLED' },
         { label: t('veeam-backup:status-DISABLING'), value: 'DISABLING' },
         { label: t('veeam-backup:status-REMOVED'), value: 'REMOVED' },
+        { label: t('veeam-backup:status-REMOVING'), value: 'DISABLING' },
         { label: t('veeam-backup:status-UPDATING'), value: 'UPDATING' },
       ],
     },
@@ -115,7 +119,9 @@ export default function Listing() {
     },
     {
       id: 'organizationId',
-      label: t('listing:vcdorg_cell'),
+      label: t('listing:vcdorg_cell', {
+        productName: VMWARE_CLOUD_DIRECTOR_PRODUCT_NAME,
+      }),
       isSortable: false,
       cell: OrganizationCell,
       isFilterable: false,
@@ -168,7 +174,7 @@ export default function Listing() {
         breadcrumb={<Breadcrumb />}
         header={header}
         description={t('listing:description')}
-        message={<SuccessMessages />}
+        message={<MessagesViewer />}
       >
         <div className="flex mb-6">
           <OdsButton

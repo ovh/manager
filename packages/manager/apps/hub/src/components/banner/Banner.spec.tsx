@@ -1,15 +1,12 @@
-import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
 import { useFetchHubBanner } from '@/data/hooks/banner/useBanner';
 import Banner from '@/components/banner/Banner.component';
 import { Banner as TBanner } from '@/types/banner.type';
+import { renderWithShellContext } from '@/__mocks__/ShellContextWrapper';
 
 let loading = true;
 let banner: TBanner | null = null;
@@ -23,15 +20,8 @@ const shellContext = {
   },
 };
 
-const renderComponent = () => {
-  return render(
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
-      <Banner />
-    </ShellContext.Provider>,
-  );
-};
+const renderComponent = () =>
+  renderWithShellContext(<Banner />, shellContext as ShellContextType);
 
 vi.mock('@/data/hooks/banner/useBanner', () => ({
   useFetchHubBanner: vi.fn(() => ({
