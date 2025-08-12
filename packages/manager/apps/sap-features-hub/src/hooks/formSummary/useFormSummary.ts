@@ -153,10 +153,6 @@ export const useFormSummary = (values: InstallationFormValues) => {
             label: t('server_config_input_gateway_ip'),
           },
           {
-            value: values.thickDatastorePolicy,
-            label: t('server_config_input_thick_storage'),
-          },
-          {
             value: values.encryptPassword ? t('yes') : t('no'),
             label: t('server_config_toggle_password_encryption'),
           },
@@ -166,6 +162,10 @@ export const useFormSummary = (values: InstallationFormValues) => {
             label: t('server_config_input_ova_model'),
           },
           { value: values.hanaServerDatastore, label: FORM_LABELS.datastore },
+          {
+            value: values.thickDatastorePolicy,
+            label: t('server_config_input_thick_storage'),
+          },
           ...(values.hanaServers?.length
             ? getVMFields(values.hanaServers)
             : []),

@@ -148,10 +148,6 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
           label: l.server_config_input_gateway_ip,
         },
         {
-          value: mock.thickDatastorePolicy,
-          label: l.server_config_input_thick_storage,
-        },
-        {
           value: mock.encryptPassword ? l.yes : l.no,
           label: l.server_config_toggle_password_encryption,
         },
@@ -161,6 +157,10 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
           label: l.server_config_input_ova_model,
         },
         { value: mock.hanaServerDatastore, label: FORM_LABELS.datastore },
+        {
+          value: mock.thickDatastorePolicy,
+          label: l.server_config_input_thick_storage,
+        },
         ...(mock.hanaServers?.length ? getVMFields(mock.hanaServers) : []),
         { type: 'subtitle', label: l.server_config_applications_servers },
         {
