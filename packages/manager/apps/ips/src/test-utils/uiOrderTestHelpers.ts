@@ -115,9 +115,15 @@ export const selectedOrganisation = async ({
   organisation: string;
 }) => {
   const organisationSelect = await getOrganisationSelect(container);
-  return waitFor(() => {
-    organisationSelect.value = organisation;
+  organisationSelect.value = organisation;
+  const event = new CustomEvent('odsChange', {
+    detail: { value: organisation },
   });
+
+  return waitFor(
+    () => fireEvent(organisationSelect, event),
+    WAIT_FOR_DEFAULT_OPTIONS,
+  );
 };
 
 export const selectIpv6Option = async ({

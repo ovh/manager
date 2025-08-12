@@ -47,8 +47,13 @@ const useIpHasVmacMock = vi.hoisted(() =>
   vi.fn(() => ({ isVmacAlreadyExist: false })),
 );
 
+const useGetIpGameFirewallMock = vi.hoisted(() =>
+  vi.fn(() => ({ ipGameFirewall: {} })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
+  useGetIpGameFirewall: useGetIpGameFirewallMock,
   useIpHasForcedMitigation: useIpHasForcedMitigationMock,
   useIpHasServicesAttached: useIpHasServicesAttachedMock,
   useIpHasServicesNotAttached: useIpHasServicesNotAttachedMock,
