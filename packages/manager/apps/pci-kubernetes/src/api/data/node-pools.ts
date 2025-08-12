@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {
   id: string;
@@ -98,8 +99,8 @@ export const deleteNodePool = async (
 
 export type TUpdateNodePoolSizeParam = {
   desiredNodes: number;
-  minNodes: number;
-  maxNodes: number;
+  minNodes?: number;
+  maxNodes?: number;
   autoscale: boolean;
 };
 
@@ -113,18 +114,6 @@ export const updateNodePoolSize = async (
     `/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`,
     param,
   );
-
-export type TCreateNodePoolParam = {
-  flavorName: string;
-  name: string;
-  availabilityZones?: string[];
-  antiAffinity: boolean;
-  monthlyBilled: boolean;
-  autoscale: boolean;
-  minNodes: number;
-  desiredNodes: number;
-  maxNodes: number;
-};
 
 export const createNodePool = (
   projectId: string,

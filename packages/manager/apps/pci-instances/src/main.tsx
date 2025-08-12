@@ -1,16 +1,14 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {
   initI18n,
   initShellContext,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import '@ovhcloud/ods-themes/default';
 import '@/vite-hmr';
 import App from './App';
-
-import './index.css';
-import '@datatr-ux/ods-tailwind-config/style.css';
-import '@datatr-ux/uxlib/style.css';
+import './index.scss';
 
 const init = async (
   appName: string,
@@ -41,4 +39,4 @@ const init = async (
   );
 };
 
-init('pci-instances');
+void init('pci-instances');
