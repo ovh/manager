@@ -73,7 +73,7 @@ describe('Configure game firewall page', () => {
       container,
       name: 'strategy-default-deny',
     });
-    expect(toggleElement).toHaveAttribute('disabled', '');
+    expect(toggleElement).toHaveAttribute('is-disabled', 'true');
   });
 
   it('display a success message when deny strategy is updated successfully', async () => {
