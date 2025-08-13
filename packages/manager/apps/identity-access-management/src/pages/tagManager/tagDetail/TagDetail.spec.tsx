@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import { describe, it, vi } from 'vitest';
-import { screen } from '@testing-library/react';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { renderTestApp } from '@/test-utils/renderTestApp';
 import { urls } from '@/routes/routes.constant';

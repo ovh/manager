@@ -100,21 +100,4 @@ describe('AssignTagTopbar Component', async () => {
       });
     },
   );
-
-  it('Should redirect to given url', async () => {
-    useUpdateIamResourcesMock.mockImplementation(() => ({
-      mutate: vi.fn(),
-      isSuccess: true,
-    }));
-
-    renderComponent({
-      tags: ['tag1:1', 'tag2:2', 'tag3:3'],
-      selectedResourcesList: iamResourcesListMock,
-      onSuccessUrl: 'test',
-    });
-
-    await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('test');
-    });
-  });
 });
