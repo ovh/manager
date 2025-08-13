@@ -12,14 +12,12 @@ export type BreadcrumbItem = {
 export interface UseBreadcrumbProps {
   rootLabel?: string;
   appName?: string;
-  subApp?: SubApp;
   hideRootLabel?: boolean;
 }
 export const useBreadcrumb = ({
   rootLabel,
   appName,
   hideRootLabel = false,
-  subApp,
 }: UseBreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
@@ -44,8 +42,9 @@ export const useBreadcrumb = ({
 
   useEffect(() => {
     const pathnames = location?.pathname.split('/').filter((x) => x);
-    const pathsTab = pathnames?.map((value) => {
-      const navigate = subApp === value ? `/${value}` : `/${subApp}/${value}`;
+    const pathsTab = pathnames?.map((value, index) => {
+      const parentPaths = pathnames.slice(0, index + 1);
+      const navigate = `/${parentPaths.join('/')}`;
       return {
         label: value,
         hideLabel: false,

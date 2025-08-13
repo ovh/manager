@@ -9,7 +9,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { urls } from '@/routes/routes.constant';
-import appConfig, { SubApp } from '@/identity-access-management.config';
+import appConfig from '@/identity-access-management.config';
 import { ResourcesDatagridContextProvider } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import ResourcesListDatagrid, {
   ResourceDatagridColumn,
@@ -42,7 +42,6 @@ export default function TagDetail() {
             rootLabel={appConfig.rootLabel}
             appName="identity-access-management"
             hideRootLabel={true}
-            subApp={SubApp.TAG_MANAGER}
           />
         }
         header={header}
