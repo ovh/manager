@@ -130,7 +130,7 @@ export default (
         Component={TerminateOrganizationPage}
         handle={{
           tracking: {
-            pageName: 'terminate',
+            pageName: 'delete_vcfaas',
             pageType: PageType.popup,
           },
         }}
@@ -143,7 +143,7 @@ export default (
         Component={OrganizationGeneralInformationPage}
         handle={{
           tracking: {
-            pageName: 'general-informations',
+            pageName: 'general-information',
             pageType: PageType.dashboard,
           },
         }}
@@ -187,7 +187,7 @@ export default (
           Component={TerminateOrganizationPage}
           handle={{
             tracking: {
-              pageName: 'terminate',
+              pageName: 'delete_vcfaas',
               pageType: PageType.popup,
             },
           }}
@@ -303,8 +303,8 @@ export default (
         Component={DatacentreComputeOrderPage}
         handle={{
           tracking: {
-            pageName: 'compute-order',
-            pageType: PageType.funnel,
+            pageName: 'upgrade_vcpu-speed',
+            pageType: PageType.popup,
           },
         }}
       />

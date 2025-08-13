@@ -2,13 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
-  mockVrackSegmentList,
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
-  VCDVrackSegment,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
