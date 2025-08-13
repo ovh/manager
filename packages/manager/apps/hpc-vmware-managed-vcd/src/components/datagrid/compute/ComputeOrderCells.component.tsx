@@ -21,7 +21,7 @@ export const ComputeOrderSelectCell = (vHost: VCDOrderableVhostPriced) => {
 };
 
 export const ComputeOrderVhostCell = (vHost: VCDOrderableVhostPriced) => (
-  <DataGridTextCell>{vHost.profile}</DataGridTextCell>
+  <DataGridTextCell>{vHost.name}</DataGridTextCell>
 );
 
 export const ComputeOrderCpuSpeedCell = (vHost: VCDOrderableVhostPriced) => {
