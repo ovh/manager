@@ -32,7 +32,10 @@ const getActionHrefByName = (
   }
 
   if (name === 'create_autobackup') {
-    return { path: `${projectUrl}/workflow/new`, isExternal: true };
+    return {
+      path: `${projectUrl}/workflow/new?instanceId=${id}&region=${region}`,
+      isExternal: true,
+    };
   }
 
   if (name === 'assign_floating_ip') {
@@ -149,4 +152,7 @@ export const instancesSelector = (
       addresses: mapInstanceAddresses(instanceDto),
       actions: mapInstanceActions(instanceDto, projectUrl),
       taskState: getInstanceTaskState(instanceDto.taskState),
+      creationDate: instanceDto.creationDate
+        ? new Date(instanceDto.creationDate)
+        : null,
     }));

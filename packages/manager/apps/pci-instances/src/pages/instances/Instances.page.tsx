@@ -46,6 +46,7 @@ import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
+import { useDatagridOperationsPolling } from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
 
 const initialSorting = {
   id: 'name',
@@ -152,6 +153,8 @@ const Instances: FC = () => {
     },
     [addFilter],
   );
+
+  useDatagridOperationsPolling(handleRefresh);
 
   if (data && !data.length && !filters.length && !isFetching)
     return <Navigate to={SECTIONS.onboarding} />;
