@@ -9,9 +9,7 @@ import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
-import {
-  OptionEnum,
-} from '../../common/enum/option.enum';
+import { OptionEnum } from '../../common/enum/option.enum';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -30,7 +28,7 @@ export interface TDatagridDnsDetails {
   type: keyof typeof PublicNameServerTypeEnum;
 }
 
-interface DNSConfiguration {
+export interface DNSConfiguration {
   configurationType: keyof typeof DnsConfigurationTypeEnum;
   glueRecordIPv6Supported: boolean;
   hostSupported: boolean;
