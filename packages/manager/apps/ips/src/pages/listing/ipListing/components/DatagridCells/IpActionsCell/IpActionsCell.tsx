@@ -223,9 +223,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 2,
-        label: `${t('terminate', {
-          ns: NAMESPACES.ACTIONS,
-        })} Additional IP`,
+        label: t('listingActionByoipTerminate'),
         isLoading,
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
