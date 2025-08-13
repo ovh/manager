@@ -9,6 +9,7 @@ import {
   FilterCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
@@ -27,6 +28,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { VRACK_SEGMENTS_MIN_LENGTH } from '@/pages/dashboard/datacentre/vrack-segment/datacentreVrack.constants';
 import ActionMenu from '../action/Action.component';
 import { VrackSegmentStatusBadge } from '../vrackSegmentStatusBadge/VrackSegmentStatusBadge.component';
+import { TRACKING } from '@/tracking.constants';
 
 export type VrackSegmentDatagridProps = {
   id: string;
@@ -41,6 +43,7 @@ export const VrackSegmentDatagrid = ({
     'datacentres/vrack-segment',
     NAMESPACES.STATUS,
   ]);
+  const { trackClick } = useOvhTracking();
   const [sorting, setSorting] = useState<ColumnSort>();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchInput, setSearchInput] = useState('');
@@ -144,6 +147,7 @@ export const VrackSegmentDatagrid = ({
               items={[
                 {
                   id: 1,
+                  onClick: () => trackClick(TRACKING.vrack.modifyVlanId),
                   href: hrefEdit.replace(subRoutes.vrackSegmentId, item.id),
                   label: t(
                     'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
@@ -157,6 +161,7 @@ export const VrackSegmentDatagrid = ({
                 },
                 {
                   id: 2,
+                  onClick: () => trackClick(TRACKING.vrack.addNetwork),
                   href: hrefAddNetwork.replace(
                     subRoutes.vrackSegmentId,
                     item.id,
@@ -173,6 +178,7 @@ export const VrackSegmentDatagrid = ({
                         label: t(
                           'datacentres/vrack-segment:managed_vcd_dashboard_vrack_delete_segment',
                         ),
+                        onClick: () => trackClick(TRACKING.vrack.deleteSegment),
                         href: hrefVrackSegmentDelete.replace(
                           subRoutes.vrackSegmentId,
                           item.id,

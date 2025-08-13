@@ -11,6 +11,7 @@ import {
 import { LABELS } from '../../utils/labels.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { encodeVrackNetwork } from '@/utils/encodeVrackNetwork';
+import { TRACKING } from '@/tracking.constants';
 
 const CSS = `
       .sub-row > td {
