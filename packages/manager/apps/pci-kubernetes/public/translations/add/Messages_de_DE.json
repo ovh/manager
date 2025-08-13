@@ -82,5 +82,6 @@
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Node-Pool benennen",
   "kube_add_plan_content_unavailable_1AZ_banner": "Das {{ plan }} Angebot ist in den 1-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte die 3-AZ-Bereitstellung aus.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Das {{ plan }} Angebot ist in den 3-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus."
+  "kube_add_plan_content_unavailable_3AZ_banner": "Das {{ plan }} Angebot ist in den 3-AZ-Regionen noch nicht verfügbar. Wenn Sie das {{ plan }} Angebot nutzen möchten, wählen Sie bitte eine 1-AZ-Bereitstellung aus.",
+  "kube_add_name_title": "Node-Pool benennen"
 }
