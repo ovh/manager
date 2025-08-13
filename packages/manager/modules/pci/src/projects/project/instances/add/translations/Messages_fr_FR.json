@@ -114,11 +114,9 @@
   "pci_projects_project_instances_add_private_mode1": "Votre instance est en cours de création. La configuration de tous les composants peut prendre quelques minutes.",
   "pci_projects_project_instances_add_private_mode2": "Veuillez ne pas quitter ou rafraîchir cette page car cela pourrait avoir un impact sur le processus de création.",
 
-  "pci_projects_project_instances_add_success_message": "L'instance {{ instance }} a été ajoutée.",
-  "pci_projects_project_instances_3az_add_success_message": "L'instance {{ instance }} a été ajoutée avec succès dans la zone de disponibilité : {{ zone }}",
-  "pci_projects_project_instances_add_success_multiple_message": "Les instances ont été ajoutées.",
-  "pci_projects_project_instances_add_error_save": "Une erreur est survenue lors de l'ajout de l'instance {{ instance }} : {{ message }}",
-  "pci_projects_project_instances_add_error_multiple_save": "Une erreur est survenue lors de l'ajout des instances : {{ message }}",
+  "pci_projects_project_instances_add_success_message_private_network": "L'opération de création d'instance(s) est en cours, la création de l'instance(s) peut prendre quelques minutes",
+  "pci_projects_project_instances_add_success_message_distant_backup": "L'opération de création d'instance est en cours, la création de l'instance à partir d'un backup distant entraîne un temps de traitement plus long en fonction de la taille de l'image et de la région distante",
+  "pci_projects_project_instances_add_success_message": "L(es) opération(s) de création d'instance(s) est en cours",
 
   "pci_projects_project_instances_add_modal_title": "Créer un réseau privé",
   "pci_projects_project_instances_add_modal_description": "Merci de selectionner un nom de réseau privé et votre sous-réseau afin de créer votre nouveau réseau privé.",
