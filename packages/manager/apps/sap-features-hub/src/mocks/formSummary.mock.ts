@@ -151,10 +151,6 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
           value: mock.thickDatastorePolicy,
           label: l.server_config_input_thick_storage,
         },
-        {
-          value: mock.encryptPassword ? l.yes : l.no,
-          label: l.server_config_toggle_password_encryption,
-        },
         { type: 'subtitle', label: LABELS.SAP_HANA },
         {
           value: mock.hanaServerOva,

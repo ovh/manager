@@ -132,7 +132,7 @@ export default function HistoryPage() {
               navigate(urls.installationWizard);
             }}
             label={tDashboard('blocks_start_wizard')}
-            className="mb-8"
+            className="block mb-8"
           />
           {installations && (
             <Datagrid
