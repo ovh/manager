@@ -1,0 +1,8 @@
+{
+  "projectName": "Nazwa projektu",
+  "description": "Opis",
+  "saveButton": "Zapisz ustawienia",
+  "errors": {
+    "projectNameRequired": "To pole jest wymagane"
+  }
+}

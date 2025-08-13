@@ -9,8 +9,8 @@ export const v6Prefix = 'v6-';
  * Keep both to allow future divergence, even if they currently point to the same host.
  * Override with env if you need to target a different region during development.
  */
-export const v2Endpoint = process.env.MANAGER_SWAGGER_BASE_V2 ?? 'https://eu.api.ovh.com/1.0';
-export const v6Endpoint = process.env.MANAGER_SWAGGER_BASE_V6 ?? 'https://eu.api.ovh.com/1.0';
+export const v2Endpoint = 'https://eu.api.ovh.com/v2';
+export const v6Endpoint = 'https://api.ovh.com/1.0';
 
 /**
  * List of common binary file extensions handled as non-text assets.
