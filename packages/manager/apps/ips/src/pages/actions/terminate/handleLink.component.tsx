@@ -6,7 +6,8 @@ import { US_API_CONSOLE_LINK } from '../actions.constants';
 
 export const HandleLinkNavigation = ({
   children,
-}: Readonly<{ children?: string }>) => {
+  params = {},
+}: Readonly<{ children?: string; params?: Record<string, string> }>) => {
   const { shell, environment } = React.useContext(ShellContext);
   const region = useMemo(() => environment.getRegion(), [shell]);
   const appName = 'billing';
@@ -18,7 +19,7 @@ export const HandleLinkNavigation = ({
         const response = await shell.navigation.getURL(
           appName,
           '#/autorenew/services',
-          {},
+          params,
         );
         setHref(response as string);
       } catch (error) {
