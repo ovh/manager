@@ -2,6 +2,15 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
   $stateProvider.state('billing.autorenew.agreements.agreement', {
     url: '/details/{id:int}',
     component: 'userAgreementsDetails',
+
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isAgreementsAvailable')
+        .then(
+          (isAgreementsAvailable) =>
+            !isAgreementsAvailable && 'billing.autorenew',
+        ),
     resolve: {
       agreementId: /* @ngInject */ ($transition$) => $transition$.params().id,
       breadcrumb: /* @ngInject */ (agreementId) => agreementId.toString(),
