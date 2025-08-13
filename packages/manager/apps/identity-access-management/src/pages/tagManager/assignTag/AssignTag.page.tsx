@@ -14,7 +14,7 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
-import appConfig, { SubApp } from '@/identity-access-management.config';
+import appConfig from '@/identity-access-management.config';
 import ResourcesListDatagrid from '@/components/resourcesDatagrid/ResourcesDatagrid.component';
 import { ResourcesDatagridContextProvider } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import AssignTagTopbar from './components/AssignTagTopbar.component';
@@ -41,7 +41,6 @@ export default function AssignTag() {
             rootLabel={appConfig.rootLabel}
             appName="identity-access-management"
             hideRootLabel={true}
-            subApp={SubApp.TAG_MANAGER}
           />
         }
         header={header}
