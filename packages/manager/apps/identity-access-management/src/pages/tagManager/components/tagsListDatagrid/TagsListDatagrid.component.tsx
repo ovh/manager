@@ -8,6 +8,10 @@ import {
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
+import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import TagsListTopbar from './tagsListTopBar/TagsListTopbar.component';
 import { IamTagListItem } from '@/data/api/get-iam-tags';
 import TagTypeCell from './tagTypeCell/TagTypeCell.component';
@@ -16,6 +20,7 @@ import DatagridItemsCounter from '@/components/datagridItemsCounter/DatagridItem
 import { useGetIamTags } from '@/data/hooks/useGetIamTags';
 import { useTagManagerContext } from '../../TagManagerContext';
 import { SortTagsParams, sortTags } from './utils/sortTags';
+import { urls } from '@/routes/routes.constant';
 
 const PAGE_SIZE = 10;
 
@@ -34,6 +39,8 @@ export default function TagsListDatagrid() {
   const [rowSelection, setRowSelection] = useState({});
   const [page, setPage] = useState(1);
   const { t } = useTranslation(['tag-manager', NAMESPACES.ERROR]);
+  const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
   const { addError } = useNotifications();
   const {
     isShowSystemChecked,
@@ -41,11 +48,23 @@ export default function TagsListDatagrid() {
     setSelectedTagsList,
   } = useTagManagerContext();
 
+  const goToTagDetail = (item: IamTagListItem) => {
+    trackClick({
+      actionType: 'action',
+      actions: ['datagrid', ButtonType.link, 'detail_tag'],
+    });
+    navigate(urls.tagDetail.replace(':tag', item.name));
+  };
+
   const columns: DatagridColumn<IamTagListItem>[] = [
     {
       id: 'name',
       cell: (item: IamTagListItem) => (
-        <DataGridTextCell>{item.name}</DataGridTextCell>
+        <OdsButton
+          variant={ODS_BUTTON_VARIANT.ghost}
+          onClick={() => goToTagDetail(item)}
+          label={item.name}
+        />
       ),
       label: t('tag'),
       type: FilterTypeCategories.String,
