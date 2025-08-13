@@ -90,9 +90,11 @@ describe('useBreadcrumb', () => {
       expect(current[0].label).toBe('vrackServices');
       expect(current[0].href).toBe('/#/vrack-services/vrackServices');
       expect(current[1].label).toBe('789789789');
-      expect(current[1].href).toBe('/#/vrack-services/789789789');
+      expect(current[1].href).toBe('/#/vrack-services/vrackServices/789789789');
       expect(current[2].label).toBe('listing');
-      expect(current[2].href).toBe('/#/vrack-services/listing');
+      expect(current[2].href).toBe(
+        '/#/vrack-services/vrackServices/789789789/listing',
+      );
     });
   });
   it('should hide rootLabel', async () => {

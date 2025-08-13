@@ -43,11 +43,14 @@ export const useBreadcrumb = ({
 
   useEffect(() => {
     const pathnames = location?.pathname.split('/').filter((x) => x);
-    const pathsTab = pathnames?.map((value) => ({
-      label: value,
-      href: `/#/${appName}/${value}`,
-      hideLabel: false,
-    }));
+    const pathsTab = pathnames?.map((value, index) => {
+      const parentPaths = pathnames.slice(0, index + 1);
+      return {
+        label: value,
+        href: `/#/${appName}/${parentPaths.join('/')}`,
+        hideLabel: false,
+      };
+    });
     setPaths(pathsTab);
   }, [location.pathname]);
 
