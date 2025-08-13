@@ -5,7 +5,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { useBreadcrumb } from '@/hooks/breadcrumb/useBreadcrumb';
-import { SubApp } from '@/identity-access-management.config';
 
 export interface BreadcrumbProps {
   /** root label step */
@@ -14,22 +13,18 @@ export interface BreadcrumbProps {
   appName: string;
   /** hides app name from breadcrumb */
   hideRootLabel?: boolean;
-  /** sub uapp */
-  subApp: SubApp;
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   rootLabel,
   appName,
   hideRootLabel = false,
-  subApp,
 }) => {
   const navigate = useNavigate();
   const breadcrumbItems = useBreadcrumb({
     rootLabel,
     appName,
     hideRootLabel,
-    subApp,
   });
   return (
     <OdsBreadcrumb>
