@@ -1,5 +1,6 @@
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import {
+  ActionMenuItem,
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
@@ -21,6 +22,7 @@ export enum ResourceDatagridColumn {
   DISPLAYNAME = 'resourceName',
   TYPE = 'resourceType',
   TAGS = 'tags',
+  ACTIONS = 'actions',
 }
 
 export type ResourcesListDatagridProps = {
@@ -28,6 +30,7 @@ export type ResourcesListDatagridProps = {
   topbar?: ReactNode;
   hideColumn?: ResourceDatagridColumn[];
   initFilters?: ResourcesDatagridFilter[];
+  rowActions?: (item: IamResource) => JSX.Element;
 };
 
 export default function ResourcesListDatagrid({
@@ -35,6 +38,7 @@ export default function ResourcesListDatagrid({
   topbar,
   hideColumn = [],
   initFilters = [],
+  rowActions,
 }: ResourcesListDatagridProps) {
   const { t } = useTranslation('tag-manager');
   const [rowSelection, setRowSelection] = useState({});
@@ -109,6 +113,15 @@ export default function ResourcesListDatagrid({
             isSortable: false,
             type: FilterTypeCategories.Tags,
             isFilterable: false,
+          },
+        ]
+      : []),
+    ...(rowActions
+      ? [
+          {
+            id: ResourceDatagridColumn.ACTIONS,
+            label: t('actions'),
+            cell: rowActions,
           },
         ]
       : []),
