@@ -11,7 +11,7 @@ import {
   useTagManagerContext,
 } from '../../TagManagerContext';
 import tagsList from '../../../../mocks/iam-tags/getIamTags.json';
-import { getOdsCheckbox } from '@/test-utils/uiTestHelpers';
+import { getButtonByLabel, getOdsCheckbox } from '@/test-utils/uiTestHelpers';
 
 /** MOCKS */
 const queryClient = new QueryClient();
@@ -101,9 +101,15 @@ describe('TagsListDatagrid Component', async () => {
       error: undefined,
       isError: undefined,
     });
-    const { getByText, getAllByText } = renderComponent({});
+    const { getAllByText, container } = renderComponent({});
 
-    expect(getByText('Environment:Production')).toBeInTheDocument();
+    getButtonByLabel({
+      container,
+      label: 'Environment:Production',
+      disabled: true,
+    });
+
+    // expect(getByText('Environment:Production')).toBeInTheDocument();
     expect(getAllByText('2').length).not.toBe(0);
     expect(getAllByText('tagType_predefined').length).not.toBe(0);
   });

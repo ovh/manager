@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import * as ReactRouterDom from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
 import { BreadcrumbProps, Breadcrumb } from './Breadcrumb.component';
-import appConfig, { SubApp } from '@/identity-access-management.config';
+import appConfig from '@/identity-access-management.config';
 import { getOdsBreadcrumbItemByLabel } from '@/test-utils/uiTestHelpers';
 
 const useLocationMock = vi.hoisted(() => vi.fn());

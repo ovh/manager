@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { SubApp } from '@/identity-access-management.config';
 
 export type BreadcrumbItem = {
   label: string | undefined;
