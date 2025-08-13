@@ -74,6 +74,7 @@
   "iam_resource_type_pccVMware": "VMware on OVHcloud",
   "iam_resource_type_pccVMware/sapPreInstallation": "VMWare SAP preInstallation",
   "iam_resource_type_publicCloudProject": "Projet Public Cloud",
+  "iam_resource_type_publicCloudProject/managedRancher": "Managed Rancher Service",
   "iam_resource_type_publicCloudProject/managedRegistry": "Projet Public Cloud/Managed Registry",
   "iam_resource_type_sdwan": "SDWAN",
   "iam_resource_type_sharepoint": "SharePoint",
