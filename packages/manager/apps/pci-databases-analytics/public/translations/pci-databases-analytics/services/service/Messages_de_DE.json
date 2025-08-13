@@ -31,7 +31,7 @@
   "deleteServiceIntegrationsDescription": "Wenn Sie diesen Dienst löschen, werden die folgenden Integrationszuordnungen gelöscht:",
   "deleteServiceConfirmation": "Geben Sie „TERMINATE“ ein, um Ihre Wahl zu bestätigen.",
   "IndexPatternsTab": "Index Patterns",
-  "TopicsTab": "Themen",
+  "TopicsTab": "Topics",
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Connectors",
   "ReplicationsTab": "Replikationsfluss"
