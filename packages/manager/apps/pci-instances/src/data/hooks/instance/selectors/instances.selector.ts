@@ -200,4 +200,7 @@ export const instancesSelector = (
       addresses: mapInstanceAddresses(instanceDto),
       actions: mapInstanceActions(instanceDto, projectUrl),
       taskState: getInstanceTaskState(instanceDto.taskState),
+      creationDate: instanceDto.creationDate
+        ? new Date(instanceDto.creationDate)
+        : null,
     }));

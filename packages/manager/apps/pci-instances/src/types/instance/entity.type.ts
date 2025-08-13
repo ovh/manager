@@ -69,6 +69,7 @@ export type TAggregatedInstance = DeepReadonly<{
   availabilityZone: string | null;
   taskState: string | null;
   isImageDeprecated: boolean;
+  creationDate: Date | null;
 }>;
 
 export type TInstanceVolume = {
