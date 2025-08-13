@@ -269,6 +269,10 @@ export const Datagrid = <T,>({
   });
 
   useEffect(() => {
+    table.setOptions((prev) => ({ ...prev }));
+  }, [columnVisibility]);
+
+  useEffect(() => {
     if (resetExpandedRowsOnItemsChange) {
       table.resetExpanded();
     }
@@ -320,218 +324,222 @@ export const Datagrid = <T,>({
   );
 
   return (
-    <div>
-      <DatagridTopbar
-        columnsVisibility={columnsVisibility}
-        toggleAllColumnsVisible={table.toggleAllColumnsVisible}
-        getIsAllColumnsVisible={table.getIsAllColumnsVisible}
-        getIsSomeColumnsVisible={table.getIsSomeColumnsVisible}
-        filtersColumns={filtersColumns}
-        isSearchable={!!searchColumns}
-        filters={filters}
-        search={search}
-        topbar={topbar}
-        resourceType={resourceType}
-      />
-      <div className={`contents px-[1px] ${className || ''}`}>
-        <OdsTable className="overflow-x-visible">
-          <table
-            className="w-full border-collapse"
-            style={
-              { '--expander-column-width': '2.5rem' } as React.CSSProperties
-            }
-          >
-            {!hideHeader && (
-              <thead>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th
-                        key={header.id}
-                        ref={(el) => {
-                          headerRefs.current[header.id] = el;
-                        }}
-                        className={`${
-                          contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                        } h-11 whitespace-nowrap `}
-                      >
-                        {header.isPlaceholder ? null : (
-                          <div
-                            {...{
-                              className:
-                                onSortChange && header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
-                              ...(onSortChange && {
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }),
-                            }}
-                            data-testid={`header-${header.id}`}
-                          >
-                            <span>
-                              <>
-                                {flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext(),
-                                )}
-                              </>
-                            </span>
-                            <span
-                              className={`align-middle inline-block h-4 -mt-6`}
+    columnVisibility && (
+      <div>
+        <DatagridTopbar
+          columnsVisibility={columnsVisibility}
+          toggleAllColumnsVisible={table.toggleAllColumnsVisible}
+          getIsAllColumnsVisible={table.getIsAllColumnsVisible}
+          getIsSomeColumnsVisible={table.getIsSomeColumnsVisible}
+          filtersColumns={filtersColumns}
+          isSearchable={!!searchColumns}
+          filters={filters}
+          search={search}
+          topbar={topbar}
+          resourceType={resourceType}
+        />
+        <div className={`contents px-[1px] ${className || ''}`}>
+          <OdsTable className="overflow-x-visible">
+            <table
+              className="w-full border-collapse"
+              style={
+                { '--expander-column-width': '2.5rem' } as React.CSSProperties
+              }
+            >
+              {!hideHeader && (
+                <thead>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => (
+                        <th
+                          key={header.id}
+                          ref={(el) => {
+                            headerRefs.current[header.id] = el;
+                          }}
+                          className={`${
+                            contentAlignLeft ? 'text-left pl-4' : 'text-center'
+                          } h-11 whitespace-nowrap `}
+                        >
+                          {header.isPlaceholder ? null : (
+                            <div
+                              {...{
+                                className:
+                                  onSortChange && header.column.getCanSort()
+                                    ? 'cursor-pointer select-none'
+                                    : '',
+                                ...(onSortChange && {
+                                  onClick:
+                                    header.column.getToggleSortingHandler(),
+                                }),
+                              }}
+                              data-testid={`header-${header.id}`}
                             >
-                              <OdsIcon
-                                className={
-                                  header.column.getIsSorted() ? '' : 'invisible'
-                                }
-                                name={
-                                  (header.column.getIsSorted() as string) ===
-                                  'asc'
-                                    ? ODS_ICON_NAME.arrowUp
-                                    : ODS_ICON_NAME.arrowDown
-                                }
-                              />
-                            </span>
-                          </div>
-                        )}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-            )}
-            <tbody>
-              {table.getRowModel().rows.map((row) => (
-                <Fragment key={row.id}>
-                  <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
-                    {row.getVisibleCells().map((cell) => (
-                      <td
-                        key={cell.id}
-                        className={clsx(
-                          contentAlignLeft ? 'text-left pl-4' : 'text-center',
-                          {
-                            'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
-                          },
-                        )}
-                        style={{
-                          width: tableLayoutFixed
-                            ? `${cell.column.getSize()}px`
-                            : null,
-                        }}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                  {row.getIsExpanded() && !!renderSubComponent && (
-                    <tr className="sub-row">
-                      {/* 2nd row is a custom 1 cell row */}
-                      <td colSpan={row.getVisibleCells().length}>
-                        {renderSubComponent(row, headerRefs)}
-                      </td>
+                              <span>
+                                <>
+                                  {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext(),
+                                  )}
+                                </>
+                              </span>
+                              <span
+                                className={`align-middle inline-block h-4 -mt-6`}
+                              >
+                                <OdsIcon
+                                  className={
+                                    header.column.getIsSorted()
+                                      ? ''
+                                      : 'invisible'
+                                  }
+                                  name={
+                                    (header.column.getIsSorted() as string) ===
+                                    'asc'
+                                      ? ODS_ICON_NAME.arrowUp
+                                      : ODS_ICON_NAME.arrowDown
+                                  }
+                                />
+                              </span>
+                            </div>
+                          )}
+                        </th>
+                      ))}
                     </tr>
-                  )}
-                </Fragment>
-              ))}
-              {table.getRowModel().rows.length === 0 && !isLoading && (
-                <tr
-                  className={
-                    'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
-                  }
-                >
-                  <td
-                    className="text-center"
-                    colSpan={columns.length + (!renderSubComponent ? 0 : 1)}
-                  >
-                    <DataGridTextCell>
-                      {noResultLabel ?? t('common_pagination_no_results')}
-                    </DataGridTextCell>
-                  </td>
-                </tr>
+                  ))}
+                </thead>
               )}
-              {isLoading &&
-                Array.from({
-                  length:
-                    numberOfLoadingRows ||
-                    pagination?.pageSize ||
-                    defaultNumberOfLoadingRows,
-                }).map((_, idx) => (
-                  <tr
-                    key={`loading-row-${idx})`}
-                    className="h-[3.25rem]"
-                    data-testid="loading-row"
-                  >
-                    {table.getAllColumns().map((col) =>
-                      col.getIsVisible() ? (
-                        <td key={`loading-cell-${idx}-${col.id}`}>
-                          <OdsSkeleton />
+              <tbody>
+                {table.getRowModel().rows.map((row) => (
+                  <Fragment key={row.id}>
+                    <tr className="border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]">
+                      {row.getVisibleCells().map((cell) => (
+                        <td
+                          key={cell.id}
+                          className={clsx(
+                            contentAlignLeft ? 'text-left pl-4' : 'text-center',
+                            {
+                              'w-[2.5rem]': cell.id.indexOf('expander') !== -1,
+                            },
+                          )}
+                          style={{
+                            width: tableLayoutFixed
+                              ? `${cell.column.getSize()}px`
+                              : null,
+                          }}
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </td>
-                      ) : null,
+                      ))}
+                    </tr>
+                    {row.getIsExpanded() && !!renderSubComponent && (
+                      <tr className="sub-row">
+                        {/* 2nd row is a custom 1 cell row */}
+                        <td colSpan={row.getVisibleCells().length}>
+                          {renderSubComponent(row, headerRefs)}
+                        </td>
+                      </tr>
                     )}
-                  </tr>
+                  </Fragment>
                 ))}
-            </tbody>
-          </table>
-        </OdsTable>
-      </div>
-      {!onFetchNextPage && items?.length > 0 && pagination ? (
-        <OdsPagination
-          defaultCurrentPage={pagination.pageIndex + 1}
-          className="flex xs:justify-start md:justify-end my-8"
-          total-items={totalItems}
-          total-pages={pageCount}
-          default-items-per-page={pagination.pageSize}
-          onOdsChange={({ detail }) => {
-            if (detail.current !== detail.oldCurrent) {
-              onPaginationChange({
-                ...pagination,
-                pageIndex: detail.current - 1,
-                pageSize: detail.itemPerPage,
-              });
-            }
-          }}
-          onOdsItemPerPageChange={({ detail }) => {
-            if (detail.current !== pagination.pageSize)
-              onPaginationChange({
-                ...pagination,
-                pageSize: detail.current,
-                pageIndex: 0,
-              });
-          }}
-        >
-          <span slot="before-total-items" className="mr-3">
-            {t('common_pagination_of')}
-          </span>
-          <span slot="after-total-items" className="ml-3">
-            {t('common_pagination_results')}
-          </span>
-        </OdsPagination>
-      ) : (
-        <></>
-      )}
-      {hasNextPage ? (
-        <div className="flex justify-center gap-5 my-5">
-          <OdsButton
-            data-testid="load-more-btn"
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('common_pagination_load_more')}
-            onClick={onFetchNextPage}
-            isLoading={isLoading}
-          />
-          {onFetchAllPages && (
+                {table.getRowModel().rows.length === 0 && !isLoading && (
+                  <tr
+                    className={
+                      'border-solid border-[1px] h-[3.25rem] border-[--ods-color-blue-200]'
+                    }
+                  >
+                    <td
+                      className="text-center"
+                      colSpan={columns.length + (!renderSubComponent ? 0 : 1)}
+                    >
+                      <DataGridTextCell>
+                        {noResultLabel ?? t('common_pagination_no_results')}
+                      </DataGridTextCell>
+                    </td>
+                  </tr>
+                )}
+                {isLoading &&
+                  Array.from({
+                    length:
+                      numberOfLoadingRows ||
+                      pagination?.pageSize ||
+                      defaultNumberOfLoadingRows,
+                  }).map((_, idx) => (
+                    <tr
+                      key={`loading-row-${idx})`}
+                      className="h-[3.25rem]"
+                      data-testid="loading-row"
+                    >
+                      {table.getAllColumns().map((col) =>
+                        col.getIsVisible() ? (
+                          <td key={`loading-cell-${idx}-${col.id}`}>
+                            <OdsSkeleton />
+                          </td>
+                        ) : null,
+                      )}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </OdsTable>
+        </div>
+        {!onFetchNextPage && items?.length > 0 && pagination ? (
+          <OdsPagination
+            defaultCurrentPage={pagination.pageIndex + 1}
+            className="flex xs:justify-start md:justify-end my-8"
+            total-items={totalItems}
+            total-pages={pageCount}
+            default-items-per-page={pagination.pageSize}
+            onOdsChange={({ detail }) => {
+              if (detail.current !== detail.oldCurrent) {
+                onPaginationChange({
+                  ...pagination,
+                  pageIndex: detail.current - 1,
+                  pageSize: detail.itemPerPage,
+                });
+              }
+            }}
+            onOdsItemPerPageChange={({ detail }) => {
+              if (detail.current !== pagination.pageSize)
+                onPaginationChange({
+                  ...pagination,
+                  pageSize: detail.current,
+                  pageIndex: 0,
+                });
+            }}
+          >
+            <span slot="before-total-items" className="mr-3">
+              {t('common_pagination_of')}
+            </span>
+            <span slot="after-total-items" className="ml-3">
+              {t('common_pagination_results')}
+            </span>
+          </OdsPagination>
+        ) : (
+          <></>
+        )}
+        {hasNextPage ? (
+          <div className="flex justify-center gap-5 my-5">
             <OdsButton
-              data-testid="load-all-btn"
+              data-testid="load-more-btn"
               variant={ODS_BUTTON_VARIANT.outline}
-              label={t('common_pagination_load_all')}
-              onClick={onFetchAllPages}
+              label={t('common_pagination_load_more')}
+              onClick={onFetchNextPage}
               isLoading={isLoading}
             />
-          )}
-        </div>
-      ) : null}
-    </div>
+            {onFetchAllPages && (
+              <OdsButton
+                data-testid="load-all-btn"
+                variant={ODS_BUTTON_VARIANT.outline}
+                label={t('common_pagination_load_all')}
+                onClick={onFetchAllPages}
+                isLoading={isLoading}
+              />
+            )}
+          </div>
+        ) : null}
+      </div>
+    )
   );
 };
