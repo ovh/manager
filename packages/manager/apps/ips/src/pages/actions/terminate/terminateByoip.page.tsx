@@ -1,7 +1,12 @@
 import React, { useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { OdsMessage, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsMessage,
+  OdsModal,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
@@ -14,7 +19,7 @@ import { HandleLinkNavigation } from './handleLink.component';
 
 export default function TerminateByoip() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
-  const { trackClick, trackPage } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const shell = useContext(ShellContext);
   const region = useMemo(() => shell?.environment.getRegion(), [shell]);
@@ -53,12 +58,17 @@ export default function TerminateByoip() {
                   : 'listingTerminateByoip_info2'
               }
               components={{
-                Link: <HandleLinkNavigation />,
+                Link: <HandleLinkNavigation params={{ searchText: 'byoip' }} />,
               }}
             />
           </OdsText>
         </OdsMessage>
       </OdsText>
+      <OdsButton
+        slot="actions"
+        label={t('close', { ns: NAMESPACES.ACTIONS })}
+        onClick={closeHandler}
+      />
     </OdsModal>
   );
 }
