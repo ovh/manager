@@ -41,6 +41,7 @@
   "backToTagDetail": "Retour au détail du tag",
   "unassignTagModalTitle": "Désassigner un tag",
   "unassignTagModalDescription": "Êtes-vous sûr de vouloir retirer le tag \"{{tag}}\" des ressources ?",
+  "unassignAction": "Désassigner",
   "resourcesUnassignTagSuccess": "Les ressources ont étés correctement déassignées",
   "resourcesUnassignTagError": "Une erreur est survenue lors de la désassignation des ressources.",
   "resourcesUnassignTagSomeError": "Certaines ressources n'ont pas été correctement désassignées:"
