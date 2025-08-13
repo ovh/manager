@@ -119,7 +119,11 @@ export const IpGroupDatagrid = ({
       id: 'ip-vmac',
       label: t('listingColumnsIpVMac'),
       cell: (ip: string) => (
-        <IpVmacFilterByIp ip={ip} vmacsWithIp={vmacsWithIp} />
+        <IpVmacFilterByIp
+          ip={ip}
+          vmacsWithIp={vmacsWithIp}
+          isLoading={isVmacsLoading}
+        />
       ),
       size: parentHeaders.current['ip-vmac'].clientWidth,
     },
