@@ -25,11 +25,19 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
         squash: true,
       },
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('currentUser')
-        .then((currentUser) => currentUser.isTrusted && 'billing.autorenew'),
+    redirectTo: (transition) => {
+      const injector = transition.injector();
+
+      return Promise.all([
+        injector.getAsync('currentUser'),
+        injector.getAsync('isAgreementsAvailable'),
+      ]).then(([currentUser, isAgreementsAvailable]) => {
+        if (currentUser.isTrusted || !isAgreementsAvailable) {
+          return 'billing.autorenew';
+        }
+        return null;
+      });
+    },
     atInternet: {
       ignore: true,
     },
