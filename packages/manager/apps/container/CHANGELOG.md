@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.144.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.2...@ovh-ux/manager-container-app@0.144.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4262] ([ed25b3e](https://github.com/ovh/manager/commit/ed25b3e51daf85041afdd98a440f7c7535a12d0f))
+
+
+### Features
+
+* **web-domains:** add allDom in sidebar ([abb0ae7](https://github.com/ovh/manager/commit/abb0ae7b2ea4799256513a137e394d58de74f24a)), closes [#MANAGER-17565](https://github.com/ovh/manager/issues/MANAGER-17565)
+* **web-domains:** pnr configuration to alldom part ([d825c0e](https://github.com/ovh/manager/commit/d825c0ed0cf1648645563eb266e8f1d516192a50))
+
+
+
+
+
 ## [0.143.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.1...@ovh-ux/manager-container-app@0.143.2) (2025-08-07)
 
 
