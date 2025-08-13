@@ -35,11 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
-      publicNetworks: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-      ) => PciProjectsProjectInstanceService.getPublicNetwork(projectId),
-
       privateNetworks: /* @ngInject */ (
         backup,
         PciProjectsProjectInstanceService,
@@ -64,7 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      goBack: /* @ngInject */ (goToInstanceBackups) => goToInstanceBackups,
+      goBack: /* @ngInject */ (goToInstances) => goToInstances,
     },
   });
 };

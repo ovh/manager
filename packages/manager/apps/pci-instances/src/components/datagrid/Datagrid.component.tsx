@@ -12,14 +12,23 @@ import {
   useMemo,
 } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import { ApiError, Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { useQueryClient } from '@tanstack/react-query';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+} from '@ovhcloud/ods-components';
 import { TextCell } from './cell/TextCell.component';
 import { NameIdCell } from '@/pages/instances/datagrid/cell/NameIdCell.component';
 import {
@@ -35,11 +44,13 @@ import { DeepReadonly } from '@/types/utils.type';
 import { TInstance } from '@/types/instance/entity.type';
 import {
   shouldRetryAfter404Error,
+  useInstancesOperationsPolling,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
 import { TInstanceDto } from '@/types/instance/api.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { getPartialDeletedInstanceDto } from './datagrid.constants';
+import { useFormatDate } from '@/hooks/date/useFormatDate';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -74,6 +85,7 @@ const getPlaceHolderData = (count: number): TInstance[] =>
     availabilityZone: null,
     taskState: null,
     isImageDeprecated: false,
+    creationDate: null,
   }));
 
 const DatagridComponent = ({
@@ -95,6 +107,8 @@ const DatagridComponent = ({
     addSuccess,
   } = useNotifications();
 
+  const { hasOperationsRunning } = useInstancesOperationsPolling();
+
   const {
     data = getPlaceHolderData(10),
     isLoading: instancesQueryLoading,
@@ -111,6 +125,7 @@ const DatagridComponent = ({
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
+    forceRefetch: hasOperationsRunning,
   });
 
   const handlePollingSuccess = useCallback(
@@ -157,6 +172,11 @@ const DatagridComponent = ({
     },
     { retry: shouldRetryAfter404Error },
   );
+
+  const { formatDate } = useFormatDate({
+    dateStyle: 'full',
+    timeStyle: 'long',
+  });
 
   const datagridColumns: DatagridColumn<TInstance>[] = useMemo(
     () => [
@@ -206,6 +226,19 @@ const DatagridComponent = ({
           />
         ),
         label: t('pci_instances_list_column_image'),
+        isSortable: true,
+      },
+      {
+        id: 'creationDate',
+        cell: (instance) => (
+          <TextCell
+            isLoading={instancesQueryLoading}
+            label={
+              instance.creationDate ? formatDate(instance.creationDate) : ''
+            }
+          />
+        ),
+        label: t('pci_instances_list_column_creation_date'),
         isSortable: true,
       },
       {
@@ -325,6 +358,17 @@ const DatagridComponent = ({
 
   return (
     <div className="overflow-x-auto mt-8">
+      {hasOperationsRunning && (
+        <OsdsMessage className={'mb-4'} type={ODS_MESSAGE_TYPE.info}>
+          <OsdsText
+            color={ODS_TEXT_COLOR_INTENT.info}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+          >
+            {t('pci_instances_operations_running')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+
       <Datagrid
         columns={datagridColumns}
         hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}

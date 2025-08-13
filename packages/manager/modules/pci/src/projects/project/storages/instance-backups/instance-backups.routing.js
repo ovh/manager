@@ -68,6 +68,30 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'pci.projects.project.instances',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](message, 'pci.projects.project.instances'),
+          );
+        }
+
+        return promise;
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate
           .refresh()

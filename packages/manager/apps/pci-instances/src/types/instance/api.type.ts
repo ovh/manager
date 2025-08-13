@@ -44,6 +44,7 @@ export type TInstanceDto = {
   availabilityZone: string | null;
   taskState: string;
   isImageDeprecated: boolean;
+  creationDate?: string;
 };
 
 export type TPartialInstanceDto = Pick<TInstanceDto, 'id'> &

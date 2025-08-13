@@ -49,8 +49,8 @@ import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
 
 const initialSorting = {
-  id: 'name',
-  desc: false,
+  id: 'creationDate',
+  desc: true,
 };
 
 const SearchBar = ({
