@@ -47,8 +47,8 @@ import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 
 const initialSorting = {
-  id: 'name',
-  desc: false,
+  id: 'creationDate',
+  desc: true,
 };
 
 const SearchBar = ({

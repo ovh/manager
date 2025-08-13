@@ -51,6 +51,7 @@ export type TAggregatedInstanceDto = {
   availabilityZone: string | null;
   taskState: string;
   isImageDeprecated: boolean;
+  creationDate?: string;
 };
 
 export type TPartialAggregatedInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
