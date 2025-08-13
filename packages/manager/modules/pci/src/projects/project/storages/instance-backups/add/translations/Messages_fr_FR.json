@@ -17,8 +17,10 @@
   "pci_projects_project_instances_backup_add_cancel": "Annuler",
   "pci_projects_project_instances_backup_add_save_form": "Création de l'instance en cours",
   "pci_projects_project_instances_backup_add_save_multiple_form": "Création des instances en cours",
-  "pci_projects_project_instances_backup_add_success_message": "L'instance {{ instance }} a été ajoutée.",
-  "pci_projects_project_instances_backup_add_success_multiple_message": "Les instances ont été ajoutées.",
+
+  "pci_projects_project_instances_backup_add_success_message_private_network": "L'opération de création d'instance(s) est en cours, la création de l'instance(s) peut prendre quelques minutes",
+  "pci_projects_project_instances_backup_add_success_message": "L(es) opération(s) de création d'instance(s) est en cours",
+
   "pci_projects_project_instances_backup_add_error_save": "Une erreur est survenue lors de l'ajout de l'instance {{ instance }} : {{ message }}",
   "pci_projects_project_instances_backup_add_error_multiple_save": "Une erreur est survenue lors de l'ajout des instances : {{ message }}",
   "pci_projects_project_instances_backup_add_flex": "Instance flexible",

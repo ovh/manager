@@ -239,7 +239,7 @@
                 >
                     <p
                         style="white-space: pre-wrap;"
-                        data-translate="pci_projects_project_instances_instance_edit_reinstall_message{{ $ctrl.model.image.isBackup() && $ctrl.model.image.region !== $ctrl.instance.region ? '_distant' : '' }}"
+                        data-translate="pci_projects_project_instances_instance_edit_reinstall_message{{ $ctrl.model.image.isBackup() && !$ctrl.model.image.isAvailableInRegion($ctrl.instance.region) ? '_distant' : '' }}"
                     ></p>
                 </oui-message>
 
