@@ -182,18 +182,19 @@ export default class PciInstancesAddController {
         );
       })
       .then(() => {
-        const message =
-          this.model.number === 1
-            ? this.$translate.instant(
-                'pci_projects_project_instances_backup_add_success_message',
-                {
-                  instance: this.instance.name,
-                },
-              )
-            : this.$translate.instant(
-                'pci_projects_project_instances_backup_add_success_multiple_message',
-              );
-        return this.goBack(message);
+        let messageType = null;
+        if (this.model.privateNetwork.id) {
+          messageType = 'private_network';
+        }
+
+        return this.goBack(
+          this.$translate.instant(
+            `pci_projects_project_instances_backup_add_success_message${
+              messageType ? `_${messageType}` : ''
+            }`,
+          ),
+          'success',
+        );
       })
       .catch((error) => {
         let message;

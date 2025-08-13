@@ -59,7 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      goBack: /* @ngInject */ (goToInstanceBackups) => goToInstanceBackups,
+      goBack: /* @ngInject */ (goToInstances) => goToInstances,
     },
   });
 };
