@@ -8,6 +8,9 @@ import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  Message, MessageBody, MessageIcon,
+} from '@ovhcloud/ods-react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
@@ -24,6 +27,8 @@ import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
 import { TaskStatus } from '../../task/TaskStatus.component';
+import { useFormatDate } from '@/hooks/date/useFormatDate';
+import { useInstancesOperationsPolling } from '@/data/hooks/instance/polling/useInstancesPolling';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -59,6 +64,7 @@ const getPlaceHolderData = (count: number): TAggregatedInstance[] =>
     availabilityZone: null,
     taskState: null,
     isImageDeprecated: false,
+    creationDate: null,
   }));
 
 const DatagridComponent = ({
@@ -83,6 +89,8 @@ const DatagridComponent = ({
     addError,
   } = useNotifications();
 
+  const { hasOperationsRunning } = useInstancesOperationsPolling();
+
   const {
     data = getPlaceHolderData(10),
     isLoading: instancesQueryLoading,
@@ -99,9 +107,15 @@ const DatagridComponent = ({
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
+    forceRefetch: hasOperationsRunning,
   });
 
   const pollingData = useDatagridPolling(pendingTasks);
+
+  const { formatDate } = useFormatDate({
+    dateStyle: 'full',
+    timeStyle: 'long',
+  });
 
   const datagridColumns: DatagridColumn<TAggregatedInstance>[] = useMemo(
     () => [
@@ -151,6 +165,19 @@ const DatagridComponent = ({
           />
         ),
         label: t('pci_instances_list_column_image'),
+        isSortable: true,
+      },
+      {
+        id: 'creationDate',
+        cell: (instance) => (
+          <TextCell
+            isLoading={instancesQueryLoading}
+            label={
+              instance.creationDate ? formatDate(instance.creationDate) : ''
+            }
+          />
+        ),
+        label: t('pci_instances_list_column_creation_date'),
         isSortable: true,
       },
       {
@@ -218,7 +245,7 @@ const DatagridComponent = ({
         isSortable: false,
       },
     ],
-    [t, instancesQueryLoading, translateMicroRegion, pciUrl, pollingData],
+    [t, instancesQueryLoading, translateMicroRegion, pciUrl, pollingData, formatDate],
   );
 
   const errorMessage = useMemo(
@@ -271,6 +298,16 @@ const DatagridComponent = ({
 
   return (
     <div className="overflow-x-auto mt-8">
+      {hasOperationsRunning && (
+        <Message className={'mb-4'} color={'information'}>
+          <MessageIcon name={'circle-info'} />
+          <MessageBody
+          >
+            {t('pci_instances_operations_running')}
+          </MessageBody>
+        </Message>
+      )}
+
       <Datagrid
         columns={datagridColumns}
         hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
