@@ -39,14 +39,14 @@ export default function ActionMeContactComponent({
     );
   }
 
-  let url = `${webUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
+  let url = `${webUrl as string}/domain/${domainName}/contact-management/edit-contact/${value}/`;
   if (
     [
       DomainOperationsEnum.DomainIncomingTransfer,
       DomainOperationsEnum.DomainCreate,
     ].includes(operationName as DomainOperationsEnum)
   ) {
-    url = `${accountUrl}/contact/${value}/${
+    url = `${accountUrl as string}/contact/${value}/${
       fields.length ? getNicParams(fields) : ''
     }`;
   }
