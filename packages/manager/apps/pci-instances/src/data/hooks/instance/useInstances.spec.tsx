@@ -43,6 +43,7 @@ const instanceBuilder = (
   status,
   actions: new Map(),
   taskState: null,
+  creationDate: null,
 });
 
 // initializers
