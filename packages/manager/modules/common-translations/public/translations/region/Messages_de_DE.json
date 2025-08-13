@@ -1,4 +1,5 @@
 {
   "region": "Region",
-  "localisation": "Standort"
+  "localisation": "Standort",
+  "deployment_mode_label": "Bereitstellungsmodus"
 }
