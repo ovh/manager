@@ -258,7 +258,7 @@ export default function NewPage(): JSX.Element {
       <StepComponent
         id={StepsEnum.NAME}
         order={1}
-        title={t('add:kubernetes_add_name_title')}
+        title={t('add:kube_add_name_title')}
         isOpen={!!store.steps.get(StepsEnum.NAME)?.isOpen}
         isChecked={!!store.steps.get(StepsEnum.NAME)?.isChecked}
         isLocked={!!store.steps.get(StepsEnum.NAME)?.isLocked}
