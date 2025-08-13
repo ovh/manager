@@ -200,16 +200,6 @@ export default class PciInstancesAddController {
       schedule: null,
       price: null,
     };
-    this.addInstanceSuccessMessage =
-      this.addInstanceSuccessMessage ||
-      'pci_projects_project_instances_add_success_message';
-
-    this.addInstance3azSuccessMessage =
-      this.addInstance3azSuccessMessage ||
-      'pci_projects_project_instances_3az_add_success_message';
-    this.addInstancesSuccessMessage =
-      this.addInstancesSuccessMessage ||
-      'pci_projects_project_instances_add_success_multiple_message';
 
     this.availableLocalPrivateNetworks = [this.defaultPrivateNetwork];
     this.modes = this.instanceModeEnum.map(({ mode }) => {
@@ -1480,10 +1470,6 @@ export default class PciInstancesAddController {
     return this.create();
   }
 
-  onCancelCreateInstanceConfirmation() {
-    this.confirmPrivateInstanceCreation = false;
-  }
-
   create() {
     this.isLoading = true;
     this.trackAction('create');
@@ -1555,36 +1541,30 @@ export default class PciInstancesAddController {
       this.model.number,
     )
       .then(() => {
-        let message;
-        if (this.model.number === 1) {
-          if (this.instance.availability) {
-            message = this.$translate.instant(
-              this.addInstance3azSuccessMessage,
-              {
-                instance: this.instance.name,
-                zone: this.instance.availability,
-              },
-            );
-          } else {
-            message = this.$translate.instant(this.addInstanceSuccessMessage, {
-              instance: this.instance.name,
-            });
-          }
-        } else {
-          message = this.$translate.instant(this.addInstancesSuccessMessage);
+        let messageType = null;
+        if (
+          this.model.image.isBackup() &&
+          !this.model.image.isAvailableInRegion(this.instance.region)
+        ) {
+          messageType = 'distant_backup';
+        } else if (this.isPrivateMode()) {
+          messageType = 'private_network';
         }
 
-        return this.goBack(message, 'success');
+        return this.goBack(
+          this.$translate.instant(
+            `pci_projects_project_instances_add_success_message${
+              messageType ? `_${messageType}` : ''
+            }`,
+          ),
+          'success',
+        );
       })
       .catch((error) => {
         this.createInstanceError(error);
       })
       .finally(() => {
-        if (!this.isPrivateMode()) {
-          this.isLoading = false;
-        } else {
-          this.confirmPrivateInstanceCreation = false;
-        }
+        this.isLoading = false;
       });
   }
 
