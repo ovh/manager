@@ -2,13 +2,12 @@
  * @file prompts-helper.ts
  * @description Helpers used by prompts & endpoint preparation.
  */
-import { normalizePath } from 'src/kernel/commons/utils/paths-utils';
+import { normalizePath, splitApiPathsByVersion } from 'src/kernel/commons/utils/paths-utils';
 
 import { AugmentedAnswers, GeneratorAnswers } from '../../playbook/types/playbook-types';
-import { normalizeSelectedApiPath } from '../api/api-helper';
 import { getApiTemplateData } from '../api/get-api-template-data';
 import { ApiPathChoice, ServiceOperations } from '../types/api-types';
-import { MethodGroup, OperationItem, PromptChoice, VersionSplit } from '../types/inquiries-types';
+import { MethodGroup, OperationItem, PromptChoice } from '../types/inquiries-types';
 
 /**
  * Ensure a string ends with a given suffix exactly once.
@@ -70,20 +69,6 @@ export function normalizeApiPathChoices(items: ApiPathChoice[]): PromptChoice[] 
     const safe = JSON.stringify(it);
     return { name: safe, value: safe };
   });
-}
-
-/**
- * Split selected API base paths into v2 / v6 buckets.
- * Uses normalizeSelectedApiPath, then brace-aware normalization for consistent matching.
- */
-export function splitApiPathsByVersion(paths: string[]): VersionSplit {
-  const out: VersionSplit = { v2: [], v6: [] };
-  for (const p of paths) {
-    const { version, base } = normalizeSelectedApiPath(p);
-    const normBase = normalizePath(base, { braceAware: true });
-    out[version].push(normBase);
-  }
-  return out;
 }
 
 /**

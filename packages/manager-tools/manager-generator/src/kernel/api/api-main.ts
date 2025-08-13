@@ -46,6 +46,8 @@ export const getApiServiceOperations = async (apiPath: string): Promise<ServiceO
   const servicePath = stripApiVersionPrefix(apiPath); // "/iam"
   const url = `${endpoint}${servicePath}.json`;
 
+  console.info(`[generator] service url ${url}, for path ${servicePath} and endpoint: ${endpoint}`);
+
   try {
     const { data }: AxiosResponse<SwaggerServiceDoc> = await axios.get(url);
     // Normalize paths before returning (downstream expects `apis` with nested operations).

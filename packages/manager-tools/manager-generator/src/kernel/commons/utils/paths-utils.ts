@@ -2,6 +2,7 @@
  * @file paths-utils.ts
  * @description Path normalization utilities for API endpoints and derived keys.
  */
+import { VersionSplit } from '../../types/inquiries-types';
 
 /**
  * Ensure a path starts with a single leading slash and has no trailing spaces.
@@ -20,23 +21,6 @@ export function ensureLeadingSlash(input: string): string {
 }
 
 /**
- * Validate that a path starts with a slash (throwing a friendly error if not).
- * Use when you want to enforce correctness at schema/edge boundaries.
- *
- * @param {string} input - Path to validate.
- * @throws {Error} When path does not start with "/".
- *
- * @example
- * assertStartsWithSlash('/ok'); // ok
- * assertStartsWithSlash('bad'); // throws
- */
-export function assertStartsWithSlash(input: string): void {
-  if (typeof input !== 'string' || !input.startsWith('/')) {
-    throw new Error('Path must start with "/"');
-  }
-}
-
-/**
  * Strip a version prefix of the form "v<digit>-/" that some inputs may include
  * (e.g., "v6-/ovhCloudConnect" → "/ovhCloudConnect").
  *
@@ -51,7 +35,8 @@ export function assertStartsWithSlash(input: string): void {
  */
 export function stripApiVersionPrefix(input: string): string {
   const s = String(input ?? '');
-  return s.replace(/^v\d+-\//, '/');
+  // handle "v2-/x" and "/v2-/x"
+  return s.replace(/^\/?v\d+-\//, '/');
 }
 
 /**
@@ -97,23 +82,6 @@ export function sanitizePathForSchema(input: string): string {
 }
 
 /**
- * Split a normalized path into segments (without leading empty segment).
- * Leading "/" is ignored; multiple slashes are collapsed by default.
- *
- * @param {string} input - A path like "/cloud/project/{serviceName}".
- * @returns {string[]} Segments, e.g., ["cloud", "project", "{serviceName}"].
- *
- * @example
- * pathSegments('/a/b/{id}') // ["a","b","{id}"]
- */
-export function pathSegments(input: string): string[] {
-  return String(input ?? '')
-    .replace(/^\/+/, '')
-    .split('/')
-    .filter(Boolean);
-}
-
-/**
  * Normalize a path for downstream processing:
  * - Ensure leading slash
  * - Strip "vN-/" prefix if present
@@ -130,7 +98,67 @@ export function pathSegments(input: string): string[] {
  * // "/cloud/project/{serviceName}"
  */
 export function normalizePath(input: string, opts?: { braceAware?: boolean }): string {
-  const withSlash = ensureLeadingSlash(input);
-  const stripped = stripApiVersionPrefix(withSlash);
-  return opts?.braceAware ? braceAwareBasePath(stripped) : stripped;
+  // Strip the transport prefix *first*, then ensure leading slash.
+  const stripped = stripApiVersionPrefix(input);
+  const withSlash = ensureLeadingSlash(stripped);
+  return opts?.braceAware ? braceAwareBasePath(withSlash) : withSlash;
+}
+
+/**
+ * Normalize a selected endpoint value to its base API path and detect API version.
+ *
+ * The generator’s endpoint chooser encodes values as:
+ *   `${apiPath}-${functionName}`
+ *
+ * Examples:
+ *  - "/v2/users/list-getUsers" → base="/v2/users/list", version="v2"
+ *  - "/cloud/project/{serviceName}-getProject" → base="/cloud/project/{serviceName}", version="v6"
+ *
+ * Notes:
+ *  - We split on the **last** '-' to allow hyphens elsewhere (defensive).
+ *  - We normalize the base using `normalizePath(..., { braceAware: true })`
+ *    so that combined forms like "/x/{id}-getThing" become "/x/{id}".
+ *
+ * @param value The raw selected value from the prompt (e.g., "/path-fnName").
+ * @returns `{ version: 'v2' | 'v6', base: string }`
+ */
+export function normalizeSelectedApiPath(value: string): { version: 'v2' | 'v6'; base: string } {
+  const raw = String(value ?? '');
+  const lastDash = raw.lastIndexOf('-');
+
+  let pathPart = raw;
+  if (lastDash > 0) {
+    const tail = raw.slice(lastDash + 1);
+    // Only split if tail looks like a function name (no slashes)
+    if (tail && !tail.includes('/')) {
+      pathPart = raw.slice(0, lastDash);
+    }
+  }
+
+  // This will now correctly turn "v2-/x" into "/x"
+  const base = normalizePath(pathPart, { braceAware: true });
+
+  // Heuristic: v2 if base starts with "/v2" OR raw starts with the transport prefix "v2-/"
+  const version: 'v2' | 'v6' = base.startsWith('/v2') || raw.startsWith('v2-/') ? 'v2' : 'v6';
+
+  return { version, base };
+}
+
+/**
+ * Split selected API base paths into v2 / v6 buckets.
+ * Uses normalizeSelectedApiPath, then brace-aware normalization for consistent matching.
+ */
+export function splitApiPathsByVersion(paths: string[]): VersionSplit {
+  const out: VersionSplit = { v2: [], v6: [] };
+  const seen = { v2: new Set<string>(), v6: new Set<string>() };
+
+  for (const p of paths) {
+    const { version, base } = normalizeSelectedApiPath(p);
+    const normBase = normalizePath(base, { braceAware: true });
+    if (!seen[version].has(normBase)) {
+      seen[version].add(normBase);
+      out[version].push(normBase);
+    }
+  }
+  return out;
 }
