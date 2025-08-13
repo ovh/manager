@@ -1,4 +1,4 @@
-import { buildTranslationManager } from '../../../../utils/translation-helper';
+import { buildTranslationManager } from '../../../utils/translation-helper';
 
 const translationLoaders = {
   de_DE: () => import('./Messages_de_DE.json'),
@@ -11,4 +11,4 @@ const translationLoaders = {
   pt_PT: () => import('./Messages_pt_PT.json'),
 };
 
-buildTranslationManager(translationLoaders, 'buttons');
+buildTranslationManager(translationLoaders, 'changelog-menu');
