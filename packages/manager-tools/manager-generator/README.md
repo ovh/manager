@@ -184,6 +184,14 @@ Helpers in `src/kernel/prompts/prompts-helper.ts` prepare endpoint choices, appl
 
 > **Note:** install dependencies and build the generator before running any of the following commands.
 
+### Full Interactive Mode
+
+```bash
+yarn manager-generator
+```
+
+Runs the generator in interactive mode and creates a new project under `./packages/manager/apps`.
+
 ### Non-interactive (Dry-Run) Mode
 
 `--dry-run` simulates generation without writing files to disk.
