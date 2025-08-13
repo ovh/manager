@@ -52,6 +52,17 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async (importOriginal) => {
   };
 });
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...(actual as Record<string, unknown>),
+    useOvhTracking: () => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    }),
+  };
+});
+
 const renderVrackSegmentDatagrid = () => {
   const queryClient = new QueryClient();
 
@@ -67,9 +78,11 @@ describe('VrackSegmentDatagrid', () => {
     renderVrackSegmentDatagrid();
 
     // Check if title is rendered
-    expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
-    ).toBeInTheDocument();
+    waitFor(() =>
+      expect(
+        screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
+      ).toBeInTheDocument(),
+    );
 
     // Check if description is rendered
     expect(
@@ -81,9 +94,11 @@ describe('VrackSegmentDatagrid', () => {
     renderVrackSegmentDatagrid();
 
     // Check if column headers are rendered
-    expect(
-      screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
-    ).toBeInTheDocument();
+    waitFor(() =>
+      expect(
+        screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segments)[0],
+      ).toBeInTheDocument(),
+    );
     expect(
       screen.getAllByText(fr_FR.managed_vcd_dashboard_vrack_segment)[0],
     ).toBeInTheDocument();
