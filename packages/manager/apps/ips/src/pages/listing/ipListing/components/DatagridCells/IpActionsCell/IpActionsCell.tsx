@@ -25,7 +25,7 @@ export type IpActionsCellParams = {
   ip: string;
   parentIpGroup?: string;
 };
-/* 
+/*
   list of category and path map in order to check if the ip is attached to that category
   categoryAndPathMapping = [
         {
@@ -75,7 +75,7 @@ export type IpActionsCellParams = {
     display => nothing + parent IP
  */
 
-/*  
+/*
     If its not permanent mitigation then display listingManageMitigation_DEFAULT_to_PERMANENT
     If its permanent mitigation(PERMANENT) And mitigation state is Ok then display listingManageMitigation_PERMANENT_to_AUTO
     If its permanent mitigation(PERMANENT) OR mitigation state is Ok And if mitigation is auto (FORCED) then enable listingManageMitigation_stats
@@ -219,9 +219,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         ipDetails?.type,
       ) && {
         id: 2,
-        label: `${t('terminate', {
-          ns: NAMESPACES.ACTIONS,
-        })} Additional IP`,
+        label: t('listingActionByoipTerminate'),
         isLoading,
         onClick: () =>
           navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
