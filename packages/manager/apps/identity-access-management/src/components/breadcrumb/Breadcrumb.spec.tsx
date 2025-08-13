@@ -14,7 +14,6 @@ vi.mock('react-router-dom', async (importOriginal) => ({
 
 const renderComponent = async ({
   hideRootLabel,
-  subApp,
   appName = appConfig.appName,
   rootLabel = appConfig.rootLabel,
 }: Partial<BreadcrumbProps>) => {
@@ -23,7 +22,6 @@ const renderComponent = async ({
       rootLabel={rootLabel}
       appName={appName}
       hideRootLabel={hideRootLabel}
-      subApp={subApp}
     />,
   );
 };
@@ -51,7 +49,6 @@ describe('breadcrumb component', () => {
 
     const { container } = await renderComponent({
       hideRootLabel: false,
-      subApp: SubApp.TAG_MANAGER,
     });
 
     const items = container.querySelectorAll('ods-breadcrumb-item');
@@ -80,7 +77,6 @@ describe('breadcrumb component', () => {
 
     const { container } = await renderComponent({
       hideRootLabel: true,
-      subApp: SubApp.TAG_MANAGER,
     });
     const items = container.querySelectorAll('ods-breadcrumb-item');
     expect(items.length).toBe(3);
