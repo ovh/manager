@@ -24,6 +24,7 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   sort: string;
   sortOrder: 'asc' | 'desc';
   filters: FilterWithLabel[];
+  forceRefetch?: boolean;
 }>;
 
 export type TInstanceArgs = {
@@ -45,6 +46,7 @@ export const useInstances = ({
   sort,
   sortOrder,
   filters,
+  forceRefetch,
 }: TUseInstancesQueryParams) => {
   const projectId = useProjectId();
   const projectUrl = useProjectUrl('public-cloud');
@@ -160,6 +162,7 @@ export const useInstances = ({
     retry: false,
     initialPageParam: 0,
     refetchOnWindowFocus: 'always',
+    refetchInterval: forceRefetch ? 3000 : undefined,
     queryFn: ({ pageParam }) =>
       getInstances(projectId, {
         limit,
