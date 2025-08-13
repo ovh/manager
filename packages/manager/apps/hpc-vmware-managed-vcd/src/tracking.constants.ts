@@ -23,7 +23,7 @@ export const LEVEL2 = {
 };
 export const UNIVERSE = 'Enterprise';
 export const SUB_UNIVERSE = 'HostedPrivatedCloud';
-export const APP_NAME_TRACKING = 'managed-vcd';
+export const APP_NAME_TRACKING = 'vcfaas';
 export const APP_NAME = 'hpc-vmware-managed-vcd';
 
 type GetTrackingParams = (param: string | string[]) => TrackingClickParams;
@@ -50,8 +50,44 @@ export const TRACKING = defineTrackingConfig({
       actionType: 'navigation',
       actions: [`details_${APP_NAME_TRACKING}`],
     },
+    delete: {
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [`delete_${APP_NAME_TRACKING}`],
+    },
   },
   dashboard: {
+    accessVcd: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.link,
+      actionType: 'action',
+      actions: ['access_vcd'],
+    },
+    detailVrack: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.link,
+      actionType: 'action',
+      actions: ['detail_vrack'],
+    },
+    copyUrlApi: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['copy_url-api'],
+    },
+    copyId: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['copy_id'],
+    },
+    upgradeVcpuSpeed: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['upgrade_vcpu-speed'],
+    },
     activateWindowsLicence: {
       location: PageLocation.tile,
       buttonType: ButtonType.button,
@@ -60,15 +96,75 @@ export const TRACKING = defineTrackingConfig({
     },
     goToVcdPortal: {
       location: PageLocation.tile,
-      buttonType: ButtonType.externalLink,
+      buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['go-to-access-vcd_portal'],
+      actions: ['access-vcd'],
     },
     goToManageBackup: {
       location: PageLocation.tile,
       buttonType: ButtonType.externalLink,
       actionType: 'navigation',
       actions: ['go-to-see-manage_backup'],
+    },
+  },
+  vcpuSpeedPopup: {
+    cancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['cancel'],
+    },
+    confirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['confirm'],
+    },
+  },
+  dashboardNavBar: {
+    generalInformations: {
+      location: PageLocation.mainTabnav,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: ['general-informations'],
+    },
+    compute: {
+      location: PageLocation.mainTabnav,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: ['compute'],
+    },
+    storage: {
+      location: PageLocation.mainTabnav,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: ['storage'],
+    },
+    vrack: {
+      location: PageLocation.mainTabnav,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: ['vrack'],
+    },
+    edgeGateway: {
+      location: PageLocation.mainTabnav,
+      buttonType: ButtonType.tab,
+      actionType: 'navigation',
+      actions: ['edge-gateways'],
+    },
+  },
+  dashboardTerminate: {
+    confirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [`delete_${APP_NAME_TRACKING}`, 'confirm'],
+    },
+    cancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [`delete_${APP_NAME_TRACKING}`, 'cancel'],
     },
   },
   datacentreListing: {
@@ -82,9 +178,9 @@ export const TRACKING = defineTrackingConfig({
   datacentreDashboard: {
     goToVcdPortal: {
       location: PageLocation.tile,
-      buttonType: ButtonType.externalLink,
+      buttonType: ButtonType.link,
       actionType: 'navigation',
-      actions: ['go-to-access-vcd_portal'],
+      actions: ['access-vcd'],
     },
   },
   compute: {
@@ -127,6 +223,68 @@ export const TRACKING = defineTrackingConfig({
       actions: ['datacenter_add_storage', 'cancel'],
     },
   },
+  vrack: {
+    modifyVlanId: {
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['modify_id-vlan'],
+    },
+    addNetwork: {
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_network'],
+    },
+    deleteSegment: {
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['delete_vcfaas-segment'],
+    },
+  },
+  vrackModifyVlanId: {
+    confirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['modify_id-vlan', 'confirm'],
+    },
+    cancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['modify_id-vlan', 'cancel'],
+    },
+  },
+  vrackDeleteSegment: {
+    confirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['delete_vcfaas-segment', 'confirm'],
+    },
+    cancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['delete_vcfaas-segment', 'cancel'],
+    },
+  },
+  vrackAddNetwork: {
+    confirm: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_network', 'confirm'],
+    },
+    cancel: {
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add_network', 'cancel'],
+    },
+  },
   common: {
     order: {
       location: PageLocation.page,
@@ -140,16 +298,16 @@ export const TRACKING = defineTrackingConfig({
 export const TRACKING_TABS_ACTIONS = {
   dashboard: ['general-informations'],
   datacentres: ['datacenters'],
-  datacentreDashboard: ['datacenter', 'general-informations'],
-  compute: ['datacenter', 'compute'],
-  storage: ['datacenter', 'storage'],
-  vrack: ['datacenter', 'vrack'],
+  compute: ['compute'],
+  storage: ['storage'],
+  vrack: ['vrack'],
+  edgeGateways: ['edge-gateways'],
 };
 
 export const getTabTrackingParams = (
   actions: string[],
 ): TrackingClickParams => ({
-  location: PageLocation.page,
+  location: PageLocation.mainTabnav,
   buttonType: ButtonType.tab,
   actionType: 'navigation',
   actions,
