@@ -41,3 +41,5 @@ export * from './order';
 export * from './badge';
 export * from './modal';
 export * from './tags-list';
+export * from './error';
+export * from './error-boundary';
