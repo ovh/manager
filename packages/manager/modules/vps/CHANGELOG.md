@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.1...@ovh-ux/manager-vps@2.50.2) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4251] ([32e9e66](https://github.com/ovh/manager/commit/32e9e66f192d0f0589edce6e621ac59cbaf895c5))
+* **i18n:** add missing translations [CDS 4265] ([a507ae6](https://github.com/ovh/manager/commit/a507ae61df97a4fde22df2d05bd8ceab9fdbf037))
+* remove unused translations [CDS] ([c782f4b](https://github.com/ovh/manager/commit/c782f4b1093b2c19a0be59d5917ffad6be3e60ee))
+
+
+
+
+
 ## [2.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.0...@ovh-ux/manager-vps@2.50.1) (2025-08-11)
 
 
