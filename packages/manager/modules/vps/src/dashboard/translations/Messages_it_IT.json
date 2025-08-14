@@ -27,9 +27,9 @@
   "vps_dashboard_migration_banner_link": "Migrare in qualsiasi momento cliccando qui",
   "vps_dashboard_state_locked": "Bloccato",
   "vps_dashboard_service_locked": "Il tuo servizio è stato bloccato per mancato rispetto delle nostre Condizioni generali di utilizzo; per sbloccarlo, contatta il supporto.",
-  "vps_dashboard_migration_2020_info_queue_part_1": "Vittima del nostro successo! Sei in posizione {{ position }} nella coda per l’upgrade delle risorse.",
-  "vps_dashboard_migration_2020_info_queue_part_2": "Ti invieremo un'email di notifica non appena sarà pianificata una data per l'operazione. Grazie per la pazienza e la fiducia.",
-  "vps_dashboard_migration_2020_info_with_date_part_1": "L’upgrade del VPS {{ vpsName }} verrà effettuato il {{ date | date:'fullDate' }} à {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "Per attivarlo subito, clicca <a href=\"{{url}}\"> qui</a> .",
-  "vps_dashboard_migration_2020_info_ongoing": "La richiesta di aumento delle risorse è stata presa in carico. Il VPS verrà aggiornato tra circa 15 minuti."
+  "vps_dashboard_migration_2020_info_queue_part_1": "La nostra offerta ha avuto molto successo! Al momento occupi la posizione {{ position }} nella fila d’attesa per l’upgrade delle risorse.",
+  "vps_dashboard_migration_2020_info_queue_part_2": "Ti invieremo un'email di notifica appena sarà pianificata una data per l'operazione. Grazie per la tua pazienza e fiducia.",
+  "vps_dashboard_migration_2020_info_with_date_part_1": "L’upgrade del tuo VPS {{ vpsName }} verrà effettuato il {{ date | date:'fullDate' }} alle {{ time | date:'HH:mm:ss' }}.",
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Per attivarlo subito, <a href=\"{{url}}\">clicca qui</a>.",
+  "vps_dashboard_migration_2020_info_ongoing": "La tua richiesta di aumento delle risorse è stata presa in carico, il VPS verrà aggiornato tra circa 15 minuti."
 }

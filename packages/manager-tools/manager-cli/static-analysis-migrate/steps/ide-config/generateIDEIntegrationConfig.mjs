@@ -32,7 +32,7 @@ if (!appName) {
 }
 
 // Path to the monorepo root
-const workspaceRootPath = path.resolve(__dirname, '../../../../..');
+const workspaceRootPath = path.resolve(__dirname, '../../../../../..');
 
 // Path to the input .vscode/settings.json
 const vscodeInputPath = path.join(workspaceRootPath, '.vscode/settings.json');
@@ -96,7 +96,7 @@ const patchVSCodeSettings = async () => {
   settings['eslint.useFlatConfig'] = true;
   settings['eslint.validate'] = ['javascript', 'typescript', 'typescriptreact'];
   settings['eslint.nodePath'] =
-    './node_modules/@ovh-ux/manager-static-analysis-kit/node_modules/eslint';
+    './packages/manager-tools/manager-static-analysis-kit/node_modules/eslint';
 
   settings['eslint.workingDirectories'] ||= [];
   addWorkingDir(settings['eslint.workingDirectories'], `./packages/manager/apps/${appName}`);

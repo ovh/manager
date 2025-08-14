@@ -10,6 +10,7 @@ export const NAMESPACES = {
   BILLING: `${NAMESPACE_PREFIX}/billing`,
   ERROR: `${NAMESPACE_PREFIX}/error`,
   STATUS: `${NAMESPACE_PREFIX}/status`,
+  DATACENTER: `${NAMESPACE_PREFIX}/datacenter`,
   REGION: `${NAMESPACE_PREFIX}/region`,
   DASHBOARD: `${NAMESPACE_PREFIX}/dashboard`,
   ONBOARDING: `${NAMESPACE_PREFIX}/onboarding`,
