@@ -213,3 +213,14 @@ export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
   FR:
     'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
 };
+
+export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
+
+export const FULL_PROJECT_PLAN_CODE = 'project.2018';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
