@@ -7414,6 +7414,15 @@
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
+"@ovhcloud/ods-react@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.1.0.tgz#e0175a3761b8a2b075067a9337c9c898734d416f"
+  integrity sha512-VuXFN0TbEqxcvHKzFSZ0UZ3edOkx8Ek158oxXl741re5difT2ecquS6k9jSXplY8hNukP7M1CHxukbiKbXTEHw==
+  dependencies:
+    "@ark-ui/react" "5.12.0"
+    classnames "2.5.1"
+    libphonenumber-js "1.12.8"
+
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -7442,6 +7451,11 @@
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.0.1.tgz#2d31d9eb97fc7a4f3c220354ef4d4d17bacb2b1a"
   integrity sha512-OeVEwshdex36zZqFhVFix/kbb/4+ggRQXeMbAJwe17RrOVWC+YvuuHlgutSCbGZqi5gujdWv4c7lJ9qWUvqRvA==
+
+"@ovhcloud/ods-themes@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.1.0.tgz#1dd59df4983fe1e368ad7f5b950fc57bbeca955f"
+  integrity sha512-Wbz1iMvWQ6vcaXko1+cE3KSlTYiSN6r2qYMxNCCrqBlrw33RkVjDtrIyZKSCqcDrKLtLNIGJa044OrvrpMSbJA==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
