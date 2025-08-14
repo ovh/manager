@@ -1,3 +1,5 @@
+import { TPrice } from '@/data/types/payment/cart.type';
+
 export enum PaymentMethodStatus {
   PROCESSING = 'PROCESSING', // Waiting a backend return
   REGISTERED = 'REGISTERED', // Done, the PM is ready to rumble
@@ -24,7 +26,7 @@ export enum ComponentStatus {
 
 export type TCreditData = {
   isCredit?: boolean;
-  creditAmount?: { value: number; text: string; currencyCode: string };
+  creditAmount?: TPrice;
 };
 
 export type GlobalStateStatus = {
