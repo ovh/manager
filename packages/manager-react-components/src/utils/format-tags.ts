@@ -1,4 +1,6 @@
-import { IamObject } from '../hooks';
+export type IamObject = {
+  tags?: Record<string, string>;
+};
 
 export type Tag = {
   key: string;
