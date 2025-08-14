@@ -7273,6 +7273,15 @@
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
+"@ovhcloud/ods-react@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.1.0.tgz#e0175a3761b8a2b075067a9337c9c898734d416f"
+  integrity sha512-VuXFN0TbEqxcvHKzFSZ0UZ3edOkx8Ek158oxXl741re5difT2ecquS6k9jSXplY8hNukP7M1CHxukbiKbXTEHw==
+  dependencies:
+    "@ark-ui/react" "5.12.0"
+    classnames "2.5.1"
+    libphonenumber-js "1.12.8"
+
 "@ovhcloud/ods-theme-blue-jeans@17.2.1":
   version "17.2.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.2.1.tgz#6495afedce96505481f38ea072177d5be8ff4446"
@@ -7297,15 +7306,15 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
 
-"@ovhcloud/ods-themes@^18.6.3":
-  version "18.6.4"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
-  integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
-
 "@ovhcloud/ods-themes@^19.0.1":
   version "19.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.0.1.tgz#2d31d9eb97fc7a4f3c220354ef4d4d17bacb2b1a"
   integrity sha512-OeVEwshdex36zZqFhVFix/kbb/4+ggRQXeMbAJwe17RrOVWC+YvuuHlgutSCbGZqi5gujdWv4c7lJ9qWUvqRvA==
+
+"@ovhcloud/ods-themes@^19.1.0":
+  version "19.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.1.0.tgz#1dd59df4983fe1e368ad7f5b950fc57bbeca955f"
+  integrity sha512-Wbz1iMvWQ6vcaXko1+cE3KSlTYiSN6r2qYMxNCCrqBlrw33RkVjDtrIyZKSCqcDrKLtLNIGJa044OrvrpMSbJA==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -25646,19 +25655,6 @@ oclazyload@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/oclazyload/-/oclazyload-1.1.0.tgz#a9807322f190820a81c022f2ef1701d036d83e87"
   integrity sha512-FpY2eqF6kK9wEyLDP3x0sysm4pwU2BNRuDzBPB1Qwkdt2kC4J1faGersbM+0qHSsJk4bf1gJYOvCle1RJBl/BQ==
-
-"ods-18@npm:@ovhcloud/ods-components@18.6.3":
-  version "18.6.3"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.3.tgz#6915b3f6b6618d51253d70f75bb3e99e8eb78700"
-  integrity sha512-rByW67Fr1Rr+HZ7rNhGDA+mHBN3XQRF9Y3VhEwUcUf3OG5QnfS9NhduXWHweKOpzZUD7hbfoqh0tRolNALrOkw==
-  dependencies:
-    "@floating-ui/dom" "1.6.11"
-    "@stencil/core" "4.16.0"
-    google-libphonenumber "3.2.35"
-    mark.js "8.11.1"
-    tom-select "2.3.1"
-    tslib "2.6.3"
-    vanillajs-datepicker "1.3.4"
 
 office-ui-fabric-core@^11.0.0:
   version "11.1.0"

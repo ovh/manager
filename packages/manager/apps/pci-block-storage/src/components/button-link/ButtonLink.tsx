@@ -6,17 +6,20 @@ import {
   useMemo,
 } from 'react';
 import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-import { OdsButtonColor, OdsButtonSize, OdsButtonVariant } from 'ods-18';
+import {
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonSize,
+} from '@ovhcloud/ods-react';
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
 import { Icon } from '../icon/Icon';
-import 'ods-18/dist/collection/components/button/src/components/ods-button/ods-button.css';
 
 type ButtonLinkProps = {
   to: string;
-  variant?: OdsButtonVariant;
-  color?: OdsButtonColor;
-  size?: OdsButtonSize;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+  size?: ButtonSize;
   icon?: ComponentProps<typeof Icon>['name'];
 } & Pick<TrackActionParams, 'actionName' | 'actionValues' | 'location'> &
   Omit<HTMLAttributes<HTMLElement>, 'onClick'>;
@@ -28,34 +31,33 @@ export const ButtonLink = forwardRef<
   HTMLAnchorElement,
   PropsWithChildren<ButtonLinkProps>
 >(
-  (
+  ({
+    to,
+    variant = 'default',
+    color = 'primary',
+    size = 'md',
+    icon,
+    className,
+    children,
+    actionName,
+    actionValues,
+    ...htmlProps
+  }) =>
+    // ref,
     {
-      to,
-      variant = 'default',
-      color = 'primary',
-      size = 'md',
-      icon,
-      className,
-      children,
-      actionName,
-      actionValues,
-      ...htmlProps
-    },
-    ref,
-  ) => {
-    const trackingParams = useMemo<TrackActionParams>(
-      () => ({
-        actionName,
-        actionValues,
-        buttonType: 'button',
-      }),
-      [actionName, actionValues],
-    );
+      const trackingParams = useMemo<TrackActionParams>(
+        () => ({
+          actionName,
+          actionValues,
+          buttonType: 'button',
+        }),
+        [actionName, actionValues],
+      );
 
-    const onTrackingClick = useTrackAction(trackingParams);
+      const onTrackingClick = useTrackAction(trackingParams);
 
-    return (
-      <Link
+      return (
+        /* <Link
         className={clsx([
           'ods-button__button',
           `ods-button__button--${color}`,
@@ -73,7 +75,10 @@ export const ButtonLink = forwardRef<
         {!!icon && <Icon name={icon} />}
 
         {children}
-      </Link>
-    );
-  },
+      </Link> */
+        <Button variant={variant} size={size} color={color} {...htmlProps}>
+          {children}
+        </Button>
+      );
+    },
 );
