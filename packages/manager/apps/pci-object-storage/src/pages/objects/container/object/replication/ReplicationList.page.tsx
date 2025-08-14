@@ -28,6 +28,7 @@ import {
   OdsSpinner,
   OdsText,
   OdsMessage,
+  OdsTooltip,
 } from '@ovhcloud/ods-components/react';
 
 import { useServerContainer } from '@/api/hooks/useContainer';
@@ -42,9 +43,34 @@ import {
 
 import '../show/style.scss';
 
-import { STATUS_ENABLED } from '@/constants';
+import { ReplicationStorageClass, STATUS_ENABLED } from '@/constants';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
 import { useMergedContainer } from '@/hooks/useContainerMemo';
+import { downloadReplicationRules } from '@/api/data/dowloadReplicationRule';
+
+export type TSortedReplications = {
+  [index: number]: TReplication;
+} & Array<TReplication>;
+
+export type TReplicationDestinationWithStorageClass = {
+  name: string;
+  region: string;
+  storageClass: ReplicationStorageClass;
+};
+
+export type TReplication = {
+  id: string;
+  status: 'enabled' | 'disabled';
+  priority: number;
+  destination: TReplicationDestinationWithStorageClass;
+  deleteMarkerReplication: 'enabled' | 'disabled';
+  filter?: {
+    prefix: string;
+    tags: {
+      [key: string]: string;
+    };
+  };
+};
 
 export default function ReplicationListPage() {
   const { storageId, projectId } = useParams();
@@ -97,10 +123,10 @@ export default function ReplicationListPage() {
     region,
   );
 
-  const sortedReplications = useMemo(() => {
+  const sortedReplications: TSortedReplications = useMemo(() => {
     if (!container?.replication?.rules) return [];
     return container?.replication?.rules
-      ?.map((replication, index) => ({
+      .map((replication, index) => ({
         ...replication,
         index: `${index}`,
       }))
@@ -146,6 +172,10 @@ export default function ReplicationListPage() {
     !(container.versioning?.status === STATUS_ENABLED) ||
     filteredStorages.length === 0 ||
     hasInvalidReplication;
+
+  const downloadRules = () => {
+    downloadReplicationRules(container?.replication?.rules, projectId);
+  };
 
   return (
     <BaseLayout
@@ -260,18 +290,42 @@ export default function ReplicationListPage() {
                     'containers/replication:pci_projects_project_storages_containers_replication_list_description',
                   )}
                 </OdsText>
-                <OdsButton
-                  isDisabled={isCreateButtonDisabled}
-                  onClick={() => {
-                    clearNotifications();
-                    navigate(`./new?region=${searchParams.get('region')}`);
-                  }}
-                  label={t(
-                    `containers/replication:pci_projects_project_storages_containers_replication_list_add_replication_rule`,
+                <div className="flex justify-between items-center">
+                  <OdsButton
+                    isDisabled={isCreateButtonDisabled}
+                    onClick={() => {
+                      clearNotifications();
+                      navigate(`./new?region=${searchParams.get('region')}`);
+                    }}
+                    label={t(
+                      `containers/replication:pci_projects_project_storages_containers_replication_list_add_replication_rule`,
+                    )}
+                    icon="plus"
+                    size="sm"
+                  />
+
+                  {!isCreateButtonDisabled && (
+                    <div>
+                      <OdsButton
+                        id="trigger-tooltip"
+                        icon="download"
+                        label=""
+                        color="primary"
+                        variant="outline"
+                        onClick={downloadRules}
+                      />
+
+                      <OdsTooltip triggerId="trigger-tooltip">
+                        <OdsText preset="caption">
+                          {t(
+                            'containers/replication:pci_projects_project_storages_containers_replication_list_add_download_tooltip',
+                          )}
+                        </OdsText>
+                      </OdsTooltip>
+                    </div>
                   )}
-                  icon="plus"
-                  size="sm"
-                />
+                </div>
+
                 <div className="mt-8 ">
                   <Datagrid
                     columns={replicationsColumns}
