@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.9...@ovh-ux/manager-pci-private-registry-app@0.9.10) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4254] ([158a5e3](https://github.com/ovh/manager/commit/158a5e3b5357ada1cd98c14cf863acdd468f94fa))
+
+
+
+
+
 ## [0.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.8...@ovh-ux/manager-pci-private-registry-app@0.9.9) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
