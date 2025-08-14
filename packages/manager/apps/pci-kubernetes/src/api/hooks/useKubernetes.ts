@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import { TKube, TOidcProvider } from '@/types';
 import queryClient from '@/queryClient';
 import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
@@ -299,7 +300,7 @@ export const useOidcProvider = (projectId: string, kubeId: string) =>
 type KubeConfigProps = {
   projectId: string;
   kubeId: string;
-  onError: (cause: Error) => void;
+  onError: (cause: ResponseAPIError) => void;
   onSuccess: (data: { content: string }) => void;
 };
 

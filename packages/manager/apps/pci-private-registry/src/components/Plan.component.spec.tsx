@@ -50,21 +50,6 @@ describe('PlanComponent', () => {
     })),
   }));
 
-  vi.mock('@ovh-ux/manager-react-components', async () => ({
-    useMe: () => ({
-      me: {
-        ovhSubsidiary: 'ovhSubsidiary',
-        currency: {
-          code: 'USD',
-        },
-      },
-    }),
-    useCatalogPrice: () => ({
-      getFormattedCatalogPrice: () => (price) => `$${price}`,
-    }),
-    convertHourlyPriceToMonthly: (price) => price,
-  }));
-
   vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
     const actual = await importOriginal<
       typeof import('@ovh-ux/manager-pci-common')
