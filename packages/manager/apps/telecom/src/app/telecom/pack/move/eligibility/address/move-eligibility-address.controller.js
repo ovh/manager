@@ -144,7 +144,10 @@ export default class {
    */
   getStreetNumbers() {
     if (this.address.street && this.address.street.streetCode) {
-      this.searchStreetNumbers(this.address.street.streetCode);
+      this.searchStreetNumbers(
+        this.address.street.streetCode,
+        this.address.street.streetAltCode,
+      );
     }
   }
 
@@ -152,16 +155,16 @@ export default class {
    * Search street numbers from the selected street
    * @param {String} streetCode street code of the selected street
    */
-  searchStreetNumbers(streetCode) {
+  searchStreetNumbers(streetCode, streetAltCode) {
     this.address.numberStreet = null;
     this.loaders.streetNumbers = true;
     this.loading = true;
     this.moveEligibilityAddressService
-      .searchStreetNumber(streetCode)
+      .searchStreetNumber(streetCode, streetAltCode)
       .then((response) => {
         if (response.status === 'pending') {
           setTimeout(() => {
-            this.searchStreetNumbers(streetCode);
+            this.searchStreetNumbers(streetCode, streetAltCode);
           }, 5000);
         } else {
           this.streetNumbers = response.result;
