@@ -5,6 +5,7 @@ export const urls = {
   project: ':projectId',
   home: '',
   edit: 'edit',
+  activate: 'activate',
   onboarding: 'onboarding',
   creation: 'new',
   creating: 'creating/:orderId',
