@@ -1,4 +1,6 @@
 {
   "veeam_enterprise_title": "Veeam Enterprise",
-  "veeam_enterprise_order": "Bestellen"
+  "veeam_enterprise_order": "Bestellen",
+  "veeam_enterprise_list_service_name": "Name",
+  "veeam_enterprise_list_activation_status": "Status"
 }

@@ -1,4 +1,6 @@
 {
   "veeam_enterprise_title": "Veeam Enterprise",
-  "veeam_enterprise_order": "Zamów"
+  "veeam_enterprise_order": "Zamów",
+  "veeam_enterprise_list_service_name": "Nazwa",
+  "veeam_enterprise_list_activation_status": "Status"
 }
