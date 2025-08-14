@@ -550,5 +550,5 @@
   "vps_tab_veeam_offer_standard": "Standard",
   "vps_tab_veeam_offer_premium": "Premium",
   "vps_tab_veeam_upgrade_offer": "Switch to the premium option",
-  "vps_tab_veeam_downgrade_offer": "Return to the standard option"
+  "vps_tab_veeam_downgrade_offer": "Switch back to the standard option"
 }
