@@ -44,7 +44,7 @@ function DatacentreDashboardPage() {
       name: 'general_information',
       title: t('dashboard:managed_vcd_dashboard_general_information'),
       to: useResolvedPath('').pathname,
-      trackingActions: TRACKING_TABS_ACTIONS.datacentreDashboard,
+      trackingActions: TRACKING_TABS_ACTIONS.datacentres,
     },
     {
       name: 'compute',
