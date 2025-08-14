@@ -81,13 +81,24 @@ const CredentialGeneralInformations = () => {
       value: <CredentialStatus state={credential.status} />,
     },
     {
+      id: 'type',
+      label: t('key_management_service_credential_dashboard_type'),
+      value: (
+        <OdsText preset={ODS_TEXT_PRESET.span}>
+          {credential.certificateType}
+        </OdsText>
+      ),
+    },
+    {
+      id: 'origin',
+      label: t('key_management_service_credential_dashboard_origin'),
+      value: <CredentialCreationMethod fromCSR={credential.fromCSR} />,
+    },
+    {
       id: 'creation',
       label: t('key_management_service_credential_dashboard_creation'),
       value: (
-        <div className="flex flex-col">
-          <CredentialCreationMethod fromCSR={credential.fromCSR} />
-          <TileValueDate value={credential.createdAt} options={dateFormat} />
-        </div>
+        <TileValueDate value={credential.createdAt} options={dateFormat} />
       ),
     },
     {
