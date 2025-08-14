@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.7.0...@ovh-ux/manager-static-analysis-kit@0.7.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* ide configuration path after folder tools refactoring ([1beba08](https://github.com/ovh/manager/commit/1beba08982f99208219c1496f71c147a0cabae9b)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.6.0...@ovh-ux/manager-static-analysis-kit@0.7.0) (2025-08-07)
 
 

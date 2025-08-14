@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.8.0...@ovh-ux/manager-cli@0.8.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* ide configuration path after folder tools refactoring ([1beba08](https://github.com/ovh/manager/commit/1beba08982f99208219c1496f71c147a0cabae9b)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* manager-cli after folder tools refactoring ([a46f2c0](https://github.com/ovh/manager/commit/a46f2c0b01dc2e065dc06dc240d66a4c40f6c9db)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* routes migration cli after folder tools refactoring ([f3e0cde](https://github.com/ovh/manager/commit/f3e0cde8a5af1dcce7ec205fda6b3c8cbe13c162)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+* vscode configuration path after folder tools refactoring ([b428334](https://github.com/ovh/manager/commit/b42833486eef807587c66f5c59cd2d2616bd90d9)), closes [#MANAGER-19100](https://github.com/ovh/manager/issues/MANAGER-19100)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.7.0...@ovh-ux/manager-cli@0.8.0) (2025-08-07)
 
 

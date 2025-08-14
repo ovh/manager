@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.15.0",
+    "@ovh-ux/manager-common-translations": "^0.16.0",
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-pci-common": "^0.17.0",
@@ -43,7 +43,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "^0.7.1",
     "@ovh-ux/manager-tests-setup": "^0.3.0",
     "@ovh-ux/manager-vite-config": "^0.11.0",
     "@tanstack/react-query-devtools": "^5.51.21",

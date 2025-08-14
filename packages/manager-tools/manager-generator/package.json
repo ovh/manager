@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-generator",
-  "version": "0.32.0",
+  "version": "0.32.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -22,6 +22,6 @@
     "plop": "^3.1.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.7.0"
+    "@ovh-ux/manager-static-analysis-kit": "^0.7.1"
   }
 }

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.26.0...@ovh-ux/manager-pci-databases-analytics-app@1.26.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4252] ([e04743f](https://github.com/ovh/manager/commit/e04743f83fb61873f9e6fce9c5e64ba11ea8f07a))
+* **i18n:** add missing translations [CDS 4254] ([158a5e3](https://github.com/ovh/manager/commit/158a5e3b5357ada1cd98c14cf863acdd468f94fa))
+* **i18n:** add missing translations [CDS 4261] ([ad3cc8d](https://github.com/ovh/manager/commit/ad3cc8de8ec0e1220d8052de50fa84575e9e41dc))
+* **i18n:** add missing translations [CDS 4265] ([a507ae6](https://github.com/ovh/manager/commit/a507ae61df97a4fde22df2d05bd8ceab9fdbf037))
+
+
+
+
+
 # [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.25.2...@ovh-ux/manager-pci-databases-analytics-app@1.26.0) (2025-08-12)
 
 

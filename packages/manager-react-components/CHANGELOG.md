@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.36.0...@ovh-ux/manager-react-components@2.37.0) (2025-08-14)
+
+### Bug Fixes
+
+- **mrc:** fix multi level breadcrumb ([ff1629e](https://github.com/ovh/manager/commit/ff1629e835977d5b880595edc689ae89f15d3a22)), closes [#18647](https://github.com/ovh/manager/issues/18647)
+
+### Features
+
+- **manager-react-components:** deprecate formatted date ([f8e84f5](https://github.com/ovh/manager/commit/f8e84f5576688851367ad9473f940ff1eb862c65)), closes [#MANAGER-18751](https://github.com/ovh/manager/issues/MANAGER-18751)
+- **manager-react-components:** deprecate page layout component ([58a2333](https://github.com/ovh/manager/commit/58a233306a1dbfdcb5653f40c8c584d41d430f86)), closes [#MANAGER-10107](https://github.com/ovh/manager/issues/MANAGER-10107)
+- **manager-react-components:** deprecate region component ([3e2cd8f](https://github.com/ovh/manager/commit/3e2cd8f4e0616a93aa0597a5641e919465310ce3)), closes [#MANAGER-18966](https://github.com/ovh/manager/issues/MANAGER-18966)
+- **manager-react-components:** deprecate tile block component ([68f9343](https://github.com/ovh/manager/commit/68f934304df1814fa4d428c910de756ce8c56ed2)), closes [#MAANAGER-10107](https://github.com/ovh/manager/issues/MAANAGER-10107)
+- **mrc:** change BaseLayout description type to allow i18next Trans ([a980f2e](https://github.com/ovh/manager/commit/a980f2e4ae44d821a1bf27ffb57c5e28c0e9d7a1)), closes [#MANAGER-19399](https://github.com/ovh/manager/issues/MANAGER-19399)
+
 # [2.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.35.0...@ovh-ux/manager-react-components@2.36.0) (2025-08-07)
 
 ### Features
