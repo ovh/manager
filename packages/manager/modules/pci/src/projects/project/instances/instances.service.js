@@ -255,6 +255,13 @@ export default class PciProjectInstanceService {
     ).$promise;
   }
 
+  reinstallFromRegion(projectId, region, instanceId, { imageId }) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/reinstall`,
+      { imageId },
+    );
+  }
+
   start(projectId, instance) {
     return this.$http.post(
       `${this.getBaseApiRoute(projectId, instance)}/instance/${
