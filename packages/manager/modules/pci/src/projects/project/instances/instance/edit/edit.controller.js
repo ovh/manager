@@ -209,8 +209,10 @@ export default class PciInstanceEditController {
 
   reinstallInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService.reinstall(
+    return this.PciProjectsProjectInstanceService.reinstallFromRegion(
       this.projectId,
+      this.instance.region,
+      this.instance.id,
       this.editInstance,
     )
       .then(() =>
