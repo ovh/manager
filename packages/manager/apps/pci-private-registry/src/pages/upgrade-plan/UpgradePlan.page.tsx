@@ -3,13 +3,12 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
 import {
-  useHref,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+  useProject,
+  useParam,
+  useProjectLocalisation,
+} from '@ovh-ux/manager-pci-common';
 import { Translation, useTranslation } from 'react-i18next';
 import {
   Headers,
@@ -33,12 +32,14 @@ import PlanChooser from '@/components/PlanChooser.component';
 import {
   useGetRegistryAvailablePlans,
   useGetRegistryPlan,
+  useRegistry,
   useUpdatePlan,
 } from '@/api/hooks/useRegistry';
 import { TRegistryPlan } from '@/api/data/registry';
+import { DeploymentMode } from '@/types';
 
 export default function UpgradePlanPage(): JSX.Element {
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const { t } = useTranslation();
   const { t: tUpgrade } = useTranslation('upgrade');
@@ -49,7 +50,7 @@ export default function UpgradePlanPage(): JSX.Element {
   const navigate = useNavigate();
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const [selectedPlan, setSelectedPlan] = useState<TRegistryPlan>(null);
+  const [selectedPlan, setSelectedPlan] = useState<TRegistryPlan | null>(null);
 
   const [searchParams] = useSearchParams();
 
@@ -61,6 +62,15 @@ export default function UpgradePlanPage(): JSX.Element {
   const { data: availablePlans } = useGetRegistryAvailablePlans(
     projectId,
     searchParams.get('registryId'),
+  );
+
+  const { data: registry } = useRegistry(
+    projectId,
+    searchParams.get('registryId'),
+  );
+  const { data: localisations } = useProjectLocalisation(projectId);
+  const actualRegionType = localisations?.regions.find(
+    (r) => r.name === registry?.region,
   );
 
   const { updatePlan, isPending: isUpdatingPlan } = useUpdatePlan({
@@ -116,14 +126,15 @@ export default function UpgradePlanPage(): JSX.Element {
   });
 
   useEffect(() => {
-    setSelectedPlan(availablePlans?.[0]);
+    if (availablePlans) setSelectedPlan(availablePlans?.[0]);
   }, [availablePlans]);
 
   const update = () => {
-    tracking?.trackClick({
-      name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CONFIRM_${selectedPlan.name}`,
-      type: 'action',
-    });
+    if (selectedPlan)
+      tracking?.trackClick({
+        name: `PCI_PROJECTS_PRIVATEREGISTRY_CHANGEPLAN_CONFIRM_${selectedPlan?.name}`,
+        type: 'action',
+      });
 
     updatePlan();
   };
@@ -169,8 +180,9 @@ export default function UpgradePlanPage(): JSX.Element {
       >
         {tUpgrade('private_registry_upgrade_plan_description')}
       </OsdsText>
-      {plan && availablePlans && (
+      {plan && availablePlans && actualRegionType?.type && selectedPlan && (
         <PlanChooser
+          type={actualRegionType?.type as DeploymentMode}
           plan={selectedPlan}
           plans={availablePlans}
           onInput={(p) => {
