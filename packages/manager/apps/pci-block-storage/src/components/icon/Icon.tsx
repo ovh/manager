@@ -1,10 +1,8 @@
-import { OdsIconName } from 'ods-18';
-import './style.scss';
-import { ComponentProps } from 'react';
-import clsx from 'clsx';
+import { Icon as OdsIcon, IconName } from '@ovhcloud/ods-react';
+import { ComponentProps, PropsWithoutRef } from 'react';
 
-type Props = ComponentProps<'span'> & { name: OdsIconName };
+type Props = PropsWithoutRef<ComponentProps<'span'> & { name: IconName }>;
 
 export const Icon = ({ name, className, ...spanProps }: Props) => (
-  <span className={clsx(`icon icon--${name}`, className)} {...spanProps} />
+  <OdsIcon name={name} {...spanProps} />
 );
