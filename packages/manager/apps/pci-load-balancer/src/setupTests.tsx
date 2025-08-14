@@ -15,7 +15,7 @@ vi.mock('react-router-dom', async () => {
     }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
-    useNavigate: vi.fn(),
+    useNavigate: vi.fn().mockReturnValue(vi.fn()),
     Navigate: vi.fn(({ to }) => `Redirected to ${to}`),
     Outlet: vi.fn(() => 'Outlet'),
   };
@@ -84,6 +84,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
       trackPage: vi.fn(),
       trackClick: vi.fn(),
     })),
+    useOvhTracking: vi.fn().mockReturnValue({
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    }),
   };
 });
 
