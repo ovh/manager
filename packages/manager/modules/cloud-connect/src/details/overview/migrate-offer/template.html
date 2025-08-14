@@ -1,0 +1,57 @@
+<form
+    id="migrateOffer"
+    name="migrateOffer"
+    data-ng-submit="$ctrl.migrateOffer()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_offer_update' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_apply' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <div data-ng-if="$ctrl.cloudConnect.isDirectService()">
+            <div class="mb-2">
+                <div
+                    data-translate="cloud_connect_migrate_direct_description_1_1"
+                ></div>
+                <div
+                    data-translate="cloud_connect_migrate_direct_description_1_2"
+                ></div>
+            </div>
+            <p data-translate="cloud_connect_migrate_direct_description_2"></p>
+
+            <p
+                class="oui-box"
+                data-translate="cloud_connect_migrate_direct_description_3"
+            ></p>
+
+            <p data-translate="cloud_connect_migrate_direct_description_4"></p>
+            <p data-translate="cloud_connect_migrate_direct_description_5"></p>
+        </div>
+        <div data-ng-if="!$ctrl.cloudConnect.isDirectService()">
+            <div class="mb-2">
+                <div
+                    data-translate="cloud_connect_migrate_provider_description_1_1"
+                    data-translate-values="{ prevProductName: $ctrl.cloudConnect.productName, newProductName: $ctrl.availableMigration.productName }"
+                ></div>
+                <div
+                    data-translate="cloud_connect_migrate_provider_description_1_2"
+                ></div>
+            </div>
+            <p
+                data-translate="cloud_connect_migrate_provider_description_2"
+                data-translate-values="{provider: $ctrl.constructor.capitalizeFirstLetter($ctrl.cloudConnect.provider)}"
+            ></p>
+            <p
+                data-translate="cloud_connect_migrate_provider_description_3"
+            ></p>
+            <p
+                data-translate="cloud_connect_migrate_provider_description_4"
+            ></p>
+        </div>
+    </oui-modal>
+</form>
