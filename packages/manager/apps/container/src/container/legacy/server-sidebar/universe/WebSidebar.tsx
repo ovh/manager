@@ -8,6 +8,9 @@ import useServiceLoader from './useServiceLoader';
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
+import {
+  SvgIconWrapper, OvhProductName,
+} from '@ovh-ux/ovh-product-icons/index';
 import getIcon from './GetIcon';
 
 export const webFeatures = [
@@ -17,6 +20,7 @@ export const webFeatures = [
   'web-domains:alldoms',
   'web-ongoing-operations',
   'web-hosting:websites',
+  'web-hosting:managed-wordpress',
   'hosting',
   'private-database',
   'email-pro',
@@ -160,7 +164,22 @@ export default function WebSidebar() {
         },
       });
     }
-
+    if (features['web-hosting:managed-wordpress']) {
+      menu.push({
+        id: 'web-hosting-managed-wordpress',
+        label: t('sidebar_web_hosting_managed_wordpress'),
+        icon: SvgIconWrapper({
+          name: OvhProductName.WORDPRESS, width: 16,
+          height: 16,
+        }),
+        badge: 'alpha',
+        routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
+        href: navigation.getURL(
+          'web-hosting',
+          '#/managed-hosting-for-wordpress',
+        ),
+      });
+    }
     if (features['private-database']) {
       menu.push({
         id: 'privateDatabases',
