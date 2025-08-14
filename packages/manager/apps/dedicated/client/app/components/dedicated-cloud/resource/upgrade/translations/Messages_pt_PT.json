@@ -11,5 +11,6 @@
   "ovhManagerPccResourceUpgrade_validateButton": "Validar",
   "ovhManagerPccResourceUpgrade_cancelButton": "Cancelar",
   "dedicatedCloud_order_loading_error": "Erro ao carregar a informação.",
-  "ovhManagerPccResourceUpgrade_plan_not_found": "A opção {{ planCode }} não está disponível."
+  "ovhManagerPccResourceUpgrade_plan_not_found": "A opção {{ planCode }} não está disponível.",
+  "ovhManagerPccResourceUpgrade_plan_success_message": "A sua encomenda para passar o seu {{type}} para um plano mensal foi iniciada. Se ainda não a tiver finalizado, pode completá-la clicando em <a href=\"{{url}}\" target=\"_blank\">Finalizar a encomenda</a>."
 }

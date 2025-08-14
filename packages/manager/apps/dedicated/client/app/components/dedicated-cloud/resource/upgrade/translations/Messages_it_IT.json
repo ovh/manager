@@ -11,5 +11,6 @@
   "ovhManagerPccResourceUpgrade_validateButton": "Conferma",
   "ovhManagerPccResourceUpgrade_cancelButton": "Annulla",
   "dedicatedCloud_order_loading_error": "Si è verificato un errore durante il caricamento delle informazioni.",
-  "ovhManagerPccResourceUpgrade_plan_not_found": "L'opzione {{ planCode }} non è disponibile."
+  "ovhManagerPccResourceUpgrade_plan_not_found": "L'opzione {{ planCode }} non è disponibile.",
+  "ovhManagerPccResourceUpgrade_plan_success_message": "Il tuo ordine per passare {{type}} al forfait mensile è stato avviato. Se non l’hai ancora finalizzato, puoi completarlo cliccando su <a href=\"{{url}}\" target=\"_blank\">Completare l’ordine</a>."
 }
