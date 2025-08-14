@@ -220,13 +220,25 @@ export const useDeleteConfigurationItemFromCart = ({
  *   - mutate({ ovhSubsidiary }) to create and assign a cart
  *   - On success, returns the created Cart object
  */
-export const useCreateAndAssignCart = () =>
+export const useCreateAndAssignCart = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: (data: Cart) => void;
+  onError?: (error: ApiError) => void;
+} = {}) =>
   useMutation({
     mutationFn: async ({ ovhSubsidiary }: { ovhSubsidiary: OvhSubsidiary }) => {
       const cart = await createCart(ovhSubsidiary);
       await assignCart(cart.cartId);
       return cart;
     },
+    onSuccess: (data) => {
+      if (onSuccess) {
+        onSuccess(data);
+      }
+    },
+    onError,
   });
 
 /**
