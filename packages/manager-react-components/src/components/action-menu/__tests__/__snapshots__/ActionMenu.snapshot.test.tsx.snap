@@ -19,7 +19,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -43,7 +43,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -67,7 +67,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -137,7 +137,7 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
     <span
       class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -209,7 +209,7 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -233,7 +233,7 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -257,7 +257,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with emp
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -281,7 +281,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with man
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -305,7 +305,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with sin
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -329,7 +329,7 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -353,7 +353,7 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -377,7 +377,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -401,7 +401,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -425,7 +425,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -449,7 +449,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -473,7 +473,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -497,7 +497,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -521,7 +521,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -546,7 +546,7 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -611,7 +611,7 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
@@ -675,7 +675,7 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when loading
     <span
       class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
     />
-    common_actions
+    Actions
   </button>
 </div>
 `;
