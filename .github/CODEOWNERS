@@ -127,7 +127,7 @@
 /packages/manager/modules/web-universe-components @ovh/dev-manager-web-all @ovh/dev-manager-web-domain
 
 # Tools
-/packages/manager/tools @ovh/dev-manager-control-tower
+/packages/manager-tools @ovh/dev-manager-control-tower
 
 # Manager-components
 /packages/manager-components @ovh/dev-manager-control-tower
@@ -136,9 +136,6 @@
 /packages/manager-wiki/stories/features/pci-common @ovh/dev-manager-pci-all
 /packages/manager-wiki/stories/features/vcd-api @ovh/dev-manager-hpc-all
 /packages/manager-wiki @ovh/dev-manager-control-tower
-
-# Manager CLI
-/packages/manager-cli @ovh/dev-manager-control-tower
 
 # Scripts
 /scripts @ovh/devops-manager
