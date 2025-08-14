@@ -18,7 +18,8 @@ export type TQuantity = {
   value: number;
 };
 
-export type TPeriod = { from: string; to: string };
+type TPeriod = { from: string; to: string };
+
 
 export type TCurrentUsage = {
   hourlyUsage: {

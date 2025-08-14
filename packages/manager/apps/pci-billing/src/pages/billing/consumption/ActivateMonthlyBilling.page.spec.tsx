@@ -1,6 +1,5 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { UseMutateFunction } from '@tanstack/react-query';
 import ActivateMonthlyBilling from './ActivateMonthlyBilling.page';
 import * as _useConsumptionHook from '@/api/hook/useConsumption';
 import { wrapper } from '@/wrapperRenders';
