@@ -1,37 +1,7 @@
-import { render, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
 import ListingPage from './List.page';
-
-vi.mock('react-i18next', async (importOrig) => {
-  const orig = await importOrig<typeof import('react-i18next')>();
-  return {
-    ...orig,
-    useTranslation: () => ({
-      ...orig.useTranslation(),
-      i18n: {
-        exists: () => true,
-      },
-    }),
-  };
-});
-
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
-    useHref: vi.fn(),
-    Navigate: vi.fn(),
-    useNavigate: vi.fn().mockReturnValue(() => ''),
-    useParams: vi.fn(() => ({ projectId: '1' })),
-    Outlet: vi.fn().mockReturnValue(<div></div>),
-    Suspense: vi.fn().mockReturnValue(<div></div>),
-  };
-});
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -43,6 +13,8 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
+vi.mock('react-router-dom');
+
 vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   const actual: any = await importOriginal();
   return {
@@ -52,6 +24,7 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
       isLoading: false,
       isPending: false,
     })),
+    PciAnnouncementBanner: () => <div>announcement_banner</div>,
   };
 });
 
@@ -120,37 +93,13 @@ vi.mock('@/api/hooks/useVolume', () => ({
   })),
 }));
 
-const shellContext = {
-  environment: {
-    getUser: () => ({ ovhSubsidiary: 'spyOn_ovhSubsidiary' }),
-  },
-  shell: {
-    navigation: {
-      getURL: () => Promise.resolve('https://www.ovh.com'),
-    },
-  },
-};
-
-const queryClient = new QueryClient();
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
-      {children}
-    </ShellContext.Provider>
-  </QueryClientProvider>
-);
-
 afterEach(() => {
   vi.clearAllMocks();
 });
 
 describe('ListingPage', () => {
   it('renders volumes when volumes are available', async () => {
-    const { getByText } = render(<ListingPage />, {
-      wrapper,
-    });
+    const { getByText } = renderWithMockedWrappers(<ListingPage />);
 
     await waitFor(() =>
       expect(getByText('Volume 1 for datagrid render')).toBeInTheDocument(),

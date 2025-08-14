@@ -1,5 +1,4 @@
 import {
-  OsdsButton,
   OsdsModal,
   OsdsSelect,
   OsdsSelectOption,
@@ -11,11 +10,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -30,6 +25,7 @@ import {
 } from 'react-hook-form';
 import { z, ZodRawShape } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
 import {
   useDetachVolume,
   useVolume,
@@ -38,6 +34,8 @@ import {
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { useSearchFormParams } from '@/hooks/useSearchFormParams';
 import { TAttachedInstance } from '@/api/select/instances';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { Button } from '@/components/button/Button';
 
 const SelectInstance = ({ instances }: { instances: TAttachedInstance[] }) => {
   const { control } = useFormContext();
@@ -133,17 +131,24 @@ const Form = <Schema extends z.ZodObject<ZodRawShape>>({
   );
 };
 
-const SubmitButton = ({ label }: { label: string }) => {
+const SubmitButton = ({
+  label,
+  region,
+}: {
+  label: string;
+  region?: string;
+}) => {
   const { formState } = useFormContext();
   return (
-    <OsdsButton
+    <Button
       slot="actions"
-      color={ODS_THEME_COLOR_INTENT.primary}
-      type={ODS_BUTTON_TYPE.submit}
-      {...(!formState.isValid && { disabled: true })}
+      color="primary"
+      disabled={!formState.isValid}
+      actionName="confirm"
+      actionValues={[region]}
     >
       {label}
-    </OsdsButton>
+    </Button>
   );
 };
 
@@ -163,9 +168,11 @@ export default function DetachStorage() {
     data: instances,
     isPending: isInstancesPending,
   } = useAttachedInstances(projectId, volumeId);
+  const actionValues = useMemo(() => [volume?.region], [volume]);
 
-  const { detachVolume, isPending: isDetachPending } = useDetachVolume({
-    onError(err) {
+  const onTrackingBannerError = useTrackBanner(
+    { type: 'error' },
+    (err: Error) => {
       addError(
         <Translation ns="detach">
           {(_t) =>
@@ -182,22 +189,26 @@ export default function DetachStorage() {
       );
       onClose();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="detach">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_detach_success_message',
-              {
-                volume: volume?.name,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
+  );
+  const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
+    addSuccess(
+      <Translation ns="detach">
+        {(_t) =>
+          _t(
+            'pci_projects_project_storages_blocks_block_detach_success_message',
+            {
+              volume: volume?.name,
+            },
+          )
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
+  const { detachVolume, isPending: isDetachPending } = useDetachVolume({
+    onError: onTrackingBannerError,
+    onSuccess: onTrackingBannerSuccess,
   });
 
   const isPending = isInstancesPending || isDetachPending;
@@ -252,19 +263,21 @@ export default function DetachStorage() {
             </div>
           )}
         </slot>
-        <OsdsButton
+        <ButtonLink
           slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
-          type={ODS_BUTTON_TYPE.button}
+          color="primary"
+          variant="ghost"
+          to=".."
+          actionName="cancel"
+          actionValues={actionValues}
         >
           {t('pci_projects_project_storages_blocks_block_detach_cancel_label')}
-        </OsdsButton>
+        </ButtonLink>
         <SubmitButton
           label={t(
             'pci_projects_project_storages_blocks_block_detach_submit_label',
           )}
+          region={volume?.region}
         />
       </OsdsModal>
     </Form>

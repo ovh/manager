@@ -334,7 +334,7 @@ export const useUpdateVolume = ({
     },
   });
   return {
-    updateVolume: () => mutation.mutate(),
+    updateVolume: mutation.mutate,
     ...mutation,
   };
 };

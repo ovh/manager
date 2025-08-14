@@ -1,57 +1,45 @@
 import { Suspense, useRef, useState } from 'react';
-import { Outlet, useParams, useNavigate, Navigate } from 'react-router-dom';
+import { Outlet, useParams, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  BaseLayout,
   ChangelogButton,
   Datagrid,
   FilterAdd,
   FilterList,
-  Headers,
   Notifications,
   PciGuidesHeader,
   useColumnFilters,
   useDataGrid,
-  useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsBreadcrumb,
-  OsdsButton,
-  OsdsDivider,
-  OsdsIcon,
   OsdsPopover,
   OsdsPopoverContent,
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { PciAnnouncementBanner, useProject } from '@ovh-ux/manager-pci-common';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useDatagridColumn } from '@/hooks/useDatagridColumn';
 import { useAllVolumes, useVolumes } from '@/api/hooks/useVolume';
 
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { Button } from '@/components/button/Button';
 
 export default function ListingPage() {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const navigate = useNavigate();
   const { projectId } = useParams();
   const columns = useDatagridColumn(projectId, projectUrl);
   const [searchField, setSearchField] = useState('');
   const { data: project } = useProject();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const { clearNotifications } = useNotifications();
   const filterPopoverRef = useRef(undefined);
 
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -70,80 +58,60 @@ export default function ListingPage() {
     return <Navigate to="./onboarding" />;
 
   return (
-    <div>
-      {project && (
+    <BaseLayout
+      breadcrumb={
         <OsdsBreadcrumb
           items={[
             {
               href: projectUrl,
-              label: project.description,
+              label: project?.description,
             },
             {
               label: t('pci_projects_project_storages_blocks_title'),
             },
           ]}
         />
-      )}
-      <div className="header mb-6 mt-8">
-        <Headers
-          title={t('pci_projects_project_storages_blocks_title')}
-          headerButton={<PciGuidesHeader category="instances" />}
-          changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
-          }
-        />
-      </div>
-      <OsdsDivider></OsdsDivider>
+      }
+      header={{
+        title: t('pci_projects_project_storages_blocks_title'),
+        headerButton: <PciGuidesHeader category="instances" />,
+        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+      }}
+      message={
+        <div>
+          <PciAnnouncementBanner />
 
-      <PciAnnouncementBanner />
-
-      <Notifications />
-
-      <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
-        <OsdsButton
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          className="xs:mb-0.5 sm:mb-0"
-          onClick={() => {
-            clearNotifications();
-            navigate('./new');
-          }}
+          <Notifications />
+        </div>
+      }
+    >
+      <div className="flex items-center flex-wrap justify-between mt-4 gap-y-2">
+        <ButtonLink
+          to="./new"
+          color="primary"
+          size="sm"
+          actionName="create_volume_block_storage"
+          icon="plus"
         >
-          <OsdsIcon
-            size={ODS_ICON_SIZE.xs}
-            name={ODS_ICON_NAME.PLUS}
-            className="mr-4 bg-white"
-          />
           {t('pci_projects_project_storages_blocks_add_label')}
-        </OsdsButton>
+        </ButtonLink>
 
-        <div className="justify-between flex gap-5 min-h-[40px] items-center">
+        <div className="justify-between flex gap-5 items-center">
           <div className="flex items-center">
             {isFetching ? (
-              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
             ) : (
-              <OsdsButton
-                size={ODS_BUTTON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                variant={ODS_BUTTON_VARIANT.stroked}
+              <Button
+                size="sm"
+                color="primary"
+                variant="outline"
                 onClick={() => refetch()}
-              >
-                <span slot="start" className="flex items-center mr-0">
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.REFRESH}
-                    size={ODS_ICON_SIZE.sm}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  />
-                </span>
-              </OsdsButton>
+                icon="refresh"
+                aria-label={t('refresh', { ns: NAMESPACES.ACTIONS })}
+              />
             )}
           </div>
           <OsdsSearchBar
-            className="w-[70%]"
             value={searchField}
             onOdsSearchSubmit={({ detail }) => {
               setPagination({
@@ -160,21 +128,15 @@ export default function ListingPage() {
             }}
           />
           <OsdsPopover ref={filterPopoverRef}>
-            <OsdsButton
+            <Button
               slot="popover-trigger"
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              variant={ODS_BUTTON_VARIANT.stroked}
+              size="sm"
+              color="primary"
+              variant="outline"
+              icon="filter"
             >
-              <span slot="start" className="flex items-center mr-0">
-                <OsdsIcon
-                  name={ODS_ICON_NAME.FILTER}
-                  size={ODS_ICON_SIZE.sm}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
-                <span>{t('filter', { ns: NAMESPACES.ACTIONS })}</span>
-              </span>
-            </OsdsButton>
+              {t('filter', { ns: NAMESPACES.ACTIONS })}
+            </Button>
             <OsdsPopoverContent>
               <FilterAdd
                 columns={[
@@ -244,6 +206,6 @@ export default function ListingPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </div>
+    </BaseLayout>
   );
 }
