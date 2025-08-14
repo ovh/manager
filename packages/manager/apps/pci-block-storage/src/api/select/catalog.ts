@@ -14,7 +14,9 @@ import { TAPIVolume } from '@/api/data/volume';
 export type TModelName = Readonly<{
   name: Opaque<string, TModelName>;
   displayName: Opaque<string, TModelName>;
+  possibleTechnicalNames: Opaque<string, 'TechnicalName'>[];
 }>;
+
 type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 
 export const mapVolumeModelName = <T extends TVolumeAddon>(
@@ -30,6 +32,9 @@ export const mapVolumeModelName = <T extends TVolumeAddon>(
     displayName: (is3azRegion && model.name === 'classic-multiattach'
       ? 'Classic 3AZ'
       : model.name) as TModelName['displayName'],
+    possibleTechnicalNames: model.pricings.flatMap(
+      (p) => p.specs.name,
+    ) as TModelName['possibleTechnicalNames'],
   });
 };
 

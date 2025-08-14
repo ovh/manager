@@ -25,6 +25,7 @@ import { UCENTS_FACTOR } from '@/hooks/currency-constants';
 import queryClient from '@/queryClient';
 import {
   getVolumeCatalogQuery,
+  mapVolumeCatalog,
   useVolumeCatalog,
 } from '@/api/hooks/useCatalog';
 import {
@@ -126,7 +127,7 @@ export const getVolumeQuery = (projectId: string, volumeId: string) => ({
   enabled: !!volumeId,
 });
 
-export type UseVolumeResult =
+export type TVolumeWithPricing =
   | (TAPIVolume &
       TVolumeAttach &
       TVolumeEncryption &
@@ -140,6 +141,7 @@ export const useVolume = (
   volumeId: string,
   capacity?: number,
 ) => {
+  console.info('useVolume');
   const [{ data, ...restQuery }, { data: catalogData }] = useQueries({
     queries: [
       getVolumeQuery(projectId, volumeId),
@@ -164,11 +166,58 @@ export const useVolume = (
   );
 
   return {
-    data: useMemo<UseVolumeResult>(() => (data ? select(data) : undefined), [
+    data: useMemo<TVolumeWithPricing>(() => (data ? select(data) : undefined), [
       select,
       data,
     ]),
     ...restQuery,
+  };
+};
+
+export const useVolumeWithCatalog = (projectId: string, volumeId: string) => {
+  const [
+    { data: volumeData, ...restVolumeQuery },
+    { data: catalogData, ...restCatalogQuery },
+  ] = useQueries({
+    queries: [
+      getVolumeQuery(projectId, volumeId),
+      getVolumeCatalogQuery(projectId),
+    ],
+  });
+  const { t } = useTranslation(['common', 'add', NAMESPACES.BYTES]);
+  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
+    hideTaxLabel: true,
+  });
+
+  const select = useCallback(
+    pipe(
+      mapVolumeAttach(catalogData),
+      mapVolumeEncryption(t, catalogData),
+      mapVolumeStatus(t),
+      mapVolumeRegion(t),
+      mapVolumePricing(catalogData, getFormattedCatalogPrice, t),
+    ),
+    [catalogData, t, getFormattedCatalogPrice],
+  );
+
+  return {
+    volumeData: useMemo<TVolumeWithPricing>(
+      () => (volumeData ? select(volumeData) : undefined),
+      [select, volumeData],
+    ),
+    catalogData: useMemo(
+      () =>
+        catalogData && volumeData
+          ? mapVolumeCatalog(
+              volumeData.region,
+              getFormattedCatalogPrice,
+              t,
+            )(catalogData)
+          : undefined,
+      [volumeData, catalogData, getFormattedCatalogPrice, t],
+    ),
+    isPending: restVolumeQuery.isPending && restCatalogQuery.isPending,
+    ...restVolumeQuery,
   };
 };
 

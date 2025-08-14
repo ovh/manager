@@ -16,6 +16,7 @@ export default function ActionsComponent({
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
   const hrefRemove = useHref(`./delete/${volume.id}`);
+  const hrefRetype = useHref(`./retype/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
 
   const items = [
@@ -48,6 +49,12 @@ export default function ActionsComponent({
       href: hrefRemove,
       label: t('pci_projects_project_storages_blocks_delete_label'),
       dataTestid: 'actionComponent-remove-button',
+    },
+    {
+      id: 5,
+      href: hrefRetype,
+      label: 'Retype',
+      dataTestid: 'actionComponent-retype-button',
     },
   ].filter(Boolean);
 

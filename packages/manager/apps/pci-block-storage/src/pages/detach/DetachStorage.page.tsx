@@ -33,7 +33,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useDetachVolume,
   useVolume,
-  UseVolumeResult,
+  TVolumeWithPricing,
 } from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { useSearchFormParams } from '@/hooks/useSearchFormParams';
@@ -75,7 +75,7 @@ const InstanceDescription = ({
   volume,
   instances,
 }: {
-  volume: UseVolumeResult;
+  volume: TVolumeWithPricing;
   instances: TAttachedInstance[];
 }) => {
   const { t } = useTranslation('detach');

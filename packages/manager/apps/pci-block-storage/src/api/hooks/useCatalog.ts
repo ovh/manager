@@ -5,6 +5,7 @@ import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { TFunction } from 'i18next';
 import {
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
@@ -83,6 +84,30 @@ export type TVolumeModel = TModelPrice &
   TModelName &
   TModelAttach;
 
+export const mapVolumeCatalog = (
+  region: string,
+  catalogPriceFormatter: (price: number) => string,
+  translator: TFunction<['add']>,
+) => (catalog: TVolumeCatalog) =>
+  catalog.models
+    .map((m) => ({
+      ...m,
+      pricings: m.pricings.filter((p) => p.regions.includes(region)),
+    }))
+    .filter((m) => m.pricings.length > 0)
+    .map<TVolumeModel>(
+      pipe(
+        mapVolumeModelPriceSpecs(
+          catalog.regions,
+          region,
+          catalogPriceFormatter,
+          translator,
+        ),
+        mapVolumeModelName(catalog.regions, region),
+        mapVolumeModelAttach,
+      ),
+    );
+
 export const useVolumeModels = (projectId: string, region: string) => {
   const { t } = useTranslation(['add', 'common', NAMESPACES.BYTES]);
   const { getFormattedCatalogPrice } = useCatalogPrice(6, {
@@ -90,25 +115,7 @@ export const useVolumeModels = (projectId: string, region: string) => {
   });
 
   const select = useCallback(
-    (catalog: TVolumeCatalog) =>
-      catalog.models
-        .map((m) => ({
-          ...m,
-          pricings: m.pricings.filter((p) => p.regions.includes(region)),
-        }))
-        .filter((m) => m.pricings.length > 0)
-        .map<TVolumeModel>(
-          pipe(
-            mapVolumeModelPriceSpecs(
-              catalog.regions,
-              region,
-              getFormattedCatalogPrice,
-              t,
-            ),
-            mapVolumeModelName(catalog.regions, region),
-            mapVolumeModelAttach,
-          ),
-        ),
+    mapVolumeCatalog(region, getFormattedCatalogPrice, t),
     [region, getFormattedCatalogPrice, t],
   );
 

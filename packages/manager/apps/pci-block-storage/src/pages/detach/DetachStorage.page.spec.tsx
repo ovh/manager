@@ -9,7 +9,7 @@ import DetachStorage from '@/pages/detach/DetachStorage.page';
 import {
   useDetachVolume,
   useVolume,
-  UseVolumeResult,
+  TVolumeWithPricing,
 } from '@/api/hooks/useVolume';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { TAttachedInstance } from '@/api/select/instances';
@@ -43,7 +43,7 @@ describe('DetachStorage', () => {
     } as UseQueryResult<TAttachedInstance[]>);
     vi.mocked(useVolume).mockReturnValue({
       isPending: true,
-    } as UseQueryResult<UseVolumeResult>);
+    } as UseQueryResult<TVolumeWithPricing>);
 
     const { getByTestId } = render(<DetachStorage />);
     expect(getByTestId('detachStorage-spinner')).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe('DetachStorage', () => {
     vi.mocked(useVolume).mockReturnValue({
       data: { name: 'Volume 1', attachedTo: ['Instance 1'] },
       isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
+    } as UseQueryResult<TVolumeWithPricing>);
 
     const { getByText } = render(<DetachStorage />);
     await waitFor(() => {
