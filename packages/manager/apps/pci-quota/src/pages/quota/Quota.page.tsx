@@ -19,6 +19,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  isDiscoveryProject,
   PciAnnouncementBanner,
   PciDiscoveryBanner,
   useProject,
@@ -72,7 +73,7 @@ export default function QuotaPage(): JSX.Element {
     desc: false,
   });
 
-  const { quotas, isPending: isQuotasPending } = useQuotas(projectId);
+  const { quotas = [], isPending: isQuotasPending } = useQuotas(projectId);
   const { data: locations, isPending: isLocationsPending } = useLocations(
     projectId,
   );
@@ -120,7 +121,7 @@ export default function QuotaPage(): JSX.Element {
         await unleash(projectId);
       } catch (e) {
         const error = e as ApiError;
-        if (error.response.status === 403) {
+        if (error.response?.status === 403) {
           addError(
             <Translation ns="quotas">
               {(_t) => (
@@ -170,6 +171,8 @@ export default function QuotaPage(): JSX.Element {
   if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
   }
+
+  const isDiscoProject = isDiscoveryProject(project);
 
   return (
     <>
@@ -294,14 +297,16 @@ export default function QuotaPage(): JSX.Element {
         <OdsToggle
           name="auto-scaling"
           value={manualQuotaIsActive}
-          isDisabled={manualQuotaIsToggling}
+          isDisabled={manualQuotaIsToggling || isDiscoProject}
           onClick={(event) => {
             event.preventDefault();
-            setManualQuotaIsToggling(true);
+            if (!manualQuotaIsToggling && !isDiscoProject) {
+              setManualQuotaIsToggling(true);
 
-            Do.toggleManualQuota().finally(() => {
-              setManualQuotaIsToggling(false);
-            });
+              Do.toggleManualQuota().finally(() => {
+                setManualQuotaIsToggling(false);
+              });
+            }
           }}
         />
         <LabelComponent

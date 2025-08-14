@@ -82,5 +82,6 @@
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Asigne un nombre al pool de nodos",
   "kube_add_plan_content_unavailable_1AZ_banner": "El plan {{ plan }} aún no está disponible en las regiones 1-AZ. Si quiere disfrutar del plan {{ plan }}, seleccione el despliegue en 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "El plan {{ plan }} aún no está disponible en las regiones 3-AZ. Si desea disfrutar del plan {{ plan }}, seleccione un despliegue en 1-AZ."
+  "kube_add_plan_content_unavailable_3AZ_banner": "El plan {{ plan }} aún no está disponible en las regiones 3-AZ. Si desea disfrutar del plan {{ plan }}, seleccione un despliegue en 1-AZ.",
+  "kube_add_name_title": "Asigne un nombre al pool de nodos"
 }

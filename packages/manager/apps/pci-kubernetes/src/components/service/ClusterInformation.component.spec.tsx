@@ -86,12 +86,4 @@ describe('ClusterInformation', () => {
     const clipboardElement = container.querySelector('[value="id-1"]');
     expect(clipboardElement).toBeVisible();
   });
-
-  it('renders nodes URL with clipboard component', () => {
-    const { container } = renderClusterInformation(kubeDetail);
-    const clipboardElement = container.querySelector(
-      '[value="http://nodes.url"]',
-    );
-    expect(clipboardElement).toBeVisible();
-  });
 });

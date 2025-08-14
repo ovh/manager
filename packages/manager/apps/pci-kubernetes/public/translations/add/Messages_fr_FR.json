@@ -56,6 +56,7 @@
   "kube_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kube_add_billing_anti_affinity_coming_soon_message_title": "Prix mensuels",
   "kube_add_billing_anti_affinity_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
+  "kube_add_name_title": "Nommez votre pool de nœuds",
   "kubernetes_add_nodepool_name_placeholder": "Nom du pool de nœuds",
   "kube_add_plan_footer_free": "Gratuit",
   "kube_add_plan_footer_standard": "Gratuit durant la phase de Bêta",

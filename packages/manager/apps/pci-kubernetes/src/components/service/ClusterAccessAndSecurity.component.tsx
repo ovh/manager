@@ -136,6 +136,15 @@ export default function ClusterAccessAndSecurity({
           value={<Clipboard aria-label="clipboard" value={kubeDetail?.url} />}
         />
 
+        {!isMultiDeploymentZones(regionInformations?.type) && (
+          <TileLine
+            title={t('service:kube_service_cluster_nodes_url')}
+            value={
+              <Clipboard aria-label="clipboard" value={kubeDetail.nodesUrl} />
+            }
+          />
+        )}
+
         <TileLine
           title={t('kube_service_restrictions')}
           value={
