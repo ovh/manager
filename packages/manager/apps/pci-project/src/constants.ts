@@ -562,3 +562,13 @@ export const CREATING_GUIDE_URLS: Record<string, string> = {
 };
 
 export const SLIDE_ANIMATION_INTERVAL = 5000;
+export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
+
+export const FULL_PROJECT_PLAN_CODE = 'project.2018';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
