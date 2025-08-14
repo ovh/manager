@@ -14,5 +14,6 @@
   "zimbra_account_order_initiated_title": "Bestellung Ihrer Zimbra-Accounts initiiert!",
   "zimbra_account_order_initiated_subtitle": "Wenn Sie Ihre Bestellung nicht abschließen konnten, vervollständigen Sie diese bitte, indem Sie auf folgenden Link klicken:",
   "zimbra_account_order_initiated_info": "Wir werden Sie per E-Mail über die Verfügbarkeit Ihrer Accounts informieren.",
-  "zimbra_account_order_initiated_link_label": "Link zu Ihrer Bestellung"
+  "zimbra_account_order_initiated_link_label": "Link zu Ihrer Bestellung",
+  "zimbra_account_service_name": "Ihre Zimbra-Accounts"
 }
