@@ -17,7 +17,7 @@ import { ErrorComponent } from '@/components/errorComponent';
 
 export default function ServerListing() {
   const columns = useColumns();
-  const [visibleColumns] = useState([
+  const [visibleColumns, setvisibleColumns] = useState([
     'name',
     'ip',
     'model',
@@ -66,6 +66,17 @@ export default function ServerListing() {
     return colSorting?.desc ? serverList.reverse() : serverList;
   };
 
+  const handleColumnVisibilityChange = (
+    _columns: () => Record<string, never>,
+  ) => {
+    const id = Object.keys(_columns())[0];
+    if (visibleColumns?.includes(id)) {
+      setvisibleColumns(visibleColumns.filter((item) => item !== id));
+    } else {
+      setvisibleColumns([...visibleColumns, id]);
+    }
+  };
+
   return (
     <>
       {(isError || errorListing) && (
@@ -82,6 +93,7 @@ export default function ServerListing() {
               <div>
                 <Datagrid
                   columns={columns}
+                  onColumnVisibilityChange={handleColumnVisibilityChange}
                   items={sortServersListing(
                     sorting,
                     (flattenData as unknown) as DedicatedServer[],
