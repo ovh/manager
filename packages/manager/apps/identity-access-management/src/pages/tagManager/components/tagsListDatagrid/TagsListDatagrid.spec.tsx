@@ -106,10 +106,8 @@ describe('TagsListDatagrid Component', async () => {
     getButtonByLabel({
       container,
       label: 'Environment:Production',
-      disabled: true,
     });
 
-    // expect(getByText('Environment:Production')).toBeInTheDocument();
     expect(getAllByText('2').length).not.toBe(0);
     expect(getAllByText('tagType_predefined').length).not.toBe(0);
   });
