@@ -41,7 +41,7 @@ export const sortResults = (
         return volumeComparator((t: TVolume) => t.statusGroup);
       case BlockStorageListColumn.ATTACHED:
         return volumeComparator(
-          (t: TVolume) => t.attachedTo[0].toLocaleLowerCase() || '',
+          (t: TVolume) => t.attachedTo[0]?.toLocaleLowerCase() || '',
         );
       case BlockStorageListColumn.ID:
       case BlockStorageListColumn.NAME:

@@ -173,12 +173,14 @@ describe('volume', () => {
           { id: '2', attachedTo: ['zzz'] },
           { id: '3', attachedTo: ['Bbb'] },
           { id: '4', attachedTo: ['bba'] },
+          { id: '5', attachedTo: [] },
         ] as TVolume[];
         const sortedVolumesDescending = [
           { id: '2', attachedTo: ['zzz'] },
           { id: '3', attachedTo: ['Bbb'] },
           { id: '4', attachedTo: ['bba'] },
           { id: '1', attachedTo: ['Aaa'] },
+          { id: '5', attachedTo: [] },
         ] as TVolume[];
 
         const sorting = {
