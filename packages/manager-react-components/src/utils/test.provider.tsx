@@ -1,11 +1,20 @@
 import React, { ComponentType } from 'react';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+import i18n from 'i18next';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import i18n from '../../.storybook/i18n';
-
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
+
+i18n.use(initReactI18next).init({
+  fallbackLng: 'fr_FR',
+  interpolation: {
+    escapeValue: false,
+  },
+  resources: {
+    en: {},
+  },
+});
 
 export const queryClient = new QueryClient({
   defaultOptions: {
