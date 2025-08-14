@@ -12,5 +12,6 @@
   "log_streams_colomn_subscriptions": "Abonnements",
   "log_streams_no_results": "Kein Stream für diesen LDP Account",
   "log_streams_subscribe": "Abonnieren",
-  "log_streams_unsubscribe": "Abmelden"
+  "log_streams_unsubscribe": "Abmelden",
+  "log_streams_subscription_disabled_tooltip": "Das Abonnement für einen Teildatenstrom ist nicht verfügbar."
 }
