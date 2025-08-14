@@ -133,6 +133,16 @@ export default class VpsOutperformController {
     return '?';
   }
 
+  getBandwidthDisplay(level) {
+    const value = level / 1000;
+    const quantityText = this.$translate.instant(
+      'vps_outperform_bandwidth_quantity',
+      { value },
+    );
+
+    return quantityText;
+  }
+
   validUpgrade() {
     this.submitting = true;
     this.VpsService.postMigration2020(
