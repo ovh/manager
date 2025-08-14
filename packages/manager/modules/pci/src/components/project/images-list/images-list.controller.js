@@ -5,20 +5,15 @@ import keys from 'lodash/keys';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
+import groupBy from 'lodash/groupBy';
 
 import { IMAGE_ASSETS } from './images.constants';
 
 export default class ImagesListController {
   /* @ngInject */
-  constructor(
-    $q,
-    OvhApiCloudProjectImage,
-    OvhApiCloudProjectSnapshot,
-    PciProjectImages,
-  ) {
+  constructor($q, PciProjectsProjectInstanceService, PciProjectImages) {
     this.$q = $q;
-    this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
-    this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
+    this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProjectImages = PciProjectImages;
 
     this.IMAGE_ASSETS = IMAGE_ASSETS;
@@ -33,8 +28,11 @@ export default class ImagesListController {
     this.isLoading = true;
 
     return this.$q
-      .all([this.getImages(), this.getSnapshots()])
-      .then(() => this.findDefaultImage())
+      .all([this.getImages(), this.getSnapshots(), this.loadSnapshotRegions()])
+      .then(() => {
+        this.computeUnavailableSnapshots();
+        this.findDefaultImage();
+      })
       .finally(() => {
         this.isLoading = false;
       });
@@ -112,13 +110,36 @@ export default class ImagesListController {
   getSnapshots() {
     return this.PciProjectImages.getSnapshots(this.serviceName).then(
       (snapshots) => {
-        this.snapshots = snapshots;
-        this.unavailableSnapshotsPresent = some(
-          snapshots,
-          (snapshot) => !this.isCompatible(snapshot),
+        this.snapshots = groupBy(snapshots, (s) =>
+          s.region === this.region ? 'local' : 'distant',
         );
       },
     );
+  }
+
+  loadSnapshotRegions() {
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.serviceName,
+      undefined,
+      'snapshot',
+    ).then((productAvailability) => {
+      this.snapshotsPlans = productAvailability.plans.filter((p) =>
+        p.code.startsWith('snapshot.consumption'),
+      );
+    });
+  }
+
+  computeUnavailableSnapshots() {
+    this.unavailableSnapshotsPresent = {
+      local: some(
+        this.snapshots.local,
+        (snapshot) => !this.isCompatible(snapshot),
+      ),
+      distant: some(
+        this.snapshots.distant,
+        (snapshot) => !this.isCompatible(snapshot),
+      ),
+    };
   }
 
   findDefaultImage() {
@@ -162,12 +183,12 @@ export default class ImagesListController {
       }
 
       if (!this.image) {
-        const snapshot = find(this.snapshots, {
+        const snapshot = find(this.snapshots.local, {
           region: this.region,
           id: this.defaultImageId,
         });
         if (snapshot) {
-          this.selectedTab = 'snapshots';
+          this.selectedTab = 'snapshots-local';
           this.image = snapshot;
 
           this.onImageChange(snapshot);
@@ -199,10 +220,12 @@ export default class ImagesListController {
   }
 
   isCompatible(image) {
-    return (
-      image.isAvailableInRegion(this.region) &&
-      image.isCompatibleWithFlavor(this.flavorType) &&
-      image.isCompatibleWithOsTypes(this.osTypes)
+    return this.PciProjectImages.isImageCompatible(
+      image,
+      this.region,
+      this.flavorType,
+      this.osTypes,
+      this.snapshotsPlans,
     );
   }
 }
