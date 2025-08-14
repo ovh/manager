@@ -37,7 +37,7 @@
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "~1.3.3",
     "bootstrap": "^3.3.6",
-    "bootstrap4": "twbs/bootstrap#v4.6.2",
+    "bootstrap4": "github:twbs/bootstrap#v4.6.2",
     "font-awesome": "^4.5.0",
     "jquery-ui": "^1.12.1",
     "moment": "^2.24.0",
