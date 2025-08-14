@@ -34,6 +34,7 @@ export const Button = forwardRef<
       actionName,
       actionValues,
       onClick,
+      type,
       ...htmlProps
     },
     ref,
@@ -56,6 +57,8 @@ export const Button = forwardRef<
         size={size}
         onClick={onTrackingClick}
         ref={ref}
+        // Reset default button type to html
+        type={type ?? 'submit'}
         {...htmlProps}
       >
         {!!icon && <Icon name={icon} />}
