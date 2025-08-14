@@ -134,12 +134,17 @@ describe('Utility functions', () => {
   });
 
   describe('Considering the replaceToSnakeCase function', () => {
+    type Data = {
+      input: string;
+      expectedOutput: string;
+    };
+
     describe.each`
       input                   | expectedOutput
       ${'soft-reboot'}        | ${'soft_reboot'}
       ${'rescue/start'}       | ${'rescue_start'}
       ${'soft-reboot/action'} | ${'soft_reboot_action'}
-    `('Given an input <$input>', ({ input, expectedOutput }) => {
+    `('Given an input <$input>', ({ input, expectedOutput }: Data) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(replaceToSnakeCase(input)).toStrictEqual(expectedOutput);
       });
@@ -147,13 +152,18 @@ describe('Utility functions', () => {
   });
 
   describe('Considering the isCustomUrlSection function', () => {
+    type Data = {
+      input: string;
+      expectedOutput: boolean;
+    };
+
     describe.each`
       input                         | expectedOutput
       ${'reinstall'}                | ${false}
       ${'soft-reboot'}              | ${true}
       ${'rescue/start'}             | ${true}
       ${'billing/monthly/activate'} | ${true}
-    `('Given an input <$input>', ({ input, expectedOutput }) => {
+    `('Given an input <$input>', ({ input, expectedOutput }: Data) => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
       });
@@ -161,6 +171,12 @@ describe('Utility functions', () => {
   });
 
   describe('Considering the getPathMatch function', () => {
+    type Data = {
+      pathname: string;
+      regex: RegExp;
+      expectedResult: string | null;
+    };
+
     test.each`
       pathname          | regex         | expectedResult
       ${'/foo/bar'}     | ${/foo/}      | ${'foo'}
@@ -170,7 +186,7 @@ describe('Utility functions', () => {
       ${'/foo/bar/baz'} | ${/bar\/baz/} | ${'bar/baz'}
     `(
       `Given a pathname '$pathname' and a regex '$regex', then expect result to be '$expectedResult'`,
-      ({ pathname, regex, expectedResult }) => {
+      ({ pathname, regex, expectedResult }: Data) => {
         expect(getPathMatch(pathname, regex)).toBe(expectedResult);
       },
     );

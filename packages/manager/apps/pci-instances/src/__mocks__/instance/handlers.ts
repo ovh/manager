@@ -32,7 +32,7 @@ export const instancesHandlers = (
   response: TInstancesServerResponse[],
 ): RequestHandler[] =>
   response.map(({ method, payload }) =>
-    http[method](getResponseEndpoint(method), async () =>
+    http[method](getResponseEndpoint(method), () =>
       getResponsePayload(payload),
     ),
   );

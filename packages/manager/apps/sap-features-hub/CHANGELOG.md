@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.2.0...@ovh-ux/manager-sap-features-hub-app@0.2.1) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.1.4...@ovh-ux/manager-sap-features-hub-app@0.2.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4245] ([648e992](https://github.com/ovh/manager/commit/648e992f11b7668c68c79d35bcbf3556382d4254)), closes [#MANAGER-19404](https://github.com/ovh/manager/issues/MANAGER-19404)
+* **sap-features-hub:** allow step7 submission when empty ([4adebf3](https://github.com/ovh/manager/commit/4adebf310d09306783c934222f3bb177cf59140c)), closes [#MANAGER-19292](https://github.com/ovh/manager/issues/MANAGER-19292)
+* **sap-features-hub:** fix deployment type default value ([acdd6f8](https://github.com/ovh/manager/commit/acdd6f8aad28dce635b2001c16be36d59da191b4)), closes [#MANAGER-19289](https://github.com/ovh/manager/issues/MANAGER-19289)
+* **sap-features-hub:** fix listing breadcrumb link ([75f4b99](https://github.com/ovh/manager/commit/75f4b99490ee1a1f5d127f09c262ecce363a4320)), closes [#MANAGER-19294](https://github.com/ovh/manager/issues/MANAGER-19294)
+* **sap-features-hub:** fix listing page button position ([112a6d8](https://github.com/ovh/manager/commit/112a6d8e887457c06d2685053bd9cd9f7a6968d2)), closes [#MANAGER-19290](https://github.com/ovh/manager/issues/MANAGER-19290)
+
+
+### Features
+
+* **sap-features-hub:** remove encryptPassword form field ([40647a7](https://github.com/ovh/manager/commit/40647a7c2afb5bb5221419878149c7e91d8514de)), closes [#MANAGER-19284](https://github.com/ovh/manager/issues/MANAGER-19284)
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.1.3...@ovh-ux/manager-sap-features-hub-app@0.1.4) (2025-08-07)
 
 

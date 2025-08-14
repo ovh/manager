@@ -1,11 +1,11 @@
 {
   "name": "@ovh-ux/manager-static-analysis-kit",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A modular, extensible, and future-ready toolkit for defining, adapting, and sharing static analysis rules across projects in the `manager` monorepo.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
-    "directory": "packages/manager/tools/static-analysis-kit"
+    "directory": "packages/manager-tools/manager-static-analysis-kit"
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",

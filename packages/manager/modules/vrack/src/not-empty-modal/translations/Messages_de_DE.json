@@ -1,0 +1,5 @@
+{
+  "vrack_not_empty_title": "{{serviceName}} kündigen",
+  "vrack_not_empty_description": "Um Ihr vRack zu kündigen, müssen Sie zuerst alle damit verbundenen Dienste trennen.",
+  "vrack_not_empty_close": "Schließen"
+}

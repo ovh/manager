@@ -4,7 +4,8 @@ import { dirname, resolve, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const applicationsBasePath = resolve(__dirname, '../../manager/apps');
+export const applicationsBasePath = resolve(__dirname, '../../../manager/apps');
+export const modulesBasePath = resolve(__dirname, '../../../manager/modules');
 
 /**
  * Check if a given app is a React application

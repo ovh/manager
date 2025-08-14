@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.0...@ovh-ux/manager-web-ongoing-operations-app@1.11.1) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.4...@ovh-ux/manager-web-ongoing-operations-app@1.11.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4262] ([ed25b3e](https://github.com/ovh/manager/commit/ed25b3e51daf85041afdd98a440f7c7535a12d0f))
+
+
+### Features
+
+* **web-domains:** add allDom tab in ongoing-operations ([3de234a](https://github.com/ovh/manager/commit/3de234acf720182cb1d80598d00ca5a85537b190)), closes [#MANAGER-17564](https://github.com/ovh/manager/issues/MANAGER-17564)
+* **web-domains:** alldoms improvements ([2d2a3d4](https://github.com/ovh/manager/commit/2d2a3d49429d451a0ad02b7a973826e8bd258413)), closes [#MANAGER-19029](https://github.com/ovh/manager/issues/MANAGER-19029)
+* **web-domains:** cancel terminate ([784af33](https://github.com/ovh/manager/commit/784af33f4d83b257a413be57194b8642e1aae78d)), closes [#MANAGER-18836](https://github.com/ovh/manager/issues/MANAGER-18836)
+* **web-domains:** domain list datagrid ([43e02bf](https://github.com/ovh/manager/commit/43e02bf534ed7c4adba80d972ff550bdbaeba951)), closes [#MANAGER-17556](https://github.com/ovh/manager/issues/MANAGER-17556)
+* **web-domains:** minor changes ([bf008f9](https://github.com/ovh/manager/commit/bf008f9d09689d016be842aea775bbf89a1a56de)), closes [#MANAGER-18527](https://github.com/ovh/manager/issues/MANAGER-18527)
+* **web-ongoing-operations:** add IAM check to view alldom tab + redirect to tab domain ([1db94c5](https://github.com/ovh/manager/commit/1db94c56b307b2847bd3cdd55ece5030223df035))
+
+
+
+
+
 ## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.10.3...@ovh-ux/manager-web-ongoing-operations-app@1.10.4) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

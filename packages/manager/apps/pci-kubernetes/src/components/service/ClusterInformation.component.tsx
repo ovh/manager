@@ -178,7 +178,7 @@ export default function ClusterInformation({
         </TileLine>
 
         <TileLine label={t('service:kube_service_cluster_region')}>
-          <div className="flex gap-2 items-baseline">
+          <div className="flex items-baseline">
             <OsdsText
               className="mb-4"
               size={ODS_TEXT_SIZE._400}
@@ -189,11 +189,13 @@ export default function ClusterInformation({
             </OsdsText>
 
             {has3AZ && (
-              <RegionChipByType
-                data-testId={regionInformations?.type}
-                showTooltip
-                type={regionInformations?.type as DeploymentMode}
-              />
+              <div className="ml-2 mb-4">
+                <RegionChipByType
+                  data-testId={regionInformations?.type}
+                  showTooltip={false}
+                  type={regionInformations?.type as DeploymentMode}
+                />
+              </div>
             )}
           </div>
         </TileLine>

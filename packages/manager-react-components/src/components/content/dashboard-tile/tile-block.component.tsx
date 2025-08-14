@@ -1,15 +1,31 @@
+/**
+ * TileBlock will be removed in MRC V3
+ * @deprecated use the new Tile Component instead
+ */
 import { PropsWithChildren } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { HelpIconWithTooltip } from '../ManagerTile/help-icon-with-tooltip';
 
+/**
+ * TileBlock will be removed in MRC V3
+ * @deprecated use the new Tile Component instead
+ */
 export type TileBlockOptions = {
   label?: string;
   labelTooltip?: string;
 };
 
+/**
+ * TileBlock will be removed in MRC V3
+ * @deprecated use the new Tile Component instead
+ */
 export type TileBlockProps = PropsWithChildren<TileBlockOptions>;
 
+/**
+ * TileBlock will be removed in MRC V3
+ * @deprecated use the new Tile Component instead
+ */
 export const TileBlock = ({
   label,
   labelTooltip,

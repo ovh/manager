@@ -15,7 +15,7 @@
   "addTopicAclButtonConfirm": "Create an ACL",
   "addTopicAclToastErrorTitle": "An error has occurred adding your ACL",
   "addTopicAclToastSuccessTitle": "Success",
-  "addTopicAclToastSuccessDescription": "Your \"{{username}}\" ACL has been added.",
+  "addTopicAclToastSuccessDescription": "Your “{{username}}” ACL has been added.",
   "deleteTopicAclToastErrorTitle": "An error has occurred deleting your ACL",
   "deleteTopicAclToastSuccessTitle": "Success",
   "deleteTopicAclToastSuccessDescription": "Your ACL has been deleted.",

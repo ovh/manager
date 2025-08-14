@@ -14,6 +14,7 @@ export type TActionModalProps = PropsWithChildren<{
   section: TSectionType;
   variant?: TModalVariant;
   isLoading: boolean;
+  dismissible?: boolean;
 }>;
 
 export const ActionModal = ({
@@ -26,6 +27,7 @@ export const ActionModal = ({
   section,
   variant,
   isLoading,
+  dismissible,
 }: TActionModalProps) => (
   <Modal
     title={title}
@@ -33,6 +35,7 @@ export const ActionModal = ({
     handleInstanceAction={handleInstanceAction}
     onModalClose={onModalClose}
     variant={variant}
+    dismissible={dismissible}
   >
     {isPending ? (
       <div className="pt-8">
