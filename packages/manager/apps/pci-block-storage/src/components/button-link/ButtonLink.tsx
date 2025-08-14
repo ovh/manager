@@ -6,17 +6,17 @@ import {
   useMemo,
 } from 'react';
 import { Link } from 'react-router-dom';
+import { ButtonColor, ButtonVariant, ButtonSize } from '@ovhcloud/ods-react';
+import './style.scss';
 import clsx from 'clsx';
-import { OdsButtonColor, OdsButtonSize, OdsButtonVariant } from 'ods-18';
 import { TrackActionParams, useTrackAction } from '@/hooks/useTrackAction';
 import { Icon } from '../icon/Icon';
-import 'ods-18/dist/collection/components/button/src/components/ods-button/ods-button.css';
 
 type ButtonLinkProps = {
   to: string;
-  variant?: OdsButtonVariant;
-  color?: OdsButtonColor;
-  size?: OdsButtonSize;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+  size?: ButtonSize;
   icon?: ComponentProps<typeof Icon>['name'];
 } & Pick<TrackActionParams, 'actionName' | 'actionValues' | 'location'> &
   Omit<HTMLAttributes<HTMLElement>, 'onClick'>;
@@ -57,10 +57,10 @@ export const ButtonLink = forwardRef<
     return (
       <Link
         className={clsx([
-          'ods-button__button',
-          `ods-button__button--${color}`,
-          `ods-button__button--${size}`,
-          `ods-button__button--${variant}`,
+          'button-link',
+          `button-link--${color}`,
+          `button-link--${size}`,
+          `button-link--${variant}`,
           'box-border',
           'no-underline',
           className,
