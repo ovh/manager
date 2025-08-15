@@ -82,7 +82,7 @@
   "region_EU-WEST-PAR_micro": "Paryż ({{micro}})",
   "region_location_EU-WEST-PAR": "Europa Zachodnia (Francja)",
   "region_continent_EU-WEST-PAR": "Europa Zachodnia",
-  "help-link-more-info": "Dowiedz się więcej",
-  "region-description-1AZ": "Region 1-AZ (strefa dostępności) to jeden lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
-  "region-description-3AZ": " Region 3-AZ obejmuje trzy strefy dostępności w tym samym obszarze metropolitalnym, oddzielone kilkoma kilometrami. Spełnia najwyższe wymagania w zakresie odporności, jednocześnie gwarantując wyjątkowo krótki czas odpowiedzi między AZ."
+  "help-link-more-info": "Dowiedz się więcej",
+  "region-description-1AZ": "Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
+  "region-description-3AZ": " Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ."
 }
