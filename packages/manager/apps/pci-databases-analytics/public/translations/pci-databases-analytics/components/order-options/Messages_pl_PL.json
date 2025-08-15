@@ -25,7 +25,7 @@
   "ipAddButtonLabel": "Dodaj",
   "ipTableHeaderIp": "Adres IP",
   "ipTableHeaderDescription": "Opis",
-  "commonlyUsedIps": "Powszechnie używane adresy IP",
+  "commonlyUsedIps": "Najczęściej używane adresy IP",
   "commonlyUsedIpsDatatplatform": "OVHcloud Dataplatform IP",
   "commonlyUsedIpsCurrentIp": "Aktualny adres IP"
 }
