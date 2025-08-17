@@ -38,11 +38,11 @@
   "breadcrumb": "Fork",
   "orderSectionTitleService": "Usługa",
   "orderSectionDescriptionService": "Wybierz typ usługi bazy danych, którą chcesz utworzyć, oraz wersję.",
-  "orderSectionTitleSource": "Źródłowa",
-  "orderSectionTitleRegion": "Centrum danych",
-  "orderSectionTitlePlan": "Pakiet",
+  "orderSectionTitleSource": "Źródło",
+  "orderSectionTitleRegion": "Serwerownia",
+  "orderSectionTitlePlan": "Oferta",
   "orderSectionTitleFlavor": "Instancja",
-  "orderSectionTitleStorage": "Przestrzeń dyskowa",
+  "orderSectionTitleStorage": "Storage",
   "orderSectionTitleOptions": "Opcje",
   "fieldNameLabel": "Nazwa"
 }

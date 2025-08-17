@@ -39,14 +39,14 @@
   "advancedConfigurationErrorMax": "Musi być mniejsze niż {{max}}",
   "advancedConfigurationErrorRequired": "To pole jest wymagane",
   "toggleKafkaSettingsErrorTitle": "Wystąpił błąd podczas aktualizacji usługi",
-  "toggleRestApiSuccessTitle": "Operacja zakończona pomyślnie",
-  "toggleRestApiEnabledDescription": "Kafka API REST został włączony dla Twojej usługi",
-  "toggleRestApiDisabledDescription": "Kafka API REST został wyłączony dla Twojej usługi",
-  "toggleSchemaRegistrySuccessTitle": "Operacja zakończona pomyślnie",
-  "toggleSchemaRegistryEnabledDescription": "Schema Registry został włączony dla Twojej usługi",
-  "toggleSchemaRegistryDisabledDescription": "Schema Registry został wyłączony dla Twojej usługi",
+  "toggleRestApiSuccessTitle": "Sukces",
+  "toggleRestApiEnabledDescription": "Kafka API REST jest teraz aktywna dla Twojej usługi",
+  "toggleRestApiDisabledDescription": "Kafka API REST jest teraz wyłączona dla Twojej usługi",
+  "toggleSchemaRegistrySuccessTitle": "Sukces",
+  "toggleSchemaRegistryEnabledDescription": "Schema Registry jest teraz włączony dla Twojej usługi",
+  "toggleSchemaRegistryDisabledDescription": "Schema Registry jest teraz wyłączony dla Twojej usługi",
   "kafkaSettingsRestApiTitle": "Kafka API REST",
-  "kafkaSettingsRestApiDescription": "Interfejs HTTP REST dla klastra Kafka (oparty na projekcie <anchor>Karapace</anchor>)",
+  "kafkaSettingsRestApiDescription": "Interfejs HTTP REST dla klastra Kafka (oparty na projekcie<anchor> Karapace</anchor>)",
   "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
-  "kafkaSettingsSchemaRegistryDescription": "Interfej usługi HTTP REST do przechowywania schematów Apache Kafka (oparty na projekcie <anchor>Karapace</anchor>)"
+  "kafkaSettingsSchemaRegistryDescription": "Interfejs usługi HTTP REST do przechowywania schematów Apache Kafka (oparty na projekcie <anchor> Karapace</anchor>)"
 }

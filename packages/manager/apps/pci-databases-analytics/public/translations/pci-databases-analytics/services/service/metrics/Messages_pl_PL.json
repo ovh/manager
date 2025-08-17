@@ -6,7 +6,7 @@
   "interval-lastHour": "godzina",
   "interval-lastDay": "dzień",
   "interval-lastWeek": "tydzień",
-  "interval-lastMonth": "miesiąc",
+  "interval-lastMonth": "Miesiąc",
   "interval-lastYear": "rok",
   "metricName-cpu_usage_percent": "Poziom wykorzystania procesora ({{unit}})",
   "metricName-disk_usage_percent": "Poziom wykorzystania przestrzeni dyskowej ({{unit}})",

@@ -6,13 +6,13 @@
   "vps_additional_disk_terminate_action_terminate_error": "An error has occurred cancelling the option.",
   "vps_additional_disk_terminate_action_terminate": "Cancel",
   "vps_additional_disk_terminate_action_cancel": "Exit",
-  "vps_downgrade_option_title_automatedbackup": "Switch back to the standard option",
-  "vps_downgrade_option_info1_automatedbackup": "When you switch back to the standard option, your next backup erases the previous ones.",
-  "vps_downgrade_option_info2_P1M": "month",
+  "vps_downgrade_option_title_automatedbackup": "Return to the standard option",
+  "vps_downgrade_option_info1_automatedbackup": "When you return to the standard option, your next backup will delete the old backups.",
+  "vps_downgrade_option_info2_P1M": "months",
   "vps_downgrade_option_info2_P1Y": "year",
   "vps_downgrade_option_info2_PXM": "{{amount}} months",
   "vps_downgrade_option_info2_PXY": "{{amount}} years",
   "vps_downgrade_option_info2": "The service will be billed monthly at a price of <strong> {{ price }} ex. VAT</strong> /{{duration}}.",
-  "vps_downgrade_option_order_success": "To complete your order, please follow the instructions in the new tab that opens. If no new tabs have opened, please click <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">this link</a>.",
-  "vps_downgrade_option_order_fail": "An error has occurred submitting the solution modification request. {{ error }}"
+  "vps_downgrade_option_order_success": "To finalize your order, please follow the instructions in the new tab that opens. If no new tab has opened, please click on <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\"> this link</a> .",
+  "vps_downgrade_option_order_fail": "An error has occurred requesting to modify the solution. {{ error }}"
 }

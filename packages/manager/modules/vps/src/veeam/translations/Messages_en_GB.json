@@ -3,6 +3,6 @@
   "vps_tab_VEEAM_schedule_backup_edit": "Edit",
   "vps_tab_VEEAM_schedule_backup_description": "Automatic backup takes place every day in (UTC time zone): ",
   "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "The automatic backup time can only be modified on the new VPS range.",
-  "vps_tab_VEEAM_schedule_backup_offer_information": "Upgrading to Premium unlocks a 7-day restore and a personalised automatic backup.",
-  "vps_tab_VEEAM_schedule_backup_premium_order": "Order Premium automated backup"
+  "vps_tab_VEEAM_schedule_backup_offer_information": "With your automated backup, you can get a 7-day restore and a tailored backup by upgrading to the premium option.",
+  "vps_tab_VEEAM_schedule_backup_premium_order": "Order a premium backup"
 }
