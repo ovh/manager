@@ -46,7 +46,7 @@
   "allDom_domain_table_registration_status_REGISTERED": "Zarejestrowana",
   "allDom_domain_table_registration_status_UNREGISTERED": "Niezarejestrowana",
   "allDom_domain_table_status_domain_unregistered": "Ta domena jest już zarejestrowana przez inny podmiot",
-  "allDom_detail_page_manuel_renew_warning": "Twój pakiet wygaśnie w dniu {{expirationDate}}. Zawarte w pakiecie domeny, z których nie zrezygnujesz, będą <strong>odnawiane bezpłatnie aż do wygaśnięcia pakietu</strong>. Po tym terminie, domeny, z których nie zrezygnowałeś, będą fakturowane indywidualnie.",
+  "allDom_detail_page_manuel_renew_warning": "Twój pakiet wygaśnie w dniu {{expirationDate}}. Zawarte w tym pakiecie domeny, z których nie zrezygnujesz, będą <strong>odnawiane bezpłatnie aż do ostatecznego wygaśnięcia pakietu.</strong> Po tym terminie, domeny, z których nie zrezygnowałeś, będą fakturowane indywidualnie.",
   "allDom_detail_page_manuel_renew_warning_link": "Anuluj rezygnację z pakietu",
   "allDom_status_automatic": "Automatycznie",
   "allDom_status_manual": "Ręcznie",
