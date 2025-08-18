@@ -21,7 +21,6 @@ export function TagsFilterForm({
   resourceType,
   tagKey,
   setTagKey,
-  value,
   setValue,
 }: TagsFilterFormProps) {
   const { t } = useTranslation('filters');
@@ -48,7 +47,7 @@ export function TagsFilterForm({
             name="tag-key"
             allowNewElement={false}
             onOdsChange={(event) => {
-              setTagKey(event.detail.value);
+              setTagKey(event.detail.value || '');
             }}
             data-testid="tags-filter-form-key-field"
           >
@@ -74,7 +73,7 @@ export function TagsFilterForm({
             isDisabled={!tagKey}
             allowNewElement={false}
             onOdsChange={(event) => {
-              setValue(event.detail.value);
+              setValue(event.detail.value || '');
             }}
             data-testid="tags-filter-form-value-field"
           >

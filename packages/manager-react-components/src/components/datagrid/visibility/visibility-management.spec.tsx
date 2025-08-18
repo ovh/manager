@@ -8,7 +8,13 @@ vitest.mock('@ovhcloud/ods-components/react', async () => {
   );
   return {
     ...originalModule,
-    OdsCheckbox: ({ name, inputId, isDisabled, isChecked, onOdsChange }) => {
+    OdsCheckbox: ({
+      name,
+      inputId,
+      isDisabled,
+      isChecked,
+      onOdsChange,
+    }: any) => {
       return (
         <input
           type="checkbox"
@@ -170,7 +176,7 @@ describe('visibility management dropdown part', () => {
     expect(checkboxElements[2]).toHaveProperty('checked', false);
     expect(checkboxElements[2]).toHaveProperty('disabled', false);
 
-    await act(() => fireEvent.click(checkboxElements[1]));
+    await act(() => fireEvent.click(checkboxElements[1]!));
     expect(onChange).toHaveBeenCalled();
   });
 });

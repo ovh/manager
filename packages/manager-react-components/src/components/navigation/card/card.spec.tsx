@@ -49,13 +49,13 @@ describe('specs:Card', () => {
       };
 
       const { getByText, container } = await setupSpecTest(cardProps);
-      const titleElement = getByText(cardProps.texts.title);
+      const titleElement = getByText(cardProps.texts?.title || '');
       expect(titleElement).toBeVisible();
 
-      const descElement = getByText(cardProps.texts.description);
+      const descElement = getByText(cardProps.texts?.description || '');
       expect(descElement).toBeVisible();
 
-      const catElement = getByText(cardProps.texts.category);
+      const catElement = getByText(cardProps.texts?.category || '');
       expect(catElement).toBeVisible();
 
       expect(container.querySelector('[label="En savoir plus"]')).toBeDefined();

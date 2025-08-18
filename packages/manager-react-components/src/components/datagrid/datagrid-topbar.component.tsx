@@ -54,7 +54,7 @@ export interface DatagridTopbarProps {
   resourceType?: string;
 }
 
-export const DatagridTopbar = <T,>({
+export const DatagridTopbar = ({
   columnsVisibility,
   toggleAllColumnsVisible,
   getIsAllColumnsVisible,
@@ -67,7 +67,7 @@ export const DatagridTopbar = <T,>({
   resourceType,
 }: DatagridTopbarProps) => {
   const { t } = useTranslation('filters');
-  const filterPopoverRef = useRef(null);
+  const filterPopoverRef = useRef<any>(null);
   const hasVisibilityFeature = columnsVisibility?.some(
     (col) => col.enableHiding,
   );
@@ -75,7 +75,7 @@ export const DatagridTopbar = <T,>({
   return (
     <>
       {(isSearchable ||
-        filtersColumns?.length > 0 ||
+        (filtersColumns && filtersColumns.length > 0) ||
         topbar ||
         hasVisibilityFeature) && (
         <div
@@ -122,7 +122,7 @@ export const DatagridTopbar = <T,>({
                   />
                 </form>
               )}
-              {filtersColumns?.length > 0 && (
+              {filtersColumns && filtersColumns.length > 0 && (
                 <div
                   className="ml-[10px]"
                   data-testid="datagrid-topbar-filters"
@@ -142,26 +142,43 @@ export const DatagridTopbar = <T,>({
                     with-arrow
                   >
                     <FilterAdd
-                      columns={filtersColumns}
+                      columns={filtersColumns || []}
                       resourceType={resourceType}
                       onAddFilter={(addedFilter, column) => {
-                        filters.add({
+                        filters?.add({
                           ...addedFilter,
                           label: column.label,
                         });
-                        filterPopoverRef.current?.hide();
+                        if (
+                          filterPopoverRef.current &&
+                          typeof filterPopoverRef.current.hide === 'function'
+                        ) {
+                          filterPopoverRef.current.hide();
+                        }
                       }}
                     />
                   </OdsPopover>
                 </div>
               )}
               {hasVisibilityFeature && (
-                <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
+                <div
+                  className={
+                    filtersColumns && filtersColumns.length > 0
+                      ? 'ml-[10px]'
+                      : ''
+                  }
+                >
                   <VisibilityManagement
-                    columnsVisibility={columnsVisibility}
-                    toggleAllColumnsVisible={toggleAllColumnsVisible}
-                    getIsAllColumnsVisible={getIsAllColumnsVisible}
-                    getIsSomeColumnsVisible={getIsSomeColumnsVisible}
+                    columnsVisibility={columnsVisibility || []}
+                    toggleAllColumnsVisible={
+                      toggleAllColumnsVisible || (() => {})
+                    }
+                    getIsAllColumnsVisible={
+                      getIsAllColumnsVisible || (() => false)
+                    }
+                    getIsSomeColumnsVisible={
+                      getIsSomeColumnsVisible || (() => false)
+                    }
                   />
                 </div>
               )}
@@ -169,7 +186,7 @@ export const DatagridTopbar = <T,>({
           </div>
         </div>
       )}
-      {filters?.filters.length > 0 && (
+      {filters?.filters && filters.filters.length > 0 && (
         <div
           data-testid="datagrid-filter-list"
           id="datagrid-filter-list"

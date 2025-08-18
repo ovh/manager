@@ -16,5 +16,5 @@ const localeMap = {
 export const useDateFnsLocale = () => {
   const { i18n } = useTranslation();
   const language = getDateFnsLocale(i18n?.language);
-  return localeMap[language] || enGB;
+  return (localeMap as any)[language] || enGB;
 };

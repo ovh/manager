@@ -6,7 +6,7 @@ import { render } from '../../utils/test.provider';
 
 vi.mock('./tags-filter-form.component', () => {
   return {
-    TagsFilterForm: ({ setTagKey }) => {
+    TagsFilterForm: ({ setTagKey }: any) => {
       setTagKey('tagKey');
       return <div data-testid="filter-tag-inputs" />;
     },
@@ -65,7 +65,7 @@ describe('FilterAdd tests', () => {
     const { getByTestId } = renderComponent(props);
 
     const idColumnSelect = getByTestId('add-filter_select_idColumn');
-    expect(idColumnSelect).toHaveValue(props.columns[0].id);
+    expect(idColumnSelect).toHaveValue(props.columns[0]?.id);
   });
 
   it('should display a date picker when the filter type is Date', () => {

@@ -58,7 +58,7 @@ function renderUseResourcesV6Hook<T>(
         route: '/dedicated/nasha',
         queryKey: ['/dedicated/nasha'],
         ...hookParams,
-      }),
+      } as any),
     {
       wrapper,
     },
@@ -235,7 +235,7 @@ describe('useResourcesV6', () => {
       expect(current.flattenData.length).toBe(6);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      expect(current.flattenData[0].age).toBe(25);
+      expect(current.flattenData[0]?.age).toBe(25);
     });
   });
 
@@ -310,7 +310,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { flattenData } = result.current;
       // With descending sort on age, first item should have highest age
-      expect(flattenData[0].age).toBe(25);
+      expect(flattenData[0]?.age).toBe(25);
     });
   });
 
