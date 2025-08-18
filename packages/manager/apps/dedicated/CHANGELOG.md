@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.10...@ovh-ux/manager-dedicated@20.54.0) (2025-08-18)
+
+
+### Features
+
+* **agora-ip-order:** adding an bandwidth limit explaination message when service is in APAC ([b12dfea](https://github.com/ovh/manager/commit/b12dfead63b59bd8f7ac9d31f95c030148ed4b23)), closes [#MANAGER-18535](https://github.com/ovh/manager/issues/MANAGER-18535)
+
+
+
+
+
 ## [20.53.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.53.9...@ovh-ux/manager-dedicated@20.53.10) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
