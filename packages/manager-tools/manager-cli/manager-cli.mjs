@@ -9,6 +9,7 @@ const [command, ...restArgs] = args;
 const validMigrationTypes = ['routes', 'tests', 'swc', 'static-kit', 'all'];
 const validTestTypes = ['unit', 'integration'];
 const validFormats = ['json', 'html'];
+const validPkgManagerTypes = ['pnpm'];
 
 const knownCommands = {
   'routes-migrate': {
@@ -20,12 +21,13 @@ const knownCommands = {
 yarn manager-cli routes-migrate --app zimbra
 
 # Preview changes without affecting files
-yarn manager-cli routes-migrate --app zimbra --dry-run`
+yarn manager-cli routes-migrate --app zimbra --dry-run`,
   },
   'tests-migrate': {
     script: 'common-tests-config-migration',
     isAppRequired: true,
-    description: 'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
+    description:
+      'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
     help: `
 # Migrate a unit test setup with Vitest (affect files)
 yarn manager-cli tests-migrate --app zimbra --testType unit
@@ -34,12 +36,13 @@ yarn manager-cli tests-migrate --app zimbra --testType unit
 yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest
 
 # Preview changes without applying them (without affecting files)
-yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
+yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`,
   },
   'duplicated-translations': {
     script: 'check-duplicated-translations',
     isAppRequired: true,
-    description: 'Check for duplicate translations that already exist in the common module.',
+    description:
+      'Check for duplicate translations that already exist in the common module.',
     help: `
 #Check duplicated translations on zimbra app
 yarn manager-cli duplicated-translations --app zimbra`,
@@ -47,13 +50,25 @@ yarn manager-cli duplicated-translations --app zimbra`,
   'static-analysis-migrate': {
     script: 'static-analysis-migration',
     isAppRequired: true,
-    description: 'Migrate ESLint & TS config to static-analysis-kit (safe defaults + recommendations)',
+    description:
+      'Migrate ESLint & TS config to static-analysis-kit (safe defaults + recommendations)',
     help: `
 # Migrate to static-analysis-kit for an app (non-destructive)
 yarn manager-cli static-analysis-migrate --app zimbra
 
 # Preview changes without writing files
-yarn manager-cli static-analysis-migrate --app zimbra --dry-run`
+yarn manager-cli static-analysis-migrate --app zimbra --dry-run`,
+  },
+  'pkg-manager-migrate': {
+    script: 'pkg-manager-migrate',
+    isAppRequired: true,
+    description: 'Migrate a specific app to a new package manager (e.g., pnpm)',
+    help: `
+# Migrate an app from Yarn to PNPM
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm
+
+# Dry-run preview
+yarn manager-cli pkg-manager-migrate --app zimbra --type pnpm --dry-run`,
   },
   'migrations-status': {
     script: 'migrations-status',
@@ -74,7 +89,7 @@ yarn manager-cli migrations-status --type routes --format json
 yarn manager-cli migrations-status --type tests --format html
 
 yarn manager-cli migrations-status --type all --format html
-yarn manager-cli migrations-status --type all --format json`
+yarn manager-cli migrations-status --type all --format json`,
   },
 };
 
@@ -154,15 +169,17 @@ if (knownCommand.isAppRequired) {
 
   const availableApps = getAvailableApps();
   if (!availableApps.includes(appName)) {
-    console.error([
-      `❌ App "${appName}" not found in:`,
-      `   ${applicationsBasePath}`,
-      '',
-      `📦 Available apps:`,
-      ...availableApps.map((a) => `  - ${a}`),
-      '',
-      `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
-    ].join('\n'));
+    console.error(
+      [
+        `❌ App "${appName}" not found in:`,
+        `   ${applicationsBasePath}`,
+        '',
+        `📦 Available apps:`,
+        ...availableApps.map((a) => `  - ${a}`),
+        '',
+        `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
+      ].join('\n'),
+    );
     process.exit(1);
   }
 }
@@ -184,26 +201,43 @@ const typeValue = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
 if (command === 'migrations-status') {
   if (typeArgIndex !== -1) {
     if (!typeValue || typeValue.startsWith('--')) {
-      console.error(`❌ Missing value for "--type" flag. Valid values: ${validMigrationTypes.join(', ')}`);
+      console.error(
+        `❌ Missing value for "--type" flag. Valid values: ${validMigrationTypes.join(
+          ', ',
+        )}`,
+      );
       process.exit(1);
     }
     if (!validMigrationTypes.includes(typeValue)) {
-      console.error(`❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(', ')}`);
+      console.error(
+        `❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(
+          ', ',
+        )}`,
+      );
       process.exit(1);
     }
     extraFlags.push('--type', typeValue);
   }
 
   const formatArgIndex = restArgs.findIndex((arg) => arg === '--format');
-  const formatValue = formatArgIndex !== -1 ? restArgs[formatArgIndex + 1] : null;
+  const formatValue =
+    formatArgIndex !== -1 ? restArgs[formatArgIndex + 1] : null;
 
   if (formatArgIndex !== -1) {
     if (!formatValue || formatValue.startsWith('--')) {
-      console.error(`❌ Missing value for "--format" flag. Valid values: ${validFormats.join(', ')}`);
+      console.error(
+        `❌ Missing value for "--format" flag. Valid values: ${validFormats.join(
+          ', ',
+        )}`,
+      );
       process.exit(1);
     }
     if (!validFormats.includes(formatValue)) {
-      console.error(`❌ Invalid --format "${formatValue}". Must be one of: ${validFormats.join(', ')}`);
+      console.error(
+        `❌ Invalid --format "${formatValue}". Must be one of: ${validFormats.join(
+          ', ',
+        )}`,
+      );
       process.exit(1);
     }
     extraFlags.push('--format', formatValue);
@@ -219,10 +253,39 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   if (!validTestTypes.includes(testType)) {
-    console.error(`❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`);
+    console.error(
+      `❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(
+        ', ',
+      )}`,
+    );
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
+}
+
+// Handle package manager migration
+if (command === 'pkg-manager-migrate') {
+  let pckManagerType = null;
+  const typeArgIndex = restArgs.findIndex((arg) => arg === '--type');
+  if (typeArgIndex !== -1 && restArgs[typeArgIndex + 1]) {
+    pckManagerType = restArgs[typeArgIndex + 1];
+  }
+
+  if (!pckManagerType) {
+    console.error(
+      `❌ Missing required flag: --type <${validPkgManagerTypes.join('|')}>`,
+    );
+    process.exit(1);
+  }
+  if (!validPkgManagerTypes.includes(pckManagerType)) {
+    console.error(
+      `❌ Invalid --type "${pckManagerType}". Must be one of: ${validPkgManagerTypes.join(
+        ', ',
+      )}`,
+    );
+    process.exit(1);
+  }
+  extraFlags.push('--type', restArgs[typeArgIndex + 1]);
 }
 
 // Final command assembly
@@ -231,14 +294,22 @@ const runCommand = [
   knownCommand.script,
   knownCommand.isAppRequired ? appName : '',
   ...extraFlags,
-].filter(Boolean).join(' ');
+]
+  .filter(Boolean)
+  .join(' ');
 
 try {
-  console.log(`\n▶ Running "${command}"${appName ? ` for app: "${appName}"` : ''}`);
+  console.log(
+    `\n▶ Running "${command}"${appName ? ` for app: "${appName}"` : ''}`,
+  );
   console.log(`⏩ Executing: ${runCommand}\n`);
   execSync(runCommand, { stdio: 'inherit' });
 } catch (error) {
-  console.error(`\n❌ Execution failed for "${command}"${appName ? ` on "${appName}"` : ''}.`);
+  console.error(
+    `\n❌ Execution failed for "${command}"${
+      appName ? ` on "${appName}"` : ''
+    }.`,
+  );
   console.error(error);
   process.exit(1);
 }

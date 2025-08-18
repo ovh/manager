@@ -39,7 +39,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.1.0",
+    "@ovh-ux/component-rollup-config": "^13.1.3",
     "bs4": "github:twbs/bootstrap#v4.0.0-beta"
   },
   "peerDependencies": {
