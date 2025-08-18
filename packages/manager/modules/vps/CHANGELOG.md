@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.2...@ovh-ux/manager-vps@2.50.3) (2025-08-18)
+
+
+### Bug Fixes
+
+* **vps:** fix value for bandwidth ([402e75b](https://github.com/ovh/manager/commit/402e75ba5581f6880429f6a855dc9414994e17ab)), closes [#MANAGER-19426](https://github.com/ovh/manager/issues/MANAGER-19426)
+
+
+
+
+
 ## [2.50.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.1...@ovh-ux/manager-vps@2.50.2) (2025-08-14)
 
 
