@@ -405,3 +405,22 @@ export type EmailOptionType = {
   domain: string;
   creationDate: string;
 };
+
+export enum OngoingTaskStatus {
+  CANCELLED = 'cancelled',
+  DOING = 'doing',
+  DONE = 'done',
+  INIT = 'init',
+  TODO = 'todo',
+}
+
+export type TaskDetailsType = {
+  doneDate: string;
+  function: string;
+  id: number;
+  lastUpdate: string;
+  objectId: string;
+  objectType: string;
+  startDate: string;
+  status: OngoingTaskStatus;
+};

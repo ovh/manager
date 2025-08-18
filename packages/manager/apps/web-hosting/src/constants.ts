@@ -49,6 +49,8 @@ export const DOMAIN_ORDER_URL = {
   },
 };
 
+export const ITEMS_PER_PAGE = 10;
+
 export enum REGION {
   EU = 'EU',
   CA = 'CA',

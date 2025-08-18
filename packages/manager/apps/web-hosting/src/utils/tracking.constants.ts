@@ -42,6 +42,7 @@ export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';
 export const DASHBOARD = 'dashboard';
 export const SSL = 'ssl';
+export const TASK = 'task';
 export const IMPORT_SSL = 'import-ssl';
 export const ORDER_SECTIGO = 'order-sectigo';
 export const DISABLE_SSL = 'disable-ssl';
