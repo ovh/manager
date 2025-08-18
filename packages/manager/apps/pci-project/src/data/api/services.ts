@@ -20,6 +20,13 @@ export const getServices = async (): Promise<FetchResultV6<TService>> => {
   return v6.get(`/services`, { headers });
 };
 
+export const getProjectService = async (
+  projectId: string,
+): Promise<TService> => {
+  const { data } = await v6.get(`/cloud/project/${projectId}/serviceInfos`);
+  return data;
+};
+
 /**
  * Get service options from a service id
  * @param serviceId
