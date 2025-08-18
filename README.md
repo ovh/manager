@@ -6,6 +6,7 @@
 
 [![OVHcloud control panel UI](docs/docs/public/assets/img/control-panel.jpg)](https://ovh.com/manager)
 
+
 ## Intro
 
 Manager is the control panel built on top of the [OVHcloud API](https://api.ovh.com/) and based on our [UI Framework](https://github.com/ovh/ovh-ui-kit). It helps you to manage your products.
