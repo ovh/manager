@@ -8,6 +8,7 @@ export enum ResourceStatus {
   READY = 'READY',
   UPDATING = 'UPDATING',
   SUSPENDED = 'SUSPENDED',
+  DONE = 'DONE',
 }
 
 export enum ServiceStatus {
@@ -391,6 +392,26 @@ export type ManagedWordpressWebsites = {
     };
   };
 };
+
+export type ManagedWordpressResourceTask = {
+  createdAt: string;
+  errors: Array<{
+    message: string;
+  }>;
+  finishedAt?: string;
+  id: string;
+  link: string;
+  message: string;
+  progress: Array<{
+    name: string;
+    status: Status;
+  }>;
+  startedAt: string | null;
+  status: Status;
+  type: string;
+  updatedAt: string;
+};
+
 export enum HostingState {
   ACTIVE = 'active',
   BLOQUED = 'bloqued',

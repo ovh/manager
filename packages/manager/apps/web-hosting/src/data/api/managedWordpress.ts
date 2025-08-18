@@ -2,6 +2,7 @@ import { proxyV2 } from '../../../../../core/api'; // @todo: to change soon we h
 
 import {
   ManagedWordpressResourceDetailsType,
+  ManagedWordpressResourceTask,
   ManagedWordpressResourceType,
   ManagedWordpressWebsiteDetails,
   ManagedWordpressWebsites,
@@ -73,6 +74,15 @@ export const putManagedCmsResourceWebsiteTasks = async (
   const { data } = await proxyV2.put(
     `/managedCMS/resource/${serviceName}/task/${taskId}`,
     payload,
+  );
+  return data;
+};
+
+export const getManagedCmsResourceWebsiteTasks = async (
+  serviceName: string,
+): Promise<ManagedWordpressResourceTask[]> => {
+  const { data } = await proxyV2.get<ManagedWordpressResourceTask[]>(
+    `/managedCMS/resource/${serviceName}/task`,
   );
   return data;
 };

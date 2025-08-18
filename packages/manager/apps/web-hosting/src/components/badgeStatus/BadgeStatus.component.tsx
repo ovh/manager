@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { Badge } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,13 +6,9 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  ResourceStatus,
-  ServiceStatus,
-  GitStatus,
-  DnsStatus,
-} from '@/data/type';
 import { DATAGRID_LINK, WEBSITE } from '@/utils/tracking.constants';
+
+import { getStatusColor } from '@/utils/getStatusColor';
 
 export type BadgeStatusProps = {
   itemStatus: string;
@@ -22,32 +17,6 @@ export type BadgeStatusProps = {
   href?: string;
   isLoading?: boolean;
   label?: string;
-};
-
-const getStatusColor = (status: string) => {
-  switch (status) {
-    case GitStatus.CREATED:
-    case ResourceStatus.READY:
-    case ServiceStatus.ACTIVE:
-    case DnsStatus.CONFIGURED:
-      return ODS_BADGE_COLOR.success;
-    case GitStatus.CREATING:
-    case GitStatus.DELETING:
-    case GitStatus.DEPLOYING:
-    case GitStatus.INITIALERROR:
-    case DnsStatus.EXTERNAL:
-      return ODS_BADGE_COLOR.warning;
-    case GitStatus.DISABLED:
-    case GitStatus.ERROR:
-    case ResourceStatus.ERROR:
-    case ResourceStatus.SUSPENDED:
-    case ServiceStatus.NONE:
-      return ODS_BADGE_COLOR.critical;
-    case DnsStatus.NOT_CONFIGURED:
-      return ODS_BADGE_COLOR.neutral;
-    default:
-      return ODS_BADGE_COLOR.information;
-  }
 };
 
 export const BadgeStatus: React.FC<BadgeStatusProps> = ({

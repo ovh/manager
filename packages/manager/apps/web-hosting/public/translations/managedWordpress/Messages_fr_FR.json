@@ -2,6 +2,8 @@
   "web_hosting_managed_wordpress_import_select_element": "Sélectionner les éléments à importer",
   "web_hosting_managed_wordpress_import_select_element_description": "Configurez votre import en choisissant les plugins, thèmes et bases de données nécessaires.",
   "web_hosting_managed_wordpress_import_select_plugins_description": "Sélectionnez les plugins à importer",
+  "web_hosting_managed_wordpress_import_select_plugins_all": "Sélectionnez les plugins à importer",
+  "web_hosting_managed_wordpress_import_select_themes_all": "Sélectionnez les themes à importer",
   "web_hosting_managed_wordpress_import_select_themes_description": "Sélectionez au moins un thème",
   "web_hosting_managed_wordpress_import_select_medias_description": "Sélectionnez les médias à importer",
   "web_hosting_managed_wordpress_import_select_database_description": "Choisissez les bases de données à importer",
