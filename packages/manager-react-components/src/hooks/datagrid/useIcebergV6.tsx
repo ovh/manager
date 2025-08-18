@@ -33,7 +33,9 @@ export function useResourcesIcebergV6<T = unknown>({
 }: IcebergFetchParamsV6 & IcebergV6Hook<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
-  const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(
+    defaultSorting,
+  );
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const {
@@ -57,7 +59,7 @@ export function useResourcesIcebergV6<T = unknown>({
         route,
         pageSize: shouldFetchAll ? API_V6_MAX_PAGE_SIZE : pageSize,
         page: pageIndex,
-        sortBy: sorting?.id || null,
+        sortBy: sorting?.id || undefined,
         sortReverse: sorting?.desc,
         filters: searchFilter ? [searchFilter, ...filters] : filters,
         disableCache,
@@ -70,7 +72,7 @@ export function useResourcesIcebergV6<T = unknown>({
     },
     select: (data) => {
       const pageIndex = data.pageParams[data.pageParams.length - 1];
-      const { totalCount } = data.pages[0];
+      const { totalCount } = data.pages[0] || { totalCount: 0 };
 
       return {
         data,
@@ -113,7 +115,7 @@ export function useResourcesIcebergV6<T = unknown>({
   };
 
   return {
-    ...(dataSelected ?? { ...dataSelected, totalCount: 0 }),
+    ...(dataSelected ? { ...dataSelected, totalCount: 0 } : { totalCount: 0 }),
     hasNextPage,
     fetchNextPage,
     ...rest,
