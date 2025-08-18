@@ -35,6 +35,7 @@ export enum PageLocation {
   popup = 'pop-up',
   datagrid = 'datagrid',
   tile = 'tile',
+  mainTabnav = 'main-tabnav',
 }
 
 export enum ButtonType {
