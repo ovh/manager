@@ -16,14 +16,22 @@ const getSearchParamsObject = (search: URLSearchParams) =>
 const parsePagination = (params: URLSearchParams): PaginationState => {
   const pagination = { ...DEFAULT_PAGINATION };
   if (params.has('page')) {
-    let pageIndex = parseInt(params.get('page'), 10) - 1;
-    if (Number.isNaN(pageIndex) || pageIndex < 0) pageIndex = 0;
-    pagination.pageIndex = pageIndex;
+    const pageParam = params.get('page');
+    if (pageParam) {
+      let pageIndex = parseInt(pageParam, 10) - 1;
+      if (Number.isNaN(pageIndex) || pageIndex < 0) pageIndex = 0;
+      pagination.pageIndex = pageIndex;
+    }
   }
   if (params.has('pageSize')) {
-    let pageSize = parseInt(params.get('pageSize'), 10);
-    if (!PAGE_SIZES.includes(pageSize)) [pageSize] = PAGE_SIZES;
-    pagination.pageSize = pageSize;
+    const pageSizeParam = params.get('pageSize');
+    if (pageSizeParam) {
+      let pageSize = parseInt(pageSizeParam, 10);
+      if (!PAGE_SIZES.includes(pageSize)) {
+        pageSize = PAGE_SIZES[0] || 10;
+      }
+      pagination.pageSize = pageSize;
+    }
   }
   return pagination;
 };
@@ -34,13 +42,16 @@ const parseSorting = (
   defaultSorting?: ColumnSort,
 ): ColumnSort => {
   const sorting: ColumnSort = {
-    id: null,
+    id: '',
     desc: false,
   };
   if (params.has('sort')) {
-    sorting.id = params.get('sort');
-    if (params.has('sortOrder')) {
-      sorting.desc = params.get('sortOrder') === 'desc';
+    const sortParam = params.get('sort');
+    if (sortParam) {
+      sorting.id = sortParam;
+      if (params.has('sortOrder')) {
+        sorting.desc = params.get('sortOrder') === 'desc';
+      }
     }
   } else if (defaultSorting) {
     return defaultSorting;

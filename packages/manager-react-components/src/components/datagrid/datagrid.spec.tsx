@@ -128,9 +128,9 @@ const DatagridTest = ({
               rowSelection,
               setRowSelection,
               enableRowSelection,
-              onRowSelectionChange,
+              onRowSelectionChange: onRowSelectionChange as any,
             }
-          : null
+          : undefined
       }
       getRowId={getRowId}
     />
@@ -200,14 +200,14 @@ describe('Paginated datagrid component', () => {
     const headerA = screen.queryByTestId('header-a');
     expect(headerA).not.toBeNull();
     expect(handleSortChange).not.toHaveBeenCalled();
-    fireEvent.click(headerA);
+    fireEvent.click(headerA!);
     expect(handleSortChange).toHaveBeenCalledWith({ id: 'a', desc: false });
-    fireEvent.click(headerA);
+    fireEvent.click(headerA!);
     expect(handleSortChange).toHaveBeenCalledWith({ id: 'a', desc: true });
-    fireEvent.click(headerA);
+    fireEvent.click(headerA!);
     expect(handleSortChange).toHaveBeenCalledWith({ id: 'a', desc: false });
     const headerB = screen.queryByTestId('header-b');
-    fireEvent.click(headerB);
+    fireEvent.click(headerB!);
     expect(handleSortChange).toHaveBeenCalledWith({ id: 'b', desc: false });
   });
 
@@ -355,8 +355,8 @@ it('should display filter add and filter list', async () => {
         label: 'customName',
       },
     ],
-    add: null,
-    remove: null,
+    add: () => {},
+    remove: () => {},
   } as FilterProps;
   const { container } = render(
     <DatagridTest
@@ -394,7 +394,7 @@ it('should display new column to expand a row sub component', async () => {
   const button = container.querySelectorAll(
     'ods-button[icon=chevron-right]',
   )[0];
-  await act(() => fireEvent.click(button));
+  await act(() => fireEvent.click(button!));
   expect(
     container.querySelectorAll('ods-button[icon=chevron-down]').length,
   ).toBe(1);
@@ -415,7 +415,7 @@ it('should use fixed column width', async () => {
   );
 
   const td = getByText('foo').closest('td');
-  expect(td.style.width).toBe('50px');
+  expect(td?.style.width).toBe('50px');
 });
 
 it('should display new column to select rows', async () => {
@@ -444,7 +444,7 @@ it('should display new column to select rows', async () => {
 
   const toogleAll = allCheckboxes[0];
 
-  fireEvent.click(toogleAll);
+  fireEvent.click(toogleAll!);
 
   waitFor(() => {
     expect(selectAllMock).toHaveBeenCalledWith(['foo']);

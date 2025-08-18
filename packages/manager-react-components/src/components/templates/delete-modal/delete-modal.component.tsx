@@ -55,19 +55,13 @@ export type DeleteModalProps = {
 };
 
 export const DeleteModal: React.FC<DeleteModalProps> = ({
-  headline,
-  description,
   isOpen = false,
-  deleteInputLabel,
   serviceTypeName,
   closeModal,
   isLoading,
   onConfirmDelete,
   error,
   children,
-  cancelButtonLabel,
-  confirmButtonLabel,
-  terminateValue = defaultDeleteModalTerminateValue,
 }) => {
   const { t } = useTranslation('delete-modal');
 
