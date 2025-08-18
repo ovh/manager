@@ -23,7 +23,13 @@ export function TabsPanel({ tabs }: Readonly<TabsProps>) {
   const { tracking } = useContext(ShellContext)?.shell || {};
 
   useEffect(() => {
-    const activeTab = tabs.find((tab) => location.pathname === tab.to);
+    const currentPath = location.pathname;
+
+    const activeTab = tabs.find((tab) => {
+      const tabPath = tab.to?.split('?')[0];
+      return currentPath === tabPath;
+    });
+
     if (activeTab) {
       if (activeTab.name !== activePanel) {
         clearNotifications();
