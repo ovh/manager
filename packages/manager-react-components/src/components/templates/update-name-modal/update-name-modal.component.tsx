@@ -57,7 +57,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   }, [defaultValue]);
 
   React.useEffect(() => {
-    const regex = new RegExp(pattern);
+    const regex = new RegExp(pattern || '');
     setIsPatternError(!displayName?.match(regex));
   }, [displayName, pattern]);
 
@@ -113,7 +113,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
             }
             slot="actions"
             isLoading={isLoading}
-            {...handleClick(() => updateDisplayName(displayName))}
+            {...handleClick(() => updateDisplayName(displayName || ''))}
             label={confirmButtonLabel || t('updateModalConfirmButton')}
           />
         </div>
