@@ -29,7 +29,7 @@ type DomainSelectorProps = {
   domains: OKMS[];
   selectedDomain: string;
   selectedRegion: string;
-  isUpdatingOkmsList: boolean;
+  isOkmsOrderProcessing: boolean;
   onDomainSelection: (domainId: string) => void;
 };
 
@@ -37,7 +37,7 @@ export const DomainSelector = ({
   domains,
   selectedDomain,
   selectedRegion,
-  isUpdatingOkmsList,
+  isOkmsOrderProcessing,
   onDomainSelection,
 }: DomainSelectorProps) => {
   const { t } = useTranslation('secret-manager/create');
@@ -47,7 +47,7 @@ export const DomainSelector = ({
   if (domains.length === 0) {
     return (
       <ActivateRegion
-        isUpdatingOkmsList={isUpdatingOkmsList}
+        isOkmsOrderProcessing={isOkmsOrderProcessing}
         selectedRegion={selectedRegion}
       />
     );
