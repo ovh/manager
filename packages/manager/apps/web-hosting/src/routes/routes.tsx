@@ -15,6 +15,7 @@ import {
   SSL,
   WEBSITE,
   SAN_SSL,
+  TASK,
 } from '@/utils/tracking.constants';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
@@ -24,6 +25,9 @@ const OnboardingPage = React.lazy(() =>
 );
 const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
 const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
+const OngoingTaskPage = React.lazy(() =>
+  import('@/pages/dashboard/task/Task.page'),
+);
 const ImportSslPage = React.lazy(() =>
   import('@/pages/dashboard/ssl/add/importSsl.page'),
 );
@@ -98,6 +102,20 @@ export default (
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        }}
+      />
+      <Route
+        id={TASK}
+        path={urls.task}
+        Component={OngoingTaskPage}
+        handle={{
+          tracking: {
+            pageName: TASK,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'task',
           },
         }}
       />
