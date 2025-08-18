@@ -7,10 +7,10 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { Select, SelectControl, SelectContent } from '@ovhcloud/ods-react';
-import { TUnattachedPrivateNetwork } from '../view-models/selectUnattachedNetwork';
+import { TUnattachedResource } from '../view-models/selectUnattachedResource';
 
 type TNetworkSelectorProps = {
-  networks: TUnattachedPrivateNetwork[];
+  networks: TUnattachedResource[];
   onValueChange: (id: string) => void;
 };
 

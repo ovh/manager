@@ -170,6 +170,15 @@ const routes: RouteObject[] = [
                   ),
                 ),
               },
+              {
+                // TODO: add it the same way as the other actions
+                path: 'attach',
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/instances/instance/dashboard/action/AttachVolume.page'
+                  ),
+                ),
+              },
             ],
           },
         ],
