@@ -33,8 +33,8 @@ export const columns = [
 export const columnsFilters: DatagridColumn<unknown>[] = [
   {
     id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).label}</DataGridTextCell>;
     },
     label: 'Label',
     isFilterable: true,
@@ -42,8 +42,8 @@ export const columnsFilters: DatagridColumn<unknown>[] = [
   },
   {
     id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).price} €</DataGridTextCell>;
     },
     label: 'Price',
     isFilterable: true,
@@ -54,8 +54,8 @@ export const columnsFilters: DatagridColumn<unknown>[] = [
 export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
   {
     id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).label}</DataGridTextCell>;
     },
     label: 'Label',
     isFilterable: true,
@@ -63,8 +63,8 @@ export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
   },
   {
     id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).price} €</DataGridTextCell>;
     },
     label: 'Price',
     isFilterable: true,
@@ -72,9 +72,11 @@ export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
   },
   {
     id: 'Tags',
-    cell: (item: Item) => {
+    cell: (item: unknown) => {
       return (
-        <DataGridTextCell>{JSON.stringify(item.iam?.tags)}</DataGridTextCell>
+        <DataGridTextCell>
+          {JSON.stringify((item as Item).iam?.tags)}
+        </DataGridTextCell>
       );
     },
     label: 'Tags',
@@ -86,32 +88,32 @@ export const columnsFiltersWithTags: DatagridColumn<unknown>[] = [
 export const columnsVisibility = [
   {
     id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).label}</DataGridTextCell>;
     },
     label: 'Label',
     enableHiding: false,
   },
   {
     id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).price} €</DataGridTextCell>;
     },
     label: 'Price',
     enableHiding: true,
   },
   {
     id: 'actions',
-    cell: (item: Item) => {
+    cell: (item: unknown) => {
       return (
         <div className="flex items-center justify-center">
           <ActionMenu
-            id={item.label.replace(/Item #/g, '')}
+            id={(item as Item).label.replace(/Item #/g, '')}
             items={[
               {
                 id: 1,
-                onClick: () => console.log(`Action on ${item.label}`),
-                label: `Action on ${item.label}`,
+                onClick: () => console.log(`Action on ${(item as Item).label}`),
+                label: `Action on ${(item as Item).label}`,
               },
             ]}
             variant={BUTTON_VARIANT.ghost}
@@ -128,8 +130,8 @@ export const columnsVisibility = [
 export const columnsSearchAndFilters = [
   {
     id: 'label',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.label}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).label}</DataGridTextCell>;
     },
     label: 'Label',
     isFilterable: true,
@@ -139,8 +141,8 @@ export const columnsSearchAndFilters = [
   },
   {
     id: 'price',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).price} €</DataGridTextCell>;
     },
     label: 'Price',
     isFilterable: true,
@@ -150,8 +152,8 @@ export const columnsSearchAndFilters = [
   },
   {
     id: 'status',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.status}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return <DataGridTextCell>{(item as Item).status}</DataGridTextCell>;
     },
     label: 'Status',
     isFilterable: true,
@@ -163,8 +165,10 @@ export const columnsSearchAndFilters = [
   },
   {
     id: 'anotherStatus',
-    cell: (item: Item) => {
-      return <DataGridTextCell>{item.anotherStatus}</DataGridTextCell>;
+    cell: (item: unknown) => {
+      return (
+        <DataGridTextCell>{(item as Item).anotherStatus}</DataGridTextCell>
+      );
     },
     label: 'anotherStatus',
     isFilterable: true,

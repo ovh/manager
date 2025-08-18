@@ -94,7 +94,9 @@ describe('useFormatDate', () => {
     'displays %s if the date is %s',
     async ({ dateString, format, expected }) => {
       const { result } = renderHook(() => useFormatDate());
-      expect(result.current({ date: dateString, format })).toBe(expected);
+      expect(result.current({ date: dateString || undefined, format })).toBe(
+        expected,
+      );
     },
   );
 });

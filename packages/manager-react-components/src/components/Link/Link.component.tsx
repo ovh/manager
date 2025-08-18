@@ -35,8 +35,8 @@ export const Link: React.FC<LinkProps> = ({
 }) => {
   const { t } = useTranslation(NAMESPACES.IAM);
   const { isAuthorized } = useAuthorizationIam(
-    iamActions,
-    urn,
+    iamActions || [],
+    urn || '',
     !disableIamCheck,
   );
 
