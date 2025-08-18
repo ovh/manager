@@ -17,7 +17,7 @@ import { TServerContainer } from '@/api/data/container';
 import { TStorage, TStoragesAapiResult } from '@/api/data/storages';
 import { ReplicationRuleId } from './ReplicationRuleName.component';
 import { ReplicationRuleDestination } from './ReplicationRuleDestination.component';
-import { TContainer } from '../show/Show.page';
+import { TContainer } from '@/api/data/download';
 
 interface UseStorageReturn {
   isPending: boolean;

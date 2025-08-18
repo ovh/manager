@@ -29,6 +29,7 @@ export const ROUTE_PATHS = {
   DOWNLOAD_RCLONE: 'rclone/download',
   ADD_USER_OBJECT: `:objectName/addUser`,
   EMPTY_USER_OBJECT: `:objectName/emptyUser`,
+  DASHBOARD: '/pci/projects/:projectId/storages/objects/dashboard/:storageId',
 };
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
@@ -40,7 +41,7 @@ const ObjectPage = lazy(() =>
 const DeleteObjectPage = lazy(() =>
   import('@/pages/objects/container/object/delete/Delete.page'),
 );
-
+const DashboardPage = lazy(() => import('@/pages/dashboard/Dashboard.page'));
 const ObjectVersionsPage = lazy(() =>
   import('@/pages/objects/container/object/versions/ShowVersions.page'),
 );
@@ -254,26 +255,7 @@ export default (
           },
         }}
       />
-      <Route
-        path={ROUTE_PATHS.ENABLE_VERSIONING}
-        Component={EnableVersioningPage}
-        handle={{
-          tracking: {
-            pageName: 'object_activate_versioning',
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        path={ROUTE_PATHS.ENABLE_ENCRYPTION}
-        Component={EnableEncryptiongPage}
-        handle={{
-          tracking: {
-            pageName: 'object_activate_encryption',
-            pageType: PageType.popup,
-          },
-        }}
-      />
+
       <Route
         path={ROUTE_PATHS.ADD_OBJECT}
         Component={AddObjectPage}
@@ -327,6 +309,38 @@ export default (
       path={ROUTE_PATHS.EDIT_REPLICATION}
       Component={EditReplicationPage}
     />
+    <Route
+      path={ROUTE_PATHS.DASHBOARD}
+      Component={DashboardPage}
+      handle={{
+        tracking: {
+          pageName: 'objects_storage_dashboard',
+          pageType: PageType.dashboard,
+        },
+      }}
+    >
+      <Route
+        path={ROUTE_PATHS.ENABLE_VERSIONING}
+        Component={EnableVersioningPage}
+        handle={{
+          tracking: {
+            pageName: 'object_activate_versioning',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+
+      <Route
+        path={ROUTE_PATHS.ENABLE_ENCRYPTION}
+        Component={EnableEncryptiongPage}
+        handle={{
+          tracking: {
+            pageName: 'object_activate_encryption',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
     <Route path="" element={<>Page not found</>}></Route>
   </Route>
 );
