@@ -14,7 +14,7 @@
   "region_cell": "Region",
   "description_cell": "Description",
   "active_status": "Enabled",
-  "none_status": "None",
+  "none_status": "Disabled",
   "error_status": "Error",
   "cancel_button": "Cancel",
   "order_button": "Order now",
