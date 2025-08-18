@@ -16,6 +16,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "consola": "^3.4.2"
   }
 }

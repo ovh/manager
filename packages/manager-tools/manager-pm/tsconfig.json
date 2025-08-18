@@ -1,5 +1,5 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/node-strict",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
