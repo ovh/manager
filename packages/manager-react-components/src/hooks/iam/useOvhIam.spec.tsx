@@ -31,7 +31,9 @@ const shellContext = {
 const queryClient = new QueryClient();
 const wrapper = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>
-    <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+    <ShellContext.Provider
+      value={(shellContext as unknown) as ShellContextType}
+    >
       {children}
     </ShellContext.Provider>
   </QueryClientProvider>

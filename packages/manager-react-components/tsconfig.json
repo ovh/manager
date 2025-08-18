@@ -2,7 +2,8 @@
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "dist"
+    "outDir": "dist",
+    "jsx": "react-jsx"
   },
   "files": ["global.d.ts"],
   "include": ["src/**/*", "*.spec.tsx", ".storybook/i18n.ts", "**/*.json"],
