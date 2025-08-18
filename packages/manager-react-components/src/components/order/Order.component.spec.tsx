@@ -43,7 +43,7 @@ describe('<Order> tests suite', () => {
   it.each([{ valid: true }, { valid: false }])(
     'when order configuration validity is $valid confirm button disabled attribute should be $valid',
     ({ valid }) => {
-      const { getByTestId, getByText } = renderComponent(valid, null, null);
+      const { getByTestId, getByText } = renderComponent(valid, '', '');
 
       expect(getByText('Order steps')).toBeVisible();
 
@@ -54,7 +54,7 @@ describe('<Order> tests suite', () => {
   );
 
   it('confirm button should be enabled and clickable when order configuration is valid', () => {
-    const { getByTestId } = renderComponent(true, null, null);
+    const { getByTestId } = renderComponent(true, '', '');
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
 
@@ -62,7 +62,7 @@ describe('<Order> tests suite', () => {
   });
 
   it('should cancel order configuration when cancel button is clicked', () => {
-    const { getByTestId } = renderComponent(false, null, null);
+    const { getByTestId } = renderComponent(false, '', '');
 
     fireEvent.click(getByTestId('cta-order-configuration-cancel'));
 
@@ -71,7 +71,7 @@ describe('<Order> tests suite', () => {
 
   it('should open order link and display order summary when order configuration is confirmed ', () => {
     vi.spyOn(window, 'open');
-    const { getByTestId, queryByText } = renderComponent(true, orderLink, null);
+    const { getByTestId, queryByText } = renderComponent(true, orderLink, '');
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
 
@@ -91,7 +91,7 @@ describe('<Order> tests suite', () => {
 
   it('should open order link when order link is clicked', () => {
     vi.spyOn(window, 'open');
-    const { getByTestId } = renderComponent(true, orderLink, null);
+    const { getByTestId } = renderComponent(true, orderLink, '');
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
     fireEvent.click(getByTestId('order-summary-link'));
@@ -101,7 +101,7 @@ describe('<Order> tests suite', () => {
 
   it('should close order summary when finish button is clicked', () => {
     vi.spyOn(window, 'open');
-    const { getByTestId } = renderComponent(true, orderLink, null);
+    const { getByTestId } = renderComponent(true, orderLink, '');
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
     fireEvent.click(getByTestId('cta-order-summary-finish'));

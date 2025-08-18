@@ -10,7 +10,7 @@ export interface IMe {
 
 export const useMe = () => {
   const context = useContext(ShellContext);
-  const [me, setMe] = useState<IMe>(null);
+  const [me, setMe] = useState<IMe | null>(null);
 
   useEffect(() => {
     setMe(context?.environment?.getUser());
