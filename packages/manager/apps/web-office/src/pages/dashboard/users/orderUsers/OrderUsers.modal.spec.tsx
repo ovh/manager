@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 import { useParams } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
+import ActionTranslation from '@ovh-ux/manager-common-translations/public/translations/actions/Messages_fr_FR.json';
 import ModalOrderUsers from './OrderUsers.modal';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 
 import { fireEvent, render, act } from '@/utils/test.provider';
 import { postOrderUsers } from '@/data/api/users';
@@ -16,10 +16,7 @@ describe('ModalOrderUsers Component', () => {
     const { getByTestId } = render(<ModalOrderUsers />);
 
     expect(getByTestId('primary-button')).toBeInTheDocument();
-    expect(getByTestId('primary-button')).toHaveAttribute(
-      'label',
-      commonTranslation.cta_confirm,
-    );
+    expect(getByTestId('primary-button')).toHaveAttribute('label', 'validate');
   });
   it('should enable save button and make API call on valid input', async () => {
     vi.mocked(useParams).mockReturnValue({

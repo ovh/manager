@@ -82,15 +82,24 @@ export const GUIDES = [
     title: 'hostings_onboarding_guide3_title',
     description: 'hostings_onboarding_guide3_description',
     links: {
-      DEFAULT: 'https://docs.ovh.com/gb/en/hosting/activate-start10m/',
-      DE: 'https://docs.ovh.com/de/hosting/start10m-aktivieren/',
-      ES: 'https://docs.ovh.com/es/hosting/activar-start10m/',
-      IE: 'https://docs.ovh.com/ie/en/hosting/activate-start10m/',
-      IT: 'https://docs.ovh.com/it/hosting/attivare_start10m/',
-      PL: 'https://docs.ovh.com/pl/hosting/wlaczanie_start10m/',
-      PT: 'https://docs.ovh.com/pt/hosting/ativar-start10m/',
-      GB: 'https://docs.ovh.com/gb/en/hosting/activate-start10m/',
-      FR: 'https://docs.ovh.com/fr/hosting/activer-start10m/',
+      DEFAULT:
+        'https://help.ovhcloud.com/csm/en-gb-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0040354',
+      DE:
+        'https://help.ovhcloud.com/csm/de-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052362',
+      ES:
+        'https://help.ovhcloud.com/csm/es-es-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052352',
+      IE:
+        'https://help.ovhcloud.com/csm/en-ie-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052356',
+      IT:
+        'https://help.ovhcloud.com/csm/it-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052359',
+      PL:
+        'https://help.ovhcloud.com/csm/pl-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052361',
+      PT:
+        'https://help.ovhcloud.com/csm/pt-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052363',
+      GB:
+        'https://help.ovhcloud.com/csm/en-gb-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB004035',
+      FR:
+        'https://help.ovhcloud.com/csm/fr-web-hosting-activate-free-offer?id=kb_article_view&sysparm_article=KB0052355',
     },
     region: ['EU'],
   },

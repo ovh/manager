@@ -1405,5 +1405,8 @@
   "hosting_tab_FTP_configuration_explorer_info": "O acesso através do cliente FTP web (Net2FTP) já não está disponível. Utilize um cliente FTP como o <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  e o <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\">Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  para estabelecer ligação ao seu alojamento.",
   "hosting_dashboard_service_cluster": "Cluster",
   "hosting_dashboard_service_cluster_helper": "O identificador do seu cluster é suscetível de ser alterado",
-  "hosting_dashboard_service_filer_helper": "O identificador do seu filer é suscetível de ser modificado"
+  "hosting_dashboard_service_filer_helper": "O identificador do seu filer é suscetível de ser modificado",
+  "hosting_dashboard_service_state_TO_CREATE": "Criação pendente",
+  "hosting_tab_DATABASES_configuration__action_button": "Rescindir a minha base de dados",
+  "hosting_tab_DATABASES_configuration__available_slot": "Base de dados disponível"
 }

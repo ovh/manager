@@ -24,15 +24,15 @@ describe('Users datagrid (licence) action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_edit,
+      usersTranslation.edit_account,
     );
     expect(menuItems[1]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_change_password,
+      usersTranslation.change_password,
     );
     expect(menuItems[2]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_delete,
+      usersTranslation.delete_account,
     );
   });
 
@@ -50,16 +50,16 @@ describe('Users datagrid (licence) action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_edit,
+      usersTranslation.edit_account,
     );
     expect(menuItems[1]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_change_password,
+      usersTranslation.change_password,
     );
 
     expect(menuItems[2]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_delete,
+      usersTranslation.delete_account,
     );
   });
 
@@ -77,7 +77,7 @@ describe('Users datagrid (licence) action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute(
       'label',
-      usersTranslation.dashboard_users_action_user_edit,
+      usersTranslation.edit_account,
     );
   });
 });
