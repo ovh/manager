@@ -8,11 +8,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useManagedWordpressResource } from '@/data/hooks/managedWordpressResource/useManagedWordpressResource';
 import { ManagedWordpressResourceType } from '@/data/type';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
-import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
+import { getStatusColor } from '@/utils/getStatusColor';
 
 export default function ManagedWordpressPage() {
   const { data, isLoading } = useManagedWordpressResource();
@@ -57,7 +58,17 @@ export default function ManagedWordpressPage() {
       },
       {
         id: 'resourceStatus',
-        cell: (item) => <BadgeStatus itemStatus={item.resourceStatus} />,
+        cell: (item) => {
+          const statusColor = getStatusColor(item.resourceStatus);
+          return (
+            <OdsBadge
+              color={statusColor}
+              label={t(
+                `common:web_hosting_status_${item.resourceStatus.toLocaleLowerCase()}`,
+              )}
+            />
+          );
+        },
         label: t(`${NAMESPACES.STATUS}:status`),
       },
     ],

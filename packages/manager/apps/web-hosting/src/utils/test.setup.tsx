@@ -192,6 +192,9 @@ vi.mock('@/data/api/managedWordpress', () => ({
   deleteManagedCmsResourceWebsite: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDeleteMock),
   ),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesTaskMock),
+  ),
 }));
 >>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
 afterEach(() => {
