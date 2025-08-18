@@ -22,11 +22,13 @@ import {
   ORDER_SECTIGO,
   SAN_SSL,
   SSL,
+  TASK,
   WEBSITE,
 } from '../utils/tracking.constants';
 import { DashboardLayout, RootPage } from './pages/default';
 import { AddDomainPage } from './pages/domain';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import { OngoingTaskPage } from './pages/task';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {
@@ -98,6 +100,20 @@ export default (
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        }}
+      />
+      <Route
+        id={TASK}
+        path={urls.task}
+        Component={OngoingTaskPage}
+        handle={{
+          tracking: {
+            pageName: TASK,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'task',
           },
         }}
       />

@@ -61,4 +61,7 @@ export const SSL = 'ssl';
 export const ORDER_CTA = 'order_website';
 export const WEBSITE = 'website';
 
+// task
+export const TASK = 'task';
+
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;

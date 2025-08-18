@@ -23,4 +23,7 @@ export const urls = {
   orderSectigo: `/${subRoutes.serviceName}/order-sectigo`,
   sanSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/san-ssl`,
   ssl: `/${subRoutes.serviceName}/ssl`,
+
+  // TASK
+  task: `/${subRoutes.serviceName}/task`,
 };
