@@ -11,6 +11,7 @@ export const urls = {
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
   addDomain: `/${subRoutes.serviceName}/add-domain`,
   ssl: `/${subRoutes.serviceName}/ssl`,
+  task: `/${subRoutes.serviceName}/task`,
   hosting: '/web/hosting',
   importSsl: `/${subRoutes.serviceName}/import-ssl`,
   orderSectigo: `/${subRoutes.serviceName}/order-sectigo`,
