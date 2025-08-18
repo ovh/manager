@@ -15,5 +15,5 @@ export const getNthElementByTestId = ({
   ...options
 }: { testId: string; index?: number } & waitForOptions): Promise<HTMLElement> =>
   waitFor(() => screen.getAllByTestId(testId), options).then(
-    (response) => response[index],
+    (response) => response[index]!,
   );

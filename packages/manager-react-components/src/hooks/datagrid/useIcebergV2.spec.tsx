@@ -24,7 +24,7 @@ vitest.mock('@tanstack/react-query', async () => {
 
 const mockAddFilter = vitest.fn();
 const mockRemoveFilter = vitest.fn();
-const mockFilters = [];
+const mockFilters: any[] = [];
 
 vitest.mock('../../components', () => ({
   useColumnFilters: () => ({
