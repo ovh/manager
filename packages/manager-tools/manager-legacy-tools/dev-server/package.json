@@ -23,9 +23,5 @@
     "commander": "^6.0.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.7"
-  },
-  "engines": {
-    "node": "^22",
-    "yarn": ">=1.21.1"
   }
 }

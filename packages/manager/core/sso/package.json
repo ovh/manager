@@ -12,8 +12,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "prepare": "tsc",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.11.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.3"
+    "@ovh-ux/manager-vite-config": "^0.13.3",
+    "tsc-alias": "^1.8.16"
   }
 }

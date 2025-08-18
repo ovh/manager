@@ -30,6 +30,7 @@ const allSteps = {
   'static-kit': 'node ./migrations-status/steps/generate-static-kit-migrations-status-report.mjs',
   w3c: 'node ./migrations-status/steps/generate-w3c-a11y-migrations-status-report.mjs --type=w3c',
   a11y: 'node ./migrations-status/steps/generate-w3c-a11y-migrations-status-report.mjs --type=a11y',
+  pnpm: 'node ./migrations-status/steps/generate-pnpm-migrations-status-report.mjs',
   all: 'ALL_TYPES',
 };
 
@@ -56,7 +57,6 @@ runMigration({
   scriptOrSteps: steps,
   dryRun: isDryRun,
   statusOnly: true,
-  formatGlob: '*.tsx',
   docLink:
     '/development-guidelines/update-react-routes/ & /development-guidelines/update-unit-tests/ & /development-guidelines/vite-swc-migration/',
   onEnd: () => {

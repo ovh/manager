@@ -40,9 +40,5 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.11.0",
     "strip-json-comments": "^5.0.2"
-  },
-  "engines": {
-    "node": "^22",
-    "yarn": ">=1.21.1"
   }
 }

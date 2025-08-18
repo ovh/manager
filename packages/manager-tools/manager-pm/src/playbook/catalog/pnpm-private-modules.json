@@ -1,0 +1,294 @@
+[
+  {
+    "turbo": "--filter @ovh-ux/manager-react-core-application",
+    "pnpm": "packages/manager/core/application"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ovh-product-icons",
+    "pnpm": "packages/manager/core/ovh-product-icons"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-core-utils",
+    "pnpm": "packages/manager/core/utils"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-account",
+    "pnpm": "packages/manager/modules/account"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-account-migration",
+    "pnpm": "packages/manager/modules/account-migration"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-advices",
+    "pnpm": "packages/manager/modules/advices"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-at-internet-configuration",
+    "pnpm": "packages/manager/modules/at-internet-configuration"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-banner",
+    "pnpm": "packages/manager/modules/banner"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-beta-preference",
+    "pnpm": "packages/manager/modules/beta-preference"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-billing",
+    "pnpm": "packages/manager/modules/billing"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-billing-components",
+    "pnpm": "packages/manager/modules/billing-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/billing-informations",
+    "pnpm": "packages/manager/modules/billing-informations"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-bm-server-components",
+    "pnpm": "packages/manager/modules/bm-server-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-carbon-calculator",
+    "pnpm": "packages/manager/modules/carbon-calculator"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-carrier-sip",
+    "pnpm": "packages/manager/modules/carrier-sip"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-catalog-price",
+    "pnpm": "packages/manager/modules/catalog-price"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-cda",
+    "pnpm": "packages/manager/modules/cda"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-cloud-connect",
+    "pnpm": "packages/manager/modules/cloud-connect"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-cloud-styles",
+    "pnpm": "packages/manager/modules/cloud-styles"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-cloud-universe-components",
+    "pnpm": "packages/manager/modules/cloud-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-module-common-api",
+    "pnpm": "packages/manager/modules/common-api"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-cookie-policy",
+    "pnpm": "packages/manager/modules/cookie-policy"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-core",
+    "pnpm": "packages/manager/modules/core"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-dbaas-logs",
+    "pnpm": "packages/manager/modules/dbaas-logs"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-email-domain",
+    "pnpm": "packages/manager/modules/email-domain"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-emailpro",
+    "pnpm": "packages/manager/modules/emailpro"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-error-page",
+    "pnpm": "packages/manager/modules/error-page"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-exchange",
+    "pnpm": "packages/manager/modules/exchange"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-filters",
+    "pnpm": "packages/manager/modules/filters"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-freefax",
+    "pnpm": "packages/manager/modules/freefax"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-gcj-module",
+    "pnpm": "packages/manager/modules/gcj"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-iam",
+    "pnpm": "packages/manager/modules/iam"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-iplb",
+    "pnpm": "packages/manager/modules/iplb"
+  },
+  {
+    "turbo": "--filter @ovh-ux/logs-to-customer",
+    "pnpm": "packages/manager/modules/logs-to-customer"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-components",
+    "pnpm": "packages/manager/modules/manager-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-metrics",
+    "pnpm": "packages/manager/modules/metrics"
+  },
+  {
+    "turbo": "--filter @ovh-ux/mfa-enrollment",
+    "pnpm": "packages/manager/modules/mfa-enrollment"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-models",
+    "pnpm": "packages/manager/modules/models"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-nasha",
+    "pnpm": "packages/manager/modules/nasha"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-netapp",
+    "pnpm": "packages/manager/modules/netapp"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-network-common",
+    "pnpm": "packages/manager/modules/network-common"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-ng-apiv2-helper",
+    "pnpm": "packages/manager/modules/ng-apiv2-helper"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-ng-layout-helpers",
+    "pnpm": "packages/manager/modules/ng-layout-helpers"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-order-tracking",
+    "pnpm": "packages/manager/modules/ng-ovh-order-tracking"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-nutanix",
+    "pnpm": "packages/manager/modules/nutanix"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-module-order",
+    "pnpm": "packages/manager/modules/order"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-overthebox",
+    "pnpm": "packages/manager/modules/overthebox"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-pci",
+    "pnpm": "packages/manager/modules/pci"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-pci-universe-components",
+    "pnpm": "packages/manager/modules/pci-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-phone-prefix",
+    "pnpm": "packages/manager/modules/phone-prefix"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-product-offers",
+    "pnpm": "packages/manager/modules/product-offers"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-request-tagger",
+    "pnpm": "packages/manager/modules/request-tagger"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-resource-tagging",
+    "pnpm": "packages/manager/modules/resource-tagging"
+  },
+  {
+    "turbo": "--filter @ovh-ux/sign-up",
+    "pnpm": "packages/manager/modules/sign-up"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-sms",
+    "pnpm": "packages/manager/modules/sms"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-support",
+    "pnpm": "packages/manager/modules/support"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-telecom-dashboard",
+    "pnpm": "packages/manager/modules/telecom-dashboard"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-telecom-styles",
+    "pnpm": "packages/manager/modules/telecom-styles"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-telecom-task",
+    "pnpm": "packages/manager/modules/telecom-task"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-telecom-universe-components",
+    "pnpm": "packages/manager/modules/telecom-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-trusted-nic",
+    "pnpm": "packages/manager/modules/trusted-nic"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-module-vcd-api",
+    "pnpm": "packages/manager/modules/vcd-api"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-veeam-enterprise",
+    "pnpm": "packages/manager/modules/veeam-enterprise"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-vps",
+    "pnpm": "packages/manager/modules/vps"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-vrack",
+    "pnpm": "packages/manager/modules/vrack"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-web-universe-components",
+    "pnpm": "packages/manager/modules/web-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-static-analysis-kit",
+    "pnpm": "packages/manager-tools/manager-static-analysis-kit"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-core-test-utils",
+    "pnpm": "packages/manager-tools/manager-legacy-tools/test-utils"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-tailwind-config",
+    "pnpm": "packages/manager-tools/manager-tailwind-config"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-vite-config",
+    "pnpm": "packages/manager-tools/manager-vite-config"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-at-internet",
+    "pnpm": "packages/components/ng-at-internet"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-ovh-chart",
+    "pnpm": "packages/components/ng-ovh-chart"
+  },
+  {
+    "turbo": "--filter @ovh-ux/ng-shell-tracking",
+    "pnpm": "packages/components/ng-shell-tracking"
+  }
+]
