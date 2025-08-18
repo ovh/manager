@@ -229,7 +229,7 @@ export const Datagrid = <T,>({
     );
   }, []);
 
-  const headerRefs = useRef({});
+  const headerRefs = useRef<Record<string, HTMLTableCellElement>>({});
 
   const table = useReactTable({
     columns: [
@@ -307,7 +307,7 @@ export const Datagrid = <T,>({
     ...(!manualSorting && {
       onSortingChange: onSortChange,
       state: {
-        sorting,
+        sorting: sorting ? [sorting] : undefined,
         ...(rowSelection?.rowSelection && {
           rowSelection: rowSelection.rowSelection,
         }),
@@ -372,11 +372,14 @@ export const Datagrid = <T,>({
         .map((column) => ({
           id: column.id,
           label: column.label,
+          comparators:
+            column?.comparator ||
+            (column?.type
+              ? (FilterCategories[column.type] as FilterComparator[]) || []
+              : []),
           ...(column?.type && {
-            comparators: FilterCategories[column.type],
             type: column.type,
           }),
-          ...(column?.comparator && { comparators: column.comparator }),
           ...(column?.filterOptions && { options: column.filterOptions }),
         })),
     [columns],
@@ -386,14 +389,14 @@ export const Datagrid = <T,>({
     () =>
       table.getAllLeafColumns().map((column) => {
         const col = columns.find(
-          (item) => column.id === item.id.replaceAll('.', '_'),
+          (item) => column.id === item.id.replace(/\./g, '_'),
         );
         return {
           id: column.id,
-          label: col?.label,
+          label: col?.label || '',
           isVisible: () => column.getIsVisible(),
           isDisabled: !column.getCanHide(),
-          enableHiding: col?.enableHiding,
+          enableHiding: col?.enableHiding || false,
           onChange: () => column.toggleVisibility(!column.getIsVisible()),
         };
       }),
@@ -460,7 +463,9 @@ export const Datagrid = <T,>({
                       <th
                         key={header.id}
                         ref={(el) => {
-                          headerRefs.current[header.id] = el;
+                          if (el) {
+                            headerRefs.current[header.id] = el;
+                          }
                         }}
                         className={`${
                           contentAlignLeft ? 'text-left pl-4' : 'text-center'
@@ -525,7 +530,7 @@ export const Datagrid = <T,>({
                         style={{
                           width: tableLayoutFixed
                             ? `${cell.column.getSize()}px`
-                            : null,
+                            : undefined,
                         }}
                       >
                         {flexRender(
@@ -594,7 +599,7 @@ export const Datagrid = <T,>({
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
           onOdsChange={({ detail }) => {
-            if (detail.current !== detail.oldCurrent) {
+            if (detail.current !== detail.oldCurrent && onPaginationChange) {
               onPaginationChange({
                 ...pagination,
                 pageIndex: detail.current - 1,
@@ -603,7 +608,7 @@ export const Datagrid = <T,>({
             }
           }}
           onOdsItemPerPageChange={({ detail }) => {
-            if (detail.current !== pagination.pageSize)
+            if (detail.current !== pagination.pageSize && onPaginationChange)
               onPaginationChange({
                 ...pagination,
                 pageSize: detail.current,
