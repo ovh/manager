@@ -49,12 +49,14 @@
     "zod": "4.0.5"
   },
   "devDependencies": {
+    "@effect/vitest": "^0.25.1",
     "@ovh-ux/manager-core-test-utils": "^0.7.4",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.1",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.17",
+    "effect": "3.17.7",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
     "vitest": "^2.1.9"

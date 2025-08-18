@@ -13,7 +13,7 @@
   "managed_vcd_dashboard_vrack_edit_success": "The request to change the VLAN ID has been processed.",
   "managed_vcd_dashboard_vrack_edit_error": "An error occurred while modifying the VLAN ID: {{errorApi}}",
   "managed_vcd_dashboard_vrack_form_add_network_description": "Add a new subnet address to this vRack segment to connect your virtual machines. The first part detects the gateway in the subnet.",
-  "managed_vcd_dashboard_vrack_add_network_input_helper": "The subnet address must be in CIDR format.",
+  "managed_vcd_dashboard_vrack_add_network_input_helper": "The subnet address must be in CIDR gateway/mask format.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "This subnet address already exists.",
   "managed_vcd_dashboard_vrack_add_network_success": "Subnet added",
   "managed_vcd_dashboard_vrack_add_network_error": "An error occurred while adding the subnet: {{errorApi}}",
