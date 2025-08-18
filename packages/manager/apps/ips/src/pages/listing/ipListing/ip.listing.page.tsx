@@ -12,7 +12,7 @@ import { ActionMenu } from '@ovh-ux/manager-react-components';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
 import { IpDatagrid } from './components';
-import { IpFilter, TypeFilter } from './components/filters';
+import { IpFilter, TypeFilter, QuickFilter } from './components/filters';
 import { ListingContextProvider } from '../listingContext';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
@@ -32,9 +32,9 @@ export default function IpListingPage() {
           {t('listingTabIpDescription')}
         </OdsText>
       </div>
-      <div className="flex flex-row mb-2 items-baseline">
+      <div className="flex flex-row mb-4 items-baseline">
         <OdsButton
-          className="mb-5 mr-2"
+          className="mr-2"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
@@ -42,7 +42,6 @@ export default function IpListingPage() {
           label={t('orderIpsButtonLabel')}
         />
         <OdsButton
-          className="mb-5"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
@@ -51,6 +50,7 @@ export default function IpListingPage() {
         />
         <IpFilter />
         <TypeFilter />
+        <QuickFilter />
         <div className="ml-auto">
           <ActionMenu
             id="settings"
