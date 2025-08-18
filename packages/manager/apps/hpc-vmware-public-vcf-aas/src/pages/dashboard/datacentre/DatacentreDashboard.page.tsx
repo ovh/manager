@@ -63,7 +63,8 @@ function DatacentreDashboardPage() {
       title: VRACK_LABEL,
       to: useResolvedPath(subRoutes.vrackSegments).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
-      disabled: !isVrackFeatureAvailable,
+      disabled:
+        !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
     },
   ].filter(({ disabled }) => !disabled);
 

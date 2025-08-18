@@ -9,5 +9,6 @@
   "managed_vcd_vdc_id": "ID",
   "managed_vcd_vdc_usage": "Modo de utilização",
   "managed_vcd_vdc_contact_support": "Contacte o suporte",
-  "managed_vcd_vdc_associate_vrack": "Associar um vRack"
+  "managed_vcd_vdc_associate_vrack": "Associar um vRack",
+  "managed_vcd_vdc_associate_vrack_disabled": "A associação de um vRack a um Public VCF as-a-Service ainda não está disponível"
 }
