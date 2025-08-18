@@ -216,13 +216,9 @@ angular.module('App').controller(
       )} / ${this.convertBytesSize(quotaSize.value, quotaSize.unit)}`;
     }
 
-    getPhpMyAdminUrl(element) {
-      let PHPMYADMIN_BASE_URL = 'https://phpmyadmin.ovh.net/index.php';
+    static getPhpMyAdminUrl(element) {
+      const PHPMYADMIN_BASE_URL = element.guiURL;
       const queryString = `pma_username=${element.user}&pma_servername=${element.name}`;
-
-      if (this.hostingProxy.datacenter !== 'p19') {
-        PHPMYADMIN_BASE_URL = `https://phpmyadmin.${this.hostingProxy.cluster}.hosting.ovh.net/index.php`;
-      }
       return `${PHPMYADMIN_BASE_URL}?${queryString}`;
     }
 
