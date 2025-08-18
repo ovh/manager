@@ -13,7 +13,7 @@
   "managed_vcd_dashboard_vrack_edit_success": "La solicitud de cambio del VLAN ID se ha enviado.",
   "managed_vcd_dashboard_vrack_edit_error": "Se ha producido un error al modificar el VLAN ID: {{errorApi}}",
   "managed_vcd_dashboard_vrack_form_add_network_description": "Añada una nueva dirección de subred a este segmento del vRack para conectar sus máquinas virtuales. La primera parte identifica el servicio gateway en la subred.",
-  "managed_vcd_dashboard_vrack_add_network_input_helper": "La dirección de la subred debe rellenarse en formato CIDR.",
+  "managed_vcd_dashboard_vrack_add_network_input_helper": "La dirección de la subred debe rellenarse en formato CIDR gateway/máscara.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "Esta dirección de subred ya existe.",
   "managed_vcd_dashboard_vrack_add_network_success": "La subred se ha añadido correctamente",
   "managed_vcd_dashboard_vrack_add_network_error": "Se ha producido un error al añadir la subred: {{errorApi}}",

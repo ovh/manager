@@ -13,7 +13,7 @@
   "managed_vcd_dashboard_vrack_edit_success": "La demande de modification de l'ID VLAN a été prise en compte.",
   "managed_vcd_dashboard_vrack_edit_error": "Une erreur est survenue lors de la modification de l'ID VLAN : {{errorApi}}",
   "managed_vcd_dashboard_vrack_form_add_network_description": "Ajoutez une nouvelle adresse sous-réseau à ce segment vRack pour connecter vos machines virtuelles. La première partie identifie la gateway dans le sous-réseau.",
-  "managed_vcd_dashboard_vrack_add_network_input_helper": "L'adresse du sous-réseau doit être renseignée au format CIDR.",
+  "managed_vcd_dashboard_vrack_add_network_input_helper": "L'adresse du sous-réseau doit être renseignée au format CIDR gateway/masque.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "Cette adresse sous-réseau existe déjà.",
   "managed_vcd_dashboard_vrack_add_network_success": "Le sous-réseau a été ajouté avec succès",
   "managed_vcd_dashboard_vrack_add_network_error": "Une erreur est survenue lors de l'ajout du sous-réseau : {{errorApi}}",

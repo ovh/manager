@@ -13,7 +13,7 @@
   "managed_vcd_dashboard_vrack_edit_success": "Ihre Änderungsanfrage für die VLAN-ID wurde registriert.",
   "managed_vcd_dashboard_vrack_edit_error": "Bei der Änderung der VLAN-ID ist ein Fehler aufgetreten: {{errorApi}}",
   "managed_vcd_dashboard_vrack_form_add_network_description": "Fügen Sie eine neue Subnetzadresse zu diesem vRack Segment hinzu, um Ihre virtuellen Maschinen zu verbinden. Der erste Teil identifiziert das Gateway im Subnetz.",
-  "managed_vcd_dashboard_vrack_add_network_input_helper": "Die Subnetzadresse muss im CIDR-Format angegeben werden.",
+  "managed_vcd_dashboard_vrack_add_network_input_helper": "Die Subnetzadresse muss im CIDR-Format Gateway/Maske angegeben werden.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "Diese Subnetzadresse ist bereits vorhanden.",
   "managed_vcd_dashboard_vrack_add_network_success": "Das Subnetz wurde erfolgreich hinzugefügt",
   "managed_vcd_dashboard_vrack_add_network_error": "Beim Hinzufügen des Subnetzes ist ein Fehler aufgetreten: {{errorApi}}",
