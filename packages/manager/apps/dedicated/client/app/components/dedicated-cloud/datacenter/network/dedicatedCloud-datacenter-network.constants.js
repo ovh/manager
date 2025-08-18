@@ -27,3 +27,5 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
 export default {
   DATACENTER_NETWORK_SITE_WEB_LINK,
 };
+
+export const TRACKING_ACTION_PREFIX = 'page::button::';
