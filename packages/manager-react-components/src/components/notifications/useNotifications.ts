@@ -43,8 +43,9 @@ export const useNotifications = create<NotificationState>((set, get) => ({
     set((state) => ({
       notifications: state.notifications.filter(
         (notification) =>
+          notification.creationTimestamp &&
           Date.now() - notification.creationTimestamp <
-          NOTIFICATION_MINIMAL_DISPLAY_TIME,
+            NOTIFICATION_MINIMAL_DISPLAY_TIME,
       ),
     })),
 }));
