@@ -15,11 +15,11 @@ import {
 import { useProject, TProject } from '@ovh-ux/manager-pci-common';
 
 import { UseQueryResult } from '@tanstack/react-query';
-import ShowPage from './Show.page';
+import DashboardPage from './Dashboard.page';
 import { useContainerData } from '@/hooks/useContainerData';
 import { wrapper } from '@/wrapperRenders';
 import { TRegion } from '@/api/data/region';
-import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
+import { TContainer } from './BucketPropertiesCard';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-router-dom')>();
@@ -44,22 +44,8 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     useNotifications: vi.fn(() => ({
       clearNotifications: vi.fn(),
     })),
-    PciMaintenanceBanner: vi.fn(() => (
-      <div data-testid="maintenance-banner">
-        <a
-          data-testid="pci-maintenance-banner-link"
-          href="https://status.ovh.com"
-        >
-          Maintenance
-        </a>
-      </div>
-    )),
-    BaseLayout: vi.fn(({ children }) => <div>{children}</div>),
-    Notifications: vi.fn(() => <div>Notifications</div>),
-    TabsPanel: vi.fn(() => <div>Tabs</div>),
-    Datagrid: vi.fn(() => <div>Mocked Datagrid</div>),
-    FilterAdd: vi.fn(() => <div>Mocked FilterAdd</div>),
-    Filters: vi.fn(() => <div>Mocked Filters</div>),
+    PciGuidesHeader: vi.fn(() => <div data-testid="guides-header" />),
+    Notifications: vi.fn(() => <div data-testid="notifications" />),
   };
 });
 
@@ -70,9 +56,9 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   return {
     ...actual,
     useProject: vi.fn(),
-
-    TabsPanel: vi.fn(() => <div>Mocked TabsPanel</div>),
-    Tabs: vi.fn(() => <div>Mocked Tabs</div>),
+    TabsPanel: vi.fn(({ tabs }) => (
+      <div data-testid="tabs-panel">{tabs.map((tab) => tab.label)}</div>
+    )),
   };
 });
 
@@ -85,10 +71,27 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
 }));
 
 vi.mock('@/hooks/useContainerData', () => ({
-  useContainerData: vi.fn(),
+  useContainerData: vi.fn(() => ({
+    container: {
+      id: 'container-id',
+      name: 'test-container',
+      versioning: { status: 'ENABLED' },
+      objectLock: { status: 'DISABLED' },
+      region: 'GRA',
+    },
+    url: 'https://test.com',
+    region: { name: 'GRA' },
+    isEncrypted: false,
+    showReplicationBanner: false,
+    showEnableEncryptionLink: false,
+    displayEncryptionData: false,
+    isPending: false,
+    isLocalZone: false,
+    isRightOffer: true,
+  })),
 }));
 
-describe('ShowPage', () => {
+describe('DashboardPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
@@ -110,6 +113,7 @@ describe('ShowPage', () => {
     vi.mocked(useProject).mockReturnValue({
       data: { project_id: 'project-id', description: 'Test Project' },
     } as UseQueryResult<TProject, null>);
+
     vi.mocked(useContainerData).mockReturnValue({
       container: {
         id: 'container-id',
@@ -152,23 +156,64 @@ describe('ShowPage', () => {
       isRightOffer: true,
     });
 
-    renderWithRouter(<ShowPage />);
+    renderWithRouter(<DashboardPage />);
     const spinner = document.querySelector('ods-spinner');
     expect(spinner).toBeInTheDocument();
     expect(spinner).toHaveAttribute('size', 'md');
   });
 
-  it('should render maintenance banner when active', () => {
+  it('should render the main layout with breadcrumb', () => {
+    renderWithRouter(<DashboardPage />);
+
+    const breadcrumbItem = document.querySelector(
+      'ods-breadcrumb-item[label="Test Project"]',
+    );
+    expect(breadcrumbItem).toBeInTheDocument();
+
+    const containerBreadcrumb = document.querySelector(
+      'ods-breadcrumb-item[label="test-container"]',
+    );
+    expect(containerBreadcrumb).toBeInTheDocument();
+  });
+
+  it('should render all cards when data is loaded', () => {
+    renderWithRouter(<DashboardPage />);
+
+    const cardTitles = Array.from(
+      document.querySelectorAll('ods-text[preset="heading-4"]'),
+    ).map((el) => el.textContent);
+
+    expect(cardTitles).toContain(
+      'dashboard:pci_projects_project_storages_dashboard_informations',
+    );
+    expect(cardTitles).toContain(
+      'dashboard:pci_projects_project_storages_dashboard_bucket_properties',
+    );
+    expect(cardTitles).toContain(
+      'dashboard:pci_projects_project_storages_dashboard_storage_management',
+    );
+  });
+
+  it('should show maintenance banner when maintenance is active', () => {
     vi.mocked(useProductMaintenance).mockReturnValueOnce({
       hasMaintenance: true,
-      maintenanceURL: 'https://status.ovh.com',
+      maintenanceURL: 'https://maintenance.example.com',
     });
 
-    renderWithRouter(<ShowPage />);
-    const banner = screen.getByTestId('maintenance-banner');
-    expect(banner).toBeInTheDocument();
+    renderWithRouter(<DashboardPage />);
 
-    const link = screen.getByTestId('pci-maintenance-banner-link');
-    expect(link).toHaveAttribute('href', 'https://status.ovh.com');
+    const maintenanceBanner = screen.getByTestId('maintenance-banner');
+    expect(maintenanceBanner).toBeInTheDocument();
+
+    const maintenanceLink = screen.getByTestId('pci-maintenance-banner-link');
+    expect(maintenanceLink).toHaveAttribute(
+      'href',
+      'https://maintenance.example.com',
+    );
+  });
+
+  it('should call useProjectUrl with correct arguments', () => {
+    renderWithRouter(<DashboardPage />);
+    expect(useProjectUrl).toHaveBeenCalledWith('public-cloud');
   });
 });
