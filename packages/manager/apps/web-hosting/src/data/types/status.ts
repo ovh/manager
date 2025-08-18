@@ -40,3 +40,11 @@ export enum DnsStatus {
   EXTERNAL = 'DNS_EXTERNAL',
   NOT_CONFIGURED = 'DNS_NOT_CONFIGURED',
 }
+
+export enum OngoingTaskStatus {
+  CANCELLED = 'cancelled',
+  DOING = 'doing',
+  DONE = 'done',
+  INIT = 'init',
+  TODO = 'todo',
+}
