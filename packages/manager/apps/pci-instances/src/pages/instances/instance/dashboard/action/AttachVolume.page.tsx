@@ -1,50 +1,50 @@
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useParam } from '@ovh-ux/manager-pci-common';
 import { DefaultError } from '@tanstack/react-query';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import Modal from '@/components/modal/Modal.component';
-import { useAttachNetwork } from '@/data/hooks/instance/useInstance';
 import { Spinner } from '@/components/spinner/Spinner.component';
-import { isApiErrorResponse } from '@/utils';
-import NetworkSelector from '../components/NetworkSelector.component';
+import { useUnattachedVolumes } from '../hooks/useDashboardAction';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { useUnattachedPrivateNetworks } from '../hooks/useDashboardAction';
+import VolumeSelector from '../components/VolumeSelector.component';
+import { useAttachVolume } from '@/data/hooks/instance/useInstance';
+import { isApiErrorResponse } from '@/utils';
 
-const AttachNetworkModal: FC = () => {
+const AttachVolume: FC = () => {
   const { t } = useTranslation('actions');
   const projectId = useProjectId();
   const { instanceId, regionId } = useParam('regionId', 'instanceId');
   const navigate = useNavigate();
   const handleModalClose = () => navigate('..');
-  const [networkId, setNetworkId] = useState<string>('');
+  const [volumeId, setVolumeId] = useState<string>('');
   const { addError, addSuccess } = useNotifications();
 
   const {
-    networks,
+    volumes,
     instance,
-    isPending: isNetworkPending,
-  } = useUnattachedPrivateNetworks({ projectId, regionId, instanceId });
+    isPending: isVolumePending,
+  } = useUnattachedVolumes({
+    projectId,
+    regionId,
+    instanceId,
+  });
 
-  const { isPending: isAttaching, mutate: attachNetwork } = useAttachNetwork({
+  const { isPending: isAttaching, mutate: attachVolume } = useAttachVolume({
     projectId,
     instanceId,
     regionId,
     callbacks: {
       onSuccess: (_data, variables) => {
-        const network = networks.find(
-          ({ value }) => value === variables.networkId,
+        const volume = volumes.find(
+          ({ value }) => value === variables.volumeId,
         );
-
         addSuccess(
-          t(
-            'pci_instances_actions_instance_network_network_attach_success_message',
-            {
-              network: network!.label,
-              instance,
-            },
-          ),
+          t('pci_instances_actions_instance_volume_attach_success_message', {
+            volume: volume!.label,
+            instance,
+          }),
           true,
         );
 
@@ -65,13 +65,13 @@ const AttachNetworkModal: FC = () => {
     },
   });
 
-  const isPending = isNetworkPending || isAttaching;
+  const isPending = isVolumePending || isAttaching;
 
   return (
     <Modal
-      title={t('pci_instances_actions_instance_network_network_attach_title')}
-      isPending={isPending || !networkId}
-      handleInstanceAction={() => attachNetwork({ networkId })}
+      title={t('pci_instances_actions_instance_volume_attach_title')}
+      isPending={isPending || !volumeId}
+      handleInstanceAction={() => attachVolume({ volumeId })}
       onModalClose={handleModalClose}
       variant="primary"
     >
@@ -80,10 +80,10 @@ const AttachNetworkModal: FC = () => {
           <Spinner />
         </div>
       ) : (
-        <NetworkSelector onValueChange={setNetworkId} networks={networks} />
+        <VolumeSelector volumes={volumes} onValueChange={setVolumeId} />
       )}
     </Modal>
   );
 };
 
-export default AttachNetworkModal;
+export default AttachVolume;
