@@ -410,7 +410,7 @@
                                     <oui-action-menu-item
                                         data-ng-if="element.type === 'MYSQL'"
                                         title="{{ 'hosting_tab_DATABASES_table_popover_new_window' | translate }}"
-                                        data-ng-href="{{ $ctrl.getPhpMyAdminUrl(element) }}"
+                                        data-ng-href="{{ $ctrl.constructor.getPhpMyAdminUrl(element) }}"
                                         data-external
                                     >
                                         <span
