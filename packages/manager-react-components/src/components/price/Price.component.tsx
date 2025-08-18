@@ -32,13 +32,15 @@ export function Price({
   const isFrenchFormat = checkFranceFormat(ovhSubsidiary);
   const isUSFormat = checkUSFormat(ovhSubsidiary);
 
-  const convertedValue = isConvertIntervalUnit
-    ? convertIntervalPrice(value, intervalUnit)
-    : value;
+  const convertedValue =
+    isConvertIntervalUnit && intervalUnit
+      ? convertIntervalPrice(value, intervalUnit)
+      : value;
 
-  const convertedTax = isConvertIntervalUnit
-    ? convertIntervalPrice(tax, intervalUnit)
-    : tax;
+  const convertedTax =
+    isConvertIntervalUnit && intervalUnit
+      ? convertIntervalPrice(tax, intervalUnit)
+      : tax;
 
   const priceWithoutTax = getPriceTextFormatted(
     ovhSubsidiary,

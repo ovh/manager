@@ -13,6 +13,8 @@ import { DEFAULT_PAGINATION } from './datagrid.constants';
 export const useDataGrid = (defaultSorting: ColumnSort = undefined) => {
   const [pagination, setPagination] =
     useState<PaginationState>(DEFAULT_PAGINATION);
-  const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(
+    defaultSorting,
+  );
   return { pagination, setPagination, sorting, setSorting };
 };

@@ -90,13 +90,13 @@ export function FilterAdd({
         key: selectedId,
         comparator: selectedComparator,
         value:
-          selectedColumn.type === FilterTypeCategories.Date
-            ? dateValue.toISOString()
+          selectedColumn?.type === FilterTypeCategories.Date
+            ? dateValue?.toISOString() || ''
             : value,
-        type: selectedColumn.type,
+        type: selectedColumn?.type,
         tagKey,
       },
-      selectedColumn,
+      selectedColumn!,
     );
     setValue('');
     setTagKey('');
@@ -104,7 +104,9 @@ export function FilterAdd({
   };
 
   useEffect(() => {
-    setSelectedComparator(selectedColumn?.comparators[0]);
+    setSelectedComparator(
+      selectedColumn?.comparators?.[0] || FilterComparator.IsEqual,
+    );
     setValue('');
     setTagKey('');
     setDateValue(null);
@@ -118,7 +120,7 @@ export function FilterAdd({
         className="border"
         value={dateValue}
         data-testid="filter-add_value-date"
-        onOdsChange={(e) => setDateValue(e.detail.value)}
+        onOdsChange={(e) => setDateValue(e.detail.value || null)}
       />
     );
   } else if (selectedColumn?.type === FilterTypeCategories.Numeric) {
@@ -138,7 +140,7 @@ export function FilterAdd({
         }}
       />
     );
-  } else if (selectedColumn?.options?.length > 0) {
+  } else if (selectedColumn?.options && selectedColumn.options.length > 0) {
     inputComponent = (
       <OdsSelect
         key={`filter-add_value-select-${selectedId}`}
@@ -147,7 +149,7 @@ export function FilterAdd({
         data-testid="filter-add_value-select"
         onOdsChange={(event) => setValue(event.detail.value as string)}
       >
-        {selectedColumn?.options.map((option) => (
+        {selectedColumn?.options?.map((option) => (
           <option key={option.label} value={option.value}>
             {option.label}
           </option>
@@ -238,7 +240,7 @@ export function FilterAdd({
       )}
       {selectedColumn?.type === FilterTypeCategories.Tags && (
         <TagsFilterForm
-          resourceType={resourceType}
+          resourceType={resourceType || ''}
           tagKey={tagKey}
           setTagKey={setTagKey}
           value={value}
