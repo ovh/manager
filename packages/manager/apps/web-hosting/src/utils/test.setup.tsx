@@ -127,6 +127,9 @@ vi.mock('@/data/api/managedWordpress', () => ({
   deleteManagedCmsResourceWebsite: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDeleteMock),
   ),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesTaskMock),
+  ),
 }));
 afterEach(() => {
   vi.clearAllMocks();

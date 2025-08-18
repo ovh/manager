@@ -11,6 +11,9 @@
   "web_hosting_header_order": "Commander",
   "web_hosting_header_guide_general_informations": "Informations générales",
   "web_hosting_header_tasks": "Tâches",
+  "web_hosting_header_comments": "Commentaires",
+  "web_hosting_header_progress": "Progression",
+  "web_hosting_header_status": "Statut",
   "web_hosting_header_my_websites": "Mes sites",
   "web_hosting_sites": "sites",
   "web_hosting_export_label": "Exporter en CSV",
@@ -34,6 +37,9 @@
   "web_hosting_status_header_websiteStatus": "Statut du site",
   "web_hosting_status_header_fqdn_wordpress": "Fully Qualified Domain Name (FQDN)",
   "web_hosting_status_active": "Activé",
+  "web_hosting_status_done": "Terminée",
+  "web_hosting_status_running": "En cours",
+  "web_hosting_status_waiting_user_input": "En attente d'import de l'utilisateur",
   "web_hosting_status_ready": "Activé",
   "web_hosting_status_none": "Désactivé",
   "web_hosting_status_disabled": "Inactif",
@@ -97,5 +103,7 @@
   "web_hosting_common_comments": "Commentaires",
   "web_hosting_common_tags": "Tags",
   "web_hosting_common_users": "Utilisateurs",
-  "web_hosting_common_action_launch_import": "Lancer l'import"
+  "web_hosting_common_action_launch_import": "Lancer l'import",
+  "web_hosting_common_creation_date": "Date de création",
+  "web_hosting_common_update_date": "Date de mise à jour"
 }
