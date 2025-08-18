@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { Link, Text } from '@ovhcloud/ods-react';
 import { getNicParams } from '@/utils/utils';
 import { DomainOperationsEnum } from '@/constants';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
@@ -34,9 +34,7 @@ export default function ActionMeContactComponent({
   }
 
   if (serviceInfo && nichandle !== serviceInfo.contactAdmin.id) {
-    return (
-      <OdsText>{t('domain_operations_update_contact_administrator')}</OdsText>
-    );
+    return <Text>{t('domain_operations_update_contact_administrator')}</Text>;
   }
 
   let url = `${webUrl as string}/domain/${domainName}/contact-management/edit-contact/${value}/`;
@@ -52,18 +50,19 @@ export default function ActionMeContactComponent({
   }
 
   return (
-    <OdsLink
+    <Link
       href={url}
       color="primary"
-      label={t(
-        `domain_operations_update_nicowner_click_${
-          argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
-        }`,
-      )}
       className="block"
       icon="external-link"
       data-testid="contactupdate"
       isDisabled={!url}
-    />
+    >
+      {t(
+        `domain_operations_update_nicowner_click_${
+          argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
+        }`,
+      )}
+    </Link>
   );
 }
