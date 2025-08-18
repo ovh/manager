@@ -1,3 +1,4 @@
+import { Effect } from 'effect';
 import { z } from 'zod/v3';
 import {
   VCDVrackSegment,
@@ -18,7 +19,8 @@ import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
-import { hasIpv4CIDRConflict } from '@/utils/hasIpv4CIDRConflict';
+import { isGatewayCidr } from '@/utils/isGatewayCidr';
+import { hasIpv4CIDRConflictInArray } from '@/utils/hasIpv4CIDRConflictInArray';
 import { TRACKING } from '@/tracking.constants';
 
 function AddNetworkVrackSegmentLoaded() {
@@ -62,11 +64,24 @@ function AddNetworkVrackSegmentLoaded() {
           })
           .refine(
             (network) =>
-              !vrackSegmentTargetSpec.networks.some((networkB: string) =>
-                hasIpv4CIDRConflict(network, networkB),
-              ),
+              hasIpv4CIDRConflictInArray(
+                network,
+                vrackSegmentTargetSpec.networks,
+              ).pipe(Effect.isFailure, Effect.runPromise),
             {
               message: t('managed_vcd_dashboard_vrack_add_network_input_error'),
+            },
+          )
+          .refine(
+            (network) =>
+              isGatewayCidr(network).pipe(
+                Effect.orElseSucceed(() => false),
+                Effect.runSync,
+              ),
+            {
+              message: t(
+                'managed_vcd_dashboard_vrack_add_network_input_helper',
+              ),
             },
           ),
       }),

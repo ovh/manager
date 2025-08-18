@@ -1,10 +1,11 @@
+import { Effect } from 'effect/index';
 import ipaddr from 'ipaddr.js';
 
 /**
  * Check if two CIDR networks overlap or are equal.
  * @param {string} cidrNetworkA - The first CIDR network.
  * @param {string} cidrNetworkB - The second CIDR network.
- * @returns {boolean} - Returns true if the CIDR networks overlap or are equal, false otherwise.
+ * @returns {boolean} - Returns Effect succeed(true) if the CIDR networks overlap or are equal, Effect succeed false otherwise.
  */
 export const hasIpv4CIDRConflict = (
   cidrNetworkA: string,
@@ -14,7 +15,9 @@ export const hasIpv4CIDRConflict = (
     !ipaddr.IPv4.isValidCIDR(cidrNetworkA) ||
     !ipaddr.IPv4.isValidCIDR(cidrNetworkB)
   ) {
-    return true;
+    return Effect.fail(
+      `Unable to parse CIDR (${cidrNetworkA} or ${cidrNetworkB})`,
+    );
   }
 
   const minA = ipaddr.IPv4.networkAddressFromCIDR(cidrNetworkA);
@@ -23,12 +26,12 @@ export const hasIpv4CIDRConflict = (
   const maxB = ipaddr.IPv4.broadcastAddressFromCIDR(cidrNetworkB);
 
   if (minA < maxB && minB < maxA) {
-    return true;
+    return Effect.succeed(true);
   }
 
   if (minA === minB && maxA === maxB) {
-    return true;
+    return Effect.succeed(true);
   }
 
-  return false;
+  return Effect.succeed(false);
 };
