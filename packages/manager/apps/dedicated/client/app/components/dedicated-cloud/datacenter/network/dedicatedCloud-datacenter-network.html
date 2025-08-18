@@ -49,12 +49,12 @@
         <oui-button
             variant="primary"
             data-disabled="$ctrl.hasMaximumNsx || !!$ctrl.pollNsxTaskId"
-            data-ng-click="$ctrl.goToAddNsx()"
+            data-ng-click="$ctrl.goToAddNsxEdge()"
             ><span data-translate="dedicatedCloud_network_add_edge_cta"></span
         ></oui-button>
         <oui-button
             variant="secondary"
-            data-ng-click="$ctrl.goToResize()"
+            data-ng-click="$ctrl.goToResizeNsxEdge()"
             data-disabled="!!$ctrl.pollNsxTaskId"
             ><span
                 data-translate="dedicatedCloud_network_resize_edge_cta"
