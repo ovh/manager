@@ -39,17 +39,13 @@ import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
 import { ErrorResponse } from '@/types/api.type';
-import { OkmsRegionOrderSuccessful } from '@/common/pages/OrderOkmsModal/OrderOkmsModal.page';
+import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
 
 let i18nValue: i18n;
 
 vi.mock('@/data/api/orderCatalogOKMS', () => ({
   getOrderCatalogOKMS: vi.fn(),
 }));
-
-let useLocationMock: { state: OkmsRegionOrderSuccessful } = {
-  state: { orderRegion: '' },
-};
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
@@ -58,7 +54,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useNavigate: () => vi.fn(),
     useHref: vi.fn((link) => link),
     useSearchParams: vi.fn(),
-    useLocation: () => useLocationMock,
   };
 });
 
@@ -112,7 +107,7 @@ const TestComponent = () => {
   );
 };
 
-const renderDomainManagement = async () => {
+const renderDomainManagement = async (processingRegion?: string) => {
   const queryClient = new QueryClient();
   if (!i18nValue) {
     i18nValue = await initTestI18n();
@@ -124,7 +119,9 @@ const renderDomainManagement = async () => {
         <ShellContext.Provider
           value={(shellContext as unknown) as ShellContextType}
         >
-          <TestComponent />
+          <OrderOkmsModalProvider region={processingRegion}>
+            <TestComponent />
+          </OrderOkmsModalProvider>
         </ShellContext.Provider>
       </QueryClientProvider>
     </I18nextProvider>,
@@ -281,18 +278,12 @@ describe('Domain management test suite', () => {
         expect(setSelectedDomainIdMocked).toHaveBeenCalledWith(undefined);
       });
 
-      it('should display a loading state when an order is done', async () => {
+      it('should display a loading state when an order is processing', async () => {
         const user = userEvent.setup();
         // GIVEN
-        useLocationMock = {
-          state: {
-            orderRegion: 'regionId',
-          },
-        };
-
         vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
 
-        await renderDomainManagement();
+        await renderDomainManagement('rbx');
         await assertTextVisibility(
           labels.secretManager.create.domain_section_title,
         );
