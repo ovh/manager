@@ -10,7 +10,6 @@ type DataGridTextCellProps = {
 
 /** Simple datagrid cell text formatter applying ODS style */
 export function DataGridTextCell({
-  className,
   children,
   'data-testid': dataTestId,
 }: React.PropsWithChildren<DataGridTextCellProps>) {

@@ -40,7 +40,7 @@ export const assertOdsModalText = ({
   waitFor(
     () =>
       expect(
-        within(container.querySelector('ods-modal')).getByText(text, {
+        within(container.querySelector('ods-modal')!).getByText(text, {
           exact: false,
         }),
       ).toBeVisible(),
@@ -67,7 +67,7 @@ const getOdsButton = async ({
   nth = 0,
   ...options
 }: GetOdsButtonParams) => {
-  let button: HTMLElement;
+  let button: HTMLElement | undefined;
   await waitFor(
     () => {
       const htmlTag = isLink ? 'ods-link' : 'ods-button';
@@ -77,12 +77,12 @@ const getOdsButton = async ({
         // filter by icon
         button = Array.from(buttonList).filter(
           (btn) => btn.getAttribute('icon') === iconName,
-        )[nth];
+        )[nth]!;
       } else {
         // filter by label or altLabel
         button = Array.from(buttonList).filter((btn) =>
-          [label, altLabel].includes(btn.getAttribute('label')),
-        )[nth];
+          [label, altLabel].includes(btn.getAttribute('label') ?? ''),
+        )[nth]!;
       }
 
       if (isLink) {
@@ -96,7 +96,7 @@ const getOdsButton = async ({
     },
     { ...WAIT_FOR_DEFAULT_OPTIONS, ...options },
   );
-  return button;
+  return button!;
 };
 
 type GetOdsButtonByLabelParams = Omit<GetOdsButtonParams, 'iconName'> & {
