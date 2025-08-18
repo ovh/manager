@@ -9,5 +9,6 @@
   "managed_vcd_vdc_id": "ID",
   "managed_vcd_vdc_usage": "Usage",
   "managed_vcd_vdc_contact_support": "Please contact Support",
-  "managed_vcd_vdc_associate_vrack": "Attach a vRack"
+  "managed_vcd_vdc_associate_vrack": "Attach a vRack",
+  "managed_vcd_vdc_associate_vrack_disabled": "Linking a vRack to Public VCF as-a-Service is not yet supported."
 }

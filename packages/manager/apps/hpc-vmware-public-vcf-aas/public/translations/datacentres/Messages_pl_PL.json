@@ -9,5 +9,6 @@
   "managed_vcd_vdc_id": "ID",
   "managed_vcd_vdc_usage": "Wykorzystanie",
   "managed_vcd_vdc_contact_support": "Skontaktuj się z działem wsparcia klienta.",
-  "managed_vcd_vdc_associate_vrack": "Przypisanie vRack"
+  "managed_vcd_vdc_associate_vrack": "Przypisanie vRack",
+  "managed_vcd_vdc_associate_vrack_disabled": "Powiązanie sieci vRack z usługą Public VCF as a Service nie jest jeszcze dostępne"
 }
