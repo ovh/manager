@@ -46,6 +46,7 @@ export enum Status {
   PENDING = 'PENDING',
   RUNNING = 'RUNNING',
   SCHEDULED = 'SCHEDULED',
+  WAITING_USER_INPUT = 'WAITING_USER_INPUT',
 }
 
 export enum ResourceStatus {
