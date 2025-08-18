@@ -1,5 +1,9 @@
 import { NSX_RESOURCES } from '../../../datacenters/datacenter.constants';
 import { DATACENTER_NETWORK_SITE_WEB_LINK } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
+import {
+  TRACKING_ACTION_PREFIX,
+  TRACKING_DISPLAY_CONFIRM_PREFIX,
+} from './constants.js';
 
 export default class {
   /* @ngInject */
@@ -41,6 +45,7 @@ export default class {
 
   handleAddNsx() {
     this.loading = true;
+    this.trackActionConfirm();
     this.addNsx()
       .then(() => {
         this.handleSuccess(
@@ -58,5 +63,16 @@ export default class {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  trackActionConfirm() {
+    this.trackAction(`order_nsx-edge-nodes::confirm::${this.selectedNsxLevel}`);
+  }
+
+  trackAction(hit) {
+    this.trackClick(
+      `${TRACKING_ACTION_PREFIX}${hit}`,
+      TRACKING_DISPLAY_CONFIRM_PREFIX,
+    );
   }
 }

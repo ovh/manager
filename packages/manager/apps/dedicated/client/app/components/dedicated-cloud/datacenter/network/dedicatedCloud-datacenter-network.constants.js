@@ -27,3 +27,9 @@ export const DATACENTER_NETWORK_SITE_WEB_LINK = {
 export default {
   DATACENTER_NETWORK_SITE_WEB_LINK,
 };
+
+export const TRACKING_ACTION_PREFIX = 'page::button::';
+export const TRACKING_DISPLAY_ADD_EDIT_PREFIX =
+  'managed_vmware_vsphere::listing::nsx-edge-nodes';
+export const TRACKING_DISPLAY_ACTIVATE_PREFIX =
+  'managed_vmware_vsphere::onboarding::nsx-edge-nodes';
