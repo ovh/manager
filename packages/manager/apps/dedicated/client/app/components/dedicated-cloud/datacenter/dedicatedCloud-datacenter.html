@@ -48,6 +48,7 @@
         <oui-header-tabs-item
             data-ng-if=":: $ctrl.isNsxEdgeAvailable && $ctrl.isNsxtCompatible"
             data-state="{{:: $ctrl.networkState }}"
+            data-ng-click=":: $ctrl.trackTab('nsx-edge-nodes')"
             ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"

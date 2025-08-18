@@ -4,8 +4,8 @@ import {
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
-  TRACKING_GO_TO_TAB_PREFIX,
-  TRACKING_VIRTUAL_MACHINE_TAB,
+  TRACKING_CLICK_GO_TO_TAB_PREFIX,
+  TRACKING_PAGE_GO_TO_TAB_PREFIX,
 } from './dedicatedCloud-datacenter.constants';
 import { VDC_TYPE } from './vmware-vdc-add/dedicatedCloud-vmware-vdc-add.constants';
 import { NETWORK_LABEL } from '../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
@@ -38,8 +38,8 @@ export default class {
 
   trackTab(hit) {
     this.trackClick(
-      `${TRACKING_GO_TO_TAB_PREFIX}${hit}`,
-      TRACKING_VIRTUAL_MACHINE_TAB,
+      `${TRACKING_CLICK_GO_TO_TAB_PREFIX}${hit}`,
+      `${TRACKING_PAGE_GO_TO_TAB_PREFIX}${hit}`,
     );
   }
 

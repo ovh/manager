@@ -1,6 +1,12 @@
 import { DATACENTER_NETWORK_SITE_WEB_LINK } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
 
-import { TRACKING_SUFFIX } from './dedicatedCloud-datacenter-manage-nsx.constants';
+import {
+  TRACKING_SUFFIX,
+  TRACKING_ACTION_PREFIX,
+  TRACKING_DISPLAY_PREFIX,
+  TRACKING_EDIT_NSX,
+} from './dedicatedCloud-datacenter-manage-nsx.constants';
+
 import {
   EDGES_SIZES,
   NSX_RESOURCES,
@@ -46,15 +52,15 @@ export default class {
   }
 
   changeNsxSize() {
-    this.trackClick(this.TRACKING_SUFFIX.CONFIRM);
     this.loading = true;
+    this.trackActionConfirm();
     this.DedicatedCloud.resizeNsxtEdgeCluster(
       this.serviceName,
       this.datacenterId,
       this.selectedNsxLevel,
     )
       .then(() => {
-        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_SUCCESS);
+        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_SUCCESS); // TODO does not respect anymore nomenclature MANAGER-19493
         this.goBack(
           this.$translate.instant('dedicatedCloud_manage_nsx_edge_success'),
         );
@@ -66,7 +72,7 @@ export default class {
           )}`,
           'danger',
         );
-        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_ERROR);
+        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_ERROR); // TODO does not respect anymore nomenclature MANAGER-19493
       })
       .finally(() => {
         this.loading = false;
@@ -79,5 +85,16 @@ export default class {
     ).then((vcpuTextPrice) => {
       this.vcpuTextPrice = vcpuTextPrice;
     });
+  }
+
+  trackActionConfirm() {
+    this.trackAction(`${TRACKING_EDIT_NSX}::confirm::${this.selectedNsxLevel}`);
+  }
+
+  trackAction(hit) {
+    this.trackClick(
+      `${TRACKING_ACTION_PREFIX}${hit}`,
+      `${TRACKING_DISPLAY_PREFIX}${TRACKING_EDIT_NSX}`,
+    );
   }
 }
