@@ -1,4 +1,3 @@
-import { OdsFile } from '@ovhcloud/ods-components';
 import { ParentEnum } from '@/enum/parent.enum';
 import { TrackingEnum } from '@/enum/tracking.enum';
 
@@ -57,7 +56,7 @@ export interface TOperationArguments {
 
 export interface TFiles {
   key: string;
-  data: OdsFile[];
+  data: File[];
 }
 
 export interface TServiceInfo {
@@ -69,4 +68,16 @@ export interface TServiceInfo {
 export interface OngoingOperationDatagridDomainProps {
   parent: ParentEnum;
   props: TOngoingOperations;
+}
+
+export interface UploadedArgumentFiles {
+  argument: TArgument;
+  files: File[];
+}
+
+export interface UpdateMeDocumentComponentProps {
+  readonly argument: TArgument;
+  readonly setUploadedFiles: React.Dispatch<
+    React.SetStateAction<UploadedArgumentFiles[]>
+  >;
 }
