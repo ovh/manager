@@ -48,3 +48,20 @@ ods-text.disabled::part(text) {
   position: relative;
   background-image: url('./assets/cb.png');
 }
+
+.contacts-card {
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.contacts-card .row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.contacts-card .contacts-card-info {
+  flex-grow: 1;
+  max-width: 33.3333%;
+}
