@@ -35,8 +35,8 @@ interface Search {
 
 export type UseResourcesIcebergV2Result<T> = {
   flattenData: T[];
-  setSorting: React.Dispatch<React.SetStateAction<ColumnSort>>;
-  sorting: ColumnSort;
+  setSorting: React.Dispatch<React.SetStateAction<ColumnSort | undefined>>;
+  sorting: ColumnSort | undefined;
   filters: Filters;
   search: Search;
 } & UseInfiniteQueryResult<InfiniteData<IcebergFetchResultV2<T>>, Error>;
@@ -76,7 +76,9 @@ export function useResourcesIcebergV2<T>({
 
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
-  const [sorting, setSorting] = useState<ColumnSort>(defaultSorting);
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(
+    defaultSorting,
+  );
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const query = useInfiniteQuery({
@@ -96,8 +98,8 @@ export function useResourcesIcebergV2<T>({
         route,
         pageSize: shouldFetchAll ? API_V2_MAX_PAGE_SIZE : pageSize,
         cursor: pageParam as string,
-        sortBy: sorting?.[0]?.id || null,
-        sortOrder: sorting?.[0]?.desc ? 'DESC' : 'ASC',
+        sortBy: sorting?.id || undefined,
+        sortOrder: sorting?.desc ? 'DESC' : 'ASC',
         filters: searchFilter ? [searchFilter, ...filters] : filters,
         disableCache,
       }),
@@ -106,7 +108,7 @@ export function useResourcesIcebergV2<T>({
 
   useEffect(() => {
     const flatten = query.data?.pages.flatMap((page) => page.data);
-    setFlattenData(flatten);
+    setFlattenData(flatten || []);
 
     if (shouldFetchAll && query.hasNextPage) {
       query.fetchNextPage();

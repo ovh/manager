@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 /** Simple datagrid cell text formatter applying ODS style */
 export function DataGridTextCell({
-  className,
   children,
 }: React.PropsWithChildren<{ className?: string }>) {
   const { t } = useTranslation('datagrid');

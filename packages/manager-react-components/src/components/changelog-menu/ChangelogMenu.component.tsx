@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu } from '../action-menu';
 import { LinkType } from '../Link';
-import { ChangelogMenuProps } from './ChangelogMenu.props';
+import { ChangelogMenuProps, ChangelogMenuLinks } from './ChangelogMenu.props';
 import './translations/translation';
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
@@ -41,12 +41,18 @@ export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({
   };
 
   useEffect(() => {
-    const linksTab = [];
+    const linksTab: {
+      id: number;
+      label: string;
+      href: string;
+      linktype: LinkType;
+      onClick: () => void;
+    }[] = [];
     Object.keys(links).forEach((key, index) => {
       linksTab.push({
         id: index,
-        label: t(LinksTrad[key]),
-        href: links[key],
+        label: t(LinksTrad[key as keyof typeof LinksTrad]),
+        href: links[key as keyof ChangelogMenuLinks],
         linktype: LinkType.external,
         onClick: () => sendTrackClick(key),
       });

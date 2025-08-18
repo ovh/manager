@@ -27,7 +27,7 @@ vitest.mock('@ovhcloud/ods-components/react', async () => {
 
   return {
     ...originalModule,
-    OdsCheckbox: (column) => (
+    OdsCheckbox: (column: any) => (
       <input
         type="checkbox"
         name={column.id}
@@ -67,8 +67,8 @@ const filters = {
       label: 'customName',
     },
   ],
-  add: null,
-  remove: null,
+  add: () => {},
+  remove: () => {},
 } as FilterProps;
 
 const search = {

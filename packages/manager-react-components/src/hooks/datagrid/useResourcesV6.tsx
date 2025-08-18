@@ -24,7 +24,7 @@ export interface ResourcesV6Params<T> {
   pageSize?: number;
 }
 
-export function dataType(a) {
+export function dataType(a: any) {
   if (Number.isInteger(a)) return FilterTypeCategories.Numeric;
   if (isDate(a)) return FilterTypeCategories.Date;
   if (typeof a === 'string') return FilterTypeCategories.String;
@@ -52,10 +52,7 @@ function sortColumn(
       return desc ? Number(b) - Number(a) : Number(a) - Number(b);
     case FilterTypeCategories.String:
       return desc
-        ? b
-            ?.trim()
-            .toLowerCase()
-            ?.localeCompare?.(a?.trim().toLowerCase())
+        ? b?.trim().toLowerCase()?.localeCompare?.(a?.trim().toLowerCase())
         : a
             .trim()
             ?.toString()
@@ -69,16 +66,15 @@ function sortColumn(
 function applySearch<T>(items: T[], filters: Filter[], searchInput: string) {
   if (searchInput.length === 0 || !filters.length) return items;
 
-  return items?.filter(
-    (item) =>
-      filters?.some(({ key }) => {
-        const value = item[key];
-        if (value === null || value === undefined) return false;
-        return value
-          ?.toString()
-          ?.toLowerCase()
-          ?.includes(searchInput?.toLowerCase());
-      }),
+  return items?.filter((item) =>
+    filters?.some(({ key }) => {
+      const value = (item as any)[key];
+      if (value === null || value === undefined) return false;
+      return value
+        ?.toString()
+        ?.toLowerCase()
+        ?.includes(searchInput?.toLowerCase());
+    }),
   );
 }
 
