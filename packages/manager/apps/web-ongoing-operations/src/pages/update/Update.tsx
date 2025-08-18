@@ -3,14 +3,13 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, OdsFile } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
 import { toUnicode } from 'punycode';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
 import { saveFile } from '@/data/api/document';
@@ -22,7 +21,6 @@ import { useOperationArguments } from '@/hooks/update/useOperationArguments';
 import { useDomain } from '@/hooks/data/query';
 import UpdateContentComponent from '@/components/Update/UpdateContent.component';
 import UpdateActions from '@/components/Update/Content/UpdateActions.component';
-import { TFiles } from '@/types';
 import { urls } from '@/routes/routes.constant';
 import { DomainOperationsEnum } from '@/constants';
 import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.component';
@@ -32,7 +30,7 @@ export default function Update() {
   const { id } = useParams<{ id: string }>();
   const { product } = useParams<{ product: string }>();
   const [actionName, setActionName] = useState<ActionNameEnum>(null);
-  const [uploadedFiles, setUploadedFiles] = useState<TFiles[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [operationArgumentsUpdated, setOperationArgumentsUpdated] = useState<
     Record<string, string>
   >();
@@ -51,30 +49,6 @@ export default function Update() {
   const { notifications, clearNotifications } = useNotifications();
   const { addError, addSuccess } = useNotifications();
 
-  const addFileUpload = (key: string, data: OdsFile[]) => {
-    setUploadedFiles((prevFiles) => [...prevFiles, { key, data } as TFiles]);
-  };
-
-  const removeFileUpload = (key: string, fileName: string) => {
-    setUploadedFiles(
-      uploadedFiles.filter((f) => {
-        if (f.key === key) {
-          const res = f;
-          res.data = f.data.filter((file) => file.name !== fileName);
-          if (res.data.length > 0) {
-            return res;
-          }
-          return null;
-        }
-        return f;
-      }),
-    );
-  };
-
-  const updateActionName = (label: ActionNameEnum) => {
-    setActionName(label);
-  };
-
   const { mutate: executeActionOnOperation } = useMutation({
     mutationFn: async (operationID: number) => {
       clearNotifications();
@@ -87,41 +61,37 @@ export default function Update() {
       setIsActionLoading(false);
       clearNotifications();
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(`domain_operations_${actionName}_success`)}
-        </OdsText>,
+        </Text>,
       );
       navigate(`${urls.root}${product}`);
     },
     onError: () => {
       setIsActionLoading(false);
-      addError(<OdsText>{t('domain_operations_update_error')}</OdsText>);
+      addError(<Text>{t('domain_operations_update_error')}</Text>);
     },
   });
 
   const saveFileAndUpdateOperation = async (
     operationID: number,
     key: string,
-    file: OdsFile,
+    file: File,
   ) => {
     const documentId = await saveFile(file);
     const body = { value: documentId };
     updateTask(operationID, key, body);
   };
 
-  const processFile = async (
-    file: OdsFile,
-    key: string,
-    operationID: number,
-  ) => {
+  const processFile = async (file: File, key: string, operationID: number) => {
     return limit(() => saveFileAndUpdateOperation(operationID, key, file));
   };
 
   const processUploadedFiles = async (operationID: number) => {
     const tasks = uploadedFiles.flatMap((files) => {
-      return files.data.map((file) =>
+      /*       return files.data.map((file) =>
         processFile(file, files.key, operationID),
-      );
+      ); */
     });
     await Promise.all(tasks);
   };
@@ -146,7 +116,7 @@ export default function Update() {
     },
     onError: () => {
       setIsActionLoading(false);
-      addError(<OdsText>{t('domain_operations_update_error')}</OdsText>);
+      addError(<Text>{t('domain_operations_update_error')}</Text>);
     },
   });
 
@@ -165,10 +135,10 @@ export default function Update() {
     operationArguments.data.forEach((arg) => {
       switch (arg.type) {
         case '/me/document': {
-          const uploaded = uploadedFiles.find((f) => f.key === arg.key);
+          /*          const uploaded = uploadedFiles.find((f) => f.key === arg.key);
           if (!uploaded || !uploaded.data.length) {
             isValid = false;
-          }
+          } */
           break;
         }
         case 'string': {
@@ -190,6 +160,10 @@ export default function Update() {
     uploadedFiles,
     operationArgumentsUpdated,
   ]);
+
+  useEffect(() => {
+    console.log(uploadedFiles);
+  }, [uploadedFiles]);
 
   if (domainLoading || argumentLoading) {
     return (
@@ -213,7 +187,7 @@ export default function Update() {
       />
       <section>
         <div className="flex flex-col gap-y-1 mb-8">
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          <Text preset={TEXT_PRESET.paragraph}>
             <Trans
               t={t}
               i18nKey="domain_operation_comment"
@@ -222,8 +196,8 @@ export default function Update() {
               }}
               components={{ strong: <strong /> }}
             />
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          </Text>
+          <Text preset={TEXT_PRESET.paragraph}>
             <Trans
               t={t}
               i18nKey="domain_operation_data"
@@ -232,7 +206,7 @@ export default function Update() {
               }}
               components={{ strong: <strong /> }}
             />
-          </OdsText>
+          </Text>
         </div>
 
         {domain.function === DomainOperationsEnum.DomainDnsUpdate && (
@@ -251,8 +225,8 @@ export default function Update() {
                   domainName={domain.domain}
                   operationName={domain.function}
                   onChange={onChange}
-                  addFileUpload={addFileUpload}
-                  removeFileUpload={removeFileUpload}
+                  uploadedFiles={uploadedFiles}
+                  setUploadedFiles={setUploadedFiles}
                 />
               </div>
             ))}
@@ -264,7 +238,7 @@ export default function Update() {
           actionName={actionName}
           disabled={isButtonDisabled}
           onValidate={onValidate}
-          updateActionName={updateActionName}
+          setActionName={setActionName}
           isActionLoading={isActionLoading}
         />
       </section>

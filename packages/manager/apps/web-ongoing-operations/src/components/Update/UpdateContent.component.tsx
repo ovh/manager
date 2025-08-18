@@ -1,5 +1,4 @@
 import React from 'react';
-import { OdsFile } from '@ovhcloud/ods-components';
 import { TArgument } from '@/types';
 import UpdateMeContactComponent from '@/components/Update/Content/Update.Me.Contact.component';
 import UpdateMeDocumentComponent from '@/components/Update/Content/Update.Me.Document';
@@ -12,17 +11,17 @@ interface UpdateContentComponentProps {
   readonly argument: TArgument;
   readonly operationName: string;
   readonly onChange: (key: string, value: string) => void;
-  readonly addFileUpload: (key: string, data: OdsFile[]) => void;
-  readonly removeFileUpload: (key: string, fileName: string) => void;
+  readonly uploadedFiles: File[];
+  readonly setUploadedFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
 export default function UpdateContentComponent({
   domainName,
   argument,
   operationName,
+  uploadedFiles,
+  setUploadedFiles,
   onChange,
-  addFileUpload,
-  removeFileUpload,
 }: UpdateContentComponentProps) {
   const { key, value, fields, type } = argument;
   return (
@@ -40,8 +39,8 @@ export default function UpdateContentComponent({
       {type === '/me/document' && (
         <UpdateMeDocumentComponent
           argument={argument}
-          addFileUpload={addFileUpload}
-          removeFileUpload={removeFileUpload}
+          uploadedFiles={uploadedFiles}
+          setUploadedFiles={setUploadedFiles}
         />
       )}
 

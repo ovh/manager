@@ -1,4 +1,3 @@
-import { OdsFile } from '@ovhcloud/ods-components';
 import { ParentEnum } from '@/enum/parent.enum';
 import { TrackingEnum } from '@/enum/tracking.enum';
 
@@ -57,7 +56,7 @@ export interface TOperationArguments {
 
 export interface TFiles {
   key: string;
-  data: OdsFile[];
+  data: File[];
 }
 
 export interface TServiceInfo {
