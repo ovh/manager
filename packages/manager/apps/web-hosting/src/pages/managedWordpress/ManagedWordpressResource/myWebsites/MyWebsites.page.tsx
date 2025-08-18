@@ -13,11 +13,12 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
 import { ManagedWordpressWebsites, ResourceStatus } from '@/data/type';
-import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { useGenerateUrl } from '@/hooks';
 import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
+import { getStatusColor } from '@/utils/getStatusColor';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -89,7 +90,17 @@ export default function MyWebsitesPage() {
       },
       {
         id: 'resourceStatus',
-        cell: (item) => <BadgeStatus itemStatus={item.resourceStatus} />,
+        cell: (item) => {
+          const statusColor = getStatusColor(item.resourceStatus);
+          return (
+            <OdsBadge
+              color={statusColor}
+              label={t(
+                `common:web_hosting_status_${item.resourceStatus.toLocaleLowerCase()}`,
+              )}
+            />
+          );
+        },
         label: t(`${NAMESPACES.STATUS}:status`),
         isSortable: true,
       },
