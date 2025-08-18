@@ -21,7 +21,7 @@ const shellContext = {
 
 const queryClient = new QueryClient();
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}
@@ -59,8 +59,8 @@ describe('useBreadcrumb', () => {
     );
     const { current } = result;
     await waitFor(() => {
-      expect(current[0].label).toBe('vrackServices');
-      expect(current[0].href).toBe('/#/vrack-services/vrackServices');
+      expect(current?.[0]?.label).toBe('vrackServices');
+      expect(current?.[0]?.href).toBe('/#/vrack-services/vrackServices');
     });
   });
 });
@@ -86,13 +86,14 @@ describe('useBreadcrumb', () => {
     );
     const { current } = result;
     await waitFor(() => {
-      expect(current.length).toBe(3);
-      expect(current[0].label).toBe('vrackServices');
-      expect(current[0].href).toBe('/#/vrack-services/vrackServices');
-      expect(current[1].label).toBe('789789789');
-      expect(current[1].href).toBe('/#/vrack-services/vrackServices/789789789');
-      expect(current[2].label).toBe('listing');
-      expect(current[2].href).toBe(
+      expect(current?.[0]?.label).toBe('vrackServices');
+      expect(current?.[0]?.href).toBe('/#/vrack-services/vrackServices');
+      expect(current?.[1]?.label).toBe('789789789');
+      expect(current?.[1]?.href).toBe(
+        '/#/vrack-services/vrackServices/789789789',
+      );
+      expect(current?.[2]?.label).toBe('listing');
+      expect(current?.[2]?.href).toBe(
         '/#/vrack-services/vrackServices/789789789/listing',
       );
     });
@@ -110,9 +111,9 @@ describe('useBreadcrumb', () => {
       },
     );
     await waitFor(() => {
-      expect(hook.result.current[0].hideLabel).toBeTruthy();
-      expect(hook.result.current[1].hideLabel).toBeFalsy();
-      expect(hook.result.current[2].hideLabel).toBeFalsy();
+      expect(hook.result.current?.[0]?.hideLabel).toBeTruthy();
+      expect(hook.result.current?.[1]?.hideLabel).toBeFalsy();
+      expect(hook.result.current?.[2]?.hideLabel).toBeFalsy();
     });
   });
 });

@@ -58,7 +58,7 @@ function renderUseResourcesV6Hook<T>(
         route: '/dedicated/nasha',
         queryKey: ['/dedicated/nasha'],
         ...hookParams,
-      }),
+      } as any),
     {
       wrapper,
     },
@@ -137,14 +137,9 @@ describe('useResourcesV6', () => {
       });
     });
     waitFor(() => {
-      const { flattenData, filters } = result.current;
+      const { flattenData } = result.current;
       expect(flattenData.length).toBe(1);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(flattenData[0].name).toBe('ns5007027.ip-51-7-XXXXX5.net');
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(filters.value).toBe('ns5007027.ip-51-7-XXXXX5.net');
+      expect(flattenData?.[0]?.name).toBe('ns5007027.ip-51-7-XXXXX5.net');
     });
   });
 
@@ -158,9 +153,7 @@ describe('useResourcesV6', () => {
       const { search, flattenData } = result.current;
       expect(flattenData.length).toBe(1);
       expect(search.searchInput).toBe('25');
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(flattenData[0].name).toBe('ns5007027.ip-51-25-XXXXX5.net');
+      expect(flattenData?.[0]?.name).toBe('ns5007027.ip-51-25-XXXXX5.net');
     });
   });
 
@@ -173,9 +166,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(1);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(current.flattenData[0].age.toBe(19));
+      expect(current.flattenData?.[0]?.age).toBe(19);
     });
   });
 
@@ -188,14 +179,10 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(1);
-      expect(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        current.flattenData[0].name.toBe('ns5007027.ip-51-21-XXXXX5.net'),
+      expect(current.flattenData?.[0]?.name).toBe(
+        'ns5007027.ip-51-21-XXXXX5.net',
       );
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(current.flattenData[0].age.toBe(21));
+      expect(current.flattenData?.[0]?.age).toBe(21);
     });
   });
 
@@ -213,9 +200,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(6);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(current.flattenData[0].age).toBe(25);
+      expect(current.flattenData?.[0]?.age).toBe(25);
     });
   });
   it('should filter age service that contains 2 and display by sorting age asc', async () => {
@@ -233,9 +218,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(6);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(current.flattenData[0].age).toBe(25);
+      expect(current.flattenData?.[0]?.age).toBe(25);
     });
   });
 
@@ -255,9 +238,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(1);
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      expect(current.flattenData[0].age).toBe(17);
+      expect(current.flattenData?.[0]?.age).toBe(17);
     });
   });
 
@@ -310,7 +291,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { flattenData } = result.current;
       // With descending sort on age, first item should have highest age
-      expect(flattenData[0].age).toBe(25);
+      expect(flattenData?.[0]?.age).toBe(25);
     });
   });
 

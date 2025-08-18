@@ -41,9 +41,15 @@ export const useCatalogPrice = (
   const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const isFrench = FRENCH_FORMAT.includes(me?.ovhSubsidiary);
-  const isAsia = ASIA_FORMAT.includes(me?.ovhSubsidiary);
-  const isGerman = GERMAN_FORMAT.includes(me?.ovhSubsidiary);
+  const isFrench = me?.ovhSubsidiary
+    ? FRENCH_FORMAT.includes(me.ovhSubsidiary)
+    : false;
+  const isAsia = me?.ovhSubsidiary
+    ? ASIA_FORMAT.includes(me.ovhSubsidiary)
+    : false;
+  const isGerman = me?.ovhSubsidiary
+    ? GERMAN_FORMAT.includes(me.ovhSubsidiary)
+    : false;
   const isTaxExcl = options?.exclVat || isAsia || isFrench || isGerman;
 
   const getTextPrice = (priceInCents: number) => {
