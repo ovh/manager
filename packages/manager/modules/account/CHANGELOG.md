@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.6...@ovh-ux/manager-account@0.15.0) (2025-08-11)
+
+
+### Bug Fixes
+
+* **account:** changed user resolve to retrieve updated value ([a7c95a2](https://github.com/ovh/manager/commit/a7c95a2164d4ea0902c8c0eff57f5d5cb60560d1)), closes [#MANAGER-19330](https://github.com/ovh/manager/issues/MANAGER-19330)
+* **account:** ignore prefix for zip validation ([f95131b](https://github.com/ovh/manager/commit/f95131b5c4ff15c12302e71f887d7b721814cec4)), closes [#MANAGER-19226](https://github.com/ovh/manager/issues/MANAGER-19226) [#INC0142518](https://github.com/ovh/manager/issues/INC0142518)
+* **account:** ignore prefix removal for zip field init ([8031414](https://github.com/ovh/manager/commit/80314143c28e662f8f2b8825f725903e6bf8cc89)), closes [#MANAGER-19226](https://github.com/ovh/manager/issues/MANAGER-19226)
+* **account:** revert incorrect fix for gdpr actions ([ecc57c3](https://github.com/ovh/manager/commit/ecc57c360acdec6180f921d5eccae93d754ccd11)), closes [#MANAGER-19355](https://github.com/ovh/manager/issues/MANAGER-19355)
+
+
+### Features
+
+* **account:** suggest contact replication on related service ([2e30acb](https://github.com/ovh/manager/commit/2e30acbd370b66db4df03e2fadf44cc4629bf79e)), closes [#MANAGER-18841](https://github.com/ovh/manager/issues/MANAGER-18841)
+
+
+
+
+
+## [0.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.5...@ovh-ux/manager-account@0.14.6) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
+## [0.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.4...@ovh-ux/manager-account@0.14.5) (2025-08-04)
+
+
+### Bug Fixes
+
+* **account:** added angular-messages dependency ([54fd775](https://github.com/ovh/manager/commit/54fd7757b046620ba08fb217f3df2d5f7be59a52)), closes [#MANAGER-19220](https://github.com/ovh/manager/issues/MANAGER-19220) [#PRB0042689](https://github.com/ovh/manager/issues/PRB0042689)
+* **account:** make disabled attribute dynamic for gdpr actions ([0baba09](https://github.com/ovh/manager/commit/0baba09a70509a195e42dcb5ba35e60e8e0a7628)), closes [#MANAGER-19306](https://github.com/ovh/manager/issues/MANAGER-19306)
+
+
+
+
+
+## [0.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.3...@ovh-ux/manager-account@0.14.4) (2025-07-17)
+
+
+### Bug Fixes
+
+* **account:** remove one time binding on contact change requests ([dec871a](https://github.com/ovh/manager/commit/dec871a9e64b524cbb5b8523dcf45ec29c619de3)), closes [#MANAGER-18762](https://github.com/ovh/manager/issues/MANAGER-18762) [#INC0136987](https://github.com/ovh/manager/issues/INC0136987)
+
+
+
+
+
+## [0.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.2...@ovh-ux/manager-account@0.14.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-account
+
+
+
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.1...@ovh-ux/manager-account@0.14.2) (2025-07-04)
 
 

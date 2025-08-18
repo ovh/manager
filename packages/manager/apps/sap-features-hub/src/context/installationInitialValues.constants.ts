@@ -1,0 +1,51 @@
+import {
+  InstallationFormErrors,
+  InstallationFormValues,
+} from '@/types/form.type';
+
+export const installationInitialValues: InstallationFormValues = {
+  serviceName: '',
+  serviceDisplayName: '',
+  datacenterId: null,
+  datacenterName: '',
+  clusterName: '',
+  clusterId: null,
+  applicationVersion: '',
+  applicationType: '',
+  deploymentType: null,
+  sapSid: '',
+  sapHanaSid: '',
+  masterSapPassword: '',
+  masterSapHanaPassword: '',
+  sidadmPassword: '',
+  systemPassword: '',
+  bucketId: '',
+  endpoint: '',
+  accessKey: '',
+  secretKey: '',
+  domainName: '',
+  osLicense: '',
+  osUpdate: false,
+  firewallService: false,
+  firewallServer: false,
+  firewallDatabase: false,
+  network: '',
+  netmask: '',
+  gateway: '',
+  thickDatastorePolicy: '',
+  hanaServerOva: '',
+  hanaServerDatastore: '',
+  applicationServerOva: '',
+  applicationServerDatastore: '',
+  hanaServers: null,
+  applicationServers: null,
+  bucketBackint: undefined,
+  logsDataPlatform: undefined,
+} as const;
+
+export const installationInitialErrors: InstallationFormErrors = Object.keys(
+  installationInitialValues,
+).reduce(
+  (errors, key: keyof InstallationFormErrors) => ({ ...errors, [key]: '' }),
+  {} as InstallationFormErrors,
+);

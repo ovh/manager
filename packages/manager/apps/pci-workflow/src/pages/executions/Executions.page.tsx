@@ -1,15 +1,20 @@
+import { useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
   Headers,
   useDatagridSearchParams,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+
 import { useWorkflowExecutions } from '@/api/hooks/useExecutions';
+
 import { useExecutionDatagridColumns } from './useExecutionDatagridColumns';
 
 export default function Executions() {
@@ -20,12 +25,7 @@ export default function Executions() {
   const hrefProject = useProjectUrl('public-cloud');
   const backHref = useHref('..');
 
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams();
+  const { pagination, setPagination, sorting, setSorting } = useDatagridSearchParams();
 
   const {
     data: { executions, workflowName },
@@ -69,11 +69,7 @@ export default function Executions() {
 
       {isPending && (
         <div className="text-center">
-          <OsdsSpinner
-            data-testid="Executions_spinner"
-            inline
-            size={ODS_SPINNER_SIZE.md}
-          />
+          <OsdsSpinner data-testid="Executions_spinner" inline size={ODS_SPINNER_SIZE.md} />
         </div>
       )}
 

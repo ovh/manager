@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.2...@ovh-ux/manager-pci-workflow-app@0.9.3) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.1...@ovh-ux/manager-pci-workflow-app@0.9.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.9.0...@ovh-ux/manager-pci-workflow-app@0.9.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.8.3...@ovh-ux/manager-pci-workflow-app@0.9.0) (2025-08-01)
+
+
+### Features
+
+* integrate static analysis kit with turbo build and pci workflow ([f35e092](https://github.com/ovh/manager/commit/f35e09204e0ecdeeb57acfe0e587cda6a7bdba01)), closes [#MANAGER-19256](https://github.com/ovh/manager/issues/MANAGER-19256)
+
+
+
+
+
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.8.2...@ovh-ux/manager-pci-workflow-app@0.8.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app
+
+
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-workflow-app@0.8.1...@ovh-ux/manager-pci-workflow-app@0.8.2) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-workflow-app

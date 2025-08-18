@@ -3,6 +3,132 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.144.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.2...@ovh-ux/manager-container-app@0.144.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4262] ([ed25b3e](https://github.com/ovh/manager/commit/ed25b3e51daf85041afdd98a440f7c7535a12d0f))
+
+
+### Features
+
+* **web-domains:** add allDom in sidebar ([abb0ae7](https://github.com/ovh/manager/commit/abb0ae7b2ea4799256513a137e394d58de74f24a)), closes [#MANAGER-17565](https://github.com/ovh/manager/issues/MANAGER-17565)
+* **web-domains:** pnr configuration to alldom part ([d825c0e](https://github.com/ovh/manager/commit/d825c0ed0cf1648645563eb266e8f1d516192a50))
+
+
+
+
+
+## [0.143.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.1...@ovh-ux/manager-container-app@0.143.2) (2025-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4246] ([3309bac](https://github.com/ovh/manager/commit/3309bac5768d340ab4d0b180e100e57add0a33ef))
+
+
+
+
+
+## [0.143.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.143.0...@ovh-ux/manager-container-app@0.143.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.143.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.1...@ovh-ux/manager-container-app@0.143.0) (2025-08-04)
+
+
+### Features
+
+* **container:** add new livechat interactions ([a7e69b6](https://github.com/ovh/manager/commit/a7e69b6f5729968f03d8f6050dc86341c5372edd)), closes [#MANAGER-18948](https://github.com/ovh/manager/issues/MANAGER-18948)
+
+
+
+
+
+## [0.142.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.142.0...@ovh-ux/manager-container-app@0.142.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.142.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.141.0...@ovh-ux/manager-container-app@0.142.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4224] ([5d8b89f](https://github.com/ovh/manager/commit/5d8b89f1755db11ca4165218aaa08b7d90d311ab))
+
+
+### Features
+
+* **container:** rename Managed VCD to Public VCF as-a-Service ([42575b9](https://github.com/ovh/manager/commit/42575b9bbeefb2704dff3fb954f05c09dca94539)), closes [#MANAGER-18182](https://github.com/ovh/manager/issues/MANAGER-18182)
+
+
+
+
+
+# [0.141.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.5...@ovh-ux/manager-container-app@0.141.0) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 585, 587] ([000cf6a](https://github.com/ovh/manager/commit/000cf6add15ca76d09a78d5bf85f3c02eaebc7b0)), closes [#MANAGER-19043](https://github.com/ovh/manager/issues/MANAGER-19043)
+
+
+### Features
+
+* **container:** add sap-features-hub to container ([b0224ca](https://github.com/ovh/manager/commit/b0224caa1b8a9a623eecc6da9119916bd698a0a2)), closes [#MANAGER-15975](https://github.com/ovh/manager/issues/MANAGER-15975)
+* **sap-features-hub:** add menu entry dashboard ([61498bf](https://github.com/ovh/manager/commit/61498bfb7dc144032bc4740860ed0787eb431856)), closes [#MANAGER-16148](https://github.com/ovh/manager/issues/MANAGER-16148)
+
+
+
+
+
+## [0.140.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.4...@ovh-ux/manager-container-app@0.140.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* **container:** remove ldp link into puclic cloud section ([94587a8](https://github.com/ovh/manager/commit/94587a836f386ee6eaaf6496a01f673a1d9e9eaa)), closes [#INC0141252](https://github.com/ovh/manager/issues/INC0141252) [#MANAGER-19148](https://github.com/ovh/manager/issues/MANAGER-19148)
+
+
+
+
+
+## [0.140.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.3...@ovh-ux/manager-container-app@0.140.4) (2025-07-18)
+
+
+### Bug Fixes
+
+* **dedicated:** remove depedencie of billing ([e15408c](https://github.com/ovh/manager/commit/e15408cabfa09f7ea198b947de3fe551d6a45053)), closes [#MANAGER-17212](https://github.com/ovh/manager/issues/MANAGER-17212)
+
+
+
+
+
+## [0.140.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.2...@ovh-ux/manager-container-app@0.140.3) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.140.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.1...@ovh-ux/manager-container-app@0.140.2) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.140.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.140.0...@ovh-ux/manager-container-app@0.140.1) (2025-07-10)
 
 

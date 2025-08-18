@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { getNicParams } from '@/utils/utils';
-import { domainCreate, domainIncomingTransfer } from '@/constants';
+import { DomainOperationsEnum } from '@/constants';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import Loading from '@/components/Loading/Loading';
@@ -25,7 +25,7 @@ export default function ActionMeContactComponent({
 }: ActionMeContactComponentProps) {
   const { t } = useTranslation('dashboard');
   const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
-  const { data: dedicatedUrl } = useNavigationGetUrl(['dedicated', '', {}]);
+  const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
   const { data: serviceInfo, isLoading } = useGetDomainInformation(domainName);
 
@@ -39,9 +39,14 @@ export default function ActionMeContactComponent({
     );
   }
 
-  let url = `${webUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
-  if ([domainIncomingTransfer, domainCreate].includes(operationName)) {
-    url = `${dedicatedUrl}/contact/${value}/${
+  let url = `${webUrl as string}/domain/${domainName}/contact-management/edit-contact/${value}/`;
+  if (
+    [
+      DomainOperationsEnum.DomainIncomingTransfer,
+      DomainOperationsEnum.DomainCreate,
+    ].includes(operationName as DomainOperationsEnum)
+  ) {
+    url = `${accountUrl as string}/contact/${value}/${
       fields.length ? getNicParams(fields) : ''
     }`;
   }

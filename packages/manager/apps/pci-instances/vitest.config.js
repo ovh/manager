@@ -11,6 +11,11 @@ export default mergeConfig(
   createConfig({
     test: {
       setupFiles: ['./setupTests.ts'],
+      server: {
+        deps: {
+          inline: [/@ovhcloud\/ods-react\/.*/i],
+        },
+      },
       coverage: {
         exclude: [
           ...defaultExcludedFiles,

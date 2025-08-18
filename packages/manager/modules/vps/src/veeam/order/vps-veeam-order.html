@@ -25,10 +25,20 @@
                     duration: $ctrl.getVeeamDuration($ctrl.veeamOption),
                 }"
             ></p>
+
+            <ovh-contracts-summary
+                name="agreeContracts"
+                data-ng-if="$ctrl.serviceOptionId"
+                data-items="$ctrl.contracts"
+                data-model="$ctrl.model.agree"
+            >
+            </ovh-contracts-summary>
+
             <button
                 type="button"
-                data-ng-click="$ctrl.onVeeamOrderStepperFinish()"
+                data-ng-click="$ctrl.serviceOptionId ? $ctrl.onVeeamUpgradeStepperFinish() : $ctrl.onVeeamOrderStepperFinish()"
                 class="oui-button oui-button_primary"
+                data-ng-disabled="$ctrl.serviceOptionId && $ctrl.contracts.length > 0 && !$ctrl.model.agree"
             >
                 <span data-translate="vps_common_order"></span>
                 <span

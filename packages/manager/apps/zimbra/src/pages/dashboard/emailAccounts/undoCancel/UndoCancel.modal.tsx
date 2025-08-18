@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import {
+  Modal,
   useFormatDate,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -15,9 +16,9 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSlotWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { Modal } from '@/components';
 import {
   getZimbraPlatformListQueryKey,
   putService,
@@ -29,7 +30,7 @@ import { capitalize } from '@/utils';
 
 export const UndoCancelSlotModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts', 'common']);
+  const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const format = useFormatDate();
@@ -103,24 +104,19 @@ export const UndoCancelSlotModal = () => {
 
   return (
     <Modal
-      title={t('common:undo_cancel_slot_title', {
+      heading={t('common:undo_cancel_slot_title', {
         offer: capitalize(slotWithService?.offer),
       })}
-      color={ODS_MODAL_COLOR.information}
-      onClose={onClose}
+      type={ODS_MODAL_COLOR.information}
+      onDismiss={onClose}
       isLoading={isLoading}
-      isDismissible
       isOpen
-      secondaryButton={{
-        label: t('common:cancel'),
-        onClick: handleUndoCancelClick,
-      }}
-      primaryButton={{
-        label: t('common:confirm'),
-        onClick: handleSlotUndoCancelClick,
-        isLoading: isSending || isLoading,
-        testid: 'primary-btn',
-      }}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
+      onPrimaryButtonClick={handleSlotUndoCancelClick}
+      isPrimaryButtonLoading={isSending || isLoading}
+      primaryButtonTestId="primary-btn"
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onSecondaryButtonClick={handleUndoCancelClick}
     >
       <>
         <OdsText

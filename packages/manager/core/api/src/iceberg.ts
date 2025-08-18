@@ -42,7 +42,24 @@ export type IcebergFetchResultV2<T> = {
   status: number;
 };
 
-function icebergFilter(comparator: FilterComparator, value: string | string[]) {
+export const appendIamTags = (
+  params: URLSearchParams,
+  filters: Filter[],
+  paramName = 'iamTags',
+) => {
+  if (filters?.length) {
+    const tagsFilterParams = transformTagsFiltersToQuery(filters);
+    if (tagsFilterParams) {
+      params.append(paramName, tagsFilterParams);
+    }
+  }
+  return params;
+};
+
+export function icebergFilter(
+  comparator: FilterComparator,
+  value: string | string[],
+) {
   const v = encodeURIComponent(`${value}`);
   switch (comparator) {
     case FilterComparator.Includes:
@@ -75,7 +92,7 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   }
 }
 
-const buildHeaders = () => {
+export const buildHeaders = () => {
   const headers = {};
 
   const builder = {
@@ -95,7 +112,8 @@ const buildHeaders = () => {
       if (cursor) headers['X-Pagination-Cursor'] = cursor;
       return builder;
     },
-    setDisabledCache: (disableCache: boolean) => {
+    setDisabledCache: (disableCache: boolean | undefined) => {
+      // eslint-disable-next-line
       if (disableCache) headers['Pragma'] = 'no-cache';
       return builder;
     },
@@ -108,13 +126,16 @@ const buildHeaders = () => {
     },
     setPaginationFilter: (filters: Filter[]) => {
       if (filters?.length) {
-        headers['x-pagination-filter'] = filters
+        const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
           .map(
             ({ comparator, key, value }) =>
               `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
           )
           .join('&');
+        if (filtersJoin) {
+          headers['x-pagination-filter'] = filtersJoin;
+        }
       }
       return builder;
     },
@@ -122,10 +143,26 @@ const buildHeaders = () => {
       headers[key] = value;
       return builder;
     },
+    setIamTags: (
+      params: URLSearchParams,
+      filters: Filter[],
+      paramName = 'iamTags',
+    ) => {
+      appendIamTags(params, filters, paramName);
+      return builder;
+    },
     build: () => headers,
   };
 
   return builder;
+};
+
+export const getRouteWithParams = (route: string, params: URLSearchParams) => {
+  if (params.size)
+    return route.indexOf('?') > -1
+      ? `${route}&${params.toString()}`
+      : `${route}?${params.toString()}`;
+  return route;
 };
 
 export async function fetchIcebergV2<T>({
@@ -137,34 +174,26 @@ export async function fetchIcebergV2<T>({
   sortOrder,
   disableCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
+  const params = new URLSearchParams();
   const requestHeaders = buildHeaders()
     .setPaginationSize(pageSize)
     .setPaginationCursor(cursor)
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortOrder)
     .setPaginationFilter(filters)
+    .setIamTags(
+      params,
+      filters,
+      route.includes('/iam/resource') ? 'tags' : 'iamTags',
+    )
     .build();
 
-  const params = new URLSearchParams();
-
-  if (filters?.length) {
-    const tagsFilterParams = transformTagsFiltersToQuery(filters);
-    if (tagsFilterParams) {
-      params.append('iamTags', tagsFilterParams);
-    }
-  }
-
-  let routeWithParams = route;
-  if (params.size) {
-    routeWithParams =
-      route.indexOf('?') > -1
-        ? `${route}&${params.toString()}`
-        : `${route}?${params.toString()}`;
-  }
-
-  const { data, headers, status } = await apiClient.v2.get(routeWithParams, {
-    headers: requestHeaders,
-  });
+  const { data, headers, status } = await apiClient.v2.get(
+    getRouteWithParams(route, params),
+    {
+      headers: requestHeaders,
+    },
+  );
 
   return { data, cursorNext: headers['x-pagination-cursor-next'], status };
 }
@@ -178,6 +207,7 @@ export async function fetchIcebergV6<T>({
   sortReverse,
   disableCache,
 }: IcebergFetchParamsV6): Promise<IcebergFetchResultV6<T>> {
+  const params = new URLSearchParams();
   const requestHeaders = buildHeaders()
     .setPaginationMode()
     .setPaginationSize(pageSize)
@@ -185,28 +215,15 @@ export async function fetchIcebergV6<T>({
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortReverse ? 'DESC' : 'ASC')
     .setPaginationFilter(filters)
+    .setIamTags(params, filters)
     .build();
 
-  const params = new URLSearchParams();
-
-  if (filters?.length) {
-    const tagsFilterParams = transformTagsFiltersToQuery(filters);
-    if (tagsFilterParams) {
-      params.append('iamTags', tagsFilterParams);
-    }
-  }
-
-  let routeWithParams = route;
-  if (params.size) {
-    routeWithParams =
-      route.indexOf('?') > -1
-        ? `${route}&${params.toString()}`
-        : `${route}?${params.toString()}`;
-  }
-
-  const { data, headers, status } = await apiClient.v6.get(routeWithParams, {
-    headers: requestHeaders,
-  });
+  const { data, headers, status } = await apiClient.v6.get(
+    getRouteWithParams(route, params),
+    {
+      headers: requestHeaders,
+    },
+  );
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
 
   return { data, totalCount, status };

@@ -4,11 +4,18 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsIcon,
+  OdsMessage,
   OdsPopover,
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ReplicationStorageClass } from '@/constants';
+import {
+  OBJECT_CONTAINER_MODE_MONO_ZONE,
+  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ReplicationStorageClass,
+} from '@/constants';
+
+import { TRegion } from '@/api/data/region';
 
 interface TReplicationRuleStorageClassProps {
   destinationName?: string;
@@ -16,6 +23,8 @@ interface TReplicationRuleStorageClassProps {
   setUseStorageclass: (value: boolean) => void;
   storageClass: ReplicationStorageClass;
   setStorageClass: (value: ReplicationStorageClass) => void;
+  destinationRegion: TRegion;
+  sourceRegion: TRegion;
   destinationDetailsMode?: string;
 }
 export function ReplicationRuleStorageClass({
@@ -24,12 +33,34 @@ export function ReplicationRuleStorageClass({
   setUseStorageclass,
   storageClass,
   setStorageClass,
+  destinationRegion,
+  sourceRegion,
   destinationDetailsMode,
 }: TReplicationRuleStorageClassProps) {
   const { t } = useTranslation(['containers/replication/add']);
 
+  const showWarning =
+    destinationRegion &&
+    sourceRegion &&
+    destinationRegion.type === OBJECT_CONTAINER_MODE_MULTI_ZONES &&
+    sourceRegion.type === OBJECT_CONTAINER_MODE_MONO_ZONE;
+
   return (
     <div className="mt-8 max-w-[800px] block">
+      {showWarning && (
+        <OdsMessage
+          color="warning"
+          className="mb-3"
+          isDismissible={false}
+          variant="default"
+        >
+          <span>
+            {t(
+              'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass_warning',
+            )}
+          </span>
+        </OdsMessage>
+      )}
       <OdsFormField className="flex">
         <span className="flex">
           <OdsCheckbox
@@ -49,22 +80,21 @@ export function ReplicationRuleStorageClass({
               'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass',
             )}
           </label>
-          {!destinationName && (
-            <div className="mt-2 ml-3 cursor-pointer">
-              <OdsIcon
-                id="trigger-popover"
-                name="circle-question"
-                className="text-[var(--ods-color-information-500)]"
-              />
-              <OdsPopover triggerId="trigger-popover">
-                <OdsText preset="caption">
-                  {t(
-                    'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass_tooltip',
-                  )}
-                </OdsText>
-              </OdsPopover>
-            </div>
-          )}
+
+          <div className="mt-2 ml-3 cursor-pointer">
+            <OdsIcon
+              id="trigger-popover-storage-class"
+              name="circle-question"
+              className="text-[var(--ods-color-information-500)]"
+            />
+            <OdsPopover triggerId="trigger-popover-storage-class">
+              <OdsText preset="caption">
+                {t(
+                  'containers/replication/add:pci_projects_project_storages_containers_replication_add_use_storageclass_tooltip',
+                )}
+              </OdsText>
+            </OdsPopover>
+          </div>
         </span>
       </OdsFormField>
 

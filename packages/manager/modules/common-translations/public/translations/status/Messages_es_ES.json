@@ -3,5 +3,22 @@
   "unsubscribed": "No suscrito",
   "subscribed": "Suscrito",
   "to_activate": "Pendiente de activar",
-  "activation_in_progress": "Activando..."
+  "activation_in_progress": "Activando...",
+  "disabled": "Desactivado",
+  "ok": "Activo",
+  "autorenewInProgress": "En proceso de renovación",
+  "expired": "Eliminar",
+  "inCreation": "En proceso de creación",
+  "inMaintenance": "En mantenimiento",
+  "pendingDebt": "Factura pendiente",
+  "deleting": "En proceso de eliminación",
+  "suspended": "Suspendido",
+  "suspending": "Suspendiendo...",
+  "errorMessage": "Se ha producido un error al completar la solicitud. {{ error }}",
+  "pay_as_you_go": "Pago por uso",
+  "prepaid": "Prepagado",
+  "creating": "En proceso de creación",
+  "updating": "Actualizada",
+  "unconfigured": "No configurado",
+  "unPaid": "Factura impagada"
 }

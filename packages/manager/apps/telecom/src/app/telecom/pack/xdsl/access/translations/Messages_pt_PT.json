@@ -117,9 +117,7 @@
   "xdsl_modem_comfort_exchange_already_last_model": "Já possui o último modelo de modem.",
   "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Esse modem não pode ser substituído para acesso SDSL.",
   "xdsl_details_modem_profile": "Perfil do modem",
-  "xdsl_details_modem_profile_orange": "Perfil Laranja",
-  "xdsl_details_modem_profile_bouygues": "Perfil Bouygues",
-  "xdsl_details_modem_profile_standard": "Perfil Standard",
+  "xdsl_details_modem_profile_detail": "Perfil {{ modemProfile }}",
   "xdsl_detail_mail_sending": "Envio de e-mail através do nosso servidor SMTP",
   "xdsl_detail_mail_sending_enable": "Ativar",
   "xdsl_detail_mail_sending_disable": "Desativar",
@@ -139,5 +137,15 @@
   "xdsl_detail_mail_sending_update_running": "O pedido de alteração do envio de e-mail está em curso de tratamento, queira aguardar.",
   "xdsl_detail_mail_sending_update_succeed": "O pedido de alteração do envio foi efetuado com sucesso, estando o seu tratamento em curso.",
   "xdsl_detail_mail_sending_update_failed": "Ocorreu um erro aquando da alteração do envio de e-mail. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Saber mais"
+  "xdsl_detail_mail_sending_guide": "Saber mais",
+  "xdsl_details_mean_time_to_repair": "Garantia de tempo de restauro (GTR)",
+  "xdsl_details_mean_time_to_repair_10ho": "10 horas úteis",
+  "xdsl_details_mean_time_to_repair_20m_10ho": "10 horas úteis",
+  "xdsl_details_mean_time_to_repair_20m_4ho": "4 horas úteis",
+  "xdsl_details_mean_time_to_repair_4hno": "4 horas não úteis",
+  "xdsl_details_mean_time_to_repair_4ho": "4 horas úteis",
+  "xdsl_details_mean_time_to_repair_5m_10ho": "10 horas úteis",
+  "xdsl_details_mean_time_to_repair_5m_4ho": "4 horas úteis",
+  "xdsl_details_mean_time_to_repair_dplus1": "1 dia útil (D+1)",
+  "xdsl_details_mean_time_to_repair_none": "Nenhuma"
 }

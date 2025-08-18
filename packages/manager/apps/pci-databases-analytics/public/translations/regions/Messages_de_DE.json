@@ -81,5 +81,8 @@
   "region_EU-WEST-PAR": "Paris",
   "region_EU-WEST-PAR_micro": "Paris ({{ micro }})",
   "region_location_EU-WEST-PAR": "Westeuropa (Frankreich)",
-  "region_continent_EU-WEST-PAR": "Westeuropa"
+  "region_continent_EU-WEST-PAR": "Westeuropa",
+  "help-link-more-info": "Mehr erfahren",
+  "region-description-1AZ": "Eine 1-AZ-Region („AZ“ steht für „Availability Zone“) besteht aus einem oder mehreren Rechenzentren, die sich am gleichen Standort befinden.",
+  "region-description-3AZ": " Eine 3-AZ-Region besteht aus drei Availability Zones, die sich innerhalb des gleichen Ballungsgebiets befinden, aber einige Kilometer voneinander entfernt sind. Sie erfüllt höchste Anforderungen in puncto Resilienz und gewährleistet gleichzeitig eine extrem niedrige Latenz zwischen den AZs."
 }

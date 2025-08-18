@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.26.0...@ovh-ux/manager-pci-databases-analytics-app@1.26.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4252] ([e04743f](https://github.com/ovh/manager/commit/e04743f83fb61873f9e6fce9c5e64ba11ea8f07a))
+* **i18n:** add missing translations [CDS 4254] ([158a5e3](https://github.com/ovh/manager/commit/158a5e3b5357ada1cd98c14cf863acdd468f94fa))
+* **i18n:** add missing translations [CDS 4261] ([ad3cc8d](https://github.com/ovh/manager/commit/ad3cc8de8ec0e1220d8052de50fa84575e9e41dc))
+* **i18n:** add missing translations [CDS 4265] ([a507ae6](https://github.com/ovh/manager/commit/a507ae61df97a4fde22df2d05bd8ceab9fdbf037))
+
+
+
+
+
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.25.2...@ovh-ux/manager-pci-databases-analytics-app@1.26.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* **pci-db:** metrics are not well displayed for mongodb engine ([80d18ce](https://github.com/ovh/manager/commit/80d18cec519d4e6987215046868594cb1626c38b)), closes [#DATATR-2426](https://github.com/ovh/manager/issues/DATATR-2426)
+
+
+### Features
+
+* **pci-databases:** add certificates management for kafka user ([6dada6e](https://github.com/ovh/manager/commit/6dada6ec74d6248233df57c4a04ffd21e69dca76)), closes [#DATATR-2416](https://github.com/ovh/manager/issues/DATATR-2416)
+
+
+
+
+
+## [1.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.25.1...@ovh-ux/manager-pci-databases-analytics-app@1.25.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.25.0...@ovh-ux/manager-pci-databases-analytics-app@1.25.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+* **i18n:** add missing translations [CDS 4242] ([c9e6332](https://github.com/ovh/manager/commit/c9e6332f8671b04a3080c6d103dd76162e33f582))
+
+
+
+
+
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.24.1...@ovh-ux/manager-pci-databases-analytics-app@1.25.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* **pci-db-analytics:** fixing translation minor issues in kafka ([3b16b84](https://github.com/ovh/manager/commit/3b16b84bc7a1dc219061fb6b655f11d8f7cbc576)), closes [#DATATR-2408](https://github.com/ovh/manager/issues/DATATR-2408) [#DATATR-2409](https://github.com/ovh/manager/issues/DATATR-2409)
+
+
+### Features
+
+* **pci-databases-analytics:** add eos information on engine card ([6a3c4c0](https://github.com/ovh/manager/commit/6a3c4c0ca51557a2f9986903f4732cf240645c99)), closes [#DATATR-2380](https://github.com/ovh/manager/issues/DATATR-2380)
+
+
+
+
+
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.24.0...@ovh-ux/manager-pci-databases-analytics-app@1.24.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.23.2...@ovh-ux/manager-pci-databases-analytics-app@1.24.0) (2025-07-30)
+
+
+### Bug Fixes
+
+* **pci.databases:** update yarn.lock ([006b042](https://github.com/ovh/manager/commit/006b04242458a8ca9287e577d80f56702a66d945))
+
+
+### Features
+
+* **pci-databases-analytics:** add Terraform ([10ac281](https://github.com/ovh/manager/commit/10ac28140e3a50008bd86734432828afb77d4705)), closes [#DATATR-2188](https://github.com/ovh/manager/issues/DATATR-2188)
+* **pci.databases:** add datastreaming engines ([e2da610](https://github.com/ovh/manager/commit/e2da610b275576064b8cd2f8500ddfcec3934f43)), closes [#DATATR-509](https://github.com/ovh/manager/issues/DATATR-509)
+* **pci.databases:** move region section in funnel ([adc423f](https://github.com/ovh/manager/commit/adc423f909e58155d543e2ad7653e214f68ed5c8)), closes [#DATATR-2306](https://github.com/ovh/manager/issues/DATATR-2306)
+
+
+
+
+
+## [1.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.23.1...@ovh-ux/manager-pci-databases-analytics-app@1.23.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4198] ([e938f84](https://github.com/ovh/manager/commit/e938f84d34d36c27f2f2bcb1371bf165d73f6b98))
+* **i18n:** add missing translations [CDS 4208] ([5b11f08](https://github.com/ovh/manager/commit/5b11f086a08419c8da7de8e9e1005181ee109ab3))
+* **i18n:** add missing translations [CDS 4215] ([4a16f1a](https://github.com/ovh/manager/commit/4a16f1a2ed28334746fb5400555eb1e230fba02f))
+
+
+
+
+
+## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.23.0...@ovh-ux/manager-pci-databases-analytics-app@1.23.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4180] ([b868db1](https://github.com/ovh/manager/commit/b868db140e6e5e00066a97b686a393f1a5432fcc))
+* **i18n:** add missing translations [CDS 4192] ([72f7cae](https://github.com/ovh/manager/commit/72f7cae1af0faeb8682ecd360a86d6ad7cf7c1dc))
+
+
+
+
+
 # [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.22.3...@ovh-ux/manager-pci-databases-analytics-app@1.23.0) (2025-07-07)
 
 

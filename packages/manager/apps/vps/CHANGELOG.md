@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.67](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.66...@ovh-ux/manager-vps-app@3.1.67) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.66](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.65...@ovh-ux/manager-vps-app@3.1.66) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.65](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.64...@ovh-ux/manager-vps-app@3.1.65) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.64](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.63...@ovh-ux/manager-vps-app@3.1.64) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.63](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.62...@ovh-ux/manager-vps-app@3.1.63) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.62](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.61...@ovh-ux/manager-vps-app@3.1.62) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.61](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.60...@ovh-ux/manager-vps-app@3.1.61) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
+## [3.1.60](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.59...@ovh-ux/manager-vps-app@3.1.60) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-vps-app
+
+
+
+
+
 ## [3.1.59](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps-app@3.1.58...@ovh-ux/manager-vps-app@3.1.59) (2025-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-vps-app

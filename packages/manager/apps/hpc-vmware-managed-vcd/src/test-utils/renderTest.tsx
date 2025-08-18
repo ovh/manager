@@ -23,6 +23,8 @@ import {
   GetDatacentreOrderMocksParams,
   GetVeeamBackupMocksParams,
   getIamMocks,
+  getVrackSegmentsMocks,
+  GetVrackSegmentsMocksParams,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
@@ -32,11 +34,11 @@ import {
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constants';
-import { MANAGED_VCD_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
 import {
   getFeatureAvailabilityMocks,
   TFeatureAvailabilityMockParams,
 } from '@/mocks/feature-availability';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 let context: ShellContextType;
 let i18nState: i18n;
@@ -51,6 +53,7 @@ export const renderTest = async ({
   GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
   TFeatureAvailabilityMockParams &
+  GetVrackSegmentsMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -61,6 +64,7 @@ export const renderTest = async ({
       ...getDatacentreOrderMocks(mockParams),
       ...getIamMocks(),
       ...getServicesMocks(mockParams),
+      ...getVrackSegmentsMocks(mockParams),
       ...getFeatureAvailabilityMocks(mockParams),
     ]),
   );
@@ -85,7 +89,7 @@ export const renderTest = async ({
     await waitFor(
       () =>
         expect(
-          screen.getAllByText(MANAGED_VCD_LABEL, {
+          screen.getAllByText(VMWARE_CLOUD_DIRECTOR_LABEL, {
             exact: false,
           }).length,
         ).toBeGreaterThan(0),

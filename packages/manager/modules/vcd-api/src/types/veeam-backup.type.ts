@@ -1,4 +1,4 @@
-import { ResourceStatus, WithIam } from './vcd-utility.type';
+import { BackupResourceStatus, WithIam } from './vcd-utility.type';
 
 export type AvailabilityZone =
   | 'ca-east-bhs-a'
@@ -14,19 +14,20 @@ export enum BackupStatus {
   error = 'error',
 }
 
+export type VeeamBackupOfferName = 'BRONZE' | 'SILVER' | 'GOLD';
+
 export type VeeamBackupOffer = {
-  name: 'BRONZE' | 'SILVER' | 'GOLD';
+  name: VeeamBackupOfferName;
   quotaInTB: number;
   usedSpaceInGB: number;
-  status:
-    | 'READY'
-    | 'CREATING'
-    | 'DISABLED'
-    | 'DISABLING'
-    | 'REMOVED'
-    | 'UPDATING';
+  status: BackupResourceStatus;
   protectionPrimaryRegion?: string;
   protectionReplicatedRegion?: string;
+};
+
+export type VeeamBackupOfferTargetSpec = {
+  name: VeeamBackupOfferName;
+  quotaInTB: number;
 };
 
 export type VeeamBackup = WithIam<{
@@ -38,8 +39,8 @@ export type VeeamBackup = WithIam<{
   };
   updatedAt: string;
   createdAt: string;
-  resourceStatus: ResourceStatus;
+  resourceStatus: BackupResourceStatus;
   targetSpec: {
-    offers: Omit<VeeamBackupOffer, 'usedSpaceInGB'>[];
+    offers: VeeamBackupOfferTargetSpec[];
   };
 }>;

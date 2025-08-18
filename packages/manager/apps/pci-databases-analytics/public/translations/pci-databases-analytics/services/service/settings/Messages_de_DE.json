@@ -37,5 +37,16 @@
   "advancedConfigurationUpdateSuccessDescription": "Die Änderung der erweiterten Konfiguration Ihres Dienstes war erfolgreich.",
   "advancedConfigurationErrorMin": "Muss größer als {{min}} sein",
   "advancedConfigurationErrorMax": "Muss kleiner als {{max}} sein",
-  "advancedConfigurationErrorRequired": "Dieses Feld muss ausgefüllt werden."
+  "advancedConfigurationErrorRequired": "Dieses Feld ist erforderlich",
+  "toggleKafkaSettingsErrorTitle": "Bei der Aktualisierung Ihres Dienstes ist ein Fehler aufgetreten.",
+  "toggleRestApiSuccessTitle": "Erfolgreich",
+  "toggleRestApiEnabledDescription": "Die Kafka-REST-API ist jetzt für Ihren Dienst aktiviert",
+  "toggleRestApiDisabledDescription": "Die Kafka-REST-API ist jetzt für Ihren Dienst deaktiviert",
+  "toggleSchemaRegistrySuccessTitle": "Erfolgreich",
+  "toggleSchemaRegistryEnabledDescription": "Die Schema Registry ist jetzt für Ihren Dienst aktiviert",
+  "toggleSchemaRegistryDisabledDescription": "Die Schema Registry jetzt für Ihren Dienst deaktiviert",
+  "kafkaSettingsRestApiTitle": "Kafka-REST-API",
+  "kafkaSettingsRestApiDescription": "HTTP-REST-Interface für einen Kafka-Cluster (basierend auf dem <anchor>Karapace</anchor>-Projekt)",
+  "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
+  "kafkaSettingsSchemaRegistryDescription": "HTTP-REST-Interface zum Speichern von Apache-Kafka-Schemas (basierend auf dem <anchor>Karapace</anchor>-Projekt)"
 }

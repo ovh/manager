@@ -14,7 +14,7 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -25,7 +25,8 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Modal, Loading } from '@/components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Loading } from '@/components';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { useAccount, useDomains } from '@/data/hooks';
 import { RedirectionSchema, redirectionSchema } from '@/utils';
@@ -40,7 +41,11 @@ import {
 
 export const AddEditOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation('redirections');
+  const { t } = useTranslation([
+    'redirections',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const navigate = useNavigate();
   const { accountId, redirectionId } = useParams();
 
@@ -165,27 +170,22 @@ export const AddEditOrganizationModal = () => {
 
   return (
     <Modal
-      isOpen
-      color={ODS_MODAL_COLOR.information}
-      isDismissible
+      type={ODS_MODAL_COLOR.information}
       ref={modalRef}
-      title={t(
+      isOpen
+      heading={t(
         redirectionId ? 'common:edit_redirection' : 'common:add_redirection',
       )}
-      onClose={onClose}
-      secondaryButton={{
-        testid: 'cancel-btn',
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'confirm-btn',
-        label: t('common:confirm'),
-        isDisabled: !isDirty || !isValid,
-        isLoading: isLoadingDomains || isLoadingAccount || isSending,
-        onClick: handleSubmit(handleConfirmClick),
-      }}
+      onDismiss={onClose}
       isLoading={isLoadingAccount}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
+      primaryButtonTestId="confirm-btn"
+      onPrimaryButtonClick={handleSubmit(handleConfirmClick)}
+      isPrimaryButtonDisabled={!isDirty || !isValid}
+      isPrimaryButtonLoading={isLoadingDomains || isLoadingAccount || isSending}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onSecondaryButtonClick={handleCancelClick}
+      secondaryButtonTestId="cancel-btn"
     >
       <form
         data-testid="redirection-form"
@@ -196,7 +196,7 @@ export const AddEditOrganizationModal = () => {
           {t('zimbra_redirections_add_header')}
         </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('common:form_mandatory_fields')}
+          {t(`${NAMESPACES.FORM}:mandatory_fields`)}
         </OdsText>
         <Controller
           control={control}

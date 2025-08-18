@@ -16,6 +16,7 @@ import {
 } from '@ovh-ux/manager-network-common';
 import { PageName } from '@/utils/tracking';
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -25,7 +26,7 @@ const sharedTrackingParams: TrackingClickParams = {
 export default function EditVrackServicesDisplayNameModal() {
   const { id } = useParams();
   const { addSuccessMessage } = React.useContext(MessagesContext);
-  const { t } = useTranslation('vrack-services');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
   const { trackClick, trackPage } = useOvhTracking();
   const navigate = useNavigate();
   const { data: vs } = useVrackService();

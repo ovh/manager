@@ -1,19 +1,20 @@
 import { PropsWithChildren } from 'react';
-import { ActionModalContent } from '@/pages/instances/action/modal/ActionModalContent.component';
+import { ActionModalContent } from '@/pages/instances/action/components/modal/ActionModalContent.component';
 import Modal, { TModalVariant } from '@/components/modal/Modal.component';
 import { Spinner } from '../spinner/Spinner.component';
 import { TSectionType } from '@/types/instance/action/action.type';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TInstanceActionModalViewModel } from '@/pages/instances/action/view-models/selectInstanceForActionModal';
 
 export type TActionModalProps = PropsWithChildren<{
   title: string;
   isPending: boolean;
   handleInstanceAction: () => void;
   onModalClose: () => void;
-  instance?: TInstanceDto;
+  instance: TInstanceActionModalViewModel;
   section: TSectionType;
   variant?: TModalVariant;
   isLoading: boolean;
+  dismissible?: boolean;
 }>;
 
 export const ActionModal = ({
@@ -26,6 +27,7 @@ export const ActionModal = ({
   section,
   variant,
   isLoading,
+  dismissible,
 }: TActionModalProps) => (
   <Modal
     title={title}
@@ -33,6 +35,7 @@ export const ActionModal = ({
     handleInstanceAction={handleInstanceAction}
     onModalClose={onModalClose}
     variant={variant}
+    dismissible={dismissible}
   >
     {isPending ? (
       <div className="pt-8">

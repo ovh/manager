@@ -53,7 +53,7 @@ export const GUIDE_LIST: {
     QC: '/csm/fr-ca-kms-usage?id=kb_article_view&sysparm_article=KB0065028',
     SG: '/csm/en-sg-kms-usage?id=kb_article_view&sysparm_article=KB0065033',
     US:
-      '/hc/en-us/articles/31481250033811-Getting-Started-with-OVHcloud-Key-Management-Service-KMS',
+      '/hc/en-us/articles/34887531180435-Using-OVHcloud-Key-Management-Service-KMS',
     WE: '/csm/en-kms-usage?id=kb_article_view&sysparm_article=KB0065023',
     WS: '/csm/es-kms-usage?id=kb_article_view&sysparm_article=KB0065031',
   },
@@ -72,7 +72,7 @@ export const GUIDE_LIST: {
     QC: '/csm/fr-ca-kms-kmip?id=kb_article_view&sysparm_article=KB0065022',
     SG: '/csm/en-sg-kms-kmip?id=kb_article_view&sysparm_article=KB0065018',
     US:
-      '/hc/en-us/articles/31481250033811-Getting-Started-with-OVHcloud-Key-Management-Service-KMS',
+      '/hc/en-us/articles/34925746801555-How-to-connect-a-compatible-product-using-KMIP-protocol',
     WE: '/csm/en-kms-kmip?id=kb_article_view&sysparm_article=KB0065015',
     WS: '/csm/es-kms-kmip?id=kb_article_view&sysparm_article=KB0065011',
   },

@@ -205,7 +205,7 @@
   "sidebar_veeam_backup": "Managed Veeam for VCD",
   "sidebar_all_veeam_backup": "Wszystkie usługi",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
-  "sidebar_vmware_vcd": "Managed VCD",
+  "sidebar_vmware_vcd": "Public VCF as a Service",
   "sidebar_cloud_changelog": "Cloud Changelog",
   "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog",
   "sidebar_roadmap_changelog": "Roadmap &amp; Changelog",
@@ -221,5 +221,8 @@
   "sidebar_skip_to_the_main_content": "Przejdź do głównej treści",
   "sidebar_public_networking": "Sieć publiczna",
   "sidebar_private_networking": "Sieć prywatna",
-  "sidebar_network_services": "Usługi sieciowe"
+  "sidebar_network_services": "Usługi sieciowe",
+  "sidebar_sap_features_hub": "SAP Features Hub",
+  "sidebar_alldom": "Pakiety Alldom",
+  "sidebar_alldom_list": "Moje pakiety Alldom"
 }

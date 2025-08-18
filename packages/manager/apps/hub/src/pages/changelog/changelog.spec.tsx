@@ -10,6 +10,19 @@ import Changelog from './Changelog';
 const trackClickMock = vi.fn();
 const trackPageMock = vi.fn();
 
+vi.mock(
+  '@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrids',
+  () => ({
+    default: () => <span>datagrid</span>,
+  }),
+);
+
+vi.mock('@/hooks/useHubNavigation/useHubNavigation', () => ({
+  useHubNavigation: vi.fn(() => ({
+    data: 'https://ovh.com/manager/#/hub',
+  })),
+}));
+
 const mocks: any = vi.hoisted(() => ({
   isAccountSidebarVisible: false,
   region: 'EU',
@@ -66,14 +79,14 @@ describe('Changelog.page', () => {
     trackClickMock.mockReset();
     const { getByTestId, findByTestId } = renderComponent();
 
-    const link = await findByTestId('changelog-cloud-link');
-    expect(getByTestId('changelog-cloud-link')).not.toBeNull();
+    const link = await findByTestId('changelog-public-cloud-link');
+    expect(getByTestId('changelog-public-cloud-link')).not.toBeNull();
 
     await act(() => fireEvent.click(link));
 
     expect(trackClickMock).toHaveBeenCalledWith({
       actionType: 'action',
-      actions: ['go-to-changelog-cloud-products'],
+      actions: ['go-to-request-new-feature-public-cloud-solutions'],
       buttonType: 'external-link',
       location: 'page',
     });

@@ -1,7 +1,14 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * @deprecated file will be removed in MRC v3, all code will be move in @ovh-ux/manager-module-common-api' or already moved
+ */
 import React from 'react';
 import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type UseTaskParams = {
   resourceUrl: string;
   apiVersion?: 'v2' | 'v6';
@@ -13,11 +20,17 @@ export type UseTaskParams = {
   refetchIntervalTime?: number;
 };
 
+/**
+ * @deprecated This function is deprecated and will be removed in MRC V3.
+ */
 export const getDefaultQueryKey = (taskId: number | string) => [
   'manage-task',
   taskId,
 ];
 
+/**
+ * @deprecated This hook is deprecated and will be removed in MRC V3.
+ */
 export const useTask = ({
   resourceUrl,
   apiVersion = 'v2',

@@ -8,7 +8,7 @@ export type IdentityObject = {
   entity: IdentityEntity;
   type: IdentityType;
   account: string;
-  id: string | null;
+  id: string | undefined;
   urn: string;
 };
 

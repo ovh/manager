@@ -5,5 +5,14 @@
   "vps_additional_disk_terminate_action_terminate_success": "Zlecenie dotyczące rezygnacji z dodatkowego dysku zostało przyjęte i wkrótce zostanie zrealizowane.",
   "vps_additional_disk_terminate_action_terminate_error": "Wystąpił błąd podczas rezygnowania z opcji.",
   "vps_additional_disk_terminate_action_terminate": "Zrezygnuj",
-  "vps_additional_disk_terminate_action_cancel": "Anuluj"
+  "vps_additional_disk_terminate_action_cancel": "Anuluj",
+  "vps_downgrade_option_title_automatedbackup": "Powrót do opcji Standard",
+  "vps_downgrade_option_info1_automatedbackup": "Powrót do opcji Standard spowoduje usunięcie starych kopii zapasowych podczas tworzenia kolejnego backupu.",
+  "vps_downgrade_option_info2_P1M": "miesiąc",
+  "vps_downgrade_option_info2_P1Y": "rok",
+  "vps_downgrade_option_info2_PXM": "{{amount}} m-ce/m-cy",
+  "vps_downgrade_option_info2_PXY": "{{amount}} lat",
+  "vps_downgrade_option_info2": "Miesięczna cena usługi będzie wynosiła <strong>{{price}} netto</strong>/{{duration}}.",
+  "vps_downgrade_option_order_success": "Aby sfinalizować zamówienie, postępuj zgodnie z instrukcjami zawartymi w nowo otwartej zakładce Jeśli nowa zakładka nie otwiera się, kliknij <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ten link</a>.",
+  "vps_downgrade_option_order_fail": "Wystąpił błąd podczas modyfikacji oferty. {{error}}"
 }

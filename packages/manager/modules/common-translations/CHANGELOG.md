@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.15.0...@ovh-ux/manager-common-translations@0.16.0) (2025-08-14)
+
+
+### Features
+
+* **commons-translations:** add region and datacenter translations ([6bc886b](https://github.com/ovh/manager/commit/6bc886b861e928b04707029239d6e7402c77312c)), closes [#MANAGER-18966](https://github.com/ovh/manager/issues/MANAGER-18966)
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.14.0...@ovh-ux/manager-common-translations@0.15.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4238] ([bf0f5fa](https://github.com/ovh/manager/commit/bf0f5fa9e57f4d6869ca5977c1c0501b2275871b))
+* **i18n:** add missing translations [CDS 4240] ([37d0868](https://github.com/ovh/manager/commit/37d08686e5ab54083f68e1040cf092fc057674ca))
+
+
+### Features
+
+* **common-translations:** add upload translations ([65a3cbc](https://github.com/ovh/manager/commit/65a3cbcbe1bdbdba673a9075721d67d5fc0c5285)), closes [#MANAGER-17458](https://github.com/ovh/manager/issues/MANAGER-17458)
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.13.0...@ovh-ux/manager-common-translations@0.14.0) (2025-08-01)
+
+
+### Bug Fixes
+
+* **common-translations:** add new service status ([99fa628](https://github.com/ovh/manager/commit/99fa628efa0f0e377b10763b19525d4f383f5fe7)), closes [#MANAGER-19222](https://github.com/ovh/manager/issues/MANAGER-19222)
+* **i18n:** add missing translations [CDS 4220] ([c7722dd](https://github.com/ovh/manager/commit/c7722dd2bca9d9de9ff2be49cb26c267d2c3fa5d))
+* **i18n:** add missing translations [CDS 4230] ([fa6975a](https://github.com/ovh/manager/commit/fa6975a54d4228b23f30689966d8632fd0f4a19e))
+
+
+### Features
+
+* add common translations for web-office ([8e23f50](https://github.com/ovh/manager/commit/8e23f5032ba00480cf2aeb15253c37e6fc8923e5)), closes [#MANAGER-18790](https://github.com/ovh/manager/issues/MANAGER-18790)
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.12.0...@ovh-ux/manager-common-translations@0.13.0) (2025-07-24)
+
+
+### Features
+
+* **veeam:** add disabled status in translation commun ([5394a5c](https://github.com/ovh/manager/commit/5394a5cbf713a9544b61d128f074fc9783a84a8e)), closes [#MANAGER-17139](https://github.com/ovh/manager/issues/MANAGER-17139)
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.11.0...@ovh-ux/manager-common-translations@0.12.0) (2025-07-24)
+
+
+### Features
+
+* **common-translations:** add upload translations ([ddaad9b](https://github.com/ovh/manager/commit/ddaad9baa821935298eec60e13f2a8c5f4af8877)), closes [#MANAGER-17458](https://github.com/ovh/manager/issues/MANAGER-17458)
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.10.0...@ovh-ux/manager-common-translations@0.11.0) (2025-07-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4118] ([58e0f54](https://github.com/ovh/manager/commit/58e0f54a23fffdab041930dfa0b39171730dd403))
+* **i18n:** add missing translations [CDS 4134] ([f132b93](https://github.com/ovh/manager/commit/f132b938ba372b9e3fb4463e12c4ca655de6397e))
+
+
+### Features
+
+* **common-translations:** add country name translations ([e72a2f7](https://github.com/ovh/manager/commit/e72a2f72ebf85eed8499ee35b242c8b42b9f90a9)), closes [#MANAGER-18570](https://github.com/ovh/manager/issues/MANAGER-18570)
+* **common-translations:** add languages to common translations ([e29923c](https://github.com/ovh/manager/commit/e29923c776a86b28a1c035ca30d7f7b5f9519369)), closes [#MANAGER-18570](https://github.com/ovh/manager/issues/MANAGER-18570)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.9.1...@ovh-ux/manager-common-translations@0.10.0) (2025-07-10)
 
 

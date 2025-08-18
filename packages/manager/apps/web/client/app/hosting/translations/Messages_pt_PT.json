@@ -12,5 +12,12 @@
   "hostings_order_hosting": "Encomendar um alojamento",
   "hostings_order_sql": "Encomendar uma base de dados",
   "hostings_guides_title": "Manuais",
-  "hosting_guides_general_information": "Informações gerais"
+  "hosting_guides_general_information": "Informações gerais",
+  "hosting_datagrid_description": "Crie o seu projeto web em apenas alguns minutos. Publique o seu blogue, o seu website profissional ou a sua loja online com os nossos alojamentos escaláveis adaptados a todos os seus projetos.",
+  "hosting_databgrid_column_display_name": "Nome personalizado do serviço",
+  "hosting_databgrid_column_offer": "Plano",
+  "hosting_databgrid_column_state": "Estado",
+  "hosting_databgrid_column_resource_type": "Tipo de recurso",
+  "hosting_databgrid_column_datacenter": "Localização",
+  "hosting_databgrid_column_service_name": "Nome do serviço"
 }

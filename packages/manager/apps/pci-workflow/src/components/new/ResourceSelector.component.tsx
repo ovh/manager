@@ -1,14 +1,18 @@
-import {
-  Datagrid,
-  DataGridTextCell,
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDataGrid,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -18,21 +22,22 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  DataGridTextCell,
+  Datagrid,
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  useDataGrid,
+} from '@ovh-ux/manager-react-components';
+
 import { usePaginatedInstances } from '@/api/hooks/useInstances';
-import StatusComponent from '@/components/new/Status.component';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
-import { TWorkflowInstance } from '@/types';
+import StatusComponent from '@/components/new/Status.component';
 import { useRegionsWithAutomaticBackup } from '@/hooks/useRegionsWithAutomaticBackup';
+import { TWorkflowInstance } from '@/types';
 
 const useDatagridColumn = (
   selectedInstance: TWorkflowInstance,
@@ -46,14 +51,10 @@ const useDatagridColumn = (
     {
       id: 'actions',
       cell: (instance: TWorkflowInstance) => {
-        const isRegionSupportingAutomaticBackup = regions.includes(
-          instance.region,
-        );
+        const isRegionSupportingAutomaticBackup = regions.includes(instance.region);
         return (
           <div className="text-center">
-            <NotSupportedTooltipComponent
-              supported={isRegionSupportingAutomaticBackup}
-            >
+            <NotSupportedTooltipComponent supported={isRegionSupportingAutomaticBackup}>
               <OsdsRadioButton
                 checked={selectedInstance?.id === instance?.id || undefined}
                 color={ODS_THEME_COLOR_INTENT.primary}
@@ -76,9 +77,7 @@ const useDatagridColumn = (
     {
       id: 'name',
       cell: (instance: TWorkflowInstance) => (
-        <NotSupportedTooltipComponent
-          supported={regions.includes(instance.region)}
-        >
+        <NotSupportedTooltipComponent supported={regions.includes(instance.region)}>
           <DataGridTextCell>{instance.name}</DataGridTextCell>
         </NotSupportedTooltipComponent>
       ),
@@ -119,9 +118,7 @@ export type ResourceSelectorComponentProps = {
 export default function ResourceSelectorComponent({
   onSelectInstance,
 }: Readonly<ResourceSelectorComponentProps>) {
-  const [selectedInstance, setSelectedInstance] = useState<TWorkflowInstance>(
-    null,
-  );
+  const [selectedInstance, setSelectedInstance] = useState<TWorkflowInstance>(null);
   const { t } = useTranslation('new');
   const { t: tFilter } = useTranslation('filter');
   const { projectId } = useParams();
@@ -135,7 +132,7 @@ export default function ResourceSelectorComponent({
     },
     filters,
   );
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(undefined);
   const [searchField, setSearchField] = useState('');
   const columns = useDatagridColumn(selectedInstance, (instance) => {
     setSelectedInstance(instance);
@@ -183,16 +180,12 @@ export default function ResourceSelectorComponent({
                   columns={[
                     {
                       id: 'name',
-                      label: t(
-                        'pci_projects_project_workflow_instance_name_label',
-                      ),
+                      label: t('pci_projects_project_workflow_instance_name_label'),
                       comparators: FilterCategories.String,
                     },
                     {
                       id: 'flavorName',
-                      label: t(
-                        'pci_projects_project_workflow_instance_flavor_label',
-                      ),
+                      label: t('pci_projects_project_workflow_instance_flavor_label'),
                       comparators: FilterCategories.String,
                     },
                   ]}
@@ -205,7 +198,7 @@ export default function ResourceSelectorComponent({
                       ...addedFilter,
                       label: column.label,
                     });
-                    filterPopoverRef.current?.closeSurface();
+                    void filterPopoverRef.current?.closeSurface();
                   }}
                 />
               </OsdsPopoverContent>

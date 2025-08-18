@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.3...@ovh-ux/manager-bm-server-components@2.13.4) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.2...@ovh-ux/manager-bm-server-components@2.13.3) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.1...@ovh-ux/manager-bm-server-components@2.13.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **dedicated:** clarify partition size ([30cdd5b](https://github.com/ovh/manager/commit/30cdd5b5a08a4e3cca6f1d2aaa2dd6955ad8c1c4)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+* **dedicated:** re-enable existing tooltips ([3158e65](https://github.com/ovh/manager/commit/3158e6554ccd5daa0a6e9aa3e055bfa255e5b210)), closes [#MANAGER-18927](https://github.com/ovh/manager/issues/MANAGER-18927)
+
+
+
+
+
 ## [2.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.0...@ovh-ux/manager-bm-server-components@2.13.1) (2025-07-08)
 
 

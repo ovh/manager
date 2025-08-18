@@ -13,7 +13,7 @@
   "domain_operations_table_header_doneDate": "Data zakończenia",
   "domain_operations_table_header_status": "Status",
   "domain_operations_table_header_domain": "Domena",
-  "domain_operations_dashboard_title": "Operacje na moich domenach",
+  "domain_operations_dashboard_title": "Operacje w toku",
   "domain_operations_dashboard_info": "Poniżej znajdziesz listę wszystkich operacji w toku. W przypadku niektórych operacji może być konieczne podjęcie określonych działań.",
   "domain_operations_tab_popover_update": "Zmień operację",
   "domain_operations_tab_popover_progress": "Śledź transfer",
@@ -144,5 +144,9 @@
   "domain_operations_upload_file_template_1": "Tylko następujące pliki ",
   "domain_operations_upload_file_template_link": "szablon dokumentu",
   "domain_operations_upload_file_template_2": " zostaną zaakceptowane.",
-  "domain_operations_update_dns_click": "Kliknij tutaj, aby skorygować konfigurację serwerów DNS"
+  "domain_operations_update_dns_click": "Kliknij tutaj, aby skorygować konfigurację serwerów DNS",
+  "domain_operations_update_field_bad_value": "Wartość wprowadzona w polu {{t0}} jest nieprawidłowa",
+  "domain_operations_table_header_allDom": "Alldom",
+  "domain_operations_table_header_name": "Nazwa",
+  "domain_operations_nicOperation_AlldomDelete": "Usunięcie usługi Alldom"
 }

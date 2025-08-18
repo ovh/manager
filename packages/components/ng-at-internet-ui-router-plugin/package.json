@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-at-internet-ui-router-plugin",
-  "version": "3.5.3",
+  "version": "3.5.4",
   "description": "Plugin for at-internet when using UI-Router",
   "keywords": [
     "angularjs",
@@ -33,7 +33,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3"
+    "@ovh-ux/component-rollup-config": "^13.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^5.8.1",

@@ -1,8 +1,13 @@
 import {
   getVcdDatacentreComputeRoute,
   getVdcComputeQueryKey,
+  isStatusTerminated,
+  useVcdDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import {
+  DatagridColumn,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,6 +27,7 @@ import { subRoutes, urls } from '@/routes/routes.constant';
 import { FEATURES } from '@/utils/features.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 export default function ComputeListingPage() {
   const { id, vdcId } = useParams();
@@ -32,6 +38,7 @@ export default function ComputeListingPage() {
     FEATURES.COMPUTE_SPECIAL_OFFER_BANNER,
   ]);
   const { trackClick } = useOvhTracking();
+  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
 
   const columns = [
     {
@@ -69,7 +76,7 @@ export default function ComputeListingPage() {
       cell: ActionDeleteCell,
       isSortable: false,
     },
-  ];
+  ] as DatagridColumn<unknown>[];
 
   return (
     <>
@@ -80,7 +87,11 @@ export default function ComputeListingPage() {
             data-testid={TEST_IDS.computeSpecialOfferBanner}
             isDismissible={false}
           >
-            <OdsText>{t('managed_vcd_vdc_compute_special_offer')}</OdsText>
+            <OdsText>
+              {t('managed_vcd_vdc_compute_special_offer', {
+                productName: VMWARE_CLOUD_DIRECTOR_LABEL,
+              })}
+            </OdsText>
           </OdsMessage>
         </div>
       )}
@@ -99,6 +110,7 @@ export default function ComputeListingPage() {
           <OdsButton
             label={t('managed_vcd_vdc_compute_order_cta')}
             variant="outline"
+            isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
             onClick={() => {
               trackClick(TRACKING.compute.addVirtualHost);
               navigate(subRoutes.order);

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useHref, useNavigate, useParams } from 'react-router-dom';
+import { useHref, useNavigate } from 'react-router-dom';
 import { Translation, useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -8,6 +8,7 @@ import {
   TProject,
   isDiscoveryProject,
   useProject,
+  useParam as useSafeParams,
 } from '@ovh-ux/manager-pci-common';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
@@ -25,13 +26,35 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useClusterCreationStepper } from './useCusterCreationStepper';
+import {
+  TClusterCreationForm,
+  TNonNullableForm,
+  useClusterCreationStepper,
+} from './useCusterCreationStepper';
 
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { PAGE_PREFIX } from '@/tracking.constants';
 import stepsConfig from './steps/stepsConfig';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode } from '@/types';
+
+const formIsNonNullable = (
+  form: TClusterCreationForm,
+): form is TNonNullableForm => {
+  if (!form.region?.type) return false;
+
+  const regionType = form.region.type as DeploymentMode;
+
+  // TODO:  When 3AZ will be available, update condition to make form.plan mandatory to create a cluster & remove "free" fallback value in createCluster call
+  return (
+    !!form.network &&
+    ((isMultiDeploymentZones(regionType) && !!form.network.privateNetwork) ||
+      isMonoDeploymentZone(regionType)) &&
+    !!form.updatePolicy
+  );
+};
 
 export default function NewPage() {
   const { t } = useTranslation(['add', 'listing', 'stepper']);
@@ -39,7 +62,7 @@ export default function NewPage() {
   const is3AZAvailable = use3AZPlanAvailable();
   const has3AZ = contains3AZ && is3AZAvailable;
 
-  const { projectId } = useParams();
+  const { projectId } = useSafeParams('projectId');
   const { data: project } = useProject();
   const { tracking } = useContext(ShellContext).shell;
   const navigate = useNavigate();
@@ -53,7 +76,7 @@ export default function NewPage() {
     createCluster,
     isPending: isCreationPending,
   } = useCreateKubernetesCluster({
-    projectId: project?.project_id ?? '',
+    projectId,
     onSuccess: () => {
       navigate('..');
       addSuccess(
@@ -113,33 +136,32 @@ export default function NewPage() {
     },
   });
 
-  const nodePoolEnabled = !!stepper.form.nodePools;
-
   const createNewCluster = () => {
     tracking.trackClick({
       name: `${PAGE_PREFIX}::kubernetes::add::confirm`,
     });
-    createCluster({
-      name: stepper.form.clusterName,
-      region: stepper.form.region?.name,
-      version: stepper.form.version,
-      updatePolicy: stepper.form.updatePolicy,
-      ...(nodePoolEnabled && {
-        nodepools: stepper.form.nodePools.map(
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
-        ),
-      }),
-      privateNetworkId: stepper.form.network?.privateNetwork?.id || undefined,
-      loadBalancersSubnetId:
-        stepper.form.network?.loadBalancersSubnet?.id || undefined,
-      nodesSubnetId: stepper.form.network?.subnet?.id || undefined,
-      privateNetworkConfiguration: {
-        defaultVrackGateway: stepper.form.network?.gateway?.ip || '',
-        privateNetworkRoutingAsDefault:
-          stepper.form.network?.gateway?.isEnabled,
-      },
-    });
+
+    if (formIsNonNullable(stepper.form))
+      createCluster({
+        name: stepper.form.clusterName,
+        plan: stepper.form.plan ?? 'free',
+        region: stepper.form.region.name,
+        version: stepper.form.version,
+        updatePolicy: stepper.form.updatePolicy,
+        ...(stepper.form.nodePools && {
+          nodepools: stepper.form.nodePools.map(
+            ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
+          ),
+        }),
+        privateNetworkId: stepper.form.network.privateNetwork?.id,
+        loadBalancersSubnetId: stepper.form.network.loadBalancersSubnet?.id,
+        nodesSubnetId: stepper.form.network.subnet?.id,
+        privateNetworkConfiguration: {
+          defaultVrackGateway: stepper.form.network.gateway?.ip || '',
+          privateNetworkRoutingAsDefault:
+            stepper.form.network.gateway?.isEnabled,
+        },
+      });
   };
 
   const allSteps = stepsConfig({
@@ -173,10 +195,12 @@ export default function NewPage() {
         <Headers title={t('kubernetes_add')} />
       </div>
       {/**  need to hide the global notif if opened * */}
-      {!stepper.location.step.isOpen && <Notifications />}
+      {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && (
+        <Notifications />
+      )}
 
       <div className="mb-5 sticky top-0 z-50">
-        <PciDiscoveryBanner project={project} />
+        {project && <PciDiscoveryBanner project={project} />}
       </div>
 
       <div className="mt-8">

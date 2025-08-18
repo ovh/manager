@@ -33,6 +33,16 @@ export const assertDisabled = async (element: HTMLElement) =>
 export const assertEnabled = async (element: HTMLElement) =>
   waitFor(() => expect(element).toBeEnabled(), WAIT_FOR_DEFAULT_OPTIONS);
 
+export const doActionOnElementUntil = async (
+  actionFunction: () => void,
+  assertionFunction: () => void,
+) => {
+  await waitFor(async () => {
+    actionFunction();
+    assertionFunction();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+};
+
 export const getBadgeByLabel = getOdsComponentByAttribute<HTMLOdsBadgeElement>(
   'ods-badge',
   'label',

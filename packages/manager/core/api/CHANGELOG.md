@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.17.0...@ovh-ux/manager-core-api@0.17.1) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-api
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.16.0...@ovh-ux/manager-core-api@0.17.0) (2025-08-05)
+
+
+### Features
+
+* **core:** add units test for filters core api ([ab9437d](https://github.com/ovh/manager/commit/ab9437dcaef498672422fd423914745f0e829221)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+* **core:** refactor and tests iceberg ([f72b86a](https://github.com/ovh/manager/commit/f72b86a00cd6f805b50893dd1bd8bc3c4aed4b9e)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.15.0...@ovh-ux/manager-core-api@0.16.0) (2025-08-01)
+
+
+### Bug Fixes
+
+* **core:** update iceberg filter headers ([c40e0de](https://github.com/ovh/manager/commit/c40e0de6e9742f0898b880ea7274c1bf58e1e6d2)), closes [#MANAGER-18623](https://github.com/ovh/manager/issues/MANAGER-18623)
+
+
+### Features
+
+* **core:** add filter by tag feature to iam route ([568acf6](https://github.com/ovh/manager/commit/568acf6fe96d03336e22c2eecd3923345e14fe4f)), closes [#MANAGER-15795](https://github.com/ovh/manager/issues/MANAGER-15795)
+
+
+
+
+
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.14.0...@ovh-ux/manager-core-api@0.15.0) (2025-07-17)
+
+
+### Features
+
+* **core:** iceberg v2 disabled pagination mode ([6cf5ad4](https://github.com/ovh/manager/commit/6cf5ad439854ff114c09e93fa797a63c4839bc52)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+* **manager-react-components:** allowe disabled cache for useiceberg v2 ([6d5815c](https://github.com/ovh/manager/commit/6d5815c1b0c7d26ab9cf89682ceca6b529f46234)), closes [#MANAGER-19066](https://github.com/ovh/manager/issues/MANAGER-19066)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.13.0...@ovh-ux/manager-core-api@0.14.0) (2025-07-04)
 
 

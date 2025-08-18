@@ -84,7 +84,7 @@
             >
                 <oui-action-menu data-compact>
                     <oui-action-menu-item
-                        disabled="!$row.canConfirm"
+                        data-disabled="!$row.canConfirm"
                         data-on-click="$ctrl.trackAction('datagrid::button::confirm::delete_account')"
                         data-href="{{ $ctrl.$state.href('account.user.gdpr.confirm', {
                         publicId: $row.publicId,
@@ -96,7 +96,7 @@
                     </oui-action-menu-item>
 
                     <oui-action-menu-item
-                        disabled="!$row.canResendCode"
+                        data-disabled="!$row.canResendCode"
                         data-on-click="$ctrl.sendErasureRequestConfirmationEmail($row)"
                     >
                         <span
@@ -107,7 +107,7 @@
                     <oui-action-menu-divider></oui-action-menu-divider>
 
                     <oui-action-menu-item
-                        disabled="!$row.canCancel"
+                        data-disabled="!$row.canCancel"
                         data-on-click="$ctrl.cancelRequestErasure($row)"
                     >
                         <span

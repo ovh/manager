@@ -1,0 +1,22 @@
+{
+  "dashboard_installation_title": "Procedura guidata di preinstallazione SAP",
+  "dashboard_installation_description": "Report dell’installazione",
+  "dashboard_installation_general_informations": "Informazioni generali",
+  "dashboard_installation_item_start_date": "Data di avvio",
+  "dashboard_installation_item_end_date": "Data di fine",
+  "dashboard_installation_item_application_version": "Versione dell’applicazione",
+  "dashboard_installation_item_application_type": "Tipo di applicazione",
+  "dashboard_installation_item_deployment_type": "Tipo di deploy",
+  "dashboard_installation_progress_step_initialisation": "Inizializzazione delle risorse temporanee nella tua infrastruttura",
+  "dashboard_installation_progress_step_create_virtuals_machines": "Creazione delle macchine virtuali",
+  "dashboard_installation_progress_step_sap_hana_install": "Installazione di SAP HANA e configurazione delle opzioni richieste",
+  "dashboard_installation_progress_step_sap_install": "Installazione del sistema SAP e configurazione delle opzioni richieste",
+  "dashboard_installation_progress_step_clean_resources": "Eliminazione delle risorse temporanee nella tua infrastruttura",
+  "dashboard_installation_progress_step_success": "Step completato correttamente",
+  "dashboard_installation_progress_step_failure": "Step non riuscito",
+  "dashboard_installation_progress_step_pending": "Step in esecuzione",
+  "dashboard_installation_progress_step_waiting": "Step in attesa",
+  "dashboard_installation_progress_status_label": "Stato dell'installazione",
+  "dashboard_installation_error_message": "Errore nello step \"{{stepName}}\". Maggiori informazioni qui sotto.",
+  "dashboard_installation_go_back_to_list": "Ritorna alla lista delle preinstallazioni SAP"
+}

@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.10](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.9...@ovh-ux/logs-to-customer@1.5.10) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.9](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.8...@ovh-ux/logs-to-customer@1.5.9) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.8](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.7...@ovh-ux/logs-to-customer@1.5.8) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.7](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.6...@ovh-ux/logs-to-customer@1.5.7) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.6](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.5...@ovh-ux/logs-to-customer@1.5.6) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.4...@ovh-ux/logs-to-customer@1.5.5) (2025-07-24)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.4](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.3...@ovh-ux/logs-to-customer@1.5.4) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.2...@ovh-ux/logs-to-customer@1.5.3) (2025-07-21)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.1...@ovh-ux/logs-to-customer@1.5.2) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
 ## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.0...@ovh-ux/logs-to-customer@1.5.1) (2025-07-10)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

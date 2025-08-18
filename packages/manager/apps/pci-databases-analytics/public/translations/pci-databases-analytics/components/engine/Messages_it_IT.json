@@ -10,5 +10,7 @@
   "versionTag-soonDeprecated": "Presto obsoleto",
   "selectAVersion": "Seleziona una versione",
   "noVersionFound": "Nessuna versione trovata",
-  "description-valkey": "Sistema di storage di dati chiave-valore in memoria"
+  "description-valkey": "Sistema di storage di dati chiave-valore in memoria",
+  "versionTag-endOfSale": "Fine della commercializzazione",
+  "endOfSale": "Fine della commercializzazione prevista il {{ date }}"
 }

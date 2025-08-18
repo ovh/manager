@@ -4,6 +4,8 @@ import listing from '../../public/translations/listing/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 import deleteVeeam from '../../public/translations/delete-veeam/Messages_fr_FR.json';
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
+import activateOffer from '../../public/translations/activate-offer/Messages_fr_FR.json';
+
 import { appName } from '../veeam-backup.config';
 
 const error = {
@@ -24,6 +26,7 @@ export const translations = {
   onboarding,
   'delete-veeam': deleteVeeam,
   error,
+  activateOffer,
 };
 
 export const labels = {
@@ -34,4 +37,5 @@ export const labels = {
   deleteVeeam,
   listing,
   error,
+  activateOffer,
 };

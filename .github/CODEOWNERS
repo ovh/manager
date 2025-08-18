@@ -49,6 +49,7 @@
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enabler-all
+/packages/manager/apps/sap-features-hub @ovh/dev-manager-hpc-all
 /packages/manager/apps/sharepoint @ovh/dev-manager-web-all
 /packages/manager/apps/sign-up @ovh/dev-manager-gcj-all
 /packages/manager/apps/sms @ovh/dev-manager-web-all
@@ -70,6 +71,7 @@
 /packages/manager/apps/web-hosting @ovh/dev-manager-web-all
 /packages/manager/apps/web-office @ovh/dev-manager-web-all
 /packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
+/packages/manager/apps/web-domains @ovh/dev-manager-web-domain
 /packages/manager/apps/zimbra @ovh/dev-manager-web-all
 
 # Core
@@ -79,6 +81,7 @@
 /packages/manager/modules @ovh/dev-manager-control-tower
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
 /packages/manager/modules/bm-server-components @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
 /packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-all

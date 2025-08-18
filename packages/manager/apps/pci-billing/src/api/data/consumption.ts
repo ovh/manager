@@ -58,7 +58,6 @@ export type TCurrentUsage = {
       region: string;
       totalPrice: number;
     }[];
-    instanceOption: [];
     snapshot: {
       instance: {
         quantity: TQuantity;
@@ -121,7 +120,27 @@ export type TCurrentUsage = {
       region: string;
       totalPrice: number;
     }[];
-    instanceOption: [];
+    savingsPlan: {
+      flavor: string;
+      details: [
+        {
+          id: string;
+          size: string;
+          totalPrice: {
+            currencyCode: string;
+            priceInUcents: number;
+            text: string;
+            value: number;
+          };
+        },
+      ];
+      totalPrice: {
+        currencyCode: string;
+        priceInUcents: number;
+        text: string;
+        value: number;
+      };
+    }[];
   };
   period: TPeriod;
   resourcesUsage: {

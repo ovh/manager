@@ -3,5 +3,22 @@
   "unsubscribed": "Not subscribed",
   "subscribed": "Subscribed",
   "to_activate": "Enabling required",
-  "activation_in_progress": "Enabling..."
+  "activation_in_progress": "Enabling...",
+  "disabled": "Disabled",
+  "ok": "Active",
+  "autorenewInProgress": "Renewal in progress",
+  "expired": "Cancel",
+  "inCreation": "Creating",
+  "inMaintenance": "Under maintenance",
+  "pendingDebt": "Bill to pay",
+  "deleting": "Deleting",
+  "suspended": "Suspended",
+  "suspending": "Suspending",
+  "errorMessage": "Your request could not be completed. {{ error }}",
+  "pay_as_you_go": "Pay-per-use",
+  "prepaid": "Pre-paid",
+  "creating": "Creating",
+  "updating": "Updating",
+  "unconfigured": "Not configured",
+  "unPaid": "Unpaid bill"
 }

@@ -5,5 +5,6 @@
   "cloud_connect_service_keys": "Chaves de serviço",
   "cloud_connect_tasks": "Tarefas",
   "cloud_connect_statistics": "Estatísticas",
-  "cloud_connect_diagnostics": "Diagnósticos"
+  "cloud_connect_diagnostics": "Diagnósticos",
+  "cloud_connect_logs": "Logs"
 }

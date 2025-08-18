@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.5.1...@ovh-ux/manager-pci-dataplatform-app@1.5.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
+## [1.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.5.0...@ovh-ux/manager-pci-dataplatform-app@1.5.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.4.6...@ovh-ux/manager-pci-dataplatform-app@1.5.0) (2025-08-05)
+
+
+### Features
+
+* **pci-dataplatform:** add roadmap and changelog button ([d1451b6](https://github.com/ovh/manager/commit/d1451b6d25ea8daf84c1de434279b7028fa0db12)), closes [#DATATR-2406](https://github.com/ovh/manager/issues/DATATR-2406)
+
+
+
+
+
+## [1.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.4.5...@ovh-ux/manager-pci-dataplatform-app@1.4.6) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
+## [1.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.4.4...@ovh-ux/manager-pci-dataplatform-app@1.4.5) (2025-07-22)
+
+
+### Bug Fixes
+
+* **pci-dataplatform:** activate button is not working ([9c0905c](https://github.com/ovh/manager/commit/9c0905cf2dad28bbe338f0cc05039bbad31b05ce)), closes [#DATATR-2378](https://github.com/ovh/manager/issues/DATATR-2378)
+
+
+
+
+
+## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.4.3...@ovh-ux/manager-pci-dataplatform-app@1.4.4) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
 ## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.4.2...@ovh-ux/manager-pci-dataplatform-app@1.4.3) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

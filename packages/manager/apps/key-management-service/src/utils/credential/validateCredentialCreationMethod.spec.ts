@@ -19,7 +19,7 @@ describe('validateCredentialCreationMethod', () => {
   });
 
   it('should return undefined error if csr is null', () => {
-    const nullCsr: string = null;
+    const nullCsr: string | null = null;
     expect(validateCredentialCreationMethod(nullCsr)).toBeUndefined();
   });
 

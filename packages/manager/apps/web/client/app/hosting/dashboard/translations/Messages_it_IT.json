@@ -343,7 +343,7 @@
   "hosting_tab_DOMAINS_multisite_generate_ssl_start": "Rigenerazione del certificato SSL in corso...",
   "hosting_tab_DOMAINS_multisite_generate_ssl_done": "Certificato SSL generato correttamente",
   "hosting_tab_DOMAINS_multisite_generate_ssl_error": "Si è verificato un errore durante la generazione del certificato SSL",
-  "hosting_tab_DOMAINS_configuration_attachDomain_title_button": "Aggiungi un dominio o un sottodominio",
+  "hosting_tab_DOMAINS_configuration_attachDomain_title_button": "Aggiungere un dominio o sottodominio",
   "hosting_ssl_regenerate_title_button": "Rigenera il certificato SSL",
   "hosting_ssl_regenerate_info": "Avviando la rigenerazione del tuo certificato SSL, le modifiche relative all'attivazione e alla disattivazione dell'SSL sui tuoi multisiti vengono applicate al termine di questa operazione.",
   "hosting_ssl_regenerate_info_warning": "Se hai aggiunto degli hosting multisito da meno di 2 ore, è possibile che non siano inclusi nel tuo certificato SSL.",
@@ -1401,5 +1401,9 @@
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
   "hosting_tab_STATISTICS_type_allowed": "Richieste autorizzate",
   "hosting_tab_STATISTICS_type_denied": "Richieste rifiutate",
-  "hosting_tab_SSL": "Certificati SSL"
+  "hosting_tab_SSL": "Certificati SSL",
+  "hosting_tab_FTP_configuration_explorer_info": "L'accesso tramite il client FTP web (Net2FTP) non è più disponibile. Utilizza un client FTP come <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\">FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  e <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  per accedere al tuo hosting.",
+  "hosting_dashboard_service_cluster": "Cluster",
+  "hosting_dashboard_service_cluster_helper": "L’identificativo del tuo cluster è soggetto a modifiche",
+  "hosting_dashboard_service_filer_helper": "L'identificativo del tuo filer è soggetto a modifiche"
 }

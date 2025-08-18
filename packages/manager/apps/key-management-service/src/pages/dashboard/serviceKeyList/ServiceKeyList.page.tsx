@@ -1,5 +1,10 @@
-import React, { useContext } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import {
+  Outlet,
+  useNavigate,
+  useParams,
+  useOutletContext,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
@@ -30,17 +35,41 @@ import {
 } from '@/components/Listing/ListingCells';
 import { useOkmsServiceKeys } from '@/data/hooks/useOkmsServiceKeys';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-import { OkmsContext } from '..';
 import Loading from '@/components/Loading/Loading';
 import { getOkmsServiceKeyResourceListQueryKey } from '@/data/api/okmsServiceKey';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
+import { KmsDashboardOutletContext } from '@/pages/dashboard/KmsDashboard.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 
 export default function Keys() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+
+  const { sorting, setSorting } = useDatagridSearchParams();
+  const { okmsId } = useParams() as { okmsId: string };
+  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
+    sorting,
+    okmsId,
+  });
+  const { okms } = useOutletContext<KmsDashboardOutletContext>();
+
+  if (isLoading) return <Loading />;
+
+  if (error)
+    return (
+      <ErrorBanner
+        error={error}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
+          })
+        }
+      />
+    );
 
   const columns = [
     {
@@ -70,34 +99,12 @@ export default function Keys() {
     },
     {
       id: 'action',
-      cell: DatagridServiceKeyActionMenu,
+      cell: (serviceKey: OkmsServiceKey) =>
+        DatagridServiceKeyActionMenu(serviceKey, okms),
       isSortable: false,
       label: '',
     },
   ];
-
-  const { sorting, setSorting } = useDatagridSearchParams();
-  const okms = useContext(OkmsContext);
-  const { okmsId } = useParams();
-  const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({
-    sorting,
-    okmsId,
-  });
-
-  if (isLoading) return <Loading />;
-
-  if (error)
-    return (
-      <ErrorBanner
-        error={error}
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: getOkmsServiceKeyResourceListQueryKey(okmsId),
-          })
-        }
-      />
-    );
 
   return (
     <div className="flex flex-col gap-6">

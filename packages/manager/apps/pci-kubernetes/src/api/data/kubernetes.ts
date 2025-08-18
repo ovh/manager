@@ -1,5 +1,10 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import { TKube, TNetworkConfiguration, TOidcProvider } from '@/types';
+import {
+  TClusterPlan,
+  TKube,
+  TNetworkConfiguration,
+  TOidcProvider,
+} from '@/types';
 
 export const getKubernetesCluster = async (
   projectId: string,
@@ -19,36 +24,36 @@ export const getAllKube = async (projectId: string): Promise<TKube[]> => {
   return data;
 };
 
-export interface NodePool {
+export type NodePool = {
   name: string;
   antiAffinity: boolean;
   autoscale: boolean;
-  availabilityZones: string[];
+  availabilityZones?: string[];
   desiredNodes: number;
-  minNodes: number;
-  localisation: string; // will change with 3AZ
+  minNodes?: number;
+  localisation: string | null;
   flavorName: string;
-  maxNodes: number;
+  maxNodes?: number;
   monthlyBilled: boolean;
-}
+};
 
 export type NodePoolPrice = NodePool & { monthlyPrice: number };
 
-export interface KubeClusterCreationParams {
+export type KubeClusterCreationParams = {
   name: string;
   region: string;
+  plan: TClusterPlan;
   version: string;
   updatePolicy: string;
   nodepool?: NodePool[];
-  privateNetworkId: string;
+  privateNetworkId?: string;
   nodesSubnetId?: string;
   loadBalancersSubnetId?: string;
-  availabilityZones?: string[];
   privateNetworkConfiguration: {
     defaultVrackGateway?: string;
     privateNetworkRoutingAsDefault?: boolean;
   };
-}
+};
 
 export const createKubernetesCluster = async (
   projectId: string,

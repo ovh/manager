@@ -1,15 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SetupServer } from 'msw/lib/node';
+import { SetupServer } from 'msw/node';
 import { FC, PropsWithChildren } from 'react';
-import { describe, test, vi } from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { isAxiosError } from 'axios';
 import { updateInstanceFromCache, useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
-import { TInstanceDto } from '@/types/instance/api.type';
+import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
-import { TInstance } from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 // initializers
 const initQueryClient = () => {
@@ -30,15 +30,15 @@ const initQueryClient = () => {
 // test data
 type Data = {
   projectId: string;
-  instance: TInstanceDto | null;
+  instance: TAggregatedInstanceDto | null;
   type: TMutationFnType | null;
-  queryPayload?: TInstanceDto[];
+  queryPayload?: TAggregatedInstanceDto[];
   mutationPayload?: null;
 };
 
 const fakeProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
 
-const fakeInstancesDto: TInstanceDto[] = [
+const fakeInstancesDto: TAggregatedInstanceDto[] = [
   {
     id: `fake-id-1`,
     name: `fake-instance-name-1`,
@@ -83,7 +83,7 @@ let server: SetupServer;
 // mocks
 const handleError = vi.fn();
 const handleSuccess = vi.fn(
-  (instance: TInstanceDto, queryClient: QueryClient) => () =>
+  (instance: TAggregatedInstanceDto, queryClient: QueryClient) => () =>
     updateInstanceFromCache(queryClient, {
       projectId: fakeProjectId,
       instance: { ...instance, pendingTask: true },
@@ -138,7 +138,10 @@ describe('Considering the useInstanceAction hook', () => {
         const { result: useInstanceActionResult } = renderHook(
           () =>
             useBaseInstanceAction(type, projectId, {
-              onSuccess: handleSuccess(instance as TInstanceDto, queryClient),
+              onSuccess: handleSuccess(
+                instance as TAggregatedInstanceDto,
+                queryClient,
+              ),
               onError: handleError,
             }),
           {
@@ -152,7 +155,7 @@ describe('Considering the useInstanceAction hook', () => {
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
         act(() =>
           useInstanceActionResult.current.mutationHandler(
-            instance as TInstanceDto,
+            instance as TAggregatedInstanceDto,
           ),
         );
 
@@ -177,7 +180,9 @@ describe('Considering the useInstanceAction hook', () => {
           );
 
           const cacheInstance = (useInstancesResult.current
-            .data as TInstance[]).find((elt) => elt.id === instance?.id);
+            .data as TAggregatedInstance[]).find(
+            (elt) => elt.id === instance?.id,
+          );
           expect(handleSuccess).toHaveBeenCalled();
           expect(cacheInstance).toBeDefined();
           expect(cacheInstance?.pendingTask).toBeTruthy();

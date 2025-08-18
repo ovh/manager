@@ -1400,6 +1400,10 @@
   "hosting_dashboard_service_datacenter_eu-west-gra": "eu-west-gra",
   "hosting_dashboard_service_datacenter_ca-east-bhs": "ca-east-bhs",
   "hosting_tab_STATISTICS_type_allowed": "Consultas autorizadas",
-  "hosting_tab_STATISTICS_type_denied": "Solicitudes rechazadas",
-  "hosting_tab_SSL": "Certificados SSL"
+  "hosting_tab_STATISTICS_type_denied": "Consultas rechazadas",
+  "hosting_tab_SSL": "Certificados SSL",
+  "hosting_tab_FTP_configuration_explorer_info": "El acceso a través del cliente FTP web (Net2FTP) ya no está disponible. Utilice un cliente FTP como <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{fileZillaGuideUrl}}\"> FileZilla<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  y <a class=\"oui-link_icon\" target=\"_blank\" href=\"{{cyberduckGuideUrl}}\"> Cyberduck<span class=\"oui-icon oui-icon-external-link\" aria-hidden=\"true\"> </span> </a>  para conectarse a su alojamiento.",
+  "hosting_dashboard_service_cluster": "Clúster",
+  "hosting_dashboard_service_cluster_helper": "El identificador de su clúster puede sufrir cambios",
+  "hosting_dashboard_service_filer_helper": "El identificador de su servidor de archivos puede sufrir cambios"
 }

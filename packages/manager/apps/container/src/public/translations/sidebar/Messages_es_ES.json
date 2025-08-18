@@ -205,7 +205,7 @@
   "sidebar_veeam_backup": "Managed Veeam for VCD",
   "sidebar_all_veeam_backup": "Todos los servicios",
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
-  "sidebar_vmware_vcd": "Managed VCD",
+  "sidebar_vmware_vcd": "Public VCF as-a-Service",
   "sidebar_cloud_changelog": "Cloud Changelog",
   "sidebar_hosting_and_collab_changelog": "Hosting &amp; Collab Changelog",
   "sidebar_roadmap_changelog": "Roadmap &amp; Changelog",
@@ -221,5 +221,6 @@
   "sidebar_skip_to_the_main_content": "Vaya al contenido principal",
   "sidebar_public_networking": "Red pública",
   "sidebar_private_networking": "Red privada",
-  "sidebar_network_services": "Servicios de red"
+  "sidebar_network_services": "Servicios de red",
+  "sidebar_sap_features_hub": "SAP Features Hub"
 }

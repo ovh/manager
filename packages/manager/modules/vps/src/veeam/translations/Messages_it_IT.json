@@ -2,5 +2,7 @@
   "vps_veeam": "Backup automatico",
   "vps_tab_VEEAM_schedule_backup_edit": "Modifica",
   "vps_tab_VEEAM_schedule_backup_description": "Il backup automatizzato viene eseguito ogni giorno alle (fuso orario UTC): ",
-  "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "La modifica dell'orario del backup automatizzato è disponibile solo sulla nuova gamma VPS."
+  "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "La modifica dell'orario del backup automatizzato è disponibile solo sulla nuova gamma VPS.",
+  "vps_tab_VEEAM_schedule_backup_offer_information": "Il backup automatizzato ti permette di usufruire di un ripristino di 7 giorni e di un backup su misura passando all'opzione Premium.",
+  "vps_tab_VEEAM_schedule_backup_premium_order": "Ordinare un backup Premium"
 }

@@ -7,5 +7,10 @@
   "service_state_toSuspend": "Da sospendere",
   "service_state_enabled": "Attivato",
   "service_state_disabled": "Disattivato",
-  "service_state_draft": "Da configurare"
+  "service_state_draft": "Da configurare",
+  "service_state_creating": "Creazione",
+  "service_state_deleting": "Eliminazione",
+  "service_state_error": "Errore",
+  "service_state_ready": "Attivo",
+  "service_state_updating": "Aggiornamento"
 }

@@ -29,5 +29,7 @@
   "telephony_line_answer_voicemail_options_mail_empty": "You have not yet configured an email address to notify.",
   "telephony_line_answer_voicemail_options_mail_limit": "You can notify a maximum of 5 email addresses.",
   "telephony_line_answer_voicemail_options_mail_type_attachment": "Attached message",
-  "telephony_line_answer_voicemail_options_mail_type_simple": "Notification only"
+  "telephony_line_answer_voicemail_options_mail_type_simple": "Notification only",
+  "telephony_line_answer_voicemail_options_mail_type_transcript": "Transcript attached (Beta, AI-generated)",
+  "telephony_line_answer_voicemail_options_mail_type_attachment+transcript": "Transcript and description attached (Beta, AI-generated)"
 }

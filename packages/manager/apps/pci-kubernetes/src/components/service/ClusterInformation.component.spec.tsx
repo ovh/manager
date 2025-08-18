@@ -55,7 +55,7 @@ describe('ClusterInformation', () => {
       expect(
         screen.getByText(/kube_service_cluster_information/i),
       ).toBeInTheDocument();
-      expect(screen.getByText('kube_list_id')).toBeInTheDocument();
+      expect(screen.getByText('listing:kube_list_id')).toBeInTheDocument();
 
       expect(screen.getByText('Cluster1')).toBeInTheDocument();
       expect(
@@ -70,7 +70,7 @@ describe('ClusterInformation', () => {
       ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.warning);
       expect(screen.getByText('Region1')).toBeInTheDocument();
       expect(
-        screen.getByText('pci_project_flavors_zone_globalregions_tooltip'),
+        screen.getByText('pci_project_flavors_zone_global_region'),
       ).toBeInTheDocument();
       expect(
         screen.getByText('kube_service_cluster_etcd_quota'),

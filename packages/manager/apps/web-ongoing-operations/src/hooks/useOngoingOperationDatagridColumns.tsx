@@ -16,10 +16,16 @@ import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagri
 import OngoingOperationDatagridBadge from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridBadge';
 import { DNS_OPERATIONS_TABLE_HEADER_DOMAIN } from '@/pages/dashboard/Dashboard';
 import { StatusEnum } from '@/enum/status.enum';
-import { DOMAIN_OPERATIONS, DNS_OPERATIONS } from '@/constants';
+import {
+  DomainOperations,
+  DNSOperations,
+  DomainOperationsEnum,
+  AlldomOperations,
+} from '@/constants';
 
 export const useOngoingOperationDatagridColumns = (
-  parent: ParentEnum.DOMAIN | ParentEnum.ZONE,
+  searchableColumnID: string,
+  parent: ParentEnum,
 ) => {
   const { t } = useTranslation('dashboard');
   const { clearNotifications } = useNotifications();
@@ -27,19 +33,35 @@ export const useOngoingOperationDatagridColumns = (
   const location = useLocation();
   const formatDate = useFormatDate();
 
+  const getOperationsFilter = (type: ParentEnum) => {
+    switch (type) {
+      case ParentEnum.DOMAIN:
+        return DomainOperations;
+      case ParentEnum.ZONE:
+        return DNSOperations;
+      case ParentEnum.ALLDOM:
+        return AlldomOperations;
+      default:
+        return [];
+    }
+  };
+
   const columns = [
     {
-      id: parent,
+      id: searchableColumnID,
       cell: (props: TOngoingOperations) => (
         <OngoingOperationDatagridDomain parent={parent} props={props} />
       ),
       label:
-        parent === ParentEnum.DOMAIN
-          ? t('domain_operations_table_header_domain')
-          : DNS_OPERATIONS_TABLE_HEADER_DOMAIN,
+        (parent === ParentEnum.DOMAIN &&
+          t('domain_operations_table_header_domain')) ||
+        (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
+        (parent === ParentEnum.ALLDOM &&
+          t('domain_operations_table_header_name')),
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
+      enableHiding: false,
     },
     {
       id: 'function',
@@ -51,10 +73,8 @@ export const useOngoingOperationDatagridColumns = (
       label: t('domain_operations'),
       comparator: FilterCategories.Options,
       isFilterable: true,
-      filterOptions: (parent === ParentEnum.DOMAIN
-          ? DOMAIN_OPERATIONS
-          : DNS_OPERATIONS
-      ).map((op) => ({
+      enableHiding: false,
+      filterOptions: getOperationsFilter(parent).map((op: string) => ({
         label: t(`domain_operations_nicOperation_${op}`),
         value: op,
       })),
@@ -67,6 +87,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_comment'),
+      enableHiding: true,
     },
     {
       id: 'created_on',
@@ -76,6 +97,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_creationDate'),
+      enableHiding: true,
     },
     {
       id: 'last_updated',
@@ -85,6 +107,7 @@ export const useOngoingOperationDatagridColumns = (
         </DataGridTextCell>
       ),
       label: t('domain_operations_table_header_lastUpdate'),
+      enableHiding: true,
     },
     {
       id: 'status',
@@ -94,6 +117,7 @@ export const useOngoingOperationDatagridColumns = (
       label: t('domain_operations_table_header_status'),
       comparator: FilterCategories.Options,
       isFilterable: true,
+      enableHiding: false,
       filterOptions: Object.values(StatusEnum).map((status) => ({
         label: t(`domain_operations_statusOperation_${status}`),
         value: status,
@@ -124,7 +148,8 @@ export const useOngoingOperationDatagridColumns = (
             {
               id: 2,
               label: t('domain_operations_tab_popover_progress'),
-              className: `${props.function !== 'DomainIncomingTransfer' &&
+              className: `${props.function !==
+                DomainOperationsEnum.DomainIncomingTransfer &&
                 'hidden'} menu-item-button`,
               onClick: () => navigate(`/tracking/${props.id}`),
             },
@@ -134,6 +159,7 @@ export const useOngoingOperationDatagridColumns = (
       id: 'actions',
       label: '',
       isSortable: false,
+      enableHiding: false,
     },
   ];
   return columns;

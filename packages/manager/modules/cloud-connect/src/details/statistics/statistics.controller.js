@@ -40,11 +40,6 @@ export default class CloudConnectStatisticsCtrl {
     this.graphType = this.TYPE.TRAFFIC;
     this.graphPeriod = this.PERIOD.DAILY;
 
-    this.trafficLoader = {
-      series: [],
-      data: [],
-    };
-
     this.displayedGraph = this.TYPE.TRAFFIC;
     this.colors = this.STATISTICS.colors;
     this.chart = new this.ChartFactory({
@@ -125,8 +120,8 @@ export default class CloudConnectStatisticsCtrl {
         .then((stats) => {
           if (stats.down.length > 0 || stats.up.length > 0) {
             this.updateStats(type, interfaceId, stats);
-            this.isLoading = false;
           }
+          this.isLoading = false;
         });
     });
   }
@@ -135,6 +130,9 @@ export default class CloudConnectStatisticsCtrl {
   loadErrorGraph() {
     this.series = [];
     this.data = [];
+    this.chart.data = {
+      datasets: [],
+    };
     this.isLoading = true;
 
     // Update options
@@ -147,6 +145,9 @@ export default class CloudConnectStatisticsCtrl {
   loadLightGraph() {
     this.series = [];
     this.data = [];
+    this.chart.data = {
+      datasets: [],
+    };
     this.isLoading = true;
 
     // Update options
@@ -159,6 +160,9 @@ export default class CloudConnectStatisticsCtrl {
   loadTrafficGraph() {
     this.series = [];
     this.data = [];
+    this.chart.data = {
+      datasets: [],
+    };
     this.isLoading = true;
 
     // Update options
@@ -172,6 +176,9 @@ export default class CloudConnectStatisticsCtrl {
     this.isNoData = false;
     this.series = [];
     this.data = [];
+    this.chart.data = {
+      datasets: [],
+    };
     this.isLoading = true;
 
     // Update options
@@ -242,12 +249,15 @@ export default class CloudConnectStatisticsCtrl {
       this.data.push(map(get(stats, prop), (value) => value[1].value));
     });
 
-    this.chart.data.datasets = dataProperties.map((prop, i) => ({
-      label: serieLabels[i],
-      data: map(get(stats, prop), (value) => value[1].value),
-      borderColor: this.colors[i].borderColor,
-      backgroundColor: this.colors[i].borderColor,
-    }));
+    dataProperties.forEach((prop, i) => {
+      const j = this.chart.data.datasets.length;
+      this.chart.data.datasets.push({
+        label: serieLabels[i],
+        data: map(get(stats, prop), (value) => value[1].value),
+        borderColor: this.colors[j].borderColor,
+        backgroundColor: this.colors[j].borderColor,
+      });
+    });
   }
 
   loadStatistics(connectId, interfaceId, type, period) {

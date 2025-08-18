@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.9.1...@ovh-ux/manager-pci-ai-tools-app@1.9.2) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.9.0...@ovh-ux/manager-pci-ai-tools-app@1.9.1) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.8...@ovh-ux/manager-pci-ai-tools-app@1.9.0) (2025-08-05)
+
+
+### Features
+
+* **pci-ai-tools:** enhance tracking for deploy, training, and notebo… ([#18406](https://github.com/ovh/manager/issues/18406)) ([2686b85](https://github.com/ovh/manager/commit/2686b8527636ca61f0d62a3a2ea6f2daae972b4d)), closes [#AIS-1349](https://github.com/ovh/manager/issues/AIS-1349)
+
+
+
+
+
+## [1.8.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.7...@ovh-ux/manager-pci-ai-tools-app@1.8.8) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.6...@ovh-ux/manager-pci-ai-tools-app@1.8.7) (2025-07-22)
+
+
+### Bug Fixes
+
+* **pci-ai-tools:** docker command is not working as expected ([bf4bdbd](https://github.com/ovh/manager/commit/bf4bdbdeab993a44ee90947ff4f6fbd280804637)), closes [#DATATR-2360](https://github.com/ovh/manager/issues/DATATR-2360)
+
+
+
+
+
+## [1.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.5...@ovh-ux/manager-pci-ai-tools-app@1.8.6) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
 ## [1.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.8.4...@ovh-ux/manager-pci-ai-tools-app@1.8.5) (2025-07-10)
 
 

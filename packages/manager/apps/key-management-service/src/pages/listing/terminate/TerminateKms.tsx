@@ -20,7 +20,7 @@ import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
 export default function TerminateKms() {
   const navigate = useNavigate();
   const { t } = useTranslation('key-management-service/terminate');
-  const { okmsId } = useParams();
+  const { okmsId } = useParams() as { okmsId: string };
   const { trackPage, trackClick } = useOvhTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -76,7 +76,7 @@ export default function TerminateKms() {
     <DeleteModal
       isOpen
       isLoading={isPending}
-      error={isError ? error?.message : null}
+      error={isError ? error?.message : undefined}
       closeModal={() => {
         trackClick({
           location: PageLocation.popup,

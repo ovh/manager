@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.9.3...@ovh-ux/manager-pci-ai-endpoints-app@0.10.0) (2025-08-12)
+
+
+### Features
+
+* **pci-ai-endpoints:** integrate tracking for API key creation and metrics ([#18463](https://github.com/ovh/manager/issues/18463)) ([ca31b0f](https://github.com/ovh/manager/commit/ca31b0ff3e96e16d88f2af3382c373fb833a740c)), closes [#AIS-1485](https://github.com/ovh/manager/issues/AIS-1485) [#AIS-1486](https://github.com/ovh/manager/issues/AIS-1486)
+
+
+
+
+
+## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.9.2...@ovh-ux/manager-pci-ai-endpoints-app@0.9.3) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.9.1...@ovh-ux/manager-pci-ai-endpoints-app@0.9.2) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.9.0...@ovh-ux/manager-pci-ai-endpoints-app@0.9.1) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.8.11...@ovh-ux/manager-pci-ai-endpoints-app@0.9.0) (2025-07-29)
+
+
+### Features
+
+* **pci-ai-endpoints:** integrate tracking for API key creation and metrics ([232ea0a](https://github.com/ovh/manager/commit/232ea0a0d376f89387cfaf20e112ad2870c90d1b)), closes [#AIS-1316](https://github.com/ovh/manager/issues/AIS-1316)
+
+
+
+
+
+## [0.8.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.8.10...@ovh-ux/manager-pci-ai-endpoints-app@0.8.11) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
+
+
+
+
+
 ## [0.8.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.8.9...@ovh-ux/manager-pci-ai-endpoints-app@0.8.10) (2025-07-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

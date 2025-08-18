@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.86](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.85...@ovh-ux/manager-nasha-app@4.0.86) (2025-08-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.85](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.84...@ovh-ux/manager-nasha-app@4.0.85) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.84](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.83...@ovh-ux/manager-nasha-app@4.0.84) (2025-08-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.83](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.82...@ovh-ux/manager-nasha-app@4.0.83) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.82](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.81...@ovh-ux/manager-nasha-app@4.0.82) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.81](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.80...@ovh-ux/manager-nasha-app@4.0.81) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.80](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.79...@ovh-ux/manager-nasha-app@4.0.80) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.79](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.78...@ovh-ux/manager-nasha-app@4.0.79) (2025-07-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.78](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.77...@ovh-ux/manager-nasha-app@4.0.78) (2025-07-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
+## [4.0.77](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.76...@ovh-ux/manager-nasha-app@4.0.77) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-nasha-app
+
+
+
+
+
 ## [4.0.76](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@4.0.75...@ovh-ux/manager-nasha-app@4.0.76) (2025-07-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-nasha-app

@@ -8,6 +8,7 @@ export default class Cluster {
     nodeDetails,
     availableVersions,
     allowedRedundancyFactor,
+    iam,
   }) {
     Object.assign(this, {
       serviceName,
@@ -16,6 +17,7 @@ export default class Cluster {
       nodeDetails,
       availableVersions,
       allowedRedundancyFactor,
+      iam,
     });
     this.loadingDatacenter = false;
     this.status = this.status.toLowerCase();

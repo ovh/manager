@@ -1,0 +1,6 @@
+{
+  "title": "Ativar o repositório de backup Gold",
+  "description": "O repositório de backup Gold utiliza o Object Storage High Performance, com um armazenamento primário e depois uma cópia noutra região. Este repositório de backup está parametrizado com uma imutabilidade dos dados de 14 dias.",
+  "error": "Ocorreu um erro aquando da ativação do seu repositório Gold: {{errorAPI}}",
+  "success": "A ativação do seu repositório Gold está em curso"
+}

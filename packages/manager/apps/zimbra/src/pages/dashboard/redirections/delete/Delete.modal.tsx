@@ -10,9 +10,9 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal } from '@/components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import {
   CANCEL,
@@ -23,7 +23,7 @@ import {
 
 export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['redirections', 'common']);
+  const { t } = useTranslation(['redirections', 'common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { addSuccess, addError } = useNotifications();
   const { accountId, redirectionId } = useParams();
@@ -96,22 +96,17 @@ export const DeleteOrganizationModal = () => {
 
   return (
     <Modal
+      type={ODS_MODAL_COLOR.critical}
+      heading={t('common:delete_redirection')}
       isOpen
-      color={ODS_MODAL_COLOR.critical}
-      title={t('common:delete_redirection')}
-      onClose={onClose}
-      secondaryButton={{
-        testid: 'cancel-btn',
-        label: t('common:cancel'),
-        onClick: handleCancelClick,
-      }}
-      primaryButton={{
-        testid: 'delete-btn',
-        label: t('common:delete'),
-        onClick: handleConfirmClick,
-        isLoading: isSending,
-      }}
-      isDismissible
+      onDismiss={onClose}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
+      onPrimaryButtonClick={handleConfirmClick}
+      isPrimaryButtonLoading={isSending}
+      primaryButtonTestId="delete-btn"
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
+      onSecondaryButtonClick={handleCancelClick}
+      secondaryButtonTestId="cancel-btn"
     >
       <>
         <OdsText

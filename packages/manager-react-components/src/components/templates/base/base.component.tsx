@@ -8,7 +8,7 @@ export type BaseLayoutProps = React.PropsWithChildren<{
   breadcrumb?: React.ReactElement;
   header?: HeadersProps;
   message?: React.ReactElement;
-  description?: string;
+  description?: string | React.ReactElement;
   subtitle?: string;
   subDescription?: string;
   backLinkLabel?: string;
@@ -57,7 +57,7 @@ export const BaseLayout = ({
     {message && <div className="mb-5 max-w-[800px]">{message}</div>}
     {subtitle && <Subtitle className="block mb-6">{subtitle}</Subtitle>}
     {subDescription && <OdsText preset="span">{subDescription}</OdsText>}
-    <div className="mb-6">{tabs}</div>
+    {tabs && <div className="mb-6">{tabs}</div>}
     {children}
   </PageLayout>
 );

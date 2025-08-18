@@ -35,5 +35,14 @@
   "errorSourceTypeFieldInvalid": "Dieser Wiederherstellungspunkttyp ist für diesen Dienst nicht verfügbar.",
   "errorSourcePITFieldInvalidDate": "Das gewählte Datum ist ungültig.",
   "errorSourceBackupFieldEmpty": "Bitte wählen Sie ein Backup aus.",
-  "breadcrumb": "Fork"
+  "breadcrumb": "Fork",
+  "orderSectionTitleService": "Dienst",
+  "orderSectionDescriptionService": "Wählen Sie den Typ des zu erstellenden Datenbankdienstes und dessen Version aus.",
+  "orderSectionTitleSource": "Quelle",
+  "orderSectionTitleRegion": "Rechenzentrum",
+  "orderSectionTitlePlan": "Angebot",
+  "orderSectionTitleFlavor": "Instanz",
+  "orderSectionTitleStorage": "Speicher",
+  "orderSectionTitleOptions": "Optionen",
+  "fieldNameLabel": "Name"
 }

@@ -13,7 +13,7 @@
   "domain_operations_table_header_doneDate": "Data di fine",
   "domain_operations_table_header_status": "Stato",
   "domain_operations_table_header_domain": "Domini",
-  "domain_operations_dashboard_title": "Operazioni sui miei domini",
+  "domain_operations_dashboard_title": "Operazioni in corso",
   "domain_operations_dashboard_info": "Qui sotto sono elencate tutte le operazioni in corso. A seconda dell'operazione, potrebbe essere necessaria un'azione da parte tua.",
   "domain_operations_tab_popover_update": "Modificare l'operazione",
   "domain_operations_tab_popover_progress": "Seguire il trasferimento",
@@ -141,8 +141,12 @@
   "domain_operations_nicOperation_ContactControlNotify": "Notifica di verifica del contatto",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Invio della notifica RDRP",
   "domain_operations_guides": "Informazioni generali",
-  "domain_operations_upload_file_template_1": "Solo i file seguenti ",
+  "domain_operations_upload_file_template_1": "Solo i file che seguono questo ",
   "domain_operations_upload_file_template_link": "modello di documento",
   "domain_operations_upload_file_template_2": " saranno accettati.",
-  "domain_operations_update_dns_click": "Clicca qui per correggere la configurazione dei tuoi server DNS"
+  "domain_operations_update_dns_click": "Clicca qui per correggere la configurazione dei tuoi server DNS",
+  "domain_operations_update_field_bad_value": "Il valore inserito nel campo {{t0}} non è valido",
+  "domain_operations_table_header_allDom": "Alldom",
+  "domain_operations_table_header_name": "Cognome",
+  "domain_operations_nicOperation_AlldomDelete": "Eliminazione del servizio Alldom"
 }

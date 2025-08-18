@@ -40,6 +40,9 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...(actual as any),
     useNavigate: () => mockedUsedNavigate,
+    useRouteLoaderData: () => ({
+      serviceId: 789,
+    }),
   };
 });
 
@@ -145,20 +148,25 @@ describe('CreatePlanForm', () => {
       fireEvent.click(screen.getByText('commitment_month'));
       // Select model
       fireEvent.click(screen.getByText('select_model_description_instance_b3'));
-      // Accept legal checkbox
-      fireEvent.click(screen.getByText('legal_checkbox'));
-      // Click on create button
-      fireEvent.click(screen.getByTestId('cta-plan-button'));
 
-      expect(defaultProps.onCreatePlan).toHaveBeenCalled();
+      // Create button should be enabled
+      const ctaPlanButton = screen.getByTestId('cta-plan-button');
+
+      expect(ctaPlanButton).toHaveAttribute('is-disabled', 'false');
     });
 
     it('should not call onCreatePlan if form not valid', async () => {
       await setupSpecTest();
 
+      // Select duration to have pricing data
+      fireEvent.click(screen.getByText('commitment_month'));
+
       const ctaPlanButton = screen.getByTestId('cta-plan-button');
+
+      // Click button without filling the required fields (name, model)
       fireEvent.click(ctaPlanButton);
 
+      // Modal should open but onCreatePlan should not be called since form is incomplete
       expect(defaultProps.onCreatePlan).not.toHaveBeenCalled();
     });
   });

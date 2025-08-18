@@ -36,6 +36,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   SlotWithService,
   useAccount,
@@ -69,7 +70,12 @@ import { Loading, GeneratePasswordButton } from '@/components';
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation(['accounts/form', 'common']);
+  const { t } = useTranslation([
+    'accounts/form',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, accountId } = useParams();
@@ -275,7 +281,7 @@ export const EmailAccountForm = () => {
       className="w-full md:w-3/4 space-y-4"
     >
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
-        {t('common:form_mandatory_fields')}
+        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
       <Controller
         control={control}
@@ -649,7 +655,11 @@ export const EmailAccountForm = () => {
         isDisabled={!isDirty || !isValid}
         isLoading={isSending}
         data-testid="confirm-btn"
-        label={accountId ? t('common:save') : t('common:confirm')}
+        label={
+          accountId
+            ? t(`${NAMESPACES.ACTIONS}:save`)
+            : t(`${NAMESPACES.ACTIONS}:confirm`)
+        }
       />
     </form>
   );

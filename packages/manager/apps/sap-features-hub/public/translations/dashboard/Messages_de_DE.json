@@ -1,0 +1,18 @@
+{
+  "error_service": "Keine Serviceinformationen",
+  "description": "Entdecken Sie unsere optionalen SAP-Funktionen für einfachere SAP-Implementierungen.",
+  "blocks_documentation": "Dokumentation",
+  "blocks_pre_installation_sap_hana_title": "Vorinstallation von SAP HANA",
+  "blocks_pre_installation_sap_hana_description": "Vorinstallation der SAP-HANA-Datenbank mit unserem SAP-HANA-spezifischen SLES4SAP-Image aus der Image-Bibliothek.",
+  "blocks_infrastructure_as_code_title": "SAP-Infrastruktur „as Code“",
+  "blocks_infrastructure_as_code_description": "Deployen Sie Ihre SAP-as-Code-Infrastruktur mit unserem OVHcloud Terraform Modul.",
+  "blocks_backup_sap_hana_description": "Verwenden Sie unseren Backup-Agent OVHcloud Backint, der für SAP zertifiziert ist, um Ihre SAP-HANA-Datenbanken nativ auf unserem Object Storage-Dienst zu sichern.",
+  "blocks_download": "Download",
+  "blocks_pre_installation_wizard_sap_title": "SAP-Vorinstallationsassistent",
+  "blocks_pre_installation_wizard_sap_description": "Lassen Sie sich von unserem Assistenten durch die Schritte führen, die Ihnen die Vorinstallation eines vollständigen SAP-Systems ermöglichen – von der Erstellung der virtuellen Maschinen bis hin zur Installation von SAP S/4HANA oder NetWeaver.",
+  "blocks_start_wizard": "Assistenten starten",
+  "blocks_pre_install_list": "Liste der Vorinstallationen",
+  "blocks_logs_analysis_and_extract_title": "SAP-Logs extrahieren und analysieren",
+  "blocks_logs_analysis_and_extract_description": "Verwenden Sie unsere Tools, um die Formatierung und den Abruf Ihrer SAP-Logs einfach und kostengünstig über die Logs Data Platform von OVHcloud zu konfigurieren. Verfügbar für alle Hosting-Lösungen von SAP – auch außerhalb von OVHcloud.",
+  "blocks_code_source": "Quellcode"
+}

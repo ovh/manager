@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
-import { waitFor } from '@testing-library/react';
+import { waitFor, within } from '@testing-library/react';
 import {
   getButtonByLabel,
   assertModalText,
@@ -11,6 +11,7 @@ import {
   renderTest,
   assertDisabled,
   assertEnabled,
+  doActionOnElementUntil,
 } from '@/test-utils';
 
 describe('Vrack Services listing test suite', () => {
@@ -51,7 +52,7 @@ describe('Vrack Services listing test suite', () => {
 
     let goDetailsButton = await getButtonByLabel({
       container,
-      value: labels.common['action-goDetails'],
+      value: labels.actions.see_details,
       nth: 6,
     });
     expect(goDetailsButton).toBeEnabled();
@@ -72,7 +73,7 @@ describe('Vrack Services listing test suite', () => {
 
     goDetailsButton = await getButtonByLabel({
       container,
-      value: labels.common['action-goDetails'],
+      value: labels.actions.see_details,
       nth: 1,
     });
     expect(goDetailsButton).toBeEnabled();
@@ -83,15 +84,22 @@ describe('Vrack Services listing test suite', () => {
       nth: 1,
     });
     await assertEnabled(editDisplayNameModalButton);
-    await waitFor(() => userEvent.click(editDisplayNameModalButton));
 
-    await assertModalText({
-      container,
-      text: labels.common.modalUpdateVrackServicesHeadline.replace(
-        '{{id}}',
-        'vrs-ahz-9t0-7lb-b5r',
-      ),
-    });
+    const headLineToCheck = labels.common.modalUpdateVrackServicesHeadline.replace(
+      '{{id}}',
+      'vrs-ahz-9t0-7lb-b5r',
+    );
+    await doActionOnElementUntil(
+      () => userEvent.click(editDisplayNameModalButton),
+      () =>
+        expect(
+          within(
+            container.querySelector('ods-modal') as HTMLOdsModalElement,
+          ).getByText(headLineToCheck, {
+            exact: false,
+          }),
+        ).toBeVisible(),
+    );
 
     const closeDisplayNameModal = await getButtonByLabel({
       container,

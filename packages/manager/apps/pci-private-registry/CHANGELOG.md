@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.9...@ovh-ux/manager-pci-private-registry-app@0.9.10) (2025-08-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4254] ([158a5e3](https://github.com/ovh/manager/commit/158a5e3b5357ada1cd98c14cf863acdd468f94fa))
+
+
+
+
+
+## [0.9.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.8...@ovh-ux/manager-pci-private-registry-app@0.9.9) (2025-08-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.9.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.7...@ovh-ux/manager-pci-private-registry-app@0.9.8) (2025-08-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.9.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.6...@ovh-ux/manager-pci-private-registry-app@0.9.7) (2025-08-05)
+
+
+### Bug Fixes
+
+* **pci-private-registry:** add conversion rate per month to plan ([3b74e13](https://github.com/ovh/manager/commit/3b74e1325aacf1a4ffa271d2f3b13bf0ed136ed8)), closes [#TAPC-2065](https://github.com/ovh/manager/issues/TAPC-2065)
+
+
+
+
+
+## [0.9.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.5...@ovh-ux/manager-pci-private-registry-app@0.9.6) (2025-08-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.9.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.4...@ovh-ux/manager-pci-private-registry-app@0.9.5) (2025-07-29)
+
+
+### Bug Fixes
+
+* **pci-private-registry:** delete duplicated space for PT language ([40a1aeb](https://github.com/ovh/manager/commit/40a1aeb37c08a8e7c01e4a32f1668d1e8256c3fb)), closes [#TAPC-4280](https://github.com/ovh/manager/issues/TAPC-4280)
+
+
+
+
+
+## [0.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.3...@ovh-ux/manager-pci-private-registry-app@0.9.4) (2025-07-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
 ## [0.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.2...@ovh-ux/manager-pci-private-registry-app@0.9.3) (2025-07-10)
 
 

@@ -1,16 +1,14 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  initI18n,
-  initShellContext,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import App from './App';
 
-import './index.css';
 import '@ovh-ux/manager-pci-common/dist/style.css';
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import '@/vite-hmr.ts';
+import '@/vite-hmr';
+
+import App from './App';
+import './index.css';
 
 const init = async (
   appName: string,
@@ -21,7 +19,7 @@ const init = async (
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch (_error) {
     // nothing to do
   }
 
@@ -41,4 +39,4 @@ const init = async (
   );
 };
 
-init('pci-workflow');
+void init('pci-workflow');

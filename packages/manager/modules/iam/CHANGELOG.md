@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.6...@ovh-ux/manager-iam@1.18.0) (2025-08-04)
+
+
+### Features
+
+* **iam:** update SSO US guide link ([bbc5b37](https://github.com/ovh/manager/commit/bbc5b3751337b53fc1e21f19c6e8e98bfda034ad)), closes [#MANAGER-19264](https://github.com/ovh/manager/issues/MANAGER-19264)
+
+
+
+
+
+## [1.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.5...@ovh-ux/manager-iam@1.17.6) (2025-07-16)
+
+
+### Bug Fixes
+
+* **iam:** add ldp translation on product types ([da22b6b](https://github.com/ovh/manager/commit/da22b6bad42447ab39c3cd3481984aeb494cdcde)), closes [#OB-6627](https://github.com/ovh/manager/issues/OB-6627)
+
+
+
+
+
 ## [1.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.4...@ovh-ux/manager-iam@1.17.5) (2025-07-04)
 
 

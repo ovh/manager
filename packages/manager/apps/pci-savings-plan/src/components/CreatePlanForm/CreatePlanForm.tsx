@@ -7,13 +7,15 @@ import {
 
 import {
   OdsButton,
-  OdsCheckbox,
   OdsInput,
+  OdsSpinner,
   OdsText,
+  OdsDatepicker,
 } from '@ovhcloud/ods-components/react';
 import React, {
   FC,
   PropsWithChildren,
+  Suspense,
   useCallback,
   useContext,
   useEffect,
@@ -31,19 +33,18 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import clsx from 'clsx';
-import useTechnicalInfo, { usePricingInfo } from '@/hooks/useCatalogCommercial';
+import { getResources } from '@/utils/resource';
+import useTechnicalInfo, {
+  TPricingInfo,
+  usePricingInfo,
+} from '@/hooks/useCatalogCommercial';
 import {
   getMutationKeyCreateSavingsPlan,
   useSavingsPlanCreate,
   useServiceId,
 } from '@/hooks/useSavingsPlan';
 
-import rancherSrc from '../../assets/images/rancher.png';
-import serviceSrc from '../../assets/images/service.png';
-import {
-  PricingByDurationType,
-  useDefaultOfferId,
-} from '../../hooks/planCreation/useDefaultOffer';
+import { useDefaultOfferId } from '../../hooks/planCreation/useDefaultOffer';
 import {
   InstanceInfo,
   InstanceTechnicalName,
@@ -66,9 +67,9 @@ import {
   getInstancesInformation,
   isValidSavingsPlanName,
 } from '../../utils/savingsPlan';
-import LegalLinks from '../LegalLinks/LegalLinks';
-import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 import SelectResource from './SelectResource';
+import CreatePlanConfirmModal from './CreatePlanConfirmModal';
+import { usePlanPricing } from '@/hooks/planCreation/usePlanPricing';
 
 const COMMON_SPACING = 'my-4';
 
@@ -90,25 +91,24 @@ type InstanceInfoWithTechnical = InstanceInfo & {
   technical: TechnicalInfo[];
 };
 
+type CreatePlanParams = {
+  offerId: string;
+  displayName: string;
+  size: number;
+  startDate: Date;
+};
+
 export type CreatePlanFormProps = {
   instancesInfo: InstanceInfoWithTechnical[];
   resources: Resource[];
   instanceCategory: InstanceTechnicalName;
   setInstanceCategory: (category: InstanceTechnicalName) => void;
-  pricingByDuration: PricingByDurationType[];
+  pricingByDuration: TPricingInfo[];
   isPricingLoading: boolean;
   isTechnicalInfoLoading: boolean;
   technicalModel: string;
   setTechnicalModel: (technicalModel: string) => void;
-  onCreatePlan: ({
-    offerId,
-    displayName,
-    size,
-  }: {
-    offerId: string;
-    displayName: string;
-    size: number;
-  }) => void;
+  onCreatePlan: (params: CreatePlanParams) => void;
   isDiscoveryProject: boolean;
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
@@ -142,10 +142,10 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [planName, setPlanName] = useState<string>(DEFAULT_NAME);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [offerIdSelected, setOfferIdSelected] = useDefaultOfferId(
     pricingByDuration,
   );
-  const [isLegalChecked, setIsLegalChecked] = useState<boolean>(false);
 
   const serviceId = useServiceId();
 
@@ -187,7 +187,6 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       offerIdSelected &&
       technicalModel &&
       selectedResource &&
-      isLegalChecked &&
       planName &&
       !isDiscoveryProject &&
       isValidPlanName &&
@@ -197,7 +196,6 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
       offerIdSelected,
       technicalModel,
       selectedResource,
-      isLegalChecked,
       planName,
       isDiscoveryProject,
       isValidPlanName,
@@ -209,32 +207,40 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     (item: InstanceInfo) => item.technicalName === instanceCategory,
   );
   const [instanceSelected] = technicalInfoList;
-  // TODO: Api will add a new params region 3AZ to filters
-  // We will need to add it in the query
-  const filteredTechnicalInfo = instanceSelected.technical.filter((item) =>
-    deploymentMode === DeploymentMode['1AZ']
-      ? !item.code.includes('3AZ')
-      : item.code.includes('3AZ'),
-  );
 
-  const activeInstance = filteredTechnicalInfo?.find(
+  const activeInstance = instanceSelected.technical?.find(
     (item) => item.name === technicalModel,
   );
+  const minStartDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    return date;
+  }, []);
 
-  useEffect(() => {
-    if (instanceCategory) {
-      setPlanName(buildDisplayName(getInstanceDisplayName(instanceCategory)));
-    }
-  }, [instanceCategory]);
+  const maxStartDate = useMemo(() => {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 6);
+    return date;
+  }, []);
+
+  const [startDate, setStartDate] = useState(minStartDate);
+
+  const onSetInstanceCategory = useCallback(
+    (category: InstanceTechnicalName) => {
+      setInstanceCategory(category);
+      setPlanName(buildDisplayName(getInstanceDisplayName(category)));
+    },
+    [setInstanceCategory, setPlanName],
+  );
 
   // Change Between Instance And Rancher we reset the selectedModel
   const onChangeResource = (value: ResourceType) => {
     setSelectedResource(value);
     setDeploymentMode(DeploymentMode['1AZ']);
     if (value === ResourceType.instance) {
-      setInstanceCategory(instancesInfo[0].technicalName);
+      onSetInstanceCategory(instancesInfo[0].technicalName);
     } else {
-      setInstanceCategory(InstanceTechnicalName.rancher);
+      onSetInstanceCategory(InstanceTechnicalName.rancher);
     }
   };
 
@@ -252,7 +258,14 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   );
   const selectedOs = activeInstance?.technical?.os?.family;
 
+  const enrichedPricingByDuration = usePlanPricing({
+    pricingByDuration,
+    quantity,
+    activeHourlyPrice: activeInstance?.hourlyPrice || 0,
+  });
+
   const onCreateSavingsPlan = () => {
+    setIsModalOpen(false);
     if (offerIdSelected) {
       trackClick({
         location: PageLocation.funnel,
@@ -268,6 +281,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         offerId: offerIdSelected,
         displayName: planName,
         size: quantity,
+        startDate,
       });
     }
   };
@@ -284,8 +298,32 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
     [setQuantity],
   );
 
+  const currentPlanPricing = enrichedPricingByDuration.find(
+    (planPricing) => planPricing.id === offerIdSelected,
+  );
   return (
     <div>
+      {isModalOpen && (
+        <CreatePlanConfirmModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          onCreateSavingsPlan={onCreateSavingsPlan}
+          savingsPlanInfo={{
+            name: planName,
+            duration: selectedDuration,
+            resource: selectedResource,
+            deploymentMode,
+            model: technicalModel,
+            startDate,
+            quantity,
+            monthlyPrice: currentPlanPricing.monthlyPrice,
+            monthlyPercentageDiscount:
+              currentPlanPricing.monthlyPercentageDiscount,
+            monthlyPriceWithoutDiscount:
+              currentPlanPricing.monthlyPriceWithoutDiscount,
+          }}
+        />
+      )}
       <SelectResource
         resources={resources}
         selectedResource={selectedResource}
@@ -299,11 +337,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         />
       )}
       <SelectModel
-        technicalInfo={filteredTechnicalInfo}
+        technicalInfo={instanceSelected.technical}
         isInstance={isInstance}
         tabsList={tabsList}
         instanceCategory={instanceCategory}
-        setInstanceCategory={setInstanceCategory}
+        setInstanceCategory={onSetInstanceCategory}
         isTechnicalInfoLoading={isTechnicalInfoLoading}
         technicalModel={technicalModel}
         onSelectModel={onSelectModel}
@@ -313,15 +351,26 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         quantity={quantity}
         handleQuantityChange={handleQuantityChange}
       />
+
       <CommitmentWrapper
-        pricingByDuration={pricingByDuration}
-        isPricingLoading={isPricingLoading}
-        isTechnicalInfoLoading={isTechnicalInfoLoading}
+        enrichedPricingByDuration={enrichedPricingByDuration}
+        isLoading={isPricingLoading || isTechnicalInfoLoading}
         setOfferIdSelected={setOfferIdSelected}
         offerIdSelected={offerIdSelected}
-        quantity={quantity}
-        activeInstance={activeInstance}
       />
+      <Block>
+        <Subtitle>{t('choose_date')}</Subtitle>
+        <DescriptionWrapper>{t('choose_date_description')}</DescriptionWrapper>
+        <OdsDatepicker
+          value={startDate}
+          name="savings-plan-start-date"
+          min={minStartDate}
+          max={maxStartDate}
+          onOdsChange={(e) => {
+            setStartDate(e.target.value);
+          }}
+        />
+      </Block>
       <Block>
         <Subtitle>{t('choose_name')}</Subtitle>
         <OdsInput
@@ -338,19 +387,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           <OdsText>{t('input_name_rules')}</OdsText>
         </div>
       </Block>
-      <Block>
-        <OdsCheckbox
-          inputId="checkbox-label"
-          className="mr-4"
-          name="legal-checked"
-          isChecked={isLegalChecked}
-          onClick={() => setIsLegalChecked(!isLegalChecked)}
-        />
-        <label htmlFor="checkbox-label">
-          <OdsText>{t('legal_checkbox')}</OdsText>
-        </label>
-        <LegalLinks className="mr-[5px]" />
-      </Block>
+
       <div className="flex mt-[40px]">
         <OdsButton
           data-testid="cta-cancel-button"
@@ -374,7 +411,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           data-testid="cta-plan-button"
           label={t('cta_plan')}
           isDisabled={!isButtonActive}
-          onClick={onCreateSavingsPlan}
+          onClick={() => setIsModalOpen(true)}
         />
       </div>
     </div>
@@ -400,7 +437,6 @@ export const CreatePlanFormContainer = ({
   const [technicalModel, setTechnicalModel] = useState<string>(
     DEFAULT_PRODUCT_CODE,
   );
-
   const [deploymentMode, setDeploymentMode] = useState<DeploymentMode>(
     DeploymentMode['1AZ'],
   );
@@ -410,6 +446,7 @@ export const CreatePlanFormContainer = ({
     isLoading: isTechnicalInfoLoading,
   } = useTechnicalInfo({
     productCode: instanceCategory,
+    deploymentMode,
   });
 
   const computedTechnicalModel =
@@ -447,21 +484,10 @@ export const CreatePlanFormContainer = ({
   } = useSavingsPlanCreate(handleCreateSavingsPlanSuccess);
 
   const sortedPriceByDuration = [...pricingByDuration].sort(
-    (a, b) => a.duration - b.duration,
+    (a, b) => (a.duration ?? 0) - (b.duration ?? 0),
   );
 
-  const resources: Resource[] = [
-    {
-      value: ResourceType.instance,
-      label: t('resource_tabs_instance'),
-      img: serviceSrc,
-    },
-    {
-      value: ResourceType.rancher,
-      label: t('resource_tabs_rancher'),
-      img: rancherSrc,
-    },
-  ];
+  const resources: Resource[] = getResources(t);
 
   const instancesInformation = useMemo(
     () =>
@@ -473,22 +499,24 @@ export const CreatePlanFormContainer = ({
   );
 
   return (
-    <CreatePlanForm
-      onCreatePlan={onCreatePlan}
-      resources={resources}
-      instancesInfo={instancesInformation}
-      instanceCategory={instanceCategory}
-      setInstanceCategory={setInstanceCategory}
-      pricingByDuration={sortedPriceByDuration}
-      isTechnicalInfoLoading={isTechnicalInfoLoading}
-      isPricingLoading={isPricingLoading}
-      setTechnicalModel={setTechnicalModel}
-      technicalModel={technicalModel}
-      isDiscoveryProject={isDiscoveryProject}
-      setDeploymentMode={setDeploymentMode}
-      deploymentMode={deploymentMode}
-      isCreatePlanPending={isCreatePlanPending}
-    />
+    <Suspense fallback={<OdsSpinner />}>
+      <CreatePlanForm
+        onCreatePlan={onCreatePlan}
+        resources={resources}
+        instancesInfo={instancesInformation}
+        instanceCategory={instanceCategory}
+        setInstanceCategory={setInstanceCategory}
+        pricingByDuration={sortedPriceByDuration}
+        isTechnicalInfoLoading={isTechnicalInfoLoading}
+        isPricingLoading={isPricingLoading}
+        setTechnicalModel={setTechnicalModel}
+        technicalModel={technicalModel}
+        isDiscoveryProject={isDiscoveryProject}
+        setDeploymentMode={setDeploymentMode}
+        deploymentMode={deploymentMode}
+        isCreatePlanPending={isCreatePlanPending}
+      />
+    </Suspense>
   );
 };
 

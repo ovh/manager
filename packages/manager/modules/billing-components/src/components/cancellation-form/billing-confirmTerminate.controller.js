@@ -1,4 +1,5 @@
 import { SPECIAL_CONDITIONS_SUBSIDIARIES } from './confirm-terminate.constants';
+import { SERVICE_TYPE } from '../utils/constants';
 
 export default class TerminateServiceCtrl {
   /* @ngInject */
@@ -6,6 +7,7 @@ export default class TerminateServiceCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.BillingTerminate = BillingTerminate;
+    this.SERVICE_TYPE = SERVICE_TYPE;
   }
 
   $onInit() {
@@ -37,5 +39,11 @@ export default class TerminateServiceCtrl {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  shouldDisabledTextarea({ question }) {
+    return question === 'commentary_future_use'
+      ? this.model.future_use !== 'OTHER'
+      : false;
   }
 }

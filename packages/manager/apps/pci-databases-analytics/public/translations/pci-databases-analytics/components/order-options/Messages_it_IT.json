@@ -21,5 +21,11 @@
   "existingIpError": "Questo indirizzo IP è già aggiunto",
   "numberOfConfiguredIps_zero": "{{count}} IP configurati",
   "numberOfConfiguredIps_one": "{{count}} IP configurato",
-  "numberOfConfiguredIps_other": "{{count}} IP configurati"
+  "numberOfConfiguredIps_other": "{{count}} IP configurati",
+  "ipAddButtonLabel": "Aggiungere",
+  "ipTableHeaderIp": "Indirizzo IP",
+  "ipTableHeaderDescription": "Descrizione",
+  "commonlyUsedIps": "Indirizzi IP comunemente utilizzati",
+  "commonlyUsedIpsDatatplatform": "OVHcloud Dataplatform IP",
+  "commonlyUsedIpsCurrentIp": "IP attuale"
 }

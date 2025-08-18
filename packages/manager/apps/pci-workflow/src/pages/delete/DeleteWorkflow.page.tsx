@@ -1,28 +1,27 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { DeletionModal, useInstance } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useDeleteWorkflow, useWorkflows } from '@/api/hooks/workflows';
 
 export default function DeleteWorkflowPage() {
   const { t: tDelete } = useTranslation('delete');
   const { t } = useTranslation('listing');
-  const { t: tCommon } = useTranslation('pci-common');
   const { projectId, workflowId } = useParams();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { addError, addSuccess } = useNotifications();
-  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(
-    projectId,
-  );
+  const { data: workflows, isPending: isPendingWorkflows } = useWorkflows(projectId);
 
   const workflow = workflows.find((w) => w.id === workflowId);
   const { data: instance } = useInstance(projectId, workflow?.instanceId);
@@ -64,10 +63,10 @@ export default function DeleteWorkflowPage() {
   });
 
   useEffect(() => {
-    setFormState({
-      ...formState,
+    setFormState((prevState) => ({
+      ...prevState,
       hasError: formState.isTouched && formState.inputDelete !== 'DELETE',
-    });
+    }));
   }, [formState.inputDelete, formState.isTouched]);
 
   return (

@@ -1,0 +1,11 @@
+{
+  "sap_hub_history_title": "Hier finden Sie die Liste der realisierten und laufenden SAP-Vorinstallationen.",
+  "sap_hub_history_list": "Liste der SAP-Vorinstallationen",
+  "sap_hub_history_installation_date": "Datum",
+  "sap_hub_history_application_version": "Anwendungsversion",
+  "sap_hub_history_application_type": "Anwendungstyp",
+  "sap_hub_history_deployment_type": "Bereitstellungstyp",
+  "sap_hub_history_installation_status": "Status",
+  "sap_hub_history_installation_RETRY": "Neuer Versuch",
+  "sap_hub_history_installation_see_detail": "Details anzeigen"
+}

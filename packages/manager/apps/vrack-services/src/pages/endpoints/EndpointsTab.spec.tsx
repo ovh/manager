@@ -4,9 +4,9 @@ import { waitFor, screen } from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import userEvent from '@testing-library/user-event';
 import { vrackServicesListMocks } from '@ovh-ux/manager-network-common';
-import { iamResourcesMocks } from '@/data/mocks/iam';
+import { iamResourcesMocks } from '../../../__mocks__';
 import {
-  assertModalVisibility,
+  doActionOnElementUntil,
   getButtonByLabel,
   assertModalText,
   getButtonByIcon,
@@ -90,8 +90,10 @@ describe('Vrack Services endpoints page test suite', () => {
     });
 
     await assertEnabled(deleteButton);
-    await waitFor(() => userEvent.click(deleteButton));
-
-    await assertModalVisibility({ container, isVisible: false });
+    const modal = container.querySelector('ods-modal');
+    await doActionOnElementUntil(
+      () => userEvent.click(deleteButton),
+      () => expect(modal).not.toBeInTheDocument(),
+    );
   });
 });

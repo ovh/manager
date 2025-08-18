@@ -1,3 +1,8 @@
+import {
+  PREFIX_TRACKING_NUTANIX_NUTANIX,
+  PREFIX_TRACKING_NUTANIX_POPUP,
+} from '../../constants';
+
 export const TRAVAUX_LINK = {
   US: 'https://status.us.ovhcloud.com/',
   DEFAULT: 'https://www.status-ovhcloud.com/',
@@ -44,10 +49,11 @@ export const LEGACY_PACK_TYPES = ['Standard', 'Advanced'];
 const TRACKING_PREFIX = 'hpc::nutanix::cluster';
 
 export const TRACKING = {
-  DASHBOARD: `${TRACKING_PREFIX}::dahboard`,
+  DASHBOARD: `${PREFIX_TRACKING_NUTANIX_NUTANIX}::dashboard::general-information`,
   REDEPLOY_CLUSTER: `${TRACKING_PREFIX}::redeploy-cluster`,
   ACCESS_PRISM: `${TRACKING_PREFIX}::access-prism-central`,
   ACCESS_NUTANIX: `${TRACKING_PREFIX}::link-nutanix-website`,
+  DASHBOARD_ADD_NODE: `${PREFIX_TRACKING_NUTANIX_POPUP}::general-information::order-nodes`,
 };
 
 export default {

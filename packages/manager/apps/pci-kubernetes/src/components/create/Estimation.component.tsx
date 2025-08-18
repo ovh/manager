@@ -17,13 +17,13 @@ import { TClusterCreationForm } from '@/pages/new/useCusterCreationStepper';
 
 type EstimationProps = {
   nodePools?: NodePoolPrice[];
-  plan?: TClusterCreationForm['plan'];
+  plan: TClusterCreationForm['plan'];
 };
 
 const Estimation = ({ nodePools, plan }: EstimationProps) => {
   const { t } = useTranslation('node-pool');
 
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(4, {
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
     exclVat: true,
   });
   const showSavingPlan = useSavingsPlanAvailable();
@@ -49,7 +49,7 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
           {t('kube_common_node_pool_estimation_text')}
         </OsdsText>
       )}
-      {has3AZ && plan && (
+      {has3AZ && (
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
@@ -57,7 +57,7 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
         >
           <strong> {t('kube_common_cluster_estimation_price')}</strong>{' '}
           {t(
-            plan === 'premium'
+            plan === 'standard'
               ? 'kube_common_estimation_price'
               : 'kube_common_estimation_price_free',
           )}

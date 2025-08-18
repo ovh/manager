@@ -210,5 +210,6 @@
   "telecom_pack_migration_ont_shipping_addresses_error": "Beim Laden Ihrer Kontakte ist ein Fehler aufgetreten. {{error}}",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Während des Übergangs zu Ihrem neuen Angebot wird ein temporäres Paket erstellt, um die Kontinuität der Dienstleistung sicherzustellen",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Dieses Paket wird automatisch gelöscht, sobald Ihre Fibre-Bestellung abgeschlossen ist.",
-  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Es ist keine Änderung oder Löschung Ihrerseits erforderlich: der Wechsel zu Ihrem Fibre-Zugang erfolgt vollautomatisch."
+  "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Es ist keine Änderung oder Löschung Ihrerseits erforderlich: der Wechsel zu Ihrem Fibre-Zugang erfolgt vollautomatisch.",
+  "telecom_pack_migration_phone_call_for_new_meeting": "Die Online-Terminbuchung ist nicht verfügbar. Sie werden telefonisch kontaktiert, um einen passenden Termin mit Ihnen zu vereinbaren."
 }

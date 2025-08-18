@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-layout-helpers",
-  "version": "2.11.3",
+  "version": "2.11.4",
   "private": true,
   "description": "Set of utilities and components for layouts",
   "repository": {
@@ -22,7 +22,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.3",
+    "@ovh-ux/component-rollup-config": "^13.1.0",
     "bootstrap4": "github:twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15"
   },

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ActionMenu,
   Clipboard,
@@ -20,17 +20,15 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { OKMS } from '@/types/okms.type';
-import { OkmsAllServiceKeys } from '@/types/okmsServiceKey.type';
+import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
-import { useOkmsServiceKeyById } from '@/data/hooks/useOkmsServiceKeys';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
-import { OkmsContext } from '@/pages/dashboard';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
-export const DatagridCellId = (props: OKMS | OkmsAllServiceKeys) => {
+export const DatagridCellId = (props: OKMS | OkmsServiceKey) => {
   return <Clipboard className="w-full" value={props.id} />;
 };
 
@@ -66,16 +64,19 @@ export const DatagridCellRegion = (kms: OKMS) => {
 };
 
 export const DatagridCellStatus = (kms: OKMS) => {
-  const { data: OkmsServiceInfos, isLoading, isError } = useServiceDetails({
+  const { data: okmsService, isPending, isError } = useServiceDetails({
     resourceName: kms.id,
   });
-  if (isLoading) {
+
+  if (isPending) {
     return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
   }
+
   if (isError) {
     return <></>;
   }
-  return <OkmsServiceState state={OkmsServiceInfos.data.resource.state} />;
+
+  return <OkmsServiceState state={okmsService.data.resource.state} />;
 };
 
 export const DatagridResourceKmipCountCell = (kms: OKMS) => {
@@ -86,7 +87,7 @@ export const DatagridResourceServiceKeyCountCell = (kms: OKMS) => {
   return <DataGridTextCell>{kms.serviceKeyCount}</DataGridTextCell>;
 };
 
-export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
+export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
@@ -107,16 +108,16 @@ export const DatagridServiceKeyCellName = (props: OkmsAllServiceKeys) => {
   );
 };
 
-export const DatagridServiceKeyCellId = (props: OkmsAllServiceKeys) => {
+export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
   return <Clipboard className="w-full" value={props.id} />;
 };
 
-export const DatagridCellType = (props: OkmsAllServiceKeys) => {
+export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
   return <DataGridTextCell>{translatedValue}</DataGridTextCell>;
 };
 
-export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
+export const DatagridCreationDate = (props: OkmsServiceKey) => {
   const date = new Date(Date.parse(props.createdAt));
 
   const formattedDate = useFormattedDate({
@@ -135,22 +136,18 @@ export const DatagridCreationDate = (props: OkmsAllServiceKeys) => {
   return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
 };
 
-export const DatagridStatus = (props: OkmsAllServiceKeys) => {
+export const DatagridStatus = (props: OkmsServiceKey) => {
   return <ServiceKeyStatus state={props.state} />;
 };
 
-export const DatagridServiceKeyActionMenu = (props: OkmsAllServiceKeys) => {
-  const okms = useContext(OkmsContext);
-  const { data: serviceKey, isPending } = useOkmsServiceKeyById({
-    okmsId: okms.id,
-    keyId: props.id,
-  });
-  const actionList = useServiceKeyActionsList(okms, serviceKey?.data, true);
-
+export const DatagridServiceKeyActionMenu = (
+  serviceKey: OkmsServiceKey,
+  okms: OKMS,
+) => {
+  const actionList = useServiceKeyActionsList(okms, serviceKey, true);
   return (
     <ActionMenu
-      id={`service-key-actions-${props.id}`}
-      isLoading={isPending}
+      id={`service-key-actions-${serviceKey.id}`}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ellipsisVertical}

@@ -1,4 +1,4 @@
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import React from 'react';
 import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
@@ -93,5 +93,22 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
     expect(trackClickMock).toHaveBeenCalledWith(
       TRACKING.dashboard.goToVcdPortal,
     );
+  });
+
+  it('should not be able to update org VCD when service is suspended', () => {
+    render(
+      <QueryClientProvider client={new QueryClient()}>
+        <OrganizationGeneralInformationTile
+          vcdOrganization={{ ...vcdOrg, resourceStatus: 'SUSPENDED' }}
+        />
+        ,
+      </QueryClientProvider>,
+    );
+
+    screen
+      .getAllByTestId(TEST_IDS.editButton)
+      .forEach((element) =>
+        expect(element.getAttribute('is-disabled')).toBe('true'),
+      );
   });
 });

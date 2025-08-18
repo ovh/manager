@@ -1,3 +1,11 @@
+/**
+ * @deprecated This file is deprecated. Do not use any of its exports.
+ * The hooks will be available in the `@ovh-ux/manager-pci-common` package.
+ */
+
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type TProjectStatus =
   | 'creating'
   | 'deleted'
@@ -5,6 +13,9 @@ export type TProjectStatus =
   | 'ok'
   | 'suspended';
 
+/**
+ * @deprecated The type is deprecated and will be removed in MRC V3.
+ */
 export type PublicCloudProject = {
   access: 'full' | 'restricted';
   creationDate: string;

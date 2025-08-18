@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
-import { Region3AZChip, RegionChipByType } from '@ovh-ux/manager-pci-common';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 
 import {
   OsdsButton,
@@ -68,14 +68,7 @@ export function LocationStep({
 
   const tilesData = uniqueRegions.map((regionType: TRegion['type']) => ({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
-    pillLabel:
-      regionType === RegionType.Region3Az ? (
-        <div className="flex gap-4">
-          <Region3AZChip showTooltip />
-        </div>
-      ) : (
-        <RegionChipByType type="region" showTooltip />
-      ),
+    pillLabel: <RegionChipByType type={regionType} showTooltip={false} />,
     description: t(`add:kubernetes_add_region_description_${regionType}`),
     regionType,
   }));
@@ -95,7 +88,12 @@ export function LocationStep({
     return clearNotifications;
   }, [clearNotifications, step.isLocked]);
 
-  const { isPending, addRegion } = useAddProjectRegion({
+  const {
+    isPending,
+    addRegion,
+    error: addRegionError,
+    isSuccess: addRegionSuccess,
+  } = useAddProjectRegion({
     projectId,
     onSuccess: (data: TLocation) => {
       refreshRegionStatus();
@@ -127,9 +125,11 @@ export function LocationStep({
 
   return (
     <>
-      <div className="my-4">
-        <Notifications />
-      </div>
+      {(addRegionError || addRegionSuccess) && (
+        <div className="my-4">
+          <Notifications />
+        </div>
+      )}
       <div className={clsx(step.isLocked && 'hidden')}>
         {has3AZ && (
           <>
