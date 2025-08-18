@@ -22,7 +22,7 @@ export const Button = ({
   ...restProps
 }: ButtonProps & ButtonProp) => {
   const { t } = useTranslation('iam');
-  const { isAuthorized } = useAuthorizationIam(iamActions, urn, isIamTrigger);
+  const { isAuthorized } = useAuthorizationIam(iamActions || [], urn || '');
 
   if (isAuthorized || !(iamActions && urn)) {
     return (
@@ -39,7 +39,6 @@ export const Button = ({
           data-testid="manager-button-tooltip"
           {...restProps}
           disabled={true}
-          onClick={null}
         >
           {children}
         </OdsButton>
@@ -51,7 +50,6 @@ export const Button = ({
       data-testid="manager-button-without-tooltip"
       {...restProps}
       disabled={true}
-      onClick={null}
     >
       {children}
     </OdsButton>

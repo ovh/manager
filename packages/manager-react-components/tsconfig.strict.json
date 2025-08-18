@@ -81,7 +81,8 @@
     "./src/components/base-layout/**/*",
     "./src/enumTypes/*",
     "./src/components/step/**/*",
-    "./src/utils/*"
+    "./src/utils/*",
+    "./src/components/base-layout/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",

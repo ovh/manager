@@ -49,7 +49,7 @@ export const LinkCard: React.FC<LinkCardProps> = ({
             >
               {category}
             </Text>
-            {badges?.length > 0 && (
+            {badges && badges.length > 0 && (
               <span className="ml-[10px]">
                 {badges.map((badge: LinkCardBadge) => (
                   <Badge className="mr-1" key={badge.text}>
