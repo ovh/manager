@@ -11,17 +11,17 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export type ActivateRegionParams = {
   selectedRegion: string;
-  isUpdatingOkmsList: boolean;
+  isOkmsOrderProcessing: boolean;
 };
 
 export const ActivateRegion = ({
   selectedRegion,
-  isUpdatingOkmsList,
+  isOkmsOrderProcessing,
 }: ActivateRegionParams) => {
   const { t } = useTranslation(['secret-manager/create', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
-  return isUpdatingOkmsList ? (
+  return isOkmsOrderProcessing ? (
     <div className="flex items-center gap-3">
       <OdsSpinner size="sm" data-testid={ACTIVATE_DOMAIN_SPINNER_TEST_ID} />
       <OdsText>{t('domain_activation_in_progress')}</OdsText>

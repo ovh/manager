@@ -22,11 +22,7 @@ import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
 } from './OrderOkmsModal.page.constants';
-
-// custom type for the state
-export type OkmsRegionOrderSuccessful = {
-  orderRegion: string;
-};
+import { useOrderOkmsModalContext } from './OrderOkmsModalContext';
 
 const CancelButton = ({ onClick }: { onClick: () => void }) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
@@ -55,16 +51,15 @@ const TermsAndConditions = ({
     NAMESPACES.ERROR,
     NAMESPACES.ACTIONS,
   ]);
-  const navigate = useNavigate();
   const { region } = useParams();
+  const navigate = useNavigate();
+  const { setOrderProcessingRegion } = useOrderOkmsModalContext();
   const [isContractAccepted, setIsContractAccepted] = useState(false);
 
   const { mutate, isPending, error } = useCheckoutOrder({
     onSuccess: () => {
-      const state: OkmsRegionOrderSuccessful = {
-        orderRegion: region,
-      };
-      navigate('..', { state });
+      navigate('..');
+      setOrderProcessingRegion(region);
     },
   });
 

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -15,7 +15,10 @@ import { useOkmsList } from '@/data/hooks/useOkms';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { DomainSelector } from './DomainSelector.component';
 import { RegionSelector } from './RegionSelector.component';
-import { OkmsRegionOrderSuccessful } from '@/common/pages/OrderOkmsModal/OrderOkmsModal.page';
+import { useOrderOkmsModalContext } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
+
+const DOMAINS_REFETCH_INTERVAL_DISABLE = 0;
+const DOMAINS_REFETCH_INTERVAL_IN_MS = 2000; // 2 seconds
 
 type DomainManagementProps = {
   selectedDomainId: string;
@@ -38,47 +41,41 @@ export const DomainManagement = ({
   const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
-  const [updatingOkmsList, setUpdatingOkmsList] = useState(false);
-  const [orderSuccessful, setOrderSuccessful] = useState(false);
 
-  const location = useLocation();
-  const state = location.state as OkmsRegionOrderSuccessful;
+  const {
+    orderProcessingRegion,
+    resetOrderProcessingRegion,
+  } = useOrderOkmsModalContext();
+  const isOkmsOrderProcessing = Boolean(orderProcessingRegion);
 
-  // if there is an okms order, begin refreshing the okms list
-  useEffect(() => {
-    if (state?.orderRegion) setUpdatingOkmsList(true);
-  }, [state]);
+  const [refetchInterval, setRefetchInterval] = useState(
+    DOMAINS_REFETCH_INTERVAL_DISABLE,
+  );
 
   const {
     data: domains,
     error: okmsError,
     isLoading: isOkmsListLoading,
-  } = useOkmsList({
-    refetchInterval: (query) => {
-      if (!updatingOkmsList) return false;
+  } = useOkmsList({ refetchInterval });
 
-      // refresh the list until there's one okms on the order region.
-      const domainList = filterDomainsByRegion(
-        query.state.data,
-        state.orderRegion,
-      );
-      if (domainList.length === 0) return 2000;
-
-      // handle successfully created domain
-      setUpdatingOkmsList(false);
-      setOrderSuccessful(true);
-      setSelectedRegion(state.orderRegion);
-      setSelectedDomainId(domainList[0].id);
-      return false;
-    },
-  });
-
+  // Manage Okms order processing
   useEffect(() => {
-    if (orderSuccessful) {
-      addSuccess(t('create_domain_success'), true);
-      setOrderSuccessful(false);
+    if (!orderProcessingRegion) return;
+
+    const domainList = filterDomainsByRegion(domains, orderProcessingRegion);
+    // If region has no domains then when we refresh the list periodically
+    if (domainList.length === 0) {
+      setRefetchInterval(DOMAINS_REFETCH_INTERVAL_IN_MS);
+      return;
     }
-  }, [orderSuccessful]);
+
+    // Handle successfully created domain
+    setRefetchInterval(DOMAINS_REFETCH_INTERVAL_DISABLE);
+    resetOrderProcessingRegion();
+    addSuccess(t('create_domain_success'), true);
+    setSelectedRegion(orderProcessingRegion);
+    setSelectedDomainId(domainList[0].id);
+  }, [domains, orderProcessingRegion]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -88,7 +85,7 @@ export const DomainManagement = ({
   // -> set the region's domain List
   // -> select the domain
   useEffect(() => {
-    // domain from the secret list
+    // domain from the secret list page
     const domainIdSearchParam = searchParams.get(
       SECRET_MANAGER_SEARCH_PARAMS.domainId,
     );
@@ -154,7 +151,7 @@ export const DomainManagement = ({
         domains={filterDomainsByRegion(domains, selectedRegion)}
         selectedRegion={selectedRegion}
         selectedDomain={selectedDomainId}
-        isUpdatingOkmsList={updatingOkmsList}
+        isOkmsOrderProcessing={isOkmsOrderProcessing}
         onDomainSelection={setSelectedDomainId}
       />
     </div>
