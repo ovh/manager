@@ -31,7 +31,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 const renderActivateRegion = async ({
-  isUpdatingOkmsList,
+  isOkmsOrderProcessing,
   selectedRegion,
 }: ActivateRegionParams) => {
   const queryClient = new QueryClient();
@@ -43,7 +43,7 @@ const renderActivateRegion = async ({
     <I18nextProvider i18n={i18nValue}>
       <QueryClientProvider client={queryClient}>
         <ActivateRegion
-          isUpdatingOkmsList={isUpdatingOkmsList}
+          isOkmsOrderProcessing={isOkmsOrderProcessing}
           selectedRegion={selectedRegion}
         />
       </QueryClientProvider>
@@ -61,11 +61,11 @@ describe('ActivateRegion test suite', () => {
       const user = userEvent.setup();
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
-      const updating = false;
+      const isOkmsOrderProcessing = false;
 
       // WHEN
       await renderActivateRegion({
-        isUpdatingOkmsList: updating,
+        isOkmsOrderProcessing,
         selectedRegion: selectedRegionMock,
       });
 
@@ -86,11 +86,11 @@ describe('ActivateRegion test suite', () => {
     it('should render a loading state', async () => {
       // GIVEN
       const selectedRegionMock = REGION_EU_WEST_RBX;
-      const updating = true;
+      const isOkmsOrderProcessing = true;
 
       // WHEN
       await renderActivateRegion({
-        isUpdatingOkmsList: updating,
+        isOkmsOrderProcessing,
         selectedRegion: selectedRegionMock,
       });
 
