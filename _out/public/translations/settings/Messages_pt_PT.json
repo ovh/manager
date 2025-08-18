@@ -1,8 +1,0 @@
-{
-  "projectName": "Nome do projeto",
-  "description": "Descrição",
-  "saveButton": "Guardar definições",
-  "errors": {
-    "projectNameRequired": "Este campo é obrigatório"
-  }
-}

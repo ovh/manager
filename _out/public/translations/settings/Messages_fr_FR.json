@@ -1,8 +1,0 @@
-{
-  "projectName": "Nom du projet",
-  "description": "Description",
-  "saveButton": "Enregistrer les paramètres",
-  "errors": {
-    "projectNameRequired": "Ce champ est obligatoire"
-  }
-}
