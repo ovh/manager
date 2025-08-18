@@ -1,6 +1,7 @@
 import { useQuery, UseQueryOptions, useMutation } from '@tanstack/react-query';
 import {
   attachNetwork,
+  attachVolume,
   getInstance,
   TGetInstanceQueryParams,
   updateInstanceName,
@@ -86,37 +87,73 @@ type TUseAttachNetworkCallbacks = DeepReadonly<{
   onError?: (error: unknown) => void;
 }>;
 
-type TUseAttachNetworkArgs = {
+type TInstanceArgs = {
   projectId: string;
   instanceId: string;
   regionId: string;
-  callbacks: TUseAttachNetworkCallbacks;
 };
+
+const resetInstanceCache = ({
+  projectId,
+  regionId,
+  instanceId,
+}: TInstanceArgs) =>
+  queryClient.invalidateQueries({
+    queryKey: instancesQueryKey(projectId, [
+      'region',
+      regionId,
+      'instance',
+      instanceId,
+      'withBackups',
+      'withImage',
+      'withNetworks',
+      'withVolumes',
+    ]),
+  });
 
 export const useAttachNetwork = ({
   projectId,
   instanceId,
   regionId,
   callbacks = {},
-}: TUseAttachNetworkArgs) => {
+}: TInstanceArgs & { callbacks: TUseAttachNetworkCallbacks }) => {
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ networkId }: TAttachNetworkMutationFnVariables) =>
       attachNetwork({ projectId, instanceId, networkId }),
     onSuccess: (data, variables) => {
-      void queryClient.invalidateQueries({
-        queryKey: instancesQueryKey(projectId, [
-          'region',
-          regionId,
-          'instance',
-          instanceId,
-          'withBackups',
-          'withImage',
-          'withNetworks',
-          'withVolumes',
-        ]),
-      });
+      void resetInstanceCache({ projectId, regionId, instanceId });
+
+      onSuccess?.(data, variables);
+    },
+    onError,
+  });
+};
+
+type TAttachVolumeMutationFnVariables = { volumeId: string };
+
+type TUseAttachVolumeCallbacks = DeepReadonly<{
+  onSuccess?: (
+    data: unknown,
+    variables: TAttachVolumeMutationFnVariables,
+  ) => void;
+  onError?: (error: unknown) => void;
+}>;
+
+export const useAttachVolume = ({
+  projectId,
+  instanceId,
+  regionId,
+  callbacks = {},
+}: TInstanceArgs & { callbacks: TUseAttachVolumeCallbacks }) => {
+  const { onSuccess, onError } = callbacks;
+
+  return useMutation({
+    mutationFn: ({ volumeId }: TAttachVolumeMutationFnVariables) =>
+      attachVolume({ projectId, instanceId, volumeId }),
+    onSuccess: (data, variables) => {
+      void resetInstanceCache({ projectId, regionId, instanceId });
 
       onSuccess?.(data, variables);
     },

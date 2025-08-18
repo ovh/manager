@@ -1,15 +1,14 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { getNetwork } from '@/data/api/network';
+import { getNetworks } from '@/data/api/network';
 import { TNetwork } from '@/types/network/entity.type';
-import { instancesQueryKey } from '@/utils';
 
-export const useNetwork = (
+export const useNetworks = (
   projectId: string,
   region: string,
   options?: Omit<UseQueryOptions<TNetwork[]>, 'queryKey' | 'queryFn'>,
 ) =>
   useQuery({
-    queryKey: instancesQueryKey(projectId, ['region', region, 'network']),
-    queryFn: () => getNetwork({ projectId, region }),
+    queryKey: ['project', projectId, 'region', region, 'network'],
+    queryFn: () => getNetworks({ projectId, region }),
     ...options,
   });

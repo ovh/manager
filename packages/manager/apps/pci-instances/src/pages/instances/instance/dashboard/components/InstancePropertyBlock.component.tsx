@@ -21,6 +21,7 @@ const InstancePropertyBlock: FC = () => {
   const projectUrl = useProjectUrl('public-cloud');
   const { regionId, instanceId } = useParam('regionId', 'instanceId');
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
+  const hrefAttachVolume = useHref('./attach');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region: regionId,
@@ -81,6 +82,7 @@ const InstancePropertyBlock: FC = () => {
           <Links
             label={t('pci_instances_dashboard_attach_volumes')}
             type={LinkType.next}
+            href={hrefAttachVolume}
           />
         </div>
       </DashboardTileBlock>
