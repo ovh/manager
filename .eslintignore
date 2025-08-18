@@ -1,5 +1,8 @@
 dist
 node_modules
+coverage
+.turbo
+build
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
@@ -16,4 +19,9 @@ packages/manager/apps/container
 packages/manager/apps/pci-databases-analytics/src/components/ui
 !.storybook
 manager-static-analysis-kit
+manager-pm
 manager-generator
+manager-cli
+manager-tests-setup
+manager-vite-config
+manager-tailwind-config

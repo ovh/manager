@@ -1,6 +1,7 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defaultDedupedDependencies, } from '@ovh-ux/manager-tests-setup';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,6 +30,7 @@ export default defineConfig({
     },
   },
   resolve: {
+    dedupe: [...defaultDedupedDependencies],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
