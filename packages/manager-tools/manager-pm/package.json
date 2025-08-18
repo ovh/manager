@@ -14,7 +14,9 @@
     "lint:modern": "manager-lint --config eslint.config.mjs src/**/**.ts ./bin/**/**.js",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**/**.ts ./bin/**/**.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
     "consola": "^3.4.2"
