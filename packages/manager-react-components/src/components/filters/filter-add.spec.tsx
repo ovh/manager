@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import { vi, vitest } from 'vitest';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
 import { render } from '../../utils/test.provider';
+import { TagsFilterFormProps } from './interface';
 
 vi.mock('./tags-filter-form.component', () => {
   return {
-    TagsFilterForm: ({ setTagKey }) => {
+    TagsFilterForm: ({ setTagKey }: TagsFilterFormProps) => {
       setTagKey('tagKey');
       return <div data-testid="filter-tag-inputs" />;
     },
@@ -65,7 +65,7 @@ describe('FilterAdd tests', () => {
     const { getByTestId } = renderComponent(props);
 
     const idColumnSelect = getByTestId('add-filter_select_idColumn');
-    expect(idColumnSelect).toHaveValue(props.columns[0].id);
+    expect(idColumnSelect).toHaveValue(props.columns[0]?.id);
   });
 
   it('should display a date picker when the filter type is Date', () => {

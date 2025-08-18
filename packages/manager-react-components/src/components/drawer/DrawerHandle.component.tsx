@@ -52,7 +52,7 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
         <div>
           <OdsButton
             data-testid="drawer-handle"
-            label={undefined}
+            label=""
             aria-label={
               collapseState === 'visible' ? t('collapse') : t('expand')
             }

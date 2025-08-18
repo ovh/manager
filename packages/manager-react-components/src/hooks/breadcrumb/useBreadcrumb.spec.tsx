@@ -21,7 +21,7 @@ const shellContext = {
 
 const queryClient = new QueryClient();
 
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}
@@ -108,9 +108,9 @@ describe('useBreadcrumb', () => {
       },
     );
     await waitFor(() => {
-      expect(hook.result.current[0].hideLabel).toBeTruthy();
-      expect(hook.result.current[1].hideLabel).toBeFalsy();
-      expect(hook.result.current[2].hideLabel).toBeFalsy();
+      expect(hook.result.current?.[0]?.hideLabel).toBeTruthy();
+      expect(hook.result.current?.[1]?.hideLabel).toBeFalsy();
+      expect(hook.result.current?.[2]?.hideLabel).toBeFalsy();
     });
   });
 });
