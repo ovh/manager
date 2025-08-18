@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.4...@ovh-ux/manager-web@19.23.0) (2025-08-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4231] ([0d8f553](https://github.com/ovh/manager/commit/0d8f553daf36babb8d8a5c14a1eaba8d125cb104))
+* **i18n:** add missing translations [CDS 629] ([cfd2296](https://github.com/ovh/manager/commit/cfd229644d3281542d1d33a3cd289fd7e929ca93))
+* **web:** bad presentation of the title of an offer in the manager ([2edd11f](https://github.com/ovh/manager/commit/2edd11f3ff6f7c4106699b21bca94701033b1459)), closes [#PRB0042712](https://github.com/ovh/manager/issues/PRB0042712)
+
+
+### Features
+
+* **web-hosting:** add empty slots on database table ([c64c054](https://github.com/ovh/manager/commit/c64c0546e6e43703009e5ba7611cbb6b80de08bf)), closes [#WEB-20397](https://github.com/ovh/manager/issues/WEB-20397)
+
+
+
+
+
 ## [19.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.22.3...@ovh-ux/manager-web@19.22.4) (2025-08-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-office-app",
-  "version": "0.3.24",
+  "version": "0.4.0",
   "private": true,
   "description": "React app for web office 365",
   "repository": {
@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",
+    "@ovh-ux/manager-common-translations": "^0.11.0",
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core-api": "^0.17.1",
-    "@ovh-ux/manager-common-translations": "^0.11.0",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-module-order": "^0.10.7",
     "@ovh-ux/manager-react-components": "^2.37.0",
