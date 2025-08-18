@@ -11,4 +11,7 @@ export const urls = {
   creatingWithVoucher: 'creating/:orderId/:voucherCode',
   increaseQuota: 'increase-quota',
   remove: 'remove',
+  contactsAndRights: ':projectId/contacts',
+  contactAndRightsAdd: 'add',
+  contactAndRightsDelete: 'delete/:accountId',
 } as const;
