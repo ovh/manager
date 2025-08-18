@@ -3,7 +3,7 @@ import { TNetwork } from '@/types/network/entity.type';
 import { TNetworkDto } from '@/types/network/api.type';
 import { mapNetworkDtoToNetwork } from './mapper/network.mapper';
 
-export const getNetwork = ({
+export const getNetworks = ({
   projectId,
   region,
 }: {
