@@ -14,10 +14,12 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { Suspense, useEffect, useMemo } from 'react';
+import { Effect } from 'effect/index';
 import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
-import { hasIpv4CIDRConflict } from '@/utils/hasIpv4CIDRConflict';
+import { isGatewayCidr } from '@/utils/isGatewayCidr';
+import { hasIpv4CIDRConflictInArray } from '@/utils/hasIpv4CIDRConflictInArray';
 
 function AddNetworkVrackSegmentLoaded() {
   const { id, vdcId, vrackSegmentId } = useParams();
@@ -55,11 +57,24 @@ function AddNetworkVrackSegmentLoaded() {
           })
           .refine(
             (network) =>
-              !vrackSegmentTargetSpec.networks.some((networkB: string) =>
-                hasIpv4CIDRConflict(network, networkB),
-              ),
+              hasIpv4CIDRConflictInArray(
+                network,
+                vrackSegmentTargetSpec.networks,
+              ).pipe(Effect.isFailure, Effect.runPromise),
             {
               message: t('managed_vcd_dashboard_vrack_add_network_input_error'),
+            },
+          )
+          .refine(
+            (network) =>
+              isGatewayCidr(network).pipe(
+                Effect.orElseSucceed(() => false),
+                Effect.runSync,
+              ),
+            {
+              message: t(
+                'managed_vcd_dashboard_vrack_add_network_input_helper',
+              ),
             },
           ),
       }),
