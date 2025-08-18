@@ -24,7 +24,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
@@ -138,14 +138,14 @@ export default function ImportForm() {
       (plugin) => ({
         name: plugin.name,
         version: plugin.version,
-        enabled: false,
+        enabled: true,
       }),
     );
     const themes = data.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
       (theme) => ({
         name: theme.name,
         version: theme.version,
-        active: false,
+        active: true,
       }),
     );
     return {
@@ -165,7 +165,7 @@ export default function ImportForm() {
     defaultValues: defaultValuesStep2 ?? {
       plugins: [],
       themes: [],
-      media: false,
+      media: true,
       wholeDatabase: true,
       posts: false,
       pages: false,
@@ -175,7 +175,33 @@ export default function ImportForm() {
     },
     mode: 'onChange',
   });
-
+  useEffect(() => {
+    if (data?.currentState.import.checkResult.cmsSpecific.wordPress) {
+      step2Form.reset({
+        plugins: data.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
+          (plugin) => ({
+            name: plugin.name,
+            version: plugin.version,
+            enabled: true,
+          }),
+        ),
+        themes: data.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
+          (theme) => ({
+            name: theme.name,
+            version: theme.version,
+            active: true,
+          }),
+        ),
+        media: true,
+        wholeDatabase: true,
+        posts: false,
+        pages: false,
+        comments: false,
+        tags: false,
+        users: false,
+      });
+    }
+  }, [data, step2Form]);
   const {
     control: controlStep2,
     handleSubmit: handleSubmitStep2,
@@ -354,43 +380,67 @@ export default function ImportForm() {
                   'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_description',
                 )}
               </OdsText>
-              {data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
-                (plugin, index) => (
-                  <div key={plugin.name}>
-                    <input
-                      type="hidden"
-                      {...step2Form.register(`plugins.${index}.name`)}
-                      value={plugin.name}
-                    />
-                    <input
-                      type="hidden"
-                      {...step2Form.register(`plugins.${index}.version`)}
-                      value={plugin.version}
-                    />
-                    <Controller
-                      name={`plugins.${index}.enabled`}
-                      control={controlStep2}
-                      render={({ field: { value, onBlur, onChange } }) => (
-                        <div className="flex flex-row mt-4">
-                          <OdsCheckbox
-                            name={`plugins.${index}.enabled`}
-                            id={plugin.name}
-                            isChecked={value}
-                            onOdsBlur={onBlur}
-                            onOdsChange={(e) => onChange(e.detail.checked)}
-                          />
-                          <label
-                            htmlFor={plugin.name}
-                            className="ml-4 cursor-pointer"
-                          >
-                            <OdsText>{plugin.name}</OdsText>
-                          </label>
-                        </div>
-                      )}
-                    />
-                  </div>
-                ),
-              )}
+              <div className="flex flex-row mt-2">
+                <OdsCheckbox
+                  isChecked={watchStep2('plugins').every((p) => p.enabled)}
+                  onOdsChange={(e) =>
+                    step2Form.setValue(
+                      'plugins',
+                      watchStep2('plugins').map((p) => ({
+                        ...p,
+                        enabled: e.detail.checked,
+                      })),
+                    )
+                  }
+                  name="all_plugins"
+                />
+                <label className="ml-4 cursor-pointer">
+                  <OdsText>
+                    {t(
+                      'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all',
+                    )}
+                  </OdsText>
+                </label>
+              </div>
+              <div className="ml-8">
+                {data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
+                  (plugin, index) => (
+                    <div key={plugin.name}>
+                      <input
+                        type="hidden"
+                        {...step2Form.register(`plugins.${index}.name`)}
+                        value={plugin.name}
+                      />
+                      <input
+                        type="hidden"
+                        {...step2Form.register(`plugins.${index}.version`)}
+                        value={plugin.version}
+                      />
+                      <Controller
+                        name={`plugins.${index}.enabled`}
+                        control={controlStep2}
+                        render={({ field: { value, onBlur, onChange } }) => (
+                          <div className="flex flex-row mt-4">
+                            <OdsCheckbox
+                              name={`plugins.${index}.enabled`}
+                              id={plugin.name}
+                              isChecked={value}
+                              onOdsBlur={onBlur}
+                              onOdsChange={(e) => onChange(e.detail.checked)}
+                            />
+                            <label
+                              htmlFor={plugin.name}
+                              className="ml-4 cursor-pointer"
+                            >
+                              <OdsText>{plugin.name}</OdsText>
+                            </label>
+                          </div>
+                        )}
+                      />
+                    </div>
+                  ),
+                )}
+              </div>
             </ManagerTile>
             <ManagerTile color={ODS_CARD_COLOR.neutral}>
               <ManagerTile.Title>
@@ -402,44 +452,68 @@ export default function ImportForm() {
                 )}
                 *
               </OdsText>
-              {data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
-                (theme, index) => (
-                  <div key={theme.name}>
-                    <input
-                      type="hidden"
-                      {...step2Form.register(`themes.${index}.name`)}
-                      value={theme.name}
-                    />
-                    <input
-                      type="hidden"
-                      {...step2Form.register(`themes.${index}.version`)}
-                      value={theme.version}
-                    />
-                    <Controller
-                      key={theme.name}
-                      name={`themes.${index}.active`}
-                      control={controlStep2}
-                      render={({ field: { value, onBlur, onChange } }) => (
-                        <div className="flex flex-row mt-4">
-                          <OdsCheckbox
-                            name={`themes.${index}.active`}
-                            id={theme.name}
-                            isChecked={value}
-                            onOdsBlur={onBlur}
-                            onOdsChange={(e) => onChange(e.detail.checked)}
-                          />
-                          <label
-                            htmlFor={theme.name}
-                            className="ml-4 cursor-pointer"
-                          >
-                            <OdsText>{theme.name}</OdsText>
-                          </label>
-                        </div>
-                      )}
-                    />
-                  </div>
-                ),
-              )}
+              <div className="flex flex-row mt-2">
+                <OdsCheckbox
+                  isChecked={watchStep2('themes').every((p) => p.active)}
+                  onOdsChange={(e) =>
+                    step2Form.setValue(
+                      'themes',
+                      watchStep2('themes').map((p) => ({
+                        ...p,
+                        active: e.detail.checked,
+                      })),
+                    )
+                  }
+                  name="all_themes"
+                />
+                <label className="ml-4 cursor-pointer">
+                  <OdsText>
+                    {t(
+                      'managedWordpress:web_hosting_managed_wordpress_import_select_themes_all',
+                    )}
+                  </OdsText>
+                </label>
+              </div>
+              <div className="ml-8">
+                {data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
+                  (theme, index) => (
+                    <div key={theme.name}>
+                      <input
+                        type="hidden"
+                        {...step2Form.register(`themes.${index}.name`)}
+                        value={theme.name}
+                      />
+                      <input
+                        type="hidden"
+                        {...step2Form.register(`themes.${index}.version`)}
+                        value={theme.version}
+                      />
+                      <Controller
+                        key={theme.name}
+                        name={`themes.${index}.active`}
+                        control={controlStep2}
+                        render={({ field: { value, onBlur, onChange } }) => (
+                          <div className="flex flex-row mt-4">
+                            <OdsCheckbox
+                              name={`themes.${index}.active`}
+                              id={theme.name}
+                              isChecked={value}
+                              onOdsBlur={onBlur}
+                              onOdsChange={(e) => onChange(e.detail.checked)}
+                            />
+                            <label
+                              htmlFor={theme.name}
+                              className="ml-4 cursor-pointer"
+                            >
+                              <OdsText>{theme.name}</OdsText>
+                            </label>
+                          </div>
+                        )}
+                      />
+                    </div>
+                  ),
+                )}
+              </div>
             </ManagerTile>
             <ManagerTile color={ODS_CARD_COLOR.neutral}>
               <ManagerTile.Title>
