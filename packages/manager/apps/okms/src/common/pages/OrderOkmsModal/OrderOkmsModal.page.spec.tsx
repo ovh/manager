@@ -18,9 +18,7 @@ import {
 } from '@ovh-ux/manager-module-order';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
-import OrderOkmsModal, {
-  OkmsRegionOrderSuccessful,
-} from './OrderOkmsModal.page';
+import OrderOkmsModal from './OrderOkmsModal.page';
 import {
   ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
   ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID,
@@ -28,6 +26,7 @@ import {
   ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
 } from './OrderOkmsModal.page.constants';
+import { OrderOkmsModalProvider } from './OrderOkmsModalContext';
 
 let i18nValue: i18n;
 
@@ -84,7 +83,9 @@ const renderOrderOkmsModal = async () => {
         <ShellContext.Provider
           value={(shellContext as unknown) as ShellContextType}
         >
-          <OrderOkmsModal />
+          <OrderOkmsModalProvider>
+            <OrderOkmsModal />
+          </OrderOkmsModalProvider>
         </ShellContext.Provider>
       </QueryClientProvider>
     </I18nextProvider>,
@@ -135,7 +136,7 @@ describe('Order Okms Modal test suite', () => {
       });
     });
 
-    it('should display terms and conditions on cart succesful creation', async () => {
+    it('should display terms and conditions on cart successful creation', async () => {
       // GIVEN
       vi.mocked(createCart).mockResolvedValueOnce({
         cartId: 'cart-id',
@@ -273,14 +274,10 @@ describe('Order Okms Modal test suite', () => {
       await clickOnConfirmButton(user);
 
       // THEN
-      const state: OkmsRegionOrderSuccessful = {
-        orderRegion: mockedRegion,
-      };
-
       await waitFor(() => {
         expect(navigate).toHaveBeenCalledTimes(1);
       });
-      expect(navigate).toHaveBeenCalledWith('..', { state });
+      expect(navigate).toHaveBeenCalledWith('..');
     });
 
     it('should display a notification on error', async () => {
