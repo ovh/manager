@@ -27,7 +27,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       instance: selectInstanceDashboard(projectUrl, instance),
       isPending,
     }),
-    [instance],
+    [instance, isPending],
   );
 };
 

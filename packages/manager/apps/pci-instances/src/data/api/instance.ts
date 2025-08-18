@@ -205,3 +205,18 @@ export const attachNetwork = ({
   v6.post(`/cloud/project/${projectId}/instance/${instanceId}/interface`, {
     networkId,
   });
+
+type TAttachVolumeArgs = {
+  projectId: string;
+  instanceId: string;
+  volumeId: string;
+};
+
+export const attachVolume = ({
+  projectId,
+  volumeId,
+  instanceId,
+}: TAttachVolumeArgs): Promise<unknown> =>
+  v6.post(`/cloud/project/${projectId}/volume/${volumeId}/attach`, {
+    instanceId,
+  });

@@ -1,24 +1,28 @@
 import { useMemo } from 'react';
-import { useNetwork } from '@/data/hooks/network/useNetwork';
+import { useNetworks } from '@/data/hooks/network/useNetwork';
 import { useDashboard } from './useDashboard';
-import { selectUnattachedPrivateNetwork } from '../view-models/selectUnattachedNetwork';
+import {
+  selectUnattachedPrivateNetworks,
+  selectUnattachedVolumes,
+} from '../view-models/selectUnattachedResource';
+import { useVolumes } from '@/data/hooks/volume/useVolume';
 
-type TUseUnattachedPrivateNetwork = {
+type TUseUnattachedResource = {
   projectId: string;
   regionId: string;
   instanceId: string;
 };
 
-export const useUnattachedPrivateNetwork = ({
+export const useUnattachedPrivateNetworks = ({
   projectId,
   regionId,
   instanceId,
-}: TUseUnattachedPrivateNetwork) => {
+}: TUseUnattachedResource) => {
   const { instance, isPending: isInstancePending } = useDashboard({
     region: regionId,
     instanceId,
   });
-  const { data: networks, isPending: isNetworkPending } = useNetwork(
+  const { data: networks, isPending: isNetworkPending } = useNetworks(
     projectId,
     regionId,
   );
@@ -28,10 +32,37 @@ export const useUnattachedPrivateNetwork = ({
       instance: instance?.name ?? '',
       networks:
         instance?.addresses && networks
-          ? selectUnattachedPrivateNetwork(networks, instance.addresses)
+          ? selectUnattachedPrivateNetworks(networks, instance.addresses)
           : [],
       isPending: isInstancePending || isNetworkPending,
     }),
     [instance, networks, isInstancePending, isNetworkPending],
+  );
+};
+
+export const useUnattachedVolumes = ({
+  projectId,
+  regionId,
+  instanceId,
+}: TUseUnattachedResource) => {
+  const { instance, isPending: isInstancePending } = useDashboard({
+    region: regionId,
+    instanceId,
+  });
+  const { data: volumes, isPending: isVolumePending } = useVolumes(
+    projectId,
+    regionId,
+  );
+
+  return useMemo(
+    () => ({
+      instance: instance?.name ?? '',
+      volumes:
+        instance?.volumes && volumes
+          ? selectUnattachedVolumes(volumes, instance.volumes)
+          : [],
+      isPending: isInstancePending || isVolumePending,
+    }),
+    [instance, volumes, isInstancePending, isVolumePending],
   );
 };
