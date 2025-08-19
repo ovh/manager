@@ -15,14 +15,25 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) => {
       return transition
         .injector()
-        .getAsync('isZertoOnPremise')
-        .then(
-          (isZertoOnPremise) =>
+        .get('$q')
+        .all({
+          isZertoOnPremise: transition.injector().getAsync('isZertoOnPremise'),
+          shouldBeConfigured: transition
+            .injector()
+            .getAsync('shouldBeConfigured'),
+        })
+        .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          if (isZertoOnPremise && shouldBeConfigured)
+            return 'app.dedicatedCloud.details.datacenter.details.zerto.summary';
+          return (
             isZertoOnPremise &&
-            'app.dedicatedCloud.details.datacenter.details.zerto.listing',
-        );
+            'app.dedicatedCloud.details.datacenter.details.zerto.listing'
+          );
+        });
     },
     resolve: {
+      shouldBeConfigured: /* @ngInject */ (currentZerto) =>
+        ['notConfigured', 'error'].includes(currentZerto.vpnStatus),
       datacenterHosts: /* @ngInject */ ($stateParams, DedicatedCloud) =>
         DedicatedCloud.getHosts(
           $stateParams.productId,
