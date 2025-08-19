@@ -73,11 +73,13 @@ const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
 });
 
 const mapPricings = (pricings: TInstancePrice[]) =>
-  pricings.map((pricing) => ({
-    label: pricing.type !== 'licence' ? 'instance' : 'licence', // label will be a translation key
-    type: pricing.type,
-    value: pricing.priceInUcents,
-  }));
+  pricings
+    .filter((pricing) => pricing.status === 'enabled')
+    .map((pricing) => ({
+      label: pricing.type !== 'licence' ? 'instance' : 'licence', // label will be a translation key
+      type: pricing.type,
+      value: pricing.priceInUcents,
+    }));
 
 const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'activate_monthly_billing');
