@@ -767,7 +767,6 @@ export class DedicatedCloudDatacenterZertoService {
     return [
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.toDisable,
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabling,
-      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
     ].includes(zertoState);
   }
 }
