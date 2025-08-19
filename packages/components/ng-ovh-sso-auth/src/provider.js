@@ -437,7 +437,7 @@ export default function() {
      */
     this.logout = function logout(url) {
       if (angular.isFunction(onLogoutCallback)) {
-        onLogoutCallback();
+        onLogoutCallback(url);
       }
       if (!deferredObj.logout) {
         deferredObj.logout = $q.defer();
