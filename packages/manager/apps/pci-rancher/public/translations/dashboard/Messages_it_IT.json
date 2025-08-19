@@ -57,5 +57,6 @@
   "egress_title": "CIDR egress di Rancher",
   "egress_tooltip": "Questi CIDR rappresentano gli intervalli di indirizzi IP di uscita utilizzati da Rancher. Potrebbe essere necessario autorizzare questi indirizzi IP (whitelisting) ad accedere alle tue piattaforme terze (per es. chiamate API per il provisioning delle risorse).",
   "badRequestSwitchPlan": "Si è verificato un errore durante la modifica del piano Managed Rancher Service. Al momento utilizzi driver non supportati nella soluzione {{plan}}: {{drivers}}",
-  "savingsPlanUsage": "Se hai già sottoscritto uno o più Savings Plan per il piano selezionato, le vCPU dei tuoi downstream cluster verranno automaticamente contabilizzate in questo piano."
+  "savingsPlanUsage": "Se hai già sottoscritto uno o più Savings Plan per il piano selezionato, le vCPU dei tuoi downstream cluster verranno automaticamente contabilizzate in questo piano.",
+  "iamTemporaryAccessUnavailable": "La funzionalità \"Genera gli accessi temporanei\" non è disponibile quando l'autenticazione IAM è attiva. Per modificare la password dell’utente Admin, accedi all’interfaccia Rancher."
 }

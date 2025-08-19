@@ -14,6 +14,7 @@
   "egress_tooltip": "Ces CIDRs représentent les plages d'adresses IP de sortie utilisées par Rancher. Il peut être nécessaire d'autoriser ces adresses IP (whitelisting) à accéder à vos plateformes tierces (ex: appels APIs pour provisionner des ressources).",
   "rancher_ui_access": "Accès à l'interface Rancher",
   "rancher_button_acces": "Accéder à Rancher",
+  "iamTemporaryAccessUnavailable": "La fonctionnalité \"Générer vos accès temporaires\" est indisponible lorsque l'authentification IAM est activée. Pour modifier le mot de passe de l'utilisateur Admin, veuillez passer par l'interface Rancher.",
   "generate_access": "Générer vos accès temporaires",
   "last_update_date": "Dernière mise à jour {{date}} à {{hour}}",
   "editNameRancherSuccess": "Le nom de votre Managed Rancher service a bien été modifié.",
