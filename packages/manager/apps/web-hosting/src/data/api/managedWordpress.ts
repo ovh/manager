@@ -10,6 +10,13 @@ import {
   PostImportTaskPayload,
 } from '../type';
 
+export const getManagedCmsReferenceAvailableLanguages = async () => {
+  const { data } = await proxyV2.get(
+    // @todo: to change soon we have prod api
+    '/managedCMS/reference/availableLanguages',
+  );
+  return data;
+};
 export const getManagedCmsResource = async (): Promise<ManagedWordpressResourceType[]> => {
   const { data } = await proxyV2.get<ManagedWordpressResourceType[]>( // @todo: to change soon we have prod api
     '/managedCMS/resource',

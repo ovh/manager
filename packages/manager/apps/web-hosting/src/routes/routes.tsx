@@ -22,6 +22,7 @@ import {
   TASKS,
   IMPORT,
   DELETE,
+  CREATE,
 } from '@/utils/tracking.constants';
 
 export type RouteHandle = {
@@ -53,6 +54,13 @@ const ManagedWordpressServiceGeneralInformationPage = React.lazy(() =>
     '@/pages/managedWordpress/ManagedWordpressResource/myWebsites/MyWebsites.page'
   ),
 );
+
+const ManagedWordpressServiceCreatePage = React.lazy(() =>
+  import(
+    '@/pages/managedWordpress/ManagedWordpressResource/create/Create.page'
+  ),
+);
+
 const ManagedWordpressServiceTasksPage = React.lazy(() =>
   import('@/pages/managedWordpress/ManagedWordpressResource/tasks/Tasks.page'),
 );
@@ -164,6 +172,20 @@ export default (
           breadcrumb: {
             label: 'common:web_hosting_header_tasks',
           },
+        }}
+      />
+      <Route
+        id={CREATE}
+        path={urls.managedWordpressResourceCreate}
+        Component={ManagedWordpressServiceCreatePage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:create_website',
+          },
+          isOverridePage: true,
         }}
       />
       <Route

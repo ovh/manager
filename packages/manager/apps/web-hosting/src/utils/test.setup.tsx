@@ -9,6 +9,7 @@ import {
   managedWordpressResourceDetailsMock,
   managedWordpressWebsitesDeleteMock,
   managedWordpressWebsitesTaskMock,
+  managedWordpressRerefenceAvailableLanguageMock,
 } from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -139,6 +140,9 @@ vi.mock('@/data/api/managedWordpress', () => ({
   ),
   getManagedCmsResourceWebsiteTasks: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesTaskMock),
+  ),
+  getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
+    Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
   ),
 }));
 afterEach(() => {
