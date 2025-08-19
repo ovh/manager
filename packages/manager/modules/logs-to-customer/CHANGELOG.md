@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.10...@ovh-ux/logs-to-customer@1.6.0) (2025-08-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4234] ([ef4b847](https://github.com/ovh/manager/commit/ef4b84795a82b68f827c2905cdce821c48afe52f))
+
+
+### Features
+
+* **ldp:** add a tooltip for sub-streams ([f6006e5](https://github.com/ovh/manager/commit/f6006e546389bdd5e39f8bb6abaa0a4e0a72e46d)), closes [#MANAGER-16889](https://github.com/ovh/manager/issues/MANAGER-16889)
+
+
+
+
+
 ## [1.5.10](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.5.9...@ovh-ux/logs-to-customer@1.5.10) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer
