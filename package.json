@@ -8,19 +8,20 @@
     "packages": [
       "docs",
       "packages/components/*",
+      "packages/manager-react-components",
+      "packages/manager-tools/*",
+      "packages/manager-tools/manager-legacy-tools/*",
+      "packages/manager-wiki",
       "packages/manager/apps/*",
       "packages/manager/core/api",
       "packages/manager/core/application",
       "packages/manager/core/ovh-product-icons",
       "packages/manager/core/request-tagger",
+      "packages/manager/core/shell-client",
       "packages/manager/core/sso",
       "packages/manager/core/url-builder",
       "packages/manager/core/utils",
-      "packages/manager/modules/*",
-      "packages/manager-tools/*",
-      "packages/manager-tools/manager-legacy-tools/*",
-      "packages/manager-react-components",
-      "packages/manager-wiki"
+      "packages/manager/modules/*"
     ]
   },
   "scripts": {
