@@ -220,4 +220,63 @@ describe('Update software', () => {
     const linkIcon = screen.getByText(dashboardTranslation.upgradePlanButton);
     expect(linkIcon).not.toBeDisabled();
   });
+  describe('RancherDetail - generate access button enabled state', () => {
+    const cases = [
+      {
+        description: 'button is disabled when targetSpecIamEnabled is true',
+        currentStateIamEnabled: false,
+        targetSpecIamEnabled: true,
+        expectedEnabled: false,
+      },
+      {
+        description: 'button is disabled when currentStateIamEnabled is true',
+        currentStateIamEnabled: true,
+        targetSpecIamEnabled: false,
+        expectedEnabled: false,
+      },
+      {
+        description:
+          'button is enabled when both iamAuthEnabled and targetSpec are false',
+        currentStateIamEnabled: false,
+        targetSpecIamEnabled: false,
+        expectedEnabled: true,
+      },
+    ];
+
+    cases.forEach(
+      ({
+        description,
+        currentStateIamEnabled,
+        targetSpecIamEnabled,
+        expectedEnabled,
+      }) => {
+        it(description, () => {
+          const props = {
+            ...defaultProps,
+            rancher: {
+              ...defaultProps.rancher,
+              currentState: {
+                ...defaultProps.rancher.currentState,
+                iamAuthEnabled: currentStateIamEnabled,
+              },
+              targetSpec: {
+                ...defaultProps.rancher.targetSpec,
+                iamAuthEnabled: targetSpecIamEnabled,
+              },
+            },
+          };
+
+          const screen = render(<RancherDetail {...props} />);
+          const button = screen.queryByText(
+            dashboardTranslation.generate_access,
+          );
+          if (expectedEnabled) {
+            expect(button).toBeEnabled();
+          } else {
+            expect(button).toBeDisabled();
+          }
+        });
+      },
+    );
+  });
 });
