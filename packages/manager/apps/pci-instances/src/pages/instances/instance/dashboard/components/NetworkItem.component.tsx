@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
@@ -45,10 +45,11 @@ const IPAddressItem: FC<{
   </div>
 );
 
-const NetworkItem: FC<TNetworkItemProps> = ({
+const NetworkItem: FC<PropsWithChildren<TNetworkItemProps>> = ({
   address,
   actions,
   isFloatingIp,
+  children,
 }) => {
   const { t } = useTranslation('dashboard');
 
@@ -83,6 +84,7 @@ const NetworkItem: FC<TNetworkItemProps> = ({
           value={address.subnet.gatewayIP}
         />
       )}
+      {children}
     </section>
   );
 };
