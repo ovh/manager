@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { getNetworks } from '@/data/api/network';
+import { getNetworks, getReverseDns } from '@/data/api/network';
 import { TNetwork } from '@/types/network/entity.type';
 
 export const useNetworks = (
@@ -11,4 +11,10 @@ export const useNetworks = (
     queryKey: ['project', projectId, 'region', region, 'network'],
     queryFn: () => getNetworks({ projectId, region }),
     ...options,
+  });
+
+export const useReverseDns = (ip: string) =>
+  useQuery({
+    queryKey: ['ip', ip, 'reverse'],
+    queryFn: () => getReverseDns(ip),
   });
