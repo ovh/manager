@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.24...@ovh-ux/manager-pci-quota-app@0.1.25) (2025-08-19)
+
+
+### Bug Fixes
+
+* **quota:** disable autoscaling on discovery ([29bd37d](https://github.com/ovh/manager/commit/29bd37d1fe81fc0f5015e0559f5b6ea1b520dc91)), closes [#TAPC-2799](https://github.com/ovh/manager/issues/TAPC-2799)
+
+
+
+
+
 ## [0.1.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.23...@ovh-ux/manager-pci-quota-app@0.1.24) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
