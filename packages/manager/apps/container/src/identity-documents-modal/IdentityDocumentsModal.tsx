@@ -61,7 +61,7 @@ export const IdentityDocumentsModal: FC = () => {
 
   const onCancel = () => {
     setShowModal(false);
-    uxPlugin.notifyModalActionDone(IdentityDocumentsModal.displayName);
+    uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::link::kyc::cancel`,
       type: 'action',
@@ -93,7 +93,7 @@ export const IdentityDocumentsModal: FC = () => {
         updatePreference(time);
       }
       else {
-        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.displayName);
+        uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
       }
     }
   }, [shouldDisplayModal]);
