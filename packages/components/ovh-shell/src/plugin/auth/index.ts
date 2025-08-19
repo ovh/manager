@@ -20,7 +20,7 @@ export function auth(params: AuthPluginParameters = {}) {
 
 export interface ClientAuthApi {
   login: () => void;
-  logout: () => void;
+  logout: (url?: string) => void;
 }
 
 export function clientAuth(shellClient: ShellClient): ClientAuthApi {
@@ -31,11 +31,11 @@ export function clientAuth(shellClient: ShellClient): ClientAuthApi {
         method: 'login',
         args: [],
       }),
-    logout: () =>
+    logout: (url) =>
       shellClient.invokePluginMethod({
         plugin: 'auth',
         method: 'logout',
-        args: [],
+        args: [url],
       }),
   };
 }
