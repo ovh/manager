@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.28.1...@ovh-ux/manager-pci-kubernetes-app@0.28.2) (2025-08-19)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** reoder cluster information ([9a6e8ac](https://github.com/ovh/manager/commit/9a6e8ace19c9cb2ca382bc339ad28e56be47e267)), closes [#TAPC-3172](https://github.com/ovh/manager/issues/TAPC-3172)
+* **pci-kubernetes:** update nodepool name on nodepool creation page ([25b63ce](https://github.com/ovh/manager/commit/25b63ced563f92efb3547a1fb592d5ee11001cf2)), closes [#TAPC-4726](https://github.com/ovh/manager/issues/TAPC-4726)
+
+
+
+
+
 ## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.28.0...@ovh-ux/manager-pci-kubernetes-app@0.28.1) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

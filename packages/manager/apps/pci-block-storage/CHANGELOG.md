@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.10...@ovh-ux/manager-pci-block-storage-app@0.19.11) (2025-08-19)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix sorting attached to ([9ba4668](https://github.com/ovh/manager/commit/9ba466820b2295bcc5c39ce0b00a29310c987ea5))
+* **pci-block-storage:** fix sorting of volumes listing ([e7441d1](https://github.com/ovh/manager/commit/e7441d18646406ca4b3f9f6b73fcf6b74a4b9289)), closes [#TAPC-4409](https://github.com/ovh/manager/issues/TAPC-4409)
+
+
+
+
+
 ## [0.19.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.9...@ovh-ux/manager-pci-block-storage-app@0.19.10) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
