@@ -17,6 +17,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { TSavingsPlan } from '@/api/hook/useConsumption';
+import { paginateResults } from '@/api/data/consumption';
 import { useSavingsPlanDetails } from '@/hooks/useSavingsPlanDetails';
 import { useServiceId } from '@/hooks/useServiceId';
 
@@ -77,6 +78,11 @@ const SavingsPlanList = ({
 
   const columns = useMemo(() => getColumns({ t, currency }), [t, currency]);
 
+  const paginatedData = useMemo(
+    () => paginateResults(enrichedSavingsPlans, pagination),
+    [enrichedSavingsPlans, pagination],
+  );
+
   if (isLoading) {
     return (
       <div className="flex justify-center">
@@ -102,8 +108,8 @@ const SavingsPlanList = ({
     <Datagrid
       className="my-3"
       columns={columns}
-      items={enrichedSavingsPlans}
-      totalItems={enrichedSavingsPlans.length}
+      items={paginatedData.rows}
+      totalItems={paginatedData.totalRows}
       pagination={pagination}
       onPaginationChange={setPagination}
     />

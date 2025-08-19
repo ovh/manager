@@ -1,6 +1,9 @@
 import { describe, it } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useDatagridColumn } from '@/hooks/useDatagridColumn';
+import {
+  isBlockStorageListColumn,
+  useDatagridColumn,
+} from '@/hooks/useDatagridColumn';
 import { TVolume } from '@/api/hooks/useVolume';
 
 const volumeTestData: TVolume[] = [
@@ -78,5 +81,19 @@ describe('useDatagridColumn', () => {
     expect(statusCell.props.status).toBe(volumeTestData[0].statusLabel);
     expect(actionsCell.props.projectUrl).toBeDefined();
     expect(actionsCell.props.volume).toBe(volumeTestData[0]);
+  });
+
+  describe('isBlockStorageListColumn', () => {
+    it('should return true given a correct column', () => {
+      const result = isBlockStorageListColumn('encryptionStatus');
+
+      expect(result).toBe(true);
+    });
+
+    it('should return false given an incorrect column', () => {
+      const result = isBlockStorageListColumn('aaaa');
+
+      expect(result).toBe(false);
+    });
   });
 });

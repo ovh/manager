@@ -14,6 +14,7 @@ import {
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useParams } from 'react-router-dom';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   useGetUsageHistory,
   useUsageHistoryPeriod,
@@ -30,7 +31,7 @@ export default function History() {
 
   const { projectId } = useParams();
   const { billingDate, prevMonthDate, translationValues } = useComputeDate();
-
+  const { data: project } = useProject();
   const {
     data: historyPeriods,
     isPending: isHistoryPending,
@@ -55,7 +56,7 @@ export default function History() {
 
   return (
     <div>
-      <HistoryHeader />
+      <HistoryHeader projectCreationDate={project?.creationDate} />
 
       {isPending || isHistoryPending ? (
         <OsdsSpinner

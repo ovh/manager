@@ -11,10 +11,16 @@ import {
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { isSameDay, startOfMonth } from 'date-fns';
+import { isSameDay, startOfMonth, isBefore } from 'date-fns';
 import { useComputeDate } from './useComputeDate.hook';
 
-export default function HistoryHeader() {
+type HistoryHeaderProps = {
+  projectCreationDate?: string;
+};
+
+export default function HistoryHeader({
+  projectCreationDate,
+}: HistoryHeaderProps) {
   const { t } = useTranslation('history');
 
   const {
@@ -25,6 +31,10 @@ export default function HistoryHeader() {
   } = useComputeDate();
 
   const isLimitReached = isSameDay(billingDate, startOfMonth(new Date()));
+
+  const isPreviousMonthBeforeCreation = projectCreationDate
+    ? isBefore(startOfMonth(prevMonthDate), new Date(projectCreationDate))
+    : false;
 
   const navigate = useNavigate();
   const navigateToMonth = (date: Date) => {
@@ -39,6 +49,7 @@ export default function HistoryHeader() {
         size={ODS_BUTTON_SIZE.sm}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => navigateToMonth(prevMonthDate)}
+        disabled={isPreviousMonthBeforeCreation || undefined}
         className="flex"
       >
         <OsdsIcon
