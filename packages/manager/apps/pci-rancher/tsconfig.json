@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "lib": ["dom", "es2020", "ESNext"],
     "noEmit": true,
     "target": "ESNext",

@@ -220,4 +220,61 @@ describe('Update software', () => {
     const linkIcon = screen.getByText(dashboardTranslation.upgradePlanButton);
     expect(linkIcon).not.toBeDisabled();
   });
+  describe('RancherDetail - generate access button visibility', () => {
+    const cases = [
+      {
+        description: 'hides button when both iamAuthEnabled are true',
+        currentState: true,
+        targetSpec: true,
+        expectedVisible: false,
+      },
+      {
+        description:
+          'shows button when targetSpec is true and currentState is false',
+        currentState: false,
+        targetSpec: true,
+        expectedVisible: true,
+      },
+      {
+        description:
+          'shows button when currentState is true and targetSpec is false',
+        currentState: true,
+        targetSpec: false,
+        expectedVisible: true,
+      },
+      {
+        description: 'shows button when both iamAuthEnabled are false',
+        currentState: false,
+        targetSpec: false,
+        expectedVisible: true,
+      },
+    ];
+
+    cases.forEach(
+      ({ description, currentState, targetSpec, expectedVisible }) => {
+        it(description, () => {
+          const props = {
+            ...defaultProps,
+            rancher: {
+              ...defaultProps.rancher,
+              currentState: {
+                ...defaultProps.rancher.currentState,
+                iamAuthEnabled: currentState,
+              },
+              targetSpec: {
+                ...defaultProps.rancher.targetSpec,
+                iamAuthEnabled: targetSpec,
+              },
+            },
+          };
+
+          const screen = render(<RancherDetail {...props} />);
+
+          expect(
+            screen.queryByText(dashboardTranslation.generate_access) !== null,
+          ).toBe(expectedVisible);
+        });
+      },
+    );
+  });
 });
