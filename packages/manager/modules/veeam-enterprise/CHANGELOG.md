@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.13.1...@ovh-ux/manager-veeam-enterprise@1.13.2) (2025-08-19)
+
+
+### Bug Fixes
+
+* **veeam-entreprise:** make column titles translatable ([6756dea](https://github.com/ovh/manager/commit/6756dea21661f6432596b346b42f9e529778be4a)), closes [#MANAGER-18161](https://github.com/ovh/manager/issues/MANAGER-18161)
+
+
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.13.0...@ovh-ux/manager-veeam-enterprise@1.13.1) (2025-07-31)
 
 
