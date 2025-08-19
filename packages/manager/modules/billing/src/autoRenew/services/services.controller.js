@@ -293,7 +293,10 @@ export default class ServicesCtrl {
   }
 
   getAutomaticExpirationDate(service) {
-    return new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
+    const locale = this.isUSRegion
+      ? 'en-US'
+      : this.$translate.use().replace('_', '-');
+    return new Intl.DateTimeFormat(locale, {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',
