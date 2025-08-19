@@ -68,7 +68,7 @@ const SuggestionModal: FC = () => {
 
   const closeModal = () => useCallback(() => {
     setShowModal(false);
-    ux.notifyModalActionDone(SuggestionModal.displayName);
+    ux.notifyModalActionDone(SuggestionModal.name);
     // Update preference so the modal is not display until 30 days later, time for the update to be done on our side
     const DAYS_DELAY = 30;
     updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
@@ -94,7 +94,7 @@ const SuggestionModal: FC = () => {
     if (shouldDisplayModal !== undefined) {
       setShowModal(shouldDisplayModal);
       if (!shouldDisplayModal) {
-        ux.notifyModalActionDone(SuggestionModal.displayName);
+        ux.notifyModalActionDone(SuggestionModal.name);
       } else {
         // only trigger tracking if the modal is actually displayed and not skipped
         tracking.trackPage({
