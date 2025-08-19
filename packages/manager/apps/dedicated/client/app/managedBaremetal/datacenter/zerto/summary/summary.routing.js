@@ -11,15 +11,26 @@ export default /* @ngInject */ ($stateProvider) => {
       params: {
         zertoInformations: {},
       },
-      redirectTo: (transition) =>
-        transition
+      redirectTo: (transition) => {
+        return transition
           .injector()
-          .getAsync('isZertoOnPremise')
-          .then(
-            (isZertoOnPremise) =>
+          .get('$q')
+          .all({
+            isZertoOnPremise: transition
+              .injector()
+              .getAsync('isZertoOnPremise'),
+            shouldBeConfigured: transition
+              .injector()
+              .getAsync('shouldBeConfigured'),
+          })
+          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+            return (
               isZertoOnPremise &&
-              'app.managedBaremetal.details.datacenters.datacenter.zerto.listing',
-          ),
+              !shouldBeConfigured &&
+              'app.managedBaremetal.details.datacenters.datacenter.zerto.listing'
+            );
+          });
+      },
       resolve: {
         goToDeleteZertoModal: /* @ngInject */ ($state) => () =>
           $state.go(
