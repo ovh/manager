@@ -14,10 +14,19 @@ export default /* @ngInject */ ($stateProvider) => {
       redirectTo: (transition) => {
         return transition
           .injector()
-          .getAsync('isZertoOnPremise')
-          .then((isZertoOnPremise) => {
+          .get('$q')
+          .all({
+            isZertoOnPremise: transition
+              .injector()
+              .getAsync('isZertoOnPremise'),
+            shouldBeConfigured: transition
+              .injector()
+              .getAsync('shouldBeConfigured'),
+          })
+          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
             return (
               isZertoOnPremise &&
+              !shouldBeConfigured &&
               'app.dedicatedCloud.details.datacenter.details.zerto.listing'
             );
           });
