@@ -11,6 +11,7 @@ import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
+import { Text } from '@ovhcloud/ods-react';
 import { useParam } from '@ovh-ux/manager-pci-common';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
@@ -20,6 +21,27 @@ import { BaseActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
+import { useReverseDns } from '@/data/hooks/network/useNetwork';
+
+const ReverseDNS: FC<{ ip: string }> = ({ ip }) => {
+  const { t } = useTranslation('dashboard');
+  const { data, isPending } = useReverseDns(ip);
+
+  return (
+    <LoadingCell isLoading={isPending}>
+      <Text preset="label">{t('pci_instances_dashboard_network_dns')}</Text>
+      {data?.length ? (
+        data.map((dns) => (
+          <div key={dns}>
+            <Text>{dns}</Text>
+          </div>
+        ))
+      ) : (
+        <Text>-</Text>
+      )}
+    </LoadingCell>
+  );
+};
 
 const InstanceNetworkingBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -112,7 +134,9 @@ const InstanceNetworkingBlock: FC = () => {
             address={publicIp}
             isFloatingIp={!!instance?.addresses.get('floating')}
             actions={publicIpActionsLinks}
-          />
+          >
+            <ReverseDNS ip={publicIp.ip} />
+          </NetworkItem>
         ))}
       </DashboardTileBlock>
       <LoadingCell isLoading={isInstanceLoading}>
