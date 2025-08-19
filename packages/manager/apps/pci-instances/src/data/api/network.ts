@@ -13,3 +13,6 @@ export const getNetworks = ({
   v6
     .get<TNetworkDto[]>(`/cloud/project/${projectId}/region/${region}/network`)
     .then((response) => response.data.map(mapNetworkDtoToNetwork));
+
+export const getReverseDns = (ip: string): Promise<string[]> =>
+  v6.get<string[]>(`/ip/${ip}/reverse`).then((response) => response.data);
