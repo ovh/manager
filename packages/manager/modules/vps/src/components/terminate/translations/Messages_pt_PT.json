@@ -7,12 +7,12 @@
   "vps_additional_disk_terminate_action_terminate": "Rescindir",
   "vps_additional_disk_terminate_action_cancel": "Anular",
   "vps_downgrade_option_title_automatedbackup": "Voltar à opção standard",
-  "vps_downgrade_option_info1_automatedbackup": "O regresso à opção standard levará na próxima cópia de segurança à eliminação dos antigos backups.",
+  "vps_downgrade_option_info1_automatedbackup": "O regresso à opção standard resultará na eliminação de backups antigos durante o próximo backup.",
   "vps_downgrade_option_info2_P1M": "mês",
   "vps_downgrade_option_info2_P1Y": "ano",
   "vps_downgrade_option_info2_PXM": "{{amount}} meses",
   "vps_downgrade_option_info2_PXY": "{{amount}} anos",
-  "vps_downgrade_option_info2": "<strong> O serviço será faturado mensalmente ao preço de {{ price }} + IVA</strong> /{{duration}}.",
-  "vps_downgrade_option_order_success": "Para finalizar a encomenda, siga as instruções descritas no novo separador que foi aberto. Se não tiverem sido abertos novos separadores, clique na <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ligação</a> .",
+  "vps_downgrade_option_info2": "O serviço será faturado mensalmente ao preço de <strong>{{ price }} + IVA</strong>/{{duration}}.",
+  "vps_downgrade_option_order_success": "Para finalizar a sua encomenda, siga as instruções descritas no novo separador que abriu. Se nenhum separador novo tiver sido aberto, clique <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">nesta ligação</a>.",
   "vps_downgrade_option_order_fail": "Ocorreu um erro aquando do pedido de modificação da oferta. {{ error }}"
 }

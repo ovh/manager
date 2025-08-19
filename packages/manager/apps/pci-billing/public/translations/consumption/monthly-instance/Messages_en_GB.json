@@ -4,7 +4,7 @@
   "cpbc_monthly_instance_col_total": "Monthly rate ",
   "cpbc_monthly_instance_col_total_tooltip": "Billed at the beginning of the month.",
   "cpbc_savings_plan_col_name": "Name",
-  "cpbc_savings_plan_col_size": "Size of the Savings Plan",
+  "cpbc_savings_plan_col_size": "Savings Plan size",
   "cpbc_savings_plan_col_flavor": "Flavor",
-  "cpbc_savings_plan_col_price": "Prices"
+  "cpbc_savings_plan_col_price": "Price"
 }

@@ -13,7 +13,7 @@
   "domain_operations_table_header_doneDate": "End date ",
   "domain_operations_table_header_status": "State",
   "domain_operations_table_header_domain": "Domain",
-  "domain_operations_dashboard_title": "Domain name operations",
+  "domain_operations_dashboard_title": "Ongoing operations ",
   "domain_operations_dashboard_info": "Below are all the operations currently in progress. Depending on the operation, an action may be required on your part.",
   "domain_operations_tab_popover_update": "Modify operation",
   "domain_operations_tab_popover_progress": "Track transfer",
@@ -145,5 +145,8 @@
   "domain_operations_upload_file_template_link": "this document template",
   "domain_operations_upload_file_template_2": " will be accepted.",
   "domain_operations_update_dns_click": "Click here to correct the configuration of your DNS servers",
-  "domain_operations_update_field_bad_value": "The value entered in the {{t0}} field is invalid"
+  "domain_operations_update_field_bad_value": "The value entered in the {{t0}} field is invalid",
+  "domain_operations_table_header_allDom": "Alldom",
+  "domain_operations_table_header_name": "Name",
+  "domain_operations_nicOperation_AlldomDelete": "Alldom service deletion"
 }

@@ -28,8 +28,8 @@
   "vps_dashboard_state_locked": "Bloqueada",
   "vps_dashboard_service_locked": "O seu serviço foi bloqueado por incumprimento das nossas CGU; para o desbloquear, contacte o suporte.",
   "vps_dashboard_migration_2020_info_queue_part_1": "Vítima do nosso sucesso! Está atualmente na posição {{ position }} na fila de espera para o upgrade dos seus recursos.",
-  "vps_dashboard_migration_2020_info_queue_part_2": "Receberá uma notificação por e-mail assim que estiver agendada uma data para a operação. Obrigado pela sua paciência e confiança.",
-  "vps_dashboard_migration_2020_info_with_date_part_1": "O upgrade do seu VPS {{ vpsName }} será realizado em {{ date | date:'fullDate' }} a {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "Para o ativar agora,<a href=\"{{url}}\"> clique aqui</a> .",
-  "vps_dashboard_migration_2020_info_ongoing": "O seu pedido de aumento de recursos foi corretamente tomado em conta; o seu VPS será atualizado dentro de cerca de 15 minutos."
+  "vps_dashboard_migration_2020_info_queue_part_2": "Receberá uma notificação por e-mail assim que uma data for agendada para a operação. Obrigado pela sua paciência e confiança.",
+  "vps_dashboard_migration_2020_info_with_date_part_1": "O upgrade do seu VPS {{ vpsName }} será realizado no dia {{ date | date:'fullDate' }} às {{ time | date:'HH:mm:ss' }}.",
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Para o ativar agora, <a href=\"{{url}}\">clique aqui</a>.",
+  "vps_dashboard_migration_2020_info_ongoing": "O seu pedido de aumento de recursos foi registado; o seu VPS será atualizado dentro de cerca de 15 minutos."
 }

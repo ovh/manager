@@ -63,5 +63,5 @@
   "deleteReplicationButtonCancel": "Cancel",
   "deleteReplicationButtonConfirm": "Delete",
   "deleteReplicationToastErrorTitle": "An error has occurred deleting the replication flow",
-  "deleteReplicationToastSuccessDescription": "Replication flow deleted"
+  "deleteReplicationToastSuccessDescription": "Replication flow deleted!"
 }
