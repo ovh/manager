@@ -6,6 +6,7 @@ export default {
     currentZerto: '<',
     currentUser: '<',
     goToDeleteSiteZertoModal: '<',
+    zertoInformations: '<',
     goBackToListing: '<',
     pccType: '<',
     site: '<',
