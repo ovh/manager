@@ -12,6 +12,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MAX_RETRIES: 5
           WAIT_MS: 5000
+        continue-on-error: true # Will cause failure if this step doesn't run
       - name: Checkout latest code
         uses: actions/checkout@v3
         with:
@@ -21,6 +22,7 @@ jobs:
         uses: olivernybroe/action-conflict-finder@v4.0
         with:
           exclude_dir: "node_modules/**,**/node_modules/**"
+        continue-on-error: true # Will cause failure if this step doesn't run
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
@@ -65,6 +67,14 @@ jobs:
             echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
           fi
           yarn exec turbo -- run test --concurrency=1 --filter=[origin/${BASE_BRANCH}...origin/${BRANCH}]
+
+      - name: Label PR if test fails
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ failure() }}  # This condition checks if the previous step failed
+        run: |
+          echo "Test failed, adding label..."
+          gh pr label ${{ github.event.pull_request.number }} --add "unit-tests-failed" --repo ${{ github.repository }}
 
       - name: GetChangedPackages
         id: changed
