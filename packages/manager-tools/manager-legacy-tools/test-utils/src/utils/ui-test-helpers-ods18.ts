@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OdsIcon } from '@ovhcloud/ods-components/react';
 import {
   screen,
   waitFor,
@@ -51,7 +51,7 @@ type GetOdsButtonParams = {
   container: HTMLElement;
   label?: string;
   altLabel?: string;
-  iconName?: React.ComponentProps<typeof OsdsIcon>['name'];
+  iconName?: React.ComponentProps<typeof OdsIcon>['name'];
   disabled?: boolean;
   isLink?: boolean;
   nth?: number;
@@ -168,5 +168,5 @@ export const selectOdsSelectOption = async ({
   const event = new CustomEvent('odsChange', {
     detail: { value },
   });
-  waitFor(() => fireEvent(select, event));
+  return waitFor(() => fireEvent(select, event));
 };
