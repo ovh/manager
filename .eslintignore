@@ -20,3 +20,4 @@ lint-cli.js
 perf-budgets-cli.js
 perf-budgets-tests-cli.js
 manager-generator
+packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
