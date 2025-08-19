@@ -160,7 +160,7 @@ function isOVHError(error: unknown): error is OVHError {
  */
 export const getI18nextDriverError = (
   error: string,
-): [string?, TOptions?] | null => {
+): [string, TOptions] | null => {
   const content = extractDriversAndPlanFromSwitchPlanError(error);
   if (content) {
     const { plan, drivers } = content;

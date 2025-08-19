@@ -5,6 +5,7 @@ export const rancherMocked: RancherService = {
   createdAt: '0',
   updatedAt: '0',
   targetSpec: {
+    iamAuthEnabled: false,
     name: 'rancher1',
     plan: 'OVHCLOUD_EDITION',
     version: '2.7.6',
@@ -16,6 +17,7 @@ export const rancherMocked: RancherService = {
     ],
   },
   currentState: {
+    iamAuthEnabled: false,
     url: 'www.ovh.com',
     name: 'rancher1',
     plan: 'OVHCLOUD_EDITION',
