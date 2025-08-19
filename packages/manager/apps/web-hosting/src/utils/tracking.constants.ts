@@ -43,6 +43,7 @@ export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
 export const GENERAL_INFORMATION = 'general-information';
 export const TASKS = 'tasks';
 export const IMPORT = 'import';
+export const CREATE = 'create';
 export const DELETE = 'delete';
 export const STATISTICS = 'statistics';
 export const DIAGNOSTIC = 'diagnostic';

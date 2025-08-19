@@ -24,6 +24,7 @@ import {
   TASKS,
   IMPORT,
   DELETE,
+  CREATE,
 } from '@/utils/tracking.constants';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
@@ -127,6 +128,20 @@ export default (
           breadcrumb: {
             label: 'common:web_hosting_header_tasks',
           },
+        }}
+      />
+      <Route
+        id={CREATE}
+        path={urls.managedWordpressResourceCreate}
+        Component={ManagedWordpressServiceCreatePage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:create_website',
+          },
+          isOverridePage: true,
         }}
       />
       <Route

@@ -45,10 +45,15 @@ export default function MyWebsitesPage() {
   const navigate = useNavigate();
   const [rowSelection, setRowSelection] = useState({});
   const importPage = useGenerateUrl(`./import`, 'href');
+  const createPage = useGenerateUrl(`./create`, 'href');
+
   const deleteModalBase = useGenerateUrl('./delete-modal', 'path');
 
   const handleImportClick = () => {
     window.location.href = importPage;
+  };
+  const handleCreateClick = () => {
+    window.location.href = createPage;
   };
 
   const selectedIds = Object.keys(rowSelection);
@@ -148,6 +153,7 @@ export default function MyWebsitesPage() {
               <ManagerButton
                 id={'my-websites-create'}
                 label={t(`${NAMESPACES.ACTIONS}:create`)}
+                onClick={handleCreateClick}
               ></ManagerButton>
               <ManagerButton
                 id={'my-websites-import'}
