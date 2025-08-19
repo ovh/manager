@@ -1,8 +1,8 @@
 import { consola } from 'consola';
 import { promises as fs } from 'fs';
 
-import { migratePnpmAppsPath, rootPackageJsonPath } from '../../playbook/pnpm-config.js';
-import { JsonType } from '../types/commons/json-type.js';
+import { buildAppPath, migratePnpmAppsPath } from '../../playbook/pnpm-config.js';
+import { addAppToYarnWorkspaces } from '../commons/workspace-utils.js';
 import { parseJson } from '../utils/json-utils.js';
 
 /**
@@ -10,14 +10,14 @@ import { parseJson } from '../utils/json-utils.js';
  * - Removes it from pnpm-migrated-apps.json
  * - Re-adds it to Yarn root package.json workspaces
  */
-// eslint-disable-next-line max-lines-per-function
 export async function removeAppFromPnpm(appName: string): Promise<void> {
-  const appPath = `packages/manager/apps/${appName}`;
+  const appPath = buildAppPath(appName);
   consola.start(`🚀 Starting rollback for app "${appName}"`);
 
   // --- Step 1: Update pnpm-migrated-apps.json
   consola.info(`📖 Reading pnpm-migrated-apps.json from: ${migratePnpmAppsPath}`);
   let pnpmApps: string[] = [];
+
   try {
     const pnpmRaw = await fs.readFile(migratePnpmAppsPath, 'utf-8');
 
@@ -29,7 +29,7 @@ export async function removeAppFromPnpm(appName: string): Promise<void> {
       consola.success(`✔ Loaded pnpm-migrated-apps.json with ${pnpmApps.length} apps.`);
     }
   } catch (exception: unknown) {
-    const error = exception as NodeJS.ErrnoException; // ✅ type-safe
+    const error = exception as NodeJS.ErrnoException;
     if (error.code === 'ENOENT') {
       consola.error('❌ Error: pnpm-migrated-apps.json not found. Nothing to rollback.');
     } else {
@@ -50,31 +50,8 @@ export async function removeAppFromPnpm(appName: string): Promise<void> {
   await fs.writeFile(migratePnpmAppsPath, JSON.stringify(pnpmApps, null, 2));
   consola.success(`✔ Removed "${appName}" from pnpm-migrated-apps.json.`);
 
-  // --- Step 2: Re-add app to Yarn root package.json workspaces
-  consola.info(`📖 Reading root package.json from: ${rootPackageJsonPath}`);
-  const pkgRaw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-  consola.success(`✔ Successfully read root package.json`);
-
-  const pkg = parseJson<JsonType>(pkgRaw);
-  consola.info(`🔍 Validating Yarn workspaces...`);
-
-  if (!pkg.workspaces?.packages) {
-    consola.error(
-      '❌ Error: `workspaces.packages` not found in root package.json. Are you sure this is a Yarn workspace?',
-    );
-    process.exit(1);
-  }
-
-  consola.info(`📂 Found ${pkg.workspaces.packages.length} workspace entries.`);
-  if (pkg.workspaces.packages.includes(appPath)) {
-    consola.warn(`ℹ App "${appName}" already exists in Yarn workspaces, skipping re-add.`);
-  } else {
-    consola.info(`➕ Re-adding "${appPath}" to Yarn workspaces...`);
-    pkg.workspaces.packages.push(appPath);
-    pkg.workspaces.packages.sort();
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    consola.success(`✔ Re-added "${appPath}" to Yarn workspaces.`);
-  }
+  // --- Step 2: Re-add app to Yarn workspaces (via workspace utils)
+  await addAppToYarnWorkspaces(appPath);
 
   consola.box(`✅ App "${appName}" successfully rolled back to Yarn workflow.`);
 }

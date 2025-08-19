@@ -2,20 +2,32 @@
 /**
  * Prepare a local, pinned PNPM binary under `target/pnpm`.
  *
- * - Detects platform/arch and downloads the correct PNPM release binary.
- * - Places it at `target/pnpm/pnpm` (or `pnpm.exe` on Windows).
- * - Verifies the install by running `pnpm --version`.
- * - Safe signal handlers log and exit cleanly.
+ * Steps:
+ *  1. Compute the correct binary name based on platform/arch.
+ *  2. Download the PNPM release binary from GitHub.
+ *  3. Store it in `target/pnpm/pnpm` (or `pnpm.exe` on Windows).
+ *  4. Make it executable (non-Windows).
+ *  5. Verify with `pnpm --version`.
+ *  6. Handle errors gracefully with clear logs.
  */
 import { consola } from 'consola';
 import { execSync } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import os from 'node:os';
 
-import { pnpmBinaryPath, pnpmExecutablePath, pnpmVersion } from '../../playbook/pnpm-config.js';
+import {
+  pnpmBinaryPath,
+  pnpmExecutablePath,
+  pnpmVersion,
+  rootPackageJsonPath,
+} from '../../playbook/pnpm-config.js';
+import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
 
 /**
  * Compute the final executable path for pnpm based on the current platform.
+ *
+ * @param platform - NodeJS platform
+ * @returns Executable path string
  */
 function getPnpmExecutablePath(platform: NodeJS.Platform): string {
   return pnpmExecutablePath + (platform === 'win32' ? '.exe' : '');
@@ -23,6 +35,10 @@ function getPnpmExecutablePath(platform: NodeJS.Platform): string {
 
 /**
  * Resolve the PNPM release binary filename for the given platform/arch.
+ *
+ * @param platform - NodeJS platform (darwin, linux, win32, etc.)
+ * @param arch - NodeJS architecture (x64, arm64, etc.)
+ * @throws If platform/arch combination is unsupported
  */
 function getReleaseBinaryName(platform: NodeJS.Platform, arch: NodeJS.Architecture): string {
   consola.info(`🔍 Resolving binary for platform=${platform}, arch=${arch}`);
@@ -39,7 +55,9 @@ function getReleaseBinaryName(platform: NodeJS.Platform, arch: NodeJS.Architectu
 }
 
 /**
- * Download the PNPM release binary into pnpmBinaryPath and make it executable (non-Windows).
+ * Download and install the PNPM release binary into pnpmBinaryPath.
+ *
+ * @throws If download or chmod fails
  */
 function installPnpmBinary(): void {
   consola.start(`🚀 Installing PNPM v${pnpmVersion} binary...`);
@@ -47,11 +65,11 @@ function installPnpmBinary(): void {
   consola.info(`📂 Ensured directory exists: ${pnpmBinaryPath}`);
 
   const platform = os.platform();
-  const arch = os.arch();
+  const arch = os.arch() as NodeJS.Architecture;
 
   let binaryName: string;
   try {
-    binaryName = getReleaseBinaryName(platform, arch as NodeJS.Architecture);
+    binaryName = getReleaseBinaryName(platform, arch);
     consola.success(`✔ Binary resolved: ${binaryName}`);
   } catch (e) {
     consola.error(`${e instanceof Error ? e.message : String(e)}`);
@@ -74,19 +92,27 @@ function installPnpmBinary(): void {
       consola.success(`✔ Permissions updated for ${outputPath}`);
     }
   } catch (err) {
-    if (err instanceof Error) {
-      consola.error('❌ Failed to download PNPM binary:', err.message);
-    } else {
-      consola.error('❌ Failed to download PNPM binary.');
-    }
+    consola.error(
+      '❌ Failed to download or setup PNPM binary:',
+      err instanceof Error ? err.message : String(err),
+    );
     process.exit(1);
   }
 }
 
 /**
  * Ensure pnpm exists locally and is usable. Installs it if missing.
+ *
+ * Handles removal/restoration of the root packageManager field
+ * so that Yarn does not interfere with pnpm execution.
  */
-export function bootstrapPnpm(): void {
+/**
+ * Ensure pnpm exists locally and is usable. Installs it if missing.
+ *
+ * Handles removal/restoration of the root packageManager field
+ * so that Yarn does not interfere with pnpm execution.
+ */
+export async function bootstrapPnpm(): Promise<void> {
   consola.start('⚡ Bootstrapping PNPM...');
   const executablePath = getPnpmExecutablePath(os.platform());
 
@@ -97,13 +123,22 @@ export function bootstrapPnpm(): void {
     consola.success(`✔ PNPM binary already exists at ${executablePath}`);
   }
 
+  // --- Temporarily remove packageManager
+  const removedValue = await removePackageManager(rootPackageJsonPath);
+
   consola.info('🔎 Verifying PNPM binary with --version...');
   try {
     execSync(`${executablePath} --version`, { stdio: 'inherit' });
     consola.success(`✅ PNPM binary is working from ${executablePath}`);
-  } catch {
-    consola.error('❌ PNPM binary not working after install.');
+  } catch (err) {
+    consola.error(
+      '❌ PNPM binary not working after install:',
+      err instanceof Error ? err.message : String(err),
+    );
     process.exit(1);
+  } finally {
+    // --- Always restore packageManager field
+    await restorePackageManager(rootPackageJsonPath, removedValue);
   }
 
   consola.box('🎉 PNPM bootstrap complete!');

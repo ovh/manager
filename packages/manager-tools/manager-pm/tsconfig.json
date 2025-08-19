@@ -5,7 +5,8 @@
     "outDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
-    "noEmit": false
+    "noEmit": false,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "types"]

@@ -24,3 +24,57 @@ export const managerPMPath = path.resolve(__dirname, '../../..');
 
 /** Path to pnpm migrated apps registry. */
 export const migratePnpmAppsPath = path.join(managerPMPath, 'src/playbook/pnpm-migrated-apps.json');
+
+/** Path to pnpm normalized versions path. */
+export const normalizedVersionsPath = path.join(
+  managerPMPath,
+  'src/playbook/pnpm-normalized-versions',
+);
+
+/**
+ * Applications root path
+ */
+export const applicationsBasePath = 'packages/manager/apps';
+
+/**
+ * Compute the relative path of an app inside the monorepo.
+ *
+ * @param appName - The folder name under `applicationsBasePath`
+ * @returns The relative path to the app (e.g. "applicationsBasePath/zimbra")
+ */
+export const buildAppPath = (appName: string): string => path.join(applicationsBasePath, appName);
+
+/**
+ * Compute the absolute path to an app's package.json.
+ *
+ * @param appPath - The relative app path as returned by {@link buildAppPath}
+ * @returns The absolute path to the app's package.json file
+ */
+export const buildAppPkgJsonPath = (appPath: string): string =>
+  path.join(managerRootPath, appPath, 'package.json');
+
+/**
+ * Directories that should always be ignored when recursively scanning
+ * for `package.json` files (e.g. build artifacts, dependencies, VCS).
+ */
+export const ignoredDirectories = new Set(['node_modules', 'dist', 'coverage', '.git']);
+
+/**
+ * Root directories under the monorepo where private packages
+ * (core, modules, components) are expected to be located.
+ */
+export const privateWorkspaces = [
+  'packages/manager/core',
+  'packages/manager/modules',
+  'packages/components',
+];
+
+/**
+ * Folders to remove before installation.
+ */
+export const cleanupDirectories: readonly string[] = ['node_modules', 'dist', '.turbo'];
+
+/**
+ * Container application package name.
+ */
+export const containerPackageName = '@ovh-ux/manager-container-app';
