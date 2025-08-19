@@ -24,7 +24,8 @@ export default class {
     this.isInstallationInError =
       this.currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
-    if (!this.isDisablingZerto && !!this.currentZerto.primaryPcc) {
+    console.log({ currentZerto: this.currentZerto });
+    if (!this.isDisablingZerto && !!this.currentZerto.localSiteInformation) {
       return this.goToSummary(this.zertoInformations);
     }
 
