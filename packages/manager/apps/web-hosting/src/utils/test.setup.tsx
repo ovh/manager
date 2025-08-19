@@ -130,6 +130,9 @@ vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResourceWebsiteTasks: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesTaskMock),
   ),
+  getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
+    Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
+  ),
 }));
 afterEach(() => {
   vi.clearAllMocks();

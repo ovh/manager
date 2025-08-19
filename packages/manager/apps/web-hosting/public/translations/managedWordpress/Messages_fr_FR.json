@@ -16,5 +16,10 @@
   "web_hosting_managed_wordpress_import_warning_message_part_2": "Veuillez activer le mode maintenance sur les sites e-commerce ou prendre les mesures nécessaires pour éviter toute divergence.",
   "web_hosting_managed_wordpress_delete_website_success_message": "Votre site internet {{website}} a été supprimé avec succès",
   "web_hosting_managed_wordpress_delete_websites_success_message": "Vos sites internet {{website}} ont été supprimés avec succès",
+  "web_hosting_managed_wordpress_create_webiste_success": "Votre demande de création de site a bien été prise en compte. Elle sera traitée d'ici quelques instants",
+  "web_hosting_managed_wordpress_create_webiste_error": "Votre demande de création de site n'a pas pu aboutir.",
+  "web_hosting_managed_wordpress_create_webiste_language_admin": "Langue du compte administrateur",
+  "web_hosting_managed_wordpress_create_webiste_select_language": "Sélection de la langue",
+  "web_hosting_managed_wordpress_create_webiste_create_login": "Créer vos identifiants de connexion",
   "web_hosting_managed_wordpress_import_success_message": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches."
 }
