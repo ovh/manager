@@ -121,6 +121,7 @@ export function VolumeTypeStep({
       <TilesInput
         name="volume-type"
         label=""
+        horizontal
         value={volumeType}
         elements={volumeTypes}
         onChange={(e) => setVolumeType(e)}
