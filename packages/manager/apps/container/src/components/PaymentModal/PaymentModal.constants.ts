@@ -1,6 +1,6 @@
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
-import PaymentModal, { IPaymentMethod } from '@/payment-modal/PaymentModal';
+import PaymentModal, { IPaymentMethod } from '@/components/PaymentModal/PaymentModal.component';
 
 export const PAYMENT_ALERTS = {
   EXPIRED_CARD: 'expired',

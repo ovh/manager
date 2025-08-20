@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './styles.scss';
 import {
   OsdsButton,
@@ -45,14 +45,15 @@ const PaymentModal = (): JSX.Element => {
     .getPlugin('navigation')
     .getURL('dedicated', '#/billing/payment/method');
 
-  const closeHandler = () => {
+  const closeHandler = useCallback(() => {
     setShowPaymentModal(false);
     shell.getPlugin('ux').notifyModalActionDone('PaymentModal');
-  };
-  const validateHandler = () => {
+  }, [shell]);
+
+  const validateHandler = useCallback(() => {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  };
+  }, [paymentMethodURL]);
 
   return (
     showPaymentModal && (

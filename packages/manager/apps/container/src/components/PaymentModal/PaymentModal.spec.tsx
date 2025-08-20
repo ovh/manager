@@ -1,6 +1,6 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import PaymentModal from './PaymentModal';
+import PaymentModal from './PaymentModal.component';
 import { PAYMENT_ALERTS } from './PaymentModal.constants';
 import ModalsContext from '@/context/modals/modals.context';
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_HUE,
@@ -38,10 +38,10 @@ export default function AgreementsUpdateModal() {
   const { t } = useTranslation('agreements-update-modal');
   const [showModal, setShowModal] = useState(true);
 
-  const goToContractPage = () => {
+  const goToContractPage = useCallback(() => {
     setShowModal(false);
     navigation.navigateTo(billingAppName, billingAppPath);
-  };
+  }, [navigation, billingAppName, billingAppPath]);
 
   return (
     showModal && (
