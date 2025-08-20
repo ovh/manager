@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
@@ -19,7 +19,7 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SecretDashboardPageParams } from '../dashboard/dashboard.type';
+import { SecretDashboardPageParams } from '../../dashboard/dashboard.type';
 import { SecretRawValue } from './SecretRawValue.component';
 
 type VersionSelectorParams = {
@@ -40,12 +40,14 @@ const VersionSelector = ({
     NAMESPACES.STATUS,
     NAMESPACES.ERROR,
   ]);
-  const { data: versions, isPending, error } = useSecretVersions(
+  const { data: versions, isPending, isFetching, error } = useSecretVersions(
     domainId,
     path,
   );
 
-  if (isPending)
+  if (isPending || isFetching)
+    // isFetching forces to display the spinner when the version has changed
+    // otherwise when the ods-select component is refreshed, react breaks
     return (
       <div className="flex justify-center">
         <OdsSpinner data-testid={VERSION_SELECTOR_SPINNER_TEST_ID} />

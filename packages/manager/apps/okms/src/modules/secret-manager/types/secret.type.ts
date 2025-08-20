@@ -14,10 +14,10 @@ export type SecretVersionDataField = {
 };
 
 export type SecretVersion = {
-  createdAt: string;
-  deactivatedAt?: string;
   id: number;
   state: SecretVersionState;
+  createdAt: string;
+  deactivatedAt?: string;
 };
 
 export type SecretVersionWithData = SecretVersion & SecretVersionDataField;

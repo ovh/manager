@@ -9,4 +9,5 @@ export const kmsIamActions = {
   serviceKeyUpdate: 'okms:apiovh:serviceKey/update',
   secretGet: 'okms:apiovh:secret/get',
   secretVersionGetData: 'okms:apiovh:secret/version/getData',
+  secretVersionCreate: 'okms:apiovh:secret/version/create',
 };

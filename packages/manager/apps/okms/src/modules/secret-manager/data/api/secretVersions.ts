@@ -5,7 +5,7 @@ import {
   SecretVersionWithData,
 } from '@secret-manager/types/secret.type';
 
-export const getSecretVersionsQueryKeys = {
+export const secretVersionsQueryKeys = {
   list: (okmsId: string, path: string) => ['secret', okmsId, path, 'versions'],
   detailWithData: (okmsId: string, path: string, versionId: number) => [
     'secret',
@@ -41,7 +41,26 @@ export const getSecretVersionWithData = async (
 
 // POST version
 export type CreateSecretVersionBody = SecretVersionDataField;
-export type CreateSecretVersionResponse = SecretVersionWithData;
+export type CreateSecretVersionResponse = SecretVersion;
+
+export type CreateSecretVersionParams = {
+  okmsId: string;
+  path: string;
+  data: CreateSecretVersionBody;
+};
+
+export const createSecretVersion = async ({
+  okmsId,
+  path,
+  data,
+}: CreateSecretVersionParams) => {
+  const { data: response } = await apiClient.v2.post<
+    CreateSecretVersionResponse
+  >(`okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version`, {
+    data,
+  });
+  return response;
+};
 
 // PUT version
 export type UpdateSecretVersionBody = Pick<SecretVersion, 'state'>;

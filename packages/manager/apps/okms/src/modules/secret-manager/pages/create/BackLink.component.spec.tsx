@@ -5,13 +5,13 @@ import { useSearchParams } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/dom';
+import { waitFor, screen } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import { initTestI18n } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 import { BackLink } from './BackLink.component';
 
 let i18nValue: i18n;
@@ -70,7 +70,7 @@ describe('Secrets creation form test suite', () => {
       // WHEN
       const backLink = await getOdsButtonByLabel({
         container,
-        label: 'back',
+        label: labels.common.actions.back,
         isLink: true,
       });
 

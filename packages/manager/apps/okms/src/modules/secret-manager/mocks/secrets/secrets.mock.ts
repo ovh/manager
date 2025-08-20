@@ -1,5 +1,6 @@
 import { CreateSecretResponse } from '@secret-manager/data/api/secrets';
-import { Secret } from '@secret-manager/types/secret.type';
+import { Secret, SecretWithData } from '@secret-manager/types/secret.type';
+import { getVersionMockWithData } from '../versions/versions.mock';
 
 export const mockSecret1: Secret = {
   path: 'projects/acme-corp/secrets/api-key',
@@ -27,6 +28,11 @@ export const mockSecret1: Secret = {
     displayName: 'api-key',
     urn: 'urn:1',
   },
+};
+
+export const mockSecret1WithData: SecretWithData = {
+  ...mockSecret1,
+  version: getVersionMockWithData(mockSecret1.version),
 };
 
 export const mockSecret2: Secret = {
@@ -58,7 +64,16 @@ export const mockSecret2: Secret = {
   },
 };
 
+export const mockSecret2WithData: SecretWithData = {
+  ...mockSecret2,
+  version: getVersionMockWithData(mockSecret2.version),
+};
+
 export const secretsMock: Secret[] = [mockSecret1, mockSecret2];
+export const secretsMockWithData: Secret[] = [
+  mockSecret1WithData,
+  mockSecret2WithData,
+];
 
 export const createSecretResponseMock: CreateSecretResponse = {
   path: 'a/path',

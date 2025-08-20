@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
@@ -65,13 +66,32 @@ const SecretVersionsPage = () => {
     );
 
   return (
-    <Datagrid
-      columns={columns}
-      items={versions || []}
-      totalItems={versions?.length}
-      isLoading={isPending}
-      contentAlignLeft
-    />
+    <>
+      <OdsButton
+        className="mb-4"
+        onClick={() =>
+          navigate(
+            SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerCreateVersion(
+              domainId,
+              secretPathDecoded,
+            ),
+          )
+        }
+        label={t('add_new_version')}
+        icon={'plus'}
+      />
+
+      <Datagrid
+        columns={columns}
+        items={versions || []}
+        totalItems={versions?.length}
+        isLoading={isPending}
+        contentAlignLeft
+      />
+      <Suspense>
+        <Outlet />
+      </Suspense>
+    </>
   );
 };
 
