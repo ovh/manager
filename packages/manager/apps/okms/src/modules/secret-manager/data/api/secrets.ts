@@ -1,6 +1,7 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import {
   Secret,
+  SecretWithData,
   SecretMetadata,
   SecretVersionDataField,
 } from '@secret-manager/types/secret.type';
@@ -11,6 +12,10 @@ export const secretQueryKeys = {
     ...secretQueryKeys.list(okmsId),
     secretPath,
   ],
+  detailWithData: (okmsId: string, secretPath: string) => [
+    ...secretQueryKeys.detail(okmsId, secretPath),
+    'with-data',
+  ],
 };
 
 // GET Secret
@@ -20,6 +25,18 @@ export const getSecret = async (
 ): Promise<Secret> => {
   const { data } = await apiClient.v2.get<Secret>(
     `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
+  );
+  return data;
+};
+
+export const getSecretWithData = async (
+  okmsId: string,
+  secretPath: string,
+): Promise<SecretWithData> => {
+  const { data } = await apiClient.v2.get<SecretWithData>(
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(
+      secretPath,
+    )}?includeData=true`,
   );
   return data;
 };
@@ -43,7 +60,7 @@ export type CreateSecretBody = {
 };
 export type CreateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
 
-export type PostSecretParams = {
+export type CreateSecretParams = {
   okmsId: string;
   data: CreateSecretBody;
 };
@@ -51,7 +68,7 @@ export type PostSecretParams = {
 export const createSecret = async ({
   okmsId,
   data: postData,
-}: PostSecretParams) => {
+}: CreateSecretParams) => {
   const { data } = await apiClient.v2.post<CreateSecretResponse>(
     `okms/resource/${okmsId}/secret`,
     postData,
