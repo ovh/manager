@@ -57,3 +57,26 @@ export const getVersionMock = ({
     api: 'v2',
   },
 ];
+
+// CREATE VERSION
+export const createVersionErrorMessage = 'create-secret-version-error-message';
+
+export type CreateVersionMockParams = {
+  isCreateVersionKO?: boolean;
+};
+
+export const createVersionMock = ({
+  isCreateVersionKO,
+}: CreateVersionMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secret/:secretPath/version',
+    response: isCreateVersionKO
+      ? {
+          message: createVersionErrorMessage,
+        }
+      : versionsMock,
+    status: isCreateVersionKO ? 500 : 200,
+    api: 'v2',
+    method: 'post',
+  },
+];
