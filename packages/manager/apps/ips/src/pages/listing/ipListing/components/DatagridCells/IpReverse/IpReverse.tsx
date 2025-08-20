@@ -106,6 +106,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
       isLoading={isLoading || pendingDelete || pendingUpdate}
       enabled={!isGroup}
       error={error}
+      ip={ip}
     >
       <EditInline
         name="test"
