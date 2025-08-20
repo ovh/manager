@@ -1,9 +1,10 @@
 {
-  "sms_order_time2chat_title": "Merci de remplir les informations ci-dessous afin que l'on puisse traiter votre commande",
+  "sms_order_time2chat_title": "Commander un numéro Time2Chat",
+  "sms_order_time2chat_description": "Merci de remplir les informations ci-dessous afin que l'on puisse traiter votre commande.",
   "sms_order_time2chat_action_order": "Continuer",
   "sms_order_time2chat_action_cancel": "Annuler",
-  "sms_order_time2chat_label_phonenumber": "Numéro de téléphone",
-  "sms_order_time2chat_label_email": "E-mail",
+  "sms_order_time2chat_label_phonenumber": "Numéro de téléphone (au format international 0033 ou +33)",
+  "sms_order_time2chat_label_website": "Site internet",
   "sms_order_time2chat_label_name": "Nom",
   "sms_order_time2chat_label_company_name": "Raison sociale",
   "sms_order_time2chat_label_brand_name": "Marque utilisant le service",

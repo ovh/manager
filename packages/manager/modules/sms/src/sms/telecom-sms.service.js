@@ -178,4 +178,48 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
     });
     return filterRequest;
   },
+
+  getContactInfo(serviceName, number) {
+    return $http
+      .get(`/sms/${serviceName}/virtualNumbers/${number}/time2chat/contact`)
+      .then(({ data }) => data);
+  },
+
+  getAutoResponseMessage(serviceName, number) {
+    return $http
+      .get(
+        `/sms/${serviceName}/virtualNumbers/${number}/time2chat/autoResponse`,
+      )
+      .then(({ data }) => data);
+  },
+
+  getKyc(serviceName, number) {
+    return $http
+      .get(`/sms/${serviceName}/virtualNumbers/${number}/time2chat/kyc`)
+      .then(({ data }) => data);
+  },
+
+  updateContactInfo(serviceName, number, params) {
+    return $http
+      .put(
+        `/sms/${serviceName}/virtualNumbers/${number}/time2chat/contact`,
+        params,
+      )
+      .then(({ data }) => data);
+  },
+
+  updateAutoResponseMessage(serviceName, number, params) {
+    return $http
+      .put(
+        `/sms/${serviceName}/virtualNumbers/${number}/time2chat/autoResponse`,
+        params,
+      )
+      .then(({ data }) => data);
+  },
+
+  updateKyc(serviceName, number, params) {
+    return $http
+      .put(`/sms/${serviceName}/virtualNumbers/${number}/time2chat/kyc`, params)
+      .then(({ data }) => data);
+  },
 });

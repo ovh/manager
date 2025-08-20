@@ -74,7 +74,7 @@
             <button
                 type="button"
                 class="btn btn-primary mr-2"
-                data-ui-sref="sms.service.dashboard.orderTime2Chat"
+                data-ui-sref="sms.service.senders.orderTime2Chat"
             >
                 <i class="oui-icon oui-icon-cart mr-2" aria-hidden="true"></i>
                 <span data-translate="sms_senders_order_time2chat"></span>
@@ -301,21 +301,36 @@
                                             data-translate="sms_edit"
                                         ></button>
                                     </li>
-                                    <li role="menuitem">
+                                    <li
+                                        role="menuitem"
+                                        data-ng-if="sender.type === 'time2chat'"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ui-sref="sms.service.senders.configure-time2chat({ number: sender.sender.replace('+', '00') })"
+                                            data-translate="sms_configure"
+                                        ></button>
+                                    </li>
+                                    <li
+                                        role="menuitem"
+                                        data-ng-if="!['virtual', 'time2chat'].includes(sender.type)"
+                                    >
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsSendersCtrl.remove(sender)"
-                                            data-ng-disabled="sender.type === 'virtual'"
                                             data-translate="sms_delete"
                                         ></button>
                                     </li>
-                                    <li role="menuitem">
+                                    <li
+                                        role="menuitem"
+                                        data-ng-if="SmsSendersCtrl.constructor.canTerminate(sender)"
+                                    >
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsSendersCtrl.terminate(sender)"
-                                            data-ng-disabled="!SmsSendersCtrl.constructor.canTerminate(sender)"
                                             data-ng-bind="sender.serviceInfos.renew.deleteAtExpiration ? 'sms_senders_terminate_cancel' : 'sms_common_resiliation' | translate"
                                         ></button>
                                     </li>

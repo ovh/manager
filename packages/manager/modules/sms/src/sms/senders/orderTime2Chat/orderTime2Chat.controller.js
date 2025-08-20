@@ -1,4 +1,5 @@
 import JSURL from 'jsurl';
+import { PHONE_NUMBER_FOR_TIME2CHAT_REGEX } from '../../telecom-sms.constant';
 
 export default class SmsOrderTime2ChatCtrl {
   /* @ngInject */
@@ -7,7 +8,7 @@ export default class SmsOrderTime2ChatCtrl {
     this.$window = $window;
     this.$translate = $translate;
     this.expressOrderUrl = RedirectionService.getURL('expressOrder');
-    this.phoneNumberRegex = /^(?:\+33|0033|0)[1-9](?:[\s.-]?\d{2}){4}$/;
+    this.PHONE_NUMBER_FOR_TIME2CHAT_REGEX = PHONE_NUMBER_FOR_TIME2CHAT_REGEX;
   }
 
   onSubmit() {
@@ -25,8 +26,8 @@ export default class SmsOrderTime2ChatCtrl {
           value: this.model.name,
         },
         {
-          label: 'email',
-          value: this.model.email,
+          label: 'website',
+          value: this.model.website,
         },
         {
           label: 'phonenumber',
