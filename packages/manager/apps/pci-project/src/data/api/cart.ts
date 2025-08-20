@@ -158,6 +158,18 @@ export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
 };
 
 /**
+ * Retrieves the checkout information of a specified cart.
+ *
+ * @param cartId
+ * @returns {Promise<CartSummary>} The cart checkout, including details, prices, and contracts.
+ */
+export const getCartCheckout = async (cartId: string): Promise<CartSummary> => {
+  const { data } = await v6.get<CartSummary>(`/order/cart/${cartId}/checkout`);
+
+  return data;
+};
+
+/**
  * Retrieves the summary of a specified cart.
  *
  * @param cartId

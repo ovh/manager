@@ -229,7 +229,9 @@ export const useCreateAndAssignCart = () =>
  */
 export const useGetHdsAddonOption = (cartId?: string) =>
   useQuery({
-    queryKey: ['cart-hds-addon-option', cartId],
+    queryKey: [
+      `order/cart/${cartId}/cloud/options?planCode=${PCI_PROJECT_ORDER_CART.planCode}`,
+    ],
     queryFn: async () =>
       getPublicCloudOptions(
         cartId as string,

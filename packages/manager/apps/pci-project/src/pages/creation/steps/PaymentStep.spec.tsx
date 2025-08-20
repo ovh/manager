@@ -43,6 +43,12 @@ describe('PaymentStep', () => {
       description: 'Test cart',
       expire: '2024-12-31T23:59:59Z',
       readonly: false,
+      prices: {
+        withTax: {
+          value: 100,
+        },
+      },
+      url: 'https://example.com/cart',
     },
     cartProjectItem: {
       cartId: 'cart-123',
@@ -58,6 +64,9 @@ describe('PaymentStep', () => {
         quantity: 1,
       },
     },
+    handleIsPaymentMethodValid: vi.fn(),
+    paymentHandler: { current: null },
+    handleCustomSubmitButton: vi.fn(),
   };
 
   const mockStartupProgramAmountText = '100.00 €';
