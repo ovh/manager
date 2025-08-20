@@ -2,6 +2,7 @@ import {
   SecretVersion,
   SecretVersionWithData,
 } from '@secret-manager/types/secret.type';
+import { CreateSecretVersionResponse } from '@secret-manager/data/api/secretVersions';
 
 export const versionDeletedMock: SecretVersion = {
   id: 1,
@@ -39,3 +40,9 @@ export const getVersionMockWithData = (
 export const versionsMockwithData: SecretVersionWithData[] = versionsMock.map(
   (version) => getVersionMockWithData(version),
 );
+
+export const createVersionResponseMock: CreateSecretVersionResponse = {
+  id: 1,
+  state: 'ACTIVE',
+  createdAt: '2023-01-18T08:30:45Z',
+};

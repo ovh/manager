@@ -2,7 +2,7 @@ import { SecretVersionWithData } from '@secret-manager/types/secret.type';
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getSecretVersionsQueryKeys,
+  secretVersionsQueryKeys,
   getSecretVersionWithData,
 } from '../api/secretVersions';
 
@@ -12,7 +12,7 @@ export const useSecretVersionWithData = (
   version: number,
 ) => {
   return useQuery<SecretVersionWithData, ApiError>({
-    queryKey: getSecretVersionsQueryKeys.detailWithData(
+    queryKey: secretVersionsQueryKeys.detailWithData(
       okmsId,
       secretPath,
       version,

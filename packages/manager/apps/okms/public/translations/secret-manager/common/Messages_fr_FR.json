@@ -12,5 +12,7 @@
   "actions": "Actions",
   "access_versions": "Accéder aux versions",
   "reveal_secret": "Afficher la valeur",
-  "values": "Valeurs"
+  "values": "Valeurs",
+  "add_new_version": "Ajouter une nouvelle version",
+  "add_new_version_error": "Une erreur est survenue lors de la création de la version"
 }

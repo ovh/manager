@@ -1,6 +1,10 @@
 import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { versionsMock, versionsMockwithData } from './versions.mock';
+import {
+  versionsMock,
+  versionsMockwithData,
+  createVersionResponseMock,
+} from './versions.mock';
 
 // LIST VERSION
 export type GetVersionsMockParams = {
@@ -55,5 +59,28 @@ export const getVersionMock = ({
           findVersionById(request, params),
     status: isVersionKO ? 500 : 200,
     api: 'v2',
+  },
+];
+
+// CREATE VERSION
+export const createVersionErrorMessage = 'create-secret-version-error-message';
+
+export type CreateVersionMockParams = {
+  isCreateVersionKO?: boolean;
+};
+
+export const createVersionMock = ({
+  isCreateVersionKO,
+}: CreateVersionMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secret/:secretPath/version',
+    response: isCreateVersionKO
+      ? {
+          message: createVersionErrorMessage,
+        }
+      : createVersionResponseMock,
+    status: isCreateVersionKO ? 500 : 200,
+    api: 'v2',
+    method: 'post',
   },
 ];
