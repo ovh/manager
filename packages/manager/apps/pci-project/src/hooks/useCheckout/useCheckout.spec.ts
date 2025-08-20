@@ -3,7 +3,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as cartApi from '@/data/api/cart';
 import * as paymentApi from '@/data/api/payment';
 import { createWrapper } from '@/wrapperRenders';
-import { useCheckoutWithFidelityAccount } from './useCheckout';
+import { useCheckoutWithFidelityAccount, useCheckoutCart } from './useCheckout';
+import { CartSummary } from '@/data/types/cart.type';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFeatureAvailability: vi.fn(),
@@ -100,5 +101,88 @@ describe('useCheckoutWithFidelityAccount', () => {
     });
 
     expect(onSuccess).not.toHaveBeenCalled();
+  });
+});
+
+describe('useCheckoutCart', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  const mockCartSummary: CartSummary = {
+    contracts: [],
+    prices: {
+      originalWithoutTax: {
+        value: 90.91,
+        currencyCode: 'EUR',
+        text: '90.91 €',
+      },
+      reduction: { value: 0, currencyCode: 'EUR', text: '0.00 €' },
+      tax: { value: 9.09, currencyCode: 'EUR', text: '9.09 €' },
+      withTax: { value: 100, currencyCode: 'EUR', text: '100.00 €' },
+      withoutTax: { value: 90.91, currencyCode: 'EUR', text: '90.91 €' },
+    },
+    details: [],
+    orderId: 12345,
+    url: 'https://payment.example.com',
+  };
+
+  it('should checkout cart successfully', async () => {
+    vi.mocked(cartApi.checkoutCart).mockResolvedValue(mockCartSummary);
+
+    const { result } = renderHook(() => useCheckoutCart(), {
+      wrapper: createWrapper(),
+    });
+
+    let checkoutResult: CartSummary | undefined;
+    await act(async () => {
+      checkoutResult = await result.current.mutateAsync({ cartId: 'cart-123' });
+    });
+
+    expect(cartApi.checkoutCart).toHaveBeenCalledWith('cart-123');
+    expect(checkoutResult).toEqual(mockCartSummary);
+  });
+
+  it('should handle checkout API errors', async () => {
+    const apiError = new Error('Checkout failed');
+    vi.mocked(cartApi.checkoutCart).mockRejectedValue(apiError);
+
+    const { result } = renderHook(() => useCheckoutCart(), {
+      wrapper: createWrapper(),
+    });
+
+    await act(async () => {
+      await expect(
+        result.current.mutateAsync({ cartId: 'cart-123' }),
+      ).rejects.toThrow('Checkout failed');
+    });
+
+    expect(cartApi.checkoutCart).toHaveBeenCalledWith('cart-123');
+  });
+
+  it('should handle different cart IDs', async () => {
+    vi.mocked(cartApi.checkoutCart).mockResolvedValue(mockCartSummary);
+
+    const { result } = renderHook(() => useCheckoutCart(), {
+      wrapper: createWrapper(),
+    });
+
+    await act(async () => {
+      await result.current.mutateAsync({ cartId: 'different-cart-id' });
+    });
+
+    expect(cartApi.checkoutCart).toHaveBeenCalledWith('different-cart-id');
+  });
+
+  it('should return mutation state correctly', () => {
+    const { result } = renderHook(() => useCheckoutCart(), {
+      wrapper: createWrapper(),
+    });
+
+    expect(result.current.isPending).toBe(false);
+    expect(result.current.error).toBeNull();
+    expect(result.current.data).toBeUndefined();
+    expect(typeof result.current.mutate).toBe('function');
+    expect(typeof result.current.mutateAsync).toBe('function');
   });
 });
