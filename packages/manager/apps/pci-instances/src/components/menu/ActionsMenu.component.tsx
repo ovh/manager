@@ -2,7 +2,7 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import {
@@ -57,24 +57,28 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
 const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
   children,
   ...props
-}) => (
-  <Popover position="bottom">
-    <PopoverTrigger
-      // prevent default to avoid auto hiding the dropdown on mobile device
-      onTouchEnd={(e) => e.preventDefault()}
-      asChild
+}) => {
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <Popover
+      position="bottom"
+      open={isOpen}
+      onOpenChange={({ open }) => setOpen(open)}
     >
-      <Button data-testid="actions-menu-button" {...props}>
-        <OsdsIcon
-          name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          size={ODS_ICON_SIZE.xxs}
-        />
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent>{children}</PopoverContent>
-  </Popover>
-);
+      <PopoverTrigger asChild>
+        <Button data-testid="actions-menu-button" {...props}>
+          <OsdsIcon
+            name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_ICON_SIZE.xxs}
+          />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent onClick={() => setOpen(false)}>{children}</PopoverContent>
+    </Popover>
+  );
+};
 
 export const ActionsMenu = ({ items }: TActionsMenuProps) => (
   <ActionMenuContainer variant="outline" size="sm" disabled={!items.size}>
