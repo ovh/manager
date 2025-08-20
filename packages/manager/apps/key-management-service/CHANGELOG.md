@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.32.10...@ovh-ux/manager-key-management-service-app@0.32.11) (2025-08-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
 ## [0.32.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.32.9...@ovh-ux/manager-key-management-service-app@0.32.10) (2025-08-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

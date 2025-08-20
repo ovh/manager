@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-gateway-app",
-  "version": "0.25.6",
+  "version": "0.25.7",
   "private": true,
   "description": "PCI Gateway react app",
   "type": "module",
