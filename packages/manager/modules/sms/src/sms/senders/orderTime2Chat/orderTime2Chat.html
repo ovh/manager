@@ -9,17 +9,7 @@
         data-secondary-label="{{ 'sms_order_time2chat_action_cancel' | translate }}"
         data-on-dismiss="$ctrl.onCancel()"
     >
-        <oui-field
-            data-label="{{ 'sms_order_time2chat_label_email' | translate }}"
-        >
-            <input
-                class="oui-input"
-                name="email"
-                type="email"
-                data-ng-model="$ctrl.model.email"
-                required
-            />
-        </oui-field>
+        <p data-translate="sms_order_time2chat_description"></p>
         <oui-field
             data-label="{{ 'sms_order_time2chat_label_name' | translate }}"
         >
@@ -27,6 +17,7 @@
                 class="oui-input"
                 name="name"
                 data-ng-model="$ctrl.model.name"
+                placeholder="{{ 'sms_order_time2chat_label_name' | translate }}"
                 required
             />
         </oui-field>
@@ -37,7 +28,20 @@
                 class="oui-input"
                 name="phonenumber"
                 data-ng-model="$ctrl.model.phonenumber"
-                data-ng-pattern="$ctrl.phoneNumberRegex"
+                placeholder="{{ 'sms_order_time2chat_label_phonenumber' | translate }}"
+                data-ng-pattern="$ctrl.PHONE_NUMBER_FOR_TIME2CHAT_REGEX"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_website' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="website"
+                type="website"
+                data-ng-model="$ctrl.model.website"
+                placeholder="{{ 'sms_order_time2chat_label_website' | translate }}"
                 required
             />
         </oui-field>
@@ -48,6 +52,7 @@
                 class="oui-input"
                 name="company_name"
                 data-ng-model="$ctrl.model.company_name"
+                placeholder="{{ 'sms_order_time2chat_label_company_name' | translate }}"
                 required
             />
         </oui-field>
@@ -58,6 +63,7 @@
                 class="oui-input"
                 name="brand_name"
                 data-ng-model="$ctrl.model.brand_name"
+                placeholder="{{ 'sms_order_time2chat_label_brand_name' | translate }}"
                 required
             />
         </oui-field>
@@ -68,6 +74,7 @@
                 class="oui-input"
                 name="primary_use_case"
                 data-ng-model="$ctrl.model.primary_use_case"
+                placeholder="{{ 'sms_order_time2chat_label_primary_use_case' | translate }}"
                 required
             />
         </oui-field>
@@ -78,6 +85,7 @@
                 class="oui-input"
                 name="operational_contact_name"
                 data-ng-model="$ctrl.model.operational_contact_name"
+                placeholder="{{ 'sms_order_time2chat_label_operational_contact_name' | translate }}"
                 required
             />
         </oui-field>
@@ -88,6 +96,7 @@
                 class="oui-input"
                 name="operational_contact_email"
                 data-ng-model="$ctrl.model.operational_contact_email"
+                placeholder="{{ 'sms_order_time2chat_label_operational_contact_email' | translate }}"
                 required
             />
         </oui-field>
