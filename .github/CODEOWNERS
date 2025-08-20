@@ -93,7 +93,6 @@
 /packages/manager/modules/exchange @ovh/dev-manager-web-all
 /packages/manager/modules/freefax @ovh/dev-manager-web-all
 /packages/manager/modules/gcj @ovh/dev-manager-gcj-all
-/packages/manager/modules/hub @ovh/dev-manager-gcj-all
 /packages/manager/modules/iam @ovh/dev-manager-enabler-all
 /packages/manager/modules/iplb @ovh/dev-manager-infra-all
 /packages/manager/modules/log-to-customer @ovh/dev-manager-enabler-all

@@ -1,6 +1,0 @@
-{
-  "hub_order_tracking_title": "Última encomenda",
-  "hub_order_tracking_see_all": "Ver as minhas encomendas",
-  "hub_order_tracking_error": "Não é possível recuperar o acompanhamento da encomenda",
-  "hub_order_tracking_order_id": "N.º {{orderId}}"
-}

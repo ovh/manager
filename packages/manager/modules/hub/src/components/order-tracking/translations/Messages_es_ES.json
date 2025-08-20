@@ -1,6 +1,0 @@
-{
-  "hub_order_tracking_title": "Último pedido",
-  "hub_order_tracking_see_all": "Ver mis pedidos",
-  "hub_order_tracking_error": "No es posible cargar el seguimiento de pedidos.",
-  "hub_order_tracking_order_id": "N.º {{orderId}}"
-}

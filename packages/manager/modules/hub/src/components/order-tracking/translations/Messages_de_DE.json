@@ -1,6 +1,0 @@
-{
-  "hub_order_tracking_title": "Letzte Bestellung",
-  "hub_order_tracking_see_all": "Meine Bestellungen anzeigen",
-  "hub_order_tracking_error": "Nachverfolgung der Bestellung nicht verfügbar",
-  "hub_order_tracking_order_id": "Nr. {{orderId}}"
-}
