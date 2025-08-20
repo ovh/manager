@@ -11,12 +11,16 @@ import {
   usePaymentMethods,
 } from '@/data/hooks/payment/usePaymentMethods';
 import RegisterPaymentMethod from './RegisterPaymentMethod';
-import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
+import {
+  TPaymentMethod,
+  TPaymentMethodIntegrationRef,
+} from '@/data/types/payment/payment-method.type';
 import PaymentMethodChallenge, {
   TPaymentMethodChallengeRef,
 } from './PaymentMethodChallenge';
 import queryClient from '@/queryClient';
 import PaymentMethodIntegration from './integrations/PaymentMethodIntegration';
+import { TCart } from '@/data/types/payment/cart.type';
 
 export type TPaymentMethodError =
   | 'challenge_retry'
@@ -27,10 +31,15 @@ export type PaymentMethodsProps = {
   handlePaymentMethodChange?: (method: TPaymentMethod) => void;
   handleSetAsDefaultChange?: (value: boolean) => void;
   handleValidityChange?: (isValid: boolean) => void;
+  cartId: string;
+  itemId: number;
+  handleCustomSubmitButton?: (btn: string) => void;
 };
 
 export type TPaymentMethodRef = {
-  submitPaymentMethod: () => Promise<boolean>;
+  submitPaymentMethod: (cart: TCart) => Promise<boolean>;
+  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean>;
+  onCartFinalized?: (cart: TCart) => Promise<boolean>;
 };
 
 /**
@@ -102,6 +111,9 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   handleSetAsDefaultChange = () => {},
   handleValidityChange = () => {},
   paymentMethodHandler,
+  cartId,
+  itemId,
+  handleCustomSubmitButton,
 }) => {
   const {
     data: eligibility,
@@ -115,6 +127,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     isLoading: isLoadingDefault,
   } = usePaymentMethods(defaultPaymentMethodsParams);
 
+  const [isValid, setIsValid] = React.useState<boolean>(false);
   const [isChallengeValid, setIsChallengeValid] = React.useState<boolean>(
     false,
   );
@@ -153,12 +166,18 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     // A payment method is selected and is set as default
     const hasValidPaymentMethod = !!selectedPaymentMethod && isSetAsDefault;
 
-    const isValid =
-      isChallengeValid &&
-      hasValidPaymentMethod &&
-      isPaymentMethodIntegrationValid;
+    // When there's a default payment method, we don't need PaymentMethodIntegration validation
+    // because PaymentMethodIntegration is only rendered when there's no default payment method
+    const needsIntegrationValidation = !defaultPaymentMethod;
+    const integrationValid = needsIntegrationValidation
+      ? isPaymentMethodIntegrationValid
+      : true;
 
-    handleValidityChange(isValid);
+    const isValidGlobal =
+      isChallengeValid && hasValidPaymentMethod && integrationValid;
+
+    setIsValid(isValidGlobal);
+    handleValidityChange(isValidGlobal);
   }, [
     isChallengeValid,
     isPaymentMethodIntegrationValid,
@@ -168,12 +187,17 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   ]);
 
   const paymentChallengeRef = React.useRef<TPaymentMethodChallengeRef>(null);
+  const paymentHandlerRef = React.useRef<TPaymentMethodIntegrationRef>(null);
 
   useImperativeHandle(
     paymentMethodHandler,
     () => {
       return {
-        submitPaymentMethod: async () => {
+        submitPaymentMethod: async (cart: TCart) => {
+          if (!selectedPaymentMethod || !isValid) {
+            throw new Error('payment_method_invalid');
+          }
+
           if (paymentChallengeRef.current) {
             const status = await paymentChallengeRef.current.submitChallenge();
             switch (status) {
@@ -191,15 +215,51 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
               case 'retry':
                 throw new Error('challenge_retry');
               default:
-                // The challenge was successful, we can resolve the promise
+                // The challenge was successful, we can continue the submission
+                if (
+                  paymentHandlerRef.current &&
+                  paymentHandlerRef.current.registerPaymentMethod
+                ) {
+                  return paymentHandlerRef.current.registerPaymentMethod(
+                    selectedPaymentMethod,
+                    cart,
+                  );
+                }
                 return true;
             }
+          } else if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.registerPaymentMethod
+          ) {
+            return paymentHandlerRef.current.registerPaymentMethod(
+              selectedPaymentMethod,
+              cart,
+            );
+          }
+
+          return true;
+        },
+        onCheckoutRetrieved: async (cart: TCart) => {
+          if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.onCheckoutRetrieved
+          ) {
+            return paymentHandlerRef.current.onCheckoutRetrieved(cart);
+          }
+          return true;
+        },
+        onCartFinalized: async (cart: TCart) => {
+          if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.onCartFinalized
+          ) {
+            return paymentHandlerRef.current.onCartFinalized(cart);
           }
           return true;
         },
       };
     },
-    [paymentChallengeRef],
+    [paymentChallengeRef, paymentHandlerRef, selectedPaymentMethod, isValid],
   );
 
   if (isLoadingDefault || isLoadingEligibility || !eligibility) {
@@ -221,16 +281,20 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
         eligibility={eligibility}
         challengeHandler={paymentChallengeRef}
         paymentMethod={defaultPaymentMethod}
-        handleValidityChange={(isValid) => setIsChallengeValid(isValid)}
+        handleValidityChange={(valid) => setIsChallengeValid(valid)}
       />
       {!defaultPaymentMethod && (
         <div className="mb-6">
           <PaymentMethodIntegration
             paymentMethod={selectedPaymentMethod}
-            handleValidityChange={(isValid) =>
-              setIsPaymentMethodIntegrationValid(isValid)
+            handleValidityChange={(valid) =>
+              setIsPaymentMethodIntegrationValid(valid)
             }
             eligibility={eligibility}
+            paymentHandler={paymentHandlerRef}
+            cartId={cartId}
+            itemId={itemId}
+            handleCustomSubmitButton={handleCustomSubmitButton}
           />
         </div>
       )}

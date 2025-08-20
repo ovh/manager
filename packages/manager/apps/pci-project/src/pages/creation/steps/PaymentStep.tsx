@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import PaymentMethods from '@/components/payment/PaymentMethods';
+import PaymentMethods, {
+  TPaymentMethodRef,
+} from '@/components/payment/PaymentMethods';
 import {
   Cart,
   CartConfiguration,
@@ -16,6 +18,8 @@ export type PaymentStepProps = {
   cart: Cart;
   cartProjectItem: OrderedProduct;
   handleIsPaymentMethodValid: (isValid: boolean) => void;
+  paymentHandler: React.Ref<TPaymentMethodRef>;
+  handleCustomSubmitButton: (btn: string) => void;
 };
 
 export type PaymentForm = {
@@ -26,6 +30,8 @@ export default function PaymentStep({
   cart,
   cartProjectItem,
   handleIsPaymentMethodValid,
+  paymentHandler,
+  handleCustomSubmitButton,
 }: PaymentStepProps) {
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
@@ -57,8 +63,11 @@ export default function PaymentStep({
       <PaymentMethods
         handlePaymentMethodChange={() => {}}
         handleSetAsDefaultChange={() => {}}
-        paymentMethodHandler={() => {}}
+        paymentMethodHandler={paymentHandler}
         handleValidityChange={handleIsPaymentMethodValid}
+        cartId={cart.cartId}
+        itemId={cartProjectItem.itemId}
+        handleCustomSubmitButton={handleCustomSubmitButton}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
