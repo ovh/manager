@@ -5,12 +5,9 @@ import {
   isDiscoveryProject,
   TabsPanel,
   useProject,
+  usePciUrl,
 } from '@ovh-ux/manager-pci-common';
-import {
-  BaseLayout,
-  ChangelogButton,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsBreadcrumb,
@@ -25,7 +22,7 @@ import QuotaAlert from './components/QuotaAlert.component';
 export default function ProjectHeader() {
   const { t } = useTranslation('project');
 
-  const hrefProject = useProjectUrl('public-cloud');
+  const hrefProject = usePciUrl();
   const { data: project, isLoading, error } = useProject();
 
   const tabs = PROJECT_TABS.map((tab) => ({
