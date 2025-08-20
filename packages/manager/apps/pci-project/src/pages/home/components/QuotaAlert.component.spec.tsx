@@ -1,10 +1,13 @@
-import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
 import { QUOTA_LIMIT_GUIDES } from '@/constants';
 import { useIsQuotaAboveThreshold, useQuotas } from '@/data/hooks/useQuota';
 import { createWrapper } from '@/wrapperRenders';
 import QuotaAlert from './QuotaAlert.component';
+
+// Import the mocked function
 
 vi.mock('@/hooks/useProjectIdFromParams', () => ({
   useProjectIdFromParams: vi.fn(() => '123'),
@@ -25,6 +28,16 @@ vi.mock('react-i18next', async (importOriginal) => {
         {components?.quotaUrl}
       </span>
     ),
+  };
+});
+
+// Mock usePciUrl to return the expected URL
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-pci-common');
+  return {
+    ...actual,
+    usePciUrl: vi.fn(() => '#/pci/projects/123'),
+    isDiscoveryProject: vi.fn(),
   };
 });
 
@@ -84,7 +97,7 @@ describe('QuotaAlert.component', () => {
       isLoading: false,
     } as unknown) as ReturnType<typeof useQuotas>);
     vi.mocked(useIsQuotaAboveThreshold).mockReturnValue(true);
-    vi.mocked(isDiscoveryProject).mockReturnValue((true as unknown) as boolean);
+    vi.mocked(isDiscoveryProject).mockReturnValue(true);
 
     const { container } = render(<QuotaAlert />, { wrapper });
     expect(container.firstChild).toBeNull();
