@@ -9,6 +9,6 @@
   "hostings_onboarding_guide1_description": "Dowiedz się, jak rozpocząć korzystanie z hostingu",
   "hostings_onboarding_guide2_title": "Instalacja kilku stron internetowych na jednym hostingu",
   "hostings_onboarding_guide2_description": "Dowiedz się, jak zainstalować kilka stron WWW w ramach tej samej oferty hostingowej",
-  "hostings_onboarding_guide3_title": "Włącz darmowy hosting Start 10M",
-  "hostings_onboarding_guide3_description": "Dowiedz się, jak włączyć hosting Start 10M"
+  "hostings_onboarding_guide3_title": "Włącz darmowy hosting Start {{value}}",
+  "hostings_onboarding_guide3_description": "Dowiedz się, jak włączyć hosting Start {{value}}"
 }

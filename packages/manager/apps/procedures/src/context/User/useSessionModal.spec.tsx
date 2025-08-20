@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useSessionModal } from '@/context/User/useSessionModal';
 import { useFetchServerTime } from '@/data/hooks/useUtils';
 import { User } from '@/context/User/context';

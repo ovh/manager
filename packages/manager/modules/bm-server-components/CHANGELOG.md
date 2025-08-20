@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.4...@ovh-ux/manager-bm-server-components@2.14.0) (2025-08-18)
+
+
+### Features
+
+* **dedicated:** remove backupftp 2api call ([baa5b0d](https://github.com/ovh/manager/commit/baa5b0d11eeb878b9889b2ecaf87ed556e9e4572)), closes [#MANAGER-17540](https://github.com/ovh/manager/issues/MANAGER-17540)
+
+
+
+
+
 ## [2.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.13.3...@ovh-ux/manager-bm-server-components@2.13.4) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

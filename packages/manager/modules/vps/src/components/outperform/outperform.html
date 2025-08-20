@@ -144,7 +144,7 @@
                             data-translate="vps_outperform_bandwidth_unlimited"
                         ></span>
                         <span
-                            data-ng-bind="$ctrl.newProduct.bandwidth.level | bandwidth:'M':'bit'"
+                            data-ng-bind="$ctrl.getBandwidthDisplay($ctrl.newProduct.bandwidth.level)"
                         ></span>
                     </dd>
                 </dl>

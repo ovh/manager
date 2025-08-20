@@ -31,7 +31,7 @@
   "deleteServiceIntegrationsDescription": "Usunięcie tej usługi spowoduje usunięcie następujących powiązań integracji:",
   "deleteServiceConfirmation": "Wpisz „TERMINATE”, aby potwierdzić wybór.",
   "IndexPatternsTab": "Index patterns",
-  "TopicsTab": "Temat",
+  "TopicsTab": "Topiki",
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Konektory",
   "ReplicationsTab": "Strumień replikacji"

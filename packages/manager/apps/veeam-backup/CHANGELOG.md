@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.18.4...@ovh-ux/manager-veeam-backup-app@0.19.0) (2025-08-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4272] ([ac474ef](https://github.com/ovh/manager/commit/ac474ef8479149f460d0713ed8a7ea0c2f51eb8f))
+
+
+### Features
+
+* **veeam-backup:** update veeam-backup status ([3ace44e](https://github.com/ovh/manager/commit/3ace44eeb3583286ff4d5b2acfad34481eb1e6ce)), closes [#MANAGER-18935](https://github.com/ovh/manager/issues/MANAGER-18935)
+
+
+
+
+
 ## [0.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.18.3...@ovh-ux/manager-veeam-backup-app@0.18.4) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

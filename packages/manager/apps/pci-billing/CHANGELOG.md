@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.4...@ovh-ux/manager-pci-billing-app@0.10.5) (2025-08-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4275] ([d7e97d1](https://github.com/ovh/manager/commit/d7e97d131ef093b08407c9b90db9b77ded0da071))
+
+
+
+
+
+## [0.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.3...@ovh-ux/manager-pci-billing-app@0.10.4) (2025-08-19)
+
+
+### Bug Fixes
+
+* **billing:** add paginated result for savings plan ([352c474](https://github.com/ovh/manager/commit/352c4744ad2ecd79b792a8ba01913713cd7df123)), closes [#TAPC-4675](https://github.com/ovh/manager/issues/TAPC-4675)
+* **billing:** disabled previous history base on project creation date ([5eaaaef](https://github.com/ovh/manager/commit/5eaaaef437699ffb3a8dabcd8476806d5f6b71e1)), closes [#TAPC-2596](https://github.com/ovh/manager/issues/TAPC-2596)
+
+
+
+
+
 ## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.2...@ovh-ux/manager-pci-billing-app@0.10.3) (2025-08-14)
 
 

@@ -21,6 +21,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ORDER_URL } from '@/guides.constants';
 import { urls } from '@/routes/routes.constants';
 import { LicenseType } from '@/data/api/license';
@@ -30,7 +31,13 @@ import { OfficeServiceState } from '@/components/officeServiceState/OfficeServic
 import { DETAILS_SERVICE, GO_TO_ORDER } from '@/tracking.constants';
 
 export default function Licenses() {
-  const { t } = useTranslation(['licenses', 'common']);
+  const { t } = useTranslation([
+    'licenses',
+    'common',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.STATUS,
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
   const { data, isLoading } = useLicenses();
 
@@ -93,7 +100,7 @@ export default function Licenses() {
             ></Links>
           );
         },
-        label: 'microsoft_office_licenses_servicename',
+        label: t(`${NAMESPACES.DASHBOARD}:service_name`),
         isSortable: true,
         enableHiding: true,
       },
@@ -104,7 +111,7 @@ export default function Licenses() {
             {item.displayName}
           </OdsText>
         ),
-        label: 'microsoft_office_licenses_displayName',
+        label: t(`${NAMESPACES.DASHBOARD}:display_name`),
         isSortable: true,
         enableHiding: true,
       },
@@ -115,14 +122,14 @@ export default function Licenses() {
             {t(`common:${item.serviceType}`)}
           </OdsText>
         ),
-        label: 'microsoft_office_licenses_servicetype',
+        label: t(`${NAMESPACES.DASHBOARD}:service_type`),
         isSortable: true,
         enableHiding: true,
       },
       {
         id: 'status',
         cell: (item) => <OfficeServiceState state={item.status} />,
-        label: 'microsoft_office_licenses_status',
+        label: t(`${NAMESPACES.STATUS}:status`),
         isSortable: true,
         enableHiding: true,
       },
@@ -146,7 +153,7 @@ export default function Licenses() {
             color={ODS_BUTTON_COLOR.primary}
             variant={ODS_BUTTON_VARIANT.outline}
             onClick={goToOrder}
-            label={t('microsoft_office_licenses_order')}
+            label={t(`${NAMESPACES.ACTIONS}:order`)}
             data-testid="licenses-order-button"
           ></OdsButton>
         }

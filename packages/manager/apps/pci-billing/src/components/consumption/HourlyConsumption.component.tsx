@@ -98,7 +98,7 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_rancher_title'),
       component: (
         <ResourceUsageList
-          resourcesUsage={consumption.rancher}
+          resourcesUsage={consumption?.rancher}
           disabledColumns={[ResourcesColumn.region]}
         />
       ),

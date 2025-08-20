@@ -14,6 +14,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import {
   getOfficeLicenseQueryKey,
@@ -24,7 +25,7 @@ import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalDeleteUsers() {
-  const { t } = useTranslation('dashboard/users/delete');
+  const { t } = useTranslation(['dashboard/users/delete', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
@@ -93,13 +94,13 @@ export default function ModalDeleteUsers() {
 
   return (
     <Modal
-      heading={t('dashboard_users_delete_title')}
+      heading={t(`${NAMESPACES.ACTIONS}:delete_account`)}
       type={ODS_MODAL_COLOR.critical}
       isOpen={true}
-      secondaryLabel={t('dashboard_users_delete_cta_cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       onDismiss={handleCancelClick}
-      primaryLabel={t('dashboard_users_delete_cta_confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       isPrimaryButtonDisabled={!activationEmail}
       onPrimaryButtonClick={deleteUsers}
       isPrimaryButtonLoading={isDeleting}

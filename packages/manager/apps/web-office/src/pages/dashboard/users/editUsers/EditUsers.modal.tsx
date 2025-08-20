@@ -21,10 +21,11 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { useUserDetail } from '@/data/hooks';
 import queryClient from '@/queryClient';
-import { EDIT_USERS_FORM_SCHEMA } from '@/utils/formSchemas.utils';
+import { zForm } from '@/utils/formSchemas.utils';
 import {
   getOfficeLicenseQueryKey,
   putOfficeLicenseDetails,
@@ -39,7 +40,12 @@ import { UserParamsType } from '@/data/api/api.type';
 import { CANCEL, CONFIRM, EDIT_ACCOUNT } from '@/tracking.constants';
 
 export default function ModalEditUsers() {
-  const { t } = useTranslation(['dashboard/users/edit', 'common']);
+  const { t } = useTranslation([
+    'dashboard/users/edit',
+    'common',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
@@ -79,7 +85,7 @@ export default function ModalEditUsers() {
       login: userDetail?.activationEmail.split('@')[0] || '',
     },
     mode: 'onChange',
-    resolver: zodResolver(EDIT_USERS_FORM_SCHEMA),
+    resolver: zodResolver(zForm(t).EDIT_USERS_FORM_SCHEMA),
   });
 
   useEffect(() => {
@@ -158,10 +164,10 @@ export default function ModalEditUsers() {
       type={ODS_MODAL_COLOR.information}
       isOpen={true}
       isLoading={isLoading}
-      secondaryLabel={t('common:cta_cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       onDismiss={handleCancelClick}
-      primaryLabel={t('common:cta_confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       isPrimaryButtonDisabled={!isDirty || !isValid}
       onPrimaryButtonClick={handleSubmit(handleSaveClick)}
       isPrimaryButtonLoading={isSending}
@@ -171,7 +177,7 @@ export default function ModalEditUsers() {
         onSubmit={handleSubmit(handleSaveClick)}
       >
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:common_field_label_mandatory')}
+          {t(`${NAMESPACES.FORM}:label_mandatory`)}
         </OdsText>
         <div className="flex flex-wrap sm:flex-nowrap gap-5">
           <Controller
@@ -183,7 +189,7 @@ export default function ModalEditUsers() {
                 error={errors?.firstname?.message as string}
                 className="w-full"
               >
-                <label slot="label">{t('common:firstname')}*</label>
+                <label slot="label">{t(`${NAMESPACES.FORM}:firstname`)}*</label>
 
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
@@ -206,7 +212,7 @@ export default function ModalEditUsers() {
                 error={errors?.lastname?.message as string}
                 className="w-full"
               >
-                <label slot="label">{t('common:lastname')}*</label>
+                <label slot="label">{t(`${NAMESPACES.FORM}:lastname`)}*</label>
 
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
@@ -228,7 +234,7 @@ export default function ModalEditUsers() {
           render={({ field: { name, value, onBlur, onChange } }) => (
             <OdsFormField error={errors?.login?.message as string}>
               <label htmlFor="label" slot="label">
-                {t('common:login')}*
+                {t(`${NAMESPACES.FORM}:login`)}*
               </label>
               <div className="flex flex-wrap sm:flex-nowrap gap-5">
                 <OdsInput

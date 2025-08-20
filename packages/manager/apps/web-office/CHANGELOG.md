@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.24...@ovh-ux/manager-web-office-app@0.4.0) (2025-08-18)
+
+
+### Features
+
+* **web-office:** use common translations ([bf81a68](https://github.com/ovh/manager/commit/bf81a6889e66d5c805c914902d3314f14c527663)), closes [#MANAGER-18790](https://github.com/ovh/manager/issues/MANAGER-18790)
+
+
+
+
+
 ## [0.3.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.3.23...@ovh-ux/manager-web-office-app@0.3.24) (2025-08-14)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app
