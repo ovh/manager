@@ -13,6 +13,9 @@ export const pnpmBinaryPath: string = path.resolve('./target/pnpm');
 /** Basename used for the pnpm binary without platform extension. */
 export const pnpmExecutablePath: string = path.join(pnpmBinaryPath, 'pnpm');
 
+/** Directory where the PNPM store will be placed. */
+export const pnpmStorePath: string = path.resolve('./target');
+
 /** Root directory of the monorepo. */
 export const managerRootPath = path.resolve(__dirname, '../../../../../..');
 
@@ -22,8 +25,11 @@ export const rootPackageJsonPath = path.join(managerRootPath, 'package.json');
 /** Root directory of the manager-pm. */
 export const managerPMPath = path.resolve(__dirname, '../../..');
 
-/** Path to pnpm migrated apps registry. */
-export const migratePnpmAppsPath = path.join(managerPMPath, 'src/playbook/pnpm-migrated-apps.json');
+/** Path to apps handled by pnpm (pnpm catalog). */
+export const pnpmAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/apps/pnpm-catalog.json');
+
+/** Path to apps handled by yarn (yarn catalog). */
+export const yarnAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/apps/yarn-catalog.json');
 
 /** Path to pnpm normalized versions path. */
 export const normalizedVersionsPath = path.join(
@@ -35,23 +41,6 @@ export const normalizedVersionsPath = path.join(
  * Applications root path
  */
 export const applicationsBasePath = 'packages/manager/apps';
-
-/**
- * Compute the relative path of an app inside the monorepo.
- *
- * @param appName - The folder name under `applicationsBasePath`
- * @returns The relative path to the app (e.g. "applicationsBasePath/zimbra")
- */
-export const buildAppPath = (appName: string): string => path.join(applicationsBasePath, appName);
-
-/**
- * Compute the absolute path to an app's package.json.
- *
- * @param appPath - The relative app path as returned by {@link buildAppPath}
- * @returns The absolute path to the app's package.json file
- */
-export const buildAppPkgJsonPath = (appPath: string): string =>
-  path.join(managerRootPath, appPath, 'package.json');
 
 /**
  * Directories that should always be ignored when recursively scanning

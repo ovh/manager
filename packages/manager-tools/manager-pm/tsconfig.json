@@ -5,6 +5,7 @@
     "outDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "noEmit": false,
     "typeRoots": ["./src/types", "./node_modules/@types"]
   },

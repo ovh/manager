@@ -65,7 +65,7 @@ function installPnpmBinary(): void {
   consola.info(`📂 Ensured directory exists: ${pnpmBinaryPath}`);
 
   const platform = os.platform();
-  const arch = os.arch() as NodeJS.Architecture;
+  const arch = os.arch();
 
   let binaryName: string;
   try {

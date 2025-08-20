@@ -122,7 +122,12 @@
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",
     "test": "turbo run test --concurrency=1",
-    "test:scripts": "make test"
+    "test:scripts": "make test",
+    "pm:install": "manager-pm --type pnpm --action full-install",
+    "pm:build": "manager-pm --type pnpm --action full-build",
+    "pm:test": "manager-pm --type pnpm --action full-test",
+    "pm:lint:tsx": "manager-pm --type pnpm --action full-lint",
+    "pm:start": "manager-pm --type pnpm --action start"
   },
   "resolutions": {
     "@babel/runtime": "^7.22.15",

@@ -3,13 +3,11 @@ import { program } from 'commander';
 import { consola } from 'consola';
 import process from 'process';
 
-import { addAppToPnpm } from '../dist/src/kernel/pnpm/pnpm-add-app.js';
-import { linkPrivateDeps } from '../dist/src/kernel/pnpm/pnpm-add-private-deps.js';
+import { addAppToPnpm, removeAppFromPnpm } from '../dist/src/kernel/pnpm/pnpm-apps-manager.js';
 import { bootstrapPnpm } from '../dist/src/kernel/pnpm/pnpm-bootstrap.js';
-import { buildApp, lintApp, testApp } from '../dist/src/kernel/pnpm/pnpm-exec-app-task.js';
-import { installAppDeps } from '../dist/src/kernel/pnpm/pnpm-install-app-deps.js';
-import { removeAppFromPnpm } from '../dist/src/kernel/pnpm/pnpm-remove-app.js';
+import { installAppDeps, linkPrivateDeps } from '../dist/src/kernel/pnpm/pnpm-deps-manager.js';
 import { startApp } from '../dist/src/kernel/pnpm/pnpm-start-app.js';
+import { buildApp, lintApp, testApp } from '../dist/src/kernel/pnpm/pnpm-tasks-manager.js';
 
 /**
  * Dictionary of all supported actions across package managers.
@@ -23,8 +21,13 @@ const actions = {
   build: { desc: 'Build an app', needsApp: true },
   test: { desc: 'Run tests for an app', needsApp: true },
   lint: { desc: 'Run lint for an app', needsApp: true },
-  start: { desc: 'Start an app', needsApp: true },
+  start: { desc: 'Start an app', needsApp: false },
   help: { desc: 'Show help for manager-pm CLI', needsApp: false },
+  'full-install': { desc: 'Bootstrap + link privates + install all apps', needsApp: false },
+  'full-build': { desc: 'Build all apps (Yarn + PNPM)', needsApp: false },
+  'full-test': { desc: 'Run tests across all apps', needsApp: false },
+  'full-lint': { desc: 'Run lint across all apps', needsApp: false },
+  'full-start': { desc: 'Interactive start across all apps', needsApp: false },
 };
 
 /**
@@ -66,19 +69,26 @@ const packageManagers = {
       consola.info(`[pnpm] lint → This will run lint for app "${app}".`);
       await lintApp(app);
     },
-    /**
-     * Start an application with optional region and container support.
-     *
-     * @param {string} app - Application name
-     * @param {object} options
-     * @param {string} options.region - Target region (default: EU)
-     * @param {boolean} options.container - Whether to run inside the container
-     */
-    start: async (app, { region, container }) => {
+    start: async () => {
+      consola.info(`[pnpm] start  → This will start an application using prompts`);
+      await startApp();
+    },
+    'full-install': async () => {
       consola.info(
-        `[pnpm] start → This will start app "${app}" (region=${region}, container=${container}).`,
+        `[pnpm] full-install → Will run bootstrap, link privates, and install all PNPM apps.`,
       );
-      await startApp(app, { region, container });
+    },
+    'full-build': async () => {
+      consola.info(`[pnpm] full-build → Will build all apps (Yarn + PNPM).`);
+    },
+    'full-test': async () => {
+      consola.info(`[pnpm] full-test → Will test all apps (Yarn + PNPM).`);
+    },
+    'full-lint': async () => {
+      consola.info(`[pnpm] full-lint → Will lint all apps (Yarn + PNPM).`);
+    },
+    'full-start': async () => {
+      consola.info(`[pnpm] full-start → Will provide interactive prompts to start an app.`);
     },
   },
 };
