@@ -14,17 +14,24 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
 import { Suspense, useEffect, useMemo } from 'react';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { hasIpv4CIDRConflict } from '@/utils/hasIpv4CIDRConflict';
+import { TRACKING } from '@/tracking.constants';
 
 function AddNetworkVrackSegmentLoaded() {
+  const { trackClick, trackPage } = useOvhTracking();
   const { id, vdcId, vrackSegmentId } = useParams();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
+  const cancelModal = () => {
+    trackClick(TRACKING.vrackDeleteSegment.cancel);
+    closeModal();
+  };
   const { addSuccess } = useMessageContext();
   const defaultOptions = useVcdVrackSegmentOptions({
     id,
@@ -75,6 +82,10 @@ function AddNetworkVrackSegmentLoaded() {
     vdcId,
     vrackSegmentId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'add_network_success',
+      });
       addSuccess({
         content: t('managed_vcd_dashboard_vrack_add_network_success'),
         includedSubRoutes: [vdcId],
@@ -84,6 +95,14 @@ function AddNetworkVrackSegmentLoaded() {
         ],
       });
       closeModal();
+    },
+    onError: (error) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: `add_network_error::${error.message
+          .replaceAll(' ', '-')
+          .toLowerCase()}`,
+      });
     },
   });
 
@@ -115,6 +134,7 @@ function AddNetworkVrackSegmentLoaded() {
   const onSubmit: SubmitHandler<z.infer<typeof ADD_NETWORK_FORM_SCHEMA>> = ({
     network,
   }) => {
+    trackClick(TRACKING.vrackModifyVlanId.confirm);
     updateVrackSegment({
       ...vrackSegmentTargetSpec,
       networks: [...vrackSegmentTargetSpec.networks, network],
@@ -133,8 +153,8 @@ function AddNetworkVrackSegmentLoaded() {
         isPrimaryButtonDisabled={isUpdatePending || !isValid}
         onPrimaryButtonClick={handleSubmit(onSubmit)}
         secondaryLabel={tActions('cancel')}
-        onSecondaryButtonClick={closeModal}
-        onDismiss={closeModal}
+        onSecondaryButtonClick={cancelModal}
+        onDismiss={cancelModal}
       >
         <div className="flex flex-col gap-2">
           {updateError && (
