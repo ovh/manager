@@ -126,6 +126,33 @@ describe('Secrets listing test suite', () => {
     await assertTextVisibility(labels.secretManager.common.values);
   });
 
+  it('should navigate to a create version drawer on click on menu action', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    const { container } = await renderPage();
+
+    const actionButton = await getOdsButtonByIcon({
+      container,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      iconName: 'ellipsis-vertical',
+    });
+
+    await act(() => user.click(actionButton));
+
+    const createNewVersionButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.add_new_version,
+      disabled: false,
+    });
+
+    // WHEN
+    await act(() => user.click(createNewVersionButton));
+
+    // THEN
+    await assertTextVisibility(labels.secretManager.create.data_textarea_label);
+  });
+
   it('should navigate to create a secret page on click on datagrid CTA', async () => {
     // GIVEN
     const user = userEvent.setup();

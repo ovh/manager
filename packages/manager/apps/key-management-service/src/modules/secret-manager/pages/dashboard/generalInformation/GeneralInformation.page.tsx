@@ -4,7 +4,7 @@ import { DashboardGridLayout } from '@ovh-ux/manager-react-components';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { InformationsTile } from '@secret-manager/pages/dashboard/generalInformation/InformationsTile.component';
 import { SettingsTile } from '@secret-manager/pages/dashboard/generalInformation/SettingsTile.component';
-import { ActionsTile } from './ActionsTile.component';
+import { ActionsTile } from '@secret-manager/pages/dashboard/generalInformation/ActionsTile.component';
 
 const SecretGeneralInformationPage = () => {
   const { secret } = useOutletContext<SecretDashboardPageOutletContext>();
