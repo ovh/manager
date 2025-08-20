@@ -1,3 +1,7 @@
 {
-  "pci_instance_creation_name_rule": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten."
+  "pci_instance_creation_name_rule": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten.",
+  "pci_instances_creation_advanced_parameters": "Erweiterte Einstellungen",
+  "pci_instances_creation_quantity_title": "Menge auswählen",
+  "pci_instances_creation_quantity_label": "Anzahl der zu erstellenden Instanzen",
+  "pci_instance_creation_quantity_rule": "Mit Ihrem aktuellen Quota können Sie für die Region {{ region }} gleichzeitig bis zu {{ quota }} Instanz(en) des Typs {{ type }} erstellen."
 }
