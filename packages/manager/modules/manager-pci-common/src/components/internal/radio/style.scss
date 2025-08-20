@@ -35,6 +35,12 @@ $ods-state-is-readonly-border-color: var(
   background-color: $ods-state-is-readonly-background-color;
 }
 
+.pci-ods-radio {
+  display: inline-flex;
+  width: inherit;
+  height: inherit;
+}
+
 .pci-ods-radio__radio {
   appearance: none;
   display: inline-flex;

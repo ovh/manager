@@ -17,8 +17,8 @@ export const RadioField: FC<RadioFieldProps> = ({
   children,
   ...otherProps
 }) => (
-  <fieldset className="border-0 p-0" role="radiogroup" {...otherProps}>
-    <legend>
+  <fieldset className="border-0 p-0 m-0" role="radiogroup" {...otherProps}>
+    <legend className="p-0">
       <Subtitle>{label}</Subtitle>
     </legend>
     <OsdsText

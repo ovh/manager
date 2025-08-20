@@ -3,44 +3,26 @@ $config-card-padding: 16px;
 $config-card-border-width: 1px;
 $config-card-border-radius: 8px;
 
-$config-card-selected-border-width: 2px;
-
-@mixin config-card-padding($padding) {
-  & .config-card__header {
-    padding-top: $padding;
-    padding-right: $padding;
-    padding-left: $padding;
-  }
-
-  & .config-card__footer {
-    padding-left: $padding;
-    padding-right: $padding;
-  }
-
-  & .config-card__body .config-card__body-section {
-    padding-right: $padding;
-    padding-left: $padding;
-  }
-
-  & > :last-child {
-    padding-bottom: $padding;
-  }
-}
-
 .config-card {
   width: 100%;
   height: 100%;
   background: #ffffff;
   border: #b3b3b3 solid $config-card-border-width;
-  display: flex;
-  flex-direction: column;
   row-gap: $config-card-gap;
   justify-content: start;
   overflow: hidden;
   border-radius: $config-card-border-radius;
   box-sizing: border-box;
 
-  & .config-card__body {
+  /* Config card elements */
+  .config-card__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .config-card__body {
     display: flex;
     flex-direction: column;
     row-gap: $config-card-gap;
@@ -56,41 +38,119 @@ $config-card-selected-border-width: 2px;
     }
   }
 
-  @include config-card-padding($config-card-padding);
+  .config-card__features {
+    padding-left: 1rem;
+    margin-bottom: 0;
+    list-style: '✓';
 
+    li {
+      padding-left: 0.75rem;
+
+      &::marker {
+        color: #2b8000;
+      }
+    }
+  }
+
+  .config-card__decorative-image {
+    max-height: 170px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    & img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .config-card__footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Variants */
+  &.config-card-vertical {
+    display: flex;
+    flex-direction: column;
+
+    .config-card__header {
+      padding-top: $config-card-padding;
+      padding-right: $config-card-padding;
+      padding-left: $config-card-padding;
+
+      .config-card__badges {
+        width: 100%;
+        display: inline-flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+    }
+
+    .config-card__body {
+      flex-grow: 1;
+
+      .config-card__body-section {
+        padding-right: $config-card-padding;
+        padding-left: $config-card-padding;
+      }
+    }
+
+    .config-card__footer {
+      padding: $config-card-padding;
+      background: #f2f2f2;
+    }
+
+    &:not(:has(.config-card__footer)) {
+      padding-bottom: $config-card-padding;
+    }
+  }
+
+  &.config-card-horizontal {
+    display: grid;
+    grid-template:
+      'header header footer' min-content
+      'body body footer' auto / 1fr 1fr min-content;
+    padding: $config-card-padding;
+
+    .config-card__header {
+      grid-area: header;
+    }
+
+    .config-card__body {
+      grid-area: body;
+    }
+
+    .config-card__footer {
+      grid-area: footer;
+      text-align: right;
+      justify-content: center;
+    }
+  }
+
+  /* Interactions */
   &:has(:enabled) {
     cursor: pointer;
 
     @media (hover: hover) {
       &:hover {
-        border: #808080 solid $config-card-selected-border-width;
-
-        @include config-card-padding(
-          $config-card-padding -
-            ($config-card-selected-border-width - $config-card-border-width)
-        );
+        box-shadow: 0 0 0 1px #808080;
       }
     }
   }
 
-  &:not(:has(:checked)):has(:disabled) {
+  &:has(:checked) {
+    background: #f3fdff;
+
+    &.config-card-vertical .config-card__footer {
+      background: #cef5ff;
+    }
+
+    box-shadow: 0 0 0 1px #0050d7;
+  }
+
+  &:has(:not(:checked):disabled) {
     filter: grayscale(100%);
     background: #f3fdff;
-  }
-
-  &:has(:checked) {
-    border: #0050d7 solid $config-card-selected-border-width;
-    background: #f3fdff;
-
-    @include config-card-padding(
-      $config-card-padding -
-        ($config-card-selected-border-width - $config-card-border-width)
-    );
-  }
-
-  & .config-card__footer {
-    background: #f2f2f2;
-    padding-top: $config-card-padding;
-    margin-top: auto;
   }
 }
