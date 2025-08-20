@@ -149,6 +149,15 @@ export function VolumeTypeStep({
         <Encryption
           encryptionType={encryptionType}
           onChange={(e) => setEncryptionType(e)}
+          texts={{
+            title: t(
+              'common:pci_projects_project_storages_blocks_encrypted_label',
+            ),
+            badge: t('common:pci_projects_project_storages_blocks_new'),
+            description: t(
+              'add:pci_projects_project_storages_blocks_add_encryption_description',
+            ),
+          }}
         />
       )}
       {volumeType && !step.isLocked && (
