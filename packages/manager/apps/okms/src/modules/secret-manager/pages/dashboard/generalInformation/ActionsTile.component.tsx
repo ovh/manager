@@ -28,6 +28,14 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
           label={t('reveal_secret')}
           isRouterLink
         />
+        <Link
+          href={SECRET_MANAGER_ROUTES_URLS.secretDashboardDrawerCreateVersion(
+            domainId,
+            secret.path,
+          )}
+          label={t('add_new_version')}
+          isRouterLink
+        />
       </div>
     </ManagerTile>
   );

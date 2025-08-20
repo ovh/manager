@@ -1,5 +1,3 @@
-import { vi } from 'vitest';
-import React from 'react';
 import { screen, act, waitFor, fireEvent } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
