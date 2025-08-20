@@ -1,9 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  OvhSubsidiary,
-  StepComponent,
-  Title,
-} from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary, StepComponent } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useCallback, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -90,7 +88,9 @@ export default function ProjectCreation() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
       <div className="bg-white min-h-screen w-full max-w-2xl p-10 shadow-lg">
-        <Title>{t('pci_project_new_config_title')}</Title>
+        <OdsText preset={ODS_TEXT_PRESET.heading1}>
+          {t('pci_project_new_config_title')}
+        </OdsText>
 
         <StepComponent
           order={1}

@@ -1,8 +1,8 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BottomSection, BottomSectionItem } from './useDashboardSections.hook';
 import BillingItem from './BillingItem.component';
 import StandardItem from './StandardItem.component';
-import VoucherLink from './VoucherLink.component';
 
 interface TileItemContentProps {
   item: BottomSectionItem;
@@ -11,44 +11,42 @@ interface TileItemContentProps {
   projectId: string;
 }
 
-export default function TileItemContent({
+const TileItemContent = memo(function TileItemContent({
   item,
   section,
   isLoading,
-  projectId,
 }: TileItemContentProps) {
   const { t } = useTranslation('project');
 
-  // Determine element type once
-  const elementType = item.isVoucherLink ? 'voucher' : section.type;
-
   const getAriaLabel = () => {
+    if (section.type === 'billing') {
+      return t('pci_project_project_billing_item_aria', {
+        label: item.label || item.description,
+      });
+    }
+
     const ariaLabelMap = {
-      voucher: t('pci_project_project_link_credits_vouchers_aria'),
-      billing: t('pci_project_project_billing_item_aria', {
-        label: item.label,
-      }),
       documentation: t('pci_project_project_documentation_link_aria', {
-        label: item.label,
+        label: item.label || item.description,
       }),
       community: t('pci_project_project_community_link_aria', {
-        label: item.label,
+        label: item.label || item.description,
       }),
     };
 
-    return ariaLabelMap[elementType] || item.label;
+    return ariaLabelMap[section.type] || item.label || item.description;
   };
 
   const renderContent = () => {
-    const contentMap = {
-      voucher: <VoucherLink projectId={projectId} />,
-      billing: <BillingItem item={item} isLoading={isLoading} />,
-      documentation: <StandardItem item={item} />,
-      community: <StandardItem item={item} />,
-    };
+    // For billing section: use BillingItem for vouchers with data, StandardItem for links
+    if (section.type === 'billing' && item.price) {
+      return <BillingItem item={item} isLoading={isLoading} />;
+    }
 
-    return contentMap[elementType] || <StandardItem item={item} />;
+    return <StandardItem item={item} />;
   };
 
   return <div aria-label={getAriaLabel()}>{renderContent()}</div>;
-}
+});
+
+export default TileItemContent;
