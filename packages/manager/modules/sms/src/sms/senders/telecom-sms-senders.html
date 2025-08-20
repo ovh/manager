@@ -301,6 +301,17 @@
                                             data-translate="sms_edit"
                                         ></button>
                                     </li>
+                                    <li
+                                        role="menuitem"
+                                        data-ng-if="sender.type === 'time2chat'"
+                                    >
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ui-sref="sms.service.senders.configure-time2chat({ number: sender.sender.replace('+', '00') })"
+                                            data-translate="sms_configure"
+                                        ></button>
+                                    </li>
                                     <li role="menuitem">
                                         <button
                                             type="button"
