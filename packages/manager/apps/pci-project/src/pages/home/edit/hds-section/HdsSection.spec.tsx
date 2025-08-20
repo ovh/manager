@@ -97,6 +97,12 @@ const mockCart: Cart = {
   description: '',
   expire: '',
   readonly: false,
+  prices: {
+    withTax: {
+      value: 100,
+    },
+  },
+  url: 'https://example.com/cart',
 };
 
 const mockCartSummary: CartSummary = {
