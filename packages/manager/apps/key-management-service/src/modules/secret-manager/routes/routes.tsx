@@ -32,7 +32,12 @@ const SecretVersions = React.lazy(() =>
   import('@/modules/secret-manager/pages/dashboard/versions/Versions.page'),
 );
 const SecretValueDrawer = React.lazy(() =>
-  import('@/modules/secret-manager/pages/valueDrawer/ValueDrawer.page'),
+  import('@secret-manager/pages/drawers/valueDrawer/ValueDrawer.page'),
+);
+const SecretVersionsCreateDrawer = React.lazy(() =>
+  import(
+    '@secret-manager/pages/drawers/createVersionDrawer/CreateVersionDrawer.page'
+  ),
 );
 const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/create/Create.page'),
@@ -75,6 +80,10 @@ export default (
           path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={SecretValueDrawer}
         />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.createVersion}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
+          Component={SecretVersionsCreateDrawer}
+        />
       </Route>
       <Route
         path={SECRET_MANAGER_URL_PARAMS.secretPath}
@@ -85,11 +94,20 @@ export default (
             path={SECRET_MANAGER_ROUTES_URIS.value}
             Component={SecretValueDrawer}
           />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.createVersion}
+            Component={SecretVersionsCreateDrawer}
+          />
         </Route>
         <Route
           path={SECRET_MANAGER_ROUTES_URIS.versions}
           Component={SecretVersions}
-        />
+        >
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.create}
+            Component={SecretVersionsCreateDrawer}
+          />
+        </Route>
       </Route>
     </Route>
     <Route path={'*'} element={<NotFound />} />

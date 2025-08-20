@@ -4,6 +4,7 @@ import {
   createSecretResponseMock,
   mockSecret1,
   secretsMock,
+  secretsMockWithData,
 } from './secrets.mock';
 
 // LIST
@@ -12,8 +13,11 @@ export type GetSecretsMockParams = {
   nbSecret?: number;
 };
 
-const findSecretByPath = (params: PathParams) => {
-  return secretsMock.find(({ path }) => path === params.secretPath);
+const findSecretByPath = (request: Request, params: PathParams) => {
+  const url = new URL(request.url);
+  const includeData = url.searchParams.get('includeData');
+  const mock = includeData ? secretsMockWithData : secretsMock;
+  return mock.find(({ path }) => path === params.secretPath);
 };
 
 export const getSecretsMock = ({
@@ -37,7 +41,8 @@ export const getSecretsMock = ({
     url: '/okms/resource/:okmsId/secret/:secretPath',
     response: isSecretKO
       ? { message: 'secret error' }
-      : (_: unknown, params: PathParams) => findSecretByPath(params),
+      : (request: Request, params: PathParams) =>
+          findSecretByPath(request, params),
     status: isSecretKO ? 500 : 200,
     api: 'v2',
   },

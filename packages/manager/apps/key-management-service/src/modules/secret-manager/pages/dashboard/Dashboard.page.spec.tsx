@@ -126,4 +126,22 @@ describe('Secrets dashboard test suite', () => {
     // THEN
     await assertTextVisibility(labels.secretManager.common.values);
   });
+
+  it('should navigate to the create version drawer on click on action link', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    const { container } = await renderTestApp(mockPageUrl);
+
+    const createNewVersionButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.add_new_version,
+      isLink: true,
+    });
+
+    // WHEN
+    await act(() => user.click(createNewVersionButton));
+
+    // THEN
+    await assertTextVisibility(labels.secretManager.create.data_textarea_label);
+  });
 });

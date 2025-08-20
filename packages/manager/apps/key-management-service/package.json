@@ -18,7 +18,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.1.1",
+    "@hookform/resolvers": "5.2.1",
     "@ovh-ux/billing-informations": "^1.2.25",
     "@ovh-ux/logs-to-customer": "^1.6.4",
     "@ovh-ux/manager-common-translations": "^0.10.0",
