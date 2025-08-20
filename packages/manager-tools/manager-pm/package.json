@@ -10,14 +10,12 @@
     "manager-pm": "./bin/manager-pm.js"
   },
   "scripts": {
-    "build": "tsc && tsc-alias",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**/**.ts ./bin/**/**.js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**/**.ts ./bin/**/**.js"
+    "lint:modern": "manager-lint --config eslint.config.mjs ./bin/**/**.js",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./bin/**/**.js"
   },
   "dependencies": {
     "commander": "^14.0.0",
     "concurrently": "^9.2.0",
-    "consola": "^3.4.2",
     "execa": "^9.6.0",
     "inquirer": "^12.9.3",
     "inquirer-search-list": "^1.2.6"

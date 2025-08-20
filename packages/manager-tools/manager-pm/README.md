@@ -186,7 +186,6 @@ steps:
 ## Contributing
 
 - Core code: `src/kernel/pnpm/*`, `src/kernel/commons/*`, `src/playbook/*`, `bin/manager-pm.js`.
-- Please write logs with `consola.start` → `consola.success` and prefer **single-process** invocations (aggregate filters) over N× shell loops.
 - Keep temporary workspace files ephemeral and always restore `packageManager` on the root.
 
 ---

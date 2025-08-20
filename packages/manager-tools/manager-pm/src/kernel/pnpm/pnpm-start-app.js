@@ -1,11 +1,10 @@
 import concurrently from 'concurrently';
 import inquirer from 'inquirer';
 import inquirerSearchList from 'inquirer-search-list';
+import process from 'node:process';
 
 import { containerPackageName } from '../../playbook/pnpm-config.js';
 import { getApplicationId, getApplications } from '../commons/workspace-utils.js';
-import { PromptAnswers, Questions } from '../types/commons/prompts-types.js';
-import { Application } from '../types/commons/workspace-type.js';
 
 /**
  * Prompt the user to select an application, region, and container option,
@@ -13,12 +12,11 @@ import { Application } from '../types/commons/workspace-type.js';
  *
  * @returns A promise resolving when the selected application has been started.
  */
-// eslint-disable-next-line max-lines-per-function
-export async function startApp(): Promise<void> {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+
+export async function startApp() {
   inquirer.registerPrompt('search-list', inquirerSearchList);
 
-  const questions: Questions<PromptAnswers> = [
+  const questions = [
     {
       type: 'list',
       name: 'packageName',
@@ -29,10 +27,8 @@ export async function startApp(): Promise<void> {
       type: 'list',
       name: 'region',
       message: 'Please specify the region:',
-      choices: (answers: PromptAnswers) => {
-        const app: Application | undefined = getApplications().find(
-          ({ value }) => value === answers.packageName,
-        );
+      choices: (answers) => {
+        const app = getApplications().find(({ value }) => value === answers.packageName);
         if (!app?.regions) {
           throw new Error(`No regions found in ${answers.packageName} package.json`);
         }
@@ -44,15 +40,11 @@ export async function startApp(): Promise<void> {
       name: 'container',
       message: 'Start the application inside the container?',
       default: true,
-      when: (answers: PromptAnswers) => answers.packageName !== containerPackageName,
+      when: (answers) => answers.packageName !== containerPackageName,
     },
   ];
 
-  const {
-    packageName,
-    region = 'EU',
-    container = false,
-  } = await inquirer.prompt<PromptAnswers>(questions);
+  const { packageName, region = 'EU', container = false } = await inquirer.prompt(questions);
 
   process.env.REGION = region;
 

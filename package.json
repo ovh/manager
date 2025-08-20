@@ -35,11 +35,8 @@
     "start": "node scripts/start-application.mjs",
     "test": "turbo run test --concurrency=1",
     "test:scripts": "make test",
-
-    "preinstall": "manager-pm --type pnpm --action pre-install",
-    "postinstall": "manager-pm --type pnpm --action post-install",
-    "pm:pre:install": "manager-pm --type pnpm --action pre-install",
-    "pm:post:install": "manager-pm --type pnpm --action post-install",
+    "preinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-preinstall.js",
+    "postinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-postinstall.js",
     "pm:build": "manager-pm --type pnpm --action full-build",
     "pm:test": "manager-pm --type pnpm --action full-test",
     "pm:lint:tsx": "manager-pm --type pnpm --action full-lint",

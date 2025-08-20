@@ -1,8 +1,6 @@
-import { consola } from 'consola';
-import { execa } from 'execa';
-import { execSync } from 'node:child_process';
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
+import { execSync, spawn } from "node:child_process";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 import {
   managerRootPath,
@@ -10,19 +8,19 @@ import {
   pnpmExecutablePath,
   pnpmStorePath,
   rootPackageJsonPath,
-} from '../../playbook/pnpm-config.js';
+} from "../../playbook/pnpm-config.js";
 import {
   getCatalogPaths,
   readCatalog,
   updateRootWorkspacesFromCatalogs,
   updateRootWorkspacesToYarnOnly,
-} from '../commons/catalog-utils.js';
-import { getPrivatePackages } from '../commons/dependencies-utils.js';
-import { loadJson } from '../commons/json-utils.js';
-import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
-import { cleanAppDirs } from '../commons/workspace-utils.js';
-import { PackageJsonType } from '../types/commons/package-json-type.js';
-import { bootstrapPnpm } from './pnpm-bootstrap.js';
+} from "../commons/catalog-utils.js";
+import { getPrivatePackages } from "../commons/dependencies-utils.js";
+import { loadJson } from "../commons/json-utils.js";
+import { removePackageManager, restorePackageManager } from "../commons/package-manager-utils.js";
+import { cleanAppDirs } from "../commons/workspace-utils.js";
+import { bootstrapPnpm } from "./pnpm-bootstrap.js";
+import { logger } from "../commons/log-manager.js";
 
 /**
  * Link all private packages into the local PNPM store (`./target`).
@@ -31,32 +29,32 @@ import { bootstrapPnpm } from './pnpm-bootstrap.js';
  * - Runs `pnpm link --dir ./target` in each private package.
  * - Does **not** topo-sort (since `pnpm link` does not install).
  */
-export async function linkPrivateDeps(): Promise<void> {
-  consola.start('🔍 Scanning for private packages...');
+export async function linkPrivateDeps() {
+  logger.info('🔍 Scanning for private packages...');
   const privatePackageDirs = await getPrivatePackages();
-  consola.info(`Found ${privatePackageDirs.length} private packages.`);
+  logger.info(`Found ${privatePackageDirs.length} private packages.`);
 
   for (const packageDir of privatePackageDirs) {
     const packageJsonPath = path.join(packageDir, 'package.json');
     const raw = await fs.readFile(packageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw) as PackageJsonType;
+    const pkg = JSON.parse(raw);
 
     if (!pkg.name) continue;
 
-    consola.info(`🔗 Linking ${pkg.name} from ${packageDir} into local store...`);
+    logger.info(`🔗 Linking ${pkg.name} from ${packageDir} into local store...`);
 
     try {
       execSync(`pnpm link --dir ${pnpmStorePath}`, {
         cwd: packageDir,
         stdio: 'inherit',
       });
-      consola.success(`✔ Linked ${pkg.name}`);
+      logger.success(`✔ Linked ${pkg.name}`);
     } catch (e) {
-      consola.error(`❌ Failed to link ${pkg.name}:`, (e as Error).message);
+      logger.error(`❌ Failed to link ${pkg.name}:`, e.message);
     }
   }
 
-  consola.box(`✅ All private packages linked into ${pnpmStorePath}`);
+  logger.info(`✅ All private packages linked into ${pnpmStorePath}`);
 }
 
 /**
@@ -71,40 +69,35 @@ export async function linkPrivateDeps(): Promise<void> {
  * @param normalizedVersions - Map of normalized dependency versions.
  * @returns Absolute path to the temporary workspace file created.
  */
-async function createWorkspaceYaml(
-  appPath: string,
-  appPkg: PackageJsonType,
-  privateDeps: Map<string, string>,
-  normalizedVersions: Record<string, string>,
-): Promise<string> {
-  consola.info(`📝 [workspace] Collecting dependencies from package.json...`);
+async function createWorkspaceYaml(appPath, appPkg, privateDeps, normalizedVersions) {
+  logger.info(`📝 [workspace] Collecting dependencies from package.json...`);
 
-  const deps: Record<string, string> = {
+  const deps = {
     ...(appPkg.dependencies ?? {}),
     ...(appPkg.devDependencies ?? {}),
     ...(appPkg.peerDependencies ?? {}),
   };
-  consola.info(`📦 [workspace] Found ${Object.keys(deps).length} deps in package.json`);
+  logger.info(`📦 [workspace] Found ${Object.keys(deps).length} deps in package.json`);
 
-  const overrideEntries: Record<string, string> = {};
+  const overrideEntries = {};
 
   // Handle private packages
-  consola.start(`🔎 [workspace] Checking for private package links...`);
+  logger.info(`🔎 [workspace] Checking for private package links...`);
   for (const depName of Object.keys(deps)) {
     if (privateDeps.has(depName)) {
-      const depPath = privateDeps.get(depName)!;
+      const depPath = privateDeps.get(depName);
       const relativePath = path.relative(appPath, depPath);
       overrideEntries[depName] = `link:${relativePath}`;
-      consola.info(`   ↳ linked private: ${depName} → ${relativePath}`);
+      logger.info(`   ↳ linked private: ${depName} → ${relativePath}`);
     }
   }
 
   // Handle normalized versions
-  consola.start(`🔎 [workspace] Applying normalized versions...`);
+  logger.info(`🔎 [workspace] Applying normalized versions...`);
   for (const [name, version] of Object.entries(normalizedVersions)) {
     if (!overrideEntries[name]) {
       overrideEntries[name] = version;
-      consola.info(`   ↳ normalized: ${name} → ${version}`);
+      logger.info(`   ↳ normalized: ${name} → ${version}`);
     }
   }
 
@@ -120,7 +113,7 @@ async function createWorkspaceYaml(
 
   const workspacePath = path.join(appPath, 'pnpm-workspace.yaml');
   await fs.writeFile(workspacePath, yaml, 'utf-8');
-  consola.success(`📝 [workspace] Created temporary ${workspacePath}`);
+  logger.success(`📝 [workspace] Created temporary ${workspacePath}`);
   return workspacePath;
 }
 
@@ -140,8 +133,8 @@ async function createWorkspaceYaml(
  * @param appPath - Absolute path to the app folder
  * @throws If PNPM install fails
  */
-export async function installAppDeps(appPath: string): Promise<void> {
-  consola.start(`🚀 Starting PNPM install for app at: ${appPath}`);
+export async function installAppDeps(appPath) {
+  logger.info(`🚀 Starting PNPM install for app at: ${appPath}`);
 
   // --- Pre-step: Cleanup
   await cleanAppDirs(appPath);
@@ -150,54 +143,54 @@ export async function installAppDeps(appPath: string): Promise<void> {
   const removedValue = await removePackageManager(rootPackageJsonPath);
 
   // --- Step 2: Load app package.json
-  consola.info(`📖 [step 2] Reading ${appPath}/package.json...`);
-  const pkg = await loadJson<PackageJsonType>(path.join(appPath, 'package.json'));
-  consola.success(`✔ Loaded package.json for app: ${pkg.name ?? '(unknown)'}`);
+  logger.info(`📖 [step 2] Reading ${appPath}/package.json...`);
+  const pkg = await loadJson(path.join(appPath, 'package.json'));
+  logger.success(`✔ Loaded package.json for app: ${pkg.name ?? '(unknown)'}`);
 
   // --- Step 3: Load normalized versions
-  consola.info(`📖 [step 3] Loading normalized versions from: ${normalizedVersionsPath}`);
-  const normalizedVersions = await loadJson<Record<string, string>>(normalizedVersionsPath);
-  consola.success(`✔ Loaded ${Object.keys(normalizedVersions).length} normalized versions.`);
+  logger.info(`📖 [step 3] Loading normalized versions from: ${normalizedVersionsPath}`);
+  const normalizedVersions = await loadJson(normalizedVersionsPath);
+  logger.success(`✔ Loaded ${Object.keys(normalizedVersions).length} normalized versions.`);
 
   // --- Step 4: Build privateDeps map
-  consola.info(`📖 [step 4] Resolving private packages...`);
-  const privateDeps = new Map<string, string>();
+  logger.info(`📖 [step 4] Resolving private packages...`);
+  const privateDeps = new Map();
   const privateDirs = await getPrivatePackages();
-  consola.info(`   ↳ Found ${privateDirs.length} private package dirs`);
+  logger.info(`   ↳ Found ${privateDirs.length} private package dirs`);
   for (const dir of privateDirs) {
     const raw = await fs.readFile(path.join(dir, 'package.json'), 'utf-8');
-    const pkgJson = JSON.parse(raw) as PackageJsonType;
+    const pkgJson = JSON.parse(raw);
     if (pkgJson.name) {
       privateDeps.set(pkgJson.name, dir);
-      consola.info(`   ↳ private package detected: ${pkgJson.name}`);
+      logger.info(`   ↳ private package detected: ${pkgJson.name}`);
     }
   }
 
   // --- Step 5: Create temporary workspace
-  let workspaceFile: string | null = null;
+  let workspaceFile = null;
   try {
-    consola.info(`📖 [step 5] Creating temporary pnpm-workspace.yaml...`);
+    logger.info(`📖 [step 5] Creating temporary pnpm-workspace.yaml...`);
     workspaceFile = await createWorkspaceYaml(appPath, pkg, privateDeps, normalizedVersions);
 
     // --- Step 6: Run PNPM install
-    consola.info(`📖 [step 6] Running PNPM install...`);
+    logger.info(`📖 [step 6] Running PNPM install...`);
     execSync(
       `${pnpmExecutablePath} install --ignore-scripts --no-lockfile --store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
       { cwd: appPath, stdio: 'inherit' },
     );
 
-    consola.success(`✅ PNPM install completed for ${pkg.name}`);
+    logger.success(`✅ PNPM install completed for ${pkg.name}`);
   } catch (err) {
-    consola.error(`❌ PNPM install failed for ${pkg.name}:`, (err as Error).message);
+    logger.error(`❌ PNPM install failed for ${pkg.name}:`, err.message);
     throw err;
   } finally {
     // --- Step 7: Cleanup temporary workspace
     if (workspaceFile) {
       try {
         await fs.unlink(workspaceFile);
-        consola.info(`🧹 [cleanup] Removed temporary ${workspaceFile}`);
+        logger.info(`🧹 [cleanup] Removed temporary ${workspaceFile}`);
       } catch {
-        consola.warn(`⚠️ [cleanup] Failed to remove temporary workspace file`);
+        logger.warn(`⚠️ [cleanup] Failed to remove temporary workspace file`);
       }
     }
 
@@ -210,31 +203,49 @@ export async function installAppDeps(appPath: string): Promise<void> {
  * Internal: build all private packages (core/modules/components) so that their "dist"
  * exists before linking them into the PNPM local store.
  */
-async function buildPrivatePackages(): Promise<void> {
+async function buildPrivatePackages() {
   const privateDirs = await getPrivatePackages();
   if (privateDirs.length === 0) {
-    consola.info('ℹ No private packages found to build.');
+    logger.info("ℹ No private packages found to build.");
     return;
   }
 
-  const filters: string[] = [];
+  const filters = [];
   for (const dir of privateDirs) {
     try {
-      const raw = await fs.readFile(path.join(dir, 'package.json'), 'utf-8');
-      const pkg = JSON.parse(raw) as PackageJsonType;
-      if (pkg.name) filters.push('--filter', pkg.name);
-    } catch {}
+      const raw = await fs.readFile(path.join(dir, "package.json"), "utf-8");
+      const pkg = JSON.parse(raw);
+      if (pkg.name) filters.push("--filter", pkg.name);
+    } catch {
+      /* ignore invalid package.json */
+    }
   }
 
   if (filters.length === 0) {
-    consola.info('ℹ No resolvable private package names found to build.');
+    logger.info("ℹ No resolvable private package names found to build.");
     return;
   }
 
-  const args = ['run', 'build', '--concurrency=5', ...filters];
-  consola.info(`▶ turbo ${args.join(' ')}`);
-  await execa('turbo', args, { stdio: 'inherit', cwd: managerRootPath });
-  consola.success('✔ Built private packages.');
+  const args = ["run", "build", "--concurrency=5", ...filters];
+  logger.info(`▶ turbo ${args.join(" ")}`);
+
+  await new Promise((resolve, reject) => {
+    const proc = spawn("turbo", args, {
+      cwd: managerRootPath,
+      stdio: "inherit", // pipe output directly to terminal
+    });
+
+    proc.on("error", reject);
+    proc.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`turbo build failed with exit code ${code}`));
+      }
+    });
+  });
+
+  logger.success("✔ Built private packages.");
 }
 
 /**
@@ -242,10 +253,10 @@ async function buildPrivatePackages(): Promise<void> {
  * - Inject Yarn catalog only into root package.json workspaces.
  *   This ensures "yarn install" only touches Yarn-managed apps.
  */
-export async function yarnPreInstall(): Promise<void> {
-  consola.start('🧩 Yarn preinstall: limit workspaces to Yarn catalog');
+export async function yarnPreInstall() {
+  logger.info('🧩 Yarn preinstall: limit workspaces to Yarn catalog');
   await updateRootWorkspacesToYarnOnly();
-  consola.box('✅ Root workspaces set to Yarn-only for installation.');
+  logger.info('✅ Root workspaces set to Yarn-only for installation.');
 }
 
 /**
@@ -255,8 +266,8 @@ export async function yarnPreInstall(): Promise<void> {
  *  - Install dependencies for each PNPM-catalog app via PNPM.
  *  - Restore root workspaces to the merged (Yarn ∪ PNPM) view.
  */
-export async function yarnPostInstall(): Promise<void> {
-  consola.start('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
+export async function yarnPostInstall() {
+  logger.info('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
 
   await bootstrapPnpm();
   await buildPrivatePackages();
@@ -271,7 +282,7 @@ export async function yarnPostInstall(): Promise<void> {
   }
 
   await updateRootWorkspacesFromCatalogs();
-  consola.box(
+  logger.info(
     '🎉 Yarn postinstall complete: PNPM store ready; PNPM apps installed; workspaces restored.',
   );
 }

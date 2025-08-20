@@ -8,33 +8,33 @@ const __dirname = path.dirname(__filename);
 export const pnpmVersion = '10.11.1';
 
 /** Directory where the PNPM binary will be stored. */
-export const pnpmBinaryPath: string = path.resolve('./target/pnpm');
+export const pnpmBinaryPath = path.resolve('./target/pnpm');
 
 /** Basename used for the pnpm binary without platform extension. */
-export const pnpmExecutablePath: string = path.join(pnpmBinaryPath, 'pnpm');
+export const pnpmExecutablePath = path.join(pnpmBinaryPath, 'pnpm');
 
 /** Directory where the PNPM store will be placed. */
-export const pnpmStorePath: string = path.resolve('./target');
+export const pnpmStorePath = path.resolve('./target');
 
 /** Root directory of the monorepo. */
-export const managerRootPath = path.resolve(__dirname, '../../../../../..');
+export const managerRootPath = path.resolve(__dirname, '../../../../..');
 
 /** Path to root package.json (Yarn workspaces). */
 export const rootPackageJsonPath = path.join(managerRootPath, 'package.json');
 
 /** Root directory of the manager-pm. */
-export const managerPMPath = path.resolve(__dirname, '../../..');
+export const managerPMPath = path.resolve(__dirname, '../..');
 
 /** Path to apps handled by pnpm (pnpm catalog). */
-export const pnpmAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/apps/pnpm-catalog.json');
+export const pnpmAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/catalog/pnpm-catalog.json');
 
 /** Path to apps handled by yarn (yarn catalog). */
-export const yarnAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/apps/yarn-catalog.json');
+export const yarnAppsPlaybookPath = path.join(managerPMPath, 'src/playbook/catalog/yarn-catalog.json');
 
 /** Path to pnpm normalized versions path. */
 export const normalizedVersionsPath = path.join(
   managerPMPath,
-  'src/playbook/pnpm-normalized-versions',
+  'src/playbook/catalog/pnpm-normalized-versions.json',
 );
 
 /**
@@ -61,7 +61,7 @@ export const privateWorkspaces = [
 /**
  * Folders to remove before installation.
  */
-export const cleanupDirectories: readonly string[] = ['node_modules', 'dist', '.turbo'];
+export const cleanupDirectories = ['node_modules', 'dist', '.turbo'];
 
 /**
  * Container application package name.
