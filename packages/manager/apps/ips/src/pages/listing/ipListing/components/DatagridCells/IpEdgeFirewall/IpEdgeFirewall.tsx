@@ -31,7 +31,12 @@ export const IpEdgeFirewall = ({ ip }: IpEdgeFirewallProps) => {
   });
 
   return (
-    <SkeletonCell isLoading={isLoading} enabled={!isGroup} error={error}>
+    <SkeletonCell
+      isLoading={isLoading}
+      enabled={!isGroup}
+      error={error}
+      ip={ip}
+    >
       <IpEdgeFirewallDisplay ip={ip} ipEdgeFirewall={ipEdgeFirewall?.[0]} />
     </SkeletonCell>
   );

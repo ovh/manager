@@ -53,6 +53,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
       isLoading={isLoading || isDetailsLoading}
       enabled={!isGroup}
       error={error}
+      ip={ip}
     >
       <IpAntiDdosDisplay
         ipMitigation={ipMitigation}
