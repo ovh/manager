@@ -1,5 +1,9 @@
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
-import { OvhSubsidiary, useProjectUrl } from '@ovh-ux/manager-react-components';
+import {
+  isDiscoveryProject,
+  useProject,
+  usePciUrl,
+} from '@ovh-ux/manager-pci-common';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
@@ -23,7 +27,7 @@ export default function QuotaAlert() {
     QUOTA_LIMIT_GUIDES.DEFAULT ||
     '';
 
-  const hrefProject = useProjectUrl('public-cloud');
+  const hrefProject = usePciUrl();
   const quotaUrl = `${hrefProject}/quota`;
 
   if (isLoading || !isQuotaAboveThreshold || isDiscovery) {
