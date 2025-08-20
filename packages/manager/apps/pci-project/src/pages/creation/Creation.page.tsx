@@ -3,7 +3,7 @@ import { OvhSubsidiary, StepComponent } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,6 +16,10 @@ import { useConfigForm } from './hooks/useConfigForm';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
 import { useStepper } from './hooks/useStepper';
+import { TPaymentMethodRef } from '@/components/payment/PaymentMethods';
+import { getCartCheckout } from '@/data/api/cart';
+import { useCheckoutCart } from '@/hooks/useCheckout/useCheckout';
+import { CartSummary } from '@/data/types/cart.type';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -33,12 +37,17 @@ export default function ProjectCreation() {
   const [isPaymentMethodValid, setIsPaymentMethodValid] = useState<boolean>(
     false,
   );
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [customSubmitButton, setCustomSubmitButton] = useState<string | null>(
+    null,
+  );
 
   const { mutate: createAndAssignCart, data: cart } = useCreateAndAssignCart();
   const { mutate: orderProjectItem, data: projectItem } = useOrderProjectItem();
   const {
     mutate: attachConfigurationToCartItem,
   } = useAttachConfigurationToCartItem();
+  const { mutate: checkoutCart } = useCheckoutCart();
 
   const {
     currentStep,
@@ -81,8 +90,66 @@ export default function ProjectCreation() {
     );
   };
 
+  const paymentHandlerRef = React.useRef<TPaymentMethodRef>(null);
+
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
-  const handlePaymentNext = useCallback(() => {}, []);
+  const handlePaymentNext = useCallback(async () => {
+    if (!cart || !paymentHandlerRef.current) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      if (!(await paymentHandlerRef.current.submitPaymentMethod(cart))) {
+        setIsSubmitting(false);
+        return;
+      }
+
+      const cartCheckoutInfo = await getCartCheckout(cart.cartId);
+
+      if (paymentHandlerRef.current.onCheckoutRetrieved) {
+        if (
+          !(await paymentHandlerRef.current.onCheckoutRetrieved({
+            ...cartCheckoutInfo,
+            cartId: cart.cartId,
+          }))
+        ) {
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
+      checkoutCart(
+        {
+          cartId: cart.cartId,
+        },
+        {
+          onSuccess: async (cartFinalized: CartSummary) => {
+            if (
+              paymentHandlerRef.current &&
+              paymentHandlerRef.current.onCartFinalized
+            ) {
+              if (
+                !(await paymentHandlerRef.current.onCartFinalized({
+                  ...cartFinalized,
+                  cartId: cart.cartId,
+                }))
+              ) {
+                setIsSubmitting(false);
+                return;
+              }
+            }
+            setIsSubmitting(false);
+          },
+          onError: () => {
+            setIsSubmitting(false);
+          },
+        },
+      );
+    } catch (error) {
+      setIsSubmitting(false);
+    }
+  }, [paymentHandlerRef, cart, isSubmitting]);
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
@@ -139,10 +206,12 @@ export default function ProjectCreation() {
           })}
           next={{
             action: handlePaymentNext,
-            label: t('pci_project_new_payment_btn_continue_default', {
-              ns: 'new/payment',
-            }),
-            isDisabled: !isPaymentMethodValid,
+            label:
+              customSubmitButton ||
+              t('pci_project_new_payment_btn_continue_default', {
+                ns: 'new/payment',
+              }),
+            isDisabled: !isPaymentMethodValid || isSubmitting,
           }}
           skip={{
             action: handleCancel,
@@ -153,9 +222,10 @@ export default function ProjectCreation() {
             cart={cart}
             cartProjectItem={projectItem}
             handleIsPaymentMethodValid={(isValid) => {
-              console.log('Payment method validity changed:', isValid);
               setIsPaymentMethodValid(isValid);
             }}
+            handleCustomSubmitButton={(btn) => setCustomSubmitButton(btn)}
+            paymentHandler={paymentHandlerRef}
           />
         </StepComponent>
       </div>

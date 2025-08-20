@@ -213,6 +213,12 @@ describe('cart API', () => {
         description: 'Test cart',
         expire: '2024-12-31T23:59:59Z',
         readonly: false,
+        prices: {
+          withTax: {
+            value: 100,
+          },
+        },
+        url: 'https://example.com/cart',
       };
       mockedV6Get.mockResolvedValue({ data: mockCart });
 
@@ -305,6 +311,12 @@ describe('cart API', () => {
         description: 'Test cart',
         expire: '2024-12-31T23:59:59Z',
         readonly: false,
+        prices: {
+          withTax: {
+            value: 100,
+          },
+        },
+        url: 'https://example.com/cart',
       };
       mockedV6Post.mockResolvedValue({ data: mockCart });
 
@@ -499,6 +511,12 @@ describe('cart API', () => {
         description: 'Test cart',
         expire: '2024-12-31',
         readonly: false,
+        prices: {
+          withTax: {
+            value: 100,
+          },
+        },
+        url: 'https://example.com/cart',
       };
       mockedV6Get.mockResolvedValue({ data: mockCart });
 

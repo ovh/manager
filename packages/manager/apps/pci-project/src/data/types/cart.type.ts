@@ -4,6 +4,12 @@ export type Cart = {
   expire: string;
   items?: Array<unknown>;
   readonly: boolean | undefined;
+  prices: {
+    withTax: {
+      value: number;
+    };
+  };
+  url: string | null;
 };
 
 export enum PlanCode {

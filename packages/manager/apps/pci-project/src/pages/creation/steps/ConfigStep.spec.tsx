@@ -25,6 +25,12 @@ describe('ConfigStep', () => {
       description: 'Test cart',
       expire: '2024-12-31T23:59:59Z',
       readonly: false,
+      prices: {
+        withTax: {
+          value: 100,
+        },
+      },
+      url: 'https://example.com/cart',
     },
     cartProjectItem: {
       cartId: 'cart-123',

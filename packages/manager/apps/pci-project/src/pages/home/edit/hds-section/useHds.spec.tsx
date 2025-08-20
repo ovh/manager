@@ -134,6 +134,12 @@ describe('useHds hooks', () => {
       description: '',
       expire: '',
       readonly: false,
+      prices: {
+        withTax: {
+          value: 100,
+        },
+      },
+      url: 'https://example.com/cart',
     });
 
     vi.mocked(cartApi.assignCart).mockResolvedValue(undefined);
@@ -206,6 +212,12 @@ describe('useHds hooks', () => {
       description: '',
       expire: '',
       readonly: false,
+      prices: {
+        withTax: {
+          value: 100,
+        },
+      },
+      url: 'https://example.com/cart',
     });
   });
 });

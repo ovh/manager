@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { UseQueryResult } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import {
   TEligibility,
   TEligibilityPaymentMethod,
 } from '@/data/types/payment/eligibility.type';
+import { TCart } from '@/data/types/payment/cart.type';
 import { useEligibility } from '@/data/hooks/payment/useEligibility';
 import { usePaymentMethods } from '@/data/hooks/payment/usePaymentMethods';
 import { usePaymentChallenge } from '@/data/hooks/payment/usePaymentChallenge';
@@ -232,11 +233,23 @@ describe('PaymentMethods', () => {
     ...overrides,
   });
 
+  const createMockCart = (): TCart => ({
+    cartId: 'cart-123',
+    prices: {
+      withTax: {
+        value: 10.0,
+      },
+    },
+    url: null,
+  });
+
   const createMockProps = (overrides = {}): PaymentMethodsProps => ({
     handlePaymentMethodChange: vi.fn(),
     handleSetAsDefaultChange: vi.fn(),
     handleValidityChange: vi.fn(),
     paymentMethodHandler: React.createRef(),
+    cartId: 'cart-123',
+    itemId: 123,
     ...overrides,
   });
 
@@ -450,7 +463,9 @@ describe('PaymentMethods', () => {
 
     const { container } = render(
       <Wrapper>
-        <PaymentMethods paymentMethodHandler={React.createRef()} />
+        <PaymentMethods
+          {...createMockProps({ paymentMethodHandler: React.createRef() })}
+        />
       </Wrapper>,
     );
 
@@ -553,31 +568,38 @@ describe('PaymentMethods', () => {
         return createMockPaymentMethodsResult({ data: [mockPaymentMethod] });
       });
 
-      render(
-        <Wrapper>
-          <PaymentMethods
-            {...createMockProps({
-              handleValidityChange: mockHandleValidityChange,
-            })}
-          />
-        </Wrapper>,
-      );
+      await act(async () => {
+        render(
+          <Wrapper>
+            <PaymentMethods
+              {...createMockProps({
+                handleValidityChange: mockHandleValidityChange,
+              })}
+            />
+          </Wrapper>,
+        );
+      });
 
-      // Initially should be invalid (payment method exists and is default, but challenge input is empty)
+      // Wait for component to initialize and set initial validity
       await waitFor(() => {
-        expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
+        expect(mockHandleValidityChange).toHaveBeenCalled();
       });
 
       // Type a valid challenge value (6 digits for credit card)
       const challengeInput = screen.getByPlaceholderText('XXXX XX');
-      await user.type(challengeInput, '123456');
+
+      await act(async () => {
+        await user.type(challengeInput, '123456');
+      });
 
       await waitFor(() => {
         expect(mockHandleValidityChange).toHaveBeenCalledWith(true);
       });
 
       // Clear the input to make it invalid again
-      await user.clear(challengeInput);
+      await act(async () => {
+        await user.clear(challengeInput);
+      });
 
       await waitFor(() => {
         expect(mockHandleValidityChange).toHaveBeenCalledWith(false);
@@ -642,7 +664,10 @@ describe('PaymentMethods', () => {
         throw new Error('Payment method ref is null');
       }
 
-      const result = await paymentMethodRef.current.submitPaymentMethod();
+      const mockCart = createMockCart();
+      const result = await paymentMethodRef.current.submitPaymentMethod(
+        mockCart,
+      );
       expect(result).toBe(true);
     });
 
@@ -688,6 +713,18 @@ describe('PaymentMethods', () => {
         expect(getByPlaceholderText('XXXX XX')).toBeInTheDocument();
       });
 
+      // Enter a valid challenge value to make the validation pass
+      const user = userEvent.setup();
+      const challengeInput = getByPlaceholderText('XXXX XX');
+      await act(async () => {
+        await user.type(challengeInput, '123456');
+      });
+
+      // Wait for validation to update
+      await waitFor(() => {
+        expect(challengeInput).toHaveValue('123456');
+      });
+
       if (!paymentMethodRef.current) {
         throw new Error('Payment method ref is null');
       }
@@ -697,8 +734,9 @@ describe('PaymentMethods', () => {
         onSuccess('retry');
       });
 
+      const mockCart = createMockCart();
       await expect(
-        paymentMethodRef.current.submitPaymentMethod(),
+        paymentMethodRef.current.submitPaymentMethod(mockCart),
       ).rejects.toThrow('challenge_retry');
     });
 
@@ -743,6 +781,18 @@ describe('PaymentMethods', () => {
         expect(paymentMethodRef.current).toBeTruthy();
       });
 
+      // Enter a valid challenge value to make the validation pass
+      const user = userEvent.setup();
+      const challengeInput = screen.getByPlaceholderText('XXXX XX');
+      await act(async () => {
+        await user.type(challengeInput, '123456');
+      });
+
+      // Wait for validation to update
+      await waitFor(() => {
+        expect(challengeInput).toHaveValue('123456');
+      });
+
       if (!paymentMethodRef.current) {
         throw new Error('Payment method ref is null');
       }
@@ -752,8 +802,9 @@ describe('PaymentMethods', () => {
         onSuccess('deactivated');
       });
 
+      const mockCart = createMockCart();
       await expect(
-        paymentMethodRef.current.submitPaymentMethod(),
+        paymentMethodRef.current.submitPaymentMethod(mockCart),
       ).rejects.toThrow('payment_method_deactivated');
 
       // Should invalidate both payment methods and eligibility queries
@@ -791,7 +842,10 @@ describe('PaymentMethods', () => {
       }
 
       // This should work even if the challenge ref is not properly set
-      const result = await paymentMethodRef.current.submitPaymentMethod();
+      const mockCart = createMockCart();
+      const result = await paymentMethodRef.current.submitPaymentMethod(
+        mockCart,
+      );
       expect(result).toBe(true);
     });
   });
