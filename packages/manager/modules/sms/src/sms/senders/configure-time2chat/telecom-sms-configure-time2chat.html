@@ -1,0 +1,396 @@
+<section class="telecom-sms-configure-time2chat">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.senders"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
+        </tuc-section-back-link>
+        <h1 data-translate="sms_senders_configure_time2chat"></h1>
+    </header>
+
+    <!-- LOADING -->
+    <div class="text-center" data-ng-if="SmsSendersAddCtrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!SmsSendersAddCtrl.loading.init">
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-md-6" style="border-right: 2px solid #EEE">
+                <h2 data-translate="sms_senders_configure_auto_response"></h2>
+                <h4
+                    data-translate="sms_senders_configure_contact_info_title"
+                ></h4>
+                <p
+                    data-translate="sms_senders_configure_contact_info_subtitle"
+                ></p>
+                <form
+                    name="contatInfoForm"
+                    id="contatInfoForm"
+                    data-ng-submit="SmsSendersConfigureTime2ChatCtrl.updateContatInfo()"
+                >
+                    <!-- COMMERCIAL_NAME  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': contatInfoForm.commercial_name.$touched && contatInfoForm.commercial_name.$invalid
+                        }"
+                    >
+                        <label
+                            for="commercial_name"
+                            class="control-label"
+                            data-translate="sms_senders_configure_contact_info_label_commercial_name"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="commercial_name"
+                            id="commercial_name"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.contatInfo.commercial_name"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_contact_info_commercial_name_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="contatInfoForm.commercial_name.$touched"
+                            data-ng-messages="contatInfoForm.commercial_name.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_contact_info_commercial_name_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_contact_info_commercial_name_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <!-- PHONENUMBER  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': contatInfoForm.phonenumber.$touched && contatInfoForm.phonenumber.$invalid
+                        }"
+                    >
+                        <label
+                            for="phonenumber"
+                            class="control-label"
+                            data-translate="sms_senders_configure_contact_info_label_phonenumber"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="phonenumber"
+                            id="phonenumber"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.contatInfo.phonenumber"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_contact_info_phonenumber_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="contatInfoForm.phonenumber.$touched"
+                            data-ng-messages="contatInfoForm.phonenumber.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_contact_info_phonenumber_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_contact_info_phonenumber_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <!-- SITE_INTERNET  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': contatInfoForm.site_internet.$touched && contatInfoForm.site_internet.$invalid
+                        }"
+                    >
+                        <label
+                            for="site_internet"
+                            class="control-label"
+                            data-translate="sms_senders_configure_contact_info_label_site_internet"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="site_internet"
+                            id="site_internet"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.contatInfo.site_internet"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_contact_info_site_internet_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="contatInfoForm.site_internet.$touched"
+                            data-ng-messages="contatInfoForm.site_internet.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_contact_info_site_internet_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_contact_info_site_internet_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary mb-3"
+                        data-ng-disabled="contatInfoForm.$invalid"
+                        data-translate="sms_modify"
+                    ></button>
+                </form>
+                <h4
+                    data-translate="sms_senders_configure_auto_response_message_title"
+                ></h4>
+                <p
+                    data-translate="sms_senders_configure_auto_response_message_subtitle"
+                ></p>
+                <form
+                    name="autoResponseMessageForm"
+                    id="autoResponseMessageForm"
+                    data-ng-submit="SmsSendersConfigureTime2ChatCtrl.updateAutoResponseMessage()"
+                >
+                    <!-- AUTO_MESSAGE  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': autoResponseMessageForm.commercial_name.$touched && autoResponseMessageForm.commercial_name.$invalid
+                        }"
+                    >
+                        <oui-textarea
+                            name="message"
+                            model="SmsSendersConfigureTime2ChatCtrl.model.autoMessage"
+                            rows="4"
+                            required
+                        >
+                        </oui-textarea>
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="autoResponseMessageForm.commercial_name.$touched"
+                            data-ng-messages="autoResponseMessageForm.commercial_name.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_auto_response_commercial_name_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_auto_response_commercial_name_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-ng-disabled="autoResponseMessageForm.$invalid"
+                        data-translate="sms_modify"
+                    ></button>
+                </form>
+            </div>
+            <div class="col-md-6 ">
+                <h2 data-translate="sms_senders_configure_kyc"></h2>
+                <form
+                    name="kycForm"
+                    id="kycForm"
+                    data-ng-submit="SmsSendersConfigureTime2ChatCtrl.updateKyc()"
+                >
+                    <!-- COMPANY_NAME  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': kycForm.company_name.$touched && kycForm.company_name.$invalid
+                        }"
+                    >
+                        <label
+                            for="company_name"
+                            class="control-label"
+                            data-translate="sms_senders_configure_kyc_label_company_name"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="company_name"
+                            id="company_name"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.kycData.company_name"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_kyc_company_name_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="kycForm.company_name.$touched"
+                            data-ng-messages="kycForm.company_name.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_kyc_company_name_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_kyc_company_name_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <!-- BRAND_BRAND  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': kycForm.brand_name.$touched && kycForm.brand_name.$invalid
+                        }"
+                    >
+                        <label
+                            for="brand_name"
+                            class="control-label"
+                            data-translate="sms_senders_configure_kyc_label_brand_name"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="brand_name"
+                            id="brand_name"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.kycData.brand_name"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_kyc_brand_name_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="kycForm.brand_name.$touched"
+                            data-ng-messages="kycForm.brand_name.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_kyc_brand_name_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_kyc_brand_name_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <!-- PRIMARY_USE_case  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': kycForm.primary_use_case.$touched && kycForm.primary_use_case.$invalid
+                        }"
+                    >
+                        <label
+                            for="primary_use_case"
+                            class="control-label"
+                            data-translate="sms_senders_configure_kyc_label_primary_use_case"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="primary_use_case"
+                            id="primary_use_case"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.kycData.primary_use_case"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_kyc_primary_use_case_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="kycForm.primary_use_case.$touched"
+                            data-ng-messages="kycForm.primary_use_case.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_kyc_primary_use_case_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_kyc_primary_use_case_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <!-- CONTACT_EMAIL  -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                            'has-error': kycForm.contact_email.$touched && kycForm.contact_email.$invalid
+                        }"
+                    >
+                        <label
+                            for="contact_email"
+                            class="control-label"
+                            data-translate="sms_senders_configure_kyc_label_contact_email"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="contact_email"
+                            id="contact_email"
+                            class="form-control"
+                            required
+                            data-ng-model="SmsSendersConfigureTime2ChatCtrl.kycData.contact_email"
+                            data-ng-maxlength="246"
+                            data-translate-attr="{ placeholder: 'sms_senders_configure_kyc_contact_email_placeholder' }"
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="kycForm.contact_email.$touched"
+                            data-ng-messages="kycForm.contact_email.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="sms_senders_configure_kyc_contact_email_error_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="maxlength"
+                                data-translate="sms_senders_configure_kyc_contact_email_error_maxlength"
+                            >
+                            </span>
+                        </span>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-ng-disabled="kycForm.$invalid"
+                        data-translate="sms_modify"
+                    ></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.telecom-sms-configure-time2chat -->
