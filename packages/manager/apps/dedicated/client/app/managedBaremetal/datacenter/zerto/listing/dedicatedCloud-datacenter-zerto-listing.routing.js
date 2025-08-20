@@ -9,15 +9,28 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       params: {},
-      redirectTo: (transition) =>
-        transition
+
+      redirectTo: (transition) => {
+        return transition
           .injector()
-          .getAsync('isZertoOnPremise')
-          .then(
-            (isZertoOnPremise) =>
-              !isZertoOnPremise &&
-              'app.managedBaremetal.details.datacenters.datacenter.zerto',
-          ),
+          .get('$q')
+          .all({
+            isZertoOnPremise: transition
+              .injector()
+              .getAsync('isZertoOnPremise'),
+            shouldBeConfigured: transition
+              .injector()
+              .getAsync('shouldBeConfigured'),
+          })
+          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+            if (!isZertoOnPremise)
+              return 'app.managedBaremetal.details.datacenters.datacenter.zerto';
+            return (
+              shouldBeConfigured &&
+              'app.managedBaremetal.details.datacenters.datacenter.zerto.summary'
+            );
+          });
+      },
       resolve: {
         breadcrumb: () => null,
         openDeleteSiteModal: /* @ngInject */ (

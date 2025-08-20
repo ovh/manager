@@ -28,7 +28,6 @@ export default class {
   }
 
   $onInit() {
-    this.zertoInformations = this.$state.params.zertoInformations;
     this.zertoInformations.drpType = this.zertoInformations.drpType ?? 'ovh';
     this.zertoStatus = this.dedicatedCloudZerto.constructor.formatStatus(
       this.zertoInformations.state,

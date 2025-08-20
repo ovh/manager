@@ -17,23 +17,23 @@ export default class {
   $onInit() {
     this.initializeTransitions();
 
-    console.log({
-      state: this.currentZerto.state,
-      isDisablingZerto: DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
-        this.currentZerto.state,
-      ),
-    });
-
     this.isDisablingZerto = DedicatedCloudDatacenterZertoService.getIsDisablingZerto(
       this.currentZerto.state,
     );
 
+    if (this.isDisablingZerto) {
+      return null;
+    }
+
     this.isInstallationInError =
       this.currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
-    if (!this.isDisablingZerto) {
-      this.goToSummary(this.zertoInformations);
+    console.log({ currentZerto: this.currentZerto });
+    if (!this.isDisablingZerto && !!this.currentZerto.localSiteInformation) {
+      return this.goToSummary(this.zertoInformations);
     }
+
+    return null;
   }
 
   initializeTransitions() {
