@@ -26,5 +26,6 @@
   "change_password_label_confirm_password": "New password confirmation",
   "change_password_helper1": "Please note that the password must meet the following criteria:",
   "change_password_helper2": "At least 1 lower case letter, 1 upper case letter, 1 number, or 1 special character",
-  "price": "Price"
+  "price": "Price",
+  "stepPlaceholder": "Step {{current}} of {{total}}"
 }

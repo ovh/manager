@@ -26,5 +26,6 @@
   "change_password_label_confirm_password": "Confirmação da nova palavra-passe",
   "change_password_helper1": "Tenha em conta que a palavra-passe deve respeitar as seguintes condições:",
   "change_password_helper2": "Pelo menos 1 letra minúscula, 1 letra maiúscula, 1 algarismo ou 1 caráter especial",
-  "price": "Preço"
+  "price": "Preço",
+  "stepPlaceholder": "Etapa {{current}} de {{total}}"
 }

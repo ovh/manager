@@ -26,5 +26,6 @@
   "change_password_label_confirm_password": "Potwierdzenie nowego hasła",
   "change_password_helper1": "Uwaga: hasło musi spełniać następujące warunki:",
   "change_password_helper2": "Co najmniej 1 mała litera, 1 duża litera, 1 cyfra lub 1 znak specjalny",
-  "price": "Cena"
+  "price": "Cena",
+  "stepPlaceholder": "Etap {{current}} z {{total}}"
 }
