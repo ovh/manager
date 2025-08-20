@@ -50,11 +50,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
         node.url = urls.get(node.url as keyof ContentURLS);
       }
       switch (node.id) {
-        case 'cloud_changelog':
-          node.onClick = () => trackNode('cloud_changelog');
-          break;
-        case 'hosting_and_collab_changelog':
-          node.onClick = () => trackNode('hosting_and_collab_changelog');
+        case 'roadmap_changelog':
+          node.onClick = () => trackNode('changelog-roadmap');
           break;
         case 'marketplace':
           node.onClick = () => trackNode('marketplace');
