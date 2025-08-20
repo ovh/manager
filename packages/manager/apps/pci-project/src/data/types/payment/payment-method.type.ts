@@ -1,3 +1,5 @@
+import { TCart } from './cart.type';
+
 export enum TPaymentMethodIntegration {
   BANK_TRANSFER = 'BANK_TRANSFER',
   COMPONENT = 'COMPONENT',
@@ -92,4 +94,13 @@ export type TAvailablePaymentMethod = TPaymentMethod & {
   registerable: boolean;
   registerableWithTransaction: boolean;
   readableName?: { key: string; ns: string };
+};
+
+export type TPaymentMethodIntegrationRef = {
+  registerPaymentMethod?: (
+    paymentMethod: TPaymentMethod,
+    cart: TCart,
+  ) => Promise<boolean>;
+  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean>;
+  onCartFinalized?: (cart: TCart) => Promise<boolean>;
 };

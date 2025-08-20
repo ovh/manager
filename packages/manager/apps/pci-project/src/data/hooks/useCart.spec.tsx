@@ -56,6 +56,12 @@ describe('useCart hooks', () => {
     description: 'Test cart',
     expire: '2024-12-31',
     readonly: false,
+    prices: {
+      withTax: {
+        value: 100,
+      },
+    },
+    url: 'https://example.com/cart',
   };
 
   const mockCartSummary: CartSummary = {
