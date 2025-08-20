@@ -25,7 +25,7 @@ export type IpActionsCellParams = {
   ip: string;
   parentIpGroup?: string;
 };
-/* 
+/*
   list of category and path map in order to check if the ip is attached to that category
   categoryAndPathMapping = [
         {
@@ -75,7 +75,7 @@ export type IpActionsCellParams = {
     display => nothing + parent IP
  */
 
-/*  
+/*
     If its not permanent mitigation then display listingManageMitigation_DEFAULT_to_PERMANENT
     If its permanent mitigation(PERMANENT) And mitigation state is Ok then display listingManageMitigation_PERMANENT_to_AUTO
     If its permanent mitigation(PERMANENT) OR mitigation state is Ok And if mitigation is auto (FORCED) then enable listingManageMitigation_stats
@@ -150,24 +150,28 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     window.top.location.href = vrackPage;
   };
 
+  const isIpExpired = expiredIps?.indexOf(ip) !== -1;
+
   // not expired and additionnal / dedicated Ip linked to a dedicated server
-  const enabled =
-    expiredIps?.indexOf(ip) === -1 &&
-    !isLoading &&
-    isGameFirewallEnabled(ipDetails);
+  const enabledGetGameFirewall =
+    !isIpExpired && !isLoading && isGameFirewallEnabled(ipDetails);
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
     ip: parentIpGroup || ipAddress,
-    enabled,
+    enabled: enabledGetGameFirewall,
   });
 
-  const { hasForcedMitigation } = useIpHasForcedMitigation({ ip });
+  const { hasForcedMitigation } = useIpHasForcedMitigation({
+    ip,
+    enabled: !isIpExpired,
+  });
   const {
     ipMitigation,
     isLoading: isMitigationLoading,
   } = useGetIpMitigationWithoutIceberg({
     ip: ipAddress,
+    enabled: !isIpExpired,
   });
 
   const isDefaultMitigation = Object.keys(ipMitigation).length === 0;

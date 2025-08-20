@@ -5,6 +5,7 @@ import { useGetIpdetails } from '@/data/hooks/ip';
 
 export type IpCellProps = {
   ip: string;
+  parentIpGroup?: string;
 };
 
 /**
@@ -15,8 +16,8 @@ export type IpCellProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpCell = ({ ip }: IpCellProps) => {
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
+export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
+  const { ipDetails, isLoading } = useGetIpdetails({ ip: parentIpGroup || ip });
 
   return (
     <>
