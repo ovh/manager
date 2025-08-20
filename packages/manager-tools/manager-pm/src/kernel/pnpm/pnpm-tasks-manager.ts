@@ -73,3 +73,35 @@ export async function lintApp(appRef: string): Promise<void> {
   consola.info(`▶ yarn ${args.join(' ')}`);
   await execa('yarn', args, { stdio: 'inherit', cwd: managerRootPath });
 }
+
+/**
+ * Build ALL apps (merged Yarn ∪ PNPM catalogs).
+ * Equivalent to: update workspaces to merged, then `turbo run build`.
+ */
+export async function buildAll(): Promise<void> {
+  await updateRootWorkspacesFromCatalogs();
+  const args = ['run', 'build', '--concurrency=5'];
+  consola.info(`▶ turbo ${args.join(' ')}`);
+  await execa('turbo', args, { stdio: 'inherit', cwd: managerRootPath });
+}
+
+/**
+ * Test ALL apps (merged Yarn ∪ PNPM catalogs).
+ * Equivalent to: update workspaces to merged, then `turbo run test`.
+ */
+export async function testAll(): Promise<void> {
+  await updateRootWorkspacesFromCatalogs();
+  const args = ['run', 'test', '--concurrency=1'];
+  consola.info(`▶ turbo ${args.join(' ')}`);
+  await execa('turbo', args, { stdio: 'inherit', cwd: managerRootPath });
+}
+
+/**
+ * Lint ALL apps using the hybrid lint runner.
+ * Equivalent to: update workspaces to merged, then `yarn lint:tsx`.
+ */
+export async function lintAll(): Promise<void> {
+  await updateRootWorkspacesFromCatalogs();
+  consola.info('▶ yarn lint:tsx');
+  await execa('yarn', ['lint:tsx'], { stdio: 'inherit', cwd: managerRootPath });
+}

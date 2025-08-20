@@ -119,3 +119,47 @@ export async function updateRootWorkspacesFromCatalogs(): Promise<CatalogList> {
   consola.success(`✔ Updated root workspaces.packages (${merged.length} entries)`);
   return merged;
 }
+
+/**
+ * Overwrite root workspaces.packages with the Yarn catalog only.
+ * Use before running `yarn install` so Yarn installs only its subset.
+ */
+export async function updateRootWorkspacesToYarnOnly(): Promise<CatalogList> {
+  const { yarnCatalogPath } = getCatalogPaths();
+  const yarnList = await readCatalog(yarnCatalogPath);
+
+  const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
+  const pkg = parseJson<Record<string, unknown>>(raw);
+
+  if (!pkg.workspaces || typeof pkg.workspaces !== 'object') {
+    pkg.workspaces = { packages: yarnList };
+  } else {
+    (pkg.workspaces as { packages: CatalogList }).packages = yarnList;
+  }
+
+  await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
+  consola.success(`✔ Updated root workspaces.packages to Yarn-only (${yarnList.length} entries)`);
+  return yarnList;
+}
+
+/**
+ * Overwrite root workspaces.packages with the PNPM catalog only.
+ * Useful for debugging or isolated PNPM operations.
+ */
+export async function updateRootWorkspacesToPnpmOnly(): Promise<CatalogList> {
+  const { pnpmCatalogPath } = getCatalogPaths();
+  const pnpmList = await readCatalog(pnpmCatalogPath);
+
+  const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
+  const pkg = parseJson<Record<string, unknown>>(raw);
+
+  if (!pkg.workspaces || typeof pkg.workspaces !== 'object') {
+    pkg.workspaces = { packages: pnpmList };
+  } else {
+    (pkg.workspaces as { packages: CatalogList }).packages = pnpmList;
+  }
+
+  await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
+  consola.success(`✔ Updated root workspaces.packages to PNPM-only (${pnpmList.length} entries)`);
+  return pnpmList;
+}

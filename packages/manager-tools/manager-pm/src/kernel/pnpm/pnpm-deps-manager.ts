@@ -1,4 +1,5 @@
 import { consola } from 'consola';
+import { execa } from 'execa';
 import { execSync } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -10,11 +11,18 @@ import {
   pnpmStorePath,
   rootPackageJsonPath,
 } from '../../playbook/pnpm-config.js';
+import {
+  getCatalogPaths,
+  readCatalog,
+  updateRootWorkspacesFromCatalogs,
+  updateRootWorkspacesToYarnOnly,
+} from '../commons/catalog-utils.js';
 import { getPrivatePackages } from '../commons/dependencies-utils.js';
 import { loadJson } from '../commons/json-utils.js';
 import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
 import { cleanAppDirs } from '../commons/workspace-utils.js';
 import { PackageJsonType } from '../types/commons/package-json-type.js';
+import { bootstrapPnpm } from './pnpm-bootstrap.js';
 
 /**
  * Link all private packages into the local PNPM store (`./target`).
@@ -196,4 +204,74 @@ export async function installAppDeps(appPath: string): Promise<void> {
     // --- Step 8: Restore packageManager no matter what
     await restorePackageManager(rootPackageJsonPath, removedValue);
   }
+}
+
+/**
+ * Internal: build all private packages (core/modules/components) so that their "dist"
+ * exists before linking them into the PNPM local store.
+ */
+async function buildPrivatePackages(): Promise<void> {
+  const privateDirs = await getPrivatePackages();
+  if (privateDirs.length === 0) {
+    consola.info('ℹ No private packages found to build.');
+    return;
+  }
+
+  const filters: string[] = [];
+  for (const dir of privateDirs) {
+    try {
+      const raw = await fs.readFile(path.join(dir, 'package.json'), 'utf-8');
+      const pkg = JSON.parse(raw) as PackageJsonType;
+      if (pkg.name) filters.push('--filter', pkg.name);
+    } catch {}
+  }
+
+  if (filters.length === 0) {
+    consola.info('ℹ No resolvable private package names found to build.');
+    return;
+  }
+
+  const args = ['run', 'build', '--concurrency=5', ...filters];
+  consola.info(`▶ turbo ${args.join(' ')}`);
+  await execa('turbo', args, { stdio: 'inherit', cwd: managerRootPath });
+  consola.success('✔ Built private packages.');
+}
+
+/**
+ * Yarn pre-install hook:
+ * - Inject Yarn catalog only into root package.json workspaces.
+ *   This ensures "yarn install" only touches Yarn-managed apps.
+ */
+export async function yarnPreInstall(): Promise<void> {
+  consola.start('🧩 Yarn preinstall: limit workspaces to Yarn catalog');
+  await updateRootWorkspacesToYarnOnly();
+  consola.box('✅ Root workspaces set to Yarn-only for installation.');
+}
+
+/**
+ * Yarn post-install hook:
+ *  - Ensure PNPM is bootstrapped locally.
+ *  - Build and link private packages into PNPM store.
+ *  - Install dependencies for each PNPM-catalog app via PNPM.
+ *  - Restore root workspaces to the merged (Yarn ∪ PNPM) view.
+ */
+export async function yarnPostInstall(): Promise<void> {
+  consola.start('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
+
+  await bootstrapPnpm();
+  await buildPrivatePackages();
+  await linkPrivateDeps();
+
+  const { pnpmCatalogPath } = getCatalogPaths();
+  const pnpmApps = await readCatalog(pnpmCatalogPath);
+
+  for (const relAppPath of pnpmApps) {
+    const abs = path.isAbsolute(relAppPath) ? relAppPath : path.join(managerRootPath, relAppPath);
+    await installAppDeps(abs);
+  }
+
+  await updateRootWorkspacesFromCatalogs();
+  consola.box(
+    '🎉 Yarn postinstall complete: PNPM store ready; PNPM apps installed; workspaces restored.',
+  );
 }
