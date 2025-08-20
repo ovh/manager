@@ -1,4 +1,5 @@
 {
+  "stepPlaceholder": "Étape {{current}} sur {{total}}",
   "mandatory_fields": "Les champs mentionnés avec un astérisque * sont obligatoires.",
   "max_chars": "{{ value }} caractères maximum",
   "min_chars": "{{ value }} caractères minimum",
