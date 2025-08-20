@@ -26,5 +26,6 @@
   "change_password_label_confirm_password": "Confirmación de la nueva contraseña",
   "change_password_helper1": "Atención: La contraseña debe cumplir los siguientes criterios:",
   "change_password_helper2": "Al menos una letra minúscula, una letra mayúscula, un número o un carácter especial",
-  "price": "Precio"
+  "price": "Precio",
+  "stepPlaceholder": "Paso {{current}} de {{total}}"
 }
