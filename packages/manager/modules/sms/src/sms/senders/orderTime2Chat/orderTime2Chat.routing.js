@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('sms.service.dashboard.orderTime2Chat', {
+  $stateProvider.state('sms.service.senders.orderTime2Chat', {
     url: '/orderTime2Chat',
     views: {
       modal: {
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         const reload = message && type === 'success';
         const promise = $state.go(
-          'sms.service.dashboard',
+          'sms.service.senders',
           {},
           {
             reload,
@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('sms_orderTime2Chat_title'),
+        $translate.instant('sms_order_time2chat_title'),
     },
     atInternet: {
       ignore: true,
