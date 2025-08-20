@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useCreditDetails } from '@/data/hooks/useCredit';
-import { getDocumentationLinks, COMMUNITY_LINKS } from './constants';
+import {
+  getDocumentationLinks,
+  COMMUNITY_LINKS,
+  BILLING_LINKS,
+} from './constants';
 
 // Types for dashboard sections
 export type BottomSection = {
@@ -15,10 +19,14 @@ export type BottomSection = {
 export type BottomSectionItem = {
   label: string;
   description?: string;
-  link: string;
+  link: string | string[];
   price?: string;
   validUntil?: string | null;
-  isVoucherLink?: boolean;
+  icon?: string;
+  target?: string;
+  rel?: string;
+  color?: string;
+  ariaLabelKey?: string;
 };
 
 export function useDashboardSections(projectId: string) {
@@ -33,21 +41,45 @@ export function useDashboardSections(projectId: string) {
   } = useCreditDetails(projectId);
 
   const createBillingItems = useCallback(() => {
-    if (isLoading) return [];
+    const items = [];
 
-    return vouchersCreditDetails.slice(0, 3).map((credit) => ({
-      label: t('pci_project_project_voucher_credit', {
-        voucher: credit.voucher,
-      }),
-      description: credit.description,
-      link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
-      price: credit.balance,
-      validUntil: credit.expirationDate
-        ? t('pci_project_project_expires_on', {
-            date: formatDate({ date: credit.expirationDate, format: 'PPpp' }),
-          })
-        : null,
-    }));
+    // Add voucher credits from API
+    if (!isLoading) {
+      items.push(
+        ...vouchersCreditDetails.slice(0, 3).map((credit) => ({
+          label: t('pci_project_project_voucher_credit', {
+            voucher: credit.voucher,
+          }),
+          description: credit.description,
+          link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
+          price: credit.balance,
+          validUntil: credit.expirationDate
+            ? t('pci_project_project_expires_on', {
+                date: formatDate({
+                  date: credit.expirationDate,
+                  format: 'PPpp',
+                }),
+              })
+            : null,
+        })),
+      );
+    }
+
+    // Add billing links (including voucher link) - these are static constants
+    items.push(
+      ...BILLING_LINKS.map((link) => ({
+        label: '',
+        description: `pci_project_project_${link.descriptionKey}`,
+        link: link.link.replace('{projectId}', projectId),
+        icon: link.icon,
+        target: link.target,
+        rel: link.rel,
+        color: link.color,
+        ariaLabelKey: link.ariaLabelKey,
+      })),
+    );
+
+    return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
   const createDocumentationItems = useCallback(() => {
@@ -62,11 +94,32 @@ export function useDashboardSections(projectId: string) {
   }, [t, environment]);
 
   const createCommunityItems = useCallback(() => {
-    return COMMUNITY_LINKS.map((link) => ({
-      label: t(`pci_project_project_${link.labelKey}`),
-      description: t(`pci_project_project_${link.descriptionKey}`),
-      link: link.link,
-    }));
+    return COMMUNITY_LINKS.flatMap((link) => {
+      if ('items' in link && link.items) {
+        // Handle items structure - create title item and sub-items
+        const titleItem = {
+          label: t(`pci_project_project_${link.labelKey}`),
+          description: '',
+          link: '',
+        };
+
+        const subItems = link.items.map((item) => ({
+          label: '',
+          description: t(`pci_project_project_${item.descriptionKey}`),
+          link: item.link,
+        }));
+
+        return [titleItem, ...subItems];
+      }
+      // Handle single link structure
+      return [
+        {
+          label: t(`pci_project_project_${link.labelKey}`),
+          description: t(`pci_project_project_${link.descriptionKey}`),
+          link: link.link,
+        },
+      ];
+    });
   }, [t]);
 
   const sections: BottomSection[] = useMemo(
