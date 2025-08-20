@@ -46,6 +46,7 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
     <SkeletonCell
       isLoading={isLoading || isIpDetailsLoading}
       enabled={!isGroup}
+      ip={ip}
     >
       {!enabled && null}
       {enabled && !vmacsWithIp?.length && <>-</>}

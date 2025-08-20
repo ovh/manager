@@ -70,6 +70,7 @@ export const useGetIpMitigationWithoutIceberg = ({
       }
     },
     enabled,
+    retry: false,
     refetchInterval: (query) =>
       query.state.data?.data?.state === 'creationPending' ||
       query.state.data?.data?.state === 'removalPending'

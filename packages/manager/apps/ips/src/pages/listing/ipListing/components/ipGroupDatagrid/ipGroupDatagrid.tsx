@@ -73,7 +73,7 @@ export const IpGroupDatagrid = ({
       id: 'ip',
       label: t('listingColumnsIp'),
       cell: (ip: string) => {
-        return <IpCell ip={ip}></IpCell>;
+        return <IpCell ip={ip} parentIpGroup={row.original.ip}></IpCell>;
       },
       size: parentHeaders.current.ip.clientWidth,
     },
