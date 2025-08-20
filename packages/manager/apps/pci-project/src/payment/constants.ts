@@ -56,6 +56,11 @@ export const CREDIT_PROVISIONING = {
   PRICE_MODE: 'default',
 };
 
+export const CREDIT_ORDER_CART = {
+  projectPlanCode: 'project.2018',
+  planCode: 'cloud.credit',
+};
+
 export const CONFIRM_CREDIT_CARD_TEST_AMOUNT = 2;
 export const LANGUAGE_OVERRIDE = { IN: `en-IN`, ASIA: `en-GB` };
 
