@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_credit_thanks": "Grazie! La tua richiesta di registrazione della modalità di pagamento è stata presa in carico.",
+  "pci_project_new_payment_credit_explain": "Per poter iniziare a usufruire di tutta la potenza del nostro servizio Public Cloud, è necessario accreditare un importo di {{ amount }}. Questa somma sarà convertita in crediti*, utilizzabili sul proprio progetto.",
+  "pci_project_new_payment_credit_info": "*Il credito non ha valore monetario e non è trasferibile o rimborsabile.  Gli importi non utilizzati nei 13 mesi successivi all’accredito vengono persi. Cliccando su “Ricarica e crea il tuo progetto” verrai reindirizzato al buono d’ordine per effettuare l’accredito tramite carta bancaria o PayPal.",
+  "pci_project_new_payment_credit_credit_and_pay": "Ricarica e crea il tuo progetto",
+  "pci_project_new_payment_credit_checkout_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. ti preghiamo di riprovare."
+}

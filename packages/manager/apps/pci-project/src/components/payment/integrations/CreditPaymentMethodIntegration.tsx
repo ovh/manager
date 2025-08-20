@@ -1,29 +1,43 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import {
+  ODS_BUTTON_COLOR,
   ODS_CARD_COLOR,
   ODS_INPUT_TYPE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import {
+  OdsButton,
   OdsCard,
   OdsFormField,
   OdsInput,
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CREDITS_PREDEFINED_AMOUNT_SEQUENCE } from '@/payment/constants';
-import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
+import {
+  CREDIT_ORDER_CART,
+  CREDITS_PREDEFINED_AMOUNT_SEQUENCE,
+} from '@/payment/constants';
+import {
+  TPaymentMethod,
+  TPaymentMethodIntegrationRef,
+} from '@/data/types/payment/payment-method.type';
 import {
   ProjectPrice,
   TEligibility,
 } from '@/data/types/payment/eligibility.type';
+import { TCart } from '@/data/types/payment/cart.type';
+import { useGetCreditAddonOption } from '@/data/hooks/payment/useCart';
+import { addCartCreditOption } from '@/data/api/payment/cart';
 
 type CreditPaymentMethodIntegrationProps = {
   paymentMethod: TPaymentMethod;
   handleValidityChange: (isValid: boolean) => void;
   eligibility: TEligibility;
+  paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
+  cartId: string;
+  itemId: number;
+  handleCustomSubmitButton?: (btn: string) => void;
 };
 
 const getAmountToPriceFormat = (
@@ -40,8 +54,16 @@ const getAmountToPriceFormat = (
 const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationProps> = ({
   handleValidityChange,
   eligibility,
+  paymentHandler,
+  cartId,
+  itemId,
+  handleCustomSubmitButton,
 }) => {
-  const { t } = useTranslation('payment/integrations/credit');
+  const { t } = useTranslation([
+    'payment/integrations/credit',
+    'payment/integrations/credit/confirmation',
+    'new/payment',
+  ]);
   const minAmount = eligibility.minimumCredit;
   const predefinedAmounts: ProjectPrice[] = minAmount
     ? [
@@ -61,6 +83,13 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
     creditCustomAmount,
     setCreditCustomAmount,
   ] = useState<ProjectPrice | null>(null);
+  const [isConfirmationState, setIsConfirmationState] = useState<boolean>(
+    false,
+  );
+  const [isFinalizing, setIsFinalizing] = useState<boolean>(false);
+  const confirmationResolveRef = useRef<(value: boolean) => void>(() => {});
+
+  const { data: creditAddonOption } = useGetCreditAddonOption(cartId);
 
   const handleSelectedAmount = (amount: ProjectPrice) => {
     setSelectedAmount(amount);
@@ -85,6 +114,14 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
   };
 
   useEffect(() => {
+    if (handleCustomSubmitButton) {
+      handleCustomSubmitButton(
+        t('pci_project_new_payment_btn_continue_credit', { ns: 'new/payment' }),
+      );
+    }
+  }, []);
+
+  useEffect(() => {
     handleValidityChange(
       !!selectedAmount ||
         (selectCustomAmount &&
@@ -98,9 +135,71 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
     handleValidityChange,
   ]);
 
+  useImperativeHandle(
+    paymentHandler,
+    () => {
+      return {
+        registerPaymentMethod: async () => {
+          if (creditAddonOption && creditAddonOption.prices.length > 0) {
+            const amount = selectCustomAmount
+              ? creditCustomAmount
+              : selectedAmount;
+
+            await addCartCreditOption(cartId, {
+              planCode: CREDIT_ORDER_CART.planCode,
+              quantity: Math.floor(
+                (amount?.value ?? 0) / creditAddonOption.prices[0].price.value,
+              ),
+              duration: creditAddonOption.prices[0].duration,
+              pricingMode: creditAddonOption.prices[0].pricingMode,
+              itemId,
+            });
+          }
+          return true;
+        },
+        onCheckoutRetrieved: async (cart: TCart) => {
+          if (cart.prices.withTax.value !== 0) {
+            // We need to pay credits
+            setIsConfirmationState(true);
+
+            // We create a promise to wait for user validation
+            const promise = new Promise<boolean>((resolve) => {
+              confirmationResolveRef.current = (r: boolean) => {
+                setIsFinalizing(true);
+                resolve(r);
+              };
+            });
+
+            return promise;
+          }
+          return true;
+        },
+        onCartFinalized: async (cart: TCart) => {
+          setIsFinalizing(false);
+          if (!cart.url || !window.top) {
+            return true;
+          }
+          window.top.location.href = cart.url;
+          return false;
+        },
+      };
+    },
+    [
+      selectCustomAmount,
+      creditCustomAmount,
+      selectedAmount,
+      creditAddonOption,
+      itemId,
+    ],
+  );
+
   return (
     <div>
-      <OdsText>{t('pci_project_new_payment_credit_explain')}</OdsText>
+      <OdsText>
+        {t('pci_project_new_payment_credit_explain', {
+          ns: 'payment/integrations/credit',
+        })}
+      </OdsText>
 
       <div className="flex flex-wrap justify-content-between mt-6 gap-6">
         {predefinedAmounts.map((amount) => (
@@ -152,7 +251,9 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
             />
 
             <OdsText>
-              {t('pci_project_new_payment_credit_amount_other')}
+              {t('pci_project_new_payment_credit_amount_other', {
+                ns: 'payment/integrations/credit',
+              })}
             </OdsText>
           </OdsCard>
         </label>
@@ -161,7 +262,9 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
       {selectCustomAmount && (
         <OdsFormField className="w-full">
           <label htmlFor="otherAmount">
-            {t('pci_project_new_payment_credit_amount_other_label')}
+            {t('pci_project_new_payment_credit_amount_other_label', {
+              ns: 'payment/integrations/credit',
+            })}
           </label>
           <OdsInput
             id="otherAmount"
@@ -180,8 +283,50 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
       )}
 
       <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
-        {t('pci_project_new_payment_credit_info')}
+        {t('pci_project_new_payment_credit_info', {
+          ns: 'payment/integrations/credit',
+        })}
       </OdsText>
+
+      {isConfirmationState && (
+        <OdsCard color={ODS_CARD_COLOR.primary} className={'mt-6 p-6'}>
+          <OdsText preset={ODS_TEXT_PRESET.heading3}>
+            {t('pci_project_new_payment_credit_confirmation_title', {
+              ns: 'payment/integrations/credit/confirmation',
+            })}
+          </OdsText>
+
+          <OdsText className="mt-6 text-bold">
+            {t('pci_project_new_payment_credit_thanks', {
+              ns: 'payment/integrations/credit/confirmation',
+            })}
+          </OdsText>
+
+          <OdsText className="mt-6">
+            {t('pci_project_new_payment_credit_explain', {
+              ns: 'payment/integrations/credit/confirmation',
+              amount: (selectCustomAmount ? creditCustomAmount : selectedAmount)
+                ?.text,
+            })}
+          </OdsText>
+
+          <OdsText preset={ODS_TEXT_PRESET.caption} className="mt-6">
+            {t('pci_project_new_payment_credit_info', {
+              ns: 'payment/integrations/credit/confirmation',
+            })}
+          </OdsText>
+
+          <OdsButton
+            color={ODS_BUTTON_COLOR.primary}
+            className="mt-6"
+            label={t('pci_project_new_payment_credit_credit_and_pay', {
+              ns: 'payment/integrations/credit/confirmation',
+            })}
+            onClick={() => confirmationResolveRef.current(true)}
+            isLoading={isFinalizing}
+          ></OdsButton>
+        </OdsCard>
+      )}
     </div>
   );
 };
