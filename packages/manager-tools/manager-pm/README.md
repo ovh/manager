@@ -1,198 +1,196 @@
-# 📦 Manager PM CLI (`manager-pm`)
+# manager-pm — Hybrid Yarn + PNPM orchestration for incremental adoption
 
-The **Manager PM CLI** is a unified command-line tool designed to orchestrate package manager workflows in the OVH Manager monorepo.  
-It provides a structured interface to bootstrap, install, build, lint, test, and start applications, with support for incremental **Yarn → PNPM migration**.
-
----
-
-## 🚀 Why This CLI?
-
-Historically, the monorepo used Yarn v1 workspaces with custom scripts.  
-As part of the **incremental migration to PNPM**, we needed:
-
-- A **single CLI entry point** to unify actions across package managers.
-- **Incremental adoption**: keep Yarn at the root but allow apps to migrate one by one to PNPM.
-- Reuse of **Turbo tasks** (`build`, `test`, `lint`, `start`) across both PMs.
-- **App-scoped operations** (install deps, start app, etc.) without affecting the whole repo.
-- **Automation** for Yarn ↔ PNPM compatibility (temporary workspace injection, cleanup).
+**manager-pm** lets a large monorepo run **Yarn Classic** and **PNPM** side‑by‑side during a staged migration.  
+It keeps Yarn in charge of its own apps, bootstraps a *pinned* PNPM locally for PNPM apps, and uses Turbo to build/test across **both** catalogs.
 
 ---
 
-## 🛠️ Installation
+## Why this exists
 
-```bash
+Big repos rarely switch package managers all at once. You need to migrate app‑by‑app without breaking the world:
+
+- Keep Yarn’s lockfile stable for legacy apps.
+- Allow selected apps to be installed and built with PNPM (local store, overrides, linked privates).
+- Run **Turbo** over *everything* as one graph.
+
+`manager-pm` provides that hybrid runtime in a **repeatable** and **idempotent** way.
+
+---
+
+## High‑level flow
+
+```text
+yarn preinstall
+  └─ manager-pm pre-install
+     └─ root package.json.workspaces.packages = Yarn-only
+
 yarn install
-```
+  └─ Yarn only sees/install Yarn apps
 
-The CLI binary is exposed as:
+yarn postinstall
+  └─ manager-pm post-install
+     ├─ bootstrap PNPM (pinned binary → target/pnpm)
+     ├─ build private packages (ensure dist/)
+     ├─ link private packages into PNPM local store
+     ├─ for each PNPM-catalog app:
+     │    └─ installAppDeps(app) with a per-app temporary pnpm-workspace.yaml
+     └─ restore root workspaces.packages = (Yarn ∪ PNPM) merged
 
-```bash
-yarn manager-pm
-```
-
----
-
-## 📖 CLI Overview
-
-```bash
-yarn manager-pm --help
-```
-
-```
-Usage: manager-pm [options]
-
-Manager Package Manager CLI (incremental pnpm adoption)
-
-Options:
-  --type <type>     package manager type (pnpm)
-  --action <name>   action (bootstrap|linkPrivates|add|remove|install|build|test|lint|start|help)
-  --app <name>      Target app name (required for app-specific actions)
-  -V, --version     output the version number
-  -h, --help        display help for command
+developer tasks
+  ├─ manager-pm full-build → turbo run build (merged)
+  ├─ manager-pm full-test  → turbo run test  (merged)
+  └─ manager-pm full-lint  → yarn lint:tsx   (merged)
 ```
 
 ---
 
-## ⚙️ Actions & How They Work
+## Features
 
-### 1. **Bootstrap**
-```bash
-yarn manager-pm --type pnpm --action bootstrap
-```
-- Installs the **PNPM binary** in `target/pnpm/`.
-- Ensures reproducible, isolated PNPM setup.
-- Logs installation with `consola`.
-
----
-
-### 2. **Link Privates**
-```bash
-yarn manager-pm --type pnpm --action linkPrivates
-```
-- Scans all **internal private packages** (`packages/components`, `packages/manager/core`, `packages/manager/modules`).
-- Creates **`link:` overrides** inside PNPM local store.
-- Ensures that local apps resolve internal dependencies without publishing.
+- **Yarn‑only preinstall**: sets `workspaces.packages` to the Yarn catalog so Yarn won’t touch PNPM apps.
+- **Local PNPM bootstrap**: downloads a pinned PNPM binary into `target/pnpm` (no global install required).
+- **Private packages build + link**: builds internal packages (`dist/`) then links them into PNPM’s local store.
+- **Per‑app PNPM installs**: each PNPM app installs with its own temporary `pnpm-workspace.yaml`:
+  - `packages: ['.']`
+  - `overrides` for normalized versions + `link:` overrides to private packages
+  - local store at `target/.pnpm-store`
+- **Merged workspace for Turbo**: after postinstall, root `workspaces.packages` becomes `(Yarn ∪ PNPM)` so `turbo` sees the entire graph.
+- **Idempotent**: safe to run multiple times; temporary files and root `packageManager` field are restored.
 
 ---
 
-### 3. **Add App**
-```bash
-yarn manager-pm --type pnpm --action add --app zimbra
-```
-- Adds the app into PNPM workflow:
-  - Generates a temporary `pnpm-workspace.yaml` with `packages: ['.']`.
-  - Updates overrides/links for internal packages.
-  - Writes `.npmrc` with local store config.
+## Requirements
+
+- **Node.js:** `^22` (matches monorepo `engines.node`)
+- **Yarn Classic:** `1.22.x`
+- **Turbo:** `^2.5.2` (already a devDependency in the monorepo)
+- **OS:** Linux/macOS (Windows works; see note under *Troubleshooting* regarding PNPM executable path)
 
 ---
 
-### 4. **Remove App**
-```bash
-yarn manager-pm --type pnpm --action remove --app zimbra
+## Install & wire‑up
+
+Install `manager-pm` as a dev dependency in the **root** of your monorepo (via registry or a local workspace).  
+Make sure the `manager-pm` binary is available to Yarn scripts.
+
+Add these scripts to **root `package.json`**:
+
+```jsonc
+{
+  "scripts": {
+    "preinstall": "manager-pm --type pnpm --action pre-install",
+    "postinstall": "manager-pm --type pnpm --action post-install",
+    "pm:build": "manager-pm --type pnpm --action full-build",
+    "pm:test": "manager-pm --type pnpm --action full-test",
+    "pm:lint:tsx": "manager-pm --type pnpm --action full-lint",
+    "pm:start": "manager-pm --type pnpm --action start"
+  }
+}
 ```
-- Cleans up the app from PNPM workflow.
-- Removes temporary workspace entries and overrides.
 
 ---
 
-### 5. **Install**
-```bash
-yarn manager-pm --type pnpm --action install --app zimbra
-```
-- Creates an **isolated PNPM workspace** for the app.
-- Runs:
-  ```bash
-  target/pnpm/pnpm install
-  ```
-- Ensures **hoisting rules** and **shared-workspace-lockfile=false** for app-local installs.
+## Catalogs & configuration
+
+`manager-pm` reads two catalogs and merges them into `workspaces.packages` when needed:
+
+- **Yarn catalog**: list of Yarn‑managed workspace globs (e.g., legacy apps)
+- **PNPM catalog**: list of PNPM‑managed workspace paths (e.g., modernized apps)
+
+The catalog locations are provided by `getCatalogPaths()` in `src/kernel/commons/catalog-utils.ts`.  
+If your paths differ from the defaults, update `getCatalogPaths()` accordingly.
+
+**Private packages discovery**: `getPrivatePackages()` finds internal `private: true` packages (by default under `packages/manager/core`, `packages/manager/modules`, `packages/components`). Adjust if your layout changes.
+
+**Normalized versions**: `installAppDeps()` can apply normalized/override versions (e.g., `src/playbook/pnpm-normalized-versions`). Add or remove entries as your constraints evolve.
 
 ---
 
-### 6. **Build**
+## CLI usage
+
 ```bash
-yarn manager-pm --type pnpm --action build --app zimbra
+manager-pm --type pnpm --action <action> [--app <name-or-path>] [--region <code>] [--container]
 ```
-- Runs:
-  ```bash
-  turbo run build --filter=./packages/manager/apps/zimbra...
-  ```
-- Uses our `getAppTaskCommand` utility:
-  - Returns both the **command** and **description**.
-  - Logs the executed command with `consola`.
+
+**Options**
+- `--type`: only `pnpm` is supported today.
+- `--action`: one of the actions below.
+- `--app`: when an action needs a target app, pass its **path** (recommended).
+- `--region`: used by interactive `start` flow (default: `EU`).
+- `--container`: run inside a container (boolean).
+
+**Actions**
+
+| Action         | Needs `--app` | What it does |
+|----------------|----------------|--------------|
+| `bootstrap`    | no             | Download & validate the pinned PNPM binary (idempotent). |
+| `add`          | yes            | Add an app (by path or name) to the PNPM catalog. |
+| `remove`       | yes            | Remove an app (by path or name) from the PNPM catalog. |
+| `install`      | yes            | Install deps for a PNPM‑managed app (pass `--app` as **path**). |
+| `build`        | yes            | Build a single app using Turbo (merged catalogs). |
+| `test`         | yes            | Test a single app using Turbo (merged catalogs). |
+| `lint`         | yes            | Lint a single app using the shared runner. |
+| `start`        | no             | Interactively start an application (prompts). |
+| `pre-install`  | no             | Set root `workspaces.packages` to **Yarn‑only** (so Yarn installs only its apps). |
+| `post-install` | no             | Bootstrap PNPM → build+link privates → install PNPM apps → restore merged workspaces. |
+| `full-build`   | no             | Build **all** apps across merged Yarn + PNPM catalogs. |
+| `full-test`    | no             | Test **all** apps across merged Yarn + PNPM catalogs. |
+| `full-lint`    | no             | Lint **all** apps across merged Yarn + PNPM catalogs. |
 
 ---
 
-### 7. **Test**
+## Typical workflows
+
+**Fresh clone**
+
 ```bash
-yarn manager-pm --type pnpm --action test --app zimbra
+yarn            # triggers preinstall/postinstall automatically
+yarn pm:build   # turbo run build across merged catalogs
+yarn pm:test    # turbo run test across merged catalogs
+yarn pm:lint:tsx
 ```
-- Runs:
-  ```bash
-  turbo run test --filter=./packages/manager/apps/zimbra...
-  ```
-- Migration-aware:
-  - Ensures app uses `manager-test` instead of legacy `vitest`.
-  - Verifies no deprecated dependencies remain.
+
+**Migrate an app to PNPM**
+
+```bash
+# add an app to PNPM catalog (path or name, depending on your impl)
+manager-pm --type pnpm --action add --app packages/manager/apps/zimbra
+
+# ensure PNPM is ready and privates are linked
+manager-pm --type pnpm --action bootstrap
+manager-pm --type pnpm --action install --app packages/manager/apps/zimbra
+```
+
+**Develop**
+
+```bash
+# Single app flows (merged view still in effect after postinstall)
+manager-pm --type pnpm --action build --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action test  --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action lint  --app packages/manager/apps/zimbra
+```
 
 ---
 
-### 8. **Lint**
-```bash
-yarn manager-pm --type pnpm --action lint --app zimbra
+## CI integration (example)
+
+```yaml
+steps:
+  - run: yarn --frozen-lockfile
+  - run: yarn pm:build
+  - run: yarn pm:test
+  - run: yarn pm:lint:tsx
 ```
-- Runs:
-  ```bash
-  yarn lint:tsx -- --app zimbra
-  ```
-- Reuses our **static-analysis-kit** ESLint configs.
-- Supports both legacy and modern linting setups.
 
 ---
 
-### 9. **Start**
-```bash
-yarn manager-pm --type pnpm --action start --app zimbra
-```
+## Contributing
 
-👉 **Interactive Mode**  
-If `--region` and `--container` are not passed, prompts are shown:
-- Select app (search list).
-- Select region.
-- Container or standalone.
-
-👉 **Non-Interactive Mode**
-```bash
-yarn manager-pm --type pnpm --action start --app zimbra --region US --container
-```
-
-👉 Under the hood:
-- Adds the app to Yarn workspaces temporarily (`addAppToYarnWorkspaces`).
-- Starts the app via `turbo run start`.
-- If container enabled:
-  ```bash
-  VITE_CONTAINER_APP=<appId> turbo run start --filter=@ovh-ux/manager-container-app
-  CONTAINER=1 turbo run start --filter=zimbra
-  ```
-- After exit, removes the app from Yarn workspaces (`removeAppFromYarnWorkspaces`).
+- Core code: `src/kernel/pnpm/*`, `src/kernel/commons/*`, `src/playbook/*`, `bin/manager-pm.js`.
+- Please write logs with `consola.start` → `consola.success` and prefer **single-process** invocations (aggregate filters) over N× shell loops.
+- Keep temporary workspace files ephemeral and always restore `packageManager` on the root.
 
 ---
 
-## 🔄 Internals & Utilities
+## License
 
-- **`applicationsBasePath`** → centralized location for apps.
-- **`getAvailableApps()`** → lists all apps with metadata (regions, name, packageName).
-- **`getAppTaskCommand()`** → builds task command + description for logging.
-- **`addAppToYarnWorkspaces` / `removeAppFromYarnWorkspaces`** → manage hybrid Yarn/PNPM state safely.
-- **`loadJson<T>()`** → typed JSON reader for configs.
-
----
-
-## 📌 Summary
-
-With `manager-pm`, we now have:
-
-- One CLI for **all package manager tasks**.
-- **Migration-safe workflows**: Yarn stays at the root, PNPM works per-app.
-- **Consistency**: all tasks (build, test, lint, start) unified under Turbo + Yarn wrappers.
-- **Flexibility**: both interactive (prompts) and non-interactive (flags) supported.
-- **Safety**: apps added/removed from Yarn dynamically, no leftover state.
+BSD-3-Clause (same as the monorepo).
