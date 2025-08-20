@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.1]((https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.9.0...@ovh-ux/manager-react-shell-client@0.9.1)) (2025-08-20)
+
+
+### Features
+
+* **shell-client:** add tab navbar page location ([950c22d](https://github.com/ovh/manager/commit/950c22d9f45d43977e63121a99fa42afeb744f97))
+* **shell-client:** add type gard to actionType for TrackingClickParams in useOvhTracking ([553e958](https://github.com/ovh/manager/commit/553e958e1267a86a11e56f9c9e4bc84277059f51))
+
+
+
+
+
 ## [0.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.8.6...@ovh-ux/manager-react-shell-client@0.8.7) (2025-04-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-shell-client
