@@ -1123,8 +1123,51 @@ export default [
               {
                 path: '',
                 id: 'qpu',
-                ...lazyRouteConfig(() => import('@/pages/qpus/Qpu.page')),
+                ...lazyRouteConfig(() => import('@/pages/qpus/Qpus.page')),
+
+                children: [
+                  {
+                    path: 'start/:notebookId',
+                    id: 'qpusNotebooks.start',
+                    handle: {
+                      tracking: {
+                        id: 'qpus_ai_notebooks.popup.start',
+                        category: 'listing',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpus/start/Start.modal'),
+                    ),
+                  },
+                  {
+                    path: 'stop/:notebookId',
+                    id: 'qpusNotebooks.stop',
+                    handle: {
+                      tracking: {
+                        id: 'qpus_ai_notebooks.popup.stop',
+                        category: 'listing',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpus/stop/Stop.modal'),
+                    ),
+                  },
+                  {
+                    path: 'delete/:notebookId',
+                    id: 'qpusNotebooks.delete',
+                    handle: {
+                      tracking: {
+                        id: 'qpus_ai_notebooks.popup.delete',
+                        category: 'listing',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/qpus/delete/Delete.modal'),
+                    ),
+                  },
+                ],
               },
+
               {
                 path: 'onboarding',
                 id: 'onboarding-qpu',
