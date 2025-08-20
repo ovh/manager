@@ -26,16 +26,6 @@ const BillingItem = memo(function BillingItem({
       aria-labelledby={t('billing-item-title')}
     >
       <div className="flex-1 text-[var(--ods-color-text)]">
-        {item.label && (
-          <OdsText
-            id="billing-item-title"
-            preset="heading-6"
-            className="block mb-2"
-            aria-label={t('pci_project_project_voucher_name_aria')}
-          >
-            {item.label}
-          </OdsText>
-        )}
         {item.description && (
           <OdsText
             preset="paragraph"

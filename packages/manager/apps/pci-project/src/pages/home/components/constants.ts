@@ -117,12 +117,29 @@ export const COMMUNITY_LINKS = [
   },
   {
     labelKey: 'community',
-    descriptionKey: 'discuss_discord',
-    link: 'https://discord.gg/ovhcloud',
+    items: [
+      {
+        descriptionKey: 'discuss_discord',
+        link: 'https://discord.gg/ovhcloud',
+      },
+      {
+        descriptionKey: 'discuss_community',
+        link: 'https://community.ovh.com/',
+      },
+    ],
   },
+];
+
+// Add billing section links including voucher link
+export const BILLING_LINKS = [
   {
-    labelKey: 'community_alt',
-    descriptionKey: 'discuss_community',
-    link: 'https://community.ovh.com/',
+    labelKey: 'credits_vouchers',
+    descriptionKey: 'credits_vouchers',
+    link: '/public-cloud/pci/projects/{projectId}/billing/credits',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    color: 'primary',
+    icon: 'arrow-right',
+    ariaLabelKey: 'link_credits_vouchers_aria',
   },
 ];

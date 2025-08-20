@@ -115,7 +115,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       addError: vi.fn(),
     })),
     useFeatureAvailability: vi.fn(),
-    useProjectUrl: () => '#/pci/projects/123',
+    usePciUrl: () => '#/pci/projects/123',
     ActionMenu: ({
       id,
       items,
@@ -220,7 +220,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       isOpen,
       children,
       onOdsClose,
-      isDismissible, // eslint-disable-line @typescript-eslint/no-unused-vars
+      isDismissible,
       ...restProps
     }: {
       isOpen: boolean;
@@ -231,6 +231,8 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       isOpen ? (
         <div
           data-testid="ods-modal"
+          data-isopen={isOpen.toString()}
+          data-isdismissible={isDismissible?.toString()}
           {...restProps}
           onClick={() => onOdsClose && onOdsClose()}
         >
