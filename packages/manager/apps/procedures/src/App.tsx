@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { odsSetup } from '@ovhcloud/ods-common-core';
@@ -7,18 +7,23 @@ import {
   findAvailableLocale,
   detectUserLocale,
 } from '@ovh-ux/manager-config';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import '@ovhcloud/ods-theme-blue-jeans';
-import queryClient from './query.client';
 import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
+import '@ovhcloud/ods-theme-blue-jeans';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import queryClient from '@/query.client';
+import Routes, {
   accountDisable2faRoute,
   exercisingYourRightsRoute,
-  Routes,
-} from './routes/routes';
+} from '@/routes/routes';
 import { decodeToken, extractToken } from '@/utils/token';
-import initI18n from './i18n';
+import initI18n from '@/i18n';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
-import initInterceptor from './data/invisible-challenge.interceptor';
+import initInterceptor from '@/data/invisible-challenge.interceptor';
 import UserProvider from '@/context/User/provider';
 import {
   getRedirectLoginUrl,
@@ -67,17 +72,16 @@ if (
   initAuthenticationInterceptor(token);
 }
 
-const router = createHashRouter(Routes);
-
-const Router = () => <RouterProvider router={router} />;
-
 export default function App() {
+  const router = createHashRouter(createRoutesFromElements(Routes));
   return (
     <QueryClientProvider client={queryClient}>
       <UserProvider user={user}>
-        <Router />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <Suspense fallback={<OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </UserProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
