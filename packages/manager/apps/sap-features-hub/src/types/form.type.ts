@@ -5,6 +5,7 @@ import {
   ENABLEMENT_FORM_SCHEMA,
   ENABLEMENT_LOGS_DATA_PLATFORM,
 } from '../schema/form.schema';
+
 import { DeploymentType } from './sapCapabilities.type';
 import {
   ApplicationServer,
@@ -22,6 +23,7 @@ type InstallationForm = InitializationForm &
   ServerConfigForm &
   EnablementForm;
 export type FormKey = keyof InstallationForm;
+export type InstallationFormKeys = keyof InstallationForm;
 
 export type InstallationFormErrors = Record<FormKey, string>;
 export type InstallationFormValues = {
