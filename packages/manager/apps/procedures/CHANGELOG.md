@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.10...@ovh-ux/manager-procedures-app@0.15.0) (2025-08-20)
+
+
+### Features
+
+* **procedures:** migrate route definitions ([ba73320](https://github.com/ovh/manager/commit/ba73320338bebf7a737bbbe1c6b1609a29920bd0)), closes [#MANAGER-18573](https://github.com/ovh/manager/issues/MANAGER-18573)
+* **procedures:** migrate to centralized test config and swc ([8cc893a](https://github.com/ovh/manager/commit/8cc893ae0d2dadb1b53c6381006bca6374846c17)), closes [#MANAGER-18524](https://github.com/ovh/manager/issues/MANAGER-18524)
+
+
+
+
+
 ## [0.14.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.14.9...@ovh-ux/manager-procedures-app@0.14.10) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app
