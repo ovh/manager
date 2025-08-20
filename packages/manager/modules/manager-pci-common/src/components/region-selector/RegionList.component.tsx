@@ -22,7 +22,7 @@ export function RegionList({
   render,
 }: RegionListProps): JSX.Element {
   return (
-    <ul className={regionContainer}>
+    <ul className={clsx(regionContainer, 'px-6')}>
       {regions.map((region) => (
         <li className="w-full px-1" key={region.name}>
           <OsdsTile

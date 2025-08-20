@@ -5,6 +5,7 @@ import {
   ConfigCard,
   ConfigCardElementProps,
 } from '@/components/config-card/ConfigCard';
+import './style.scss';
 
 type KeyValue = string | number;
 
@@ -18,6 +19,7 @@ export type TilesInputProps<
   inputProps?: (element: T) => ComponentProps<'input'>;
   name: string;
   locked?: boolean;
+  horizontal?: boolean;
 };
 
 export const TilesInput = <
@@ -32,6 +34,7 @@ export const TilesInput = <
   subtitle,
   locked,
   name,
+  horizontal,
 }: TilesInputProps<T>) => {
   const getKey = useCallback(
     (element: T) => elementKey?.(selectedValue) ?? element.label,
@@ -53,7 +56,11 @@ export const TilesInput = <
 
   return (
     <RadioField label={label} subtitle={subtitle} disabled={locked}>
-      <div className="grid gap-6 p-6 m-0 grid-cols-1 md:grid-cols-3 auto-rows-auto">
+      <div
+        className={`pci-tiles-input-grid pci-tiles-input-grid-${
+          horizontal ? 'horizontal' : 'vertical'
+        }`}
+      >
         {elements.map((element) => {
           const key = getKey(element);
           return (
@@ -67,6 +74,7 @@ export const TilesInput = <
                 onChange: () => onChange?.(element),
                 ...inputProps?.(element),
               }}
+              horizontal={horizontal}
               {...element}
             />
           );

@@ -75,32 +75,15 @@ const PriceFrom = () => {
   const { t } = useTranslation('pci-common');
 
   return (
-    <div>
-      <OsdsText
-        color={ODS_TEXT_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._100}
-        className="text-[12px] leading-[100%] font-bold"
-      >
-        {t('common_price_from')}
-      </OsdsText>
-    </div>
+    <OsdsText
+      color={ODS_TEXT_COLOR_INTENT.text}
+      size={ODS_TEXT_SIZE._100}
+      className="text-[12px] leading-[100%] font-bold"
+    >
+      {t('common_price_from')}
+    </OsdsText>
   );
 };
-
-const Price = ({ value, unit }: Pick<TPrice, 'value' | 'unit'>) => (
-  <div>
-    <OsdsText
-      color={ODS_TEXT_COLOR_INTENT.primary}
-      level={ODS_TEXT_LEVEL.heading}
-      size={ODS_TEXT_SIZE._400}
-      className="leading-[100%]"
-    >
-      {value}
-    </OsdsText>
-
-    <SmallText className="ml-2">{unit}</SmallText>
-  </div>
-);
 
 const PriceDescriptions = ({ descriptions }: { descriptions: string[] }) => (
   <div>
@@ -113,9 +96,9 @@ const PriceDescriptions = ({ descriptions }: { descriptions: string[] }) => (
 );
 
 const Features = ({ features }: { features: string[] }) => (
-  <ul className="list-['✓'] marker:text-[#2B8000] pl-6 mb-0">
+  <ul className="config-card__features">
     {features.map((f) => (
-      <li key={f} className="pl-5">
+      <li key={f}>
         <Text>{f}</Text>
       </li>
     ))}
@@ -123,7 +106,7 @@ const Features = ({ features }: { features: string[] }) => (
 );
 
 const Badges = ({ badges }: { badges: BadgeProps[] }) => (
-  <div className="inline-flex gap-4 flex-wrap">
+  <div className="config-card__badges">
     {badges.map((b) => (
       <Badge key={b.label} size={b.size ?? 'sm'} {...b} />
     ))}
@@ -134,6 +117,8 @@ export type ConfigCardElementProps = {
   label: string;
   badges?: BadgeProps[];
   description?: string;
+  // Only for decorative purpose
+  decorativeImage?: string;
   features?: string[];
   // ReactNode is deprecated
   price?: TPrice | ReactNode;
@@ -141,14 +126,18 @@ export type ConfigCardElementProps = {
 
 export type ConfigCardProps = ConfigCardElementProps & {
   inputProps: ComponentProps<'input'>;
+
+  horizontal?: boolean;
 };
 
 export const ConfigCard = ({
   label,
   badges,
   description,
+  decorativeImage,
   features,
   price,
+  horizontal,
   inputProps,
 }: ConfigCardProps) => {
   const labelId = useId();
@@ -158,7 +147,7 @@ export const ConfigCard = ({
 
   if (description) sections.push(<Description>{description}</Description>);
 
-  if (features) sections.push(<Features features={features} />);
+  if (!horizontal && features) sections.push(<Features features={features} />);
 
   const mergedInputProps = useMemo(
     () => ({
@@ -179,16 +168,17 @@ export const ConfigCard = ({
 
   return (
     <label>
-      <div className="config-card">
+      <div
+        className={`config-card config-card-${
+          horizontal ? 'horizontal' : 'vertical'
+        }`}
+      >
         <div className="config-card__header">
-          <div className="flex flex-col gap-[8px]">
-            <div className="inline-flex items-center gap-4 mb-2">
-              {input}
-              <Title id={labelId}>{label}</Title>
-            </div>
+          {input}
 
-            {!!badges && badges.length > 0 && <Badges badges={badges} />}
-          </div>
+          <Title id={labelId}>{label}</Title>
+
+          {!!badges && badges.length > 0 && <Badges badges={badges} />}
         </div>
 
         {sections.length > 0 && (
@@ -202,11 +192,28 @@ export const ConfigCard = ({
           </div>
         )}
 
+        {!horizontal && !!decorativeImage && (
+          <div className="config-card__decorative-image">
+            <img src={decorativeImage} alt="" loading="lazy" />
+          </div>
+        )}
+
         {!!price && typeof price === 'object' && 'value' in price && (
           <div className="config-card__footer">
-            {price.isLeastPrice && <PriceFrom />}
+            <div className="flex flex-col">
+              {price.isLeastPrice && <PriceFrom />}
 
-            <Price value={price.value} unit={price.unit} />
+              <OsdsText
+                color={ODS_TEXT_COLOR_INTENT.primary}
+                level={ODS_TEXT_LEVEL.heading}
+                size={ODS_TEXT_SIZE._400}
+                className="leading-[100%]"
+              >
+                {price.value}
+              </OsdsText>
+
+              <SmallText>{price.unit}</SmallText>
+            </div>
 
             {!!price.descriptions && price.descriptions.length > 0 && (
               <PriceDescriptions descriptions={price.descriptions} />

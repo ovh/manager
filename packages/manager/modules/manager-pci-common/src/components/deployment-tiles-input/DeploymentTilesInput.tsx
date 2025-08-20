@@ -26,7 +26,7 @@ export type DeploymentTilesInputProps<T extends TDeployment = TDeployment> = {
   value: T | null;
   onChange?: (value: T) => void;
   inputProps?: (element: T) => ComponentProps<'input'>;
-} & Pick<TilesInputProps, 'name' | 'locked'>;
+} & Pick<TilesInputProps, 'name' | 'locked' | 'horizontal'>;
 
 const DescriptionLink = ({ children }: PropsWithChildren) => {
   const shell = useContext(ShellContext);

@@ -1,0 +1,36 @@
+$tiles-input-grid-max-size: 1200px;
+$tiles-input-grid-gap: 1rem;
+$tiles-input-grid-padding: 1rem;
+
+$tiles-input-vertical-nb-optimum-elements: 3;
+$tiles-input-horizontal-nb-optimum-elements: 2;
+
+@mixin tiles-input-template-columns($nbOptimumElements) {
+  // We set the minimum width to `$tiles-input-grid-max-size / ($nbOptimumElements + 1)` because when we will add the gap between the tiles it will not fit
+  // So we cannot have `$nbOptimumElements + 1` therefore we will always have $nbOptimumElements at this width
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(calc($tiles-input-grid-max-size / ($nbOptimumElements + 1)), 1fr)
+  );
+}
+
+.pci-tiles-input-grid {
+  padding-top: $tiles-input-grid-padding;
+  padding-bottom: $tiles-input-grid-padding;
+
+  display: grid;
+  gap: $tiles-input-grid-gap;
+  max-width: min(100%, $tiles-input-grid-max-size);
+
+  &.pci-tiles-input-grid-vertical {
+    @include tiles-input-template-columns(
+      $tiles-input-vertical-nb-optimum-elements
+    );
+  }
+
+  &.pci-tiles-input-grid-horizontal {
+    @include tiles-input-template-columns(
+      $tiles-input-horizontal-nb-optimum-elements
+    );
+  }
+}
