@@ -16,7 +16,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
-import { PROJECT_TABS } from '@/constants/tabs.constant';
+import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
 
 export default function ProjectHeader() {
@@ -24,11 +24,7 @@ export default function ProjectHeader() {
 
   const hrefProject = usePciUrl();
   const { data: project, isLoading, error } = useProject();
-
-  const tabs = PROJECT_TABS.map((tab) => ({
-    ...tab,
-    title: t(tab.titleKey),
-  }));
+  const tabs = useProjectTabs();
 
   const isDiscovery = isDiscoveryProject(project);
 
