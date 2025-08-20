@@ -7124,15 +7124,20 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
-"@ovh-ux/manager-common-translations@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.5.3.tgz#3dcb779e67ab035c84cccbd5e378d19533115e90"
-  integrity sha512-h3bscckVssRx3lrIJg+YJtj9i2FEQc1SAJUt0WE0gILp0ruuWWlRfn9KEKTtMexEne9K4PNhTTYISG5G9h0n+w==
+"@ovh-ux/manager-common-translations@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
+  integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
 
 "@ovh-ux/manager-common-translations@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.14.0.tgz#f219a240c191276df509ef57d18f060e70e310b0"
   integrity sha512-HJB947C0gOdpO+9N46Hb51NJjsd53CnYG2/5MT9zcoVBdx9pUTUjMwONBO3wJRJbEgg3lSXtZOvrrK+zI/6ySA==
+
+"@ovh-ux/manager-common-translations@^0.9.1":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
+  integrity sha512-UJ/8hLplbB9qi+Nh4NoJO62PG0ZMBx9gZLJOsT83m1uL7trknY8ZOEuH5p3YWJwSbRc6G4mEHEwwsoG5w/zwiw==
 
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
@@ -7261,6 +7266,23 @@
     react-i18next "^14.0.5"
     react-use "^17.5.0"
     sass "1.71.0"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
+"@ovh-ux/manager-react-components@^2.37.0":
+  version "2.37.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.37.0.tgz#7929a1b1672cc13a9905eebf024993a526d747f1"
+  integrity sha512-wu/eoBe5mgAls0x4/Yw/tGRe6zQ5+/4mwk5Moa7npXey4bHS4IIJgXVA2R6cA8zxUSRgK2o7+Dxbyh5tHoj1fA==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.56.1"
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
@@ -10455,6 +10477,13 @@
     "@babel/runtime" "^7.12.5"
     react-error-boundary "^3.1.0"
 
+"@testing-library/react@*", "@testing-library/react@^16.3.0":
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.3.0.tgz#3a85bb9bdebf180cd76dba16454e242564d598a6"
+  integrity sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 "@testing-library/react@14.0.0":
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-14.0.0.tgz#59030392a6792450b9ab8e67aea5f3cc18d6347c"
@@ -10484,13 +10513,6 @@
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.0.1.tgz#29c0ee878d672703f5e7579f239005e4e0faa875"
   integrity sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-
-"@testing-library/react@^16.3.0":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.3.0.tgz#3a85bb9bdebf180cd76dba16454e242564d598a6"
-  integrity sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -11333,11 +11355,6 @@
   version "9.0.8"
   resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.8.tgz#7545ba4fc3c003d6c756f651f3bf163d8f0f29ba"
   integrity sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==
-
-"@types/uuid@^8.3.0":
-  version "8.3.4"
-  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
-  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/validator@^13.15.2":
   version "13.15.2"

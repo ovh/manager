@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { createWrapper } from '@/wrapperRenders';
@@ -35,7 +36,7 @@ describe('IncreaseQuota', () => {
 
     const modal = screen.getByTestId('modal');
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveAttribute('is-open', 'true');
+    expect(modal).toHaveAttribute('data-isopen', 'true');
     expect(modal).toHaveAttribute('color', 'critical');
   });
 
@@ -107,7 +108,7 @@ describe('IncreaseQuota', () => {
 
     const modal = screen.getByTestId('modal');
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveAttribute('is-open', 'true');
+    expect(modal).toHaveAttribute('data-isopen', 'true');
   });
 
   it('should handle multiple close actions correctly', () => {
@@ -129,8 +130,8 @@ describe('IncreaseQuota', () => {
 
     const modal = screen.getByTestId('modal');
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveAttribute('is-dismissible', 'true');
-    expect(modal).toHaveAttribute('is-open', 'true');
+    expect(modal).toHaveAttribute('data-isdismissible', 'true');
+    expect(modal).toHaveAttribute('data-isopen', 'true');
   });
 
   it('should have proper button attributes', () => {
