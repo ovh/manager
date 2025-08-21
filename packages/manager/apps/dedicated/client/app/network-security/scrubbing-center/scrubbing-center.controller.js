@@ -1,6 +1,9 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
 import { PERIODS, PERIOD_LIST } from './scrubbing-center.constant';
-import { PAGE_SIZE } from '../network-security.constant';
+import {
+  PAGE_SIZE,
+  TRAFFIC_MAX_DATA_RETENTION_DAYS,
+} from '../network-security.constant';
 import NetworkSecurityService from '../network-security.service';
 
 export default class ScrubbingCenterController extends AbstractCursorDatagridController {
@@ -15,6 +18,7 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
     this.PERIODS = PERIODS;
     this.PERIOD_LIST = PERIOD_LIST;
     this.PAGE_SIZE = PAGE_SIZE;
+    this.TRAFFIC_MAX_DATA_RETENTION_DAYS = TRAFFIC_MAX_DATA_RETENTION_DAYS;
   }
 
   $onInit() {
@@ -142,7 +146,9 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
 
   static displayAction(row) {
     const twoWeeksDate = new Date();
-    twoWeeksDate.setDate(twoWeeksDate.getDate() - 14);
+    twoWeeksDate.setDate(
+      twoWeeksDate.getDate() - TRAFFIC_MAX_DATA_RETENTION_DAYS,
+    );
     let result = false;
     if (!row.endedAt || row.endedAt > twoWeeksDate.toISOString()) {
       result = true;
