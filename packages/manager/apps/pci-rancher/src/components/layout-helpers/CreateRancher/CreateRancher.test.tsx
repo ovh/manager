@@ -2,6 +2,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsInput } from '@ovhcloud/ods-components';
 
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
@@ -95,11 +96,15 @@ describe('CreateRancher', () => {
 
     await act(async () => {
       fireEvent.change(input, { target: { value: '12()34343:::' } });
+      ((input as unknown) as OsdsInput).odsInputBlur.emit();
     });
+
     await userEvent.click(button);
 
-    expect(input).toHaveAttribute('color', 'error');
-    expect(onCreateRancher).not.toHaveBeenCalled();
+    await waitFor(() => {
+      expect(input).toHaveAttribute('color', 'error');
+      expect(onCreateRancher).not.toHaveBeenCalled();
+    });
   });
 
   it('Given that I validate the creation of the service, i should call api with good default value', async () => {
@@ -113,7 +118,9 @@ describe('CreateRancher', () => {
     const NEW_NAME = 'myrancher';
     await act(async () => {
       fireEvent.change(input, { target: { value: NEW_NAME } });
+      ((input as unknown) as OsdsInput).odsInputBlur.emit();
     });
+
     await userEvent.click(confirmButton);
 
     expect(onCreateRancher).toHaveBeenCalledWith({
@@ -181,11 +188,11 @@ describe('CreateRancher', () => {
 
       await act(async () => {
         fireEvent.change(input, { target: { value: 'MyRancher' } });
+        ((input as unknown) as OsdsInput).odsInputBlur.emit();
       });
       await userEvent.click(confirmButton);
 
       expect(onCreateRancher).not.toHaveBeenCalled();
-
       expect(button).toBeDisabled();
     });
 
@@ -245,14 +252,18 @@ describe('CreateRancher', () => {
 
     await act(async () => {
       fireEvent.change(input, { target: { value: 'Invalid Name!' } });
+      ((input as unknown) as OsdsInput).odsInputBlur.emit();
     });
+
     await waitFor(() => {
       expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.error);
     });
 
     await act(async () => {
       fireEvent.change(input, { target: { value: 'valid-name' } });
+      ((input as unknown) as OsdsInput).odsInputBlur.emit();
     });
+
     await waitFor(() => {
       expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
     });
