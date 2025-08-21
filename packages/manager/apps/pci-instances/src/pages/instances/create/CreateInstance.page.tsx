@@ -19,6 +19,7 @@ import {
 } from '@/pages/instances/create/components/QuantitySelector';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Cart } from '@/components/cart/Cart';
+import { LocalSelection } from '@/pages/instances/create/components/LocalSelection/LocalSelection';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -74,6 +75,7 @@ const CreateInstance: FC = () => {
                 mandatory) Si besoin d’un texte d’introduction... .
               </Text>
             </article>
+            <LocalSelection />
             <AdvancedParameters />
             <Name />
             <QuantitySelector
