@@ -47,14 +47,18 @@ const Radio = ({
 interface Props {
   encryptionType: EncryptionType | null;
   onChange: (value: EncryptionType | null) => void;
-  texts: {
-    title: string;
-    description?: string;
-    badge?: string;
-  };
+  title: string;
+  description?: string;
+  isNew?: boolean;
 }
 
-export const Encryption = ({ encryptionType, onChange, texts }: Props) => {
+export const Encryption = ({
+  encryptionType,
+  onChange,
+  title,
+  description,
+  isNew = false,
+}: Props) => {
   const { t } = useTranslation(['add', 'common']);
   const { data } = useVolumeEncryptions();
 
@@ -80,19 +84,23 @@ export const Encryption = ({ encryptionType, onChange, texts }: Props) => {
   return (
     <fieldset className="border-0 p-0" role="radiogroup">
       <legend className="flex items-baseline p-0">
-        <Subtitle>{texts.title}</Subtitle>
-        {texts.badge && (
-          <Badge color="new" label={texts.badge} className="ml-4" />
+        <Subtitle>{title}</Subtitle>
+        {isNew && (
+          <Badge
+            color="new"
+            label={t('common:pci_projects_project_storages_blocks_new')}
+            className="ml-4"
+          />
         )}
       </legend>
 
-      {texts.description && (
+      {description && (
         <OsdsText
           size={ODS_TEXT_SIZE._400}
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {texts.description}
+          {description}
         </OsdsText>
       )}
 

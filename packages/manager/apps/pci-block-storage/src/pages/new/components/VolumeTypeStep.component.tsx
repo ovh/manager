@@ -28,7 +28,7 @@ import { MULTI_ATTACH_INFO_URL } from '@/constants';
 import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import ExternalLink from '@/components/ExternalLink';
-import { VolumeTypeTilesInput } from '@/components/VolumeTypeTilesInput.component';
+import { VolumeModelTilesInput } from '@/components/VolumeModelTilesInput.component';
 
 export interface VolumeTypeStepProps {
   projectId: string;
@@ -67,10 +67,11 @@ export function VolumeTypeStep({
 
   return (
     <>
-      <VolumeTypeTilesInput
+      <VolumeModelTilesInput
         value={volumeModel}
-        data={data}
-        onChange={(e) => setVolumeModel(e)}
+        volumeModels={data}
+        onChange={setVolumeModel}
+        label=""
         locked={step.isLocked}
       />
       {volumeModel?.shouldUseMultiAttachFileSystem && (
@@ -95,16 +96,12 @@ export function VolumeTypeStep({
       {volumeModel?.encrypted && (
         <Encryption
           encryptionType={encryptionType}
-          onChange={(e) => setEncryptionType(e)}
-          texts={{
-            title: t(
-              'common:pci_projects_project_storages_blocks_encrypted_label',
-            ),
-            badge: t('common:pci_projects_project_storages_blocks_new'),
-            description: t(
-              'add:pci_projects_project_storages_blocks_add_encryption_description',
-            ),
-          }}
+          onChange={setEncryptionType}
+          title={t('common:pci_projects_project_storages_blocks_new')}
+          description={t(
+            'add:pci_projects_project_storages_blocks_add_encryption_description',
+          )}
+          isNew
         />
       )}
       {volumeModel && !step.isLocked && (

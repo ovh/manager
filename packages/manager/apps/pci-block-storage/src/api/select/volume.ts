@@ -116,7 +116,7 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
   };
 };
 
-const getVolumePricing = (catalog?: TVolumeCatalog) => {
+export const getVolumePricing = (catalog?: TVolumeCatalog) => {
   const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
 
   return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>

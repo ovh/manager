@@ -3,7 +3,7 @@ import { userEvent } from '@testing-library/user-event';
 
 import { describe, vi } from 'vitest';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
-import { VolumeTypeTilesInput } from '@/components/VolumeTypeTilesInput.component';
+import { VolumeModelTilesInput } from '@/components/VolumeModelTilesInput.component';
 
 const baseVolume = {
   hourlyPrice: {
@@ -24,13 +24,18 @@ const otherVolume = {
   displayName: 'other displayName',
 } as TVolumeModel;
 
-describe('VolumeTypeTilesInput', () => {
+describe('VolumeModelTilesInput', () => {
   const spyOnChange = vi.fn();
 
   describe('information displayed', () => {
     it('should display the display name, the iops, the hourly price', () => {
       const { getByText } = render(
-        <VolumeTypeTilesInput data={[baseVolume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[baseVolume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(getByText(baseVolume.displayName)).toBeVisible();
@@ -45,7 +50,12 @@ describe('VolumeTypeTilesInput', () => {
       };
 
       const { getByText } = render(
-        <VolumeTypeTilesInput data={[volume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[volume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(
@@ -62,7 +72,12 @@ describe('VolumeTypeTilesInput', () => {
       };
 
       const { queryByText } = render(
-        <VolumeTypeTilesInput data={[volume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[volume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(
@@ -79,7 +94,12 @@ describe('VolumeTypeTilesInput', () => {
       };
 
       const { getByText } = render(
-        <VolumeTypeTilesInput data={[volume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[volume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(
@@ -96,7 +116,12 @@ describe('VolumeTypeTilesInput', () => {
       };
 
       const { getByText } = render(
-        <VolumeTypeTilesInput data={[volume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[volume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(
@@ -113,7 +138,12 @@ describe('VolumeTypeTilesInput', () => {
       };
 
       const { getByText } = render(
-        <VolumeTypeTilesInput data={[volume]} onChange={spyOnChange} />,
+        <VolumeModelTilesInput
+          volumeModels={[volume]}
+          value={null}
+          label="label"
+          onChange={spyOnChange}
+        />,
       );
 
       expect(getByText(volume.bandwidth)).toBeVisible();
@@ -122,9 +152,10 @@ describe('VolumeTypeTilesInput', () => {
 
   it('should select the correct input based on the value', () => {
     const { getByRole } = render(
-      <VolumeTypeTilesInput
-        data={[baseVolume, otherVolume]}
+      <VolumeModelTilesInput
+        volumeModels={[baseVolume, otherVolume]}
         value={baseVolume}
+        label="label"
         onChange={spyOnChange}
       />,
     );
@@ -137,9 +168,10 @@ describe('VolumeTypeTilesInput', () => {
 
   it('should trigger on change with correct value when clicking on radio button', async () => {
     const { getByRole } = render(
-      <VolumeTypeTilesInput
-        data={[baseVolume, otherVolume]}
+      <VolumeModelTilesInput
+        volumeModels={[baseVolume, otherVolume]}
         value={baseVolume}
+        label="label"
         onChange={spyOnChange}
       />,
     );
@@ -148,6 +180,8 @@ describe('VolumeTypeTilesInput', () => {
       getByRole('radio', { name: otherVolume.displayName }),
     );
 
-    expect(spyOnChange).toHaveBeenCalledWith(otherVolume);
+    expect(spyOnChange).toHaveBeenCalledWith(
+      expect.objectContaining(otherVolume),
+    );
   });
 });
