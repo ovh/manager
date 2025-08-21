@@ -40,7 +40,7 @@ export default function ResourcesListDatagrid({
   initFilters = [],
   rowActions,
 }: ResourcesListDatagridProps) {
-  const { t } = useTranslation('tag-manager');
+  const { t } = useTranslation(['tag-manager', 'resource-type']);
   const [rowSelection, setRowSelection] = useState({});
   const {
     setSelectedResourcesList,
@@ -71,10 +71,17 @@ export default function ResourcesListDatagrid({
           {
             id: ResourceDatagridColumn.DISPLAYNAME,
             cell: (item: IamResource) => (
-              <DataGridTextCell>{item.displayName}</DataGridTextCell>
+              <DataGridTextCell>
+                <div className="flex flex-col gap-3">
+                  <span className="font-bold">{item.displayName}</span>
+                  {item.name !== item.displayName && (
+                    <small>({item.name})</small>
+                  )}
+                </div>
+              </DataGridTextCell>
             ),
             label: t(
-              `resourceDatagridColumn_${ResourceDatagridColumn.DISPLAYNAME}`,
+              `tag-manager:resourceDatagridColumn_${ResourceDatagridColumn.DISPLAYNAME}`,
             ),
             type: FilterTypeCategories.String,
             isSearchable: false,
@@ -88,9 +95,13 @@ export default function ResourcesListDatagrid({
           {
             id: ResourceDatagridColumn.TYPE,
             cell: (item: IamResource) => (
-              <DataGridTextCell>{item.type}</DataGridTextCell>
+              <DataGridTextCell>
+                {t(`resource-type:iam_resource_type_${item.type}`)}
+              </DataGridTextCell>
             ),
-            label: t(`resourceDatagridColumn_${ResourceDatagridColumn.TYPE}`),
+            label: t(
+              `tag-manager:resourceDatagridColumn_${ResourceDatagridColumn.TYPE}`,
+            ),
             type: FilterTypeCategories.Options,
             filterOptions: resourceTypeList || [],
             isSortable: false,
@@ -102,7 +113,9 @@ export default function ResourcesListDatagrid({
       ? [
           {
             id: ResourceDatagridColumn.TAGS,
-            label: t(`resourceDatagridColumn_${ResourceDatagridColumn.TAGS}`),
+            label: t(
+              `tag-manager:resourceDatagridColumn_${ResourceDatagridColumn.TAGS}`,
+            ),
             cell: (item: IamResource) => (
               <DatagridTagsCell
                 tags={item.tags}
@@ -120,7 +133,7 @@ export default function ResourcesListDatagrid({
       ? [
           {
             id: ResourceDatagridColumn.ACTIONS,
-            label: t('actions'),
+            label: t('tag-manager:actions'),
             cell: rowActions,
           },
         ]
@@ -159,7 +172,7 @@ export default function ResourcesListDatagrid({
             }
           : {})}
         getRowId={(resource) => resource.urn}
-        noResultLabel={t('noResourceAvailableForTagging')}
+        noResultLabel={t('tag-manager:noResourceAvailableForTagging')}
       />
     </React.Suspense>
   );
