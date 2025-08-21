@@ -59,9 +59,7 @@ const Instance: FC = () => {
           <div className="flex items-center justify-between">
             <div className="flex-[0.8]">
               <LoadingCell isLoading={isInstanceLoading}>
-                {instance && (
-                  <InstanceName instance={instance} region={regionId} />
-                )}
+                {instance && <InstanceName instance={instance} />}
               </LoadingCell>
             </div>
             <div className="flex gap-x-3">

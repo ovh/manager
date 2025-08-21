@@ -5,29 +5,31 @@ import { clsx } from 'clsx';
 import EditableText from '@/components/input/editableContent/EditableContent.component';
 import { useUpdateInstanceName } from '@/data/hooks/instance/useInstance';
 import { useProjectId } from '@/hooks/project/useProjectId';
-import { updateDashboardCache } from '../hooks/useDashboard';
 import { TInstanceDashboardViewModel } from '../view-models/selectInstanceDashboard';
+import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
+import { useQueryClient } from '@tanstack/react-query';
 
 type TInstanceNameProps = {
   instance: NonNullable<TInstanceDashboardViewModel>;
-  region: string;
 };
 
-const InstanceName: FC<TInstanceNameProps> = ({ instance, region }) => {
+const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
   const { t } = useTranslation('dashboard');
+  const queryClient = useQueryClient();
   const { addError } = useNotifications();
   const projectId = useProjectId();
 
   const handleSuccessUpdate = useCallback(
-    (value: string) => {
-      updateDashboardCache({
+    (newInstanceName: string) => {
+      updateInstancesFromCache(queryClient, {
         projectId,
-        instanceId: instance.id,
-        region,
-        payload: { name: value },
+        instance: {
+          id: instance.id,
+          name: newInstanceName,
+        },
       });
     },
-    [instance.id, projectId],
+    [instance.id, projectId, queryClient],
   );
 
   const {

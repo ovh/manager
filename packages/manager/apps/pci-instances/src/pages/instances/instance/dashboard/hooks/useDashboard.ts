@@ -2,9 +2,6 @@ import { useMemo } from 'react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { useInstance } from '@/data/hooks/instance/useInstance';
 import { selectInstanceDashboard } from '../view-models/selectInstanceDashboard';
-import { TInstance } from '@/types/instance/entity.type';
-import { instancesQueryKey } from '@/utils';
-import queryClient from '@/queryClient';
 
 type TUseDashboardArgs = {
   region: string | null;
@@ -27,37 +24,6 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       instance: selectInstanceDashboard(projectUrl, instance),
       isPending,
     }),
-    [instance, isPending],
-  );
-};
-
-type TUpdateDashboardCacheArgs = {
-  projectId: string;
-  instanceId: string;
-  region: string;
-  payload: Partial<TInstance>;
-};
-
-export const updateDashboardCache = ({
-  projectId,
-  instanceId,
-  region,
-  payload,
-}: TUpdateDashboardCacheArgs) => {
-  queryClient.setQueryData<TInstance>(
-    instancesQueryKey(projectId, [
-      'region',
-      region,
-      'instance',
-      instanceId,
-      'withBackups',
-      'withImage',
-      'withNetworks',
-      'withVolumes',
-    ]),
-    (prevData) => {
-      if (!prevData) return undefined;
-      return { ...prevData, ...payload };
-    },
+    [instance, isPending, projectUrl],
   );
 };

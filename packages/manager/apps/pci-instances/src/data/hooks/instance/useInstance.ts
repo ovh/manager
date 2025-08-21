@@ -1,4 +1,10 @@
-import { useQuery, UseQueryOptions, useMutation } from '@tanstack/react-query';
+import {
+  useQuery,
+  UseQueryOptions,
+  useMutation,
+  QueryClient,
+  Query,
+} from '@tanstack/react-query';
 import {
   attachNetwork,
   attachVolume,
@@ -8,7 +14,7 @@ import {
 } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey } from '@/utils';
-import { TInstance } from '@/types/instance/entity.type';
+import { TInstance, TPartialInstance } from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
 import queryClient from '@/queryClient';
 
@@ -159,4 +165,51 @@ export const useAttachVolume = ({
     },
     onError,
   });
+};
+
+type TUpdateInstanceFromCacheArgs = {
+  queryClient: QueryClient;
+  projectId: string;
+  instance: TPartialInstance;
+  predicateQueryKey?: string[];
+};
+
+const instanceQueryKeyPredicate = (projectId: string, instanceId: string) => (
+  query: Query,
+) =>
+  instancesQueryKey(projectId, [
+    'region',
+    'instance',
+    instanceId,
+  ]).every((elt) => query.queryKey.includes(elt));
+
+export const updateInstanceFromCache = ({
+  queryClient,
+  projectId,
+  instance,
+}: TUpdateInstanceFromCacheArgs) => {
+  const queries = queryClient.getQueriesData<TInstance[]>({
+    predicate: instanceQueryKeyPredicate(projectId, instance.id),
+  });
+
+  queries.forEach(([queryKey]) =>
+    queryClient.setQueryData<TInstance>(queryKey, (prevData) => {
+      if (!prevData) return undefined;
+      return { ...prevData, ...instance };
+    }),
+  );
+};
+
+export const getInstanceById = (
+  projectId: string,
+  instanceId: string,
+  queryClient: QueryClient,
+): TInstance | undefined => {
+  const queries = queryClient.getQueriesData<TInstance[]>({
+    predicate: instanceQueryKeyPredicate(projectId, instanceId),
+  });
+
+  return queries
+    .flatMap(([, queryData]) => queryData)
+    .find((instance) => instance?.id === instanceId);
 };

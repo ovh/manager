@@ -11,8 +11,11 @@ import {
   selectInstanceForActionModal,
   TInstanceActionModalViewModel,
 } from '../view-models/selectInstanceForActionModal';
-import { getInstanceById } from '@/data/hooks/instance/useInstances';
-import { useInstance } from '@/data/hooks/instance/useInstance';
+import { getAggregatedInstanceById } from '@/data/hooks/instance/useInstances';
+import {
+  useInstance,
+  getInstanceById,
+} from '@/data/hooks/instance/useInstance';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
@@ -51,7 +54,9 @@ export const useInstanceActionModal = (
   const { t } = useTranslation('actions');
 
   const aggregatedInstance = useMemo(
-    () => getInstanceById(projectId, instanceId, queryClient),
+    () =>
+      getAggregatedInstanceById(projectId, instanceId, queryClient) ??
+      getInstanceById(projectId, instanceId || '', queryClient),
     [instanceId, projectId, queryClient],
   );
 
