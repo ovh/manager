@@ -5,7 +5,6 @@
 $sidebar-font-size: 0.875rem;
 
 .sidebar {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
   display: flex;
   position: relative;
   flex-direction: row;

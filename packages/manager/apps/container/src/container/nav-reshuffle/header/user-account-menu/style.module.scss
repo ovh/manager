@@ -56,7 +56,6 @@
 
 .defaultPaymentMethod {
   @import '@ovh-ux/ui-kit/dist/scss/_tokens.scss';
-  @import '@ovh-ux/manager-hub/src/variables.scss';
 
   > a {
     background: transparent linear-gradient(89deg, #0046d1 0%, #001091 100%) 0%
