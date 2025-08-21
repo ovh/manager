@@ -41,21 +41,21 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       open={open}
       aria-labelledby="delete-modal-title"
       aria-describedby="delete-modal-description"
+      heading={t('deleteModalHeadline', {
+        serviceType: serviceTypeName || t('deleteModalHeadlineService'),
+      })}
+      primaryButton={{
+        label: t('deleteModalDeleteButton'),
+        onClick: onConfirmDelete,
+        testId: 'manager-delete-modal-confirm',
+      }}
+      secondaryButton={{
+        label: t('deleteModalCancelButton'),
+        onClick: handleClose,
+        testId: 'manager-delete-modal-cancel',
+      }}
     >
       <section className="flex flex-col gap-4" role="dialog" aria-modal="true">
-        <header>
-          <Text
-            preset={TEXT_PRESET.heading3}
-            id="delete-modal-title"
-            role="heading"
-            aria-level={2}
-          >
-            {t('deleteModalHeadline', {
-              serviceType: serviceTypeName || t('deleteModalHeadlineService'),
-            })}
-          </Text>
-        </header>
-
         {error && (
           <section aria-live="polite" aria-atomic="true">
             <Message color={MESSAGE_COLOR.warning} role="alert">
@@ -64,7 +64,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             </Message>
           </section>
         )}
-
         <main>
           <Text
             data-testid="manager-delete-modal-description"
@@ -78,31 +77,6 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             </section>
           )}
         </main>
-
-        <footer className="flex justify-end gap-2">
-          <Button
-            slot="actions"
-            data-testid="manager-delete-modal-cancel"
-            variant={BUTTON_VARIANT.ghost}
-            color={BUTTON_COLOR.critical}
-            {...handleClick(handleClose)}
-            aria-label={t('deleteModalCancelButton')}
-          >
-            {t('deleteModalCancelButton')}
-          </Button>
-          <Button
-            slot="actions"
-            loading={isLoading}
-            data-testid="manager-delete-modal-confirm"
-            {...handleClick(() => {
-              onConfirmDelete();
-            })}
-            color={BUTTON_COLOR.critical}
-            aria-label={t('deleteModalDeleteButton')}
-          >
-            {t('deleteModalDeleteButton')}
-          </Button>
-        </footer>
       </section>
     </Modal>
   );
