@@ -1,7 +1,7 @@
 import { Badge } from '@ovhcloud/ods-react';
-import { TDeploymentMode } from '@/types/instance/common.type';
+import { TDeploymentModeId } from '@/types/instance/common.type';
 
-const getBadgeClassName = (mode: TDeploymentMode) => {
+const getBadgeClassName = (mode: TDeploymentModeId) => {
   switch (mode) {
     case '1AZ':
       return 'bg-[--ods-color-information-400] text-[--ods-color-information-000]';
@@ -15,7 +15,7 @@ const getBadgeClassName = (mode: TDeploymentMode) => {
 };
 
 type TDeploymentModeBadgeProps = {
-  mode: TDeploymentMode;
+  mode: TDeploymentModeId;
 };
 
 export const DeploymentModeBadge = ({ mode }: TDeploymentModeBadgeProps) => (

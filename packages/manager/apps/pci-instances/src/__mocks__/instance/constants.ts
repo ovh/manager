@@ -1,5 +1,6 @@
 import { TLocalizationCardProps } from '@/components/localizationCard/LocalizationCard.component';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
+import { TDeploymentModeId } from "@/types/instance/common.type";
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -26,6 +27,33 @@ export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {
   ...mockedInstance,
   region: '',
 };
+
+export type TDeploymentMode = {
+  id: TDeploymentModeId;
+  title: string;
+  description: string;
+};
+
+export const deploymentModes: TDeploymentMode[] = [
+  {
+    id: '3AZ',
+    title: 'Région 3-AZ',
+    description:
+      'Déploiement haute résilience / haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.',
+  },
+  {
+    id: '1AZ',
+    title: 'Région 1-AZ',
+    description:
+      'Déploiement résilient et économique sur 1 zone de disponibilité.',
+  },
+  {
+    id: 'LZ',
+    title: 'Local Zone',
+    description:
+      'Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.',
+  },
+];
 
 export const mockedLocalizations: TLocalizationCardProps[] = [
   {
