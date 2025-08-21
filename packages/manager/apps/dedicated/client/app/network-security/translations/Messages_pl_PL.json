@@ -65,6 +65,8 @@
   "network_security_dashboard_time_zone": "(Strefa czasowa: UTC{{ timeZoneOffset }})",
   "network_security_dashboard_traffic_breadcrumb": "Wykresy ruchu",
   "network_security_dashboard_filter_custom": "Spersonalizowany",
-  "network_security_dashboard_warning_period": "Uwaga: wymagane dane nie są dostępne. Pamiętaj, że okres przechowywania danych o ruchu wynosi 14 dni.",
-  "network_security_dashboard_warning_default": "Zamiast tego wyświetlony zostanie wykres dotyczący ostatniego ruchu dla wybranego adresu IP."
+  "network_security_dashboard_warning_period": "Uwaga: żądane dane są niedostępne, ponieważ został przekroczony limit czasu przechowywania informacji dotyczących ruchu.",
+  "network_security_dashboard_warning_default": "Zamiast tego wyświetlony zostanie wykres dotyczący ostatniego ruchu dla wybranego adresu IP.",
+  "network_security_dashboard_filter_1_month": "1 miesiąc",
+  "network_security_dashboard_filter_2_months": "2 miesiące"
 }
