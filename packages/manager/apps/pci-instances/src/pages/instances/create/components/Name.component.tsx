@@ -1,11 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
-import { instanceNameRegex } from '@/constants';
 
-export const nameSchema = z.string().regex(instanceNameRegex);
 export const nameDefaultValue = 'default name to add';
 
 export const Name = () => {

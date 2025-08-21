@@ -10,5 +10,6 @@
   "pci_instances_common_pending": "W trakcie...",
   "pci_instances_common_search": "Szukaj",
   "pci_instances_common_instance_title": "Instancja",
-  "pci_instances_common_instance_name": "Nazwa instancji"
+  "pci_instances_common_instance_name": "Nazwa instancji",
+  "pci_instances_common_help": "Pomoc"
 }

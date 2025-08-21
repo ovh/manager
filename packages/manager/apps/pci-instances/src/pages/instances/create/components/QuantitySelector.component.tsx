@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext } from 'react-hook-form';
-import { z } from 'zod';
 import clsx from 'clsx';
 import {
   FormField,
@@ -10,25 +9,17 @@ import {
   QuantityInput,
   Text,
 } from '@ovhcloud/ods-react';
+import { quantityRules } from "@/pages/instances/create/CreateInstance.schema";
 
-const rules = {
-  min: 1,
-  max: 5,
-};
-
-export const quantitySchema = z
-  .number()
-  .min(rules.min)
-  .max(rules.max);
 export const quantityDefaultValue = 1;
 
-type Props = {
+type TQuantityProps = {
   quota: number;
   type: string;
   region: string;
 };
 
-export const QuantitySelector = ({ quota, type, region }: Props) => {
+export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
   const { t } = useTranslation('creation');
 
   const {
@@ -52,8 +43,8 @@ export const QuantitySelector = ({ quota, type, region }: Props) => {
             name="quantity"
             render={({ field }) => (
               <Quantity
-                min={rules.min}
-                max={rules.max}
+                min={quantityRules.min}
+                max={quantityRules.max}
                 invalid={!!error}
                 onValueChange={({ value }) => field.onChange(Number(value))}
                 defaultValue={String(quantityDefaultValue)}
