@@ -44,3 +44,4 @@ export * from './link-card';
 export * from './error';
 export * from './error-boundary';
 export * from './update-name-modal';
+export * from './delete-modal';
