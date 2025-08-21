@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
-import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
+import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 import { TInstance } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { buildPartialInstanceDto } from '@/data/hooks/instance/builder/instanceDto.builder';
@@ -43,7 +43,7 @@ export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
       const { status, task } = instance;
       const isDeleted = !task.isPending && status === 'DELETED';
       const deletedInstance = getPartialDeletedInstanceDto(instance.id);
-      updateInstanceFromCache(queryClient, {
+      updateInstancesFromCache(queryClient, {
         projectId,
         instance: isDeleted ? deletedInstance : getPartialInstanceDto(instance),
       });
@@ -65,7 +65,7 @@ export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
     (error: ApiError, instanceId: string) => {
       if (error.response?.status === 404) {
         const deletedInstance = getPartialDeletedInstanceDto(instanceId);
-        updateInstanceFromCache(queryClient, {
+        updateInstancesFromCache(queryClient, {
           projectId,
           instance: deletedInstance,
         });
