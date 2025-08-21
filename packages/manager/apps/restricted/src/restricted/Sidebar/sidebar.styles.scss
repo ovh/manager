@@ -67,7 +67,6 @@ $ovh-sidebar-width: 18.75rem;
   @import 'bootstrap4/scss/_grid.scss';
   @import 'bootstrap4/scss/_buttons.scss';
   @import 'bootstrap4/scss/_button-group.scss';
-  @import '@ovh-ux/manager-hub/src/variables.scss';
 
   background-color: $p-075;
   height: 100%;
@@ -96,16 +95,14 @@ $ovh-sidebar-width: 18.75rem;
 }
 
 .sidebar-user-info {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
-
   $circle-radius: 2.5rem;
 
   background-color: $p-000-white;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.075);
   text-align: center;
-  border-radius: $hub-border-radius-default;
+  border-radius: 6pt;
   padding: 0.25rem;
-  color: $hub-text-color;
+  color: $p-800-text;
 
   hr {
     height: 1px;
