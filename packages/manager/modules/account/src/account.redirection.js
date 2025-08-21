@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   // make a redirect to the new url of ui route
   $urlRouterProvider.when(
     /^\/useraccount\/contacts\/[0-9]+$/,
-    ($location, $state, $window) => {
+    ($location, $state, $window, coreURLBuilder) => {
       const hasToken = has($location.search(), 'token');
       const requestTabAsked = get($location.search(), 'tab') === 'REQUESTS';
 
@@ -19,8 +19,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       const taskId = last($location.path().split('/'));
       const token = get($location.search(), 'token');
 
-      $state.go('account.contacts.requests', { taskId, token });
-      return $window.reload();
+      // eslint-disable-next-line no-param-reassign
+      $window.top.location.href = coreURLBuilder.buildURL(
+        'account',
+        $state.href('account.contacts.requests', { taskId, token }),
+      );
+      return false;
     },
   );
 
