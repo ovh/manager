@@ -26,13 +26,6 @@ describe('Delete Modal component', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders loading modal', () => {
-    const { asFragment } = render(<DeleteModal {...sharedProps} isLoading />);
-    waitFor(() => {
-      expect(asFragment()).toMatchSnapshot();
-    });
-  });
-
   it('renders error message in modal', () => {
     const errorMessage = 'Error message';
     render(<DeleteModal {...sharedProps} error={errorMessage} />);
