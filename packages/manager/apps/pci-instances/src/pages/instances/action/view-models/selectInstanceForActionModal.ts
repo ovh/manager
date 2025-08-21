@@ -12,7 +12,7 @@ export type TInstanceActionModalViewModel = {
 
 const mapAggregatedInstanceDto = (instance: TAggregatedInstanceDto) => ({
   isImageDeprecated: instance.isImageDeprecated,
-  ip: instance.addresses[0]?.ip,
+  ip: instance.addresses[0]?.ip ?? '',
   region: instance.region,
   imageId: instance.imageId,
 });
