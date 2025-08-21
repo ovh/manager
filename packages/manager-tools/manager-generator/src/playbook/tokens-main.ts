@@ -121,6 +121,9 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
     ((answers as Partial<GeneratorAnswers>).serviceKey ?? 'publicCloud-project').trim() ||
     'publicCloud-project';
 
+  // chosen region
+  const region = (answers as Partial<GeneratorAnswers>).region || '';
+
   return {
     appNameKebab,
     packageName: answers.packageName || `@ovh-ux/manager-${appNameKebab}-app`,
@@ -135,6 +138,7 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
     listingEndpoint,
     onboardingEndpoint,
     onboardingApi,
+    region,
     trackingLevel2,
     trackingUniverse,
     trackingSubUniverse,

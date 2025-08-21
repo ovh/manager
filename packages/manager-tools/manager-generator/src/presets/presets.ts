@@ -12,10 +12,9 @@ import { Preset, PresetName } from './presets-types';
  */
 const DEFAULTS_PRESETS_CONFIG = {
   appName: 'my-app',
-  appType: 'pci',
   universe: 'publicCloud',
   subUniverse: 'none',
-  region: 'GRA',
+  region: 'EU',
   flavor: 'medium',
   usePreset: false,
   userEmail: 'default@example.com',

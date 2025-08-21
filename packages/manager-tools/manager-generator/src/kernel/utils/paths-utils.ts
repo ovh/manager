@@ -2,7 +2,9 @@
  * @file paths-utils.ts
  * @description Path normalization utilities for API endpoints and derived keys.
  */
-import { VersionSplit } from '../types/inquiries-types';
+import { ApiPathChoice } from '../types/api-types';
+import { PromptChoice, VersionSplit } from '../types/inquiries-types';
+import { isNameValue, isSeparatorLike } from './naming-utils';
 
 /**
  * Ensure a path starts with a single leading slash and has no trailing spaces.
@@ -141,4 +143,32 @@ export function splitApiPathsByVersion(paths: string[]): VersionSplit {
     }
   }
   return out;
+}
+
+/**
+ * Normalize API path choices (which may include strings or separators)
+ * into a uniform {@link PromptChoice[]} array.
+ *
+ * - Strings → `{ name, value }`
+ * - `{ name, value }` pairs → preserved
+ * - Separators → `{ name, disabled: true }`
+ * - Unknown → stringified
+ *
+ * @param items Array of API path choices
+ * @returns Normalized prompt choices
+ */
+export function normalizeApiPathChoices(items: ApiPathChoice[]): PromptChoice[] {
+  return items.map((it) => {
+    if (typeof it === 'string') {
+      return { name: it, value: it };
+    }
+    if (isNameValue(it)) {
+      return { name: String(it.name), value: String(it.value) };
+    }
+    if (isSeparatorLike(it)) {
+      return { name: it.line ?? '—', disabled: true };
+    }
+    const safe = JSON.stringify(it);
+    return { name: safe, value: safe };
+  });
 }

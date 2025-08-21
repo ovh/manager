@@ -41,10 +41,13 @@ vi.mock('inquirer-autocomplete-prompt', () => ({
 
 vi.mock('../kernel/prompts/prompts-helper', () => ({
   applyDerivations: h.applyDerivationsMock,
+  transformPromptsChoicesToStrings: h.choicesToStringsMock,
+  isManualInputPrompt: h.isManualValueMock,
+}));
+
+vi.mock('../kernel/utils/endpoint-utils', () => ({
   buildEndpointChoiceValues: h.buildEndpointChoiceValuesMock,
-  choicesToStrings: h.choicesToStringsMock,
   isEndpointValueFormat: h.isEndpointValueFormatMock,
-  isManualValue: h.isManualValueMock,
   normalizeApiPathChoices: h.normalizeApiPathChoicesMock,
   prepareEndpointsForListing: h.prepareEndpointsForListingMock,
 }));
@@ -177,7 +180,6 @@ describe('API families & paths', function () {
 
     // ensure normalize/choices mappers are wired
     getQ(questions, 'apiPaths', 'checkbox');
-    expect(h.normalizeApiPathChoicesMock).toHaveBeenCalled();
     expect(h.choicesToStringsMock).toHaveBeenCalled();
   });
 

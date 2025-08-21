@@ -7,15 +7,17 @@ import autocomplete from 'inquirer-autocomplete-prompt';
 
 import {
   applyDerivations,
-  buildEndpointChoiceValues,
-  choicesToStrings,
-  isEndpointValueFormat,
-  isManualValue,
-  normalizeApiPathChoices,
-  prepareEndpointsForListing,
+  isManualInputPrompt,
+  transformPromptsChoicesToStrings,
 } from '../kernel/prompts/prompts-helper';
 import { ApiPathChoice } from '../kernel/types/api-types';
 import { Questions } from '../kernel/types/inquiries-types';
+import {
+  buildEndpointChoiceValues,
+  isEndpointValueFormat,
+  prepareEndpointsForListing,
+} from '../kernel/utils/endpoint-utils';
+import { normalizeApiPathChoices } from '../kernel/utils/paths-utils';
 import { REGIONS, SUB_UNIVERSES, UNIVERSES, level2Choices } from './config/api-config';
 import { MANUAL_ENDPOINT_VALUE } from './config/kernel-config';
 import type { AugmentedAnswers, GeneratorAnswers } from './types/playbook-types';
@@ -150,7 +152,7 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
       type: 'checkbox',
       name: 'apiPaths',
       message: 'Which API base route is used?',
-      choices: choicesToStrings(normalizeApiPathChoices(apiPaths)),
+      choices: transformPromptsChoicesToStrings(normalizeApiPathChoices(apiPaths)),
       validate: (value: unknown) =>
         (Array.isArray(value) && value.length > 0) || 'Pick at least one API path',
     },
@@ -200,7 +202,10 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
       message:
         'Type the listing endpoint value (format: /api/path-functionName, e.g. /cloud/project-getService):',
       when: (answers: Partial<GeneratorAnswers>) =>
-        isManualValue((answers as Record<string, unknown>).listingEndpoint, MANUAL_ENDPOINT_VALUE),
+        isManualInputPrompt(
+          (answers as Record<string, unknown>).listingEndpoint,
+          MANUAL_ENDPOINT_VALUE,
+        ),
       validate: (input: unknown) =>
         (typeof input === 'string' && isEndpointValueFormat(input)) ||
         'Please use /api/path-functionName (e.g. /cloud/project-getService)',
@@ -212,7 +217,7 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
       message:
         'Type the onboarding endpoint value (format: /api/path-functionName, e.g. /cloud/project-getService):',
       when: (answers: Partial<GeneratorAnswers>) =>
-        isManualValue(
+        isManualInputPrompt(
           (answers as Record<string, unknown>).onboardingEndpoint,
           MANUAL_ENDPOINT_VALUE,
         ),

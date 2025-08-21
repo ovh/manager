@@ -1,38 +1,12 @@
 # {{appNameKebab}} — OVHcloud Manager Application
 
-> Flavor: **{{routeFlavor}}**  
 > Universe: **{{trackingUniverse}} / {{trackingSubUniverse}}**
-
-> Generated via OVHcloud Manager App Generator — flavor-aware template for PCI, Hub, Web, Zimbra, and more.
 
 ## Overview
 
 This application is a single-page React app integrated into the OVHcloud Manager ecosystem.  
 It is fully **flavor-driven**, meaning routing, tracking, and API configuration are centralized in [`src/App.constants.ts`](src/App.constants.ts).  
 The same codebase supports multiple product universes (PCI, Hub, Web, Zimbra) by changing only constants.
-
----
-
-## 📂 Folder Structure
-
-```
-src/
- ├─ App.constants.ts        # Flavor config: routing, tracking, API & feature flags
- ├─ Tracking.constants.ts   # Tracking constants resolved from App.constants.ts
- ├─ routes/                 # Route utils + route tree (Routes.utils.ts, Routes.tsx)
- ├─ pages/                  # Pages (Main.layout, Dashboard, Onboarding, 404)
- ├─ components/             # Shared UI components (e.g., Breadcrumb)
- ├─ hooks/                  # UI hooks (dashboard header/tabs, breadcrumb, listing columns)
- ├─ data/
- │   ├─ api/
- │   │   ├─ commons/        # API client facade + helpers (Client.api.ts, Client.utils.ts)
- │   │   └─ hooks/          # Data hooks facade (useResources.ts)
- │   └─ hooks/              # App-level data hooks per feature (listing, onboarding)
- ├─ assets/                 # Local images (e.g., error banners)
- ├─ types/                  # TypeScript type definitions
- └─ index.tsx               # App bootstrap (shell, i18n, tracking, router)
-```
-Translations live under `public/translations/<namespace>/Messages_<locale>.json`.
 
 ---
 
@@ -168,6 +142,8 @@ import { fetchIcebergV6, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 ---
 
 ## 🚀 Development
+
+From the root:
 
 ```bash
 # Install dependencies

@@ -37,7 +37,6 @@ const __dirname = path.dirname(__filename);
  * @property {boolean=} ['dry-run']
  * @property {boolean=} overwrite
  * @property {string=} appName
- * @property {'pci'|'full'|'zimbra'|'iceberg'|'v2'|'v6'=} appType
  * @property {string=} universe
  * @property {string=} subUniverse
  * @property {string=} region
@@ -75,7 +74,6 @@ const argv = yargs(hideBin(process.argv))
 
   // common fields you may want to pass non-interactively
   .option('appName', { type: 'string' })
-  .option('appType', { choices: ['pci', 'full', 'zimbra', 'iceberg', 'v2', 'v6'] })
   .option('universe', { type: 'string' })
   .option('subUniverse', { type: 'string' })
   .option('region', { type: 'string' })
@@ -175,7 +173,6 @@ async function run() {
   // 2) seed from flags (yargs already parsed)
   const flagAnswers = {
     appName: argv.appName,
-    appType: argv.appType,
     universe: argv.universe,
     subUniverse: argv.subUniverse,
     region: argv.region,
@@ -203,7 +200,7 @@ async function run() {
   const ctxPresets = argv.preset?.length
     ? argv.preset.map(String)
     : // auto-pick preset when appropriate
-      answers.appType === 'pci' && answers.usePreset
+      answers.isPci === 'true' && answers.usePreset
       ? ['pciQuickstart']
       : [];
   const tokens = await resolveTokens(answers, { presets: ctxPresets });

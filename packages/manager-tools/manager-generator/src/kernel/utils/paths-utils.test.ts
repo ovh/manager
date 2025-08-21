@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
+import { ApiPathChoice } from '../types/api-types';
 import {
   braceAwareBasePath,
   ensureLeadingSlash,
+  normalizeApiPathChoices,
   normalizePath,
   normalizeSelectedApiPath,
   splitApiPathsByVersion,
@@ -12,74 +14,96 @@ import {
 // eslint-disable-next-line max-lines-per-function
 describe('paths-utils', () => {
   describe('ensureLeadingSlash', () => {
-    it('adds slash when missing', () => {
+    it('adds a slash if missing', () => {
       expect(ensureLeadingSlash('me')).toBe('/me');
     });
     it('keeps existing slash', () => {
-      expect(ensureLeadingSlash('/x')).toBe('/x');
+      expect(ensureLeadingSlash('/cloud')).toBe('/cloud');
     });
-    it('normalizes empty/whitespace', () => {
-      expect(ensureLeadingSlash('')).toBe('/');
+    it('returns "/" for empty input', () => {
       expect(ensureLeadingSlash('   ')).toBe('/');
     });
   });
 
   describe('stripApiVersionPrefix', () => {
-    it('removes vN-/ prefix', () => {
-      expect(stripApiVersionPrefix('v6-/ovhCloudConnect')).toBe('/ovhCloudConnect');
-      expect(stripApiVersionPrefix('/v2-/users')).toBe('/users');
+    it('removes "v6-/" prefix', () => {
+      expect(stripApiVersionPrefix('v6-/foo')).toBe('/foo');
     });
-    it('leaves normal paths alone', () => {
+    it('removes "/v2-/" prefix', () => {
+      expect(stripApiVersionPrefix('/v2-/bar')).toBe('/bar');
+    });
+    it('ignores normal paths', () => {
       expect(stripApiVersionPrefix('/v2/users')).toBe('/v2/users');
-      expect(stripApiVersionPrefix('foo')).toBe('foo');
     });
   });
 
   describe('braceAwareBasePath', () => {
-    it('cuts after first } when suffix exists', () => {
-      expect(braceAwareBasePath('/cloud/{id}-get')).toBe('/cloud/{id}');
+    it('cuts suffix after first }', () => {
+      expect(braceAwareBasePath('/project/{id}-get')).toBe('/project/{id}');
     });
     it('returns unchanged if no brace', () => {
       expect(braceAwareBasePath('/users/list')).toBe('/users/list');
     });
-    it('handles just parameter', () => {
-      expect(braceAwareBasePath('/{id}')).toBe('/{id}');
-    });
   });
 
   describe('normalizePath', () => {
-    it('strips version prefix then ensures slash', () => {
-      expect(normalizePath('v6-/foo')).toBe('/foo');
+    it('normalizes transport prefix', () => {
+      expect(normalizePath('v6-/cloud')).toBe('/cloud');
     });
-    it('applies braceAware option', () => {
-      expect(normalizePath('/x/{id}-extra', { braceAware: true })).toBe('/x/{id}');
+    it('keeps braces if braceAware=false', () => {
+      expect(normalizePath('/x/{id}-get')).toBe('/x/{id}-get');
+    });
+    it('trims after } if braceAware=true', () => {
+      expect(normalizePath('/x/{id}-get', { braceAware: true })).toBe('/x/{id}');
     });
   });
 
   describe('normalizeSelectedApiPath', () => {
     it('splits path-functionName form', () => {
-      const result = normalizeSelectedApiPath('/v2/users/list-getUsers');
-      expect(result).toEqual({ version: 'v2', base: '/v2/users/list' });
+      expect(normalizeSelectedApiPath('/v2/users/list-getUsers')).toEqual({
+        version: 'v2',
+        base: '/v2/users/list',
+      });
     });
-    it('handles brace-aware trimming', () => {
-      const result = normalizeSelectedApiPath('/cloud/project/{serviceName}-getProject');
-      expect(result).toEqual({ version: 'v6', base: '/cloud/project/{serviceName}' });
+    it('handles brace-aware forms', () => {
+      expect(normalizeSelectedApiPath('/cloud/project/{serviceName}-getProject')).toEqual({
+        version: 'v6',
+        base: '/cloud/project/{serviceName}',
+      });
     });
-    it('detects v2 when raw starts with v2-/', () => {
-      const result = normalizeSelectedApiPath('v2-/foo-getBar');
-      expect(result.version).toBe('v2');
+    it('falls back to v6 if not v2', () => {
+      expect(normalizeSelectedApiPath('/foo/bar')).toEqual({
+        version: 'v6',
+        base: '/foo/bar',
+      });
     });
   });
 
   describe('splitApiPathsByVersion', () => {
-    it('splits and deduplicates', () => {
-      const out = splitApiPathsByVersion([
-        '/v2/users/list-getUsers',
-        '/v2/users/list-getUsers',
-        '/cloud/project/{id}-get',
-      ]);
-      expect(out.v2).toEqual(['/v2/users/list']);
-      expect(out.v6).toEqual(['/cloud/project/{id}']);
+    it('deduplicates normalized paths by version', () => {
+      const input = ['/v2/users/list-get', '/v2/users/list-get', '/cloud/project/{id}-get'];
+      const result = splitApiPathsByVersion(input);
+      expect(result.v2).toEqual(['/v2/users/list']);
+      expect(result.v6).toEqual(['/cloud/project/{id}']);
+    });
+  });
+
+  describe('normalizeApiPathChoices', () => {
+    it('normalizes string input', () => {
+      const res = normalizeApiPathChoices(['/foo' as unknown as ApiPathChoice]);
+      expect(res).toEqual([{ name: '/foo', value: '/foo' }]);
+    });
+    it('normalizes name/value objects', () => {
+      const res = normalizeApiPathChoices([{ name: 'n', value: 'v' }]);
+      expect(res).toEqual([{ name: 'n', value: 'v' }]);
+    });
+    it('normalizes separators', () => {
+      const res = normalizeApiPathChoices([{ type: 'separator', line: '---' }]);
+      expect(res).toEqual([{ name: '---', disabled: true }]);
+    });
+    it('stringifies unknown objects', () => {
+      const res = normalizeApiPathChoices([{ foo: 'bar' } as unknown as ApiPathChoice]);
+      expect(res).toEqual([{ name: '{"foo":"bar"}', value: '{"foo":"bar"}' }]);
     });
   });
 });

@@ -16,7 +16,6 @@ import { promises as fsp } from 'node:fs';
 import path from 'node:path';
 
 import { DEFAULT_BINARY_EXTS } from '../../playbook/config/kernel-config';
-import { derivePkgName } from '../prompts/prompts-helper';
 import { replaceTokens } from '../tokens/tokens-helper';
 import { InternalOptions, PostProcessor, PostProcessorCtx } from '../types/template-types';
 
@@ -38,13 +37,19 @@ import { InternalOptions, PostProcessor, PostProcessorCtx } from '../types/templ
  * ```
  */
 export function labelFor(result: 'created' | 'overwritten' | 'skipped-exists' | 'dry-run'): string {
-  return result === 'created'
-    ? '✅ created'
-    : result === 'overwritten'
-      ? '♻️ overwritten'
-      : result === 'skipped-exists'
-        ? '⚠️ skipped (exists)'
-        : '📝 (dry-run)';
+  switch (result) {
+    case 'created':
+      return '✅ created';
+    case 'overwritten':
+      return '♻️ overwritten';
+    case 'skipped-exists':
+      return '⚠️ skipped (exists)';
+    case 'dry-run':
+      return '📝 (dry-run)';
+    default:
+      // This should never happen since result is a union type
+      return '';
+  }
 }
 
 /**
@@ -94,11 +99,7 @@ export function isBinaryFile(filePath: string, extra: string[] = []): boolean {
  * ```
  */
 export function buildRuntimeTokens(src: Record<string, string>): Record<string, string> {
-  const appName = src.appName ?? '';
-  const appType = (src.appType ?? '').toLowerCase();
-  const isPci =
-    src.isPci ?? (appType === 'pci' || appName.toLowerCase().startsWith('pci-') ? 'true' : 'false');
-
+  const isPci = src.isPci || 'false';
   return {
     ...src,
     isPci,

@@ -31,12 +31,10 @@ export type Region = (typeof REGIONS)[number];
  */
 export const UNIVERSES = [
   'Dedicated',
-  'Focus',
   'Manager',
   'Web',
   'Server',
   'Hub',
-  'Creation',
   'Baremetal',
   'HostedPrivatedCloud',
   'PublicCloud',
@@ -55,12 +53,10 @@ export type Universe = (typeof UNIVERSES)[number];
  */
 export const SUB_UNIVERSES = [
   'Dedicated',
-  'Focus',
   'Manager',
   'Web',
   'Server',
   'Hub',
-  'Creation',
   'Network',
   'HostedPrivatedCloud',
   'PublicCloud',

@@ -19,7 +19,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.15.0",
+    "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
@@ -50,11 +50,9 @@
     "@tanstack/react-query-devtools": "^5.51.21"
   },
   "regions": [
-     "CA",
-     "EU",
-     "US"
+    "{{region}}"
   ],
   "universes": [
-     "Manager"
+     "{{trackingUniverse}}"
   ]
 }

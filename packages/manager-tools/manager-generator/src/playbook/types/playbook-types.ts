@@ -45,6 +45,9 @@ export interface Tokens {
   /** API flavor used by onboarding flows. Mirrors selected endpoint family. */
   onboardingApi: OnboardingApi;
 
+  /** Selected region. */
+  region: string;
+
   /** Tracking */
   trackingLevel2: string;
   trackingUniverse: string;
@@ -85,9 +88,6 @@ export interface GeneratorAnswers {
 
   /** Sub-universe for finer classification (optional). */
   subUniverse: string;
-
-  /** Application type/preset. */
-  appType: 'pci' | 'full' | 'zimbra' | 'iceberg' | 'v2' | 'v6';
 
   /** Service key or identifier to inject into templates. */
   serviceKey: string;

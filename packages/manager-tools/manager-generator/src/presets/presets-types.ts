@@ -27,7 +27,6 @@ export type PresetName = string;
  * const pciQuickstart: Preset = {
  *   name: 'pciQuickstart',
  *   defaults: {
- *     appType: 'pci',
  *     universe: 'publicCloud',
  *     language: 'en',
  *   },

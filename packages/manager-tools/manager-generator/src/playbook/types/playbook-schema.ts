@@ -14,7 +14,6 @@
  * {
  *   appName: "pci-storage",
  *   description: "PCI block storage UI",
- *   appType: "pci",
  *   universe: "public-cloud",
  *   subUniverse: "storage",
  *   region: "EU",
@@ -57,9 +56,6 @@ export const AnswersSchema = z.object({
 
   /** Optional human description for README, docs, etc. */
   description: z.string().trim().optional(),
-
-  /** Freeform app type (e.g., "pci", "manager"). Used in token derivation. */
-  appType: z.string().trim().optional(),
 
   /** High-level product universe (must match one of `UNIVERSES`). */
   universe: z
