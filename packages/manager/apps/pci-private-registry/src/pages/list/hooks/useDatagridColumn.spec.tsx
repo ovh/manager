@@ -5,14 +5,26 @@ import { useDatagridColumn } from './useDatagridColumn';
 import { wrapper } from '@/wrapperRenders';
 import { TRegistry } from '@/api/data/registry';
 import { useIAMFeatureAvailability } from '@/hooks/features/useIAMFeatureAvailability';
+import { use3AZFeatureAvailability } from '@/hooks/features/use3AZFeatureAvailability';
 
 vi.mock('@/hooks/features/useIAMFeatureAvailability', () => ({
   useIAMFeatureAvailability: vi.fn(),
 }));
 
+vi.mock('@/hooks/features/use3AZFeatureAvailability', () => ({
+  use3AZFeatureAvailability: vi.fn(),
+}));
+
+const mockedUse3AZFeatureAvailability = vi.mocked(use3AZFeatureAvailability);
 const mockedUseIAMFeatureAvailability = vi.mocked(useIAMFeatureAvailability);
 
 describe('useDatagridColumn', () => {
+  beforeEach(() => {
+    mockedUse3AZFeatureAvailability.mockReturnValue({
+      is3AZEnabled: false,
+      isPending: false,
+    });
+  });
   const mockedPartialRegistry: Omit<TRegistry, 'iamEnabled'> = {
     id: 'registryId',
     createdAt: '2024-01-01',
@@ -42,6 +54,10 @@ describe('useDatagridColumn', () => {
   };
 
   it('should return the correct columns', () => {
+    mockedUse3AZFeatureAvailability.mockReturnValue({
+      is3AZEnabled: true,
+      isPending: false,
+    });
     mockedUseIAMFeatureAvailability.mockReturnValue({
       isIAMEnabled: true,
       isPending: false,
@@ -50,7 +66,7 @@ describe('useDatagridColumn', () => {
 
     const columns = result.current;
 
-    expect(columns).toHaveLength(9);
+    expect(columns).toHaveLength(10);
 
     const nameColumn = columns.find((col) => col.id === 'name');
     expect(nameColumn).toBeDefined();
@@ -102,66 +118,95 @@ describe('useDatagridColumn', () => {
     expect(iamColumn).toBeUndefined();
   });
 
-  it('should display enabled IAM authentication status if registry IAM is enabled', () => {
-    mockedUseIAMFeatureAvailability.mockReturnValue({
-      isIAMEnabled: true,
-      isPending: false,
+  describe.each([
+    {
+      iamEnabled: true,
+      expectedLabel: 'private_registry_common_status_ENABLED',
+    },
+    {
+      iamEnabled: false,
+      expectedLabel: 'private_registry_common_status_DISABLED',
+    },
+  ])('IAM status column rendering', ({ iamEnabled, expectedLabel }) => {
+    it(`should render IAM status as ${expectedLabel}`, () => {
+      mockedUse3AZFeatureAvailability.mockReturnValue({
+        is3AZEnabled: false,
+        isPending: false,
+      });
+      mockedUseIAMFeatureAvailability.mockReturnValue({
+        isIAMEnabled: true,
+        isPending: false,
+      });
+
+      const { result } = renderHook(() => useDatagridColumn());
+
+      const registry: TRegistry = { ...mockedPartialRegistry, iamEnabled };
+      const items = [registry];
+
+      const { getByTestId } = render(
+        <Datagrid columns={result.current} items={items} totalItems={1} />,
+        { wrapper },
+      );
+
+      expect(
+        getByTestId('registryIamAthenticationStatus_chip'),
+      ).toHaveTextContent(expectedLabel);
     });
-
-    const { result } = renderHook(() => useDatagridColumn());
-    const mockedRegistries: TRegistry[] = [
-      { ...mockedPartialRegistry, iamEnabled: true },
-    ];
-
-    const fakeData = {
-      rows: mockedRegistries,
-      pageCount: 1,
-      totalRows: 1,
-    };
-
-    const { getByTestId } = render(
-      <Datagrid
-        columns={result.current}
-        items={fakeData.rows}
-        totalItems={fakeData.totalRows}
-      />,
-      { wrapper },
-    );
-
-    expect(
-      getByTestId('registryIamAthenticationStatus_chip'),
-    ).toHaveTextContent('private_registry_common_status_ENABLED');
   });
-
-  it('should display disabled IAM authentication status if registry IAM is disabled', () => {
-    mockedUseIAMFeatureAvailability.mockReturnValue({
-      isIAMEnabled: true,
-      isPending: false,
+  describe('3AZ Feature - mode column visibility', () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+      mockedUse3AZFeatureAvailability.mockReturnValue({
+        is3AZEnabled: false,
+        isPending: false,
+      });
+      mockedUseIAMFeatureAvailability.mockReturnValue({
+        isIAMEnabled: false,
+        isPending: false,
+      });
     });
 
-    const { result } = renderHook(() => useDatagridColumn());
+    describe.each([
+      {
+        is3AZEnabled: true,
+        isPending: false,
+        expected: true,
+        title:
+          'should display the "mode" column when 3AZ is enabled and not pending',
+      },
+      {
+        is3AZEnabled: false,
+        isPending: false,
+        expected: false,
+        title: 'should NOT display the "mode" column when 3AZ is disabled',
+      },
+      {
+        is3AZEnabled: true,
+        isPending: true,
+        expected: false,
+        title: 'should NOT display the "mode" column when 3AZ is pending',
+      },
+    ])('$title', ({ is3AZEnabled, isPending, expected, title }) => {
+      it(title, () => {
+        mockedUse3AZFeatureAvailability.mockReturnValue({
+          is3AZEnabled,
+          isPending,
+        });
 
-    const mockedRegistries: TRegistry[] = [
-      { ...mockedPartialRegistry, iamEnabled: false },
-    ];
+        const { result } = renderHook(() => useDatagridColumn());
+        const columns = result.current;
 
-    const fakeData = {
-      rows: mockedRegistries,
-      pageCount: 1,
-      totalRows: 1,
-    };
+        const modeColumn = columns.find((col) => col.id === 'mode');
 
-    const { getByTestId } = render(
-      <Datagrid
-        columns={result.current}
-        items={fakeData.rows}
-        totalItems={fakeData.totalRows}
-      />,
-      { wrapper },
-    );
-
-    expect(
-      getByTestId('registryIamAthenticationStatus_chip'),
-    ).toHaveTextContent('private_registry_common_status_DISABLED');
+        if (expected) {
+          expect(modeColumn).toBeDefined();
+          expect(modeColumn?.label).toBe(
+            'private_registry_containers_deployment_mode_label',
+          );
+        } else {
+          expect(modeColumn).toBeUndefined();
+        }
+      });
+    });
   });
 });

@@ -1,14 +1,17 @@
 import { TilesInputComponent } from '@ovh-ux/manager-react-components';
 import PlanComponent from '@/components/Plan.component';
 import { TRegistryPlan } from '@/api/data/registry';
+import { DeploymentMode } from '@/types';
 
 export type TPlanChooserProps = {
   plan: TRegistryPlan;
-  plans: TRegistryPlan[];
+  type: DeploymentMode;
   onInput: (value: TRegistryPlan) => void;
+  plans?: TRegistryPlan[];
 };
 
 export default function PlanChooser({
+  type,
   plan,
   plans,
   onInput,
@@ -20,7 +23,7 @@ export default function PlanChooser({
       onInput={(v) => {
         onInput(v);
       }}
-      label={(item) => <PlanComponent plan={item} />}
+      label={(item) => <PlanComponent type={type} plan={item} />}
     />
   );
 }

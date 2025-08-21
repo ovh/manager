@@ -1,26 +1,34 @@
 import { beforeAll, describe, vi } from 'vitest';
 import { render, RenderResult } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import * as useCatalogModule from '@ovh-ux/manager-pci-common';
 import { TCatalog } from '@ovh-ux/manager-pci-common';
 import PlanComponent from './Plan.component';
 import { wrapper } from '@/wrapperRenders';
 import { TRegistryPlan } from '@/api/data/registry';
 
-const defaultPlan: TRegistryPlan = {
-  id: 'planId',
-  code: 'planCode.hour.consumption',
-  features: {
-    vulnerability: false,
-  },
-  name: 'SMALL',
-  registryLimits: {
-    imageStorage: 10,
-    parallelRequest: 50,
-  },
-  createdAt: '',
-  updatedAt: '',
-};
+import { DeploymentMode, PlanName } from '@/types';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: vi.fn().mockImplementation(() => ({
+    t(key: string, data: Record<string, string>) {
+      const templates: Record<
+        string,
+        (data: Record<string, string>) => string
+      > = {
+        private_registry_upgrade_plan_connections: (d) =>
+          `private_registry_upgrade_plan_connections:${d.total}`,
+        private_registry_upgrade_core_registry: (d) =>
+          `private_registry_upgrade_core_registry_${d.percent}`,
+        private_registry_upgrade_other_components: (d) =>
+          `private_registry_upgrade_other_components_${d.percent}`,
+      };
+
+      return templates[key]?.(data) ?? key;
+    },
+  })),
+}));
 
 const defaultAddon = {
   planCode: 'planCode.hour.consumption',
@@ -38,71 +46,69 @@ const defaultAddon = {
     },
   ],
 };
+vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-pci-common')
+  >();
+  return {
+    ...actual,
+    useCatalog: () => ({
+      data: {
+        addons: [defaultAddon],
+      },
+      isPending: false,
+    }),
+    Pricing: ({ pricing }: { pricing: useCatalogModule.TPricing }) => (
+      <div>{pricing.price}</div>
+    ),
+  };
+});
+
+const defaultPlan: TRegistryPlan = {
+  id: 'planId',
+  code: 'planCode.hour.consumption',
+  features: {
+    vulnerability: false,
+  },
+  name: PlanName.SMALL,
+  registryLimits: {
+    imageStorage: 10,
+    parallelRequest: 50,
+  },
+  createdAt: '',
+  updatedAt: '',
+};
 
 describe('PlanComponent', () => {
-  vi.mock('react-i18next', () => ({
-    useTranslation: vi.fn().mockImplementation(() => ({
-      t(key: string, data: Record<string, unknown>) {
-        return key === 'private_registry_upgrade_plan_connections'
-          ? `private_registry_upgrade_plan_connections:${data.total}`
-          : key;
-      },
-    })),
-  }));
-
-  vi.mock('@ovh-ux/manager-react-components', async () => ({
-    useMe: () => ({
-      me: {
-        ovhSubsidiary: 'ovhSubsidiary',
-        currency: {
-          code: 'USD',
-        },
-      },
-    }),
-    useCatalogPrice: () => ({
-      getFormattedCatalogPrice: () => (price) => `$${price}`,
-    }),
-    convertHourlyPriceToMonthly: (price) => price,
-  }));
-
-  vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
-    const actual = await importOriginal<
-      typeof import('@ovh-ux/manager-pci-common')
-    >();
-    return {
-      ...actual,
-      useCatalog: () => ({
-        data: {
-          addons: [defaultAddon],
-        },
-        isPending: false,
-      }),
-      Pricing: ({ pricing }: { pricing: useCatalogModule.TPricing }) => (
-        <div>{pricing.price}</div>
-      ),
-    };
-  });
-
   it('should render plan name', () => {
-    const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
-      wrapper,
-    });
+    const { getByTestId } = render(
+      <PlanComponent type={DeploymentMode.MONO_ZONE} plan={defaultPlan} />,
+      {
+        wrapper,
+      },
+    );
     expect(getByTestId('name')).toHaveTextContent('S');
   });
 
   it('should show capacity', () => {
-    const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
-      wrapper,
-    });
+    const { getByTestId } = render(
+      <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+      {
+        wrapper,
+      },
+    );
     expect(getByTestId('capacity')).toHaveTextContent(
       'private_registry_upgrade_plan_available_storage10 unit_size_B',
     );
   });
 
   it('should show concurrent connections', () => {
-    const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
-      wrapper,
-    });
+    const { getByTestId } = render(
+      <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+      {
+        wrapper,
+      },
+    );
     expect(getByTestId('connections')).toHaveTextContent(
       'private_registry_upgrade_plan_connections:50',
     );
@@ -116,9 +122,15 @@ describe('PlanComponent', () => {
         HTMLElement
       >;
       beforeAll(() => {
-        result = render(<PlanComponent plan={defaultPlan} />, {
-          wrapper,
-        });
+        result = render(
+          <PlanComponent
+            type={DeploymentMode.MULTI_ZONES}
+            plan={defaultPlan}
+          />,
+          {
+            wrapper,
+          },
+        );
       });
 
       it("should show 'core registry 99'", async () => {
@@ -144,36 +156,58 @@ describe('PlanComponent', () => {
       beforeAll(() => {
         const plan: typeof defaultPlan = {
           ...defaultPlan,
-          name: 'MEDIUM',
+          name: PlanName.MEDIUM,
         };
-        result = render(<PlanComponent plan={plan} />, {
-          wrapper,
-        });
-      });
-
-      it("should show 'core registry 95'", async () => {
-        const { getByTestId, findByTestId, findByText } = result;
-        expect(await findByTestId('core-registry-95')).toBeInTheDocument();
-        expect(getByTestId('core-registry-95')).toHaveTextContent(
-          'private_registry_upgrade_core_registry_95',
+        result = render(
+          <PlanComponent type={DeploymentMode.MONO_ZONE} plan={plan} />,
+          {
+            wrapper,
+          },
         );
-        expect(
-          await findByText('private_registry_upgrade_other_components'),
-        ).toBeInTheDocument();
       });
 
-      it("should not show 'core registry 99'", async () => {
+      it('should show core registry 95', async () => {
+        const { getByText } = result;
+
+        expect(
+          getByText('private_registry_upgrade_core_registry_99.95'),
+        ).toBeInTheDocument();
+        expect(
+          await getByText('private_registry_upgrade_other_components_99.9'),
+        ).toBeInTheDocument();
         const { queryByTestId } = result;
         expect(queryByTestId('core-registry-99')).not.toBeInTheDocument();
+      });
+
+      it("should show 'core registry 99.99 for 3az regions'", async () => {
+        const { getByText } = render(
+          <PlanComponent
+            type={DeploymentMode.MULTI_ZONES}
+            plan={{ ...defaultPlan, name: PlanName.MEDIUM }}
+          />,
+          {
+            wrapper,
+          },
+        );
+
+        expect(
+          getByText('private_registry_upgrade_core_registry_99.99'),
+        ).toBeInTheDocument();
+        expect(
+          getByText('private_registry_upgrade_other_components_99.99'),
+        ).toBeInTheDocument();
       });
     });
   });
 
   describe('Vulnerability', () => {
     it("should not show vulnerability text if plan doesn't have vulnerability", () => {
-      const { queryByText } = render(<PlanComponent plan={defaultPlan} />, {
-        wrapper,
-      });
+      const { queryByText } = render(
+        <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+        {
+          wrapper,
+        },
+      );
 
       expect(
         queryByText('private_registry_upgrade_plan_vulnerability'),
@@ -187,9 +221,12 @@ describe('PlanComponent', () => {
           vulnerability: true,
         },
       };
-      const { queryByText } = render(<PlanComponent plan={plan} />, {
-        wrapper,
-      });
+      const { queryByText } = render(
+        <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={plan} />,
+        {
+          wrapper,
+        },
+      );
 
       expect(
         queryByText('private_registry_upgrade_plan_vulnerability'),
@@ -205,9 +242,12 @@ describe('PlanComponent', () => {
         },
         isPending: false,
       } as UseQueryResult<TCatalog>);
-      const { queryByText } = render(<PlanComponent plan={defaultPlan} />, {
-        wrapper,
-      });
+      const { queryByText } = render(
+        <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+        {
+          wrapper,
+        },
+      );
 
       expect(
         queryByText('private_registry_upgrade_plan_traffic'),
@@ -233,9 +273,12 @@ describe('PlanComponent', () => {
         },
         isPending: false,
       } as UseQueryResult<TCatalog>);
-      const { queryByText } = render(<PlanComponent plan={defaultPlan} />, {
-        wrapper,
-      });
+      const { queryByText } = render(
+        <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+        {
+          wrapper,
+        },
+      );
 
       expect(
         queryByText('private_registry_upgrade_plan_traffic'),
@@ -250,10 +293,15 @@ describe('PlanComponent', () => {
       },
       isPending: false,
     } as UseQueryResult<TCatalog>);
-
-    const { getByTestId } = render(<PlanComponent plan={defaultPlan} />, {
-      wrapper,
-    });
+    vi.mocked(useCatalogPrice).mockReturnValue(({
+      getFormattedCatalogPrice: vi.fn().mockReturnValue('value'),
+    } as unknown) as ReturnType<typeof useCatalogPrice>);
+    const { getByTestId } = render(
+      <PlanComponent type={DeploymentMode.MULTI_ZONES} plan={defaultPlan} />,
+      {
+        wrapper,
+      },
+    );
 
     expect(getByTestId('price').textContent).toBe(
       '42~ private_registry_monthly_price',

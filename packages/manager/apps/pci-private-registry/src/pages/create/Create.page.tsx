@@ -16,6 +16,7 @@ import RegionStep from '@/pages/create/steps/RegionStep';
 import NameStep from '@/pages/create/steps/NameStep';
 import PlanStep from '@/pages/create/steps/PlanStep';
 import { useStore } from '@/pages/create/store';
+import { StepEnum } from './types';
 
 export default function CreatePage(): JSX.Element {
   const { t: tCreate } = useTranslation('create');
@@ -57,7 +58,7 @@ export default function CreatePage(): JSX.Element {
       <div className="mb-5 sticky top-0 z-50">
         <PciDiscoveryBanner project={project} className="mb-6" />
       </div>
-      <RegionStep />
+      <RegionStep isLocked={!!store.stepsState.REGION.isLocked} />
       <NameStep />
       <PlanStep isCreationDisabled={isDiscoveryProject(project)} />
     </>
