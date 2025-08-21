@@ -10,5 +10,6 @@
   "pci_instances_common_404_error_message": "Une erreur 404 « File Not Found » a été rencontrée.",
   "pci_instances_common_pending": "En cours...",
   "pci_instances_common_search": "Rechercher",
-  "pci_instances_common_instance_name": "Nom de l'instance"
+  "pci_instances_common_instance_name": "Nom de l'instance",
+  "pci_instances_common_help": "Aide"
 }
