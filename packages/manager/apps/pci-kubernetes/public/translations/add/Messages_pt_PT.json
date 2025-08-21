@@ -83,5 +83,5 @@
   "kube_add_node_pool_name_title": "Dê um nome ao seu pool de nós",
   "kube_add_plan_content_unavailable_1AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 1-AZ. Se pretender beneficiar do plano {{ plan }}, escolha a implementação em 3-AZ.",
   "kube_add_plan_content_unavailable_3AZ_banner": "O plano {{ plan }} ainda não está disponível nas regiões 3-AZ. Se pretender beneficiar do plano {{ plan }}, escolha uma implementação em 1-AZ.",
-  "kube_add_name_title": "Dê um nome ao pool de nós"
+  "kube_add_name_title": "Dê um nome ao seu pool de nós"
 }
