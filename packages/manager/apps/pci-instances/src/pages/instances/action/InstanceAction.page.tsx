@@ -6,7 +6,7 @@ import { DefaultError } from '@tanstack/react-query';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { updateInstanceFromCache } from '@/data/hooks/instance/useInstances';
+import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 import NotFound from '@/pages/404/NotFound.page';
 import queryClient from '@/queryClient';
 import { isApiErrorResponse, replaceToSnakeCase } from '@/utils';
@@ -41,7 +41,7 @@ const InstanceAction: FC = () => {
   const executeSuccessCallback = useCallback((): void => {
     if (!instance) return;
     const newInstance = { id: instance.id, pendingTask: true, actions: [] };
-    updateInstanceFromCache(queryClient, {
+    updateInstancesFromCache(queryClient, {
       projectId,
       instance: newInstance,
     });
