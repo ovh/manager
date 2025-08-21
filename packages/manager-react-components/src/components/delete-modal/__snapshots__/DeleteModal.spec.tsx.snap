@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`Delete Modal component > renders loading modal 1`] = `<DocumentFragment />`;
