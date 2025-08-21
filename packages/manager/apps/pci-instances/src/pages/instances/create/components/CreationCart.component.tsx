@@ -12,9 +12,9 @@ import {
 export const CreationCart = () => {
   const { t } = useTranslation('common');
   const { control } = useFormContext<TInstanceCreationForm>();
-  const [name, region] = useWatch({
+  const [name, deploymentModes, region] = useWatch({
     control,
-    name: ['name', 'region'],
+    name: ['name', 'deploymentModes', 'region'],
   });
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {

@@ -6,29 +6,39 @@ import { Text } from '@ovhcloud/ods-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { AdvancedParameters } from '@/pages/instances/create/components/AdvancedParameters';
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { CreationCart } from './components/CreationCart.component';
 import {
   Name,
   nameDefaultValue,
   nameSchema,
-} from '@/pages/instances/create/components/Name';
-import {
-  QuantitySelector,
-  quantityDefaultValue,
-  quantitySchema,
-} from '@/pages/instances/create/components/QuantitySelector';
-import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+} from '@/pages/instances/create/components/Name.component';
 import {
   localizationDefaultValue,
   LocalizationSelection,
   localizationSelectionSchema,
-} from './components/localisationSelection/LocalizationSelection.component';
-import { CreationCart } from './components/CreationCart.component';
+} from '@/pages/instances/create/components/localisationSelection/LocalizationSelection.component';
+import { Localization } from '@/pages/instances/create/components/Localization.component';
+import { AdvancedParameters } from '@/pages/instances/create/components/AdvancedParameters.component';
+import {
+  QuantitySelector,
+  quantitySchema,
+} from '@/pages/instances/create/components/QuantitySelector.component';
+import {
+  deploymentModesSchema,
+  DeploymentModeSelection,
+} from '@/pages/instances/create/components/deploymentMode/DeploymentModeSelection.component';
+import {
+  deploymentModesDefaultValue,
+  quantityDefaultValue,
+} from '@/components/cart/Cart.constants';
+import { PciCardShowcaseComponent } from '@/components/pciCard/PciCardShowcase.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
   name: nameSchema,
   quantity: quantitySchema,
+  deploymentModes: deploymentModesSchema,
   region: localizationSelectionSchema,
 });
 
@@ -47,6 +57,7 @@ const CreateInstance: FC = () => {
     defaultValues: {
       name: nameDefaultValue,
       quantity: quantityDefaultValue,
+      deploymentModes: deploymentModesDefaultValue,
       region: localizationDefaultValue,
     },
     mode: 'onChange',
@@ -81,14 +92,19 @@ const CreateInstance: FC = () => {
                 mandatory) Si besoin d’un texte d’introduction... .
               </Text>
             </article>
-            <AdvancedParameters />
             <Name />
+
+            <Localization />
+            <DeploymentModeSelection />
+            <LocalizationSelection />
+
+            <AdvancedParameters />
             <QuantitySelector
               quota={quantityHintParams.quota}
               type={quantityHintParams.type}
               region={quantityHintParams.region}
             />
-            <LocalizationSelection />
+            <PciCardShowcaseComponent />
           </section>
           <aside className="min-w-[320px] w-full max-w-[640px]">
             <CreationCart />
