@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
-import { applicationsBasePath, getAvailableApps } from './utils/AppUtils.mjs';
+import { applicationsBasePath, getReactApplications } from './utils/AppUtils.mjs';
 
 const args = process.argv.slice(2);
 const [command, ...restArgs] = args;
@@ -116,7 +116,7 @@ if (args.includes('--help') || args.includes('-h')) {
   process.exit(0);
 }
 if (args.includes('--list')) {
-  const apps = getAvailableApps();
+  const apps = getReactApplications();
   if (apps.length === 0) {
     console.log('⚠️  No apps found in packages/manager/apps');
   } else {
@@ -152,7 +152,7 @@ if (knownCommand.isAppRequired) {
     process.exit(1);
   }
 
-  const availableApps = getAvailableApps();
+  const availableApps = getReactApplications();
   if (!availableApps.includes(appName)) {
     console.error([
       `❌ App "${appName}" not found in:`,
