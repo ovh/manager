@@ -37,6 +37,8 @@
     "test:scripts": "make test",
     "preinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-preinstall.js",
     "postinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-postinstall.js",
+    "pm:add:app": "node ./packages/manager-tools/manager-pm/src/manager-pm-add-app.js",
+    "pm:remove:app": "node ./packages/manager-tools/manager-pm/src/manager-pm-remove-app.js",
     "pm:build": "manager-pm --type pnpm --action full-build",
     "pm:test": "manager-pm --type pnpm --action full-test",
     "pm:lint:tsx": "manager-pm --type pnpm --action full-lint",
