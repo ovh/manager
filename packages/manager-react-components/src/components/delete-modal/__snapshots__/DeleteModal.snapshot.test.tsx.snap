@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Delete Modal component > renders basic modal 1`] = `<DocumentFragment />`;
+
+exports[`Delete Modal component > renders closed modal 1`] = `<DocumentFragment />`;
+
+exports[`Delete Modal component > renders loading modal 1`] = `<DocumentFragment />`;
+
+exports[`Delete Modal component > renders modal with children content 1`] = `<DocumentFragment />`;
+
+exports[`Delete Modal component > renders modal with custom service type 1`] = `<DocumentFragment />`;
+
+exports[`Delete Modal component > renders modal with error 1`] = `<DocumentFragment />`;
