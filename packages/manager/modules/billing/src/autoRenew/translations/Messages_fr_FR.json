@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Renouvellement automatique",
   "billing_autorenew_service_status_manual": "Renouvellement manuel",
   "billing_autorenew_service_status_manualPayment": "Renouvellement manuel",
-  "billing_autorenew_service_status_pending_debt": "Facture à régler",
+  "billing_autorenew_service_status_unpaid": "Facture à régler",
   "billing_autorenew_service_status_delete_at_expiration": "Résiliation programmée",
   "billing_autorenew_service_status_expired": "Résilié",
   "billing_autorenew_service_expiration_weeks": "Expirant dans une semaine",

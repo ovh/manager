@@ -167,6 +167,7 @@
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
   "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra SQL Basic",
   "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
+  "billing_autorenew_service_status_unpaid": "Ausstehende Rechnung",
   "billing_description_details": "Verwalten Sie die Verlängerung, Zahlung und Kündigung Ihrer Dienste über diese Seite.",
   "billing_autorenew_service_date_us": "Ablaufdatum",
   "autorenew_service_actions_title": "Aktionen",
