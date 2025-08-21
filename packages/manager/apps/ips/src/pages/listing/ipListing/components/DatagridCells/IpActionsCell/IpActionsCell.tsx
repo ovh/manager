@@ -316,6 +316,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       variant={ODS_BUTTON_VARIANT.ghost}
       icon={ODS_ICON_NAME.ellipsisVertical}
       id={`actions-${parentId}-${isGroup ? 'block' : id}`}
+      isDisabled={isIpExpired}
     />
   );
 };
