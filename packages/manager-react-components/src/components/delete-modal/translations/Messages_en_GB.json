@@ -4,5 +4,6 @@
   "deleteModalDeleteButton": "Yes, cancel",
   "deleteModalDescription": "Cancelling your service will irretrievably erase all related data. Do you wish to cancel your service?",
   "deleteModalHeadline": "Cancel {{serviceType}}?",
-  "deleteModalHeadlineService": "the service"
+  "deleteModalHeadlineService": "the service",
+  "deleteModalAdditionalContent": "Additional information"
 }
