@@ -9,7 +9,7 @@ import {
   shouldRetryAfter404Error,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
-import { updateDashboardCache } from './useDashboard';
+import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 
 type TDashboardPollingArgs = {
   region: string;
@@ -31,13 +31,16 @@ export const useDashboardPolling = ({
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
       if (!instance) return;
-      const { task, actions, addresses, volumes, status } = instance;
+      const { task, actions, status } = instance;
+      const isDeleted = !task.isPending && status === 'DELETED';
+      const deletedInstance = { addresses: [], volumes: [] };
+      const newInstance = { id: instanceId, actions, status, task };
 
-      updateDashboardCache({
+      updateInstancesFromCache(queryClient, {
         projectId,
-        region,
-        instanceId,
-        payload: { actions, addresses, volumes, status, task },
+        instance: isDeleted
+          ? { ...newInstance, ...deletedInstance }
+          : newInstance,
       });
 
       if (!task.isPending) {
@@ -50,20 +53,17 @@ export const useDashboardPolling = ({
         );
       }
     },
-    [queryClient, projectId, clearNotifications, addSuccess, t],
+    [queryClient, projectId, instanceId, clearNotifications, addSuccess, t],
   );
 
   const handlePollingError = useCallback(
     (error: ApiError) => {
       if (error.response?.status === 404) {
-        updateDashboardCache({
+        updateInstancesFromCache(queryClient, {
           projectId,
-          region,
-          instanceId,
-          payload: {
+          instance: {
+            id: instanceId,
             actions: [],
-            addresses: new Map(),
-            volumes: [],
             status: 'DELETED',
             task: {
               isPending: false,
@@ -73,7 +73,7 @@ export const useDashboardPolling = ({
         });
       }
     },
-    [projectId, queryClient],
+    [projectId, queryClient, instanceId],
   );
 
   const pollingData = useInstancesPolling(
