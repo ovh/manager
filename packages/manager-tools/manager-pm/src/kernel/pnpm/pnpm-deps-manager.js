@@ -32,6 +32,7 @@ import { logger } from "../commons/log-manager.js";
 export async function linkPrivateDeps() {
   logger.info('🔍 Scanning for private packages...');
   const privatePackageDirs = await getPrivatePackages();
+  console.log('privatePackageDirs: ', privatePackageDirs);
   logger.info(`Found ${privatePackageDirs.length} private packages.`);
 
   for (const packageDir of privatePackageDirs) {

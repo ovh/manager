@@ -9,19 +9,19 @@
  *  5. Verify with `pnpm --version`.
  *  6. Handle errors gracefully with clear logs.
  */
-import { execSync } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
-import os from "node:os";
-import process from "node:process";
+import { execSync } from 'node:child_process';
+import { existsSync, mkdirSync } from 'node:fs';
+import os from 'node:os';
+import process from 'node:process';
 
 import {
   pnpmBinaryPath,
   pnpmExecutablePath,
   pnpmVersion,
   rootPackageJsonPath,
-} from "../../playbook/pnpm-config.js";
-import { removePackageManager, restorePackageManager } from "../commons/package-manager-utils.js";
-import { logger } from "../commons/log-manager.js";
+} from '../../playbook/pnpm-config.js';
+import { logger } from '../commons/log-manager.js';
+import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
 
 /**
  * Compute the final executable path for pnpm based on the current platform.
@@ -30,7 +30,7 @@ import { logger } from "../commons/log-manager.js";
  * @returns {string} Executable path string
  */
 function getPnpmExecutablePath(platform) {
-  return pnpmExecutablePath + (platform === "win32" ? ".exe" : "");
+  return pnpmExecutablePath + (platform === 'win32' ? '.exe' : '');
 }
 
 /**
@@ -42,14 +42,14 @@ function getPnpmExecutablePath(platform) {
  */
 function getReleaseBinaryName(platform, arch) {
   logger.info(`🔍 Resolving PNPM binary for platform=${platform}, arch=${arch}`);
-  if (platform === "darwin") {
-    return arch === "arm64" ? "pnpm-macos-arm64" : "pnpm-macos-x64";
+  if (platform === 'darwin') {
+    return arch === 'arm64' ? 'pnpm-macos-arm64' : 'pnpm-macos-x64';
   }
-  if (platform === "linux") {
-    return arch === "arm64" ? "pnpm-linux-arm64" : "pnpm-linux-x64";
+  if (platform === 'linux') {
+    return arch === 'arm64' ? 'pnpm-linux-arm64' : 'pnpm-linux-x64';
   }
-  if (platform === "win32") {
-    return "pnpm-win.exe";
+  if (platform === 'win32') {
+    return 'pnpm-win.exe';
   }
   throw new Error(`Unsupported platform: ${platform}-${arch}`);
 }
@@ -83,12 +83,12 @@ function installPnpmBinary() {
   logger.info(`📦 Saving to: ${outputPath}`);
 
   try {
-    execSync(`curl -fsSL "${pnpmBinaryUrl}" -o "${outputPath}"`, { stdio: "inherit" });
+    execSync(`curl -fsSL "${pnpmBinaryUrl}" -o "${outputPath}"`, { stdio: 'inherit' });
     logger.success(`✔ Downloaded PNPM binary to ${outputPath}`);
 
-    if (platform !== "win32") {
-      logger.info("🔑 Making binary executable...");
-      execSync(`chmod +x "${outputPath}"`, { stdio: "inherit" });
+    if (platform !== 'win32') {
+      logger.info('🔑 Making binary executable...');
+      execSync(`chmod +x "${outputPath}"`, { stdio: 'inherit' });
       logger.success(`✔ Permissions updated for ${outputPath}`);
     }
   } catch (err) {
@@ -107,7 +107,7 @@ function installPnpmBinary() {
  * so that Yarn does not interfere with pnpm execution.
  */
 export async function bootstrapPnpm() {
-  logger.info("⚡ Bootstrapping PNPM...");
+  logger.info('⚡ Bootstrapping PNPM...');
   const executablePath = getPnpmExecutablePath(os.platform());
 
   if (!existsSync(executablePath)) {
@@ -120,9 +120,9 @@ export async function bootstrapPnpm() {
   // --- Temporarily remove packageManager
   const removedValue = await removePackageManager(rootPackageJsonPath);
 
-  logger.info("🔎 Verifying PNPM binary with --version...");
+  logger.info('🔎 Verifying PNPM binary with --version...');
   try {
-    execSync(`${executablePath} --version`, { stdio: "inherit" });
+    execSync(`${executablePath} --version`, { stdio: 'inherit' });
     logger.success(`✅ PNPM binary is working at ${executablePath}`);
   } catch (err) {
     logger.error(
@@ -135,5 +135,5 @@ export async function bootstrapPnpm() {
     await restorePackageManager(rootPackageJsonPath, removedValue);
   }
 
-  logger.box("🎉 PNPM bootstrap complete!");
+  logger.info('🎉 PNPM bootstrap complete!');
 }
