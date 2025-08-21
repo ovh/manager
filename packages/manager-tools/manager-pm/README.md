@@ -1,195 +1,316 @@
-# manager-pm — Hybrid Yarn + PNPM orchestration for incremental adoption
 
-**manager-pm** lets a large monorepo run **Yarn Classic** and **PNPM** side‑by‑side during a staged migration.  
-It keeps Yarn in charge of its own apps, bootstraps a *pinned* PNPM locally for PNPM apps, and uses Turbo to build/test across **both** catalogs.
+# @ovh-ux/manager-pm — Hybrid Package Manager Orchestrator (Yarn + PNPM)
 
----
+**manager-pm** enables a large monorepo to run **Yarn** and **PNPM** side‑by‑side during an incremental migration.
+It keeps Yarn in control of legacy workspaces, bootstraps a **pinned** PNPM locally, installs PNPM‑migrated apps in isolation, and exposes unified dev/test/build commands over **both** catalogs (via Turbo and helper scripts).
 
-## Why this exists
-
-Big repos rarely switch package managers all at once. You need to migrate app‑by‑app without breaking the world:
-
-- Keep Yarn’s lockfile stable for legacy apps.
-- Allow selected apps to be installed and built with PNPM (local store, overrides, linked privates).
-- Run **Turbo** over *everything* as one graph.
-
-`manager-pm` provides that hybrid runtime in a **repeatable** and **idempotent** way.
+This README documents the complete **working flow**, **execution model**, **architecture**, **configuration**, and **CLI commands**.
 
 ---
 
-## High‑level flow
+## Goals & Non‑Goals
 
-```text
+### Goals
+- Migrate app‑by‑app from **Yarn** to **PNPM** without breaking the monorepo.
+- Keep Yarn’s lockfile and workflows stable for legacy apps.
+- Install PNPM apps with a **local** PNPM (pinned version), **local** store, and **normalized** dependency versions.
+- Provide repo‑wide `build`, `test`, `lint`, and `start` commands across **both** Yarn and PNPM apps.
+
+### Non‑Goals
+- Replacing the root package manager entirely — root remains Yarn‑driven during the migration.
+- Maintaining a global PNPM installation on developer machines or CI images — PNPM is bootstrapped locally per repo/job.
+
+---
+
+## High‑Level Architecture
+
+```
+Root (Yarn)                                   PNPM (per app)
+---------------------------                   --------------------------------
 yarn preinstall
   └─ manager-pm pre-install
-     └─ root package.json.workspaces.packages = Yarn-only
+     └─ root workspaces.packages = Yarn-only
 
 yarn install
-  └─ Yarn only sees/install Yarn apps
+  └─ Yarn sees & installs only Yarn apps
 
 yarn postinstall
   └─ manager-pm post-install
-     ├─ bootstrap PNPM (pinned binary → target/pnpm)
+     ├─ bootstrap PNPM (pinned → ./target/pnpm)
      ├─ build private packages (ensure dist/)
-     ├─ link private packages into PNPM local store
+     ├─ link private packages into local PNPM store (./target/.pnpm-store)
      ├─ for each PNPM-catalog app:
-     │    └─ installAppDeps(app) with a per-app temporary pnpm-workspace.yaml
+     │    └─ create temp pnpm-workspace.yaml → pnpm install
      └─ restore root workspaces.packages = (Yarn ∪ PNPM) merged
 
-developer tasks
-  ├─ manager-pm full-build → turbo run build (merged)
-  ├─ manager-pm full-test  → turbo run test  (merged)
-  └─ manager-pm full-lint  → yarn lint:tsx   (merged)
+developer tasks (merged view)
+  ├─ manager-pm full-build → turbo run build
+  ├─ manager-pm full-test  → turbo run test
+  └─ manager-pm full-lint  → lint across merged view
+```
+
+**Key properties**
+- Root stays Yarn‑driven; PNPM is **local** and used **only** for apps in the PNPM catalog.
+- Root lifecycle scripts are **no‑ops under PNPM/NPM** (detected via `npm_config_user_agent`) — no recursion when running PNPM in a migrated app.
+- After postinstall, `workspaces.packages` is restored to **merged** (Yarn ∪ PNPM) for Turbo and tooling.
+
+---
+
+## Repository Layout (package subset)
+
+```
+packages/manager-tools/manager-pm/
+├── bin/manager-pm.js               # CLI entry
+├── package.json                    # exposes "manager-pm" binary
+├── src/
+│   ├── manager-pm-preinstall.js    # Yarn preinstall wrapper (called by root scripts)
+│   ├── manager-pm-postinstall.js   # Yarn postinstall wrapper (called by root scripts)
+│   ├── playbook/
+│   │   ├── catalog/
+│   │   │   ├── yarn-catalog.json               # list of Yarn workspaces
+│   │   │   ├── pnpm-catalog.json               # list of PNPM workspaces
+│   │   │   └── pnpm-normalized-versions.json   # forced versions & link: overrides
+│   │   └── pnpm-config.js          # constants: paths, versions, store, etc.
+│   └── kernel/
+│       ├── pnpm/
+│       │   ├── pnpm-bootstrap.js        # downloads & verifies local PNPM binary
+│       │   ├── pnpm-deps-manager.js     # yarnPreInstall/yarnPostInstall + installAppDeps
+│       │   ├── pnpm-tasks-manager.js    # build/test/lint across merged view
+│       │   └── pnpm-start-app.js        # interactive start (container/standalone)
+│       └── commons/…                    # catalogs, logging, json, path, workspace utils
+```
+
+> **ESM vs CJS:** The sources use ESM `import` syntax. Ensure your repo is configured with `"type": "module"` at the package level, or rename the wrappers to `.mjs`. If you use CJS, convert imports to `require()`.
+
+---
+
+## Execution Flows
+
+### 1) Root Yarn install (with PNPM post‑install)
+
+1. **Preinstall (Yarn only)** → `yarnPreInstall()`
+  - Reads the **Yarn catalog** (`src/playbook/catalog/yarn-catalog.json`).
+  - Overwrites root `package.json` → `workspaces.packages = Yarn-only`.
+  - Ensures `yarn install` never traverses PNPM apps.
+
+2. **Yarn install** runs across the Yarn catalog only.
+
+3. **Postinstall (Yarn only)** → `yarnPostInstall()`
+  - **Bootstrap PNPM**: downloads a pinned binary to `./target/pnpm` and validates it.  
+    Temporarily removes `packageManager` at root to avoid tooling conflicts; restores it afterward.
+  - **Build private packages** (core/modules/components) so `dist/` exists.
+  - **Link private packages** into the local PNPM store `./target/.pnpm-store`.
+  - For each app in the **PNPM catalog**:
+    - Create a **temporary `pnpm-workspace.yaml`** with:
+      - `packages: ['.']`
+      - `overrides`: merge of private `link:` overrides and **normalized versions**.
+    - Run `pnpm install` in isolation (local store, no lockfile by default unless overridden).
+    - Clean up temp files; restore `packageManager` even on error.
+  - **Restore** root `workspaces.packages` to the **merged** view (Yarn ∪ PNPM).
+
+> **Safety:** Consider a `try/finally` inside the postinstall flow to *always* restore merged workspaces even if a PNPM app install fails.
+
+### 2) Per‑app PNPM install (inside a migrated app)
+
+- Developer runs `pnpm install` inside the app folder.
+- Root Yarn pre/post wrappers are **no‑ops** under PNPM; no recursion.
+
+### 3) Unified build/test/lint (Turbo + helpers)
+
+- **Build all apps:** `manager-pm --type pnpm --action full-build` → `turbo run build` over the merged view.
+- **Test all apps:**  `manager-pm --type pnpm --action full-test`  → `turbo run test`.
+- **Lint all apps:**  `manager-pm --type pnpm --action full-lint`  → runs configured lint scripts across the merged view.
+- **Single app:** `--action build|test|lint --app <name|path>` determines the Turbo filter.
+
+### 4) Interactive start (container or standalone)
+
+- `manager-pm --type pnpm --action start` prompts for app/region and spawns:
+  - **Container mode**:  
+    `VITE_CONTAINER_APP=<appId> turbo run start --filter=@ovh-ux/manager-container-app` and  
+    `CONTAINER=1 turbo run start --filter=<pkgName>`
+  - **Standalone mode**:  
+    `turbo run start --filter=<pkgName>`
+
+---
+
+## Configuration
+
+**File:** `src/playbook/pnpm-config.js`
+
+Key constants (adapt names/paths to your repo if they differ):
+
+```js
+export const pnpmVersion = "10.11.1";            // pinned PNPM
+export const pnpmBinaryPath = "<repo>/target/pnpm";
+export const pnpmExecutablePath = "<repo>/target/pnpm/pnpm";  // or pnpm.exe on Windows
+export const pnpmStorePath = "<repo>/target/.pnpm-store";
+
+export const managerRootPath = "<repo>";         // absolute path to repo root
+export const rootPackageJsonPath = "<repo>/package.json";
+
+// Catalog locations (make sure these point to 'catalog/', not 'apps/'):
+export const yarnAppsPlaybookPath = "<repo>/packages/manager-tools/manager-pm/src/playbook/catalog/yarn-catalog.json";
+export const pnpmAppsPlaybookPath = "<repo>/packages/manager-tools/manager-pm/src/playbook/catalog/pnpm-catalog.json";
+export const normalizedVersionsPath = "<repo>/packages/manager-tools/manager-pm/src/playbook/catalog/pnpm-normalized-versions.json";
+
+// Discovery and cleanup
+export const privateWorkspaces = [
+  "packages/manager/core",
+  "packages/manager/modules",
+  "packages/components"
+];
+export const cleanupDirectories = ["node_modules","dist",".turbo"];
+export const applicationsBasePath = "packages/manager/apps";
+
+// Optional
+export const containerPackageName = "@ovh-ux/manager-container-app";
+```
+
+> **Important:** If these three paths point to the wrong place, Yarn preinstall may set an **empty** workspace list and PNPM postinstall may fail to load normalized versions:
+> - `yarnAppsPlaybookPath`
+> - `pnpmAppsPlaybookPath`
+> - `normalizedVersionsPath`
+
+---
+
+## Catalogs
+
+**Yarn catalog** — `src/playbook/catalog/yarn-catalog.json`  
+List of Yarn‑managed workspaces, e.g.:
+```json
+[
+  "docs",
+  "packages/components/*",
+  "packages/manager/apps/account"
+]
+```
+
+**PNPM catalog** — `src/playbook/catalog/pnpm-catalog.json`  
+List of PNPM apps (paths), e.g.:
+```json
+[
+  "packages/manager/apps/zimbra"
+]
+```
+
+**Normalized versions** — `src/playbook/catalog/pnpm-normalized-versions.json`  
+Force `link:` and specific versions for PNPM installs, e.g.:
+```json
+{
+  "@ovh-ux/manager-core-utils": "link:../../../packages/manager/core/utils",
+  "@ovh-ux/manager-react-core-application": "link:../../../packages/manager/core/application",
+  "some-external-lib": "1.2.3"
+}
 ```
 
 ---
 
-## Features
+## CLI Reference
 
-- **Yarn‑only preinstall**: sets `workspaces.packages` to the Yarn catalog so Yarn won’t touch PNPM apps.
-- **Local PNPM bootstrap**: downloads a pinned PNPM binary into `target/pnpm` (no global install required).
-- **Private packages build + link**: builds internal packages (`dist/`) then links them into PNPM’s local store.
-- **Per‑app PNPM installs**: each PNPM app installs with its own temporary `pnpm-workspace.yaml`:
-  - `packages: ['.']`
-  - `overrides` for normalized versions + `link:` overrides to private packages
-  - local store at `target/.pnpm-store`
-- **Merged workspace for Turbo**: after postinstall, root `workspaces.packages` becomes `(Yarn ∪ PNPM)` so `turbo` sees the entire graph.
-- **Idempotent**: safe to run multiple times; temporary files and root `packageManager` field are restored.
+**Binary:** `manager-pm`  
+**Entry:** `bin/manager-pm.js`
+
+### Options
+- `--type <type>`: Package manager type (currently `pnpm`).
+- `--action <name>`: One of the actions listed below.
+- `--app <name|path>`: Target application (package name, folder name, or workspace path).
+- `--region <region>`: Region for `start` (default: `EU`).
+- `--container`: Enable container mode for `start` (boolean).
+
+### Actions
+
+| Action         | Needs `--app` | Description |
+|----------------|----------------|-------------|
+| `bootstrap`    | no             | Download & validate the pinned PNPM binary (idempotent). |
+| `add`          | yes            | Add an app (name or path) to the **PNPM** catalog (and remove from Yarn catalog). |
+| `remove`       | yes            | Remove an app from the PNPM catalog (rollback to Yarn). |
+| `install`      | yes            | Install dependencies for a PNPM-managed app (path or name). |
+| `build`        | yes            | Build a single app via Turbo (merged view). |
+| `test`         | yes            | Test a single app via Turbo (merged view). |
+| `lint`         | yes            | Lint a single app (merged view). |
+| `start`        | no             | Interactive app starter (prompts for app/region/container). |
+| `pre-install`  | no             | Set root `workspaces.packages` to **Yarn-only** (for `yarn install`). |
+| `post-install` | no             | Bootstrap PNPM → build+link privates → install PNPM apps → restore merged workspaces. |
+| `full-build`   | no             | Build **all** apps across Yarn + PNPM catalogs. |
+| `full-test`    | no             | Test **all** apps across Yarn + PNPM catalogs. |
+| `full-lint`    | no             | Lint **all** apps across Yarn + PNPM catalogs. |
+| `help`         | no             | Show help. |
+
+### Examples
+
+```bash
+# Bootstrap PNPM (downloads to ./target/pnpm)
+manager-pm --type pnpm --action bootstrap
+
+# Move an app to PNPM flow
+manager-pm --type pnpm --action add --app packages/manager/apps/zimbra
+
+# Install PNPM deps for one app
+manager-pm --type pnpm --action install --app packages/manager/apps/zimbra
+
+# Build/test/lint one app
+manager-pm --type pnpm --action build --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action test  --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action lint  --app packages/manager/apps/zimbra
+
+# Build/test/lint everything
+manager-pm --type pnpm --action full-build
+manager-pm --type pnpm --action full-test
+manager-pm --type pnpm --action full-lint
+
+# Manually run lifecycle (debugging only)
+manager-pm --type pnpm --action pre-install
+manager-pm --type pnpm --action post-install
+```
 
 ---
 
-## Requirements
+## Wiring The Root Scripts
 
-- **Node.js:** `^22` (matches monorepo `engines.node`)
-- **Yarn Classic:** `1.22.x`
-- **Turbo:** `^2.5.2` (already a devDependency in the monorepo)
-- **OS:** Linux/macOS (Windows works; see note under *Troubleshooting* regarding PNPM executable path)
+You can integrate lifecycle hooks in this way:
 
----
-
-## Install & wire‑up
-
-Install `manager-pm` as a dev dependency in the **root** of your monorepo (via registry or a local workspace).  
-Make sure the `manager-pm` binary is available to Yarn scripts.
-
-Add these scripts to **root `package.json`**:
-
+**Root `package.json`:**
 ```jsonc
 {
   "scripts": {
-    "preinstall": "manager-pm --type pnpm --action pre-install",
-    "postinstall": "manager-pm --type pnpm --action post-install",
-    "pm:build": "manager-pm --type pnpm --action full-build",
-    "pm:test": "manager-pm --type pnpm --action full-test",
-    "pm:lint:tsx": "manager-pm --type pnpm --action full-lint",
-    "pm:start": "manager-pm --type pnpm --action start"
+    "preinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-preinstall.js",
+    "postinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-postinstall.js"
   }
 }
 ```
 
 ---
 
-## Catalogs & configuration
-
-`manager-pm` reads two catalogs and merges them into `workspaces.packages` when needed:
-
-- **Yarn catalog**: list of Yarn‑managed workspace globs (e.g., legacy apps)
-- **PNPM catalog**: list of PNPM‑managed workspace paths (e.g., modernized apps)
-
-The catalog locations are provided by `getCatalogPaths()` in `src/kernel/commons/catalog-utils.ts`.  
-If your paths differ from the defaults, update `getCatalogPaths()` accordingly.
-
-**Private packages discovery**: `getPrivatePackages()` finds internal `private: true` packages (by default under `packages/manager/core`, `packages/manager/modules`, `packages/components`). Adjust if your layout changes.
-
-**Normalized versions**: `installAppDeps()` can apply normalized/override versions (e.g., `src/playbook/pnpm-normalized-versions`). Add or remove entries as your constraints evolve.
-
----
-
-## CLI usage
-
-```bash
-manager-pm --type pnpm --action <action> [--app <name-or-path>] [--region <code>] [--container]
-```
-
-**Options**
-- `--type`: only `pnpm` is supported today.
-- `--action`: one of the actions below.
-- `--app`: when an action needs a target app, pass its **path** (recommended).
-- `--region`: used by interactive `start` flow (default: `EU`).
-- `--container`: run inside a container (boolean).
-
-**Actions**
-
-| Action         | Needs `--app` | What it does |
-|----------------|----------------|--------------|
-| `bootstrap`    | no             | Download & validate the pinned PNPM binary (idempotent). |
-| `add`          | yes            | Add an app (by path or name) to the PNPM catalog. |
-| `remove`       | yes            | Remove an app (by path or name) from the PNPM catalog. |
-| `install`      | yes            | Install deps for a PNPM‑managed app (pass `--app` as **path**). |
-| `build`        | yes            | Build a single app using Turbo (merged catalogs). |
-| `test`         | yes            | Test a single app using Turbo (merged catalogs). |
-| `lint`         | yes            | Lint a single app using the shared runner. |
-| `start`        | no             | Interactively start an application (prompts). |
-| `pre-install`  | no             | Set root `workspaces.packages` to **Yarn‑only** (so Yarn installs only its apps). |
-| `post-install` | no             | Bootstrap PNPM → build+link privates → install PNPM apps → restore merged workspaces. |
-| `full-build`   | no             | Build **all** apps across merged Yarn + PNPM catalogs. |
-| `full-test`    | no             | Test **all** apps across merged Yarn + PNPM catalogs. |
-| `full-lint`    | no             | Lint **all** apps across merged Yarn + PNPM catalogs. |
-
----
-
-## Typical workflows
+## Developer Workflows
 
 **Fresh clone**
-
 ```bash
-yarn            # triggers preinstall/postinstall automatically
-yarn pm:build   # turbo run build across merged catalogs
-yarn pm:test    # turbo run test across merged catalogs
-yarn pm:lint:tsx
+yarn install
+# Preinstall → Yarn-only workspaces
+# Yarn install → legacy/Yarn apps
+# Postinstall → PNPM bootstrap + per-app installs, merged workspaces restored
 ```
 
-**Migrate an app to PNPM**
-
+**Move an app to PNPM**
 ```bash
-# add an app to PNPM catalog (path or name, depending on your impl)
-manager-pm --type pnpm --action add --app packages/manager/apps/zimbra
-
-# ensure PNPM is ready and privates are linked
-manager-pm --type pnpm --action bootstrap
-manager-pm --type pnpm --action install --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action add --app packages/manager/apps/<app>
+yarn install
 ```
 
-**Develop**
-
+**Rollback an app to Yarn**
 ```bash
-# Single app flows (merged view still in effect after postinstall)
-manager-pm --type pnpm --action build --app packages/manager/apps/zimbra
-manager-pm --type pnpm --action test  --app packages/manager/apps/zimbra
-manager-pm --type pnpm --action lint  --app packages/manager/apps/zimbra
+manager-pm --type pnpm --action remove --app packages/manager/apps/<app>
+yarn install
 ```
 
----
-
-## CI integration (example)
-
-```yaml
-steps:
-  - run: yarn --frozen-lockfile
-  - run: yarn pm:build
-  - run: yarn pm:test
-  - run: yarn pm:lint:tsx
+**Start an app (interactive)**
+```bash
+manager-pm --type pnpm --action start
 ```
 
----
-
-## Contributing
-
-- Core code: `src/kernel/pnpm/*`, `src/kernel/commons/*`, `src/playbook/*`, `bin/manager-pm.js`.
-- Keep temporary workspace files ephemeral and always restore `packageManager` on the root.
-
----
-
-## License
-
-BSD-3-Clause (same as the monorepo).
+**Build/test/lint everything**
+```bash
+manager-pm --type pnpm --action full-build
+manager-pm --type pnpm --action full-test
+manager-pm --type pnpm --action full-lint
+```

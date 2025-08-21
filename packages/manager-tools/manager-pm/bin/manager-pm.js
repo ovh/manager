@@ -2,16 +2,12 @@
 import { program } from 'commander';
 import process from 'process';
 
-// Import from JS source (not dist)
 import { addAppToPnpm, removeAppFromPnpm } from '../src/kernel/pnpm/pnpm-apps-manager.js';
 import { bootstrapPnpm } from '../src/kernel/pnpm/pnpm-bootstrap.js';
-import { installAppDeps } from '../src/kernel/pnpm/pnpm-deps-manager.js';
+import { installAppDeps, yarnPostInstall, yarnPreInstall } from '../src/kernel/pnpm/pnpm-deps-manager.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
 import { buildAll, buildApp, lintAll, lintApp, testAll, testApp } from '../src/kernel/pnpm/pnpm-tasks-manager.js';
 
-// Reuse lifecycle orchestrators
-import { yarnPreInstall } from '../src/manager-pm-preinstall.js';
-import { yarnPostInstall } from '../src/manager-pm-postinstall.js';
 import { logger } from '../src/kernel/commons/log-manager.js';
 
 const actions = {
