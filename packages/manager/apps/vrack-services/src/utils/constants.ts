@@ -9,6 +9,24 @@ export const CHANGELOG_LINKS: ChangelogLinks = {
     'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
+export const LEVEL2 = {
+  EU: {
+    config: {
+      level2: '57',
+    },
+  },
+  CA: {
+    config: {
+      level2: '57',
+    },
+  },
+  US: {
+    config: {
+      level2: '57',
+    },
+  },
+};
+
 export const TRANSLATION_NAMESPACES = {
   regionSelector: 'region-selector',
   associate: 'vrack-services/associate',
