@@ -83,5 +83,5 @@
   "kube_add_node_pool_name_title": "Assegna un nome al tuo pool di nodi",
   "kube_add_plan_content_unavailable_1AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 1-AZ. Per utilizzare il piano {{ plan }}, seleziona il deploy in 3-AZ.",
   "kube_add_plan_content_unavailable_3AZ_banner": "Il piano {{ plan }} non è ancora disponibile nelle Region 3-AZ. Per utilizzare il piano {{ plan }}, seleziona un deploy in 1-AZ.",
-  "kube_add_name_title": "Assegna un nome al pool di nodi"
+  "kube_add_name_title": "Assegna un nome al tuo pool di nodi"
 }

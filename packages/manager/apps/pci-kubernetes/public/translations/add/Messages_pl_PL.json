@@ -83,5 +83,5 @@
   "kube_add_node_pool_name_title": "Nadaj nazwę puli węzłów",
   "kube_add_plan_content_unavailable_1AZ_banner": "Oferta {{plan}} nie jest jeszcze dostępna w regionach 1-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 3-AZ.",
   "kube_add_plan_content_unavailable_3AZ_banner": "Oferta {{plan}} nie jest jeszcze dostępna w regionach 3-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 1-AZ.",
-  "kube_add_name_title": "Nazwij pulę węzłów"
+  "kube_add_name_title": "Nadaj nazwę puli węzłów"
 }
