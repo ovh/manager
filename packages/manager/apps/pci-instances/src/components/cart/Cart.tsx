@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { GenericCart, TCartProduct } from './genericCart/GenericCart';
 import { TInstanceCreationForm } from '@/pages/instances/create/CreateInstance.page';
 import { TInstance } from '@/types/instance/entity.type';
-import { quantityDefaultValue } from '@/pages/instances/create/components/QuantitySelector';
+import { quantityDefaultValue } from "@/pages/instances/create/components/QuantitySelector.component";
 
 export const Cart = () => {
   const { control } = useFormContext<TInstanceCreationForm>();

@@ -10,5 +10,6 @@
   "pci_instances_common_pending": "Wird ausgeführt...",
   "pci_instances_common_search": "Suchen",
   "pci_instances_common_instance_title": "Instanz",
-  "pci_instances_common_instance_name": "Name der Instanz"
+  "pci_instances_common_instance_name": "Name der Instanz",
+  "pci_instances_common_help": "Hilfe"
 }
