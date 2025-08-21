@@ -100,7 +100,9 @@ describe('resourcesDatagrid Component', async () => {
   it('Should display empty list', async () => {
     const { getByText } = renderComponent({});
 
-    expect(getByText('noResourceAvailableForTagging')).toBeInTheDocument();
+    expect(
+      getByText('tag-manager:noResourceAvailableForTagging'),
+    ).toBeInTheDocument();
   });
 
   it('Should display resources list', async () => {
@@ -113,7 +115,9 @@ describe('resourcesDatagrid Component', async () => {
     const { getByText, getAllByText } = renderComponent({});
 
     expect(getByText('r1')).toBeInTheDocument();
-    expect(getAllByText('dedicatedServer').length).toBe(3);
+    expect(
+      getAllByText('resource-type:iam_resource_type_dedicatedServer').length,
+    ).toBe(3);
   });
 
   it('Should use custom topbar', async () => {
