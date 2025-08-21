@@ -9,7 +9,7 @@ import { App } from './App';
 import './index.scss';
 import './vite-hmr';
 import { getTrackingContext } from './utils/tracking';
-import { TRANSLATION_NAMESPACES } from './utils/constants';
+import { LEVEL2, TRANSLATION_NAMESPACES } from './utils/constants';
 
 const init = async ({ appName }: { appName: string }) => {
   const context = await initShellContext(appName, getTrackingContext(appName));
@@ -19,6 +19,14 @@ const init = async ({ appName }: { appName: string }) => {
     defaultNS: appName,
     ns: [TRANSLATION_NAMESPACES.common, TRANSLATION_NAMESPACES.listing],
   });
+
+  const region = context.environment.getRegion();
+  context.shell.tracking.setConfig(region, LEVEL2);
+  try {
+    await import(`./config-${region}.js`);
+  } catch (error) {
+    // nothing to do
+  }
 
   const rootElement = document.getElementById('ovh-app');
   const root = ReactDOM.createRoot(rootElement);
