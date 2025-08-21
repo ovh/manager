@@ -139,6 +139,19 @@ export default class PciInstancesAddController {
       },
     );
 
+    const updateShowActivateRegionWarning = () => {
+      this.showDistantBackupActivateRegionWarning =
+        this.automatedBackup.distantSnapshot &&
+        this.shouldEnableDistantBackupRegion(
+          this.automatedBackup.distantRegion,
+        );
+    };
+
+    $scope.$watch(
+      '$ctrl.automatedBackup.distantRegion',
+      updateShowActivateRegionWarning,
+    );
+
     this.floatingIpPriceFormatter = new Intl.NumberFormat(
       this.user.language.replace('_', '-'),
       {
@@ -599,12 +612,9 @@ export default class PciInstancesAddController {
     }, 0);
   }
 
-  addRegions() {
+  addRegion(region) {
     return this.OvhApiCloudProjectRegion.v6()
-      .addRegion(
-        { serviceName: this.projectId },
-        { region: this.model.datacenter.name },
-      )
+      .addRegion({ serviceName: this.projectId }, { region })
       .$promise.then(() => {
         return this.$q.all([
           this.OvhApiCloudProjectRegion.AvailableRegions()
@@ -614,8 +624,7 @@ export default class PciInstancesAddController {
             this.projectId,
             this.catalogEndpoint,
           ).then((snapshotAvailability) => {
-            this.snapshotAvailability[this.model.datacenter.name] =
-              snapshotAvailability[this.model.datacenter.name];
+            this.snapshotAvailability[region] = snapshotAvailability[region];
           }),
         ]);
       })
@@ -624,7 +633,7 @@ export default class PciInstancesAddController {
           this.$translate.instant(
             'pci_projects_project_regions_add_region_success',
             {
-              code: this.model.datacenter.name,
+              code: region,
             },
           ),
           'pci.projects.project.instances.add-region',
@@ -667,7 +676,7 @@ export default class PciInstancesAddController {
       ]);
       this.isLoading = true;
       this.isAddingNewRegion = true;
-      return this.addRegions().then(() => {
+      return this.addRegion(this.model.datacenter.name).then(() => {
         return this.PciProjectsProjectInstanceService.getProjectQuota(
           this.projectId,
           this.model.datacenter.name,
@@ -855,6 +864,48 @@ export default class PciInstancesAddController {
         ),
       };
     }
+
+    this.distantBackupRegions = [];
+    this.$q
+      .when(
+        this.PciProjectsProjectInstanceService.getDistantBackupAvailableRegions(
+          this.projectId,
+          this.instance.region,
+        ),
+      )
+      .then((regions) => {
+        this.distantBackupRegions = regions
+          .map((r) => {
+            let badgeClass = '';
+            let badgeName = '';
+
+            if (r.type === THREE_AZ_REGION) {
+              badgeClass = 'oui-3az';
+              badgeName = 'pci_project_flavors_zone_3az_region';
+            } else if (r.type === ONE_AZ_REGION) {
+              badgeClass = 'oui-1az';
+              badgeName = 'pci_project_flavors_zone_global_region';
+            } else if (r.type === LOCAL_ZONE_REGION) {
+              badgeClass = 'oui-localzone';
+              badgeName = 'pci_project_flavors_zone_localzone';
+            }
+
+            return {
+              ...r,
+              badgeClass,
+              badgeName,
+            };
+          })
+          .sort((a, b) => a.microRegion.text.localeCompare(b.microRegion.text));
+
+        if (
+          this.automatedBackup.distantSnapshot &&
+          !this.distantBackupRegions.length
+        ) {
+          this.automatedBackup.distantSnapshot = false;
+        }
+      });
+
     if (!isEmpty(this.model.datacenter)) {
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
@@ -882,6 +933,18 @@ export default class PciInstancesAddController {
       }
     }
     return this.$q.when();
+  }
+
+  getDistantRegionGroup(region) {
+    return region.continent;
+  }
+
+  shouldEnableDistantBackupRegion(regionName) {
+    if (!regionName) return false;
+
+    const region = this.distantBackupRegions.find((r) => r.name === regionName);
+
+    return !!region && !region.enabled;
   }
 
   formatBackupMonthlyPrice(price) {
@@ -1051,6 +1114,20 @@ export default class PciInstancesAddController {
       'configure_instance',
       `add_${this.model.number}`,
     ]);
+
+    if (
+      this.automatedBackup.distantSnapshot &&
+      this.shouldEnableDistantBackupRegion(this.automatedBackup.distantRegion)
+    ) {
+      this.isLoading = true;
+      this.isAddingNewRegion = true;
+      this.$q
+        .when(this.addRegion(this.automatedBackup.distantRegion))
+        .then(() => {
+          this.isAddingNewRegion = false;
+          this.isLoading = false;
+        });
+    }
   }
 
   onModeFocus() {
@@ -1488,6 +1565,9 @@ export default class PciInstancesAddController {
       this.instance.autobackup = {
         cron: `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`,
         rotation: schedule.rotation,
+        distantRegionName: this.automatedBackup.distantSnapshot
+          ? this.automatedBackup.distantRegion
+          : undefined,
       };
     }
 
