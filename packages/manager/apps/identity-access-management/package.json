@@ -41,7 +41,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.0",
+    "@ovh-ux/manager-core-test-utils": "^0.5.0",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query-devtools": "^5.51.21",
