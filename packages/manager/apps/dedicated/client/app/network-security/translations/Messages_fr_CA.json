@@ -18,6 +18,8 @@
   "network_security_dashboard_filter_24_hours": "24 heures",
   "network_security_dashboard_filter_7_days": "7 jours",
   "network_security_dashboard_filter_14_days": "14 jours",
+  "network_security_dashboard_filter_1_month": "1 mois",
+  "network_security_dashboard_filter_2_months": "2 mois",
   "network_security_dashboard_filter_day": "Jour",
   "network_security_dashboard_filter_week": "Semaine",
   "network_security_dashboard_filter_month": "Mois",
@@ -65,6 +67,6 @@
   "network_security_dashboard_like_this_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
   "network_security_dashboard_refresh": "Raffraîchir les données",
   "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})",
-  "network_security_dashboard_warning_period": "Attention: les données demandées ne sont pas disponibles. Veuillez noter que la durée de conservation des données de trafic est de 14 jours.",
+  "network_security_dashboard_warning_period": "Attention : les données demandées ne sont pas disponibles car la durée de conservation des données de trafic est dépassée.",
   "network_security_dashboard_warning_default": "Le graphique du trafic récent sera affiché à la place pour l'adresse IP sélectionnée."
 }
