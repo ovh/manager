@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+## test a merge
 RELEASE_NOTE=""
 DRY_RELEASE=false
 
