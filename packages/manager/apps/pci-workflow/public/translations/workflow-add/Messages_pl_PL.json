@@ -76,5 +76,8 @@
   "pci_projects_project_workflow_instance_status_RESUMING": "Trwa wznawianie",
   "pci_workflow_create_price_monthly": "~ {{price}} netto/m-c/GB",
   "pci_workflow_create_monthly_backup_price": "Każda kopia zapasowa będzie płatna: {{ price }} netto/m-c/GB",
-  "pci_projects_project_workflow_instance_status_IS_IOPS": "Usługa automatyczne kopie zapasowe ma zastosowanie wyłącznie w odniesieniu do danych znajdujących się na dysku lokalnym Twojej instancji. Nie będą tworzone kopie zapasowe danych znajdujących się na dyskach NVMe."
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "Usługa automatyczne kopie zapasowe ma zastosowanie wyłącznie w odniesieniu do danych znajdujących się na dysku lokalnym Twojej instancji. Nie będą tworzone kopie zapasowe danych znajdujących się na dyskach NVMe.",
+  "pci_workflow_create_distant_label": "Dodaj zdalny backup",
+  "pci_workflow_create_distant_region_label": "Wybierz lokalizację",
+  "pci_workflow_create_distant_region_enable_warning": "Wybrana lokalizacja nie jest aktywna. Aby dodać ją do Twojego projektu Public Cloud, kliknij „Utwórz”."
 }
