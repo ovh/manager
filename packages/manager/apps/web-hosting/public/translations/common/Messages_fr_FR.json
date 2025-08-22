@@ -29,6 +29,7 @@
   "web_hosting_status_header_git": "Git",
   "web_hosting_status_header_diagnostic": "Diagnostic",
   "web_hosting_status_header_offer": "Offre",
+  "web_hosting_status_header_quota": "Quota",
   "web_hosting_status_header_serviceName": "Nom du service",
   "web_hosting_status_header_resource": "Ressource",
   "web_hosting_status_header_displayName": "Nom d'affichage",

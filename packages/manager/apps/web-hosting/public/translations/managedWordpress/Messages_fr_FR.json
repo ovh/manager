@@ -21,5 +21,6 @@
   "web_hosting_managed_wordpress_create_webiste_language_admin": "Langue du compte administrateur",
   "web_hosting_managed_wordpress_create_webiste_select_language": "Sélection de la langue",
   "web_hosting_managed_wordpress_create_webiste_create_login": "Créer vos identifiants de connexion",
-  "web_hosting_managed_wordpress_import_success_message": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches."
+  "web_hosting_managed_wordpress_import_success_message": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches.",
+  "web_hosting_managed_wordpress_quota_used": "{{used}} / {{total}} sites internet"
 }
