@@ -27,6 +27,8 @@ import {
 } from '@secret-manager/mocks/secrets/secrets.handler';
 import { getLocationsMock } from '@secret-manager/mocks/locations/secrets.handler';
 import {
+  getVersionMock,
+  GetVersionMockParams,
   getVersionsMock,
   GetVersionsMockParams,
 } from '@secret-manager/mocks/versions/versions.handler';
@@ -69,22 +71,25 @@ import { TestApp } from './TestApp';
 let context: ShellContextType;
 let i18nValue: i18n;
 
+export type RenderTestMockParams = GetOkmsMocksParams &
+  GetServiceKeysMockParams &
+  GetCredentialsMockParams &
+  GetServicesMocksParams &
+  GetFeatureAvailabilityMocksParams &
+  GetCatalogKmsMocksParams &
+  GetReferenceMockParams &
+  GetIamAuthorizationMockParams &
+  DeleteCredentialsMockParams &
+  CreateCredentialsMockParams &
+  GetSecretsMockParams &
+  GetSecretMockParams &
+  CreateSecretsMockParams &
+  GetVersionsMockParams &
+  GetVersionMockParams;
+
 export const renderTestApp = async (
   initialRoute = '/',
-  mockParams: GetOkmsMocksParams &
-    GetServiceKeysMockParams &
-    GetCredentialsMockParams &
-    GetServicesMocksParams &
-    GetFeatureAvailabilityMocksParams &
-    GetCatalogKmsMocksParams &
-    GetReferenceMockParams &
-    GetIamAuthorizationMockParams &
-    DeleteCredentialsMockParams &
-    CreateCredentialsMockParams &
-    GetSecretsMockParams &
-    GetSecretMockParams &
-    CreateSecretsMockParams &
-    GetVersionsMockParams = {},
+  mockParams: RenderTestMockParams = {},
 ) => {
   global.server?.resetHandlers(
     ...toMswHandlers(
@@ -110,6 +115,7 @@ export const renderTestApp = async (
         ...getSecretMock(mockParams),
         ...createSecretsMock(mockParams),
         ...getVersionsMock(mockParams),
+        ...getVersionMock(mockParams),
       ]),
     ),
   );

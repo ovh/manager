@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   BaseLayout,
   Datagrid,
@@ -8,7 +8,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   SECRET_MANAGER_ROUTES_URLS,
@@ -93,6 +93,9 @@ export default function SecretListingPage() {
           }
         />
       </div>
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }

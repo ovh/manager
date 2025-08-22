@@ -31,6 +31,9 @@ const SecretGeneralInformation = React.lazy(() =>
 const SecretVersions = React.lazy(() =>
   import('@/modules/secret-manager/pages/dashboard/versions/Versions.page'),
 );
+const SecretValueDrawer = React.lazy(() =>
+  import('@/modules/secret-manager/pages/valueDrawer/ValueDrawer.page'),
+);
 const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/create/Create.page'),
 );
@@ -67,12 +70,22 @@ export default (
       Component={SecretDomains}
     />
     <Route path={SECRET_MANAGER_URL_PARAMS.domainId}>
-      <Route index Component={SecretListing} />
+      <Route path={''} Component={SecretListing}>
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
+          Component={SecretValueDrawer}
+        />
+      </Route>
       <Route
         path={SECRET_MANAGER_URL_PARAMS.secretPath}
         Component={SecretDashboard}
       >
-        <Route index Component={SecretGeneralInformation} />
+        <Route path={''} Component={SecretGeneralInformation}>
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.value}
+            Component={SecretValueDrawer}
+          />
+        </Route>
         <Route
           path={SECRET_MANAGER_ROUTES_URIS.versions}
           Component={SecretVersions}
