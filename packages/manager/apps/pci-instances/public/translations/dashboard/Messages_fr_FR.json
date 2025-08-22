@@ -1,5 +1,5 @@
 {
-  "pci_instances_dashboard_edit_name_error_message": "Nous n'avons pas pu modifier le nom de votre instance",
+  "pci_instances_dashboard_edit_name_error_message": "Le renommage de l'instance a échoué, merci de recommencer dans quelques instants",
   "pci_instances_dashboard_tab_info_title": "Informations générales",
   "pci_instances_dashboard_tab_vnc_title": "Console VNC",
   "pci_instances_dashboard_info_title": "Informations",

@@ -75,7 +75,9 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent onClick={() => setOpen(false)}>{children}</PopoverContent>
+      <PopoverContent withArrow onClick={() => setOpen(false)}>
+        {children}
+      </PopoverContent>
     </Popover>
   );
 };

@@ -4,7 +4,6 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  Clipboard,
   Links,
   LinkType,
   TileBlock,
@@ -14,6 +13,11 @@ import { useHref } from 'react-router-dom';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
+import {
+  Clipboard,
+  ClipboardControl,
+  ClipboardTrigger,
+} from '@ovhcloud/ods-react';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const InstancePropertyBlock: FC = () => {
@@ -125,7 +129,12 @@ const InstancePropertyBlock: FC = () => {
       )}
       {instance?.login && (
         <TileBlock label={t('pci_instances_dashboard_network_connexion')}>
-          <Clipboard value={instance.login} />
+          <div className="flex">
+            <Clipboard className="flex-grow" value={instance.login}>
+              <ClipboardControl className="w-full" />
+              <ClipboardTrigger />
+            </Clipboard>
+          </div>
         </TileBlock>
       )}
     </DashboardCardLayout>
