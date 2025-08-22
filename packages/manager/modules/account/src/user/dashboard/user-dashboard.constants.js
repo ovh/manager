@@ -50,7 +50,7 @@ export const USER_DASHBOARD_SHORTCUTS = [
   {
     key: 'ALL_AGREEMENTS',
     url: {
-      baseURL: 'new-billing',
+      baseURL: 'billing',
       path: '#/autorenew/agreements',
     },
     regions: ['EU', 'CA'],
