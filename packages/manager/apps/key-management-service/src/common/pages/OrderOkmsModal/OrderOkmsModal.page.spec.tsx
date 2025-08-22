@@ -2,9 +2,8 @@ import React from 'react';
 import { i18n } from 'i18next';
 import { AxiosResponse } from 'axios';
 import { I18nextProvider } from 'react-i18next';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import {
   ShellContext,
@@ -27,6 +26,11 @@ import {
   ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
 } from './OrderOkmsModal.page.constants';
 import { OrderOkmsModalProvider } from './OrderOkmsModalContext';
+import {
+  renderWithClient,
+  promiseWithDelayMock,
+  wait,
+} from '@/utils/tests/testUtils';
 
 let i18nValue: i18n;
 
@@ -53,23 +57,45 @@ const mockedContracts: Contract[] = [
 
 const navigate = vi.fn();
 
+// Mock modules at the top level
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useNavigate: () => navigate,
+    useParams: () => ({ region: mockedRegion }),
+  };
+});
+
+vi.mock('@ovh-ux/manager-module-order', async (importOriginal) => {
+  const module: typeof import('@ovh-ux/manager-module-order') = await importOriginal();
+  return {
+    ...module,
+    createCart: vi.fn(),
+    postOrderCartCartIdCheckout: vi.fn(),
+  };
+});
+
+// Declare mocked functions with proper types
+const mockedCreateCart = vi.mocked(createCart);
+const mockedPostOrderCartCartIdCheckout = vi.mocked(
+  postOrderCartCartIdCheckout,
+);
+
 const renderOrderOkmsModal = async () => {
-  const queryClient = new QueryClient();
   if (!i18nValue) {
     i18nValue = await initTestI18n();
   }
 
-  return render(
+  return renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <QueryClientProvider client={queryClient}>
-        <ShellContext.Provider
-          value={(shellContext as unknown) as ShellContextType}
-        >
-          <OrderOkmsModalProvider>
-            <OrderOkmsModal />
-          </OrderOkmsModalProvider>
-        </ShellContext.Provider>
-      </QueryClientProvider>
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
+        <OrderOkmsModalProvider>
+          <OrderOkmsModal />
+        </OrderOkmsModalProvider>
+      </ShellContext.Provider>
     </I18nextProvider>,
   );
 };
@@ -90,60 +116,62 @@ const clickOnConfirmButton = async (user: UserEvent) => {
   const confirmButton = screen.getByTestId(
     ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
   );
+
   await waitFor(() => {
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
   await act(() => user.click(confirmButton));
+
   return confirmButton;
 };
 
 describe('Order Okms Modal test suite', () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
-    vi.mock('react-router-dom', async (importOriginal) => {
-      const module: typeof import('react-router-dom') = await importOriginal();
-      return {
-        ...module,
-        useNavigate: () => navigate,
-        useParams: () => ({ region: mockedRegion }),
-      };
+    // Reset all mocks before each test to ensure clean state
+    vi.clearAllMocks();
+
+    // Set default implementations that work for most tests
+    mockedCreateCart.mockResolvedValue({
+      cartId: 'cart-id',
+      contractList: mockedContracts,
     });
 
-    vi.mock('@ovh-ux/manager-module-order', async (importOriginal) => {
-      const module: typeof import('@ovh-ux/manager-module-order') = await importOriginal();
-      return {
-        ...module,
-        createCart: vi.fn(),
-        postOrderCartCartIdCheckout: vi.fn(),
-      };
-    });
+    mockedPostOrderCartCartIdCheckout.mockResolvedValue(
+      {} as AxiosResponse<Order>,
+    );
   });
+
   afterEach(() => {
+    // Clean up after each test
     vi.clearAllMocks();
   });
 
   describe('on init', () => {
     it('should display a loading state when creating a cart', async () => {
-      // GIVEN
-      vi.mocked(createCart).mockImplementation(() => new Promise(() => {}));
+      // GIVEN - Override the default mock with a delayed one to ensure loading state is visible
+      mockedCreateCart.mockImplementationOnce(() =>
+        promiseWithDelayMock(
+          { cartId: 'cart-id', contractList: mockedContracts },
+          1000,
+        ),
+      );
 
       // WHEN
       await renderOrderOkmsModal();
 
       // THEN
-      await waitFor(() => {
-        expect(
-          screen.getByTestId(ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID),
-        ).toBeVisible();
-      });
+      await waitFor(
+        () => {
+          expect(
+            screen.getByTestId(ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID),
+          ).toBeVisible();
+        },
+        { timeout: 5000, interval: 200 },
+      );
     });
 
     it('should display terms and conditions on cart successful creation', async () => {
-      // GIVEN
-      vi.mocked(createCart).mockResolvedValueOnce({
-        cartId: 'cart-id',
-        contractList: [],
-      });
+      // GIVEN - Use default mock (no need to override)
 
       // WHEN
       await renderOrderOkmsModal();
@@ -157,7 +185,7 @@ describe('Order Okms Modal test suite', () => {
     it('should display a notification and a retry button on error', async () => {
       // GIVEN
       const mockError = new Error('Failed to create cart');
-      vi.mocked(createCart).mockRejectedValue(mockError);
+      mockedCreateCart.mockRejectedValueOnce(mockError);
 
       // WHEN
       await renderOrderOkmsModal();
@@ -179,15 +207,9 @@ describe('Order Okms Modal test suite', () => {
   });
 
   describe('on terms and conditions', () => {
-    beforeEach(() => {
-      vi.mocked(createCart).mockResolvedValue({
-        cartId: 'cart-id',
-        contractList: mockedContracts,
-      });
-    });
-
     it('should display terms and conditions', async () => {
-      // GIVEN
+      // GIVEN - Use default mock
+
       // WHEN
       await renderOrderOkmsModal();
 
@@ -240,10 +262,11 @@ describe('Order Okms Modal test suite', () => {
     it('should show a loading button on confirmation', async () => {
       const user = userEvent.setup();
 
-      // GIVEN
-      vi.mocked(postOrderCartCartIdCheckout).mockImplementation(
-        () => new Promise(() => {}),
+      // GIVEN - Override checkout mock with delay to ensure loading state is visible
+      mockedPostOrderCartCartIdCheckout.mockImplementationOnce(() =>
+        promiseWithDelayMock({} as AxiosResponse<Order>, 2000),
       );
+
       await renderOrderOkmsModal();
       await assertTextVisibility(
         labels.secretManager.create.create_domain_tc_title,
@@ -251,22 +274,21 @@ describe('Order Okms Modal test suite', () => {
 
       // WHEN
       await clickOnConfirmCheckbox();
+      // Small wait to ensure state updates
+      // Fails intermittently without this - button click does not always works
+      await wait(500);
       const confirmButton = await clickOnConfirmButton(user);
 
-      // THEN
+      // THEN - Test loading state
       await waitFor(() => {
         expect(confirmButton).toHaveAttribute('is-loading', 'true');
       });
     });
 
-    // TODO: Investigate why this test fails randomly in the CI environment.
-    it.skip('should close the modal on success', async () => {
+    it('should close the modal on success', async () => {
       const user = userEvent.setup();
-      // GIVEN
-      vi.mocked(postOrderCartCartIdCheckout).mockResolvedValueOnce(
-        {} as AxiosResponse<Order>,
-      );
 
+      // GIVEN - Use fast default mock
       await renderOrderOkmsModal();
       await assertTextVisibility(
         labels.secretManager.create.create_domain_tc_title,
@@ -274,22 +296,30 @@ describe('Order Okms Modal test suite', () => {
 
       // WHEN
       await clickOnConfirmCheckbox();
+      // Small wait to ensure state updates
+      // Fails intermittently without this - button click does not always works
+      await wait(500);
       await clickOnConfirmButton(user);
 
       // THEN
-      await waitFor(() => {
-        expect(navigate).toHaveBeenCalledTimes(1);
-      });
+      await waitFor(
+        () => {
+          expect(navigate).toHaveBeenCalledTimes(1);
+        },
+        { timeout: 5000 },
+      );
       expect(navigate).toHaveBeenCalledWith('..');
     });
 
     it('should display a notification on error', async () => {
       const user = userEvent.setup();
+
       // GIVEN
       const mockError = {
         response: { data: { message: 'Failed to submit order' } },
       };
-      vi.mocked(postOrderCartCartIdCheckout).mockRejectedValueOnce(mockError);
+
+      mockedPostOrderCartCartIdCheckout.mockRejectedValueOnce(mockError);
 
       await renderOrderOkmsModal();
       await assertTextVisibility(
