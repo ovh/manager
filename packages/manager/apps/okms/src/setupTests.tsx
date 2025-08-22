@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+import React from 'react';
 import { SetupServer, setupServer } from 'msw/node';
 import {
   toMswHandlers,
@@ -43,4 +45,18 @@ afterAll(() => {
 
 afterEach(() => {
   server.resetHandlers();
+});
+
+// Mocking ODS Drawer component
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...original,
+    Drawer: vi.fn(({ children, className, ...props }) => (
+      <div data-testid={props['data-testid']} className={className}>
+        <header>{props.heading}</header>
+        {children}
+      </div>
+    )),
+  };
 });
