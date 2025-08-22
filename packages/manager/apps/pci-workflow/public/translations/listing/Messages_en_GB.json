@@ -22,5 +22,9 @@
   "pci_workflow_executions_status": "Status",
   "pci_workflow_add": "Create a schedule",
   "pci_workflow_executions": "Executions",
-  "pci_workflow_id": "ID"
+  "pci_workflow_id": "ID",
+  "pci_workflow_backup": "Backup",
+  "pci_workflow_backup_local": "Local",
+  "pci_workflow_backup_local_and_distant": "Local, remote",
+  "pci_workflow_localisation": "Location"
 }
