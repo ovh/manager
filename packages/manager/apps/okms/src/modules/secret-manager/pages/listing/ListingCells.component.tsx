@@ -12,6 +12,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Link } from '@/common/components/Link/Link.component';
 import { SecretListingPageParams } from './listing.type';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { kmsIamActions } from '@/utils/iam/iam.constants';
 
 export const DatagridCellPath = (secret: Secret) => {
   const { domainId } = useParams<SecretListingPageParams>();
@@ -33,7 +34,7 @@ export const DatagridCreationDate = (secret: Secret) => {
 
 export const DatagridAction = (secret: Secret) => {
   const { domainId } = useParams<SecretListingPageParams>();
-  const { t } = useTranslation('secret-manager/secrets');
+  const { t } = useTranslation('secret-manager/common');
   const navigate = useNavigate();
 
   const items: ActionMenuItem[] = [
@@ -45,6 +46,20 @@ export const DatagridAction = (secret: Secret) => {
           SECRET_MANAGER_ROUTES_URLS.secretVersions(domainId, secret.path),
         );
       },
+    },
+    {
+      id: 2,
+      label: t('reveal_secret'),
+      onClick: () => {
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretListingDrawerValue(
+            domainId,
+            secret.path,
+          ),
+        );
+      },
+      urn: secret.iam.urn,
+      iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
     },
   ];
 

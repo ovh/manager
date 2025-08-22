@@ -78,17 +78,15 @@ export default function SecretDashboardPage() {
   };
 
   return (
-    <Suspense fallback={<Loading />}>
-      <BaseLayout
-        header={headerProps}
-        backLinkLabel={t('back_to_list')}
-        tabs={<TabNavigation tabs={tabsList} />}
-        onClickReturn={() => {
-          navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));
-        }}
-      >
-        <Outlet context={outletContext} />
-      </BaseLayout>
-    </Suspense>
+    <BaseLayout
+      header={headerProps}
+      backLinkLabel={t('back_to_list')}
+      tabs={<TabNavigation tabs={tabsList} />}
+      onClickReturn={() => {
+        navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));
+      }}
+    >
+      <Outlet context={outletContext} />
+    </BaseLayout>
   );
 }

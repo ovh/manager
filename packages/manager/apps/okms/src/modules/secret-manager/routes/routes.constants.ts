@@ -7,6 +7,7 @@ const URIS = {
   versions: 'versions',
   create: 'create',
   order: 'order',
+  value: 'value',
 };
 
 const URLS = {
@@ -18,8 +19,12 @@ const URLS = {
   secretDomains: (regionId: string) =>
     `/${URIS.root}/${URIS.region}/${regionId}`,
   secretListing: (domainId: string) => `/${URIS.root}/${domainId}`,
+  secretListingDrawerValue: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
   secretDashboard: (domainId: string, secretPath: string) =>
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}`,
+  secretDashboardDrawerValue: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
   secretVersions: (domainId: string, secretPath: string) =>
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
       URIS.versions

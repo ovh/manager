@@ -1,7 +1,8 @@
-import { screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
   assertTextVisibility,
+  getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
@@ -50,6 +51,8 @@ describe('Secrets dashboard test suite', () => {
       mockSecret.metadata.maxVersions,
       labels.secretManager.dashboard.cas_with_description,
       labels.secretManager.dashboard.deactivated,
+      // actions tile
+      labels.secretManager.common.actions,
     ];
 
     const labelTwice = [
@@ -79,6 +82,15 @@ describe('Secrets dashboard test suite', () => {
     expect(
       container.querySelector(`ods-clipboard[value="${mockSecret.iam.urn}"]`),
     ).toBeVisible();
+
+    // check actions
+    const revealSecretLink = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.reveal_secret,
+      isLink: true,
+    });
+
+    expect(revealSecretLink).toBeVisible();
   });
 
   it(`should navigate to the versions page on click on versions tab`, async () => {
@@ -95,5 +107,23 @@ describe('Secrets dashboard test suite', () => {
 
     // THEN
     await assertVersionDatagridVisilibity();
+  });
+
+  it('should navigate to the secret value drawer on click on action link', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    const { container } = await renderTestApp(mockPageUrl);
+
+    const revealSecretLink = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.reveal_secret,
+      isLink: true,
+    });
+
+    // WHEN
+    await act(() => user.click(revealSecretLink));
+
+    // THEN
+    await assertTextVisibility(labels.secretManager.common.values);
   });
 });
