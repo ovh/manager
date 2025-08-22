@@ -76,5 +76,8 @@
   "pci_projects_project_workflow_instance_status_RESUMING": "Wird fortgesetzt",
   "pci_workflow_create_price_monthly": "~ {{ price }} zzgl. MwSt./Monat/GB",
   "pci_workflow_create_monthly_backup_price": "Jede Sicherung wird in Rechnung gestellt: {{ price }} ohne MWSt./Monat/GB",
-  "pci_projects_project_workflow_instance_status_IS_IOPS": "Das automatische Backup wird nur für die Daten auf der lokalen Festplatte Ihrer Instanz ausgeführt. Die Daten auf den NVMe-Festplatten werden nicht gesichert."
+  "pci_projects_project_workflow_instance_status_IS_IOPS": "Das automatische Backup wird nur für die Daten auf der lokalen Festplatte Ihrer Instanz ausgeführt. Die Daten auf den NVMe-Festplatten werden nicht gesichert.",
+  "pci_workflow_create_distant_label": "Ein Remote-Backup hinzufügen",
+  "pci_workflow_create_distant_region_label": "Wählen Sie einen Standort aus.",
+  "pci_workflow_create_distant_region_enable_warning": "Der ausgewählte Standort ist nicht aktiviert. Wenn Sie ihn Ihrem Public-Cloud-Projekt hinzufügen möchten, klicken Sie auf „Erstellen“."
 }
