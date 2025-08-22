@@ -15,20 +15,6 @@ import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { assertVersionDatagridVisilibity } from '../dashboard/versions/Versions.page.spec';
 
-// Mocking ODS Drawer component
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const original = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...original,
-    Drawer: vi.fn(({ children, className, ...props }) => (
-      <div data-testid={props['data-testid']} className={className}>
-        <header>{props.heading}</header>
-        {children}
-      </div>
-    )),
-  };
-});
-
 const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretListing(mockOkmsId);
 
