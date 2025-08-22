@@ -12,8 +12,9 @@ import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
 import { ManagedWordpressWebsites, ResourceStatus } from '@/data/type';
 import { useGenerateUrl } from '@/hooks';
@@ -36,6 +37,7 @@ export default function MyWebsitesPage() {
     'common',
     NAMESPACES.ACTIONS,
     NAMESPACES.STATUS,
+    'managedWordpress',
   ]);
   const { serviceName } = useParams();
   const { data } = useManagedWordpressWebsites(serviceName);
@@ -183,6 +185,20 @@ export default function MyWebsitesPage() {
                   icon={ODS_ICON_NAME.trash}
                 />
               )}
+
+              <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
+                {t(
+                  'managedWordpress:web_hosting_managed_wordpress_quota_used',
+                  {
+                    used:
+                      dataResourceDetails?.currentState.quotas.websites
+                        .totalUsage,
+                    total:
+                      dataResourceDetails?.currentState.quotas.websites
+                        .totalQuota,
+                  },
+                )}
+              </OdsText>
             </div>
           </div>
         }
