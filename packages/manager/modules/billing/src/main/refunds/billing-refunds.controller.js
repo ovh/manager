@@ -30,7 +30,7 @@ export default /* @ngInject */ function BillingRefundsController(
   };
 
   this.prepaidAccountLink = coreURLBuilder.buildURL(
-    'new-billing',
+    'billing',
     '/payment/ovhaccount',
   );
 
