@@ -62,7 +62,7 @@
   "pci_instances_actions_backup_instance_distant_label": "Añadir un backup remoto (opcional)",
   "pci_instances_actions_backup_instance_distant_name_label": "Nombre del backup remoto",
   "pci_instances_actions_backup_instance_distant_region_label": "Seleccione una localización",
-  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup tendrá un coste de: ~{{price}} €/mes + IVA por GB",
+  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup tiene un precio de: ~{{ price }}/mes/GB",
   "pci_instances_actions_backup_instance_region_enable_warning": "La localización seleccionada no está activada. Al hacer clic en «Confirmar», se añadirá a su proyecto.",
   "pci_instances_actions_backup_instance_with_distant_success_message": "Creando el backup {{ name }}... Una vez creado el backup local, procederemos a crear el backup remoto denominado {{ distantName }}. Para consultar el estado y los detalles de la operación, acceda a la página <InstanceBackupLink>Instance Backup</InstanceBackupLink>. Si el backup no aparece inmediatamente, recargue la página para actualizar la lista.",
   "pci_instances_actions_instance_network_change_dns": "Cambiar el registro DNS inverso",
