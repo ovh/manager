@@ -22,5 +22,9 @@
   "pci_workflow_executions_status": "Status",
   "pci_workflow_add": "Utwórz harmonogram",
   "pci_workflow_executions": "Uruchomienia",
-  "pci_workflow_id": "ID"
+  "pci_workflow_id": "ID",
+  "pci_workflow_backup": "Backup",
+  "pci_workflow_backup_local": "Lokalny",
+  "pci_workflow_backup_local_and_distant": "Lokalny, zdalny",
+  "pci_workflow_localisation": "Lokalizacja"
 }
