@@ -5,7 +5,6 @@ import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  Clipboard,
   Links,
   LinkType,
   TileBlock,
@@ -23,6 +22,11 @@ import {
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
+import {
+  Clipboard,
+  ClipboardControl,
+  ClipboardTrigger,
+} from '@ovhcloud/ods-react';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const InstanceGeneralInfoBlock: FC = () => {
@@ -52,7 +56,12 @@ const InstanceGeneralInfoBlock: FC = () => {
         label={t('pci_instances_dashboard_id_openstack_title')}
         isLoading={isInstanceLoading}
       >
-        <Clipboard value={instance?.id || ''} />
+        <div className="flex">
+          <Clipboard className="flex-grow" value={instance?.id || ''}>
+            <ClipboardControl className="w-full" />
+            <ClipboardTrigger />
+          </Clipboard>
+        </div>
       </DashboardTileBlock>
       <DashboardTileBlock
         label={t('list:pci_instances_list_column_flavor')}
