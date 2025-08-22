@@ -62,7 +62,7 @@
   "pci_instances_actions_backup_instance_distant_label": "Adicionar um backup remoto (opcional)",
   "pci_instances_actions_backup_instance_distant_name_label": "Nome do backup remoto",
   "pci_instances_actions_backup_instance_distant_region_label": "Selecione uma localização",
-  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup será faturado: ~{{price}} €/mês por GB + IVA",
+  "pci_instances_actions_backup_instance_distant_region_price": "Cada backup será faturado: ~{{price}}/mês por GB",
   "pci_instances_actions_backup_instance_region_enable_warning": "A localização escolhida não está ativada. Ao clicar em \"Confirmar\", será adicionado ao seu projeto.",
   "pci_instances_actions_backup_instance_with_distant_success_message": "O backup {{ name }} está a ser criado. Uma vez criado este backup local, procederemos à criação do backup remoto designado {{ distantName }}. Para visualizar o estado e os detalhes da operação, aceda à página <InstanceBackupLink> Instance Backup</InstanceBackupLink>. Se o backup não for apresentado imediatamente, não hesite em atualizar a página para obter a lista mais recente."
 }
