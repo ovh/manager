@@ -41,3 +41,4 @@ export * from './modal';
 export * from './tags-list';
 export * from './changelog-menu';
 export * from './link-card';
+export * from './error';
