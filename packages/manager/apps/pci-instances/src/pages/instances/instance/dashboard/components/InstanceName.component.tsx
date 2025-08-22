@@ -1,13 +1,14 @@
-import { FC, useCallback } from 'react';
-import { Subtitle, useNotifications } from '@ovh-ux/manager-react-components';
+import { FC, useCallback, useState } from 'react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { clsx } from 'clsx';
-import EditableText from '@/components/input/editableContent/EditableContent.component';
 import { useUpdateInstanceName } from '@/data/hooks/instance/useInstance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDashboardViewModel } from '../view-models/selectInstanceDashboard';
 import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 import { useQueryClient } from '@tanstack/react-query';
+import { Button, Icon, Text } from '@ovhcloud/ods-react';
+import InputCancellable from '@/components/input/InputCancellable.component';
 
 type TInstanceNameProps = {
   instance: NonNullable<TInstanceDashboardViewModel>;
@@ -18,6 +19,10 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
   const queryClient = useQueryClient();
   const { addError } = useNotifications();
   const projectId = useProjectId();
+  const [isEditing, setIsEditing] = useState(false);
+  const [instanceName, setInstanceName] = useState(instance.name);
+
+  const closeEdit = () => setIsEditing(!isEditing);
 
   const handleSuccessUpdate = useCallback(
     (newInstanceName: string) => {
@@ -31,6 +36,16 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
     },
     [instance.id, projectId, queryClient],
   );
+
+  const handleCancel = () => {
+    setInstanceName(instance.name);
+    closeEdit();
+  };
+
+  const handleSubmit = () => {
+    editInstanceName({ instanceName });
+    closeEdit();
+  };
 
   const {
     isPending,
@@ -47,22 +62,39 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
   });
 
   return (
-    <Subtitle className={clsx(isPending ? 'opacity-25' : 'opacity-100')}>
-      {isPending ? (
-        variables.instanceName
+    <header className="flex items-center">
+      {isEditing ? (
+        <InputCancellable
+          value={instanceName}
+          onChange={({ target }) => setInstanceName(target.value)}
+          onCancel={handleCancel}
+          onSubmit={handleSubmit}
+          className="h-[2.5em]"
+        />
       ) : (
-        <>
-          {instance.isEditEnabled ? (
-            <EditableText
-              defaultValue={instance.name}
-              onSubmit={(instanceName) => editInstanceName({ instanceName })}
-            />
-          ) : (
-            instance.name
+        <Text
+          preset="heading-3"
+          className={clsx(
+            `whitespace-nowrap overflow-hidden text-ellipsis max-w-md ${
+              isPending ? 'opacity-25' : 'opacity-100'
+            }`,
           )}
-        </>
+        >
+          {isPending ? variables.instanceName : instance.name}
+        </Text>
       )}
-    </Subtitle>
+      {instance.isEditEnabled && !isEditing && (
+        <Button
+          variant="outline"
+          size="sm"
+          aria-label="Edit"
+          onClick={closeEdit}
+          className="ml-4"
+        >
+          <Icon name="pen" />
+        </Button>
+      )}
+    </header>
   );
 };
 
