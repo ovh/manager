@@ -38,20 +38,6 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDashboardDrawerValue(
   mockSecretPath,
 );
 
-// Mocking ODS Drawer component
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const original = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...original,
-    Drawer: vi.fn(({ children, className, ...props }) => (
-      <div data-testid={props['data-testid']} className={className}>
-        <header>{props.heading}</header>
-        {children}
-      </div>
-    )),
-  };
-});
-
 const renderPage = async (mockParams?: RenderTestMockParams) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(mockPageUrl, mockParams);
