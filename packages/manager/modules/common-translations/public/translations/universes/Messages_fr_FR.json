@@ -1,0 +1,9 @@
+{
+  "universes_baremetal-cloud": "Bare Metal Cloud",
+  "universes_hosted-private-cloud": "Hosted Private Cloud",
+  "universes_network": "Network",
+  "universes_public-cloud": "Public Cloud",
+  "universes_identity-security-operations": "Identité, Sécurité & Opérations",
+  "universes_telecom": "Télécom",
+  "universes_web-cloud": "Web Cloud"
+}
