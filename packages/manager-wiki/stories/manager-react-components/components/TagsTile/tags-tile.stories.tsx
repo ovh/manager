@@ -29,6 +29,7 @@ export const DemoTagsTile: Story = {
       testestestset: '1-1-1',
     },
     displayInternalTags: false,
+    lineNumber: 5,
     onEditTags: () => {},
   },
 };
