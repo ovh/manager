@@ -71,6 +71,18 @@ export default function ManagedWordpressPage() {
         },
         label: t(`${NAMESPACES.STATUS}:status`),
       },
+      {
+        id: 'quota',
+        cell: (item) => {
+          return (
+            <span>
+              {item.currentState.quotas.websites.totalUsage}&nbsp;/&nbsp;
+              {item.currentState.quotas.websites.totalQuota}
+            </span>
+          );
+        },
+        label: t('common:web_hosting_status_header_quota'),
+      },
     ],
     [t],
   );
