@@ -30,6 +30,7 @@ import {
   getVersionsMock,
   GetVersionsMockParams,
 } from '@secret-manager/mocks/versions/versions.handler';
+import { removeHandlersDelay } from './testUtils';
 import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
@@ -86,26 +87,31 @@ export const renderTestApp = async (
     GetVersionsMockParams = {},
 ) => {
   global.server?.resetHandlers(
-    ...toMswHandlers([
-      ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getOkmsMocks(mockParams),
-      ...getServiceKeysMock(mockParams),
-      ...getServicesMocks({ ...mockParams, serviceResponse: kmsServicesMock }),
-      ...getIamMocks(mockParams),
-      ...getCredentialsMock(mockParams),
-      ...getFeatureAvailabilityMocks(mockParams),
-      ...getCatalogKmsMocks(mockParams),
-      ...getReferenceMock(mockParams),
-      ...createCredentialsMock(mockParams),
-      ...deleteCredentialMock(mockParams),
-      ...getIdentityUserIds(),
-      ...getIdentityUsers(),
-      ...getLocationsMock(),
-      ...getSecretsMock(mockParams),
-      ...getSecretMock(mockParams),
-      ...createSecretsMock(mockParams),
-      ...getVersionsMock(mockParams),
-    ]),
+    ...toMswHandlers(
+      removeHandlersDelay([
+        ...getAuthenticationMocks({ isAuthMocked: true }),
+        ...getOkmsMocks(mockParams),
+        ...getServiceKeysMock(mockParams),
+        ...getServicesMocks({
+          ...mockParams,
+          serviceResponse: kmsServicesMock,
+        }),
+        ...getIamMocks(mockParams),
+        ...getCredentialsMock(mockParams),
+        ...getFeatureAvailabilityMocks(mockParams),
+        ...getCatalogKmsMocks(mockParams),
+        ...getReferenceMock(mockParams),
+        ...createCredentialsMock(mockParams),
+        ...deleteCredentialMock(mockParams),
+        ...getIdentityUserIds(),
+        ...getIdentityUsers(),
+        ...getLocationsMock(),
+        ...getSecretsMock(mockParams),
+        ...getSecretMock(mockParams),
+        ...createSecretsMock(mockParams),
+        ...getVersionsMock(mockParams),
+      ]),
+    ),
   );
 
   if (!context) {
