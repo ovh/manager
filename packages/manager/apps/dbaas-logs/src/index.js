@@ -14,4 +14,3 @@ bootstrapApplication('dbaas-logs').then((environment) => {
       startApplication(document.body, environment);
     });
 });
-// test duplicate translation
