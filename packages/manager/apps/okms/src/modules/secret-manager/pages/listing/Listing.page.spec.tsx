@@ -1,9 +1,12 @@
+import React from 'react';
+import { vi } from 'vitest';
 import { screen, act } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
   assertTextVisibility,
-  WAIT_FOR_DEFAULT_OPTIONS,
+  getOdsButtonByIcon,
   getOdsButtonByLabel,
+  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
@@ -11,6 +14,20 @@ import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/te
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { assertVersionDatagridVisilibity } from '../dashboard/versions/Versions.page.spec';
+
+// Mocking ODS Drawer component
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...original,
+    Drawer: vi.fn(({ children, className, ...props }) => (
+      <div data-testid={props['data-testid']} className={className}>
+        <header>{props.heading}</header>
+        {children}
+      </div>
+    )),
+  };
+});
 
 const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretListing(mockOkmsId);
@@ -86,7 +103,7 @@ describe('Secrets listing test suite', () => {
 
     const versionsButton = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.secrets.access_versions,
+      label: labels.secretManager.common.access_versions,
     });
 
     // WHEN
@@ -94,6 +111,33 @@ describe('Secrets listing test suite', () => {
 
     // THEN
     await assertVersionDatagridVisilibity();
+  });
+
+  it('should navigate to a secret value drawer on click on menu action', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    const { container } = await renderPage();
+
+    const actionButton = await getOdsButtonByIcon({
+      container,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      iconName: 'ellipsis-vertical',
+    });
+
+    await act(() => user.click(actionButton));
+
+    const revealSecretButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.reveal_secret,
+      disabled: false,
+    });
+
+    // WHEN
+    await act(() => user.click(revealSecretButton));
+
+    // THEN
+    await assertTextVisibility(labels.secretManager.common.values);
   });
 
   it('should navigate to create a secret page on click on datagrid CTA', async () => {

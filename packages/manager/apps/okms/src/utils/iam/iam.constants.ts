@@ -7,4 +7,6 @@ export const kmsIamActions = {
   serviceKeyDeactivate: 'okms:apiovh:serviceKey/deactivate',
   serviceKeyDelete: 'okms:apiovh:serviceKey/delete',
   serviceKeyUpdate: 'okms:apiovh:serviceKey/update',
+  secretGet: 'okms:apiovh:secret/get',
+  secretVersionGetData: 'okms:apiovh:secret/version/getData',
 };

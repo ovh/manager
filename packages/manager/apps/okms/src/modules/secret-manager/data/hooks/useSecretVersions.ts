@@ -9,7 +9,7 @@ import {
 // TODO: use useIcebergV2 when pagination is fixed
 export const useSecretVersions = (domainId: string, path: string) => {
   return useQuery<SecretVersion[], ApiError>({
+    queryKey: getSecretVersionsQueryKeys.list(domainId, path),
     queryFn: () => getSecretVersions(domainId, path),
-    queryKey: getSecretVersionsQueryKeys(domainId, path),
   });
 };
