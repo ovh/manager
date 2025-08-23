@@ -43,7 +43,7 @@ export default function DashboardPage() {
   return (
     <>
       <BaseLayout
-        header={{ title: 'dashboard:title' }}
+        header={{ title: t('dashboard:title') }}
         backLinkLabel={t('dashboard:back')}
         onClickReturn={onNavigateBackClicked}
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
