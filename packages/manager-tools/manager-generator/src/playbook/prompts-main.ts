@@ -7,19 +7,16 @@ import autocomplete from 'inquirer-autocomplete-prompt';
 
 import {
   applyDerivations,
-  isManualInputPrompt,
   transformPromptsChoicesToStrings,
 } from '../kernel/prompts/prompts-helper';
 import { ApiPathChoice } from '../kernel/types/api-types';
 import { Questions } from '../kernel/types/inquiries-types';
 import {
   buildEndpointChoiceValues,
-  isEndpointValueFormat,
   prepareEndpointsForListing,
 } from '../kernel/utils/endpoint-utils';
 import { normalizeApiPathChoices } from '../kernel/utils/paths-utils';
 import { REGIONS, SUB_UNIVERSES, UNIVERSES, level2Choices } from './config/api-config';
-import { MANUAL_ENDPOINT_VALUE } from './config/kernel-config';
 import type { AugmentedAnswers, GeneratorAnswers } from './types/playbook-types';
 
 inquirer.registerPrompt('autocomplete', autocomplete as never);
@@ -53,11 +50,26 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
         (typeof input === 'string' && input.trim().length > 1) || 'Description is required',
     },
 
+    /* --------------------------- Routing section ------------------------- */
+    {
+      type: 'confirm',
+      name: 'isPci',
+      message: 'Is this a PCI app?',
+      default: false,
+    },
+    {
+      type: 'input',
+      name: 'appSlug',
+      message: 'Optional app slug (kebab-case). Leave empty to derive from app name.',
+      default: '',
+      filter: (val: unknown) => (typeof val === 'string' ? val.trim() : ''),
+    },
+
     /* ------------------------ Regions & universes ------------------------ */
     {
       type: 'checkbox',
       name: 'regions',
-      message: 'what are the regions of the new app ?',
+      message: 'What are the regions of the new app ?',
       choices: [...REGIONS],
       validate: (value: unknown) =>
         (Array.isArray(value) && value.length > 0) || 'Pick at least one region',
@@ -66,62 +78,10 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
     {
       type: 'checkbox',
       name: 'universes',
-      message: 'what are the universes of the new app ?',
+      message: 'What are the universes of the new app ?',
       choices: [...UNIVERSES],
       validate: (value: unknown) =>
         (Array.isArray(value) && value.length > 0) || 'Pick at least one universe',
-    },
-
-    /* --------------------------- Routing section ------------------------- */
-    {
-      type: 'list',
-      name: 'routeFlavor',
-      message: 'What routing flavor?',
-      choices: [
-        { name: 'PCI (/pci/projects/:projectId/<slug>)', value: 'pci' },
-        { name: 'Generic (/<slug>)', value: 'generic' },
-        { name: 'Platform param (/:platformId)', value: 'platformParam' },
-      ],
-      default: 'pci',
-    },
-
-    {
-      type: 'confirm',
-      name: 'isPci',
-      message: 'Is this a PCI app?',
-      default: ({ routeFlavor }: Partial<GeneratorAnswers>): boolean => routeFlavor === 'pci',
-    },
-
-    {
-      type: 'input',
-      name: 'appSlug',
-      message: 'Optional app slug (kebab-case). Leave empty to derive from app name.',
-      default: '',
-      filter: (val: unknown) => (typeof val === 'string' ? val.trim() : ''),
-    },
-    {
-      type: 'input',
-      name: 'basePrefix',
-      message:
-        'Optional shell namespace prefix (e.g., "public-cloud"). Leave empty to auto-detect in container.',
-      default: '',
-      filter: (val: unknown) => (typeof val === 'string' ? val.trim() : ''),
-    },
-    {
-      type: 'input',
-      name: 'serviceParam',
-      message: 'Service route param name (without ":")',
-      default: 'serviceName',
-      filter: (val: unknown) =>
-        typeof val === 'string' ? val.trim().replace(/^:/, '') : 'serviceName',
-    },
-    {
-      type: 'input',
-      name: 'platformParam',
-      message: 'Platform route param name (without ":")',
-      default: 'platformId',
-      filter: (val: unknown) =>
-        typeof val === 'string' ? val.trim().replace(/^:/, '') : 'platformId',
     },
 
     /* --------------------------- API family pick ------------------------- */
@@ -138,8 +98,8 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
     },
     {
       type: 'list',
-      name: 'onboardingApi',
-      message: 'Which API family for ONBOARDING?',
+      name: 'dashboardApi',
+      message: 'Which API family for DASHBOARD?',
       choices: [
         { name: 'v6 (default)', value: 'v6' },
         { name: 'v2', value: 'v2' },
@@ -157,7 +117,7 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
         (Array.isArray(value) && value.length > 0) || 'Pick at least one API path',
     },
 
-    /* ---- Endpoints (listing first, then onboarding). Prepare before list. ---- */
+    /* ---- Endpoints (listing first, then dashboard). Prepare before list. ---- */
     {
       type: 'list',
       name: 'listingEndpoint',
@@ -167,64 +127,26 @@ export function buildQuestions(apiPaths: ApiPathChoice[]): Questions {
         return true;
       },
       choices: (answers: Partial<GeneratorAnswers>) => {
-        const listingChoicesValues = buildEndpointChoiceValues(
+        return buildEndpointChoiceValues(
           (answers as AugmentedAnswers).apiV2Endpoints,
           (answers as AugmentedAnswers).apiV6Endpoints,
         );
-        return listingChoicesValues.includes(MANUAL_ENDPOINT_VALUE)
-          ? listingChoicesValues
-          : [...listingChoicesValues, MANUAL_ENDPOINT_VALUE];
       },
     },
     {
       type: 'list',
-      name: 'onboardingEndpoint',
-      message: 'What is the onboarding endpoint?',
+      name: 'dashboardEndpoint',
+      message: 'What is the dashboard endpoint?',
       when: async (answers: Partial<GeneratorAnswers>) => {
         await prepareEndpointsForListing(answers as GeneratorAnswers);
         return true;
       },
       choices: (answers: Partial<GeneratorAnswers>) => {
-        const listingChoicesValues = buildEndpointChoiceValues(
+        return buildEndpointChoiceValues(
           (answers as AugmentedAnswers).apiV2Endpoints,
           (answers as AugmentedAnswers).apiV6Endpoints,
         );
-        return listingChoicesValues.includes(MANUAL_ENDPOINT_VALUE)
-          ? listingChoicesValues
-          : [...listingChoicesValues, MANUAL_ENDPOINT_VALUE];
       },
-    },
-
-    /* ---- Endpoints Input If No List. ---- */
-    {
-      type: 'input',
-      name: 'listingEndpoint',
-      message:
-        'Type the listing endpoint value (format: /api/path-functionName, e.g. /cloud/project-getService):',
-      when: (answers: Partial<GeneratorAnswers>) =>
-        isManualInputPrompt(
-          (answers as Record<string, unknown>).listingEndpoint,
-          MANUAL_ENDPOINT_VALUE,
-        ),
-      validate: (input: unknown) =>
-        (typeof input === 'string' && isEndpointValueFormat(input)) ||
-        'Please use /api/path-functionName (e.g. /cloud/project-getService)',
-      filter: (input: unknown) => (typeof input === 'string' ? input.trim() : ''),
-    },
-    {
-      type: 'input',
-      name: 'onboardingEndpoint',
-      message:
-        'Type the onboarding endpoint value (format: /api/path-functionName, e.g. /cloud/project-getService):',
-      when: (answers: Partial<GeneratorAnswers>) =>
-        isManualInputPrompt(
-          (answers as Record<string, unknown>).onboardingEndpoint,
-          MANUAL_ENDPOINT_VALUE,
-        ),
-      validate: (input: unknown) =>
-        (typeof input === 'string' && isEndpointValueFormat(input)) ||
-        'Please use /api/path-functionName (e.g. /cloud/project-getService)',
-      filter: (input: unknown) => (typeof input === 'string' ? input.trim() : ''),
     },
 
     /* ------------------------ Service keys (parity) ----------------------- */

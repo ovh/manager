@@ -5,19 +5,14 @@
  * All produced tokens are plain strings so they can be injected directly
  * into source files (e.g., '{{listingApi}}', '{{mainApiPath}}').
  */
-import {
-  decideRouteFlavor,
-  normalizeApiPath,
-  shortPciSlug,
-  toKebabCase,
-} from '../kernel/tokens/tokens-helper';
+import { normalizeApiPath, shortPciSlug, toKebabCase } from '../kernel/tokens/tokens-helper';
 import { BuildTokensInput, TokenMap } from '../kernel/types/tokens-types';
 import { loadPreset } from '../presets/presets';
 import { ValidAnswers } from './types/playbook-schema';
 import {
+  DashboardApi,
   GeneratorAnswers,
   ListingApi,
-  OnboardingApi,
   ResolveCtx,
   Tokens,
 } from './types/playbook-types';
@@ -76,8 +71,8 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
   const defaultDescription = `${answers.appName} — OVHcloud Manager Application`;
   const repositoryDir = `packages/manager/apps/${appNameKebab}`;
 
-  const routeFlavor = decideRouteFlavor(answers);
-  const isPci = (answers as Partial<GeneratorAnswers>).isPci ?? routeFlavor === 'pci';
+  const isPci = (answers as Partial<GeneratorAnswers>).isPci ?? false;
+  const routeFlavor = isPci ? 'pci' : 'generic';
 
   const rawSlug = toKebabCase(
     (answers as Partial<GeneratorAnswers>).appSlug?.trim() || appNameKebab,
@@ -89,24 +84,17 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
       ? (answers as Partial<GeneratorAnswers>).basePrefix!.trim()
       : '';
 
-  const serviceParam = (
-    (answers as Partial<GeneratorAnswers>).serviceParam?.trim() || 'serviceName'
-  ).replace(/^:/, '');
-  const platformParam = (
-    (answers as Partial<GeneratorAnswers>).platformParam?.trim() || 'platformId'
-  ).replace(/^:/, '');
-
   const listingApi: ListingApi =
     ((answers as Partial<GeneratorAnswers>).listingApi as ListingApi) ?? 'v6Iceberg';
-  const onboardingApi: OnboardingApi =
-    ((answers as Partial<GeneratorAnswers>).onboardingApi as OnboardingApi) ?? 'v6';
+  const dashboardApi: DashboardApi =
+    ((answers as Partial<GeneratorAnswers>).dashboardApi as DashboardApi) ?? 'v6';
 
   // mainApiPath: prefer precomputed, else selected listingEndpoint.path, else default
   const directMain: string | undefined = hasMainApiPath(answers) ? answers.mainApiPath : undefined;
   const listingEndpoint = (answers as Partial<GeneratorAnswers>).listingEndpoint?.trim();
-  const onboardingEndpoint = (answers as Partial<GeneratorAnswers>).onboardingEndpoint?.trim();
+  const dashboardEndpoint = (answers as Partial<GeneratorAnswers>).dashboardEndpoint?.trim();
   const mainApiPath = normalizeApiPath(
-    directMain ?? listingEndpoint ?? onboardingEndpoint ?? '/services',
+    directMain ?? listingEndpoint ?? dashboardEndpoint ?? '/services',
   );
 
   // Tracking tokens
@@ -121,8 +109,9 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
     ((answers as Partial<GeneratorAnswers>).serviceKey ?? 'publicCloud-project').trim() ||
     'publicCloud-project';
 
-  // chosen region
-  const region = (answers as Partial<GeneratorAnswers>).region || '';
+  // chosen regions and universes
+  const regions = (answers as Partial<GeneratorAnswers>).regions;
+  const universes = (answers as Partial<GeneratorAnswers>).universes;
 
   return {
     appNameKebab,
@@ -130,15 +119,14 @@ export function buildBaseTokens(answers: BuildTokensInput): Tokens {
     isPci: String(isPci),
     routeFlavor,
     basePrefix,
-    serviceParam,
-    platformParam,
     appSlug,
     mainApiPath,
     listingApi,
-    listingEndpoint,
-    onboardingEndpoint,
-    onboardingApi,
-    region,
+    listingEndpoint: listingEndpoint?.split('-')?.[0] || '',
+    dashboardEndpoint: dashboardEndpoint?.split('-')?.[0] || '',
+    dashboardApi,
+    regions,
+    universes,
     trackingLevel2,
     trackingUniverse,
     trackingSubUniverse,

@@ -1,5 +1,19 @@
 {
   "home": "Início",
   "order": "Encomendar",
-  "dashboardPageTitle": "Painel de controlo"
+  "back": "Voltar",
+  "title": "Painel de controlo",
+  "email": "E-mail",
+  "subject": "Assunto",
+  "message": "Mensagem",
+  "submitButton": "Enviar",
+  "successMessage": "O seu pedido foi enviado com sucesso.",
+  "errors": {
+    "emailRequired": "O e-mail é obrigatório.",
+    "emailInvalid": "Introduza um endereço de e-mail válido.",
+    "subjectRequired": "O assunto é obrigatório.",
+    "messageRequired": "A mensagem é obrigatória."
+  },
+  "general-information": "Informações gerais",
+  "help": "Ajuda"
 }

@@ -95,7 +95,7 @@ describe('prepareEndpointsForListing', () => {
     await prepareEndpointsForListing(answers);
 
     const augmented = answers as AugmentedAnswers;
-    expect(augmented.templates).toEqual(['listing', 'onboarding']);
+    expect(augmented.templates).toEqual(['listing', 'dashboard']);
     expect(splitApiPathsByVersion).toHaveBeenCalledWith(['/v2', '/v6']);
     expect(getApiTemplateData).toHaveBeenCalledWith('v6', ['/v6']);
     expect(getApiTemplateData).toHaveBeenCalledWith('v2', ['/v2']);

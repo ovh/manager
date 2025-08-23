@@ -1,5 +1,19 @@
 {
   "home": "Startseite",
   "order": "Bestellen",
-  "dashboardPageTitle": "Dashboard"
+  "back": "Zurück",
+  "title": "Dashboard",
+  "email": "E-Mail",
+  "subject": "Betreff",
+  "message": "Nachricht",
+  "submitButton": "Senden",
+  "successMessage": "Ihre Anfrage wurde erfolgreich gesendet.",
+  "errors": {
+    "emailRequired": "E-Mail ist erforderlich.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "subjectRequired": "Betreff ist erforderlich.",
+    "messageRequired": "Nachricht ist erforderlich."
+  },
+  "general-information": "Allgemeine Informationen",
+  "help": "Hilfe"
 }

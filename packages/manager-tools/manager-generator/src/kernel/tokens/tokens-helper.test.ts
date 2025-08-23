@@ -1,12 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import type { BuildTokensInput, TokenMap } from '../types/tokens-types';
+import type { TokenMap } from '../types/tokens-types';
 import {
   TOKEN_IN_QUOTES_RE,
   TOKEN_RE,
   applyMod,
   assertNoUnresolvedTokens,
-  decideRouteFlavor,
   lookup,
   normalizeApiPath,
   normalizeBasePath,
@@ -183,21 +182,6 @@ describe('shortPciSlug', () => {
 
   it('returns unchanged if no pci prefix', () => {
     expect(shortPciSlug('custom')).toBe('custom');
-  });
-});
-
-describe('decideRouteFlavor', () => {
-  it('uses explicit routeFlavor if provided', () => {
-    expect(decideRouteFlavor({ routeFlavor: 'pci' } as BuildTokensInput)).toBe('pci');
-    expect(decideRouteFlavor({ routeFlavor: 'generic' } as BuildTokensInput)).toBe('generic');
-  });
-
-  it('infers pci flavor from isPci flag', () => {
-    expect(decideRouteFlavor({ isPci: true } as BuildTokensInput)).toBe('pci');
-  });
-
-  it('defaults to generic', () => {
-    expect(decideRouteFlavor({} as BuildTokensInput)).toBe('generic');
   });
 });
 

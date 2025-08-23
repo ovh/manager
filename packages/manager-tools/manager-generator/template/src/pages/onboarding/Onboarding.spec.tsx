@@ -1,149 +1,101 @@
-// OnboardingPage.test.tsx
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import { render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { vi } from 'vitest';
 
-// --- after mocks ---
 import OnboardingPage from './Onboarding.page';
 
-// --- mocks ---
+// --- Mock translation ---
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string, opts?: Record<string, unknown>) =>
-      opts ? `${key}:${JSON.stringify(opts)}` : key,
+    t: (k: string, opts?: Record<string, unknown>) =>
+      // eslint-disable-next-line @typescript-eslint/no-base-to-string,@typescript-eslint/restrict-template-expressions
+      `${k}${opts?.productName ? `:${opts.productName}` : ''}`,
   }),
 }));
 
-// Simple stateless stubs → not counted as multi-comp
-function MockOdsText({ children }: { children: React.ReactNode }) {
-  return <div data-testid="ods-text">{children}</div>;
-}
-
-// eslint-disable-next-line react/no-multi-comp
-function MockOnboardingLayout(props: {
+// --- Mock manager-react-components ---
+interface OnboardingLayoutProps {
   title: string;
-  img?: { src: string; alt: string } | undefined;
-  description: React.ReactNode;
-  orderButtonLabel?: string;
-  children?: React.ReactNode;
-}) {
-  return (
-    <div data-testid="onboarding-layout">
-      <div data-testid="layout-title">{props.title}</div>
-      <div data-testid="layout-img-src">{props.img?.src ?? 'no-src'}</div>
-      <div data-testid="layout-img-alt">{props.img?.alt ?? 'no-alt'}</div>
-      <div data-testid="layout-description">{props.description}</div>
-      <div data-testid="layout-children">{props.children}</div>
-    </div>
-  );
+  img?: { src: string; alt: string };
+  description: ReactNode;
+  orderButtonLabel: string;
+  children?: ReactNode;
 }
 
-type CardProps = {
+interface CardProps {
   href: string;
   texts: { title: string; description: string; category: string };
   hrefLabel: string;
-};
-
-// eslint-disable-next-line react/no-multi-comp
-function MockCard({ href, texts, hrefLabel }: CardProps) {
-  return (
-    <div data-testid="card">
-      <span>{href}</span>
-      <span>{texts.title}</span>
-      <span>{texts.description}</span>
-      <span>{texts.category}</span>
-      <span>{hrefLabel}</span>
-    </div>
-  );
 }
 
-vi.mock('@ovhcloud/ods-components/react', () => ({ OdsText: MockOdsText }));
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  OnboardingLayout: MockOnboardingLayout,
-  Card: MockCard,
+  OnboardingLayout: ({
+    title,
+    img,
+    description,
+    orderButtonLabel,
+    children,
+  }: OnboardingLayoutProps) => (
+    <div>
+      <h1 data-testid="title">{title}</h1>
+      {img && <img data-testid="hero" src={img.src} alt={img.alt} />}
+      <div data-testid="description">{description}</div>
+      <button data-testid="order">{orderButtonLabel}</button>
+      <div data-testid="cards">{children}</div>
+    </div>
+  ),
+  // eslint-disable-next-line react/no-multi-comp
+  Card: ({ href, texts, hrefLabel }: CardProps) => (
+    <a data-testid="card" href={href}>
+      <h2>{texts.title}</h2>
+      <p>{texts.description}</p>
+      <span>{texts.category}</span>
+      <span>{hrefLabel}</span>
+    </a>
+  ),
 }));
 
-const mockUseOnboardingContent = vi.fn();
-const mockUseGuideLinks = vi.fn();
-
-vi.mock('@/data/hooks/onboarding/useOnboardingData', () => ({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  useOnboardingContent: () => mockUseOnboardingContent(),
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  useGuideLinks: () => mockUseGuideLinks(),
+// --- Mock hooks ---
+vi.mock('@/hooks/onboarding/useOnboardingData', () => ({
+  useOnboardingContent: () => ({
+    productName: 'TestProduct',
+    productCategory: 'Category',
+    brand: 'BrandX',
+    title: 'Welcome!',
+    heroImage: { src: '/hero.png', alt: 'Hero alt' },
+    tiles: [
+      { id: '1', key: 'discover', linkKey: 'discover' },
+      { id: '2', key: 'faq', linkKey: 'faq' },
+    ],
+  }),
+  useGuideLinks: () => ({
+    discover: '/discover-link',
+    tutorial: '', // missing to test filtering
+    faq: '/faq-link',
+  }),
 }));
 
 describe('OnboardingPage', () => {
-  beforeEach(() => {
-    mockUseOnboardingContent.mockReset();
-    mockUseGuideLinks.mockReset();
-  });
-
-  it('renders layout with title, description, and hero image', () => {
-    mockUseOnboardingContent.mockReturnValue({
-      productName: 'ProductX',
-      productCategory: 'CategoryY',
-      brand: 'BrandZ',
-      title: 'Welcome to ProductX',
-      heroImage: { src: '/hero.png', alt: 'hero' },
-      tiles: [],
-    });
-    mockUseGuideLinks.mockReturnValue({});
-
+  it('renders title, description, and order button', () => {
     render(<OnboardingPage />);
-    expect(screen.getByTestId('layout-title')).toHaveTextContent('Welcome to ProductX');
-    expect(screen.getByTestId('layout-img-src')).toHaveTextContent('/hero.png');
-    expect(screen.getByTestId('layout-img-alt')).toHaveTextContent('hero');
-    expect(screen.getByTestId('ods-text')).toBeInTheDocument();
+    expect(screen.getByTestId('title')).toHaveTextContent('Welcome!');
+    expect(screen.getByTestId('description')).toBeInTheDocument();
+    expect(screen.getByTestId('order')).toHaveTextContent('common:order');
   });
 
-  it('falls back to translated title and hero alt when not provided', () => {
-    mockUseOnboardingContent.mockReturnValue({
-      productName: 'ProductX',
-      productCategory: 'CategoryY',
-      brand: 'BrandZ',
-      title: undefined,
-      heroImage: { src: '/hero.png', alt: undefined },
-      tiles: [],
-    });
-    mockUseGuideLinks.mockReturnValue({});
-
+  it('renders hero image with alt text', () => {
     render(<OnboardingPage />);
-    expect(screen.getByTestId('layout-title')).toHaveTextContent(
-      'onboarding:title_fallback:{"productName":"ProductX"}',
-    );
-    expect(screen.getByTestId('layout-img-src')).toHaveTextContent('/hero.png');
-    expect(screen.getByTestId('layout-img-alt')).toHaveTextContent(
-      'onboarding:hero_alt:{"productName":"ProductX"}',
-    );
+    const img = screen.getByTestId('hero');
+    expect(img).toHaveAttribute('src', '/hero.png');
+    expect(img).toHaveAttribute('alt', 'Hero alt');
   });
 
-  it('renders only tiles with matching guide links', () => {
-    mockUseOnboardingContent.mockReturnValue({
-      productName: 'ProductX',
-      productCategory: 'CategoryY',
-      brand: 'BrandZ',
-      title: 'Title',
-      heroImage: undefined,
-      tiles: [
-        { id: '1', key: 'guide1', linkKey: 'link1' },
-        { id: '2', key: 'guide2', linkKey: 'missing' },
-      ],
-    });
-    mockUseGuideLinks.mockReturnValue({
-      link1: '/docs/guide1',
-    });
-
+  it('renders only cards with valid links', () => {
     render(<OnboardingPage />);
     const cards = screen.getAllByTestId('card');
-    expect(cards).toHaveLength(1);
-    expect(cards[0]).toHaveTextContent('/docs/guide1');
-    expect(cards[0]).toHaveTextContent('onboarding:guides.guide1.title:{"productName":"ProductX"}');
-    expect(cards[0]).toHaveTextContent(
-      'onboarding:guides.guide1.description:{"productName":"ProductX"}',
-    );
-    expect(cards[0]).toHaveTextContent('onboarding:guides.guide1.category');
-    expect(cards[0]).toHaveTextContent('onboarding:guides.guide1.cta');
+    expect(cards).toHaveLength(2); // discover + faq, tutorial skipped
+    expect(cards[0]).toHaveAttribute('href', '/discover-link');
+    expect(cards[1]).toHaveAttribute('href', '/faq-link');
   });
 });

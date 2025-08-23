@@ -3,27 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { GeneratorAnswers } from '../../playbook/types/playbook-types';
 import type { OperationItem, PromptChoice } from '../types/inquiries-types';
 import { makeAnswers } from '../utils/test-utils';
-import {
-  applyDerivations,
-  isManualInputPrompt,
-  transformPromptsChoicesToStrings,
-} from './prompts-helper';
-
-// --- isManualInputPrompt ---
-describe('isManualInputPrompt', () => {
-  it('returns true when string matches manual value', () => {
-    expect(isManualInputPrompt('MANUAL', 'MANUAL')).toBe(true);
-  });
-
-  it('returns false when string does not match manual value', () => {
-    expect(isManualInputPrompt('AUTO', 'MANUAL')).toBe(false);
-  });
-
-  it('returns false for non-string values', () => {
-    expect(isManualInputPrompt(123, 'MANUAL')).toBe(false);
-    expect(isManualInputPrompt(undefined, 'MANUAL')).toBe(false);
-  });
-});
+import { applyDerivations, transformPromptsChoicesToStrings } from './prompts-helper';
 
 // --- transformPromptsChoicesToStrings ---
 describe('transformPromptsChoicesToStrings', () => {
@@ -62,7 +42,7 @@ describe('applyDerivations', () => {
         },
       },
       listingEndpoint: '/foo-fn' as never,
-      onboardingEndpoint: '/foo-fn' as never,
+      dashboardEndpoint: '/foo-fn' as never,
     });
 
     applyDerivations(d as GeneratorAnswers);
@@ -70,7 +50,7 @@ describe('applyDerivations', () => {
     expect(d.isPCI).toBe(true);
     expect(d.pciName).toBe('myapp');
     expect(d.listingEndpointPath).toBe('/foo');
-    expect(d.onboardingEndpointPath).toBe('/foo');
+    expect(d.dashboardEndpointPath).toBe('/foo');
     expect(d.mainApiPathApiVersion).toBe('v6');
     expect(d.apiV6Computed?.get?.operationList).toHaveLength(1);
   });
@@ -84,7 +64,7 @@ describe('applyDerivations', () => {
         },
       },
       listingEndpoint: '/bar/{projectId}-fn' as never,
-      onboardingEndpoint: '/bar/{projectId}-fn' as never,
+      dashboardEndpoint: '/bar/{projectId}-fn' as never,
     });
 
     applyDerivations(d as GeneratorAnswers);
@@ -105,7 +85,7 @@ describe('applyDerivations', () => {
         },
       },
       listingEndpoint: '/bar-fn1' as never,
-      onboardingEndpoint: '/bar-fn1' as never,
+      dashboardEndpoint: '/bar-fn1' as never,
     });
 
     applyDerivations(d as GeneratorAnswers);

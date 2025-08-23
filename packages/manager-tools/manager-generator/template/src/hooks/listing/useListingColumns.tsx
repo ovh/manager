@@ -8,12 +8,6 @@ import type { DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { DefaultListingItemType } from '@/types/Listing.type';
 
-/**
- * Build default listing columns.
- *
- * @template T Row type, defaults to DefaultListingItemType
- * @returns Datagrid columns configured for name and status
- */
 export function useListingColumns<
   T extends DefaultListingItemType = DefaultListingItemType,
 >(): DatagridColumn<T>[] {
@@ -25,18 +19,16 @@ export function useListingColumns<
 
     return [
       {
-        id: 'name',
-        label: 'common:name',
+        id: 'id',
+        label: 'common:id',
         isSortable: true,
-        cell: (row: T): JSX.Element => <OdsText>{row.name ?? EMPTY}</OdsText>,
+        cell: (row: T): JSX.Element => <OdsText>{row.id ?? NA}</OdsText>,
       },
       {
-        id: 'status',
-        label: 'common:status',
+        id: 'name',
+        label: 'common:name',
         isSortable: false,
-        cell: (row: T): JSX.Element => (
-          <OdsText>{row.status ? t(`status:${row.status}`) : NA}</OdsText>
-        ),
+        cell: (row: T): JSX.Element => <OdsText>{row.name ?? EMPTY}</OdsText>,
       },
     ];
   }, [t]);

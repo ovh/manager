@@ -46,7 +46,7 @@ const __dirname = path.dirname(__filename);
  * @property {boolean=} usePreset
  * @property {string=} mainApiPath
  * @property {string=} listingEndpointPath
- * @property {string=} onboardingEndpointPath
+ * @property {string=} dashboardEndpointPath
  */
 
 /** @type {GeneratorFlags} */
@@ -83,7 +83,7 @@ const argv = yargs(hideBin(process.argv))
   .option('usePreset', { type: 'boolean' })
   .option('mainApiPath', { type: 'string' })
   .option('listingEndpointPath', { type: 'string' })
-  .option('onboardingEndpointPath', { type: 'string' })
+  .option('dashboardEndpointPath', { type: 'string' })
   .help()
   .strict()
   .parse();
@@ -125,10 +125,14 @@ async function loadAnswersFile(filePath) {
 async function fixGeneratedBooleans(opts) {
   const { targetDir, dryRun } = opts;
 
-  /** @type {{ file: string, regex: RegExp, replacer: (m:string, prefix:string, val:string)=>string }[]} */
   const targets = [
     {
       file: path.join(targetDir, 'src', 'App.constants.ts'),
+      regex: /(\bisPci\s*:\s*)['"]\s*(true|false)\s*['"]/g,
+      replacer: (_m, prefix, val) => `${prefix}${val}`,
+    },
+    {
+      file: path.join(targetDir, 'tailwind.config.mjs'),
       regex: /(\bisPci\s*:\s*)['"]\s*(true|false)\s*['"]/g,
       replacer: (_m, prefix, val) => `${prefix}${val}`,
     },
@@ -149,6 +153,74 @@ async function fixGeneratedBooleans(opts) {
     } catch {
       // file may not exist in all flavors
     }
+  }
+}
+
+/**
+ * Post-process package.json to turn single-string, comma-separated lists
+ * into proper arrays of strings for selected fields (e.g., regions, universes).
+ *
+ * Examples:
+ *   "regions": ["CA, EU, US"]     -> ["CA","EU","US"]
+ *   "universes": ["Dedicated, Manager"] -> ["Dedicated","Manager"]
+ *
+ * Idempotent: if already normalized, it does nothing.
+ *
+ * @param {BooleanFixOptions} opts
+ */
+async function fixCommaSeparatedArrays(opts) {
+  const { targetDir, dryRun } = opts;
+  const pkgPath = path.join(targetDir, 'package.json');
+
+  // Which top-level keys to normalize
+  const fieldsToNormalize = ['regions', 'universes'];
+
+  try {
+    const raw = await fs.readFile(pkgPath, 'utf8');
+    const pkg = JSON.parse(raw);
+
+    let changed = false;
+
+    const normalizeArray = (arr) => {
+      if (!Array.isArray(arr)) return arr;
+
+      // Only act if at least one string item contains a comma
+      const hasCommaItem = arr.some((v) => typeof v === 'string' && v.includes(','));
+      if (!hasCommaItem) return arr;
+
+      // Split by comma, trim, drop empties and placeholder ellipsis
+      const parts = arr.flatMap((v) => (typeof v === 'string' ? v.split(',') : [v]));
+      const cleaned = parts
+        .map((v) => (typeof v === 'string' ? v.trim() : v))
+        .filter((v) => typeof v === 'string' && v.length > 0 && v !== '...' && v !== '…');
+
+      // Deduplicate while preserving order
+      return [...new Set(cleaned)];
+    };
+
+    for (const key of fieldsToNormalize) {
+      if (key in pkg) {
+        const before = pkg[key];
+        const after = normalizeArray(before);
+
+        // Only mark changed if it actually differs
+        if (JSON.stringify(after) !== JSON.stringify(before)) {
+          pkg[key] = after;
+          changed = true;
+        }
+      }
+    }
+
+    if (changed) {
+      if (dryRun) {
+        console.log(`📝 (post) would normalize comma-separated arrays in ${pkgPath}`);
+      } else {
+        await fs.writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf8');
+        console.log(`🔧 normalized comma-separated arrays in ${pkgPath}`);
+      }
+    }
+  } catch {
+    // package.json might not exist in some flavors; ignore
   }
 }
 
@@ -182,7 +254,7 @@ async function run() {
     usePreset: argv.usePreset,
     mainApiPath: argv.mainApiPath,
     listingEndpointPath: argv.listingEndpointPath,
-    onboardingEndpointPath: argv.onboardingEndpointPath,
+    dashboardEndpointPath: argv.dashboardEndpointPath,
   };
 
   // 3) if non-interactive, validate and go; else, prompt to fill gaps
@@ -232,6 +304,9 @@ async function run() {
 
   // 7) fix boolean generation
   await fixGeneratedBooleans({ targetDir, dryRun: !!argv['dry-run'] });
+
+  // 8) normalize comma-separated arrays in package.json
+  await fixCommaSeparatedArrays({ targetDir, dryRun: !!argv['dry-run'] });
 }
 
 run().catch((err) => {

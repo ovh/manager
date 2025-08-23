@@ -2,8 +2,7 @@
  * @file tokens-helper.ts
  * @description Low-level helpers for token resolution and replacement.
  */
-import { GeneratorAnswers, RouteFlavor } from '../../playbook/types/playbook-types';
-import { BuildTokensInput, type TokenMap, TokenMod } from '../types/tokens-types';
+import { type TokenMap, TokenMod } from '../types/tokens-types';
 
 /**
  * Safe `hasOwnProperty` check.
@@ -325,24 +324,6 @@ export function toKebabCase(s: string): string {
  */
 export function shortPciSlug(slug: string): string {
   return slug.replace(/^app-pci-/, '').replace(/^pci-/, '');
-}
-
-/**
- * Decide which route flavor to apply (`pci` vs `generic`).
- *
- * Priority:
- * 1. Use explicit `routeFlavor` if provided
- * 2. Else infer from `isPci`
- * 3. Else default to `'generic'`
- *
- * @param a - User answers (strict or loose form)
- * @returns Inferred route flavor
- */
-export function decideRouteFlavor(a: BuildTokensInput): RouteFlavor {
-  if ((a as Partial<GeneratorAnswers>).routeFlavor) {
-    return (a as Partial<GeneratorAnswers>).routeFlavor as RouteFlavor;
-  }
-  return (a as Partial<GeneratorAnswers>).isPci ? 'pci' : 'generic';
 }
 
 /**

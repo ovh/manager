@@ -7,14 +7,6 @@ import { PromptChoice } from '../types/inquiries-types';
 import { normalizePath } from '../utils/paths-utils';
 
 /**
- * Check if is manual input prompt
- * @param v
- * @param manual
- */
-export const isManualInputPrompt = (v: unknown, manual: string): v is string =>
-  typeof v === 'string' && v === manual;
-
-/**
  * Convert a list of {@link PromptChoice} or strings into a plain string array.
  *
  * @param choices Input choices
@@ -53,11 +45,11 @@ function deriveFlags(d: AugmentedAnswers): void {
 }
 
 /**
- * Extract and normalize listing/onboarding endpoints selected by the user.
+ * Extract and normalize listing/dashboard endpoints selected by the user.
  *
  * Updates:
  * - `listingEndpointPath`, `listingEndpointFn`
- * - `onboardingEndpointPath`, `onboardingEndpointFn`
+ * - `dashboardEndpointPath`, `dashboardEndpointFn`
  * - `mainApiPath`
  *
  * @param d Augmented answers
@@ -66,24 +58,24 @@ function deriveFlags(d: AugmentedAnswers): void {
 function extractPaths(d: AugmentedAnswers): {
   listingPath: string;
   listingFn: string;
-  onboardingPath: string;
-  onboardingFn: string;
+  dashboardPath: string;
+  dashboardFn: string;
 } {
   const [listingPathRaw = '', listingFn = ''] =
     (d as unknown as { listingEndpoint?: string }).listingEndpoint?.split?.('-') ?? [];
-  const [onboardingPathRaw = '', onboardingFn = ''] =
-    (d as unknown as { onboardingEndpoint?: string }).onboardingEndpoint?.split?.('-') ?? [];
+  const [dashboardPathRaw = '', dashboardFn = ''] =
+    (d as unknown as { dashboardEndpoint?: string }).dashboardEndpoint?.split?.('-') ?? [];
 
   const listingPath = normalizePath(listingPathRaw, { braceAware: true });
-  const onboardingPath = normalizePath(onboardingPathRaw, { braceAware: true });
+  const dashboardPath = normalizePath(dashboardPathRaw, { braceAware: true });
 
   d.listingEndpointPath = listingPath;
   d.listingEndpointFn = listingFn;
-  d.onboardingEndpointPath = onboardingPath;
-  d.onboardingEndpointFn = onboardingFn;
+  d.dashboardEndpointPath = dashboardPath;
+  d.dashboardEndpointFn = dashboardFn;
   d.mainApiPath = listingPath;
 
-  return { listingPath, listingFn, onboardingPath, onboardingFn };
+  return { listingPath, listingFn, dashboardPath, dashboardFn };
 }
 
 /**
@@ -107,17 +99,17 @@ function updateMainApiVersion(d: AugmentedAnswers, listingPath: string): void {
 }
 
 /**
- * Compute reduced MethodGroups limited to listing & onboarding endpoints.
+ * Compute reduced MethodGroups limited to listing & dashboard endpoints.
  * v2 additionally includes `/serviceInfos`.
  *
  * @param d Augmented answers
  * @param listingPath Selected listing path
- * @param onboardingPath Selected onboarding path
+ * @param dashboardPath Selected dashboard path
  */
 function computeMethodGroups(
   d: AugmentedAnswers,
   listingPath: string,
-  onboardingPath: string,
+  dashboardPath: string,
 ): void {
   const v6Ops = d.apiV6Endpoints?.get?.operationList ?? [];
   const v2Ops = d.apiV2Endpoints?.get?.operationList ?? [];
@@ -127,7 +119,7 @@ function computeMethodGroups(
         get: {
           ...(d.apiV6Endpoints?.get ?? {}),
           operationList: v6Ops.filter(({ apiPath }) =>
-            [listingPath, onboardingPath].includes(apiPath),
+            [listingPath, dashboardPath].includes(apiPath),
           ),
         },
       }
@@ -139,7 +131,7 @@ function computeMethodGroups(
           ...(d.apiV2Endpoints?.get ?? {}),
           operationList: v2Ops.filter(
             ({ apiPath }) =>
-              [listingPath, onboardingPath].includes(apiPath) || apiPath.includes('/serviceInfos'),
+              [listingPath, dashboardPath].includes(apiPath) || apiPath.includes('/serviceInfos'),
           ),
         },
       }
@@ -155,7 +147,7 @@ export function applyDerivations(data: GeneratorAnswers): void {
   const derivativeData = data as AugmentedAnswers;
   deriveFlags(derivativeData);
 
-  const { listingPath, onboardingPath } = extractPaths(derivativeData);
+  const { listingPath, dashboardPath } = extractPaths(derivativeData);
   updateMainApiVersion(derivativeData, listingPath);
-  computeMethodGroups(derivativeData, listingPath, onboardingPath);
+  computeMethodGroups(derivativeData, listingPath, dashboardPath);
 }

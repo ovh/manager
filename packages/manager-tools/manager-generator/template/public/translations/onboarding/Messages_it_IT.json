@@ -1,11 +1,11 @@
 {
-  "title_fallback": "Benvenuto in {{appNameKebab}}",
-  "description_part1": "Scopri come ottenere il massimo da {{appNameKebab}}, {{description}}.",
+  "title_fallback": "Benvenuto in app-gen-test",
+  "description_part1": "Scopri come ottenere il massimo da app-gen-test, ddd.",
   "description_part2": "Segui le nostre guide per iniziare rapidamente.",
   "guides": {
     "guide1": {
       "category": "Scopri",
-      "title": "Introduzione a {{appNameKebab}}",
+      "title": "Introduzione a app-gen-test",
       "description": "Impara le basi per iniziare.",
       "cta": "Scopri"
     },

@@ -8,25 +8,6 @@
  * - Ensures API paths follow a safe pattern (leading slash, allowed chars)
  * - Normalizes paths using `normalizeBasePath` and `normalizeCombined`
  * - Provides type inference (`ValidAnswers`) for downstream TypeScript code
- *
- * Example of a valid "answers" object:
- * ```ts
- * {
- *   appName: "pci-storage",
- *   description: "PCI block storage UI",
- *   universe: "public-cloud",
- *   subUniverse: "storage",
- *   region: "EU",
- *   flavor: "react",
- *   usePreset: true,
- *   userEmail: "dev@company.com",
- *   language: "ts",
- *   framework: "react",
- *   mainApiPath: "/v6/cloud",
- *   listingEndpointPath: "/v6/cloud/project/{serviceName}/volume",
- *   onboardingEndpointPath: "/v6/cloud/project/{serviceName}/volume/{volumeId}",
- *   serviceKey: "volume"
- * }
  * ```
  */
 import { z } from 'zod';
@@ -72,14 +53,21 @@ export const AnswersSchema = z.object({
       `subUniverse must be one of: ${SUB_UNIVERSES.join(', ')}`,
     ),
 
-  /** Deployment region (EU, US, etc.). Must match `REGIONS` when provided. */
-  region: z
-    .string()
+  /** Deployment region(s). Each must match REGIONS when provided. */
+  regions: z
+    .array(z.string())
     .optional()
-    .refine(
-      (v) => v === undefined || includesLoose(REGIONS, v),
-      `region must be one of: ${REGIONS.join(', ')}`,
-    ),
+    .refine((arr) => arr === undefined || arr.every((v) => includesLoose(REGIONS, v)), {
+      message: `each region must be one of: ${REGIONS.join(', ')}`,
+    }),
+
+  /** Deployment universe(s). Each must match UNIVERSES when provided. */
+  universes: z
+    .array(z.string())
+    .optional()
+    .refine((arr) => arr === undefined || arr.every((v) => includesLoose(UNIVERSES, v)), {
+      message: `each universe must be one of: ${UNIVERSES.join(', ')}`,
+    }),
 
   /** Optional app flavor (UI variant, product line, etc.). */
   flavor: z.string().optional(),
@@ -122,17 +110,17 @@ export const AnswersSchema = z.object({
   ),
 
   /**
-   * onboarding endpoint path (normalized).
+   * dashboard endpoint path (normalized).
    * Must start with `/`.
    *
    * Example: `/v6/cloud/project/{serviceName}/volume/{volumeId}`
    */
-  onboardingEndpointPath: z.preprocess(
+  dashboardEndpointPath: z.preprocess(
     normalizeCombined,
     z
       .string()
-      .min(1, 'onboardingEndpointPath is required')
-      .regex(pathRule, 'onboardingEndpointPath must start with "/"'),
+      .min(1, 'dashboardEndpointPath is required')
+      .regex(pathRule, 'dashboardEndpointPath must start with "/"'),
   ),
 
   /** Optional key for the main service resource (e.g. "volumeId"). */

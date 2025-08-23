@@ -139,7 +139,7 @@ export interface ApiSelectionInputs {
  * Outputs from the API selection policy.
  *
  * This represents the resolved API flavors that should be used
- * for different generator layers (listing vs onboarding).
+ * for different generator layers (listing vs dashboard).
  */
 export interface ApiSelectionResult {
   /**
@@ -151,10 +151,10 @@ export interface ApiSelectionResult {
   listingApi: 'v6Iceberg' | 'v2' | 'v6';
 
   /**
-   * API flavor used by onboarding flows (form actions, create/delete).
+   * API flavor used by dashboard flows (form actions, create/delete).
    * Mirrors the version where the selected listing endpoint belongs.
    */
-  onboardingApi: 'v2' | 'v6';
+  dashboardApi: 'v2' | 'v6';
 }
 
 /**

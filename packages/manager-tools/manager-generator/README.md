@@ -88,7 +88,7 @@ Common ones in a standard Manager app template’s `template/src/App.constants.t
 
 - **Identity**: `{{appName}}`, `{{description}}`, `{{serviceKey}}`
 - **Routing**: `{{isPci}}`, `{{routeFlavor}}`
-- **APIs**: `{{listingApi}}`, `{{onboardingApi}}`
+- **APIs**: `{{listingApi}}`, `{{dashboardApi}}`
 - **Tracking**: `{{level2EU}}`, `{{universe}}`, `{{subUniverse}}`
 
 > **Boolean note**: Always quote boolean-like tokens in the template, e.g. `isPci: '{{isPci}}'`. The post-processor will unquote in the generated app’s `src/App.constants.ts`.
@@ -131,7 +131,7 @@ Follow the prompts. You’ll be asked for:
 
 1. **Identity** – app name, package name, description.
 2. **Regions & universes** – one or more regions, universes, sub-universes.
-3. **Routing** – flavor (PCI/Generic/Platform param), optional `appSlug`, `basePrefix`, `serviceParam`, `platformParam`.
+3. **Routing** – flavor (PCI/Generic), optional `appSlug`, and `basePrefix`.
 4. **API family** – listing (`v6Iceberg`/`v6`/`v2`) and onboarding (`v6`/`v2`).
 5. **API base paths** – choose the base(s) to use.
 6. **Endpoints** – pick listing & onboarding endpoints from discovered options or enter them manually.

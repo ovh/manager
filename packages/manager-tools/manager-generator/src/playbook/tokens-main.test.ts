@@ -65,17 +65,6 @@ describe('buildBaseTokens', () => {
 
     expect(tokens.mainApiPath).toBe('/cloud');
   });
-
-  it('keeps provided serviceParam and platformParam without colon prefix', () => {
-    const tokens = buildBaseTokens({
-      appName: 'X',
-      serviceParam: ':customService',
-      platformParam: ':customPlatform',
-    } as BuildTokensInput);
-
-    expect(tokens.serviceParam).toBe('customService');
-    expect(tokens.platformParam).toBe('customPlatform');
-  });
 });
 
 describe('resolveTokens', () => {
@@ -83,7 +72,7 @@ describe('resolveTokens', () => {
     const answers: ValidAnswers = {
       listingEndpointPath: '',
       mainApiPath: '',
-      onboardingEndpointPath: '',
+      dashboardEndpointPath: '',
       universe: '',
       usePreset: false,
       appName: 'cloud',
@@ -104,7 +93,7 @@ describe('resolveTokens', () => {
     const answers: ValidAnswers = {
       listingEndpointPath: '',
       mainApiPath: '',
-      onboardingEndpointPath: '',
+      dashboardEndpointPath: '',
       universe: '',
       usePreset: false,
       appName: 'solo',

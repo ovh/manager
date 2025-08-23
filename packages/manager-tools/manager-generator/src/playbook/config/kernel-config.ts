@@ -48,5 +48,3 @@ export const DEFAULT_BINARY_EXTS = [
   '.woff',
   '.woff2',
 ];
-
-export const MANUAL_ENDPOINT_VALUE = '<manual-entry>';

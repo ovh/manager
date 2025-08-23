@@ -14,7 +14,8 @@ const DEFAULTS_PRESETS_CONFIG = {
   appName: 'my-app',
   universe: 'publicCloud',
   subUniverse: 'none',
-  region: 'EU',
+  regions: ['EU'],
+  universes: ['Manager'],
   flavor: 'medium',
   usePreset: false,
   userEmail: 'default@example.com',
@@ -22,7 +23,7 @@ const DEFAULTS_PRESETS_CONFIG = {
   framework: 'React',
   mainApiPath: '',
   listingEndpointPath: '',
-  onboardingEndpointPath: '',
+  dashboardEndpointPath: '',
   description: 'OVHcloud Manager application',
   serviceKey: 'serviceId',
 } satisfies Partial<ValidAnswers>;

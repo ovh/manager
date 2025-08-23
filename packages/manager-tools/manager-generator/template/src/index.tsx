@@ -1,18 +1,3 @@
-/**
- * index.tsx
- * -----------------------------------------------------------------------------
- * Application bootstrap entrypoint.
- *
- * Responsibilities:
- * - Initialize the Manager shell context (auth, environment, tracking).
- * - Configure i18n namespaces for onboarding, dashboard, listing.
- * - Load region-specific config dynamically (`config-<region>.js`).
- * - Hydrate the React application under `#root`.
- *
- * @remarks
- * - Tracking context is defined once and injected into the shell.
- * - Falls back gracefully if no region-specific config is found.
- */
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
@@ -26,14 +11,6 @@ import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './Tracking.constants';
 import './index.scss';
 import './vite-hmr';
 
-/**
- * Analytics & tracking configuration injected into the shell.
- *
- * @remarks
- * - `chapter1..3` define the hierarchy for tracking.
- * - `level2Config` maps region → level2 identifier.
- * - `pageTheme` defines the tracking “theme” (usually the universe).
- */
 const trackingContext = {
   chapter1: UNIVERSE,
   chapter2: SUB_UNIVERSE,
@@ -43,11 +20,6 @@ const trackingContext = {
   level2Config: LEVEL2,
 };
 
-/**
- * Bootstrap the application.
- *
- * @param appName - Application identifier (short slug).
- */
 const init = async (appName: string) => {
   // Initialize shell context: auth, env, tracking, APIs
   const context = await initShellContext(appName, trackingContext);

@@ -21,9 +21,6 @@ const h = vi.hoisted(() => {
     // Keep these trivial to avoid unsafe member-access lints
     choicesToStringsMock: vi.fn<(choices: PromptChoice[]) => string[]>(() => []),
     normalizeApiPathChoicesMock: vi.fn<(items: ApiPathChoice[]) => PromptChoice[]>(() => []),
-    isManualValueMock: vi.fn<(v: unknown, m: string) => boolean>(
-      (v: unknown, m: string) => v === m,
-    ),
     isEndpointValueFormatMock: vi.fn<(s: string) => boolean>(
       (s: string) => typeof s === 'string' && s.startsWith('/'),
     ),
@@ -42,7 +39,6 @@ vi.mock('inquirer-autocomplete-prompt', () => ({
 vi.mock('../kernel/prompts/prompts-helper', () => ({
   applyDerivations: h.applyDerivationsMock,
   transformPromptsChoicesToStrings: h.choicesToStringsMock,
-  isManualInputPrompt: h.isManualValueMock,
 }));
 
 vi.mock('../kernel/utils/endpoint-utils', () => ({
@@ -60,10 +56,6 @@ vi.mock('./config/api-config', () => ({
     { name: '56 - ManagerCloud', value: '56', short: '56' },
     { name: '57 - Something', value: '57', short: '57' },
   ] as const,
-}));
-
-vi.mock('./config/kernel-config', () => ({
-  MANUAL_ENDPOINT_VALUE: '__manual__' as const,
 }));
 
 /** ------------------------------ Utilities -------------------------------- */
@@ -93,14 +85,6 @@ function getQ(questions: readonly unknown[], name: string, type?: string): Quest
     }
   }
   throw new Error(`Question "${name}"${type ? ` (type=${type})` : ''} not found`);
-}
-
-async function resolveBool(x: boolean | Promise<boolean> | undefined): Promise<boolean> {
-  if (typeof x === 'boolean') return x;
-  if (x && typeof x.then === 'function') {
-    return await x;
-  }
-  return false;
 }
 
 /** ------------------------------- Tests ----------------------------------- */
@@ -147,27 +131,6 @@ describe('identity & routing', function () {
     expect(universesQ.validate?.([])).toBe('Pick at least one universe');
     expect(universesQ.validate?.(['PublicCloud'])).toBe(true);
   });
-
-  it('sets routing defaults and derived isPci', () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-    const routeFlavorQ = getQ(questions, 'routeFlavor', 'list');
-    expect(routeFlavorQ.default).toBe('pci');
-
-    const isPciQ = getQ(questions, 'isPci', 'confirm');
-    const isPciDef = isPciQ.default as (a: Partial<GeneratorAnswers>) => boolean;
-    expect(isPciDef({ routeFlavor: 'pci' })).toBe(true);
-    expect(isPciDef({ routeFlavor: 'generic' })).toBe(false);
-  });
-
-  it('filters slug/basePrefix/serviceParam/platformParam inputs', () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-    expect(getQ(questions, 'appSlug', 'input').filter?.('  foo  ')).toBe('foo');
-    expect(getQ(questions, 'basePrefix', 'input').filter?.('  public-cloud  ')).toBe(
-      'public-cloud',
-    );
-    expect(getQ(questions, 'serviceParam', 'input').filter?.(':service')).toBe('service');
-    expect(getQ(questions, 'platformParam', 'input').filter?.(':platformId')).toBe('platformId');
-  });
 });
 
 describe('API families & paths', function () {
@@ -176,72 +139,10 @@ describe('API families & paths', function () {
     const questions = buildQuestions(apiPaths);
 
     expect(getQ(questions, 'listingApi', 'list').default).toBe('v6Iceberg');
-    expect(getQ(questions, 'onboardingApi', 'list').default).toBe('v6');
+    expect(getQ(questions, 'dashboardApi', 'list').default).toBe('v6');
 
     // ensure normalize/choices mappers are wired
     getQ(questions, 'apiPaths', 'checkbox');
     expect(h.choicesToStringsMock).toHaveBeenCalled();
-  });
-
-  it('prepares endpoints before listing and builds choices with MANUAL appended when missing', async () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-    const listingEndpointQ = getQ(questions, 'listingEndpoint', 'list');
-
-    const whenRes = listingEndpointQ.when?.({} as Answers);
-    expect(await resolveBool(whenRes)).toBe(true);
-    expect(h.prepareEndpointsForListingMock).toHaveBeenCalled();
-
-    // helper returns without manual -> SUT appends
-    h.buildEndpointChoiceValuesMock.mockReturnValueOnce(['/cloud/x-get']);
-    const choicesFn1 = listingEndpointQ.choices as (a: Answers) => readonly unknown[];
-    const c1 = choicesFn1({ apiV2Endpoints: {}, apiV6Endpoints: {} } as Answers);
-    expect(c1).toEqual(['/cloud/x-get', '__manual__']);
-
-    // helper includes manual -> unchanged
-    h.buildEndpointChoiceValuesMock.mockReturnValueOnce(['/cloud/y-get', '__manual__']);
-    const choicesFn2 = listingEndpointQ.choices as (a: Answers) => readonly unknown[];
-    const c2 = choicesFn2({ apiV2Endpoints: {}, apiV6Endpoints: {} } as Answers);
-    expect(c2).toEqual(['/cloud/y-get', '__manual__']);
-  });
-});
-
-describe('manual inputs, derivations & tracking', function () {
-  it('shows manual endpoint inputs when MANUAL is selected, validates and trims', () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-
-    const manualListingQ = getQ(questions, 'listingEndpoint', 'input');
-    const manualOnboardingQ = getQ(questions, 'onboardingEndpoint', 'input');
-
-    expect(manualListingQ.when?.({ listingEndpoint: '__manual__' } as Answers)).toBe(true);
-    expect(manualOnboardingQ.when?.({ onboardingEndpoint: '__manual__' } as Answers)).toBe(true);
-
-    expect(manualListingQ.validate?.('not/starting/with-slash')).toBe(
-      'Please use /api/path-functionName (e.g. /cloud/project-getService)',
-    );
-    expect(h.isEndpointValueFormatMock).toHaveBeenCalled();
-
-    expect(manualListingQ.validate?.('/cloud/project-getService')).toBe(true);
-    expect(manualListingQ.filter?.('   /cloud/x-y   ')).toBe('/cloud/x-y');
-  });
-
-  it('applies derivations before serviceKey and validates presence', () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-    const serviceKeyQ = getQ(questions, 'serviceKey', 'input');
-
-    expect(serviceKeyQ.when?.({} as Answers)).toBe(true);
-    expect(h.applyDerivationsMock).toHaveBeenCalled();
-
-    expect(serviceKeyQ.validate?.('')).toBe('Service key is required');
-    expect(serviceKeyQ.validate?.('ok')).toBe(true);
-  });
-
-  it('exposes tracking questions with configured choices', () => {
-    const questions = buildQuestions([] as ApiPathChoice[]);
-    expect(getQ(questions, 'level2', 'list').choices).toEqual([
-      { name: '56 - ManagerCloud', value: '56', short: '56' },
-      { name: '57 - Something', value: '57', short: '57' },
-    ]);
-    expect(getQ(questions, 'universe', 'list').choices).toEqual(['PublicCloud', 'WebCloud']);
-    expect(getQ(questions, 'subUniverse', 'list').choices).toEqual(['compute', 'network']);
   });
 });

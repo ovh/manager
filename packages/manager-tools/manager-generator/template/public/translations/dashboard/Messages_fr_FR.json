@@ -1,5 +1,19 @@
 {
-  "home": "Home",
-  "order": "Order",
-  "dashboardPageTitle": "Dashboard"
+  "home": "Accueil",
+  "order": "Commander",
+  "back": "Retour",
+  "title": "Dashboard",
+  "email": "E-mail",
+  "subject": "Objet",
+  "message": "Message",
+  "submitButton": "Envoyer",
+  "successMessage": "Votre demande a été envoyée avec succès.",
+  "errors": {
+    "emailRequired": "L’e-mail est obligatoire.",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+    "subjectRequired": "L’objet est obligatoire.",
+    "messageRequired": "Le message est obligatoire."
+  },
+  "general-information": "Informations générales",
+  "help": "Aide"
 }

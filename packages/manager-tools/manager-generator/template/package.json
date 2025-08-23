@@ -50,9 +50,9 @@
     "@tanstack/react-query-devtools": "^5.51.21"
   },
   "regions": [
-    "{{region}}"
+    "{{regions}}"
   ],
   "universes": [
-     "{{trackingUniverse}}"
+     "{{universes}}"
   ]
 }

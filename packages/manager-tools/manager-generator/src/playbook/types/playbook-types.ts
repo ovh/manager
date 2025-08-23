@@ -3,9 +3,9 @@ import { TokenMap } from '../../kernel/types/tokens-types';
 import { PresetName } from '../../presets/presets-types';
 import { ValidAnswers } from './playbook-schema';
 
-export type RouteFlavor = 'pci' | 'generic' | 'platformParam';
+export type RouteFlavor = 'pci' | 'generic';
 export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
-export type OnboardingApi = 'v6' | 'v2';
+export type DashboardApi = 'v6' | 'v2';
 
 /**
  * Runtime tokens injected into templates during generation.
@@ -21,17 +21,11 @@ export interface Tokens {
   /** Stringified boolean flag (`'true' | 'false'`) indicating PCI flavor. */
   isPci: string;
 
-  /** Flavor of generated routes (`'pci'`, `'generic'`, or `'platformParam'`). */
+  /** Flavor of generated routes (`'pci'`, or `'generic'`). */
   routeFlavor: RouteFlavor;
 
   /** Fixed base prefix for routes (e.g. `"public-cloud"`). Empty by default. */
   basePrefix: string;
-
-  /** Name of the service route param (default: `"serviceName"`). */
-  serviceParam: string;
-
-  /** Name of the platform route param (default: `"platformId"`). */
-  platformParam: string;
 
   /** Kebab-cased short slug used in templates (esp. PCI). */
   appSlug: string;
@@ -42,11 +36,14 @@ export interface Tokens {
   /** API flavor used by listing/datagrid operations. */
   listingApi: ListingApi;
 
-  /** API flavor used by onboarding flows. Mirrors selected endpoint family. */
-  onboardingApi: OnboardingApi;
+  /** API flavor used by dashboard flows. Mirrors selected endpoint family. */
+  dashboardApi: DashboardApi;
 
-  /** Selected region. */
-  region: string;
+  /** List of supported regions. */
+  regions?: string[];
+
+  /** List of supported universes. */
+  universes?: string[];
 
   /** Tracking */
   trackingLevel2: string;
@@ -68,8 +65,8 @@ export interface Tokens {
    */
   listingEndpoint?: string;
 
-  /** Optional onboarding endpoint identifier (Swagger style). */
-  onboardingEndpoint?: string;
+  /** Optional dashboard endpoint identifier (Swagger style). */
+  dashboardEndpoint?: string;
 }
 
 /**
@@ -98,9 +95,6 @@ export interface GeneratorAnswers {
   /** Multi-select list of supported universes (optional). */
   universes?: string[];
 
-  /** Default region (single-select). */
-  region: string;
-
   /** Application flavor/size (internal taxonomy). */
   flavor: string;
 
@@ -110,8 +104,8 @@ export interface GeneratorAnswers {
   /** API path for the listing endpoint. */
   listingEndpointPath: string;
 
-  /** API path for the onboarding endpoint. */
-  onboardingEndpointPath: string;
+  /** API path for the dashboard endpoint. */
+  dashboardEndpointPath: string;
 
   /** Target UI language. */
   language: 'en' | 'fr' | 'de' | 'es';
@@ -143,17 +137,11 @@ export interface GeneratorAnswers {
   /** Base prefix for routes (default: runtime auto-detect). */
   basePrefix?: string;
 
-  /** Custom name of the service param (default: `"serviceName"`). */
-  serviceParam?: string;
-
-  /** Custom name of the platform param (default: `"platformId"`). */
-  platformParam?: string;
-
   /** Listing API family (default: `"v6Iceberg"`). */
   listingApi?: ListingApi;
 
-  /** Onboarding API family (default: `"v6"`). */
-  onboardingApi?: OnboardingApi;
+  /** Dashboard API family (default: `"v6"`). */
+  dashboardApi?: DashboardApi;
 
   /** Optional explicit package name override. */
   packageName?: string;
@@ -167,8 +155,8 @@ export interface GeneratorAnswers {
    */
   listingEndpoint?: string;
 
-  /** Optional onboarding endpoint identifier (Swagger style). */
-  onboardingEndpoint?: string;
+  /** Optional dashboard endpoint identifier (Swagger style). */
+  dashboardEndpoint?: string;
 }
 
 /**
@@ -210,8 +198,8 @@ export type AugmentedAnswers = GeneratorAnswers & {
   /** PCI-specific variant of the `mainApiPath` (if any). */
   mainApiPathPci?: string;
 
-  /** Function name derived from selected onboarding endpoint. */
-  onboardingEndpointFn?: string;
+  /** Function name derived from selected dashboard endpoint. */
+  dashboardEndpointFn?: string;
 
   /** Computed/final v6 endpoints used for file generation. */
   apiV6Computed?: MethodGroup;

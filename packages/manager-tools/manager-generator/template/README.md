@@ -14,7 +14,7 @@ The same codebase supports multiple product universes (PCI, Hub, Web, Zimbra) by
 
 ### `src/App.constants.ts`
 
-Single source of truth for app identity, API strategy, feature flags, and tracking. Tokens like `{{appSlug}}` and `{{trackingUniverse}}` are filled by the generator.
+Single source of truth for app identity, API strategy, feature flags, and tracking. Tokens like `app-gen-test` and `Hub` are filled by the generator.
 
 ```ts
 export const appName = '{{appNameKebab}}';
@@ -22,14 +22,14 @@ export const appName = '{{appNameKebab}}';
 export const APP_FEATURES = {
   // API strategies
   listingApi: '{{listingApi}}' as ListingApi,      // 'v6Iceberg' | 'v2' | 'v6'
-  onboardingApi: '{{onboardingApi}}' as OnboardingApi, // 'v6' | 'v2'
+  dashboardApi: '{{dashboardApi}}' as DashboardApi, // 'v6' | 'v2'
 
   // Flavor + routing
   isPci: '{{isPci}}',
   routeFlavor: '{{routeFlavor}}' as const,         // 'pci' | 'generic' | 'platformParam'
   basePrefix: '',                                  // optional shell prefix
-  serviceParam: ':serviceName',                    // service route param (no ':' in final URL)
-  platformParam: ':platformId',                    // platform route param
+  serviceParam: 'id',                    // service route param (no ':' in final URL)
+  platformParam: 'id',                    // platform route param
   appSlug: appName,                                // for PCI, use short slug (e.g. "billing")
 
   // Tracking
@@ -59,7 +59,6 @@ Route helpers and constants live in [`src/routes/Routes.utils.ts`](src/routes/Ro
 The **root path** is computed from `APP_FEATURES.routeFlavor` (optional `basePrefix` is prepended):
 
 - **'pci'** → `/[basePrefix]/pci/projects/:projectId/{appSlug}`
-- **'platformParam'** → `/[basePrefix]/{platformId}`
 - **'generic'** (default) → `/[basePrefix]/{appSlug}`
 
 High-level routes (relative to the root) are exposed via `urls`:
@@ -170,7 +169,7 @@ The app uses **hash-based routing**. Open the dev server URL printed by Vite (de
 ```
 For example (PCI flavor):
 ```
-#/pci/projects/:projectId/{{appNameKebab}}
+#/pci/projects/:projectId/app-gen-test
 ```
 
 ---

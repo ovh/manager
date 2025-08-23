@@ -49,7 +49,7 @@ export function isEndpointValueFormat(s: string): boolean {
 }
 
 /**
- * Prepare endpoints before prompting user for listing/onboarding config.
+ * Prepare endpoints before prompting user for listing/dashboard config.
  *
  * Steps:
  * - Set template defaults
@@ -62,7 +62,7 @@ export function isEndpointValueFormat(s: string): boolean {
  */
 export async function prepareEndpointsForListing(answers: GeneratorAnswers): Promise<void> {
   const augmentedAnswers = answers as AugmentedAnswers & { apiPaths?: string[] };
-  augmentedAnswers.templates = ['listing', 'onboarding'];
+  augmentedAnswers.templates = ['listing', 'dashboard'];
 
   const selectedPaths = augmentedAnswers.apiPaths ?? [];
   const byVersion = splitApiPathsByVersion(selectedPaths);

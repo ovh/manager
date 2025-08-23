@@ -3,7 +3,7 @@ import React from 'react';
 import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
 
 import { AppConfig } from '@/App.constants';
-import { useBreadcrumb } from '@/hooks/breadcrumb/useBreadcrumb';
+import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
 import type { BreadcrumbProps } from '@/types/Breadcrumb.type';
 
 function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
@@ -12,8 +12,8 @@ function Breadcrumb({ customRootLabel, items }: BreadcrumbProps): JSX.Element {
 
   return (
     <OdsBreadcrumb>
-      {breadcrumbItems.map(({ id, label, ...props }) => (
-        <OdsBreadcrumbItem key={id} label={label} {...props} />
+      {breadcrumbItems.map(({ label, href }) => (
+        <OdsBreadcrumbItem key={`${label}-${href}`} label={label} href={href} />
       ))}
     </OdsBreadcrumb>
   );

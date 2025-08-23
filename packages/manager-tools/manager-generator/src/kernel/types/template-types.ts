@@ -10,7 +10,7 @@ export interface ApplyTemplatesOptions {
   /**
    * Absolute path to the template folder to copy from.
    *
-   * Example: "/repo/scripts/templates/onboarding"
+   * Example: "/repo/scripts/templates/dashboard"
    */
   templateDir: string;
 
