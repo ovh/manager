@@ -1,13 +1,6 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from 'axios';
-import {
-  redirectToLoginPage,
-  redirectToLogoutPage,
-} from '@ovh-ux/manager-core-sso';
+import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+
+import { redirectToLoginPage, redirectToLogoutPage } from '@ovh-ux/manager-core-sso';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
 const defaultAxiosConfig = {};
@@ -19,10 +12,7 @@ function handleAuthenticationError(error: AxiosError) {
 
   if (status === 403) {
     const message = (response.data as { message: string })?.message;
-    if (
-      message === 'This session is forbidden' ||
-      message === 'This session is invalid'
-    ) {
+    if (message === 'This session is forbidden' || message === 'This session is invalid') {
       status = 401;
     }
   }

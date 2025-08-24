@@ -15,8 +15,10 @@
     "build": "tsc",
     "dev": "tsc",
     "prepare": "tsc",
-    "test": "vitest run --pool=threads",
-    "test:cov": "vitest run --coverage"
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**/**.ts",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.3.3",
@@ -24,6 +26,8 @@
     "axios": "^1.1.2"
   },
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "^0.3.0",
+    "@ovh-ux/manager-vite-config": "*"
   }
 }

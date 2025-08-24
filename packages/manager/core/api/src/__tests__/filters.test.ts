@@ -1,8 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import {
+  Filter,
   FilterComparator,
   FilterTypeCategories,
-  Filter,
   applyFilters,
   transformTagsFiltersToQuery,
 } from '../filters';
@@ -64,10 +65,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(2); // Both "John Doe" and "Bob Johnson" contain "john"
-    expect(result.map((item) => item.name)).toEqual([
-      'John Doe',
-      'Bob Johnson',
-    ]);
+    expect(result.map((item) => item.name)).toEqual(['John Doe', 'Bob Johnson']);
   });
 
   it('should filter by string starts with', () => {
@@ -164,10 +162,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(2);
-    expect(result.map((item) => item.date)).toEqual([
-      '2023-01-15',
-      '2023-01-05',
-    ]);
+    expect(result.map((item) => item.date)).toEqual(['2023-01-15', '2023-01-05']);
   });
 
   it('should filter by date after', () => {
@@ -181,10 +176,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(2);
-    expect(result.map((item) => item.date)).toEqual([
-      '2023-02-20',
-      '2023-03-10',
-    ]);
+    expect(result.map((item) => item.date)).toEqual(['2023-02-20', '2023-03-10']);
   });
 
   it('should filter by date equals (same day)', () => {
@@ -302,10 +294,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(2); // Both "John Doe" and "Bob Johnson" contain "JOHN" (case insensitive)
-    expect(result.map((item) => item.name)).toEqual([
-      'John Doe',
-      'Bob Johnson',
-    ]);
+    expect(result.map((item) => item.name)).toEqual(['John Doe', 'Bob Johnson']);
   });
 
   it('should return empty array when no items match filters', () => {
@@ -371,9 +360,7 @@ describe('transformTagsFiltersToQuery', () => {
     ];
     const result = transformTagsFiltersToQuery(filters);
     const expected = JSON.stringify({
-      environment: [
-        { operator: FilterComparator.TagEquals, value: 'production' },
-      ],
+      environment: [{ operator: FilterComparator.TagEquals, value: 'production' }],
     });
     expect(result).toBe(expected);
   });
@@ -424,9 +411,7 @@ describe('transformTagsFiltersToQuery', () => {
     ];
     const result = transformTagsFiltersToQuery(filters);
     const expected = JSON.stringify({
-      environment: [
-        { operator: FilterComparator.TagEquals, value: 'production' },
-      ],
+      environment: [{ operator: FilterComparator.TagEquals, value: 'production' }],
       department: [{ operator: FilterComparator.TagEquals, value: 'finance' }],
     });
     expect(result).toBe(expected);
@@ -481,9 +466,7 @@ describe('transformTagsFiltersToQuery', () => {
     ];
     const result = transformTagsFiltersToQuery(filters);
     const expected = JSON.stringify({
-      environment: [
-        { operator: FilterComparator.TagEquals, value: 'production' },
-      ],
+      environment: [{ operator: FilterComparator.TagEquals, value: 'production' }],
     });
     expect(result).toBe(expected);
   });
@@ -514,12 +497,8 @@ describe('transformTagsFiltersToQuery', () => {
     ];
     const result = transformTagsFiltersToQuery(filters);
     const expected = JSON.stringify({
-      environment: [
-        { operator: FilterComparator.TagEquals, value: 'production' },
-      ],
-      department: [
-        { operator: FilterComparator.TagNotEqual, value: 'finance' },
-      ],
+      environment: [{ operator: FilterComparator.TagEquals, value: 'production' }],
+      department: [{ operator: FilterComparator.TagNotEqual, value: 'finance' }],
       status: [{ operator: FilterComparator.TagExists }],
     });
     expect(result).toBe(expected);
