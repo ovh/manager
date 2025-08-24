@@ -19,9 +19,12 @@
     "manager-test": "./bin/manager-tests-setup-cli.js"
   },
   "scripts": {
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",

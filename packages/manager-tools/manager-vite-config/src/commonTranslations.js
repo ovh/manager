@@ -1,14 +1,12 @@
-import path from 'path';
-import { createRequire } from 'node:module';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
+import path from 'path';
 
 export function getCommonTranslations() {
   const require = createRequire(import.meta.url);
   let packageJson;
   try {
-    packageJson = JSON.parse(
-      fs.readFileSync(`${process.cwd()}/package.json`, 'utf8'),
-    );
+    packageJson = JSON.parse(fs.readFileSync(`${process.cwd()}/package.json`, 'utf8'));
   } catch (e) {
     packageJson = {};
   }
@@ -16,9 +14,7 @@ export function getCommonTranslations() {
   const viteStaticPluginTargets = [];
   if (packageJson?.dependencies[COMMON_TRANSLATIONS_PACKAGE]) {
     viteStaticPluginTargets.push({
-      src: `${path.dirname(
-        require.resolve(COMMON_TRANSLATIONS_PACKAGE),
-      )}/@ovh-ux`,
+      src: `${path.dirname(require.resolve(COMMON_TRANSLATIONS_PACKAGE))}/@ovh-ux`,
       dest: `translations`,
     });
   }
