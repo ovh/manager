@@ -1,21 +1,20 @@
-import React, { lazy, useEffect, Fragment, Suspense } from 'react';
+import React, { Fragment, Suspense, lazy, useEffect } from 'react';
+
 import {
-  useLocation,
+  ActionFunction,
+  ActionFunctionArgs,
+  LoaderFunction,
+  LoaderFunctionArgs,
+  Outlet,
   RouteObject,
   createHashRouter,
-  Outlet,
-  LoaderFunction,
-  ActionFunction,
-  LoaderFunctionArgs,
-  ActionFunctionArgs,
-  useRouteError,
-  useNavigate,
   matchRoutes,
+  useLocation,
+  useNavigate,
+  useRouteError,
 } from 'react-router-dom';
-import {
-  generateRegularRoutes,
-  generatePreservedRoutes,
-} from 'generouted/core';
+
+import { generatePreservedRoutes, generateRegularRoutes } from 'generouted/core';
 
 import { useShell } from '.';
 
@@ -92,20 +91,14 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
 }
 
 export function createAppRouter(): ReturnType<typeof createHashRouter> {
-  const preservedRoutesBlob = import.meta.glob<Module>(
-    '/pages/(_app|404).tsx',
-    { eager: true },
-  );
-  const regularRoutesBlob = import.meta.glob<Module>([
-    '/pages/**/[\\w[]*.tsx',
-    '!**/(_app|404).*',
-  ]);
+  const preservedRoutesBlob = import.meta.glob<Module>('/pages/(_app|404).tsx', { eager: true });
+  const regularRoutesBlob = import.meta.glob<Module>(['/pages/**/[\\w[]*.tsx', '!**/(_app|404).*']);
 
   const preservedRoutes = generatePreservedRoutes<Element>(preservedRoutesBlob);
-  const regularRoutes = generateRegularRoutes<
-    RouteObject,
-    () => Promise<Module>
-  >(regularRoutesBlob, buildRegularRoute);
+  const regularRoutes = generateRegularRoutes<RouteObject, () => Promise<Module>>(
+    regularRoutesBlob,
+    buildRegularRoute,
+  );
 
   const appIndex = '_app';
   const App = preservedRoutes?.[appIndex] || Fragment;

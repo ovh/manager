@@ -3,6 +3,7 @@ import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint
 
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
@@ -14,6 +15,7 @@ import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslin
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
+  reactEslintConfig,
   ...importEslintConfig,
   ...checkFileEslintConfig,
   vitestEslintConfig,

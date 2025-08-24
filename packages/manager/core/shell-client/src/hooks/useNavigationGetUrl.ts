@@ -1,6 +1,9 @@
 import { useContext } from 'react';
+
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
+
 import { ParamValueType } from '@ovh-ux/url-builder';
+
 import { ShellContext } from '../ShellContext';
 
 export const useNavigationGetUrl = (

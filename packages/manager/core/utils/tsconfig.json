@@ -1,16 +1,9 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
-    "target": "ES2020",
-    "module": "ESNext",
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "resolveJsonModule": true
+    "outDir": "dist",
+    "declarationDir": "./dist/types"
   },
-  "include": ["src/**/*"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

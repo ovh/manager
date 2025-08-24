@@ -73,8 +73,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
           keep = keep && `${value}`.toLowerCase().includes(comp.toLowerCase());
           break;
         case FilterComparator.StartsWith:
-          keep =
-            keep && `${value}`.toLowerCase().startsWith(comp.toLowerCase());
+          keep = keep && `${value}`.toLowerCase().startsWith(comp.toLowerCase());
           break;
         case FilterComparator.EndsWith:
           keep = keep && `${value}`.toLowerCase().endsWith(comp.toLowerCase());
@@ -83,8 +82,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
           if (filter.type === FilterTypeCategories.Date) {
             keep =
               keep &&
-              new Date(`${value}`).setHours(0, 0, 0, 0) ===
-                new Date(comp).setHours(0, 0, 0, 0);
+              new Date(`${value}`).setHours(0, 0, 0, 0) === new Date(comp).setHours(0, 0, 0, 0);
           } else {
             keep = keep && `${value}`.toLowerCase() === comp.toLowerCase();
           }
@@ -93,8 +91,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
           if (filter.type === FilterTypeCategories.Date) {
             keep =
               keep &&
-              new Date(`${value}`).setHours(0, 0, 0, 0) !==
-                new Date(comp).setHours(0, 0, 0, 0);
+              new Date(`${value}`).setHours(0, 0, 0, 0) !== new Date(comp).setHours(0, 0, 0, 0);
           } else {
             keep = keep && `${value}`.toLowerCase() !== comp.toLowerCase();
           }
@@ -112,8 +109,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
           keep = keep && new Date(`${value}`) > new Date(comp);
           break;
         case FilterComparator.IsIn:
-          keep =
-            keep && !!(filter.value as string[]).find((i) => i === `${value}`);
+          keep = keep && !!(filter.value as string[]).find((i) => i === `${value}`);
           break;
         default:
           break;
@@ -124,14 +120,9 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
 }
 
 export function transformTagsFiltersToQuery(filters: Filter[] = []): string {
-  const queryObject: Record<
-    string,
-    Array<{ operator: string; value?: string }>
-  > = {};
+  const queryObject: Record<string, Array<{ operator: string; value?: string }>> = {};
 
-  const tagFilters = filters.filter(
-    ({ type }) => type === FilterTypeCategories.Tags,
-  );
+  const tagFilters = filters.filter(({ type }) => type === FilterTypeCategories.Tags);
 
   if (!tagFilters.length) return '';
 

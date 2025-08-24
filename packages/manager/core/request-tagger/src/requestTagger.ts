@@ -24,11 +24,7 @@ export interface HeadersOverrides {
   [key: string]: Partial<Headers>;
 }
 
-export const ROUTES_PREFIX = [
-  '/engine/apiv6',
-  '/engine/2api',
-  '/engine/api/v2',
-];
+export const ROUTES_PREFIX = ['/engine/apiv6', '/engine/2api', '/engine/api/v2'];
 export const DEFAULT_ROUTES_HEADERS_OVERRIDE: HeadersOverrides = {};
 
 let currentPage = 'bootstrap';
@@ -48,12 +44,10 @@ export const defineApplicationVersion = (version: string): void => {
   window.ovhRequestTaggerApplicationVersion = version;
 };
 
-export const getApplicationVersion = (): string =>
-  window.ovhRequestTaggerApplicationVersion;
+export const getApplicationVersion = (): string => window.ovhRequestTaggerApplicationVersion;
 
 export const generateRequestId = (): string => {
-  window.top.ovhRequestTaggerRequestIndex =
-    window.top.ovhRequestTaggerRequestIndex || 0;
+  window.top.ovhRequestTaggerRequestIndex = window.top.ovhRequestTaggerRequestIndex || 0;
   window.top.ovhRequestTaggerRequestIndex += 1;
 
   return `${Date.now()}-${window.top.ovhRequestTaggerRequestIndex}`;

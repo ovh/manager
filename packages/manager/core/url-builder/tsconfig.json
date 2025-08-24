@@ -1,21 +1,9 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/node-strict",
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "es2020"],
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "removeComments": true,
     "outDir": "dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "preserveConstEnums": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "skipLibCheck": true
+    "declarationDir": "./dist/types"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "src/__tests__", "*.js"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
