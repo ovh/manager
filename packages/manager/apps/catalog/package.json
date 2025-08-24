@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.21.13",
+  "version": "1.21.14",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {

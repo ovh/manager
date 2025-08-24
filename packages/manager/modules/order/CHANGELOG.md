@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.7...@ovh-ux/manager-module-order@0.10.8) (2025-08-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
 ## [0.10.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.6...@ovh-ux/manager-module-order@0.10.7) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order
