@@ -7264,7 +7264,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@*", "@ovh-ux/manager-react-shell-client@^0.9.1":
+"@ovh-ux/manager-react-shell-client@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.1.tgz#5b55d7c0ca746ebf3858840cbcffaf15cc8d9084"
   integrity sha512-4pxHJE/3vWLEcYl2dVmXURQsuf6VHlZeRKWprXSf7fP+V5SjfRDLfA2kPvT9rh/mk5LXa7+xZXY2t48+FenuHg==
