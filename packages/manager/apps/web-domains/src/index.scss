@@ -41,12 +41,3 @@ html {
     }
   }
 }
-
-.text-warning::part(text) {
-  color: var(--ods-color-warning-700);
-}
-
-.link-banner::part(link),
-.custom-tooltip {
-  color: var(--ods-color-information-500);
-}
