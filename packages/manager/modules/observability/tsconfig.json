@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2020"],
+    "noEmit": true,
+    "target": "es2020",
+    "types": ["vite/client", "node"],
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "allowImportingTsExtensions": false,
+    "strict": true,
+    "useDefineForClassFields": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "jsx": "react"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "types"]
+}
