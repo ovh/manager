@@ -12,3 +12,5 @@ export * from './organisationsList';
 export * from './organisationsDetails';
 export * from './byoip';
 export * from './productServices';
+export * from './ipTask';
+export * from './moveIp';
