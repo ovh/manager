@@ -65,6 +65,20 @@
     </oui-field>
 
     <oui-field
+        label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_registration_date' | translate }}"
+        size="xl"
+    >
+        <oui-calendar
+            name="registrationDate"
+            model="$ctrl.wallet.company.registrationDate"
+            format="Y-m-d"
+            placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_registration_date' | translate }}"
+            required
+        >
+        </oui-calendar>
+    </oui-field>
+
+    <oui-field
         label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_kind' | translate }}"
         size="xl"
     >
@@ -83,7 +97,7 @@
 
     <div class="oui-field oui-field_xl">
         <div class="oui-field__control">
-            <oui-checkbox model="$ctrl.wallet.company.crowdfundingPartner">
+            <oui-checkbox model="$ctrl.wallet.company.crowdfundedPartner">
                 <oui-checkbox-label
                     data-translate="telephony_billingAccount_svaWallet_kyc_identity_company_crowdfundingPartner"
                 ></oui-checkbox-label>
