@@ -462,7 +462,7 @@
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
         data-editable="!$ctrl.isLoading"
-        data-valid="$ctrl.automatedBackup.selected ? !!$ctrl.automatedBackup.schedule : true"
+        data-valid="(!$ctrl.automatedBackup.selected || !!$ctrl.automatedBackup.schedule) && (!$ctrl.automatedBackup.distantSnapshot || !!$ctrl.automatedBackup.distantRegion)"
         name="instances_add_configuration"
         data-on-submit="$ctrl.onInstanceSubmit()"
         data-prevent-next="true"
@@ -624,6 +624,84 @@
                     data-translate="pci_projects_project_instances_add_instance_is_iops"
                 ></p>
             </oui-message>
+
+            <label
+                data-ng-if="$ctrl.automatedBackup.selected && !!$ctrl.distantBackupRegions && $ctrl.distantBackupRegions.length > 0"
+                class="mb-3 d-flex align-items-center"
+            >
+                <oui-switch data-model="$ctrl.automatedBackup.distantSnapshot">
+                </oui-switch>
+
+                <span
+                    class="ml-2"
+                    data-translate="pci_projects_project_instances_instance_backup_distant_label"
+                ></span>
+
+                <span
+                    class="oui-badge oui-badge_new ml-2"
+                    data-translate="pci_projects_project_is_new"
+                ></span>
+            </label>
+
+            <div data-ng-if="$ctrl.automatedBackup.distantSnapshot">
+                <oui-field
+                    data-label="{{ :: 'pci_projects_project_instances_instance_backup_distant_region_label' | translate }}"
+                    data-size="xl"
+                >
+                    <oui-select
+                        data-items="$ctrl.distantBackupRegions"
+                        data-match="microRegion.text"
+                        data-value-property="name"
+                        data-group-by="$ctrl.getDistantRegionGroup"
+                        data-model="$ctrl.automatedBackup.distantRegion"
+                        name="distantRegion"
+                        placeholder="{{ :: 'pci_projects_project_instances_instance_backup_distant_region_label' | translate }}"
+                        data-searchable
+                        required
+                    >
+                        <div
+                            class="regions-badges d-flex flex-row justify-content-between"
+                        >
+                            <span
+                                ng-bind="$item.microRegion.text"
+                                class="ml-1"
+                            ></span>
+
+                            <span
+                                class="oui-badge oui-badge_promotion {{ $item.badgeClass }}"
+                            >
+                                <span
+                                    data-translate="{{ $item.badgeName }}"
+                                ></span>
+                            </span>
+                        </div>
+                    </oui-select>
+
+                    <p
+                        class="font-weight-bold"
+                        data-ng-if="$ctrl.automatedBackup.distantRegion"
+                        data-translate="pci_projects_project_instances_instance_backup_distant_region_price"
+                        data-translate-values="{ price: $ctrl.automatedBackup.price }"
+                    ></p>
+                </oui-field>
+
+                <oui-message
+                    type="warning"
+                    data-ng-if="$ctrl.showDistantBackupActivateRegionWarning"
+                >
+                    <span
+                        data-translate="pci_project_instances_instance_add_region_activate"
+                    ></span>
+                </oui-message>
+
+                <oui-spinner
+                    data-ng-if="$ctrl.isAddingNewRegion"
+                    data-size="s"
+                />
+                <cui-message-container
+                    data-messages="$ctrl.messages.region"
+                ></cui-message-container>
+            </div>
         </div>
     </oui-step-form>
 
@@ -631,6 +709,7 @@
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_privateNetwork_title' | translate }}"
         data-editable="!$ctrl.isLoading"
+        data-disabled="$ctrl.isAddingNewRegion"
         name="instances_add_private_network_configuration"
         data-on-focus="$ctrl.onModeFocus()"
         data-on-change="$ctrl.onModeChange()"
