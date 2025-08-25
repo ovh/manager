@@ -4,11 +4,11 @@ import { FC, PropsWithChildren } from 'react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { isAxiosError } from 'axios';
-import { updateInstanceFromCache, useInstances } from '../useInstances';
+import { updateInstancesFromCache, useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
-import { TMutationFnType, useBaseInstanceAction } from './useInstanceAction';
+import { useBaseInstanceAction } from './useInstanceAction';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 
 // initializers
@@ -31,7 +31,7 @@ const initQueryClient = () => {
 type Data = {
   projectId: string;
   instance: TAggregatedInstanceDto | null;
-  type: TMutationFnType | null;
+  type: string | null;
   queryPayload?: TAggregatedInstanceDto[];
   mutationPayload?: null;
 };
@@ -84,7 +84,7 @@ let server: SetupServer;
 const handleError = vi.fn();
 const handleSuccess = vi.fn(
   (instance: TAggregatedInstanceDto, queryClient: QueryClient) => () =>
-    updateInstanceFromCache(queryClient, {
+    updateInstancesFromCache(queryClient, {
       projectId: fakeProjectId,
       instance: { ...instance, pendingTask: true },
     }),
@@ -154,9 +154,9 @@ describe('Considering the useInstanceAction hook', () => {
         );
         expect(useInstanceActionResult.current.isIdle).toBeTruthy();
         act(() =>
-          useInstanceActionResult.current.mutationHandler(
-            instance as TAggregatedInstanceDto,
-          ),
+          useInstanceActionResult.current.mutationHandler({
+            instance: instance as TAggregatedInstanceDto,
+          }),
         );
 
         if (mutationPayload === undefined) {

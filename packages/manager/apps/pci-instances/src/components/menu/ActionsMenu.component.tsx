@@ -2,7 +2,7 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { FC } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import {
@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Link,
+  ButtonProp,
 } from '@ovhcloud/ods-react';
 import { DeepReadonly } from '@/types/utils.type';
 
@@ -53,16 +54,20 @@ export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
   );
 };
 
-export const ActionsMenu = ({ items }: TActionsMenuProps) => {
+const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
+  children,
+  ...props
+}) => {
+  const [isOpen, setOpen] = useState(false);
+
   return (
-    <Popover position="bottom">
-      <PopoverTrigger
-        // prevent default to avoid auto hiding the dropdown on mobile device
-        onTouchEnd={(e) => e.preventDefault()}
-        asChild
-        disabled={!items.size}
-      >
-        <Button data-testid="actions-menu-button" variant="outline" size="sm">
+    <Popover
+      position="bottom"
+      open={isOpen}
+      onOpenChange={({ open }) => setOpen(open)}
+    >
+      <PopoverTrigger asChild>
+        <Button data-testid="actions-menu-button" {...props}>
           <OsdsIcon
             name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -70,16 +75,32 @@ export const ActionsMenu = ({ items }: TActionsMenuProps) => {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
-        {Array.from(items.entries()).map(([group, item], index, arr) => (
-          <div key={group}>
-            {item.map((elt) => (
-              <ActionMenuItem key={elt.label} item={elt} />
-            ))}
-            {arr.length - 1 !== index && <Divider />}
-          </div>
-        ))}
+      <PopoverContent withArrow onClick={() => setOpen(false)}>
+        {children}
       </PopoverContent>
     </Popover>
   );
 };
+
+export const ActionsMenu = ({ items }: TActionsMenuProps) => (
+  <ActionMenuContainer variant="outline" size="sm" disabled={!items.size}>
+    {Array.from(items.entries()).map(([group, item], index, arr) => (
+      <div key={group}>
+        {item.map((elt) => (
+          <ActionMenuItem key={elt.label} item={elt} />
+        ))}
+        {arr.length - 1 !== index && <Divider />}
+      </div>
+    ))}
+  </ActionMenuContainer>
+);
+
+type TBaseActionsMenu = { items: TActionsMenuItem[] };
+
+export const BaseActionsMenu = ({ items }: TBaseActionsMenu) => (
+  <ActionMenuContainer variant="ghost" size="sm" disabled={!items.length}>
+    {items.map((item) => (
+      <ActionMenuItem key={item.label} item={item} />
+    ))}
+  </ActionMenuContainer>
+);

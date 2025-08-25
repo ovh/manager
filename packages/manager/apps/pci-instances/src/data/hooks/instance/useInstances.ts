@@ -14,11 +14,16 @@ import { isEqual } from 'lodash';
 import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
-import { TAggregatedInstanceDto } from '@/types/instance/api.type';
+import {
+  TAggregatedInstanceDto,
+  TPartialAggregatedInstanceDto,
+} from '@/types/instance/api.type';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
+import { buildPartialInstanceFromInstancesDto } from './builder/instanceDto.builder';
+import { updateInstanceFromCache } from './useInstance';
 
 type FilterWithLabel = Filter & { label: string };
 
@@ -29,12 +34,11 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   filters: FilterWithLabel[];
 }>;
 
-export type TUpdateInstanceFromCache = (
+type TUpdateInstancesFromCache = (
   queryClient: QueryClient,
   payload: {
     projectId: string;
-    instance: Pick<TAggregatedInstanceDto, 'id'> &
-      Partial<TAggregatedInstanceDto>;
+    instance: TPartialAggregatedInstanceDto;
   },
 ) => void;
 
@@ -43,7 +47,7 @@ const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
     query.queryKey.includes(elt),
   );
 
-export const updateInstanceFromCache: TUpdateInstanceFromCache = (
+export const updateInstancesFromCache: TUpdateInstancesFromCache = (
   queryClient: QueryClient,
   { projectId, instance },
 ) => {
@@ -88,6 +92,12 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
       },
     );
   });
+
+  updateInstanceFromCache({
+    queryClient,
+    projectId,
+    instance: buildPartialInstanceFromInstancesDto(instance),
+  });
 };
 
 const getPendingTasks = (data?: TAggregatedInstance[]) =>
@@ -95,7 +105,7 @@ const getPendingTasks = (data?: TAggregatedInstance[]) =>
     ?.filter(({ pendingTask }) => pendingTask)
     .map(({ id, region }) => ({ instanceId: id, region })) ?? [];
 
-export const getInstanceById = (
+export const getAggregatedInstanceById = (
   projectId: string,
   id: string | undefined,
   queryClient: QueryClient,
