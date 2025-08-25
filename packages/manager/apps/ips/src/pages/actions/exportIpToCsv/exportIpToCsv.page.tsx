@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -9,6 +9,7 @@ import Loading from '@/components/Loading/Loading';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { useExportIpToCsv } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 
 export default function ExportIpToCsv() {
   const { t } = useTranslation([
@@ -16,13 +17,14 @@ export default function ExportIpToCsv() {
     NAMESPACES.ACTIONS,
   ]);
   const { apiFilter } = useContext(ListingContext);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess } = useNotifications();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
 
   /*
     We need this ref to prevent a double navigation
     when closing the modale before the end of the download.
-    A useState or useLocation would have required a rerender 
+    A useState or useLocation would have required a rerender
     that we cannot have upon closing the modale
   */
   const isOpen = useRef<boolean>(true);
@@ -30,13 +32,14 @@ export default function ExportIpToCsv() {
   const closeModal = () => {
     if (isOpen.current) {
       isOpen.current = false;
-      navigate('..');
+      navigate(`..?${search.toString()}`);
     }
   };
 
   const {
-    mutateAsync: handleExportToCsv,
+    mutate: handleExportToCsv,
     isPending: isCSVLoading,
+    error,
   } = useExportIpToCsv({
     apiFilter,
     onSuccess: (data) => {
@@ -46,7 +49,6 @@ export default function ExportIpToCsv() {
         closeModal();
       }
     },
-    onError: () => addError(t('exportIpToCsvError')),
   });
 
   return (
@@ -77,6 +79,7 @@ export default function ExportIpToCsv() {
           </OdsText>
         </>
       )}
+      <ApiErrorMessage error={error} />
     </Modal>
   );
 }
