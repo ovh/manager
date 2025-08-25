@@ -19,10 +19,9 @@ const LogsOnboardingForCommonUser = ({
         <OdsText preset="heading-6">{t('logs_introduction_title')}</OdsText>
         <OdsText preset="paragraph" className="mb-4">
           {t('logs_introduction_description_ldp')}
-        </OdsText>
-        <OdsText preset="paragraph">
+          <br />
           {t('logs_introduction_description_syslog')}
-        </OdsText>{' '}
+        </OdsText>
         <Links
           type={LinkType.external}
           label={t('logs_introduction_description_link')}
