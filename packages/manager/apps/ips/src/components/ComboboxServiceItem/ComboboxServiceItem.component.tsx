@@ -4,7 +4,7 @@ import { OdsComboboxItem, OdsText } from '@ovhcloud/ods-components/react';
 
 export type ComboboxServiceItemProps = {
   name: string;
-  displayName: string;
+  displayName?: string;
   isDisabled?: boolean;
 };
 
@@ -20,13 +20,13 @@ export const ComboboxServiceItem: React.FC<ComboboxServiceItemProps> = ({
     value={name}
     aria-disabled={isDisabled}
   >
-    {displayName !== name ? (
+    {!displayName || displayName === name ? (
+      <OdsText className="py-2">{name}</OdsText>
+    ) : (
       <div className="flex flex-col py-2">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{displayName}</OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption}>{name}</OdsText>
       </div>
-    ) : (
-      <OdsText className="py-2">{name}</OdsText>
     )}
   </OdsComboboxItem>
 );
