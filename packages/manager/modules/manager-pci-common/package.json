@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-common",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "private": false,
   "description": "Public Cloud Common components",
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager/modules/manager-pci-common/README.md",

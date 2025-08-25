@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.3...@ovh-ux/manager-pci-common@0.20.0) (2025-08-25)
+
+
+### Features
+
+* **pci-common:** add horizontal config card ([f4dd0fc](https://github.com/ovh/manager/commit/f4dd0fcdab2d7315ed892ee9ace88fff121db2c8))
+* **pci-common:** add regions tracking ([4572b44](https://github.com/ovh/manager/commit/4572b441d9319d0718b7464db0041af5d1bcb0e6)), closes [#TAPC-3354](https://github.com/ovh/manager/issues/TAPC-3354)
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.3...@ovh-ux/manager-pci-common@0.19.0) (2025-08-25)
 
 
