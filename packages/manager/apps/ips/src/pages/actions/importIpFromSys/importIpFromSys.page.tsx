@@ -24,6 +24,7 @@ export default function ImportIpFromSys() {
   const [currentStep, setCurrentStep] = React.useState(1);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.importIpFromSys,
+    NAMESPACES.FORM,
     NAMESPACES.ACTIONS,
   ]);
   const navigate = useNavigate();
@@ -63,7 +64,8 @@ export default function ImportIpFromSys() {
         <OdsText className="ml-auto" preset={ODS_TEXT_PRESET.caption}>
           {t('stepPlaceholder', {
             current: currentStep,
-            max: TOTAL_STEP_NUMBER,
+            total: TOTAL_STEP_NUMBER,
+            ns: NAMESPACES.FORM,
           })}
         </OdsText>
       </div>

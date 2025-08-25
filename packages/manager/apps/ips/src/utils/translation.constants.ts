@@ -11,4 +11,5 @@ export const TRANSLATION_NAMESPACES = {
   order: 'order',
   regionSelector: 'region-selector',
   importIpFromSys: 'import-ip-from-sys',
+  moveIp: 'move-ip',
 };

@@ -110,12 +110,14 @@ export type IamResource = {
   owner: string;
 };
 
-export const getServiceList = async (): Promise<{
+export type GetServiceList = {
   dedicatedCloud: IamResource[];
   server: IamResource[];
   vps: IamResource[];
   vrack: IamResource[];
-}> => {
+};
+
+export const getServiceList = async (): Promise<GetServiceList> => {
   const response = await apiClient.v2.get<IamResource[]>(
     `/iam/resource?${['pccVMware', 'vrack', 'dedicatedServer', 'vps']
       .map((t) => `resourceType=${t}`)

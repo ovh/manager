@@ -81,6 +81,19 @@ export const Routes: any = [
                 },
               },
               {
+                id: subRoutes.moveIp,
+                path: urls.listingMoveIp,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/moveIp/moveIp.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-move-ip',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
                 id: subRoutes.upsertDescription,
                 path: urls.upsertDescription,
                 ...lazyRouteConfig(() =>

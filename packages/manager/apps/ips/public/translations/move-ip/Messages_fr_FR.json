@@ -1,0 +1,19 @@
+{
+  "step1Description": "Sélectionnez le service de destination pour l'IP <b>{{ip}}</b> :",
+  "step1CurrentServiceLabel": "De",
+  "step1DestinationServiceLabel": "Vers",
+  "step1NextHopLabel": "Sur",
+  "step1VrackMessage": "Veuillez d'abord détacher votre bloc IP de vRack <Link>(ici)</Link> pour pouvoir le connecter ailleurs.",
+  "step2DescriptionWithNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> sur <b>{{nextHop}}</b> ?",
+  "step2DescriptionWithoutNextHop": "Voulez vous vraiment déplacer l'IP <b>{{ip}}</b> vers <b>{{destinationService}}</b> ?",
+  "moveIpOnGoingTaskMessage": "Cette IP est déjà en cours de déplacement.",
+  "moveIpSuccessMessage": "L'IP {{ip}} sera disponible dans \"{{destinationService}}\" d'ici quelques minutes.",
+  "service_destination_ipLoadbalancing_option_group_label": "IP Load Balancing",
+  "service_destination_dedicatedServer_option_group_label": "Serveur dédié",
+  "service_destination_dedicatedCloud_option_group_label": "Cloud dédié",
+  "service_destination_vps_option_group_label": "VPS",
+  "service_destination_cloudProject_option_group_label": "Projet Cloud",
+  "service_destination_hostingReseller_option_group_label": "Revendeur d'hébergement",
+  "service_selection_select_ip_parking_option_group_label": "IP Parking",
+  "service_selection_select_ip_parking_option_label": "IP Parking"
+}
