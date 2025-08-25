@@ -1,9 +1,9 @@
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
@@ -39,9 +39,9 @@ export default function ServiceTerminate() {
       })}
     >
       <div>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+        <Text preset={TEXT_PRESET.paragraph} className="mb-4">
           {t('allDom_modal_subtitle')}
-        </OdsText>
+        </Text>
 
         {isStepOne ? (
           <TerminateModalStepOne

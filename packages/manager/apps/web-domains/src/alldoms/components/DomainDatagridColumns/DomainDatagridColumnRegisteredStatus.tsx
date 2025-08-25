@@ -1,26 +1,24 @@
 import React from 'react';
-import {
-  OdsBadge,
-  OdsIcon,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BADGE_COLOR,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  Badge,
+  Icon,
+  ICON_NAME,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  Text,
+  TEXT_PRESET,
+  BADGE_COLOR,
+} from '@ovhcloud/ods-react';
 import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
 
 interface DomainDatagridColumnStatusProps {
   readonly registrationStatus: DomainRegistrationStateEnum;
-  readonly domainName: string;
 }
 
 export default function DomainDatagridColumnRegisteredStatus({
   registrationStatus,
-  domainName,
 }: DomainDatagridColumnStatusProps) {
   const { t } = useTranslation('allDom');
   const isRegistered =
@@ -28,24 +26,25 @@ export default function DomainDatagridColumnRegisteredStatus({
 
   return (
     <div className="flex items-center gap-x-3">
-      <OdsBadge
-        color={isRegistered ? ODS_BADGE_COLOR.success : ODS_BADGE_COLOR.neutral}
-        label={t(
-          `allDom_domain_table_registration_status_${registrationStatus}`,
-        )}
+      <Badge
+        color={isRegistered ? BADGE_COLOR.success : BADGE_COLOR.neutral}
         className="capitalize"
-        icon={isRegistered ? null : ODS_ICON_NAME.hexagonExclamation}
-      />
-      {!isRegistered && (
-        <div>
-          <OdsIcon id={domainName} name={ODS_ICON_NAME.circleQuestion} />
-          <OdsTooltip role="tooltip" strategy="fixed" triggerId={domainName}>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('allDom_domain_table_status_domain_unregistered')}
-            </OdsText>
-          </OdsTooltip>
-        </div>
-      )}
+      >
+        {!isRegistered && <Icon name={ICON_NAME.hexagonExclamation} />}
+        {t(`allDom_domain_table_registration_status_${registrationStatus}`)}
+        {!isRegistered && (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Icon name={ICON_NAME.circleQuestion} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <Text preset={TEXT_PRESET.paragraph}>
+                {t('allDom_domain_table_status_domain_unregistered')}
+              </Text>
+            </TooltipContent>
+          </Tooltip>
+        )}
+      </Badge>
     </div>
   );
 }
