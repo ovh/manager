@@ -7,6 +7,7 @@ import {
   ODS_ICON_NAME,
   OdsIconName,
 } from '@ovhcloud/ods-components';
+import { ObsTimeControls } from '../obsTimeControls';
 import { useActionClick } from '../../hooks';
 
 export type ObsToolbarAction = {
@@ -57,7 +58,7 @@ export const ObsToolbarActions = ({
         )}
       </div>
       <div className="flex justify-end items-center gap-4">
-        <span>TimeControls placeholder</span>
+        <ObsTimeControls />
       </div>
     </div>
   );
