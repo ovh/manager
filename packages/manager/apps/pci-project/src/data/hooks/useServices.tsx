@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   getCartServiceOption,
+  getProjectService,
   getServiceId,
   getServiceOptions,
 } from '@/data/api/services';
@@ -13,6 +14,18 @@ export const useServiceIds = (projectId?: string) => {
   return useQuery({
     queryKey: getServiceIdsQueryKey(projectId as string),
     queryFn: () => getServiceId(projectId as string),
+    enabled: !!projectId,
+  });
+};
+
+const getProjectServiceQueryKey = (projectId: string) => [
+  `/project/${projectId}/serviceInfos`,
+];
+
+export const useProjectService = (projectId?: string) => {
+  return useQuery({
+    queryKey: getProjectServiceQueryKey(projectId as string),
+    queryFn: () => getProjectService(projectId as string),
     enabled: !!projectId,
   });
 };
