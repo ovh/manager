@@ -27,6 +27,8 @@ export const useAllDomDatagridColumns = () => {
         <DatagridColumnServiceName allDomName={props.currentState.name} />
       ),
       label: t('allDom_table_header_id'),
+      isSearchable: true,
+      isSortable: false,
       enableHiding: false,
       type: FilterTypeCategories.String,
     },
@@ -42,6 +44,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_renewMode'),
       enableHiding: true,
+      isSortable: false,
     },
     {
       id: 'type',
@@ -52,6 +55,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_type'),
       enableHiding: true,
+      isSortable: false,
     },
     {
       id: 'authorized_domain',
@@ -63,6 +67,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_registered_authorized_domain'),
       enableHiding: true,
+      isSortable: false,
     },
     {
       id: 'expiration_date',
@@ -73,6 +78,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_domain_table_header_expiration_date'),
       enableHiding: false,
+      isSortable: false,
     },
     {
       id: 'nicAdmin',
@@ -88,6 +94,7 @@ export const useAllDomDatagridColumns = () => {
         </DatagridColumnSkeleton>
       ),
       label: t('allDom_table_header_nicAdmin'),
+      isSortable: false,
     },
     {
       id: 'nicTech',
@@ -104,6 +111,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_nicTech'),
       enableHiding: true,
+      isSortable: false,
     },
     {
       id: 'nicBilling',
@@ -120,6 +128,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: t('allDom_table_header_nicBilling'),
       enableHiding: true,
+      isSortable: false,
     },
     {
       id: 'actions',
@@ -135,6 +144,7 @@ export const useAllDomDatagridColumns = () => {
       ),
       label: '',
       enableHiding: false,
+      isSortable: false,
     },
   ];
   return columns;
