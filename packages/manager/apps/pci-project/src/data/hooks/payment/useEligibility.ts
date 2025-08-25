@@ -10,6 +10,7 @@ import {
   getEligibility,
 } from '@/data/api/payment/eligibility';
 import { TEligibilityRequiredAction } from '@/data/types/payment/eligibility.type';
+import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
 
 export const eligibilityQueryKey = () => ['cloud', 'eligibility'];
 
@@ -27,7 +28,7 @@ export const useCheckVoucherEligibility = ({
   onSuccess,
   onError,
 }: {
-  onSuccess?: () => void;
+  onSuccess?: (data: TEligibilityVoucher | undefined) => void;
   onError?: (error: ApiError) => void;
 }) =>
   useMutation({
