@@ -305,6 +305,13 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
           navigate(urls.manageIpMitigation.replace(urlDynamicParts.id, id)),
         isDisabled: isMitigationLoading || disableManageMitigationAction,
       },
+    ipaddr.IPv4.isIPv4(ipAddress) &&
+      ipDetails?.type === IpTypeEnum.ADDITIONAL && {
+        id: 10,
+        label: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
+        onClick: () =>
+          navigate(urls.listingMoveIp.replace(urlDynamicParts.id, id)),
+      },
   ].filter(Boolean);
 
   return (
