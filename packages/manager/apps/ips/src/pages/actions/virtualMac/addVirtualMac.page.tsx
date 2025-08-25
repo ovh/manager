@@ -36,12 +36,10 @@ export default function AddVirtualMacModal() {
   const [selectedType, setSelectedType] = useState('');
   const [macAddress, setMacAddress] = useState('');
   const [virtualMachineName, setVirtualMachineName] = useState('');
-  const [serviceName, setServiceName] = React.useState('');
   const { links } = useGuideUtils();
   const navigate = useNavigate();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({ ip });
   const { models, isLoading: isServerModelsLoading } = useGetServerModels({
     enabled: true,
   });
@@ -62,7 +60,7 @@ export default function AddVirtualMacModal() {
     mutate: addVirtualMacToIp,
     isPending: addVirtualMacToIpPending,
   } = useAddVirtualMacToIp({
-    serviceName,
+    serviceName: service,
     ip,
     type: selectedType,
     virtualMachineName,
@@ -88,7 +86,7 @@ export default function AddVirtualMacModal() {
     mutate: addIpToVirtualMac,
     isPending: addIpToVirtualMacPending,
   } = useAddIpToVirtualMac({
-    serviceName,
+    serviceName: service,
     macAddress,
     ip,
     virtualMachineName,
@@ -120,11 +118,6 @@ export default function AddVirtualMacModal() {
       setTypes(models['dedicated.server.VmacTypeEnum']?.enum);
   }, [models]);
 
-  useEffect(() => {
-    if (ipDetails?.routedTo?.serviceName)
-      setServiceName(ipDetails?.routedTo?.serviceName);
-  }, [ipDetails?.routedTo?.serviceName]);
-
   const handleVirtualMachineNameChange = (event: CustomEvent) => {
     const newValue = event.detail.value || '';
     setVirtualMachineName(newValue);
@@ -138,10 +131,7 @@ export default function AddVirtualMacModal() {
 
   return (
     <OdsModal isOpen isDismissible onOdsClose={cancel}>
-      {isIpDetailsLoading ||
-      isVmacLoading ||
-      addVirtualMacToIpPending ||
-      addIpToVirtualMacPending ? (
+      {isVmacLoading || addVirtualMacToIpPending || addIpToVirtualMacPending ? (
         <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.md} />
       ) : (
         <>

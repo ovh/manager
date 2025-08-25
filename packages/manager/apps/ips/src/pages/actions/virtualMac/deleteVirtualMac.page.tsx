@@ -14,18 +14,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { deleteVirtualMACs, getdedicatedServerVmacQueryKey } from '@/data/api';
-import {
-  useGetIpdetails,
-  useGetIpVmacWithIp,
-  useIpHasVmac,
-} from '@/data/hooks/ip';
+import { useIpHasVmac } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 
 export default function DeleteVirtualMac() {
   const navigate = useNavigate();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
-  const { ipDetails } = useGetIpdetails({ ip });
   const { t } = useTranslation(['virtual-mac', TRANSLATION_NAMESPACES.listing]);
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
