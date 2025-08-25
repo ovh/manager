@@ -1,7 +1,6 @@
-import { OdsBadge, OdsSpinner } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { ODS_BADGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { Badge, BADGE_COLOR, Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
 import {
   ServiceInfoRenewMode,
   ServiceRoutes,
@@ -25,25 +24,26 @@ export default function DomainDatagridColumnRenewMode({
   );
 
   if (isLoading) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.xs} />;
+    return <Spinner size={SPINNER_SIZE.xs} />;
   }
 
   const { mode } = data.billing.renew.current;
   const { lifecycle } = data.billing;
 
   let label = t(`allDom_table_status_${mode}`);
-  let badgeColor =
+  let badgeColor;
+  badgeColor =
     mode === ServiceInfoRenewMode.Automatic
-      ? ODS_BADGE_COLOR.success
-      : ODS_BADGE_COLOR.warning;
+      ? BADGE_COLOR.success
+      : BADGE_COLOR.warning;
 
   if (
     (mode === ServiceInfoRenewMode.Automatic || alldomTerminated) &&
     hasTerminateAtExpirationDateAction(lifecycle?.current.pendingActions ?? [])
   ) {
     label = t('allDom_table_status_terminate');
-    badgeColor = ODS_BADGE_COLOR.critical;
+    badgeColor = BADGE_COLOR.critical;
   }
 
-  return <OdsBadge label={label} color={badgeColor} />;
+  return <Badge color={badgeColor}>{label}</Badge>;
 }

@@ -1,12 +1,17 @@
 import React from 'react';
-import {
-  OdsCheckbox,
-  OdsIcon,
-  OdsText,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  Icon,
+  ICON_NAME,
+  Text,
+  TEXT_PRESET,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 interface DomainsCheckboxItemProps {
   readonly serviceName: string;
@@ -25,24 +30,21 @@ export default function DomainsCheckboxItem({
 
   return (
     <div className="flex items-center gap-x-4">
-      <div className="flex items-center gap-x-4">
-        <OdsCheckbox
-          name={serviceName}
-          inputId={serviceName}
-          isChecked={domainsChecked.includes(serviceName)}
-          onOdsChange={(e) => {
-            const updatedCheckedDomains = e.detail.checked
-              ? [...domainsChecked, serviceName]
-              : domainsChecked.filter(
-                  (domainChecked) => domainChecked !== serviceName,
-                );
-            handleDomainAttached(updatedCheckedDomains);
-          }}
-          data-testid={`checkbox-${serviceName}`}
-          isDisabled={isDisabled}
-        />
-        <label
-          htmlFor={serviceName}
+      <Checkbox
+        name={serviceName}
+        onChange={(e) => {
+          const updatedCheckedDomains = e
+            ? [...domainsChecked, serviceName]
+            : domainsChecked.filter(
+                (domainChecked) => domainChecked !== serviceName,
+              );
+          handleDomainAttached(updatedCheckedDomains);
+        }}
+        data-testid={`checkbox-${serviceName}`}
+        disabled={isDisabled}
+      >
+        <CheckboxControl />
+        <CheckboxLabel
           className={
             isDisabled
               ? 'text-[var(--ods-color-text-disabled-default)]'
@@ -50,20 +52,20 @@ export default function DomainsCheckboxItem({
           }
         >
           {serviceName}
-        </label>
-      </div>
+        </CheckboxLabel>
+      </Checkbox>
       {isDisabled && (
         <div>
-          <OdsIcon
-            id={serviceName}
-            className="custom-tooltip"
-            name={ODS_ICON_NAME.circleQuestion}
-          />
-          <OdsTooltip role="tooltip" strategy="fixed" triggerId={serviceName}>
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('allDom_modal_domain_already_in_terminate')}
-            </OdsText>
-          </OdsTooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Icon name={ICON_NAME.circleQuestion} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <Text preset={TEXT_PRESET.paragraph}>
+                {t('allDom_modal_domain_already_in_terminate')}
+              </Text>
+            </TooltipContent>
+          </Tooltip>
         </div>
       )}
     </div>
