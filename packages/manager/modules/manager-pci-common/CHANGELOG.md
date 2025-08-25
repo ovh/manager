@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.20...@ovh-ux/manager-pci-common@2.7.0) (2025-08-25)
+
+
+### Features
+
+* **pci-common:** adapt tabs panel to accept url with params ([c4d6db6](https://github.com/ovh/manager/commit/c4d6db6ee30732aa3a40badad84d7586d2170121)), closes [#TAPC-4441](https://github.com/ovh/manager/issues/TAPC-4441)
+
+
+
+
+
 ## [2.6.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.6.19...@ovh-ux/manager-pci-common@2.6.20) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

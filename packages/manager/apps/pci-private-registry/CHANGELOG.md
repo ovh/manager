@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.11...@ovh-ux/manager-pci-private-registry-app@0.10.0) (2025-08-25)
+
+
+### Features
+
+* **pci-private-registry:** add 3AZ deployment to europe and canada ([caecb7a](https://github.com/ovh/manager/commit/caecb7a47f25cf5e1e5587deefa317b6ddc28355)), closes [#TAPC-3197](https://github.com/ovh/manager/issues/TAPC-3197) [#TAPC-4531](https://github.com/ovh/manager/issues/TAPC-4531)
+* **pci-private-registry:** add deployment type on listing ([0683666](https://github.com/ovh/manager/commit/068366685c267f0146973b24b42f8fc44a9bf2e3)), closes [#TAPC-4420](https://github.com/ovh/manager/issues/TAPC-4420)
+* **pci-private-registry:** upgrade sla for 3az ([4f3fabc](https://github.com/ovh/manager/commit/4f3fabc134004c0fb416cb421a5b8abac191c8c1)), closes [#TAPC-4713](https://github.com/ovh/manager/issues/TAPC-4713)
+
+
+
+
+
 ## [0.9.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.9.10...@ovh-ux/manager-pci-private-registry-app@0.9.11) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
