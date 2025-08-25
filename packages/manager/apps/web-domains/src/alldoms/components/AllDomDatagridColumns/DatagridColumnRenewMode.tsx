@@ -1,7 +1,6 @@
 import React from 'react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import {
   ServiceInfoRenewMode,
   LifecycleActionsEnum,
@@ -25,22 +24,23 @@ export default function DatagridColumnRenewMode({
 
   if (hasTerminateAtExpirationDateAction(lifecyclePendingActions)) {
     return (
-      <OdsBadge
-        label={t('allDom_table_status_terminate')}
-        color={ODS_BADGE_COLOR.critical}
-      />
+      <Badge color={BADGE_COLOR.critical}>
+        {t('allDom_table_status_terminate')}
+      </Badge>
     );
   }
 
   return (
-    <OdsBadge
-      label={t(`allDom_table_status_${renewMode}`)}
+    <Badge
       color={
         renewMode === ServiceInfoRenewMode.Automatic
-          ? ODS_BADGE_COLOR.success
-          : ODS_BADGE_COLOR.warning
+          ? BADGE_COLOR.success
+          : BADGE_COLOR.warning
       }
       data-testid="status"
-    />
+      className="text-nowrap"
+    >
+      {t(`allDom_table_status_${renewMode}`)}
+    </Badge>
   );
 }

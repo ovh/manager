@@ -1,12 +1,13 @@
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  Button,
+  BUTTON_VARIANT,
+  BUTTON_COLOR,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { ModalStepsProps } from '@/alldoms/types';
 import { useTerminateService } from '@/alldoms/hooks/useTerminateService/useTerminateService';
 
@@ -23,13 +24,13 @@ export default function TerminateModalStepTwo({
   );
   return (
     <div>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {domainTerminateList.length === 0
           ? t('allDom_modal_step_two_no_domain_checked', {
               serviceName,
             })
           : t('allDom_modal_step_two_warning')}
-      </OdsText>
+      </Text>
       <ul className="flex flex-col gap-y-2 ml-2 pl-8">
         {domainTerminateList.map((element) => (
           <li className="text-[var(--ods-color-text)]" key={element}>
@@ -38,18 +39,20 @@ export default function TerminateModalStepTwo({
         ))}
       </ul>
       <div className="flex items-center gap-x-6 justify-end">
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:previous`)}
-          variant={ODS_BUTTON_VARIANT.ghost}
+        <Button
+          variant={BUTTON_VARIANT.ghost}
           onClick={() => setIsStepOne(true)}
-        />
-        <OdsButton
-          label={t('allDom_modal_step_terminate')}
-          variant={ODS_BUTTON_VARIANT.default}
-          color={ODS_BUTTON_COLOR.critical}
-          isDisabled={!domainTerminateList}
+        >
+          {t(`${NAMESPACES.ACTIONS}:previous`)}
+        </Button>
+        <Button
+          variant={BUTTON_VARIANT.default}
+          color={BUTTON_COLOR.critical}
+          disabled={!domainTerminateList}
           onClick={() => terminateService.mutate()}
-        />
+        >
+          {t('allDom_modal_step_terminate')}
+        </Button>
       </div>
     </div>
   );

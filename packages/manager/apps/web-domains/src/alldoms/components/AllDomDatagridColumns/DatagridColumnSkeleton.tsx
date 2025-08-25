@@ -1,5 +1,5 @@
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import React from 'react';
+import { Skeleton } from '@ovhcloud/ods-react';
 
 interface DatagridColumnSkeletonProps {
   readonly serviceId: number;
@@ -10,7 +10,7 @@ export default function DatagridColumnSkeleton({
   children,
 }: Readonly<React.PropsWithChildren<DatagridColumnSkeletonProps>>) {
   if (!serviceId) {
-    return <OdsSkeleton className="[&::part(skeleton)]:max-w-[5rem]" />;
+    return <Skeleton className="[&::part(skeleton)]:max-w-[5rem]" />;
   }
 
   return children;

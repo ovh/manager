@@ -1,13 +1,17 @@
-import {
-  ODS_TEXT_PRESET,
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
+import {
+  Button,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { ModalStepsProps } from '@/alldoms/types';
 import DomainsCheckboxList from '@/alldoms/components/terminate/DomainsCheckboxes/DomainsCheckboxList';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
@@ -26,9 +30,9 @@ export default function TerminateModalStepOne({
   return (
     <div>
       <div className="mb-6">
-        <OdsText preset={ODS_TEXT_PRESET.heading6} className="mb-4">
+        <Text preset={TEXT_PRESET.heading6} className="mb-4">
           {t('allDom_modal_choice')}
-        </OdsText>
+        </Text>
         <div className="domain-all">
           <input
             type="checkbox"
@@ -64,25 +68,25 @@ export default function TerminateModalStepOne({
         />
       </div>
 
-      <OdsMessage
+      <Message
         className="mb-6"
-        color={ODS_MESSAGE_COLOR.information}
-        isDismissible={false}
+        color={MESSAGE_COLOR.information}
+        dismissible={false}
       >
+        <MessageIcon name={ICON_NAME.circleInfo} />
         {t('allDom_modal_step_one_message')}
-      </OdsMessage>
+      </Message>
 
       <div className="flex justify-end gap-x-6">
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:close`)}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => navigate(-1)}
-        />
-        <OdsButton
-          label={t(`${NAMESPACES.ACTIONS}:next`)}
-          variant={ODS_BUTTON_VARIANT.default}
+        <Button variant={BUTTON_VARIANT.ghost} onClick={() => navigate(-1)}>
+          {t(`${NAMESPACES.ACTIONS}:close`)}
+        </Button>
+        <Button
+          variant={BUTTON_VARIANT.default}
           onClick={() => setIsStepOne(false)}
-        />
+        >
+          {t(`${NAMESPACES.ACTIONS}:next`)}
+        </Button>
       </div>
     </div>
   );
