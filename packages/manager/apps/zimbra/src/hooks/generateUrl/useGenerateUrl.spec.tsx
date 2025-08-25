@@ -1,6 +1,7 @@
-import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
+import { describe, expect, vi } from 'vitest';
+
 import { useGenerateUrl } from '@/hooks';
 import { wrapper } from '@/utils/test.provider';
 

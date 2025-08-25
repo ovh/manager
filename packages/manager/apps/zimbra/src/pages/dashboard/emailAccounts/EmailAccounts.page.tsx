@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from 'react';
+
+import { Outlet } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   OdsSwitch,
   OdsSwitchItem,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import {
   IconLinkAlignmentType,
-  Links,
   LinkType,
+  Links,
   ManagerText,
 } from '@ovh-ux/manager-react-components';
-import { Outlet } from 'react-router-dom';
+
+import { AccountStatistics } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
-import { useAccountsStatistics, useOverridePage } from '@/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
+import { useAccountsStatistics, useOverridePage } from '@/hooks';
 import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { AccountStatistics } from '@/data/api';
+
 import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
 import SlotsDatagrid from './slots/SlotsDatagrid.component';
 

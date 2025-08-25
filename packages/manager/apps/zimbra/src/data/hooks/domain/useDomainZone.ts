@@ -1,12 +1,13 @@
 import {
-  useQuery,
   UseQueryOptions,
   UseQueryResult,
+  useQuery,
 } from '@tanstack/react-query';
+
 import {
+  ZoneWithIAM,
   getDomainZoneByName,
   getDomainZoneByNameQueryKey,
-  ZoneWithIAM,
 } from '@/data/api';
 
 type UseDomainZoneParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {

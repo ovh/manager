@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { describe, expect, it } from 'vitest';
-import { render, screen, waitFor, act } from '@/utils/test.provider';
-import { DNS_CONFIG_TYPE } from '@/utils';
-import AddDomain from './Add.page';
-import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+import { DNS_CONFIG_TYPE } from '@/utils';
+import { act, render, screen, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddDomain from './Add.page';
 
 describe('Add Domain page', () => {
   const clickSelectOrganization = (selectOrganization: OdsHTMLElement) => {

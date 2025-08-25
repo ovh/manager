@@ -1,32 +1,38 @@
 import React, { useContext, useMemo } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
-  useOvhTracking,
   ShellContext,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { useNavigate } from 'react-router-dom';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import {
-  GO_TO,
-  GUIDE_HOW_TO_CONFIGURE,
-  GUIDE_ADMINISTRATOR,
-  GUIDE_WEBMAIL,
-  ONBOARDING_WELCOME_CONFIGURE_LATER_CTA,
-  ONBOARDING_WELCOME_CONFIGURE_NOW_CTA,
-} from '@/tracking.constants';
-import onboardingImgSrc from '../onboarding-img.png';
+
+import { usePlatform } from '@/data/hooks';
 import {
   ZIMBRA_ADMINISTRATOR_GUIDE,
   ZIMBRA_HOW_TO_CONFIGURE_GUIDE,
   ZIMBRA_WEBMAIL_GUIDE,
 } from '@/guides.constants';
-import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import {
+  GO_TO,
+  GUIDE_ADMINISTRATOR,
+  GUIDE_HOW_TO_CONFIGURE,
+  GUIDE_WEBMAIL,
+  ONBOARDING_WELCOME_CONFIGURE_LATER_CTA,
+  ONBOARDING_WELCOME_CONFIGURE_NOW_CTA,
+} from '@/tracking.constants';
 import { setOnboarded } from '@/utils';
+
+import onboardingImgSrc from '../onboarding-img.png';
 
 export const OnboardingWelcome = () => {
   const { t } = useTranslation(['onboarding', 'common']);
@@ -71,7 +77,7 @@ export const OnboardingWelcome = () => {
           ZIMBRA_ADMINISTRATOR_GUIDE[ovhSubsidiary] ||
           ZIMBRA_ADMINISTRATOR_GUIDE.DEFAULT
         );
-      }, [ZIMBRA_ADMINISTRATOR_GUIDE, ovhSubsidiary]),
+      }, [ovhSubsidiary]),
       tracking: GUIDE_ADMINISTRATOR,
     },
     {
@@ -81,7 +87,7 @@ export const OnboardingWelcome = () => {
           ZIMBRA_HOW_TO_CONFIGURE_GUIDE[ovhSubsidiary] ||
           ZIMBRA_HOW_TO_CONFIGURE_GUIDE.DEFAULT
         );
-      }, [ZIMBRA_HOW_TO_CONFIGURE_GUIDE, ovhSubsidiary]),
+      }, [ovhSubsidiary]),
       tracking: GUIDE_HOW_TO_CONFIGURE,
     },
     {
@@ -90,7 +96,7 @@ export const OnboardingWelcome = () => {
         return (
           ZIMBRA_WEBMAIL_GUIDE[ovhSubsidiary] || ZIMBRA_WEBMAIL_GUIDE.DEFAULT
         );
-      }, [ZIMBRA_WEBMAIL_GUIDE, ovhSubsidiary]),
+      }, [ovhSubsidiary]),
       tracking: GUIDE_WEBMAIL,
     },
   ];

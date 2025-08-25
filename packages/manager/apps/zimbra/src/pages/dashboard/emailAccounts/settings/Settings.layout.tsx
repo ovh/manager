@@ -1,27 +1,30 @@
 import React, { useEffect } from 'react';
+
+import { Outlet, useMatches, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   IconLinkAlignmentType,
   LinkType,
   Links,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useMatches, useNavigate, useParams } from 'react-router-dom';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useAccount } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+
 import {
   Loading,
+  TabItemProps,
   TabsPanel,
   useComputePathMatchers,
-  TabItemProps,
 } from '@/components';
+import { useAccount } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import { urls } from '@/routes/routes.constants';
-import { FEATURE_FLAGS } from '@/utils';
 import {
   BACK_PREVIOUS_PAGE,
   EDIT_EMAIL_ACCOUNT,
@@ -29,6 +32,7 @@ import {
   EMAIL_ACCOUNT_AUTO_REPLY,
   EMAIL_ACCOUNT_REDIRECTION,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const EmailAccountSettingsLayout = () => {
   const { trackClick } = useOvhTracking();

@@ -1,22 +1,23 @@
 import { vi } from 'vitest';
+
 import {
-  accountsMock,
-  domainsMock,
-  mailingListsMock,
-  organizationsMock,
-  platformMock,
-  taskMocks,
-  aliasesMock,
-  domainZone,
-  orderCatalogMock,
-  domainsDiagnosticMock,
-  slotMock,
-  slotsMock,
   AccountType,
   DomainType,
-  servicesMock,
-  slotServicesMock,
+  accountsMock,
+  aliasesMock,
+  domainZone,
+  domainsDiagnosticMock,
+  domainsMock,
+  mailingListsMock,
+  orderCatalogMock,
+  organizationsMock,
+  platformMock,
   serviceMock,
+  servicesMock,
+  slotMock,
+  slotServicesMock,
+  slotsMock,
+  taskMocks,
 } from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({

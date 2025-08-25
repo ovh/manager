@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_ICON_NAME,
+  ODS_INPUT_TYPE,
+  ODS_MESSAGE_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+  OdsSelectChangeEvent,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsCheckbox,
@@ -18,25 +28,31 @@ import {
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsSelectChangeEvent,
-} from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import {
+  useFormatDate,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { GeneratePasswordButton, Loading } from '@/components';
+import {
+  AccountBodyParamsType,
+  DomainType,
+  ResourceStatus,
+  ZimbraOffer,
+  formatAccountPayload,
+  getZimbraPlatformListQueryKey,
+  postZimbraPlatformAccount,
+  putZimbraPlatformAccount,
+} from '@/data/api';
 import {
   SlotWithService,
   useAccount,
@@ -44,16 +60,12 @@ import {
   useSlotsWithService,
 } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
+import queryClient from '@/queryClient';
 import {
-  AccountBodyParamsType,
-  formatAccountPayload,
-  postZimbraPlatformAccount,
-  putZimbraPlatformAccount,
-  getZimbraPlatformListQueryKey,
-  ResourceStatus,
-  ZimbraOffer,
-  DomainType,
-} from '@/data/api';
+  ADD_EMAIL_ACCOUNT,
+  CONFIRM,
+  EDIT_EMAIL_ACCOUNT,
+} from '@/tracking.constants';
 import {
   AddEmailAccountSchema,
   addEmailAccountSchema,
@@ -61,13 +73,6 @@ import {
   editEmailAccountSchema,
   groupBy,
 } from '@/utils';
-import queryClient from '@/queryClient';
-import {
-  ADD_EMAIL_ACCOUNT,
-  CONFIRM,
-  EDIT_EMAIL_ACCOUNT,
-} from '@/tracking.constants';
-import { Loading, GeneratePasswordButton } from '@/components';
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();

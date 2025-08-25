@@ -1,13 +1,16 @@
 import React from 'react';
+
 import { describe, expect, vi } from 'vitest';
-import { fireEvent, render } from '@/utils/test.provider';
-import GeneratePasswordButton from './GeneratePasswordButton.component';
+
 import {
   containsDigit,
   containsLowercase,
   containsSpecial,
   containsUppercase,
 } from '@/utils';
+import { fireEvent, render } from '@/utils/test.provider';
+
+import GeneratePasswordButton from './GeneratePasswordButton.component';
 
 describe('GeneratePasswordButton component', () => {
   it('should render and call onGenerate & onClick when clicked', () => {

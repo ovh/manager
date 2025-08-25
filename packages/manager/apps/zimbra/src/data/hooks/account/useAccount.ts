@@ -1,9 +1,11 @@
+import { useParams } from 'react-router-dom';
+
 import {
-  useQuery,
   UseQueryOptions,
   UseQueryResult,
+  useQuery,
 } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+
 import {
   AccountType,
   getZimbraPlatformAccountDetail,

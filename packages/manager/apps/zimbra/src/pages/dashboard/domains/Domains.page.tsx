@@ -1,33 +1,39 @@
 import React, { useMemo } from 'react';
+
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Datagrid,
   DatagridColumn,
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
-import { Outlet, useNavigate } from 'react-router-dom';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, usePlatform, useOrganizations } from '@/data/hooks';
-import { useOverridePage, useGenerateUrl, useDebouncedValue } from '@/hooks';
-import ActionButtonDomain from './ActionButton.component';
-import { LabelChip, BadgeStatus } from '@/components';
-import { CnameBadge } from './CnameBadge.component';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import { AccountStatistics, ResourceStatus, DomainType } from '@/data/api';
+
+import { BadgeStatus, LabelChip } from '@/components';
+import { AccountStatistics, DomainType, ResourceStatus } from '@/data/api';
+import { useDomains, useOrganizations, usePlatform } from '@/data/hooks';
+import { useDebouncedValue, useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_DOMAIN } from '@/tracking.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButtonDomain from './ActionButton.component';
+import { CnameBadge } from './CnameBadge.component';
 import { DomainItem } from './Domains.types';
 
 const columns: DatagridColumn<DomainItem>[] = [

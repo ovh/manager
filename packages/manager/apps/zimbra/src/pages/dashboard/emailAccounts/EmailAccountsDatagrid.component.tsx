@@ -1,25 +1,30 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Datagrid,
   DatagridColumn,
   useBytes,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { BadgeStatus, BillingStateBadge, LabelChip } from '@/components';
+import {
+  AccountType,
+  ResourceStatus,
+  getZimbraPlatformListQueryKey,
+} from '@/data/api';
 import { useAccounts, useSlotServices } from '@/data/hooks';
-import { useOverridePage, useDebouncedValue } from '@/hooks';
-import { LabelChip, BadgeStatus, BillingStateBadge } from '@/components';
+import { useDebouncedValue, useOverridePage } from '@/hooks';
+import queryClient from '@/queryClient';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+
 import { ActionButtonEmailAccount } from './ActionButton.component';
 import { DatagridTopbar } from './DatagridTopBar.component';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import {
-  getZimbraPlatformListQueryKey,
-  ResourceStatus,
-  AccountType,
-} from '@/data/api';
-import queryClient from '@/queryClient';
 import { EmailAccountItem } from './EmailAccounts.types';
 
 export const EmailAccountsDatagrid = () => {

@@ -1,13 +1,9 @@
 import React, { Fragment, useMemo } from 'react';
-import {
-  LinkType,
-  Links,
-  IconLinkAlignmentType,
-  Subtitle,
-  Clipboard,
-} from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+
 import { useLocation, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
   ODS_BADGE_COLOR,
   ODS_BUTTON_VARIANT,
@@ -25,30 +21,37 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
+
+import {
+  Clipboard,
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGenerateUrl } from '@/hooks';
+
 import {
   GuideLink,
   Loading,
+  TabItemProps,
   TabsPanel,
   activatedTabs,
   useComputePathMatchers,
-  TabItemProps,
 } from '@/components';
-import { urls } from '@/routes/routes.constants';
-import { useDomainDiagnostic } from '@/data/hooks';
 import {
-  DomainDiagnosisTestStatusEnum,
   DomainDiagnosisTestResult,
+  DomainDiagnosisTestStatusEnum,
   ExpectedDNSConfig,
 } from '@/data/api';
-import { DnsRecordType } from '@/utils/dnsconfig.constants';
-import { Guide, GUIDES_LIST } from '@/guides.constants';
-import { FEATURE_FLAGS } from '@/utils';
+import { useDomainDiagnostic } from '@/data/hooks';
+import { GUIDES_LIST, Guide } from '@/guides.constants';
+import { useGenerateUrl } from '@/hooks';
+import { urls } from '@/routes/routes.constants';
 import {
   AUTO_CONFIGURE_DOMAIN,
   BACK_PREVIOUS_PAGE,
@@ -59,6 +62,8 @@ import {
   DOMAIN_DIAGNOSTICS_SPF,
   DOMAIN_DIAGNOSTICS_SRV,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
+import { DnsRecordType } from '@/utils/dnsconfig.constants';
 
 const isDiagnosticError = (diagnostic: DomainDiagnosisTestResult) => {
   return diagnostic && diagnostic?.status !== DomainDiagnosisTestStatusEnum.OK;
@@ -167,9 +172,8 @@ const useDNSRecordConfigHelp = ({
         <Fragment key={cname?.name}>
           <tr key={`CNAME ${index + 1}`}>
             <td>
-              <OdsText preset={ODS_TEXT_PRESET.heading5}>
-                {`CNAME ${index + 1}`}
-              </OdsText>
+              <OdsText preset={ODS_TEXT_PRESET.heading5}>{`CNAME ${index +
+                1}`}</OdsText>
             </td>
           </tr>
           <tr key={cname?.name}>

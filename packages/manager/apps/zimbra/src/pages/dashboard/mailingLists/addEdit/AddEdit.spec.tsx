@@ -1,18 +1,22 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import {
-  ReplyToChoices,
   ModerationChoices,
+  ReplyToChoices,
   mailingListsMock,
   platformMock,
 } from '@/data/api';
-import AddEditMailingList from './AddEdit.page';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditMailingList from './AddEdit.page';
 
 describe('mailing lists add and edit page', () => {
   it('should be in add mode', async () => {

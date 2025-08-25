@@ -1,5 +1,18 @@
 import React, { useEffect, useMemo, useRef } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsCheckbox,
   OdsFormField,
@@ -7,13 +20,9 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -21,15 +30,10 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { Loading } from '@/components';
-import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import { useAccount, useDomains } from '@/data/hooks';
-import { RedirectionSchema, redirectionSchema } from '@/utils';
+import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import {
   ADD_REDIRECTION,
   CANCEL,
@@ -38,6 +42,7 @@ import {
   EMAIL_ACCOUNT_ADD_REDIRECTION,
   EMAIL_ACCOUNT_EDIT_REDIRECTION,
 } from '@/tracking.constants';
+import { RedirectionSchema, redirectionSchema } from '@/utils';
 
 export const AddEditOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();

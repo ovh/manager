@@ -1,24 +1,29 @@
 import React from 'react';
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
 import {
   DELETE_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
 } from '@/tracking.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { AutoReplyItem } from './AutoReplies.types';
 
 export interface ActionButtonAutoReplyProps {

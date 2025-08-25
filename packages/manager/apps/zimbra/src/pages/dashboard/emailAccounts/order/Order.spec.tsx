@@ -1,10 +1,13 @@
 import React from 'react';
-import 'element-internals-polyfill';
+
 import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import OrderEmailAccounts from './Order.page';
+
 import emailAccountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import OrderEmailAccounts from './Order.page';
 
 describe('email account order page', () => {
   it('should render page correctly', async () => {

@@ -1,6 +1,8 @@
 import { v2 } from '@ovh-ux/manager-core-api';
-import { TaskType } from './type';
+
 import { getApiPath } from '@/data/api';
+
+import { TaskType } from './type';
 
 export const getZimbraPlatformTask = async (
   platformId: string,

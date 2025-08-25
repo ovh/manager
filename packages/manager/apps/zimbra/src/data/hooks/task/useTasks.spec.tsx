@@ -1,6 +1,7 @@
-import { describe, expect } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
+import { describe, expect } from 'vitest';
+
 import { taskMocks } from '@/data/api';
 import { useTasks } from '@/data/hooks';
 import { wrapper } from '@/utils/test.provider';

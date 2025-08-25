@@ -1,13 +1,17 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import { putZimbraDomain, domainMock, platformMock } from '@/data/api';
-import ModalEditDomain from './Edit.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { domainMock, platformMock, putZimbraDomain } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import ModalEditDomain from './Edit.modal';
 
 vi.mocked(useParams).mockReturnValue({
   platformId: platformMock[0].id,

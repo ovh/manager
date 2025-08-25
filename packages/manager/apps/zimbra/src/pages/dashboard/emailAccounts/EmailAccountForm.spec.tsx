@@ -1,13 +1,17 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { describe, expect, vi } from 'vitest';
-import { fireEvent } from '@testing-library/dom';
+
 import { useParams } from 'react-router-dom';
-import { render, waitFor, act } from '@/utils/test.provider';
-import EmailAccountForm from './EmailAccountForm.component';
-import { platformMock, accountMock } from '@/data/api';
+
+import { fireEvent } from '@testing-library/dom';
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { accountMock, platformMock } from '@/data/api';
+import { act, render, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import EmailAccountForm from './EmailAccountForm.component';
 
 describe('email account add and edit form', () => {
   it('should be in add mode if no accountId', async () => {

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
+
 import {
   Location,
   NavLink,
@@ -6,12 +7,15 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { replaceAll } from '@/utils';
 
 export type TabItemProps = {

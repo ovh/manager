@@ -1,53 +1,58 @@
 import React, { Suspense, useContext, useMemo } from 'react';
+
 import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
+import { OdsTag } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
+  ChangelogButton,
   GuideButton,
   GuideItem,
   Notifications,
-  useNotifications,
-  ChangelogButton,
   useFeatureAvailability,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsTag } from '@ovhcloud/ods-components/react';
-import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   Breadcrumb,
   Loading,
+  ProBetaBanner,
+  TabItemProps,
   TabsPanel,
   useComputePathMatchers,
-  TabItemProps,
-  ProBetaBanner,
 } from '@/components';
-import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
-import { urls } from '@/routes/routes.constants';
-import { FEATURE_FLAGS } from '@/utils';
 import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { useOrganization } from '@/data/hooks';
+import { CHANGELOG_LINKS, GUIDES_LIST } from '@/guides.constants';
 import {
   useAccountsStatistics,
   useGenerateUrl,
   useOverridePage,
 } from '@/hooks';
-import { useOrganization } from '@/data/hooks';
+import { urls } from '@/routes/routes.constants';
 import {
   AUTO_REPLY,
-  EMAIL_ACCOUNT,
   DOMAIN,
+  EMAIL_ACCOUNT,
   GENERAL_INFORMATIONS,
+  GO_TO,
   MAILING_LIST,
   ORGANIZATION,
   REDIRECTION,
-  GO_TO,
   UNSELECT_ORGANIZATION,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const DashboardLayout: React.FC = () => {
   const { trackClick } = useOvhTracking();

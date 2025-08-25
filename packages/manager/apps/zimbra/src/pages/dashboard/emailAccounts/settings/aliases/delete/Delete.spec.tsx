@@ -1,16 +1,20 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { render, act, waitFor, fireEvent } from '@/utils/test.provider';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import {
-  aliasesMock,
   accountsMock,
+  aliasesMock,
   deleteZimbraPlatformAlias,
 } from '@/data/api';
-import ModalDeleteAlias from './Delete.modal';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import ModalDeleteAlias from './Delete.modal';
 
 vi.mocked(useParams).mockReturnValue({
   accountId: accountsMock[0].id,

@@ -1,12 +1,16 @@
 import React from 'react';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import {
   RouterProvider,
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import Routes from '@/routes/routes';
+
 import queryClient from './queryClient';
 
 function App() {

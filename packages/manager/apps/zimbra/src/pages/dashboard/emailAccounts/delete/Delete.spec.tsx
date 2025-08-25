@@ -1,12 +1,16 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useSearchParams } from 'react-router-dom';
-import { fireEvent, render, act } from '@/utils/test.provider';
-import { domainMock, deleteZimbraPlatformAccount } from '@/data/api';
-import DeleteEmailAccountModal from './Delete.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { deleteZimbraPlatformAccount, domainMock } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render } from '@/utils/test.provider';
+
+import DeleteEmailAccountModal from './Delete.modal';
 
 vi.mocked(useSearchParams).mockReturnValue([
   new URLSearchParams({

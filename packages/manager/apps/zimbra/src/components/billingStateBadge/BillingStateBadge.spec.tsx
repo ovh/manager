@@ -1,10 +1,14 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { render } from '@/utils/test.provider';
-import BillingStateBadge from './BillingStateBadge.component';
+
 import { ServiceBillingState } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import BillingStateBadge from './BillingStateBadge.component';
 
 const loadingTestId = 'billing-state-loading';
 const defaultTestId = 'billing-state';

@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_ICON_NAME,
   ODS_LINK_COLOR,
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { useTasks } from '@/data/hooks';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+
 import { Loading } from '@/components';
-import { TaskType, TaskStatus } from '@/data/api';
+import { TaskStatus, TaskType } from '@/data/api';
+import { useTasks } from '@/data/hooks';
 
 const defaultNumberToShow = 5;
 const isOngoing = (task: TaskType) =>

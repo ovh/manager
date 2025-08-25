@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_ICON_NAME,
+  ODS_INPUT_TYPE,
+  ODS_MODAL_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsIcon,
@@ -8,33 +20,26 @@ import {
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
-import { useOrganization } from '@/data/hooks';
+
 import {
+  OrganizationBodyParamsType,
   getZimbraPlatformOrganizationDetailsQueryKey,
   getZimbraPlatformOrganizationQueryKey,
-  OrganizationBodyParamsType,
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/data/api';
+import { useOrganization } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
 import {
   ADD_ORGANIZATION,

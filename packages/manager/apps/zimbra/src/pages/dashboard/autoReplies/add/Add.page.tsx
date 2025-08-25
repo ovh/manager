@@ -1,24 +1,12 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import {
-  IconLinkAlignmentType,
-  Links,
-  LinkType,
-  Subtitle,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-  OdsTextarea,
-  OdsDatepicker,
-  OdsCheckbox,
-} from '@ovhcloud/ods-components/react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -27,8 +15,27 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCheckbox,
+  OdsDatepicker,
+  OdsFormField,
+  OdsInput,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsTextarea,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
@@ -36,20 +43,18 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { Loading } from '@/components';
 import { useAccount, useAccounts, useDomains } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { AutoReplySchema, autoReplySchema } from '@/utils';
-import { Loading } from '@/components';
+import queryClient from '@/queryClient';
 import {
   ADD_AUTO_REPLY,
   BACK_PREVIOUS_PAGE,
   CONFIRM,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constants';
-import queryClient from '@/queryClient';
+import { AutoReplySchema, autoReplySchema } from '@/utils';
 
 export enum AutoReplyDurations {
   TEMPORARY = 'temporary',

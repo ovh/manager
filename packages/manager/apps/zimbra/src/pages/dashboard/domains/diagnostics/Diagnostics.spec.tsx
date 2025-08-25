@@ -1,11 +1,15 @@
 import React from 'react';
-import { describe, expect, vi } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import Diagnostics from './Diagnostics.page';
-import { render, waitFor } from '@/utils/test.provider';
+
+import { describe, expect, vi } from 'vitest';
+
 import { domainMock, platformMock } from '@/data/api';
-import { odsTabIsSelected, tabContent } from '@/utils/test.utils';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
+import { render, waitFor } from '@/utils/test.provider';
+import { odsTabIsSelected, tabContent } from '@/utils/test.utils';
+
+import Diagnostics from './Diagnostics.page';
 
 vi.mocked(useParams).mockReturnValue({
   platformId: platformMock[0].id,

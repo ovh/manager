@@ -1,27 +1,32 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
+
 import {
   ODS_MESSAGE_COLOR,
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, useOrganization } from '@/data/hooks';
+
 import {
   deleteZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
 } from '@/data/api';
+import { useDomains, useOrganization } from '@/data/hooks';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_ORGANIZATION } from '@/tracking.constants';
 

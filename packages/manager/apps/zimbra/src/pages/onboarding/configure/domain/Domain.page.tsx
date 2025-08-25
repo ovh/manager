@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { Loading } from '@/components';
+import { useDomains } from '@/data/hooks';
 import AddDomainForm from '@/pages/dashboard/domains/DomainForm.component';
 import { ONBOARDING_CONFIGURE_DOMAIN } from '@/tracking.constants';
-import { useDomains } from '@/data/hooks';
-import { Loading } from '@/components';
 
 export const ConfigureDomain: React.FC = () => {
   const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ACTIONS]);

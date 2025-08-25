@@ -1,43 +1,48 @@
 import React, { useEffect } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsFormField,
   OdsInput,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+
+import { Loading } from '@/components';
+import {
+  OrganizationBodyParamsType,
+  OrganizationType,
+  getZimbraPlatformOrganizationQueryKey,
+  postZimbraPlatformOrganization,
+} from '@/data/api';
 import { useOrganizations } from '@/data/hooks';
-import { SimpleOrganizationSchema, simpleOrganizationSchema } from '@/utils';
+import queryClient from '@/queryClient';
 import {
   CONFIRM,
   ONBOARDING_CONFIGURE_ORGANIZATION,
 } from '@/tracking.constants';
-import {
-  getZimbraPlatformOrganizationQueryKey,
-  OrganizationBodyParamsType,
-  OrganizationType,
-  postZimbraPlatformOrganization,
-} from '@/data/api';
-import queryClient from '@/queryClient';
-import { Loading } from '@/components';
+import { SimpleOrganizationSchema, simpleOrganizationSchema } from '@/utils';
 
 export const ConfigureOrganization: React.FC = () => {
   const { t } = useTranslation([

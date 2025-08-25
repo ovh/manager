@@ -1,6 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
 import {
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
@@ -12,21 +18,20 @@ import {
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import { useDomain, useOrganizations } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
-import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EDIT_DOMAIN } from '@/tracking.constants';
 import { EditDomainSchema, editDomainSchema } from '@/utils';
@@ -48,7 +53,9 @@ export const EditDomainModal = () => {
   const {
     data: organizations,
     isLoading: isLoadingOrganizations,
-  } = useOrganizations({ shouldFetchAll: true });
+  } = useOrganizations({
+    shouldFetchAll: true,
+  });
 
   const { addError, addSuccess } = useNotifications();
 

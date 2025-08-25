@@ -1,17 +1,21 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, act, waitFor } from '@/utils/test.provider';
-import AddEditRedirectionModal from './AddEdit.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import {
   organizationMock,
   platformMock,
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/data/api';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditRedirectionModal from './AddEdit.modal';
 
 describe('Organizations add and edit modal', () => {
   // @TODO: find why this test is inconsistent

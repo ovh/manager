@@ -1,16 +1,19 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
+
 import {
   AliasType,
   getZimbraPlatformAliases,
   getZimbraPlatformAliasesQueryKey,
 } from '@/data/api';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 type UseAliasesParams = Omit<
   UseInfiniteQueryOptions,

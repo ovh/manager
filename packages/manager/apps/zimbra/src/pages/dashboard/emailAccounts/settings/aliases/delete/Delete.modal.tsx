@@ -1,30 +1,35 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useMutation } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { Trans, useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
+
 import {
   deleteZimbraPlatformAlias,
   getZimbraPlatformAliasQueryKey,
 } from '@/data/api';
+import { useAlias } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
 import {
   CANCEL,
   CONFIRM,
   EMAIL_ACCOUNT_DELETE_ALIAS,
 } from '@/tracking.constants';
-import { useAlias } from '@/data/hooks';
 
 export const DeleteAlias = () => {
   const { trackClick, trackPage } = useOvhTracking();

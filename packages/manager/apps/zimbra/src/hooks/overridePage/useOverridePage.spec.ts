@@ -1,7 +1,9 @@
-import { describe, expect, vi } from 'vitest';
 import { useMatches } from 'react-router-dom';
-import { useOverridePage } from '@/hooks';
+
 import '@testing-library/jest-dom';
+import { describe, expect, vi } from 'vitest';
+
+import { useOverridePage } from '@/hooks';
 
 describe('useOverridePage', () => {
   it('should return false', () => {

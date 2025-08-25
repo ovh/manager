@@ -1,7 +1,11 @@
 import React from 'react';
-import { describe, expect, vi } from 'vitest';
+
 import { useLocation } from 'react-router-dom';
+
+import { describe, expect, vi } from 'vitest';
+
 import { render, waitFor } from '@/utils/test.provider';
+
 import TabsPanel from './TabsPanel.component';
 
 const tabs = [

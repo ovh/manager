@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect } from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+
 import {
-  ErrorMessage,
-  TRACKING_LABELS,
   ErrorBanner,
   ErrorBannerProps,
+  ErrorMessage,
+  TRACKING_LABELS,
 } from '@ovh-ux/manager-react-components';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 
 function getTrackingTypology(error: ErrorMessage) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {

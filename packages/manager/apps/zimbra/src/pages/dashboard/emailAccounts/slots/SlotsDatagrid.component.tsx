@@ -1,20 +1,25 @@
 import React, { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   Datagrid,
   DatagridColumn,
   useBytes,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
+
+import { BillingStateBadge } from '@/components';
+import { getOfferDefaultQuota } from '@/data/api';
 import { SlotWithService, useSlotsWithService } from '@/data/hooks';
 import { useOverridePage } from '@/hooks';
-import { ActionButtonSlot } from './ActionButton.component';
-import { DatagridTopbar } from '../DatagridTopBar.component';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import { getOfferDefaultQuota } from '@/data/api';
-import { BillingStateBadge } from '@/components';
+
+import { DatagridTopbar } from '../DatagridTopBar.component';
+import { ActionButtonSlot } from './ActionButton.component';
 
 export const SlotsDatagrid = () => {
   const { t } = useTranslation(['accounts', 'common']);
@@ -81,7 +86,7 @@ export const SlotsDatagrid = () => {
         label: '',
       },
     ],
-    [],
+    [format, formatBytes],
   );
 
   return (

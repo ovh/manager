@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import SlotsDatagrid from './SlotsDatagrid.component';
-import { render, waitFor } from '@/utils/test.provider';
+
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
+import { render, waitFor } from '@/utils/test.provider';
+
+import SlotsDatagrid from './SlotsDatagrid.component';
 
 describe('Slots datagrid', () => {
   it('should render correctly', async () => {

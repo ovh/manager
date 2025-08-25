@@ -1,18 +1,22 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   IconLinkAlignmentType,
   LinkType,
   Links,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import { ADD_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
+
 import EmailAccountForm from '../EmailAccountForm.component';
 
 export const AddEmailAccount = () => {

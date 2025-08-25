@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -5,9 +10,6 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available

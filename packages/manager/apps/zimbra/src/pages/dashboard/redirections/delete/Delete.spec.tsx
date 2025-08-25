@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { describe, expect, it } from 'vitest';
-import DeleteRedirectionModal from './Delete.modal';
+
 import { render, screen } from '@/utils/test.provider';
+
+import DeleteRedirectionModal from './Delete.modal';
 
 describe('DeleteRedirection modal', () => {
   it('should render correctly', () => {
