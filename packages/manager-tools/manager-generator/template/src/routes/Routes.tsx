@@ -3,6 +3,7 @@ import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
 
@@ -44,16 +45,52 @@ export default (
       {/* Dashboard with nested tabs */}
       <Route path={urls.dashboard} Component={DashboardPage}>
         {/* Default dashboard view → overview */}
-        <Route index Component={GeneralInformationPage} />
+        <Route
+          index
+          Component={GeneralInformationPage}
+          handle={{
+            tracking: {
+              pageName: 'dashboard',
+              pageType: PageType.dashboard,
+            },
+          }}
+        />
         {/* Help tab */}
-        <Route path={subRoutes.help} Component={HelpPage} />
+        <Route
+          path={subRoutes.help}
+          Component={HelpPage}
+          handle={{
+            tracking: {
+              pageName: 'help',
+              pageType: PageType.dashboard,
+            },
+          }}
+        />
       </Route>
 
       {/* Listing route */}
-      <Route path={urls.listing} Component={ListingPage} />
+      <Route
+        path={urls.listing}
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
 
       {/* Onboarding route */}
-      <Route path={urls.onboarding} Component={OnboardingPage} />
+      <Route
+        path={urls.onboarding}
+        Component={OnboardingPage}
+        handle={{
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.onboarding,
+          },
+        }}
+      />
 
       {/* Catch-all 404 route inside the app */}
       <Route path="*" element={<NotFound />} />
