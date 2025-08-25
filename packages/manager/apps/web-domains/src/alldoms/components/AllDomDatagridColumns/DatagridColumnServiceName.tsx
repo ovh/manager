@@ -1,8 +1,8 @@
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { OdsLink } from '@ovhcloud/ods-components/react';
 import { toUnicode } from 'punycode';
+import { Link } from '@ovhcloud/ods-react';
 import config from '@/web-domains.config';
 
 interface DatagridColumnServiceNameProps {
@@ -20,12 +20,9 @@ export default function DatagridColumnServiceName({
 
   return (
     <DataGridTextCell>
-      <OdsLink
-        href={url as string}
-        label={toUnicode(allDomName)}
-        data-testid={allDomName}
-        class="link-banner"
-      />
+      <Link href={url as string} data-testid={allDomName}>
+        {toUnicode(allDomName)}
+      </Link>
     </DataGridTextCell>
   );
 }

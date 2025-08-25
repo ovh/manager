@@ -1,12 +1,14 @@
-import {
-  ODS_CARD_COLOR,
-  ODS_DIVIDER_COLOR,
-  ODS_DIVIDER_SPACING,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  Card,
+  CARD_COLOR,
+  Divider,
+  DIVIDER_COLOR,
+  DIVIDER_SPACING,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { AlldomService } from '@/alldoms/types';
 
 interface ServiceDetailInformationProps {
@@ -18,40 +20,36 @@ export default function ServiceDetailInformation({
 }: ServiceDetailInformationProps) {
   const { t } = useTranslation('allDom');
   return (
-    <OdsCard
-      color={ODS_CARD_COLOR.neutral}
+    <Card
+      color={CARD_COLOR.neutral}
       className="w-full p-6"
       data-testid="ServiceDetailInformation"
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
+      <Text preset={TEXT_PRESET.heading4}>
         {t('allDom_detail_page_information_title')}
-      </OdsText>
+      </Text>
 
-      <OdsDivider
-        color={ODS_DIVIDER_COLOR.light}
-        spacing={ODS_DIVIDER_SPACING._24}
-      />
+      <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
 
       <div className="flex flex-col gap-y-3">
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>
+        <Text preset={TEXT_PRESET.heading6}>
           {t('allDom_page_detail_information_general_pack', {
             packName: currentState.name,
           })}
-        </OdsText>
+        </Text>
         <div>
-          <OdsText>
+          <Text>
             <strong>
               {t('allDom_page_detail_information_general_extensions')}
             </strong>
-          </OdsText>
-          &nbsp;
-          <OdsText preset={ODS_TEXT_PRESET.span}>
+          </Text>
+          <Text preset={TEXT_PRESET.span}>
             {currentState.extensions
               .map((extension) => `.${extension.toLowerCase()}`)
               .join('; ')}
-          </OdsText>
+          </Text>
         </div>
       </div>
-    </OdsCard>
+    </Card>
   );
 }
