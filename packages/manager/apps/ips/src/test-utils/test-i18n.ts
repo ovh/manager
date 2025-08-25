@@ -8,6 +8,7 @@ import configureReverseDns from '../../public/translations/configure-reverse-dns
 import gameFirewall from '../../public/translations/game-firewall/Messages_fr_FR.json';
 import common from '../../public/translations/common/Messages_fr_FR.json';
 import importIpFromSys from '../../public/translations/import-ip-from-sys/Messages_fr_FR.json';
+import moveIp from '../../public/translations/move-ip/Messages_fr_FR.json';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const translations = {
@@ -20,6 +21,7 @@ export const translations = {
   [TRANSLATION_NAMESPACES.configureReverseDns]: configureReverseDns,
   [TRANSLATION_NAMESPACES.gameFirewall]: gameFirewall,
   [TRANSLATION_NAMESPACES.importIpFromSys]: importIpFromSys,
+  [TRANSLATION_NAMESPACES.moveIp]: moveIp,
   [TRANSLATION_NAMESPACES.common]: common,
 };
 
@@ -33,5 +35,6 @@ export const labels = {
   configureReverseDns,
   gameFirewall,
   importIpFromSys,
+  moveIp,
   common,
 };

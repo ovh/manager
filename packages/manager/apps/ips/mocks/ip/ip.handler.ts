@@ -7,6 +7,7 @@ import icebergIpListFull from './iceberg-get-ip-full';
 import ipDetails from './get-ip-details.json';
 import getIpReverseForBlock from './get-ip-reverse-for-block.json';
 import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
+import getIpMoveResponse from './get-ip-move.json';
 import {
   getGameFirewallRuleListResponse,
   getGameFirewallRuleResponse,
@@ -23,6 +24,7 @@ import {
   IpReverseType,
   IpSpamType,
 } from '@/data/api';
+import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
 
 export type GetIpsMocksParams = {
   nbIp?: number;
@@ -31,6 +33,9 @@ export type GetIpsMocksParams = {
   isIpv6LimitReached?: boolean;
   getReverseApiKo?: boolean;
   postReverseApiKo?: boolean;
+  getIpTaskKo?: boolean;
+  hasIpTask?: boolean;
+  getIpMoveKo?: boolean;
   gameFirewallConfig?: {
     isUpdateKo?: boolean;
     firewallModeEnabled?: boolean;
@@ -45,8 +50,55 @@ export const getIpsMocks = ({
   isIpv6LimitReached = false,
   getReverseApiKo = false,
   postReverseApiKo = false,
+  getIpTaskKo = false,
+  hasIpTask = false,
+  getIpMoveKo = false,
   gameFirewallConfig,
 }: GetIpsMocksParams): Handler[] => [
+  {
+    url: '/ip/:ip/move',
+    response: () =>
+      getIpMoveKo
+        ? {
+            message: 'Move IP Api Error',
+          }
+        : getIpMoveResponse,
+    api: 'v6',
+    status: getIpMoveKo ? 400 : 200,
+  },
+  {
+    url: '/ip/:ip/move',
+    response: {},
+    api: 'v6',
+    method: 'post',
+    status: getIpMoveKo ? 400 : 200,
+  },
+  {
+    url: '/ip/:ip/task',
+    response: (): IpTask[] | { message: string } => {
+      if (getIpTaskKo) {
+        return { message: 'Task Api Error' };
+      }
+      return hasIpTask
+        ? [
+            {
+              comment: null,
+              destination: {
+                serviceName: 'my-new-service',
+              },
+              doneDate: null,
+              lastUpdate: null,
+              function: IpTaskFunction.genericMoveFloatingIp,
+              startDate: '2024-06-10T14:00:00+00:00',
+              status: IpTaskStatus.doing,
+              taskId: 1234,
+            },
+          ]
+        : [];
+    },
+    api: 'v6',
+    status: getIpTaskKo ? 400 : 200,
+  },
   {
     url: '/ip/:ip/reverse/:reverseIp',
     response: (_: unknown, params: PathParams) =>

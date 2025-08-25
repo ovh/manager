@@ -67,21 +67,27 @@ export const renderTest = async ({
   ...mockParams
 }: { initialRoute?: string } & MockParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
-    ...toMswHandlers([
-      ...getIpsMocks(mockParams),
-      ...getIamMocks(mockParams),
-      ...getDedicatedMocks(mockParams),
-      ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getServicesMocks(mockParams),
-      ...getCatalogMocks(mockParams),
-      ...getDedicatedCloudMocks(mockParams),
-      ...getDedicatedServerMocks(mockParams),
-      ...getVrackMocks(mockParams),
-      ...getVpsMocks(mockParams),
-      ...getOrganisationMocks(mockParams),
-      ...getCloudProjectMocks(),
-      ...getIpLoadBalancingMocks(mockParams),
-    ]),
+    ...toMswHandlers(
+      [
+        ...getIpsMocks(mockParams),
+        ...getIamMocks(mockParams),
+        ...getDedicatedMocks(mockParams),
+        ...getAuthenticationMocks({ isAuthMocked: true }),
+        ...getServicesMocks(mockParams),
+        ...getCatalogMocks(mockParams),
+        ...getDedicatedCloudMocks(mockParams),
+        ...getDedicatedServerMocks(mockParams),
+        ...getVrackMocks(mockParams),
+        ...getVpsMocks(mockParams),
+        ...getOrganisationMocks(mockParams),
+        ...getCloudProjectMocks(),
+        ...getIpLoadBalancingMocks(mockParams),
+      ].map((handler) => ({
+        ...handler,
+        // TODO: Remove when toMswHandlers has default delay 0
+        delay: 0,
+      })),
+    ),
   );
 
   if (!context) {
