@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -8,6 +7,7 @@ import {
   ODS_ICON_NAME,
   OdsIconName,
 } from '@ovhcloud/ods-components';
+import { useActionClick } from '../../hooks';
 
 export type ObsToolbarAction = {
   id: string;
@@ -25,15 +25,7 @@ export interface ObsToolbarActionsProps {
 export const ObsToolbarActions = ({
   items,
 }: Readonly<ObsToolbarActionsProps>): JSX.Element => {
-  const navigate = useNavigate();
-
-  const onActionClick = (link: string, isExternal: boolean) => {
-    if (isExternal) {
-      window.open(link, '_blank');
-    } else {
-      navigate(link);
-    }
-  };
+  const onActionClick = useActionClick();
 
   return (
     <div className="w-full flex flex-col justify-end items-end gap-6">
