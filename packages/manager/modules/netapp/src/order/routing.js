@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.order', {
-    url: '/new',
+    url: '/new?region',
     views: {
       netappContainer: {
         component: 'ovhManagerNetAppOrder',
@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
           features.isFeatureAvailable('netapp:order') ? false : 'netapp.index',
         ),
     resolve: {
+      region: /* @ngInject */ ($transition$) => $transition$.params().region,
       catalog: /* @ngInject */ ($http, coreConfig) =>
         $http
           .get(
