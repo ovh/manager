@@ -6,7 +6,7 @@ import { GeneralInformationProps } from '@/types/GeneralInfo.type';
 
 export default function GeneralInformationTile({ tiles }: GeneralInformationProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full px-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
       {tiles.map((tile) => (
         <ManagerTile key={tile.title} className="w-full h-full flex-col" color="primary">
           <ManagerTile.Title>{tile.title}</ManagerTile.Title>
