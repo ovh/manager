@@ -11,6 +11,16 @@ export type TPaymentMethodParams = {
   default?: boolean;
   status?: TPaymentMethodStatus;
   paymentType?: TPaymentMethodType;
+  orderId?: string;
+  register?: boolean;
+  callbackUrl?: Record<string, string>;
+};
+
+export type TPaymentMethodFinalizationParams = {
+  expirationMonth?: number;
+  expirationYear?: number;
+  formSessionId: string;
+  registrationId: string;
 };
 
 export const getPaymentMethods = async (
@@ -26,4 +36,24 @@ export const getAvailablePaymentMethods = async (): Promise<FetchResultV6<
   TAvailablePaymentMethod
 >> => {
   return v6.get(`/me/payment/availableMethods`);
+};
+
+export const addPaymentMethod = async (
+  params: TPaymentMethodParams,
+): Promise<TUserPaymentMethod> => {
+  const { data } = await v6.post(`/me/payment/method`, {
+    ...params,
+  });
+  return data;
+};
+
+export const finalizePaymentMethod = async (
+  paymentMethodId: string,
+  params: TPaymentMethodFinalizationParams,
+): Promise<TUserPaymentMethod> => {
+  const { data } = await v6.post(
+    `/me/payment/method/${paymentMethodId}/finalize`,
+    params,
+  );
+  return data;
 };
