@@ -10,7 +10,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['@ovh-ux/manager-core-test-utils/setup-file-msw-ods17.tsx'],
+      setupFiles: ['./setup-msw.ts'],
       coverage: {
         exclude: [
           ...defaultExcludedFiles,

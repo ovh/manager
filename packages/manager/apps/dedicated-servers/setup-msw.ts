@@ -1,8 +1,10 @@
 import { beforeAll, afterAll } from 'vitest';
 import { odsSetup } from '@ovhcloud/ods-common-core';
 import { setupServer } from 'msw/node';
-import { toMswHandlers } from './src/utils';
-import { getAuthenticationMocks } from './src/auth';
+import {
+  toMswHandlers,
+  getAuthenticationMocks,
+} from '@ovh-ux/manager-core-test-utils';
 import 'element-internals-polyfill';
 
 odsSetup();
