@@ -8,12 +8,16 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 export const useApiErrorMessage = (error?: ApiError) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.error);
 
-  return error
-    ? t('managerApiError', {
-        error: error?.response?.data?.message,
-        ovhQueryId: error?.response.headers?.['x-ovh-queryid'],
-      })
-    : undefined;
+  const errorMessage = error?.response?.data?.message || error?.message;
+  const ovhQueryId = error?.response.headers?.['x-ovh-queryid'];
+
+  if (!errorMessage) {
+    return undefined;
+  }
+
+  return ovhQueryId
+    ? t('managerApiError', { error: errorMessage, ovhQueryId })
+    : t('managerApiErrorWithoutRequestId', { error: errorMessage });
 };
 
 export type ApiErrorMessageProps = {
