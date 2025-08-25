@@ -129,16 +129,22 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   isCreateRancherLoading,
   pricing,
 }) => {
-  const [rancherName, setRancherName] = useState(null);
-  const [selectedPlan, setSelectedPlan] = useState(null);
-  const [selectedVersion, setSelectedVersion] = useState(null);
+  const [rancherState, setRancherState] = useState({
+    name: null,
+    isTouched: false,
+  });
+  const [selectedPlan, setSelectedPlan] = useState<RancherPlan | null>(null);
+  const [selectedVersion, setSelectedVersion] = useState<RancherVersion | null>(
+    null,
+  );
 
   const url = usePciUrl();
   const navigate = useNavigate();
   const { data: project } = useProject();
 
-  const isValidName = rancherName !== '' && isValidRancherName(rancherName);
-  const hasInputError = rancherName !== '' && !isValidName;
+  const isValidName =
+    rancherState.name !== '' && isValidRancherName(rancherState.name);
+  const hasError = rancherState.isTouched && !isValidName;
   const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
 
   const { t } = useTranslation(['order-price', 'dashboard', 'listing']);
@@ -220,19 +226,29 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             aria-label="rancher-name-input"
             type={ODS_INPUT_TYPE.text}
             color={
-              hasInputError
+              hasError
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.primary
             }
             className="my-3 sm:w-1/2 md:w-2/3 lg:w-1/3"
-            value={rancherName}
+            value={rancherState.name}
             onOdsValueChange={(
               e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-            ) => setRancherName(e.target.value as string)}
+            ) =>
+              setRancherState((state) => ({
+                ...state,
+                name: e.detail.value ?? '',
+              }))
+            }
+            onOdsInputBlur={() =>
+              setRancherState((state) => ({ ...state, isTouched: true }))
+            }
+            error={hasError}
           />
+
           <OsdsText
             color={
-              hasInputError
+              hasError
                 ? ODS_THEME_COLOR_INTENT.error
                 : ODS_THEME_COLOR_INTENT.text
             }
@@ -360,7 +376,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             onClick={() => {
               if (isCreateRancherAllowed || isCreateRancherLoading) {
                 onCreateClick({
-                  name: rancherName,
+                  name: rancherState.name,
                   version: selectedVersion.name,
                   plan: selectedPlan.name,
                 });
