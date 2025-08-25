@@ -1,0 +1,19 @@
+name: Auto-delete merged branches
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete-branch:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete head branch if not master/develop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          if [[ "$BRANCH_NAME" != "master" && "$BRANCH_NAME" != "develop" && "$BRANCH_NAME" == "test/preventdeletion" ]]; then
+            curl -X DELETE -H "Authorization: token $GH_TOKEN" \
+              https://api.github.com/repos/${{ github.repository }}/git/refs/heads/$BRANCH_NAME
+          fi
