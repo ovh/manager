@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.28.4...@ovh-ux/manager-pci-kubernetes-app@0.29.0) (2025-08-25)
+
+
+### Features
+
+* **pci-kubernetes:** add log 3az ([f1d871c](https://github.com/ovh/manager/commit/f1d871cc3383c82c26d2b21f119e0be0d909326f)), closes [#TAPC-4366](https://github.com/ovh/manager/issues/TAPC-4366)
+
+
+
+
+
 ## [0.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.28.3...@ovh-ux/manager-pci-kubernetes-app@0.28.4) (2025-08-21)
 
 
