@@ -95,7 +95,7 @@ describe('QuickFilter Component', () => {
       expect(setApiFilter).toHaveBeenCalledWith({
         ...mockApiFilter,
         version: undefined, // Both IPv4 and IPv6 selected
-        routedToserviceName: null,
+        'routedTo.serviceName': 'null',
       });
     });
   });

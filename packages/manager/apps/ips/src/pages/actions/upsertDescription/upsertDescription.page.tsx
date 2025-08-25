@@ -101,7 +101,7 @@ export default function UpsertDescriptionModal() {
           <OdsButton
             slot="actions"
             type="button"
-            variant={ODS_BUTTON_VARIANT.ghost}
+            variant={ODS_BUTTON_VARIANT.outline}
             label={t('cancel', { ns: NAMESPACES.ACTIONS })}
             onClick={cancel}
             data-testid="cancel-button"
