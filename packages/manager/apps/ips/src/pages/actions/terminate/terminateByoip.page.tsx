@@ -13,16 +13,17 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { HandleLinkNavigation } from './handleLink.component';
+import { US_API_CONSOLE_LINK } from '../actions.constants';
+import { LinkToOtherApp } from '@/components/LinkToOtherApp/LinkToOtherApp';
 
 export default function TerminateByoip() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const shell = useContext(ShellContext);
-  const region = useMemo(() => shell?.environment.getRegion(), [shell]);
+  const { environment } = useContext(ShellContext);
+  const region = environment.getRegion();
 
   const closeModal = () => {
     navigate('..');
@@ -58,7 +59,17 @@ export default function TerminateByoip() {
                   : 'listingTerminateByoip_info2'
               }
               components={{
-                Link: <HandleLinkNavigation params={{ searchText: 'byoip' }} />,
+                Link: (
+                  <LinkToOtherApp
+                    appName="billing"
+                    path="#/autorenew/services"
+                    params={{ searchText: 'byoip' }}
+                    icon={ODS_ICON_NAME.externalLink}
+                    forcedHref={
+                      region === 'US' ? US_API_CONSOLE_LINK : undefined
+                    }
+                  />
+                ),
               }}
             />
           </OdsText>
