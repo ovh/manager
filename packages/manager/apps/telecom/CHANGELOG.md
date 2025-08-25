@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.3...@ovh-ux/manager-telecom@16.15.4) (2025-08-25)
+
+
+### Bug Fixes
+
+* **pack.move:** search street numbers with more parameters ([c8c2937](https://github.com/ovh/manager/commit/c8c293710e6a15c74619efd5c1454d47d36ac551)), closes [#UXCT-773](https://github.com/ovh/manager/issues/UXCT-773)
+
+
+
+
+
 ## [16.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.2...@ovh-ux/manager-telecom@16.15.3) (2025-08-07)
 
 
