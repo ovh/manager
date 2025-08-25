@@ -5,14 +5,18 @@ import {
   RouterProvider,
   createRoutesFromElements,
 } from 'react-router-dom';
-import routes from '@/routes/routes';
+import secretManagerRoutes from '@secret-manager/routes/routes';
+import kmsRoutes from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute: string }) {
-  const router = createMemoryRouter(createRoutesFromElements(routes), {
-    initialEntries: [initialRoute],
-    initialIndex: 0,
-  });
+  const router = createMemoryRouter(
+    createRoutesFromElements([kmsRoutes, secretManagerRoutes]),
+    {
+      initialEntries: [initialRoute],
+      initialIndex: 0,
+    },
+  );
 
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
