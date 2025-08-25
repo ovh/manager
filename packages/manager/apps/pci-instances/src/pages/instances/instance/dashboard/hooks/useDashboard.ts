@@ -10,7 +10,7 @@ type TUseDashboardArgs = {
 
 export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   const projectUrl = useProjectUrl('public-cloud');
-  const { data: instance, isPending } = useInstance({
+  const { data: instance, isPending, error } = useInstance({
     region,
     instanceId,
     params: ['withBackups', 'withImage', 'withNetworks', 'withVolumes'],
@@ -23,7 +23,8 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
     () => ({
       instance: selectInstanceDashboard(projectUrl, instance),
       isPending,
+      error,
     }),
-    [instance, isPending, projectUrl],
+    [instance, isPending, projectUrl, error],
   );
 };
