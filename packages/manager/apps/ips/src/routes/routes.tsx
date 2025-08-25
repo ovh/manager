@@ -4,7 +4,7 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 import NotFound from '@/pages/404';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
+const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
       const { default: moduleDefault, ...moduleExports } = await importFn();
@@ -16,7 +16,7 @@ const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
   };
 };
 
-export const Routes: any = [
+export const Routes: RouteObject[] = [
   {
     path: '/',
     ...lazyRouteConfig(() => import('@/pages/layout')),
@@ -76,6 +76,19 @@ export const Routes: any = [
                 handle: {
                   tracking: {
                     pageName: 'listing-terminate-byoip',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: subRoutes.moveIp,
+                path: urls.listingMoveIp,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/moveIp/moveIp.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-move-ip',
                     pageType: PageType.popup,
                   },
                 },
@@ -160,6 +173,18 @@ export const Routes: any = [
                   tracking: {
                     pageName: 'import-ip-from-sys',
                     pageType: PageType.popup,
+                  },
+                },
+              },
+              {
+                id: subRoutes.unblockAntiHack,
+                path: urls.unblockAntiHack,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/antiHack/unblockAntiHack.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-unblock-anti-hack',
                   },
                 },
               },

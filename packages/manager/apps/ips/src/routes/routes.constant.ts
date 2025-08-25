@@ -18,6 +18,8 @@ export const subRoutes = {
   manageIpMitigation: 'manage-mitigation',
   deleteVirtualMac: 'delete-virtual-mac',
   importIpFromSys: 'import-ip-from-sys',
+  moveIp: 'move-ip',
+  unblockAntiHack: 'unblock-anti-hack',
 };
 
 export const urlDynamicParts = {
@@ -35,11 +37,13 @@ export const urls = {
   listingIpTerminate: `${subRoutes.root}/${subRoutes.terminateIp}/${urlDynamicParts.id}`,
   listingByoipTerminate: `${subRoutes.root}/${subRoutes.terminateByoip}/${urlDynamicParts.id}`,
   listingImportIpFromSys: `${subRoutes.root}/${subRoutes.importIpFromSys}`,
+  listingMoveIp: `${subRoutes.root}/${subRoutes.moveIp}/${urlDynamicParts.id}`,
   upsertDescription: `${subRoutes.root}/${subRoutes.upsertDescription}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
   configureEdgeNetworkFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureEdgeNetworkFirewall}`,
   addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,
   viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.viewVirtualMac}`,
   deleteVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.deleteVirtualMac}`,
+  unblockAntiHack: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.unblockAntiHack}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
