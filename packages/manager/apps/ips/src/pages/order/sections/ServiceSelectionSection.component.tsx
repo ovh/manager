@@ -10,14 +10,12 @@ import {
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
-import {
-  ipParkingOptionValue,
-  useServiceList,
-} from '@/data/hooks/useServiceList';
+import { useServiceList } from '@/data/hooks/useServiceList';
 import { OrderContext } from '../order.context';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 import { IpVersion } from '../order.constant';
+import { ipParkingOptionValue } from '@/types';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {

@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Move IP modal > displays a success message if the IP migration order is successful 1`] = `"<span class="text-sm">Voulez vous vraiment déplacer l'IP <b>239.99.244.14/32</b> vers <b>1122456</b> ?</span>"`;
+
+exports[`Move IP modal > lets you go to step 2 if you fill correctly destination service and next hop 1`] = `"<span class="text-sm">Voulez vous vraiment déplacer l'IP <b>239.99.244.14/32</b> vers <b>01234506</b> ?</span>"`;
