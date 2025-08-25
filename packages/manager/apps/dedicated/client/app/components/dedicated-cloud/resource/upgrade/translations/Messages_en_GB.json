@@ -11,5 +11,6 @@
   "ovhManagerPccResourceUpgrade_validateButton": "Confirm",
   "ovhManagerPccResourceUpgrade_cancelButton": "Cancel",
   "dedicatedCloud_order_loading_error": "An error has occurred loading information.",
-  "ovhManagerPccResourceUpgrade_plan_not_found": "The {{ planCode }} option is not available."
+  "ovhManagerPccResourceUpgrade_plan_not_found": "The {{ planCode }} option is not available.",
+  "ovhManagerPccResourceUpgrade_plan_success_message": "Your order to switch your {{type}} to monthly billing is now in progress. If you have not completed it yet, you can do so by clicking <a href=\"{{url}}\" target=\"_blank\">Complete order</a>"
 }

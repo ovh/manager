@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-end">
+    <oui-action-menu
+        compact
+        data-placement="end"
+        class="menu-action-nutanix mr-0"
+    >
+        <oui-action-menu-item
+            data-ui-sref="nutanix.index.resiliate({ productId: $row.serviceName })"
+            data-disabled="$row.stateBilling !== 'active'"
+        >
+            <span data-translate="nutanix_cluster_list_resiliate"> </span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</div>

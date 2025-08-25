@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import dedicatedCloudTerminateComponent from '../components/dedicated-cloud/terminate';
 
 import routing from './dedicatedClouds.routing';
 import dedicatedCloudListComponent from '../components/dedicated-cloud/list';
@@ -21,6 +22,7 @@ angular
     'ui.router',
     dedicatedCloudService,
     dedicatedCloudListComponent,
+    dedicatedCloudTerminateComponent,
     IcebergUtils,
   ])
   .config(routing)

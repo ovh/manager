@@ -62,6 +62,12 @@ export default class {
         duration: 'P1M',
         pricingMode: this.pricingMode,
         quantity: 1,
+        configuration: [
+          {
+            label: 'datacenter_id',
+            value: this.datacenterId,
+          },
+        ],
       },
     ])}`;
   }

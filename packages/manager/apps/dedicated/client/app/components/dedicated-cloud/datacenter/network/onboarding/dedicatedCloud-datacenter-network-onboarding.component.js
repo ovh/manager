@@ -6,6 +6,7 @@ export default {
     network: '<',
     productId: '<',
     displaySuccessMessage: '<',
+    datacenterId: '<',
   },
   controller,
   template,
