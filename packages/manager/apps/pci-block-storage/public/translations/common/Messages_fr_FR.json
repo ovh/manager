@@ -3,7 +3,6 @@
   "pci_projects_project_storages_blocks_name_label": "Nom",
   "pci_projects_project_storages_blocks_region_label": "Localisation",
   "pci_projects_project_storages_blocks_id_label": "ID",
-
   "pci_projects_project_storages_blocks_type_label": "Type",
   "pci_projects_project_storages_blocks_type_high-speed": "Haute performance",
   "pci_projects_project_storages_blocks_type_classic": "Classique",
@@ -20,13 +19,15 @@
   "pci_projects_project_storages_blocks_create_backup_label": "Créer une sauvegarde",
   "pci_projects_project_storages_blocks_delete_label": "Supprimer",
   "pci_projects_project_storages_blocks_add_label": "Créer un volume",
-
+  "pci_projects_project_storages_blocks_change_encryption": "Chiffrer le volume",
+  "pci_projects_project_storages_blocks_change_type": "Modifier le type de volume",
   "pci_projects_project_storages_blocks_new": "Nouveau",
   "pci_projects_project_storages_blocks_coming_soon": "Bientôt disponible",
   "pci_projects_project_storages_blocks_encrypted_label": "Chiffrement",
   "pci_projects_project_storages_blocks_encryption_available": "Chiffrement disponible",
   "pci_projects_project_storages_blocks_encryption_unavailable": "Chiffrement indisponible",
-
   "pci_projects_project_storages_blocks_guaranteed": "garantie",
-  "pci_projects_project_storages_blocks_up_to": "jusqu'à"
+  "pci_projects_project_storages_blocks_up_to": "jusqu'à",
+  "pci_projects_project_storages_blocks_button_cancel": "Annuler",
+  "pci_projects_project_storages_blocks_button_validate": "Valider"
 }
