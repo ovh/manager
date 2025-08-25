@@ -25,6 +25,12 @@ const REDIRECT_ROUTES: RedirectPattern[] = [
       uuidValidate(match.params.instanceId),
   },
   {
+    expectedPath:
+      '/pci/projects/:projectId/instances/:instanceId/billing/monthly/activate',
+    redirectPath:
+      '/pci/projects/:projectId/instances/region/:region/instance/:instanceId/billing/monthly/activate',
+  },
+  {
     expectedPath: '/pci/projects/:projectId/instances/:instanceId/:action',
     redirectPath:
       '/pci/projects/:projectId/instances/region/:region/instance/:instanceId/:action',
@@ -41,16 +47,21 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
 }) => {
   const { pathname, searchParams } = new URL(request.url);
 
-  for (const { expectedPath, redirectPath, queryParams, validate} of REDIRECT_ROUTES) {
-
+  for (const {
+    expectedPath,
+    redirectPath,
+    queryParams,
+    validate,
+  } of REDIRECT_ROUTES) {
     const match = matchPath(expectedPath, pathname);
 
     if (match !== null && (!validate || validate(match))) {
       const redirectAvailableParams = {
         // Set all required parameters to null by default
         ...Object.fromEntries(
-          [...redirectPath.matchAll(PARAMS_REGEX)]
-            .map(([, paramName]) => [paramName, 'null'] as [string, string]),
+          [...redirectPath.matchAll(PARAMS_REGEX)].map(
+            ([, paramName]) => [paramName, 'null'] as [string, string],
+          ),
         ),
         // If available from search params we use it
         ...Object.fromEntries(searchParams.entries()),
