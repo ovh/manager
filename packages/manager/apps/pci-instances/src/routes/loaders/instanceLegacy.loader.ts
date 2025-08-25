@@ -16,7 +16,7 @@ type RedirectPattern = {
 
 const REDIRECT_ROUTES: RedirectPattern[] = [
   {
-    expectedPath: '/pci/projects/:projectId/instances/:instanceId',
+    expectedPath: '/pci/projects/:projectId/instances/:instanceId/*',
     redirectPath:
       '/pci/projects/:projectId/instances/region/:region/instance/:instanceId',
     validate: (match: PathMatch) =>
@@ -41,21 +41,31 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
 }) => {
   const { pathname, searchParams } = new URL(request.url);
 
-  for (const { expectedPath, redirectPath, queryParams, validate} of REDIRECT_ROUTES) {
-
+  for (const {
+    expectedPath,
+    redirectPath,
+    queryParams,
+    validate,
+  } of REDIRECT_ROUTES) {
     const match = matchPath(expectedPath, pathname);
 
     if (match !== null && (!validate || validate(match))) {
+      const { ['*']: childPath, ...matchParams } = match.params;
+      const originalPath = childPath
+        ? `${redirectPath}/${childPath}`
+        : redirectPath;
+
       const redirectAvailableParams = {
         // Set all required parameters to null by default
         ...Object.fromEntries(
-          [...redirectPath.matchAll(PARAMS_REGEX)]
-            .map(([, paramName]) => [paramName, 'null'] as [string, string]),
+          [...redirectPath.matchAll(PARAMS_REGEX)].map(
+            ([, paramName]) => [paramName, 'null'] as [string, string],
+          ),
         ),
         // If available from search params we use it
         ...Object.fromEntries(searchParams.entries()),
         // Match params has the bigger priority
-        ...(match.params as Record<string, string>),
+        ...(matchParams as Record<string, string>),
       };
 
       const search = new URLSearchParams(
@@ -64,7 +74,7 @@ export const instanceLegacyRedirectionLoader: LoaderFunction = ({
           .filter((param): param is [string, string] => !!param[1]),
       );
       const redirectUrl = generatePath(
-        redirectPath,
+        originalPath,
         redirectAvailableParams,
       ).concat(search.size > 0 ? `?${search.toString()}` : '');
 
