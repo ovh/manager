@@ -36,6 +36,18 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...mod,
+    useMe: () => ({
+      me: {
+        ovhSubsidiary: 'ovhSubsidiary',
+        currency: {
+          code: 'USD',
+        },
+      },
+    }),
+    useCatalogPrice: vi.fn().mockReturnValue({
+      getFormattedCatalogPrice: vi.fn(),
+    }),
+    convertHourlyPriceToMonthly: vi.fn(),
     useProjectUrl: vi.fn().mockReturnValue('mockProjectUrl'),
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),

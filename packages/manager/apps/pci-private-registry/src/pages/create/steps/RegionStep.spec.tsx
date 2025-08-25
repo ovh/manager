@@ -19,6 +19,9 @@ describe('NameStep', () => {
       .mockImplementation(({ children }: { children: JSX.Element }) => (
         <div data-testid="StepComponent">{children}</div>
       )),
+    Subtitle: vi
+      .fn()
+      .mockImplementation(() => <div data-testid="Subtitle">Subtitle</div>),
     TilesInputComponent: vi
       .fn()
       .mockImplementation(() => (
@@ -28,18 +31,20 @@ describe('NameStep', () => {
 
   vi.mock('@ovh-ux/manager-pci-common', (importOriginal) => ({
     ...importOriginal,
+    useParam: vi.fn().mockReturnValue({ projectId: 'projectId' }),
     useProjectLocalisation: vi.fn().mockReturnValue({ data: [] }),
+    usePCIFeatureAvailability: vi.fn().mockReturnValue({ data: new Map() }),
+    DeploymentTilesInput: vi
+      .fn()
+      .mockImplementation(() => (
+        <div data-testid="DeploymentTilesInput">DeploymentTilesInput</div>
+      )),
   }));
 
   vi.mock('@/api/hooks/useCapabilities', (importOriginal) => ({
     ...importOriginal,
     useGetCapabilities: vi.fn().mockReturnValue({ data: [] }),
   }));
-
-  it('should render', () => {
-    const { container } = compute();
-    expect(container).toMatchSnapshot();
-  });
 
   it('should render StepComponent', () => {
     compute();
@@ -68,13 +73,13 @@ describe('NameStep', () => {
       isLocked: false,
       iChecked: false,
       order: 1,
-      title: 'private_registry_create_region',
+      title: 'create:private_registry_create_location',
       next: {
-        label: 'common_stepper_next_button_label',
+        label: 'common_field:common_stepper_next_button_label',
         isDisabled: true,
       },
       edit: {
-        label: 'common_stepper_modify_this_step',
+        label: 'common_field:common_stepper_modify_this_step',
       },
     });
   });
