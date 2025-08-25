@@ -6,6 +6,7 @@ export const urls = {
   domainTabZone: '/domain/:serviceName/zone',
   domainTabDns: '/domain/:serviceName/dns',
   domainTabOrderAnycast: '/domain/:serviceName/anycast/order',
+  domainTabDnsModify: '/domain/:serviceName/dns-modify',
   domainTabRedirection: '/domain/:serviceName/redirection',
   domainTabDynHost: '/domain/:serviceName/dynhost',
   domainTabHost: '/domain/:serviceName/host',
