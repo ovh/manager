@@ -3,7 +3,7 @@ import { useBytes } from '@ovh-ux/manager-pci-common';
 import { TServerContainer } from '@/api/data/container';
 import { TRegion } from '@/api/data/region';
 import { TStorage } from '@/api/data/storages';
-import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
 
 export const useMergedContainer = (
   serverContainer: TServerContainer | null,

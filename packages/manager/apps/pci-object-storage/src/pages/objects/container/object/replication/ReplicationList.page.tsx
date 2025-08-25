@@ -63,7 +63,7 @@ export default function ReplicationListPage() {
 
   const objectStorageHref = useHref('..');
   const containerDetailsHref = useHref(
-    `../${storageId}?region=${searchParams.get('region')}`,
+    `../dashboard/${storageId}?region=${searchParams.get('region')}`,
   );
 
   const enableVersioningHref = useHref(
