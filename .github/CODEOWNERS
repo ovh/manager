@@ -15,30 +15,30 @@
 /packages/manager/apps/container @ovh/dev-manager-gcj-all
 /packages/manager/apps/dbaas-logs @ovh/dev-manager-enabler-all
 /packages/manager/apps/dedicated @ovh/dev-manager-infra-all
-/packages/manager/apps/dedicated/client/*.js* @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
-/packages/manager/apps/dedicated/client/app/managedBaremetal @ovh/dev-manager-hpc-all
-/packages/manager/apps/dedicated/client/app/dedicatedCloud @ovh/dev-manager-hpc-all
-/packages/manager/apps/dedicated/client/app/components/dedicated-cloud @ovh/dev-manager-hpc-all
-/packages/manager/apps/dedicated/client/__mocks__ @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
-/packages/manager/apps/dedicated/client/__tests__ @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
+/packages/manager/apps/dedicated/client/*.js* @ovh/dev-manager-infra-all @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/managedBaremetal @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/dedicatedCloud @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/components/dedicated-cloud @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/__mocks__ @ovh/dev-manager-infra-all @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/__tests__ @ovh/dev-manager-infra-all @ovh/dev-manager-enterprise-vmware
 /packages/manager/apps/dedicated-server @ovh/dev-manager-infra-all
 /packages/manager/apps/email-domain @ovh/dev-manager-web-all
 /packages/manager/apps/email-pro @ovh/dev-manager-web-all
 /packages/manager/apps/exchange @ovh/dev-manager-web-all
 /packages/manager/apps/freefax @ovh/dev-manager-web-all
-/packages/manager/apps/hpc-vmware-managed-vcd @ovh/dev-manager-hpc-all
+/packages/manager/apps/hpc-vmware-managed-vcd @ovh/dev-manager-enterprise-vmware
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
-/packages/manager/apps/hycu @ovh/dev-manager-hpc-all
+/packages/manager/apps/hycu @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/iam @ovh/dev-manager-enabler-all
 /packages/manager/apps/identity-access-management @ovh/dev-manager-infra-all @ovh/dev-manager-enabler-all
 /packages/manager/apps/iplb @ovh/dev-manager-infra-all
-/packages/manager/apps/key-management-service @ovh/dev-manager-kms
+/packages/manager/apps/key-management-service @ovh/dev-manager-enterprise-kms
 /packages/manager/apps/ips @ovh/dev-manager-infra-all
 /packages/manager/apps/dedicated-servers @ovh/dev-manager-infra-all
 /packages/manager/apps/metrics @ovh/dev-manager-infra-all
 /packages/manager/apps/nasha @ovh/dev-manager-infra-all
 /packages/manager/apps/netapp @ovh/dev-manager-infra-all
-/packages/manager/apps/nutanix @ovh/dev-manager-hpc-all
+/packages/manager/apps/nutanix @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/overthebox @ovh/dev-manager-web-all
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
@@ -49,7 +49,7 @@
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enabler-all
-/packages/manager/apps/sap-features-hub @ovh/dev-manager-hpc-all
+/packages/manager/apps/sap-features-hub @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/sharepoint @ovh/dev-manager-web-all
 /packages/manager/apps/sign-up @ovh/dev-manager-gcj-all
 /packages/manager/apps/sms @ovh/dev-manager-web-all
@@ -57,7 +57,7 @@
 /packages/manager/apps/telecom @ovh/dev-manager-web-all
 /packages/manager/apps/telecom-dashboard @ovh/dev-manager-web-all
 /packages/manager/apps/telecom-task @ovh/dev-manager-web-all
-/packages/manager/apps/veeam-backup @ovh/dev-manager-hpc-all
+/packages/manager/apps/veeam-backup @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/veeam-cloud-connect @ovh/dev-manager-infra-all
 /packages/manager/apps/veeam-enterprise @ovh/dev-manager-infra-all
 /packages/manager/apps/vps @ovh/dev-manager-web-all
@@ -82,7 +82,7 @@
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
-/packages/manager/modules/bm-server-components @ovh/dev-manager-infra-all @ovh/dev-manager-hpc-all
+/packages/manager/modules/bm-server-components @ovh/dev-manager-infra-all @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-all
 /packages/manager/modules/cda @ovh/dev-manager-infra-all
@@ -103,7 +103,7 @@
 /packages/manager/modules/nasha @ovh/dev-manager-infra-all
 /packages/manager/modules/netapp @ovh/dev-manager-infra-all
 /packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
-/packages/manager/modules/nutanix @ovh/dev-manager-hpc-all
+/packages/manager/modules/nutanix @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/overthebox @ovh/dev-manager-web-all
 /packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
@@ -119,7 +119,7 @@
 /packages/manager/modules/telecom-task @ovh/dev-manager-web-all
 /packages/manager/modules/telecom-universe-components @ovh/dev-manager-web-all
 /packages/manager/modules/trusted-nic @ovh/dev-manager-gcj-all
-/packages/manager/modules/vcd-api @ovh/dev-manager-hpc-all
+/packages/manager/modules/vcd-api @ovh/dev-manager-enterprise-vmware
 /packages/manager/modules/veeam-cloud-connect @ovh/dev-manager-infra-all
 /packages/manager/modules/veeam-enterprise @ovh/dev-manager-infra-all
 /packages/manager/modules/vps @ovh/dev-manager-web-all
@@ -134,7 +134,7 @@
 
 # Manager-Wiki
 /packages/manager-wiki/stories/features/pci-common @ovh/dev-manager-pci-all
-/packages/manager-wiki/stories/features/vcd-api @ovh/dev-manager-hpc-all
+/packages/manager-wiki/stories/features/vcd-api @ovh/dev-manager-enterprise-vmware
 /packages/manager-wiki @ovh/dev-manager-control-tower
 
 # Manager CLI
