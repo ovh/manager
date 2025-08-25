@@ -6,20 +6,25 @@ import Quota from '../../../../../components/project/instance/quota/quota.class'
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
 import { THREE_AZ_REGION } from '../../../project.constants';
+import { INSTANCE_RESILIENCE_3AZ } from '../../../instances/instances.constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
   constructor(
     $translate,
+    $q,
     CucCloudMessage,
     ovhManagerRegionService,
     PciProjectsProjectInstanceService,
+    coreConfig,
   ) {
     this.$translate = $translate;
+    this.$q = $q;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.THREE_AZ_REGION = THREE_AZ_REGION;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -64,15 +69,48 @@ export default class PciInstancesAddController {
 
     this.loadMessages();
 
+    this.resilience3azLink =
+      INSTANCE_RESILIENCE_3AZ[this.user.ovhSubsidiary] ||
+      INSTANCE_RESILIENCE_3AZ.DEFAULT;
+
     this.regionsTypesAvailability = {};
-    this.fetchRegionsTypesAvailability();
+    this.showAvailabilityZoneSelection = false;
+    this.backupRegion = null;
+    this.availabilityZone = {
+      auto: true,
+      zone: null,
+    };
+    return this.$q.all(
+      this.fetchRegionsTypesAvailability(),
+      this.fetchBackupRegion(),
+    );
   }
 
   fetchRegionsTypesAvailability() {
-    this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
+    return this.PciProjectsProjectInstanceService.getRegionsTypesAvailability(
       this.projectId,
     ).then((regionsTypesAvailability) => {
       this.regionsTypesAvailability = regionsTypesAvailability;
+    });
+  }
+
+  fetchBackupRegion() {
+    return this.PciProjectsProjectInstanceService.getProductAvailability(
+      this.projectId,
+      undefined,
+      'snapshot',
+    ).then(({ plans }) => {
+      const backupPlan = plans.find(
+        (p) =>
+          p.code.startsWith('snapshot.consumption') &&
+          p.regions.some((r) => r.name === this.backup.region),
+      );
+
+      this.backupRegion = backupPlan.regions.find(
+        (r) => r.name === this.backup.region,
+      );
+      this.showAvailabilityZoneSelection =
+        this.backupRegion.type === THREE_AZ_REGION;
     });
   }
 
@@ -177,7 +215,14 @@ export default class PciInstancesAddController {
         return this.PciProjectsProjectInstanceService.save(
           this.projectId,
           this.instance.region,
-          { ...this.instance, network },
+          {
+            ...this.instance,
+            network,
+            availabilityZone:
+              !this.availabilityZone.auto && !!this.availabilityZone.zone
+                ? this.availabilityZone.zone
+                : null,
+          },
           this.model.number,
         );
       })
