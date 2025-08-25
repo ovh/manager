@@ -35,9 +35,11 @@ const InstanceGeneralInfoBlock: FC = () => {
   const { instanceId, region } = useInstanceParams();
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
   const hrefBillingMonthlyActivate = useHref(
-    `../${instanceId}/billing/monthly/activate`,
+    `../${instanceId}/billing/monthly/activate?region=${region}`,
   );
-  const hrefDeleteInstance = useHref(`../${instanceId}/delete`);
+  const hrefDeleteInstance = useHref(
+    `../${instanceId}/delete?region=${region}`,
+  );
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region,
