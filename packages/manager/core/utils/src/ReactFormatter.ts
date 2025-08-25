@@ -1,13 +1,9 @@
 import React from 'react';
+
 import { render } from 'react-dom';
 
 export function ReactFormatter(jsxElement: any) {
-  return function CustomFormatter(
-    cellData: any,
-    rowData: any,
-    cell: any,
-    onRendered: any,
-  ) {
+  return function CustomFormatter(cellData: any, rowData: any, cell: any, onRendered: any) {
     const renderFn = () => {
       const cellEl = cell.getElement();
       if (cellEl) {

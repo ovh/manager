@@ -1,9 +1,10 @@
 import express from 'express';
 import fs from 'fs';
-import path from 'path';
-import { env, cwd } from 'process';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import { proxy, sso as Sso } from '@ovh-ux/manager-dev-server-config';
+import path from 'path';
+import { cwd, env } from 'process';
+
+import { sso as Sso, proxy } from '@ovh-ux/manager-dev-server-config';
 
 export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
   const region = process.env.REGION || 'EU';
@@ -16,12 +17,7 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
       if (isContainerApp) {
         if (process.env.APP) {
           // serve application's dist locally
-          const appDistPath = path.join(
-            process.cwd(),
-            '../',
-            process.env.APP,
-            'dist',
-          );
+          const appDistPath = path.join(process.cwd(), '../', process.env.APP, 'dist');
           const appEntryPoint = path.join(appDistPath, 'index.html');
           if (!fs.existsSync(appEntryPoint)) {
             app.all('/app', (req, res) => {
@@ -47,17 +43,14 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
 
       // check if a dev config is present in current working directory where vite command is run
       try {
-        const devProxyConfig = (await import(`${cwd()}/dev.proxy.config.mjs`))
-          .default;
+        const devProxyConfig = (await import(`${cwd()}/dev.proxy.config.mjs`)).default;
         if (devProxyConfig) {
           const addProxyConfig = (config) => {
             app.use(config.context, createProxyMiddleware(config));
           };
 
           if (Array.isArray(devProxyConfig)) {
-            devProxyConfig.forEach((config) =>
-              addProxyConfig(proxy.dev(config)),
-            );
+            devProxyConfig.forEach((config) => addProxyConfig(proxy.dev(config)));
           } else {
             addProxyConfig(proxy.dev(devProxyConfig));
           }

@@ -1,10 +1,10 @@
+import react from '@vitejs/plugin-react-swc';
 import {
   defineConfig as createConfig,
-  mergeConfig,
   coverageConfigDefaults as defaultCoverageConfig,
+  mergeConfig,
+  // eslint-disable-next-line import/no-unresolved
 } from 'vitest/config';
-
-import react from '@vitejs/plugin-react-swc';
 
 /**
  * Exports the Vitest `defineConfig` function as `createConfig`,

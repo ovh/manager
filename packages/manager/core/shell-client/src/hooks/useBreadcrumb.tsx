@@ -1,5 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { ShellContext } from '../ShellContext';
 
 export type BreadcrumbItem = {

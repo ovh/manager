@@ -1,10 +1,10 @@
+import apiClient from './client';
 import {
   Filter,
   FilterComparator,
   FilterTypeCategories,
   transformTagsFiltersToQuery,
 } from './filters';
-import apiClient from './client';
 
 export type IcebergCommonOptions = {
   route: string;
@@ -56,10 +56,7 @@ export const appendIamTags = (
   return params;
 };
 
-export function icebergFilter(
-  comparator: FilterComparator,
-  value: string | string[],
-) {
+export function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   const v = encodeURIComponent(`${value}`);
   switch (comparator) {
     case FilterComparator.Includes:
@@ -113,7 +110,6 @@ export const buildHeaders = () => {
       return builder;
     },
     setDisabledCache: (disableCache: boolean | undefined) => {
-      // eslint-disable-next-line
       if (disableCache) headers['Pragma'] = 'no-cache';
       return builder;
     },
@@ -143,11 +139,7 @@ export const buildHeaders = () => {
       headers[key] = value;
       return builder;
     },
-    setIamTags: (
-      params: URLSearchParams,
-      filters: Filter[],
-      paramName = 'iamTags',
-    ) => {
+    setIamTags: (params: URLSearchParams, filters: Filter[], paramName = 'iamTags') => {
       appendIamTags(params, filters, paramName);
       return builder;
     },
@@ -181,19 +173,12 @@ export async function fetchIcebergV2<T>({
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortOrder)
     .setPaginationFilter(filters)
-    .setIamTags(
-      params,
-      filters,
-      route.includes('/iam/resource') ? 'tags' : 'iamTags',
-    )
+    .setIamTags(params, filters, route.includes('/iam/resource') ? 'tags' : 'iamTags')
     .build();
 
-  const { data, headers, status } = await apiClient.v2.get(
-    getRouteWithParams(route, params),
-    {
-      headers: requestHeaders,
-    },
-  );
+  const { data, headers, status } = await apiClient.v2.get(getRouteWithParams(route, params), {
+    headers: requestHeaders,
+  });
 
   return { data, cursorNext: headers['x-pagination-cursor-next'], status };
 }
@@ -218,12 +203,9 @@ export async function fetchIcebergV6<T>({
     .setIamTags(params, filters)
     .build();
 
-  const { data, headers, status } = await apiClient.v6.get(
-    getRouteWithParams(route, params),
-    {
-      headers: requestHeaders,
-    },
-  );
+  const { data, headers, status } = await apiClient.v6.get(getRouteWithParams(route, params), {
+    headers: requestHeaders,
+  });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
 
   return { data, totalCount, status };

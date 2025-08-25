@@ -1,20 +1,13 @@
+import { MockedFunction, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { Filter, FilterComparator, FilterTypeCategories } from '../filters';
 import {
-  describe,
-  it,
-  expect,
-  vi,
-  beforeEach,
-  afterEach,
-  MockedFunction,
-} from 'vitest';
-import { FilterComparator, FilterTypeCategories, Filter } from '../filters';
-import {
-  buildHeaders,
   appendIamTags,
-  icebergFilter,
-  fetchIcebergV6,
+  buildHeaders,
   fetchIcebergV2,
+  fetchIcebergV6,
   getRouteWithParams,
+  icebergFilter,
 } from '../iceberg';
 
 // Mock the apiClient
@@ -33,26 +26,16 @@ vi.mock('../client', () => ({
 const mockApiClient = vi.mocked(await import('../client')).default;
 
 // Helper functions to reduce duplication
-const mockV6Response = (
-  data: any,
-  headers: Record<string, string | undefined> = {},
-) => {
-  (mockApiClient.v6.get as MockedFunction<
-    typeof mockApiClient.v6.get
-  >).mockResolvedValue({
+const mockV6Response = (data: any, headers: Record<string, string | undefined> = {}) => {
+  (mockApiClient.v6.get as MockedFunction<typeof mockApiClient.v6.get>).mockResolvedValue({
     data,
     headers,
     status: 200,
   });
 };
 
-const mockV2Response = (
-  data: any,
-  headers: Record<string, string | undefined> = {},
-) => {
-  (mockApiClient.v2.get as MockedFunction<
-    typeof mockApiClient.v2.get
-  >).mockResolvedValue({
+const mockV2Response = (data: any, headers: Record<string, string | undefined> = {}) => {
+  (mockApiClient.v2.get as MockedFunction<typeof mockApiClient.v2.get>).mockResolvedValue({
     data,
     headers,
     status: 200,
@@ -183,11 +166,7 @@ describe('icebergFilter', () => {
   });
 
   it('should build filter for IsIn with multiple values', () => {
-    const filter = icebergFilter(FilterComparator.IsIn, [
-      'value1',
-      'value2',
-      'value3',
-    ]);
+    const filter = icebergFilter(FilterComparator.IsIn, ['value1', 'value2', 'value3']);
     expect(filter).toEqual('in=value1,value2,value3');
   });
 
@@ -264,13 +243,9 @@ describe('buildHeaders', () => {
       .setPaginationSort(params.sortBy, params.sortOrder)
       .setPaginationFilter(params.filters)
       .build() as HeadersType;
-    expect(requestHeaders['x-pagination-mode']).toEqual(
-      'CachedObjectList-Pages',
-    );
+    expect(requestHeaders['x-pagination-mode']).toEqual('CachedObjectList-Pages');
     expect(requestHeaders['X-Pagination-Size']).toEqual('20');
-    expect(requestHeaders['X-Pagination-Cursor']).toEqual(
-      'sdfdsfndsklfndsklfnsdklfndsklf1',
-    );
+    expect(requestHeaders['X-Pagination-Cursor']).toEqual('sdfdsfndsklfndsklfnsdklfndsklf1');
     expect(requestHeaders.Pragma).toEqual('no-cache');
     expect(requestHeaders['x-pagination-sort']).toEqual('name');
     expect(requestHeaders['x-pagination-sort-order']).toEqual('ASC');
@@ -288,9 +263,7 @@ describe('buildHeaders', () => {
       .setPaginationCursor(params.cursor)
       .setDisabledCache(params.disableCache)
       .build() as HeadersType;
-    expect(requestHeaders['x-pagination-mode']).toEqual(
-      'CachedObjectList-Pages',
-    );
+    expect(requestHeaders['x-pagination-mode']).toEqual('CachedObjectList-Pages');
   });
 
   it('should not fill IAM tags with appendIamTags', () => {
@@ -307,12 +280,8 @@ describe('buildHeaders', () => {
     const iamTags = params.get('iamTags');
 
     expect(iamTags).toContain('environment');
-    expect(JSON.parse(iamTags || '{}').environment[0].operator).toEqual(
-      FilterComparator.IsEqual,
-    );
-    expect(JSON.parse(iamTags || '{}').environment[0].value).toEqual(
-      'production',
-    );
+    expect(JSON.parse(iamTags || '{}').environment[0].operator).toEqual(FilterComparator.IsEqual);
+    expect(JSON.parse(iamTags || '{}').environment[0].value).toEqual('production');
 
     expect(iamTags).toContain('Department');
     expect(JSON.parse(iamTags || '{}').Department[0].operator).toEqual(
@@ -365,9 +334,7 @@ describe('buildHeaders', () => {
       .setPaginationCursor(params.cursor)
       .setDisabledCache(params.disableCache)
       .build() as HeadersType;
-    expect(requestHeaders['x-pagination-number']).toEqual(
-      encodeURIComponent(2),
-    );
+    expect(requestHeaders['x-pagination-number']).toEqual(encodeURIComponent(2));
   });
 
   it('should test pagination filter', () => {
@@ -399,9 +366,7 @@ describe('buildHeaders', () => {
       .setDisabledCache(params.disableCache)
       .setPaginationFilter(filters)
       .build() as HeadersType;
-    expect(requestHeaders['x-pagination-filter']).toEqual(
-      'name:eq=test&displayName:eq=test',
-    );
+    expect(requestHeaders['x-pagination-filter']).toEqual('name:eq=test&displayName:eq=test');
   });
 
   it('should test custom header', () => {

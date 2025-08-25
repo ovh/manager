@@ -1,5 +1,7 @@
-import { useEffect, useLayoutEffect, useState, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
 
 const OSDS_COMPONENT = [
@@ -42,9 +44,7 @@ export function OvhTracking({ shell }) {
 
   const trackLevel2 = (universe: string) => {
     const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
-      AT_INTERNET_LEVEL2[element]
-        .toLowerCase()
-        .indexOf(universe.toLowerCase()) > -1
+      AT_INTERNET_LEVEL2[element].toLowerCase().indexOf(universe.toLowerCase()) > -1
         ? element
         : false,
     );
@@ -86,16 +86,12 @@ export function OvhTracking({ shell }) {
   };
 
   const ovhTrackShadowElement = (element) => {
-    const elementInShadowRoot = element.shadowRoot.querySelector(
-      `[${'data-tracking'}]`,
-    );
+    const elementInShadowRoot = element.shadowRoot.querySelector(`[${'data-tracking'}]`);
     if (
       elementInShadowRoot &&
       OSDS_COMPONENT.includes(elementInShadowRoot?.tagName?.toUpperCase())
     ) {
-      const trackingValueInShadowRoot = elementInShadowRoot.getAttribute(
-        'data-tracking',
-      );
+      const trackingValueInShadowRoot = elementInShadowRoot.getAttribute('data-tracking');
       ovhTrackingSendClick(trackingValueInShadowRoot);
     }
   };
@@ -135,16 +131,10 @@ export function OvhTracking({ shell }) {
 
   useLayoutEffect(() => {
     document.body.addEventListener('click', ovhTrackingAction);
-    document.body.addEventListener(
-      'odsSelectOptionClick',
-      ovhTrackSelectOption,
-    );
+    document.body.addEventListener('odsSelectOptionClick', ovhTrackSelectOption);
     return () => {
       document.body.removeEventListener('click', ovhTrackingAction);
-      document.body.removeEventListener(
-        'odsSelectOptionClick',
-        ovhTrackSelectOption,
-      );
+      document.body.removeEventListener('odsSelectOptionClick', ovhTrackSelectOption);
     };
   }, []);
 

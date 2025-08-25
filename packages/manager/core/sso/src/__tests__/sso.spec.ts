@@ -1,4 +1,5 @@
-import { vi, describe, beforeEach, afterEach, it, expect } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { redirectToLoginPage, redirectToLogoutPage } from '../../src';
 
 describe('sso module', () => {
@@ -24,9 +25,7 @@ describe('sso module', () => {
     it('With onsuccess url', () => {
       vi.spyOn(window.location, 'assign');
       redirectToLoginPage('/onsuccess/url');
-      expect(window.location.assign).toHaveBeenCalledWith(
-        '/auth/?onsuccess=%2Fonsuccess%2Furl',
-      );
+      expect(window.location.assign).toHaveBeenCalledWith('/auth/?onsuccess=%2Fonsuccess%2Furl');
     });
 
     it('Without onsuccess url', () => {

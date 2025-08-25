@@ -1,7 +1,9 @@
-import { useEffect, useState, Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+
 import { ApplicationId } from '@ovh-ux/manager-config';
+
 import initI18n from './i18n';
-import OvhContext, { initOvhContext, OvhContextType } from './ovh-context';
+import OvhContext, { OvhContextType, initOvhContext } from './ovh-context';
 
 async function setLocale(context: OvhContextType) {
   const availableLocales = await context.shell.i18n.getAvailableLocales();

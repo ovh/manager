@@ -12,6 +12,8 @@
   "scripts": {
     "build": "tsc && yarn copy-files",
     "copy-files": "cp ./assets-icon-svg/*.svg ./dist/assets-icon-svg/",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**.ts ./**/**.ts ./**/**.tsx",
     "start": "plop",
     "test": "manager-test run"
   },
@@ -23,7 +25,8 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "latest"
-  },
-  "preferGlobal": true
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*"
+  }
 }

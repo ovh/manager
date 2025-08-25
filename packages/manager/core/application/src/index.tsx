@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
-import { createRoot } from 'react-dom/client';
-import { ApplicationId } from '@ovh-ux/manager-config';
+
 import { RouterProvider } from 'react-router-dom';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { queryClient } from './query-client';
+import { createRoot } from 'react-dom/client';
 
-import './vite-hmr';
+import { ApplicationId } from '@ovh-ux/manager-config';
+
 import OvhApplication from './ovh-application';
-import OvhContext, {
-  OvhContextShellType as OvhContextShellT,
-} from './ovh-context';
+import OvhContext, { OvhContextShellType as OvhContextShellT } from './ovh-context';
 import { createAppRouter } from './ovh-routing';
+import { queryClient } from './query-client';
+import './vite-hmr';
 
 export function useEnvironment() {
   const { environment } = useContext(OvhContext);
