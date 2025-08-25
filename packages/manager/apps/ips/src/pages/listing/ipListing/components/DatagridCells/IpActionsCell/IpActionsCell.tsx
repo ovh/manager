@@ -18,7 +18,6 @@ import {
   useIpHasServicesAttached,
   useGetAttachedServices,
   useIpHasVmac,
-  useGetIpMitigationWithoutIceberg,
   useIpHasAlerts,
   PRODUCT_PATHS_AND_CATEGORIES,
 } from '@/data/hooks';
@@ -77,12 +76,6 @@ export type IpActionsCellParams = {
     display => nothing + parent IP
  */
 
-/*
-    If its not permanent mitigation then display listingManageMitigation_DEFAULT_to_PERMANENT
-    If its permanent mitigation(PERMANENT) And mitigation state is Ok then display listingManageMitigation_PERMANENT_to_AUTO
-    If its permanent mitigation(PERMANENT) OR mitigation state is Ok And if mitigation is auto (FORCED) then enable listingManageMitigation_stats
-*/
-
 export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const { expiredIps } = useContext(ListingContext);
   const { shell } = useContext(ShellContext);
@@ -133,7 +126,8 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const isIpExpired = expiredIps?.indexOf(ip) !== -1;
 
   const { hasAlerts } = useIpHasAlerts({
-    ip,
+    ip: parentIpGroup || ip,
+    subIp: ip,
     enabled: !isIpExpired,
   });
 
@@ -168,19 +162,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     ip,
     enabled: !isIpExpired,
   });
-  const {
-    ipMitigation,
-    isLoading: isMitigationLoading,
-  } = useGetIpMitigationWithoutIceberg({
-    ip: ipAddress,
-    enabled: !isIpExpired,
-  });
-
-  const isDefaultMitigation = Object.keys(ipMitigation).length === 0;
-
-  const disableManageMitigationAction =
-    ipMitigation?.state === 'creationPending' ||
-    ipMitigation?.state === 'removalPending';
 
   const items: ActionMenuItem[] = [
     !parentIpGroup && {
@@ -332,23 +313,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
               )}?${search.toString()}`,
           ),
       },
-    !isGroup &&
-      ipaddr.IPv4.isIPv4(ipAddress) &&
-      !hasHousingServiceAttachedToIp &&
-      ipMitigation && {
-        id: 9,
-        label: isDefaultMitigation
-          ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
-          : t('listingManageMitigation_PERMANENT_to_AUTO'),
-        onClick: () =>
-          navigate(
-            `${urls.manageIpMitigation.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
-          ),
-        isDisabled: isMitigationLoading || disableManageMitigationAction,
-      },
     ipaddr.IPv4.isIPv4(ipAddress) &&
       ipDetails?.type === IpTypeEnum.ADDITIONAL &&
       !ipDetails?.bringYourOwnIp && {
@@ -371,6 +335,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
           navigate(
             `${urls.unblockAntiHack
               .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.parentId, parentId)
               .replace(
                 urlDynamicParts.service,
                 serviceName,

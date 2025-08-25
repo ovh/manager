@@ -1,9 +1,13 @@
 import { aapi } from '@ovh-ux/manager-core-api';
-import { GetIpListParams } from './ipList';
 import { ExportIpToCsvData } from '@/data/hooks';
+import { IpTypeEnum } from './ipDetails';
 
-export type GetIpExportParams = GetIpListParams & {
-  serviceName: string;
+export type GetIpExportParams = {
+  ip?: string;
+  isAdditionalIp?: boolean;
+  type?: IpTypeEnum;
+  serviceName?: string;
+  version?: number;
 };
 
 export type IpExportType = {

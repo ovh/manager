@@ -18,7 +18,6 @@ export * from './useGetAttachedServices';
 export * from './useIpGameFirewallRules';
 export * from './useAddVirtualMacToIp';
 export * from './useAddIpToVirtualMac';
-export * from './useUpdateIpMitigation';
 export * from './useIsIpHasVmac';
 export * from './useMoveIpService';
 export * from './useGetDedicatedServerTasks';

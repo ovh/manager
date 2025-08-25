@@ -15,7 +15,6 @@ export const subRoutes = {
   addVirtualMac: 'add-virtual-mac',
   service: 'service',
   viewVirtualMac: 'view-virtual-mac',
-  manageIpMitigation: 'manage-mitigation',
   deleteVirtualMac: 'delete-virtual-mac',
   importIpFromSys: 'import-ip-from-sys',
   moveIp: 'move-ip',
@@ -45,13 +44,12 @@ export const urls = {
   addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,
   viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.viewVirtualMac}`,
   deleteVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.deleteVirtualMac}`,
-  unblockAntiHack: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.unblockAntiHack}`,
+  unblockAntiHack: `${subRoutes.root}/${urlDynamicParts.parentId}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.unblockAntiHack}/${urlDynamicParts.id}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
   listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
-  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
-  manageIpMitigation: `${subRoutes.root}/${subRoutes.manageIpMitigation}/${urlDynamicParts.id}`,
+  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`
 };
