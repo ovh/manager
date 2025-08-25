@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { mkConfig, generateCsv, download } from 'export-to-csv';
 import { useMutation } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { getIpExport, GetIpListParams } from '../api';
 
@@ -32,7 +33,10 @@ export const useExportIpToCsv = ({
   const handleExportToCsv = async (): Promise<ExportIpMutationData> => {
     const result = await getIpExport({
       ...apiFilter,
-      serviceName: apiFilter['routedTo.serviceName'],
+      serviceName:
+        apiFilter['routedTo.serviceName'] === null
+          ? '_PARK'
+          : apiFilter['routedTo.serviceName'],
     });
 
     const resultLength = result?.data?.length ?? 0;
@@ -60,7 +64,7 @@ export const useExportIpToCsv = ({
     throw new Error('No valid CSV could be downloaded');
   };
 
-  return useMutation({
+  return useMutation<ExportIpMutationData, ApiError>({
     mutationFn: handleExportToCsv,
     onSuccess,
     onError,
