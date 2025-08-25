@@ -50,7 +50,11 @@ export default class LogsTokensService {
     return this.iceberg(`/dbaas/logs/${serviceName}/token`)
       .query()
       .execute()
-      .$promise.then(({ data }) => data);
+      .$promise.then(({ data }) => data)
+      .catch((error) => {
+        this.LogsHelperService.handleError('logs_tokens_get_error', error.data);
+        return [];
+      });
   }
 
   /**
@@ -117,7 +121,11 @@ export default class LogsTokensService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(10000)
-      .execute().$promise;
+      .execute()
+      .$promise.catch((error) => {
+        this.LogsHelperService.handleError('logs_tokens_get_error', error.data);
+        return { data: [] };
+      });
   }
 
   /**
