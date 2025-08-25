@@ -1,6 +1,5 @@
 {
   "title": "Importer mes adresses IP de SYS vers OVHcloud",
-  "stepPlaceholder": "Étape {{ current }} sur {{ max }}",
   "step1Description": "Pour procéder à l'importation d'une IP, vous devez connaitre la clé (token) généré par le manager du serveur qui est actuellement associé à l'IP que vous souhaitez migrer.",
   "step1IpLabel": "IP ou block IP :",
   "step1TokenLabel": "Token :",
