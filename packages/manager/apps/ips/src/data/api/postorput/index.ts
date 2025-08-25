@@ -5,3 +5,4 @@ export * from './ipGameFirewall';
 export * from './addVirtualMacToIp';
 export * from './addIpToVirtualMac';
 export * from './updateIpMitigation';
+export * from './postMoveIp';
