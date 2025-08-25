@@ -51,7 +51,7 @@ export default function IpListingPage() {
         <IpFilter />
         <TypeFilter />
         <QuickFilter />
-        <div className="ml-auto">
+        <div className="flex flex-row gap-2 ml-auto">
           <ActionMenu
             id="settings"
             icon={ODS_ICON_NAME.cog}
@@ -63,6 +63,13 @@ export default function IpListingPage() {
                 onClick: () => navigate(urls.listingImportIpFromSys),
               },
             ]}
+          />
+          <OdsButton
+            variant={ODS_BUTTON_VARIANT.outline}
+            icon={ODS_ICON_NAME.download}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={() => navigate(urls.listingExportIpToCsv)}
+            label=""
           />
         </div>
       </div>
