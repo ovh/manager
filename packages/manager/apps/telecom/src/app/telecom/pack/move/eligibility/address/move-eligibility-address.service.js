@@ -4,10 +4,11 @@ export default class MoveEligibilityAddressService {
     this.$http = $http;
   }
 
-  searchStreetNumber(streetCode) {
+  searchStreetNumber(streetCode, streetAltCode) {
     return this.$http
       .post('/connectivity/eligibility/search/streetNumbers/details', {
         streetCode,
+        streetAltCode,
       })
       .then(({ data }) => data);
   }
