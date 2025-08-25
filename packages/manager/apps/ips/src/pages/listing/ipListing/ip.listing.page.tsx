@@ -78,12 +78,14 @@ export default function IpListingPage() {
               ]}
             />
             <OdsButton
-                variant={ODS_BUTTON_VARIANT.outline}
-                icon={ODS_ICON_NAME.download}
-                size={ODS_BUTTON_SIZE.sm}
-                onClick={() => navigate(urls.listingExportIpToCsv)}
-                label=""
-              />
+              variant={ODS_BUTTON_VARIANT.outline}
+              icon={ODS_ICON_NAME.download}
+              size={ODS_BUTTON_SIZE.sm}
+              onClick={() =>
+                navigate(`${urls.listingExportIpToCsv}?${search.toString()}`)
+              }
+              label=""
+            />
           </div>
           <QuickFilter />
         </div>
