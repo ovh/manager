@@ -34,21 +34,15 @@ export const DatagridCreationDate = (secret: Secret) => {
 
 export const DatagridAction = (secret: Secret) => {
   const { domainId } = useParams<SecretListingPageParams>();
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation([
+    'secret-manager/common',
+    'secret-manager/dashboard',
+  ]);
   const navigate = useNavigate();
 
   const items: ActionMenuItem[] = [
     {
       id: 1,
-      label: t('access_versions'),
-      onClick: () => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretVersions(domainId, secret.path),
-        );
-      },
-    },
-    {
-      id: 2,
       label: t('reveal_secret'),
       onClick: () => {
         navigate(
@@ -60,6 +54,27 @@ export const DatagridAction = (secret: Secret) => {
       },
       urn: secret.iam.urn,
       iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
+    },
+    {
+      id: 2,
+      label: t('secret-manager/dashboard:add_new_version'),
+      onClick: () => {
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretListingDrawerCreateVersion(
+            domainId,
+            secret.path,
+          ),
+        );
+      },
+    },
+    {
+      id: 3,
+      label: t('access_versions'),
+      onClick: () => {
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretVersions(domainId, secret.path),
+        );
+      },
     },
   ];
 

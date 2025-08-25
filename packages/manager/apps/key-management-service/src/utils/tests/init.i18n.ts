@@ -1,5 +1,6 @@
 import i18next, { i18n } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import commonActions from '../../../../../modules/common-translations/public/translations/actions/Messages_fr_FR.json';
 import commonDashboard from '../../../../../modules/common-translations/public/translations/dashboard/Messages_fr_FR.json';
 import commonForm from '../../../../../modules/common-translations/public/translations/form/Messages_fr_FR.json';
 import commonStatus from '../../../../../modules/common-translations/public/translations/status/Messages_fr_FR.json';
@@ -47,6 +48,7 @@ function addTranslations() {
       'key-management-service/credential',
       credentials,
     )
+    .addResources(defaultLocale, NAMESPACES.ACTIONS, commonActions)
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
     .addResources(defaultLocale, NAMESPACES.STATUS, commonStatus)
@@ -88,6 +90,7 @@ export const initTestI18n = () =>
   });
 
 const commonLabels = {
+  actions: commonActions,
   dashboard: commonDashboard,
   form: commonForm,
   status: commonStatus,

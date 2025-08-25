@@ -11,8 +11,8 @@ import {
   OdsFormField,
   OdsInput,
   OdsText,
-  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
+import { SecretDataFormField } from '@secret-manager/components/form/SecretDataFormField.component';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { secretQueryKeys } from '@secret-manager/data/api/secrets';
 import { useQueryClient } from '@tanstack/react-query';
@@ -22,7 +22,6 @@ import {
   useSecretDataSchema,
 } from '@secret-manager/validation';
 import {
-  DATA_INPUT_TEST_ID,
   PATH_INPUT_TEST_ID,
   SUBMIT_BTN_TEST_ID,
 } from '@secret-manager/utils/tests/secret.constants';
@@ -116,27 +115,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
         </div>
         <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('data_title')}</OdsText>
-          <Controller
-            name="data"
-            control={control}
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField error={errors?.[name]?.message}>
-                <label htmlFor={name} slot="label">
-                  {t('data_textarea_label')}
-                </label>
-                <OdsTextarea
-                  id={name}
-                  name={name}
-                  value={value}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                  isResizable
-                  rows={12}
-                  data-testid={DATA_INPUT_TEST_ID}
-                />
-              </OdsFormField>
-            )}
-          />
+          <SecretDataFormField name={'data'} control={control} />
         </div>
         {/* TEMP: waiting for metadata management */}
         {/* <div className="flex flex-col gap-3">
