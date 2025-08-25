@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.6) (2025-08-25)
+
+
+### Bug Fixes
+
+* **hpc-vmware:** display name rather than profile when ordering virtual host ([65b7963](https://github.com/ovh/manager/commit/65b7963ddb3f3c7d51f29c28b18b6c9d5fe3548b)), closes [#MANAGER-19317](https://github.com/ovh/manager/issues/MANAGER-19317)
+
+
+
+
+
 ## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.5) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

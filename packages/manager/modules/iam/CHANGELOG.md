@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.18.0...@ovh-ux/manager-iam@1.19.0) (2025-08-25)
+
+
+### Features
+
+* **iam:** enable account delegation access ([ba80e1e](https://github.com/ovh/manager/commit/ba80e1e5c6378b59b13c698e0bd58ed262d5297c)), closes [#MANAGER-17557](https://github.com/ovh/manager/issues/MANAGER-17557)
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.17.6...@ovh-ux/manager-iam@1.18.0) (2025-08-04)
 
 
