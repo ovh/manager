@@ -46,7 +46,6 @@ export default function DashboardPage() {
   const {
     data: okmsService,
     isPending: isOkmsServiceLoading,
-    error: okmsServiceError,
   } = useServiceDetails({ resourceName: okmsId });
 
   const {
@@ -134,10 +133,10 @@ export default function DashboardPage() {
     return <Loading />;
   }
 
-  if (okmsServiceError || okmsError) {
+  if (okmsError) {
     return (
       <ErrorBanner
-        error={okmsServiceError?.response || okmsError?.response || {}}
+        error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
