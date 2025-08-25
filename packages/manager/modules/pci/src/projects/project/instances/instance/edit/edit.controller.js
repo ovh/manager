@@ -53,9 +53,6 @@ export default class PciInstanceEditController {
     };
     this.regionsTypesAvailability = {};
     this.fetchRegionsTypesAvailability();
-    this.imageEditMessage =
-      this.imageEditMessage ||
-      'pci_projects_project_instances_instance_edit_reboot_message';
     this.imageEditSuccessMessage =
       this.imageEditSuccessMessage ||
       'pci_projects_project_instances_instance_edit_image_success_message';
@@ -212,8 +209,10 @@ export default class PciInstanceEditController {
 
   reinstallInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService.reinstall(
+    return this.PciProjectsProjectInstanceService.reinstallFromRegion(
       this.projectId,
+      this.instance.region,
+      this.instance.id,
       this.editInstance,
     )
       .then(() =>
