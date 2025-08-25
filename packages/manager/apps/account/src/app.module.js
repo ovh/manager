@@ -53,8 +53,8 @@ export default async (containerEl, shellClient) => {
     ssoAuthenticationProvider.setOnLogin(() => {
       shellClient.auth.login();
     });
-    ssoAuthenticationProvider.setOnLogout(() => {
-      shellClient.auth.logout();
+    ssoAuthenticationProvider.setOnLogout((url) => {
+      shellClient.auth.logout(url);
     });
   };
 

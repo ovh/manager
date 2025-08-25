@@ -64,7 +64,11 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             'vrack:delete',
             'billing:management',
             'billing:autorenew2016Deployment',
+            'billing:agreements',
           ]),
+        isAgreementsAvailable: /* @ngInject */ (featureAvailability) =>
+          featureAvailability?.isFeatureAvailable('billing:agreements') ||
+          false,
         isAutorenewManagementAvailable: /* @ngInject */ (featureAvailability) =>
           featureAvailability?.isFeatureAvailable('billing:management') ||
           false,
@@ -94,8 +98,16 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
-        agreementsLink: /* @ngInject */ ($state) =>
-          $state.href('billing.autorenew.agreements', {}, { inherit: false }),
+        agreementsLink: /* @ngInject */ ($state, isAgreementsAvailable) => {
+          if (isAgreementsAvailable) {
+            return $state.href(
+              'billing.autorenew.agreements',
+              {},
+              { inherit: false },
+            );
+          }
+          return null;
+        },
       },
       !coreConfigProvider.isRegion('US')
         ? {

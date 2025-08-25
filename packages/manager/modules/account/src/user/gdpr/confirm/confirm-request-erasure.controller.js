@@ -90,7 +90,11 @@ export default class ConfirmRequestErasureController {
 
       this.gdprService
         .confirmErasure(this.publicId, this.model.confirm_code)
-        .then(() => this.ssoAuthentication.logout())
+        .then(() =>
+          this.ssoAuthentication.logout(
+            this.$state.href('account.user.gdpr', {}, { absolute: true }),
+          ),
+        )
         .catch((error) => {
           this.Alerter.error(
             this.buildErrorMessage(error, CONFIRM_ERASURE_REQUEST_MESSAGES_MAP),
