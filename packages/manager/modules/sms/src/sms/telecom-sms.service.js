@@ -178,4 +178,28 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
     });
     return filterRequest;
   },
+
+  updateContatInfo(serviceName, number, params) {
+    return $http
+      .put(
+        `/sms/${serviceName}/virtualNumbers/${number}/time2chat/contact`,
+        params,
+      )
+      .then(({ data }) => data);
+  },
+
+  updateAutoResponseMessage(serviceName, number, params) {
+    return $http
+      .put(
+        `/sms/${serviceName}/virtualNumbers/${number}/time2chat/autoResponse`,
+        params,
+      )
+      .then(({ data }) => data);
+  },
+
+  updateKyc(serviceName, number, params) {
+    return $http
+      .put(`/sms/${serviceName}/virtualNumbers/${number}/time2chat/kyc`, params)
+      .then(({ data }) => data);
+  },
 });
