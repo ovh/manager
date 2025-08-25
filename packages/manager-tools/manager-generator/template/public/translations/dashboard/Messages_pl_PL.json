@@ -1,0 +1,19 @@
+{
+  "home": "Strona główna",
+  "order": "Zamów",
+  "back": "Powrót",
+  "title": "Panel",
+  "email": "E-mail",
+  "subject": "Temat",
+  "message": "Wiadomość",
+  "submitButton": "Wyślij",
+  "successMessage": "Twoje zgłoszenie zostało pomyślnie wysłane.",
+  "errors": {
+    "emailRequired": "Adres e-mail jest wymagany.",
+    "emailInvalid": "Podaj prawidłowy adres e-mail.",
+    "subjectRequired": "Temat jest wymagany.",
+    "messageRequired": "Wiadomość jest wymagana."
+  },
+  "general-information": "Informacje ogólne",
+  "help": "Pomoc"
+}

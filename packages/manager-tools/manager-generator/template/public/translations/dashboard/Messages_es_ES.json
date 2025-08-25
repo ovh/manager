@@ -1,0 +1,19 @@
+{
+  "home": "Inicio",
+  "order": "Solicitar",
+  "back": "Volver",
+  "title": "Panel de control",
+  "email": "Correo electrónico",
+  "subject": "Asunto",
+  "message": "Mensaje",
+  "submitButton": "Enviar",
+  "successMessage": "Su solicitud se ha enviado correctamente.",
+  "errors": {
+    "emailRequired": "El correo electrónico es obligatorio.",
+    "emailInvalid": "Por favor, introduzca una dirección de correo válida.",
+    "subjectRequired": "El asunto es obligatorio.",
+    "messageRequired": "El mensaje es obligatorio."
+  },
+  "general-information": "Información general",
+  "help": "Ayuda"
+}

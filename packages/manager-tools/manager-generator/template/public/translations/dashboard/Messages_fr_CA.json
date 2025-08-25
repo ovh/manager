@@ -1,0 +1,19 @@
+{
+  "home": "Accueil",
+  "order": "Commander",
+  "back": "Retour",
+  "title": "Dashboard",
+  "email": "Courriel",
+  "subject": "Sujet",
+  "message": "Message",
+  "submitButton": "Envoyer",
+  "successMessage": "Votre demande a été envoyée avec succès.",
+  "errors": {
+    "emailRequired": "Le courriel est requis.",
+    "emailInvalid": "Veuillez entrer une adresse courriel valide.",
+    "subjectRequired": "Le sujet est requis.",
+    "messageRequired": "Le message est requis."
+  },
+  "general-information": "Informations générales",
+  "help": "Aide"
+}
