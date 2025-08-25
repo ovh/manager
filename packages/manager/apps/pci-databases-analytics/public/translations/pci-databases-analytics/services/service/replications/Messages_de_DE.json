@@ -62,6 +62,6 @@
   "deleteReplicationDescription": "Sind Sie sicher, dass Sie diesen Replikationsfluss löschen möchten?",
   "deleteReplicationButtonCancel": "Abbrechen",
   "deleteReplicationButtonConfirm": "Löschen",
-  "deleteReplicationToastErrorTitle": "Beim Löschen des Replikationsflusses ist ein Fehler aufgetreten",
-  "deleteReplicationToastSuccessDescription": "Der Replikationsfluss wurde erfolgreich gelöscht"
+  "deleteReplicationToastErrorTitle": "Beim Löschen des Replikationsflusses ist ein Fehler aufgetreten.",
+  "deleteReplicationToastSuccessDescription": "Der Replikationsfluss wurde erfolgreich gelöscht."
 }
