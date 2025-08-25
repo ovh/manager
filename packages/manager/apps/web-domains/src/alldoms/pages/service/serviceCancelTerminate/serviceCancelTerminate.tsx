@@ -2,9 +2,9 @@ import React from 'react';
 import { Modal } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ODS_MODAL_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { Spinner, SPINNER_SIZE, Text } from '@ovhcloud/ods-react';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { useCancelAllDomTerminate } from '@/alldoms/hooks/useCancelAllDomTerminate/useCancelAllDomTerminate';
 
@@ -31,14 +31,14 @@ export default function ServiceCancelTerminate() {
       onSecondaryButtonClick={() => navigate(-1)}
     >
       {isLoading ? (
-        <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+        <Spinner size={SPINNER_SIZE.xs} />
       ) : (
         <div className="mb-8">
-          <OdsText>
+          <Text>
             {t('allDom_cancel_terminate_subtitle', {
               serviceName,
             })}
-          </OdsText>
+          </Text>
         </div>
       )}
     </Modal>
