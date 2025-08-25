@@ -16,6 +16,7 @@ import { CHANGELOG_LINKS } from '@/constants';
 import InstanceName from './dashboard/components/InstanceName.component';
 import { useDashboard } from './dashboard/hooks/useDashboard';
 import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
+import InstanceErrorGuard from './InstanceErrorGuard.page';
 
 const Instance: FC = () => {
   const { t } = useTranslation('dashboard');
@@ -24,7 +25,7 @@ const Instance: FC = () => {
   const dashboardPath = useResolvedPath('');
   const vncPath = useResolvedPath(`../${instanceId}/vnc`); // vnc will be redirect to the legacy page until migration done
 
-  const { instance, isPending: isInstanceLoading } = useDashboard({
+  const { instance, isPending: isInstanceLoading, error } = useDashboard({
     region,
     instanceId,
   });
@@ -50,35 +51,37 @@ const Instance: FC = () => {
 
   return (
     <InstanceWrapper>
-      <PageLayout>
-        <Breadcrumb
-          projectLabel={project.description ?? ''}
-          items={[{ label: instance?.name ?? '' }]}
-        />
-        <div className="header mt-8">
-          <div className="flex items-center justify-between">
-            <div className="flex-[0.8]">
-              <LoadingCell isLoading={isInstanceLoading}>
-                {instance && <InstanceName instance={instance} />}
-              </LoadingCell>
-            </div>
-            <div className="flex gap-x-3">
-              <ChangelogButton links={CHANGELOG_LINKS} />
-              <PciGuidesHeader category="instances" />
+      <InstanceErrorGuard error={error}>
+        <PageLayout>
+          <Breadcrumb
+            projectLabel={project.description ?? ''}
+            items={[{ label: instance?.name ?? '' }]}
+          />
+          <div className="header mt-8">
+            <div className="flex items-center justify-between">
+              <div className="flex-[0.8]">
+                <LoadingCell isLoading={isInstanceLoading}>
+                  {instance && <InstanceName instance={instance} />}
+                </LoadingCell>
+              </div>
+              <div className="flex gap-x-3">
+                <ChangelogButton links={CHANGELOG_LINKS} />
+                <PciGuidesHeader category="instances" />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-8 mb-8">
-          <Notifications />
-        </div>
-        <GoBack />
-        <div className="mt-8">
-          <TabsPanel tabs={tabs} />
-        </div>
-        <div className="mt-8">
-          <Outlet />
-        </div>
-      </PageLayout>
+          <div className="mt-8 mb-8">
+            <Notifications />
+          </div>
+          <GoBack />
+          <div className="mt-8">
+            <TabsPanel tabs={tabs} />
+          </div>
+          <div className="mt-8">
+            <Outlet />
+          </div>
+        </PageLayout>
+      </InstanceErrorGuard>
     </InstanceWrapper>
   );
 };
