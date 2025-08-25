@@ -1,5 +1,5 @@
 import { waitFor, screen, fireEvent } from '@testing-library/react';
-import { describe } from 'vitest';
+import { vi, describe } from 'vitest';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -170,6 +170,7 @@ describe('Import IP from Sys modal', () => {
       initialRoute: urls.listingImportIpFromSys,
       nbIp: 6,
     });
+    window.open = vi.fn();
     await assertOdsModalVisibility({ container, isVisible: true });
 
     await fillStep1(VALID_INPUT_VALUES);
@@ -211,5 +212,7 @@ describe('Import IP from Sys modal', () => {
         ),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
+
+    expect(window.open).toHaveBeenCalledWith(ipMigrationPostResponse.url);
   });
 });

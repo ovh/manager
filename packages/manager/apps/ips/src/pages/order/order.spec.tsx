@@ -16,7 +16,7 @@ import {
 } from '@/test-utils';
 import { resourceMockList, organisationMockList } from '../../../mocks';
 import { IpOffer, IpVersion } from './order.constant';
-import { ipParkingOptionValue } from '@/data/hooks/useServiceList';
+import { ipParkingOptionValue } from '@/types';
 
 describe('Order', async () => {
   it.each([
