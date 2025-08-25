@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.2...@ovh-ux/manager-cloud-connect@1.24.3) (2025-08-25)
+
+
+### Bug Fixes
+
+* **cloud-connect:** display all pop configurations ([ccfdfaa](https://github.com/ovh/manager/commit/ccfdfaa3852dcd0151f8cecf570dced509f67e14)), closes [#UXCT-772](https://github.com/ovh/manager/issues/UXCT-772)
+
+
+
+
+
 ## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.1...@ovh-ux/manager-cloud-connect@1.24.2) (2025-08-11)
 
 
