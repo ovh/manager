@@ -24,6 +24,7 @@ export default {
     goToCheckBGPPeeringPage: '<',
     diagnosticPageUrl: '<',
     user: '<',
+    goToMigrateOffer: '<',
   },
   controller,
   template,

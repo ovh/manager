@@ -18,6 +18,7 @@ import changeBandwidth from './change-bandwidth';
 import routing from './overview.routing';
 import sendServiceKey from './send-service-key';
 import unlockPort from './unlock-port';
+import migrateOffer from './migrate-offer';
 
 const moduleName = 'ovhCloudConnectDetailsOverview';
 
@@ -39,6 +40,7 @@ angular
     unlockPort,
     sendServiceKey,
     changeBandwidth,
+    migrateOffer,
   ])
   .config(routing)
   .component('cloudConnectDetailsOverview', component)
