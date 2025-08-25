@@ -56,7 +56,8 @@
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.17",
     "msw": "2.1.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
