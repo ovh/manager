@@ -1,7 +1,8 @@
-<div class="modal d-block" tabindex="-1">
-    <div class="modal-dialog ">
+<div data-ng-click="$ctrl.handleDimiss()" class="modal d-block" tabindex="-1">
+    <div class="modal-dialog">
         <div class="modal-content">
             <oui-modal
+                data-ng-click="$event.stopPropagation();"
                 data-heading="{{:: 'iam_identities_account_delegation_add_account' | translate }}"
                 data-primary-action="$ctrl.onConfirm()"
                 data-primary-label="{{:: 'iam_identities_account_delegation_confirm' | translate }}"
@@ -22,7 +23,7 @@
                             class="oui-input"
                             name="delegatedAccount"
                             type="text"
-                            placeholder="{{:: $ctrl.ACCOUNT_FORMAT}}"
+                            placeholder="{{:: $ctrl.ACCOUNT_FORMAT }}"
                             data-ng-model="$ctrl.delegatedAccount"
                             data-ng-pattern=":: $ctrl.ACCOUNT_PATTERN"
                             data-ng-disabled="$ctrl.policy.readOnly"
