@@ -1,105 +1,99 @@
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseMutationResult,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import DeleteStorage from './DeleteStorage.page';
-import * as useVolumeModule from '@/api/hooks/useVolume';
-import { TVolumeSnapshot } from '@/api/data/volume';
-import { UseVolumeResult } from '@/api/hooks/useVolume';
+import {
+  useDeleteVolume,
+  useVolume,
+  useVolumeSnapshot,
+} from '@/api/hooks/useVolume';
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
-type UseDeleteVolumeReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { deleteVolume: () => void };
-
-const mockedReactRouterNavigation = vi.fn();
 const deleteVolume = vi.fn();
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => ({
-    navigate: mockedReactRouterNavigation,
-  }),
-  useParams: () => ({
-    projectId: 'testProject',
-    volumeId: 'testVolume',
-  }),
-}));
+vi.mock('react-router-dom');
+vi.mocked(useParams).mockReturnValue({ volumeId: 'testVolume' });
 
-const queryClient = new QueryClient();
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+vi.mock('@/api/hooks/useVolume');
+
+const mockedVolume = {
+  data: {
+    attachedTo: [],
+  },
+  isPending: false,
+} as ReturnType<typeof useVolume>;
+
+const mockedVolumePending = {
+  data: {},
+  isPending: true,
+} as ReturnType<typeof useVolume>;
+
+vi.mocked(useDeleteVolume).mockReturnValue({
+  deleteVolume: deleteVolume as ReturnType<
+    typeof useDeleteVolume
+  >['deleteVolume'],
+} as ReturnType<typeof useDeleteVolume>);
+
+const mockedSnapshots = {
+  data: [{ id: 'snapshot1', volumeId: 'testVolume' }],
+  isPending: false,
+} as ReturnType<typeof useVolumeSnapshot>;
+
+const mockedSnapshotsEmpty = {
+  data: [],
+  isPending: false,
+} as ReturnType<typeof useVolumeSnapshot>;
+
 describe('DeleteStorage', () => {
   it('renders without crashing', () => {
-    const { container } = render(<DeleteStorage />, { wrapper });
+    vi.mocked(useVolume).mockReturnValue(mockedVolume);
+    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
+
+    const { container } = renderWithMockedWrappers(<DeleteStorage />);
     expect(container).toBeTruthy();
   });
 
   it('renders spinner when isPending is true', () => {
-    vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
-      data: {},
-      isPending: true,
-    } as UseQueryResult<UseVolumeResult>);
-    const { getByTestId } = render(<DeleteStorage />, { wrapper });
+    vi.mocked(useVolume).mockReturnValue(mockedVolumePending);
+    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
+
+    const { getByTestId } = renderWithMockedWrappers(<DeleteStorage />);
     expect(getByTestId('deleteStorage-spinner')).toBeInTheDocument();
   });
 
   it('renders DeleteConstraintWarningMessage when hasSnapshot or isAttached is true', () => {
-    vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
-      data: {
-        name: 'testVolume',
-        attachedTo: ['testGateway'],
-      },
-      isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
-    vi.spyOn(useVolumeModule, 'useDeleteVolume').mockReturnValue(({
-      deleteVolume: vi.fn(),
-      isPending: false,
-    } as unknown) as UseDeleteVolumeReturnType);
-    vi.spyOn(useVolumeModule, 'useVolumeSnapshot').mockReturnValue({
-      data: [{ id: 'snapshot1', volumeId: 'testVolume' }],
-      isPending: false,
-    } as UseQueryResult<TVolumeSnapshot[]>);
+    vi.mocked(useVolume).mockReturnValue(mockedVolume);
+    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
 
-    const { getByTestId } = render(<DeleteStorage />, { wrapper });
+    const { getByTestId } = renderWithMockedWrappers(<DeleteStorage />);
     expect(
       getByTestId('deleteConstraintWarningMessage-content'),
     ).toBeInTheDocument();
   });
 
   it('renders DeleteWarningMessage when canDelete is true', () => {
-    vi.spyOn(useVolumeModule, 'useVolume').mockReturnValue({
-      data: { name: 'testVolume', attachedTo: [] }, // Empty array to make isAttached false
-      isPending: false,
-    } as UseQueryResult<UseVolumeResult>);
-    vi.spyOn(useVolumeModule, 'useDeleteVolume').mockReturnValue(({
-      deleteVolume: vi.fn(),
-      isPending: false,
-    } as unknown) as UseDeleteVolumeReturnType);
-    vi.spyOn(useVolumeModule, 'useVolumeSnapshot').mockReturnValue({
-      data: [],
-      isPending: false,
-    } as UseQueryResult<TVolumeSnapshot[]>);
-    const { getByText } = render(<DeleteStorage />, { wrapper });
+    vi.mocked(useVolume).mockReturnValue(mockedVolume);
+    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
+
+    const { getByText } = renderWithMockedWrappers(<DeleteStorage />);
     expect(
       getByText('pci_projects_project_storages_blocks_block_delete_content'),
     ).toBeInTheDocument();
   });
 
   it('calls deleteVolume when delete button is clicked and canDelete is true', () => {
-    vi.spyOn(useVolumeModule, 'useDeleteVolume').mockReturnValue(({
-      deleteVolume,
-      isPending: false,
-    } as unknown) as UseDeleteVolumeReturnType);
-    const { getByTestId } = render(<DeleteStorage />, { wrapper });
+    vi.mocked(useVolume).mockReturnValue(
+      mockedVolume as ReturnType<typeof useVolume>,
+    );
+    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
+
+    const { getByText } = renderWithMockedWrappers(<DeleteStorage />);
     act(() => {
-      fireEvent.click(getByTestId('deleteGateway-button_submit'));
+      fireEvent.click(
+        getByText(
+          'pci_projects_project_storages_blocks_block_delete_submit_label',
+        ),
+      );
     });
     expect(deleteVolume).toHaveBeenCalled();
   });

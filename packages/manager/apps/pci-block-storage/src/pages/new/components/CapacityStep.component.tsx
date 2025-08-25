@@ -30,6 +30,7 @@ import { TRegion } from '@/api/data/regions';
 import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
 import ExternalLink from '@/components/ExternalLink';
+import { Button } from '@/components/button/Button';
 
 export const VOLUME_MIN_SIZE = 10; // 10 Gio
 export const VOLUME_UNLIMITED_QUOTA = -1; // Should be 10 * 1024 (but API is wrong)
@@ -244,14 +245,16 @@ export function CapacityStep({
       </div>
       {isCapacityValid && !step.isLocked && (
         <div>
-          <OsdsButton
+          <Button
             className="w-fit"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            size="md"
+            color="primary"
+            actionName="configure_volume_capacity"
+            actionValues={[volumeCapacity]}
             onClick={() => onSubmit(volumeCapacity)}
           >
             {tStepper('common_stepper_next_button_label')}
-          </OsdsButton>
+          </Button>
         </div>
       )}
     </>
