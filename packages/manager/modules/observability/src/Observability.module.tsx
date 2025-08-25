@@ -72,7 +72,7 @@ export function ObservabilityModule({
   ];
 
   return (
-    <>
+    <section>
       <div
         className={`flex ${
           shouldShowFeatureSwitcher ? 'justify-between' : 'justify-end'
@@ -97,6 +97,6 @@ export function ObservabilityModule({
       >
         <Outlet />
       </Suspense>
-    </>
+    </section>
   );
 }

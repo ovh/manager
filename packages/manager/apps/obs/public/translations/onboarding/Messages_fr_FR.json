@@ -1,0 +1,13 @@
+{
+  "title": "Commencez à observer vos services",
+  "description": "Lancez-vous en créant votre premier service d'Observabilité. Une fois configuré, vous pourrez connecter des sources de données, définir des alertes et détecter des anomalies sur votre infrastructure.Envie d'un aperçu ? Découvrez nos tableaux de bord prédéfinis pour voir à quoi peut ressembler votre Observabilité une fois vos données connectées.",
+  "orderButtonLabel": "Commander un obs",
+  "moreInfoButtonLabel": "En savoir plus sur obs",
+  "guideCategory": "Tutoriel",
+  "guide1Title": "Premiers pas avec un obs",
+  "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
+  "guide2Title": "Monter votre NAS via un partage NFS",
+  "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
+  "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+}
