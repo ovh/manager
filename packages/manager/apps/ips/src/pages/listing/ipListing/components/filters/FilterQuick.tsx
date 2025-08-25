@@ -46,13 +46,13 @@ export const QuickFilter = () => {
 
     // Set routedToserviceName to null if showing parked IPs
     const routedToserviceName: string = selectedFilters.showParkedIps
-      ? null
+      ? 'null'
       : undefined;
 
     setApiFilter({
       ...apiFilter,
       version,
-      routedToserviceName,
+      'routedTo.serviceName': routedToserviceName,
     });
   }, [selectedFilters]);
 
