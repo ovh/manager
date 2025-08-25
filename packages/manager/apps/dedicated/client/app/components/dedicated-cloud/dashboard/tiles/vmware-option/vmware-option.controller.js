@@ -9,7 +9,7 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../../../datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+} from '../../../datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 import { getConstants } from '../../../../../config/config';
 
@@ -20,14 +20,14 @@ export default class {
     $translate,
     coreConfig,
     DedicatedCloud,
-    dedicatedCloudDrp,
+    dedicatedCloudZerto,
     User,
     Poller,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.DedicatedCloud = DedicatedCloud;
-    this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.dedicatedCloudZerto = dedicatedCloudZerto;
     this.Poller = Poller;
     this.User = User;
     this.DRP_OPTIONS = DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS;
@@ -100,7 +100,7 @@ export default class {
     this.taskStateToPoll = ['todo', 'doing', 'waitingForChilds'];
 
     this.getGuides();
-    this.getDrpStatus();
+    this.getZertoStatus();
 
     this.loaders.loading = true;
     this.options.nsx.loading = true;
@@ -115,12 +115,12 @@ export default class {
       });
   }
 
-  getDrpStatus() {
-    this.drpStatus = this.currentDrp.state;
-    this.drpRemotePccStatus =
-      this.currentDrp.drpType === this.DRP_OPTIONS.ovh
-        ? this.dedicatedCloudDrp.constructor.formatStatus(
-            get(this.currentDrp, 'remoteSiteInformation.state'),
+  getZertoStatus() {
+    this.zertoStatus = this.currentZerto.state;
+    this.zertoRemotePccStatus =
+      this.currentZerto.drpType === this.DRP_OPTIONS.ovh
+        ? this.dedicatedCloudZerto.constructor.formatStatus(
+            get(this.currentZerto, 'remoteSiteInformation.state'),
           )
         : this.DRP_STATUS.delivered;
   }
@@ -319,12 +319,12 @@ export default class {
     return this.$q.all(loadOptionsTasks);
   }
 
-  chooseDatacenterForDrp() {
+  chooseDatacenterForZerto() {
     if (this.datacenterList.length === 1) {
       const [{ id: datacenterId }] = this.datacenterList;
-      return this.goToDrp(datacenterId);
+      return this.goToZerto(datacenterId);
     }
 
-    return this.goToDrpDatacenterSelection();
+    return this.goToZertoDatacenterSelection();
   }
 }
