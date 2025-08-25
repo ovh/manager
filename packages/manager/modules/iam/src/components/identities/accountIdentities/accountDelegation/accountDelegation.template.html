@@ -1,4 +1,4 @@
-<div data-ng-click="$ctrl.handleDimiss()" class="modal d-block" tabindex="-1">
+<div data-ng-click="$ctrl.onClose()" class="modal d-block" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <oui-modal
@@ -17,7 +17,7 @@
                         data-error-messages=":: {
                             pattern: ('iam_identities_account_delegation_format_error' | translate : { format: $ctrl.ACCOUNT_FORMAT })
                         }"
-                        data-force-error-display="true"
+                        data-force-error-display
                     >
                         <input
                             class="oui-input"
@@ -25,7 +25,9 @@
                             type="text"
                             placeholder="{{:: $ctrl.ACCOUNT_FORMAT }}"
                             data-ng-model="$ctrl.delegatedAccount"
+                            ng-model-options="{ updateOn: 'default', allowInvalid: true }"
                             data-ng-pattern=":: $ctrl.ACCOUNT_PATTERN"
+                            data-ng-change="$ctrl.nicForm.delegatedAccount.$setTouched()"
                             data-ng-disabled="$ctrl.policy.readOnly"
                             required
                         />

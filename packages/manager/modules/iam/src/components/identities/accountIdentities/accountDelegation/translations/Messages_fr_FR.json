@@ -4,5 +4,5 @@
   "iam_identities_account_delegation_disclaimer": "Seul votre compte client (NIC) pourra accéder aux tickets supports",
   "iam_identities_account_delegation_cancel": "Annuler",
   "iam_identities_account_delegation_confirm": "Ajouter",
-  "iam_identities_account_delegation_format_error": "Le format du compte n'est pas valide, exemple {{format}}"
+  "iam_identities_account_delegation_format_error": "Veuillez renseigner un format valide, exemple {{format}}"
 }
