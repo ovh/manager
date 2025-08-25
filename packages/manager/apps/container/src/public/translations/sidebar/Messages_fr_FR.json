@@ -178,6 +178,7 @@
   "sidebar_security_identity_operations_iam_identities": "Identités",
   "sidebar_security_identity_operations_iam_policies": "Politiques",
   "sidebar_security_identity_operations_iam_api-keys": "Clés API",
+  "sidebar_security_identity_operations_iam_tag-management": "Tag Management",
   "sidebar_security_identity_operations_iam_logs": "Logs du compte",
   "sidebar_security_identity_operations_kms": "Key Management Service",
   "sidebar_security_identity_operations_logs": "Logs Data Platform",
