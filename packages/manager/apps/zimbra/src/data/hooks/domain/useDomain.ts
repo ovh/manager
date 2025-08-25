@@ -1,9 +1,7 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import {
   DomainType,
   getZimbraPlatformDomainDetail,

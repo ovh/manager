@@ -1,7 +1,10 @@
 import React from 'react';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { ServiceBillingState } from '@/data/api';
 
 export type BillingStateBadgeProps = {
@@ -59,9 +62,7 @@ export const BillingStateBadge: React.FC<BillingStateBadgeProps> = (props) => {
     );
   }
 
-  return (
-    <OdsBadge data-testid={props['data-testid']} color={color} label={label} />
-  );
+  return <OdsBadge data-testid={props['data-testid']} color={color} label={label} />;
 };
 
 export default BillingStateBadge;

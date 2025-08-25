@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { describe, expect, it } from 'vitest';
-import { render, screen, waitFor, act } from '@/utils/test.provider';
-import { DNS_CONFIG_TYPE } from '@/utils';
-import AddDomain from './Add.page';
-import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import domainsFormTranslation from '@/public/translations/domains/form/Messages_fr_FR.json';
+import { DNS_CONFIG_TYPE } from '@/utils';
+import { act, render, screen, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddDomain from './Add.page';
 
 describe('Add Domain page', () => {
   const clickSelectOrganization = (selectOrganization: OdsHTMLElement) => {
@@ -36,9 +39,7 @@ describe('Add Domain page', () => {
   it('Button should be disabled if organization is selected but no domain name is provided', () => {
     const { getByTestId } = render(<AddDomain />);
 
-    const selectOrganization = getByTestId(
-      'select-organization',
-    ) as OdsHTMLElement;
+    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
     clickSelectOrganization(selectOrganization);
 
     // No domain is selected or input is provided
@@ -50,14 +51,10 @@ describe('Add Domain page', () => {
   it.skip('Button should not be enabled when only organization and domain name are provided if domain is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
-    const selectOrganization = getByTestId(
-      'select-organization',
-    ) as OdsHTMLElement;
+    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
     clickSelectOrganization(selectOrganization);
 
-    const radioOvhDomain = getByTestId(
-      'radio-externalDomain',
-    ) as OdsHTMLElement;
+    const radioOvhDomain = getByTestId('radio-externalDomain') as OdsHTMLElement;
     act(() => {
       radioOvhDomain.odsChange.emit({
         value: 'ovhDomain',
@@ -69,10 +66,7 @@ describe('Add Domain page', () => {
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
-        'is-disabled',
-        'true',
-      );
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute('is-disabled', 'true');
     });
   });
 
@@ -80,14 +74,10 @@ describe('Add Domain page', () => {
   it.skip('Button should be enabled when organization, domain name and configuration type standard are provided if domain name is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
-    const selectOrganization = getByTestId(
-      'select-organization',
-    ) as OdsHTMLElement;
+    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
     clickSelectOrganization(selectOrganization);
 
-    const radioOvhDomain = getByTestId(
-      'radio-externalDomain',
-    ) as OdsHTMLElement;
+    const radioOvhDomain = getByTestId('radio-externalDomain') as OdsHTMLElement;
     act(() => {
       radioOvhDomain.odsChange.emit({
         value: 'ovhDomain',
@@ -97,9 +87,7 @@ describe('Add Domain page', () => {
     const selectedDomain = getByTestId('select-domain') as OdsHTMLElement;
     clickIsselectedDomainOvh(selectedDomain);
 
-    const selectedRadioConfigTypeStandard = getByTestId(
-      'radio-config-standard',
-    ) as OdsHTMLElement;
+    const selectedRadioConfigTypeStandard = getByTestId('radio-config-standard') as OdsHTMLElement;
     act(() => {
       selectedRadioConfigTypeStandard.odsChange.emit({
         value: DNS_CONFIG_TYPE.STANDARD,
@@ -108,10 +96,7 @@ describe('Add Domain page', () => {
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
-        'is-disabled',
-        'false',
-      );
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute('is-disabled', 'false');
     });
   });
 
@@ -119,9 +104,7 @@ describe('Add Domain page', () => {
   it.skip('Button should be enabled when organization, domain name and configuration type expert are provided if domain name is ovh', async () => {
     const { getByTestId } = render(<AddDomain />);
 
-    const selectOrganization = getByTestId(
-      'select-organization',
-    ) as OdsHTMLElement;
+    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
     clickSelectOrganization(selectOrganization);
 
     const radioGroup = getByTestId('radio-group');
@@ -129,9 +112,7 @@ describe('Add Domain page', () => {
       expect(radioGroup).toBeDefined();
     });
 
-    const radioOvhDomain = getByTestId(
-      'radio-externalDomain',
-    ) as OdsHTMLElement;
+    const radioOvhDomain = getByTestId('radio-externalDomain') as OdsHTMLElement;
     act(() => {
       radioOvhDomain.odsChange.emit({
         value: 'ovhDomain',
@@ -141,9 +122,7 @@ describe('Add Domain page', () => {
     const selectedDomain = getByTestId('select-domain') as OdsHTMLElement;
     clickIsselectedDomainOvh(selectedDomain);
 
-    const selectedRadioConfigTypeExpert = getByTestId(
-      'radio-config-expert',
-    ) as OdsHTMLElement;
+    const selectedRadioConfigTypeExpert = getByTestId('radio-config-expert') as OdsHTMLElement;
     act(() => {
       selectedRadioConfigTypeExpert.odsChange.emit({
         value: DNS_CONFIG_TYPE.EXPERT,
@@ -152,10 +131,7 @@ describe('Add Domain page', () => {
 
     await waitFor(() => {
       expect(selectedDomain).toBeDefined();
-      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute(
-        'is-disabled',
-        'false',
-      );
+      expect(getByTestId('add-domain-submit-btn')).toHaveAttribute('is-disabled', 'false');
     });
   });
 
@@ -163,23 +139,17 @@ describe('Add Domain page', () => {
   it.skip('Button should be enabled when an external domain name is provided', () => {
     const { getByTestId } = render(<AddDomain />);
 
-    const selectOrganization = getByTestId(
-      'select-organization',
-    ) as OdsHTMLElement;
+    const selectOrganization = getByTestId('select-organization') as OdsHTMLElement;
     clickSelectOrganization(selectOrganization);
 
-    const radioExternalDomain = getByTestId(
-      'radio-externalDomain',
-    ) as OdsHTMLElement;
+    const radioExternalDomain = getByTestId('radio-externalDomain') as OdsHTMLElement;
     act(() => {
       radioExternalDomain.odsChange.emit({
         value: 'externalDomain',
       });
     });
 
-    const externalDomainInput = getByTestId(
-      'input-external-domain',
-    ) as OdsHTMLElement;
+    const externalDomainInput = getByTestId('input-external-domain') as OdsHTMLElement;
 
     act(() => {
       externalDomainInput.odsChange.emit({

@@ -30,8 +30,7 @@ export const platformMock: ZimbraPlatformType[] = [
     },
     iam: {
       id: 'ce6c1c21-565a-42c3-b1fd-53d9d09c7395',
-      urn:
-        'urn:v1:labeu:resource:zimbraPlatform:00000000-0000-0000-0000-000000000001',
+      urn: 'urn:v1:labeu:resource:zimbraPlatform:00000000-0000-0000-0000-000000000001',
     },
   },
 ];

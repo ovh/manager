@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect, it } from 'vitest';
-import AddEditRedirectionModal from './AddEdit.modal';
-import { render, fireEvent, act } from '@/utils/test.provider';
+
+import { act, fireEvent, render } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditRedirectionModal from './AddEdit.modal';
 
 describe('AddEditRedirection modal', () => {
   // @TODO: this test can fail randomly for no apparent reason, I think there's

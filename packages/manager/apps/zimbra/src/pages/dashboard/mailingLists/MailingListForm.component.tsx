@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-  OdsToggle,
-  OdsIcon,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -23,37 +16,45 @@ import {
   ODS_TEXT_PRESET,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
+  OdsMessage,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsToggle,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
+
+import { Loading } from '@/components';
 import {
+  DomainType,
+  MailingListBodyParamsType,
+  ModerationChoices,
+  ReplyToChoices,
+  ResourceStatus,
+  getZimbraPlatformMailingListsQueryKey,
   postZimbraPlatformMailingList,
   putZimbraPlatformMailingList,
-  MailingListBodyParamsType,
-  ReplyToChoices,
-  ModerationChoices,
-  getZimbraPlatformMailingListsQueryKey,
-  ResourceStatus,
-  DomainType,
 } from '@/data/api';
-import { mailingListSchema, MailingListSchema } from '@/utils';
-import queryClient from '@/queryClient';
-import {
-  ADD_MAILING_LIST,
-  CONFIRM,
-  EDIT_MAILING_LIST,
-} from '@/tracking.constants';
 import { useDomains, useMailingList } from '@/data/hooks';
-import { Loading } from '@/components';
+import { useGenerateUrl } from '@/hooks';
+import queryClient from '@/queryClient';
+import { ADD_MAILING_LIST, CONFIRM, EDIT_MAILING_LIST } from '@/tracking.constants';
+import { MailingListSchema, mailingListSchema } from '@/utils';
 
 const replyToChoices = [
   {
@@ -102,9 +103,7 @@ export const MailingListForm = () => {
   const [searchParams] = useSearchParams();
   const organizationId = searchParams.get('organizationId');
   const trackingName = mailingListId ? EDIT_MAILING_LIST : ADD_MAILING_LIST;
-  const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
-    '',
-  );
+  const [selectedDomainOrganization, setSelectedDomainOrganization] = useState('');
   const goBackUrl = useGenerateUrl('..', 'path');
 
   const goBack = () => navigate(goBackUrl);
@@ -121,9 +120,7 @@ export const MailingListForm = () => {
 
   useEffect(() => {
     setHackDomains(
-      (domains || []).filter(
-        (domain) => domain.resourceStatus === ResourceStatus.READY,
-      ),
+      (domains || []).filter((domain) => domain.resourceStatus === ResourceStatus.READY),
     );
     setHackKeyDomains(Date.now());
   }, [domains]);
@@ -197,8 +194,7 @@ export const MailingListForm = () => {
       owner: mailingList?.currentState?.owner || '',
       language: mailingList?.currentState?.language || '',
       moderationOption: mailingList?.currentState?.moderationOption || '',
-      subscriberModeration:
-        mailingList?.currentState?.subscriberModeration || false,
+      subscriberModeration: mailingList?.currentState?.subscriberModeration || false,
     },
     mode: 'onTouched',
     resolver: zodResolver(mailingListSchema),
@@ -247,13 +243,9 @@ export const MailingListForm = () => {
       className="w-full md:w-3/4 flex flex-col space-y-5"
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {!mailingListId
-          ? t('zimbra_mailinglist_add_header')
-          : t('zimbra_mailinglist_edit_header')}
+        {!mailingListId ? t('zimbra_mailinglist_add_header') : t('zimbra_mailinglist_edit_header')}
       </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>
-        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
       <Controller
         control={control}
         name="account"
@@ -265,9 +257,7 @@ export const MailingListForm = () => {
             <div className="flex">
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
-                placeholder={t(
-                  'zimbra_mailinglist_add_input_email_placeholder',
-                )}
+                placeholder={t('zimbra_mailinglist_add_input_email_placeholder')}
                 data-testid="input-account"
                 className="flex-1"
                 id={name}
@@ -313,10 +303,7 @@ export const MailingListForm = () => {
                       ))}
                     </OdsSelect>
                     {(isLoadingDomains || !domains) && (
-                      <Loading
-                        className="flex justify-center"
-                        size={ODS_SPINNER_SIZE.sm}
-                      />
+                      <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                     )}
                   </div>
                 )}
@@ -376,13 +363,8 @@ export const MailingListForm = () => {
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-reply-to-${choice.value}`}
                   ></OdsRadio>
-                  <label
-                    htmlFor={choice.value}
-                    className="flex flex-col cursor-pointer"
-                  >
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      {t(choice.key)}
-                    </OdsText>
+                  <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
                   </label>
                 </div>
               ))}
@@ -400,9 +382,7 @@ export const MailingListForm = () => {
             </label>
             <OdsSelect
               data-testid="select-language"
-              placeholder={t(
-                'zimbra_mailinglist_add_select_language_placeholder',
-              )}
+              placeholder={t('zimbra_mailinglist_add_select_language_placeholder')}
               className="w-1/2"
               id={name}
               name={name}
@@ -439,13 +419,8 @@ export const MailingListForm = () => {
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-moderation-option-${choice.value}`}
                   ></OdsRadio>
-                  <label
-                    htmlFor={choice.value}
-                    className="flex flex-col cursor-pointer"
-                  >
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                      {t(choice.key)}
-                    </OdsText>
+                  <label htmlFor={choice.value} className="flex flex-col cursor-pointer">
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
                   </label>
                 </div>
               ))}
@@ -472,18 +447,13 @@ export const MailingListForm = () => {
                       </OdsText>
                       <OdsTooltip triggerId="subs-tooltip-trigger">
                         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                          {t(
-                            'zimbra_mailinglist_add_subscriber_moderation_tooltip',
-                          )}
+                          {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
                         </OdsText>
                       </OdsTooltip>
                       <OdsText preset={ODS_TEXT_PRESET.caption}>
-                        {t(
-                          'zimbra_mailinglist_add_subscriber_moderation_info',
-                          {
-                            max: 250,
-                          },
-                        )}
+                        {t('zimbra_mailinglist_add_subscriber_moderation_info', {
+                          max: 250,
+                        })}
                       </OdsText>
                     </div>
                   </div>

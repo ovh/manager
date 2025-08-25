@@ -1,15 +1,14 @@
 import React from 'react';
+
+import 'element-internals-polyfill';
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import App from './App';
 import './index.scss';
-import './vite-hmr';
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
-import 'element-internals-polyfill';
+import './vite-hmr';
 
 const trackingContext = {
   chapter1: UNIVERSE,

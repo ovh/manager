@@ -1,58 +1,54 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  LinkType,
-  Links,
-  Subtitle,
-  IconLinkAlignmentType,
-} from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
+  ODS_BUTTON_COLOR,
+  ODS_INPUT_TYPE,
+  ODS_LINK_COLOR,
+  ODS_MESSAGE_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+  OdsRadioChangeEventDetail,
+  OdsRadioCustomEvent,
+} from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCheckbox,
   OdsFormField,
+  OdsInput,
+  OdsMessage,
   OdsRadio,
   OdsSelect,
   OdsText,
-  OdsButton,
-  OdsInput,
-  OdsMessage,
-  OdsCheckbox,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsRadioCustomEvent,
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_COLOR,
-  OdsRadioChangeEventDetail,
-  ODS_LINK_COLOR,
-} from '@ovhcloud/ods-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, useOrganizations } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { IconLinkAlignmentType, LinkType, Links, Subtitle } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { Loading } from '@/components';
 import {
   DomainBodyParamsType,
+  DomainType,
+  OrganizationType,
+  ResourceStatus,
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
   getZimbraPlatformDomainsQueryKey,
   postZimbraDomain,
-  DomainType,
-  ResourceStatus,
-  OrganizationType,
 } from '@/data/api';
+import { useDomains, useOrganizations } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
+import { ADD_DOMAIN, BACK_PREVIOUS_PAGE, CONFIRM } from '@/tracking.constants';
 import { DNS_CONFIG_TYPE, DomainSchema, domainSchema } from '@/utils';
-import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
-import { Loading } from '@/components';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
@@ -84,8 +80,7 @@ export const DomainForm = ({
   const { platformId } = useParams();
 
   const [searchParams] = useSearchParams();
-  const organizationId =
-    searchParams.get('organization') || searchParams.get('organizationId');
+  const organizationId = searchParams.get('organization') || searchParams.get('organizationId');
 
   const { data: organizations, isLoading } = useOrganizations({
     shouldFetchAll: true,
@@ -97,26 +92,17 @@ export const DomainForm = ({
   const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
 
   useEffect(() => {
-    setHackOrgs(
-      organizations?.filter(
-        (org) => org.resourceStatus === ResourceStatus.READY,
-      ),
-    );
+    setHackOrgs(organizations?.filter((org) => org.resourceStatus === ResourceStatus.READY));
     setHackKeyOrg(Date.now());
   }, [organizations]);
   const backLinkUrl = useGenerateUrl(backUrl, 'href');
 
-  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery<
-    string[]
-  >({
+  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery<string[]>({
     queryKey: getDomainsZoneListQueryKey,
     queryFn: () => getDomainsZoneList(),
   });
 
-  const {
-    data: existingDomains,
-    isLoading: isLoadingExistingDomains,
-  } = useDomains({
+  const { data: existingDomains, isLoading: isLoadingExistingDomains } = useDomains({
     shouldFetchAll: true,
   });
 
@@ -127,8 +113,7 @@ export const DomainForm = ({
   useEffect(() => {
     setHackDomains(
       (domainZones || []).filter(
-        (zone: string) =>
-          !(existingDomains || []).find((d) => zone === d.currentState.name),
+        (zone: string) => !(existingDomains || []).find((d) => zone === d.currentState.name),
       ),
     );
     setHackKeyDomains(Date.now());
@@ -138,9 +123,7 @@ export const DomainForm = ({
 
   const [domainType, setDomainType] = useState(DomainOwnership.OVH);
 
-  const [configurationType, setConfigurationType] = useState(
-    DNS_CONFIG_TYPE.STANDARD,
-  );
+  const [configurationType, setConfigurationType] = useState(DNS_CONFIG_TYPE.STANDARD);
 
   const isOvhDomain = domainType === DomainOwnership.OVH;
 
@@ -214,18 +197,15 @@ export const DomainForm = ({
       ...data,
       autoConfigureMX:
         (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          data.autoConfigureMX) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT && data.autoConfigureMX) ||
         false,
       autoConfigureSPF:
         (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          data.autoConfigureSPF) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT && data.autoConfigureSPF) ||
         false,
       autoConfigureDKIM:
         (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
-        (configurationType === DNS_CONFIG_TYPE.EXPERT &&
-          data.autoConfigureDKIM) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT && data.autoConfigureDKIM) ||
         false,
     } as DomainBodyParamsType);
   };
@@ -271,10 +251,7 @@ export const DomainForm = ({
                   className="mt-2 flex-1"
                   id={name}
                   name={name}
-                  value={
-                    value ||
-                    organizationId /* @TODO remove when OdsSelect is fixed */
-                  }
+                  value={value || organizationId /* @TODO remove when OdsSelect is fixed */}
                   hasError={!!errors[name]}
                   isDisabled={isLoading || !!organizationId}
                   onOdsChange={onChange}
@@ -287,10 +264,7 @@ export const DomainForm = ({
                   ))}
                 </OdsSelect>
                 {isLoading && (
-                  <Loading
-                    className="flex justify-center"
-                    size={ODS_SPINNER_SIZE.sm}
-                  />
+                  <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                 )}
               </div>
             </OdsFormField>
@@ -360,10 +334,7 @@ export const DomainForm = ({
                     ))}
                   </OdsSelect>
                   {(isLoadingExistingDomains || isLoadingDomainZones) && (
-                    <Loading
-                      className="flex justify-center"
-                      size={ODS_SPINNER_SIZE.sm}
-                    />
+                    <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                   )}
                 </div>
               ) : (
@@ -384,11 +355,7 @@ export const DomainForm = ({
         />
       )}
       {!isOvhDomain && (
-        <OdsMessage
-          isDismissible={false}
-          className="w-full"
-          color={ODS_MESSAGE_COLOR.information}
-        >
+        <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.information}>
           {t('zimbra_domains_add_domain_warning_modification_domain')}
         </OdsMessage>
       )}
@@ -414,14 +381,10 @@ export const DomainForm = ({
                 ></OdsRadio>
                 <label htmlFor={type} className="flex flex-col w-full">
                   <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t(
-                      `zimbra_domains_add_domain_configuration_choice_${type}`,
-                    )}
+                    {t(`zimbra_domains_add_domain_configuration_choice_${type}`)}
                   </OdsText>
                   <OdsText preset={ODS_TEXT_PRESET.caption}>
-                    {t(
-                      `zimbra_domains_add_domain_configuration_choice_${type}_info`,
-                    )}
+                    {t(`zimbra_domains_add_domain_configuration_choice_${type}_info`)}
                   </OdsText>
                 </label>
               </div>
@@ -450,9 +413,7 @@ export const DomainForm = ({
                     ></OdsCheckbox>
                     <label htmlFor={name}>
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t(
-                          'zimbra_domains_add_domain_configuration_expert_configure_mx',
-                        )}
+                        {t('zimbra_domains_add_domain_configuration_expert_configure_mx')}
                       </OdsText>
                     </label>
                   </div>
@@ -472,9 +433,7 @@ export const DomainForm = ({
                     ></OdsCheckbox>
                     <label htmlFor={name}>
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t(
-                          'zimbra_domains_add_domain_configuration_expert_configure_spf',
-                        )}
+                        {t('zimbra_domains_add_domain_configuration_expert_configure_spf')}
                       </OdsText>
                     </label>
                   </div>
@@ -494,9 +453,7 @@ export const DomainForm = ({
                     ></OdsCheckbox>
                     <label htmlFor={name}>
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t(
-                          'zimbra_domains_add_domain_configuration_expert_configure_dkim',
-                        )}
+                        {t('zimbra_domains_add_domain_configuration_expert_configure_dkim')}
                       </OdsText>
                     </label>
                   </div>
@@ -504,11 +461,7 @@ export const DomainForm = ({
               />
             </OdsFormField>
           ) : (
-            <OdsMessage
-              isDismissible={false}
-              className="w-full"
-              color={ODS_MESSAGE_COLOR.warning}
-            >
+            <OdsMessage isDismissible={false} className="w-full" color={ODS_MESSAGE_COLOR.warning}>
               {t('zimbra_domains_add_domain_warning_configuration_standard')}
             </OdsMessage>
           )}

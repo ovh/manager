@@ -1,13 +1,11 @@
 import React from 'react';
+
 import { describe, expect, vi } from 'vitest';
+
+import { containsDigit, containsLowercase, containsSpecial, containsUppercase } from '@/utils';
 import { fireEvent, render } from '@/utils/test.provider';
+
 import GeneratePasswordButton from './GeneratePasswordButton.component';
-import {
-  containsDigit,
-  containsLowercase,
-  containsSpecial,
-  containsUppercase,
-} from '@/utils';
 
 describe('GeneratePasswordButton component', () => {
   it('should render and call onGenerate & onClick when clicked', () => {
@@ -32,10 +30,7 @@ describe('GeneratePasswordButton component', () => {
   it('should generate a password with all defaults', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
-      <GeneratePasswordButton
-        id="generate-password-btn"
-        onGenerate={onGenerate}
-      />,
+      <GeneratePasswordButton id="generate-password-btn" onGenerate={onGenerate} />,
     );
     const cmp = getByTestId('generate-password-btn');
     expect(cmp).toBeInTheDocument();
@@ -54,11 +49,7 @@ describe('GeneratePasswordButton component', () => {
   it('should generate a password with 20 characters', () => {
     const onGenerate = vi.fn();
     const { getByTestId } = render(
-      <GeneratePasswordButton
-        id="generate-password-btn"
-        onGenerate={onGenerate}
-        length={20}
-      />,
+      <GeneratePasswordButton id="generate-password-btn" onGenerate={onGenerate} length={20} />,
     );
     const cmp = getByTestId('generate-password-btn');
     expect(cmp).toBeInTheDocument();

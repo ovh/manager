@@ -1,20 +1,25 @@
 import React, { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   Datagrid,
   DatagridColumn,
   useBytes,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
+
+import { BillingStateBadge } from '@/components';
+import { getOfferDefaultQuota } from '@/data/api';
 import { SlotWithService, useSlotsWithService } from '@/data/hooks';
 import { useOverridePage } from '@/hooks';
-import { ActionButtonSlot } from './ActionButton.component';
-import { DatagridTopbar } from '../DatagridTopBar.component';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import { getOfferDefaultQuota } from '@/data/api';
-import { BillingStateBadge } from '@/components';
+
+import { DatagridTopbar } from '../DatagridTopBar.component';
+import { ActionButtonSlot } from './ActionButton.component';
 
 export const SlotsDatagrid = () => {
   const { t } = useTranslation(['accounts', 'common']);
@@ -40,9 +45,7 @@ export const SlotsDatagrid = () => {
     () => [
       {
         id: 'offer',
-        cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
-        ),
+        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
         label: 'zimbra_account_datagrid_offer_label',
       },
       {
@@ -62,11 +65,7 @@ export const SlotsDatagrid = () => {
           if (!item.service) {
             return <OdsSkeleton className="[&::part(skeleton)]:max-w-[5rem]" />;
           }
-          return (
-            <span>
-              {format({ date: item.service?.nextBillingDate, format: 'P' })}
-            </span>
-          );
+          return <span>{format({ date: item.service?.nextBillingDate, format: 'P' })}</span>;
         },
         label: 'zimbra_account_datagrid_renewal_date',
       },
@@ -81,7 +80,7 @@ export const SlotsDatagrid = () => {
         label: '',
       },
     ],
-    [],
+    [format, formatBytes],
   );
 
   return (

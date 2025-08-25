@@ -1,12 +1,16 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, screen, waitFor, act } from '@/utils/test.provider';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import { accountMock, platformMock } from '@/data/api';
-import AddAliasModal from './Add.modal';
+import { act, fireEvent, render, screen, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddAliasModal from './Add.modal';
 
 describe('add alias modal', () => {
   it('should display modal', async () => {

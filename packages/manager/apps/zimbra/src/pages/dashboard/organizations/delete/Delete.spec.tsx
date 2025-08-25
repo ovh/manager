@@ -1,19 +1,24 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import { IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
-import { render, waitFor, fireEvent, act } from '@/utils/test.provider';
-import DeleteOrganizationModal from './Delete.modal';
-import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+
 import {
-  organizationMock,
-  platformMock,
+  DomainType,
   deleteZimbraPlatformOrganization,
   getZimbraPlatformDomains,
-  DomainType,
+  organizationMock,
+  platformMock,
 } from '@/data/api';
+import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import DeleteOrganizationModal from './Delete.modal';
 
 describe('DeleteOrganization modal', () => {
   it('should render modal', () => {

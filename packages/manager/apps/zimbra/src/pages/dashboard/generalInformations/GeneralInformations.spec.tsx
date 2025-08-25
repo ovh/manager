@@ -1,9 +1,13 @@
 import React from 'react';
-import { describe, expect, vi } from 'vitest';
+
 import { useSearchParams } from 'react-router-dom';
-import GeneralInformations from './GeneralInformations.page';
-import { render, waitFor } from '@/utils/test.provider';
+
+import { describe, expect, vi } from 'vitest';
+
 import { organizationMock } from '@/data/api';
+import { render, waitFor } from '@/utils/test.provider';
+
+import GeneralInformations from './GeneralInformations.page';
 
 describe('General Informations page', () => {
   it('should display page correctly', () => {

@@ -1,6 +1,7 @@
-import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
+import { describe, expect, vi } from 'vitest';
+
 import { useGenerateUrl } from '@/hooks';
 import { wrapper } from '@/utils/test.provider';
 
@@ -8,8 +9,7 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...(await importOriginal<typeof import('react-router-dom')>()),
     useHref: vi.fn(
-      (text: string) =>
-        `#/00000000-0000-0000-0000-000000000001/organizations/${text.slice(2)}`,
+      (text: string) => `#/00000000-0000-0000-0000-000000000001/organizations/${text.slice(2)}`,
     ),
   };
 });
@@ -19,9 +19,7 @@ describe('useGenerateUrl', () => {
     const { result } = renderHook(() => useGenerateUrl('./add', 'href'), {
       wrapper,
     });
-    expect(result.current).toBe(
-      '#/00000000-0000-0000-0000-000000000001/organizations/add',
-    );
+    expect(result.current).toBe('#/00000000-0000-0000-0000-000000000001/organizations/add');
   });
 
   it('should return url href with params', () => {

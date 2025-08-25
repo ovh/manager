@@ -1,10 +1,14 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { render } from '@/utils/test.provider';
-import BillingStateBadge from './BillingStateBadge.component';
+
 import { ServiceBillingState } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import BillingStateBadge from './BillingStateBadge.component';
 
 const loadingTestId = 'billing-state-loading';
 const defaultTestId = 'billing-state';
@@ -31,42 +35,27 @@ describe('BillingStateBadge component', () => {
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute(
-      'label',
-      commonTranslation.service_billing_state_automatic_renewal,
-    );
+    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_automatic_renewal);
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.success);
   });
 
   it('should correctly display "MANUAL_RENEWAL" state', () => {
     const { getByTestId } = render(
-      <BillingStateBadge
-        data-testid={defaultTestId}
-        state={ServiceBillingState.MANUAL_RENEWAL}
-      />,
+      <BillingStateBadge data-testid={defaultTestId} state={ServiceBillingState.MANUAL_RENEWAL} />,
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute(
-      'label',
-      commonTranslation.service_billing_state_manual_renewal,
-    );
+    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_manual_renewal);
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.warning);
   });
 
   it('should correctly display "CANCELED" state', () => {
     const { getByTestId } = render(
-      <BillingStateBadge
-        data-testid={defaultTestId}
-        state={ServiceBillingState.CANCELED}
-      />,
+      <BillingStateBadge data-testid={defaultTestId} state={ServiceBillingState.CANCELED} />,
     );
 
     const cmp = getByTestId(defaultTestId);
-    expect(cmp).toHaveAttribute(
-      'label',
-      commonTranslation.service_billing_state_canceled,
-    );
+    expect(cmp).toHaveAttribute('label', commonTranslation.service_billing_state_canceled);
     expect(cmp).toHaveAttribute('color', ODS_BADGE_COLOR.critical);
   });
 

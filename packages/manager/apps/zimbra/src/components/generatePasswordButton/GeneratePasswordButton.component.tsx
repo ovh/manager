@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -5,17 +10,12 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
   if (window.crypto && window.crypto.getRandomValues) {
     return Math.floor(
-      (window.crypto.getRandomValues(new Uint32Array(1))[0] /
-        (0xffffffff + 1)) *
-        length,
+      (window.crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1)) * length,
     );
   }
 
@@ -45,15 +45,11 @@ export const generatePassword = (options: GeneratePasswordOptions = {}) => {
   };
 
   if (length <= 0) {
-    throw new Error(
-      "generatePassword: password length can't be less than or equal to 0",
-    );
+    throw new Error("generatePassword: password length can't be less than or equal to 0");
   }
 
   if (![withLowercase, withUppercase, withDigit, withSpecial].some(Boolean)) {
-    throw new Error(
-      'generatePassword: should have at least one character requirement',
-    );
+    throw new Error('generatePassword: should have at least one character requirement');
   }
 
   const uppercased = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -157,11 +153,7 @@ export const GeneratePasswordButton = ({
       />
       <OdsTooltip role="tooltip" withArrow triggerId={id}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            generated
-              ? 'generated_password_tooltip'
-              : 'generate_password_tooltip',
-          )}
+          {t(generated ? 'generated_password_tooltip' : 'generate_password_tooltip')}
         </OdsText>
       </OdsTooltip>
     </div>

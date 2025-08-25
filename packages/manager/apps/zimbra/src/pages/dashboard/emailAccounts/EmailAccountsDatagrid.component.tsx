@@ -1,25 +1,22 @@
 import React, { useEffect, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  Datagrid,
-  DatagridColumn,
-  useBytes,
-} from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Datagrid, DatagridColumn, useBytes } from '@ovh-ux/manager-react-components';
+
+import { BadgeStatus, BillingStateBadge, LabelChip } from '@/components';
+import { AccountType, ResourceStatus, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useAccounts, useSlotServices } from '@/data/hooks';
-import { useOverridePage, useDebouncedValue } from '@/hooks';
-import { LabelChip, BadgeStatus, BillingStateBadge } from '@/components';
+import { useDebouncedValue, useOverridePage } from '@/hooks';
+import queryClient from '@/queryClient';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+
 import { ActionButtonEmailAccount } from './ActionButton.component';
 import { DatagridTopbar } from './DatagridTopBar.component';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
-import {
-  getZimbraPlatformListQueryKey,
-  ResourceStatus,
-  AccountType,
-} from '@/data/api';
-import queryClient from '@/queryClient';
 import { EmailAccountItem } from './EmailAccounts.types';
 
 export const EmailAccountsDatagrid = () => {
@@ -28,12 +25,8 @@ export const EmailAccountsDatagrid = () => {
   const isOverridedPage = useOverridePage();
   const { formatBytes } = useBytes();
 
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
 
   const {
     data: accounts,
@@ -62,9 +55,7 @@ export const EmailAccountsDatagrid = () => {
    * in "DELETING" state the slot is not yet freed, to me it should be
    * but it requires changes on backend side */
   useEffect(() => {
-    const current = accounts?.some(
-      (account) => account.resourceStatus === ResourceStatus.DELETING,
-    );
+    const current = accounts?.some((account) => account.resourceStatus === ResourceStatus.DELETING);
     if (hasADeletingAccount !== current) {
       if (!current) {
         queryClient.invalidateQueries({
@@ -96,34 +87,25 @@ export const EmailAccountsDatagrid = () => {
     () => [
       {
         id: 'email_account',
-        cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>
-        ),
+        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.email}</OdsText>,
         label: 'common:email_account',
         isSearchable: true,
       },
       {
         id: 'organization',
-        cell: (item) => (
-          <LabelChip id={item.organizationId}>
-            {item.organizationLabel}
-          </LabelChip>
-        ),
+        cell: (item) => <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>,
         label: 'common:organization',
       },
       {
         id: 'offer',
-        cell: (item) => (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>
-        ),
+        cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.offer}</OdsText>,
         label: 'zimbra_account_datagrid_offer_label',
       },
       {
         id: 'quota',
         cell: (item) => (
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {formatBytes(item.used, 2, 1024)} /{' '}
-            {formatBytes(item.available, 0, 1024)}
+            {formatBytes(item.used, 2, 1024)} / {formatBytes(item.available, 0, 1024)}
           </OdsText>
         ),
         label: 'zimbra_account_datagrid_quota',
@@ -140,9 +122,7 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'tooltip',
-        cell: (item: EmailAccountItem) => (
-          <ActionButtonEmailAccount item={item} />
-        ),
+        cell: (item: EmailAccountItem) => <ActionButtonEmailAccount item={item} />,
         label: '',
       },
     ],

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import {
-  useOvhTracking,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+
 import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { Error } from '@/components';
 import { useOrganizations, usePlatform } from '@/data/hooks';
 import { isOnboarded } from '@/utils';
@@ -30,9 +30,7 @@ export const Layout = () => {
   }, []);
 
   const shouldOnboard =
-    !onboarded &&
-    organizations?.length === 0 &&
-    !location.pathname.startsWith('/onboarding');
+    !onboarded && organizations?.length === 0 && !location.pathname.startsWith('/onboarding');
 
   return (
     <>
@@ -41,16 +39,8 @@ export const Layout = () => {
       {!platformId && !isLoading && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}
-      {shouldOnboard && (
-        <Navigate
-          key={location.pathname}
-          to="onboarding/welcome"
-          replace={true}
-        />
-      )}
-      {!shouldOnboard && location.pathname === '/' && (
-        <Navigate to={platformId} replace={true} />
-      )}
+      {shouldOnboard && <Navigate key={location.pathname} to="onboarding/welcome" replace={true} />}
+      {!shouldOnboard && location.pathname === '/' && <Navigate to={platformId} replace={true} />}
     </>
   );
 };

@@ -1,2 +1,1 @@
-export const getApiPath = (platformId: string) =>
-  `/zimbra/platform/${platformId}/`;
+export const getApiPath = (platformId: string) => `/zimbra/platform/${platformId}/`;

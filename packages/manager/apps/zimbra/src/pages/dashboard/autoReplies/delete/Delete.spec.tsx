@@ -1,9 +1,13 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import DeleteAutoReplyModal from './Delete.modal';
-import { render } from '@/utils/test.provider';
+
+import { describe, expect, it, vi } from 'vitest';
+
 import { platformMock } from '@/data/api';
+import { render } from '@/utils/test.provider';
+
+import DeleteAutoReplyModal from './Delete.modal';
 
 vi.mocked(useParams).mockReturnValue({
   platformId: platformMock[0].id,
