@@ -1,0 +1,95 @@
+<form novalidate name="modalOrderTime2Chat">
+    <oui-modal
+        data-heading="{{ 'sms_order_time2chat_title' | translate }}"
+        data-loading="$ctrl.loading"
+        data-primary-action="$ctrl.onSubmit()"
+        data-primary-label="{{ 'sms_order_time2chat_action_order' | translate }}"
+        data-primary-disabled="modalOrderTime2Chat.$invalid"
+        data-secondary-action="$ctrl.onCancel()"
+        data-secondary-label="{{ 'sms_order_time2chat_action_cancel' | translate }}"
+        data-on-dismiss="$ctrl.onCancel()"
+    >
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_email' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="email"
+                type="email"
+                data-ng-model="$ctrl.model.email"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="name"
+                data-ng-model="$ctrl.model.name"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_phonenumber' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="phonenumber"
+                data-ng-model="$ctrl.model.phonenumber"
+                data-ng-pattern="$ctrl.phoneNumberRegex"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_company_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="company_name"
+                data-ng-model="$ctrl.model.company_name"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_brand_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="brand_name"
+                data-ng-model="$ctrl.model.brand_name"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_primary_use_case' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="primary_use_case"
+                data-ng-model="$ctrl.model.primary_use_case"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_operational_contact_name' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="operational_contact_name"
+                data-ng-model="$ctrl.model.operational_contact_name"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{ 'sms_order_time2chat_label_operational_contact_email' | translate }}"
+        >
+            <input
+                class="oui-input"
+                name="operational_contact_email"
+                data-ng-model="$ctrl.model.operational_contact_email"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
