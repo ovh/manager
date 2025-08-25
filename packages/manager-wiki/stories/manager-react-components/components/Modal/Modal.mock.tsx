@@ -2,6 +2,8 @@ import React from 'react';
 
 export const basic = {
   heading: 'Example of modal',
+  currentStep: 1,
+  totalStepNumber: 5,
   children: <div>Example of content</div>,
 };
 

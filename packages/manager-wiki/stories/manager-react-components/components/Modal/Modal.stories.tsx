@@ -11,6 +11,8 @@ import {
 
 const ModalStory = ({
   heading,
+  currentStep,
+  totalStepNumber,
   type = ODS_MODAL_COLOR.neutral,
   isLoading,
   primaryLabel,
@@ -28,6 +30,8 @@ const ModalStory = ({
   return (
     <Modal
       heading={heading}
+      currentStep={currentStep}
+      totalStepNumber={totalStepNumber}
       type={type}
       isLoading={isLoading}
       primaryLabel={primaryLabel}
