@@ -42,7 +42,9 @@ export async function fillStep4(container: HTMLElement) {
   });
 
   await waitFor(() => {
-    const checkbox = container.querySelector('ods-checkbox');
+    const checkbox = container.querySelector(
+      'ods-checkbox',
+    ) as HTMLOdsCheckboxElement;
     checkbox.setAttribute('is-checked', '');
     return fireEvent(checkbox, event);
   }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -58,15 +60,16 @@ export async function goToStep({
   const nextButton = await getButtonByLabel({ container, label: 'next' });
   await waitFor(() => fireEvent.click(nextButton));
 
+  const labelByStepNumber: { [step: number]: string } = {
+    1: labels.importIpFromSys.step1Description,
+    2: labels.importIpFromSys.step2Description,
+    3: labels.importIpFromSys.step3Description,
+    4: labels.importIpFromSys.acceptContracts,
+    5: labels.importIpFromSys.step5Description,
+  };
+
   await waitFor(
-    () =>
-      expect(
-        screen.getByText(
-          labels.importIpFromSys.stepPlaceholder
-            .replace('{{ current }}', stepNumber.toString())
-            .replace('{{ max }}', '5'),
-        ),
-      ).toBeVisible(),
+    () => expect(screen.getByText(labelByStepNumber[stepNumber])).toBeVisible(),
     WAIT_FOR_DEFAULT_OPTIONS,
   );
 }
