@@ -6,6 +6,7 @@ export default {
     network: '<',
     productId: '<',
     displaySuccessMessage: '<',
+    trackClick: '<',
   },
   controller,
   template,

@@ -28,7 +28,9 @@ export const TRACKING_NEW_PRODUCT_BANNER = {
     'dedicated::dedicatedCloud::details::datacenter::link-to-vmware-products',
 };
 
-export const TRACKING_GO_TO_TAB_PREFIX = 'main-tabnav::go-to-tab::';
+export const TRACKING_CLICK_GO_TO_TAB_PREFIX = 'main-tabnav::go-to-tab::';
+
+export const TRACKING_PAGE_GO_TO_TAB_PREFIX = 'datacenter::details::';
 
 export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
 
