@@ -1,11 +1,5 @@
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
 import React, { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import {
   Outlet,
   useLocation,
@@ -13,27 +7,39 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import ActionButtonAutoReply from './ActionButton.component';
+
+import { BadgeStatus } from '@/components';
 import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { BadgeStatus } from '@/components';
 import {
   ADD_AUTO_REPLY,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
 } from '@/tracking.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButtonAutoReply from './ActionButton.component';
 import { AutoReplyItem } from './AutoReplies.types';
 
 const items: AutoReplyItem[] = [

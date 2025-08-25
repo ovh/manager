@@ -1,6 +1,7 @@
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
-import { ServiceBillingState, SlotService } from './type';
+
 import { ZimbraPlanCodes } from '../type';
+import { ServiceBillingState, SlotService } from './type';
 
 export const getServiceBillingState = (service: ServiceDetails) => {
   switch (true) {

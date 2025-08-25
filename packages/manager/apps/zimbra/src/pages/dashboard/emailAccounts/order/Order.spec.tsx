@@ -1,10 +1,13 @@
 import React from 'react';
-import 'element-internals-polyfill';
+
 import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
-import { fireEvent, render, waitFor, act } from '@/utils/test.provider';
-import OrderEmailAccounts from './Order.page';
+
 import emailAccountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import OrderEmailAccounts from './Order.page';
 
 describe('email account order page', () => {
   it('should render page correctly', async () => {
@@ -43,14 +46,14 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // off
       fireEvent.click(consent);
       // quantity 1
@@ -59,7 +62,7 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // on
       fireEvent.click(consent);
       // quantity 0
@@ -68,14 +71,14 @@ describe('email account order page', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       // quantity 1
       fireEvent.click(quantityPlus);
     });
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(button);
     });
 

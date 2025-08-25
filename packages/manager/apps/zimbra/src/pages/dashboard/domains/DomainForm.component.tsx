@@ -1,57 +1,63 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  LinkType,
-  Links,
-  Subtitle,
-  IconLinkAlignmentType,
-} from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
+  ODS_BUTTON_COLOR,
+  ODS_INPUT_TYPE,
+  ODS_LINK_COLOR,
+  ODS_MESSAGE_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+  OdsRadioChangeEventDetail,
+  OdsRadioCustomEvent,
+} from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCheckbox,
   OdsFormField,
+  OdsInput,
+  OdsMessage,
   OdsRadio,
   OdsSelect,
   OdsText,
-  OdsButton,
-  OdsInput,
-  OdsMessage,
-  OdsCheckbox,
 } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsRadioCustomEvent,
-  ODS_MESSAGE_COLOR,
-  ODS_BUTTON_COLOR,
-  OdsRadioChangeEventDetail,
-  ODS_LINK_COLOR,
-} from '@ovhcloud/ods-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  Subtitle,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, useOrganizations } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+
+import { Loading } from '@/components';
 import {
   DomainBodyParamsType,
+  DomainType,
+  OrganizationType,
+  ResourceStatus,
   getDomainsZoneList,
   getDomainsZoneListQueryKey,
   getZimbraPlatformDomainsQueryKey,
   postZimbraDomain,
-  DomainType,
-  ResourceStatus,
 } from '@/data/api';
+import { useDomains, useOrganizations } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
+import { ADD_DOMAIN, BACK_PREVIOUS_PAGE, CONFIRM } from '@/tracking.constants';
 import { DNS_CONFIG_TYPE, DomainSchema, domainSchema } from '@/utils';
-import { ADD_DOMAIN, CONFIRM, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
-import { Loading } from '@/components';
 
 export enum DomainOwnership {
   OVH = 'ovhDomain',
@@ -92,12 +98,12 @@ export const DomainForm = ({
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackOrgs, setHackOrgs] = useState([]);
+  const [hackOrgs, setHackOrgs] = useState<OrganizationType[]>([]);
   const [hackKeyOrg, setHackKeyOrg] = useState(Date.now());
 
   useEffect(() => {
     setHackOrgs(
-      (organizations || [])?.filter(
+      organizations?.filter(
         (org) => org.resourceStatus === ResourceStatus.READY,
       ),
     );
@@ -105,7 +111,9 @@ export const DomainForm = ({
   }, [organizations]);
   const backLinkUrl = useGenerateUrl(backUrl, 'href');
 
-  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery({
+  const { data: domainZones, isLoading: isLoadingDomainZones } = useQuery<
+    string[]
+  >({
     queryKey: getDomainsZoneListQueryKey,
     queryFn: () => getDomainsZoneList(),
   });
@@ -149,8 +157,8 @@ export const DomainForm = ({
     },
     onSuccess,
     onError,
-    onSettled: (domain: DomainType, error: ApiError) => {
-      queryClient.invalidateQueries({
+    onSettled: async (domain: DomainType, error: ApiError) => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformDomainsQueryKey(platformId),
       });
 

@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import EmailAccounts from './EmailAccounts.page';
-import { render } from '@/utils/test.provider';
+
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import EmailAccounts from './EmailAccounts.page';
 
 describe('Email accounts DatagridTopbar component', () => {
-  it('should display correctly', async () => {
+  it('should display correctly', () => {
     const { getByTestId } = render(<EmailAccounts />);
 
     const addButton = getByTestId('add-account-btn');

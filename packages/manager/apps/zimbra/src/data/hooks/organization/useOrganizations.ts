@@ -1,14 +1,17 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
 import {
+  OrganizationType,
   getZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
-  OrganizationType,
 } from '@/data/api';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 

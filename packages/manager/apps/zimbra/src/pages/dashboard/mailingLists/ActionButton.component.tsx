@@ -1,24 +1,30 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { ResourceStatus } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
 import {
   CONFIGURE_DELEGATION_MAILING_LIST,
   DEFINE_MEMBERS_MAILING_LIST,
   DELETE_MAILING_LIST,
   EDIT_MAILING_LIST,
 } from '@/tracking.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { MailingListItem } from './MailingLists.types';
 
 interface ActionButtonMailingListProps {

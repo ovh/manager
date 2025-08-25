@@ -1,43 +1,49 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { z } from 'zod';
+
 import {
   ODS_INPUT_TYPE,
   ODS_MODAL_COLOR,
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+import {
+  OdsFormField,
+  OdsInput,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, useAccount } from '@/data/hooks';
-import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
+
 import { Loading } from '@/components';
 import {
   AliasBodyParamsType,
+  DomainType,
+  ResourceStatus,
   getZimbraPlatformAliasesQueryKey,
   postZimbraPlatformAlias,
-  ResourceStatus,
 } from '@/data/api';
-import { aliasSchema } from '@/utils';
+import { useAccount, useDomains } from '@/data/hooks';
+import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, EMAIL_ACCOUNT_ADD_ALIAS } from '@/tracking.constants';
+import { aliasSchema } from '@/utils';
 
 export const AddAliasModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
@@ -65,7 +71,7 @@ export const AddAliasModal = () => {
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
@@ -107,8 +113,8 @@ export const AddAliasModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAliasesQueryKey(platformId),
       });
       onClose();

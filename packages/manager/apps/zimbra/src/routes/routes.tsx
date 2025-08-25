@@ -1,14 +1,19 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+/* eslint-disable max-lines */
 import React from 'react';
-import { UIMatch, Route } from 'react-router-dom';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { Route, UIMatch } from 'react-router-dom';
+
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
-import OnboardingConfigureLayout from '@/pages/onboarding/configure/Configure.layout';
-import Layout from '@/pages/layout';
 import DashboardLayout from '@/pages/dashboard/Dashboard.layout';
 import EmailAccountSettingsLayout from '@/pages/dashboard/emailAccounts/settings/Settings.layout';
+import Layout from '@/pages/layout';
+import OnboardingConfigureLayout from '@/pages/onboarding/configure/Configure.layout';
 import {
   ADD_AUTO_REPLY,
   ADD_DOMAIN,
@@ -17,6 +22,7 @@ import {
   ADD_ORGANIZATION,
   ADD_REDIRECTION,
   AUTO_REPLY,
+  CANCEL_SLOT,
   DELETE_AUTO_REPLY,
   DELETE_DOMAIN,
   DELETE_EMAIL_ACCOUNT,
@@ -46,17 +52,16 @@ import {
   GENERAL_INFORMATIONS,
   MAILING_LIST,
   ONBOARDING,
-  ONBOARDING_WELCOME,
+  ONBOARDING_CONFIGURE_DOMAIN,
+  ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
   ONBOARDING_CONFIGURE_ORGANIZATION,
+  ONBOARDING_WELCOME,
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
   ORGANIZATION,
   REDIRECTION,
-  VERIFY_DOMAIN,
-  ONBOARDING_CONFIGURE_DOMAIN,
-  ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
-  CANCEL_SLOT,
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
+  VERIFY_DOMAIN,
 } from '@/tracking.constants';
 
 export type RouteHandle = {

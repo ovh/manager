@@ -1,13 +1,19 @@
 import React from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import { ADD_DOMAIN } from '@/tracking.constants';
+
 import DomainForm from '../DomainForm.component';
 
 export const AddDomain = () => {

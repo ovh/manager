@@ -1,4 +1,5 @@
 import { expect } from 'vitest';
+
 import { allSettledSequential } from './promise';
 
 describe('promise utils', () => {

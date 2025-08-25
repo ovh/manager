@@ -1,16 +1,21 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, act, waitFor } from '@/utils/test.provider';
-import AddEditRedirectionModal from './AddEdit.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import {
   organizationMock,
   platformMock,
   postZimbraPlatformOrganization,
   putZimbraPlatformOrganization,
 } from '@/data/api';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditRedirectionModal from './AddEdit.modal';
 
 describe('Organizations add and edit modal', () => {
   // @TODO: find why this test is inconsistent
@@ -24,12 +29,12 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as any;
-    const inputLabel = getByTestId('input-label') as any;
+    const inputName = getByTestId('input-name') as OdsHTMLElement;
+    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       inputName.odsBlur.emit({});
       inputLabel.odsBlur.emit({});
     });
@@ -38,7 +43,7 @@ describe('Organizations add and edit modal', () => {
     expect(inputLabel).toHaveAttribute('has-error', 'true');
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputName, {
         target: { value: 'Name' },
       });
@@ -50,7 +55,7 @@ describe('Organizations add and edit modal', () => {
 
     expect(inputName).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputLabel, {
         target: { value: 'Label' },
       });
@@ -64,7 +69,7 @@ describe('Organizations add and edit modal', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputName, {
         target: { value: '' },
       });
@@ -76,7 +81,7 @@ describe('Organizations add and edit modal', () => {
 
     expect(inputName).toHaveAttribute('has-error', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputLabel, {
         target: { value: 'NotAValidLabelWithMore12Chars' },
       });
@@ -99,10 +104,11 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as any;
-    const inputLabel = getByTestId('input-label') as any;
+    const inputName = getByTestId('input-name') as OdsHTMLElement;
+    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       inputName.odsBlur.emit({});
       inputLabel.odsBlur.emit({});
     });
@@ -111,7 +117,8 @@ describe('Organizations add and edit modal', () => {
     expect(inputLabel).toHaveAttribute('has-error', 'true');
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.change(inputName, {
         target: { value: 'Name' },
       });
@@ -123,7 +130,8 @@ describe('Organizations add and edit modal', () => {
 
     expect(inputName).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.change(inputLabel, {
         target: { value: 'Label' },
       });
@@ -137,7 +145,8 @@ describe('Organizations add and edit modal', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(button);
     });
 
@@ -157,10 +166,11 @@ describe('Organizations add and edit modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputName = getByTestId('input-name') as any;
-    const inputLabel = getByTestId('input-label') as any;
+    const inputName = getByTestId('input-name') as OdsHTMLElement;
+    const inputLabel = getByTestId('input-label') as OdsHTMLElement;
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       inputName.odsBlur.emit({});
       inputLabel.odsBlur.emit({});
 
@@ -175,7 +185,8 @@ describe('Organizations add and edit modal', () => {
 
     expect(inputName).toHaveAttribute('has-error', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.change(inputLabel, {
         target: { value: 'Label1' },
       });
@@ -189,7 +200,8 @@ describe('Organizations add and edit modal', () => {
 
     expect(button).toHaveAttribute('is-disabled', 'false');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(button);
     });
 

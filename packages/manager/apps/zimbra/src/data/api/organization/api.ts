@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { OrganizationBodyParamsType, OrganizationType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { OrganizationBodyParamsType, OrganizationType } from './type';
 
 // GET
 
@@ -56,7 +58,9 @@ export const putZimbraPlatformOrganization = async (
 ) => {
   const { data } = await v2.put(
     `${getApiPath(platformId)}organization/${organizationId}`,
-    { targetSpec: params },
+    {
+      targetSpec: params,
+    },
   );
   return data;
 };

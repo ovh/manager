@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import ActionButtonRedirection from './ActionButton.component';
-import { render } from '@/utils/test.provider';
-import { FEATURE_FLAGS } from '@/utils';
+
 import { ResourceStatus } from '@/data/api';
+import { FEATURE_FLAGS } from '@/utils';
+import { render } from '@/utils/test.provider';
+
+import ActionButtonRedirection from './ActionButton.component';
 
 describe('Redirections datagrid action menu', () => {
   it('renders with menu enabled and 2 items', () => {

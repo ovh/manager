@@ -1,6 +1,8 @@
-import { z } from 'zod';
 import i18n from 'i18next';
+import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ZimbraOffer, ZimbraPlanCodes } from '@/data/api/type';
 
 const customErrorMap: z.ZodErrorMap = (error, ctx) => {

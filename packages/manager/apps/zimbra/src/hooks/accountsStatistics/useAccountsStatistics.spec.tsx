@@ -1,7 +1,9 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { describe, it, expect, vi } from 'vitest';
-import * as hooks from '@/data/hooks';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ZimbraOffer } from '@/data/api';
+import * as hooks from '@/data/hooks';
+
 import { useAccountsStatistics } from './useAccountsStatistics';
 
 vi.mock('@/data/hooks');

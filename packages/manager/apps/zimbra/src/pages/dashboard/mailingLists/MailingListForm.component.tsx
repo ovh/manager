@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-  OdsToggle,
-  OdsIcon,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -23,36 +16,49 @@ import {
   ODS_TEXT_PRESET,
   OdsSelectChangeEvent,
 } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
+  OdsMessage,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsToggle,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
+
+import { Loading } from '@/components';
 import {
+  DomainType,
+  MailingListBodyParamsType,
+  ModerationChoices,
+  ReplyToChoices,
+  ResourceStatus,
+  getZimbraPlatformMailingListsQueryKey,
   postZimbraPlatformMailingList,
   putZimbraPlatformMailingList,
-  MailingListBodyParamsType,
-  ReplyToChoices,
-  ModerationChoices,
-  getZimbraPlatformMailingListsQueryKey,
-  ResourceStatus,
 } from '@/data/api';
-import { mailingListSchema, MailingListSchema } from '@/utils';
+import { useDomains, useMailingList } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
 import {
   ADD_MAILING_LIST,
   CONFIRM,
   EDIT_MAILING_LIST,
 } from '@/tracking.constants';
-import { useDomains, useMailingList } from '@/data/hooks';
-import { Loading } from '@/components';
+import { MailingListSchema, mailingListSchema } from '@/utils';
 
 const replyToChoices = [
   {
@@ -115,7 +121,7 @@ export const MailingListForm = () => {
   });
   //
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
@@ -175,8 +181,8 @@ export const MailingListForm = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformMailingListsQueryKey(platformId),
       });
       goBack();
@@ -371,7 +377,7 @@ export const MailingListForm = () => {
                     id={choice.value}
                     name={choice.value}
                     value={value}
-                    isChecked={value === choice.value}
+                    isChecked={value === (choice.value as string)}
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-reply-to-${choice.value}`}
                   ></OdsRadio>
@@ -434,7 +440,7 @@ export const MailingListForm = () => {
                     id={choice.value}
                     name={choice.value}
                     value={value}
-                    isChecked={value === choice.value}
+                    isChecked={value === (choice.value as string)}
                     onClick={() => onChange(choice.value)}
                     data-testid={`radio-moderation-option-${choice.value}`}
                   ></OdsRadio>

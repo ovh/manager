@@ -1,18 +1,23 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useMutation } from '@tanstack/react-query';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useGenerateUrl } from '@/hooks';
 import {
   CANCEL,

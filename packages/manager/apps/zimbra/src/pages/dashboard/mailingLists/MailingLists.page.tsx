@@ -1,13 +1,18 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Datagrid,
   DatagridColumn,
@@ -18,15 +23,16 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { usePlatform, useMailingLists } from '@/data/hooks';
-import { useGenerateUrl, useOverridePage } from '@/hooks';
-import ActionButtonMailingList from './ActionButton.component';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { MailingListType } from '@/data/api';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+
 import { BadgeStatus, LabelChip } from '@/components';
+import { MailingListType } from '@/data/api';
+import { useMailingLists, usePlatform } from '@/data/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_MAILING_LIST } from '@/tracking.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButtonMailingList from './ActionButton.component';
 import { MailingListItem } from './MailingLists.types';
 
 const columns: DatagridColumn<MailingListItem>[] = [

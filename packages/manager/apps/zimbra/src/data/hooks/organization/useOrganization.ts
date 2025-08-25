@@ -1,13 +1,15 @@
+import { useParams, useSearchParams } from 'react-router-dom';
+
 import {
-  useQuery,
   UseQueryOptions,
   UseQueryResult,
+  useQuery,
 } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'react-router-dom';
+
 import {
+  OrganizationType,
   getZimbraPlatformOrganizationDetails,
   getZimbraPlatformOrganizationDetailsQueryKey,
-  OrganizationType,
 } from '@/data/api';
 
 type UseOrganizationParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {

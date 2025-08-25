@@ -1,29 +1,34 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ActionMenu,
   ActionMenuProps,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
 import { SlotWithService, usePlatform } from '@/data/hooks';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 import {
   CANCEL_SLOT,
   CONFIGURE_SLOT,
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
 } from '@/tracking.constants';
-import { ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 interface ActionButtonSlotProps {
   item: SlotWithService;

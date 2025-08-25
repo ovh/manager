@@ -1,25 +1,30 @@
 import React from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ActionMenu,
   useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { usePlatform } from '@/data/hooks';
-import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
 import {
   ResourceStatus,
   ServiceBillingState,
   ZimbraPlanCodes,
 } from '@/data/api';
+import { usePlatform } from '@/data/hooks';
+import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
 import {
   CANCEL_SLOT,
   DELETE_EMAIL_ACCOUNT,
@@ -28,7 +33,8 @@ import {
   UNDO_CANCEL_SLOT,
   UPGRADE_SLOT,
 } from '@/tracking.constants';
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { EmailAccountItem } from './EmailAccounts.types';
 
 interface ActionButtonEmailAccountProps {

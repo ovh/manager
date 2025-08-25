@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -5,9 +10,6 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-import useCopyToClipboard from 'react-use/lib/useCopyToClipboard';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export const getRandomIndex = (length: number) => {
   // Crypto API is available
@@ -89,14 +91,12 @@ export const generatePassword = (options: GeneratePasswordOptions = {}) => {
     );
   }
 
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < remaining; i++) {
+  for (let i = 0; i < remaining; i += 1) {
     output.push(input.charAt(getRandomIndex(input.length)));
   }
 
   // shuffle result to ensure randomness
-  // eslint-disable-next-line no-plusplus
-  for (let i = output.length - 1; i > 0; i--) {
+  for (let i = output.length - 1; i > 0; i -= 1) {
     const j = getRandomIndex(i + 1);
     [output[i], output[j]] = [output[j], output[i]];
   }

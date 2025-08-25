@@ -1,20 +1,23 @@
 import React from 'react';
+
+import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsPassword,
-} from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,
 } from '@ovhcloud/ods-components';
-import { Controller, useFormContext } from 'react-hook-form';
-import { AddEmailAccountsSchema } from '@/utils';
+import {
+  OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsPassword,
+} from '@ovhcloud/ods-components/react';
+
 import { GeneratePasswordButton } from '@/components';
+import { AddEmailAccountsSchema } from '@/utils';
 
 export const InlineEmailAccountFormItem = ({
   index,

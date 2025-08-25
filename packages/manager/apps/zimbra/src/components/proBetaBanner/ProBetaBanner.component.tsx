@@ -1,22 +1,27 @@
 import React, { useContext, useMemo } from 'react';
-import {
-  IconLinkAlignmentType,
-  Links,
-  LinkType,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_LINK_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+
+import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
+import {
+  IconLinkAlignmentType,
+  LinkType,
+  Links,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
-import { generateOrderURL, ZimbraPlanCodes } from '@/data/api';
+
+import { ZimbraPlanCodes, generateOrderURL } from '@/data/api';
 import { ORDER_ZIMBRA_PRO_BETA_EMAIL_ACCOUNT } from '@/tracking.constants';
 
 export const ProBetaBanner = () => {
@@ -40,7 +45,7 @@ export const ProBetaBanner = () => {
         },
       ],
     });
-  }, [region, ovhSubsidiary]);
+  }, [platformId, region, ovhSubsidiary]);
 
   const onLinkClick = () => {
     trackClick({

@@ -1,10 +1,13 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
   SlotBillingStatus,
   SlotService,
@@ -13,8 +16,8 @@ import {
   getZimbraPlatformSlots,
   getZimbraPlatformSlotsQueryKey,
 } from '@/data/api';
-import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 import { useSlotServices } from '@/data/hooks';
+import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 export type SlotWithService = {
   id: string;

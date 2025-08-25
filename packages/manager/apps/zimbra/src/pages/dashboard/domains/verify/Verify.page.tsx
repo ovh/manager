@@ -1,28 +1,33 @@
 import React from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
+  ODS_LINK_COLOR,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import {
+  Clipboard,
+  IconLinkAlignmentType,
   LinkType,
   Links,
   Subtitle,
-  Clipboard,
-  IconLinkAlignmentType,
 } from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_PRESET,
-  ODS_MESSAGE_COLOR,
-  ODS_LINK_COLOR,
-} from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useDomain } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
-import { GUIDES_LIST } from '@/guides.constants';
+
 import { GuideLink, Loading } from '@/components';
+import { useDomain } from '@/data/hooks';
+import { GUIDES_LIST } from '@/guides.constants';
+import { useGenerateUrl } from '@/hooks';
 import { BACK_PREVIOUS_PAGE, VERIFY_DOMAIN } from '@/tracking.constants';
 
 export enum DomainOwnership {

@@ -1,14 +1,17 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams, useSearchParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
+  MailingListType,
   getZimbraPlatformMailingLists,
   getZimbraPlatformMailingListsQueryKey,
-  MailingListType,
 } from '@/data/api';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 

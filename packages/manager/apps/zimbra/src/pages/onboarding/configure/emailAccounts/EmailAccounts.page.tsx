@@ -1,47 +1,52 @@
 import React, { useEffect, useMemo } from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import {
   FormProvider,
   SubmitHandler,
   useFieldArray,
   useForm,
 } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useMutation } from '@tanstack/react-query';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomain, usePlatform } from '@/data/hooks';
-import { Loading, InlineEmailAccountFormItem } from '@/components';
+
+import { InlineEmailAccountFormItem, Loading } from '@/components';
 import {
   ZimbraOffer,
-  getZimbraPlatformListQueryKey,
   formatAccountPayload,
+  getZimbraPlatformListQueryKey,
   postZimbraPlatformAccount,
 } from '@/data/api';
-import {
-  addEmailAccountsSchema,
-  AddEmailAccountsSchema,
-  allSettledSequential,
-} from '@/utils';
+import { useDomain, usePlatform } from '@/data/hooks';
+import queryClient from '@/queryClient';
 import {
   CONFIRM,
   ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
   SKIP,
 } from '@/tracking.constants';
-import queryClient from '@/queryClient';
+import {
+  AddEmailAccountsSchema,
+  addEmailAccountsSchema,
+  allSettledSequential,
+} from '@/utils';
 
 export const ConfigureEmailAccounts: React.FC = () => {
   const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ACTIONS]);
@@ -98,7 +103,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
         { domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER },
       ],
     });
-  }, [domain]);
+  }, [domain, methods]);
 
   const starterAccounts = useMemo(
     () =>
@@ -132,8 +137,8 @@ export const ConfigureEmailAccounts: React.FC = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
       onClose();

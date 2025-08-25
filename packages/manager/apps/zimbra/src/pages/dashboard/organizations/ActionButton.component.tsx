@@ -1,19 +1,25 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
-import { usePlatform } from '@/data/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { ResourceStatus } from '@/data/api';
+import { usePlatform } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import { DELETE_ORGANIZATION, EDIT_ORGANIZATION } from '@/tracking.constants';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { OrganizationItem } from './Organizations.types';
 
 interface ActionButtonOrganizationProps {

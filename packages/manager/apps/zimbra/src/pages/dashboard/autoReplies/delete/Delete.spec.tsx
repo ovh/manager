@@ -1,9 +1,13 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import DeleteAutoReplyModal from './Delete.modal';
-import { render } from '@/utils/test.provider';
+
+import { describe, expect, it, vi } from 'vitest';
+
 import { platformMock } from '@/data/api';
+import { render } from '@/utils/test.provider';
+
+import DeleteAutoReplyModal from './Delete.modal';
 
 vi.mocked(useParams).mockReturnValue({
   platformId: platformMock[0].id,
@@ -11,7 +15,7 @@ vi.mocked(useParams).mockReturnValue({
 });
 
 describe('DeleteAutoReply modal', () => {
-  it('should render with delete button enabled', async () => {
+  it('should render with delete button enabled', () => {
     const { getByTestId } = render(<DeleteAutoReplyModal />);
 
     const cancelButton = getByTestId('cancel-btn');
@@ -21,7 +25,7 @@ describe('DeleteAutoReply modal', () => {
     expect(deleteButton).toBeInTheDocument();
 
     // TODO: test this when autoreplies are implemented
-    /* await act(() => {
+    /* act(() => {
       fireEvent.click(btn);
     });
 

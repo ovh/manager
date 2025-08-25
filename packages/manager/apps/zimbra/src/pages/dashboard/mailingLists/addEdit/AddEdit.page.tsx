@@ -1,25 +1,31 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+
 import {
   IconLinkAlignmentType,
-  Links,
   LinkType,
+  Links,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
-import MailingListForm from '../MailingListForm.component';
 import {
   ADD_MAILING_LIST,
   BACK_PREVIOUS_PAGE,
   EDIT_MAILING_LIST,
 } from '@/tracking.constants';
+
+import MailingListForm from '../MailingListForm.component';
 
 export const AddEditMailingList = () => {
   const { trackClick } = useOvhTracking();

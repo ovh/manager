@@ -1,12 +1,14 @@
 import {
-  fetchIcebergV6,
   IcebergFetchParamsV6,
+  fetchIcebergV6,
   v6,
 } from '@ovh-ux/manager-core-api';
 import { ServiceDetails } from '@ovh-ux/manager-react-components';
+
 import { buildURLSearchParams } from '@/utils';
-import { makeSlotServiceHashmap } from './utils';
+
 import { SlotServiceBodyParamsType } from './type';
+import { makeSlotServiceHashmap } from './utils';
 
 // GET
 

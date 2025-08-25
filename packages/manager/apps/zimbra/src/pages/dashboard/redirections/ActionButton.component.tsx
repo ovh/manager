@@ -1,25 +1,31 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGenerateUrl } from '@/hooks';
-import { usePlatform } from '@/data/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { ResourceStatus } from '@/data/api';
-import { FEATURE_FLAGS } from '@/utils';
+import { usePlatform } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
 import {
   DELETE_REDIRECTION,
   EDIT_REDIRECTION,
   EMAIL_ACCOUNT_DELETE_REDIRECTION,
   EMAIL_ACCOUNT_EDIT_REDIRECTION,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
 import { RedirectionItem } from './Redirections.types';
 
 interface ActionButtonRedirectionAccountProps {

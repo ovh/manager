@@ -1,14 +1,15 @@
 import {
-  useQuery,
   UseQueryOptions,
   UseQueryResult,
+  useQuery,
 } from '@tanstack/react-query';
-import { usePlatform } from '@/data/hooks';
+
 import {
   DomainDiagnosisResponse,
   getZimbraPlatformDomainsDiagnosticQueryKey,
   postZimbraPlatformDomainsDiagnostic,
 } from '@/data/api';
+import { usePlatform } from '@/data/hooks';
 
 type UseDomainDiagnosticParams = Omit<
   UseQueryOptions,

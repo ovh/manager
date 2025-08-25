@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
-import { render, waitFor } from '@/utils/test.provider';
+
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render, waitFor } from '@/utils/test.provider';
+
+import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
 
 describe('EmailAccounts datagrid', () => {
   it('should render correctly', async () => {
