@@ -63,7 +63,7 @@ export default function BillingPage() {
         items={[
           {
             href: hrefProject,
-            label: project.description,
+            label: project?.description,
           },
           {
             label: t('cpbc_billing_control'),

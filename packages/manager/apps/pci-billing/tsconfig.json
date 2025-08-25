@@ -7,11 +7,11 @@
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "node",
-    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "strict": true,
     /* Linting */
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,

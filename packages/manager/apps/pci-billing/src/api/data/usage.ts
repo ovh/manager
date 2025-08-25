@@ -38,7 +38,7 @@ type TWithTotalPrice = {
   totalPrice: number;
 };
 
-export type TUsage = {
+type TUsage = {
   hourlyUsage: {
     instance: ({ reference: string } & TWithTotalPrice)[];
     instanceBandwidth: ({

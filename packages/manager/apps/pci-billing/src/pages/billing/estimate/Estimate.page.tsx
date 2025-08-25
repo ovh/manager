@@ -20,7 +20,7 @@ export default function Estimate(): JSX.Element {
 
   const { currency } = useEnvironment().getUser();
 
-  const { projectId } = useParams();
+  const { projectId = '' } = useParams();
 
   const { create, update, remove } = useCallbacks();
 
@@ -66,9 +66,9 @@ export default function Estimate(): JSX.Element {
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <EstimatePart
         currency={currency}
-        totalPrice={forecastPrices?.totalPrice}
-        totalHourlyPrice={forecastPrices?.totalHourlyPrice}
-        totalMonthlyPrice={forecastPrices?.totalMonthlyPrice}
+        totalPrice={forecastPrices.totalPrice}
+        totalHourlyPrice={forecastPrices.totalHourlyPrice}
+        totalMonthlyPrice={forecastPrices.totalMonthlyPrice}
         isPending={isForecastPricesPending}
         locale={userLocale}
       />
