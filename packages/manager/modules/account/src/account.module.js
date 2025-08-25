@@ -1,5 +1,6 @@
-import contacts from './contacts';
+import contacts from './contacts/user-contacts.module';
 import contactUpdate from './contacts/update';
+import contactRequest from './contacts/request';
 import redirection from './account.redirection';
 import routing from './account.routing';
 import user from './user';
@@ -19,6 +20,7 @@ angular
   .module(moduleName, [
     contacts,
     contactUpdate,
+    contactRequest,
     'oui',
     'pascalprecht.translate',
     'ui.bootstrap',
