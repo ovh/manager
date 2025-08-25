@@ -61,6 +61,6 @@
   "modal_summary_label_commitment_duration": "Vertragslaufzeit:",
   "modal_summary_label_total_price": "Gesamtpreis",
   "choose_date": "Datum auswählen",
-  "choose_date_description": "Geben Sie das Datum an, ab dem Ihr Savings Plan wirksam werden soll",
-  "modal_summary_label_start_date": "Gültigkeitsdatum"
+  "choose_date_description": "Geben Sie das Datum an, ab dem Ihr Savings Plan wirksam werden soll.",
+  "modal_summary_label_start_date": "Datum des Inkrafttretens"
 }
