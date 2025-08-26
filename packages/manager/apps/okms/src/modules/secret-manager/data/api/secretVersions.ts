@@ -16,16 +16,7 @@ export const secretVersionsQueryKeys = {
   ],
 };
 
-// LIST Version
-export const getSecretVersions = async (okmsId: string, path: string) => {
-  const { data } = await apiClient.v2.get<SecretVersion[]>(
-    `okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version`,
-  );
-  return data;
-};
-
 // GET Version
-
 export const getSecretVersionWithData = async (
   okmsId: string,
   path: string,

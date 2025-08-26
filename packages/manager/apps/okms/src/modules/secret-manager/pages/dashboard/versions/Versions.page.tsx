@@ -14,6 +14,7 @@ import {
   VersionCellID,
   VersionCellState,
 } from './VersionCells.component';
+import { isErrorResponse } from '@/utils/api/api';
 
 const SecretVersionsPage = () => {
   const navigate = useNavigate();
@@ -24,11 +25,6 @@ const SecretVersionsPage = () => {
   ]);
   const { domainId, secretPath } = useParams<SecretDashboardPageParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
-
-  const { data: versions, isPending, error, refetch } = useSecretVersions(
-    domainId,
-    secretPathDecoded,
-  );
 
   const columns = [
     {
@@ -54,16 +50,29 @@ const SecretVersionsPage = () => {
     },
   ];
 
+  const {
+    data,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    sorting,
+    isPending,
+    setSorting,
+    refetch,
+  } = useSecretVersions({ domainId, path: secretPathDecoded });
+
   if (error)
     return (
       <ErrorBanner
-        error={error}
+        error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() =>
           navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding)
         }
         onReloadPage={refetch}
       />
     );
+
+  const versions = data?.pages.flatMap((page) => page.data);
 
   return (
     <>
@@ -86,6 +95,10 @@ const SecretVersionsPage = () => {
         items={versions || []}
         totalItems={versions?.length}
         isLoading={isPending}
+        hasNextPage={hasNextPage}
+        onFetchNextPage={fetchNextPage}
+        sorting={sorting}
+        onSortChange={setSorting}
         contentAlignLeft
       />
       <Suspense>
