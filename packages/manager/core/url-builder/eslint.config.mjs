@@ -19,5 +19,14 @@ export default [
   vitestEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
-  complexityTsJsConfig
+  complexityTsJsConfig,
+  {
+    rules: {
+      'check-file/filename-naming-convention': 'off',
+      'check-file/folder-naming-convention': 'off',
+      'max-lines-per-function': 'off',
+      'check-file/no-index': 'off',
+      'no-redeclare': 'off'
+    },
+  },
 ];
