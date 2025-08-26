@@ -1,5 +1,7 @@
-import { MockedFunction, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { apiClient } from '../client';
 import { Filter, FilterComparator, FilterTypeCategories } from '../filters';
 import {
   appendIamTags,
@@ -10,37 +12,49 @@ import {
   icebergFilter,
 } from '../iceberg';
 
-// Mock the apiClient
-vi.mock('../client', () => ({
-  default: {
-    v6: {
-      get: vi.fn(),
+vi.mock('../client', () => {
+  return {
+    apiClient: {
+      v6: { get: vi.fn() },
+      v2: { get: vi.fn() },
+      // include others if needed
+      aapi: { get: vi.fn() },
+      ws: { get: vi.fn() },
     },
-    v2: {
-      get: vi.fn(),
-    },
-  },
-}));
+  };
+});
 
-// Get the mocked apiClient
-const mockApiClient = vi.mocked(await import('../client')).default;
+const mockApiClient = vi.mocked(apiClient, { deep: true }) as unknown as {
+  v6: { get: ReturnType<typeof vi.fn> };
+  v2: { get: ReturnType<typeof vi.fn> };
+  aapi: { get: ReturnType<typeof vi.fn> };
+  ws: { get: ReturnType<typeof vi.fn> };
+};
 
-// Helper functions to reduce duplication
-const mockV6Response = (data: any, headers: Record<string, string | undefined> = {}) => {
-  (mockApiClient.v6.get as MockedFunction<typeof mockApiClient.v6.get>).mockResolvedValue({
+const mockV6Response = <T>(data: T, headers: Record<string, string | undefined> = {}): void => {
+  const response: AxiosResponse<T> = {
     data,
     headers,
     status: 200,
-  });
+    statusText: 'OK',
+    config: {} as InternalAxiosRequestConfig,
+  };
+  mockApiClient.v6.get.mockResolvedValue(response);
 };
 
-const mockV2Response = (data: any, headers: Record<string, string | undefined> = {}) => {
-  (mockApiClient.v2.get as MockedFunction<typeof mockApiClient.v2.get>).mockResolvedValue({
+const mockV2Response = <T>(data: T, headers: Record<string, string | undefined> = {}): void => {
+  const response: AxiosResponse<T> = {
     data,
     headers,
     status: 200,
-  });
+    statusText: 'OK',
+    config: {} as InternalAxiosRequestConfig,
+  };
+  mockApiClient.v2.get.mockResolvedValue(response);
 };
+
+const expectHeaders = (headers: Record<string, string>) =>
+  expect.objectContaining(headers) as unknown as Record<string, unknown>;
 
 const createTestFilters = () => [
   {
@@ -280,14 +294,17 @@ describe('buildHeaders', () => {
     const iamTags = params.get('iamTags');
 
     expect(iamTags).toContain('environment');
-    expect(JSON.parse(iamTags || '{}').environment[0].operator).toEqual(FilterComparator.IsEqual);
-    expect(JSON.parse(iamTags || '{}').environment[0].value).toEqual('production');
+
+    const parsed = JSON.parse(iamTags ?? '{}') as Record<
+      string,
+      { operator: FilterComparator; value: string }[]
+    >;
+    expect(parsed.environment?.[0]?.operator).toEqual(FilterComparator.IsEqual);
+    expect(parsed.environment?.[0]?.value).toEqual('production');
 
     expect(iamTags).toContain('Department');
-    expect(JSON.parse(iamTags || '{}').Department[0].operator).toEqual(
-      FilterComparator.IsDifferent,
-    );
-    expect(JSON.parse(iamTags || '{}').Department[0].value).toEqual('Finance');
+    expect(parsed.Department?.[0]?.operator).toEqual(FilterComparator.IsDifferent);
+    expect(parsed.Department?.[0]?.value).toEqual('Finance');
   });
 
   it('should set pagination number by default to 1', () => {
@@ -426,7 +443,7 @@ describe('fetchIcebergV6', () => {
     });
 
     expect(mockApiClient.v6.get).toHaveBeenCalledWith('/test', {
-      headers: expect.objectContaining({
+      headers: expectHeaders({
         'x-pagination-mode': 'CachedObjectList-Pages',
         'x-pagination-number': '1',
         'X-Pagination-Size': '10',
@@ -474,7 +491,7 @@ describe('fetchIcebergV6', () => {
     expect(mockApiClient.v6.get).toHaveBeenCalledWith(
       '/test?iamTags=%7B%22environment%22%3A%5B%7B%22operator%22%3A%22is_equal%22%2C%22value%22%3A%22production%22%7D%5D%7D',
       {
-        headers: expect.objectContaining({
+        headers: expectHeaders({
           'x-pagination-mode': 'CachedObjectList-Pages',
           'x-pagination-number': '2',
           'X-Pagination-Size': '20',
@@ -541,7 +558,7 @@ describe('fetchIcebergV2', () => {
     });
 
     expect(mockApiClient.v2.get).toHaveBeenCalledWith('/test', {
-      headers: expect.objectContaining({
+      headers: expectHeaders({
         'X-Pagination-Size': '10',
         'X-Pagination-Cursor': 'current-cursor',
         'x-pagination-sort': 'name',
@@ -590,7 +607,7 @@ describe('fetchIcebergV2', () => {
     expect(mockApiClient.v2.get).toHaveBeenCalledWith(
       '/iam/resource/test?tags=%7B%22environment%22%3A%5B%7B%22operator%22%3A%22is_equal%22%2C%22value%22%3A%22production%22%7D%5D%7D',
       {
-        headers: expect.objectContaining({
+        headers: expectHeaders({
           'X-Pagination-Size': '20',
           'X-Pagination-Cursor': 'current-cursor',
           'x-pagination-sort': 'name',
@@ -631,7 +648,7 @@ describe('fetchIcebergV2', () => {
     });
 
     expect(mockApiClient.v2.get).toHaveBeenCalledWith('/test?existing=param', {
-      headers: expect.objectContaining({
+      headers: expectHeaders({
         'X-Pagination-Size': '10',
         'X-Pagination-Cursor': 'current-cursor',
         'x-pagination-filter': 'name:eq=test',

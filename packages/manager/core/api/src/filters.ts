@@ -17,7 +17,7 @@ export enum FilterComparator {
 
 export type Filter = {
   key: string;
-  value: string | string[];
+  value: string | string[] | undefined;
   comparator: FilterComparator;
   type?: FilterTypeCategories;
   tagKey?: string;
@@ -66,7 +66,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
   return items.filter((item) => {
     let keep = true;
     filters.forEach((filter) => {
-      const value = item[filter.key as keyof T];
+      const value = String(item[filter.key as keyof T]);
       const comp = filter.value as string;
       switch (filter.comparator) {
         case FilterComparator.Includes:
@@ -127,8 +127,10 @@ export function transformTagsFiltersToQuery(filters: Filter[] = []): string {
   if (!tagFilters.length) return '';
 
   tagFilters.forEach(({ comparator: operator, tagKey, value }) => {
-    if (!queryObject[tagKey]) {
-      queryObject[tagKey] = [];
+    const tagKeyValue = String(tagKey || '');
+
+    if (!queryObject[tagKeyValue]) {
+      queryObject[tagKeyValue] = [];
     }
 
     const query: { operator: string; value?: string } = {
@@ -139,7 +141,7 @@ export function transformTagsFiltersToQuery(filters: Filter[] = []): string {
       query.value = value as string;
     }
 
-    queryObject[tagKey].push(query);
+    queryObject?.[tagKeyValue]?.push(query);
   });
 
   return JSON.stringify(queryObject);

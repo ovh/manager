@@ -106,7 +106,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('John Doe');
+    expect(result?.[0]?.name).toBe('John Doe');
   });
 
   it('should filter by string not equals', () => {
@@ -148,7 +148,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].age).toBe(35);
+    expect(result?.[0]?.age).toBe(35);
   });
 
   it('should filter by date before', () => {
@@ -190,7 +190,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].date).toBe('2023-01-15');
+    expect(result?.[0]?.date).toBe('2023-01-15');
   });
 
   it('should filter by date not equals', () => {
@@ -246,7 +246,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('John Doe');
+    expect(result?.[0]?.name).toBe('John Doe');
   });
 
   it('should apply multiple filters (AND logic)', () => {
@@ -266,7 +266,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('Bob Johnson');
+    expect(result?.[0]?.name).toBe('Bob Johnson');
   });
 
   it('should handle case insensitive string comparison', () => {
@@ -280,7 +280,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(testItems, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('John Doe');
+    expect(result?.[0]?.name).toBe('John Doe');
   });
 
   it('should handle case insensitive includes', () => {
@@ -325,7 +325,7 @@ describe('applyFilters', () => {
     ];
     const result = applyFilters(itemsWithUndefined, filters);
     expect(result).toHaveLength(1);
-    expect(result[0].name).toBe('Jane');
+    expect(result?.[0]?.name).toBe('Jane');
   });
 });
 
@@ -525,7 +525,7 @@ describe('transformTagsFiltersToQuery', () => {
     const filters: Filter[] = [
       {
         key: 'tags',
-        value: undefined as any,
+        value: undefined,
         comparator: FilterComparator.TagEquals,
         type: FilterTypeCategories.Tags,
         tagKey: 'environment',
