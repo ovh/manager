@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
@@ -15,12 +15,13 @@ import {
   VERSION_SELECTOR_TEST_ID,
 } from '@secret-manager/utils/tests/secretValue.constants';
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
+import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SecretDashboardPageParams } from '../../dashboard/dashboard.type';
 import { SecretRawValue } from './SecretRawValue.component';
+import { isErrorResponse } from '@/utils/api/api';
 
 type VersionSelectorParams = {
   domainId: string;
@@ -40,32 +41,44 @@ const VersionSelector = ({
     NAMESPACES.STATUS,
     NAMESPACES.ERROR,
   ]);
-  const { data: versions, isPending, isFetching, error } = useSecretVersions(
+
+  const { data, isPending, isFetching, error } = useSecretVersions({
     domainId,
     path,
-  );
+    pageSize: 100,
+  });
 
+  // isFetching forces to display the spinner when the version has changed
+  // otherwise when the ods-select component is refreshed, react breaks
   if (isPending || isFetching)
-    // isFetching forces to display the spinner when the version has changed
-    // otherwise when the ods-select component is refreshed, react breaks
     return (
       <div className="flex justify-center">
         <OdsSpinner data-testid={VERSION_SELECTOR_SPINNER_TEST_ID} />
       </div>
     );
 
-  if (error)
+  if (error) {
+    const message = isErrorResponse(error)
+      ? error.response.data.message
+      : undefined;
+
     return (
       <OdsMessage
         className="mt-4"
         color="critical"
         data-testid={VERSION_SELECTOR_ERROR_TEST_ID}
       >
-        {t('error_message', { message: error.message, ns: NAMESPACES.ERROR })}
+        {t('error_message', {
+          message,
+          ns: NAMESPACES.ERROR,
+        })}
       </OdsMessage>
     );
+  }
 
-  const defaultSelectedVersion = versions[0];
+  const versions = data?.pages.flatMap((page) => page.data);
+
+  if (!versions?.length) return null;
 
   return (
     <div className="flex flex-col gap-3 pt-2">
@@ -82,7 +95,7 @@ const VersionSelector = ({
               versions.find((v) => v.id === Number(value.detail.value)),
             )
           }
-          defaultValue={defaultSelectedVersion.id.toString()}
+          defaultValue={versions[0].id.toString()}
           isDisabled={versions.length === 1}
         >
           {versions.map((version) => (
