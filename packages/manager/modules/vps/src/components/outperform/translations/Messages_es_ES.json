@@ -20,7 +20,7 @@
   "vps_outperform_storage": "Almacenamiento",
   "vps_outperform_bandwidth": "Ancho de banda",
   "vps_outperform_bandwidth_unlimited": "Tráfico ilimitado -",
-  "vps_outperform_bandwidth_quantity": "{{ bandwidth }} Mb/s",
+  "vps_outperform_bandwidth_quantity": "{{ value }} Gb/s",
   "vps_outperform_no_available_plan": "No hay mejoras disponibles para este VPS.",
   "vps_outperform_already_planned": "Ya se está procesando una solicitud de mejora de la clasificación para este VPS.",
   "vps_outperform_error_message": "No se ha podido completar la solicitud de mejora. {{ error }}"
