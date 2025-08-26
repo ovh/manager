@@ -1,15 +1,21 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useQuery } from '@tanstack/react-query';
 import { SecretVersion } from '@secret-manager/types/secret.type';
-import {
-  getSecretVersions,
-  secretVersionsQueryKeys,
-} from '../api/secretVersions';
+import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { secretVersionsQueryKeys } from '../api/secretVersions';
 
-// TODO: use useIcebergV2 when pagination is fixed
-export const useSecretVersions = (domainId: string, path: string) => {
-  return useQuery<SecretVersion[], ApiError>({
+export const useSecretVersions = ({
+  domainId,
+  path,
+  pageSize = 25,
+}: {
+  domainId: string;
+  path: string;
+  pageSize?: number;
+}) => {
+  return useResourcesIcebergV2<SecretVersion>({
+    route: `okms/resource/${domainId}/secret/${encodeURIComponent(
+      path,
+    )}/version`,
     queryKey: secretVersionsQueryKeys.list(domainId, path),
-    queryFn: () => getSecretVersions(domainId, path),
+    pageSize,
   });
 };
