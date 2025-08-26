@@ -1,0 +1,173 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GridLayout Snapshot Tests > should render empty grid layout 1`] = `
+<div>
+  <div
+    class="w-full block"
+  >
+    <div
+      class="grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6"
+    />
+  </div>
+</div>
+`;
+
+exports[`GridLayout Snapshot Tests > should render grid layout with children 1`] = `
+<div>
+  <div
+    class="w-full block"
+  >
+    <div
+      class="grid grid-cols-1 md:items-start md:grid-cols-3 gap-4 md:gap-6"
+    >
+      <div
+        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+      >
+        <section
+          class="flex flex-col w-full"
+        >
+          <h4
+            class="_text--heading-4_1aw48_31"
+          >
+            General Informations
+          </h4>
+          <hr
+            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+          />
+          <dl
+            class="flex flex-col m-0"
+          >
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text--span_1aw48_60 font-bold"
+                  >
+                    Sample Term
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <p
+                  class="_text--paragraph_1aw48_54"
+                >
+                  Sample Description
+                </p>
+                <hr
+                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+                />
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div
+        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+      >
+        <section
+          class="flex flex-col w-full"
+        >
+          <h4
+            class="_text--heading-4_1aw48_31"
+          >
+            Second child
+          </h4>
+          <hr
+            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+          />
+          <dl
+            class="flex flex-col m-0"
+          >
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text--span_1aw48_60 font-bold"
+                  >
+                    Second child
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <p
+                  class="_text--paragraph_1aw48_54"
+                >
+                  Sample Description
+                </p>
+                <hr
+                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+                />
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div
+        class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+      >
+        <section
+          class="flex flex-col w-full"
+        >
+          <h4
+            class="_text--heading-4_1aw48_31"
+          >
+            Third child
+          </h4>
+          <hr
+            class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+          />
+          <dl
+            class="flex flex-col m-0"
+          >
+            <div
+              class="flex flex-col gap-1"
+            >
+              <dt
+                class="flex justify-between"
+              >
+                <div
+                  class="flex items-center gap-1 text-[var(--ods-color-text)]"
+                >
+                  <span
+                    class="_text--span_1aw48_60 font-bold"
+                  >
+                    Third child
+                  </span>
+                </div>
+              </dt>
+              <dd
+                class="m-0"
+              >
+                <p
+                  class="_text--paragraph_1aw48_54"
+                >
+                  Sample Description
+                </p>
+                <hr
+                  class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+                />
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+`;
