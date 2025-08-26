@@ -20,7 +20,7 @@
   "vps_outperform_storage": "Przestrzeń dyskowa",
   "vps_outperform_bandwidth": "Przepustowość",
   "vps_outperform_bandwidth_unlimited": "Nielimitowany transfer -",
-  "vps_outperform_bandwidth_quantity": "{{bandwidth}} Mbps",
+  "vps_outperform_bandwidth_quantity": "{{value}} Gbps",
   "vps_outperform_no_available_plan": "Zwiększenie zasobów nie jest dostępne dla tego VPS.",
   "vps_outperform_already_planned": "Dyspozycja zwiększenia zasobów dla tego VPS jest już przetwarzana.",
   "vps_outperform_error_message": "Zwiększenie zasobów nie powiodło się.{{error}}"

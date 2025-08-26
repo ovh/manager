@@ -13,7 +13,7 @@
   "domain_operations_table_header_doneDate": "Enddatum",
   "domain_operations_table_header_status": "Status",
   "domain_operations_table_header_domain": "Domain",
-  "domain_operations_dashboard_title": "Aktionen an meinen Domainnamen",
+  "domain_operations_dashboard_title": "Laufende Vorgänge",
   "domain_operations_dashboard_info": "Im Folgenden finden Sie alle laufenden Vorgänge. Je nach Vorgang kann eine Aktion Ihrerseits erforderlich sein.",
   "domain_operations_tab_popover_update": "Vorgang bearbeiten",
   "domain_operations_tab_popover_progress": "Transfer verfolgen",
@@ -145,5 +145,8 @@
   "domain_operations_upload_file_template_link": "Dokumentvorlage",
   "domain_operations_upload_file_template_2": " werden angenommen.",
   "domain_operations_update_dns_click": "Klicken Sie hier, um die Konfiguration Ihrer DNS-Server zu korrigieren.",
-  "domain_operations_update_field_bad_value": "Der in das Feld {{t0}} eingegebene Wert ist ungültig."
+  "domain_operations_update_field_bad_value": "Der in das Feld {{t0}} eingegebene Wert ist ungültig.",
+  "domain_operations_table_header_allDom": "Alldom",
+  "domain_operations_table_header_name": "Name",
+  "domain_operations_nicOperation_AlldomDelete": "Löschung des Alldom-Dienstes"
 }
