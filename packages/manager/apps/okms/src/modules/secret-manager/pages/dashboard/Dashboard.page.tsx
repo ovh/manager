@@ -1,9 +1,11 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import {
   BaseLayout,
   ErrorBanner,
   HeadersProps,
+  Notifications,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
@@ -27,6 +29,7 @@ export default function SecretDashboardPage() {
     'secret-manager/common',
   ]);
   const navigate = useNavigate();
+  const { notifications } = useNotifications();
 
   const {
     data: secret,
@@ -81,6 +84,7 @@ export default function SecretDashboardPage() {
     <BaseLayout
       header={headerProps}
       backLinkLabel={t('back_to_list')}
+      message={notifications.length > 0 && <Notifications />}
       tabs={<TabNavigation tabs={tabsList} />}
       onClickReturn={() => {
         navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));
