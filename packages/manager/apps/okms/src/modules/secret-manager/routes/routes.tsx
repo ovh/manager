@@ -39,6 +39,11 @@ const SecretVersionsCreateDrawer = React.lazy(() =>
     '@secret-manager/pages/drawers/createVersionDrawer/CreateVersionDrawer.page'
   ),
 );
+const SecretVersionsDeleteModal = React.lazy(() =>
+  import(
+    '@secret-manager/pages/dashboard/versions/delete/DeleteSecretVersionModal.page'
+  ),
+);
 const SecretCreate = React.lazy(() =>
   import('@/modules/secret-manager/pages/create/Create.page'),
 );
@@ -106,6 +111,10 @@ export default (
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.create}
             Component={SecretVersionsCreateDrawer}
+          />
+          <Route
+            path={`${SECRET_MANAGER_URL_PARAMS.versionId}/${SECRET_MANAGER_ROUTES_URIS.delete}`}
+            Component={SecretVersionsDeleteModal}
           />
         </Route>
       </Route>
