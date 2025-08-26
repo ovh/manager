@@ -33,6 +33,8 @@ import {
   GetVersionsMockParams,
   createVersionMock,
   CreateVersionMockParams,
+  updateVersionMock,
+  UpdateVersionMockParams,
 } from '@secret-manager/mocks/versions/versions.handler';
 import { removeHandlersDelay } from './testUtils';
 import { initTestI18n } from './init.i18n';
@@ -88,7 +90,8 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   CreateSecretsMockParams &
   GetVersionsMockParams &
   GetVersionMockParams &
-  CreateVersionMockParams;
+  CreateVersionMockParams &
+  UpdateVersionMockParams;
 
 export const renderTestApp = async (
   initialRoute = '/',
@@ -120,6 +123,7 @@ export const renderTestApp = async (
         ...getVersionsMock(mockParams),
         ...getVersionMock(mockParams),
         ...createVersionMock(mockParams),
+        ...updateVersionMock(mockParams),
       ]),
     ),
   );

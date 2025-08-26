@@ -30,7 +30,7 @@ export const getSecretVersionWithData = async (
   return data;
 };
 
-// POST version
+// CREATE version
 export type CreateSecretVersionBody = SecretVersionDataField;
 export type CreateSecretVersionResponse = SecretVersion;
 
@@ -53,6 +53,32 @@ export const createSecretVersion = async ({
   return response;
 };
 
-// PUT version
-export type UpdateSecretVersionBody = Pick<SecretVersion, 'state'>;
+// UPDATE version
+export type UpdateSecretVersionBody = SecretVersion['state'];
 export type UpdateSecretVersionResponse = SecretVersion;
+
+export type UpdateSecretVersionParams = {
+  okmsId: string;
+  path: string;
+  version: number;
+  state: UpdateSecretVersionBody;
+};
+
+export const updateSecretVersion = async ({
+  okmsId,
+  path,
+  version,
+  state,
+}: UpdateSecretVersionParams) => {
+  const { data: response } = await apiClient.v2.put<
+    UpdateSecretVersionResponse
+  >(
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(
+      path,
+    )}/version/${version}`,
+    {
+      state,
+    },
+  );
+  return response;
+};
