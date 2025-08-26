@@ -1,4 +1,4 @@
-import { screen, act } from '@testing-library/react';
+import { screen, act, waitFor } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
   assertTextVisibility,
@@ -25,6 +25,24 @@ const renderPage = async () => {
   return results;
 };
 
+// TEMP fix to ensure ods links and buttons are properly rendered
+const assertDatagridIsLoaded = async (container: HTMLElement) => {
+  await waitFor(async () => {
+    const skeletons = container.querySelectorAll<HTMLElement>('ods-skeleton');
+    expect(skeletons.length).toBe(0);
+  });
+};
+
+const getActionButton = async (container: HTMLElement) => {
+  const actionButton = await getOdsButtonByIcon({
+    container,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    iconName: 'ellipsis-vertical',
+  });
+  return actionButton;
+};
+
 describe('Secrets listing test suite', () => {
   it('should display the secrets listing page', async () => {
     await renderPage();
@@ -39,7 +57,8 @@ describe('Secrets listing test suite', () => {
   it('should display the listing table with all columns', async () => {
     // GIVEN
     // WHEN
-    await renderPage();
+    const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
 
     // THEN
     const tableHeaders = [
@@ -61,6 +80,7 @@ describe('Secrets listing test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
 
     const secretPageLink = await getOdsButtonByLabel({
       container,
@@ -84,6 +104,11 @@ describe('Secrets listing test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
+
+    const actionButton = await getActionButton(container);
+
+    await act(() => user.click(actionButton));
 
     const versionsButton = await getOdsButtonByLabel({
       container,
@@ -101,13 +126,9 @@ describe('Secrets listing test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
 
-    const actionButton = await getOdsButtonByIcon({
-      container,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      iconName: 'ellipsis-vertical',
-    });
+    const actionButton = await getActionButton(container);
 
     await act(() => user.click(actionButton));
 
@@ -128,13 +149,9 @@ describe('Secrets listing test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
 
-    const actionButton = await getOdsButtonByIcon({
-      container,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      iconName: 'ellipsis-vertical',
-    });
+    const actionButton = await getActionButton(container);
 
     await act(() => user.click(actionButton));
 
@@ -155,6 +172,7 @@ describe('Secrets listing test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
 
     const createSecretButton = await getOdsButtonByLabel({
       container,
