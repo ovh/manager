@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.9.0...@ovh-ux/manager-cli@0.9.1) (2025-08-26)
+
+
+### Bug Fixes
+
+* **manager-cli:** process exit when app not found for duplicated translation ([1c02d80](https://github.com/ovh/manager/commit/1c02d80dffedf839682314cbeee3fcb2cf50c9ce))
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.8.1...@ovh-ux/manager-cli@0.9.0) (2025-08-26)
 
 
