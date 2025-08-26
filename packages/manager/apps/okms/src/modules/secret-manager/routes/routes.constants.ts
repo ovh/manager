@@ -9,6 +9,7 @@ const URIS = {
   createVersion: 'create-version',
   order: 'order',
   value: 'value',
+  delete: 'delete',
 };
 
 const URLS = {
@@ -54,12 +55,22 @@ const URLS = {
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
       URIS.versions
     }/${URIS.create}`,
+
+  secretVersionsModalDeleteVersion: (
+    domainId: string,
+    secretPath: string,
+    versionId: number,
+  ) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
+      URIS.versions
+    }/${versionId}/${URIS.delete}`,
 };
 
 export const SECRET_MANAGER_URL_PARAMS = {
   region: ':region',
   domainId: ':domainId',
   secretPath: ':secretPath',
+  versionId: ':versionId',
 };
 
 export const SECRET_MANAGER_SEARCH_PARAMS = {
