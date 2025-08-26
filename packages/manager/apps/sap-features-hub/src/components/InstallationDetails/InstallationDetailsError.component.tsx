@@ -66,7 +66,7 @@ export const InstallationDetailsError = ({
         })}
       </OdsMessage>
       <div>
-        <OdsCode className="max-h-56 overflow-y-auto">
+        <OdsCode className="max-h-56 w-full overflow-y-auto">
           {installationTaskDetails?.errorMessage}
         </OdsCode>
       </div>
