@@ -31,10 +31,10 @@ export const useDashboardPolling = ({
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
       if (!instance) return;
-      const { task, actions, status } = instance;
+      const { task, actions, status, pricings } = instance;
       const isDeleted = !task.isPending && status === 'DELETED';
       const deletedInstance = { addresses: new Map(), volumes: [] };
-      const newInstance = { id: instanceId, actions, status, task };
+      const newInstance = { id: instanceId, actions, status, task, pricings };
 
       updateInstancesFromCache(queryClient, {
         projectId,
