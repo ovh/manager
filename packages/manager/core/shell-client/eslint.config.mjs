@@ -25,4 +25,9 @@ export default [
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  {
+    rules: {
+      'react-hooks/exhaustive-deps': 'off'
+    },
+  },
 ];

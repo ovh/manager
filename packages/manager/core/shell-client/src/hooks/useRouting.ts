@@ -8,7 +8,7 @@ import { ShellContext } from '../ShellContext';
 export const useRouting = () => {
   const { shell } = useContext(ShellContext);
 
-  return shell.routing;
+  return shell?.routing;
 };
 
 export default useRouting;

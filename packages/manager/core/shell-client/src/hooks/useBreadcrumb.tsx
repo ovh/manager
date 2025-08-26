@@ -25,9 +25,9 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
+        const response = await shell?.navigation.getURL(appName ?? '', '#/', {});
         const rootItem = {
-          label: rootLabel,
+          label: rootLabel ?? '',
           href: String(response),
         };
         setRoot([rootItem]);
@@ -35,7 +35,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
         console.error('Error fetching root URL:', error);
       }
     };
-    fetchRoot();
+    void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {

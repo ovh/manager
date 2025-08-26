@@ -8,7 +8,7 @@ import { ShellContext } from '../ShellContext';
 export const useTracking = () => {
   const { shell } = useContext(ShellContext);
 
-  return shell.tracking;
+  return shell?.tracking;
 };
 
 export default useTracking;

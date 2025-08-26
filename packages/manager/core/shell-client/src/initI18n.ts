@@ -22,12 +22,12 @@ export const initI18n = async ({
   defaultNS: string;
   ns: string[];
 }) => {
-  const locale = context.environment.getUserLocale() || defaultLocale;
-  const localeList = await context.shell.i18n.getAvailableLocales();
+  const locale = context?.environment?.getUserLocale() || defaultLocale;
+  const localeList = await context?.shell?.i18n?.getAvailableLocales?.();
   const availableLocales =
-    localeList.map(({ key }: { name: string; key: string }) => key) || defaultAvailableLocales;
+    localeList?.map(({ key }: { name: string; key: string }) => key) || defaultAvailableLocales;
 
-  i18n
+  void i18n
     .use(initReactI18next)
     .use(I18NextHttpBackend)
     .use({
@@ -52,11 +52,11 @@ export const initI18n = async ({
       },
     });
 
-  context.shell.i18n.onLocaleChange(({ locale: currentLocale }: { locale: string }) => {
+  context?.shell?.i18n?.onLocaleChange?.(({ locale: currentLocale }: { locale: string }) => {
     if (reloadOnLocaleChange) {
       window.top?.location.reload();
     } else {
-      i18n.changeLanguage(currentLocale);
+      void i18n.changeLanguage(currentLocale);
     }
   });
 
