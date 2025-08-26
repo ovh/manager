@@ -4,5 +4,5 @@
   "delete_license_modal_confirm": "Bestätigen",
   "delete_license_modal_cancel": "Abbrechen",
   "delete_license_error_api": "Beim Löschen der Lizenz ist ein Fehler aufgetreten.",
-  "delete_license_success_api": "Die Anfrage zur Löschung der Lizenz wurde registriert."
+  "delete_license_success_api": "Ihre Lizenz wird gelöscht. Es kann einige Minuten dauern, bis der Vorgang abgeschlossen ist."
 }
