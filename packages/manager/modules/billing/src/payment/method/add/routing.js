@@ -137,7 +137,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       ) => (selectedPaymentMethodType, isDefault) => {
         const { callbackUrl } = $transition$.params();
         if (callbackUrl && RedirectionService.validate(callbackUrl)) {
-          window.location.href = callbackUrl;
+          window.top.location.href = callbackUrl;
           return callbackUrl;
         }
 
