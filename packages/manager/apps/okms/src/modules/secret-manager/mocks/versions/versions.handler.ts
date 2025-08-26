@@ -5,6 +5,7 @@ import {
   versionsMockwithData,
   createVersionResponseMock,
 } from './versions.mock';
+import { createHandlerResponseMock } from '@/utils/tests/testUtils';
 
 // LIST VERSION
 export type GetVersionsMockParams = {
@@ -82,5 +83,28 @@ export const createVersionMock = ({
     status: isCreateVersionKO ? 500 : 200,
     api: 'v2',
     method: 'post',
+  },
+];
+
+// UPDATE VERSION
+export type UpdateVersionMockParams = {
+  isVersionUpdateKO?: boolean;
+};
+
+export const updateVersionErrorMessage = 'update-secret-version-error-message';
+
+export const updateVersionMock = ({
+  isVersionUpdateKO,
+}: UpdateVersionMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secret/:secretPath/version/:versionId',
+    method: 'put',
+    response: createHandlerResponseMock({
+      data: {},
+      errorMessage: updateVersionErrorMessage,
+      isError: isVersionUpdateKO,
+    }),
+    status: isVersionUpdateKO ? 500 : 200,
+    api: 'v2',
   },
 ];
