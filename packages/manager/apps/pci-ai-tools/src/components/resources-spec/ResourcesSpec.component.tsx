@@ -52,6 +52,8 @@ const ResourcesSpec = ({
                 memory: bytesConverter(resources.gpuMemory, false, 0),
               })}
             </span>
+
+            <span>1 x Pasqal QPU</span>
           </div>
         ) : (
           <div className="flex flex-col">
@@ -119,6 +121,7 @@ const ResourcesSpec = ({
             network: bytesConverter(resources.publicNetwork, true, 2),
           })}
         </span>
+        <span>Qubits: 20 </span>
 
         <div className="flex flex-row gap-2 items-center mt-2">
           <h5>{t('storageTitleSection')}</h5>
