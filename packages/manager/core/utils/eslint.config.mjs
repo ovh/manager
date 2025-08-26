@@ -21,5 +21,11 @@ export default [
   vitestEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
-  complexityTsJsConfig
+  complexityTsJsConfig,
+  {
+    rules: {
+      'react/no-deprecated': 'off',
+      'check-file/no-index': 'off',
+    },
+  },
 ];
