@@ -11,10 +11,12 @@ function parseSVG(svgString: string): SVGSVGElement {
   return doc.documentElement as unknown as SVGSVGElement;
 }
 
-function normalizeAttributes(el: Element): Record<string, string> {
+function normalizeAttributes(el: Element | undefined): Record<string, string> {
+  if (!el) return {};
+
   const decodeHtmlEntities = (value: string): string =>
     value
-      .replace(/&([a-z]+);/gi, (_, name) => {
+      .replace(/&([a-z]+);/gi, (_, name: string) => {
         const map: Record<string, string> = {
           amp: '&',
           lt: '<',
@@ -24,7 +26,7 @@ function normalizeAttributes(el: Element): Record<string, string> {
         };
         return map[name] || _;
       })
-      .replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+      .replace(/\\x([0-9A-Fa-f]{2})/g, (_, hex: string) => String.fromCharCode(parseInt(hex, 16)));
 
   return Array.from(el.attributes).reduce(
     (acc, attr) => {
@@ -58,10 +60,11 @@ describe('SvgIconWrapper', () => {
 
       expect(actualChildren.length).toBe(expectedChildren.length);
 
+      // eslint-disable-next-line max-nested-callbacks
       actualChildren.forEach((actualChild, i) => {
         const expectedChild = expectedChildren[i];
 
-        expect(actualChild.tagName).toBe(expectedChild.tagName);
+        expect(actualChild.tagName).toBe(expectedChild?.tagName);
 
         const actualAttrs = normalizeAttributes(actualChild);
         const expectedAttrs = normalizeAttributes(expectedChild);
