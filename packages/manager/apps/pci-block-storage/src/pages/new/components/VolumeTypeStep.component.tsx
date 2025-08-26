@@ -5,24 +5,23 @@ import {
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { Trans, useTranslation } from 'react-i18next';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
 import { StepState } from '@/pages/new/hooks/useStep';
 import {
-  useVolumeModels,
   TVolumeModel,
   useVolumeEncryptions,
+  useVolumeModels,
 } from '@/api/hooks/useCatalog';
 import { TRegion } from '@/api/data/regions';
 import { MULTI_ATTACH_INFO_URL } from '@/constants';
-import { Encryption } from './Encryption';
+import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import ExternalLink from '@/components/ExternalLink';
 import { Button } from '@/components/button/Button';
+import { VolumeModelTilesInput } from '@/components/VolumeModelTilesInput.component';
 
 export interface VolumeTypeStepProps {
   projectId: string;
@@ -42,84 +41,33 @@ export function VolumeTypeStep({
   onSubmit,
 }: Readonly<VolumeTypeStepProps>) {
   const { t } = useTranslation(['stepper', 'add', 'common']);
-  const { formatBytes } = useBytes();
-  const { getFormattedCatalogPrice } = useCatalogPrice(6, {
-    hideTaxLabel: true,
-  });
   const { data } = useVolumeModels(projectId, region.name);
   const { defaultValue: encryptionDefaultValue } = useVolumeEncryptions();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const volumeTypes = useMemo(
-    () =>
-      data?.map((m) => ({
-        ...m,
-        label: m.displayName,
-        description:
-          m.availabilityZonesCount !== null
-            ? t(
-                'add:pci_projects_project_storages_blocks_add_type_availability_zone',
-                { count: m.availabilityZonesCount },
-              )
-            : undefined,
-        badges: [
-          m.encrypted
-            ? {
-                label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_available',
-                ),
-                backgroundColor: '#D2F2C2',
-                textColor: '#113300',
-                icon: 'lock' as const,
-              }
-            : {
-                label: t(
-                  'common:pci_projects_project_storages_blocks_encryption_unavailable',
-                ),
-                backgroundColor: '#FFCCD9',
-                textColor: '#4D000D',
-                icon: 'lock' as const,
-              },
-        ],
-        features: [
-          m.iops,
-          t(
-            'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-            {
-              capacity: formatBytes(m.capacity.max),
-            },
-          ),
-        ].concat(m.bandwidth ? [m.bandwidth] : []),
-        price: m.hourlyPrice,
-      })) || [],
-    [data, region, getFormattedCatalogPrice],
-  );
-  const [volumeType, setVolumeType] = useState<typeof volumeTypes[number]>(
-    undefined,
-  );
+  const [volumeModel, setVolumeModel] = useState<TVolumeModel>(undefined);
   const [encryptionType, setEncryptionType] = useState<EncryptionType | null>(
     null,
   );
 
   useEffect(() => {
-    if (volumeType)
-      setEncryptionType(volumeType.encrypted ? encryptionDefaultValue : null);
-  }, [volumeType]);
+    if (volumeModel)
+      setEncryptionType(volumeModel.encrypted ? encryptionDefaultValue : null);
+  }, [volumeModel]);
 
   const attachGuideLink =
     MULTI_ATTACH_INFO_URL[ovhSubsidiary] || MULTI_ATTACH_INFO_URL.DEFAULT;
 
   return (
     <>
-      <TilesInput
-        name="volume-type"
+      <VolumeModelTilesInput
+        value={volumeModel}
+        volumeModels={data}
+        onChange={setVolumeModel}
         label=""
-        value={volumeType}
-        elements={volumeTypes}
-        onChange={(e) => setVolumeType(e)}
         locked={step.isLocked}
       />
-      {volumeType?.shouldUseMultiAttachFileSystem && (
+      {volumeModel?.shouldUseMultiAttachFileSystem && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
           <OsdsText
             color={ODS_TEXT_COLOR_INTENT.warning}
@@ -138,21 +86,26 @@ export function VolumeTypeStep({
           </OsdsText>
         </OsdsMessage>
       )}
-      {volumeType?.encrypted && (
+      {volumeModel?.encrypted && (
         <Encryption
           encryptionType={encryptionType}
-          onChange={(e) => setEncryptionType(e)}
+          onChange={setEncryptionType}
+          title={t('common:pci_projects_project_storages_blocks_new')}
+          description={t(
+            'add:pci_projects_project_storages_blocks_add_encryption_description',
+          )}
+          isNew
         />
       )}
-      {volumeType && !step.isLocked && (
+      {volumeModel && !step.isLocked && (
         <div className="mt-8">
           <Button
             size="md"
             color="primary"
             onClick={() =>
               onSubmit(
-                volumeType.name,
-                volumeType.showAvailabilityZones,
+                volumeModel.name,
+                volumeModel.showAvailabilityZones,
                 encryptionType,
               )
             }

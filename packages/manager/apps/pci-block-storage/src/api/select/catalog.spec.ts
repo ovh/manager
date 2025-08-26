@@ -1,0 +1,161 @@
+import { describe, it } from 'vitest';
+import { TFunction } from 'i18next';
+import { TVolumeAddon, TVolumeCatalog } from '@/api/data/catalog';
+import { TRegion } from '@/api/data/regions';
+import { mapVolumeCatalog } from '@/api/select/catalog';
+
+const region = {
+  name: 'region name',
+  type: 'region',
+  availabilityZones: ['FR'],
+  isInMaintenance: false,
+  isActivated: true,
+  country: 'FR',
+  datacenter: 'datacenter',
+} as TRegion;
+
+const region3AZ = {
+  name: 'region3AZ',
+  type: 'region-3-az',
+  availabilityZones: ['FR'],
+  isInMaintenance: false,
+  isActivated: true,
+  country: 'FR',
+  datacenter: 'datacenter',
+} as TRegion;
+
+const classicModel = {
+  name: 'classic',
+  pricings: [
+    {
+      price: 20,
+      regions: [region.name],
+      specs: {
+        name: 'classic spec name',
+        volume: {
+          iops: { level: 10 },
+          capacity: { max: 11 },
+        },
+        bandwidth: { level: 12, max: 13, guaranteed: true },
+      },
+    },
+  ],
+} as TVolumeAddon;
+
+const model3AZ = {
+  name: '3AZ',
+  pricings: [
+    {
+      price: 200,
+      regions: [region3AZ.name],
+      specs: {
+        volume: { iops: { level: 100 }, capacity: { max: 110 } },
+      },
+    },
+  ],
+} as TVolumeAddon;
+
+describe('mapVolumeCatalog', () => {
+  const catalogPriceFormatter = (price: number) => `price: ${price}`;
+  const translator = ((keyValue: string) => keyValue) as TFunction;
+
+  const catalog = {
+    regions: [region, region3AZ],
+    models: [classicModel, model3AZ],
+  } as TVolumeCatalog;
+
+  it('should filter out element that dont have pricing in the input region', () => {
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalog);
+
+    expect(result).toHaveLength(1);
+    expect(result[0]).toEqual(expect.objectContaining(classicModel));
+  });
+
+  it('should add hourly price', () => {
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        hourlyPrice: {
+          value: `price: ${classicModel.pricings[0].price}`,
+          isLeastPrice: false,
+          unit: 'add:pci_projects_project_storages_blocks_add_type_addon_price',
+        },
+      }),
+    );
+  });
+
+  it('should add monthly price', () => {
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        monthlyPrice: {
+          value: `price: ${classicModel.pricings[0].price * 730}`,
+          isLeastPrice: false,
+          unit: 'add:pci_projects_project_storages_blocks_add_type_price',
+        },
+      }),
+    );
+  });
+
+  it('should add bandwidth', () => {
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        bandwidth: `${classicModel.pricings[0].specs.bandwidth.level} @ovh-ux/manager-common-translations/bytes:unit_size_MB/s common:pci_projects_project_storages_blocks_guaranteed`,
+      }),
+    );
+  });
+
+  it('should add displayName and technical name', () => {
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        displayName: classicModel.name,
+        technicalName: classicModel.pricings[0].specs.name,
+      }),
+    );
+  });
+
+  it('should add shouldUseMultiAttachFileSystem to true if model is multiattach', () => {
+    const catalogWithMultiAttach = {
+      regions: [region],
+      models: [{ ...classicModel, name: 'classic-multiattach' }],
+    } as TVolumeCatalog;
+
+    const result = mapVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+    )(catalogWithMultiAttach);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        shouldUseMultiAttachFileSystem: true,
+      }),
+    );
+  });
+});
