@@ -140,5 +140,6 @@
   "pci_projects_project_network_private_create_announce_first_address": "Anunciar la primera dirección de un CIDR determinado como puerta de enlace predeterminada (DHCP opción 3)",
   "pci_projects_project_network_private_create_configure_api": "Puede personalizar los rangos desde la API.",
   "pci_projects_project_instances_add_numInstances_3az_help": "Al crear varias instancias en una región 3AZ, todas estarán en la misma zona de disponibilidad, independientemente de que elija una zona o la opción «elegir por mí».",
-  "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "Se facturará {{ floatingIpPrice }}/hora + IVA."
+  "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "Se facturará {{ floatingIpPrice }}/hora + IVA.",
+  "pci_projects_project_instances_add_image_distant_warning": "Para crear su instancia a partir de un backup remoto, deberá realizar una copia local de la imagen remota, que se facturará al precio habitual."
 }
