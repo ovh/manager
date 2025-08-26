@@ -38,7 +38,7 @@ export default class RedirectionService {
   }
 
   validate(url) {
-    return some(Object.values(this.coreConfig.getApplicationURLS()), (appURL) =>
+    return some(Object.values(this.coreConfig.getApplicationURLs()), (appURL) =>
       startsWith(url, appURL),
     );
   }
