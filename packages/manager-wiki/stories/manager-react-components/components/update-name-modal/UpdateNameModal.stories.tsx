@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import {
   UpdateNameModal as UpdateNameModalComponent,
   UpdateNameModalProps,
 } from '@ovh-ux/manager-react-components';
 
-export const UpdateNameModal = (props: UpdateNameModalProps) => (
-  <UpdateNameModalComponent {...props} />
-);
+export const UpdateNameModalDefault = (props: UpdateNameModalProps) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  return (
+    <UpdateNameModalComponent
+      {...props}
+      isOpen={isOpen}
+      onClose={handleClose}
+    />
+  );
+};
+
+export const UpdateNameModalWithError = (props: UpdateNameModalProps) => {
+  const [isOpen, setIsOpen] = useState(true);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  return (
+    <UpdateNameModalComponent
+      {...props}
+      isOpen={isOpen}
+      onClose={handleClose}
+      error="Message error update name"
+    />
+  );
+};
 
 const meta: Meta = {
-  title: 'Manager React Components/Templates/Update Name Modal',
+  title: 'Manager React Components/Components/Update Name Modal',
   component: UpdateNameModalComponent,
   argTypes: {
     isLoading: { control: 'boolean' },
@@ -27,7 +52,7 @@ const meta: Meta = {
   },
   args: {
     isOpen: true,
-    closeModal: () => console.log('close'),
+    onClose: () => console.log('close'),
     updateDisplayName: (name: string) => console.log('updateDisplayName', name),
     headline: 'headline',
     description:
