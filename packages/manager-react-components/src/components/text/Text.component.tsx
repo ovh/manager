@@ -19,7 +19,7 @@ export const Text = ({
   ...restProps
 }: TextProps) => {
   const { t } = useTranslation('iam');
-  const { isAuthorized } = useAuthorizationIam(iamActions || [], urn || '');
+  const { isAuthorized } = useAuthorizationIam(iamActions, urn);
 
   if (isAuthorized || !(iamActions && urn)) {
     return <OdsText {...restProps}>{children}</OdsText>;
