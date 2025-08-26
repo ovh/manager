@@ -1,30 +1,11 @@
-import { SERVICE_RENEW_MODES } from './update.constants';
-
 export default class UpdatePeriodTranslationService {
   /* @ngInject */
-  constructor($translate) {
-    this.$translate = $translate;
-  }
-
-  translatePeriod(months, keys, includeManual = false) {
-    if (includeManual && months === SERVICE_RENEW_MODES.MANUAL) {
-      return this.$translate.instant(keys.manual);
-    }
-    if (months === 1) {
-      return this.$translate.instant(keys.everyMonth);
-    }
-    if (months === 12) {
-      return this.$translate.instant(keys.everyYear);
-    }
-    if (months % 12 === 0) {
-      const years = months / 12;
-      return this.$translate.instant(keys.everyXYears, { years });
-    }
-    return this.$translate.instant(keys.everyXMonths, { months });
+  constructor(billingPeriodTranslatorHelper) {
+    this.billingPeriodTranslatorHelper = billingPeriodTranslatorHelper;
   }
 
   getTranslationPeriod(months) {
-    return this.translatePeriod(
+    return this.billingPeriodTranslatorHelper.translatePeriod(
       months,
       {
         manual: 'autorenew_service_update_modal_period_manual',
@@ -38,7 +19,7 @@ export default class UpdatePeriodTranslationService {
   }
 
   getNoticeTranslationPeriod(months) {
-    return this.translatePeriod(months, {
+    return this.billingPeriodTranslatorHelper.translatePeriod(months, {
       everyMonth:
         'autorenew_service_update_modal_automatic_every_month_renewal_notice',
       everyYear:
