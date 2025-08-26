@@ -15,8 +15,8 @@ import {
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { Secret } from '@secret-manager/types/secret.type';
+import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import {
   DatagridAction,
@@ -25,13 +25,13 @@ import {
   DatagridCreationDate,
 } from './ListingCells.component';
 import { SecretListingPageParams } from './listing.type';
+import { isErrorResponse } from '@/utils/api/api';
 
 export default function SecretListingPage() {
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
   const { domainId } = useParams<SecretListingPageParams>();
-  const { data: secrets, isPending, error, refetch } = useSecretList(domainId);
 
   const columns: DatagridColumn<Secret>[] = [
     {
@@ -56,16 +56,29 @@ export default function SecretListingPage() {
     },
   ];
 
+  const {
+    data,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    sorting,
+    isPending,
+    setSorting,
+    refetch,
+  } = useSecretList({ domainId });
+
   if (error)
     return (
       <ErrorBanner
-        error={error.response}
+        error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() =>
           navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding)
         }
         onReloadPage={refetch}
       />
     );
+
+  const secrets = data?.pages.flatMap((page) => page.data);
 
   return (
     <BaseLayout
@@ -79,6 +92,10 @@ export default function SecretListingPage() {
           items={secrets || []}
           totalItems={secrets?.length}
           isLoading={isPending}
+          hasNextPage={hasNextPage}
+          onFetchNextPage={fetchNextPage}
+          sorting={sorting}
+          onSortChange={setSorting}
           contentAlignLeft
           topbar={
             <OdsButton

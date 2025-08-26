@@ -41,14 +41,6 @@ export const getSecretWithData = async (
   return data;
 };
 
-// LIST Secret
-export const getSecretList = async (okmsId: string) => {
-  const { data } = await apiClient.v2.get<Secret[]>(
-    `okms/resource/${okmsId}/secret`,
-  );
-  return data;
-};
-
 // POST Secret
 export type CreateSecretBody = {
   path: string;
