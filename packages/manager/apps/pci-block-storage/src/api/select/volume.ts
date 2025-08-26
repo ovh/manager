@@ -136,7 +136,7 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
   };
 };
 
-const getVolumePricing = (catalog?: TVolumeCatalog) => {
+export const getVolumePricing = (catalog?: TVolumeCatalog) => {
   const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
 
   return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
@@ -180,14 +180,29 @@ export type TVolumeEncryption = {
   encrypted: boolean | null;
   encryptionType: EncryptionType | null;
 };
+
+export const getEncryption = (catalog?: TVolumeCatalog) => <
+  V extends TAPIVolume
+>(
+  volume: V,
+) => {
+  const encrypted = getVolumePricing(catalog)(volume)?.specs.encrypted ?? null;
+  const encryptionType = encrypted ? EncryptionType.OMK : null;
+
+  return {
+    encrypted,
+    encryptionType,
+  };
+};
+
 export const mapVolumeEncryption = <V extends TAPIVolume>(
   t: TFunction<['common']>,
   catalog?: TVolumeCatalog,
 ) => {
-  const getPrice = getVolumePricing(catalog);
+  const getEncryptionForVolume = getEncryption(catalog);
 
   return (volume: V): V & TVolumeEncryption => {
-    const encrypted = getPrice(volume)?.specs.encrypted ?? null;
+    const { encrypted, encryptionType } = getEncryptionForVolume(volume);
 
     let encryptionStatusContext = 'UNKNOWN';
     if (encrypted !== null) {
@@ -203,7 +218,7 @@ export const mapVolumeEncryption = <V extends TAPIVolume>(
           defaultValue: encryptionStatusContext,
         },
       ),
-      encryptionType: encrypted ? EncryptionType.OMK : null,
+      encryptionType,
       encrypted,
     };
   };
