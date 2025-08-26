@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.8.1...@ovh-ux/manager-cli@0.9.0) (2025-08-26)
+
+
+### Features
+
+* **workflows:** get duplicate translations ([a78eca5](https://github.com/ovh/manager/commit/a78eca53ce0a942ad4995b6cee123fbf24f58d45)), closes [#MANAGER-19013](https://github.com/ovh/manager/issues/MANAGER-19013)
+
+
+
+
+
 ## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.8.0...@ovh-ux/manager-cli@0.8.1) (2025-08-14)
 
 
