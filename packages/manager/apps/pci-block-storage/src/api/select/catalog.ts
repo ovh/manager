@@ -1,6 +1,7 @@
 import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 import { TFunction } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { pipe } from 'lodash/fp';
 import {
   TCatalogGroup,
   TVolumeAddon,
@@ -10,11 +11,14 @@ import {
 import { TRegion } from '@/api/data/regions';
 import { EncryptionType } from '@/api/select/volume';
 import { TAPIVolume } from '@/api/data/volume';
+import { TVolumeModel } from '@/api/hooks/useCatalog';
+import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 
 export type TModelName = Readonly<{
   name: Opaque<string, TModelName>;
   displayName: Opaque<string, TModelName>;
 }>;
+
 type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 
 export const mapVolumeModelName = <T extends TVolumeAddon>(
@@ -326,3 +330,68 @@ export const mapFilterLeastPrice = <T extends TCatalogGroup>(
     },
   };
 };
+
+export type TModelPreselection = {
+  isPreselected: boolean;
+};
+
+export const mapPreselection = (type?: string | null) => <
+  T extends TVolumeAddon
+>(
+  model: T,
+) => {
+  const possibleTechnicalNames = model.pricings.map((p) => p.specs.name);
+
+  const isPreselected = type ? possibleTechnicalNames.includes(type) : false;
+
+  return {
+    ...model,
+    isPreselected,
+  };
+};
+
+const filterVolumeModelsForRegion = (catalog: TVolumeCatalog, region: string) =>
+  catalog.models
+    .map((m) => ({
+      ...m,
+      pricings: m.pricings.filter((p) => p.regions.includes(region)),
+    }))
+    .filter((m) => m.pricings.length > 0);
+
+export const mapVolumeCatalog = (
+  region: string,
+  catalogPriceFormatter: (price: number) => string,
+  translator: TFunction<['add']>,
+) => (catalog: TVolumeCatalog) =>
+  filterVolumeModelsForRegion(catalog, region).map<TVolumeModel>(
+    pipe(
+      mapVolumeModelPriceSpecs(
+        catalog.regions,
+        region,
+        catalogPriceFormatter,
+        translator,
+      ),
+      mapVolumeModelName(catalog.regions, region),
+      mapVolumeModelAttach,
+    ),
+  );
+
+export const mapRetypingVolumeCatalog = (
+  region: string,
+  catalogPriceFormatter: (price: number) => string,
+  translator: TFunction<['add']>,
+  type: string | null,
+) => (catalog: TVolumeCatalog) =>
+  filterVolumeModelsForRegion(catalog, region).map<TVolumeRetypeModel>(
+    pipe(
+      mapVolumeModelPriceSpecs(
+        catalog.regions,
+        region,
+        catalogPriceFormatter,
+        translator,
+      ),
+      mapVolumeModelName(catalog.regions, region),
+      mapVolumeModelAttach,
+      mapPreselection(type),
+    ),
+  );
