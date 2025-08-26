@@ -130,12 +130,12 @@ const checkDuplicatedTranslations = async () => {
     !existsSync(commonFolder) ||
     !statSync(commonFolder).isDirectory()
   ) {
-    console.error('Common folder path is invalid or does not exist.');
-    process.exit(1);
+    console.error('❌ Common folder path is invalid or does not exist.');
+    return false;
   }
   if (!existsSync(appFolder) || !statSync(appFolder).isDirectory()) {
-    console.error('Source folder path is invalid or does not exist.');
-    process.exit(1);
+    console.error('❌ Source folder path is invalid or does not exist.');
+    return false;
   }
 
   const commonValueMap = loadCommonValueMap(commonFolder);
@@ -157,7 +157,10 @@ const checkDuplicatedTranslations = async () => {
       console.log('');
     });
   }
+
+  return true;
 };
+
 
 // Start script
 checkDuplicatedTranslations().catch((err) => {

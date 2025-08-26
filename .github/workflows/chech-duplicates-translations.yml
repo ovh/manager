@@ -2,7 +2,7 @@ name: Duplicate translation
 on: [push]
 
 jobs:
-  test:
+  duplicate-translation:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout latest code
