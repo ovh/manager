@@ -18,6 +18,7 @@ export default function ActionsComponent({
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
   const hrefRemove = useHref(`./delete/${volume.id}`);
+  const hrefRetype = useHref(`./retype/${volume.id}`);
   const hrefCreateBackup = `${projectUrl}/storages/volume-backup/create?volumeId=${volume.id}`;
 
   const onTrackingClick = useTrackAction<(actionName: string) => void>(
@@ -59,6 +60,18 @@ export default function ActionsComponent({
     },
     {
       id: 4,
+      href: hrefRetype,
+      label: t('pci_projects_project_storages_blocks_change_encryption'),
+      dataTestid: 'actionComponent-change-encryption-button',
+    },
+    {
+      id: 5,
+      href: hrefRetype,
+      label: t('pci_projects_project_storages_blocks_change_type'),
+      dataTestid: 'actionComponent-retype-button',
+    },
+    {
+      id: 6,
       href: hrefRemove,
       label: t('pci_projects_project_storages_blocks_delete_label'),
       dataTestid: 'actionComponent-remove-button',
