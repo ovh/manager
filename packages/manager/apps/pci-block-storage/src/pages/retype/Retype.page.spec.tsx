@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 
 import { describe, vi } from 'vitest';
 import { userEvent } from '@testing-library/user-event';
@@ -70,7 +70,26 @@ describe('RetypePage', () => {
     ).toBeVisible();
   });
 
-  describe('validation button', () => {
+  it('should render unavailable message message if selected volume is not encrypted', () => {
+    vi.mocked(useCatalogWithPreselection).mockReturnValue({
+      data: [],
+      isPending: false,
+    } as ReturnType<typeof useCatalogWithPreselection>);
+
+    const { getByText } = render(<RetypePage />);
+
+    expect(useCatalogWithPreselection).toHaveBeenCalledWith(
+      PROJECT_ID,
+      VOLUME_ID,
+    );
+    expect(
+      getByText(
+        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+      ),
+    ).toBeVisible();
+  });
+
+  describe('modify button', () => {
     it('should be disabled if nothing has changed', () => {
       vi.mocked(useCatalogWithPreselection).mockReturnValue({
         data: [selectedCatalogOption, otherCatalogOption],
@@ -80,13 +99,11 @@ describe('RetypePage', () => {
       const { getByText } = render(<RetypePage />);
 
       expect(
-        getByText(
-          'common:pci_projects_project_storages_blocks_button_validate',
-        ),
+        getByText('common:pci_projects_project_storages_blocks_button_modify'),
       ).toBeDisabled();
     });
 
-    it('should be enable if volume type has changed', async () => {
+    it('should be enabled if volume type has changed', async () => {
       vi.mocked(useCatalogWithPreselection).mockReturnValue({
         data: [selectedCatalogOption, otherCatalogOption],
         isPending: false,
@@ -99,10 +116,146 @@ describe('RetypePage', () => {
       );
 
       expect(
-        getByText(
-          'common:pci_projects_project_storages_blocks_button_validate',
-        ),
+        getByText('common:pci_projects_project_storages_blocks_button_modify'),
       ).not.toBeDisabled();
+    });
+
+    it('should be disabled if volume type has changed and back to original value', async () => {
+      vi.mocked(useCatalogWithPreselection).mockReturnValue({
+        data: [selectedCatalogOption, otherCatalogOption],
+        isPending: false,
+      } as ReturnType<typeof useCatalogWithPreselection>);
+
+      const { getByText, getByRole } = render(<RetypePage />);
+
+      await userEvent.click(
+        getByRole('radio', { name: otherCatalogOption.displayName }),
+      );
+      await userEvent.click(
+        getByRole('radio', { name: selectedCatalogOption.displayName }),
+      );
+
+      expect(
+        getByText('common:pci_projects_project_storages_blocks_button_modify'),
+      ).toBeDisabled();
+    });
+
+    it('should be enabled if encryption has changed', async () => {
+      vi.mocked(useCatalogWithPreselection).mockReturnValue({
+        data: [
+          {
+            ...selectedCatalogOption,
+            encrypted: true,
+          },
+        ],
+        isPending: false,
+        preselectedEncryptionType: null,
+      } as ReturnType<typeof useCatalogWithPreselection>);
+
+      const { getByRole, getByText } = render(<RetypePage />);
+
+      await userEvent.click(
+        within(
+          getByRole('radiogroup', {
+            name:
+              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+          }),
+        ).getByText('OVHcloud Managed Key'),
+      );
+
+      expect(
+        getByText('common:pci_projects_project_storages_blocks_button_modify'),
+      ).not.toBeDisabled();
+    });
+
+    it('should be disabled if encryption has changed and back to original value', async () => {
+      vi.mocked(useCatalogWithPreselection).mockReturnValue({
+        data: [
+          {
+            ...selectedCatalogOption,
+            encrypted: true,
+          },
+        ],
+        isPending: false,
+        preselectedEncryptionType: null,
+      } as ReturnType<typeof useCatalogWithPreselection>);
+
+      const { getByRole, getByText } = render(<RetypePage />);
+
+      await userEvent.click(
+        within(
+          getByRole('radiogroup', {
+            name:
+              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+          }),
+        ).getByText('OVHcloud Managed Key'),
+      );
+      await userEvent.click(
+        within(
+          getByRole('radiogroup', {
+            name:
+              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+          }),
+        ).getByText('common:pci_projects_project_storages_blocks_status_NONE'),
+      );
+
+      expect(
+        getByText('common:pci_projects_project_storages_blocks_button_modify'),
+      ).toBeDisabled();
+    });
+  });
+
+  describe('encryption', () => {
+    it('should render option given volume is encrypted', () => {
+      vi.mocked(useCatalogWithPreselection).mockReturnValue({
+        data: [
+          {
+            ...selectedCatalogOption,
+            encrypted: true,
+          },
+        ],
+        isPending: false,
+      } as ReturnType<typeof useCatalogWithPreselection>);
+
+      const { getByRole, queryByText } = render(<RetypePage />);
+
+      expect(
+        getByRole('radiogroup', {
+          name:
+            'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+        }),
+      ).toBeVisible();
+      expect(
+        queryByText(
+          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
+        ),
+      ).toBeNull();
+    });
+
+    it('should not render option given and render information message given volume is not encrypted', () => {
+      vi.mocked(useCatalogWithPreselection).mockReturnValue({
+        data: [
+          {
+            ...selectedCatalogOption,
+            encrypted: false,
+          },
+        ],
+        isPending: false,
+      } as ReturnType<typeof useCatalogWithPreselection>);
+
+      const { queryByRole, getByText } = render(<RetypePage />);
+
+      expect(
+        queryByRole('radiogroup', {
+          name:
+            'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+        }),
+      ).toBeNull();
+      expect(
+        getByText(
+          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
+        ),
+      ).toBeVisible();
     });
   });
 });

@@ -3,18 +3,21 @@ import {
   OsdsMessage,
   OsdsModal,
   OsdsSkeleton,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
   ODS_SKELETON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Subtitle } from '@ovh-ux/manager-react-components';
+import { Subtitle, Title } from '@ovh-ux/manager-react-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
@@ -32,20 +35,22 @@ export const RetypePage = () => {
   const navigate = useNavigate();
   const { projectId, volumeId } = useParams();
   const {
-    data,
+    data: volumeModelData,
     preselectedEncryptionType,
     isPending,
   } = useCatalogWithPreselection(projectId, volumeId);
   const onClose = () => navigate('..');
 
-  const currentModel = useMemo(() => data?.find((m) => m.isPreselected), [
-    data,
-  ]);
+  const currentModel = useMemo(
+    () => volumeModelData?.find((model) => model.isPreselected),
+    [volumeModelData],
+  );
 
   const {
     control,
-    formState: { isDirty },
+    formState: { dirtyFields },
     handleSubmit,
+    watch,
   } = useForm({
     defaultValues: {
       volumeModel: null,
@@ -58,14 +63,16 @@ export const RetypePage = () => {
     mode: 'onSubmit',
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (formData) =>
+  const selectedModel = watch('volumeModel');
+  const isDirty =
+    dirtyFields.encryptionType || selectedModel?.name !== currentModel?.name;
+
+  const onSubmit: SubmitHandler<FormValues> = () => {
     // TODO Change this when backend is ready
-    alert(
-      `You choose: ${formData.volumeModel.name} and ${formData.encryptionType}`,
-    );
+  };
 
   const displayedData =
-    data?.length > 0 ? (
+    volumeModelData?.length > 0 ? (
       <div>
         <Controller
           control={control}
@@ -73,7 +80,7 @@ export const RetypePage = () => {
           render={({ field: { value, onChange } }) => (
             <VolumeModelTilesInput
               value={value}
-              volumeModels={data}
+              volumeModels={volumeModelData}
               onChange={onChange}
               label={t(
                 'retype:pci_projects_project_storages_blocks_retype_change_type_title',
@@ -82,19 +89,40 @@ export const RetypePage = () => {
           )}
         />
         <div>
-          <Controller
-            control={control}
-            name="encryptionType"
-            render={({ field: { value, onChange } }) => (
-              <Encryption
-                encryptionType={value}
-                onChange={onChange}
-                title={t(
+          {selectedModel?.encrypted ? (
+            <Controller
+              control={control}
+              name="encryptionType"
+              render={({ field: { value, onChange } }) => (
+                <Encryption
+                  encryptionType={value}
+                  onChange={onChange}
+                  title={t(
+                    'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+                  )}
+                />
+              )}
+            />
+          ) : (
+            <div>
+              <Subtitle>
+                {t(
                   'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
                 )}
-              />
-            )}
-          />
+              </Subtitle>
+              <div>
+                <OsdsText
+                  size={ODS_TEXT_SIZE._400}
+                  level={ODS_TEXT_LEVEL.body}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                >
+                  {t(
+                    'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
+                  )}
+                </OsdsText>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     ) : (
@@ -108,9 +136,9 @@ export const RetypePage = () => {
       <OsdsModal onOdsModalClose={onClose}>
         <slot>
           <legend>
-            <Subtitle>
+            <Title>
               {t('retype:pci_projects_project_storages_blocks_retype_title')}
-            </Subtitle>
+            </Title>
           </legend>
           {!isPending ? (
             displayedData
@@ -140,7 +168,7 @@ export const RetypePage = () => {
           disabled={!isDirty || undefined}
           type={ODS_BUTTON_TYPE.submit}
         >
-          {t('common:pci_projects_project_storages_blocks_button_validate')}
+          {t('common:pci_projects_project_storages_blocks_button_modify')}
         </OsdsButton>
       </OsdsModal>
     </form>
