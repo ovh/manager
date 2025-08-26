@@ -43,3 +43,4 @@ export * from './changelog-menu';
 export * from './link-card';
 export * from './error';
 export * from './error-boundary';
+export * from './update-name-modal';
