@@ -6,11 +6,11 @@ import { initShellClient } from '@ovh-ux/shell';
 type Awaited<T> = T extends PromiseLike<infer U> ? U : T;
 export type OvhContextShellType = Awaited<ReturnType<typeof initShellClient>>;
 export type OvhContextType = {
-  shell: OvhContextShellType;
-  environment: Environment;
+  shell: OvhContextShellType | null;
+  environment: Environment | null;
 };
 
-export const OvhContext = React.createContext<OvhContextType>({
+export const OvhContext = React.createContext<OvhContextType | null>({
   shell: null,
   environment: null,
 });

@@ -16,7 +16,7 @@ export async function initI18n(locale: string, availableLocales: string[]) {
       defaultNS: 'common',
       supportedLngs: availableLocales.map(ovhLocaleToI18next),
       backend: {
-        loadPath: (lngs, namespaces) => {
+        loadPath: (lngs: string[], namespaces: string[]) => {
           const [ns] = namespaces;
           const [lng] = lngs;
           return `${

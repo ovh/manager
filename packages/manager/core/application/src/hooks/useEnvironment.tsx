@@ -6,21 +6,21 @@ export function useEnvironment() {
   const env = useEnv();
 
   return {
-    get application(): Readonly<Application> {
-      return env.getApplication();
+    get application(): Readonly<Application> | undefined {
+      return env?.getApplication();
     },
-    get region(): string {
-      return env.getRegion();
+    get region(): string | undefined {
+      return env?.getRegion();
     },
-    get universe(): string {
-      return env.getUniverse();
+    get universe(): string | undefined {
+      return env?.getUniverse();
     },
-    get locale(): string {
-      return env.getUserLocale();
+    get locale(): string | undefined {
+      return env?.getUserLocale();
     },
     get container() {
       return {
-        ...env.getApplication()?.container,
+        ...(env?.getApplication()?.container || {}),
       };
     },
   };

@@ -6,6 +6,7 @@ import {
   LoaderFunction,
   LoaderFunctionArgs,
   Outlet,
+  RouteMatch,
   RouteObject,
   createHashRouter,
   matchRoutes,
@@ -27,29 +28,36 @@ type Module = {
   breadcrumb: () => unknown;
 };
 
-function HidePreloader(): JSX.Element {
+function HidePreloader(): JSX.Element | undefined {
   const shell = useShell();
   useEffect(() => {
-    shell.ux.hidePreloader();
+    shell?.ux?.hidePreloader?.();
   }, []);
+
   return undefined;
 }
 
-function OvhContainerRoutingSync({ routes }): JSX.Element {
+function OvhContainerRoutingSync({ routes }: { routes: RouteObject[] }): JSX.Element | undefined {
   const location = useLocation();
   const navigate = useNavigate();
-  const matches: any = matchRoutes(routes, { pathname: location.pathname });
+
+  const matches: RouteMatch[] | null = matchRoutes(routes, {
+    pathname: location.pathname,
+  });
 
   const shell = useShell();
+
   useEffect(() => {
-    shell.routing.stopListenForHashChange();
+    shell?.routing?.stopListenForHashChange();
   }, []);
+
   useEffect(() => {
-    shell.routing.onHashChange();
-    if (matches && matches[matches.length - 1].route?.element === undefined) {
+    shell?.routing?.onHashChange();
+    if (matches?.[matches.length - 1]?.route?.element === undefined) {
       navigate('/');
     }
   }, [location]);
+
   return undefined;
 }
 
@@ -107,7 +115,7 @@ export function createAppRouter(): ReturnType<typeof createHashRouter> {
   const appBlobKey = '/pages/_app.tsx';
   const appBlob = import.meta.glob<Module>('/pages/_app.tsx', { eager: true });
 
-  const newRoutes = regularRoutes.map((route, index) => {
+  const newRoutes = regularRoutes.map((route) => {
     if (route.path === 'dashboard') {
       return {
         ...route,

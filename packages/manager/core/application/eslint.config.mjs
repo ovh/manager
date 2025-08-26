@@ -23,4 +23,11 @@ export default [
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
+  {
+    rules: {
+      'react-hooks/exhaustive-deps': 'off',
+      'react/no-children-prop': 'off',
+      'react/prop-types': 'off'
+    },
+  },
 ];

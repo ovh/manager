@@ -1,8 +1,36 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { Location, useLocation } from 'react-router-dom';
 
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
+
+type Tracking = {
+  trackPage: (data: {
+    name: string;
+    level2: string;
+    complete_page_name: string;
+    page_category: string;
+    page_theme: string;
+  }) => void;
+  trackClick: (data: {
+    name: string;
+    page: { name: string };
+    page_category: string;
+    complete_page_name: string;
+    level2: string;
+    type: string;
+    page_theme: string;
+  }) => void;
+};
+
+type Environment = {
+  getEnvironment: () => Promise<{ applicationName: string; universe: string }>;
+};
+
+type Shell = {
+  tracking: Tracking;
+  environment: Environment;
+};
 
 const OSDS_COMPONENT = [
   'OSDS-ACCORDION',
@@ -35,7 +63,7 @@ const OSDS_COMPONENT = [
   'OSDS-TOGGLE',
 ];
 
-export function OvhTracking({ shell }) {
+export function OvhTracking({ shell }: { shell: Shell }) {
   const location = useLocation();
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
@@ -44,82 +72,78 @@ export function OvhTracking({ shell }) {
 
   const trackLevel2 = (universe: string) => {
     const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
-      AT_INTERNET_LEVEL2[element].toLowerCase().indexOf(universe.toLowerCase()) > -1
-        ? element
-        : false,
+      AT_INTERNET_LEVEL2?.[element]?.toLowerCase().includes(universe.toLowerCase()),
     );
-    return result ? result[0] : '0';
+    return result.length > 0 ? result[0] : '0';
   };
 
-  const OvhTrackPage = (loc: any) => {
-    const path = loc?.pathname.split('/')[1];
-    env.then((response) => {
-      const { applicationName, universe } = response;
-      const page = `${applicationName}::${path || 'homepage'}`;
-      const name = `${universe}::app::${applicationName}`;
-      tracking.trackPage({
-        name,
-        level2: trackLevel2(universe),
-        complete_page_name: page,
-        page_category: path || 'homepage',
-        page_theme: applicationName,
-      });
-    });
+  const OvhTrackPage = (loc: Location) => {
+    const path = loc.pathname.split('/')[1];
+    env
+      .then(({ applicationName, universe }) => {
+        const page = `${applicationName}::${path || 'homepage'}`;
+        const name = `${universe}::app::${applicationName}`;
+        tracking.trackPage({
+          name,
+          level2: trackLevel2(universe) || '',
+          complete_page_name: page,
+          page_category: path || 'homepage',
+          page_theme: applicationName,
+        });
+      })
+      .catch(() => {});
   };
 
   const ovhTrackingSendClick = (value: string) => {
-    env.then((response) => {
-      const { applicationName, universe } = response;
-      const path = myStateRef.current.pathname.split('/')[1];
-      const name = `${applicationName}::${path || 'homepage'}::${value}`;
-      const page = `${universe}::app::${applicationName}`;
-      tracking.trackClick({
-        name,
-        page: { name: page },
-        page_category: path || 'homepage',
-        complete_page_name: `${applicationName}::${path || 'homepage'}`,
-        level2: trackLevel2(universe),
-        type: 'action',
-        page_theme: applicationName,
-      });
-    });
+    env
+      .then(({ applicationName, universe }) => {
+        const path = myStateRef.current.pathname.split('/')[1];
+        const name = `${applicationName}::${path || 'homepage'}::${value}`;
+        const page = `${universe}::app::${applicationName}`;
+        tracking.trackClick({
+          name,
+          page: { name: page },
+          page_category: path || 'homepage',
+          complete_page_name: `${applicationName}::${path || 'homepage'}`,
+          level2: trackLevel2(universe) || '',
+          type: 'action',
+          page_theme: applicationName,
+        });
+      })
+      .catch(() => {});
   };
 
-  const ovhTrackShadowElement = (element) => {
-    const elementInShadowRoot = element.shadowRoot.querySelector(`[${'data-tracking'}]`);
-    if (
-      elementInShadowRoot &&
-      OSDS_COMPONENT.includes(elementInShadowRoot?.tagName?.toUpperCase())
-    ) {
+  const ovhTrackShadowElement = (element: HTMLElement) => {
+    const elementInShadowRoot = element.shadowRoot?.querySelector<HTMLElement>('[data-tracking]');
+    if (elementInShadowRoot && OSDS_COMPONENT.includes(elementInShadowRoot.tagName.toUpperCase())) {
       const trackingValueInShadowRoot = elementInShadowRoot.getAttribute('data-tracking');
-      ovhTrackingSendClick(trackingValueInShadowRoot);
+      if (trackingValueInShadowRoot) {
+        ovhTrackingSendClick(trackingValueInShadowRoot);
+      }
     }
   };
 
-  const ovhTrackingAction = (event) => {
+  const ovhTrackingAction = (event: MouseEvent) => {
     const element = event.target as HTMLElement;
-    const closestWithTracking = element.closest(`[${'data-tracking'}]`);
+    const closestWithTracking = element.closest<HTMLElement>('[data-tracking]');
     if (closestWithTracking) {
       const trackingValue = closestWithTracking.getAttribute('data-tracking');
-      if (OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())) {
+      if (trackingValue && OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())) {
         ovhTrackingSendClick(trackingValue);
         return;
       }
-      if (element?.shadowRoot) {
+      if (element.shadowRoot) {
         ovhTrackShadowElement(element);
       }
     }
   };
 
-  const ovhTrackSelectOption = (event) => {
+  const ovhTrackSelectOption = (event: Event) => {
     const element = event.target as HTMLElement;
-    const closestWithTracking = element.closest(`[${'data-tracking'}]`);
-
-    if (closestWithTracking) {
-      const trackingValue = closestWithTracking.getAttribute('data-tracking');
-      if (trackingValue) {
-        ovhTrackingSendClick(trackingValue);
-      }
+    const closestWithTracking = element.closest<HTMLElement>('[data-tracking]');
+    const trackingValue = closestWithTracking?.getAttribute('data-tracking');
+    if (trackingValue) {
+      ovhTrackingSendClick(trackingValue);
     }
   };
 
@@ -140,5 +164,3 @@ export function OvhTracking({ shell }) {
 
   return null;
 }
-
-export default OvhTracking;
