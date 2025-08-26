@@ -1,7 +1,9 @@
-import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import { redirectToLoginPage, redirectToLogoutPage } from '@ovh-ux/manager-core-sso';
 import { getHeaders } from '@ovh-ux/request-tagger';
+
+type ApiKey = keyof typeof apiClient;
 
 const defaultAxiosConfig = {};
 
@@ -55,8 +57,6 @@ export const v2 = axios.create({
 
 export const apiClient = { v6, aapi, ws, v2 } as const;
 
-type ApiKey = keyof typeof apiClient;
-
 (Object.keys(apiClient) as ApiKey[]).forEach((api) => {
   const client = apiClient[api];
 
@@ -70,8 +70,5 @@ type ApiKey = keyof typeof apiClient;
 
   client.interceptors.response.use(undefined, handleAuthenticationError);
 });
-
-export type ApiError = AxiosError<{ message: string }>;
-export type ApiResponse<T> = AxiosResponse<T>;
 
 export default apiClient;

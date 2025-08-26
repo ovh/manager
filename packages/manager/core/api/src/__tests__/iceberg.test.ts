@@ -2,7 +2,6 @@ import type { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { apiClient } from '../client';
-import { Filter, FilterComparator, FilterTypeCategories } from '../filters';
 import {
   appendIamTags,
   buildHeaders,
@@ -11,6 +10,7 @@ import {
   getRouteWithParams,
   icebergFilter,
 } from '../iceberg';
+import { Filter, FilterComparator, FilterTypeCategories } from '../types/filters.type';
 
 vi.mock('../client', () => {
   return {

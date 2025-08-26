@@ -1,48 +1,14 @@
 import { AxiosResponse } from 'axios';
 
 import { apiClient } from './client';
+import { transformTagsFiltersToQuery } from './filters';
+import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type';
 import {
-  Filter,
-  FilterComparator,
-  FilterTypeCategories,
-  transformTagsFiltersToQuery,
-} from './filters';
-
-export type IcebergCommonOptions = {
-  route: string;
-  pageSize?: number;
-  disableCache?: boolean;
-  search?: {
-    key: string;
-    value: string;
-  };
-};
-
-export type IcebergFetchParamsV6 = {
-  page?: number;
-  filters?: Filter[];
-  sortBy?: string;
-  sortReverse?: boolean;
-} & IcebergCommonOptions;
-
-export type IcebergFetchParamsV2 = {
-  cursor?: string;
-  filters?: Filter[];
-  sortBy?: string;
-  sortOrder?: 'ASC' | 'DESC';
-} & IcebergCommonOptions;
-
-export type IcebergFetchResultV6<T> = {
-  data: T[];
-  totalCount: number;
-  status: number;
-};
-
-export type IcebergFetchResultV2<T> = {
-  data: T[];
-  cursorNext: string;
-  status: number;
-};
+  IcebergFetchParamsV2,
+  IcebergFetchParamsV6,
+  IcebergFetchResultV2,
+  IcebergFetchResultV6,
+} from './types/iceberg.type';
 
 export const appendIamTags = (
   params: URLSearchParams,
