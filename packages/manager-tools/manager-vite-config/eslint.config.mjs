@@ -20,9 +20,10 @@ export default [
   complexityTsJsConfig,
   {
     rules: {
-      'no-undef': 'off',
       'check-file/no-index': 'off',
-      'import/no-nodejs-modules': 'off'
+      'max-lines-per-function': 'off',
+      'import/no-nodejs-modules': 'off',
+      'no-undef': 'off'
     },
   },
 ];

@@ -17,5 +17,10 @@ export default [
   ...checkFileEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
-  complexityTsJsConfig
+  complexityTsJsConfig,
+  {
+    rules: {
+      'check-file/no-index': 'off',
+    },
+  },
 ];

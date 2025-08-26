@@ -7,7 +7,7 @@ export function getCommonTranslations() {
   let packageJson;
   try {
     packageJson = JSON.parse(fs.readFileSync(`${process.cwd()}/package.json`, 'utf8'));
-  } catch (e) {
+  } catch {
     packageJson = {};
   }
   const COMMON_TRANSLATIONS_PACKAGE = '@ovh-ux/manager-common-translations';

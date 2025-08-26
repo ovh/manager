@@ -55,7 +55,7 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
             addProxyConfig(proxy.dev(devProxyConfig));
           }
         }
-      } catch (error) {
+      } catch {
         // No dev proxy config
       }
 
