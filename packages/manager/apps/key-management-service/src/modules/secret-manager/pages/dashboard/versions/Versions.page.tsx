@@ -76,20 +76,6 @@ const SecretVersionsPage = () => {
 
   return (
     <>
-      <OdsButton
-        className="mb-4"
-        onClick={() =>
-          navigate(
-            SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerCreateVersion(
-              domainId,
-              secretPathDecoded,
-            ),
-          )
-        }
-        label={t('add_new_version')}
-        icon={'plus'}
-      />
-
       <Datagrid
         columns={columns}
         items={versions || []}
@@ -100,6 +86,20 @@ const SecretVersionsPage = () => {
         sorting={sorting}
         onSortChange={setSorting}
         contentAlignLeft
+        topbar={
+          <OdsButton
+            label={t('add_new_version')}
+            onClick={() =>
+              navigate(
+                SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerCreateVersion(
+                  domainId,
+                  secretPathDecoded,
+                ),
+              )
+            }
+            icon={'plus'}
+          />
+        }
       />
       <Suspense>
         <Outlet />
