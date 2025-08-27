@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.4.1...@ovh-ux/manager-carbon-calculator@0.5.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4280] ([4286c92](https://github.com/ovh/manager/commit/4286c9297b4020e3289a7f84260664fa6e3f232c))
+
+
+### Features
+
+* **carbon-calculator:** added wording for public cloud ([be7f4b5](https://github.com/ovh/manager/commit/be7f4b5cd65f2d147d873d85d9a8fd5c7b1c5895)), closes [#MANAGER-15733](https://github.com/ovh/manager/issues/MANAGER-15733)
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.4.0...@ovh-ux/manager-carbon-calculator@0.4.1) (2024-05-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-carbon-calculator

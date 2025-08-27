@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "3.0.36",
+  "version": "3.0.37",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-payment-method": "^9.17.4",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.5",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.5",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",

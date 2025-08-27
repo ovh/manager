@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.22.3...@ovh-ux/manager-billing-components@4.23.0) (2025-08-27)
+
+
+### Features
+
+* **billing:** cleanup unused translations ([493f414](https://github.com/ovh/manager/commit/493f41402e69a450078880ad6965f5eb0126b227)), closes [#MANAGER-18995](https://github.com/ovh/manager/issues/MANAGER-18995)
+
+
+
+
+
 ## [4.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.22.2...@ovh-ux/manager-billing-components@4.22.3) (2025-08-19)
 
 

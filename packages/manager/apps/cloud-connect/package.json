@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "2.0.61",
+  "version": "2.0.62",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.5",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.5",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",

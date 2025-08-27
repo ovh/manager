@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.8...@ovh-ux/manager-vrack-services-app@0.22.9) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
 ## [0.22.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.7...@ovh-ux/manager-vrack-services-app@0.22.8) (2025-08-26)
 
 

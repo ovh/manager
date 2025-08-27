@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.12.50",
+  "version": "0.12.51",
   "private": true,
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-payment-method": "^9.17.4",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.5",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.5",
     "@ovh-ux/ng-ovh-utils": "^14.5.3",

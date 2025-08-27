@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "3.0.83",
+  "version": "3.0.84",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.5",
     "@ovh-ux/ng-ovh-payment-method": "^9.17.4",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-utils": "^14.5.3",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
