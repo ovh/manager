@@ -43,10 +43,10 @@ export const useCatalogWithPreselection = (
     if (!catalogData || !volumeData) return [null, null];
 
     const regionType = catalogData?.regions.find(
-      (r) => r.name === volumeData?.region,
+      (region) => region.name === volumeData?.region,
     )?.type;
 
-    if (regionType !== 'region') {
+    if (regionType === 'region-3-az') {
       return [[], null];
     }
 
