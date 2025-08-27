@@ -150,7 +150,9 @@ export default class BillingLinksService {
               },
               '',
             );
-            links.resiliateLink = service.isByoipService()
+
+            links.resiliateLink = service.isByoipService() ||
+              service.serviceType === SERVICE_TYPE.DOMAIN
               ? `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`
               : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
