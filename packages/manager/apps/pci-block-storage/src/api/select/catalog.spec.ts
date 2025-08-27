@@ -2,7 +2,10 @@ import { describe, it } from 'vitest';
 import { TFunction } from 'i18next';
 import { TVolumeAddon, TVolumeCatalog } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
-import { mapVolumeCatalog } from '@/api/select/catalog';
+import {
+  mapRetypingVolumeCatalog,
+  mapVolumeCatalog,
+} from '@/api/select/catalog';
 
 const region = {
   name: 'region name',
@@ -24,23 +27,24 @@ const region3AZ = {
   datacenter: 'datacenter',
 } as TRegion;
 
-const classicModel = {
-  name: 'classic',
-  pricings: [
-    {
-      price: 20,
-      regions: [region.name],
-      specs: {
-        name: 'classic spec name',
-        volume: {
-          iops: { level: 10 },
-          capacity: { max: 11 },
+const createClassicModel = (specName = 'classic spec name') =>
+  ({
+    name: 'classic',
+    pricings: [
+      {
+        price: 20,
+        regions: [region.name],
+        specs: {
+          name: specName,
+          volume: {
+            iops: { level: 10 },
+            capacity: { max: 11 },
+          },
+          bandwidth: { level: 12, max: 13, guaranteed: true },
         },
-        bandwidth: { level: 12, max: 13, guaranteed: true },
       },
-    },
-  ],
-} as TVolumeAddon;
+    ],
+  } as TVolumeAddon);
 
 const model3AZ = {
   name: '3AZ',
@@ -61,10 +65,10 @@ describe('mapVolumeCatalog', () => {
 
   const catalog = {
     regions: [region, region3AZ],
-    models: [classicModel, model3AZ],
+    models: [createClassicModel(), model3AZ],
   } as TVolumeCatalog;
 
-  it('should filter out element that dont have pricing in the input region', () => {
+  it('should filter out elements that dont have pricing in the input region', () => {
     const result = mapVolumeCatalog(
       region.name,
       catalogPriceFormatter,
@@ -72,7 +76,7 @@ describe('mapVolumeCatalog', () => {
     )(catalog);
 
     expect(result).toHaveLength(1);
-    expect(result[0]).toEqual(expect.objectContaining(classicModel));
+    expect(result[0]).toEqual(expect.objectContaining(createClassicModel()));
   });
 
   it('should add hourly price', () => {
@@ -85,7 +89,7 @@ describe('mapVolumeCatalog', () => {
     expect(result[0]).toEqual(
       expect.objectContaining({
         hourlyPrice: {
-          value: `price: ${classicModel.pricings[0].price}`,
+          value: `price: ${createClassicModel().pricings[0].price}`,
           isLeastPrice: false,
           unit: 'add:pci_projects_project_storages_blocks_add_type_addon_price',
         },
@@ -103,7 +107,7 @@ describe('mapVolumeCatalog', () => {
     expect(result[0]).toEqual(
       expect.objectContaining({
         monthlyPrice: {
-          value: `price: ${classicModel.pricings[0].price * 730}`,
+          value: `price: ${createClassicModel().pricings[0].price * 730}`,
           isLeastPrice: false,
           unit: 'add:pci_projects_project_storages_blocks_add_type_price',
         },
@@ -120,7 +124,9 @@ describe('mapVolumeCatalog', () => {
 
     expect(result[0]).toEqual(
       expect.objectContaining({
-        bandwidth: `${classicModel.pricings[0].specs.bandwidth.level} @ovh-ux/manager-common-translations/bytes:unit_size_MB/s common:pci_projects_project_storages_blocks_guaranteed`,
+        bandwidth: `${
+          createClassicModel().pricings[0].specs.bandwidth.level
+        } @ovh-ux/manager-common-translations/bytes:unit_size_MB/s common:pci_projects_project_storages_blocks_guaranteed`,
       }),
     );
   });
@@ -134,8 +140,8 @@ describe('mapVolumeCatalog', () => {
 
     expect(result[0]).toEqual(
       expect.objectContaining({
-        displayName: classicModel.name,
-        technicalName: classicModel.pricings[0].specs.name,
+        displayName: createClassicModel().name,
+        technicalName: createClassicModel().pricings[0].specs.name,
       }),
     );
   });
@@ -143,7 +149,7 @@ describe('mapVolumeCatalog', () => {
   it('should add shouldUseMultiAttachFileSystem to true if model is multiattach', () => {
     const catalogWithMultiAttach = {
       regions: [region],
-      models: [{ ...classicModel, name: 'classic-multiattach' }],
+      models: [{ ...createClassicModel(), name: 'classic-multiattach' }],
     } as TVolumeCatalog;
 
     const result = mapVolumeCatalog(
@@ -157,5 +163,161 @@ describe('mapVolumeCatalog', () => {
         shouldUseMultiAttachFileSystem: true,
       }),
     );
+  });
+});
+
+describe('mapRetypingVolumeCatalog', () => {
+  const catalogPriceFormatter = (price: number) => `price: ${price}`;
+  const translator = ((keyValue: string) => keyValue) as TFunction;
+
+  const catalog = {
+    regions: [region, region3AZ],
+    models: [createClassicModel(), model3AZ],
+  } as TVolumeCatalog;
+
+  it('should filter out element that dont have pricing in the input region', () => {
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalog);
+
+    expect(result).toHaveLength(1);
+    expect(result[0]).toEqual(expect.objectContaining(createClassicModel()));
+  });
+
+  it('should filter out elements that are in 3az region and multi attach', () => {
+    const classic3azModel = { ...model3AZ, name: 'classic-multiattach' };
+
+    const result = mapRetypingVolumeCatalog(
+      region3AZ.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )({
+      regions: [region3AZ],
+      models: [
+        model3AZ,
+        classic3azModel,
+        { ...model3AZ, name: 'high-speed-gen2' },
+      ],
+    } as TVolumeCatalog);
+
+    expect(result).toHaveLength(2);
+    expect(result).not.toContain(classic3azModel);
+  });
+
+  it('should add hourly price', () => {
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        hourlyPrice: {
+          value: `price: ${createClassicModel().pricings[0].price}`,
+          isLeastPrice: false,
+          unit: 'add:pci_projects_project_storages_blocks_add_type_addon_price',
+        },
+      }),
+    );
+  });
+
+  it('should add monthly price', () => {
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        monthlyPrice: {
+          value: `price: ${createClassicModel().pricings[0].price * 730}`,
+          isLeastPrice: false,
+          unit: 'add:pci_projects_project_storages_blocks_add_type_price',
+        },
+      }),
+    );
+  });
+
+  it('should add bandwidth', () => {
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        bandwidth: `${
+          createClassicModel().pricings[0].specs.bandwidth.level
+        } @ovh-ux/manager-common-translations/bytes:unit_size_MB/s common:pci_projects_project_storages_blocks_guaranteed`,
+      }),
+    );
+  });
+
+  it('should add displayName and technical name', () => {
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalog);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        displayName: createClassicModel().name,
+        technicalName: createClassicModel().pricings[0].specs.name,
+      }),
+    );
+  });
+
+  it('should add shouldUseMultiAttachFileSystem to true if model is multiattach', () => {
+    const catalogWithMultiAttach = {
+      regions: [region],
+      models: [{ ...createClassicModel(), name: 'classic-multiattach' }],
+    } as TVolumeCatalog;
+
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      null,
+    )(catalogWithMultiAttach);
+
+    expect(result[0]).toEqual(
+      expect.objectContaining({
+        shouldUseMultiAttachFileSystem: true,
+      }),
+    );
+  });
+
+  it('should add preselected to model matching the type', () => {
+    const type = 'target type';
+    const preselectedModel = createClassicModel(type);
+    const notPreselectedModel = createClassicModel('other');
+
+    const catalogWithMultiAttach = {
+      regions: [region],
+      models: [preselectedModel, notPreselectedModel],
+    } as TVolumeCatalog;
+
+    const result = mapRetypingVolumeCatalog(
+      region.name,
+      catalogPriceFormatter,
+      translator,
+      type,
+    )(catalogWithMultiAttach);
+
+    expect(result).toHaveLength(2);
+    expect(result[0].isPreselected).toBe(true);
+    expect(result[1].isPreselected).toBe(false);
   });
 });
