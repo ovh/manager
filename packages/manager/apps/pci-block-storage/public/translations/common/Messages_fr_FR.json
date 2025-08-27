@@ -27,7 +27,5 @@
   "pci_projects_project_storages_blocks_encryption_available": "Chiffrement disponible",
   "pci_projects_project_storages_blocks_encryption_unavailable": "Chiffrement indisponible",
   "pci_projects_project_storages_blocks_guaranteed": "garantie",
-  "pci_projects_project_storages_blocks_up_to": "jusqu'à",
-  "pci_projects_project_storages_blocks_button_cancel": "Annuler",
-  "pci_projects_project_storages_blocks_button_modify": "Modifier"
+  "pci_projects_project_storages_blocks_up_to": "jusqu'à"
 }

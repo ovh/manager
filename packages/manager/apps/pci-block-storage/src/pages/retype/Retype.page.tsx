@@ -19,6 +19,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Subtitle, Title } from '@ovh-ux/manager-react-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
@@ -31,7 +32,7 @@ type FormValues = {
 };
 
 export const RetypePage = () => {
-  const { t } = useTranslation(['common', 'retype']);
+  const { t } = useTranslation(['common', 'retype', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { projectId, volumeId } = useParams();
   const {
@@ -160,7 +161,7 @@ export const RetypePage = () => {
           onClick={onClose}
           type={ODS_BUTTON_TYPE.button}
         >
-          {t('common:pci_projects_project_storages_blocks_button_cancel')}
+          {t(`${NAMESPACES.ACTIONS}:cancel`)}
         </OsdsButton>
         <OsdsButton
           slot="actions"
@@ -168,7 +169,7 @@ export const RetypePage = () => {
           disabled={!isDirty || undefined}
           type={ODS_BUTTON_TYPE.submit}
         >
-          {t('common:pci_projects_project_storages_blocks_button_modify')}
+          {t(`${NAMESPACES.ACTIONS}:modify`)}
         </OsdsButton>
       </OsdsModal>
     </form>

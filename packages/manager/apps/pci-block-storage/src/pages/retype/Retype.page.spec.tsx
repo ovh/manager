@@ -2,6 +2,7 @@ import { render, within } from '@testing-library/react';
 
 import { describe, vi } from 'vitest';
 import { userEvent } from '@testing-library/user-event';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import RetypePage from '@/pages/retype/Retype.page';
 import {
   TVolumeRetypeModel,
@@ -98,9 +99,7 @@ describe('RetypePage', () => {
 
       const { getByText } = render(<RetypePage />);
 
-      expect(
-        getByText('common:pci_projects_project_storages_blocks_button_modify'),
-      ).toBeDisabled();
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
     });
 
     it('should be enabled if volume type has changed', async () => {
@@ -115,9 +114,7 @@ describe('RetypePage', () => {
         getByRole('radio', { name: otherCatalogOption.displayName }),
       );
 
-      expect(
-        getByText('common:pci_projects_project_storages_blocks_button_modify'),
-      ).not.toBeDisabled();
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
     });
 
     it('should be disabled if volume type has changed and back to original value', async () => {
@@ -135,9 +132,7 @@ describe('RetypePage', () => {
         getByRole('radio', { name: selectedCatalogOption.displayName }),
       );
 
-      expect(
-        getByText('common:pci_projects_project_storages_blocks_button_modify'),
-      ).toBeDisabled();
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
     });
 
     it('should be enabled if encryption has changed', async () => {
@@ -163,9 +158,7 @@ describe('RetypePage', () => {
         ).getByText('OVHcloud Managed Key'),
       );
 
-      expect(
-        getByText('common:pci_projects_project_storages_blocks_button_modify'),
-      ).not.toBeDisabled();
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
     });
 
     it('should be disabled if encryption has changed and back to original value', async () => {
@@ -199,9 +192,7 @@ describe('RetypePage', () => {
         ).getByText('common:pci_projects_project_storages_blocks_status_NONE'),
       );
 
-      expect(
-        getByText('common:pci_projects_project_storages_blocks_button_modify'),
-      ).toBeDisabled();
+      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
     });
   });
 
