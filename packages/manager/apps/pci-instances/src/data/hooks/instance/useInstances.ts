@@ -1,8 +1,6 @@
 import {
   InfiniteData,
   keepPreviousData,
-  Query,
-  QueryClient,
   QueryKey,
   useInfiniteQuery,
   useQueryClient,
@@ -10,20 +8,14 @@ import {
 import { useCallback, useEffect, useMemo } from 'react';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Filter } from '@ovh-ux/manager-core-api';
-import { isEqual } from 'lodash';
-import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
-import {
-  TAggregatedInstance,
-  TPartialInstance,
-} from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
-import { buildPartialAggregatedInstanceDto } from './builder/instanceDto.builder';
-import { updateInstanceFromCache } from './useInstance';
+import { listQueryKeyPredicate } from '@/adapters/tanstack-query/store/instances/queryKeys';
 
 type FilterWithLabel = Filter & { label: string };
 
@@ -34,100 +26,16 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   filters: FilterWithLabel[];
 }>;
 
-type TUpdateInstancesFromCache = (
-  queryClient: QueryClient,
-  payload: {
-    projectId: string;
-    instance: TPartialInstance;
-  },
-) => void;
-
-const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
-  instancesQueryKey(projectId, ['list']).every((elt) =>
-    query.queryKey.includes(elt),
-  );
-
-export const updateInstancesFromCache: TUpdateInstancesFromCache = (
-  queryClient: QueryClient,
-  { projectId, instance },
-) => {
-  const queries = queryClient.getQueriesData<
-    InfiniteData<TAggregatedInstanceDto[]>
-  >({
-    predicate: listQueryKeyPredicate(projectId),
-  });
-  const newInstance = buildPartialAggregatedInstanceDto(instance);
-
-  queries.forEach(([queryKey, queryData]) => {
-    if (!queryData) return;
-
-    const updatedPages: TAggregatedInstanceDto[][] = queryData.pages.map(
-      (page): TAggregatedInstanceDto[] => {
-        const foundIndex = fp.findIndex(fp.propEq('id', newInstance.id), page);
-        if (foundIndex === -1) return page;
-
-        const previousInstance = page[foundIndex];
-        const mergedInstance = { ...previousInstance, ...newInstance };
-
-        if (isEqual(previousInstance, mergedInstance)) return page;
-
-        return fp.update(
-          foundIndex,
-          () => mergedInstance,
-          page,
-        ) as TAggregatedInstanceDto[];
-      },
-    );
-
-    const isPageModified = updatedPages.some(
-      (page, i) => page !== queryData.pages[i],
-    );
-
-    if (!isPageModified) return;
-
-    queryClient.setQueryData<InfiniteData<TAggregatedInstanceDto[], number>>(
-      queryKey,
-      (prevData) => {
-        if (!prevData) return undefined;
-        return { ...prevData, pages: updatedPages };
-      },
-    );
-  });
-
-  updateInstanceFromCache({
-    queryClient,
-    projectId,
-    instance,
-  });
+export type TInstanceArgs = {
+  projectId: string;
+  instanceId: string;
+  region: string;
 };
 
 const getPendingTasks = (data?: TAggregatedInstance[]) =>
   data
     ?.filter(({ pendingTask }) => pendingTask)
     .map(({ id, region }) => ({ instanceId: id, region })) ?? [];
-
-export const getAggregatedInstanceById = (
-  projectId: string,
-  id: string | undefined,
-  queryClient: QueryClient,
-): TAggregatedInstanceDto | undefined => {
-  if (!id) return undefined;
-
-  const data = queryClient.getQueriesData<
-    InfiniteData<TAggregatedInstanceDto[], number>
-  >({
-    predicate: listQueryKeyPredicate(projectId),
-  });
-
-  return data.reduce((acc: TAggregatedInstanceDto | undefined, [, result]) => {
-    if (acc) return acc;
-    if (result) {
-      const foundInstance = result.pages.flat().find((elt) => elt.id === id);
-      return foundInstance ?? acc;
-    }
-    return acc;
-  }, undefined);
-};
 
 const getInconsistency = (data: TAggregatedInstance[] | undefined): boolean =>
   !!data?.some((elt) => elt.status.label === 'UNKNOWN');
