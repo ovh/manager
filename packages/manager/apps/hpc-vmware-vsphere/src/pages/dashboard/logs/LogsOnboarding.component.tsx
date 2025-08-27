@@ -1,10 +1,9 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useQueryClient } from '@tanstack/react-query';
-import { useVmwareVsphereCompatibilityMatrix } from '@/data/hooks/useVmwareVsphereCompatibilityMatrix';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { useVmwareVsphereCompatibilityMatrixOptions } from '@/data/hooks/useVmwareVsphereCompatibilityMatrix';
 import { useVmwareVsphereDatacenter } from '@/data/hooks/useVmwareVsphereDatacenter';
 import { useVmwareVsphere } from '@/data/hooks/useVmwareVsphere';
 
@@ -12,69 +11,70 @@ import LogsActivation from './LogsActivation.component';
 import LogsUpgrade from './LogsUpgrade.component';
 import LogsActivationInProgress from './LogsActivationInProgress.component';
 import { getVmwareStatus } from '@/utils/getVmwareStatus';
-import { VMWareStatus } from '@/types/vsphere';
 import { urls } from '@/routes/routes.constant';
 import { getDedicatedCloudDatacenterListQueryKey } from '@/data/api/hpc-vmware-vsphere-datacenter';
 import LogsOnboardingForTrustedUser from './LogsOnboardingForTrustedUser.component';
 import LogsOnboardingForCommonUser from './LogsOnboardingForCommonUser.component';
+import { useIsUserTrusted } from '@/hooks/useIsUserTrusted';
+import { getIsLogForwarderDelivered } from '@/utils/vmwareVsphereCompatibilityMatrixUtils/getIsLogForwarderDelivered';
+import { getIsLogForwarderCreating } from '@/utils/vmwareVsphereCompatibilityMatrixUtils/getIsLogForwarderCreating';
+import { getLogsViewState } from '@/utils/logsOnboardingViewState';
 
 type LogsOnboardingProps = {
   children: React.ReactNode;
 };
 
-const FORWARDER_VALID_STATE = ['creating', 'pending', 'toCreate', 'updating'];
-
 const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
+  const { t } = useTranslation('onboarding');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { serviceName } = useParams();
   const { data: vmwareVsphere, isLoading: isLoadingVsphere } = useVmwareVsphere(
     serviceName,
   );
-  const [isUserTrusted, setIsUserTrusted] = useState(false);
+  const {
+    data: isUserTrusted,
+    isLoading: isUserTrustedLoading,
+  } = useIsUserTrusted();
   const {
     data: datacenter,
     isLoading: isLoadingVsphereDatacenter,
     error: datacenterError,
     isError: isDatacenterError,
   } = useVmwareVsphereDatacenter(serviceName);
+  const vmwareVsphereCompatibilityMatrixOptions = useVmwareVsphereCompatibilityMatrixOptions(
+    serviceName,
+  );
   const {
-    data: compatibilityMatrix,
+    data: vmwareVsphereCompatibilityMatrixData,
     isLoading: isCompatibilityMatrixLoading,
-  } = useVmwareVsphereCompatibilityMatrix(serviceName);
-
+  } = useQuery({
+    ...vmwareVsphereCompatibilityMatrixOptions,
+    select: ({ data }) => ({
+      isLogForwarderDelivered: getIsLogForwarderDelivered(data),
+      isLogForwarderIsCreating: getIsLogForwarderCreating(data),
+    }),
+  });
   const currentStatus = getVmwareStatus({
     vsphereState: vmwareVsphere?.data?.state,
-    datacenterCommentialName: datacenter?.commercialName,
+    datacenterCommercialName: datacenter?.commercialName,
   });
 
-  const isLogForwarderDelivered = useMemo(() => {
-    const options = compatibilityMatrix?.data ?? [];
-    return options.some(
-      (option) =>
-        option.name === 'logForwarder' && option.state === 'delivered',
-    );
-  }, [compatibilityMatrix]);
+  const viewState = getLogsViewState({
+    isDatacenterError,
+    isLoadingVsphere,
+    isLoadingVsphereDatacenter,
+    isCompatibilityMatrixLoading,
+    isUserTrustedLoading,
+    isLogForwarderDelivered:
+      vmwareVsphereCompatibilityMatrixData?.isLogForwarderDelivered,
+    isLogForwarderIsCreating:
+      vmwareVsphereCompatibilityMatrixData?.isLogForwarderIsCreating,
+    isUserTrusted,
+    currentStatus,
+  });
 
-  const updateUserSNC = async () => {
-    const env = await environment.getEnvironment();
-    const { isTrusted } = env.getUser();
-    setIsUserTrusted(isTrusted);
-  };
-  const islogForwarderIsCreating = useMemo(() => {
-    return (compatibilityMatrix?.data ?? []).some(
-      (option) =>
-        option.name === 'logForwarder' &&
-        FORWARDER_VALID_STATE.includes(option.state),
-    );
-  }, [compatibilityMatrix]);
-
-  useEffect(() => {
-    updateUserSNC();
-  }, [environment]);
-  if (isDatacenterError) {
+  if (viewState === 'isError') {
     return (
       <ErrorBanner
         error={datacenterError.response}
@@ -88,11 +88,7 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }
 
-  if (
-    isLoadingVsphere ||
-    isLoadingVsphereDatacenter ||
-    isCompatibilityMatrixLoading
-  ) {
+  if (viewState === 'isLoading') {
     return (
       <div className="flex justify-center pt-10">
         <OdsSpinner />
@@ -100,26 +96,21 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }
 
-  if (isLogForwarderDelivered) {
+  if (viewState === 'onboardingTrustedUser') {
+    return <LogsOnboardingForTrustedUser />;
+  }
+
+  if (viewState === 'onboardingCommonUser') {
     return (
-      <>
-        {isUserTrusted ? (
-          <LogsOnboardingForTrustedUser />
-        ) : (
-          <LogsOnboardingForCommonUser>{children}</LogsOnboardingForCommonUser>
-        )}
-      </>
+      <LogsOnboardingForCommonUser>{children}</LogsOnboardingForCommonUser>
     );
   }
 
-  if (islogForwarderIsCreating) {
+  if (viewState === 'LogsActivationInProgress') {
     return <LogsActivationInProgress />;
   }
 
-  if (
-    currentStatus === VMWareStatus.MIGRATING ||
-    currentStatus === VMWareStatus.PREMIER
-  ) {
+  if (viewState === 'NeedLogsActivation') {
     return (
       <LogsActivation
         currentStatus={currentStatus}
@@ -130,10 +121,21 @@ const LogsOnboarding = ({ children }: LogsOnboardingProps) => {
     );
   }
 
-  if (currentStatus === VMWareStatus.ESSENTIALS) {
+  if (viewState === 'NeedLogsUpdate') {
     return <LogsUpgrade />;
   }
-  return <></>;
+
+  return (
+    <ErrorBanner
+      error={{ data: { message: t('logs_onboarding_state_error_text') } }}
+      onRedirectHome={() => navigate(urls.root)}
+      onReloadPage={() =>
+        queryClient.refetchQueries({
+          queryKey: getDedicatedCloudDatacenterListQueryKey,
+        })
+      }
+    />
+  );
 };
 
 export default LogsOnboarding;

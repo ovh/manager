@@ -1,5 +1,6 @@
 import {
   DefinedInitialDataOptions,
+  queryOptions,
   useQuery,
   UseQueryResult,
 } from '@tanstack/react-query';
@@ -10,13 +11,10 @@ import {
   getDedicatedCloudServiceCompatibilityMatrixQueryKey,
 } from '../api/hpc-vmware-vsphere-compatibilityMatrix';
 
-export function useVmwareVsphereCompatibilityMatrix(
+export function useVmwareVsphereCompatibilityMatrixOptions(
   serviceName?: string,
-  options: Partial<
-    DefinedInitialDataOptions<ApiResponse<SecurityOption[]>, ApiError>
-  > = {},
-): UseQueryResult<ApiResponse<SecurityOption[]>, ApiError> {
-  return useQuery<ApiResponse<SecurityOption[]>, ApiError>({
+) {
+  return queryOptions<ApiResponse<SecurityOption[]>, ApiError>({
     queryKey: getDedicatedCloudServiceCompatibilityMatrixQueryKey(serviceName),
     queryFn: () => getDedicatedCloudServiceCompatibilityMatrix(serviceName),
     enabled: !!serviceName,
@@ -31,6 +29,17 @@ export function useVmwareVsphereCompatibilityMatrix(
 
       return !isLogForwarderDelivered && 30_000;
     },
-    ...options,
   });
+}
+
+export function useVmwareVsphereCompatibilityMatrix(
+  serviceName?: string,
+  options: Partial<
+    DefinedInitialDataOptions<ApiResponse<SecurityOption[]>, ApiError>
+  > = {},
+): UseQueryResult<ApiResponse<SecurityOption[]>, ApiError> {
+  const defaultOptions = useVmwareVsphereCompatibilityMatrixOptions(
+    serviceName,
+  );
+  return useQuery({ ...defaultOptions, ...options });
 }

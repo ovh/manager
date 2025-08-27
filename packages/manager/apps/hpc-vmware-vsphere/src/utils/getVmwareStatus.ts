@@ -4,22 +4,22 @@ import { CommercialName } from '@/types/datacenter';
 
 type GetVmwareStatusProps = {
   vsphereState: VMWareState;
-  datacenterCommentialName: CommercialName;
+  datacenterCommercialName: CommercialName;
 };
 
 export function getVmwareStatus({
   vsphereState,
-  datacenterCommentialName,
+  datacenterCommercialName,
 }: GetVmwareStatusProps) {
   if (vsphereState === VMWareState.Migrating) {
     return VMWareStatus.MIGRATING;
   }
 
-  if (getCommercialType(datacenterCommentialName) === 'ESSENTIALS') {
+  if (getCommercialType(datacenterCommercialName) === 'ESSENTIALS') {
     return VMWareStatus.ESSENTIALS;
   }
 
-  if (getCommercialType(datacenterCommentialName) === 'PREMIER') {
+  if (getCommercialType(datacenterCommercialName) === 'PREMIER') {
     return VMWareStatus.PREMIER;
   }
 
