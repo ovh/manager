@@ -29,7 +29,6 @@ export const useGetIpVmacWithIp = ({
   serviceName,
   enabled = true,
 }: UseGetIpVmacWithIpParams) => {
-  const [isInvalidated, setIsInvalidated] = useState(false);
   const [invalidatedData, setInvalidatedData] = useState(undefined);
 
   const { data: dedicatedServerVmacResponse, isLoading, isError } = useQuery<
@@ -45,7 +44,6 @@ export const useGetIpVmacWithIp = ({
       const macAdresses = queryData.map(({ macAddress }) => macAddress);
 
       if (query.state.isInvalidated) {
-        setIsInvalidated(true);
         setInvalidatedData(macAdresses);
         return INVALIDATED_REFRESH_PERIOD;
       }
@@ -54,11 +52,10 @@ export const useGetIpVmacWithIp = ({
         !!invalidatedData &&
         !hasSameStringElements(invalidatedData, macAdresses)
       ) {
-        setIsInvalidated(false);
         setInvalidatedData(undefined);
       }
 
-      return isInvalidated ? INVALIDATED_REFRESH_PERIOD : undefined;
+      return invalidatedData ? INVALIDATED_REFRESH_PERIOD : undefined;
     },
   });
 
@@ -82,7 +79,7 @@ export const useGetIpVmacWithIp = ({
   const formattedResult = {
     isLoading:
       isLoading ||
-      !!results.find((result) => !!result.isLoading || isInvalidated),
+      !!results.find((result) => !!result.isLoading || !!invalidatedData),
     isError: isError || !!results.find((result) => !!result.isError),
     vmacsWithIp: results?.map(({ data }, index) => ({
       ...dedicatedServerVmacResponse?.data?.[index],
