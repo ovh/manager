@@ -5,8 +5,8 @@
   "vps_outperform_select_vps_label": "Seleccionar un VPS compatible",
   "vps_outperform_picker_current_title": "Configuración actual",
   "vps_outperform_picker_new_title": "Nueva configuración",
-  "vps_outperform_banner_title": "Esta actualización requiere una interrupción de unos 15 minutos.",
-  "vps_outperform_banner_info": "Le recomendamos que planifique sus actividades en consecuencia y que tome las medidas necesarias para limitar el impacto en sus servicios.",
+  "vps_outperform_banner_title": "Esta actualización implica una interrupción de unos 15 minutos.",
+  "vps_outperform_banner_info": "Le recomendamos que planifique sus actividades en consecuencia y que tome las medidas oportunas para minimizar el impacto en sus servicios.",
   "vps_outperform_cta_submit": "Mejorar mi VPS",
   "vps_outperform_renew_P1M": "/mes + IVA",
   "vps_outperform_renew_P1Y": "/año + IVA",
@@ -18,10 +18,10 @@
   "vps_outperform_memory": "Memoria",
   "vps_outperform_quantity": "{{ unit }} GB",
   "vps_outperform_storage": "Almacenamiento",
-  "vps_outperform_bandwidth": "Ancho de banda",
+  "vps_outperform_bandwidth": "Tráfico",
   "vps_outperform_bandwidth_unlimited": "Tráfico ilimitado -",
-  "vps_outperform_bandwidth_quantity": "{{ value }} Gb/s",
+  "vps_outperform_bandwidth_quantity": "{{ bandwidth }} Mb/s",
   "vps_outperform_no_available_plan": "No hay mejoras disponibles para este VPS.",
-  "vps_outperform_already_planned": "Ya se está procesando una solicitud de mejora de la clasificación para este VPS.",
-  "vps_outperform_error_message": "No se ha podido completar la solicitud de mejora. {{ error }}"
+  "vps_outperform_already_planned": "Ya se está procesando una solicitud de mejora para este VPS.",
+  "vps_outperform_error_message": "Se ha producido un error al enviar la solicitud de mejora. {{ error }}"
 }
