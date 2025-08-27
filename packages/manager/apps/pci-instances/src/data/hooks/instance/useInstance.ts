@@ -4,6 +4,7 @@ import {
   useMutation,
   QueryClient,
   Query,
+  useQueryClient,
 } from '@tanstack/react-query';
 import {
   attachNetwork,
@@ -16,7 +17,6 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey } from '@/utils';
 import { TInstance, TPartialInstance } from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
-import queryClient from '@/queryClient';
 
 export type TUseInstanceQueryOptions = Pick<
   UseQueryOptions<TInstance>,
@@ -30,6 +30,11 @@ type TUseInstanceArgs = DeepReadonly<{
   queryOptions?: TUseInstanceQueryOptions;
 }>;
 
+const getPendingTasks = (data?: TInstance) =>
+  data?.task.isPending
+    ? [{ instanceId: data.id, region: data.region.name }]
+    : [];
+
 export const useInstance = ({
   region,
   instanceId,
@@ -38,7 +43,7 @@ export const useInstance = ({
 }: TUseInstanceArgs) => {
   const projectId = useProjectId();
 
-  return useQuery({
+  const { data, ...query } = useQuery({
     ...queryOptions,
     queryKey: instancesQueryKey(projectId, [
       'region',
@@ -49,6 +54,12 @@ export const useInstance = ({
     ]),
     queryFn: () => getInstance({ projectId, region, instanceId, params }),
   });
+
+  return {
+    data,
+    pendingTasks: getPendingTasks(data),
+    ...query,
+  };
 };
 
 type TInstanceNameMutationFnVariables = { instanceName: string };
@@ -99,7 +110,10 @@ type TInstanceArgs = {
   region: string;
 };
 
-const resetInstanceCache = ({ projectId, region, instanceId }: TInstanceArgs) =>
+const resetInstanceCache = (
+  queryClient: QueryClient,
+  { projectId, region, instanceId }: TInstanceArgs,
+) =>
   queryClient.invalidateQueries({
     queryKey: instancesQueryKey(projectId, [
       'region',
@@ -119,13 +133,14 @@ export const useAttachNetwork = ({
   region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachNetworkCallbacks }) => {
+  const queryClient = useQueryClient();
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ networkId }: TAttachNetworkMutationFnVariables) =>
       attachNetwork({ projectId, instanceId, networkId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, region, instanceId });
+      void resetInstanceCache(queryClient, { projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },
@@ -149,13 +164,14 @@ export const useAttachVolume = ({
   region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachVolumeCallbacks }) => {
+  const queryClient = useQueryClient();
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ volumeId }: TAttachVolumeMutationFnVariables) =>
       attachVolume({ projectId, instanceId, volumeId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, region, instanceId });
+      void resetInstanceCache(queryClient, { projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },
@@ -167,7 +183,7 @@ type TUpdateInstanceFromCacheArgs = {
   queryClient: QueryClient;
   projectId: string;
   instance: TPartialInstance;
-  predicateQueryKey?: string[];
+  region?: string | null;
 };
 
 const instanceQueryKeyPredicate = (projectId: string, instanceId: string) => (
@@ -183,18 +199,24 @@ export const updateInstanceFromCache = ({
   queryClient,
   projectId,
   instance,
-}: TUpdateInstanceFromCacheArgs) => {
-  const queries = queryClient.getQueriesData<TInstance[]>({
-    predicate: instanceQueryKeyPredicate(projectId, instance.id),
-  });
-
-  queries.forEach(([queryKey]) =>
-    queryClient.setQueryData<TInstance>(queryKey, (prevData) => {
+  region = null,
+}: TUpdateInstanceFromCacheArgs) =>
+  void queryClient.setQueryData<TInstance>(
+    instancesQueryKey(projectId, [
+      'region',
+      String(region),
+      'instance',
+      instance.id,
+      'withBackups',
+      'withImage',
+      'withNetworks',
+      'withVolumes',
+    ]),
+    (prevData) => {
       if (!prevData) return undefined;
       return { ...prevData, ...instance };
-    }),
+    },
   );
-};
 
 export const getInstanceById = (
   projectId: string,

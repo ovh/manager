@@ -6,12 +6,30 @@ import { useTranslation } from 'react-i18next';
 import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 import { TInstance } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
+import { buildPartialInstanceDto } from '@/data/hooks/instance/builder/instanceDto.builder';
 import {
   shouldRetryAfter404Error,
   TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
 import { selectPollingDataForDatagrid } from '../view-models/selectPollingDataForDatagrid';
+
+const getPartialDeletedInstanceDto = (id: string) =>
+  buildPartialInstanceDto({ id })
+    .with('actions', [])
+    .with('addresses', [])
+    .with('volumes', [])
+    .with('status', 'DELETED')
+    .with('pendingTask', false)
+    .build();
+
+const getPartialInstanceDto = (instance: TInstance) =>
+  buildPartialInstanceDto({ id: instance.id })
+    .with('actions', instance.task.isPending ? [] : instance.actions)
+    .with('status', instance.status)
+    .with('pendingTask', instance.task.isPending)
+    .with('taskState', instance.task.status ?? '')
+    .build();
 
 export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
   const queryClient = useQueryClient();
@@ -22,15 +40,12 @@ export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
       if (!instance) return;
-      const { id, status, task, actions } = instance;
+      const { status, task } = instance;
       const isDeleted = !task.isPending && status === 'DELETED';
-      const deletedInstance = { addresses: new Map(), volumes: [] };
-      const newInstance = { id, actions, status, task };
+      const deletedInstance = getPartialDeletedInstanceDto(instance.id);
       updateInstancesFromCache(queryClient, {
         projectId,
-        instance: isDeleted
-          ? { ...newInstance, ...deletedInstance }
-          : newInstance,
+        instance: isDeleted ? deletedInstance : getPartialInstanceDto(instance),
       });
 
       if (!task.isPending) {
@@ -49,19 +64,10 @@ export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
   const handlePollingError = useCallback(
     (error: ApiError, instanceId: string) => {
       if (error.response?.status === 404) {
+        const deletedInstance = getPartialDeletedInstanceDto(instanceId);
         updateInstancesFromCache(queryClient, {
           projectId,
-          instance: {
-            id: instanceId,
-            actions: [],
-            status: 'DELETED',
-            task: {
-              isPending: false,
-              status: null,
-            },
-            addresses: new Map(),
-            volumes: [],
-          },
+          instance: deletedInstance,
         });
       }
     },
