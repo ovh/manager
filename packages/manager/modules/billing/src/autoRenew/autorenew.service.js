@@ -66,7 +66,9 @@ export default class {
     state,
     order,
     nicBilling,
+    refresh,
   ) {
+    const headers = refresh ? { Pragma: 'no-cache' } : {};
     return this.OvhHttp.get('/billing/services', {
       rootPath: '2api',
       params: {
@@ -80,6 +82,7 @@ export default class {
         order: JSON.stringify(order),
         nicBilling,
       },
+      headers,
     });
   }
 
