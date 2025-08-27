@@ -2,8 +2,7 @@ import {
   useQuery,
   UseQueryOptions,
   useMutation,
-  QueryClient,
-  Query,
+  useQueryClient,
 } from '@tanstack/react-query';
 import {
   attachNetwork,
@@ -14,9 +13,9 @@ import {
 } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey } from '@/utils';
-import { TInstance, TPartialInstance } from '@/types/instance/entity.type';
+import { TInstance } from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
-import queryClient from '@/queryClient';
+import { resetInstanceCache } from '@/adapters/tanstack-query/store/instances/updaters';
 
 export type TUseInstanceQueryOptions = Pick<
   UseQueryOptions<TInstance>,
@@ -30,6 +29,11 @@ type TUseInstanceArgs = DeepReadonly<{
   queryOptions?: TUseInstanceQueryOptions;
 }>;
 
+const getPendingTasks = (data?: TInstance) =>
+  data?.task.isPending
+    ? [{ instanceId: data.id, region: data.region.name }]
+    : [];
+
 export const useInstance = ({
   region,
   instanceId,
@@ -38,7 +42,7 @@ export const useInstance = ({
 }: TUseInstanceArgs) => {
   const projectId = useProjectId();
 
-  return useQuery({
+  const { data, ...query } = useQuery({
     ...queryOptions,
     queryKey: instancesQueryKey(projectId, [
       'region',
@@ -49,6 +53,12 @@ export const useInstance = ({
     ]),
     queryFn: () => getInstance({ projectId, region, instanceId, params }),
   });
+
+  return {
+    data,
+    pendingTasks: getPendingTasks(data),
+    ...query,
+  };
 };
 
 type TInstanceNameMutationFnVariables = { instanceName: string };
@@ -99,33 +109,20 @@ type TInstanceArgs = {
   region: string;
 };
 
-const resetInstanceCache = ({ projectId, region, instanceId }: TInstanceArgs) =>
-  queryClient.invalidateQueries({
-    queryKey: instancesQueryKey(projectId, [
-      'region',
-      region,
-      'instance',
-      instanceId,
-      'withBackups',
-      'withImage',
-      'withNetworks',
-      'withVolumes',
-    ]),
-  });
-
 export const useAttachNetwork = ({
   projectId,
   instanceId,
   region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachNetworkCallbacks }) => {
+  const queryClient = useQueryClient();
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ networkId }: TAttachNetworkMutationFnVariables) =>
       attachNetwork({ projectId, instanceId, networkId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, region, instanceId });
+      void resetInstanceCache(queryClient, { projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },
@@ -149,63 +146,17 @@ export const useAttachVolume = ({
   region,
   callbacks = {},
 }: TInstanceArgs & { callbacks: TUseAttachVolumeCallbacks }) => {
+  const queryClient = useQueryClient();
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ volumeId }: TAttachVolumeMutationFnVariables) =>
       attachVolume({ projectId, instanceId, volumeId }),
     onSuccess: (data, variables) => {
-      void resetInstanceCache({ projectId, region, instanceId });
+      void resetInstanceCache(queryClient, { projectId, region, instanceId });
 
       onSuccess?.(data, variables);
     },
     onError,
   });
-};
-
-type TUpdateInstanceFromCacheArgs = {
-  queryClient: QueryClient;
-  projectId: string;
-  instance: TPartialInstance;
-  predicateQueryKey?: string[];
-};
-
-const instanceQueryKeyPredicate = (projectId: string, instanceId: string) => (
-  query: Query,
-) =>
-  instancesQueryKey(projectId, [
-    'region',
-    'instance',
-    instanceId,
-  ]).every((elt) => query.queryKey.includes(elt));
-
-export const updateInstanceFromCache = ({
-  queryClient,
-  projectId,
-  instance,
-}: TUpdateInstanceFromCacheArgs) => {
-  const queries = queryClient.getQueriesData<TInstance[]>({
-    predicate: instanceQueryKeyPredicate(projectId, instance.id),
-  });
-
-  queries.forEach(([queryKey]) =>
-    queryClient.setQueryData<TInstance>(queryKey, (prevData) => {
-      if (!prevData) return undefined;
-      return { ...prevData, ...instance };
-    }),
-  );
-};
-
-export const getInstanceById = (
-  projectId: string,
-  instanceId: string,
-  queryClient: QueryClient,
-): TInstance | undefined => {
-  const queries = queryClient.getQueriesData<TInstance[]>({
-    predicate: instanceQueryKeyPredicate(projectId, instanceId),
-  });
-
-  return queries
-    .flatMap(([, queryData]) => queryData)
-    .find((instance) => instance?.id === instanceId);
 };
