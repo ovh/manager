@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useHref } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -9,11 +10,7 @@ import {
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
-import {
-  BUTTON_VARIANT,
-  Text,
-  TEXT_PRESET,
-} from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { useDashboard } from '../hooks/useDashboard';
@@ -28,7 +25,15 @@ import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceAct
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
-  const { t } = useTranslation(['dashboard', 'list', 'actions']);
+  const { t } = useTranslation([
+    'dashboard',
+    'list',
+    'actions',
+    NAMESPACES.FORM,
+    NAMESPACES.STATUS,
+    NAMESPACES.REGION,
+    NAMESPACES.ACTIONS,
+  ]);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { instanceId, region } = useInstanceParams();
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
@@ -91,7 +96,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         </DashboardTileBlock>
       )}
       <DashboardTileBlock
-        label={t('list:pci_instances_list_column_region')}
+        label={t(`${NAMESPACES.REGION}:localisation`)}
         isLoading={isInstanceLoading}
       >
         <div className="flex">
@@ -117,7 +122,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         {instance?.flavor?.cpu}
       </DashboardTileText>
       <DashboardTileBlock
-        label={t('pci_instances_dashboard_price_title')}
+        label={t(`${NAMESPACES.FORM}:price`)}
         isLoading={isInstanceLoading}
       >
         <div className="flex flex-col">
@@ -166,7 +171,7 @@ const InstanceGeneralInfoBlock: FC = () => {
             color={ODS_THEME_COLOR_INTENT.error}
             href={hrefDeleteInstance}
           >
-            {t('list:pci_instances_list_action_delete')}
+            {t(`${NAMESPACES.ACTIONS}:delete`)}
           </OsdsLink>
         </DashboardTileBlock>
       )}
