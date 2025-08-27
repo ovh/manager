@@ -8,6 +8,15 @@ import {
 } from '@/data/hooks/useCredit';
 import PaymentStep, { PaymentStepProps } from './PaymentStep';
 
+// Mock react-router-dom
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
+  };
+});
+
 vi.mock('@/data/hooks/useCredit', () => ({
   useIsStartupProgramAvailable: vi.fn(),
   useStartupProgramAmountText: vi.fn(),
