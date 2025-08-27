@@ -21,17 +21,22 @@ export type TModelName = Readonly<{
 
 type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 
+const is3az = (catalogRegions: TRegion[], region: string) =>
+  catalogRegions.find((r) => r.name === region)?.type === 'region-3-az';
+
+const isMultiAttach = <T extends TVolumeAddon>(model: T) =>
+  model.name === 'classic-multiattach';
+
 export const mapVolumeModelName = <T extends TVolumeAddon>(
   catalogRegions: TVolumeCatalog['regions'],
   region: string,
 ) => {
-  const is3azRegion =
-    catalogRegions.find((r) => r.name === region).type === 'region-3-az';
+  const is3azRegion = is3az(catalogRegions, region);
 
   return (model: T): TVolumeModelWithName<T> => ({
     ...model,
     name: model.name as TModelName['name'],
-    displayName: (is3azRegion && model.name === 'classic-multiattach'
+    displayName: (is3azRegion && isMultiAttach(model)
       ? 'Classic 3AZ'
       : model.name) as TModelName['displayName'],
   });
@@ -181,8 +186,7 @@ export const mapVolumeModelPriceSpecs = <T extends TVolumeAddon>(
   t: TFunction<['add']>,
   capacity?: number,
 ) => {
-  const is3azRegion =
-    catalogRegions.find((r) => r.name === region).type === 'region-3-az';
+  const is3azRegion = is3az(catalogRegions, region);
 
   return (model: T): TVolumeModelWithPriceSpecs<T> => ({
     ...model,
@@ -254,7 +258,7 @@ export const mapVolumeModelAttach = <T extends TVolumeAddon>(
   model: T,
 ): TVolumeModelWithAttach<T> => ({
   ...model,
-  shouldUseMultiAttachFileSystem: model.name === 'classic-multiattach',
+  shouldUseMultiAttachFileSystem: isMultiAttach(model),
 });
 
 export type TFilterTags = {
@@ -382,16 +386,18 @@ export const mapRetypingVolumeCatalog = (
   translator: TFunction<['add']>,
   type: string | null,
 ) => (catalog: TVolumeCatalog) =>
-  filterVolumeModelsForRegion(catalog, region).map<TVolumeRetypeModel>(
-    pipe(
-      mapVolumeModelPriceSpecs(
-        catalog.regions,
-        region,
-        catalogPriceFormatter,
-        translator,
+  filterVolumeModelsForRegion(catalog, region)
+    .filter((model) => !is3az(catalog.regions, region) || !isMultiAttach(model))
+    .map<TVolumeRetypeModel>(
+      pipe(
+        mapVolumeModelPriceSpecs(
+          catalog.regions,
+          region,
+          catalogPriceFormatter,
+          translator,
+        ),
+        mapVolumeModelName(catalog.regions, region),
+        mapVolumeModelAttach,
+        mapPreselection(type),
       ),
-      mapVolumeModelName(catalog.regions, region),
-      mapVolumeModelAttach,
-      mapPreselection(type),
-    ),
-  );
+    );

@@ -46,7 +46,10 @@ export const useCatalogWithPreselection = (
       (region) => region.name === volumeData?.region,
     )?.type;
 
-    if (regionType === 'region-3-az') {
+    if (
+      regionType === 'region-3-az' &&
+      volumeData.type === 'classic-multiattach'
+    ) {
       return [[], null];
     }
 
