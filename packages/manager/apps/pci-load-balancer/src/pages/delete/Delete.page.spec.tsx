@@ -1,4 +1,4 @@
-import { act, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { beforeEach, describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -51,9 +51,8 @@ describe('DeletePage', () => {
     } as UseQueryResult<TLoadBalancer>);
 
     const { getByText } = render(<DeletePage />, { wrapper });
-    await act(() =>
-      userEvent.click(getByText('octavia_load_balancer_delete_confirm')),
-    );
+
+    await userEvent.click(getByText('octavia_load_balancer_delete_confirm'));
 
     expect(mockedTrackClick).toHaveBeenCalledWith({
       actionType: 'action',
@@ -70,9 +69,8 @@ describe('DeletePage', () => {
     } as UseQueryResult<TLoadBalancer>);
 
     const { getByText } = render(<DeletePage />, { wrapper });
-    await act(() =>
-      userEvent.click(getByText('octavia_load_balancer_delete_cancel')),
-    );
+
+    await userEvent.click(getByText('octavia_load_balancer_delete_cancel'));
 
     expect(mockedTrackClick).toHaveBeenCalledWith({
       actionType: 'action',

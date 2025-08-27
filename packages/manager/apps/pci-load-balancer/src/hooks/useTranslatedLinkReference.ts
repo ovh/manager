@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import {
-  TrackingClickParams,
+  isActionType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
@@ -28,8 +28,7 @@ export const useTranslatedLinkReference = () => {
             anchor.addEventListener('click', () => {
               trackClick({
                 actions: [trackName],
-                actionType:
-                  (trackType as TrackingClickParams['actionType']) || 'action',
+                actionType: isActionType(trackType) ? trackType : 'action',
               });
             });
           }
