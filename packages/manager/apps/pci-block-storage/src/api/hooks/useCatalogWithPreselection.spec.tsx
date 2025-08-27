@@ -44,65 +44,65 @@ const PROJECT_ID = '123';
 const VOLUME_ID = '1';
 
 describe('useCatalogWithPreselection', () => {
-  it('returns the mapped volume data, the encryption type and not pending given queries are done', async () => {
-    const volumeMock = {
-      region: 'volume region',
-      type: 'type',
-    } as TAPIVolume;
-
-    const mockCatalog = {
-      regions: [{ name: volumeMock.region, type: 'region' }],
-    } as TVolumeCatalog;
-    const mockMappedCatalog = [{}] as TVolumeRetypeModel[];
-
-    vi.mocked(useQueries).mockReturnValue([
-      { data: volumeMock, isPending: false },
-      { data: mockCatalog, isPending: false },
-    ]);
-
-    vi.mocked(mapRetypingVolumeCatalog).mockReturnValue(
-      () => mockMappedCatalog,
-    );
-    vi.mocked(getEncryption).mockReturnValue(() => ({
-      encrypted: true,
-      encryptionType: EncryptionType.OMK,
-    }));
-
-    const { result } = renderHook(() =>
-      useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
-    );
-
-    expect(result.current.data).toEqual(mockMappedCatalog);
-    expect(result.current.preselectedEncryptionType).toBe(EncryptionType.OMK);
-    expect(result.current.isPending).toBe(false);
-  });
-
-  it.each(['region-3-az', 'localzone'])(
-    'should return empty array and null encryption if region is %s',
-    (non1azRegionType: TRegion['type']) => {
+  it.each(['region', 'localzone'])(
+    'returns the mapped volume data, the encryption type and not pending given queries are done and region is %s',
+    async (non3azRegionType: TRegion['type']) => {
       const volumeMock = {
         region: 'volume region',
         type: 'type',
       } as TAPIVolume;
 
       const mockCatalog = {
-        regions: [{ name: volumeMock.region, type: non1azRegionType }],
+        regions: [{ name: volumeMock.region, type: non3azRegionType }],
       } as TVolumeCatalog;
+      const mockMappedCatalog = [{}] as TVolumeRetypeModel[];
 
       vi.mocked(useQueries).mockReturnValue([
         { data: volumeMock, isPending: false },
         { data: mockCatalog, isPending: false },
       ]);
 
+      vi.mocked(mapRetypingVolumeCatalog).mockReturnValue(
+        () => mockMappedCatalog,
+      );
+      vi.mocked(getEncryption).mockReturnValue(() => ({
+        encrypted: true,
+        encryptionType: EncryptionType.OMK,
+      }));
+
       const { result } = renderHook(() =>
         useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
       );
 
-      expect(result.current.data).toEqual([]);
-      expect(result.current.preselectedEncryptionType).toBe(null);
+      expect(result.current.data).toEqual(mockMappedCatalog);
+      expect(result.current.preselectedEncryptionType).toBe(EncryptionType.OMK);
       expect(result.current.isPending).toBe(false);
     },
   );
+
+  it('should return empty array and null encryption if region is region-3-az', () => {
+    const volumeMock = {
+      region: 'volume region',
+      type: 'type',
+    } as TAPIVolume;
+
+    const mockCatalog = {
+      regions: [{ name: volumeMock.region, type: 'region-3-az' }],
+    } as TVolumeCatalog;
+
+    vi.mocked(useQueries).mockReturnValue([
+      { data: volumeMock, isPending: false },
+      { data: mockCatalog, isPending: false },
+    ]);
+
+    const { result } = renderHook(() =>
+      useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
+    );
+
+    expect(result.current.data).toEqual([]);
+    expect(result.current.preselectedEncryptionType).toBe(null);
+    expect(result.current.isPending).toBe(false);
+  });
 
   it('should return no data and isPending to true if volume query is pending', () => {
     const mockCatalog = {} as TVolumeCatalog;
