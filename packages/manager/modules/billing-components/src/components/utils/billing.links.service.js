@@ -150,9 +150,11 @@ export default class BillingLinksService {
               },
               '',
             );
-            links.resiliateLink = service.domain.startsWith('byoip')
-              ? `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`
-              : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+            links.resiliateLink =
+              service.domain.startsWith('byoip') ||
+              service.serviceType === SERVICE_TYPE.DOMAIN
+                ? `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`
+                : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
           break;
       }
