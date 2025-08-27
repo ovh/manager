@@ -3,30 +3,30 @@ import { useCallback } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
-import { TInstance, TInstanceTaskStatus } from '@/types/instance/entity.type';
+import { TInstance, TPartialInstance } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import {
   shouldRetryAfter404Error,
+  TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
-import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
 
 type TDashboardPollingArgs = {
-  region: string;
   instanceId: string;
-  taskStatus?: TInstanceTaskStatus;
+  region: string;
+  pendingTasks: TPendingTask[];
 };
 
 export const useDashboardPolling = ({
-  region,
   instanceId,
-  taskStatus,
+  region,
+  pendingTasks,
 }: TDashboardPollingArgs) => {
   const queryClient = useQueryClient();
   const projectId = useProjectId();
   const { clearNotifications, addSuccess } = useNotifications();
   const { t } = useTranslation('actions');
-  const pendingTasks = taskStatus?.isPending ? [{ region, instanceId }] : [];
 
   const handlePollingSuccess = useCallback(
     (instance?: TInstance) => {
@@ -34,10 +34,17 @@ export const useDashboardPolling = ({
       const { task, actions, status, pricings } = instance;
       const isDeleted = !task.isPending && status === 'DELETED';
       const deletedInstance = { addresses: new Map(), volumes: [] };
-      const newInstance = { id: instanceId, actions, status, task, pricings };
+      const newInstance: TPartialInstance = {
+        id: instanceId,
+        actions,
+        status,
+        task,
+        pricings,
+      };
 
-      updateInstancesFromCache(queryClient, {
+      updateAllInstancesFromCache(queryClient, {
         projectId,
+        region,
         instance: isDeleted
           ? { ...newInstance, ...deletedInstance }
           : newInstance,
@@ -53,14 +60,23 @@ export const useDashboardPolling = ({
         );
       }
     },
-    [queryClient, projectId, instanceId, clearNotifications, addSuccess, t],
+    [
+      queryClient,
+      projectId,
+      instanceId,
+      clearNotifications,
+      addSuccess,
+      t,
+      region,
+    ],
   );
 
   const handlePollingError = useCallback(
     (error: ApiError) => {
       if (error.response?.status === 404) {
-        updateInstancesFromCache(queryClient, {
+        updateAllInstancesFromCache(queryClient, {
           projectId,
+          region,
           instance: {
             id: instanceId,
             actions: [],
@@ -75,7 +91,7 @@ export const useDashboardPolling = ({
         });
       }
     },
-    [projectId, queryClient, instanceId],
+    [projectId, queryClient, instanceId, region],
   );
 
   const pollingData = useInstancesPolling(
