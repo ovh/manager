@@ -8,8 +8,13 @@ import {
   FilterTypeCategories,
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import { OdsButton, OdsLink, OdsMessage } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import {
+  OdsButton,
+  OdsLink,
+  OdsMessage,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from 'react-router-dom';
 import { Notification } from '@/data/types';
@@ -23,6 +28,7 @@ import {
 import NotificationContactStatus from '@/components/notificationContactStatus/NotificationContactStatus.component';
 import { useAuthorization } from '@/hooks/useAuthorization/useAuthorization';
 import useCategories from '@/hooks/useCategories/useCategories';
+import useHelpLink from '@/hooks/useHelpLink/useHelpLink';
 
 function CommunicationsPage() {
   const { t } = useTranslation('communications');
@@ -127,9 +133,26 @@ function CommunicationsPage() {
   });
 
   const isLoading = isLoadingNotificationHistory || isLoadingAuthorization;
+  const helpLink = useHelpLink();
 
   return (
     <>
+      <OdsText className="mb-6">
+        <Trans
+          i18nKey="description"
+          t={tCommon}
+          components={{
+            anchor: (
+              <OdsLink
+                href={helpLink}
+                target="_blank"
+                label={tCommon('assistance_link_label')}
+                icon="external-link"
+              />
+            ),
+          }}
+        />
+      </OdsText>
       {!isLoading && !isAuthorized && (
         <OdsMessage
           color="warning"

@@ -41,6 +41,7 @@ vi.mock('@/hooks', async (original) => ({
     isAuthorized: true,
     data: {},
   }),
+  useHelpLink: vi.fn().mockReturnValue('https://help.ovhcloud.com/csm'),
 }));
 
 vi.mock('@/components', async (original) => ({
