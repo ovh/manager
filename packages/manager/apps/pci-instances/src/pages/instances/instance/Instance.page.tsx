@@ -7,6 +7,7 @@ import {
 import { FC, useMemo } from 'react';
 import { Outlet, useResolvedPath, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TProject, useParam } from '@ovh-ux/manager-pci-common';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { GoBack } from '@/components/navigation/GoBack.component';
@@ -19,7 +20,7 @@ import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
 import InstanceErrorGuard from './InstanceErrorGuard.page';
 
 const Instance: FC = () => {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation([NAMESPACES.DASHBOARD, 'dashboard']);
   const project = useRouteLoaderData('root') as TProject;
   const { instanceId, region } = useParam('region', 'instanceId');
   const dashboardPath = useResolvedPath('');
@@ -33,7 +34,7 @@ const Instance: FC = () => {
   const tabs = useMemo(() => {
     const defaultTab = [
       {
-        label: t('pci_instances_dashboard_tab_info_title'),
+        label: t('general_information'),
         to: dashboardPath.pathname,
       },
     ];
@@ -42,7 +43,7 @@ const Instance: FC = () => {
       ? [
           ...defaultTab,
           {
-            label: t('pci_instances_dashboard_tab_vnc_title'),
+            label: t('dashboard:pci_instances_dashboard_tab_vnc_title'),
             to: vncPath.pathname,
           },
         ]

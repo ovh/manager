@@ -10,6 +10,7 @@ import {
   SelectContent,
   SelectControl,
 } from '@ovhcloud/ods-react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TUnattachedResource } from '../view-models/selectUnattachedResource';
 
 type TNetworkSelectorProps = {
@@ -21,7 +22,7 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
   networks,
   onValueChange,
 }) => {
-  const { t } = useTranslation(['actions', 'common']);
+  const { t } = useTranslation([NAMESPACES.ACTIONS, 'actions']);
 
   return (
     <div className="mt-4">
@@ -30,9 +31,7 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
           items={networks}
           onValueChange={({ value }) => onValueChange(value[0] ?? '')}
         >
-          <SelectControl
-            placeholder={t('common:pci_instances_common_search')}
-          />
+          <SelectControl placeholder={t('search')} />
           <SelectContent />
         </Select>
       ) : (

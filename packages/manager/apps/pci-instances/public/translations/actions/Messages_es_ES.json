@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Va a suspender su instancia {{ name }}. Los recursos dedicados a la instancia de Public Cloud se liberarán, pero la IP se conservará. Los datos de su disco local se almacenarán y solo se facturará el almacenamiento utilizado para este fin (1). La duración de la operación dependerá del tamaño del disco local. Podrá reactivar su instancia en cualquier momento.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Atención: En el caso de las instancias con facturación mensual, la facturación clásica seguirá aplicándose independientemente del estado del servicio.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Esta acción no está disponible para su instancia {{ name }}",
-  "pci_instances_actions_instance_success_message": "El estado de su instancia {{ name }} se ha actualizado correctamente"
+  "pci_instances_actions_instance_success_message": "El estado de su instancia {{ name }} se ha actualizado correctamente",
+  "pci_instances_actions_instance_network_change_dns": "Cambiar el registro DNS inverso",
+  "pci_instances_actions_instance_network_activate_mitigation": "Activar/Desactivar la mitigación",
+  "pci_instances_actions_instance_network_firewall_settings": "Configurar el firewall",
+  "pci_instances_actions_instance_network_network_settings": "Gestionar las redes privadas",
+  "pci_instances_actions_instance_network_network_attach": "Asociar una red",
+  "pci_instances_actions_instance_network_network_attach_title": "Asociar una o más redes privadas a la instancia",
+  "pci_instances_actions_instance_network_network_empty_message": "Actualmente no tiene ninguna red privada compatible a la que asociar la instancia.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "Se ha asociado la red privada {{ network }} a la instancia {{ instance }}.",
+  "pci_instances_actions_instance_attach_error_message": "Se ha producido un error al actualizar la instancia: {{ message }}.",
+  "pci_instances_actions_instance_volume_attach_title": "Asociar un volumen a su instancia",
+  "pci_instances_actions_instance_volume_attach_empty_message": "No hay ningún volumen disponible en la región de su instancia.",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Asociar un recurso",
+  "pci_instances_actions_instance_volume_attach_select": "Seleccionar un volumen existente",
+  "pci_instances_actions_instance_volume_attach_information": "Puede asociar un volumen existente o crear un nuevo volumen para asociarlo a su instancia. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Crear un volumen",
+  "pci_instances_actions_instance_volume_attach_success_message": "Se ha asociado el volumen {{ volume }} a la instancia {{ instance }}."
 }

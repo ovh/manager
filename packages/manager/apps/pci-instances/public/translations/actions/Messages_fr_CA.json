@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Vous allez suspendre votre instance {{ name }}. Les ressources dédiées à votre instance Public Cloud seront relâchées mais son IP sera conservée. Les données de votre disque local seront stockées, et seul le stockage utilisé pour cela sera facturé (1). La durée de l'opération est en fonction de la taille de votre disque local. Vous pourrez réactiver votre instance à tout moment.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Attention : Pour les instances passées au mois, la facturation classique continuera tout de même, quelque soit le statut du service.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Cette action n'est pas disponible pour votre instance {{ name }}",
-  "pci_instances_actions_instance_success_message": "Le statut de votre instance {{ name }} a bien été mis à jour"
+  "pci_instances_actions_instance_success_message": "Le statut de votre instance {{ name }} a bien été mis à jour",
+  "pci_instances_actions_instance_network_change_dns": "Changer le reverse DNS",
+  "pci_instances_actions_instance_network_activate_mitigation": "Activer/Désactiver la mitigation",
+  "pci_instances_actions_instance_network_firewall_settings": "Configurer le pare-feu",
+  "pci_instances_actions_instance_network_network_settings": "Gérer les réseaux privés",
+  "pci_instances_actions_instance_network_network_attach": "Attacher un réseau",
+  "pci_instances_actions_instance_network_network_attach_title": "Attacher un ou des réseaux privés à votre instance",
+  "pci_instances_actions_instance_network_network_empty_message": "Vous ne possédez actuellement aucun réseau privé compatible auquel attacher cette instance.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "Le réseau privé {{ network }} a été attaché à l'instance {{ instance }}.",
+  "pci_instances_actions_instance_attach_error_message": "Une erreur est survenue lors de la mise à jour de l'instance : {{ message }}",
+  "pci_instances_actions_instance_volume_attach_title": "Attacher un volume à votre instance",
+  "pci_instances_actions_instance_volume_attach_empty_message": "Aucun volume n’est disponible dans la région de votre instance.",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Attacher une ressource",
+  "pci_instances_actions_instance_volume_attach_select": "Selectionner un volume existant",
+  "pci_instances_actions_instance_volume_attach_information": "Vous pouvez attacher un volume existant ou créer un nouveau volume à attacher à votre instance. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Créer un volume",
+  "pci_instances_actions_instance_volume_attach_success_message": "Le volume {{ volume }} a été attaché à l'instance {{ instance }}."
 }
