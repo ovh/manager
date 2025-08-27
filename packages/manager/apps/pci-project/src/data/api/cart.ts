@@ -35,6 +35,21 @@ export const attachConfigurationToCartItem = async (
   return data;
 };
 
+export const getCartConfiguration = async (
+  cartId: string,
+  itemId: number,
+): Promise<CartConfiguration[]> => {
+  const headers: Record<string, string> = {
+    'x-pagination-mode': 'CachedObjectList-Pages',
+  };
+  const { data } = await v6.get<CartConfiguration[]>(
+    `order/cart/${cartId}/item/${itemId}/configuration`,
+    { headers },
+  );
+
+  return data;
+};
+
 export const deleteConfigurationItemFromCart = async (
   cartId: string,
   itemId: number,
@@ -144,6 +159,21 @@ export const addItemToCart = async (
 
 export const removeItemFromCart = async (cartId: string, itemId: number) => {
   await v6.delete(`/order/cart/${cartId}/item/${itemId}`);
+};
+
+export const getCartItems = async (
+  cartId: string,
+): Promise<OrderedProduct[]> => {
+  const headers: Record<string, string> = {
+    'x-pagination-mode': 'CachedObjectList-Pages',
+  };
+  const { data } = await v6.get<OrderedProduct[]>(
+    `/order/cart/${cartId}/item`,
+    {
+      headers,
+    },
+  );
+  return data;
 };
 
 export const checkoutCart = async (cartId: string): Promise<CartSummary> => {
