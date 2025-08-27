@@ -56,7 +56,10 @@ export const buildPartialAggregatedInstanceDto = (
     instance.volumes
       ? {
           ...dto,
-          volumes: instance.volumes.map(({ id, name }) => ({ id, name })),
+          volumes: instance.volumes.map(({ id, name }) => ({
+            id,
+            name: name ?? '',
+          })),
         }
       : dto;
 

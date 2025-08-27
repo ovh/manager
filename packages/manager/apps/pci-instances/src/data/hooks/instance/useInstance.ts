@@ -99,11 +99,7 @@ type TInstanceArgs = {
   region: string;
 };
 
-const resetInstanceCache = ({
-  projectId,
-  region,
-  instanceId,
-}: TInstanceArgs) =>
+const resetInstanceCache = ({ projectId, region, instanceId }: TInstanceArgs) =>
   queryClient.invalidateQueries({
     queryKey: instancesQueryKey(projectId, [
       'region',

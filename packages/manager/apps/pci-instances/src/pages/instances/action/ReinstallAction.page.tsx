@@ -137,7 +137,7 @@ const ReinstallActionPage: FC = () => {
     );
 
     closeModal();
-  }, [closeModal, t, instance]);
+  }, [closeModal, addInfo, t, instance]);
 
   const onError = useCallback(
     (rawError: unknown) => {
@@ -153,7 +153,7 @@ const ReinstallActionPage: FC = () => {
         true,
       );
     },
-    [closeModal, t, instance],
+    [addError, t, instance],
   );
 
   const modalProps = {
