@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PaymentMethods, {
   TPaymentMethodRef,
 } from '@/components/payment/PaymentMethods';
@@ -33,6 +34,7 @@ export default function PaymentStep({
   paymentHandler,
   handleCustomSubmitButton,
 }: PaymentStepProps) {
+  const [searchParams] = useSearchParams();
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
   });
@@ -68,6 +70,7 @@ export default function PaymentStep({
         cartId={cart.cartId}
         itemId={cartProjectItem.itemId}
         handleCustomSubmitButton={handleCustomSubmitButton}
+        preselectedPaymentType={searchParams.get('paymentType')}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
