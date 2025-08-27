@@ -10,7 +10,13 @@ import { TInstance } from '@/types/instance/entity.type';
 const projectId = '8c8c4fd6d4414aa29fc777752b00005198664';
 const instanceId = 'fake-id';
 const region = 'fake-region';
-const fakeInstance = { id: instanceId } as TInstance;
+const fakeInstance = {
+  id: instanceId,
+  region: {
+    name: region,
+  },
+  task: { isPending: false, status: null },
+} as TInstance;
 const editInstanceNameMock = vi.fn();
 
 vi.mock('@/data/api/instance');
