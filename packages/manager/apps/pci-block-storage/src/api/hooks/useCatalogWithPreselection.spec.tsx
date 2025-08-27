@@ -44,21 +44,23 @@ const PROJECT_ID = '123';
 const VOLUME_ID = '1';
 
 describe('useCatalogWithPreselection', () => {
-  it.each(['region', 'localzone'])(
-    'returns the mapped volume data, the encryption type and not pending given queries are done and region is %s',
+  it.each(['region', 'localzone', 'region-3-az'])(
+    'returns the mapped volume data, the encryption type and pending to false, given the volume is not multi-attached and region is "%s"',
     async (non3azRegionType: TRegion['type']) => {
-      const volumeMock = {
+      const notMultiAttachedVolumeMock = {
         region: 'volume region',
         type: 'type',
       } as TAPIVolume;
 
       const mockCatalog = {
-        regions: [{ name: volumeMock.region, type: non3azRegionType }],
+        regions: [
+          { name: notMultiAttachedVolumeMock.region, type: non3azRegionType },
+        ],
       } as TVolumeCatalog;
       const mockMappedCatalog = [{}] as TVolumeRetypeModel[];
 
       vi.mocked(useQueries).mockReturnValue([
-        { data: volumeMock, isPending: false },
+        { data: notMultiAttachedVolumeMock, isPending: false },
         { data: mockCatalog, isPending: false },
       ]);
 
@@ -80,10 +82,48 @@ describe('useCatalogWithPreselection', () => {
     },
   );
 
-  it('should return empty array and null encryption if region is region-3-az', () => {
+  it.each(['region', 'localzone'])(
+    'returns the mapped volume data, the encryption type and pending to false, given the volume is multi-attached and region is "%s"',
+    async (non3azRegionType: TRegion['type']) => {
+      const multiAttchedVolumeMock = {
+        region: 'volume region',
+        type: 'classic-multiattach',
+      } as TAPIVolume;
+
+      const mockCatalog = {
+        regions: [
+          { name: multiAttchedVolumeMock.region, type: non3azRegionType },
+        ],
+      } as TVolumeCatalog;
+      const mockMappedCatalog = [{}] as TVolumeRetypeModel[];
+
+      vi.mocked(useQueries).mockReturnValue([
+        { data: multiAttchedVolumeMock, isPending: false },
+        { data: mockCatalog, isPending: false },
+      ]);
+
+      vi.mocked(mapRetypingVolumeCatalog).mockReturnValue(
+        () => mockMappedCatalog,
+      );
+      vi.mocked(getEncryption).mockReturnValue(() => ({
+        encrypted: true,
+        encryptionType: EncryptionType.OMK,
+      }));
+
+      const { result } = renderHook(() =>
+        useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
+      );
+
+      expect(result.current.data).toEqual(mockMappedCatalog);
+      expect(result.current.preselectedEncryptionType).toBe(EncryptionType.OMK);
+      expect(result.current.isPending).toBe(false);
+    },
+  );
+
+  it('should return empty array, null encryption and pending to false, given the volume is multi-attach and region is "region-3-az"', () => {
     const volumeMock = {
       region: 'volume region',
-      type: 'type',
+      type: 'classic-multiattach',
     } as TAPIVolume;
 
     const mockCatalog = {
