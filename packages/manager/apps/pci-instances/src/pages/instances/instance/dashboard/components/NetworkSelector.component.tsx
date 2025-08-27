@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
@@ -18,7 +19,7 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
   networks,
   onValueChange,
 }) => {
-  const { t } = useTranslation(['actions', 'common']);
+  const { t } = useTranslation([NAMESPACES.ACTIONS, 'actions']);
 
   return (
     <div className="mt-4">
@@ -27,9 +28,7 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
           items={networks}
           onValueChange={({ value }) => onValueChange(value[0] ?? '')}
         >
-          <SelectControl
-            placeholder={t('common:pci_instances_common_search')}
-          />
+          <SelectControl placeholder={t('search')} />
           <SelectContent />
         </Select>
       ) : (
@@ -38,7 +37,9 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
             level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
             color={ODS_THEME_COLOR_INTENT.default}
           >
-            {t('pci_instances_actions_instance_network_network_empty_message')}
+            {t(
+              'actions:pci_instances_actions_instance_network_network_empty_message',
+            )}
           </OsdsText>
         </OsdsMessage>
       )}
