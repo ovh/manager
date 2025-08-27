@@ -1,0 +1,17 @@
+{
+  "billing_resiliate_mode_label": "Cancellation mode",
+  "billing_resiliate_deleteAtExpiration": "Cancel service on its expiry date.",
+  "billing_resiliate_terminate": "Cancel service now.",
+  "billing_resiliate_terminateAtEngagementDate": "Cancel the service on the subscription end date",
+  "billing_resiliate_terminateAtExpirationDate": "Cancel service on its expiry date.",
+  "billing_resiliate_deleteAtExpiration_success": "Your request to cancel this service on its expiry date has been processed.",
+  "billing_resiliate_deleteAtExpiration_error": "An error has occurred submitting the request to cancel this service on its expiry date:",
+  "billing_resiliate_terminate_success": "The cancellation of this service has been processed. You will receive an email to confirm the cancellation.",
+  "billing_resiliate_terminate_immediate_success": "Your request to cancel the service has been processed.",
+  "billing_resiliate_terminate_error": "An error occurred while submitting the service cancellation request:",
+  "billing_resiliate_terminateAtEngagementDate_success": "The cancellation request for the service on its expiry date has been suspended.",
+  "billing_resiliate_terminateAtEngagementDate_error": "An error has occurred submitting the cancellation request on the service’s end of subscription date:",
+  "billing_resiliate_terminateAtExpirationDate_success": "Your request to cancel this service on its expiry date has been processed.",
+  "billing_resiliate_terminateAtExpirationDate_error": "An error has occurred submitting the request to cancel this service on its expiry date:",
+  "billing_resiliate_error": "An error occurred while submitting the cancellation request."
+}
