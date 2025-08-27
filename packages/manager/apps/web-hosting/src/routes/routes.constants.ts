@@ -1,6 +1,7 @@
 export const subRoutes = {
   serviceName: ':serviceName',
   domain: ':domain',
+  locationId: ':locationId',
 };
 
 export const urls = {
@@ -16,4 +17,6 @@ export const urls = {
   orderSectigo: `/${subRoutes.serviceName}/order-sectigo`,
   disableSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/disable-ssl`,
   sanSsl: `/${subRoutes.serviceName}/${subRoutes.domain}/san-ssl`,
+  localSeo: `/${subRoutes.serviceName}/localSeo`,
+  removeSeoSubsciption: `/${subRoutes.serviceName}/localSeo/${subRoutes.locationId}/terminate`,
 };
