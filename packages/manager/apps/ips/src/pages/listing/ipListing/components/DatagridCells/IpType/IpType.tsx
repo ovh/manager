@@ -21,25 +21,32 @@ export const IpType = ({ ip }: IpTypeProps) => {
 
   return (
     <SkeletonCell isLoading={isLoading}>
-      {ipDetails?.type ? t(`listingColumnsType_${ipDetails.type}`) : <>-</>}
-      {ipDetails?.type === IpTypeEnum.ADDITIONAL &&
-        !!ipDetails?.routedTo?.serviceName && (
+      <div className="flex gap-2 items-center flex-wrap">
+        {ipDetails?.type ? t(`listingColumnsType_${ipDetails.type}`) : <>-</>}
+        {ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+          !!ipDetails?.routedTo?.serviceName && (
+            <OdsBadge
+              label={t('listingColumnsTypeBadgeAssigned')}
+              size={ODS_BADGE_SIZE.sm}
+              color={ODS_BADGE_COLOR.success}
+            />
+          )}
+        {ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+          !ipDetails?.routedTo?.serviceName && (
+            <OdsBadge
+              label={t('listingColumnsTypeBadgeParked')}
+              size={ODS_BADGE_SIZE.sm}
+              color={ODS_BADGE_COLOR.neutral}
+            />
+          )}
+        {ipDetails?.bringYourOwnIp && (
           <OdsBadge
-            label={t('listingColumnsTypeBadgeAssigned')}
+            label={t('listingColumnsTypeBadgeByoip')}
             size={ODS_BADGE_SIZE.sm}
-            color={ODS_BADGE_COLOR.success}
-            className="ml-2"
+            color={ODS_BADGE_COLOR.information}
           />
         )}
-      {ipDetails?.type === IpTypeEnum.ADDITIONAL &&
-        !ipDetails?.routedTo?.serviceName && (
-          <OdsBadge
-            label={t('listingColumnsTypeBadgeParked')}
-            size={ODS_BADGE_SIZE.sm}
-            color={ODS_BADGE_COLOR.neutral}
-            className="ml-2"
-          />
-        )}
+      </div>
     </SkeletonCell>
   );
 };
