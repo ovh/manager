@@ -1,12 +1,15 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import {
   addItemToCart,
   assignCart,
   attachConfigurationToCartItem,
   createCart,
   deleteConfigurationItemFromCart,
+  getCart,
+  getCartConfiguration,
+  getCartItems,
   getCartSummary,
   getPublicCloudOptions,
   orderCloudProject,
@@ -84,6 +87,13 @@ export const useGetCartSummary = (cartId?: string) =>
   useQuery({
     queryKey: getCartSummaryQueryKey(cartId),
     queryFn: () => getCartSummary(cartId as string),
+    enabled: !!cartId,
+  });
+
+export const useGetCart = (cartId?: string) =>
+  useQuery({
+    queryKey: ['order', 'cart', cartId],
+    queryFn: () => getCart(cartId as string),
     enabled: !!cartId,
   });
 
@@ -263,5 +273,42 @@ export const useOrderProjectItem = () =>
         PCI_PROJECT_ORDER_CART.planCode as PlanCode,
       );
       return projectItem;
+    },
+  });
+
+export const getCartItemsQueryOptions = (cartId?: string) =>
+  queryOptions({
+    queryKey: ['order', 'cart', cartId, 'item'],
+    queryFn: () => getCartItems(cartId as string),
+    enabled: !!cartId,
+  });
+
+export const useGetOrderProjectId = (cartId?: string) =>
+  useQuery({
+    ...getCartItemsQueryOptions(cartId),
+    select: (items) =>
+      items.find(
+        (item) => item.settings.planCode === PCI_PROJECT_ORDER_CART.planCode,
+      ),
+  });
+
+export const useIsHdsChecked = (cartId?: string) =>
+  useQuery({
+    ...getCartItemsQueryOptions(cartId),
+    select: (items) =>
+      items.find((item) => item.settings.planCode === PCI_HDS_ADDON.planCode),
+  });
+
+export const useGetCartConfiguration = (
+  label: string,
+  cartId?: string,
+  itemId?: number,
+) =>
+  useQuery({
+    queryKey: ['order', 'cart', cartId, 'item', itemId, 'configuration', label],
+    queryFn: () => getCartConfiguration(cartId as string, itemId as number),
+    enabled: !!cartId && !!itemId,
+    select: (configurations) => {
+      return configurations.find((item) => item.label === label);
     },
   });

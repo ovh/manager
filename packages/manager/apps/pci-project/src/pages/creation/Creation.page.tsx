@@ -5,10 +5,12 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   useAttachConfigurationToCartItem,
   useCreateAndAssignCart,
+  useGetCart,
+  useGetOrderProjectId,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
 import FullPageSpinner from '@/components/FullPageSpinner';
@@ -29,11 +31,12 @@ export default function ProjectCreation() {
   ]);
 
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { environment } = useContext(ShellContext);
   const user = environment.getUser();
   const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
+  const [hasInitialCart] = useState<boolean>(!!searchParams.get('cartId'));
 
-  const { form, setForm, isConfigFormValid } = useConfigForm(ovhSubsidiary);
   const [isPaymentMethodValid, setIsPaymentMethodValid] = useState<boolean>(
     false,
   );
@@ -42,8 +45,36 @@ export default function ProjectCreation() {
     null,
   );
 
-  const { mutate: createAndAssignCart, data: cart } = useCreateAndAssignCart();
-  const { mutate: orderProjectItem, data: projectItem } = useOrderProjectItem();
+  const {
+    mutate: createAndAssignCart,
+    data: createdCart,
+  } = useCreateAndAssignCart();
+  const { data: existingCart } = useGetCart(
+    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
+  );
+
+  const {
+    form,
+    setForm,
+    isConfigFormValid,
+    isLoading: isLoadingConfigForm,
+  } = useConfigForm(
+    ovhSubsidiary,
+    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
+  );
+
+  const cart = hasInitialCart ? existingCart : createdCart;
+
+  const {
+    mutate: orderProjectItem,
+    data: createdProjectItem,
+  } = useOrderProjectItem();
+  const { data: existingProjectItem } = useGetOrderProjectId(
+    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
+  );
+
+  const projectItem = hasInitialCart ? existingProjectItem : createdProjectItem;
+
   const {
     mutate: attachConfigurationToCartItem,
   } = useAttachConfigurationToCartItem();
@@ -60,17 +91,36 @@ export default function ProjectCreation() {
   } = useStepper();
 
   useEffect(() => {
+    if (isLoadingConfigForm) {
+      return;
+    }
+
+    if (!isConfigFormValid()) {
+      return;
+    }
+
+    // Proceed to the next step
+    setCurrentStep(1);
+  }, [isLoadingConfigForm]);
+
+  useEffect(() => {
+    // If the cartId is in the URL it means the cart has already been created
+    if (hasInitialCart) {
+      return;
+    }
+
     createAndAssignCart(
       { ovhSubsidiary },
       {
-        onSuccess: (createdCart) => {
+        onSuccess: (justCreatedCart) => {
           orderProjectItem({
-            cartId: createdCart.cartId,
+            cartId: justCreatedCart.cartId,
           });
+          setSearchParams({ cartId: justCreatedCart.cartId });
         },
       },
     );
-  }, [createAndAssignCart, orderProjectItem, ovhSubsidiary]);
+  }, [createAndAssignCart, orderProjectItem, ovhSubsidiary, hasInitialCart]);
 
   const handleConfigNext = () => {
     if (!cart || !projectItem) return;
