@@ -1,6 +1,7 @@
 {
   "title": "Mes communications",
-  "description": "Retrouvez l'ensemble des communications qu'OVH vous a envoyé, exceptées les demandes d'assistance.",
+  "description": "Retrouvez l'ensemble des communications qu'OVH vous a envoyé, exceptées les demandes d'assistance. Vous pouvez les consulter via la section: <anchor>Assistance</anchor>",
+  "assistance_link_label": "Assistance",
   "tab_communications": "Mes communications",
   "tab_contacts": "Contacts",
   "tab_settings": "Paramètres de diffusion",
