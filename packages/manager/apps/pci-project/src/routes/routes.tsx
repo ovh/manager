@@ -9,6 +9,7 @@ import CreationGuard from '@/components/creation-guard/CreationGuard';
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
 const RemovePage = lazy(() => import('@/pages/remove/Remove.page'));
+const ProjectDetailPage = lazy(() => import('@/pages/detail/Detail.page'));
 const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
@@ -17,6 +18,9 @@ const IncreaseQuotaPage = lazy(() =>
   import('@/pages/increase-quota/IncreaseQuota'),
 );
 const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
+const ActivatePage = lazy(() =>
+  import('@/pages/detail/activate/Activate.page'),
+);
 
 export default (
   <Route
@@ -60,38 +64,50 @@ export default (
         },
       }}
     />
-    <Route path={urls.project} Component={MainPage}>
-      <Route
-        path={urls.home}
-        Component={HomePage}
-        handle={{
-          tracking: {
-            pageName: PROJECTS_TRACKING.PROJECT_HOME.PAGE_NAME,
-            pageType: PageType.onboarding,
-          },
-        }}
-      />
-      <Route
-        path={urls.edit}
-        Component={EditPage}
-        handle={{
-          tracking: {
-            pageName: 'edit',
-            pageType: PageType.dashboard,
-          },
-        }}
-      >
+    <Route path={urls.project} Component={ProjectDetailPage}>
+      <Route path="" Component={MainPage}>
         <Route
-          path={urls.remove}
-          Component={RemovePage}
+          path={urls.home}
+          Component={HomePage}
           handle={{
             tracking: {
-              pageName: PROJECTS_TRACKING.DELETE.PAGE_NAME,
-              pageType: PageType.popup,
+              pageName: PROJECTS_TRACKING.PROJECT_HOME.PAGE_NAME,
+              pageType: PageType.onboarding,
             },
           }}
         />
+        <Route
+          path={urls.edit}
+          Component={EditPage}
+          handle={{
+            tracking: {
+              pageName: 'edit',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            path={urls.remove}
+            Component={RemovePage}
+            handle={{
+              tracking: {
+                pageName: PROJECTS_TRACKING.DELETE.PAGE_NAME,
+                pageType: PageType.popup,
+              },
+            }}
+          />
+        </Route>
       </Route>
+      <Route
+        path={urls.activate}
+        Component={ActivatePage}
+        handle={{
+          tracking: {
+            pageName: 'activate',
+            pageType: PageType.dashboard,
+          },
+        }}
+      />
     </Route>
     <Route
       path={urls.onboarding}
