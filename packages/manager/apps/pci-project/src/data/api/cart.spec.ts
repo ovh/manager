@@ -8,15 +8,19 @@ import {
   getCartSummary,
   getPublicCloudOptions,
   attachConfigurationToCartItem,
+  getCartConfiguration,
   deleteConfigurationItemFromCart,
   orderCloudProject,
   getCart,
   addItemToCart,
   removeItemFromCart,
+  getCartItems,
+  getCartCheckout,
 } from './cart';
 import {
   AddOptionToCartResponse,
   Cart,
+  CartConfiguration,
   CartSummary,
   CartProductOption,
   CartProduct,
@@ -481,6 +485,110 @@ describe('cart API', () => {
       mockedV6Get.mockRejectedValue(new Error('API Error'));
 
       await expect(getCartSummary('cart-1')).rejects.toThrow('API Error');
+    });
+  });
+
+  describe('getCartItems', () => {
+    it('should call v6.get with correct endpoint and headers', async () => {
+      const mockItems: OrderedProduct[] = [
+        {
+          cartId: 'cart-1',
+          itemId: 123,
+          productId: 'product-1',
+          configuration: [],
+          duration: 'P1M',
+          options: [],
+          prices: [],
+          settings: {
+            planCode: 'project.2018',
+            pricingMode: 'default',
+            quantity: 1,
+          },
+        },
+      ];
+      mockedV6Get.mockResolvedValue({ data: mockItems });
+
+      const result = await getCartItems('cart-1');
+
+      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/item', {
+        headers: {
+          'x-pagination-mode': 'CachedObjectList-Pages',
+        },
+      });
+      expect(result).toBe(mockItems);
+    });
+
+    it('should throw error when API call fails', async () => {
+      mockedV6Get.mockRejectedValue(new Error('API Error'));
+
+      await expect(getCartItems('cart-1')).rejects.toThrow('API Error');
+    });
+  });
+
+  describe('getCartCheckout', () => {
+    it('should call v6.get with correct endpoint and return cart checkout', async () => {
+      const mockCheckout: CartSummary = {
+        orderId: 123,
+        url: 'https://order-url',
+        details: [],
+        prices: {
+          originalWithoutTax: {
+            value: 10,
+            currencyCode: 'EUR',
+            text: '10.00 €',
+          },
+          reduction: { value: 0, currencyCode: 'EUR', text: '0.00 €' },
+          tax: { value: 2, currencyCode: 'EUR', text: '2.00 €' },
+          withTax: { value: 12, currencyCode: 'EUR', text: '12.00 €' },
+          withoutTax: { value: 10, currencyCode: 'EUR', text: '10.00 €' },
+        },
+        contracts: [],
+      };
+      mockedV6Get.mockResolvedValue({ data: mockCheckout });
+
+      const result = await getCartCheckout('cart-1');
+
+      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/checkout');
+      expect(result).toBe(mockCheckout);
+    });
+
+    it('should throw error when API call fails', async () => {
+      mockedV6Get.mockRejectedValue(new Error('API Error'));
+
+      await expect(getCartCheckout('cart-1')).rejects.toThrow('API Error');
+    });
+  });
+
+  describe('getCartConfiguration', () => {
+    it('should call v6.get with correct endpoint and headers', async () => {
+      const mockConfigurations: CartConfiguration[] = [
+        {
+          id: 123,
+          label: 'description',
+          value: 'Test description',
+        },
+      ];
+      mockedV6Get.mockResolvedValue({ data: mockConfigurations });
+
+      const result = await getCartConfiguration('cart-1', 456);
+
+      expect(mockedV6Get).toHaveBeenCalledWith(
+        'order/cart/cart-1/item/456/configuration',
+        {
+          headers: {
+            'x-pagination-mode': 'CachedObjectList-Pages',
+          },
+        },
+      );
+      expect(result).toBe(mockConfigurations);
+    });
+
+    it('should throw error when API call fails', async () => {
+      mockedV6Get.mockRejectedValue(new Error('API Error'));
+
+      await expect(getCartConfiguration('cart-1', 456)).rejects.toThrow(
+        'API Error',
+      );
     });
   });
 

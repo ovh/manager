@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   OdsCard,
   OdsSpinner,
@@ -29,12 +29,14 @@ export type RegisterPaymentMethodProps = {
   eligibility: TEligibility;
   handlePaymentMethodChange?: (method: TAvailablePaymentMethod) => void;
   handleSetAsDefaultChange?: (value: boolean) => void;
+  preselectedPaymentType?: string | null;
 };
 
 const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
   eligibility,
   handlePaymentMethodChange = () => {},
   handleSetAsDefaultChange = () => {},
+  preselectedPaymentType,
 }) => {
   const { t } = useTranslation([
     'payment/add',
@@ -63,10 +65,6 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
 
   const availablePaymentMethods = availablePaymentMethodsData?.data;
 
-  if (isLoading || isFFLoading || !availablePaymentMethods || !features) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
-  }
-
   const onHandlePaymentMethodChange = (method: TAvailablePaymentMethod) => {
     setSelectedPaymentMethod(method);
     handlePaymentMethodChange(method);
@@ -76,6 +74,30 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
     setIsSetAsDefault(value);
     handleSetAsDefaultChange(value);
   };
+
+  useEffect(() => {
+    if (
+      preselectedPaymentType &&
+      availablePaymentMethods &&
+      !selectedPaymentMethod
+    ) {
+      const method = availablePaymentMethods.find(
+        (m) => m.paymentType === preselectedPaymentType,
+      );
+      if (method) {
+        onHandlePaymentMethodChange(method);
+      }
+    }
+  }, [
+    preselectedPaymentType,
+    selectedPaymentMethod,
+    availablePaymentMethods,
+    onHandlePaymentMethodChange,
+  ]);
+
+  if (isLoading || isFFLoading || !availablePaymentMethods || !features) {
+    return <OdsSpinner size={ODS_SPINNER_SIZE.md} />;
+  }
 
   return (
     <div>
@@ -122,6 +144,9 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
                 inputId={`payment-method-${method.paymentType}`}
                 name="payment-method"
                 onClick={() => onHandlePaymentMethodChange(method)}
+                isChecked={
+                  selectedPaymentMethod?.paymentType === method.paymentType
+                }
               />
 
               <PaymentIcon icon={method.icon} />
