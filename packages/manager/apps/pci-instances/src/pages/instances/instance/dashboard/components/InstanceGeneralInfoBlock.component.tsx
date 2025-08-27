@@ -11,6 +11,11 @@ import {
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+import {
+  Clipboard,
+  ClipboardControl,
+  ClipboardTrigger,
+} from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
@@ -22,11 +27,6 @@ import {
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
-import {
-  Clipboard,
-  ClipboardControl,
-  ClipboardTrigger,
-} from '@ovhcloud/ods-react';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 
 const InstanceGeneralInfoBlock: FC = () => {
@@ -41,15 +41,17 @@ const InstanceGeneralInfoBlock: FC = () => {
     `../${instanceId}/delete?region=${region}`,
   );
 
-  const { instance, isPending: isInstanceLoading } = useDashboard({
-    region,
-    instanceId,
-  });
+  const { instance, pendingTasks, isPending: isInstanceLoading } = useDashboard(
+    {
+      region,
+      instanceId,
+    },
+  );
 
   const polling = useDashboardPolling({
-    region,
     instanceId,
-    taskStatus: instance?.task,
+    region,
+    pendingTasks,
   });
 
   return (

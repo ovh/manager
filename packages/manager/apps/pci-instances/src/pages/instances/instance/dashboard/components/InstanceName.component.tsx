@@ -2,13 +2,14 @@ import { FC, useCallback, useState } from 'react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { clsx } from 'clsx';
+import { useQueryClient } from '@tanstack/react-query';
+import { Button, Icon, Text } from '@ovhcloud/ods-react';
 import { useUpdateInstanceName } from '@/data/hooks/instance/useInstance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDashboardViewModel } from '../view-models/selectInstanceDashboard';
-import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
-import { useQueryClient } from '@tanstack/react-query';
-import { Button, Icon, Text } from '@ovhcloud/ods-react';
 import InputCancellable from '@/components/input/InputCancellable.component';
+import { TPartialInstance } from '@/types/instance/entity.type';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
 
 type TInstanceNameProps = {
   instance: NonNullable<TInstanceDashboardViewModel>;
@@ -26,26 +27,19 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
 
   const handleSuccessUpdate = useCallback(
     (newInstanceName: string) => {
-      updateInstancesFromCache(queryClient, {
+      const newInstance: TPartialInstance = {
+        id: instance.id,
+        name: newInstanceName,
+      };
+
+      updateAllInstancesFromCache(queryClient, {
         projectId,
-        instance: {
-          id: instance.id,
-          name: newInstanceName,
-        },
+        instance: newInstance,
+        region: instance.region.name,
       });
     },
-    [instance.id, projectId, queryClient],
+    [instance.id, projectId, queryClient, instance.region.name],
   );
-
-  const handleCancel = () => {
-    setInstanceName(instance.name);
-    closeEdit();
-  };
-
-  const handleSubmit = () => {
-    editInstanceName({ instanceName });
-    closeEdit();
-  };
 
   const {
     isPending,
@@ -60,6 +54,16 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
         addError(t('pci_instances_dashboard_edit_name_error_message'), true),
     },
   });
+
+  const handleCancel = () => {
+    setInstanceName(instance.name);
+    closeEdit();
+  };
+
+  const handleSubmit = () => {
+    editInstanceName({ instanceName });
+    closeEdit();
+  };
 
   return (
     <header className="flex items-center">
