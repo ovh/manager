@@ -12,6 +12,9 @@ import {
   getPublicCloudOptions,
   orderCloudProject,
   removeItemFromCart,
+  getCart,
+  getCartItems,
+  getCartConfiguration,
 } from '@/data/api/cart';
 import {
   Cart,
@@ -26,14 +29,19 @@ import { createWrapper } from '@/wrapperRenders';
 import {
   getCartSummaryQueryKey,
   getContractAgreementsQueryKey,
+  getCartItemsQueryOptions,
   useAddItemToCart,
   useAttachConfigurationToCartItem,
   useContractAgreements,
   useCreateAndAssignCart,
   useCreateCart,
   useDeleteConfigurationItemFromCart,
+  useGetCart,
   useGetCartSummary,
   useGetHdsAddonOption,
+  useGetOrderProjectId,
+  useGetCartConfiguration,
+  useIsHdsChecked,
   useOrderProjectItem,
   useRemoveItemFromCart,
 } from './useCart';
@@ -48,6 +56,9 @@ vi.mock('@/data/api/cart', () => ({
   deleteConfigurationItemFromCart: vi.fn(),
   addItemToCart: vi.fn(),
   removeItemFromCart: vi.fn(),
+  getCart: vi.fn(),
+  getCartItems: vi.fn(),
+  getCartConfiguration: vi.fn(),
 }));
 
 describe('useCart hooks', () => {
@@ -554,6 +565,188 @@ describe('useCart hooks', () => {
         123,
         456,
       );
+    });
+  });
+
+  describe('useGetCart', () => {
+    it('should fetch cart when cartId is provided', async () => {
+      vi.mocked(getCart).mockResolvedValue(mockCart);
+
+      const { result } = renderHook(() => useGetCart('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(getCart).toHaveBeenCalledWith('cart-1');
+      expect(result.current.data).toEqual(mockCart);
+    });
+
+    it('should not fetch when cartId is not provided', () => {
+      const { result } = renderHook(() => useGetCart(undefined), {
+        wrapper: createWrapper(),
+      });
+
+      expect(result.current.data).toBeUndefined();
+      expect(getCart).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('useGetOrderProjectId', () => {
+    it('should fetch and select project item when cartId is provided', async () => {
+      vi.mocked(getCartItems).mockResolvedValue([mockOrderedProduct]);
+
+      const { result } = renderHook(() => useGetOrderProjectId('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(getCartItems).toHaveBeenCalledWith('cart-1');
+      expect(result.current.data).toEqual(mockOrderedProduct);
+    });
+
+    it('should return undefined when no matching project item found', async () => {
+      const nonProjectItem = {
+        ...mockOrderedProduct,
+        settings: {
+          ...mockOrderedProduct.settings,
+          planCode: 'other.plan',
+        },
+      };
+      vi.mocked(getCartItems).mockResolvedValue([nonProjectItem]);
+
+      const { result } = renderHook(() => useGetOrderProjectId('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(result.current.data).toBeUndefined();
+    });
+  });
+
+  describe('useIsHdsChecked', () => {
+    it('should fetch and select HDS item when cartId is provided', async () => {
+      const hdsItem = {
+        ...mockOrderedProduct,
+        settings: {
+          ...mockOrderedProduct.settings,
+          planCode: 'certification.hds.2018',
+        },
+      };
+      vi.mocked(getCartItems).mockResolvedValue([hdsItem]);
+
+      const { result } = renderHook(() => useIsHdsChecked('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(getCartItems).toHaveBeenCalledWith('cart-1');
+      expect(result.current.data).toEqual(hdsItem);
+    });
+
+    it('should return undefined when no HDS item found', async () => {
+      vi.mocked(getCartItems).mockResolvedValue([mockOrderedProduct]);
+
+      const { result } = renderHook(() => useIsHdsChecked('cart-1'), {
+        wrapper: createWrapper(),
+      });
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(result.current.data).toBeUndefined();
+    });
+  });
+
+  describe('useGetCartConfiguration', () => {
+    const mockConfigurations = [
+      {
+        id: 123,
+        label: 'description',
+        value: 'Test description',
+      },
+      {
+        id: 124,
+        label: 'other',
+        value: 'Other value',
+      },
+    ];
+
+    it('should fetch and select configuration by label when cartId and itemId are provided', async () => {
+      vi.mocked(getCartConfiguration).mockResolvedValue(mockConfigurations);
+
+      const { result } = renderHook(
+        () => useGetCartConfiguration('description', 'cart-1', 123),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(getCartConfiguration).toHaveBeenCalledWith('cart-1', 123);
+      expect(result.current.data).toEqual(mockConfigurations[0]);
+    });
+
+    it('should not fetch when cartId or itemId is not provided', () => {
+      const { result } = renderHook(
+        () => useGetCartConfiguration('description', undefined, 123),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      expect(result.current.data).toBeUndefined();
+      expect(getCartConfiguration).not.toHaveBeenCalled();
+    });
+
+    it('should return undefined when no matching configuration found', async () => {
+      vi.mocked(getCartConfiguration).mockResolvedValue(mockConfigurations);
+
+      const { result } = renderHook(
+        () => useGetCartConfiguration('nonexistent', 'cart-1', 123),
+        {
+          wrapper: createWrapper(),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBe(true);
+      });
+
+      expect(result.current.data).toBeUndefined();
+    });
+  });
+
+  describe('getCartItemsQueryOptions', () => {
+    it('should return correct query options for cartId', () => {
+      const options = getCartItemsQueryOptions('cart-1');
+
+      expect(options).toEqual({
+        queryKey: ['order', 'cart', 'cart-1', 'item'],
+        queryFn: expect.any(Function),
+        enabled: true,
+      });
+    });
+
+    it('should return disabled options when cartId is not provided', () => {
+      const options = getCartItemsQueryOptions(undefined);
+
+      expect(options.enabled).toBe(false);
     });
   });
 });
