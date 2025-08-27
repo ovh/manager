@@ -1,4 +1,7 @@
+import * as Either from '@effect/data/Either';
 import { ObsFeatureType } from './enums/ObsFeatureType';
-import { Result } from './Result';
 
-export type ObsFeatureResult = Result<ObsFeatureType, 'invalid' | 'undefined'>;
+export type ObsFeatureResult = Either.Either<
+  'invalid' | 'undefined',
+  ObsFeatureType
+>;

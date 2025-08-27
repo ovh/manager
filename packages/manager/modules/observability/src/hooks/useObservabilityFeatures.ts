@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { createError, createSuccess, isSuccess } from '../types/Result';
+import * as Either from '@effect/data/Either';
 import { getSafeDefaultFeature } from '../utils/ObsFeaturesUtils';
 import {
   FeatureSwitcherItem,
@@ -49,17 +49,17 @@ export const useObservabilityFeatures = (
   );
 
   const [currentObsFeatureResult, setCurrentObsFeatureResult] = useState<
-    ObsFeatureResult
+    Either.Either<'undefined', ObsFeatureType>
   >(
     availableFeatures.length > 0 && safeDefaultFeature
-      ? createSuccess(safeDefaultFeature)
-      : createError('undefined'),
+      ? Either.right(safeDefaultFeature)
+      : Either.left('undefined'),
   );
 
-  const currentObsFeature = isSuccess(currentObsFeatureResult)
-    ? currentObsFeatureResult.data
+  const currentObsFeature = Either.isRight(currentObsFeatureResult)
+    ? currentObsFeatureResult.right
     : null;
-  const hasValidFeature = isSuccess(currentObsFeatureResult);
+  const hasValidFeature = Either.isRight(currentObsFeatureResult);
 
   const shouldShowFeatureSwitcher = availableFeatures.length > 1;
 
@@ -81,13 +81,13 @@ export const useObservabilityFeatures = (
       ?.toLowerCase() as ObsFeatureType;
 
     if (availableFeatures.length === 0) {
-      setCurrentObsFeatureResult(createError('undefined'));
+      setCurrentObsFeatureResult(Either.left('undefined'));
     } else if (pathFeature) {
-      setCurrentObsFeatureResult(createSuccess(pathFeature));
+      setCurrentObsFeatureResult(Either.right(pathFeature));
     } else if (safeDefaultFeature) {
-      setCurrentObsFeatureResult(createSuccess(safeDefaultFeature));
+      setCurrentObsFeatureResult(Either.right(safeDefaultFeature));
     } else {
-      setCurrentObsFeatureResult(createError('undefined'));
+      setCurrentObsFeatureResult(Either.left('undefined'));
     }
   }, [location.pathname, availableFeatures, safeDefaultFeature]);
 
