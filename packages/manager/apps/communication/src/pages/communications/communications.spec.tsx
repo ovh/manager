@@ -8,6 +8,8 @@ import CommunicationsPage from './Communications.page';
 vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsSpinner: () => <div data-testid="ods-spinner" />,
   OdsButton: vi.fn().mockReturnValue(<div></div>),
+  OdsText: vi.fn().mockReturnValue(<div></div>),
+  OdsLink: vi.fn().mockReturnValue(<div></div>),
 }));
 
 customElements.define(
@@ -69,6 +71,11 @@ vi.mock('react-router-dom', () => ({
     search: '',
     state: null,
   })),
+}));
+
+vi.mock('@/hooks/useHelpLink/useHelpLink', () => ({
+  default: vi.fn().mockReturnValue('https://help.ovhcloud.com/csm'),
+  useHelpLink: vi.fn().mockReturnValue('https://help.ovhcloud.com/csm'),
 }));
 
 const queryClient = new QueryClient();
