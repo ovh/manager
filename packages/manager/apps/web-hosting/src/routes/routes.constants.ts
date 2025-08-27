@@ -1,6 +1,7 @@
 export const subRoutes = {
   serviceName: ':serviceName',
   domain: ':domain',
+  locationId: ':locationId',
 };
 
 export const urls = {
@@ -27,6 +28,10 @@ export const urls = {
 
   // TASK
   task: `/${subRoutes.serviceName}/task`,
+
+  // LOCAL SEO
+  localSeo: `/${subRoutes.serviceName}/localSeo`,
+  removeSeoSubsciption: `/${subRoutes.serviceName}/localSeo/${subRoutes.locationId}/terminate`,
 
   // MANAGED CMS
   managedWordpressResource: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
