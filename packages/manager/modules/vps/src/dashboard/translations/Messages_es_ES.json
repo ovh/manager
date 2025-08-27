@@ -27,9 +27,9 @@
   "vps_dashboard_migration_banner_link": "Migrar en cualquier momento haciendo clic aquí",
   "vps_dashboard_state_locked": "Bloqueado",
   "vps_dashboard_service_locked": "Su solución ha sido bloqueada por incumplimiento de nuestros Términos y Condiciones. Para desbloquearla, contacte con el equipo de soporte.",
-  "vps_dashboard_migration_2020_info_queue_part_1": "¡Víctima de nuestro éxito! Actualmente se encuentra en la posición {{ position }} en la cola para mejorar los recursos.",
+  "vps_dashboard_migration_2020_info_queue_part_1": "¡Víctima de nuestro éxito! Actualmente se encuentra en la posición {{ position }} en la cola para aumentar sus recursos.",
   "vps_dashboard_migration_2020_info_queue_part_2": "Le notificaremos por correo electrónico cuando se haya programado una fecha para la operación. Gracias por su paciencia y confianza.",
-  "vps_dashboard_migration_2020_info_with_date_part_1": "La mejora de la clasificación de su VPS {{ vpsName }} se realizará el {{ date | date:'fullDate' }} a las {{ time | date:'HH:mm:ss' }}.",
-  "vps_dashboard_migration_2020_info_with_date_part_2": "Para activarlo, haga<a href=\"{{url}}\"> clic aquí</a> .",
-  "vps_dashboard_migration_2020_info_ongoing": "Su solicitud de aumento de recursos se ha enviado. Su VPS se actualizará en unos 15 minutos."
+  "vps_dashboard_migration_2020_info_with_date_part_1": "La mejora de su VPS {{ vpsName }} se realizará el {{ date | date:'fullDate' }} a las {{ time | date:'HH:mm:ss' }}.",
+  "vps_dashboard_migration_2020_info_with_date_part_2": "Para activarla,<a href=\"{{url}}\"> haga clic aquí</a> .",
+  "vps_dashboard_migration_2020_info_ongoing": "Su solicitud de aumento de recursos se ha enviado correctamente. Su VPS se actualizará en unos 15 minutos."
 }
