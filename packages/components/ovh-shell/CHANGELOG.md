@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.5.7...@ovh-ux/shell@4.6.0) (2025-08-27)
+
+
+### Features
+
+* **account:** change redirection url post logout ([ecad904](https://github.com/ovh/manager/commit/ecad90417dc16bbdcb21aa45dca2251ee1a9255f)), closes [#MANAGER-19432](https://github.com/ovh/manager/issues/MANAGER-19432)
+
+
+
+
+
 ## [4.5.7](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.5.6...@ovh-ux/shell@4.5.7) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/shell
