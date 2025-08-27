@@ -10,7 +10,7 @@ type TUseDashboardArgs = {
 
 export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   const projectUrl = useProjectUrl('public-cloud');
-  const { data: instance, isPending, error } = useInstance({
+  const { data: instance, isPending, error, pendingTasks } = useInstance({
     region,
     instanceId,
     params: ['withBackups', 'withImage', 'withNetworks', 'withVolumes'],
@@ -22,9 +22,10 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   return useMemo(
     () => ({
       instance: selectInstanceDashboard(projectUrl, instance),
+      pendingTasks,
       isPending,
       error,
     }),
-    [instance, isPending, projectUrl, error],
+    [instance, isPending, projectUrl, error, pendingTasks],
   );
 };
