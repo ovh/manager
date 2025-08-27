@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { createError, createSuccess, isSuccess } from '../types/Result';
+import { Effect, Exit } from 'effect';
 import { getSafeDefaultFeature } from '../utils/ObsFeaturesUtils';
 import {
   FeatureSwitcherItem,
@@ -49,17 +49,19 @@ export const useObservabilityFeatures = (
   );
 
   const [currentObsFeatureResult, setCurrentObsFeatureResult] = useState<
-    ObsFeatureResult
+    Effect.Effect<ObsFeatureType, 'undefined'>
   >(
     availableFeatures.length > 0 && safeDefaultFeature
-      ? createSuccess(safeDefaultFeature)
-      : createError('undefined'),
+      ? Effect.succeed(safeDefaultFeature)
+      : Effect.fail('undefined'),
   );
 
-  const currentObsFeature = isSuccess(currentObsFeatureResult)
-    ? currentObsFeatureResult.data
-    : null;
-  const hasValidFeature = isSuccess(currentObsFeatureResult);
+  const exit = Effect.runSyncExit(currentObsFeatureResult);
+  const currentObsFeature = Exit.match(exit, {
+    onFailure: () => null,
+    onSuccess: (feature) => feature,
+  });
+  const hasValidFeature = Exit.isSuccess(exit);
 
   const shouldShowFeatureSwitcher = availableFeatures.length > 1;
 
@@ -81,13 +83,13 @@ export const useObservabilityFeatures = (
       ?.toLowerCase() as ObsFeatureType;
 
     if (availableFeatures.length === 0) {
-      setCurrentObsFeatureResult(createError('undefined'));
+      setCurrentObsFeatureResult(Effect.fail('undefined'));
     } else if (pathFeature) {
-      setCurrentObsFeatureResult(createSuccess(pathFeature));
+      setCurrentObsFeatureResult(Effect.succeed(pathFeature));
     } else if (safeDefaultFeature) {
-      setCurrentObsFeatureResult(createSuccess(safeDefaultFeature));
+      setCurrentObsFeatureResult(Effect.succeed(safeDefaultFeature));
     } else {
-      setCurrentObsFeatureResult(createError('undefined'));
+      setCurrentObsFeatureResult(Effect.fail('undefined'));
     }
   }, [location.pathname, availableFeatures, safeDefaultFeature]);
 

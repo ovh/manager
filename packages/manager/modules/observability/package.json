@@ -17,6 +17,7 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
+    "@effect/vitest": "^0.25.1",
     "@ovh-ux/manager-core-api": "^0.16.0",
     "@ovh-ux/manager-react-components": "^2.36.0",
     "@ovh-ux/manager-vite-config": "^0.11.0",
@@ -28,6 +29,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.9",
+    "effect": "3.17.7",
     "msw": "2.1.7",
     "react-i18next": "^14.0.5",
     "recharts": "^2.13.3",
