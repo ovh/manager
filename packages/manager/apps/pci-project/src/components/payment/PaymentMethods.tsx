@@ -34,6 +34,7 @@ export type PaymentMethodsProps = {
   cartId: string;
   itemId: number;
   handleCustomSubmitButton?: (btn: string) => void;
+  preselectedPaymentType?: string | null;
 };
 
 export type TPaymentMethodRef = {
@@ -114,6 +115,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
   cartId,
   itemId,
   handleCustomSubmitButton,
+  preselectedPaymentType,
 }) => {
   const {
     data: eligibility,
@@ -275,6 +277,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
           eligibility={eligibility}
           handlePaymentMethodChange={onHandlePaymentMethodChange}
           handleSetAsDefaultChange={onHandleSetAsDefaultChange}
+          preselectedPaymentType={preselectedPaymentType}
         />
       )}
       <PaymentMethodChallenge
