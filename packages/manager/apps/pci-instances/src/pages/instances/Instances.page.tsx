@@ -31,6 +31,7 @@ import { Search } from 'lucide-react';
 
 import { FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Navigate,
   Outlet,
@@ -85,7 +86,7 @@ const SearchBar = ({
   );
 };
 const Instances: FC = () => {
-  const { t } = useTranslation(['list', 'common']);
+  const { t } = useTranslation(['list', 'common', NAMESPACES.ACTIONS]);
 
   const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('./new');
@@ -234,7 +235,7 @@ const Instances: FC = () => {
                       size={ODS_ICON_SIZE.sm}
                       color={ODS_THEME_COLOR_INTENT.primary}
                     />
-                    <span>{t('common:pci_instances_common_filter')}</span>
+                    <span>{t(`${NAMESPACES.ACTIONS}:filter`)}</span>
                   </span>
                 </OsdsButton>
                 <OsdsPopoverContent>
