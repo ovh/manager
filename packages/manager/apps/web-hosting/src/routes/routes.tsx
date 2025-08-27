@@ -18,9 +18,11 @@ import {
   GENERAL_INFORMATION,
   IMPORT,
   IMPORT_SSL,
+  LOCAL_SEO,
   ONBOARDING,
   ORDER_DOMAIN,
   ORDER_SECTIGO,
+  REMOVE_SEO_SUBSCIPTION,
   SAN_SSL,
   SSL,
   TASK,
@@ -31,6 +33,7 @@ import {
 } from '../utils/tracking.constants';
 import { DashboardLayout, OnboardingPage, RootPage, WebsitesPage } from './pages/default';
 import { AddDomainPage, OrderDomainPage } from './pages/domain';
+import { LocalSeoPage, RemoveSeoSubscriptionPage } from './pages/localSeo';
 import {
   ManagedWordpressPage,
   ManagedWordpressResourcePage,
@@ -285,6 +288,28 @@ export default (
         handle={{
           tracking: {
             pageName: ORDER_DOMAIN,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={LOCAL_SEO}
+        path={urls.localSeo}
+        Component={LocalSeoPage}
+        handle={{
+          tracking: {
+            pageName: LOCAL_SEO,
+            pageType: PageType.listing,
+          },
+        }}
+      />
+      <Route
+        id={REMOVE_SEO_SUBSCIPTION}
+        path={urls.removeSeoSubsciption}
+        Component={RemoveSeoSubscriptionPage}
+        handle={{
+          tracking: {
+            pageName: REMOVE_SEO_SUBSCIPTION,
             pageType: PageType.popup,
           },
         }}
