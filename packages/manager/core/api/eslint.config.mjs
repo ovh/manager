@@ -21,6 +21,15 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.eslint.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
     rules: {
       'check-file/filename-naming-convention': 'off',
       'check-file/folder-naming-convention': 'off',

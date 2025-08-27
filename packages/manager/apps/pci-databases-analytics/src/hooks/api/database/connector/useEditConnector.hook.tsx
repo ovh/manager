@@ -20,7 +20,7 @@ export function useEditConnector({
       return editConnector(connectorInfos);
     },
     onError,
-    onSuccess: (data, variables) => {
+    onSuccess: (data: database.kafkaConnect.Connector, variables) => {
       queryClient.invalidateQueries({
         queryKey: [
           variables.projectId,

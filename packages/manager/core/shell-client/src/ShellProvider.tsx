@@ -20,5 +20,3 @@ export const ShellProvider = ({
 }) => {
   return <>{client && <ShellContext.Provider value={client}>{children}</ShellContext.Provider>}</>;
 };
-
-export default ShellProvider;

@@ -2,35 +2,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { Location, useLocation } from 'react-router-dom';
 
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
-
-type Tracking = {
-  trackPage: (data: {
-    name: string;
-    level2: string;
-    complete_page_name: string;
-    page_category: string;
-    page_theme: string;
-  }) => void;
-  trackClick: (data: {
-    name: string;
-    page: { name: string };
-    page_category: string;
-    complete_page_name: string;
-    level2: string;
-    type: string;
-    page_theme: string;
-  }) => void;
-};
-
-type Environment = {
-  getEnvironment: () => Promise<{ applicationName: string; universe: string }>;
-};
-
-type Shell = {
-  tracking: Tracking;
-  environment: Environment;
-};
 
 const OSDS_COMPONENT = [
   'OSDS-ACCORDION',
@@ -63,7 +36,7 @@ const OSDS_COMPONENT = [
   'OSDS-TOGGLE',
 ];
 
-export function OvhTracking({ shell }: { shell: Shell }) {
+export function OvhTracking({ shell }: ShellContextType) {
   const location = useLocation();
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
@@ -79,38 +52,34 @@ export function OvhTracking({ shell }: { shell: Shell }) {
 
   const OvhTrackPage = (loc: Location) => {
     const path = loc.pathname.split('/')[1];
-    env
-      .then(({ applicationName, universe }) => {
-        const page = `${applicationName}::${path || 'homepage'}`;
-        const name = `${universe}::app::${applicationName}`;
-        tracking.trackPage({
-          name,
-          level2: trackLevel2(universe) || '',
-          complete_page_name: page,
-          page_category: path || 'homepage',
-          page_theme: applicationName,
-        });
-      })
-      .catch(() => {});
+    env.then(({ applicationName, universe }) => {
+      const page = `${applicationName}::${path || 'homepage'}`;
+      const name = `${universe}::app::${applicationName}`;
+      tracking.trackPage({
+        name,
+        level2: trackLevel2(universe) || '',
+        complete_page_name: page,
+        page_category: path || 'homepage',
+        page_theme: applicationName,
+      });
+    });
   };
 
   const ovhTrackingSendClick = (value: string) => {
-    env
-      .then(({ applicationName, universe }) => {
-        const path = myStateRef.current.pathname.split('/')[1];
-        const name = `${applicationName}::${path || 'homepage'}::${value}`;
-        const page = `${universe}::app::${applicationName}`;
-        tracking.trackClick({
-          name,
-          page: { name: page },
-          page_category: path || 'homepage',
-          complete_page_name: `${applicationName}::${path || 'homepage'}`,
-          level2: trackLevel2(universe) || '',
-          type: 'action',
-          page_theme: applicationName,
-        });
-      })
-      .catch(() => {});
+    env.then(({ applicationName, universe }) => {
+      const path = myStateRef.current.pathname.split('/')[1];
+      const name = `${applicationName}::${path || 'homepage'}::${value}`;
+      const page = `${universe}::app::${applicationName}`;
+      tracking.trackClick({
+        name,
+        page: { name: page },
+        page_category: path || 'homepage',
+        complete_page_name: `${applicationName}::${path || 'homepage'}`,
+        level2: trackLevel2(universe) || '',
+        type: 'action',
+        page_theme: applicationName,
+      });
+    });
   };
 
   const ovhTrackShadowElement = (element: HTMLElement) => {

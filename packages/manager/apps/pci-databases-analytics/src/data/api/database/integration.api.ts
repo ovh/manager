@@ -3,56 +3,65 @@ import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export const getServiceIntegrations = async ({
-  projectId,
-  engine,
-  serviceId,
-}: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.service.Integration[]);
+         projectId,
+         engine,
+         serviceId,
+       }: ServiceData) =>
+         apiClient.v6
+           .get(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
+             {
+               headers: {
+                 'X-Pagination-Mode': 'CachedObjectList-Pages',
+                 'X-Pagination-Size': '50000',
+                 Pragma: 'no-cache',
+               },
+             },
+           )
+           .then(
+             (res: { data: database.service.Integration[] }) =>
+               res.data as database.service.Integration[],
+           );
 
 export const getServiceCapabilitiesIntegrations = async ({
-  projectId,
-  engine,
-  serviceId,
-}: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/integration`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.capabilities.Integration[]);
+         projectId,
+         engine,
+         serviceId,
+       }: ServiceData) =>
+         apiClient.v6
+           .get(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/integration`,
+             {
+               headers: {
+                 'X-Pagination-Mode': 'CachedObjectList-Pages',
+                 'X-Pagination-Size': '50000',
+                 Pragma: 'no-cache',
+               },
+             },
+           )
+           .then(
+             (res: { data: database.capabilities.Integration[] }) =>
+               res.data as database.capabilities.Integration[],
+           );
 
 export interface AddIntegration extends ServiceData {
   integration: Omit<database.service.Integration, 'id' | 'status'>;
 }
 export const addIntegration = async ({
-  projectId,
-  engine,
-  serviceId,
-  integration,
-}: AddIntegration) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
-      integration,
-    )
-    .then((res) => res.data as database.service.Integration);
+         projectId,
+         engine,
+         serviceId,
+         integration,
+       }: AddIntegration) =>
+         apiClient.v6
+           .post(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
+             integration,
+           )
+           .then(
+             (res: { data: database.service.Integration }) =>
+               res.data as database.service.Integration,
+           );
 
 export interface DeleteIntegration extends ServiceData {
   integrationId: string;

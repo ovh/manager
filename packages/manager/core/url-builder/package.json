@@ -12,6 +12,7 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "type": "module",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"

@@ -14,8 +14,8 @@ export type TrackingContextParams = {
 };
 
 export type ShellContextType = {
-  shell: ShellClientApi | null;
-  environment: Environment | null;
+  shell?: ShellClientApi | null;
+  environment?: Environment | null;
   tracking?: TrackingContextParams | null;
 };
 
@@ -25,4 +25,3 @@ export const ShellContext = createContext<ShellContextType>({
   tracking: null,
 });
 
-export default ShellContext;

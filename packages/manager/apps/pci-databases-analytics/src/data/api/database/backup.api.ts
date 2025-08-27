@@ -3,19 +3,25 @@ import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
 export const getServiceBackups = async ({
-  projectId,
-  engine,
-  serviceId,
-}: ServiceData) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/backup`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
-      },
-    })
-    .then((res) => res.data as database.Backup[]);
+         projectId,
+         engine,
+         serviceId,
+       }: ServiceData) =>
+         apiClient.v6
+           .get(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup`,
+             {
+               headers: {
+                 'X-Pagination-Mode': 'CachedObjectList-Pages',
+                 'X-Pagination-Size': '50000',
+                 Pragma: 'no-cache',
+               },
+             },
+           )
+           .then(
+             (res: { data: database.Backup[] }) =>
+               res.data as database.Backup[],
+           );
 
 export interface RestoreBackup extends ServiceData {
   backupId?: string;
@@ -33,7 +39,7 @@ export const restoreBackup = async ({
       .post(
         `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup/${backupId}/restore`,
       )
-      .then((res) => res.data as database.Backup);
+      .then((res: { data: database.Backup }) => res.data as database.Backup);
   }
   return apiClient.v6
     .post(
@@ -42,5 +48,5 @@ export const restoreBackup = async ({
         ...restore,
       },
     )
-    .then((res) => res.data as database.Backup);
+    .then((res: { data: database.Backup }) => res.data as database.Backup);
 };

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { applyFilters, transformTagsFiltersToQuery } from '../filters';
-import { Filter, FilterComparator, FilterTypeCategories } from '../types/filters.type';
+import { applyFilters, transformTagsFiltersToQuery } from '../filters.js';
+import { Filter, FilterComparator, FilterTypeCategories } from '../types/filters.type.js';
 
 describe('applyFilters', () => {
   const testItems = [

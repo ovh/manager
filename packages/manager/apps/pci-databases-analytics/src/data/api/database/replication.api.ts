@@ -3,34 +3,34 @@ import * as database from '@/types/cloud/project/database';
 import { HeadersIcebergPagination, ServiceData } from '.';
 
 export const getReplications = async ({
-  projectId,
-  engine,
-  serviceId,
-}: ServiceData) =>
-  apiClient.v6
-    .get<database.service.Replication[]>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-      {
-        headers: HeadersIcebergPagination,
-      },
-    )
-    .then((res) => res.data);
+         projectId,
+         engine,
+         serviceId,
+       }: ServiceData) =>
+         apiClient.v6
+           .get<database.service.Replication[]>(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
+             {
+               headers: HeadersIcebergPagination,
+             },
+           )
+           .then((res: { data: unknown }) => res.data);
 
 export interface IAddReplication extends ServiceData {
   replication: Omit<database.service.Replication, 'id'>;
 }
 export const addReplication = async ({
-  projectId,
-  engine,
-  serviceId,
-  replication,
-}: IAddReplication) =>
-  apiClient.v6
-    .post<database.service.Replication>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-      replication,
-    )
-    .then((res) => res.data);
+         projectId,
+         engine,
+         serviceId,
+         replication,
+       }: IAddReplication) =>
+         apiClient.v6
+           .post<database.service.Replication>(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
+             replication,
+           )
+           .then((res: { data: unknown }) => res.data);
 
 export interface IEditReplication extends ServiceData {
   replication: database.service.Replication;
@@ -53,7 +53,7 @@ export const editReplication = async ({
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication/${id}`,
       replicationWithoutId,
     )
-    .then((res) => res.data);
+    .then((res: { data: unknown }) => res.data);
 };
 
 export interface IDeleteReplication extends ServiceData {

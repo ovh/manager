@@ -1,9 +1,10 @@
-export * from './client';
-export * from './filters';
-export * from './iceberg';
-export * from './types/error.type';
-export * from './types/filters.type';
-export * from './types/iceberg.type';
-export * from './utils/typeGuards/error/error.guard';
+export * from './client.js';
+export * from './filters.js';
+export * from './iceberg.js';
+export * from './types/error.type.js';
+export * from './types/client.type.js';
+export * from './types/filters.type.js';
+export * from './types/iceberg.type.js';
+export * from './utils/typeGuards/error/error.guard.js';
 
-export { default } from './client';
+export { default } from './client.js';

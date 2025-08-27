@@ -1,4 +1,4 @@
-import { Filter } from './filters.type';
+import { Filter } from './filters.type.js';
 
 export type IcebergCommonOptions = {
   route: string;

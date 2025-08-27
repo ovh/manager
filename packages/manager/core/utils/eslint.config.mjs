@@ -23,6 +23,15 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.eslint.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
     rules: {
       'react/no-deprecated': 'off',
       'check-file/no-index': 'off',

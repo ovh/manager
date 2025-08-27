@@ -43,10 +43,16 @@ export const getAvailabilities = async ({
     .get(`/cloud/project/${projectId}/database/availability${queryString}`, {
       headers,
     })
-    .then((res) => res.data as database.Availability[]);
+    .then(
+      (res: { data: database.Availability[] }) =>
+        res.data as database.Availability[],
+    );
 };
 
 export const getSuggestions = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/availability/suggestion`)
-    .then((res) => res.data as database.availability.Suggestion[]);
+         apiClient.v6
+           .get(`/cloud/project/${projectId}/database/availability/suggestion`)
+           .then(
+             (res: { data: database.availability.Suggestion[] }) =>
+               res.data as database.availability.Suggestion[],
+           );

@@ -1,8 +1,8 @@
 import { AxiosError, isAxiosError } from 'axios';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ApiErrorClass, TApiCustomError } from '../../../types/error.type';
-import { isApiCustomError, isMaxQuotaReachedError } from './error.guard';
+import { ApiErrorClass, TApiCustomError } from '../../../types/error.type.js';
+import { isApiCustomError, isMaxQuotaReachedError } from './error.guard.js';
 
 vi.mock('axios', () => ({
   isAxiosError: vi.fn(),

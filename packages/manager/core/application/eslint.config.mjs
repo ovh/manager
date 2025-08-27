@@ -24,6 +24,15 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.eslint.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
     rules: {
       'react-hooks/exhaustive-deps': 'off',
       'react/no-children-prop': 'off',

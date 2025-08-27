@@ -1,6 +1,6 @@
 import { AxiosError, isAxiosError } from 'axios';
 
-import { ApiErrorClass, TApiCustomError } from '../../../types/error.type';
+import { ApiErrorClass, TApiCustomError } from '../../../types/error.type.js';
 
 export const isApiCustomError = (error: unknown): error is TApiCustomError => {
   if (!isAxiosError(error)) return false;

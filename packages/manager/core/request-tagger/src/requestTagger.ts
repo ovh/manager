@@ -89,14 +89,14 @@ export const isURLValid = (url: string): boolean => {
   return ROUTES_PREFIX.some((prefix) => url?.startsWith(prefix));
 };
 
-export const searchHeadersOverride = (url: string): Partial<Headers> => {
+export const searchHeadersOverride = (url: string): Partial<Headers> | undefined => {
   const overridesKey = Object.keys(headersOverride).find((routePattern) =>
     new RegExp(routePattern).test(url),
   );
-  if (overridesKey && headersOverride[overridesKey]) {
+  if (overridesKey) {
     return headersOverride[overridesKey];
   }
-  return {};
+  return undefined;
 };
 
 export const getHeaders = (url: string): Partial<Headers> => {

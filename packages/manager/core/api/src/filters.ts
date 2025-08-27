@@ -1,4 +1,4 @@
-import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type';
+import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type.js';
 
 export const FilterCategories = {
   Numeric: [

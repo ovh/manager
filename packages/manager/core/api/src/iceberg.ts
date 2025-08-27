@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios';
 
-import { apiClient } from './client';
-import { transformTagsFiltersToQuery } from './filters';
-import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type';
+import { apiClient } from './client.js';
+import { transformTagsFiltersToQuery } from './filters.js';
+import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type.js';
 import {
   IcebergFetchParamsV2,
   IcebergFetchParamsV6,
   IcebergFetchResultV2,
   IcebergFetchResultV6,
-} from './types/iceberg.type';
+} from './types/iceberg.type.js';
 
 export const appendIamTags = (
   params: URLSearchParams,
