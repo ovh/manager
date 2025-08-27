@@ -19,6 +19,7 @@ import {
 export default class ServicesCtrl {
   /* @ngInject */
   constructor(
+    $state,
     $filter,
     $q,
     $translate,
@@ -28,6 +29,7 @@ export default class ServicesCtrl {
     coreConfig,
     ouiDatagridService,
   ) {
+    this.$state = $state;
     this.$filter = $filter;
     this.$q = $q;
     this.$translate = $translate;
@@ -90,6 +92,10 @@ export default class ServicesCtrl {
     }
 
     this.currentCriteria = JSON.parse(JSON.stringify(this.criteria));
+    if (this.$state.params.refresh === 'true') {
+      // Clear the route refresh parameter to avoid always requesting API without cache
+      this.$state.go('.', { refresh: 'false' });
+    }
   }
 
   descriptionOfHeading() {
