@@ -58,3 +58,13 @@ export enum ACTIONS {
   ORDER = 'ORDER',
   ATTACH = 'ATTACH',
 }
+
+export const LOCAL_SEO_VISIBILITY_CHECKER =
+  'https://www.ovh.com/fr/hebergement-web/referencement-local.xml';
+
+export const LOCAL_SEO_ORDER_OPTIONS_SERVICE = {
+  FR: "https://www.ovh.com/fr/order/domain/#/legacy/domain/hosting/choose?options=~(flow~'hosting_existing_service~serviceName~'{serviceName})",
+};
+
+export const LOCAL_SEO_INTERFACE =
+  'https://localseo.hosting.ovh.net/{lang}/app/ovh?access_token={token}';
