@@ -25,5 +25,6 @@
   "logs_introduction_description_ldp": "Le flux LDP permet d’ingérer les logs générés par votre infrastructure et vos applications, de les stocker, puis de les visualiser via des tableaux de bord en temps réel.",
   "logs_introduction_description_syslog": "La collecte via Syslog permet de transférer les logs d’audit de votre cluster. Cette méthode nécessite une configuration manuelle des API afin d’activer le transfert.",
   "logs_introduction_description_link": "Guide de Syslog",
-  "logs_introduction_title_syslog": "Vous pouvez mettre en place la collecte de vos logs en configurant votre propre collecteur Syslog."
+  "logs_introduction_title_syslog": "Vous pouvez mettre en place la collecte de vos logs en configurant votre propre collecteur Syslog.",
+  "logs_onboarding_state_error_text": "Une erreur est survenue lors de la redirection de la page. Merci de réessayer ultérieurement."
 }
