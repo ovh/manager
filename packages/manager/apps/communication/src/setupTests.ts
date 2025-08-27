@@ -12,6 +12,7 @@ vi.mock('react-i18next', () => ({
       changeLanguage: () => new Promise(() => {}),
     },
   }),
+  Trans: vi.fn(({ children }) => children),
 }));
 
 const trackClickMock = vi.fn();

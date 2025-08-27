@@ -57,7 +57,6 @@ export default function DashboardLayout() {
     <BaseLayout
       breadcrumb={<Breadcrumb rootLabel={t('title')} appName="communication" />}
       header={header}
-      description={t('description')}
       tabs={
         <OdsTabs>
           {tabsList.map((tab: DashboardTabItemProps) => (

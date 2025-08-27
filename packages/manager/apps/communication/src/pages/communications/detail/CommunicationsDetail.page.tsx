@@ -1,12 +1,17 @@
 import { useParams, Link } from 'react-router-dom';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsLink,
+  OdsMessage,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   useFormatDate,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
-import { useAuthorization, useCategories } from '@/hooks';
+import { useAuthorization, useCategories, useHelpLink } from '@/hooks';
 import {
   EmailDisplay,
   ClickLink,
@@ -37,6 +42,7 @@ export default function CommunicationsDetailPage() {
   });
 
   const isLoading = isLoadingNotification || isLoadingAuthorization;
+  const helpLink = useHelpLink();
 
   return (
     <RedirectionGuard
@@ -47,6 +53,22 @@ export default function CommunicationsDetailPage() {
       {notification !== undefined && (
         <>
           <div className="flex flex-col gap-8 max-w-5xl relative overflow-hidden">
+            <OdsText>
+              <Trans
+                i18nKey="description"
+                t={tCommon}
+                components={{
+                  anchor: (
+                    <OdsLink
+                      href={helpLink}
+                      target="_blank"
+                      label={tCommon('assistance_link_label')}
+                      icon="external-link"
+                    />
+                  ),
+                }}
+              />
+            </OdsText>
             <div className="flex flex-row justify-start">
               <Link to={urls.CommunicationsTab}>
                 <OdsButton
