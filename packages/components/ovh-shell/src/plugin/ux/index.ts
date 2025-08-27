@@ -19,6 +19,7 @@ export interface IUXPlugin {
   toggleAccountSidebarVisibility(): void;
   getUserIdCookie(): string;
   registerModalActionDoneListener(callback: (id: string) => void): void;
+  unregisterModalActionDoneListener(callback: (id: string) => void): void;
   notifyModalActionDone(id: string): void;
 }
 
@@ -235,6 +236,12 @@ export class UXPlugin implements IUXPlugin {
   /* ----------- Modal action methods -----------*/
   registerModalActionDoneListener(callback: (id: string) => void) {
     this.onModalActionDone = callback;
+  }
+
+  unregisterModalActionDoneListener(callback: (id: string) => void) {
+    if (this.onModalActionDone === callback) {
+      this.onModalActionDone = undefined;
+    }
   }
 
   notifyModalActionDone(id: string) {
