@@ -1,5 +1,5 @@
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
-import { TInstance } from '@/types/instance/entity.type';
+import { TInstance, TInstanceAddress } from '@/types/instance/entity.type';
 
 export type TInstanceActionModalViewModel = {
   id: string;
@@ -19,7 +19,10 @@ const mapAggregatedInstanceDto = (instance: TAggregatedInstanceDto) => ({
 
 const mapInstance = (instance: TInstance) => ({
   isImageDeprecated: instance.image?.deprecated ?? false,
-  ip: instance.addresses.values().next().value?.[0]?.ip ?? '',
+  ip:
+    (instance.addresses.values().next().value as
+      | TInstanceAddress[]
+      | undefined)?.[0]?.ip ?? '',
   region: instance.region.name,
   imageId: instance.image?.id ?? '',
 });
