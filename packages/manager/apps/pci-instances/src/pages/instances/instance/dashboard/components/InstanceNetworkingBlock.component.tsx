@@ -92,7 +92,7 @@ const InstanceNetworkingBlock: FC = () => {
         },
       },
     ];
-  }, [publicIPs, dedicatedUrl, t]);
+  }, [publicIPs, dedicatedUrl, projectId, t]);
 
   const privateIps = useMemo(() => instance?.addresses.get('private'), [
     instance?.addresses,
