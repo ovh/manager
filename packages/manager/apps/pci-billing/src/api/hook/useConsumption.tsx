@@ -477,6 +477,11 @@ export type TConsumptionDetail = {
   };
 };
 
+const hourlyItems = [
+  ...Object.values(ResourceType),
+  ...Object.values(RESOURCE_DISPLAY_NAMES),
+];
+
 export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   hourlyInstances: [],
   monthlyInstances: [],
@@ -504,11 +509,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   totals: {
     total: 0,
     hourly: {
-      ...Object.values(ResourceType).reduce(
-        (acc, key) => ({ ...acc, [key]: 0 }),
-        {} as Partial<Record<ConsumptionKey, number>>,
-      ),
-      ...Object.values(RESOURCE_DISPLAY_NAMES).reduce(
+      ...hourlyItems.reduce(
         (acc, key) => ({ ...acc, [key]: 0 }),
         {} as Partial<Record<ConsumptionKey, number>>,
       ),
@@ -608,7 +609,9 @@ export const getConsumptionDetails = (
       .reduce((sum, [, price]) => sum + (price ?? 0), 0),
   );
 
-  const finalTotal = roundPrice((totals.hourly[ResourceType.TOTAL] ?? 0) + totals.monthly.total);
+  const finalTotal = roundPrice(
+    (totals.hourly[ResourceType.TOTAL] ?? 0) + totals.monthly.total,
+  );
 
   return {
     hourlyInstances: hourlyInstanceList,
@@ -641,7 +644,7 @@ export const getConsumptionDetails = (
   };
 };
 
-export const useGeTCurrentUsage = (projectId: string) =>
+export const useCurrentUsage = (projectId: string) =>
   useQuery({
     queryKey: [projectId, 'current', 'usage'],
     queryFn: async () => {

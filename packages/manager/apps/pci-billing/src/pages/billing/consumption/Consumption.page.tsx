@@ -1,5 +1,6 @@
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import {
   ODS_ICON_NAME,
   ODS_SPINNER_SIZE,
@@ -14,23 +15,20 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
-import {
-  TConsumptionDetail,
-  useGeTCurrentUsage,
-} from '@/api/hook/useConsumption';
+import { useCurrentUsage } from '@/api/hook/useConsumption';
 import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
 
 export default function Consumption() {
   const { t } = useTranslation('consumption');
 
-  const { projectId = '' } = useParams();
+  const { projectId } = useParam('projectId');
   const { currency } = useContext(ShellContext).environment.getUser();
 
   const { data: availability } = useFeatureAvailability([
@@ -38,14 +36,14 @@ export default function Consumption() {
     TRUSTED_ZONE,
   ]);
 
-  const { data: consumption, isPending, error } = useGeTCurrentUsage(projectId);
+  const { data: consumption, isPending, error } = useCurrentUsage(projectId);
 
   const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
 
   const monthlyTotal = `${consumption?.totals.monthly.total.toFixed(2) || 0} ${
     currency.symbol
   }`;
-  const hourlyTotal = `${consumption?.totals.hourly.total.toFixed(2) || 0} ${
+  const hourlyTotal = `${consumption?.totals.hourly.total?.toFixed(2) || 0} ${
     currency.symbol
   }`;
 

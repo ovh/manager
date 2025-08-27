@@ -15,6 +15,11 @@ const getTotalPrice = (products: { totalPrice: number }[]) => {
   return roundNumber(total);
 };
 
+const calculateTotalFromPrices = (items: { totalPrice: number }[]): number =>
+  items
+    .map((item) => roundNumber(item.totalPrice))
+    .reduce((sum, price) => roundNumber(sum + price), 0);
+
 type TUsagePrices = {
   data: {
     totalHourlyPrice: number;
@@ -51,42 +56,26 @@ export const useUsagePrice = (
       const { hourlyUsage } = usage;
       switch (product) {
         case 'instance':
-          return roundNumber(
-            hourlyUsage.instance
-              .map((s) => roundNumber(s.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.instance));
         case 'snapshot':
-          return roundNumber(
-            hourlyUsage.snapshot
-              .map((s) => roundNumber(s.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.snapshot));
         case 'objectStorage':
           return roundNumber(
-            hourlyUsage.storage
-              .filter((s) => s.type !== 'pca')
-              .map((s) => roundNumber(s.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
+            calculateTotalFromPrices(
+              hourlyUsage.storage.filter((s) => s.type !== 'pca'),
+            ),
           );
         case 'archiveStorage':
           return roundNumber(
-            hourlyUsage.storage
-              .filter((s) => s.type === 'pca')
-              .map((s) => roundNumber(s.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
+            calculateTotalFromPrices(
+              hourlyUsage.storage.filter((s) => s.type === 'pca'),
+            ),
           );
         case 'volume':
-          return roundNumber(
-            hourlyUsage.volume
-              .map((s) => roundNumber(s.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.volume));
         case 'bandwidth':
           return roundNumber(
-            hourlyUsage.instanceBandwidth
-              .map((b) => roundNumber(b.totalPrice))
-              .reduce((sum, item) => roundNumber(sum + item), 0),
+            calculateTotalFromPrices(hourlyUsage.instanceBandwidth),
           );
         case 'privateRegistry':
           return getResourcePrice('registry');

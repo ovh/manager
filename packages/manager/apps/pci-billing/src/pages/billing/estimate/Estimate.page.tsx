@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { useParams } from 'react-router-dom';
 import { AlertsPart } from './Alerts.part';
 import { EstimatePart } from './Estimate.part';
 import { useUsagePrice } from '@/hooks/useUsagePrice';
@@ -20,7 +20,7 @@ export default function Estimate(): JSX.Element {
 
   const { currency } = useEnvironment().getUser();
 
-  const { projectId = '' } = useParams();
+  const { projectId } = useParam('projectId');
 
   const { create, update, remove } = useCallbacks();
 

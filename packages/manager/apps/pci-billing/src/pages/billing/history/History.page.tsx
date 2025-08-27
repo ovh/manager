@@ -13,8 +13,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { Outlet } from 'react-router-dom';
+import { useProject, useParam } from '@ovh-ux/manager-pci-common';
 import {
   useGetUsageHistory,
   useUsageHistoryPeriod,
@@ -29,7 +29,7 @@ import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 export default function History() {
   const { t } = useTranslation('history');
 
-  const { projectId = '' } = useParams();
+  const { projectId } = useParam('projectId');
   const { billingDate, prevMonthDate, translationValues } = useComputeDate();
   const { data: project } = useProject();
   const {
@@ -52,7 +52,8 @@ export default function History() {
   ]);
 
   const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
-  const isPostPaidUsageBilling = availability?.[PCI_FEATURES_BILLING_POST_PAID];
+  const isPostPaidUsageBilling =
+    availability?.[PCI_FEATURES_BILLING_POST_PAID] ?? false;
 
   return (
     <div>
@@ -68,7 +69,7 @@ export default function History() {
         <>
           <HistoryResume
             totalPrice={consumption?.totals.total ?? 0}
-            isPostPaidUsageBilling={isPostPaidUsageBilling ?? false}
+            isPostPaidUsageBilling={isPostPaidUsageBilling}
           />
 
           <div className="flex items-start flex-col xl:flex-row gap-7">

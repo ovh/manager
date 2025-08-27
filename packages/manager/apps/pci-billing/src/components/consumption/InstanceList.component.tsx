@@ -4,6 +4,7 @@ import {
   TInstance as TProjectInstance,
   useCatalog,
   useImages,
+  useParam,
   useInstances,
 } from '@ovh-ux/manager-pci-common';
 import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
@@ -17,7 +18,6 @@ import {
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { TInstance } from '@/api/hook/useConsumption';
 import { paginateResults } from '@/api/data/consumption';
 import {
@@ -43,7 +43,7 @@ export default function InstanceList({
   const { t } = useTranslation('consumption/hourly-instance/instance');
 
   const { currency } = useContext(ShellContext).environment.getUser();
-  const { projectId = '' } = useParams();
+  const { projectId } = useParam('projectId');
   const { pagination, setPagination } = useDataGrid();
   const columns = useInstanceListColumns({
     colNameLabel,

@@ -20,40 +20,38 @@ export type TQuantity = {
 
 type TPeriod = { from: string; to: string };
 
+type DetailedTotalPrice = {
+  currencyCode: string;
+  priceInUcents: number;
+  text: string;
+  value: number;
+};
+
+type ConsumptionItemDetail = {
+  quantity: TQuantity;
+  totalPrice: number;
+};
+
+type ConsumptionItemDetailPrice = {
+  quantity: TQuantity;
+  totalPrice: DetailedTotalPrice;
+};
 export type THourlyCurrentUsage = {
   rancher: {
     reference: string;
     region: string;
-    details: {
-      quantity: TQuantity;
-      totalPrice: {
-        currencyCode: string;
-        priceInUcents: number;
-        text: string;
-        value: number;
-      };
-    }[];
+    details: ConsumptionItemDetailPrice[];
   }[];
-  instance: {
-    details: {
+  instance: ({
+    details: ({
       instanceId: string;
-      quantity: TQuantity;
-      totalPrice: number;
-    }[];
-    quantity: TQuantity;
+    } & ConsumptionItemDetail)[];
     reference: string;
     region: string;
-    totalPrice: number;
-  }[];
+  } & ConsumptionItemDetail)[];
   instanceBandwidth: {
-    incomingBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
-    outgoingBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
+    incomingBandwidth: ConsumptionItemDetail;
+    outgoingBandwidth: ConsumptionItemDetail;
     region: string;
     totalPrice: number;
   }[];
@@ -68,41 +66,22 @@ export type THourlyCurrentUsage = {
   }[];
   storage: {
     bucketName: string;
-    incomingBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
-    incomingInternalBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
-    outgoingBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
-    outgoingInternalBandwidth: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
+    incomingBandwidth: ConsumptionItemDetail;
+    incomingInternalBandwidth: ConsumptionItemDetail;
+    outgoingBandwidth: ConsumptionItemDetail;
+    outgoingInternalBandwidth: ConsumptionItemDetail;
     region: string;
-    stored: {
-      quantity: TQuantity;
-      totalPrice: number;
-    };
+    stored: ConsumptionItemDetail;
     totalPrice: number;
     type: string;
   }[];
-  volume: {
-    details: {
-      quantity: TQuantity;
-      totalPrice: number;
+  volume: ({
+    details: ({
       volumeId: string;
-    }[];
-    quantity: TQuantity;
+    } & ConsumptionItemDetail)[];
     region: string;
-    totalPrice: number;
     type: string;
-  }[];
+  } & ConsumptionItemDetail)[];
   lastUpdate: string;
 };
 
@@ -111,47 +90,31 @@ export type TCurrentUsage = {
   lastUpdate: string;
   monthlyUsage: {
     certification: [];
-    instance: {
-      details: {
+    instance: ({
+      details: ({
         instanceId: string;
-        quantity: TQuantity;
-        totalPrice: number;
-      }[];
-      quantity: TQuantity;
+      } & ConsumptionItemDetail)[];
       reference: string;
       region: string;
-      totalPrice: number;
-    }[];
+    } & ConsumptionItemDetail)[];
     savingsPlan: {
       flavor: string;
       details: [
         {
           id: string;
           size: string;
-          totalPrice: {
-            currencyCode: string;
-            priceInUcents: number;
-            text: string;
-            value: number;
-          };
+          totalPrice: DetailedTotalPrice;
         },
       ];
-      totalPrice: {
-        currencyCode: string;
-        priceInUcents: number;
-        text: string;
-        value: number;
-      };
+      totalPrice: DetailedTotalPrice;
     }[];
   };
   period: TPeriod;
   resourcesUsage: {
     resources: {
-      components: {
-        quantity: TQuantity;
+      components: ({
         name: string;
-        totalPrice: number;
-      }[];
+      } & ConsumptionItemDetail)[];
       region: string;
     }[];
     totalPrice: number;

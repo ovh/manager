@@ -86,16 +86,17 @@ export function useInstanceListColumns({
       id: 'action',
       cell: (row: TInstanceConsumptionDetail) => (
         <div className="min-w-[16rem]">
-          {['ok', 'resized'].includes(row.monthlyBilling?.status ?? '') && (
-            <DataGridTextCell>
-              {t('cpbc_hourly_instance_monthly_billing_since', {
-                since: useFormattedDate({
-                  dateString: row.monthlyBilling?.since ?? '',
-                  format: DateFormat.compact,
-                }),
-              })}
-            </DataGridTextCell>
-          )}
+          {row.monthlyBilling &&
+            ['ok', 'resized'].includes(row.monthlyBilling.status ?? '') && (
+              <DataGridTextCell>
+                {t('cpbc_hourly_instance_monthly_billing_since', {
+                  since: useFormattedDate({
+                    dateString: row.monthlyBilling.since,
+                    format: DateFormat.compact,
+                  }),
+                })}
+              </DataGridTextCell>
+            )}
           {row.monthlyBilling?.status === 'activationPending' && (
             <DataGridTextCell>
               {t('cpbc_hourly_instance_monthly_billing_activationPending')}
