@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Chcesz zawiesić instancję {{name}}. Zasoby dedykowane Twojej instancji Public Cloud zostaną zwolnione, ale jej IP zostanie zachowane. Dane z Twojego lokalnego dysku będą przechowywane. Fakturowana będzie tylko przestrzeń dyskowa używana do tego celu. Czas operacji zależy od rozmiaru dysku lokalnego. W każdej chwili będziesz mógł ponownie włączyć instancję.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Uwaga: w przypadku instancji rozliczanych w trybie miesięcznym, będą one nadal fakturowane zgodnie z tym trybem, niezależnie od statusu usługi.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Ta operacja nie jest dostępna dla instancji {{name}}",
-  "pci_instances_actions_instance_success_message": "Status instancji {{name}} został zaktualizowany"
+  "pci_instances_actions_instance_success_message": "Status instancji {{name}} został zaktualizowany",
+  "pci_instances_actions_instance_network_change_dns": "Zmień rewers DNS",
+  "pci_instances_actions_instance_network_activate_mitigation": "Włącz/Wyłącz mitygację",
+  "pci_instances_actions_instance_network_firewall_settings": "Konfiguracja zapory",
+  "pci_instances_actions_instance_network_network_settings": "Zarządzaj prywatnymi sieciami",
+  "pci_instances_actions_instance_network_network_attach": "Przypisz sieć",
+  "pci_instances_actions_instance_network_network_attach_title": "Przypisz prywatną sieć lub sieci do Twojej instancji",
+  "pci_instances_actions_instance_network_network_empty_message": "Nie posiadasz aktualnie żadnej kompatybilnej sieci prywatnej, którą mógłbyś przypisać do tej instancji.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "Sieć prywatna {{ network }} została przypisana do instancji {{ instance }}.",
+  "pci_instances_actions_instance_attach_error_message": "Wystąpił błąd podczas aktualizacji instancji: {{ message }}",
+  "pci_instances_actions_instance_volume_attach_title": "Przypisz wolumen do Twojej instancji",
+  "pci_instances_actions_instance_volume_attach_empty_message": "Brak wolumenów dostępnych w regionie, w którym hostowana jest Twoja instancja",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Przypisz zasób",
+  "pci_instances_actions_instance_volume_attach_select": "Wybierz istniejący wolumen",
+  "pci_instances_actions_instance_volume_attach_information": "Możesz przypisać istniejący wolumen lub utworzyć nowy, który będzie przypisany do Twojej instancji. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Utwórz wolumen",
+  "pci_instances_actions_instance_volume_attach_success_message": "Wolumen {{ volume }} został przypisany do instancji {{ instance }}."
 }
