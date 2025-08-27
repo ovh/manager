@@ -83,6 +83,7 @@ const BaseInstanceActionPage: FC<TBaseInstanceActionPageProps> = ({
   const { mutationHandler, isPending } = useBaseInstanceAction(
     section,
     projectId,
+    region,
     {
       onError,
       onSuccess,

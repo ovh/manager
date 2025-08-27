@@ -11,11 +11,11 @@ import {
   selectInstanceForActionModal,
   TInstanceActionModalViewModel,
 } from '../view-models/selectInstanceForActionModal';
-import { getAggregatedInstanceById } from '@/data/hooks/instance/useInstances';
+import { useInstance } from '@/data/hooks/instance/useInstance';
 import {
-  useInstance,
-  getInstanceById,
-} from '@/data/hooks/instance/useInstance';
+  selectAggregatedInstanceById,
+  selectInstanceById,
+} from '@/adapters/tanstack-query/store/instances/selectors';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
@@ -55,8 +55,8 @@ export const useInstanceActionModal = (
 
   const aggregatedInstance = useMemo(
     () =>
-      getAggregatedInstanceById(projectId, instanceId, queryClient) ??
-      getInstanceById(projectId, instanceId || '', queryClient),
+      selectAggregatedInstanceById(projectId, instanceId, queryClient) ??
+      selectInstanceById(projectId, instanceId || '', queryClient),
     [instanceId, projectId, queryClient],
   );
 

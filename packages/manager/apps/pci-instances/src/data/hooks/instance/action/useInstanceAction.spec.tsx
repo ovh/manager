@@ -4,12 +4,13 @@ import { FC, PropsWithChildren } from 'react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { isAxiosError } from 'axios';
-import { updateInstancesFromCache, useInstances } from '../useInstances';
+import { useInstances } from '../useInstances';
 import { setupInstancesServer } from '@/__mocks__/instance/node';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { useBaseInstanceAction } from './useInstanceAction';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
+import { updateAggregatedInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
 
 // initializers
 const initQueryClient = () => {
@@ -84,9 +85,9 @@ let server: SetupServer;
 const handleError = vi.fn();
 const handleSuccess = vi.fn(
   (instance: TAggregatedInstanceDto, queryClient: QueryClient) => () =>
-    updateInstancesFromCache(queryClient, {
+    updateAggregatedInstancesFromCache(queryClient, {
       projectId: fakeProjectId,
-      instance: { id: instance.id, task: { isPending: true, status: '' } },
+      instance: { ...instance, pendingTask: true },
     }),
 );
 
@@ -137,7 +138,7 @@ describe('Considering the useInstanceAction hook', () => {
 
         const { result: useInstanceActionResult } = renderHook(
           () =>
-            useBaseInstanceAction(type, projectId, {
+            useBaseInstanceAction(type, projectId, 'fake-region', {
               onSuccess: handleSuccess(
                 instance as TAggregatedInstanceDto,
                 queryClient,

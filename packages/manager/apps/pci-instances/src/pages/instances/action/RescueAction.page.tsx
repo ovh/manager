@@ -104,10 +104,14 @@ const RescueActionPage: FC<TRescueActionPageProps> = ({ section }) => {
     );
   };
 
-  const { mutationHandler, isPending } = useInstanceRescueAction(projectId, {
-    onError,
-    onSuccess,
-  });
+  const { mutationHandler, isPending } = useInstanceRescueAction(
+    projectId,
+    region,
+    {
+      onError,
+      onSuccess,
+    },
+  );
 
   const handleInstanceAction = () => {
     if (instance)

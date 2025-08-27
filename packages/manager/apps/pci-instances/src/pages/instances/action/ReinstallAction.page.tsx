@@ -48,10 +48,14 @@ const ReinstallActionImages: FC<TReinstallActionPageProps> = ({
     selectFn: (data) => imagesRescueSelector(data, t as TFunction),
   });
 
-  const { mutationHandler, isPending } = useInstanceReinstallAction(projectId, {
-    onError,
-    onSuccess,
-  });
+  const { mutationHandler, isPending } = useInstanceReinstallAction(
+    projectId,
+    instance?.region ?? '',
+    {
+      onError,
+      onSuccess,
+    },
+  );
 
   useEffect(() => {
     if (images?.[0]) {
@@ -91,6 +95,7 @@ const ReinstallActionBase: FC<TReinstallActionPageProps> = ({
   const { mutationHandler, isPending } = useBaseInstanceAction(
     'reinstall',
     projectId,
+    instance?.region ?? '',
     {
       onError,
       onSuccess,

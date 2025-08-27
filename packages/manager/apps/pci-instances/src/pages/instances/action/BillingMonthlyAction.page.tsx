@@ -71,6 +71,7 @@ const BillingMonthlyActionPage = () => {
   const { mutationHandler, isPending } = useBaseInstanceAction(
     section,
     projectId,
+    region,
     {
       onError,
       onSuccess,

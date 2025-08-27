@@ -64,19 +64,23 @@ const BackupActionPage = () => {
     );
   };
 
-  const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
-    onError,
-    onSuccess: (_data, variables) => {
-      addInfo(
-        t(`pci_instances_actions_backup_instance_success_message`, {
-          name: variables.snapshotName,
-        }),
-        true,
-      );
+  const { mutationHandler, isPending } = useInstanceBackupAction(
+    projectId,
+    region,
+    {
+      onError,
+      onSuccess: (_data, variables) => {
+        addInfo(
+          t(`pci_instances_actions_backup_instance_success_message`, {
+            name: variables.snapshotName,
+          }),
+          true,
+        );
 
-      closeModal();
+        closeModal();
+      },
     },
-  });
+  );
 
   const handleInstanceAction = () => {
     if (instance) mutationHandler({ instance, snapshotName });
