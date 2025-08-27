@@ -37,7 +37,7 @@ export default function() {
             ? `${error.serviceName}</li>`
             : `${[
                 error.serviceName,
-                map(error.errors, 'error').join(', '),
+                map(error.errors, 'statusCode').join(', '),
               ].join(' - ')}</li>`
         }`;
       });

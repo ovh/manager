@@ -1,7 +1,6 @@
 import assign from 'lodash/assign';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
-import pickBy from 'lodash/pickBy';
 import startsWith from 'lodash/startsWith';
 import head from 'lodash/head';
 
@@ -408,11 +407,27 @@ export default class TelecomTelephonyServiceContactCtrl {
       );
   }
 
-  getBulkParams() {
+  getBulkParams(form) {
     return () => {
-      return pickBy(
-        this.directoryForm,
-        (value, key) => !get(this.directoryProperties, [key, 'readOnly']),
+      if (this.directoryForm.wayNumberExtra) {
+        this.directoryForm.wayNumberExtra = this.directoryForm.wayNumberExtra.replace(
+          /&nbsp;/g,
+          '',
+        );
+      }
+
+      if (
+        this.isServiceInUK &&
+        this.ukPostCode.outwardPostCode &&
+        this.ukPostCode.inwardPostCode
+      ) {
+        this.directoryForm.postCode = `${this.ukPostCode.outwardPostCode} ${this.ukPostCode.inwardPostCode}`;
+      }
+
+      return Object.entries(this.directoryForm).reduce(
+        (acc, [key, value]) =>
+          form[key]?.$dirty ? { ...acc, [key]: value } : acc,
+        {},
       );
     };
   }
