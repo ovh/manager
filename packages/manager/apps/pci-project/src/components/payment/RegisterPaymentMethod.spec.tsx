@@ -506,6 +506,107 @@ describe('RegisterPaymentMethod', () => {
     });
   });
 
+  describe('Preselected payment type', () => {
+    it('should preselect payment method based on preselectedPaymentType prop', () => {
+      const handlePaymentMethodChange = vi.fn();
+      const Wrapper = createWrapper(mockShellContext);
+      render(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType={TPaymentMethodType.PAYPAL}
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+        { wrapper: Wrapper },
+      );
+
+      expect(handlePaymentMethodChange).toHaveBeenCalledWith(
+        mockAvailablePaymentMethods[1], // PayPal is the second method
+      );
+    });
+
+    it('should not preselect when preselectedPaymentType does not match any available method', () => {
+      const handlePaymentMethodChange = vi.fn();
+      const Wrapper = createWrapper(mockShellContext);
+      render(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType="UNKNOWN_TYPE"
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+        { wrapper: Wrapper },
+      );
+
+      expect(handlePaymentMethodChange).not.toHaveBeenCalled();
+    });
+
+    it('should only preselect once even with multiple renders', () => {
+      const handlePaymentMethodChange = vi.fn();
+      const Wrapper = createWrapper(mockShellContext);
+      const { rerender } = render(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType={TPaymentMethodType.CREDIT_CARD}
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+        { wrapper: Wrapper },
+      );
+
+      expect(handlePaymentMethodChange).toHaveBeenCalledTimes(1);
+
+      // Rerender with same props
+      rerender(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType={TPaymentMethodType.CREDIT_CARD}
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+      );
+
+      // Should not call again
+      expect(handlePaymentMethodChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('should wait for available payment methods before preselecting', () => {
+      const handlePaymentMethodChange = vi.fn();
+
+      // Start with loading state
+      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+        data: undefined,
+        isLoading: true,
+      } as ReturnType<typeof useFilteredAvailablePaymentMethods>);
+
+      const Wrapper = createWrapper(mockShellContext);
+      const { rerender } = render(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType={TPaymentMethodType.PAYPAL}
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+        { wrapper: Wrapper },
+      );
+
+      expect(handlePaymentMethodChange).not.toHaveBeenCalled();
+
+      // Update to loaded state
+      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+        data: { data: mockAvailablePaymentMethods },
+        isLoading: false,
+      } as ReturnType<typeof useFilteredAvailablePaymentMethods>);
+
+      rerender(
+        <RegisterPaymentMethod
+          {...defaultProps}
+          preselectedPaymentType={TPaymentMethodType.PAYPAL}
+          handlePaymentMethodChange={handlePaymentMethodChange}
+        />,
+      );
+
+      expect(handlePaymentMethodChange).toHaveBeenCalledWith(
+        mockAvailablePaymentMethods[1],
+      );
+    });
+  });
+
   describe('Edge cases', () => {
     it('should handle empty payment method names gracefully', () => {
       const methodsWithoutNames: TAvailablePaymentMethod[] = [
