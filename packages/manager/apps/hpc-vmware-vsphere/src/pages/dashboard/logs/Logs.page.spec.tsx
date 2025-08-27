@@ -16,13 +16,12 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import environment from '@ovh-ux/shell/dist/types/plugin/environment';
 import { FEATURES } from '@/utils/features.constant';
 import { TVMwareVSphere } from '@/types/vsphere';
 import LogsPage from './Logs.page';
-import { SecurityOption } from '@/types/compatibilityMatrix';
 import { Datacenter } from '@/types/datacenter';
 import { DedicatedCloudTask } from '@/types/datacloud';
+import { getDedicatedCloudServiceCompatibilityMatrixQueryKey } from '@/data/api/hpc-vmware-vsphere-compatibilityMatrix';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module = await importOriginal<typeof import('react-router-dom')>();
@@ -46,12 +45,35 @@ vi.mock('@/data/hooks/useVmwareVsphereDatacenter', () => ({
     } as UseQueryResult<ApiResponse<Datacenter>>),
 }));
 
-vi.mock('@/data/hooks/useVmwareVsphereCompatibilityMatrix', () => ({
-  useVmwareVsphereCompatibilityMatrix: () =>
-    ({
-      data: { data: [{ name: 'logForwarder', state: 'delivered' }] },
-    } as UseQueryResult<ApiResponse<SecurityOption[]>>),
-}));
+vi.mock('@tanstack/react-query', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@tanstack/react-query')>();
+  return {
+    ...actual,
+    useQuery: vi.fn().mockImplementation((options) => {
+      // Mock for compatibility matrix query
+      if (
+        options.queryKey &&
+        getDedicatedCloudServiceCompatibilityMatrixQueryKey('pcc-xxx').every(
+          (key, index) => options.queryKey[index] === key,
+        ) &&
+        options.select
+      ) {
+        const mockData = {
+          data: [{ name: 'logForwarder', state: 'delivered' }],
+          status: 200,
+        };
+        const selectedData = options.select(mockData);
+        return {
+          data: selectedData,
+          isLoading: false,
+        };
+      }
+
+      // Default mock
+      return actual.useQuery(options);
+    }),
+  };
+});
 
 vi.mock('@/data/hooks/getDedicatedCloudServiceTask', () => ({
   getDedicatedCloudServiceTask: () =>
