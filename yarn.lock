@@ -3853,7 +3853,6 @@
   version "0.25.1"
   resolved "https://registry.yarnpkg.com/@effect/vitest/-/vitest-0.25.1.tgz#8de4b304600b4b7a1dff4016ee19167f69fe453c"
   integrity sha512-OMYvOU8iGed8GZXxgVBXlYtjG+jwWj5cJxFk0hOHOfTbCHXtdCMEWlXNba5zxbE7dBnW4srbnSYrP/NGGTC3qQ==
-
 "@emnapi/core@^1.4.3":
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/@emnapi/core/-/core-1.4.4.tgz#76620673f3033626c6d79b1420d69f06a6bb153c"
