@@ -82,11 +82,12 @@ let server: SetupServer;
 
 // mocks
 const handleError = vi.fn();
-const handleSuccess = vi.fn((instance, queryClient: QueryClient) => () =>
-  updateInstancesFromCache(queryClient, {
-    projectId: fakeProjectId,
-    instance: { ...instance, task: { isPending: true, status: '' } },
-  }),
+const handleSuccess = vi.fn(
+  (instance: TAggregatedInstanceDto, queryClient: QueryClient) => () =>
+    updateInstancesFromCache(queryClient, {
+      projectId: fakeProjectId,
+      instance: { id: instance.id, task: { isPending: true, status: '' } },
+    }),
 );
 
 describe('Considering the useInstanceAction hook', () => {
