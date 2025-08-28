@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.33.0...@ovh-ux/manager-key-management-service-app@0.33.1) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
+
+
+
+
+
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.32.11...@ovh-ux/manager-key-management-service-app@0.33.0) (2025-08-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4274] ([f446103](https://github.com/ovh/manager/commit/f446103b1cbbd4fcffca11448bcf3113b9cccb44))
+* **okms:** fix kms dashboard error when user has no permission on /services ([52db815](https://github.com/ovh/manager/commit/52db815254e9bec4fe2bfd5d2fe06c4940bd18e6)), closes [#MANAGER-19345](https://github.com/ovh/manager/issues/MANAGER-19345)
+
+
+### Features
+
+* **okms:** add certificate type on certificate dashboard ([a58b04d](https://github.com/ovh/manager/commit/a58b04d95dcb4c74ff2cbe120bc3d4061309a7f4)), closes [#MANAGER-18721](https://github.com/ovh/manager/issues/MANAGER-18721)
+* **okms:** add credential type option in credential form ([8b4102c](https://github.com/ovh/manager/commit/8b4102c0b790adaf6d2a0ab505243d22c81997fe)), closes [#MANAGER-18721](https://github.com/ovh/manager/issues/MANAGER-18721)
+* **okms:** update certificate type option ([51099fb](https://github.com/ovh/manager/commit/51099fb8b37c6df6e66cece13d85e212ad82c023)), closes [#MANAGER-18721](https://github.com/ovh/manager/issues/MANAGER-18721)
+* **okms:** use <BillingInformationsTileStandard /> ([18e4a78](https://github.com/ovh/manager/commit/18e4a78b142b496ed0b3d2525c7088f4c02f5c87)), closes [#MANAGER-16644](https://github.com/ovh/manager/issues/MANAGER-16644)
+
+
+
+
+
 ## [0.32.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.32.10...@ovh-ux/manager-key-management-service-app@0.32.11) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app

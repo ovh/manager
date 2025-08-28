@@ -99,5 +99,6 @@
   "private_registry_common_status_ENABLE": "Attivare",
   "private_registry_common_status_DISABLE": "Disattivare",
   "private_registry_iam_authentication_confirm_label": "Inserisci \"CONFIRM\" nel campo qui sotto per confermare",
-  "private_registry_retrieving_failure": "Si è verificato un errore durante il recupero del Registry privato {{ registryId }}"
+  "private_registry_retrieving_failure": "Si è verificato un errore durante il recupero del Registry privato {{ registryId }}",
+  "private_registry_containers_deployment_mode_label": "Modalità di deploy"
 }

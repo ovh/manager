@@ -126,5 +126,6 @@
   "status_REVOKED": "Revocado",
   "status_FAILURE": "Error",
   "status_STARTED": "En curso",
-  "installation_error_server_message": "Se ha producido un error al enviar la información. Mensaje de error: \"{{error}}\""
+  "installation_error_server_message": "Se ha producido un error al enviar la información. Mensaje de error: \"{{error}}\"",
+  "os_config_tooltip_update": "Requiere una clave de licencia SUSE"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli",
-  "version": "0.8.1",
+  "version": "0.9.1",
   "private": true,
   "description": "Manager CLI automation packages",
   "bugs": {

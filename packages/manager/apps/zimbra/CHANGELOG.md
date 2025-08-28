@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.18...@ovh-ux/manager-zimbra-app@0.31.19) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.17...@ovh-ux/manager-zimbra-app@0.31.18) (2025-08-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.31.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.16...@ovh-ux/manager-zimbra-app@0.31.17) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

@@ -38,7 +38,11 @@ export default class LogsIndexService {
       .query()
       .expand('CachedObjectList-Pages')
       .limit(10000)
-      .execute().$promise;
+      .execute()
+      .$promise.catch((err) => {
+        this.LogsHelperService.handleError('logs_index_get_error', err.data);
+        return { data: [] };
+      });
   }
 
   getPaginatedIndices(
@@ -72,7 +76,11 @@ export default class LogsIndexService {
     return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/index`)
       .query()
       .execute()
-      .$promise.then(({ data }) => data);
+      .$promise.then(({ data }) => data)
+      .catch((error) => {
+        this.LogsHelperService.handleError('logs_index_get_error', error.data);
+        return [];
+      });
   }
 
   getIndicesForAlias(serviceName, aliasId) {
@@ -81,23 +89,21 @@ export default class LogsIndexService {
         `/dbaas/logs/${serviceName}/output/opensearch/alias/${aliasId}/index`,
       )
       .catch((err) =>
-        this.LogsHelperService.handleError('logs_index_get_error', err, {}),
+        this.LogsHelperService.handleError('logs_index_get_error', err.data),
       );
   }
 
   getOwnIndices(serviceName) {
-    return this.getIndices(serviceName)
-      .then(({ data = [] }) => data.filter((index) => index.isEditable))
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_index_get_error', err, {}),
-      );
+    return this.getIndices(serviceName).then(({ data = [] }) =>
+      data.filter((index) => index.isEditable),
+    );
   }
 
   getIndex(serviceName, indexId) {
     return this.$http
       .get(`/dbaas/logs/${serviceName}/output/opensearch/index/${indexId}`)
       .catch((err) =>
-        this.LogsHelperService.handleError('logs_index_get_error', err, {}),
+        this.LogsHelperService.handleError('logs_index_get_error', err.data),
       );
   }
 

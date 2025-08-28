@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cda-app",
-  "version": "3.0.41",
+  "version": "3.0.43",
   "private": true,
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core": "^13.2.6",
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.11.4",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",
     "@ovh-ux/ng-at-internet": "^6.0.22",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.4",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.5",
@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.1.5",
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.5.5",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.5",
