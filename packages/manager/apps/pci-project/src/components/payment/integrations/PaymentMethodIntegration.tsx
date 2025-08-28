@@ -13,6 +13,8 @@ import PaypalPaymentMethodIntegration from './PaypalPaymentMethodIntegration';
 import { useAddPaymentMethod } from '@/data/hooks/payment/usePaymentMethods';
 import { getPaymentMethod } from '@/data/api/payment/payment-method';
 import { PAYMENT_METHOD_ENSURE_VALIDITY_TIMEOUT } from '@/payment/constants';
+import BankAccountPaymentMethodIntegration from './BankAccountPaymentMethodIntegration';
+import SepaPaymentMethodIntegration from './SepaPaymentMethodIntegration';
 
 /**
  * Polls a payment method to check if it becomes valid within a timeout period.
@@ -65,6 +67,10 @@ const pollCheckDefaultPaymentMethod = (
   });
 };
 
+const addParamsSeparator = (url: string) => {
+  return url.includes('?') ? '&' : '?';
+};
+
 type PaymentMethodIntegrationProps = {
   paymentMethod?: TPaymentMethod | null;
   handleValidityChange: (isValid: boolean) => void;
@@ -103,11 +109,21 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
     (paymentType: TPaymentMethodType) => {
       const baseUrl = window.location.href;
       return {
-        success: `${baseUrl}?paymentStatus=success&paymentType=${paymentType}`,
-        error: `${baseUrl}?paymentStatus=error&paymentType=${paymentType}`,
-        cancel: `${baseUrl}?paymentStatus=cancel&paymentType=${paymentType}`,
-        pending: `${baseUrl}?paymentStatus=pending&paymentType=${paymentType}`,
-        failure: `${baseUrl}?paymentStatus=failure&paymentType=${paymentType}`,
+        success: `${baseUrl}${addParamsSeparator(
+          baseUrl,
+        )}paymentStatus=success&paymentType=${paymentType}`,
+        error: `${baseUrl}${addParamsSeparator(
+          baseUrl,
+        )}paymentStatus=error&paymentType=${paymentType}`,
+        cancel: `${baseUrl}${addParamsSeparator(
+          baseUrl,
+        )}paymentStatus=cancel&paymentType=${paymentType}`,
+        pending: `${baseUrl}${addParamsSeparator(
+          baseUrl,
+        )}paymentStatus=pending&paymentType=${paymentType}`,
+        failure: `${baseUrl}${addParamsSeparator(
+          baseUrl,
+        )}paymentStatus=failure&paymentType=${paymentType}`,
       };
     },
     [],
@@ -148,11 +164,23 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
             paymentMethod: registerPaymentMethod,
           };
         },
-        onCheckoutRetrieved: async (cart: TCart, paymentMethodId?: number) => {
+        checkPaymentMethod: async (cart: TCart, paymentMethodId?: number) => {
           if (paymentMethodId) {
             await pollCheckDefaultPaymentMethod(paymentMethodId);
           }
 
+          if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.checkPaymentMethod
+          ) {
+            return paymentHandlerRef.current.checkPaymentMethod(
+              cart,
+              paymentMethodId,
+            );
+          }
+          return { continueProcessing: true };
+        },
+        onCheckoutRetrieved: async (cart: TCart, paymentMethodId?: number) => {
           if (
             paymentHandlerRef.current &&
             paymentHandlerRef.current.onCheckoutRetrieved
@@ -203,6 +231,24 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           onPaymentSubmit={onPaymentSubmit}
           handleValidityChange={handleValidityChange}
           isSetAsDefault={isSetAsDefault}
+        />
+      );
+
+    case TPaymentMethodType.BANK_ACCOUNT:
+      return (
+        <BankAccountPaymentMethodIntegration
+          paymentHandler={paymentHandlerRef}
+          handleCustomSubmitButton={handleCustomSubmitButton}
+          handleValidityChange={handleValidityChange}
+        />
+      );
+
+    case TPaymentMethodType.SEPA_DIRECT_DEBIT:
+      return (
+        <SepaPaymentMethodIntegration
+          paymentHandler={paymentHandlerRef}
+          handleCustomSubmitButton={handleCustomSubmitButton}
+          handleValidityChange={handleValidityChange}
         />
       );
 
