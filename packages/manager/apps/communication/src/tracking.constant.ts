@@ -16,5 +16,6 @@ export const LEVEL2 = {
   },
 };
 export const UNIVERSE = 'Hub';
-export const SUB_UNIVERSE = 'Hub';
+export const CHAPTER1 = 'Communications';
+export const CHAPTER2 = 'communications';
 export const APP_NAME = 'communication';

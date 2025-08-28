@@ -3,6 +3,7 @@ import { OdsIcon, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { clsx } from 'clsx';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { Contact } from '@/data/types';
 import { urls } from '@/routes/routes.constant';
 import OdsLinkSubstitution from '../authLink/AuthLink.component';
@@ -21,6 +22,7 @@ export default function NotificationContactStatus({
   notificationId: string;
 }) {
   const { t } = useTranslation('communications');
+  const { trackClick } = useOvhTracking();
 
   const highestPriorityContact = useMemo(
     () =>
@@ -53,6 +55,18 @@ export default function NotificationContactStatus({
         name={ODS_ICON_NAME.triangleExclamation}
         className={className}
         id={`${notificationId}-contact-status`}
+        onClick={() =>
+          trackClick({
+            actionType: 'action',
+            actions: [
+              'communications',
+              'communications',
+              'datagrid',
+              'button',
+              'see_warning-subject',
+            ],
+          })
+        }
       />
       <OdsPopover triggerId={`${notificationId}-contact-status`}>
         <OdsText

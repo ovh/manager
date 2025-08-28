@@ -8,6 +8,11 @@ import {
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 
 export type DashboardTabItemProps = {
@@ -17,6 +22,7 @@ export type DashboardTabItemProps = {
 };
 
 export default function DashboardLayout() {
+  const { trackClick } = useOvhTracking();
   const [panel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,7 +40,7 @@ export default function DashboardLayout() {
       to: useResolvedPath(urls.ContactsTab).pathname,
     },
     {
-      name: 'settings',
+      name: 'preference-center',
       title: t('tab_settings'),
       to: useResolvedPath(urls.SettingsTab).pathname,
     },
@@ -64,7 +70,19 @@ export default function DashboardLayout() {
               key={`osds-tab-bar-item-${tab.name}`}
               className="select-none"
               isSelected={tab.name === panel}
-              onOdsTabSelected={() => navigate(tab.to)}
+              onOdsTabSelected={() => {
+                trackClick({
+                  actionType: 'navigation',
+                  actions: [
+                    tab.name, // chapter 2
+                    tab.name, // chapter 3
+                    'main-tabnav',
+                    'go-to-tab',
+                    tab.name,
+                  ],
+                });
+                navigate(tab.to);
+              }}
             >
               {tab.title}
             </OdsTab>
