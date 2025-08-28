@@ -38,7 +38,7 @@ jobs:
         run: |
           BRANCH=$(git branch --show-current)
           echo "My branch is $BRANCH"
-          if [[ -z "$BRANCH" && "$BRANCH" == "master" ]]; then
+          if [[ "$BRANCH" == "master" ]]; then
             echo "My branch is master and no unit test to run, exit..."
             exit 0
           fi
