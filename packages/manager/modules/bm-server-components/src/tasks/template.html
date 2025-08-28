@@ -1,4 +1,4 @@
-<oui-datagrid data-rows-loader="$ctrl.getTasks($config)">
+<oui-datagrid id="tasksDatagrid" data-rows-loader="$ctrl.getTasks($config)">
     <oui-datagrid-column
         data-title=":: 'server_configuration_task_last_action' | translate"
     >
@@ -31,4 +31,28 @@
         >
         </span>
     </oui-datagrid-column>
+
+    <oui-datagrid-topbar>
+        <oui-button
+            class="float-right"
+            variant="secondary"
+            icon-left="oui-icon-refresh"
+            on-click="$ctrl.refresh()"
+        >
+            <span data-translate="common_refresh"></span>
+        </oui-button>
+
+        <label class="oui-select oui-select_m">
+            <select
+                class="oui-select__input"
+                data-ng-model="$ctrl.taskStatusFilter"
+                data-ng-options="p.value as p.label for p in $ctrl.taskStatusFilterList | orderBy: 'label'"
+                data-ng-change="$ctrl.refresh()"
+            >
+                <option value data-translate="server_configuration_task_status">
+                </option>
+            </select>
+            <i class="oui-icon oui-icon-chevron-down" aria-hidden="true"></i>
+        </label>
+    </oui-datagrid-topbar>
 </oui-datagrid>

@@ -23,6 +23,7 @@ export default class Server {
     OvhHttp,
     Polling,
     WucApi,
+    icebergUtils,
   ) {
     this.$cacheFactory = $cacheFactory;
     this.$http = $http;
@@ -36,6 +37,7 @@ export default class Server {
     this.OvhHttp = OvhHttp;
     this.Polling = Polling;
     this.WucApi = WucApi;
+    this.icebergUtils = icebergUtils;
 
     this.serverCaches = {
       ipmi: $cacheFactory('UNIVERS_DEDICATED_SERVER_IPMI'),
@@ -147,6 +149,14 @@ export default class Server {
       URI.expand(this.constants.renew, {
         serviceName: productId,
       }).toString(),
+    );
+  }
+
+  getTasks(serviceName, paginationParams = {}, urlParams = {}) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicated/server/${serviceName}/task`,
+      paginationParams,
+      urlParams,
     );
   }
 
@@ -1256,6 +1266,16 @@ export default class Server {
 
   getModels() {
     return this.$http.get('apiv6/dedicated/server.json', { cache: true });
+  }
+
+  getModel(key) {
+    return this.getModels().then(({ data }) => {
+      const { models } = data;
+      if (!models[key]) {
+        throw new Error(`Model '${key}' not found`);
+      }
+      return models[key];
+    });
   }
 
   terminate(serviceName) {
