@@ -6,13 +6,13 @@
   "vps_additional_disk_terminate_action_terminate_error": "Bei der Kündigung der Option ist ein Fehler aufgetreten.",
   "vps_additional_disk_terminate_action_terminate": "Kündigen",
   "vps_additional_disk_terminate_action_cancel": "Abbrechen",
-  "vps_downgrade_option_title_automatedbackup": "Zurück zur Standardoption",
-  "vps_downgrade_option_info1_automatedbackup": "Wenn Sie zur Standardoption zurückkehren, werden beim nächsten Backup die alten Backups gelöscht.",
+  "vps_downgrade_option_title_automatedbackup": "Zur Standard-Option zurückkehren",
+  "vps_downgrade_option_info1_automatedbackup": "Wenn Sie zur Standard-Option zurückkehren, werden beim nächsten Backup alle vorherigen Backups gelöscht.",
   "vps_downgrade_option_info2_P1M": "Monat",
-  "vps_downgrade_option_info2_P1Y": "Jahr ",
-  "vps_downgrade_option_info2_PXM": "{{amount}} Monat",
+  "vps_downgrade_option_info2_P1Y": "Jahr",
+  "vps_downgrade_option_info2_PXM": "{{amount}} Monat(e)",
   "vps_downgrade_option_info2_PXY": "{{amount}} Jahre",
-  "vps_downgrade_option_info2": "Der Dienst wird monatlich mit {{ price }} zzgl. MwSt. <strong> /{{duration}}</strong> abgerechnet.",
-  "vps_downgrade_option_order_success": "Um Ihre Bestellung abzuschließen, folgen Sie bitte den Anweisungen in dem neu geöffneten Tab. Wenn keine neuen Registerkarten geöffnet wurden, klicken Sie bitte auf <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\"> diesen Link</a>.",
-  "vps_downgrade_option_order_fail": "Bei der Anfrage zur Änderung des Angebots ist ein Fehler aufgetreten. {{ error }}"
+  "vps_downgrade_option_info2": "Der Dienst wird monatlich zum Preis von <strong>{{ price }} / {{duration}} (zzgl. MwSt.)</strong> abgerechnet.",
+  "vps_downgrade_option_order_success": "Um Ihre Bestellung abzuschließen, folgen Sie bitte den Anweisungen in dem neuen Tab. Wenn kein Tab geöffnet wurde, klicken Sie bitte auf <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">diesen Link</a>.",
+  "vps_downgrade_option_order_fail": "Bei der Anfrage zur Angebotsänderung ist ein Fehler aufgetreten. {{ error }}"
 }

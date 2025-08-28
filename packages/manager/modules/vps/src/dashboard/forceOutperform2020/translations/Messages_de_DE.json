@@ -1,6 +1,6 @@
 {
   "vps_dashboard_force_outperform_2020_title": "Ressourcenerhöhung aktivieren",
   "vps_dashboard_force_outperform_2020_description": "Möchten Sie die Ressourcenerhöhung jetzt aktivieren?",
-  "vps_dashboard_force_outperform_2020_success_message": "Ihre Anfrage zur Erhöhung der Ressourcen wurde registriert. Sie wird in einigen Augenblicken ausgeführt.",
-  "vps_dashboard_force_outperform_2020_error_message": "Ihre Anfrage zur Erhöhung der Ressourcen konnte nicht ausgeführt werden. {{ error }}"
+  "vps_dashboard_force_outperform_2020_success_message": "Ihre Anfrage zur Ressourcenerhöhung wurde registriert. Sie wird in Kürze ausgeführt.",
+  "vps_dashboard_force_outperform_2020_error_message": "Ihre Anfrage zur Ressourcenerhöhung ist fehlgeschlagen. {{ error }}"
 }
