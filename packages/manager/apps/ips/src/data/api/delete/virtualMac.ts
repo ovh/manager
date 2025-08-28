@@ -11,11 +11,11 @@ export const deleteVirtualMACs = async ({
   macAddresses,
   ip,
 }: DeleteVirtualMacParams): Promise<Array<ApiResponse<null>>> => {
+  const encodedServiceName = encodeURIComponent(serviceName);
+  const encodedIp = encodeURIComponent(ip);
   return Promise.all<ApiResponse<null>>(
     macAddresses.map((macAddress) => {
-      const encodedServiceName = encodeURIComponent(serviceName);
       const encodedMacAdress = encodeURIComponent(macAddress);
-      const encodedIp = encodeURIComponent(ip);
       return apiClient.v6.delete<null>(
         `dedicated/server/${encodedServiceName}/virtualMac/${encodedMacAdress}/virtualAddress/${encodedIp}`,
       );
