@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGetIpGameFirewall, useIpGameFirewallRules } from '@/data/hooks';
-import { fromIdToIp, ipFormatter } from '@/utils';
+import { fromIdToIp, ipFormatter, INVALIDATED_REFRESH_PERIOD } from '@/utils';
 import { IpGameFirewallRule, IpGameFirewallStateEnum } from '@/data/api';
 import { IP_MITIGATION_RULE_PROTOCOL_PORT } from './gamefirewall.utils';
 
@@ -102,7 +102,7 @@ export const GameFirewallContextProvider: React.FC<{
   } = useIpGameFirewallRules({
     ip: ipGroup,
     ipOnGame,
-    refetchInterval: 5000,
+    refetchInterval: INVALIDATED_REFRESH_PERIOD,
   });
 
   const value = {

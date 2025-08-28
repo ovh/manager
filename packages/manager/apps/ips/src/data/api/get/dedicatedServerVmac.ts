@@ -44,6 +44,7 @@ export const getdedicatedServerVmac = async (
       params.serviceName,
     )}/virtualMac`,
     page: 1,
+    disableCache: true,
   });
 
 type ApiStatus = {
