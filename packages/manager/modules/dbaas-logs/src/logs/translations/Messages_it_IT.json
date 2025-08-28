@@ -802,5 +802,6 @@
   "logs_iam_setup_message": "In alternativa, verifica i permessi di accesso al servizio con",
   "logs_iam_ovhcloud_iam": "IAM di OVHcloud",
   "logs_iam_enable_iam": "Attivare IAM OVHcloud",
-  "logs_iam_policies": "Politiche IAM"
+  "logs_iam_policies": "Politiche IAM",
+  "logs_encryption_keys_get_error": "Si è verificato un errore durante il caricamento delle chiavi di crittografia: {{message}}"
 }

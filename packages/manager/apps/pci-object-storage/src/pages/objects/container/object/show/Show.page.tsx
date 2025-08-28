@@ -193,7 +193,7 @@ export default function ObjectPage() {
     searchParams.get('region'),
     enableVersionsToggle,
     storages,
-    container,
+    container?.s3StorageType,
     searchParams.get('refetch'),
     refetchContainerObjects,
   ]);

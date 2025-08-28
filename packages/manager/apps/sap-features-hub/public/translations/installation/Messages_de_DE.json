@@ -126,5 +126,6 @@
   "status_REVOKED": "Gesperrt",
   "status_FAILURE": "Fehler",
   "status_STARTED": "Wird ausgeführt",
-  "installation_error_server_message": "Fehler beim Übermitteln der Informationen. Fehlermeldung: „{{error}}“"
+  "installation_error_server_message": "Fehler beim Übermitteln der Informationen. Fehlermeldung: „{{error}}“",
+  "os_config_tooltip_update": "SUSE-Lizenzschlüssel erforderlich"
 }

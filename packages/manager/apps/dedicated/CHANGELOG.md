@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.55.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.55.1...@ovh-ux/manager-dedicated@20.55.2) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.55.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.55.0...@ovh-ux/manager-dedicated@20.55.1) (2025-08-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.55.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.54.5...@ovh-ux/manager-dedicated@20.55.0) (2025-08-26)
+
+
+### Bug Fixes
+
+* **dedicated:** change name to description for pcc ([f0c468b](https://github.com/ovh/manager/commit/f0c468bb079439be11ee869ceae3b8c18e232523)), closes [#MANAGER-18362](https://github.com/ovh/manager/issues/MANAGER-18362)
+* **dedicated:** enabling activating nsx edge in pcc ([3e96588](https://github.com/ovh/manager/commit/3e965888ed6f8259b67c14343f7e7493541a12b3)), closes [#MANAGER-19156](https://github.com/ovh/manager/issues/MANAGER-19156)
+* **dedicated:** update success message of activation and deactivation of license ([d87f52b](https://github.com/ovh/manager/commit/d87f52b2d0077b5734ba6ce36311a7215df28b02)), closes [#MANAGER-17996](https://github.com/ovh/manager/issues/MANAGER-17996)
+
+
+### Features
+
+* **dedicated:** add delete action in listing page of pcc ([bb02c7e](https://github.com/ovh/manager/commit/bb02c7e2079f7f6e4260e4b61b40af06f89b0203)), closes [#MANAGER-17667](https://github.com/ovh/manager/issues/MANAGER-17667)
+* **dedicated:** add success banner when upgrade ressource ([d0a6342](https://github.com/ovh/manager/commit/d0a6342d99363aee8bcfc03f5b6c2241be04b9f1)), closes [#MANAGER-18057](https://github.com/ovh/manager/issues/MANAGER-18057)
+
+
+
+
+
+## [20.54.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.54.4...@ovh-ux/manager-dedicated@20.54.5) (2025-08-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.54.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.54.3...@ovh-ux/manager-dedicated@20.54.4) (2025-08-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.54.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.54.2...@ovh-ux/manager-dedicated@20.54.3) (2025-08-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

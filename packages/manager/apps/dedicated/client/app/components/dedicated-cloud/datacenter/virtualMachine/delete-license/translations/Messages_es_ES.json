@@ -4,5 +4,5 @@
   "delete_license_modal_confirm": "Confirmar",
   "delete_license_modal_cancel": "Cancelar",
   "delete_license_error_api": "Se ha producido un error al eliminar la licencia",
-  "delete_license_success_api": "La solicitud de eliminación de la licencia se ha enviado correctamente"
+  "delete_license_success_api": "Eliminando la licencia... Esta operación puede tardar unos instantes."
 }

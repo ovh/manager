@@ -13,7 +13,7 @@
   "domain_operations_table_header_doneDate": "Fecha de finalización",
   "domain_operations_table_header_status": "Estado",
   "domain_operations_table_header_domain": "Dominio",
-  "domain_operations_dashboard_title": "Operaciones en mis dominios",
+  "domain_operations_dashboard_title": "Operaciones en curso",
   "domain_operations_dashboard_info": "Incluimos a continuación un resumen de las operaciones en curso. En función de la operación, podría ser necesaria su intervención.",
   "domain_operations_tab_popover_update": "Modificar la operación",
   "domain_operations_tab_popover_progress": "Seguir la transferencia",
@@ -145,5 +145,8 @@
   "domain_operations_update_dns_click": "Haga clic aquí para corregir la configuración de sus servidores DNS",
   "domain_operations_nicOperation_DomainSendRDRPNotice": "Envío de la notificación RDRP",
   "domain_operations_guides": "Información general",
-  "domain_operations_update_field_bad_value": "El valor introducido en el campo {{t0}} no es válido"
+  "domain_operations_update_field_bad_value": "El valor introducido en el campo {{t0}} no es válido",
+  "domain_operations_table_header_allDom": "AllDom",
+  "domain_operations_table_header_name": "Nombre",
+  "domain_operations_nicOperation_AlldomDelete": "Eliminación del servicio AllDom"
 }
