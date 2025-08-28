@@ -189,7 +189,7 @@ const RegisterPaymentMethod: React.FC<RegisterPaymentMethodProps> = ({
         TPaymentMethodType.SEPA_DIRECT_DEBIT && (
         <SepaInformationModal
           features={features}
-          isAlreadyShown={isSepaModalAlreadyShown}
+          isAlreadyShown={isSepaModalAlreadyShown || !!preselectedPaymentType}
           handleSepaModalShown={() => setIsSepaModalAlreadyShown(true)}
         />
       )}
