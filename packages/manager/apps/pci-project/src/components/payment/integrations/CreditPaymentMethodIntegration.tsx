@@ -158,6 +158,9 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
           }
           return { continueProcessing: true };
         },
+        checkPaymentMethod: async () => {
+          return { continueProcessing: true };
+        },
         onCheckoutRetrieved: async (cart: TCart) => {
           if (cart.prices.withTax.value !== 0) {
             // We need to pay credits
