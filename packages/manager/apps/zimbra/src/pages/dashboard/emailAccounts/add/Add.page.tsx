@@ -3,7 +3,6 @@ import {
   IconLinkAlignmentType,
   LinkType,
   Links,
-  Subtitle,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -11,6 +10,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useGenerateUrl } from '@/hooks';
 import { ADD_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
 import EmailAccountForm from '../EmailAccountForm.component';
@@ -40,7 +40,7 @@ export const AddEmailAccount = () => {
           }}
           label={t('zimbra_account_add_cta_back')}
         />
-        <Subtitle>{t('common:add_email_account')}</Subtitle>
+        <OdsText preset="heading-3">{t('common:add_email_account')}</OdsText>
       </div>
       <EmailAccountForm />
     </>
