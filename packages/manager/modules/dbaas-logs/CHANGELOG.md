@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.6...@ovh-ux/manager-dbaas-logs@1.32.0) (2025-08-25)
+
+
+### Features
+
+* **dedicated.dbaas:** manage minimal display for unauthorized IAM actions ([6d9fb41](https://github.com/ovh/manager/commit/6d9fb41535010f871acaab2fa2832cccc16af567)), closes [#MANAGER-19227](https://github.com/ovh/manager/issues/MANAGER-19227)
+
+
+
+
+
 ## [1.31.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.5...@ovh-ux/manager-dbaas-logs@1.31.6) (2025-08-01)
 
 

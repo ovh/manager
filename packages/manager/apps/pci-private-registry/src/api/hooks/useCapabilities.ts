@@ -5,4 +5,5 @@ export const useGetCapabilities = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'capabilities'],
     queryFn: () => getCapabilities(projectId),
+    enabled: !!projectId,
   });

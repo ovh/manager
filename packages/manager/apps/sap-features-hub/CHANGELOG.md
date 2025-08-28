@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.3.0...@ovh-ux/manager-sap-features-hub-app@0.3.1) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.2.2...@ovh-ux/manager-sap-features-hub-app@0.3.0) (2025-08-25)
+
+
+### Features
+
+* **sap-features-hub:** allow osUpdate only if license is provided ([8f83f9d](https://github.com/ovh/manager/commit/8f83f9d8415cfce0cafb61e17943645326b95532)), closes [#MANAGER-19011](https://github.com/ovh/manager/issues/MANAGER-19011)
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.2.1...@ovh-ux/manager-sap-features-hub-app@0.2.2) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

@@ -86,8 +86,9 @@ angular.module('App').controller(
       this.contextTitle = this.data.contextTitle;
 
       switch (this.data.contextTitle) {
+        case 'dedicatedCloud_name':
         case 'dedicatedCloud_description':
-          this.modalContextTitle = 'dedicatedCloud_description';
+          this.modalContextTitle = this.data.contextTitle;
           this.updateName = () =>
             this.DedicatedCloud.updateDescription(
               this.data.productId,

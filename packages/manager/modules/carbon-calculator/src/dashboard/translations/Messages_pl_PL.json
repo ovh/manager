@@ -11,5 +11,6 @@
   "carbon_calculator_dashboard_billing_explanation_hpc": "Hosted Private Cloud",
   "carbon_calculator_dashboard_billing_explanation_baremetal": "infrastruktury bare metal",
   "carbon_calculator_dashboard_billing_explanation_service": "usług <strong>{{serviceName}}</strong>",
-  "carbon_calculator_dashboard_billing_explanation_contact": "dla których jesteś <strong>kontaktem księgowym</strong>."
+  "carbon_calculator_dashboard_billing_explanation_contact": "dla których jesteś <strong>kontaktem księgowym</strong>.",
+  "carbon_calculator_dashboard_billing_explanation_publiccloud": "Public Cloud"
 }

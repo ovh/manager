@@ -1,0 +1,80 @@
+name: Duplicate translation
+on: [push]
+
+jobs:
+  duplicate-translation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Restore/create node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: GetChangedPackages
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          get_changed_packages() {
+            CURRENT_BRANCH=$(git branch --show-current)
+            echo "My branch is $CURRENT_BRANCH"
+            BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+            echo "Base Branch is $BASE_BRANCH"
+            echo "current Branch: ${CURRENT_BRANCH}"
+            echo "[INFO] Dry run to determine which packages will be built..."
+            yarn turbo run build --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+      
+            # Clean JSON
+            tail -n +3 output.json > tmpfile.json && mv tmpfile.json output.json
+            head -n -1 output.json > temp.json && mv temp.json output.json
+      
+            # Extract packages
+            jq -r '.packages[]' output.json
+          }
+          CHANGED_PACKAGES=$(get_changed_packages)
+          echo "Changed packages:"
+          echo "$CHANGED_PACKAGES"
+      
+          # Safe multiline output for next step
+          echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Show duplicate translations
+        run: |
+          echo "Changed packages:"
+          echo "Output was: ${{ steps.changed.outputs.changed_packages }}"
+          available_apps=$(yarn manager-cli --list | grep -E '^\s+- ' | sed -E 's/^\s+- //')
+          readarray -t apps_array <<< "$available_apps"
+
+          # Read the changed packages into a bash array
+          while IFS= read -r line; do
+            # Skip empty lines and '//' lines
+            if [[ "$line" == "//" || -z "$line" ]]; then
+              continue
+            fi
+           
+            # Remove prefix and suffix
+            cleaned_package="${line#@ovh-ux/manager-}"   # remove prefix
+            cleaned_package="${cleaned_package%-app}"    # remove suffix if exist
+            echo "Checking: $cleaned_package"
+      
+            # Check if cleaned_package is in available_apps
+            if printf "%s\n" "${apps_array[@]}" | grep -qx "$cleaned_package"; then
+              echo "✅ Found: $cleaned_package"
+              yarn manager-cli duplicated-translations --app $cleaned_package
+            fi
+            
+
+          done <<< "${{ steps.changed.outputs.changed_packages }}"

@@ -184,8 +184,15 @@ export default class {
     window.opener = null;
     window.location = `${this.expressURL}review?products=${stringifiedExpressParameters}`;
     window.target = '_blank';
-
-    return this.goBack();
+    return this.goBack(
+      this.$translate.instant(
+        'ovhManagerPccResourceUpgrade_plan_success_message',
+        {
+          type: this.type,
+          url: `${this.expressURL}review?products=${stringifiedExpressParameters}`,
+        },
+      ),
+    );
   }
 
   onCancel() {

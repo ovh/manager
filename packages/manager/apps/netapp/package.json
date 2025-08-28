@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp-app",
-  "version": "0.9.99",
+  "version": "0.9.101",
   "private": true,
   "description": "NetApp standalone application",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.5",
-    "@ovh-ux/manager-billing-components": "^4.22.3",
+    "@ovh-ux/manager-billing-components": "^4.23.0",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-components": "^1.25.3",
     "@ovh-ux/manager-config": "^8.5.1",
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-filters": "^0.1.0 || ^1.1.1",
     "@ovh-ux/manager-models": "^2.5.6",
     "@ovh-ux/manager-netapp": "^2.14.3",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.11.4",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",
     "@ovh-ux/ng-at-internet": "^6.0.22",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.5",
     "@ovh-ux/ng-ovh-payment-method": "^9.17.4",
     "@ovh-ux/ng-ovh-request-tagger": "^2.0.4",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-utils": "^14.5.3",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",

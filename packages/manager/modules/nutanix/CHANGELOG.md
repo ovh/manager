@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.10.2...@ovh-ux/manager-nutanix@2.11.0) (2025-08-26)
+
+
+### Features
+
+* **nutanix:** add terminate cta in listing page of nutnaix ([d0e3f18](https://github.com/ovh/manager/commit/d0e3f18269a5a80f7efcdac386b05f2b6c8e7078)), closes [#MANAGER-18194](https://github.com/ovh/manager/issues/MANAGER-18194)
+
+
+
+
+
 ## [2.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.10.1...@ovh-ux/manager-nutanix@2.10.2) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix
