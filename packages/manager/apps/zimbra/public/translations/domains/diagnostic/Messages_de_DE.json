@@ -33,5 +33,11 @@
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Es wurde eine DKIM-Konfiguration gefunden, die nicht der erwarteten Konfiguration für Ihren E-Mail-Dienst entspricht.<br/><br/>Wenn Sie Schwierigkeiten haben, E-Mails an Ihre Empfänger:innen zu versenden, folgen Sie bitte den unten stehenden Anweisungen, um Ihre DNS-Zone mit den richtigen Informationen neu zu konfigurieren.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Fehler bei der DKIM-Konfiguration. Möglicherweise können Sie Probleme bei der Zustellung Ihrer E-Mails an Ihre Empfänger:innen haben.",
   "zimbra_domain_diagnostic_information_banner_dkim_warning": "Anormale DKIM-Konfiguration",
-  "zimbra_domain_diagnostic_field_subdomain": "Subdomain:"
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomain:",
+  "zimbra_domain_diagnostic_status_disabled": "Deaktivieren",
+  "zimbra_domain_diagnostic_information_message_dkim_disabled": "Die DKIM-Signatur ist nicht aktiviert, was bei einigen Ihrer E-Mails zu Zustellungsproblemen führen kann.",
+  "zimbra_domain_diagnostic_banner_enable_success_message": "Ihre Aktivierungsanfrage wurde registriert. Sie wird in Kürze ausgeführt.",
+  "zimbra_domain_diagnostic_banner_disable_success_message": "Ihre Anfrage zur Deaktivierung wurde registriert. Sie wird in Kürze ausgeführt.",
+  "zimbra_domain_diagnostic_dkim_enable": "DKIM-Signatur aktivieren",
+  "zimbra_domain_diagnostic_dkim_disable": "DKIM-Signatur deaktivieren"
 }
