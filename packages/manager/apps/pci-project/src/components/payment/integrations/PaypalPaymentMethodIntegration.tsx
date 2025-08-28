@@ -108,13 +108,19 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
           formSessionId: registerPaymentMethod.formSessionId,
         });
 
-        return registerPaymentMethod.formSessionId;
+        return {
+          continueProcessing: false,
+          dataToReturn: registerPaymentMethod.formSessionId,
+        };
+      },
+      checkPaymentMethod: async () => {
+        return { continueProcessing: true };
       },
       onCheckoutRetrieved: async () => {
-        return true;
+        return { continueProcessing: true };
       },
       onCartFinalized: async () => {
-        return true;
+        return { continueProcessing: true };
       },
     }),
     [setPaymentData],

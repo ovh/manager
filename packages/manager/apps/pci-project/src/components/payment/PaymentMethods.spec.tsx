@@ -156,6 +156,11 @@ vi.mock('@/data/hooks/payment/useEligibility', () => ({
 
 vi.mock('@/data/hooks/payment/usePaymentMethods', () => ({
   usePaymentMethods: vi.fn(),
+  useAddPaymentMethod: vi.fn(() => ({
+    mutateAsync: vi.fn(),
+    isPending: false,
+    error: null,
+  })),
   paymentMethodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
 }));
 
@@ -669,7 +674,7 @@ describe('PaymentMethods', () => {
       const result = await paymentMethodRef.current.submitPaymentMethod(
         mockCart,
       );
-      expect(result).toBe(true);
+      expect(result).toEqual({ continueProcessing: true });
     });
 
     it('should handle challenge retry error', async () => {
@@ -847,7 +852,7 @@ describe('PaymentMethods', () => {
       const result = await paymentMethodRef.current.submitPaymentMethod(
         mockCart,
       );
-      expect(result).toBe(true);
+      expect(result).toEqual({ continueProcessing: true });
     });
   });
 

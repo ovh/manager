@@ -60,6 +60,7 @@ describe('ExplanationTexts', () => {
       url: 'https://example.com/test.png',
       componentIcon: undefined,
     },
+    paymentMethodId: 0,
   });
 
   const Wrapper = createWrapper();
