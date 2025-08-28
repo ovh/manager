@@ -19,6 +19,7 @@ import {
   CREDITS_PREDEFINED_AMOUNT_SEQUENCE,
 } from '@/payment/constants';
 import {
+  TPaymentCallbackReturnType,
   TPaymentMethod,
   TPaymentMethodIntegrationRef,
 } from '@/data/types/payment/payment-method.type';
@@ -155,7 +156,7 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
               itemId,
             });
           }
-          return true;
+          return { continueProcessing: true };
         },
         onCheckoutRetrieved: async (cart: TCart) => {
           if (cart.prices.withTax.value !== 0) {
@@ -163,24 +164,26 @@ const CreditPaymentMethodIntegration: React.FC<CreditPaymentMethodIntegrationPro
             setIsConfirmationState(true);
 
             // We create a promise to wait for user validation
-            const promise = new Promise<boolean>((resolve) => {
-              confirmationResolveRef.current = (r: boolean) => {
-                setIsFinalizing(true);
-                resolve(r);
-              };
-            });
+            const promise = new Promise<TPaymentCallbackReturnType>(
+              (resolve) => {
+                confirmationResolveRef.current = (r: boolean) => {
+                  setIsFinalizing(true);
+                  resolve({ continueProcessing: r });
+                };
+              },
+            );
 
             return promise;
           }
-          return true;
+          return { continueProcessing: true };
         },
         onCartFinalized: async (cart: TCart) => {
           setIsFinalizing(false);
           if (!cart.url || !window.top) {
-            return true;
+            return { continueProcessing: true };
           }
           window.top.location.href = cart.url;
-          return false;
+          return { continueProcessing: false };
         },
       };
     },

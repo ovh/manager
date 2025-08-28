@@ -17,7 +17,13 @@ interface PaypalPaymentMethodIntegrationProps {
   isSetAsDefault?: boolean;
   onSuccess?: () => void;
   onError?: (error: Error) => void;
-  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  onPaymentSubmit: ({
+    paymentMethodId,
+    skipRegistration,
+  }: {
+    paymentMethodId?: number;
+    skipRegistration?: boolean;
+  }) => Promise<unknown>;
   handleValidityChange: (isValid: boolean) => void;
 }
 
