@@ -8,6 +8,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
@@ -46,6 +47,12 @@ const getActionButton = async (container: HTMLElement) => {
 describe('Secrets listing test suite', () => {
   it('should display the secrets listing page', async () => {
     await renderPage();
+  });
+
+  it('should display the breadcrumb', async () => {
+    await renderPage();
+
+    await assertBreadcrumbItems(['RootBreadcrumbItem', 'DomainBreadcrumbItem']);
   });
 
   it('should display the region selector', async () => {
