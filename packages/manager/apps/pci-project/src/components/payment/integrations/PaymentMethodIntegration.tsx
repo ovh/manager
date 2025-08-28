@@ -20,6 +20,7 @@ type PaymentMethodIntegrationProps = {
   itemId: number;
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
   onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  isSetAsDefault?: boolean;
 };
 
 const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
@@ -31,6 +32,7 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
   itemId,
   handleCustomSubmitButton,
   onPaymentSubmit,
+  isSetAsDefault = false,
 }) => {
   const paymentHandlerRef = React.useRef<TPaymentMethodIntegrationRef>(null);
 
@@ -124,6 +126,7 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           handleCustomSubmitButton={handleCustomSubmitButton}
           onPaymentSubmit={onPaymentSubmit}
           handleValidityChange={handleValidityChange}
+          isSetAsDefault={isSetAsDefault}
         />
       );
 

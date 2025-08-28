@@ -1,51 +1,23 @@
-import { PAYPAL_BUTTON_OPTIONS, PAYPAL_SCRIPT } from '@/constants';
-import { useFinalizePaymentMethod } from '@/data/hooks/payment/usePaymentMethods';
+import React, { useEffect, useImperativeHandle, useMemo } from 'react';
 import { TCart } from '@/data/types/payment/cart.type';
 import {
   TPaymentMethod,
   TPaymentMethodIntegrationRef,
   TRegisterPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+
+import { usePayPalSDK } from './paypal/hooks/usePayPalSDK';
+import { usePayPalPayment } from './paypal/hooks/usePayPalPayment';
+import { PayPalButton } from './paypal/components/PayPalButton';
 
 interface PaypalPaymentMethodIntegrationProps {
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
   paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
-  setAsDefault?: boolean;
+  isSetAsDefault?: boolean;
   onSuccess?: () => void;
   onError?: (error: Error) => void;
   onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
   handleValidityChange: (isValid: boolean) => void;
-}
-
-interface PaymentData {
-  paymentMethodId: number;
-  formSessionId: string;
-}
-
-interface PaypalPaymentMethodIntegrationConfig {
-  payment: () => Promise<string>;
-  onAuthorize: () => Promise<void>;
-  onError: (error: Error) => void;
-}
-
-declare global {
-  interface Window {
-    paypal?: {
-      Button: {
-        render: (
-          config: PaypalPaymentMethodIntegrationConfig,
-          container: HTMLElement,
-        ) => void;
-      };
-    };
-  }
 }
 
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
@@ -55,136 +27,94 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
   onError,
   onPaymentSubmit,
   handleValidityChange,
+  isSetAsDefault,
 }) => {
-  // State only - no refs
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isPayPalLoaded, setIsPayPalLoaded] = useState(false);
-  const [isButtonRendered, setIsButtonRendered] = useState(false);
-  const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
+  // PayPal SDK management
+  const { scriptLoaded } = usePayPalSDK();
 
-  // API hooks
-  const { mutateAsync: finalizePaymentMethod } = useFinalizePaymentMethod({
+  // Payment logic management
+  const {
+    setPaymentData,
+    handlePayment,
+    handleAuthorize,
+    handleError,
+  } = usePayPalPayment({
+    onPaymentSubmit,
     onSuccess,
     onError,
   });
 
-  const handlePayment = useCallback(async (): Promise<string> => {
-    const result = await onPaymentSubmit(false);
-    return `${result}`;
-  }, [onPaymentSubmit, paymentData]);
+  // PayPal button configuration
+  const paymentConfig = useMemo(
+    () => ({
+      payment: handlePayment,
+      onAuthorize: handleAuthorize,
+      onError: handleError,
+    }),
+    [handlePayment, handleAuthorize, handleError],
+  );
 
-  const handleAuthorize = useCallback(async () => {
-    if (!paymentData) {
-      throw new Error('Missing payment data');
-    }
-
-    await finalizePaymentMethod({
-      paymentMethodId: paymentData.paymentMethodId,
-      params: { formSessionId: paymentData.formSessionId },
-    });
-
-    // Call onPaymentSubmit with skipRegistration=true since registration was already done in handlePayment
-    await onPaymentSubmit(true);
-  }, [paymentData, finalizePaymentMethod, onPaymentSubmit]);
-
-  const handleError = useCallback((error: Error) => onError?.(error), [
-    onError,
-  ]);
-
-  // PayPal script loading
+  // Component validity management
   useEffect(() => {
-    const existingScript = document.getElementById(PAYPAL_SCRIPT.id);
+    handleValidityChange(scriptLoaded);
+  }, [scriptLoaded]);
 
-    if (window.paypal && existingScript) {
-      setIsPayPalLoaded(true);
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.id = PAYPAL_SCRIPT.id;
-    script.src = PAYPAL_SCRIPT.src;
-    script.async = true;
-    script.onload = () => {
-      window.paypal ? setIsPayPalLoaded(true) : setIsPayPalLoaded(false);
-    };
-    script.onerror = () => {
-      setIsPayPalLoaded(false);
-    };
-
-    document.head.appendChild(script);
-  }, []);
-
-  // Render PayPal button when script is loaded
+  // Custom submit button management
   useEffect(() => {
-    if (
-      isPayPalLoaded &&
-      containerRef.current &&
-      !isButtonRendered &&
-      window.paypal?.Button
-    ) {
-      window.paypal.Button.render(
-        {
-          ...PAYPAL_BUTTON_OPTIONS,
-          payment: handlePayment,
-          onAuthorize: handleAuthorize,
-          onError: handleError,
-        },
-        containerRef.current,
-      );
+    if (!handleCustomSubmitButton || !scriptLoaded) return;
 
-      setIsButtonRendered(true);
-    }
-  }, [
-    isPayPalLoaded,
-    isButtonRendered,
-    handlePayment,
-    handleAuthorize,
-    handleError,
-  ]);
+    handleCustomSubmitButton(
+      <PayPalButton
+        isSDKReady={scriptLoaded}
+        config={paymentConfig}
+        disabled={!isSetAsDefault}
+      />,
+    );
+  }, [scriptLoaded, isSetAsDefault]);
 
-  useEffect(() => {
-    if (handleCustomSubmitButton) {
-      handleCustomSubmitButton(<div ref={containerRef} />);
-    }
-  }, []);
-
-  useEffect(() => {
-    handleValidityChange(true);
-  }, [handleValidityChange]);
-
+  // Parent interface
   useImperativeHandle(
     paymentHandler,
-    () => {
-      return {
-        registerPaymentMethod: async (
-          _paymentMethod: TPaymentMethod,
-          _cart: TCart,
-          registerPaymentMethod?: TRegisterPaymentMethod,
-        ) => {
-          if (
-            !registerPaymentMethod?.formSessionId ||
-            !registerPaymentMethod?.paymentMethodId
-          ) {
-            throw new Error('Missing Payment data');
-          }
+    () => ({
+      registerPaymentMethod: async (
+        _paymentMethod: TPaymentMethod,
+        _cart: TCart,
+        registerPaymentMethod?: TRegisterPaymentMethod,
+      ) => {
+        if (
+          !registerPaymentMethod?.formSessionId ||
+          !registerPaymentMethod?.paymentMethodId
+        ) {
+          throw new Error('Missing payment registration data');
+        }
 
-          setPaymentData({
-            paymentMethodId: registerPaymentMethod.paymentMethodId,
-            formSessionId: registerPaymentMethod.formSessionId,
-          });
+        setPaymentData({
+          paymentMethodId: registerPaymentMethod.paymentMethodId,
+          formSessionId: registerPaymentMethod.formSessionId,
+        });
 
-          return registerPaymentMethod.formSessionId;
-        },
-        onCheckoutRetrieved: async (_cart: TCart) => {
-          return true;
-        },
-        onCartFinalized: async (_cart: TCart) => {
-          return true;
-        },
-      };
-    },
-    [],
+        return registerPaymentMethod.formSessionId;
+      },
+      onCheckoutRetrieved: async () => {
+        return true;
+      },
+      onCartFinalized: async () => {
+        return true;
+      },
+    }),
+    [setPaymentData],
   );
+
+  // Default render only if no custom submit button is provided
+  if (!handleCustomSubmitButton && scriptLoaded) {
+    return (
+      <PayPalButton
+        isSDKReady={scriptLoaded}
+        config={paymentConfig}
+        disabled={!isSetAsDefault}
+      />
+    );
+  }
 
   return null;
 };

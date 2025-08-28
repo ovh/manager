@@ -1,8 +1,8 @@
+import { useCallback, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PaymentMethods, {
   TPaymentMethodRef,
 } from '@/components/payment/PaymentMethods';
-import { useCallback, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 
 import {
   useIsStartupProgramAvailable,

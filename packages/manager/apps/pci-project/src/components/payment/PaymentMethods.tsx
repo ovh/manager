@@ -302,6 +302,7 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             itemId={itemId}
             handleCustomSubmitButton={handleCustomSubmitButton}
             onPaymentSubmit={onPaymentSubmit}
+            isSetAsDefault={isSetAsDefault}
           />
         </div>
       )}
