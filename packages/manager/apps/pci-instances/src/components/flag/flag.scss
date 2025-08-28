@@ -1,0 +1,22 @@
+@use './sprite-flags-24x24' as sprite;
+
+.flag {
+  display: inline-block;
+  filter: drop-shadow(0 0 2px rgba(0, 13, 31, 0.25));
+  background-image: sprite.$sprite-flags-background-image;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+
+  @each $iso-code,
+    $background-position in sprite.$sprite-flags-background-position
+  {
+    &--#{$iso-code} {
+      background-position: $background-position;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.5;
+  }
+}
