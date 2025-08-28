@@ -12,6 +12,7 @@ import {
 } from '@secret-manager/utils/tests/secret.constants';
 import { fireEvent, act, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -46,6 +47,8 @@ const fillRequiredFields = () => {
 describe('Create secret page test suite', () => {
   it('should display the form sections', async () => {
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate);
+
+    await assertBreadcrumbItems(['RootBreadcrumbItem']);
 
     await assertTextVisibility(labels.secretManager.create.title);
     await assertTextVisibility(

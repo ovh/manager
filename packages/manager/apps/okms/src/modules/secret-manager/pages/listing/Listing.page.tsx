@@ -7,15 +7,20 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Secret } from '@secret-manager/types/secret.type';
+import {
+  DomainBreadcrumbItem,
+  RootBreadcrumbItem,
+} from '@secret-manager/components/breadcrumb';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import {
@@ -24,14 +29,13 @@ import {
   DatagridCellVersion,
   DatagridCreationDate,
 } from './ListingCells.component';
-import { SecretListingPageParams } from './listing.type';
 import { isErrorResponse } from '@/utils/api/api';
 
 export default function SecretListingPage() {
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
-  const { domainId } = useParams<SecretListingPageParams>();
+  const { domainId } = useParams<LocationPathParams>();
 
   const columns: DatagridColumn<Secret>[] = [
     {
@@ -83,6 +87,12 @@ export default function SecretListingPage() {
   return (
     <BaseLayout
       header={{ title: t('secret_manager') }}
+      breadcrumb={
+        <OdsBreadcrumb>
+          <RootBreadcrumbItem />
+          <DomainBreadcrumbItem />
+        </OdsBreadcrumb>
+      }
       message={notifications.length > 0 && <Notifications />}
     >
       <div className="space-y-6">
