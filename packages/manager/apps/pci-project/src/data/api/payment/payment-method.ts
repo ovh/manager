@@ -30,6 +30,12 @@ export const getPaymentMethods = async (
   return v6.get(`/me/payment/method`, { headers, params });
 };
 
+export const getPaymentMethod = async (
+  methodId: number,
+): Promise<TUserPaymentMethod> => {
+  return v6.get(`/me/payment/method/${methodId}`);
+};
+
 export const getAvailablePaymentMethods = async (): Promise<FetchResultV6<
   TAvailablePaymentMethod
 >> => {
