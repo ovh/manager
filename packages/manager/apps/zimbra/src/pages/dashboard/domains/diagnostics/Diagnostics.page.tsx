@@ -3,8 +3,8 @@ import {
   LinkType,
   Links,
   IconLinkAlignmentType,
-  Subtitle,
   Clipboard,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
@@ -28,8 +28,11 @@ import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react
 import {
   ButtonType,
   PageLocation,
+  PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useMutation } from '@tanstack/react-query';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGenerateUrl } from '@/hooks';
 import {
   GuideLink,
@@ -45,6 +48,9 @@ import {
   DomainDiagnosisTestStatusEnum,
   DomainDiagnosisTestResult,
   ExpectedDNSConfig,
+  DomainDiagnosisTestDKIMErrorCodeEnum,
+  putZimbraDomain,
+  getZimbraPlatformDomainsDiagnosticQueryKey,
 } from '@/data/api';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
 import { Guide, GUIDES_LIST } from '@/guides.constants';
@@ -58,7 +64,9 @@ import {
   DOMAIN_DIAGNOSTICS_REFRESH,
   DOMAIN_DIAGNOSTICS_SPF,
   DOMAIN_DIAGNOSTICS_SRV,
+  EDIT_DOMAIN,
 } from '@/tracking.constants';
+import queryClient from '@/queryClient';
 
 const isDiagnosticError = (diagnostic: DomainDiagnosisTestResult) => {
   return diagnostic && diagnostic?.status !== DomainDiagnosisTestStatusEnum.OK;
@@ -73,6 +81,7 @@ const getStatusBadgeColor = (
     case DomainDiagnosisTestStatusEnum.ERROR:
       return ODS_BADGE_COLOR.critical;
     case DomainDiagnosisTestStatusEnum.WARNING:
+    case DomainDiagnosisTestStatusEnum.DISABLED:
       return ODS_BADGE_COLOR.warning;
     default:
       return ODS_BADGE_COLOR.neutral;
@@ -216,7 +225,10 @@ const TabContent = ({
   guide?: Guide;
 }) => {
   const { t } = useTranslation('domains/diagnostic');
+  const { platformId, domainId } = useParams();
   const { trackClick } = useOvhTracking();
+  const { addError, addSuccess } = useNotifications();
+
   const fieldHelpers = useDNSRecordConfigHelp({
     expectedDNSConfig,
     recordType,
@@ -234,8 +246,57 @@ const TabContent = ({
     );
   }
 
+  const isDisabled = useMemo(() => {
+    return diagnostic.errors.some(
+      (err) => err.code === DomainDiagnosisTestDKIMErrorCodeEnum.DKIM_DISABLED,
+    );
+  }, [diagnostic]);
+
+  const { mutate: enableOrDisableDkim, isPending: isSending } = useMutation({
+    mutationFn: (dkimEnabled: boolean) =>
+      putZimbraDomain(platformId, domainId, {
+        dkimEnabled,
+      }),
+    onSuccess: () => {
+      trackClick({
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actionType: 'action',
+        actions: [DOMAIN_DIAGNOSTICS_DKIM],
+      });
+      addSuccess(
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {isDisabled
+            ? t('zimbra_domain_diagnostic_banner_enable_success_message')
+            : t('zimbra_domain_diagnostic_banner_disable_success_message')}
+        </OdsText>,
+        true,
+      );
+    },
+    onError: (error: ApiError) => {
+      addError(
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('common:edit_error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </OdsText>,
+        true,
+      );
+    },
+    onSettled: () => {
+      setTimeout(() => {
+        queryClient.invalidateQueries({
+          queryKey: getZimbraPlatformDomainsDiagnosticQueryKey(platformId, [
+            domainId,
+          ]),
+        });
+      }, 3000);
+    },
+  });
+
   const isOk =
-    diagnostic && diagnostic.status === DomainDiagnosisTestStatusEnum.OK;
+    (diagnostic && diagnostic.status === DomainDiagnosisTestStatusEnum.OK) ||
+    isDisabled;
   const [error] = diagnostic.errors;
 
   return (
@@ -245,7 +306,14 @@ const TabContent = ({
     >
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         <strong>{t('zimbra_domain_diagnostic_status')}</strong>
-        <StatusBadge className="ml-4" status={diagnostic.status} />
+        <StatusBadge
+          className="ml-4"
+          status={
+            isDisabled
+              ? DomainDiagnosisTestStatusEnum.DISABLED
+              : diagnostic.status
+          }
+        />
       </OdsText>
       {!isOk && (
         <OdsMessage
@@ -261,14 +329,30 @@ const TabContent = ({
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         <Trans
           t={t}
-          i18nKey={`zimbra_domain_diagnostic_information_message_${recordType.toLowerCase()}_${diagnostic?.status.toLowerCase()}`}
+          i18nKey={`zimbra_domain_diagnostic_information_message_${recordType.toLowerCase()}_${
+            isDisabled ? 'disabled' : diagnostic?.status.toLowerCase()
+          }`}
           values={{
             recordType,
             errorCode: error?.code,
           }}
         />
       </OdsText>
-      {!isOk && (
+      {isOk ? (
+        recordType === DnsRecordType.DKIM && (
+          <OdsButton
+            data-test-id="dkim_enable_disable"
+            className="mt-4"
+            label={
+              isDisabled
+                ? t('zimbra_domain_diagnostic_dkim_enable')
+                : t('zimbra_domain_diagnostic_dkim_disable')
+            }
+            onClick={() => enableOrDisableDkim(isDisabled)}
+            isLoading={isSending}
+          ></OdsButton>
+        )
+      ) : (
         <>
           {guide && (
             <GuideLink
@@ -456,11 +540,11 @@ export const DomainDiagnostics = () => {
         }}
         label={t('zimbra_domain_diagnostic_cta_back')}
       />
-      <Subtitle>
+      <OdsText preset="heading-3">
         {t('zimbra_domain_diagnostic_subtitle', {
           domain: domain?.domainName,
         })}
-      </Subtitle>
+      </OdsText>
       <div className="mt-6">
         <OdsButton
           data-testid="refresh"
