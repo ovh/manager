@@ -24,12 +24,12 @@ export default class {
     this.isInstallationInError =
       this.currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error;
 
-    if (
-      !this.isDisablingZerto &&
-      this.currentZerto.state !== DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled
-    ) {
-      this.goToSummary(this.zertoInformations);
+    console.log({ currentZerto: this.currentZerto });
+    if (!this.isDisablingZerto && !!this.currentZerto.localSiteInformation) {
+      return this.goToSummary(this.zertoInformations);
     }
+
+    return null;
   }
 
   initializeTransitions() {
