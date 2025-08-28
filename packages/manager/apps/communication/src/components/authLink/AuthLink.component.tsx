@@ -9,11 +9,13 @@ export default function AuthLink({
   children,
   iamActions,
   urn,
+  onClick,
 }: {
   href: string;
   children?: string;
   iamActions?: string[];
   urn?: string;
+  onClick?: () => void;
 }) {
   const navigate = useNavigate();
   return (
@@ -24,6 +26,7 @@ export default function AuthLink({
       urn={urn}
       onClick={(e) => {
         e.preventDefault();
+        onClick?.();
         navigate(href);
       }}
     >
