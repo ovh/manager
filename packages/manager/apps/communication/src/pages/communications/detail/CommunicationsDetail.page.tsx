@@ -11,6 +11,7 @@ import {
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useAuthorization, useCategories, useHelpLink } from '@/hooks';
 import {
   EmailDisplay,
@@ -21,6 +22,8 @@ import {
 import { urls } from '@/routes/routes.constant';
 import { useNotification } from '@/data';
 import { getFirstCleanEmail } from '@/utils/notifications';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function CommunicationsDetailPage() {
   const { notificationId } = useParams();
@@ -43,6 +46,7 @@ export default function CommunicationsDetailPage() {
 
   const isLoading = isLoadingNotification || isLoadingAuthorization;
   const helpLink = useHelpLink();
+  const { trackClick } = useTracking();
 
   return (
     <RedirectionGuard
@@ -75,6 +79,15 @@ export default function CommunicationsDetailPage() {
                   variant="ghost"
                   icon="arrow-left"
                   label={t('button_go_back')}
+                  onClick={() =>
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.link,
+                      actionType: 'navigation',
+                      actions: ['go-back-communications-listing'],
+                      subApp: TrackingSubApps.Communications,
+                    })
+                  }
                 />
               </Link>
             </div>
@@ -86,7 +99,16 @@ export default function CommunicationsDetailPage() {
                   components={{
                     anchor: (
                       <ClickLink
-                        onClick={() => setShowHistoryDrawer(true)}
+                        onClick={() => {
+                          trackClick({
+                            location: PageLocation.page,
+                            buttonType: ButtonType.link,
+                            actionType: 'navigation',
+                            actions: ['view_history-mailings'],
+                            subApp: TrackingSubApps.Communications,
+                          });
+                          setShowHistoryDrawer(true);
+                        }}
                       ></ClickLink>
                     ),
                   }}
@@ -127,6 +149,15 @@ export default function CommunicationsDetailPage() {
                     size="sm"
                     label={t('button_download_attachment')}
                     icon="download"
+                    onClick={() => {
+                      trackClick({
+                        location: PageLocation.page,
+                        buttonType: ButtonType.button,
+                        actionType: 'download',
+                        actions: ['download_subject-file'],
+                        subApp: TrackingSubApps.Communications,
+                      });
+                    }}
                   />
                 ) : (
                   undefined

@@ -15,6 +15,18 @@ vi.mock('react-i18next', () => ({
   Trans: vi.fn(({ children }) => children),
 }));
 
+vi.mock('@/hooks/useTracking/useTracking', () => ({
+  useTracking: () => ({
+    trackClick: vi.fn(),
+    trackPage: vi.fn(),
+  }),
+  usePageTracking: vi.fn(() => ({
+    pageName: 'pageName',
+    pageType: 'pageType',
+    subApp: 'subApp',
+  })),
+}));
+
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
