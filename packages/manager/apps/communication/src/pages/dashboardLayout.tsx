@@ -8,7 +8,10 @@ import {
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -17,6 +20,7 @@ export type DashboardTabItemProps = {
 };
 
 export default function DashboardLayout() {
+  const { trackClick } = useTracking();
   const [panel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,7 +38,7 @@ export default function DashboardLayout() {
       to: useResolvedPath(urls.ContactsTab).pathname,
     },
     {
-      name: 'settings',
+      name: 'preference-center',
       title: t('tab_settings'),
       to: useResolvedPath(urls.SettingsTab).pathname,
     },
@@ -64,7 +68,17 @@ export default function DashboardLayout() {
               key={`osds-tab-bar-item-${tab.name}`}
               className="select-none"
               isSelected={tab.name === panel}
-              onOdsTabSelected={() => navigate(tab.to)}
+              onOdsTabSelected={() => {
+                trackClick({
+                  location: PageLocation.mainTabnav,
+                  actionType: 'navigation',
+                  buttonType: ButtonType.tab,
+                  actions: [tab.name],
+                  subApp:
+                    TrackingSubApps[tab.name as keyof typeof TrackingSubApps],
+                });
+                navigate(tab.to);
+              }}
             >
               {tab.title}
             </OdsTab>
