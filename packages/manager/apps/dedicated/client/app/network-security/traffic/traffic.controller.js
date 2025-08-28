@@ -142,7 +142,7 @@ export default class TrafficController {
     this.displayGraph = false;
     const currentDate = new Date();
     const after = new Date();
-    const before = currentDate.toISOString();
+    const before = currentDate;
 
     switch (this.period.name) {
       case this.TRAFFIC_PERIOD_LIST.last6h:
@@ -155,12 +155,18 @@ export default class TrafficController {
         after.setDate(after.getDate() - 14);
         break;
       case 'custom':
-        after.setTime(this.dateTime);
+        before.setTime(this.dateTime.getTime() + 23 * 60 * 60 * 1000);
+        after.setTime(this.dateTime.getTime() - 2 * 60 * 60 * 1000);
         break;
       default:
         after.setDate(after.getDate() - 1);
     }
-    this.getAllTraffic(null, after.toISOString(), before, this.subnet);
+    this.getAllTraffic(
+      null,
+      after.toISOString(),
+      before.toISOString(),
+      this.subnet,
+    );
   }
 
   getAllTraffic(cursor, after, before, subnet) {
