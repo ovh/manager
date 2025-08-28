@@ -17,6 +17,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from 'react-router-dom';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Notification } from '@/data/types';
 import { urls } from '@/routes/routes.constant';
 
@@ -29,8 +30,11 @@ import NotificationContactStatus from '@/components/notificationContactStatus/No
 import { useAuthorization } from '@/hooks/useAuthorization/useAuthorization';
 import useCategories from '@/hooks/useCategories/useCategories';
 import useHelpLink from '@/hooks/useHelpLink/useHelpLink';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 function CommunicationsPage() {
+  const { trackClick } = useTracking();
   const { t } = useTranslation('communications');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tCommon } = useTranslation('common');
@@ -49,7 +53,18 @@ function CommunicationsPage() {
       label: t('table_column_subject'),
       cell: (notification) => (
         <DataGridTextCell>
-          <Link to={`${urls.CommunicationsDetailTo(notification.id)}`}>
+          <Link
+            to={`${urls.CommunicationsDetailTo(notification.id)}`}
+            onClick={() =>
+              trackClick({
+                location: PageLocation.datagrid,
+                buttonType: ButtonType.button,
+                actionType: 'navigation',
+                actions: ['detail_subject'],
+                subApp: TrackingSubApps.Communications,
+              })
+            }
+          >
             <OdsLink label={notification.title} href="#" />
           </Link>
         </DataGridTextCell>
@@ -149,6 +164,15 @@ function CommunicationsPage() {
             anchor: (
               <OdsLink
                 href={helpLink}
+                onClick={() =>
+                  trackClick({
+                    location: PageLocation.page,
+                    buttonType: ButtonType.externalLink,
+                    actionType: 'navigation',
+                    actions: ['go-to-assistance'],
+                    subApp: TrackingSubApps.Communications,
+                  })
+                }
                 target="_blank"
                 label={tCommon('assistance_link_label')}
                 icon="external-link"
