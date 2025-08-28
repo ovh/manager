@@ -121,6 +121,10 @@ export type TPaymentMethodIntegrationRef = {
     cart: TCart,
     registerPaymentMethod?: TRegisterPaymentMethod,
   ) => Promise<TPaymentCallbackRegisterReturnType>;
+  checkPaymentMethod?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
   onCheckoutRetrieved?: (
     cart: TCart,
     paymentMethodId?: number,
@@ -136,6 +140,10 @@ export type TPaymentMethodRegisterRef = {
     paymentMethod: TPaymentMethod,
     cart: TCart,
   ) => Promise<TPaymentCallbackRegisterReturnType>;
+  checkPaymentMethod?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
   onCheckoutRetrieved?: (
     cart: TCart,
     paymentMethodId?: number,

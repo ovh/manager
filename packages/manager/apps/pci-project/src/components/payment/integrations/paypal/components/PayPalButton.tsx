@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import React, { useEffect, useRef } from 'react';
 import { PAYPAL_BUTTON_OPTIONS } from '@/constants';
 import { PayPalPaymentConfig } from '../types';
 
@@ -20,19 +20,23 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isSDKReady || !containerRef.current || !window.paypal?.Button) {
-      return;
+    function setupPayPalButton() {
+      if (!isSDKReady || !containerRef.current || !window.paypal?.Button) {
+        return;
+      }
+
+      // Clean up any existing PayPal button
+      containerRef.current.innerHTML = '';
+
+      const finalConfig = {
+        ...PAYPAL_BUTTON_OPTIONS,
+        ...config,
+      };
+
+      window.paypal.Button.render(finalConfig, containerRef.current);
     }
 
-    // Clean up any existing PayPal button
-    containerRef.current.innerHTML = '';
-
-    const finalConfig = {
-      ...PAYPAL_BUTTON_OPTIONS,
-      ...config,
-    };
-
-    window.paypal.Button.render(finalConfig, containerRef.current);
+    setupPayPalButton();
 
     // Cleanup function
     return () => {

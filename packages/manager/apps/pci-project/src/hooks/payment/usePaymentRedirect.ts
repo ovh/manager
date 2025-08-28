@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 type UsePaymentRedirectProps = {
@@ -6,22 +6,25 @@ type UsePaymentRedirectProps = {
   onPaymentSuccess: (paymentMethodId: number) => void;
 };
 
-export const usePaymentRedirect = ({
-  onPaymentError,
-  onPaymentSuccess,
-}: UsePaymentRedirectProps) => {
+export const usePaymentRedirect = (
+  isEnabled: boolean,
+  { onPaymentError, onPaymentSuccess }: UsePaymentRedirectProps,
+) => {
   const [searchParams] = useSearchParams();
+  const [isCalled, setIsCalled] = useState(false);
 
   useEffect(() => {
     const status = searchParams.get('paymentStatus');
     const paymentMethodId = searchParams.get('paymentMethodId');
 
-    if (!status || !paymentMethodId) return;
+    if (!isEnabled || !status || !paymentMethodId || isCalled) return;
+
+    setIsCalled(true);
 
     if (['cancel', 'error', 'failure'].includes(status)) {
       onPaymentError();
     } else if (['success', 'pending'].includes(status)) {
       onPaymentSuccess(Number(paymentMethodId));
     }
-  }, [searchParams, onPaymentError, onPaymentSuccess]);
+  }, [searchParams, isCalled, onPaymentError, onPaymentSuccess, isEnabled]);
 };
