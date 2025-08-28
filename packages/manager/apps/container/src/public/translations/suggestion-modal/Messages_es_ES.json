@@ -1,0 +1,9 @@
+{
+  "suggestion_modal_title": "Actualización de su número SIRET / IVA",
+  "suggestion_modal_description": "Como parte de la implementación de la facturación electrónica en Francia, estamos obligados a verificar la identidad de su empresa para garantizar la conformidad de su información fiscal.\n Tras algunas búsquedas, hemos encontrado la información relacionada con su empresa.",
+  "suggestion_modal_description_sub": "Si no encuentra ningún error en esta información, haga clic en el botón «Acepto esta información». De lo contrario, haga clic en el botón «Actualizar en mi perfil».",
+  "suggestion_modal_listed_type_SIRET": "SIRET:",
+  "suggestion_modal_listed_type_VAT": "N.º de IVA intracomunitario",
+  "suggestion_modal_action_modify": "Actualizo mi perfil",
+  "suggestion_modal_action_confirm": "Confirmo esta información"
+}
