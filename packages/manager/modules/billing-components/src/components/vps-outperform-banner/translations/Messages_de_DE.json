@@ -1,5 +1,5 @@
 {
-  "vps_terminate_outperform_availability_banner_title": "Wussten Sie es?",
-  "vps_terminate_outperform_availability_banner_info": "<strong>Sie haben Anspruch auf mehr Ressourcen zum gleichen Preis.</strong> Sie verfügen über eine bessere Leistung und müssen Ihre Installation nicht <strong>ändern.</strong> ",
-  "vps_terminate_outperform_availability_banner_button": "Meine Dienstleistung behalten und kostenlos upgraden"
+  "vps_terminate_outperform_availability_banner_title": "Wussten Sie schon?",
+  "vps_terminate_outperform_availability_banner_info": "<strong>Sie haben Anspruch auf mehr Ressourcen zum gleichen Preis.</strong> Sie erhalten eine bessere Leistung, <strong>ohne Ihre Installation dafür ändern zu müssen.</strong>",
+  "vps_terminate_outperform_availability_banner_button": "Meinen Dienst behalten und kostenlos upgraden"
 }
