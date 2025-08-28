@@ -182,6 +182,18 @@ export default function ProjectCreation() {
           }
         }
 
+        if (paymentHandlerRef.current.checkPaymentMethod) {
+          const resultCheck = await paymentHandlerRef.current.checkPaymentMethod(
+            cart,
+            currentPaymentMethodId,
+          );
+
+          if (!resultCheck.continueProcessing) {
+            setIsSubmitting(false);
+            return resultCheck.dataToReturn;
+          }
+        }
+
         const cartCheckoutInfo = await getCartCheckout(cart.cartId);
 
         if (paymentHandlerRef.current.onCheckoutRetrieved) {
@@ -244,15 +256,20 @@ export default function ProjectCreation() {
     [paymentHandlerRef, cart, isSubmitting],
   );
 
-  const onPaymentSuccess = useCallback((paymentMethodId: number) => {
-    handlePaymentSubmit({ paymentMethodId, skipRegistration: true });
-  }, []);
+  const onPaymentSuccess = useCallback(
+    (paymentMethodId: number) => {
+      handlePaymentSubmit({ paymentMethodId, skipRegistration: true });
+    },
+    [cart, paymentHandlerRef, isSubmitting],
+  );
 
   const onPaymentError = useCallback(() => {
     addError(t('pci_project_new_payment_create_error'));
   }, []);
 
-  usePaymentRedirect({
+  const isPageReady = !!cart && !!paymentHandlerRef.current;
+
+  usePaymentRedirect(isPageReady, {
     onPaymentError,
     onPaymentSuccess,
   });
