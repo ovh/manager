@@ -1,7 +1,7 @@
 @use '@ovhcloud/ods-react/style' as ods;
 
 $sizes: xs, sm, md;
-$colors: ctricila, information, neutral, primary, success, warning;
+$colors: critical, information, neutral, primary, success, warning;
 
 .button-link {
   $button: &;
