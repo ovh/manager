@@ -12,6 +12,8 @@ import {
 } from '@/data/hooks/payment/usePaymentMethods';
 import RegisterPaymentMethod from './RegisterPaymentMethod';
 import {
+  TPaymentCallbackRegisterReturnType,
+  TPaymentCallbackReturnType,
   TPaymentMethod,
   TPaymentMethodIntegrationRef,
 } from '@/data/types/payment/payment-method.type';
@@ -35,13 +37,27 @@ export type PaymentMethodsProps = {
   itemId: number;
   preselectedPaymentType?: string | null;
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
-  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  onPaymentSubmit: ({
+    paymentMethodId,
+    skipRegistration,
+  }: {
+    paymentMethodId?: number;
+    skipRegistration?: boolean;
+  }) => Promise<unknown>;
 };
 
 export type TPaymentMethodRef = {
-  submitPaymentMethod: (cart: TCart) => Promise<boolean | unknown>;
-  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean | unknown>;
-  onCartFinalized?: (cart: TCart) => Promise<boolean | unknown>;
+  submitPaymentMethod: (
+    cart: TCart,
+  ) => Promise<TPaymentCallbackRegisterReturnType>;
+  onCheckoutRetrieved?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+  onCartFinalized?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
 };
 
 /**
@@ -199,11 +215,13 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
     () => {
       return {
         submitPaymentMethod: async (cart: TCart) => {
+          const needsIntegration = !defaultPaymentMethod;
+
           if (!selectedPaymentMethod || !isValid) {
             throw new Error('payment_method_invalid');
           }
 
-          if (paymentChallengeRef.current) {
+          if (paymentChallengeRef.current && !needsIntegration) {
             const status = await paymentChallengeRef.current.submitChallenge();
             switch (status) {
               case 'deactivated':
@@ -230,11 +248,12 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
                     cart,
                   );
                 }
-                return true;
+                return { continueProcessing: true };
             }
           } else if (
             paymentHandlerRef.current &&
-            paymentHandlerRef.current.registerPaymentMethod
+            paymentHandlerRef.current.registerPaymentMethod &&
+            needsIntegration
           ) {
             return paymentHandlerRef.current.registerPaymentMethod(
               selectedPaymentMethod,
@@ -242,29 +261,47 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             );
           }
 
-          return true;
+          return { continueProcessing: true };
         },
-        onCheckoutRetrieved: async (cart: TCart) => {
+        onCheckoutRetrieved: async (cart: TCart, paymentMethodId?: number) => {
+          const needsIntegration = !defaultPaymentMethod;
+
           if (
             paymentHandlerRef.current &&
-            paymentHandlerRef.current.onCheckoutRetrieved
+            paymentHandlerRef.current.onCheckoutRetrieved &&
+            needsIntegration
           ) {
-            return paymentHandlerRef.current.onCheckoutRetrieved(cart);
+            return paymentHandlerRef.current.onCheckoutRetrieved(
+              cart,
+              paymentMethodId,
+            );
           }
-          return true;
+          return { continueProcessing: true };
         },
-        onCartFinalized: async (cart: TCart) => {
+        onCartFinalized: async (cart: TCart, paymentMethodId?: number) => {
+          const needsIntegration = !defaultPaymentMethod;
+
           if (
             paymentHandlerRef.current &&
-            paymentHandlerRef.current.onCartFinalized
+            paymentHandlerRef.current.onCartFinalized &&
+            needsIntegration
           ) {
-            return paymentHandlerRef.current.onCartFinalized(cart);
+            return paymentHandlerRef.current.onCartFinalized(
+              cart,
+              paymentMethodId,
+            );
           }
-          return true;
+          return { continueProcessing: true };
         },
       };
     },
-    [paymentChallengeRef, paymentHandlerRef, selectedPaymentMethod, isValid],
+    [
+      paymentChallengeRef,
+      paymentHandlerRef,
+      selectedPaymentMethod,
+      isValid,
+      defaultPaymentMethod,
+    ],
   );
 
   if (isLoadingDefault || isLoadingEligibility || !eligibility) {
