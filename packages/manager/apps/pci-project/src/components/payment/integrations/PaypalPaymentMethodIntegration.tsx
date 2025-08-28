@@ -27,14 +27,6 @@ interface PaypalPaymentMethodIntegrationProps {
   handleValidityChange: (isValid: boolean) => void;
 }
 
-/**
- * Refactored PayPal component with modular architecture
- *
- * Architecture:
- * - usePayPalSDK: SDK loading management
- * - usePayPalPayment: Payment logic
- * - PayPalButton: Button rendering
- */
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
@@ -108,13 +100,19 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
           formSessionId: registerPaymentMethod.formSessionId,
         });
 
-        return registerPaymentMethod.formSessionId;
+        return {
+          continueProcessing: false,
+          dataToReturn: registerPaymentMethod.formSessionId,
+        };
+      },
+      checkPaymentMethod: async () => {
+        return { continueProcessing: true };
       },
       onCheckoutRetrieved: async () => {
-        return true;
+        return { continueProcessing: true };
       },
       onCartFinalized: async () => {
-        return true;
+        return { continueProcessing: true };
       },
     }),
     [setPaymentData],

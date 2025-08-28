@@ -3,7 +3,13 @@ import { useFinalizePaymentMethod } from '@/data/hooks/payment/usePaymentMethods
 import { PaymentData, PayPalAuthorizationData } from '../types';
 
 interface UsePayPalPaymentProps {
-  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  onPaymentSubmit: ({
+    skipRegistration,
+    paymentMethodId,
+  }: {
+    skipRegistration?: boolean;
+    paymentMethodId?: number;
+  }) => Promise<unknown>;
   onSuccess?: () => void;
   onError?: (error: Error) => void;
 }
@@ -33,7 +39,7 @@ export const usePayPalPayment = ({
   });
 
   const handlePayment = useCallback(async (): Promise<string> => {
-    const result = await onPaymentSubmit(false);
+    const result = await onPaymentSubmit({ skipRegistration: false });
     return String(result);
   }, [onPaymentSubmit]);
 
@@ -51,7 +57,10 @@ export const usePayPalPayment = ({
     });
 
     // Complete payment process (skipRegistration=true since already done)
-    await onPaymentSubmit(true);
+    await onPaymentSubmit({
+      skipRegistration: true,
+      paymentMethodId: paymentData.paymentMethodId,
+    });
   }, [paymentData, finalizePaymentMethod, onPaymentSubmit]);
 
   const handleError = useCallback((error: Error) => onError?.(error), [
