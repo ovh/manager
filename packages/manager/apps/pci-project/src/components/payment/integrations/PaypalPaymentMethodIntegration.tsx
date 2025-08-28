@@ -6,6 +6,7 @@ import {
   TRegisterPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
 
+// New modular architecture imports
 import { usePayPalSDK } from './paypal/hooks/usePayPalSDK';
 import { usePayPalPayment } from './paypal/hooks/usePayPalPayment';
 import { PayPalButton } from './paypal/components/PayPalButton';
@@ -20,6 +21,14 @@ interface PaypalPaymentMethodIntegrationProps {
   handleValidityChange: (isValid: boolean) => void;
 }
 
+/**
+ * Refactored PayPal component with modular architecture
+ *
+ * Architecture:
+ * - usePayPalSDK: SDK loading management
+ * - usePayPalPayment: Payment logic
+ * - PayPalButton: Button rendering
+ */
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
