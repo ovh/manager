@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import {

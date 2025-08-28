@@ -9,18 +9,22 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "tsc",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*",
     "@ovh-ux/manager-common-translations": "^0.16.0",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-module-common-api": "^0.4.10",
     "@ovh-ux/manager-react-components": "^2.37.1",
-    "@ovh-ux/manager-vite-config": "^0.11.0",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "@testing-library/dom": "^10.1.0",
@@ -33,15 +37,11 @@
     "msw": "2.1.7",
     "react-i18next": "^14.0.5",
     "tailwindcss": "^3.4.4",
-    "typescript": "^4.3.2",
-    "vite": "^5.4.12",
-    "vitest": "^2.1.9",
     "zustand": "^4.5.5"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.2",
     "@ovh-ux/manager-core-api": "^0.11.0",
-    "@ovh-ux/manager-core-test-utils": "^0.3.1",
     "@ovh-ux/manager-core-utils": "^0.3.0",
     "@ovh-ux/manager-module-common-api": "*",
     "@ovh-ux/manager-react-components": "*",

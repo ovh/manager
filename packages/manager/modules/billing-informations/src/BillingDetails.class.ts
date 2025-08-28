@@ -1,8 +1,6 @@
-import {
-  CustomerContact,
-  ServiceDetails,
-} from '@ovh-ux/manager-module-common-api';
 import { isAfter, isBefore } from 'date-fns';
+
+import { CustomerContact, ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 export default class BillingDetails {
   id: number;
@@ -65,10 +63,7 @@ export default class BillingDetails {
   }
 
   isResiliated() {
-    return (
-      this.isExpired() ||
-      ['terminated'].includes(this.billing.lifecycle.current.state)
-    );
+    return this.isExpired() || ['terminated'].includes(this.billing.lifecycle.current.state);
   }
 
   hasDebt() {
@@ -197,9 +192,7 @@ export default class BillingDetails {
   }
 
   canCommit() {
-    return (
-      !this.isResiliated() && !this.isExpired() && !this.hasPendingResiliation()
-    );
+    return !this.isResiliated() && !this.isExpired() && !this.hasPendingResiliation();
   }
 
   canBeResiliated(nichandle: CustomerContact) {
@@ -215,15 +208,11 @@ export default class BillingDetails {
   }
 
   isSuspended() {
-    return this.hasDebt || this.isResiliated();
+    return this.hasDebt() || this.isResiliated();
   }
 
   hasPendingResiliation() {
-    return (
-      !this.isManualRenew() &&
-      !this.isResiliated() &&
-      this.shouldDeleteAtExpiration()
-    );
+    return !this.isManualRenew() && !this.isResiliated() && this.shouldDeleteAtExpiration();
   }
 
   shouldDeleteAtExpiration() {
@@ -231,8 +220,6 @@ export default class BillingDetails {
   }
 
   isAutoCommitmentStrategy() {
-    return (
-      this.billing.engagement?.endRule?.strategy === 'REACTIVATE_ENGAGEMENT'
-    );
+    return this.billing.engagement?.endRule?.strategy === 'REACTIVATE_ENGAGEMENT';
   }
 }
