@@ -1,5 +1,9 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OvhSubsidiary, StepComponent } from '@ovh-ux/manager-react-components';
+import {
+  OvhSubsidiary,
+  StepComponent,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -22,6 +26,7 @@ import { TPaymentMethodRef } from '@/components/payment/PaymentMethods';
 import { getCartCheckout } from '@/data/api/cart';
 import { useCheckoutCart } from '@/hooks/useCheckout/useCheckout';
 import { CartSummary } from '@/data/types/cart.type';
+import { usePaymentRedirect } from '@/hooks/payment/usePaymentRedirect';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -44,6 +49,7 @@ export default function ProjectCreation() {
   const [customSubmitButton, setCustomSubmitButton] = useState<
     string | JSX.Element | null
   >(null);
+  const { addError } = useNotifications();
 
   const {
     mutate: createAndAssignCart,
@@ -145,70 +151,111 @@ export default function ProjectCreation() {
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
 
   const handlePaymentSubmit = useCallback(
-    async (skipRegistration?: boolean) => {
+    async ({
+      paymentMethodId,
+      skipRegistration,
+    }: {
+      paymentMethodId?: number;
+      skipRegistration?: boolean;
+    }) => {
       if (!cart || !paymentHandlerRef.current) {
-        return;
+        return false;
       }
 
       setIsSubmitting(true);
       try {
-        let result;
+        let currentPaymentMethodId: number | undefined = paymentMethodId;
 
         if (!skipRegistration) {
-          result = await paymentHandlerRef.current.submitPaymentMethod(cart);
-        }
+          const resultRegister = await paymentHandlerRef.current.submitPaymentMethod(
+            cart,
+          );
 
-        if (result !== true) {
-          setIsSubmitting(false);
-          return result;
-        }
-        const cartCheckoutInfo = await getCartCheckout(cart.cartId);
+          if (resultRegister.paymentMethod?.paymentMethodId) {
+            currentPaymentMethodId =
+              resultRegister.paymentMethod?.paymentMethodId;
+          }
 
-        if (paymentHandlerRef.current.onCheckoutRetrieved) {
-          result = await paymentHandlerRef.current.onCheckoutRetrieved({
-            ...cartCheckoutInfo,
-            cartId: cart.cartId,
-          });
-
-          if (result !== true) {
+          if (!resultRegister.continueProcessing) {
             setIsSubmitting(false);
-            return result;
+            return resultRegister.dataToReturn;
           }
         }
 
-        checkoutCart(
-          {
-            cartId: cart.cartId,
-          },
-          {
-            onSuccess: async (cartFinalized: CartSummary) => {
-              if (
-                paymentHandlerRef.current &&
-                paymentHandlerRef.current.onCartFinalized
-              ) {
-                result = await paymentHandlerRef.current.onCartFinalized({
-                  ...cartFinalized,
-                  cartId: cart.cartId,
-                });
+        const cartCheckoutInfo = await getCartCheckout(cart.cartId);
 
-                if (result !== true) {
-                  setIsSubmitting(false);
-                  return result;
+        if (paymentHandlerRef.current.onCheckoutRetrieved) {
+          const resultCheckout = await paymentHandlerRef.current.onCheckoutRetrieved(
+            {
+              ...cartCheckoutInfo,
+              cartId: cart.cartId,
+            },
+            currentPaymentMethodId,
+          );
+
+          if (!resultCheckout.continueProcessing) {
+            setIsSubmitting(false);
+            return resultCheckout.dataToReturn;
+          }
+        }
+
+        return new Promise((resolve, reject) => {
+          checkoutCart(
+            {
+              cartId: cart.cartId,
+            },
+            {
+              onSuccess: async (cartFinalized: CartSummary) => {
+                if (
+                  paymentHandlerRef.current &&
+                  paymentHandlerRef.current.onCartFinalized
+                ) {
+                  const resultFinalize = await paymentHandlerRef.current.onCartFinalized(
+                    {
+                      ...cartFinalized,
+                      cartId: cart.cartId,
+                    },
+                    paymentMethodId,
+                  );
+
+                  if (!resultFinalize.continueProcessing) {
+                    setIsSubmitting(false);
+                    resolve(resultFinalize.dataToReturn);
+                    return;
+                  }
                 }
-              }
-              setIsSubmitting(false);
+                setIsSubmitting(false);
+                resolve(true);
+              },
+              onError: (err) => {
+                setIsSubmitting(false);
+                addError(t('pci_project_new_payment_create_error'));
+                reject(err);
+              },
             },
-            onError: () => {
-              setIsSubmitting(false);
-            },
-          },
-        );
+          );
+        });
       } catch (error) {
         setIsSubmitting(false);
+        addError(t('pci_project_new_payment_create_error'));
+        return false;
       }
     },
     [paymentHandlerRef, cart, isSubmitting],
   );
+
+  const onPaymentSuccess = useCallback((paymentMethodId: number) => {
+    handlePaymentSubmit({ paymentMethodId, skipRegistration: true });
+  }, []);
+
+  const onPaymentError = useCallback(() => {
+    addError(t('pci_project_new_payment_create_error'));
+  }, []);
+
+  usePaymentRedirect({
+    onPaymentError,
+    onPaymentSuccess,
+  });
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
@@ -264,7 +311,7 @@ export default function ProjectCreation() {
             ns: 'new/payment',
           })}
           next={{
-            action: () => handlePaymentSubmit(),
+            action: () => handlePaymentSubmit({ skipRegistration: false }),
             label:
               customSubmitButton ||
               t('pci_project_new_payment_btn_continue_default', {
