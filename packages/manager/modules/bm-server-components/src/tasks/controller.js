@@ -1,25 +1,50 @@
 import isFunction from 'lodash/isFunction';
 import snakeCase from 'lodash/snakeCase';
 import toUpper from 'lodash/toUpper';
+import map from 'lodash/map';
 
 import Task from './tasks.class';
 
 export default class BmServerComponentsTasksController {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, ouiDatagridService, $translate, Server, iceberg) {
     this.$http = $http;
+    this.ouiDatagridService = ouiDatagridService;
+    this.Server = Server;
+    this.$translate = $translate;
+    this.taskStatusFilter = null;
+    this.iceberg = iceberg;
   }
 
-  getTasks({ offset, pageSize }) {
-    return this.loadTasks(
-      this.serviceName,
-      (offset - 1) / pageSize + 1,
-      pageSize,
-    )
+  $onInit() {
+    this.loading = true;
+    return this.Server.getModels()
+      .then((data) => {
+        this.stateEnum =
+          data.data.models['dedicated.server.task.StatusEnum'].enum;
+        this.taskStatusFilterList = map(this.stateEnum, (state) => ({
+          value: state,
+          label: this.$translate.instant(
+            `server_configuration_task_status_${snakeCase(
+              state,
+            ).toUpperCase()}`,
+          ),
+        }));
+      })
+      .catch((err) => {
+        this.handleError(err);
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  getTasks(config) {
+    return this.loadTasks(config)
       .then((res) => {
-        const tasks = res.data;
         return {
-          data: tasks.map(
+          ...res,
+          data: (res.data ?? []).map(
             (task) =>
               new Task(
                 task.lastUpdate,
@@ -28,9 +53,6 @@ export default class BmServerComponentsTasksController {
                 toUpper(snakeCase(task.status)),
               ),
           ),
-          meta: {
-            totalCount: res.headers('x-pagination-elements'),
-          },
         };
       })
       .catch((error) => {
@@ -44,17 +66,50 @@ export default class BmServerComponentsTasksController {
       });
   }
 
-  loadTasks(serviceName, pageNumber, pageSize) {
-    return this.$http.get(`/dedicated/server/${serviceName}/task`, {
-      headers: {
-        Pragma: 'no-cache',
-        'x-pagination-mode': 'CachedObjectList-Pages',
-        'x-pagination-number': pageNumber,
-        'x-pagination-size': pageSize,
-        'x-pagination-sort': 'lastUpdate',
-        'x-pagination-sort-order': 'DESC',
-      },
-    });
+  loadTasks(config) {
+    const paginationParams = {
+      ...config,
+      sortOrder: config.sort.dir === 1 ? 'ASC' : 'DESC',
+      defaultFilterColumn: 'executionDate',
+      isCacheDisabled:
+        !!this.taskStatusFilter &&
+        !['done', 'canceled'].includes(this.taskStatusFilter),
+    };
+    const {
+      offset,
+      pageSize,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+      isCacheDisabled,
+    } = paginationParams;
+
+    const urlParams = {
+      status: this.taskStatusFilter, // || ['doing','init','todo'] , 'doing,init,todo' Both are not working for initial call!! ,
+    };
+
+    const request = this.iceberg(
+      `/dedicated/server/${this.serviceName}/task`,
+      urlParams,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(Math.ceil(offset / (pageSize || 1)))
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    return request
+      .execute(urlParams, isCacheDisabled)
+      .$promise.then(({ data, headers }) => ({
+        data,
+        meta: {
+          totalCount: headers['x-pagination-elements'],
+        },
+      }));
+  }
+
+  refresh() {
+    this.ouiDatagridService.refresh('tasksDatagrid', true);
   }
 
   handleError(error) {
