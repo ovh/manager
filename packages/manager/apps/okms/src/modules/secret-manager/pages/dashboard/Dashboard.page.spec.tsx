@@ -6,6 +6,7 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
@@ -37,6 +38,12 @@ describe('Secrets dashboard test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     // THEN
+    await assertBreadcrumbItems([
+      'RootBreadcrumbItem',
+      'DomainBreadcrumbItem',
+      'SecretBreadcrumbItem',
+    ]);
+
     const labelOnce = [
       // tabs
       labels.secretManager.common.versions,

@@ -16,10 +16,10 @@ import {
 } from '@secret-manager/utils/tests/secretValue.constants';
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
 import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
+import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SecretDashboardPageParams } from '../../dashboard/dashboard.type';
 import { SecretRawValue } from './SecretRawValue.component';
 import { isErrorResponse } from '@/utils/api/api';
 
@@ -121,7 +121,7 @@ const ValueDrawerPage = () => {
   const { t } = useTranslation('secret-manager/common');
   const navigate = useNavigate();
 
-  const { domainId, secretPath } = useParams<SecretDashboardPageParams>();
+  const { domainId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
 
   const [currentVersion, setCurrentVersion] = useState<

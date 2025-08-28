@@ -7,10 +7,11 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
+import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsDatagrid } from '@/common/components/okmsDatagrid/OkmsDatagrid.component';
 import { useOkmsDatagridList } from '@/data/hooks/useOkms';
@@ -72,6 +73,11 @@ export default function SecretDomainsPage() {
       header={{
         title: t('secret-manager/domains:domains_list'),
       }}
+      breadcrumb={
+        <OdsBreadcrumb>
+          <RootBreadcrumbItem />
+        </OdsBreadcrumb>
+      }
       message={notifications.length > 0 && <Notifications />}
     >
       <div className="space-y-6">
