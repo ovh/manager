@@ -3,11 +3,16 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { IpVmacFilterByIp, IpVmacFilterByIpProps } from './IpVmacFilterByIp';
+import { ListingContextProvider } from '@/pages/listing/listingContext';
 import { MacAddressTypeEnum } from '@/data/api';
 
 /** RENDER */
 const renderComponent = (params: IpVmacFilterByIpProps) => {
-  return render(<IpVmacFilterByIp {...params} />);
+  return render(
+    <ListingContextProvider>
+      <IpVmacFilterByIp {...params} />
+    </ListingContextProvider>,
+  );
 };
 
 describe('IpVmacFilterByIp Component', async () => {
@@ -21,6 +26,7 @@ describe('IpVmacFilterByIp Component', async () => {
           type: MacAddressTypeEnum.OVH,
         },
       ],
+      isLoading: false,
     });
     await waitFor(() => {
       expect(getByText('mac')).toBeDefined();
@@ -37,6 +43,7 @@ describe('IpVmacFilterByIp Component', async () => {
           type: MacAddressTypeEnum.OVH,
         },
       ],
+      isLoading: false,
     });
     await waitFor(() => {
       expect(getByText('-')).toBeDefined();
@@ -54,6 +61,7 @@ describe('IpVmacFilterByIp Component', async () => {
         },
       ],
       enabled: false,
+      isLoading: false,
     });
     await waitFor(() => {
       expect(queryByText('-')).toBeNull();
