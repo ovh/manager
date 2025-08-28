@@ -50,6 +50,10 @@ export type TPaymentMethodRef = {
   submitPaymentMethod: (
     cart: TCart,
   ) => Promise<TPaymentCallbackRegisterReturnType>;
+  checkPaymentMethod?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
   onCheckoutRetrieved?: (
     cart: TCart,
     paymentMethodId?: number,
@@ -261,6 +265,21 @@ const PaymentMethods: React.FC<PaymentMethodsProps> = ({
             );
           }
 
+          return { continueProcessing: true };
+        },
+        checkPaymentMethod: async (cart: TCart, paymentMethodId?: number) => {
+          const needsIntegration = !defaultPaymentMethod;
+
+          if (
+            paymentHandlerRef.current &&
+            paymentHandlerRef.current.checkPaymentMethod &&
+            needsIntegration
+          ) {
+            return paymentHandlerRef.current.checkPaymentMethod(
+              cart,
+              paymentMethodId,
+            );
+          }
           return { continueProcessing: true };
         },
         onCheckoutRetrieved: async (cart: TCart, paymentMethodId?: number) => {
