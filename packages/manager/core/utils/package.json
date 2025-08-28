@@ -15,7 +15,8 @@
   "scripts": {
     "build": "tsc --noEmit",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts"
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
+    "test": "vitest run --pool=threads"
   },
   "dependencies": {
     "react": "^18.2.0",

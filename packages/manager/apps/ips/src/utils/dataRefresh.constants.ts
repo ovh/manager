@@ -1,0 +1,1 @@
+export const INVALIDATED_REFRESH_PERIOD = 5000;
