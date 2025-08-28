@@ -9,6 +9,7 @@ import BANK_ACCOUNT_ICON from '@/assets/bank_account.png';
 import SEPA_DIRECT_DEBIT_ICON from '@/assets/sepa_direct_debit.png';
 
 export const CREDIT_PAYMENT_METHOD: TAvailablePaymentMethod = {
+  paymentMethodId: 0,
   icon: {
     data: undefined,
     name: 'credit',
@@ -67,3 +68,5 @@ export const LANGUAGE_OVERRIDE = { IN: `en-IN`, ASIA: `en-GB` };
 export const CHALLENGE_CREDIT_CARD_LENGTH = 6;
 
 export const CREDITS_PREDEFINED_AMOUNT_SEQUENCE = [3, 5, 10, 30];
+
+export const PAYMENT_METHOD_ENSURE_VALIDITY_TIMEOUT = 30000; // 30 seconds
