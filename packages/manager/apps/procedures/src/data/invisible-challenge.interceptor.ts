@@ -50,6 +50,7 @@ export const initInterceptor = () => {
           if (reason instanceof AxiosError) {
             return Promise.reject(reason);
           }
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           const fullError: Error = { ...error, reason };
           return Promise.reject(fullError);
