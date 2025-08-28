@@ -13,8 +13,10 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { useSecretVersions } from '@secret-manager/data/hooks/useSecretVersions';
 import { SecretDashboardPageOutletContext } from '@secret-manager/pages/dashboard/dashboard.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { SecretDashboardPageParams } from '../dashboard.type';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
 import {
   VersionCellCreatedAt,
   VersionCellDeactivatedAt,
@@ -31,7 +33,7 @@ const SecretVersionsPage = () => {
     NAMESPACES.STATUS,
     NAMESPACES.DASHBOARD,
   ]);
-  const { domainId, secretPath } = useParams<SecretDashboardPageParams>();
+  const { domainId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
 
   const { secret } = useOutletContext<SecretDashboardPageOutletContext>();

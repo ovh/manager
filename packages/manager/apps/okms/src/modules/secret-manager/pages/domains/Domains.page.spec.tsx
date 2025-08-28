@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 import { labels } from '@/utils/tests/init.i18n';
@@ -46,6 +47,12 @@ describe('Secret domains listing test suite', () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     await checkDomainsPageToBeDisplayed(container);
+  });
+
+  it('should display the breadcrumb', async () => {
+    await renderTestApp(mockPageUrl);
+
+    await assertBreadcrumbItems(['RootBreadcrumbItem']);
   });
 
   it('should display the region selector', async () => {

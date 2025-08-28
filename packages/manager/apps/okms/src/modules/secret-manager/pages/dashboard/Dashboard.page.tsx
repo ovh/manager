@@ -8,12 +8,18 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
-  SecretDashboardPageOutletContext,
-  SecretDashboardPageParams,
-} from '@secret-manager/pages/dashboard/dashboard.type';
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
+import { SecretDashboardPageOutletContext } from '@secret-manager/pages/dashboard/dashboard.type';
 import { useSecret } from '@secret-manager/data/hooks/useSecret';
+import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  DomainBreadcrumbItem,
+  RootBreadcrumbItem,
+  SecretBreadcrumbItem,
+} from '@secret-manager/components/breadcrumb';
 import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 import Loading from '@/components/Loading/Loading';
 import {
@@ -22,7 +28,7 @@ import {
 } from '@/common/components/tabNavigation/TabNavigation.component';
 
 export default function SecretDashboardPage() {
-  const { domainId, secretPath } = useParams<SecretDashboardPageParams>();
+  const { domainId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { t } = useTranslation([
     'secret-manager/dashboard',
@@ -85,6 +91,13 @@ export default function SecretDashboardPage() {
       header={headerProps}
       backLinkLabel={t('back_to_list')}
       message={notifications.length > 0 && <Notifications />}
+      breadcrumb={
+        <OdsBreadcrumb>
+          <RootBreadcrumbItem />
+          <DomainBreadcrumbItem />
+          <SecretBreadcrumbItem />
+        </OdsBreadcrumb>
+      }
       tabs={<TabNavigation tabs={tabsList} />}
       onClickReturn={() => {
         navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));

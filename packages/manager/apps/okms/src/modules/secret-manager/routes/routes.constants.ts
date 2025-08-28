@@ -79,3 +79,7 @@ export const SECRET_MANAGER_SEARCH_PARAMS = {
 
 export const SECRET_MANAGER_ROUTES_URIS = URIS;
 export const SECRET_MANAGER_ROUTES_URLS = URLS;
+
+export type LocationPathParams = {
+  [K in keyof typeof SECRET_MANAGER_URL_PARAMS]: string;
+};
