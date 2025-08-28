@@ -71,7 +71,7 @@ export default function AddObjectPage() {
   const goBack = () =>
     navigate({
       pathname: `..`,
-      search: `?region=${region}`,
+      search: `?region=${region}&refetch=true`,
     });
 
   const handleSuccess = () => {
