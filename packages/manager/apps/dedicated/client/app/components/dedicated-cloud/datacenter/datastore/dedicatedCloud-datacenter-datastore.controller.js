@@ -14,11 +14,13 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
+    $translate,
     ovhManagerPccDatacenterService,
     ovhManagerPccDatacenterDatastoreService,
     coreConfig,
   ) {
     this.$q = $q;
+    this.$translate = $translate;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhManagerPccDatacenterDatastoreService = ovhManagerPccDatacenterDatastoreService;
     this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
@@ -84,6 +86,13 @@ export default class {
 
       return datastore;
     };
+  }
+
+  getDatastoreUsage(datastore) {
+    const datastoreUnit = this.$translate.instant(
+      `unit_size_${datastore.size.unit}`,
+    );
+    return `${datastore.spaceUsed} / ${datastore.size.value} ${datastoreUnit}`;
   }
 
   chooseConsumptionFetchingMethod(datastore) {
