@@ -52,7 +52,7 @@ export default function DeletePage() {
 
       goBack();
     },
-    onError(error: ApiError) {
+    onError(error) {
       trackPage({
         pageType: PageType.bannerError,
         pageName: VOLUME_BACKUP_TRACKING.DELETE_BACKUP.REQUEST_FAIL,
