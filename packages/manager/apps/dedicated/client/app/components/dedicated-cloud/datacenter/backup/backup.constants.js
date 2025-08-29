@@ -1,16 +1,7 @@
-export const BACKUP_PROPERTIES = [
-  'backupDurationInReport',
-  'backupSizeInReport',
-  'diskSizeInReport',
-  'fullDayInReport',
-  'restorePointInReport',
-  'backupOffer',
-];
-
 export const BACKUP_PROPERTIES_MAP = {
-  classic: BACKUP_PROPERTIES,
-  advanced: [...BACKUP_PROPERTIES, 'mailAddress'],
-  premium: [...BACKUP_PROPERTIES, 'mailAddress'],
+  classic: [],
+  advanced: ['mailAddress'],
+  premium: ['mailAddress'],
 };
 
 export const BACKUP_MINIMUM_HOST_COUNT = 2;
@@ -111,7 +102,6 @@ export default {
   BACKUP_OFFER_PREMIUM,
   BACKUP_OFFER_ADVANCED,
   BACKUP_OFFER_CLASSIC,
-  BACKUP_PROPERTIES,
   BACKUP_PROPERTIES_MAP,
   BACKUP_STATE_DISABLED,
   BACKUP_STATE_ENABLING,
