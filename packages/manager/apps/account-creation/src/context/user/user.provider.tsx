@@ -39,10 +39,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
         navigate(urls.preferences);
         return;
       }
-      if (me?.ovhSubsidiary !== 'GB') {
+      /* if (me?.ovhSubsidiary !== 'GB') {
         redirectToLegacySignup();
         return;
-      }
+      } */
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
       setCountry(me?.country as Country);
@@ -59,16 +59,23 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     } as User);
   }, [legalForm, country]);
 
-  const setCompany = (company: Company) => {
-    setOrganisation(company.name);
-    setCompanyNationalIdentificationNumber(
-      company.secondaryCNIN || company.primaryCNIN,
-    );
-    if (company.address) {
-      setAddress(company.address);
-    }
-    if (company.city) {
-      setCity(company.city);
+  const setCompany = (company: Company | null) => {
+    if (company !== null) {
+      setOrganisation(company.name);
+      setCompanyNationalIdentificationNumber(
+        company.secondaryCNIN || company.primaryCNIN,
+      );
+      if (company.address) {
+        setAddress(company.address);
+      }
+      if (company.city) {
+        setCity(company.city);
+      }
+    } else {
+      setOrganisation(undefined);
+      setCompanyNationalIdentificationNumber(undefined);
+      setAddress(undefined);
+      setCity(undefined);
     }
   };
 
