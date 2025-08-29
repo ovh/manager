@@ -1,7 +1,7 @@
 {
   "managed_vcd_vdc_order_storage_title": "Speicherkapazität bestellen",
-  "managed_vcd_vdc_order_compute_subtitle": "Sie können Ihr Virtual Datacenter anpassen, indem Sie Virtual Hosts hinzufügen. Danach werden Sie zu einem neuen Tab weitergeleitet, um die Bestellung abzuschließen. Wählen Sie einen Virtual-Host-Typ aus.",
-  "managed_vcd_vdc_order_storage_subtitle": "Sie können Ihr Virtual Datacenter anpassen, indem Sie Speicherkapazität hinzufügen. Danach werden Sie zu einem neuen Tab weitergeleitet, um die Bestellung abzuschließen. Wählen Sie Ihre Speicherkapazität.",
+  "managed_vcd_vdc_order_compute_subtitle": "Sie können Ihr Virtual Datacenter anpassen, indem Sie Virtual Hosts hinzufügen. Danach werden Sie zu einem neuen Tab weitergeleitet, um die Bestellung abzuschließen.",
+  "managed_vcd_vdc_order_storage_subtitle": "Sie können Ihr Virtual Datacenter anpassen, indem Sie Speicherkapazität hinzufügen. Danach werden Sie zu einem neuen Tab weitergeleitet, um die Bestellung abzuschließen.",
   "managed_vcd_vdc_order_unavailable": "Bitte kontaktieren Sie den OVHcloud Support.",
   "managed_vcd_vdc_order_vhost": "Virtual Host",
   "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",
@@ -15,5 +15,7 @@
   "managed_vcd_vdc_order_quantity_label": "Menge",
   "managed_vcd_vdc_order_cancel_cta": "Abbrechen",
   "managed_vcd_vdc_order_confirm_cta": "Bestellen",
-  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/TB"
+  "managed_vcd_vdc_order_performance_class": "{{performanceClass}}/TB",
+  "managed_vcd_vdc_order_compute_subtitle2": "Wählen Sie einen Virtual-Host-Typ aus.",
+  "managed_vcd_vdc_order_storage_subtitle2": "Wählen Sie Ihre Speicherkapazität aus."
 }
