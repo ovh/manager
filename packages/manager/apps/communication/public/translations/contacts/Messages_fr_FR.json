@@ -1,0 +1,14 @@
+{
+  "table_column_description": "Nom",
+  "table_column_type": "Type",
+  "table_column_contact_mean": "Titre de Contact",
+  "table_column_status": "Statut",
+  "table_action_edit": "Renommer",
+  "table_action_deactivate": "Désactiver",
+  "table_action_delete": "Supprimer",
+  "table_action_resend_verification_code": "Renvoyer le code de validation",
+  "default_badge_label": "Par défaut",
+  "add_contact_button": "Ajouter un contact",
+  "type_email": "Email",
+  "type_phone": "Téléphone"
+}

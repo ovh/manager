@@ -6,7 +6,7 @@ import { urls } from '@/routes/routes.constant';
 
 const RootLayout = lazy(() => import('@/pages/layout'));
 const DashboardLayout = lazy(() => import('@/pages/dashboardLayout'));
-const ContactsPage = lazy(() => import('@/pages/contacts'));
+const ContactsPage = lazy(() => import('@/pages/contacts/Contacts.page'));
 const CommunicationsPage = lazy(() =>
   import('@/pages/communications/Communications.page'),
 );
