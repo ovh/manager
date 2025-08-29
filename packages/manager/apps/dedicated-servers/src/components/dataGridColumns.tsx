@@ -56,6 +56,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
     {
       id: 'ip',
       isSearchable: false,
+      isSortable: false,
       isFilterable: true,
       enableHiding: true,
       type: FilterTypeCategories.String,
@@ -78,7 +79,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       ),
     },
     {
-      id: 'commercialRange',
+      id: 'model',
       isSearchable: false,
       isFilterable: true,
       enableHiding: true,
