@@ -12,8 +12,7 @@ export default function ActionsComponent({
   volume,
   projectUrl,
 }: Readonly<ActionsProps>) {
-  const { t } = useTranslation();
-
+  const { t } = useTranslation(['common', 'retype']);
   const hrefEdit = useHref(`./${volume.id}/edit`);
   const hrefAttach = useHref(`./attach/${volume.id}`);
   const hrefDetach = useHref(`./detach/${volume.id}`);
@@ -28,6 +27,16 @@ export default function ActionsComponent({
       actionValues: [volume.region, volume.type],
     }),
   );
+
+  const isVolumeClassic3az = volume.is3az && volume.isClassicMultiAttach;
+
+  const retypeTitleIfDeactivated = isVolumeClassic3az
+    ? {
+        title: t(
+          'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+        ),
+      }
+    : {};
 
   const items: (ActionMenuItem & { dataTestid?: string })[] = [
     {
@@ -63,12 +72,16 @@ export default function ActionsComponent({
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_encryption'),
       dataTestid: 'actionComponent-change-encryption-button',
+      disabled: isVolumeClassic3az,
+      ...retypeTitleIfDeactivated,
     },
     {
       id: 5,
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_type'),
       dataTestid: 'actionComponent-retype-button',
+      disabled: isVolumeClassic3az,
+      ...retypeTitleIfDeactivated,
     },
     {
       id: 6,

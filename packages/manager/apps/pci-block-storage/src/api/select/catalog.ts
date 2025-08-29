@@ -21,10 +21,10 @@ export type TModelName = Readonly<{
 
 type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 
-const is3az = (catalogRegions: TRegion[], region: string) =>
+export const is3az = (catalogRegions: TRegion[], region: string) =>
   catalogRegions.find((r) => r.name === region)?.type === 'region-3-az';
 
-const isMultiAttach = <T extends TVolumeAddon>(model: T) =>
+const isClassicMultiAttach = <T extends TVolumeAddon>(model: T) =>
   model.name === 'classic-multiattach';
 
 export const mapVolumeModelName = <T extends TVolumeAddon>(
@@ -36,7 +36,7 @@ export const mapVolumeModelName = <T extends TVolumeAddon>(
   return (model: T): TVolumeModelWithName<T> => ({
     ...model,
     name: model.name as TModelName['name'],
-    displayName: (is3azRegion && isMultiAttach(model)
+    displayName: (is3azRegion && isClassicMultiAttach(model)
       ? 'Classic 3AZ'
       : model.name) as TModelName['displayName'],
   });
@@ -258,7 +258,7 @@ export const mapVolumeModelAttach = <T extends TVolumeAddon>(
   model: T,
 ): TVolumeModelWithAttach<T> => ({
   ...model,
-  shouldUseMultiAttachFileSystem: isMultiAttach(model),
+  shouldUseMultiAttachFileSystem: isClassicMultiAttach(model),
 });
 
 export type TFilterTags = {
@@ -387,7 +387,10 @@ export const mapRetypingVolumeCatalog = (
   type: string | null,
 ) => (catalog: TVolumeCatalog) =>
   filterVolumeModelsForRegion(catalog, region)
-    .filter((model) => !is3az(catalog.regions, region) || !isMultiAttach(model))
+    .filter(
+      (model) =>
+        !is3az(catalog.regions, region) || !isClassicMultiAttach(model),
+    )
     .map<TVolumeRetypeModel>(
       pipe(
         mapVolumeModelPriceSpecs(
