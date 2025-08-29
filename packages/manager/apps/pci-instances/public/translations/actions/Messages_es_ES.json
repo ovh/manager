@@ -39,7 +39,7 @@
   "pci_instances_actions_backup_instance_error_message": "Se ha producido un error al guardar la instancia {{ name }}: {{ error }}",
   "pci_instances_actions_backup_instance_success_message": "Creando el backup {{ name }}...",
   "pci_instances_actions_billing_monthly_activate_instance_title": "Cambiar a tarifa mensual",
-  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "<0>Ahorre en la factura de su instancia pasando a la tarifa mensual.</0> <1>Ver precios</1>",
+  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "<0>Reduzca el importe de su factura cambiando la instancia a tarifa mensual.</0> <1>Ver los precios</1>",
   "pci_instances_actions_billing_monthly_activate_instance_warning_message": "La instancia se va a suspender durante unos segundos. A continuación, el rendimiento de lectura-escritura del disco podría verse afectado hasta que finalice el backup.",
   "pci_instances_actions_billing_monthly_activate_instance_error_message": "Se ha producido un error al activar la facturación mensual de la instancia {{ name }}: {{ error }}",
   "pci_instances_actions_billing_monthly_activate_instance_success_message": "Se ha cambiado la instancia {{ name }} a facturación mensual.",

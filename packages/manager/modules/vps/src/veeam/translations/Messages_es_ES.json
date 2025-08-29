@@ -3,6 +3,6 @@
   "vps_tab_VEEAM_schedule_backup_edit": "Editar",
   "vps_tab_VEEAM_schedule_backup_description": "El backup automatizado se realiza todos los días a las (zona horaria UTC): ",
   "vps_tab_VEEAM_schedule_backup_schedule_banner_info": "Solo es posible modificar la hora del backup automatizado en la nueva gama de VPS.",
-  "vps_tab_VEEAM_schedule_backup_offer_information": "Su backup automatizado le permite disfrutar de una restauración de 7 días y de una copia de seguridad a medida pasando a la opción premium.",
-  "vps_tab_VEEAM_schedule_backup_premium_order": "Contratar un backup premium"
+  "vps_tab_VEEAM_schedule_backup_offer_information": "La opción Premium le ofrece un backup automatizado que le permite disfrutar de una restauración de 7 días y de una copia de seguridad a medida.",
+  "vps_tab_VEEAM_schedule_backup_premium_order": "Contratar un backup Premium"
 }
