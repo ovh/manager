@@ -22,7 +22,7 @@ export const useUpdateSecretVersion = () => {
       queryClient.setQueryData<SecretVersion[]>(
         secretVersionsQueryKeys.list(variables.okmsId, variables.path),
         (oldVersions) => {
-          return oldVersions.map((version) => {
+          return oldVersions?.map((version) => {
             if (version.id === variables.version) {
               return {
                 ...version,
