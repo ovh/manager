@@ -6,31 +6,61 @@
     data-translate-values="{ billingGuideUrl: $ctrl.guides.billing, vMotionGuideUrl: $ctrl.guides.vMotion }"
 ></p>
 
-<oui-datagrid data-rows-loader="$ctrl.loadDatastores($config)">
+<oui-datagrid
+    data-rows-loader="$ctrl.loadDatastores($config)"
+    data-customizable
+>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_id' | translate"
         data-property="filerId"
+        data-filterable
+        data-sortable
+        data-hidden
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_name' | translate"
         data-property="name"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-prevent-customization
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_profile' | translate"
         data-property="fullProfile"
+        data-filterable
+        data-sortable
     >
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_size' | translate"
+        data-property="size.value"
+        data-filterable
+        data-sortable
     >
         <span
             data-ng-bind="$row.size.value + ' ' + ('unit_size_' + $row.size.unit | translate)"
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_tab_datastores_usage' | translate"
+        data-property="spaceUsed"
+        data-filterable
+        data-sortable
+    >
+        <oui-progress data-max-value="{{$row.size.value}}">
+            <oui-progress-bar data-type="info" data-value="$row.spaceUsed">
+                <span data-ng-bind="$ctrl.getDatastoreUsage($row)"></span>
+            </oui-progress-bar>
+        </oui-progress>
+    </oui-datagrid-column>
+    <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_active_node' | translate"
+        data-property="activeNode"
+        data-filterable
+        data-sortable
     >
         <span
             data-ng-bind="'dedicatedCloud_tab_datastores_active_node_' + $row.activeNode | translate"
@@ -42,6 +72,9 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_billing' | translate"
+        data-property="billingType"
+        data-filterable
+        data-sortable
     >
         <span
             data-ng-bind="'dedicatedCloud_tab_datastores_billing_' + $row.billingType | translate"
@@ -49,6 +82,9 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_status' | translate"
+        data-property="state"
+        data-filterable
+        data-sortable
     >
         <span
             data-ng-bind="'dedicatedCloud_tab_datastores_status_' + $row.state | translate"
@@ -56,6 +92,9 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_scope' | translate"
+        data-property="isGlobal"
+        data-filterable
+        data-sortable
     >
         <span
             data-ng-if="$row.isGlobal"
@@ -68,6 +107,9 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_datacenter' | translate"
+        data-property="location.datacenter"
+        data-filterable
+        data-sortable
     >
         <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
         <span
@@ -77,6 +119,10 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_room' | translate"
+        data-property="location.room"
+        data-filterable
+        data-sortable
+        data-hidden
     >
         <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
         <span
@@ -86,6 +132,9 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_location_rack' | translate"
+        data-property="location.rack"
+        data-filterable
+        data-sortable
     >
         <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
         <span
@@ -95,6 +144,10 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_tab_datastores_consumption' | translate"
+        data-property="consumption"
+        data-filterable
+        data-sortable
+        data-hidden
     >
         <oui-skeleton size="xs" data-ng-if="$row.asyncLoading"></oui-skeleton>
         <span
