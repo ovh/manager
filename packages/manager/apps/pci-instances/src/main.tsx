@@ -23,6 +23,8 @@ const init = async (
     // nothing to do
   }
 
+  // test
+
   await initI18n({
     context,
     reloadOnLocaleChange,
