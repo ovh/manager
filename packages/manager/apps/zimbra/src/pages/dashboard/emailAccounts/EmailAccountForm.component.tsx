@@ -172,6 +172,7 @@ export const EmailAccountForm = () => {
         </OdsText>,
         true,
       );
+      onClose();
     },
     onError: (error: ApiError) => {
       trackPage({
@@ -196,7 +197,6 @@ export const EmailAccountForm = () => {
       queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
-      onClose();
     },
   });
 
