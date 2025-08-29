@@ -1,0 +1,10 @@
+{
+  "suggestion_modal_title": "Mise à jour de votre numéro SIRET / VAT",
+  "suggestion_modal_description": "Dans le cadre de la mise en place de la facturation électronique en France, nous sommes tenus de vérifier l'identité de votre entreprise pour garantir la conformité de vos informations fiscales. Nous avons effectué des recherches et avons trouvé les informations correspondantes pour votre entreprise.",
+  "suggestion_modal_description_sub": "Si vous ne constatez aucune erreur dans ces informations, cliquez sur le bouton Je valide ces informations. Sinon merci de cliquer sur le bouton Je mets à jour dans mon profil.",
+  "suggestion_modal_listed_type_SIRET": "SIRET",
+  "suggestion_modal_listed_type_VAT": "Numéro de TVA Intracommunautaire",
+  "suggestion_modal_listed_type_NIN": "Numéro d'identification national",
+  "suggestion_modal_action_modify": "Je mets à jour dans mon profil",
+  "suggestion_modal_action_confirm": "Je valide ces informations"
+}

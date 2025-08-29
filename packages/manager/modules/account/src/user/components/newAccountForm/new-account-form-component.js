@@ -9,6 +9,7 @@ export default {
     onSubmit: '&', // on create callback
     userAccountServiceInfos: '<',
     fieldToFocus: '<',
+    isUpdated: '<',
     kycStatus: '<',
     getKycStatus: '<',
   },
