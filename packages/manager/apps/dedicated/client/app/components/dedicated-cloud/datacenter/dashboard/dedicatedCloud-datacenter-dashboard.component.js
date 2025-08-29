@@ -3,19 +3,15 @@ import template from './dedicatedCloud-datacenter-dashboard.html';
 
 export default {
   bindings: {
-    currentDrp: '<',
+    currentZerto: '<',
     currentUser: '<',
     datacenter: '<',
     dedicatedCloud: '<',
     deleteDatacenter: '<',
-    drpAvailability: '<',
-    drpGlobalStatus: '<',
+    zertoAvailability: '<',
+    zertoGlobalStatus: '<',
     editDetails: '<',
     goToVpnConfiguration: '<',
-    goToDrp: '<',
-    goToDrpSummary: '<',
-    goToDeleteDrp: '<',
-    isDrpActionPossible: '<',
     pccType: '<',
     productId: '<',
     serviceName: '<',
