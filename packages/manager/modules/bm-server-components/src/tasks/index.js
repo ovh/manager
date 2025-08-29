@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-translate-async-loader';
+import service from '../server/server.service';
 
 import component from './component';
 
@@ -16,6 +17,7 @@ angular
     'ngAtInternet',
     'ngTranslateAsyncLoader',
   ])
+  .service('Server', service)
   .component('serverTasks', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
