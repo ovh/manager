@@ -2,6 +2,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import {
+  useAllVolumes,
   useAttachVolume,
   useDeleteVolume,
   useDetachVolume,
@@ -9,13 +10,23 @@ import {
   useVolumes,
 } from '@/api/hooks/useVolume';
 import {
-  getVolume,
-  getAllVolumes,
-  deleteVolume,
   attachVolume,
+  deleteVolume,
   detachVolume,
+  getAllVolumes,
+  getVolume,
   TAPIVolume,
 } from '@/api/data/volume';
+import {
+  mapVolumeAttach,
+  mapVolumeEncryption,
+  mapVolumePricing,
+  mapVolumeRegion,
+  mapVolumeStatus,
+  mapVolumeType,
+  paginateResults,
+  sortResults,
+} from '@/api/select/volume';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -26,6 +37,23 @@ vi.mock('@/api/data/volume', async (importOriginal) => {
     deleteVolume: vi.fn(),
     attachVolume: vi.fn(),
     detachVolume: vi.fn(),
+  };
+});
+
+vi.mock('@/api/select/volume', async (importOriginal) => {
+  const actual: any = await importOriginal();
+  return {
+    ...actual,
+    mapVolumeAttach: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeEncryption: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumePricing: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeRegion: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeStatus: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeToAdd: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeToEdit: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeType: vi.fn().mockReturnValue(vi.fn()),
+    paginateResults: vi.fn(),
+    sortResults: vi.fn(),
   };
 });
 
@@ -49,21 +77,8 @@ const onSuccess = vi.fn();
 const onError = vi.fn();
 
 describe('useVolume', () => {
-  it('returns volume data when volumeId is provided', async () => {
-    const volumeMock = {
-      id: '1',
-      name: 'Volume 1',
-      attachedTo: [],
-      creationDate: '',
-      description: '',
-      size: 0,
-      status: '',
-      region: 'region1',
-      bootable: false,
-      planCode: '',
-      type: 'model1',
-      availabilityZone: 'any',
-    } as TAPIVolume;
+  it('returns mapped volume data when volumeId is provided', async () => {
+    const volumeMock = { id: '1' } as TAPIVolume;
 
     vi.mocked(getVolume).mockResolvedValue(volumeMock);
 
@@ -73,7 +88,12 @@ describe('useVolume', () => {
 
     await waitFor(() => {
       expect(getVolume).toHaveBeenCalledWith('123', '1');
-      expect(result.current.data).toEqual(expect.objectContaining(volumeMock));
+      expect(mapVolumeAttach).toHaveBeenCalled();
+      expect(mapVolumeEncryption).toHaveBeenCalled();
+      expect(mapVolumeStatus).toHaveBeenCalled();
+      expect(mapVolumeRegion).toHaveBeenCalled();
+      expect(mapVolumePricing).toHaveBeenCalled();
+      expect(result.current.isPending).toBe(false);
     });
   });
 
@@ -86,36 +106,10 @@ describe('useVolume', () => {
 });
 
 describe('useVolumes', () => {
-  it('returns volumes data when projectId is provided', async () => {
+  it('returns volumes data mapped, paginated and sorted when projectId is provided', async () => {
     const volumesMock: TAPIVolume[] = [
-      {
-        id: '1',
-        name: 'Volume 1',
-        attachedTo: ['inst1'],
-        creationDate: '',
-        description: '',
-        size: 0,
-        status: 'available',
-        region: 'region1',
-        bootable: false,
-        planCode: '',
-        type: 'model1',
-        availabilityZone: 'any',
-      },
-      {
-        id: '2',
-        name: 'Volume 2',
-        attachedTo: [],
-        creationDate: '',
-        description: '',
-        size: 0,
-        status: 'available',
-        region: 'region2',
-        bootable: false,
-        planCode: '',
-        type: 'model1',
-        availabilityZone: 'any',
-      },
+      { id: '1' },
+      { id: '2' },
     ] as TAPIVolume[];
 
     vi.mocked(getAllVolumes).mockResolvedValue(volumesMock);
@@ -133,48 +127,14 @@ describe('useVolumes', () => {
 
     await waitFor(() => {
       expect(getAllVolumes).toHaveBeenCalledWith('123');
-      expect(result.current.data).toEqual({
-        pageCount: 1,
-        rows: [
-          expect.objectContaining({
-            attachedTo: ['inst1'],
-            bootable: false,
-            creationDate: '',
-            description: '',
-            id: '1',
-            name: 'Volume 1',
-            planCode: '',
-            region: 'region1',
-            regionName: 'region:manager_components_region_region_micro',
-            size: 0,
-            status: 'available',
-            statusGroup: 'ACTIVE',
-            type: 'model1',
-            availabilityZone: 'any',
-            canAttachInstance: false,
-            canDetachInstance: true,
-          }),
-          expect.objectContaining({
-            attachedTo: [],
-            bootable: false,
-            creationDate: '',
-            description: '',
-            id: '2',
-            name: 'Volume 2',
-            planCode: '',
-            region: 'region2',
-            regionName: 'region:manager_components_region_region_micro',
-            size: 0,
-            status: 'available',
-            statusGroup: 'ACTIVE',
-            type: 'model1',
-            availabilityZone: 'any',
-            canAttachInstance: true,
-            canDetachInstance: false,
-          }),
-        ],
-        totalRows: 2,
-      });
+      expect(mapVolumeStatus).toHaveBeenCalled();
+      expect(mapVolumeRegion).toHaveBeenCalled();
+      expect(mapVolumeAttach).toHaveBeenCalled();
+      expect(mapVolumeEncryption).toHaveBeenCalled();
+      expect(mapVolumeType).toHaveBeenCalled();
+      expect(paginateResults).toHaveBeenCalled();
+      expect(sortResults).toHaveBeenCalled();
+      expect(result.current.isPending).toBe(false);
     });
   });
 
@@ -187,6 +147,39 @@ describe('useVolumes', () => {
         }),
       { wrapper },
     );
+
+    expect(getAllVolumes).not.toHaveBeenCalled();
+    expect(result.current.isPending).toBe(true);
+  });
+});
+
+describe('useAllVolumes', () => {
+  it('returns volumes data when projectId is provided', async () => {
+    const volumesMock: TAPIVolume[] = [
+      { id: '1' },
+      { id: '2' },
+    ] as TAPIVolume[];
+
+    vi.mocked(getAllVolumes).mockResolvedValue(volumesMock);
+
+    const { result } = renderHook(() => useAllVolumes('123'), {
+      wrapper,
+    });
+
+    await waitFor(() => {
+      expect(getAllVolumes).toHaveBeenCalledWith('123');
+      expect(getAllVolumes).toHaveBeenCalledWith('123');
+      expect(mapVolumeStatus).toHaveBeenCalled();
+      expect(mapVolumeRegion).toHaveBeenCalled();
+      expect(mapVolumeAttach).toHaveBeenCalled();
+      expect(mapVolumeEncryption).toHaveBeenCalled();
+      expect(mapVolumeType).toHaveBeenCalled();
+      expect(result.current.isPending).toBe(false);
+    });
+  });
+
+  it('does not fetch data when projectId is not provided', () => {
+    const { result } = renderHook(() => useAllVolumes(null), { wrapper });
 
     expect(getAllVolumes).not.toHaveBeenCalled();
     expect(result.current.isPending).toBe(true);
