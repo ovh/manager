@@ -147,16 +147,16 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
           value: mock.gateway,
           label: l.server_config_input_gateway_ip,
         },
-        {
-          value: mock.thickDatastorePolicy,
-          label: l.server_config_input_thick_storage,
-        },
         { type: 'subtitle', label: LABELS.SAP_HANA },
         {
           value: mock.hanaServerOva,
           label: l.server_config_input_ova_model,
         },
         { value: mock.hanaServerDatastore, label: FORM_LABELS.datastore },
+        {
+          value: mock.thickDatastorePolicy,
+          label: l.server_config_input_thick_storage,
+        },
         ...(mock.hanaServers?.length ? getVMFields(mock.hanaServers) : []),
         { type: 'subtitle', label: l.server_config_applications_servers },
         {
