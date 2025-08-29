@@ -78,6 +78,17 @@ export default [
             },
             children: [],
           },
+          {
+            path: 'retype',
+            element: <StorageActionRedirect action="retype" />,
+          },
+          {
+            path: 'retype/:volumeId',
+            ...lazyRouteConfig(() => import('@/pages/retype/Retype.page')),
+            handle: {
+              tracking: 'retype',
+            },
+          },
         ],
       },
       {
