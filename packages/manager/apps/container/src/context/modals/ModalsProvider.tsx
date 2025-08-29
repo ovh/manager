@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useCallback } from 'react';
 import ModalsContext, { ModalsContextType } from './modals.context';
 
 import { useShell } from '@/context';
@@ -23,9 +23,8 @@ export const ModalsProvider = (): JSX.Element => {
   );
   const { isDisplayed, data } = useModalManager(current);
 
-  useEffect(() => {
-    if (current === null) return;
-    uxPlugin.registerModalActionDoneListener((id: string) => {
+  const handleActionDone = useCallback(
+    (id: string) => {
       if (id === current?.component.name) {
         setCurrent((previous) => {
           const nextConfigurationIndex = MODALS_TO_DISPLAY.indexOf(current) + 1;
@@ -38,8 +37,19 @@ export const ModalsProvider = (): JSX.Element => {
           return MODALS_TO_DISPLAY[nextConfigurationIndex];
         });
       }
-    });
-  }, [current]);
+    },
+    [current],
+  );
+
+  useEffect(() => {
+    if (current === null) return;
+
+    uxPlugin.registerModalActionDoneListener(handleActionDone);
+
+    return () => {
+      uxPlugin.unregisterModalActionDoneListener(handleActionDone);
+    };
+  }, [current, uxPlugin, handleActionDone]);
 
   useEffect(() => {
     // On the first inner app full display we'll start managing modals lifecycle
