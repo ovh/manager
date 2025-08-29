@@ -7,8 +7,12 @@ import {
   TVolumeRetypeModel,
   useCatalogWithPreselection,
 } from '@/api/hooks/useCatalogWithPreselection';
-import { mapRetypingVolumeCatalog } from '@/api/select/catalog';
-import { EncryptionType, getEncryption } from '@/api/select/volume';
+import { is3az, mapRetypingVolumeCatalog } from '@/api/select/catalog';
+import {
+  EncryptionType,
+  getEncryption,
+  isClassicMultiAttach,
+} from '@/api/select/volume';
 import { TRegion } from '@/api/data/regions';
 
 vi.mock('@tanstack/react-query', () => ({
@@ -21,11 +25,13 @@ vi.mock('@/api/select/volume', async (importActual) => {
   return {
     ...actual,
     getEncryption: vi.fn(),
+    isClassicMultiAttach: vi.fn(),
   };
 });
 
 vi.mock('@/api/select/catalog', () => ({
   mapRetypingVolumeCatalog: vi.fn(),
+  is3az: vi.fn(),
 }));
 
 vi.mock('@/api/hooks/useVolume', () => ({
@@ -134,6 +140,8 @@ describe('useCatalogWithPreselection', () => {
       { data: volumeMock, isPending: false },
       { data: mockCatalog, isPending: false },
     ]);
+    vi.mocked(is3az).mockReturnValue(true);
+    vi.mocked(isClassicMultiAttach).mockReturnValue(true);
 
     const { result } = renderHook(() =>
       useCatalogWithPreselection(PROJECT_ID, VOLUME_ID),
