@@ -34,7 +34,7 @@ describe('suggestionsHelpers', () => {
       const user: Partial<User> = {
         legalform: 'corporation',
         country: 'FR',
-        companyNationalIdentificationNumber: 12345678901234,
+        companyNationalIdentificationNumber: '12345678901234',
       };
       expect(isUserConcernedBySuggestion(user as User)).toEqual(true);
     });
