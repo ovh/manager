@@ -28,19 +28,16 @@ export const OrganisationSection: React.FC = () => {
   return (
     <OrderSection
       title={t('organisation_selection_title')}
-      description={
-        t('organisation_selection_description') +
-        (isRegionInEu(selectedRegion)
-          ? t('organisation_selection_description_no_organisation_RIPE')
-          : t('organisation_selection_description_no_organisation_ARIN'))
-      }
+      description={t('organisation_selection_description')}
     >
       <OdsMessage
         isDismissible={false}
         className="block mb-3"
         color={ODS_MESSAGE_COLOR.information}
       >
-        {t('organisation_selection_info')}
+        {isRegionInEu(selectedRegion)
+          ? t('organisation_selection_description_no_organisation_RIPE')
+          : t('organisation_selection_description_no_organisation_ARIN')}
       </OdsMessage>
       {isLoading ? (
         <OdsSkeleton />
