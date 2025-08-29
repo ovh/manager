@@ -26,6 +26,7 @@ import {
   SUBMIT_BTN_TEST_ID,
 } from '@secret-manager/utils/tests/secret.constants';
 import { BackLink } from './BackLink.component';
+import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 
 type SecretFormProps = {
   domainId?: string;
@@ -54,6 +55,10 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
   } = useForm({
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
+    defaultValues: {
+      // Prefill data with a template to help the user with the JSON format
+      data: SECRET_DATA_TEMPLATE,
+    },
   });
 
   /* Submit */
