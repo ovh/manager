@@ -21,6 +21,7 @@ export type TStepProps = {
     action: (id: string) => void;
     label: string | JSX.Element;
     isDisabled?: boolean;
+    isLoading?: boolean;
   };
   edit?: {
     action: (id: string) => void;
@@ -127,16 +128,21 @@ export const StepComponent = ({
               <div className="flex items-center gap-6 mt-6">
                 {next?.action && !isLocked && (
                   <div data-testid="next">
-                    <OdsButton
-                      data-testid="next-cta"
-                      label={next.label as string}
-                      size={ODS_BUTTON_SIZE.md}
-                      onClick={() => {
-                        next.action(id);
-                      }}
-                      className="w-fit"
-                      isDisabled={next.isDisabled || undefined}
-                    />
+                    {typeof next.label === 'string' ? (
+                      <OdsButton
+                        data-testid="next-cta"
+                        label={next.label}
+                        size={ODS_BUTTON_SIZE.md}
+                        onClick={() => {
+                          next.action(id);
+                        }}
+                        className="w-fit"
+                        isDisabled={next.isDisabled || undefined}
+                        isLoading={next.isLoading || false}
+                      />
+                    ) : (
+                      next.label
+                    )}
                   </div>
                 )}
                 {skip?.action && (
