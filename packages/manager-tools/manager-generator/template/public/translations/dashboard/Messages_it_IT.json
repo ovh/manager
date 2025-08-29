@@ -1,0 +1,19 @@
+{
+  "home": "Home",
+  "order": "Ordina",
+  "back": "Indietro",
+  "title": "Dashboard",
+  "email": "Email",
+  "subject": "Oggetto",
+  "message": "Messaggio",
+  "submitButton": "Invia",
+  "successMessage": "La tua richiesta è stata inviata con successo.",
+  "errors": {
+    "emailRequired": "L'email è obbligatoria.",
+    "emailInvalid": "Inserisci un indirizzo email valido.",
+    "subjectRequired": "L'oggetto è obbligatorio.",
+    "messageRequired": "Il messaggio è obbligatorio."
+  },
+  "general-information": "Informazioni generali",
+  "help": "Aiuto"
+}
