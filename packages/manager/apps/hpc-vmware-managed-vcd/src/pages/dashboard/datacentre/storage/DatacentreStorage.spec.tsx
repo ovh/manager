@@ -12,6 +12,7 @@ import {
   getNthElementByTestId,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
+import { act } from '@testing-library/react';
 import {
   DEFAULT_LISTING_ERROR,
   labels,
@@ -30,7 +31,7 @@ describe('Datacentre Storage Listing Page', () => {
     // access storage tab
     await assertTextVisibility(STORAGE_LABEL);
     const tab = screen.getByText(STORAGE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check page title
     await assertTextVisibility(STORAGE_LABEL);
