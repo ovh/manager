@@ -307,7 +307,6 @@
   "ip_antihack_unblock_failure": "Une erreur est survenue lors du déblocage du spam Anti-hack.",
   "ip_mitigation_DEFAULT": "Automatique",
   "ip_block_mitigation_DEFAULT": "Ouvrir pour plus de détails",
-  "ip_permanent_mitigation_EOL": "AVERTISSEMENT: la fonctionnalité 'Centre de Scrubbing: mode permanent' atteint sa fin de vie (EOL) et sera désactivée définitivement le 8 septembre 2025.",
   "ip_mitigation_PERMANENT": "Permanente",
   "ip_mitigation_FORCED": "Forcé",
   "ip_mitigation_CREATION_PENDING": "En cours",
