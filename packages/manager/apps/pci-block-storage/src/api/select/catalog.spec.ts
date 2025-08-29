@@ -3,6 +3,7 @@ import { TFunction } from 'i18next';
 import { TVolumeAddon, TVolumeCatalog } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
 import {
+  is3az,
   mapRetypingVolumeCatalog,
   mapVolumeCatalog,
 } from '@/api/select/catalog';
@@ -319,5 +320,31 @@ describe('mapRetypingVolumeCatalog', () => {
     expect(result).toHaveLength(2);
     expect(result[0].isPreselected).toBe(true);
     expect(result[1].isPreselected).toBe(false);
+  });
+});
+
+describe('is3az', () => {
+  it('should return false if the catalog region mathing the input region have a type different that "region-3-az"', () => {
+    const matchingRegionName = 'matching region';
+    const mockRegions = [
+      { name: matchingRegionName, type: 'region' },
+      { name: 'otherRegion', type: 'region-3-az' },
+    ] as TRegion[];
+
+    const result = is3az(mockRegions, matchingRegionName);
+
+    expect(result).toBe(false);
+  });
+
+  it('should return true if the catalog region mathing the input region have a type equal to "region-3-az"', () => {
+    const matchingRegionName = 'matching region';
+    const mockRegions = [
+      { name: matchingRegionName, type: 'region-3-az' },
+      { name: 'otherRegion', type: 'region' },
+    ] as TRegion[];
+
+    const result = is3az(mockRegions, matchingRegionName);
+
+    expect(result).toBe(true);
   });
 });
