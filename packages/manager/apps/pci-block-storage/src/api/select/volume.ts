@@ -15,6 +15,7 @@ import { TVolumeCatalog } from '@/api/data/catalog';
 import {
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
+  is3az,
   TModelPrice,
 } from '@/api/select/catalog';
 import {
@@ -318,4 +319,20 @@ export const mapVolumeToEdit = ({
     bootable: originalVolume.bootable,
     size: originalVolume.size,
   },
+});
+
+export const isClassicMultiAttach = (volume: TAPIVolume) =>
+  volume.type === 'classic-multiattach';
+
+export type TVolumeType = {
+  is3az: boolean;
+  isClassicMultiAttach: boolean;
+};
+
+export const mapVolumeType = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => (volume: V): V & TVolumeType => ({
+  ...volume,
+  is3az: is3az(catalog?.regions || [], volume.region),
+  isClassicMultiAttach: isClassicMultiAttach(volume),
 });
