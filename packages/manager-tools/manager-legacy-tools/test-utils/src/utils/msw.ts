@@ -1,4 +1,4 @@
-import { http, RequestHandler, HttpResponse } from 'msw';
+import { http, RequestHandler, HttpResponse, delay } from 'msw';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { Handler } from '../types';
 
@@ -13,6 +13,7 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
         headers,
         type,
         statusText,
+        delay: delayTime = 1000,
         status = 200,
         response,
         responseText,
@@ -25,6 +26,7 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
             url.startsWith('/') ? '' : '/'
           }${url}`,
           async ({ request, params, cookies }) => {
+            await delay(delayTime);
             if (responseText) {
               return HttpResponse.text(responseText);
             }
