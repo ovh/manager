@@ -39,7 +39,6 @@ export * from './order';
 export * from './badge';
 export * from './modal';
 export * from './tags-list';
-export * from './tags-modal';
 export * from './tags-tile';
 export * from './changelog-menu';
 export * from './link-card';
