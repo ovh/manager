@@ -364,7 +364,7 @@ function AccountDetailsForm({
 
         <div className="flex flex-col">
           <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
-            {t('account_details_section_address')}
+            {t(`account_details_section_address_${legalForm}`)}
           </OdsText>
           <Controller
             control={control}
@@ -448,7 +448,7 @@ function AccountDetailsForm({
                 </label>
                 <OdsInput
                   isReadonly={!rules}
-                  name="address"
+                  name="zip"
                   value={value}
                   maxlength={rules?.zip.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -686,11 +686,13 @@ function AccountDetailsForm({
 
 export default function AccountDetailsPage() {
   const { t } = useTranslation('account-details');
-  const { legalForm } = useUserContext();
+  const { legalForm, organisation } = useUserContext();
   const { data: currentUser } = useMe();
 
   const header = {
-    title: t('account_details_title'),
+    title: t(
+      `account_details_title_${legalForm}${organisation ? '_prefilled' : ''}`,
+    ),
   };
 
   const [rulesParams, setRulesParams] = useState<RulesParam>({

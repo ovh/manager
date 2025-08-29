@@ -14,6 +14,7 @@ import userContext, { UserContext } from '@/context/user/user.context';
 import { CompanySuggestion } from '@/types/suggestion';
 
 const mocks = vi.hoisted(() => ({
+  legalForm: 'corporation',
   country: 'FR',
   setLegalForm: vi.fn(),
   setCompany: vi.fn(),
@@ -137,7 +138,7 @@ describe('CompanyPage', () => {
   it('should display a fallback link in case user does not have a corporation', async () => {
     renderComponent();
 
-    const fallbackTextElement = screen.getByText('fallback');
+    const fallbackTextElement = screen.getByText(`fallback_${mocks.legalForm}`);
     const fallbackLinkElement = screen.getByText('fallback_link');
     expect(fallbackTextElement).toBeInTheDocument();
     expect(fallbackLinkElement).toBeInTheDocument();
@@ -154,7 +155,9 @@ describe('CompanyPage', () => {
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
-    const fallbackLinkElement = screen.getByText('search_not_satisfactory');
+    const fallbackLinkElement = screen.getByText(
+      `search_not_satisfactory_${mocks.legalForm}`,
+    );
     expect(fallbackLinkElement).toBeInTheDocument();
   });
 
@@ -170,5 +173,25 @@ describe('CompanyPage', () => {
     expect(companyElement).toBeInTheDocument();
     await act(() => companyElement.click());
     expect(mocks.setCompany).toHaveBeenCalledWith(company);
+  });
+
+  it("should display a specific wording depending on user's legal form", async () => {
+    mocks.legalForm = 'association';
+    renderComponent();
+
+    const fallbackTextElement = screen.getByText(`fallback_${mocks.legalForm}`);
+    const fallbackLinkElement = screen.getByText('fallback_button');
+    expect(fallbackTextElement).toBeInTheDocument();
+    expect(fallbackLinkElement).toBeInTheDocument();
+
+    const searchInputElement = screen.getByTestId('search-input');
+    await setSearchValue(searchInputElement, 'test');
+
+    const searchButtonElement = screen.getByText('search');
+    await act(() => searchButtonElement.click());
+    const nonSatisfactoryLinkElement = screen.getByText(
+      `search_not_satisfactory_${mocks.legalForm}`,
+    );
+    expect(nonSatisfactoryLinkElement).toBeInTheDocument();
   });
 });
