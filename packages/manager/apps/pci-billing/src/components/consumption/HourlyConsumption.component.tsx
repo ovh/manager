@@ -4,7 +4,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsAccordion, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { PRODUCTS } from '@/constants';
+import { PRODUCTS, ResourceType, ConsumptionKey } from '@/constants';
 import { TConsumptionDetail } from '@/api/hook/useConsumption';
 import ArchiveStorageList from './ArchiveStorageList.component';
 import ColdArchiveList from './ColdArchiveList.component';
@@ -33,11 +33,11 @@ export default function HourlyConsumption({
 
   const items = [
     {
-      key: 'instance',
+      key: ResourceType.INSTANCE,
       title: t('cpbc_hourly_instance_detail_title'),
       component: (
         <InstanceList
-          billingInstances={consumption?.hourlyInstances}
+          billingInstances={consumption.hourlyInstances}
           colNameLabel={t('cpbc_hourly_instance_col_name')}
           colTotalLabel={t('cpbc_hourly_instance_col_consumption')}
         />
@@ -45,42 +45,42 @@ export default function HourlyConsumption({
       condition: true,
     },
     {
-      key: 'snapshot',
+      key: ResourceType.SNAPSHOT,
       title: t('cpbc_snapshot_detail_title'),
-      component: <SnapshotList snapshots={consumption?.snapshots} />,
+      component: <SnapshotList snapshots={consumption.snapshots} />,
       condition: true,
     },
     {
-      key: 'volume',
+      key: ResourceType.VOLUME,
       title: t('cpbc_volume_detail_title'),
-      component: <VolumeList volumes={consumption?.volumes} />,
+      component: <VolumeList volumes={consumption.volumes} />,
       condition: true,
     },
     {
-      key: 'objectStorage',
+      key: ResourceType.OBJECT_STORAGE,
       title: t('cpbc_object_storage_detail_title'),
-      component: <ObjectStorageList storages={consumption?.objectStorages} />,
+      component: <ObjectStorageList storages={consumption.objectStorages} />,
       condition: true,
     },
 
     {
-      key: 'archiveStorage',
+      key: ResourceType.ARCHIVE_STORAGE,
       title: t('cpbc_archive_storage_detail_title'),
-      component: <ArchiveStorageList storages={consumption?.archiveStorages} />,
+      component: <ArchiveStorageList storages={consumption.archiveStorages} />,
       condition: !isTrustedZone,
     },
     {
       key: 'coldArchive',
       title: t('cpbc_cold_archive_detail_title'),
-      component: <ColdArchiveList coldArchives={consumption?.coldArchive} />,
+      component: <ColdArchiveList coldArchives={consumption.coldArchive} />,
       condition: !isTrustedZone,
     },
     {
-      key: 'bandwidth',
+      key: ResourceType.BANDWIDTH,
       title: t('cpbc_hourly_instance_trafic_title'),
       component: (
         <OutgoingTrafficList
-          instanceBandwidths={consumption?.bandwidthByRegions}
+          instanceBandwidths={consumption.bandwidthByRegions}
         />
       ),
       condition: true,
@@ -89,12 +89,12 @@ export default function HourlyConsumption({
       key: 'privateRegistry',
       title: t('cpbc_hourly_private_registry_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.privateRegistry} />
+        <ResourceUsageList resourcesUsage={consumption.privateRegistry} />
       ),
       condition: !isTrustedZone,
     },
     {
-      key: 'rancher',
+      key: ResourceType.RANCHER,
       title: t('cpbc_hourly_rancher_title'),
       component: (
         <ResourceUsageList
@@ -109,7 +109,7 @@ export default function HourlyConsumption({
       title: PRODUCTS.KUBERNETES_LOAD_BALANCER,
       component: (
         <ResourceUsageList
-          resourcesUsage={consumption?.kubernetesLoadBalancer}
+          resourcesUsage={consumption.kubernetesLoadBalancer}
         />
       ),
       condition: !isTrustedZone,
@@ -117,19 +117,19 @@ export default function HourlyConsumption({
     {
       key: 'training',
       title: t('cpbc_hourly_training_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.training} />,
+      component: <ResourceUsageList resourcesUsage={consumption.training} />,
       condition: !isTrustedZone,
     },
     {
       key: 'notebooks',
       title: t('cpbc_hourly_notebooks_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.notebooks} />,
+      component: <ResourceUsageList resourcesUsage={consumption.notebooks} />,
       condition: true,
     },
     {
       key: 'aiDeploy',
       title: t('cpbc_hourly_ai_deploy_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.aiDeploy} />,
+      component: <ResourceUsageList resourcesUsage={consumption.aiDeploy} />,
       condition: !isTrustedZone,
     },
     {
@@ -142,12 +142,12 @@ export default function HourlyConsumption({
       key: 'dataProcessing',
       title: t('cpbc_hourly_data_processing_title'),
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.dataProcessing} />
+        <ResourceUsageList resourcesUsage={consumption.dataProcessing} />
       ),
       condition: !isTrustedZone,
     },
     {
-      key: 'dataplatform',
+      key: ResourceType.DATAPLATFORM,
       title: t('cpbc_hourly_data_platform_title'),
       component: (
         <DataPlatformUsageList resourcesUsage={consumption.dataplatform} />
@@ -155,41 +155,41 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
-      key: 'databases',
+      key: ResourceType.DATABASES,
       title: t('cpbc_hourly_databases_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.databases} />,
+      component: <ResourceUsageList resourcesUsage={consumption.databases} />,
       condition: !isTrustedZone,
     },
     {
       key: 'floatingIP',
       title: t('cpbc_hourly_floating_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.floatingIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.floatingIP} />,
       condition: !isTrustedZone,
     },
     {
       key: 'publicIP',
       title: t('cpbc_hourly_public_ip_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.publicIP} />,
+      component: <ResourceUsageList resourcesUsage={consumption.publicIP} />,
       condition: !isTrustedZone,
     },
     {
-      key: 'gateway',
+      key: ResourceType.GATEWAY,
       title: t('cpbc_hourly_gateway_title'),
-      component: <ResourceUsageList resourcesUsage={consumption?.gateway} />,
+      component: <ResourceUsageList resourcesUsage={consumption.gateway} />,
       condition: !isTrustedZone,
     },
     {
       key: 'octaviaLoadBalancer',
       title: PRODUCTS.OCTAVIA_LOAD_BALANCER,
       component: (
-        <ResourceUsageList resourcesUsage={consumption?.octaviaLoadBalancer} />
+        <ResourceUsageList resourcesUsage={consumption.octaviaLoadBalancer} />
       ),
       condition: !isTrustedZone,
     },
   ] as const;
 
   const renderAccordion = (
-    key: keyof typeof consumption.totals.hourly,
+    key: ConsumptionKey,
     title: string,
     component: React.ReactNode,
   ) => (
@@ -201,7 +201,7 @@ export default function HourlyConsumption({
         slot="summary"
         className="my-2"
       >
-        {`${title} (${consumption.totals.hourly[key].toFixed(2)} ${
+        {`${title} (${(consumption.totals.hourly[key] ?? 0).toFixed(2)} ${
           currency.symbol
         })`}
       </OsdsText>

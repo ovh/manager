@@ -86,7 +86,7 @@ describe('EstimatePage', () => {
     const { getByTestId } = renderComponent();
     expect(getByTestId('estimate-part')).toBeInTheDocument();
 
-    const call = (EstimatePart as Mock).mock.lastCall[0] as TEstimateProps;
+    const call = (EstimatePart as Mock).mock.lastCall?.[0] as TEstimateProps;
 
     expect(call.currency).toEqual({
       symbol: '€',

@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useParams } from 'react-router-dom';
+import { useParam } from '@ovh-ux/manager-pci-common';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import queryClient from '@/queryClient';
 
 export const useCallbacks = () => {
   const { t: tEstimate } = useTranslation('estimate');
   const { addSuccess, addError, clearNotifications } = useNotifications();
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
 
   const invalidateCache = async () => {
     await queryClient.invalidateQueries({

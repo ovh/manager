@@ -8,7 +8,7 @@ import {
 import React, { useContext, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-export type TabItemProps = {
+type TabItemProps = {
   name: string;
   title: string | JSX.Element;
   to?: string;
@@ -16,7 +16,7 @@ export type TabItemProps = {
   isDisabled?: boolean;
 };
 
-export type TabsProps = {
+type TabsProps = {
   tabs: TabItemProps[];
   activePanelName: string;
   setActivePanelName: (state: string) => void;

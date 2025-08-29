@@ -1,4 +1,4 @@
-import { PciModal } from '@ovh-ux/manager-pci-common';
+import { PciModal, useParam } from '@ovh-ux/manager-pci-common';
 import {
   Links,
   LinkType,
@@ -14,7 +14,7 @@ import { ODS_ICON_NAME, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { INSTANCE_PRICING_LINKS } from '@/constants';
 import { useActivateMonthlyBilling } from '@/api/hook/useConsumption';
 
@@ -23,7 +23,7 @@ export default function ActivateMonthlyBilling() {
     'consumption/hourly-instance/activate-monthly-billing',
   );
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const [searchParams] = useSearchParams();
   const instanceId = searchParams.get('instanceId');
 

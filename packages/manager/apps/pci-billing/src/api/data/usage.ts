@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { THourlyCurrentUsage } from './consumption';
 
 export const HOURLY_PRODUCTS = [
   'instance',
@@ -33,21 +34,12 @@ const RESOURCE_USAGES = [
   'ai-training',
 ];
 export type TResourceUsage = typeof RESOURCE_USAGES[number];
-
 type TWithTotalPrice = {
   totalPrice: number;
 };
 
 export type TUsage = {
-  hourlyUsage: {
-    instance: ({ reference: string } & TWithTotalPrice)[];
-    instanceBandwidth: ({
-      outgoingBandwidth: TWithTotalPrice;
-    } & TWithTotalPrice)[];
-    snapshot: TWithTotalPrice[];
-    volume: TWithTotalPrice[];
-    storage: ({ type: string } & TWithTotalPrice)[];
-  };
+  hourlyUsage: THourlyCurrentUsage;
   monthlyUsage: {
     instance: TWithTotalPrice[];
   };
