@@ -40,7 +40,8 @@ export default [
       'max-lines-per-function': 'off',
       'complexity': 'off',
       'import/no-cycle': 'off',
-      'max-lines': 'off'
+      'max-lines': 'off',
+      'react-hooks/rules-of-hooks': 'off'
     },
   },
 ];

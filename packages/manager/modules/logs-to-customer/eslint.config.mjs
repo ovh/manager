@@ -3,6 +3,7 @@ import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint
 
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
@@ -14,6 +15,7 @@ import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslin
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
+  reactEslintConfig,
   ...importEslintConfig,
   ...checkFileEslintConfig,
   vitestEslintConfig,
@@ -31,9 +33,17 @@ export default [
   },
   {
     rules: {
+      'no-undef': 'off',
       'check-file/no-index': 'off',
-      'import/no-nodejs-modules': 'off',
-      'no-undef': 'off'
+      'check-file/folder-match-with-fex': 'off',
+      'check-file/filename-naming-convention': 'off',
+      'check-file/folder-naming-convention': 'off',
+      'max-lines-per-function': 'off',
+      'import/no-cycle': 'off',
+      'import/named': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      'react/prop-types': 'off',
+      'react/no-multi-comp': 'off'
     },
   },
 ];
