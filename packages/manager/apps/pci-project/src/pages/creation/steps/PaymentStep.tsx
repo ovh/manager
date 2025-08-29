@@ -23,7 +23,13 @@ export type PaymentStepProps = {
   handleIsPaymentMethodValid: (isValid: boolean) => void;
   paymentHandler: React.Ref<TPaymentMethodRef>;
   handleCustomSubmitButton: (btn: string | JSX.Element) => void;
-  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  onPaymentSubmit: ({
+    paymentMethodId,
+    skipRegistration,
+  }: {
+    paymentMethodId?: number;
+    skipRegistration?: boolean;
+  }) => Promise<unknown>;
 };
 
 type PaymentForm = {

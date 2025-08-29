@@ -6,6 +6,7 @@ import {
   TRegisterPaymentMethod,
 } from '@/data/types/payment/payment-method.type';
 
+// New modular architecture imports
 import { usePayPalSDK } from './paypal/hooks/usePayPalSDK';
 import { usePayPalPayment } from './paypal/hooks/usePayPalPayment';
 import { PayPalButton } from './paypal/components/PayPalButton';
@@ -16,10 +17,24 @@ interface PaypalPaymentMethodIntegrationProps {
   isSetAsDefault?: boolean;
   onSuccess?: () => void;
   onError?: (error: Error) => void;
-  onPaymentSubmit: (skipRegistration?: boolean) => Promise<boolean | unknown>;
+  onPaymentSubmit: ({
+    paymentMethodId,
+    skipRegistration,
+  }: {
+    paymentMethodId?: number;
+    skipRegistration?: boolean;
+  }) => Promise<unknown>;
   handleValidityChange: (isValid: boolean) => void;
 }
 
+/**
+ * Refactored PayPal component with modular architecture
+ *
+ * Architecture:
+ * - usePayPalSDK: SDK loading management
+ * - usePayPalPayment: Payment logic
+ * - PayPalButton: Button rendering
+ */
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
@@ -93,13 +108,19 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
           formSessionId: registerPaymentMethod.formSessionId,
         });
 
-        return registerPaymentMethod.formSessionId;
+        return {
+          continueProcessing: false,
+          dataToReturn: registerPaymentMethod.formSessionId,
+        };
+      },
+      checkPaymentMethod: async () => {
+        return { continueProcessing: true };
       },
       onCheckoutRetrieved: async () => {
-        return true;
+        return { continueProcessing: true };
       },
       onCartFinalized: async () => {
-        return true;
+        return { continueProcessing: true };
       },
     }),
     [setPaymentData],

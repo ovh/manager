@@ -118,6 +118,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
     {
       paymentType: TPaymentMethodType.PAYPAL,
@@ -135,6 +136,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
     {
       paymentType: TPaymentMethodType.SEPA_DIRECT_DEBIT,
@@ -152,6 +154,7 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
+      paymentMethodId: 0,
     },
   ];
 
@@ -623,6 +626,7 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: true,
           registerableWithTransaction: false,
+          paymentMethodId: 0,
         },
       ];
 
@@ -656,6 +660,7 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: false,
           registerableWithTransaction: false,
+          paymentMethodId: 0,
         },
       ];
 

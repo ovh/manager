@@ -20,11 +20,13 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isSDKReady && containerRef.current && window.paypal?.Button) {
-      // Clean up any existing PayPal button
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+    function setupPayPalButton() {
+      if (!isSDKReady || !containerRef.current || !window.paypal?.Button) {
+        return;
       }
+
+      // Clean up any existing PayPal button
+      containerRef.current.innerHTML = '';
 
       const finalConfig = {
         ...PAYPAL_BUTTON_OPTIONS,
@@ -33,6 +35,8 @@ export const PayPalButton: React.FC<PayPalButtonProps> = ({
 
       window.paypal.Button.render(finalConfig, containerRef.current);
     }
+
+    setupPayPalButton();
 
     // Cleanup function
     return () => {

@@ -65,6 +65,7 @@ const CREDIT_PAYMENT_METHOD: TAvailablePaymentMethod = {
     key: 'pci_project_new_payment_method_add_credit',
     ns: 'payment/add',
   },
+  paymentMethodId: 0,
 };
 
 const PREFERRED_PAYMENT_METHOD_ORDER = [
@@ -100,6 +101,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
     {
       paymentType: TPaymentMethodType.SEPA_DIRECT_DEBIT,
@@ -117,6 +119,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
     {
       paymentType: TPaymentMethodType.PAYPAL,
@@ -134,6 +137,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: true,
+      paymentMethodId: 0,
     },
   ];
 

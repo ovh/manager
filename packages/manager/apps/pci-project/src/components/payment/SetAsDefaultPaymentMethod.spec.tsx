@@ -67,6 +67,7 @@ describe('SetAsDefaultPaymentMethod', () => {
     oneshot: false,
     registerable: true,
     registerableWithTransaction: false,
+    paymentMethodId: 0,
     ...overrides,
   });
 
