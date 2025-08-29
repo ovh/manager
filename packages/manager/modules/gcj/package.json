@@ -23,15 +23,16 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
     "@ovh-ux/manager-react-components": "^2.37.1",
-    "@ovh-ux/manager-tests-setup": "^0.3.0",
-    "@ovh-ux/manager-vite-config": "^0.11.0",
-    "typescript": "^5.1.6",
-    "vite": "^6.0.7"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*"
   },
   "peerDependencies": {
     "@ovh-ux/manager-react-components": "^2.27.0"

@@ -34,13 +34,7 @@ export default [
   {
     rules: {
       'check-file/no-index': 'off',
-      'check-file/filename-naming-convention': 'off',
-      'import/export': 'off',
-      'no-undef': 'off',
-      'max-lines-per-function': 'off',
-      'complexity': 'off',
-      'import/no-cycle': 'off',
-      'max-lines': 'off'
+      'check-file/filename-naming-convention': 'off'
     },
   },
 ];
