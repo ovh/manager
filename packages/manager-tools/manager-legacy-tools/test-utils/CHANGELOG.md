@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.5.0...@ovh-ux/manager-core-test-utils@0.6.0) (2025-08-29)
+
+
+### Features
+
+* **manager-legacy-tools:** delete ods 17 in utils ([cadd35b](https://github.com/ovh/manager/commit/cadd35b40256219e6b59c9b2cf8549821069d068)), closes [#MANAGER-19506](https://github.com/ovh/manager/issues/MANAGER-19506)
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.4.13...@ovh-ux/manager-core-test-utils@0.5.0) (2025-08-07)
 
 
