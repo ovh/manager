@@ -3,6 +3,9 @@ import {
   MIN_NSX_EDGES,
   DATACENTER_NETWORK_SITE_WEB_LINK,
 } from '../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants.js';
+import { TRACKING_ACTION_PREFIX } from './dedicatedCloud-datacenter-network.constants.js';
+
+import { TRACKING_DISPLAY_LISTING_NSX_SUFFIX } from '../../../../dedicatedCloud/datacenter/network/constants.js';
 
 export default class DedicatedCloudDatacenterNetworkTab {
   /* @ngInject */
@@ -93,5 +96,22 @@ export default class DedicatedCloudDatacenterNetworkTab {
         this.pollNsxTaskId = null;
       }
     });
+  }
+
+  goToAddNsxEdge() {
+    this.trackAction('add_nsx-edge-nodes');
+    this.goToAddNsx();
+  }
+
+  goToResizeNsxEdge() {
+    this.trackAction('edit_nsx-edge-nodes');
+    this.goToResize();
+  }
+
+  trackAction(hit) {
+    this.trackClick(
+      `${TRACKING_ACTION_PREFIX}${hit}`,
+      TRACKING_DISPLAY_LISTING_NSX_SUFFIX,
+    );
   }
 }
