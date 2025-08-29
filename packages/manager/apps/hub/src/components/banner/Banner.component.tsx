@@ -21,6 +21,8 @@ export default function Banner() {
 
   const { data: banner, isPending } = useFetchHubBanner(locale);
 
+  console.log('just to test the removal, pls delete the branch if not');
+
   return (
     <>
       {!isLoading && !isPending && !isFreshCustomer && banner && (
