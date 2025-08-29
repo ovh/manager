@@ -1,7 +1,7 @@
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { enGB } from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
-import { LocaleKey, LOCALE_MAP } from './useDataFnsLocale.type';
+import { LocaleKey, LOCALE_MAP } from './useDateFnsLocale.type';
 
 export const useDateFnsLocale = () => {
   const { i18n } = useTranslation();
