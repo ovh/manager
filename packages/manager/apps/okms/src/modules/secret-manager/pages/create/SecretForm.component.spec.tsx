@@ -16,6 +16,7 @@ import {
 import { fireEvent, act, render, screen } from '@testing-library/react';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
+import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 
 let i18nValue: i18n;
 
@@ -109,4 +110,14 @@ describe('Secrets creation form test suite', () => {
       );
     },
   );
+
+  it('should display the template in the data input', async () => {
+    // GIVEN
+    await renderSecretForm(MOCK_DOMAIN_ID);
+    const inputData = screen.getByTestId(DATA_INPUT_TEST_ID);
+    expect(inputData).toBeInTheDocument();
+
+    // THEN
+    expect(inputData).toHaveValue(SECRET_DATA_TEMPLATE);
+  });
 });
