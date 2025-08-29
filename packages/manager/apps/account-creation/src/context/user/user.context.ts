@@ -11,7 +11,7 @@ export type UserContext = {
   companyNationalIdentificationNumber?: string;
   address?: string;
   city?: string;
-  setCompany: (company: Company) => void;
+  setCompany: (company: Company | null) => void;
 };
 
 const userContext = createContext<UserContext | undefined>(undefined);
