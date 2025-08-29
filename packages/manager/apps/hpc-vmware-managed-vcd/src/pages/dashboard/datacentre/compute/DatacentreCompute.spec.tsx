@@ -69,7 +69,7 @@ describe('Datacentre Compute Listing Page', () => {
       testId: TEST_IDS.cellDeleteCta,
     });
     await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
+    expect(deleteButton).toHaveAttribute('is-disabled', 'true');
 
     const tooltip = await getNthElementByTestId({
       testId: TEST_IDS.cellDeleteTooltip,
