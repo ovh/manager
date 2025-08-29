@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getUsage, TUsageKind } from '@/api/data/usage';
 
-export const getUsageQuery = (projectId: string, kind: TUsageKind) => ({
+const getUsageQuery = (projectId: string, kind: TUsageKind) => ({
   queryKey: ['project', projectId, 'usage', kind],
   queryFn: () => getUsage(projectId, kind),
 });

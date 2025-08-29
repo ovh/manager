@@ -8,7 +8,7 @@ import {
   updateAlert,
 } from '@/api/data/alert';
 
-export const useGetAlertsIds = (projectId: string) =>
+const useGetAlertsIds = (projectId: string) =>
   useQuery({
     queryKey: ['project', projectId, 'alerting', 'alertsIds'],
     queryFn: () => getAllAlertIds(projectId),

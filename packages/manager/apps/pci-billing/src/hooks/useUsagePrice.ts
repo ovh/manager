@@ -10,15 +10,17 @@ import {
 import { roundNumber } from '@/pages/billing/estimate/utils';
 
 const getTotalPrice = (products: { totalPrice: number }[]) => {
-  const total = (products || []).reduce(
-    (sum, { totalPrice }) => sum + totalPrice,
-    0,
-  );
+  const total = products.reduce((sum, { totalPrice }) => sum + totalPrice, 0);
 
   return roundNumber(total);
 };
 
-export type TUsagePrices = {
+const calculateTotalFromPrices = (items: { totalPrice: number }[]): number =>
+  items
+    .map((item) => roundNumber(item.totalPrice))
+    .reduce((sum, price) => roundNumber(sum + price), 0);
+
+type TUsagePrices = {
   data: {
     totalHourlyPrice: number;
     totalMonthlyPrice: number;
@@ -40,10 +42,10 @@ export const useUsagePrice = (
   const getResourcePrice = useCallback(
     (resourceUsage: TResourceUsage) =>
       getTotalPrice(
-        (usage?.resourcesUsage || [])
+        usage?.resourcesUsage
           .find((r) => r.type === resourceUsage)
           ?.resources.map((r) => r.components)
-          .flat(2),
+          .flat(2) ?? [],
       ),
     [usage],
   );
@@ -51,57 +53,29 @@ export const useUsagePrice = (
   const getHourlyPrice = useCallback(
     (product: THourlyProduct) => {
       if (!usage?.hourlyUsage) return 0;
+      const { hourlyUsage } = usage;
       switch (product) {
         case 'instance':
-          return roundNumber(
-            usage?.hourlyUsage?.instance
-              ? usage?.hourlyUsage?.instance
-                  ?.map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.instance));
         case 'snapshot':
-          return roundNumber(
-            usage?.hourlyUsage?.snapshot
-              ? usage?.hourlyUsage?.snapshot
-                  ?.map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.snapshot));
         case 'objectStorage':
           return roundNumber(
-            usage?.hourlyUsage?.storage
-              ? usage?.hourlyUsage.storage
-                  .filter((s) => s.type !== 'pca')
-                  .map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
+            calculateTotalFromPrices(
+              hourlyUsage.storage.filter((s) => s.type !== 'pca'),
+            ),
           );
         case 'archiveStorage':
           return roundNumber(
-            usage?.hourlyUsage?.storage
-              ? usage?.hourlyUsage.storage
-                  .filter((s) => s.type === 'pca')
-                  .map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
+            calculateTotalFromPrices(
+              hourlyUsage.storage.filter((s) => s.type === 'pca'),
+            ),
           );
         case 'volume':
-          return roundNumber(
-            usage?.hourlyUsage?.volume
-              ? usage?.hourlyUsage?.volume
-                  ?.map((s) => roundNumber(s.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
-          );
+          return roundNumber(calculateTotalFromPrices(hourlyUsage.volume));
         case 'bandwidth':
           return roundNumber(
-            usage?.hourlyUsage?.instanceBandwidth
-              ? usage?.hourlyUsage.instanceBandwidth
-                  .filter((b) => b.outgoingBandwidth)
-                  .map((b) => roundNumber(b.totalPrice))
-                  .reduce((sum, item) => roundNumber(sum + item), 0)
-              : 0,
+            calculateTotalFromPrices(hourlyUsage.instanceBandwidth),
           );
         case 'privateRegistry':
           return getResourcePrice('registry');
@@ -138,12 +112,10 @@ export const useUsagePrice = (
   const getMonthlyPrice = useCallback(
     () =>
       roundNumber(
-        usage?.monthlyUsage?.instance
-          ? usage?.monthlyUsage?.instance?.reduce(
-              (sum, { totalPrice }) => sum + roundNumber(totalPrice),
-              0,
-            )
-          : 0,
+        usage?.monthlyUsage.instance.reduce(
+          (sum, { totalPrice }) => sum + roundNumber(totalPrice),
+          0,
+        ) ?? 0,
       ),
     [usage],
   );

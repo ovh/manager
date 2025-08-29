@@ -5,7 +5,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { vi } from 'vitest';
 
-export const shellContext = {
+const shellContext = {
   environment: {
     getUser: () => ({ ovhSubsidiary: 'FR', currency: '€' }),
   },

@@ -1,6 +1,7 @@
 import {
   TVolume as TProjectVolume,
   useVolumes,
+  useParam,
 } from '@ovh-ux/manager-pci-common';
 import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -8,7 +9,6 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { TVolume } from '@/api/hook/useConsumption';
 import { paginateResults } from '@/api/data/consumption';
 import NoDataMessage from './NoDataMessage.component';
@@ -22,7 +22,7 @@ export default function VolumeList({ volumes }: Readonly<VolumeListProps>) {
   const { t } = useTranslation('consumption/hourly-instance/volume');
 
   const { currency } = useContext(ShellContext).environment.getUser();
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { pagination, setPagination } = useDataGrid();
   const columns = useVolumeListColumns();
 

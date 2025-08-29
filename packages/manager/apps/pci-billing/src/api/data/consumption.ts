@@ -18,138 +18,103 @@ export type TQuantity = {
   value: number;
 };
 
-export type TPeriod = { from: string; to: string };
+type TPeriod = { from: string; to: string };
+
+type DetailedTotalPrice = {
+  currencyCode: string;
+  priceInUcents: number;
+  text: string;
+  value: number;
+};
+
+type ConsumptionItemDetail = {
+  quantity: TQuantity;
+  totalPrice: number;
+};
+
+type ConsumptionItemDetailPrice = {
+  quantity: TQuantity;
+  totalPrice: DetailedTotalPrice;
+};
+export type THourlyCurrentUsage = {
+  rancher: {
+    reference: string;
+    region: string;
+    details: ConsumptionItemDetailPrice[];
+  }[];
+  instance: ({
+    details: ({
+      instanceId: string;
+    } & ConsumptionItemDetail)[];
+    reference: string;
+    region: string;
+  } & ConsumptionItemDetail)[];
+  instanceBandwidth: {
+    incomingBandwidth: ConsumptionItemDetail;
+    outgoingBandwidth: ConsumptionItemDetail;
+    region: string;
+    totalPrice: number;
+  }[];
+  snapshot: {
+    instance: {
+      quantity: TQuantity;
+      totalPrice: 0;
+    };
+    region: string;
+    totalPrice: number;
+    volume: string | null;
+  }[];
+  storage: {
+    bucketName: string;
+    incomingBandwidth: ConsumptionItemDetail;
+    incomingInternalBandwidth: ConsumptionItemDetail;
+    outgoingBandwidth: ConsumptionItemDetail;
+    outgoingInternalBandwidth: ConsumptionItemDetail;
+    region: string;
+    stored: ConsumptionItemDetail;
+    totalPrice: number;
+    type: string;
+  }[];
+  volume: ({
+    details: ({
+      volumeId: string;
+    } & ConsumptionItemDetail)[];
+    region: string;
+    type: string;
+  } & ConsumptionItemDetail)[];
+  lastUpdate: string;
+};
 
 export type TCurrentUsage = {
-  hourlyUsage: {
-    rancher: {
-      reference: string;
-      region: string;
-      details: {
-        quantity: TQuantity;
-        totalPrice: {
-          currencyCode: string;
-          priceInUcents: number;
-          text: string;
-          value: number;
-        };
-      }[];
-    }[];
-    instance: {
-      details: {
-        instanceId: string;
-        quantity: TQuantity;
-        totalPrice: number;
-      }[];
-      quantity: TQuantity;
-      reference: string;
-      region: string;
-      totalPrice: number;
-    }[];
-    instanceBandwidth: {
-      incomingBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      outgoingBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      region: string;
-      totalPrice: number;
-    }[];
-    snapshot: {
-      instance: {
-        quantity: TQuantity;
-        totalPrice: 0;
-      };
-      region: string;
-      totalPrice: number;
-      volume: string | null;
-    }[];
-    storage: {
-      bucketName: string;
-      incomingBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      incomingInternalBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      outgoingBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      outgoingInternalBandwidth: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      region: string;
-      stored: {
-        quantity: TQuantity;
-        totalPrice: number;
-      };
-      totalPrice: number;
-      type: string;
-    }[];
-    volume: {
-      details: {
-        quantity: TQuantity;
-        totalPrice: number;
-        volumeId: string;
-      }[];
-      quantity: TQuantity;
-      region: string;
-      totalPrice: number;
-      type: string;
-    }[];
-    lastUpdate: string;
-  };
+  hourlyUsage: THourlyCurrentUsage;
   lastUpdate: string;
   monthlyUsage: {
     certification: [];
-    instance: {
-      details: {
+    instance: ({
+      details: ({
         instanceId: string;
-        quantity: TQuantity;
-        totalPrice: number;
-      }[];
-      quantity: TQuantity;
+      } & ConsumptionItemDetail)[];
       reference: string;
       region: string;
-      totalPrice: number;
-    }[];
+    } & ConsumptionItemDetail)[];
     savingsPlan: {
       flavor: string;
       details: [
         {
           id: string;
           size: string;
-          totalPrice: {
-            currencyCode: string;
-            priceInUcents: number;
-            text: string;
-            value: number;
-          };
+          totalPrice: DetailedTotalPrice;
         },
       ];
-      totalPrice: {
-        currencyCode: string;
-        priceInUcents: number;
-        text: string;
-        value: number;
-      };
+      totalPrice: DetailedTotalPrice;
     }[];
   };
   period: TPeriod;
   resourcesUsage: {
     resources: {
-      components: {
-        quantity: TQuantity;
+      components: ({
         name: string;
-        totalPrice: number;
-      }[];
+      } & ConsumptionItemDetail)[];
       region: string;
     }[];
     totalPrice: number;
