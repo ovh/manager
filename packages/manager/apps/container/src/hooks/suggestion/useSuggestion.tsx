@@ -9,13 +9,9 @@ import { useCallback } from "react";
 
 export const useSuggestionTargetUrl = () => {
   const { shell } = useApplication();
-  const environment = shell.getPlugin('environment').getEnvironment();
-  const appName = environment.getApplicationURL('new-account')
-    ? 'new-account'
-    : 'dedicated';
   return shell
     .getPlugin('navigation')
-    .getURL(appName, '#/useraccount/infos');
+    .getURL('account', '#/useraccount/infos');
 };
 
 export const useSuggestions = (enabled: boolean) => useQuery({
