@@ -4,8 +4,6 @@ import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { DATA_INPUT_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
 
-const DATA_PLACEHOLDER = `{"login": "admin","password": "my_secret_password"}`;
-
 export const SecretDataFormField = <T extends Record<string, string>>({
   name,
   control,
@@ -29,7 +27,6 @@ export const SecretDataFormField = <T extends Record<string, string>>({
             isResizable
             rows={12}
             data-testid={DATA_INPUT_TEST_ID}
-            placeholder={DATA_PLACEHOLDER}
           />
         </OdsFormField>
       )}
