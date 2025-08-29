@@ -31,9 +31,7 @@ export default [
   },
   {
     rules: {
-      'check-file/filename-naming-convention': 'off',
-      'check-file/no-index': 'off',
-      'import/named': 'off',
+      'check-file/no-index': 'off'
     },
   },
 ];

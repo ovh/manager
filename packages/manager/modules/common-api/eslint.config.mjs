@@ -33,6 +33,7 @@ export default [
     rules: {
       'check-file/filename-naming-convention': 'off',
       'check-file/no-index': 'off',
+      'check-file/folder-match-with-fex': 'off',
       'import/named': 'off',
     },
   },
