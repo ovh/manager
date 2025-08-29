@@ -10,19 +10,18 @@ import {
   TFlavorSpec,
   TImage,
   TBackup,
+  TStatusSeverity,
+  TSeverity,
 } from './common.type';
 
 export type TInstanceAddressType = TAddressType;
 
-export type TInstanceStatusSeverity = 'success' | 'error' | 'warning' | 'info';
+export type TInstanceStatusSeverity = TSeverity;
 export type TInstanceStatus = TStatus;
 
 export type TInstanceActionName = TActionName;
 
-export type TAggregatedInstanceStatus = {
-  label: TInstanceStatus;
-  severity: TInstanceStatusSeverity;
-};
+export type TAggregatedInstanceStatus = TStatusSeverity;
 
 export type TInstanceTaskStatus = {
   isPending: boolean;
@@ -100,7 +99,7 @@ export type TInstanceAction = {
 
 type TInstanceFlavorSpec = TFlavorSpec;
 
-type TInstanceFlavor = {
+export type TInstanceFlavor = {
   id: string;
   name: string;
   specs: {
@@ -116,9 +115,11 @@ type TInstanceFlavor = {
 
 export type TInstancePrice = TPrice;
 
-type TInstanceImageDto = TImage;
+export type TInstanceImage = TImage;
 
 type TInstanceBackup = TBackup;
+
+export type TInstanceAddresses = Map<TInstanceAddressType, TInstanceAddress[]>;
 
 export type TInstance = {
   id: string;
@@ -127,12 +128,14 @@ export type TInstance = {
   status: TInstanceStatus;
   task: TInstanceTaskStatus;
   actions: TInstanceAction[];
-  addresses: Map<TInstanceAddressType, TInstanceAddress[]>;
+  addresses: TInstanceAddresses;
   volumes: TInstanceVolume[] | null;
   flavor: TInstanceFlavor | null;
   pricings: TInstancePrice[] | null;
-  image: TInstanceImageDto | null;
+  image: TInstanceImage | null;
   backups: TInstanceBackup[] | null;
   sshKey: string | null;
   login: string | null;
 };
+
+export type TPartialInstance = Pick<TInstance, 'id'> & Partial<TInstance>;

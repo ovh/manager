@@ -1,27 +1,36 @@
 import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import {
+  useCatalogPrice,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { useMemo, useState } from 'react';
 import { Input, Text } from '@ovhcloud/ods-react';
+import { useNavigate } from 'react-router-dom';
+import { DefaultError } from '@tanstack/react-query';
 import ActionModal from '@/components/actionModal/ActionModal.component';
-import { TRescueActionPageProps } from './RescueAction.page';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
+import {
+  useInstanceActionModal,
+  useInstanceParams,
+} from '@/pages/instances/action/hooks/useInstanceActionModal';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { isApiErrorResponse } from '@/utils';
 
-type TBackupActionPageProps = Omit<TRescueActionPageProps, 'section'> & {
-  section: 'backup';
-};
+const BackupActionPage = () => {
+  const projectId = useProjectId();
+  const { instanceId, region } = useInstanceParams();
 
-const BackupActionPage = ({
-  title,
-  onModalClose,
-  section,
-  instance,
-  projectId,
-  onError,
-  onSuccess,
-  isLoading,
-}: TBackupActionPageProps) => {
   const { t, i18n } = useTranslation('actions');
+  const { addError, addInfo } = useNotifications();
+  const navigate = useNavigate();
+
+  const { instance, isLoading } = useInstanceActionModal(
+    region,
+    instanceId,
+    'backup',
+  );
+
   const locale = i18n.language.replace('_', '-');
   const defaultSnapshotName = useMemo(
     () =>
@@ -38,11 +47,35 @@ const BackupActionPage = ({
   const {
     price: backupPrice,
     isLoading: isBackupLoading,
-  } = useInstanceBackupPrice(projectId, instance?.region ?? '');
+  } = useInstanceBackupPrice(projectId, region);
+
+  const closeModal = () => navigate('..');
+
+  const onError = (rawError: unknown) => {
+    const errorMessage = isApiErrorResponse(rawError)
+      ? rawError.response?.data.message
+      : (rawError as DefaultError).message;
+    addError(
+      t(`pci_instances_actions_backup_instance_error_message`, {
+        name: instance?.name,
+        error: errorMessage,
+      }),
+      true,
+    );
+  };
 
   const { mutationHandler, isPending } = useInstanceBackupAction(projectId, {
     onError,
-    onSuccess,
+    onSuccess: (_data, variables) => {
+      addInfo(
+        t(`pci_instances_actions_backup_instance_success_message`, {
+          name: variables.snapshotName,
+        }),
+        true,
+      );
+
+      closeModal();
+    },
   });
 
   const handleInstanceAction = () => {
@@ -54,12 +87,12 @@ const BackupActionPage = ({
   const price = backupPrice ? getFormattedCatalogPrice(backupPrice) : null;
   return (
     <ActionModal
-      title={title}
+      title={t(`pci_instances_actions_backup_instance_title`)}
       isPending={isPending}
       handleInstanceAction={handleInstanceAction}
-      onModalClose={onModalClose}
+      onModalClose={closeModal}
       instance={instance}
-      section={section}
+      section={'backup'}
       isLoading={isLoading}
     >
       <div className="flex flex-col gap-4">

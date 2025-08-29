@@ -15,10 +15,15 @@ import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
-import { TAggregatedInstance } from '@/types/instance/entity.type';
+import {
+  TAggregatedInstance,
+  TPartialInstance,
+} from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
+import { buildPartialAggregatedInstanceDto } from './builder/instanceDto.builder';
+import { updateInstanceFromCache } from './useInstance';
 
 type FilterWithLabel = Filter & { label: string };
 
@@ -29,12 +34,11 @@ export type TUseInstancesQueryParams = DeepReadonly<{
   filters: FilterWithLabel[];
 }>;
 
-export type TUpdateInstanceFromCache = (
+type TUpdateInstancesFromCache = (
   queryClient: QueryClient,
   payload: {
     projectId: string;
-    instance: Pick<TAggregatedInstanceDto, 'id'> &
-      Partial<TAggregatedInstanceDto>;
+    instance: TPartialInstance;
   },
 ) => void;
 
@@ -43,7 +47,7 @@ const listQueryKeyPredicate = (projectId: string) => (query: Query) =>
     query.queryKey.includes(elt),
   );
 
-export const updateInstanceFromCache: TUpdateInstanceFromCache = (
+export const updateInstancesFromCache: TUpdateInstancesFromCache = (
   queryClient: QueryClient,
   { projectId, instance },
 ) => {
@@ -52,17 +56,18 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
   >({
     predicate: listQueryKeyPredicate(projectId),
   });
+  const newInstance = buildPartialAggregatedInstanceDto(instance);
 
   queries.forEach(([queryKey, queryData]) => {
     if (!queryData) return;
 
     const updatedPages: TAggregatedInstanceDto[][] = queryData.pages.map(
       (page): TAggregatedInstanceDto[] => {
-        const foundIndex = fp.findIndex(fp.propEq('id', instance.id), page);
+        const foundIndex = fp.findIndex(fp.propEq('id', newInstance.id), page);
         if (foundIndex === -1) return page;
 
         const previousInstance = page[foundIndex];
-        const mergedInstance = { ...previousInstance, ...instance };
+        const mergedInstance = { ...previousInstance, ...newInstance };
 
         if (isEqual(previousInstance, mergedInstance)) return page;
 
@@ -88,6 +93,12 @@ export const updateInstanceFromCache: TUpdateInstanceFromCache = (
       },
     );
   });
+
+  updateInstanceFromCache({
+    queryClient,
+    projectId,
+    instance,
+  });
 };
 
 const getPendingTasks = (data?: TAggregatedInstance[]) =>
@@ -95,7 +106,7 @@ const getPendingTasks = (data?: TAggregatedInstance[]) =>
     ?.filter(({ pendingTask }) => pendingTask)
     .map(({ id, region }) => ({ instanceId: id, region })) ?? [];
 
-export const getInstanceById = (
+export const getAggregatedInstanceById = (
   projectId: string,
   id: string | undefined,
   queryClient: QueryClient,
