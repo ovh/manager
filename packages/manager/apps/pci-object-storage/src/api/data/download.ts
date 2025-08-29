@@ -1,8 +1,23 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { addWeeks } from 'date-fns';
 import { OPENIO_PRESIGN_EXPIRE } from '@/constants';
-import { TContainer } from '@/pages/objects/container/object/show/Show.page';
-import { TObject } from '@/api/data/container';
+
+import { TObject, TServerContainer } from '@/api/data/container';
+import { TRegion } from './region';
+
+export type TTags = {
+  [key: string]: string;
+};
+export type TContainer = {
+  id: string;
+  objectsCount: number;
+  usedSpace: string | number;
+  publicUrl: string;
+  s3StorageType: string;
+  staticUrl: string;
+  regionDetails?: TRegion;
+  tags?: TTags;
+} & TServerContainer;
 
 export const downloadObject = async (
   object: TObject,

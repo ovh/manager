@@ -13,8 +13,7 @@ import {
   UNIVERSE,
 } from '@/constants';
 import { TObject } from '@/api/data/container';
-import { downloadObject } from '@/api/data/download';
-import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+import { downloadObject, TContainer } from '@/api/data/download';
 import { shouldShowVersions } from './useShouldShowVersions';
 
 type TIndexedObject = TObject & { index: string };

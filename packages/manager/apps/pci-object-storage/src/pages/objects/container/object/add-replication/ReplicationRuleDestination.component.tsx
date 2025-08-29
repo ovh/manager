@@ -14,7 +14,7 @@ import {
   ReplicationStorageClass,
   STATUS_DISABLED,
 } from '@/constants';
-import { TContainer } from '../show/Show.page';
+import { TContainer } from '@/api/data/download';
 import { TServerContainer } from '@/api/data/container';
 import { ContainerType } from './ManageReplicationPage.form';
 
