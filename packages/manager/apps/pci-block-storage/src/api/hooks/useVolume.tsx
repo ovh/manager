@@ -35,6 +35,7 @@ import {
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
+  mapVolumeType,
   paginateResults,
   sortResults,
   TVolumeAttach,
@@ -43,12 +44,14 @@ import {
   TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
+  TVolumeType,
 } from '@/api/select/volume';
 
 export type TVolume = TAPIVolume &
   TVolumeAttach &
   TVolumeEncryption &
-  TVolumeStatus & {
+  TVolumeStatus &
+  TVolumeType & {
     regionName: string;
   };
 
@@ -79,6 +82,7 @@ export const useAllVolumes = (projectId: string | null) => {
         mapVolumeRegion(t),
         mapVolumeAttach(catalogData),
         mapVolumeEncryption(t, catalogData),
+        mapVolumeType(catalogData),
       ),
     [t, catalogData],
   );
@@ -305,7 +309,7 @@ export const convertUcentsToCurrency = (value: number, interval = 1) =>
 interface UpdateVolumeProps {
   projectId: string;
   volumeToEdit: Pick<TVolume, 'name' | 'size' | 'bootable'>;
-  originalVolume: TVolume;
+  originalVolume: UseVolumeResult;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
