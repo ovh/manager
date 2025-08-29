@@ -16,5 +16,9 @@
   "category_account_lifecycle": "Vie du compte",
   "category_security": "Sécurité",
   "category_legal": "Légal",
+  "status_error": "Erreur",
+  "status_disabled": "Désactivé",
+  "status_valid": "Actif",
+  "status_to_validate": "En attente",
   "iam_display_content_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur."
 }
