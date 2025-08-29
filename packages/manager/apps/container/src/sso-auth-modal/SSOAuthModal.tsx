@@ -61,7 +61,7 @@ const SSOAuthModal = (): JSX.Element => {
 
   useEffect(() => {
     if (mode === disconnectedToConnected || mode === connectedToOther) {
-      v6.get<User>('/me').then(({ data: currentUser }) => {
+      v6.get<User>('/me').then(({ data: currentUser }: { data: User }) => {
         setConnectedUser(currentUser);
       }).catch(() => {});
     }

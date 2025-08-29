@@ -1,6 +1,8 @@
 import React from 'react';
-import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type UseTaskParams = {
   resourceUrl: string;
@@ -13,10 +15,13 @@ export type UseTaskParams = {
   refetchIntervalTime?: number;
 };
 
-export const getDefaultQueryKey = (taskId: number | string) => [
-  'manage-task',
-  taskId,
-];
+export type TaskStatus = 'DONE' | 'PENDING' | 'RUNNING' | 'ERROR';
+
+export interface TaskResponse {
+  status: TaskStatus;
+}
+
+export const getDefaultQueryKey = (taskId: number | string) => ['manage-task', taskId];
 
 export const useTask = ({
   resourceUrl,
@@ -32,10 +37,7 @@ export const useTask = ({
   const [isPending, setIsPending] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
-  const { error } = useQuery<
-    ApiResponse<{ status: 'DONE' | 'PENDING' | 'RUNNING' }>,
-    ApiError
-  >({
+  const { error } = useQuery<ApiResponse<TaskResponse>, ApiError>({
     staleTime: 0,
     queryKey: queryKey || getDefaultQueryKey(taskId || resourceUrl),
     queryFn: async () => {
@@ -47,28 +49,32 @@ export const useTask = ({
 
       try {
         setIsPending(true);
-        const result = await apiClient[apiVersion].get(url);
+        const result = await apiClient[apiVersion].get<TaskResponse>(url);
+        const data: TaskResponse = result.data;
+
         if (apiVersion === 'v2') {
-          if (result.data?.status === 'DONE') {
+          if (data?.status === 'DONE') {
             setIsPending(false);
             setIsSuccess(true);
             setIsError(false);
             onSuccess?.();
             onFinish?.();
           }
-          if (result.data?.status === 'ERROR') {
+          if (data?.status === 'ERROR') {
             setIsPending(false);
             setIsSuccess(false);
             setIsError(true);
             onError?.();
             onFinish?.();
+            // eslint-disable-next-line @typescript-eslint/only-throw-error
             throw result;
           }
         }
         return result;
       } catch (err) {
         if (apiVersion === 'v6') {
-          if (err?.response?.status === 404) {
+          const apiError = err as ApiError;
+          if (apiError?.response?.status === 404) {
             setIsPending(false);
             setIsSuccess(true);
             setIsError(false);

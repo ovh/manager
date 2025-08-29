@@ -1,6 +1,6 @@
-import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
 import { Region } from '../environment/region.enum';
 import { CountryCode } from '../locale/country-code.enum';
+import { LANGUAGES, localeRegex, localeStorageKey } from './locale.constants';
 
 export type LangId = 'nl' | 'fr' | 'en' | 'de' | 'es' | 'it' | 'pl' | 'pt';
 export * from './country-code.enum';
@@ -28,7 +28,7 @@ export const useDefaultLanguage = (language: string): void => {
 
 const preferredCountry = (language: LangId, region: Region) => {
   if (['FR', 'EN'].includes(language.toUpperCase())) {
-    const customLanguage = LANGUAGES?.preferred[language][region];
+    const customLanguage = LANGUAGES?.preferred?.[language]?.[region];
     if (customLanguage) {
       return customLanguage;
     }
@@ -51,7 +51,7 @@ export const findLanguage = (language: LangId, country: string) => {
 
   // Not found: Try to find another country with same base language
   const similarLanguage = availableLangsKeys.find(
-    (val) => localeRegex.test(val) && val.match(localeRegex)[1] === language,
+    (val) => localeRegex.test(val) && val?.match?.(localeRegex)?.[1] === language,
   );
   if (similarLanguage) {
     return similarLanguage;
@@ -61,17 +61,12 @@ export const findLanguage = (language: LangId, country: string) => {
   return LANGUAGES.defaultLoc;
 };
 
-export const findAvailableLocale = (
-  userLocale: string,
-  region = Region.EU,
-): string => {
-  let splittedLocale: string[] = null;
+export const findAvailableLocale = (userLocale: string, region = Region.EU): string => {
+  let splittedLocale: string[];
 
   // Handle specific browser locales gracefully, example : 'es-419'
   if (userLocale.match(/[-_][0-9]+$/)) {
-    splittedLocale = userLocale
-      .split(/(-|_)/)[0]
-      .match(localeRegex) as string[];
+    splittedLocale = userLocale?.split?.(/(-|_)/)[0]?.match(localeRegex) as string[];
   } else {
     splittedLocale = userLocale.match(localeRegex) as string[];
   }
@@ -89,19 +84,23 @@ export const findAvailableLocale = (
   // Since following locales has been removed from the language menu picker
   // from the navbar we want to avoid to redirect customer to the default one
   // which is `fr_FR` by design.
-  if (['cs', 'fi', 'lt', 'nl'].includes(language)) {
+  if (['cs', 'fi', 'lt', 'nl'].includes(language || '')) {
     return findAvailableLocale('en_GB');
   }
   return findLanguage(language as LangId, country);
 };
 
 export const detectUserLocale = (): string => {
-  if (localStorage[localeStorageKey]) {
-    return localStorage[localeStorageKey];
+  const stored = localStorage.getItem(localeStorageKey);
+
+  if (stored) {
+    return stored;
   }
+
   if (navigator.language || navigator.userLanguage) {
-    return navigator.language || navigator.userLanguage;
+    return navigator.language || navigator.userLanguage || '';
   }
+
   return LANGUAGES.defaultLoc;
 };
 

@@ -1,15 +1,16 @@
-import '../../translations';
 import React, { useMemo } from 'react';
-import { OdsBadgeColor } from '@ovhcloud/ods-components';
-import { OdsText, OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  DateFormat,
-  ManagerTile,
-  useFormattedDate,
-} from '@ovh-ux/manager-react-components';
-import { useBillingInformationsContextServiceDetails } from '../../BillingInformationsTile.context';
+
+import { OdsBadgeColor } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { DateFormat, ManagerTile, useFormattedDate } from '@ovh-ux/manager-react-components';
+
 import BillingDetails from '../../BillingDetails.class';
+import { useBillingInformationsContextServiceDetails } from '../../BillingInformationsTile.context';
+import '../../translations';
 
 export type ServiceRenewStateBadgeProps = Omit<
   React.ComponentProps<typeof OdsBadge>,
@@ -18,20 +19,16 @@ export type ServiceRenewStateBadgeProps = Omit<
 
 const ServiceRenewStateBadge = ({ ...rest }: ServiceRenewStateBadgeProps) => {
   const { t } = useTranslation('billing-informations-tile');
-  const {
-    data: serviceDetails,
-    isLoading,
-  } = useBillingInformationsContextServiceDetails();
+  const { data: serviceDetails, isLoading } = useBillingInformationsContextServiceDetails();
 
   const billingDetails = useMemo(
-    () => (isLoading ? undefined : new BillingDetails(serviceDetails)),
+    () => (isLoading ? undefined : new BillingDetails(serviceDetails || ({} as ServiceDetails))),
     [serviceDetails],
   );
 
-  const {
-    label,
-    color,
-  }: { label: string; color: OdsBadgeColor } = useMemo(() => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  const { label, color }: { label: string; color: OdsBadgeColor } = useMemo(() => {
     if (billingDetails?.isResiliated()) {
       return {
         label: t('billing_informations_tile_renew_state_resiliated'),
@@ -39,10 +36,7 @@ const ServiceRenewStateBadge = ({ ...rest }: ServiceRenewStateBadgeProps) => {
       };
     }
 
-    if (
-      billingDetails?.hasEngagement() &&
-      billingDetails?.shouldDeleteAtExpiration()
-    ) {
+    if (billingDetails?.hasEngagement() && billingDetails?.shouldDeleteAtExpiration()) {
       return {
         label: t('billing_informations_tile_renew_state_resiliate_planned'),
         color: 'critical',
@@ -87,48 +81,36 @@ export type ServiceEngagementStateProps = React.ComponentProps<typeof OdsText>;
 
 const ServiceEngagementState = ({ ...rest }: ServiceEngagementStateProps) => {
   const { t } = useTranslation('billing-informations-tile');
-  const {
-    data: serviceDetails,
-    isLoading,
-  } = useBillingInformationsContextServiceDetails();
+  const { data: serviceDetails, isLoading } = useBillingInformationsContextServiceDetails();
 
   const billingDetails = useMemo(
-    () => (isLoading ? undefined : new BillingDetails(serviceDetails)),
+    () => (isLoading ? undefined : new BillingDetails(serviceDetails || ({} as ServiceDetails))),
     [serviceDetails],
   );
 
   const endDate = useFormattedDate({
-    dateString: billingDetails?.billing?.engagement?.endDate,
+    dateString: billingDetails?.billing?.engagement?.endDate ?? '',
     format: DateFormat.display,
   });
 
   const engagementLabel = useMemo(() => {
-    if (
-      !billingDetails?.hasEngagement() &&
-      !billingDetails?.hasPendingResiliation()
-    ) {
+    if (!billingDetails?.hasEngagement() && !billingDetails?.hasPendingResiliation()) {
       return t('billing_informations_tile_engagement_status_none');
     }
 
-    if (
-      billingDetails?.hasEngagementDetails() &&
-      billingDetails?.isEngagementExpired()
-    ) {
+    if (billingDetails?.hasEngagementDetails() && billingDetails?.isEngagementExpired()) {
       return t('billing_informations_tile_engagement_status_engaged_expired', {
         date: endDate,
       });
     }
 
-    if (
-      billingDetails?.hasEngagement &&
-      billingDetails?.isAutoCommitmentStrategy()
-    ) {
+    if (billingDetails?.hasEngagement() && billingDetails?.isAutoCommitmentStrategy()) {
       return t('billing_informations_tile_engagement_status_engaged_renew', {
         date: endDate,
       });
     }
 
-    if (billingDetails?.hasEngagement) {
+    if (billingDetails?.hasEngagement()) {
       return t('billing_informations_tile_engagement_status_engaged', {
         date: endDate,
       });

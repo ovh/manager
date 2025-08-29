@@ -1,5 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { ShellContext } from '../ShellContext';
 
 export type BreadcrumbItem = {
@@ -23,9 +25,9 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
+        const response = await shell?.navigation.getURL(appName ?? '', '#/', {});
         const rootItem = {
-          label: rootLabel,
+          label: rootLabel ?? '',
           href: String(response),
         };
         setRoot([rootItem]);
@@ -33,7 +35,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
         console.error('Error fetching root URL:', error);
       }
     };
-    fetchRoot();
+    void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {

@@ -17,7 +17,7 @@ export function useAddPattern({
       return addPattern(npInfo);
     },
     onError,
-    onSuccess: (data, variables) => {
+    onSuccess: (data: database.opensearch.Pattern, variables) => {
       queryClient.invalidateQueries({
         queryKey: [
           variables.projectId,

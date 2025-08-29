@@ -1,16 +1,16 @@
 import React, { ComponentProps } from 'react';
-import 'element-internals-polyfill';
-import userEvent from '@testing-library/user-event';
-import {
-  defaultServiceResponse,
-  ServiceDetails,
-} from '@ovh-ux/manager-module-common-api';
+
 import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import 'element-internals-polyfill';
 import { vi } from 'vitest';
-import { BillingInformationsResiliateLink } from './ResiliateLink';
-import { Wrapper } from '../../test-utils';
+
+import { ServiceDetails, defaultServiceResponse } from '@ovh-ux/manager-module-common-api';
+
 import BillingInformationsTile from '../../BillingInformationsTile';
+import { Wrapper } from '../../test-utils';
 import { serviceSuspendedResponse } from '../../test-utils/mockUtils';
+import { BillingInformationsResiliateLink } from './ResiliateLink';
 
 const renderWithMock = (
   mock: Partial<ServiceDetails>,
@@ -48,6 +48,8 @@ describe('BillingInformationsTile.State', () => {
     const link = container.querySelector(
       `ods-link[label="billing_informations_tile_field_label_resiliate"]`,
     );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     await user.click(link);
 
     expect(onLinkClick).toHaveBeenCalled();

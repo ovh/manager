@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { screen, waitFor, waitForOptions } from '@testing-library/react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from './common.constants';
 

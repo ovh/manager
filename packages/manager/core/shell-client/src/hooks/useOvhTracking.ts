@@ -1,20 +1,21 @@
 import React from 'react';
-import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
+
 import { useMatches } from 'react-router-dom';
+
+import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
+
 import { ShellContext, TrackingContextParams } from '../ShellContext';
 
 export const getLevel2TrackingParam = (universe: string) => {
   const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
-    AT_INTERNET_LEVEL2[element].toLowerCase().indexOf(universe.toLowerCase()) >
-    -1
+    (AT_INTERNET_LEVEL2?.[element]?.toLowerCase?.()?.indexOf?.(universe.toLowerCase()) || 0) > -1
       ? element
       : false,
   );
   return result ? result[0] : '0';
 };
 
-export const sanitizeLabel = (label: string) =>
-  label.replace(/\s/g, '_').replace(/:/g, '');
+export const sanitizeLabel = (label: string) => label.replace(/\s/g, '_').replace(/:/g, '');
 
 export enum PageType {
   onboarding = 'onboarding',
@@ -64,7 +65,7 @@ export const getPageProps = ({
   pageName,
 }: TrackingPageParams & TrackingContextParams) => ({
   name: [chapter1, chapter2, chapter3, appName, pageType, pageName]
-    .filter(Boolean)
+    .filter((s): s is string => Boolean(s))
     .map(sanitizeLabel)
     .join('::'),
   page: [appName, pageType, pageName].filter(Boolean).join('::'),
@@ -75,19 +76,24 @@ export const getPageProps = ({
 });
 
 const actionTypes = ['action', 'navigation', 'download', 'exit'] as const;
-export type ActionType = typeof actionTypes[number];
+export type ActionType = (typeof actionTypes)[number];
 
-export const isActionType = (
-  maybeActionType: unknown,
-): maybeActionType is ActionType =>
-  typeof maybeActionType === 'string' &&
-  new Set<string>(actionTypes).has(maybeActionType);
+export const isActionType = (maybeActionType: unknown): maybeActionType is ActionType =>
+  typeof maybeActionType === 'string' && new Set<string>(actionTypes).has(maybeActionType);
 
 export type TrackingClickParams = {
   location?: PageLocation;
   buttonType?: ButtonType;
   actions?: string[];
   actionType?: ActionType;
+};
+
+type TrackingHandle = {
+  tracking?: TrackingPageParams;
+};
+
+type RegionsTrackingConfig = {
+  [key: string]: { config?: { level2?: string } };
 };
 
 export const getClickProps = ({
@@ -105,7 +111,7 @@ export const getClickProps = ({
   actionType = 'action',
 }: TrackingClickParams & TrackingPageParams & TrackingContextParams) => ({
   name: [chapter1, chapter2, chapter3, location, buttonType, ...actions]
-    .filter(Boolean)
+    .filter((s): s is string => Boolean(s))
     .map(sanitizeLabel)
     .join('::'),
   page: getPageProps({
@@ -122,10 +128,16 @@ export const getClickProps = ({
   level2,
 });
 
-export const usePageTracking = () => {
+export const usePageTracking = (): TrackingPageParams | undefined => {
   const matches = useMatches();
-  const { handle } = matches[matches.length - 1];
-  return (handle as any)?.tracking as TrackingPageParams;
+  const lastMatch = matches[matches.length - 1];
+
+  if (lastMatch && typeof lastMatch.handle === 'object') {
+    const handle = lastMatch.handle as TrackingHandle;
+    return handle.tracking;
+  }
+
+  return undefined;
 };
 
 export const useOvhTracking = () => {
@@ -133,12 +145,13 @@ export const useOvhTracking = () => {
   const { shell, tracking, environment } = React.useContext(ShellContext);
   const region = environment?.getRegion();
   const level2 =
-    tracking?.level2Config?.[region]?.config?.level2 || tracking?.level2;
+    (region && (tracking?.level2Config as RegionsTrackingConfig)?.[region]?.config?.level2) ||
+    tracking?.level2;
 
   return {
     trackCurrentPage: () => {
       if (tracking && pageTracking) {
-        shell.tracking.trackPage(
+        shell?.tracking.trackPage(
           getPageProps({
             ...tracking,
             ...pageTracking,
@@ -148,7 +161,7 @@ export const useOvhTracking = () => {
       }
     },
     trackPage: (params: TrackingPageParams) => {
-      shell.tracking.trackPage(
+      shell?.tracking.trackPage(
         getPageProps({
           ...tracking,
           ...params,
@@ -156,13 +169,8 @@ export const useOvhTracking = () => {
         }),
       );
     },
-    trackClick: ({
-      location,
-      buttonType,
-      actions,
-      actionType,
-    }: TrackingClickParams) => {
-      shell.tracking.trackClick(
+    trackClick: ({ location, buttonType, actions, actionType }: TrackingClickParams) => {
+      shell?.tracking.trackClick(
         getClickProps({
           ...tracking,
           ...pageTracking,

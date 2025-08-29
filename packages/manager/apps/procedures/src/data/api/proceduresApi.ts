@@ -40,7 +40,7 @@ export const getProceduresAPI = (procedure: Procedure) => {
   ): Promise<UploadLink[]> => {
     return v6
       .post(uri, dataQuery)
-      .then(({ data: dataResponse }) => dataResponse.uploadLinks);
+      .then(({ data: dataResponse } : { data: Record<string, any> }) => dataResponse.uploadLinks);
   };
 
   const finalize: (finalizeData?: Record<string, any>) => Promise<void> = (

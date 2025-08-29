@@ -53,17 +53,17 @@ export interface AddUser extends ServiceData {
   user: UserCreation;
 }
 export const addUser = async ({
-  projectId,
-  engine,
-  serviceId,
-  user,
-}: AddUser) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
-      user,
-    )
-    .then((res) => res.data as GenericUser);
+         projectId,
+         engine,
+         serviceId,
+         user,
+       }: AddUser) =>
+         apiClient.v6
+           .post(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
+             user,
+           )
+           .then((res: { data: GenericUser }) => res.data as GenericUser);
 
 export interface DeleteUser extends ServiceData {
   userId: string;
@@ -82,28 +82,34 @@ export interface ManageUser extends ServiceData {
   userId: string;
 }
 export const resetUserPassword = async ({
-  projectId,
-  engine,
-  serviceId,
-  userId,
-}: ManageUser) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
-    )
-    .then((res) => res.data as database.service.UserWithPassword);
+         projectId,
+         engine,
+         serviceId,
+         userId,
+       }: ManageUser) =>
+         apiClient.v6
+           .post(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
+           )
+           .then(
+             (res: { data: database.service.UserWithPassword }) =>
+               res.data as database.service.UserWithPassword,
+           );
 
 export const getUserAccess = async ({
-  projectId,
-  engine,
-  serviceId,
-  userId,
-}: ManageUser) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/access`,
-    )
-    .then((res) => res.data as database.kafka.user.Access);
+         projectId,
+         engine,
+         serviceId,
+         userId,
+       }: ManageUser) =>
+         apiClient.v6
+           .get(
+             `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/access`,
+           )
+           .then(
+             (res: { data: database.kafka.user.Access }) =>
+               res.data as database.kafka.user.Access,
+           );
 
 export const getRoles = async ({
   projectId,
@@ -115,7 +121,9 @@ export const getRoles = async ({
   if (engine === database.EngineEnum.mongodb) {
     url += '?advanced=true';
   }
-  return apiClient.v6.get(url).then((res) => res.data as string[]);
+  return apiClient.v6
+    .get(url)
+    .then((res: { data: string[] }) => res.data as string[]);
 };
 
 export type UserEdition = Omit<GenericUser, 'createdAt' | 'status'>;
@@ -136,5 +144,5 @@ export const editUser = async ({
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${id}`,
       body,
     )
-    .then((res) => res.data as GenericUser);
+    .then((res: { data: GenericUser }) => res.data as GenericUser);
 };

@@ -1,23 +1,20 @@
 import React from 'react';
-import '../../translations';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import {
-  DateFormat,
-  ManagerTile,
-  useFormattedDate,
-} from '@ovh-ux/manager-react-components';
+
+import { DateFormat, ManagerTile, useFormattedDate } from '@ovh-ux/manager-react-components';
+
 import { useBillingInformationsContextServiceDetails } from '../../BillingInformationsTile.context';
+import '../../translations';
 
 export const BillingInformationsCreationDate = () => {
   const { t } = useTranslation('billing-informations-tile');
-  const {
-    data: serviceDetails,
-    isLoading,
-  } = useBillingInformationsContextServiceDetails();
+  const { data: serviceDetails, isLoading } = useBillingInformationsContextServiceDetails();
   const formattedDate = useFormattedDate({
-    dateString: serviceDetails?.billing.lifecycle.current.creationDate,
+    dateString: serviceDetails?.billing.lifecycle.current.creationDate ?? '',
     format: DateFormat.fullDisplay,
   });
 

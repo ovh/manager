@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { ShellContext } from '../ShellContext';
 
 /**
@@ -7,7 +8,7 @@ import { ShellContext } from '../ShellContext';
 export const useNavigation = () => {
   const { shell } = useContext(ShellContext);
 
-  return shell.navigation;
+  return shell?.navigation;
 };
 
 export default useNavigation;

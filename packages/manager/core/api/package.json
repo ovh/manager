@@ -7,6 +7,7 @@
   "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "type": "module",
   "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
@@ -14,9 +15,11 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "prepare": "tsc",
-    "test": "vitest run --pool=threads",
-    "test:cov": "vitest run --coverage"
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.3.3",
@@ -24,6 +27,8 @@
     "axios": "^1.1.2"
   },
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*"
   }
 }

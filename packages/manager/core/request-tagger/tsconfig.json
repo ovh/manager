@@ -1,20 +1,11 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["dom", "es2020"],
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "removeComments": true,
+    "rootDir": "src",
+    "noEmit": false,
     "outDir": "dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "preserveConstEnums": true,
-    "noImplicitAny": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "skipLibCheck": true
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "declarationDir": "./dist/types"
   },
-  "exclude": ["node_modules", "dist", "__tests__"]
+  "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

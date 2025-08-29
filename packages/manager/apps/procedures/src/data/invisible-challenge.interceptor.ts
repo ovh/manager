@@ -19,8 +19,8 @@ export const initInterceptor = () => {
     };
   };
 
-  v6.interceptors.response.use(undefined, (error) => {
-    const { response } = error;
+  v6.interceptors.response.use(undefined, (error : Record<string, any>) => {
+    const { response } = error || {};
     const { status, data } = response;
 
     if (status === 400 && data.class === INVISIBLE_CHALLENGE_ERROR_CLASS) {
@@ -50,6 +50,8 @@ export const initInterceptor = () => {
           if (reason instanceof AxiosError) {
             return Promise.reject(reason);
           }
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           const fullError: Error = { ...error, reason };
           return Promise.reject(fullError);
         });

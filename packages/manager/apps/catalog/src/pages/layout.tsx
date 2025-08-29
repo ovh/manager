@@ -19,7 +19,7 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      <OvhTracking shell={shell} />
+      <OvhTracking shell={shell} environment={null} />
     </>
   );
 }
