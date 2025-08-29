@@ -13,7 +13,11 @@ import {
   OdsDivider,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import {
+  ODS_TEXT_PRESET,
+  ODS_LINK_COLOR,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useUserContext } from '@/context/user/useUser';
 import {
@@ -24,6 +28,7 @@ import { Company } from '@/types/company';
 import { useCompanySearchSchema } from '@/hooks/companySearch/useCompanySearch';
 import CompanyTile from '@/pages/company/company-tile/CompanyTile.component';
 import { searchMinlength } from './company.constants';
+import { urls } from '@/routes/routes.constant';
 
 type SearchFormData = {
   search: string;
@@ -38,7 +43,7 @@ export default function CompanyPage() {
 
   const queryClient = useQueryClient();
 
-  const { country, setLegalForm, setCompany } = useUserContext();
+  const { country, legalForm, setLegalForm, setCompany } = useUserContext();
   const [search, setSearch] = useState<string>('');
   const queryKey = useCompanySuggestionQueryKey(search);
   const schema = useCompanySearchSchema();
@@ -58,6 +63,14 @@ export default function CompanyPage() {
     mode: 'onTouched',
     resolver: zodResolver(schema),
   });
+
+  const onFallbackLinkClicked = useCallback(() => {
+    setLegalForm('individual');
+  }, [legalForm]);
+
+  const onFallbackButtonClicked = useCallback(() => {
+    navigate(urls.accountDetails);
+  }, [legalForm]);
 
   const submitCompanySearch: SubmitHandler<SearchFormData> = useCallback(
     ({ search: value }: SearchFormData) => {
@@ -87,9 +100,11 @@ export default function CompanyPage() {
     <>
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-5">
-          <OdsText preset={ODS_TEXT_PRESET.heading1}>{t('title')}</OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.heading1}>
+            {t(`title_${legalForm}`)}
+          </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('description')}
+            {t(`description_${legalForm}`)}
           </OdsText>
         </div>
         <form
@@ -112,6 +127,7 @@ export default function CompanyPage() {
                   hasError={!!errors.search}
                   onOdsChange={onChange}
                   onBlur={onBlur}
+                  placeholder={t(`search_placeholder_${legalForm}`)}
                 />
                 {!!errors.search && (
                   <OdsText
@@ -142,14 +158,25 @@ export default function CompanyPage() {
         {!isFetching && !isFetched && (
           <>
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('fallback')}
+              {t(`fallback_${legalForm}`)}
             </OdsText>
-            <OdsLink
-              href="#/details"
-              onClick={() => setLegalForm('individual')}
-              color={ODS_LINK_COLOR.primary}
-              label={t('fallback_link')}
-            />
+            {legalForm === 'corporation' ? (
+              <OdsLink
+                href={`#${urls.accountDetails}`}
+                onClick={onFallbackLinkClicked}
+                color={ODS_LINK_COLOR.primary}
+                label={t('fallback_link')}
+              />
+            ) : (
+              <OdsButton
+                className="w-full"
+                onClick={onFallbackButtonClicked}
+                label={t('fallback_button')}
+                isLoading={isFetching}
+                variant={ODS_BUTTON_VARIANT.outline}
+                type="button"
+              />
+            )}
           </>
         )}
         {!isFetching && isFetched && error && (
@@ -196,7 +223,7 @@ export default function CompanyPage() {
             <OdsLink
               href="#/details"
               color={ODS_LINK_COLOR.primary}
-              label={t('search_not_satisfactory')}
+              label={t(`search_not_satisfactory_${legalForm}`)}
             />
           </div>
         )}

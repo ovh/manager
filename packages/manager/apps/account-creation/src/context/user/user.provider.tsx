@@ -39,10 +39,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
         navigate(urls.preferences);
         return;
       }
-      if (me?.ovhSubsidiary !== 'GB') {
+      /* if (me?.ovhSubsidiary !== 'GB') {
         redirectToLegacySignup();
         return;
-      }
+      } */
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
       setCountry(me?.country as Country);
