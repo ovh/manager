@@ -210,6 +210,7 @@ export default function AccountSidebar() {
             badge: 'beta'
           },
         ].filter(Boolean)
+
       });
     }
     return menu;
