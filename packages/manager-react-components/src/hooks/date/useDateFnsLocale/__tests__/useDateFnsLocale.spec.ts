@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTranslation } from 'react-i18next';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
-import { useDateFnsLocale } from './useDateFnsLocale';
+import { useDateFnsLocale } from '../useDateFnsLocale';
 
 vi.mock('@ovh-ux/manager-core-utils', () => ({
   getDateFnsLocale: vi.fn(),
@@ -52,4 +52,17 @@ describe('useDateFnsLocale', () => {
       expect(result.current).toBe(localeExpected);
     },
   );
+
+  it('should return enGB when getDateFnsLocale returns a value not in LOCALE_MAP', () => {
+    (useTranslation as jest.Mock).mockReturnValue({
+      i18n: { language: 'zh_CN' },
+    });
+    // Mock getDateFnsLocale to return a value that's not in LOCALE_MAP
+    (getDateFnsLocale as jest.Mock).mockReturnValue('zhCN');
+
+    const { result } = renderHook(() => useDateFnsLocale());
+
+    // Should fallback to enGB since 'zhCN' is not in LOCALE_MAP
+    expect(result.current).toBe('enGB');
+  });
 });

@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { vitest } from 'vitest';
-import { DEFAULT_UNKNOWN_DATE_LABEL, useFormatDate } from './useFormatDate';
+import { useFormatDate } from '../useFormatDate';
+import { DEFAULT_UNKNOWN_DATE_LABEL } from '../useFormatDate.type';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -99,4 +100,29 @@ describe('useFormatDate', () => {
       );
     },
   );
+
+  it('should return invalidDateDisplayLabel when formatDateFns throws an exception', () => {
+    const customInvalidLabel = 'Custom Invalid Date';
+    const { result } = renderHook(() =>
+      useFormatDate({ invalidDateDisplayLabel: customInvalidLabel }),
+    );
+
+    // Test with an invalid format that might cause formatDateFns to throw
+    const result1 = result.current({
+      date: new Date('2024-01-14T09:21:21.943Z'),
+      format: 'invalid-format',
+    });
+    expect(result1).toBe(customInvalidLabel);
+  });
+
+  it('should return default invalidDateDisplayLabel when formatDateFns throws an exception and no custom label provided', () => {
+    const { result } = renderHook(() => useFormatDate());
+
+    // Test with an invalid format that might cause formatDateFns to throw
+    const result1 = result.current({
+      date: new Date('2024-01-14T09:21:21.943Z'),
+      format: 'invalid-format',
+    });
+    expect(result1).toBe(DEFAULT_UNKNOWN_DATE_LABEL);
+  });
 });
