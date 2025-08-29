@@ -1,0 +1,37 @@
+<!-- It seems better to have primary-disabled based on $ctrl.resiliateForm.$invalid however this does not work properly (when opening the select form is valid) -->
+<delete-modal
+    data-service-type="{{$ctrl.serviceTypeLabel}}"
+    data-on-close="$ctrl.cancel()"
+    data-on-confirm="$ctrl.resiliate()"
+    data-primary-disabled="$ctrl.resiliateForm.$invalid || $ctrl.isLoading"
+    data-secondary-disabled="$ctrl.isLoading"
+    data-loading="$ctrl.isLoading"
+    data-is-open-modal="true"
+>
+    <div>
+        <div data-ng-transclude="additional-description"></div>
+        <div data-ng-if="$ctrl.capabilities.length > 0">
+            <form class="mt-4" name="$ctrl.resiliateForm" novalidate>
+                <oui-field
+                    data-label="{{:: 'billing_resiliate_mode_label' | translate }}"
+                >
+                    <oui-select
+                        name="resiliateOption"
+                        data-required
+                        data-items="$ctrl.resiliateOptions"
+                        data-model="$ctrl.resiliateOption"
+                        data-match="label"
+                        data-value-property="value"
+                    >
+                    </oui-select>
+                </oui-field>
+            </form>
+        </div>
+
+        <div
+            data-ng-if="!$ctrl.capabilities.length"
+            data-ng-transclude="option-fallback"
+        ></div>
+        <div data-ng-transclude="message"></div>
+    </div>
+</delete-modal>
