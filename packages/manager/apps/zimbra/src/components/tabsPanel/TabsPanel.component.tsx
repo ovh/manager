@@ -1,17 +1,11 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import {
-  Location,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import React, { ReactNode, useEffect, useState } from 'react';
+
+import { Location, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { replaceAll } from '@/utils';
 
 export type TabItemProps = {
@@ -30,9 +24,7 @@ export type TabsPanelProps = {
 };
 
 export const activatedTabs = (pathMatchers: RegExp[], location: Location) => {
-  return pathMatchers?.some((pathMatcher) =>
-    pathMatcher.test(location.pathname),
-  );
+  return pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname));
 };
 
 export const useComputePathMatchers = (routes: string[]) => {
@@ -76,9 +68,7 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
         const [pathname] = (tab.to || '').split('?');
         return (
           pathname === location.pathname ||
-          tab.pathMatchers?.some((pathMatcher) =>
-            pathMatcher.test(location.pathname),
-          )
+          tab.pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname))
         );
       });
       if (activeTab) {

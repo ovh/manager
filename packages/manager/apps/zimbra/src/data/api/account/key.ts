@@ -14,7 +14,11 @@ export const getZimbraPlatformAccountsQueryKey = (
   ].filter(Boolean);
 };
 
-export const getZimbraPlatformAccountDetailQueryKey = (
-  platformId: string,
-  accountId?: string,
-) => ['get', 'zimbra', 'platform', platformId, 'account', accountId];
+export const getZimbraPlatformAccountDetailQueryKey = (platformId: string, accountId?: string) => [
+  'get',
+  'zimbra',
+  'platform',
+  platformId,
+  'account',
+  accountId,
+];

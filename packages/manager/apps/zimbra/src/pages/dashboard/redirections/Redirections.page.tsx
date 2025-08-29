@@ -1,24 +1,26 @@
 import React from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Datagrid,
   DatagridColumn,
   ManagerButton,
   Subtitle,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import ActionButton from './ActionButton.component';
-import { useGenerateUrl, useOverridePage } from '@/hooks';
-import { usePlatform } from '@/data/hooks';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ResourceStatus } from '@/data/api';
+
 import { BadgeStatus } from '@/components';
+import { ResourceStatus } from '@/data/api';
+import { usePlatform } from '@/data/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButton from './ActionButton.component';
 import { RedirectionItem } from './Redirections.types';
 
 const items: RedirectionItem[] = [
@@ -61,9 +63,7 @@ const columns: DatagridColumn<RedirectionItem>[] = [
   },
   {
     id: 'tooltip',
-    cell: (item) => (
-      <ActionButton data-testid="add-redirection-btn" item={item} />
-    ),
+    cell: (item) => <ActionButton data-testid="add-redirection-btn" item={item} />,
     label: '',
   },
 ];

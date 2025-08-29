@@ -1,13 +1,11 @@
 import { useMemo } from 'react';
+
 import { AccountStatistics, ZimbraOffer } from '@/data/api';
 import { useOrganization, usePlatform } from '@/data/hooks';
 
 export const useAccountsStatistics = () => {
   const { data: platform, isLoading: isPlatformLoading } = usePlatform();
-  const {
-    data: organisation,
-    isLoading: isOrganisationLoading,
-  } = useOrganization();
+  const { data: organisation, isLoading: isOrganisationLoading } = useOrganization();
   const accountsStatistics: AccountStatistics[] = useMemo(
     () =>
       organisation
@@ -16,12 +14,7 @@ export const useAccountsStatistics = () => {
     [organisation, platform],
   );
 
-  const {
-    accountsConfigured,
-    accountsUnconfigured,
-    proCount,
-    starterCount,
-  } = useMemo(() => {
+  const { accountsConfigured, accountsUnconfigured, proCount, starterCount } = useMemo(() => {
     return (accountsStatistics || []).reduce(
       (acc, curr) => {
         acc.accountsConfigured += curr.configuredAccountsCount;

@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useMutation } from '@tanstack/react-query';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { deleteZimbraPlatformAccount, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useAccount } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import {
-  deleteZimbraPlatformAccount,
-  getZimbraPlatformListQueryKey,
-} from '@/data/api';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_EMAIL_ACCOUNT } from '@/tracking.constants';
 
@@ -49,9 +47,7 @@ export const DeleteEmailAccountModal = () => {
         pageName: DELETE_EMAIL_ACCOUNT,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:delete_success_message')}
-        </OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
         true,
       );
     },
@@ -69,8 +65,8 @@ export const DeleteEmailAccountModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
 
@@ -115,11 +111,7 @@ export const DeleteEmailAccountModal = () => {
       <>
         {step === 1 && (
           <>
-            <OdsText
-              preset={ODS_TEXT_PRESET.paragraph}
-              data-testid="text-step-1"
-              className="mb-4"
-            >
+            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-1" className="mb-4">
               <Trans
                 t={t}
                 i18nKey={'zimbra_account_delete_modal_content_step1'}
@@ -133,11 +125,7 @@ export const DeleteEmailAccountModal = () => {
 
         {step === 2 && (
           <>
-            <OdsText
-              preset={ODS_TEXT_PRESET.paragraph}
-              data-testid="text-step-2"
-              className="mb-4"
-            >
+            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-2" className="mb-4">
               <Trans
                 t={t}
                 i18nKey={'zimbra_account_delete_modal_content_step2'}
@@ -146,11 +134,7 @@ export const DeleteEmailAccountModal = () => {
                 }}
               />
             </OdsText>
-            <OdsMessage
-              className="mt-4"
-              isDismissible={false}
-              color={ODS_MESSAGE_COLOR.warning}
-            >
+            <OdsMessage className="mt-4" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
               <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
                 {t('zimbra_account_delete_modal_warn_message')}
               </OdsText>

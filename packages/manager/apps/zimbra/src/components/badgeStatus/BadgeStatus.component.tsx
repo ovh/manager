@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { ResourceStatus } from '@/data/api';
 
 export type BadgeStatusProps = {
@@ -31,9 +34,7 @@ const getStatusColor = (status: keyof typeof ResourceStatus) => {
 
 export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
   const { t } = useTranslation();
-  const statusColor = useMemo(() => getStatusColor(props.status), [
-    props.status,
-  ]);
+  const statusColor = useMemo(() => getStatusColor(props.status), [props.status]);
 
   return (
     <OdsBadge

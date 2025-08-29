@@ -229,6 +229,4 @@ export const domainDiagnosticMock = {
   status: 'ERROR',
 };
 
-export const domainsDiagnosticMock = [
-  domainDiagnosticMock,
-] as DomainDiagnosisResponse[];
+export const domainsDiagnosticMock = [domainDiagnosticMock] as DomainDiagnosisResponse[];

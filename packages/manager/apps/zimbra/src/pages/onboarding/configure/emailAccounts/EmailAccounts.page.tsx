@@ -1,47 +1,35 @@
 import React, { useEffect, useMemo } from 'react';
+
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  FormProvider,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-} from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useMutation } from '@tanstack/react-query';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomain, usePlatform } from '@/data/hooks';
-import { Loading, InlineEmailAccountFormItem } from '@/components';
+
+import { InlineEmailAccountFormItem, Loading } from '@/components';
 import {
   ZimbraOffer,
-  getZimbraPlatformListQueryKey,
   formatAccountPayload,
+  getZimbraPlatformListQueryKey,
   postZimbraPlatformAccount,
 } from '@/data/api';
-import {
-  addEmailAccountsSchema,
-  AddEmailAccountsSchema,
-  allSettledSequential,
-} from '@/utils';
-import {
-  CONFIRM,
-  ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
-  SKIP,
-} from '@/tracking.constants';
+import { useDomain, usePlatform } from '@/data/hooks';
 import queryClient from '@/queryClient';
+import { CONFIRM, ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS, SKIP } from '@/tracking.constants';
+import { AddEmailAccountsSchema, addEmailAccountsSchema, allSettledSequential } from '@/utils';
 
 export const ConfigureEmailAccounts: React.FC = () => {
   const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ACTIONS]);
@@ -94,17 +82,12 @@ export const ConfigureEmailAccounts: React.FC = () => {
 
   useEffect(() => {
     methods.reset({
-      accounts: [
-        { domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER },
-      ],
+      accounts: [{ domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER }],
     });
-  }, [domain]);
+  }, [domain, methods]);
 
   const starterAccounts = useMemo(
-    () =>
-      (accounts || []).filter(
-        (account) => account.offer === ZimbraOffer.STARTER,
-      ),
+    () => (accounts || []).filter((account) => account.offer === ZimbraOffer.STARTER),
     [accounts],
   );
 
@@ -115,8 +98,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
       return allSettledSequential(
         payload.accounts.map((acc) => {
           acc.displayName = `${acc.firstName} ${acc.lastName}`.trim();
-          return () =>
-            postZimbraPlatformAccount(platformId, formatAccountPayload(acc));
+          return () => postZimbraPlatformAccount(platformId, formatAccountPayload(acc));
         }),
       );
     },
@@ -126,14 +108,12 @@ export const ConfigureEmailAccounts: React.FC = () => {
         pageName: ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('configure_success_message')}
-        </OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('configure_success_message')}</OdsText>,
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
       onClose();
@@ -168,10 +148,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(handleConfirmClick)}
-        className="flex flex-col gap-4"
-      >
+      <form onSubmit={methods.handleSubmit(handleConfirmClick)} className="flex flex-col gap-4">
         <div className="flex flex-col gap-4">
           <OdsText
             preset={ODS_TEXT_PRESET.heading5}
@@ -224,9 +201,7 @@ export const ConfigureEmailAccounts: React.FC = () => {
             data-testid="confirm"
             type="submit"
             isLoading={isSending}
-            isDisabled={
-              !methods.formState.isDirty || !methods.formState.isValid
-            }
+            isDisabled={!methods.formState.isDirty || !methods.formState.isValid}
             label={t(`${NAMESPACES.ACTIONS}:configure`)}
           />
           <OdsButton

@@ -14,7 +14,11 @@ export const getZimbraPlatformSlotsQueryKey = (
   ].filter(Boolean);
 };
 
-export const getZimbraPlatformSlotQueryKey = (
-  platformId: string,
-  slotId?: string,
-) => ['get', 'zimbra', 'platform', platformId, 'slot', slotId];
+export const getZimbraPlatformSlotQueryKey = (platformId: string, slotId?: string) => [
+  'get',
+  'zimbra',
+  'platform',
+  platformId,
+  'slot',
+  slotId,
+];

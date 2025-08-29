@@ -1,40 +1,36 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { usePlatform, useMailingLists } from '@/data/hooks';
-import { useGenerateUrl, useOverridePage } from '@/hooks';
-import ActionButtonMailingList from './ActionButton.component';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { MailingListType } from '@/data/api';
-import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { BadgeStatus, LabelChip } from '@/components';
+import { MailingListType } from '@/data/api';
+import { useMailingLists, usePlatform } from '@/data/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_MAILING_LIST } from '@/tracking.constants';
+import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
+import { IAM_ACTIONS } from '@/utils/iamAction.constants';
+
+import ActionButtonMailingList from './ActionButton.component';
 import { MailingListItem } from './MailingLists.types';
 
 const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'domains',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
     label: 'common:mailing_list',
   },
   {
@@ -47,30 +43,22 @@ const columns: DatagridColumn<MailingListItem>[] = [
   },
   {
     id: 'owner',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>,
     label: 'common:owner',
   },
   {
     id: 'alias',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>,
     label: 'common:alias',
   },
   {
     id: 'moderators',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.moderators}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.moderators}</OdsText>,
     label: 'zimbra_mailinglists_datagrid_moderators_label',
   },
   {
     id: 'subscribers',
-    cell: (item) => (
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.subscribers}</OdsText>
-    ),
+    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.subscribers}</OdsText>,
     label: 'zimbra_mailinglists_datagrid_subscribers_label',
   },
   {
@@ -99,9 +87,7 @@ export const getMailingListItem = (data: MailingListType): MailingListItem => {
   };
 };
 
-export const getMailingListItems = (
-  data: MailingListType[],
-): MailingListItem[] => {
+export const getMailingListItems = (data: MailingListType[]): MailingListItem[] => {
   return data?.map(getMailingListItem) ?? [];
 };
 

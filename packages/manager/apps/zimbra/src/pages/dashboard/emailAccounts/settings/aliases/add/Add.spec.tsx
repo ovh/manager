@@ -1,10 +1,15 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { fireEvent, render, screen, waitFor, act } from '@/utils/test.provider';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
 import { accountMock, platformMock } from '@/data/api';
+import { act, fireEvent, render, screen, waitFor } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
 import AddAliasModal from './Add.modal';
 
 describe('add alias modal', () => {
@@ -31,12 +36,13 @@ describe('add alias modal', () => {
     });
 
     const button = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const selectDomain = getByTestId('select-domain') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
 
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       inputAccount.odsBlur.emit({});
       selectDomain.odsBlur.emit({});
     });
@@ -45,7 +51,8 @@ describe('add alias modal', () => {
     expect(selectDomain).toHaveAttribute('has-error', 'true');
     expect(button).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.input(inputAccount, {
         target: { value: 'alias' },
       });
