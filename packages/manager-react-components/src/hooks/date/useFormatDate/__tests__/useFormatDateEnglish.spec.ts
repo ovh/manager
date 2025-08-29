@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
-import { DEFAULT_UNKNOWN_DATE_LABEL, useFormatDate } from './useFormatDate';
+import { useFormatDate } from '../useFormatDate';
+import { DEFAULT_UNKNOWN_DATE_LABEL } from '../useFormatDate.type';
 
 describe('useFormatDate', () => {
   it.each([
