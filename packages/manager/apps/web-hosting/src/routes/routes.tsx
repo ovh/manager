@@ -13,6 +13,8 @@ import {
   ORDER_SECTIGO,
   ORDER_DOMAIN,
   SSL,
+  LOCAL_SEO,
+  REMOVE_SEO_SUBSCIPTION,
   WEBSITE,
   SAN_SSL,
 } from '@/utils/tracking.constants';
@@ -41,6 +43,12 @@ const AddDomainPage = React.lazy(() =>
 );
 const OrderDomainPage = React.lazy(() =>
   import('@/pages/dashboard/OrderDomain.page'),
+);
+const LocalSeoPage = React.lazy(() =>
+  import('@/pages/dashboard/local-seo/LocalSeo.page'),
+);
+const RemoveSeoSubscriptionPage = React.lazy(() =>
+  import('@/pages/dashboard/local-seo/manage/RemoveSeoSubscription.page'),
 );
 
 export default (
@@ -163,6 +171,28 @@ export default (
         handle={{
           tracking: {
             pageName: ORDER_DOMAIN,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={LOCAL_SEO}
+        path={urls.localSeo}
+        Component={LocalSeoPage}
+        handle={{
+          tracking: {
+            pageName: LOCAL_SEO,
+            pageType: PageType.listing,
+          },
+        }}
+      />
+      <Route
+        id={REMOVE_SEO_SUBSCIPTION}
+        path={urls.removeSeoSubsciption}
+        Component={RemoveSeoSubscriptionPage}
+        handle={{
+          tracking: {
+            pageName: REMOVE_SEO_SUBSCIPTION,
             pageType: PageType.popup,
           },
         }}
