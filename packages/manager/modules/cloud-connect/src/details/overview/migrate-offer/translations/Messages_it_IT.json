@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Aggiornamento del servizio OVHcloud Connect",
+  "cloud_connect_apply": "Confermare",
+  "cloud_connect_migrate_provider_bandwidth": "Questo aggiornamento ti permetterà di passare dal prodotto {{prevProductName}} al prodotto {{newProductName}} senza costi aggiuntivi*.",
+  "cloud_connect_migrate_provider_no_service_cut": "L’operazione durerà solo pochi minuti e non comporterà interruzioni di servizio.",
+  "cloud_connect_migrate_provider_email_confirm": "Una volta completato l’aggiornamento, riceverai un’email di conferma. Per usufruire della nuova banda passante, dovrai ricreare un nuovo circuito presso {{provider}} utilizzando una nuova chiave di servizio OVHcloud Connect.",
+  "cloud_connect_migrate_provider_launch_process": "Cliccando su \"Conferma\", avvierai il processo di aggiornamento.",
+  "cloud_connect_migrate_provider_price_and_commitment": "*Il prezzo, la durata dell'impegno contrattuale e le eventuali promozioni associate rimarranno invariati dopo l’operazione di aggiornamento.",
+  "cloud_connect_migrate_direct_bandwidth": "L’aggiornamento permetterà di aumentare la banda passante massima di questo servizio da 1 Gbps a 10 Gbps senza costi aggiuntivi*.",
+  "cloud_connect_migrate_direct_configuration_preserved": "L’operazione durerà solo pochi minuti e manterremo la configurazione attuale.",
+  "cloud_connect_migrate_direct_email_confirm": "Una volta completato l’aggiornamento, riceverai un’email di conferma.",
+  "cloud_connect_migrate_direct_warning_title": "Attenzione!",
+  "cloud_connect_migrate_direct_actions_expected": "È necessario un intervento da parte tua. La porta di rete sul dispositivo perimetrale OVHcloud nel PoP passerà da 1 Gbps a 10 Gbps. Questo comporterà un'interruzione del collegamento fino a quando la porta di rete del dispositivo perimetrale non arriverà a 10 Gbps. Ti ricordiamo che la negoziazione automatica non è supportata su OVHcloud Connect. Per ridurre al minimo il downtime, ti consigliamo di avviare l’aggiornamento una volta che l’infrastruttura è pronta. L’operazione di aggiornamento durerà solo pochi minuti lato OVHcloud.",
+  "cloud_connect_migrate_direct_launch_process": "Cliccando su \"Conferma\", avvierai il processo di aggiornamento.",
+  "cloud_connect_migrate_direct_price_and_commitment": "*Il prezzo, la durata dell'impegno contrattuale e le eventuali promozioni associate rimarranno invariati dopo l’operazione di aggiornamento.",
+  "cloud_connect_migrate_offer_success": "La richiesta di aggiornamento del servizio è stata presa in carico. Ti preghiamo di attendere.",
+  "cloud_connect_migrate_offer_error": "Impossibile effettuare l'aggiornamento del servizio: {{ message }}"
+}
