@@ -90,4 +90,21 @@ describe('OnBoardingPage', () => {
       'pci_projects_project_storages_snapshots_title',
     );
   });
+
+  it('should render guides', () => {
+    const { getByText } = render(<OnBoardingPage />, {
+      wrapper: createWrapper(),
+    });
+
+    expect(
+      getByText(
+        'pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title',
+      ),
+    ).toBeVisible();
+    expect(
+      getByText(
+        'pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_description',
+      ),
+    ).toBeVisible();
+  });
 });
