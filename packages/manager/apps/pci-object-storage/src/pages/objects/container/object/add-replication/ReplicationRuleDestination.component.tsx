@@ -17,6 +17,7 @@ import {
 import { TContainer } from '../show/Show.page';
 import { TServerContainer } from '@/api/data/container';
 import { ContainerType } from './ManageReplicationPage.form';
+import { TReplication } from '../replication/ReplicationList.page';
 
 export type TReplicationDestination = {
   name: string;
@@ -41,14 +42,7 @@ export type TReplicationStorage = {
     status: string;
   };
   replication?: {
-    rules: {
-      id: string;
-      status: 'enabled' | 'disabled';
-      priority: number;
-      destination: TReplicationDestination;
-      deleteMarkerReplication: 'enabled' | 'disabled';
-      filter?: { prefix: string; tags: { [key: string]: string } };
-    }[];
+    rules: TReplication[];
   };
 };
 
