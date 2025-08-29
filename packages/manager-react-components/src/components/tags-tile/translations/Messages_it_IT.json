@@ -1,7 +1,7 @@
 {
   "tags_tile_title": "Tag",
-  "tags_tile_empty": "Nessuna etichetta associata",
-  "tags_tile_add_tag": "Aggiungi un tag",
-  "assigned_tags": "Etichette assegnate",
-  "manage_tags": "Manager le tag"
+  "tags_tile_empty": "Nessun tag associato",
+  "tags_tile_add_tag": "Aggiungere un tag",
+  "assigned_tags": "Tag assegnati",
+  "manage_tags": "Gestire i tag"
 }
