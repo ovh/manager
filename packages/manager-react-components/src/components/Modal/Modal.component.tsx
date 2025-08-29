@@ -12,10 +12,16 @@ import {
   ODS_TEXT_PRESET,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useTranslation } from 'react-i18next';
 
 export interface ModalProps {
   /** Title of modal */
   heading?: string;
+  /** Current step displayed on the modal (must define heading and totalStepNumber) */
+  currentStep?: number;
+  /** Total number of steps in the modal (must defined heading and currentStep) */
+  totalStepNumber?: number;
   /** Type of modal. It can be any of `ODS_MODAL_COLOR` */
   type?: ODS_MODAL_COLOR;
   /** Is loading state for display a spinner */
@@ -59,6 +65,8 @@ export const ModalComponent: React.ForwardRefRenderFunction<
 > = (
   {
     heading,
+    currentStep,
+    totalStepNumber,
     type = ODS_MODAL_COLOR.information,
     isLoading,
     primaryLabel,
@@ -78,6 +86,7 @@ export const ModalComponent: React.ForwardRefRenderFunction<
   ref: Ref<HTMLOdsModalElement>,
 ) => {
   const buttonColor = getPrimaryButtonColor(type);
+  const { t } = useTranslation(NAMESPACES.FORM);
 
   return (
     <OdsModal
@@ -89,17 +98,36 @@ export const ModalComponent: React.ForwardRefRenderFunction<
       isOpen={isOpen}
       ref={ref}
     >
-      {heading && (
-        <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
-          {heading}
-        </OdsText>
-      )}
-      {isLoading && (
+      {heading &&
+        (!Number.isInteger(currentStep) ||
+          !Number.isInteger(totalStepNumber)) && (
+          <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
+            {heading}
+          </OdsText>
+        )}
+      {heading &&
+        Number.isInteger(currentStep) &&
+        Number.isInteger(totalStepNumber) && (
+          <div className="flex items-center mb-4">
+            <OdsText
+              className="block mr-3 flex-1"
+              preset={ODS_TEXT_PRESET.heading4}
+            >
+              {heading}
+            </OdsText>
+            <OdsText className="ml-auto" preset={ODS_TEXT_PRESET.caption}>
+              {t('stepPlaceholder', {
+                current: currentStep,
+                total: totalStepNumber,
+              })}
+            </OdsText>
+          </div>
+        )}
+      {isLoading ? (
         <div data-testid="spinner" className="flex justify-center my-5">
-          <OdsSpinner size={ODS_SPINNER_SIZE.md} inline-block></OdsSpinner>
+          <OdsSpinner size={ODS_SPINNER_SIZE.md} inline-block />
         </div>
-      )}
-      {!isLoading && (
+      ) : (
         <>
           <div className="flex  flex-col text-left">{children}</div>
           {secondaryLabel && (
@@ -108,7 +136,7 @@ export const ModalComponent: React.ForwardRefRenderFunction<
               slot="actions"
               color={buttonColor}
               onClick={
-                !isSecondaryButtonDisabled ? onSecondaryButtonClick : null // need for don't break the test
+                !isSecondaryButtonDisabled ? onSecondaryButtonClick : null // avoid breaking the tests
               }
               isDisabled={isSecondaryButtonDisabled}
               isLoading={isSecondaryButtonLoading}
@@ -123,7 +151,7 @@ export const ModalComponent: React.ForwardRefRenderFunction<
               data-testid={primaryButtonTestId || 'primary-button'}
               slot="actions"
               color={buttonColor}
-              onClick={!isPrimaryButtonDisabled ? onPrimaryButtonClick : null} // need for don't break the test
+              onClick={!isPrimaryButtonDisabled ? onPrimaryButtonClick : null} // avoid breaking the tests
               isDisabled={isPrimaryButtonDisabled}
               isLoading={isPrimaryButtonLoading}
               variant={ODS_BUTTON_VARIANT.default}
