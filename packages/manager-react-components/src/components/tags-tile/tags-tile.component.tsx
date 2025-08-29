@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsLink } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { TagsList, TagsListProps } from '../tags-list';
 import './translations';
-import { ManagerTile } from '../content';
+import { Tile } from '../tile';
+import { Link, LinkType } from '../Link';
 
 export interface TagsTileProps extends Omit<TagsListProps, 'onClick'> {
   onEditTags?: () => void;
+  lineNumber?: number;
 }
 
 export const TagsTile: React.FC<TagsTileProps> = ({
@@ -20,12 +20,10 @@ export const TagsTile: React.FC<TagsTileProps> = ({
   const isEmptyTags = !tags || Object.keys(tags).length === 0;
 
   return (
-    <ManagerTile>
-      <ManagerTile.Title>{t('tags_tile_title')}</ManagerTile.Title>
-      <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('assigned_tags')}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
+    <Tile.Root title={t('tags_tile_title')}>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('assigned_tags')} />
+        <Tile.Item.Description>
           <div className="w-full min-w-[85px] h-[120px] overflow-auto">
             {isEmptyTags && <span>{t('tags_tile_empty')}</span>}
             {!isEmptyTags && (
@@ -36,18 +34,19 @@ export const TagsTile: React.FC<TagsTileProps> = ({
               />
             )}
           </div>
-          <OdsLink
+          <Link
+            type={LinkType.external}
             href="#"
             className="mt-4"
             onClick={(e) => {
               onEditTags?.();
               e.preventDefault();
             }}
-            label={isEmptyTags ? t('tags_tile_add_tag') : t('manage_tags')}
-            icon={ODS_ICON_NAME.arrowRight}
-          />
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
-    </ManagerTile>
+          >
+            {isEmptyTags ? t('tags_tile_add_tag') : t('manage_tags')}
+          </Link>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };
