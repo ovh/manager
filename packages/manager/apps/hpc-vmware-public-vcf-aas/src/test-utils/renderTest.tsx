@@ -31,6 +31,7 @@ import {
   getAuthenticationMocks,
   toMswHandlers,
 } from '@ovh-ux/manager-core-test-utils';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { translations } from './test-i18n';
 import { TestApp } from './TestApp';
 import { APP_NAME } from '@/tracking.constants';
@@ -46,6 +47,60 @@ let i18nState: i18n;
 
 const formatSafePath = (url: string) =>
   url && url.startsWith(urls.root) ? url : `${urls.root}${url ?? ''}`;
+function testAppBuilder() {
+  const providers: ((props: React.PropsWithChildren) => React.ReactNode)[] = [];
+
+  return {
+    async withI18nextProvider() {
+      if (!i18nState) {
+        i18nState = await initTestI18n(APP_NAME, translations);
+      }
+
+      providers.push(({ children }: React.PropsWithChildren) => (
+        <I18nextProvider i18n={i18nState}>{children}</I18nextProvider>
+      ));
+
+      return this;
+    },
+    withQueryClientProvider() {
+      const queryClient = new QueryClient({
+        defaultOptions: {
+          queries: { retry: false },
+          mutations: { retry: false },
+        },
+      });
+
+      providers.push(({ children }: React.PropsWithChildren) => (
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      ));
+
+      return this;
+    },
+    async withShellProvider() {
+      if (!context) {
+        context = await initShellContext(APP_NAME);
+      }
+
+      providers.push(({ children }: React.PropsWithChildren) => (
+        <ShellContext.Provider value={context}>
+          {children}
+        </ShellContext.Provider>
+      ));
+
+      return this;
+    },
+    renderApp({ children }: React.PropsWithChildren) {
+      return render(
+        providers.reduce(
+          (child, parentsProviders) => parentsProviders({ children: child }),
+          children,
+        ),
+      );
+    },
+  };
+}
 
 export const renderTest = async ({
   initialRoute,
@@ -73,21 +128,13 @@ export const renderTest = async ({
     ]),
   );
 
-  if (!context) {
-    context = await initShellContext(APP_NAME);
-  }
-
-  if (!i18nState) {
-    i18nState = await initTestI18n(APP_NAME, translations);
-  }
-
-  const result = render(
-    <I18nextProvider i18n={i18nState}>
-      <ShellContext.Provider value={context}>
-        <TestApp initialRoute={formatSafePath(initialRoute)} />
-      </ShellContext.Provider>
-    </I18nextProvider>,
-  );
+  const i18nextProviderStep = await testAppBuilder()
+    .withQueryClientProvider()
+    .withI18nextProvider();
+  const shellProviderStep = await i18nextProviderStep.withShellProvider();
+  const result = shellProviderStep.renderApp({
+    children: <TestApp initialRoute={formatSafePath(initialRoute)} />,
+  });
 
   if (!initialRoute || initialRoute === '/') {
     await waitFor(
