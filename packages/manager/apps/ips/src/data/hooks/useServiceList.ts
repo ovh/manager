@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { ServiceType } from '@/types';
-import { getServiceList } from '../api';
-
-export const ipParkingOptionValue = 'parking';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { ServiceType, ipParkingOptionValue } from '@/types';
+import { GetServiceList, getServiceList } from '../api';
 
 /**
  * Fetch the list of available services to order an additional IP
  */
 export const useServiceList = () => {
-  const { data, ...query } = useQuery({
+  const { data, ...query } = useQuery<GetServiceList, ApiError>({
     queryKey: ['serviceList', 'order'],
     queryFn: getServiceList,
   });
