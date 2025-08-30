@@ -16,6 +16,7 @@ import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
 import { updateInstancesFromCache } from '@/data/hooks/instance/useInstances';
 import queryClient from '@/queryClient';
+import { updateInstanceFromCache } from '../useInstance';
 
 export type TUseInstanceActionCallbacks<
   TData = unknown,
@@ -59,9 +60,18 @@ const useInstanceAction = <
         task: { isPending: true, status: null },
         actions: [],
       };
+
       updateInstancesFromCache(queryClient, {
         projectId,
         instance: newInstance,
+      });
+
+      // TODO: refactor or move => c'est pour déclencher le polling sur le dashboard
+      updateInstanceFromCache({
+        queryClient,
+        projectId,
+        instance: newInstance,
+        region: 'BHS5',
       });
 
       return onSuccess?.(data, variables);

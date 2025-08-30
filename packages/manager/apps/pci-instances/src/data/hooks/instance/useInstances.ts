@@ -15,15 +15,10 @@ import fp from 'lodash/fp';
 import { getInstances } from '@/data/api/instance';
 import { instancesQueryKey } from '@/utils';
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
-import {
-  TAggregatedInstance,
-  TPartialInstance,
-} from '@/types/instance/entity.type';
+import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
-import { buildPartialAggregatedInstanceDto } from './builder/instanceDto.builder';
-import { updateInstanceFromCache } from './useInstance';
 
 type FilterWithLabel = Filter & { label: string };
 
@@ -38,7 +33,8 @@ type TUpdateInstancesFromCache = (
   queryClient: QueryClient,
   payload: {
     projectId: string;
-    instance: TPartialInstance;
+    instance: Pick<TAggregatedInstanceDto, 'id'> &
+      Partial<TAggregatedInstanceDto>;
   },
 ) => void;
 
@@ -56,18 +52,17 @@ export const updateInstancesFromCache: TUpdateInstancesFromCache = (
   >({
     predicate: listQueryKeyPredicate(projectId),
   });
-  const newInstance = buildPartialAggregatedInstanceDto(instance);
 
   queries.forEach(([queryKey, queryData]) => {
     if (!queryData) return;
 
     const updatedPages: TAggregatedInstanceDto[][] = queryData.pages.map(
       (page): TAggregatedInstanceDto[] => {
-        const foundIndex = fp.findIndex(fp.propEq('id', newInstance.id), page);
+        const foundIndex = fp.findIndex(fp.propEq('id', instance.id), page);
         if (foundIndex === -1) return page;
 
         const previousInstance = page[foundIndex];
-        const mergedInstance = { ...previousInstance, ...newInstance };
+        const mergedInstance = { ...previousInstance, ...instance };
 
         if (isEqual(previousInstance, mergedInstance)) return page;
 
@@ -92,12 +87,6 @@ export const updateInstancesFromCache: TUpdateInstancesFromCache = (
         return { ...prevData, pages: updatedPages };
       },
     );
-  });
-
-  updateInstanceFromCache({
-    queryClient,
-    projectId,
-    instance,
   });
 };
 

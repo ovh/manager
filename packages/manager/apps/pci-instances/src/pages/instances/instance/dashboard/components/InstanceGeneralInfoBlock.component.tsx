@@ -41,15 +41,17 @@ const InstanceGeneralInfoBlock: FC = () => {
     `../${instanceId}/delete?region=${region}`,
   );
 
-  const { instance, isPending: isInstanceLoading } = useDashboard({
-    region,
-    instanceId,
-  });
+  const { instance, pendingTasks, isPending: isInstanceLoading } = useDashboard(
+    {
+      region,
+      instanceId,
+    },
+  );
 
   const polling = useDashboardPolling({
-    region,
     instanceId,
-    taskStatus: instance?.task,
+    region,
+    pendingTasks,
   });
 
   return (
