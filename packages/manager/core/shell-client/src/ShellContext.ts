@@ -24,4 +24,3 @@ export const ShellContext = createContext<ShellContextType>({
   environment: null,
   tracking: null,
 });
-
