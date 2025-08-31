@@ -9,8 +9,5 @@ export default mergeConfig(
         exclude: [],
       },
     },
-    resolve: {
-      mainFields: ['module'],
-    },
   }),
 );

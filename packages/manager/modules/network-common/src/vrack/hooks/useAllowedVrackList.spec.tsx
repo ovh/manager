@@ -1,10 +1,12 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useAllowedVrackList } from './useAllowedVrackList';
-import { getVrackList, getVrackAllowedServices } from '../api';
-import { vrackListMocks } from '../../mocks';
 import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
+import { InternalAxiosRequestConfig } from 'axios';
+import { vi } from 'vitest';
+
+import { vrackListMocks } from '../../mocks';
+import { getVrackAllowedServices, getVrackList } from '../api';
+import { useAllowedVrackList } from './useAllowedVrackList';
 
 vi.mock('../api', async () => {
   const actual = await vi.importActual<typeof import('../api')>('../api');
@@ -34,9 +36,10 @@ describe('useAllowedVrackList', () => {
       data: vrackListMocks,
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {},
+      config: {} as InternalAxiosRequestConfig<string>,
     });
+
     vi.mocked(getVrackAllowedServices).mockImplementation(() => {
       return Promise.resolve({
         data: {
@@ -54,12 +57,12 @@ describe('useAllowedVrackList', () => {
         },
         status: 0,
         statusText: '',
-        headers: undefined,
-        config: undefined,
+        headers: {},
+        config: {} as InternalAxiosRequestConfig<string>,
       });
     });
 
-    await render(
+    render(
       <QueryClientProvider client={queryClient}>
         <TestComponent vrackServicesId="test-id" />
       </QueryClientProvider>,
@@ -73,9 +76,10 @@ describe('useAllowedVrackList', () => {
     expect(getVrackAllowedServices).toHaveBeenCalled();
   });
 
-  test('should handle errors correctly', async () => {
+  test('should handle errors correctly', () => {
     vi.mocked(getVrackList).mockRejectedValue(new Error('net work error'));
-    await render(
+
+    render(
       <QueryClientProvider client={queryClient}>
         <TestComponent vrackServicesId="test-id" />
       </QueryClientProvider>,
@@ -85,13 +89,14 @@ describe('useAllowedVrackList', () => {
       data: vrackListMocks,
       status: 200,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {},
+      config: {} as InternalAxiosRequestConfig<string>,
     });
 
     expect(getVrackList).toHaveBeenCalled();
     expect(getVrackAllowedServices).not.toHaveBeenCalled();
   });
+
   it('should not call queries if no vrackServicesId is provided', async () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -107,13 +112,13 @@ describe('useAllowedVrackList', () => {
     expect(getVrackAllowedServices).not.toHaveBeenCalled();
   });
 
-  it('should show loading state when data is loading', async () => {
+  it('should show loading state when data is loading', () => {
     vi.mocked(getVrackList).mockResolvedValue({
       data: vrackListMocks,
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {},
+      config: {} as InternalAxiosRequestConfig<string>,
     });
 
     render(

@@ -93,7 +93,10 @@ export const getHYCUProductSettings = ({
     configuration: [{ label: 'region', value: region }],
   });
 
-export const ORDER_URLS = {
+export const ORDER_URLS: Record<
+  'EU' | 'CA' | 'US',
+  Record<string, Record<string, string>>
+> = {
   EU: {
     DEDICATED: {
       FR: 'https://www.ovh.com/manager/dedicated/',

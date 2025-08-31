@@ -1,5 +1,7 @@
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+
 import { vrackServicesListMocks } from './get-vrack-services';
 
 export const vsUpdateErrorMessage = 'Update vs error';
@@ -57,7 +59,7 @@ export const getVrackServicesMocks = ({
   },
   {
     url: '/vrackServices/resource/:id',
-    response: async (_: unknown, params: PathParams) => {
+    response: (_: unknown, params: PathParams) => {
       if (updateKo) {
         return { message: vsUpdateErrorMessage };
       }
@@ -68,8 +70,8 @@ export const getVrackServicesMocks = ({
         ...vs,
         currentTasks: [{ id: '1234', status: 'DONE' }],
         currentState: {
-          ...vs.currentState,
-          ...(vs.targetSpec
+          ...vs?.currentState,
+          ...(vs?.targetSpec
             ? {
                 displayName: vs.targetSpec.displayName,
                 subnets: vs.targetSpec.subnets,

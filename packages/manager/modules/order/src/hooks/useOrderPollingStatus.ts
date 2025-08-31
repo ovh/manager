@@ -25,7 +25,6 @@ const toDetailedOrder = async (orderId: number): Promise<DetailedOrder> => {
   );
   const statusResponse = await getOrderStatus(orderId);
   return {
-    orderId,
     ...orderData.data,
     status: statusResponse.data,
     details: detailsResponse.map((detail) => detail.data),

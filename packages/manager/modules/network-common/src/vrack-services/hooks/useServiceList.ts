@@ -1,20 +1,14 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
-import {
-  getEligibleManagedServiceList,
-  getEligibleManagedServiceListQueryKey,
-} from '../api';
-import {
-  EligibleManagedService,
-  Subnet,
-  VrackServicesWithIAM,
-} from '../../types';
+
+import { QueryKey, useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { EligibleManagedService, Subnet, VrackServicesWithIAM } from '../../types';
+import { getEligibleManagedServiceList, getEligibleManagedServiceListQueryKey } from '../api';
 import { useVrackService } from './useVrackServices';
 
-const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
-  urns: string[],
-) =>
+const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (urns: string[]) =>
   Array.from(
     new Set(
       vrackServices?.currentState.subnets
@@ -28,8 +22,8 @@ const addVrackServicesUrnToUrnList = (vrackServices: VrackServicesWithIAM) => (
 export const useServiceList = <T>(
   vrackServicesId: string,
   iamResource: {
-    getIamResourceQueryKey;
-    getIamResource: (urnList) => Promise<ApiResponse<T[]>>;
+    getIamResourceQueryKey: (urnList: string[]) => QueryKey;
+    getIamResource: (urnList: string[]) => Promise<ApiResponse<T[]>>;
   },
 ) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
@@ -59,20 +53,20 @@ export const useServiceList = <T>(
     setUrnList((urns) =>
       Array.from(
         new Set(
-          serviceListResponse?.data
-            .flatMap((service) => service.managedServiceURNs)
-            .concat(urns),
+          serviceListResponse?.data.flatMap((service) => service.managedServiceURNs).concat(urns),
         ),
       ),
     );
   }, [serviceListResponse?.data]);
 
   React.useEffect(() => {
-    setUrnList(addVrackServicesUrnToUrnList(vrackServices));
+    if (vrackServices) {
+      setUrnList(addVrackServicesUrnToUrnList(vrackServices));
+    }
   }, [vrackServices?.checksum]);
 
   React.useEffect(() => {
-    refetchIamResources();
+    void refetchIamResources();
   }, [urnList]);
 
   return {

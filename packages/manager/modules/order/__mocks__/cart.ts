@@ -20,7 +20,7 @@ const getVrackItem = (request: Request, params: { id: string }): Item => ({
   configurations: [],
   duration: 'P1M',
   itemId: 111111111,
-  offerId: null,
+  offerId: null as unknown as string,
   options: [],
   prices: [
     {
@@ -49,7 +49,7 @@ const getVrackServicesItem = (
   configurations: [],
   duration: 'P1M',
   itemId: 222222222,
-  offerId: null,
+  offerId: null as unknown as string,
   options: [],
   prices: [
     {
