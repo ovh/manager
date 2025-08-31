@@ -52,6 +52,7 @@ describe('useAssociateVrack', () => {
       isError: false,
       error: null,
       isSuccess: true,
+      onFinish: expect.any(Function) as unknown as () => void,
     });
 
     vi.mocked(associateVrackServices).mockResolvedValue({
@@ -90,6 +91,7 @@ describe('useAssociateVrack', () => {
       taskId: 'task-id',
       onSuccess: undefined,
       onError: undefined,
+      onFinish: expect.any(Function) as unknown as () => void,
     });
   });
 
@@ -125,6 +127,7 @@ describe('useAssociateVrack', () => {
       taskId: undefined,
       onSuccess: undefined,
       onError: undefined,
+      onFinish: expect.any(Function) as unknown as () => void,
     });
   });
 

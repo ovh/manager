@@ -90,6 +90,7 @@ describe('data-stream actions', () => {
   });
 
   it('should render error message when api return an error', async () => {
+    useLogSubscriptionsMockValue.isPending = false;
     useLogSubscriptionsMockValue.error = new Error();
 
     const { getByText } = renderComponent();

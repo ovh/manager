@@ -26,9 +26,10 @@ const ServiceRenewStateBadge = ({ ...rest }: ServiceRenewStateBadgeProps) => {
     [serviceDetails],
   );
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const { label, color }: { label: string; color: OdsBadgeColor } = useMemo(() => {
+  const { label, color } = useMemo<{
+    label: string;
+    color: OdsBadgeColor;
+  }>(() => {
     if (billingDetails?.isResiliated()) {
       return {
         label: t('billing_informations_tile_renew_state_resiliated'),
@@ -57,18 +58,11 @@ const ServiceRenewStateBadge = ({ ...rest }: ServiceRenewStateBadgeProps) => {
       };
     }
 
-    if (billingDetails?.isAutomaticRenew()) {
-      return {
-        label: t('billing_informations_tile_renew_state_automatic'),
-        color: 'success',
-      };
-    }
-
     return {
-      label: billingDetails?.billing.lifecycle.current.state,
+      label: billingDetails?.billing.lifecycle.current.state ?? '',
       color: 'information',
     };
-  }, [billingDetails]);
+  }, [billingDetails, t]);
 
   if (isLoading) {
     return <OdsSkeleton className="part-skeleton:max-w-xs" />;

@@ -132,7 +132,7 @@ describe('useUpdateVrackServices Hook', () => {
     expect(result.current.isError).toBe(false);
     expect(result.current.isPending).toBe(false);
     expect(result.current.isTaskSuccess).toBe(true);
-    expect(result.current.updateError).toBeUndefined();
+    expect(result.current.updateError).toEqual({});
 
     // Assert hook result (functions)
     expect(typeof result.current.createEndpoint).toBe('function');

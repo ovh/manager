@@ -1,13 +1,14 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import {
-  getOrderStatus,
+  OrderData,
+  OrderDetail,
+  OrderStatus,
+  getOrderData,
   getOrderDetails,
   getOrderDetailsList,
   getOrderList,
-  getOrderData,
-  OrderDetail,
-  OrderStatus,
-  OrderData,
+  getOrderStatus,
 } from '../api';
 
 export type DetailedOrder = OrderData & {
@@ -19,9 +20,7 @@ const toDetailedOrder = async (orderId: number): Promise<DetailedOrder> => {
   const orderData = await getOrderData(orderId);
   const orderProductList = await getOrderDetailsList(orderId);
   const detailsResponse = await Promise.all(
-    orderProductList.data.map((detailId) =>
-      getOrderDetails({ orderId, detailId }),
-    ),
+    orderProductList.data.map((detailId) => getOrderDetails({ orderId, detailId })),
   );
   const statusResponse = await getOrderStatus(orderId);
   return {
@@ -36,9 +35,7 @@ const getOrderIdListWithDescription = (
   orderDetailDescription = '',
 ) =>
   detailedOrderList.filter(({ details }) =>
-    details.some(({ description }) =>
-      description.includes(orderDetailDescription),
-    ),
+    details.some(({ description }) => description.includes(orderDetailDescription)),
   );
 
 export enum OrderDescription {
@@ -46,9 +43,10 @@ export enum OrderDescription {
   vrackServices = 'vRack Services',
 }
 
-export const getDeliveringOrderQueryKey = (
-  description: OrderDescription | string,
-) => ['deliveringOrders', description];
+export const getDeliveringOrderQueryKey = (description: OrderDescription | string) => [
+  'deliveringOrders',
+  description,
+];
 
 const getDeliveringOrderList = async (orderDetailDescription: string) => {
   const todayMinus24Hours = new Date();
@@ -65,14 +63,9 @@ const getDeliveringOrderList = async (orderDetailDescription: string) => {
     .filter(({ status }) => ['delivering', 'checking'].includes(status))
     .map(({ orderId }) => orderId);
 
-  const detailedOrderList = await Promise.all(
-    deliveringOrderList.map(toDetailedOrder),
-  );
+  const detailedOrderList = await Promise.all(deliveringOrderList.map(toDetailedOrder));
 
-  return getOrderIdListWithDescription(
-    detailedOrderList,
-    orderDetailDescription,
-  );
+  return getOrderIdListWithDescription(detailedOrderList, orderDetailDescription);
 };
 
 /**
@@ -94,7 +87,7 @@ export const useOrderPollingStatus = ({
     queryFn: async () => {
       const orderList = await getDeliveringOrderList(pollingKey);
       if (orderList.length === 0) {
-        queryClient.invalidateQueries({
+        void queryClient.invalidateQueries({
           queryKey: queryToInvalidateOnDelivered,
         });
       }

@@ -19,7 +19,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc"
+    "dev": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.17.1",
@@ -27,8 +29,8 @@
     "jsurl": "^0.1.5"
   },
   "devDependencies": {
-    "@types/jsurl": "^0.1.2",
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@types/jsurl": "^0.1.2"
   },
   "peerDependencies": {
     "@tanstack/react-query": "5.x",

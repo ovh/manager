@@ -57,7 +57,7 @@ export function OvhTracking({ shell }: ShellContextType) {
       const name = `${universe}::app::${applicationName}`;
       tracking.trackPage({
         name,
-        level2: trackLevel2(universe) || '',
+        level2: trackLevel2(universe ?? '') || '',
         complete_page_name: page,
         page_category: path || 'homepage',
         page_theme: applicationName,
@@ -75,7 +75,7 @@ export function OvhTracking({ shell }: ShellContextType) {
         page: { name: page },
         page_category: path || 'homepage',
         complete_page_name: `${applicationName}::${path || 'homepage'}`,
-        level2: trackLevel2(universe) || '',
+        level2: trackLevel2(universe ?? '') || '',
         type: 'action',
         page_theme: applicationName,
       });
