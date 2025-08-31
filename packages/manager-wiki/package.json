@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.7.5",
+  "version": "0.9.0",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.17.1",
-    "@ovh-ux/manager-react-components": "^2.37.1",
+    "@ovh-ux/manager-react-components": "^2.38.0",
     "@ovhcloud/ods-components": "^18.6.2",
     "@tanstack/react-table": "^8.10.0",
     "clsx": "^2.1.1",

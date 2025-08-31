@@ -23,5 +23,5 @@
   "nutanix_dashboard_service_status_active": "Activo",
   "nutanix_dashboard_service_status_suspended": "Suspendido",
   "nutanix_dashboard_service_status_toSuspend": "Pendiente de suspender",
-  "nutanix_cluster_list_resiliate": "Eliminar"
+  "nutanix_cluster_list_resiliate": "Dar de baja"
 }

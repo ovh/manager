@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.8.0...@ovh-ux/manager-wiki@0.9.0) (2025-08-29)
+
+
+### Features
+
+* **mrc:** add tags tile ([f84c2f3](https://github.com/ovh/manager/commit/f84c2f3f0b28bae335f1b59d4cf38d2681babcd4)), closes [#MANAGER-18150](https://github.com/ovh/manager/issues/MANAGER-18150)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.7.5...@ovh-ux/manager-wiki@0.8.0) (2025-08-29)
+
+
+### Features
+
+* **manager-generator:** new structure, internal working and static kit inclusion ([ebc45c3](https://github.com/ovh/manager/commit/ebc45c3dec6e105fff2003fa6b1c50e97c58337c))
+
+
+
+
+
 ## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.7.4...@ovh-ux/manager-wiki@0.7.5) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki

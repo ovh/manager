@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.19.2...@ovh-ux/manager-veeam-backup-app@0.20.0) (2025-08-29)
+
+
+### Features
+
+* **manager-legacy-tools:** delete ods 17 in utils ([cadd35b](https://github.com/ovh/manager/commit/cadd35b40256219e6b59c9b2cf8549821069d068)), closes [#MANAGER-19506](https://github.com/ovh/manager/issues/MANAGER-19506)
+
+
+
+
+
 ## [0.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.19.1...@ovh-ux/manager-veeam-backup-app@0.19.2) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app

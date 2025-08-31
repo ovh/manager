@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-managed-vcd-app",
-  "version": "0.19.7",
+  "version": "0.20.0",
   "private": true,
   "description": "New managed VMware Cloud Director offers",
   "repository": {
@@ -23,10 +23,10 @@
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-module-common-api": "^0.4.10",
+    "@ovh-ux/manager-module-common-api": "^0.4.11",
     "@ovh-ux/manager-module-order": "^0.10.8",
-    "@ovh-ux/manager-module-vcd-api": "^0.7.5",
-    "@ovh-ux/manager-react-components": "^2.37.1",
+    "@ovh-ux/manager-module-vcd-api": "^0.7.6",
+    "@ovh-ux/manager-react-components": "^2.38.0",
     "@ovh-ux/manager-react-core-application": "^0.11.37",
     "@ovh-ux/manager-react-shell-client": "^0.9.1",
     "@ovh-ux/request-tagger": "^0.4.1",
@@ -49,14 +49,15 @@
     "zod": "4.0.5"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.5.0",
+    "@ovh-ux/manager-core-test-utils": "^0.6.0",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.11.0",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.17",
     "msw": "2.1.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vitest": "^2.1.9"
   },
   "regions": [
     "CA",
