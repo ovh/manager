@@ -13,7 +13,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -31,16 +31,37 @@ export default function DnsConfigurationTab({
   domainResource,
 }: DnsConfigurationTabProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { state } = useLocation();
+  const [localSuccessMessage, setLocalSuccessMessage] = useState<string | null>(
+    () => {
+      return state?.successMessage || null;
+    },
+  );
   const dnsDetails: TDatagridDnsDetails[] = computeDnsDetails(domainResource);
-  const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<boolean>(false);
+  const [anycastTerminateModalOpen, setAnycastTerminateModalOpen] = useState<
+    boolean
+  >(false);
   const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
 
   const onOpenAnycastTerminateModal = () => {
     setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
-  }
+  };
   return (
     <div data-testid="datagrid">
+      {localSuccessMessage && (
+        <Message
+          color={MESSAGE_COLOR.success}
+          className="w-full mt-4"
+          dismissible={true}
+          onRemove={() => setLocalSuccessMessage(null)}
+        >
+          <MessageIcon name="circle-check" />
+          <MessageBody>
+            {t('domain_tab_DNS_modification_update_success')}
+          </MessageBody>
+        </Message>
+      )}
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
         <Message
           color={MESSAGE_COLOR.warning}
