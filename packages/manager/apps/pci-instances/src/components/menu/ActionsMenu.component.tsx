@@ -1,18 +1,19 @@
 /* eslint-disable react/no-multi-comp */
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import {
   Button,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  ButtonProp,
   Divider,
+  Icon,
+  ICON_NAME,
+  Link,
   Popover,
   PopoverContent,
   PopoverTrigger,
-  Link,
-  ButtonProp,
 } from '@ovhcloud/ods-react';
 import { DeepReadonly } from '@/types/utils.type';
 
@@ -26,6 +27,7 @@ export type TActionsMenuItem = DeepReadonly<{
 
 export type TActionsMenuProps = DeepReadonly<{
   items: Map<string, TActionsMenuItem[]>;
+  actionButton?: Pick<ButtonProp, 'variant'>;
 }>;
 
 export type TActionsMenuLinkProps = DeepReadonly<{
@@ -67,12 +69,12 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
       onOpenChange={({ open }) => setOpen(open)}
     >
       <PopoverTrigger asChild>
-        <Button data-testid="actions-menu-button" {...props}>
-          <OsdsIcon
-            name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_ICON_SIZE.xxs}
-          />
+        <Button
+          data-testid="actions-menu-button"
+          color={BUTTON_COLOR.primary}
+          {...props}
+        >
+          <Icon name={ICON_NAME.ellipsisVertical} />
         </Button>
       </PopoverTrigger>
       <PopoverContent withArrow onClick={() => setOpen(false)}>
@@ -82,8 +84,13 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
   );
 };
 
-export const ActionsMenu = ({ items }: TActionsMenuProps) => (
-  <ActionMenuContainer variant="outline" size="sm" disabled={!items.size}>
+export const ActionsMenu = ({ items, actionButton }: TActionsMenuProps) => (
+  <ActionMenuContainer
+    size="sm"
+    disabled={!items.size}
+    variant={BUTTON_VARIANT.outline}
+    {...actionButton}
+  >
     {Array.from(items.entries()).map(([group, item], index, arr) => (
       <div key={group}>
         {item.map((elt) => (
