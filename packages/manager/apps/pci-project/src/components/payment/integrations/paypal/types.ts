@@ -18,8 +18,10 @@ export interface PayPalPaymentConfig {
 }
 
 export interface PayPalAuthorizationData {
-  paymentID: string;
+  paymentID: number;
   payerID: string;
+  billingToken: string;
+  returnUrl: string;
 }
 
 export interface PayPalCancelData {
