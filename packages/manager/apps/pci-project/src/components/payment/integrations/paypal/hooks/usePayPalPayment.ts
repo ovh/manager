@@ -1,6 +1,8 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useFinalizePaymentMethod } from '@/data/hooks/payment/usePaymentMethods';
-import { PaymentData, PayPalAuthorizationData } from '../types';
+import { TRegisterPaymentMethod } from '@/data/types/payment/payment-method.type';
+import extractParamFromUrl from '@/utils/extract-param-from-url';
+import { PayPalAuthorizationData } from '../types';
 
 interface UsePayPalPaymentProps {
   onPaymentSubmit: ({
@@ -10,13 +12,10 @@ interface UsePayPalPaymentProps {
     skipRegistration?: boolean;
     paymentMethodId?: number;
   }) => Promise<unknown>;
-  onSuccess?: () => void;
   onError?: (error: Error) => void;
 }
 
 interface UsePayPalPaymentReturn {
-  paymentData: PaymentData | null;
-  setPaymentData: (data: PaymentData | null) => void;
   handlePayment: () => Promise<string>;
   handleAuthorize: (data: PayPalAuthorizationData) => Promise<void>;
   handleError: (error: Error) => void;
@@ -28,48 +27,59 @@ interface UsePayPalPaymentReturn {
  */
 export const usePayPalPayment = ({
   onPaymentSubmit,
-  onSuccess,
   onError,
 }: UsePayPalPaymentProps): UsePayPalPaymentReturn => {
-  const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
-
   const { mutateAsync: finalizePaymentMethod } = useFinalizePaymentMethod({
-    onSuccess,
     onError,
   });
 
   const handlePayment = useCallback(async (): Promise<string> => {
-    const result = await onPaymentSubmit({ skipRegistration: false });
-    return String(result);
+    const addPaymentMethodResponse = (await onPaymentSubmit({
+      skipRegistration: false,
+    })) as TRegisterPaymentMethod;
+
+    return `${addPaymentMethodResponse.formSessionId}`;
   }, [onPaymentSubmit]);
 
-  const handleAuthorize = useCallback(async () => {
-    if (!paymentData) {
-      throw new Error('Payment data is missing');
-    }
+  const handleAuthorize = useCallback(
+    async (data: PayPalAuthorizationData) => {
+      const formSessionId = data.billingToken;
+      const paymentMethodId =
+        data.paymentID ||
+        extractParamFromUrl({
+          url: data.returnUrl,
+          paramName: 'paymentMethodId',
+        });
 
-    // Finalize payment method
-    await finalizePaymentMethod({
-      paymentMethodId: paymentData.paymentMethodId,
-      params: {
-        formSessionId: paymentData.formSessionId,
-      },
-    });
+      if (!paymentMethodId || !formSessionId) {
+        throw new Error('Payment data are missing');
+      }
 
-    // Complete payment process (skipRegistration=true since already done)
-    await onPaymentSubmit({
-      skipRegistration: true,
-      paymentMethodId: paymentData.paymentMethodId,
-    });
-  }, [paymentData, finalizePaymentMethod, onPaymentSubmit]);
+      // Finalize payment method
+      await finalizePaymentMethod({
+        paymentMethodId: Number(paymentMethodId),
+        params: {
+          formSessionId,
+        },
+      });
 
-  const handleError = useCallback((error: Error) => onError?.(error), [
-    onError,
-  ]);
+      // Complete payment process (skipRegistration=true since already done)
+      await onPaymentSubmit({
+        skipRegistration: true,
+        paymentMethodId: Number(paymentMethodId),
+      });
+    },
+    [finalizePaymentMethod, onPaymentSubmit],
+  );
+
+  const handleError = useCallback(
+    (error: Error) => {
+      onError?.(error);
+    },
+    [onError],
+  );
 
   return {
-    paymentData,
-    setPaymentData,
     handlePayment,
     handleAuthorize,
     handleError,
