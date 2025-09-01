@@ -14,6 +14,7 @@ export interface ContainerCreationForn {
   region: TRegionAvailability;
   ownerId: number;
   offsiteReplication: boolean;
+  offsiteReplicationRegion?: string;
   versioning: boolean;
   encryption: string;
   containerName: string;
@@ -55,6 +56,7 @@ export interface ContainerStore {
   submitRegion: () => void;
 
   setOffsiteReplication: (versioning: boolean) => void;
+  setOffsiteReplicationRegion: (region: string) => void;
   editOffsiteReplication: () => void;
   submitOffsiteReplication: () => void;
 
@@ -82,6 +84,7 @@ const initialForm = {
   deploymentMode: undefined,
   region: undefined,
   offsiteReplication: false,
+  offsiteReplicationRegion: undefined,
   versioning: false,
   ownerId: undefined,
   encryption: NO_ENCRYPTION_VALUE,
@@ -268,11 +271,21 @@ export const useContainerCreationStore = create<ContainerStore>()(
           form: {
             ...state.form,
             offsiteReplication,
+            offsiteReplicationRegion: offsiteReplication
+              ? state.form.offsiteReplicationRegion
+              : undefined,
             versioning: offsiteReplication,
             ownerId: undefined,
             encryption: NO_ENCRYPTION_VALUE,
             containerName: '',
             containerType: undefined,
+          },
+        })),
+      setOffsiteReplicationRegion: (offsiteReplicationRegion: string) =>
+        set((state) => ({
+          form: {
+            ...state.form,
+            offsiteReplicationRegion,
           },
         })),
       editOffsiteReplication: () =>
