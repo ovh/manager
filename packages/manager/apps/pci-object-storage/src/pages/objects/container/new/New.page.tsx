@@ -98,10 +98,19 @@ export default function ContainerNewPage() {
   });
 
   const onCreateContainer = () => {
-    createContainer({
-      ...form,
+    const containerData: Parameters<typeof createContainer>[0] = {
+      offer: form.offer,
+      containerName: form.containerName,
       region: form.region.name,
-    });
+      ownerId: form.ownerId,
+      encryption: form.encryption,
+      versioning: form.versioning,
+      containerType: form.containerType,
+      offsiteReplication: form.offsiteReplication,
+      offsiteReplicationRegion: form.offsiteReplicationRegion,
+    };
+
+    createContainer(containerData);
   };
 
   useEffect(() => {
