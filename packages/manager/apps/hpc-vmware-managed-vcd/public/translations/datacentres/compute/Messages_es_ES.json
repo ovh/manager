@@ -4,5 +4,5 @@
   "managed_vcd_vdc_compute_billing_MONTHLY": "Por meses",
   "managed_vcd_vdc_compute_id": "ID",
   "managed_vcd_vdc_compute_order_cta": "Contratar un Virtual Host",
-  "managed_vcd_vdc_compute_special_offer": "Suscripción mensual válida hasta el 31 de diciembre de 2025 en todas las contrataciones de recursos adicionales del servicio Managed VCD realizadas antes del 30 de noviembre de 2025. Oferta no acumulable a otras promociones o descuentos. Contratación sujeta a la aceptación previa de las condiciones contractuales de OVHcloud."
+  "managed_vcd_vdc_compute_special_offer": "Suscripción mensual aplicable hasta el 31 de diciembre de 2025 para las contrataciones de recursos adicionales del servicio {{productName}} realizadas antes del 30 de noviembre de 2025. Oferta no acumulable a otras promociones o descuentos. Contratación sujeta a la aceptación previa de las condiciones contractuales de OVHcloud."
 }
