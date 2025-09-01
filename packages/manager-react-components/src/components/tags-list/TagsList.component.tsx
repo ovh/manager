@@ -27,7 +27,7 @@ export const TagsList: FC<TagsListProps> = ({
           setOpen(true);
         }}
       />
-      {open && (
+      {open && modalHeading && (
         <Suspense>
           <TagsModal
             tags={filteredTags}
