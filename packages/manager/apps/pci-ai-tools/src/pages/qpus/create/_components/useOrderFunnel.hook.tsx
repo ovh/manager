@@ -76,7 +76,6 @@ export function useOrderFunnel(
         permission: z.nativeEnum(ai.VolumePermissionEnum),
       }),
     ),
-    qpu: z.string(),
   });
 
   const form = useForm({
@@ -130,7 +129,7 @@ export function useOrderFunnel(
 
   const listFramework: ai.capabilities.notebook.Framework[] = useMemo(() => {
     if (frameworkQuery.isLoading) return [];
-    return frameworkQuery.data.filter((fmk) => fmk.type === 'Quantum');
+    return frameworkQuery.data.filter((fmk) => fmk.type === 'quantum-qpu');
   }, [region, frameworkQuery.isSuccess]);
 
   const listEditor: ai.capabilities.notebook.Editor[] = useMemo(() => {
