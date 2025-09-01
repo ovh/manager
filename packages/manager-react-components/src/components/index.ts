@@ -8,7 +8,6 @@ export * from './step';
 export * from './tabs';
 export * from './tiles-input-group';
 export * from './tiles-input';
-export * from './templates';
 
 export * from './Link';
 export * from './datagrid/datagrid.component';
@@ -47,3 +46,4 @@ export * from './error-boundary';
 export * from './update-name-modal';
 export * from './delete-modal';
 export * from './grid-layout';
+export * from './onboarding-layout';

@@ -30,7 +30,7 @@ The onboarding page uses the `OnboardingLayout` component from `manager-react-co
 Here's a comprehensive example showing all the features of the OnboardingLayout component:
 
 ```tsx
-import { OnboardingLayout, Card } from '@ovh-ux/manager-react-components';
+import { OnboardingLayout, LinkCard } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 const OnboardingPage = () => (
@@ -66,9 +66,9 @@ const OnboardingPage = () => (
     moreInfoHref="https://example.com/docs"
     moreInfoButtonIcon="externalLink"
   >
-    {/* Content cards */}
+    {/* Content LinkCards */}
     <>
-      <Card
+      <LinkCard
         href="/service1"
         texts={{
           title: 'Configure Your Service',
@@ -76,7 +76,7 @@ const OnboardingPage = () => (
           category: 'SETUP',
         }}
       />
-      <Card
+      <LinkCard
         href="/service2"
         texts={{
           title: 'Add Resources',
@@ -84,7 +84,7 @@ const OnboardingPage = () => (
           category: 'RESOURCES',
         }}
       />
-      <Card
+      <LinkCard
         href="/service3"
         texts={{
           title: 'Monitor & Manage',
@@ -102,14 +102,14 @@ const OnboardingPage = () => (
 - [ ] TrackPage display tracking on component mount
 - [ ] TrackClick - Order buttons
 - [ ] TrackClick - More Infos buttons
-- [ ] TrackClick - Card external links
+- [ ] TrackClick - LinkCard external links
 
 
 
 ### Code Review Checklist
 
 - [ ] Use `OnboardingLayout` component from `manager-react-components`
-- [ ] Use `Card` component from `manager-react-components`
+- [ ] Use `LinkCard` component from `manager-react-components`
 - [ ] Add proper translations
 - [ ] Add success/error notifications
 - [ ] Follow accessibility guidelines
