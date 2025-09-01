@@ -103,6 +103,7 @@ describe('RegisterPaymentMethod', () => {
 
   const mockAvailablePaymentMethods: TAvailablePaymentMethod[] = [
     {
+      paymentMethodId: 1,
       paymentType: TPaymentMethodType.CREDIT_CARD,
       icon: {
         data: undefined,
@@ -120,6 +121,7 @@ describe('RegisterPaymentMethod', () => {
       registerableWithTransaction: false,
     },
     {
+      paymentMethodId: 2,
       paymentType: TPaymentMethodType.PAYPAL,
       icon: {
         data: undefined,
@@ -137,6 +139,7 @@ describe('RegisterPaymentMethod', () => {
       registerableWithTransaction: false,
     },
     {
+      paymentMethodId: 3,
       paymentType: TPaymentMethodType.SEPA_DIRECT_DEBIT,
       icon: {
         data: undefined,
@@ -611,6 +614,7 @@ describe('RegisterPaymentMethod', () => {
     it('should handle empty payment method names gracefully', () => {
       const methodsWithoutNames: TAvailablePaymentMethod[] = [
         {
+          paymentMethodId: 4,
           paymentType: TPaymentMethodType.CREDIT_CARD,
           icon: {
             data: undefined,
@@ -641,6 +645,7 @@ describe('RegisterPaymentMethod', () => {
     it('should handle selection of payment methods with different properties', () => {
       const methodWithLimitedProps: TAvailablePaymentMethod[] = [
         {
+          paymentMethodId: 5,
           paymentType: TPaymentMethodType.CREDIT_CARD,
           icon: {
             data: undefined,

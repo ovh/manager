@@ -48,6 +48,7 @@ describe('ExplanationTexts', () => {
   const createMockPaymentMethod = (
     paymentType: TPaymentMethodType,
   ): TAvailablePaymentMethod => ({
+    paymentMethodId: 1,
     paymentType,
     integration: TPaymentMethodIntegration.COMPONENT,
     paymentSubType: null,

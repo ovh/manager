@@ -152,11 +152,11 @@ const PaymentMethodIntegration: React.FC<PaymentMethodIntegrationProps> = ({
           ) {
             return {
               paymentMethod: registerPaymentMethod,
-              ...paymentHandlerRef.current.registerPaymentMethod(
+              ...(await paymentHandlerRef.current.registerPaymentMethod(
                 paymentMethodToRegister,
                 cart,
                 registerPaymentMethod,
-              ),
+              )),
             };
           }
           return {
