@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.20.6...@ovh-ux/manager-hub-app@0.21.0) (2025-09-01)
+
+
+### Features
+
+* **container:** add a modal to invite customer to fill their information ([#15615](https://github.com/ovh/manager/issues/15615)) ([46d0363](https://github.com/ovh/manager/commit/46d0363001a39cd7443d71069534946dbb0937e0)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
 ## [0.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.20.5...@ovh-ux/manager-hub-app@0.20.6) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
