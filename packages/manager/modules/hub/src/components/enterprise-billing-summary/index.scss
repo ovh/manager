@@ -1,7 +1,0 @@
-hub-enterprise-billing-summary {
-  @import '../billing-summary/index';
-
-  .manager-hub-billing-summary {
-    @include manager-hub-billing-summary;
-  }
-}
