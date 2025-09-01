@@ -1,5 +1,5 @@
 {
-  "name": "@ovh-ux/manager-key-management-service-app",
+  "name": "@ovh-ux/manager-okms-app",
   "version": "0.33.10",
   "private": true,
   "description": "ovh key-management-service",
