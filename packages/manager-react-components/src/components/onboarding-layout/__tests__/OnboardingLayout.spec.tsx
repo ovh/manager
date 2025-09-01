@@ -1,13 +1,20 @@
 import { vi, vitest } from 'vitest';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { fireEvent, screen, act } from '@testing-library/react';
 import { render } from '../../../utils/test.provider';
-import { OnboardingLayout } from './onboarding.component';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import placeholderSrc from './../../../../public/assets/placeholder.png';
+import { OnboardingLayout } from '../index';
+import placeholderSrc from '../../../../public/assets/placeholder.png';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 
-vitest.mock('../../../hooks/iam');
+vitest.mock('../../../hooks/iam', () => ({
+  useAuthorizationIam: vitest.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+    isFetched: true,
+  }),
+}));
+
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 const customTitle = 'onboarding title';
