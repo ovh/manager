@@ -65,6 +65,7 @@ const ResourcesSpec = ({
               {`${resources.cpu} x ${resources.flavor}`}
             </span>
             <span>{`${resources.cpu} x INTEL CPU VCORES`}</span>
+            <span>1 x Pasqal QPU</span>
           </div>
         )}
         {allowUpdate && (
