@@ -33,7 +33,8 @@ export const getPaymentMethods = async (
 export const getPaymentMethod = async (
   methodId: number,
 ): Promise<TUserPaymentMethod> => {
-  return v6.get(`/me/payment/method/${methodId}`);
+  const { data } = await v6.get(`/me/payment/method/${methodId}`);
+  return data;
 };
 
 export const getAvailablePaymentMethods = async (): Promise<FetchResultV6<

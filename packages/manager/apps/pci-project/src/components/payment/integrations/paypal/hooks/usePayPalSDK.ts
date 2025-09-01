@@ -3,7 +3,6 @@ import { PAYPAL_SCRIPT } from '@/constants';
 
 interface UsePayPalSDKReturn {
   scriptLoaded: boolean;
-  reload: () => void;
 }
 
 /**
@@ -23,12 +22,6 @@ export const usePayPalSDK = (): UsePayPalSDKReturn => {
       return;
     }
 
-    // Check if script already exists
-    const existingScript = document.getElementById(PAYPAL_SCRIPT.id);
-    if (existingScript) {
-      return; // Script is loading, wait for it
-    }
-
     // Create PayPal script
     const script = document.createElement('script');
     script.id = PAYPAL_SCRIPT.id;
@@ -44,20 +37,11 @@ export const usePayPalSDK = (): UsePayPalSDKReturn => {
     document.head.appendChild(script);
   }, []);
 
-  const reload = useCallback(() => {
-    const existingScript = document.getElementById(PAYPAL_SCRIPT.id);
-    if (existingScript) {
-      existingScript.remove();
-    }
-    loadSDK();
-  }, [loadSDK]);
-
   useEffect(() => {
     loadSDK();
   }, [loadSDK]);
 
   return {
     scriptLoaded,
-    reload,
   };
 };
