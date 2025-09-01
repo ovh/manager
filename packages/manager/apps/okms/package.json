@@ -21,6 +21,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-module-common-api": "^0.4.10",
     "@ovh-ux/manager-react-components": "^2.2.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
