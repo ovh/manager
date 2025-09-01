@@ -1,0 +1,1428 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > should render basic onboarding layout with title and description 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > should render onboarding layout with buttons 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+      <div
+        class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          type="button"
+        >
+          Get Started
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          type="button"
+        >
+          Learn More
+          <span
+            aria-hidden="true"
+            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+          />
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > should render onboarding layout with hidden heading section 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  />
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > should render onboarding layout with image 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="Welcome image"
+          class="max-h-[150px] custom-image"
+          src="https://example.com/image.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding layout with disabled buttons 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+      <div
+        class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          disabled=""
+          type="button"
+        >
+          Get Started
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          disabled=""
+          type="button"
+        >
+          Learn More
+          <span
+            aria-hidden="true"
+            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+          />
+        </button>
+      </div>
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding layout with empty children 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding layout with mixed children types 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <div>
+        Custom content
+      </div>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/storage"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Storage
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Object Storage
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Store and retrieve your data
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                View docs
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCard Configurations > should render onboarding layout with LinkCards and custom onClick handlers 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/storage"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Storage
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Object Storage
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Store and retrieve your data
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                View docs
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCard Configurations > should render onboarding layout with LinkCards having images and badges 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-tracking="onboarding-vm-card"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <img
+              alt="Virtual machine icon"
+              class="max-w-full my-3 mx-auto"
+              src="https://example.com/vm-icon.png"
+            />
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Popular
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Recommended
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines with full control over your infrastructure
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/kubernetes"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-tracking="onboarding-k8s-card"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <img
+              alt="Kubernetes icon"
+              class="max-w-full my-3 mx-auto"
+              src="https://example.com/k8s-icon.png"
+            />
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Container
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  New
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Kubernetes
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Orchestrate your containers with managed Kubernetes
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                View docs
+                <span
+                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Children > should render onboarding layout with LinkCards and buttons 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      <p>
+        Get started with your cloud journey
+      </p>
+      <div
+        class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          type="button"
+        >
+          Get Started
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          data-testid="manager-button"
+          type="button"
+        >
+          Learn More
+          <span
+            aria-hidden="true"
+            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+          />
+        </button>
+      </div>
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/storage"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Storage
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Object Storage
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Store and retrieve your data
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                View docs
+                <span
+                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Children > should render onboarding layout with multiple LinkCards 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      <p>
+        Get started with your cloud journey
+      </p>
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Popular
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/storage"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <img
+              alt="Storage icon"
+              class="max-w-full my-3 mx-auto"
+              src="https://example.com/storage-icon.png"
+            />
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Storage
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Object Storage
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Store and retrieve your data
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                View docs
+                <span
+                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/network"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Network
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  New
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Beta
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Network Services
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Connect your resources securely
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Explore
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Children > should render onboarding layout with single LinkCard 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/instances"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Compute
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Virtual Machines
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Deploy and manage your virtual machines
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should render onboarding layout with many LinkCards for grid testing 1`] = `
+<div>
+  <main
+    class="flex flex-col mx-auto sm:px-10"
+  >
+    <section
+      aria-labelledby="onboarding-title"
+      class="flex flex-col items-center gap-6 pt-6 max-w-[800px] self-center"
+    >
+      <div
+        class="flex justify-center"
+      >
+        <img
+          alt="placeholder image"
+          class="max-h-[150px] undefined"
+          src="/public/assets/placeholder.png"
+        />
+      </div>
+      <h1
+        class="_text--heading-1_1aw48_13 text-center"
+      >
+        Welcome to OVHcloud
+      </h1>
+      Get started with your cloud journey
+    </section>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 xs:pt-10 sm:pt-20"
+    >
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-0"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 1
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Popular
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 1
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 1
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-1"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 2
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 2
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 2
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-2"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 3
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Popular
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 3
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 3
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-3"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 4
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 4
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 4
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-4"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 5
+              </h4>
+              <span
+                class="ml-[10px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                >
+                  Popular
+                </span>
+              </span>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 5
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 5
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a
+        class="no-underline"
+        href="https://ovhcloud.com/service-5"
+        target="_blank"
+      >
+        <div
+          class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+        >
+          <div
+            class="flex flex-col h-full"
+          >
+            <div
+              class="flex flex-row leading-[28px]"
+            >
+              <h4
+                class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+              >
+                Category 6
+              </h4>
+            </div>
+            <h3
+              class="_text--heading-3_1aw48_25 mb-[8px]"
+            >
+              Service 6
+            </h3>
+            <p
+              class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+            >
+              Description for service 6
+            </p>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="_link_udbet_2"
+                tab-index="-1"
+              >
+                Learn more
+                <span
+                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;
