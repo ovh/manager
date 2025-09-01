@@ -53,6 +53,7 @@ export const features = [
   'ai-dashboard',
   'data-platform',
   'key-management-service',
+  'okms:key-management-service',
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
@@ -494,13 +495,27 @@ export function getPciProjectMenu(
 
   if (isFeaturesAvailable('key-management-service')) {
     pciMenu.push({
-      id: 'identity-security',
+      id: 'identity-security-legacy',
       title: 'Identity, Security & Operations',
       subItems: [
         {
           id: 'key-management-service',
           title: 'Key Management Service',
           href: getURL('key-management-service', `/`),
+        },
+      ],
+    });
+  }
+
+    if (isFeaturesAvailable('okms:key-management-service')) {
+    pciMenu.push({
+      id: 'identity-security',
+      title: 'Identity, Security & Operations',
+      subItems: [
+        {
+          id: 'okms:key-management-service',
+          title: 'Key Management Service',
+          href: getURL('okms/key-management-service', `/`),
         },
       ],
     });
