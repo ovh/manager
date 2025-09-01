@@ -7,7 +7,8 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import routes from '@/routes/routes';
+import kmsRoutes from '@/routes/routes';
+import rootRoutes from '@/routes/rootRoutes';
 import Loading from '@/components/Loading/Loading';
 
 const queryClient = new QueryClient({
@@ -20,7 +21,9 @@ const queryClient = new QueryClient({
 
 function App() {
   const { shell } = useContext(ShellContext);
-  const router = createHashRouter(createRoutesFromElements(routes));
+  const router = createHashRouter(
+    createRoutesFromElements([rootRoutes, kmsRoutes]),
+  );
 
   useEffect(() => {
     shell.ux.hidePreloader();
