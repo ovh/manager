@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.3...@ovh-ux/manager-cloud-connect@1.25.0) (2025-09-01)
+
+
+### Features
+
+* **cloud-connect:** add migrate offer component ([db0c19b](https://github.com/ovh/manager/commit/db0c19b9750d2059ff4b6cb9be61583a41fc02ec)), closes [#UXCT-770](https://github.com/ovh/manager/issues/UXCT-770)
+
+
+
+
+
 ## [1.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.2...@ovh-ux/manager-cloud-connect@1.24.3) (2025-08-25)
 
 
