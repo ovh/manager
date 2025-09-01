@@ -87,11 +87,11 @@
   "resetUserConnectionCode": "Stringa di connessione",
   "resetUserConnectionCodeCopy": "URI di connessione copiato negli appunti",
   "userButtonClose": "Chiudere",
-  "tableActionsMenuViewCertificate": "Visualizza certificato",
+  "tableActionsMenuViewCertificate": "Visualizza il certificato",
   "tableActionsMenuShowAccessKey": "Mostra la chiave di accesso",
   "viewCertificatesTitle": "Certificato",
-  "downloadButton": "Scarica",
-  "viewCertificateCopy": "Certificato copiato",
+  "downloadButton": "Scaricare",
+  "viewCertificateCopy": "Il certificato è stato copiato",
   "showAccessKeyTitle": "Chiave di accesso",
-  "showAccessKeyCopy": "Chiave di accesso copiata"
+  "showAccessKeyCopy": "La chiave di accesso è stata copiata"
 }

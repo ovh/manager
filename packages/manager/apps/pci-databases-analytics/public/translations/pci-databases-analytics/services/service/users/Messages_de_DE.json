@@ -86,12 +86,12 @@
   "resetUserConnectionTitle": "URI für eine schnelle Verbindung",
   "resetUserConnectionCode": "Verbindungszeichenfolge",
   "resetUserConnectionCodeCopy": "Verbindungs-URI in die Zwischenablage kopiert",
-  "userButtonClose": "Schliessen",
+  "userButtonClose": "Schließen",
   "tableActionsMenuViewCertificate": "Zertifikat anzeigen",
-  "tableActionsMenuShowAccessKey": "Hauptschlüssel anzeigen",
+  "tableActionsMenuShowAccessKey": "Zugriffsschlüssel anzeigen",
   "viewCertificatesTitle": "Zertifikat",
-  "downloadButton": "Jetzt herunterladen",
-  "viewCertificateCopy": "Das Zertifikat wurde kopiert",
+  "downloadButton": "Herunterladen",
+  "viewCertificateCopy": "Das Zertifikat wurde kopiert.",
   "showAccessKeyTitle": "Zugriffsschlüssel",
-  "showAccessKeyCopy": "Der Hauptschlüssel wurde kopiert"
+  "showAccessKeyCopy": "Der Hauptschlüssel wurde kopiert."
 }
