@@ -88,6 +88,7 @@ export default function StorageListingPage() {
           .replace(subRoutes.dashboard, id)
           .replace(subRoutes.vdcId, vdcId),
       }}
+      shouldFetchAll
       isEmbedded
       orderButton={
         <OdsButton
