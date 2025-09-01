@@ -15,6 +15,7 @@ export const webFeatures = [
   'web:domains:all-dom',
   'web:domains:zone',
   'web-domains:alldoms',
+  'web-domains',
   'web-ongoing-operations',
   'web-hosting:websites',
   'hosting',
@@ -58,9 +59,10 @@ export default function WebSidebar() {
           `^(/configuration)?/(domain|all_dom|zone|dns|upload|tracking)`,
         ),
         async loader() {
-          const allDom = (features['web:domains:all-dom'] || features['web-domains:alldoms'])
-            ? await loadServices('/allDom')
-            : [];
+          const allDom =
+            features['web:domains:all-dom'] || features['web-domains:alldoms']
+              ? await loadServices('/allDom')
+              : [];
           const domains = await loadServices('/domain');
           const domainZones = features['web:domains:zone']
             ? await loadServices('/domain/zone')
@@ -82,14 +84,22 @@ export default function WebSidebar() {
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
             },
-            features['web-domains:alldoms'] && allDom.length > 0 && {
-              id: 'alldoms',
-              label: t('sidebar_alldom_list'),
-              href: navigation.getURL('web-domains', '#/alldoms'),
-              routeMatcher: new RegExp('/'),
-              icon: getIcon('ovh-font ovh-font-config'),
+            features['web-domains'] && {
+              id: 'domains',
+              label: t('sidebar_domain'),
+              href: navigation.getUrl('web-domains', '#/domain'),
+              icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
+            features['web-domains:alldoms'] &&
+              allDom.length > 0 && {
+                id: 'alldoms',
+                label: t('sidebar_alldom_list'),
+                href: navigation.getURL('web-domains', '#/alldoms'),
+                routeMatcher: new RegExp('/'),
+                icon: getIcon('ovh-font ovh-font-config'),
+                ignoreSearch: true,
+              },
             ...allDom.map((item) => ({
               ...item,
               href: undefined,
@@ -130,10 +140,7 @@ export default function WebSidebar() {
         label: t('sidebar_web_hosting_websites'),
         icon: getIcon('ovh-font ovh-font-domain'),
         routeMatcher: new RegExp('^/web-hosting/(websites|onboarding)'),
-        href: navigation.getURL(
-          'web-hosting',
-          '#/',
-        ),
+        href: navigation.getURL('web-hosting', '#/'),
       });
     }
 
@@ -267,9 +274,7 @@ export default function WebSidebar() {
         id: 'microsoft',
         label: t('sidebar_microsoft'),
         icon: getIcon('ms-Icon ms-Icon--WindowsLogo'),
-        routeMatcher: new RegExp(
-          `^(/configuration)?/(exchange|web-office)`,
-        ),
+        routeMatcher: new RegExp(`^(/configuration)?/(exchange|web-office)`),
         subItems: [
           {
             id: 'exchange-search',
