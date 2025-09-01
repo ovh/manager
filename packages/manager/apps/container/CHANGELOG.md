@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.145.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.144.4...@ovh-ux/manager-container-app@0.145.0) (2025-09-01)
+
+
+### Bug Fixes
+
+* **container:** remove obsolete url build and incorrect type ([4bd490e](https://github.com/ovh/manager/commit/4bd490ecab1bb612434529293eb3ffc9bd67360f)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** use native js object name property for modal name ([9b5f5ba](https://github.com/ovh/manager/commit/9b5f5ba3c6cd1465fba5083db0a2c09e43381e73)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+### Features
+
+* **container:** add a modal to invite customer to fill their information ([#15615](https://github.com/ovh/manager/issues/15615)) ([46d0363](https://github.com/ovh/manager/commit/46d0363001a39cd7443d71069534946dbb0937e0)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** add tracking for new siret modal ([303f6a5](https://github.com/ovh/manager/commit/303f6a5db03d41e457bf87691217a18c592868f6)), closes [#MANAGER-16618](https://github.com/ovh/manager/issues/MANAGER-16618)
+* **container:** handle nin type in suggestion modal logic ([#18516](https://github.com/ovh/manager/issues/18516)) ([cdad670](https://github.com/ovh/manager/commit/cdad6704d765708386cf449ceef12ff5d71b75f3)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** remove hub css references ([a20ff66](https://github.com/ovh/manager/commit/a20ff66f2355b7f8469b758d0fe1eba09f1cd79e)), closes [#MANAGER-18164](https://github.com/ovh/manager/issues/MANAGER-18164)
+
+
+
+
+
 ## [0.144.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.144.3...@ovh-ux/manager-container-app@0.144.4) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
