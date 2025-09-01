@@ -86,7 +86,7 @@ export const renderTestApp = async (
   );
 
   if (!context) {
-    context = await initShellContext('key-management-service');
+    context = await initShellContext('okms');
   }
 
   if (!i18nValue) {
