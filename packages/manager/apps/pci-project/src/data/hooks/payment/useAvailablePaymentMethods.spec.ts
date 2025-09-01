@@ -24,6 +24,7 @@ const mockGetAvailablePaymentMethods = vi.mocked(getAvailablePaymentMethods);
 const mockAvailablePaymentMethods: FetchResultV6<TAvailablePaymentMethod> = {
   data: [
     {
+      paymentMethodId: 1,
       formSessionId: 'session123',
       icon: {
         data: undefined,
@@ -44,6 +45,7 @@ const mockAvailablePaymentMethods: FetchResultV6<TAvailablePaymentMethod> = {
       },
     },
     {
+      paymentMethodId: 2,
       formSessionId: undefined,
       icon: {
         data: 'base64data',
