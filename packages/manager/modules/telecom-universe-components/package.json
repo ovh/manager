@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.29.0",
+  "version": "7.29.1",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {
@@ -24,13 +24,13 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.20",
-    "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.11.0",
     "angular-ui-bootstrap": "~1.3.3",
     "angular-validation-match": "^1.9.0",
     "chart.js": "^4.4.2",
     "chartjs-adapter-date-fns": "^3.0.0",
+    "CSV-JS": "^1.2.0",
     "ip-address": "^5.9.2",
     "jquery": "^2.1.3",
     "jsplumb": "^2.11.2",

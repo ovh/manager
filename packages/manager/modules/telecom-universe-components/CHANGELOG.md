@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.29.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.0...@ovh-ux/ng-ovh-telecom-universe-components@7.29.1) (2025-09-01)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix bulk action for directory ([54cb19f](https://github.com/ovh/manager/commit/54cb19f1c81b7be90c0dd5e6f6dfcf9ff5700c14)), closes [#MANAGER-19386](https://github.com/ovh/manager/issues/MANAGER-19386)
+
+
+
+
+
 # [7.29.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.28.4...@ovh-ux/ng-ovh-telecom-universe-components@7.29.0) (2025-04-16)
 
 
