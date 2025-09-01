@@ -31,6 +31,7 @@ export type TDatagridContainerProps = {
   withFilter?: boolean;
   columnsSearchable?: string;
   mapper?: (args: unknown[]) => unknown[];
+  shouldFetchAll?: boolean;
 };
 
 export default function DatagridContainer({
@@ -43,6 +44,7 @@ export default function DatagridContainer({
   withFilter,
   columnsSearchable,
   mapper,
+  shouldFetchAll = false,
 }: Readonly<TDatagridContainerProps>) {
   const navigate = useNavigate();
   const listingQueryKey = [...queryKey, icebergListingQueryKey];
@@ -62,6 +64,7 @@ export default function DatagridContainer({
   } = useResourcesIcebergV2({
     route: api,
     queryKey: listingQueryKey,
+    shouldFetchAll,
   });
 
   useAutoRefetch({
