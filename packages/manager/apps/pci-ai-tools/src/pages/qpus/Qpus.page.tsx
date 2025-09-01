@@ -70,7 +70,7 @@ const Qpus = () => {
     return <QpusList.Skeleton />;
 
   const filterFmkIds = fmkQuery.data
-    .filter((fmk) => fmk.type === 'Quantum')
+    .filter((fmk) => fmk.type === 'quantum-qpu')
     .map((fwk) => fwk.id);
 
   return (
