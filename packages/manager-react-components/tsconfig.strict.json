@@ -34,6 +34,7 @@
     "./src/hooks/breadcrumb/useBreadcrumb.tsx",
     "./src/components/tags-list/**/*",
     "./src/components/tags-list/tags-modal/translations/*.json",
+    "./src/components/tags-tile/**/*",
     "./src/components/modal/*",
     "./src/components/tile/*",
     "./src/components/tile/tile-divider/*",
@@ -82,7 +83,10 @@
     "./src/enumTypes/*",
     "./src/components/step/**/*",
     "./src/utils/*",
-    "./src/components/base-layout/**/*"
+    "./src/components/base-layout/**/*",
+    "./src/components/update-name-modal/**/*",
+    "./src/components/delete-modal/**/*",
+    "./src/components/tags-list/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
