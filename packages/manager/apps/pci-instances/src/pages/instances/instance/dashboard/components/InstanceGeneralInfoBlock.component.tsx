@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Links,
@@ -12,6 +12,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import {
+  BUTTON_VARIANT,
   Clipboard,
   ClipboardControl,
   ClipboardTrigger,
@@ -169,7 +170,12 @@ const InstanceGeneralInfoBlock: FC = () => {
             >
               {t('pci_instances_dashboard_all_actions')}
             </OsdsText>
-            <ActionsMenu items={instance.actions} />
+            <ActionsMenu
+              items={instance.actions}
+              actionButton={{
+                variant: BUTTON_VARIANT.ghost,
+              }}
+            />
           </div>
         </TileBlock>
       )}
