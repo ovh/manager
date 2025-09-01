@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { useCatalog, useProductAvailability } from '@ovh-ux/manager-pci-common';
+import {
+  useCatalog,
+  useGetProjectRegions,
+  useProductAvailability,
+} from '@ovh-ux/manager-pci-common';
 import { MemoryRouter, useParams } from 'react-router-dom';
-import { StepComponent } from '@ovh-ux/manager-react-components';
 import { OffsiteReplication } from './OffsiteReplicationStep.component';
 import { wrapperOffsiteReplication } from '@/wrapperRenders';
 import { useContainerCreationStore } from '../useContainerCreationStore';
@@ -50,7 +53,6 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   };
 });
 
-// Mock react-router-dom but keep original exports
 vi.mock('react-router-dom', async (importOriginal) => {
   const original = await importOriginal();
   return {
@@ -59,23 +61,43 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-// Mock other dependencies
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useCatalog: vi.fn(),
   useProductAvailability: vi.fn(),
+  useGetProjectRegions: () => ({ regions: [], isLoading: false }),
+}));
+
+vi.mock('@/adapters/hooks/useAllowedRegions', () => ({
+  useAllowedRegions: vi.fn().mockReturnValue({
+    allowedRegions: [
+      {
+        name: 'EU-WEST-1',
+        datacenter: 'EU-WEST-1',
+        continentCode: 'EU',
+        type: 'region',
+        enabled: true,
+        availabilityZones: [],
+      },
+    ],
+    hasRegions: true,
+    isPending: false,
+  }),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-react-components');
   return {
     ...actual,
-    useMe: vi.fn(),
     StepComponent: vi
       .fn()
       .mockImplementation(actual.StepComponent as (...args: any) => any),
     useCatalogPrice: vi.fn().mockImplementation(() => ({
       getFormattedCatalogPrice: vi.fn().mockImplementation((param) => param),
     })),
+    useTranslatedMicroRegions: vi.fn().mockReturnValue({
+      translateMicroRegion: vi.fn().mockImplementation((name) => name),
+      translateContinentRegion: vi.fn().mockImplementation((name) => name),
+    }),
   };
 });
 
@@ -146,6 +168,7 @@ describe('OffsiteReplication', () => {
         containerType: { isOpen: false, isChecked: false, isLocked: false },
       },
       setOffsiteReplication: vi.fn(),
+      setOffsiteReplicationRegion: vi.fn(),
       submitOffsiteReplication: vi.fn(),
       editOffsiteReplication: vi.fn(),
     });
