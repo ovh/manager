@@ -16,6 +16,7 @@ import {
   TRACKING_ACTIONS_PREFIX,
   SERVICE_RENEW_MODES,
 } from '../autorenew.constants';
+import { ACTION_BADGE_CLASSES_MAP } from './services.constants';
 
 export default class ServicesCtrl {
   /* @ngInject */
@@ -41,6 +42,7 @@ export default class ServicesCtrl {
     this.coreConfig = coreConfig;
     this.ouiDatagridService = ouiDatagridService;
     this.billingPeriodTranslatorHelper = billingPeriodTranslatorHelper;
+    this.ACTION_BADGE_CLASSES_MAP = ACTION_BADGE_CLASSES_MAP;
   }
 
   $onInit() {
@@ -53,7 +55,6 @@ export default class ServicesCtrl {
       ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR
       : null;
 
-    this.isUSRegion = this.coreConfig.isRegion('US');
     this.selectedServices = [];
 
     this.nicBillingFilter = this.nicBilling || this.$translate.instant(NIC_ALL);
