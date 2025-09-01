@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
-import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
+import { IdentityDocumentsModal } from '@/components/IdentityDocumentsModal/IdentityDocumentsModal.component';
 
 export const kycIndiaFeature = 'identity-documents';
 export const requiredStatusKey = 'required';

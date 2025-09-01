@@ -3,8 +3,8 @@ import ModalsContext, { ModalsContextType } from './modals.context';
 
 import { useShell } from '@/context';
 import { AgreementsUpdateModalConfiguration } from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.constants';
-import { IdentityDocumentsModalConfiguration } from '@/identity-documents-modal/IdentityDocumentsModal.constants';
-import { PaymentModalConfiguration } from '@/payment-modal/PaymentModal.constants';
+import { IdentityDocumentsModalConfiguration } from '@/components/IdentityDocumentsModal/IdentityDocumentsModal.constants';
+import { PaymentModalConfiguration } from '@/components/PaymentModal/PaymentModal.constants';
 import { useModalManager } from '@/context/modals/useModalManager';
 import { ModalToDisplayConfiguration } from '@/types/modal-configuration.type';
 

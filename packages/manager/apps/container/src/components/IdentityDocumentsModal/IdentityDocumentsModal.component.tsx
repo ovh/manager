@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { FunctionComponent, useEffect, useRef, useState, useCallback } from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -23,15 +23,14 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();
   const navigationPlugin = shell.getPlugin('navigation');
   const uxPlugin = shell.getPlugin('ux');
+  const trackingPlugin = shell.getPlugin('tracking');
 
   const { t } = useTranslation('identity-documents-modal');
   const legalInformationRef = useRef<HTMLOsdsCollapsibleElement>(null);
 
   const [showModal, setShowModal] = useState<boolean>(true);
 
-  const trackingPlugin = shell.getPlugin('tracking');
-
-  const onCancel = () => {
+  const onCancel = useCallback(() => {
     setShowModal(false);
     uxPlugin.notifyModalActionDone('IdentityDocumentsModal');
     trackingPlugin.trackClick({
@@ -39,9 +38,9 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
       type: 'action',
       ...trackingContext,
     });
-  };
+  }, [uxPlugin, trackingPlugin]);
 
-  const onConfirm = () => {
+  const onConfirm = useCallback(() => {
     setShowModal(false);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
@@ -49,14 +48,25 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
       ...trackingContext,
     });
     navigationPlugin.navigateTo('dedicated', `#/identity-documents`);
-  };
+  }, [navigationPlugin, trackingPlugin]);
+
+  const onToggleLegalInfo = useCallback(() => {
+    trackingPlugin.trackClick({
+      name: `${trackingPrefix}::pop-up::link::kyc::go-to-more-information`,
+      type: 'action',
+      ...trackingContext,
+    });
+    if (legalInformationRef.current) {
+      legalInformationRef.current.opened = !legalInformationRef.current.opened;
+    }
+  }, [trackingPlugin]);
 
   useEffect(() => {
     trackingPlugin.trackPage({
       name: `${trackingPrefix}::pop-up::kyc`,
       ...trackingContext,
     });
-  }, []);
+  }, [trackingPlugin]);
 
   return (
     showModal && (
@@ -110,15 +120,7 @@ export const IdentityDocumentsModal: FunctionComponent = () => {
             color={ODS_THEME_COLOR_INTENT.text}
             className="cursor-pointer underline"
             hue={ODS_THEME_COLOR_HUE._800}
-            onClick={() => {
-              trackingPlugin.trackClick({
-                name: `${trackingPrefix}::pop-up::link::kyc::go-to-more-information`,
-                type: 'action',
-                ...trackingContext,
-              });
-              legalInformationRef.current.opened = !legalInformationRef?.current
-                ?.opened;
-            }}
+            onClick={onToggleLegalInfo}
           >
             {t('identity_documents_modal_more_info')}
           </OsdsText>
