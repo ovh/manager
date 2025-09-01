@@ -121,6 +121,7 @@ vi.mock('react-i18next', () => ({
 
 describe('CreditPaymentMethodIntegration', () => {
   const mockPaymentMethod: TPaymentMethod = {
+    paymentMethodId: 1,
     icon: {
       name: 'credit-icon',
       data: 'icon-data',

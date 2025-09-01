@@ -156,6 +156,9 @@ vi.mock('@/data/hooks/payment/useEligibility', () => ({
 
 vi.mock('@/data/hooks/payment/usePaymentMethods', () => ({
   usePaymentMethods: vi.fn(),
+  useAddPaymentMethod: vi.fn(() => ({
+    mutateAsync: vi.fn(),
+  })),
   paymentMethodQueryKey: vi.fn(() => ['me', 'payment', 'method']),
 }));
 
@@ -205,16 +208,10 @@ vi.mock('./RegisterPaymentMethod', () => ({
   ),
 }));
 
-// Mock dependencies for PaymentMethodChallenge
+// Mock usePaymentChallenge
 vi.mock('@/data/hooks/payment/usePaymentChallenge', () => ({
   usePaymentChallenge: vi.fn(() => ({
     mutate: vi.fn(),
-  })),
-}));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(() => ({
-    t: (key: string) => key,
   })),
 }));
 
@@ -669,7 +666,7 @@ describe('PaymentMethods', () => {
       const result = await paymentMethodRef.current.submitPaymentMethod(
         mockCart,
       );
-      expect(result).toBe(true);
+      expect(result).toEqual({ continueProcessing: true });
     });
 
     it('should handle challenge retry error', async () => {
@@ -847,7 +844,7 @@ describe('PaymentMethods', () => {
       const result = await paymentMethodRef.current.submitPaymentMethod(
         mockCart,
       );
-      expect(result).toBe(true);
+      expect(result).toEqual({ continueProcessing: true });
     });
   });
 
