@@ -217,6 +217,7 @@ export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
 export const UCENTS = 1 / 100_000_000;
 
 export const PAYPAL_BUTTON_OPTIONS = {
+  env: import.meta.env.PROD ? 'production' : 'sandbox',
   commit: true,
   locale: 'fr_FR',
   style: {

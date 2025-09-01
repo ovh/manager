@@ -52,6 +52,7 @@ describe('SetAsDefaultPaymentMethod', () => {
   const createMockPaymentMethod = (
     overrides: Partial<TAvailablePaymentMethod> = {},
   ): TAvailablePaymentMethod => ({
+    paymentMethodId: 1,
     paymentType: TPaymentMethodType.CREDIT_CARD,
     icon: {
       data: undefined,
