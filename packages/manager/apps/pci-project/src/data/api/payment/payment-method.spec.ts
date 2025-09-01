@@ -114,6 +114,7 @@ describe('payment-method API', () => {
 
   describe('getAvailablePaymentMethods', () => {
     const mockAvailablePaymentMethod: TAvailablePaymentMethod = {
+      paymentMethodId: 1,
       formSessionId: 'session456',
       icon: {
         data: 'base64data',
