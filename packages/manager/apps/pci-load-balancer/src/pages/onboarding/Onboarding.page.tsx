@@ -41,7 +41,7 @@ export default function OnBoardingPage() {
 
   const tileItems = GUIDES.map((guide) => ({
     id: guide.title,
-    href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
+    href: (guide.links[ovhSubsidiary] || guide.links.DEFAULT) as string,
     texts: {
       category: t('onboarding_guide_title'),
       description: t(guide.description),
