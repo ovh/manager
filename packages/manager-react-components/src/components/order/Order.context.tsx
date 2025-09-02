@@ -1,14 +1,11 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-
-export type TOrderContext = {
-  setIsOrderInitialized: (isOrderInitialized: boolean) => void;
-  isOrderInitialized: boolean;
-};
+import { TOrderContext } from './Order.type';
 
 const OrderContext = createContext<TOrderContext>({} as TOrderContext);
 
 export const OrderContextProvider = ({ children }: React.PropsWithChildren) => {
   const [isOrderInitialized, setIsOrderInitialized] = useState<boolean>(false);
+  useState<boolean>(false);
 
   const context = useMemo<TOrderContext>(
     () => ({
@@ -25,8 +22,7 @@ export const OrderContextProvider = ({ children }: React.PropsWithChildren) => {
 
 export const useOrderContext = (): TOrderContext => {
   const context = useContext(OrderContext);
-  if (context === undefined) {
-    throw new Error('Order-related components must be used within <Order>');
-  }
-  return context;
+  let error = false;
+  if (context === undefined) error = true;
+  return { ...context, error };
 };
