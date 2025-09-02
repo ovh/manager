@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.16.0...@ovh-ux/manager-common-translations@0.17.0) (2025-09-02)
+
+
+### Features
+
+* add optional step label to mrc modal ([2d88a93](https://github.com/ovh/manager/commit/2d88a9362063e6b01fd2c446292b66f4307d348a)), closes [#ISSUE-18727](https://github.com/ovh/manager/issues/ISSUE-18727)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.15.0...@ovh-ux/manager-common-translations@0.16.0) (2025-08-14)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.2...@ovh-ux/logs-to-customer@1.6.3) (2025-09-02)
+
+
+### Bug Fixes
+
+* **logs-to-customer:** disabled cache on subscription request ([c3cb5b7](https://github.com/ovh/manager/commit/c3cb5b7e9a95b3dfd84d834166ebe0e4ab2c586b))
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.1...@ovh-ux/logs-to-customer@1.6.2) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer
