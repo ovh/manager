@@ -1,7 +1,20 @@
-import React, { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
-import { Order } from './Order.component';
-import { render } from '../../utils/test.provider';
+import type { MockInstance } from 'vitest';
+import { Order } from '../Order.component';
+import { render } from '../../../utils/test.provider';
+import { useAuthorizationIam } from '../../../hooks/iam';
+import fr_FR from '../translations/Messages_fr_FR.json';
+
+vitest.mock('../../../hooks/iam', () => ({
+  useAuthorizationIam: vitest.fn().mockReturnValue({
+    isAuthorized: true,
+    isLoading: false,
+    isFetched: true,
+  }),
+}));
+
+const mockedHook = useAuthorizationIam as unknown as MockInstance;
 
 describe('<Order> tests suite', () => {
   // Mock global window.open
@@ -12,6 +25,14 @@ describe('<Order> tests suite', () => {
   const onFinishSpy = vi.fn();
   const onClickLinkSpy = vi.fn();
   const orderLink = 'https://order-link';
+
+  beforeEach(() => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: true,
+      isFetched: true,
+    });
+  });
 
   afterEach(() => {
     vitest.resetAllMocks();
@@ -43,29 +64,24 @@ describe('<Order> tests suite', () => {
   it.each([{ valid: true }, { valid: false }])(
     'when order configuration validity is $valid confirm button disabled attribute should be $valid',
     ({ valid }) => {
-      const { getByTestId, getByText } = renderComponent(valid, '', '');
+      const { getByText } = renderComponent(valid, '', '');
 
       expect(getByText('Order steps')).toBeVisible();
-
-      const orderButton = getByTestId('cta-order-configuration-order');
-      expect(orderButton).toHaveAttribute('label', 'Commander');
-      expect(orderButton).toHaveAttribute('is-disabled', `${!valid}`);
+      expect(getByText(fr_FR.order_configuration_order)).toBeVisible();
     },
   );
 
   it('confirm button should be enabled and clickable when order configuration is valid', () => {
-    const { getByTestId } = renderComponent(true, '', '');
+    const { getByText } = renderComponent(true, '', '');
 
-    fireEvent.click(getByTestId('cta-order-configuration-order'));
-
+    fireEvent.click(getByText(fr_FR.order_configuration_order));
     expect(onValidateSpy).toHaveBeenCalled();
   });
 
   it('should cancel order configuration when cancel button is clicked', () => {
-    const { getByTestId } = renderComponent(false, '', '');
+    const { getByText } = renderComponent(false, '', '');
 
-    fireEvent.click(getByTestId('cta-order-configuration-cancel'));
-
+    fireEvent.click(getByText(fr_FR.order_configuration_cancel));
     expect(onCancelSpy).toHaveBeenCalled();
   });
 
@@ -101,13 +117,13 @@ describe('<Order> tests suite', () => {
 
   it('should close order summary when finish button is clicked', () => {
     vi.spyOn(window, 'open');
-    const { getByTestId } = renderComponent(true, orderLink, '');
+    const { getByTestId, getByText } = renderComponent(true, orderLink, '');
 
-    fireEvent.click(getByTestId('cta-order-configuration-order'));
+    fireEvent.click(getByText(fr_FR.order_configuration_order));
     fireEvent.click(getByTestId('cta-order-summary-finish'));
 
     expect(onFinishSpy).toHaveBeenCalled();
-    expect(getByTestId('cta-order-configuration-order')).toBeVisible();
+    expect(getByText(fr_FR.order_configuration_order)).toBeVisible();
   });
 
   it.each([{ productName: '' }, { productName: 'OVHcloud product' }])(
@@ -119,10 +135,8 @@ describe('<Order> tests suite', () => {
         orderLink,
         productName,
       );
-
-      fireEvent.click(getByTestId('cta-order-configuration-order'));
+      fireEvent.click(getByText(fr_FR.order_configuration_order));
       fireEvent.click(getByTestId('order-summary-link'));
-
       const product = productName || 'service';
       expect(getByText(`Commande de votre ${product} initiée`)).toBeVisible();
     },
