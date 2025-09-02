@@ -34,7 +34,7 @@ describe('Input Component', () => {
   it('should call handleClear when cancel', async () => {
     render(<InputComponent />);
 
-    await userEvent.click(screen.getByLabelText('Cancel'));
+    await userEvent.click(screen.getByLabelText('cancel'));
 
     expect(handleClear).toHaveBeenCalled();
   });
@@ -42,7 +42,7 @@ describe('Input Component', () => {
   it('should call handleValid', async () => {
     render(<InputComponent />);
 
-    await userEvent.click(screen.getByLabelText('Submit'));
+    await userEvent.click(screen.getByLabelText('validate'));
 
     expect(handleValidate).toHaveBeenCalled();
   });
