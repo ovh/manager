@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_ICON_ALIGNMENT,
@@ -10,8 +12,10 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
 
-import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function SanModal() {
@@ -21,8 +25,7 @@ export default function SanModal() {
   const n = san.split('; ').length;
 
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const { t } = useTranslation('ssl');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
@@ -46,7 +49,9 @@ export default function SanModal() {
           color={ODS_BUTTON_COLOR.primary}
           icon={ODS_ICON_NAME.fileCopy}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-          onClick={() => navigator.clipboard.writeText(san)}
+          onClick={() => {
+            navigator.clipboard.writeText(san).catch(console.error);
+          }}
           variant={ODS_BUTTON_VARIANT.outline}
           label={t('san_ssl_copy')}
           className="mt-4"

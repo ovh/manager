@@ -1,9 +1,11 @@
-import { describe, expect, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, vi } from 'vitest';
+
 import { websitesMocks } from '@/data/__mocks__';
-import { useWebHostingAttachedDomain } from './useWebHostingAttachedDomain';
 import { wrapper } from '@/utils/test.provider';
+
+import { useWebHostingAttachedDomain } from './useWebHostingAttachedDomain';
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
   fetchIcebergV2: vi.fn().mockResolvedValue({

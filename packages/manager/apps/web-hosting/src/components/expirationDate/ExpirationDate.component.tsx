@@ -1,10 +1,13 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useTranslation, Trans } from 'react-i18next';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { DateFormat, useFormattedDate } from '@ovh-ux/manager-react-components';
+
 import { useGetServiceInfos } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
-import { SERVICE_INFOS_STATUS } from '@/types/ssl';
+import { SERVICE_INFOS_STATUS } from '@/data/types/product/ssl';
 
 export default function ExpirationDate() {
   const { serviceName } = useParams();
@@ -25,19 +28,11 @@ export default function ExpirationDate() {
         isInAutoRenew &&
         (data?.renew?.deleteAtExpiration ? (
           <OdsText className="mb-7">
-            <Trans
-              t={t}
-              i18nKey="expiration_resiliation_date"
-              values={{ expirationDate }}
-            ></Trans>
+            <Trans t={t} i18nKey="expiration_resiliation_date" values={{ expirationDate }}></Trans>
           </OdsText>
         ) : (
           <OdsText className="mb-7">
-            <Trans
-              t={t}
-              i18nKey="expiration_renew_date"
-              values={{ expirationDate }}
-            ></Trans>
+            <Trans t={t} i18nKey="expiration_renew_date" values={{ expirationDate }}></Trans>
           </OdsText>
         ))}
     </>

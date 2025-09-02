@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { TCertificate } from '@/types/ssl';
+
+import { TCertificate } from '@/data/types/product/ssl';
 
 export const createCertificate = async (
   serviceName: string,
@@ -7,14 +8,11 @@ export const createCertificate = async (
   key?: string,
   chain?: string,
 ): Promise<TCertificate> => {
-  const { data } = await v6.post<TCertificate>(
-    `/hosting/web/${serviceName}/ssl`,
-    {
-      certificate,
-      key,
-      chain,
-    },
-  );
+  const { data } = await v6.post<TCertificate>(`/hosting/web/${serviceName}/ssl`, {
+    certificate,
+    key,
+    chain,
+  });
 
   return data;
 };
@@ -37,10 +35,12 @@ export const createDomainCertificates = async (
   const results = await Promise.allSettled(
     domains?.map((domain) => createDomainCertificate(serviceName, domain)),
   );
-  const failed = results?.find((r) => r.status === 'rejected');
+  const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+
   if (failed) {
     throw failed.reason ?? new Error('Domain certificate creation failed');
   }
+
   return results;
 };
 

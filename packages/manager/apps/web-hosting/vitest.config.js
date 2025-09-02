@@ -28,6 +28,8 @@ export default mergeConfig(
         ],
       },
     },
+    mergeConfig,
+    sharedConfig,
     resolve: {
       alias: {
         '@/public': path.resolve(__dirname, 'public'),

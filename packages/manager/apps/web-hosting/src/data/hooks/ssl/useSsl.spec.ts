@@ -1,16 +1,17 @@
-import { describe, expect, it, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { v6 } from '@ovh-ux/manager-core-api';
-import {
-  useCreateCertificate,
-  useCreateDomainCertificate,
-} from '@/data/hooks/ssl/useSsl';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useCreateCertificate, useCreateDomainCertificate } from '@/data/hooks/ssl/useSsl';
 import { wrapper } from '@/utils/test.provider';
+
+const { mockPost } = vi.hoisted(() => ({
+  mockPost: vi.fn().mockResolvedValue({ data: {} }),
+}));
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
   v6: {
-    post: vi.fn().mockResolvedValue({ data: {} }),
+    post: mockPost,
   },
 }));
 
@@ -23,12 +24,9 @@ describe('useCreateCertificate', () => {
   });
 
   it('create certificate on import', async () => {
-    const { result } = renderHook(
-      () => useCreateCertificate('serviceName', onSuccess, onError),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useCreateCertificate('serviceName', onSuccess, onError), {
+      wrapper,
+    });
 
     act(() =>
       result.current.mutate({
@@ -39,7 +37,7 @@ describe('useCreateCertificate', () => {
     );
 
     await waitFor(() => {
-      expect(v6.post).toHaveBeenCalledWith('/hosting/web/serviceName/ssl', {
+      expect(mockPost).toHaveBeenCalledWith('/hosting/web/serviceName/ssl', {
         certificate: 'certificate',
         key: 'key',
         chain: 'chain',
@@ -66,9 +64,7 @@ describe('useCreateDomainCertificate', () => {
     act(() => result.current.mutate('domain'));
 
     await waitFor(() => {
-      expect(v6.post).toHaveBeenCalledWith(
-        '/hosting/web/serviceName/attachedDomain/domain/ssl',
-      );
+      expect(mockPost).toHaveBeenCalledWith('/hosting/web/serviceName/attachedDomain/domain/ssl');
 
       expect(onSuccess).toHaveBeenCalled();
     });

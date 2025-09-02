@@ -1,5 +1,9 @@
-import { vi } from 'vitest';
 import React from 'react';
+
+import { Path, To } from 'react-router-dom';
+
+import { vi } from 'vitest';
+
 import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -48,9 +52,7 @@ vi.mock('axios', async (importActual) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
   return {
     ...actual,
     ShellContext: React.createContext(mocksHostingUrl),
@@ -75,9 +77,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   return {
-    ...(await importOriginal<
-      typeof import('@ovh-ux/manager-react-components')
-    >()),
+    ...(await importOriginal<typeof import('@ovh-ux/manager-react-components')>()),
   };
 });
 
@@ -96,7 +96,9 @@ vi.mock('react-router-dom', async (importActual) => {
     useNavigate: vi.fn(() => navigate),
     useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
     useMatches: vi.fn(() => []),
-    useHref: vi.fn((url) => url),
+    useHref: vi.fn<(url: To) => string>((url) =>
+      typeof url === 'string' ? url : (url as Path).pathname,
+    ),
   };
 });
 
@@ -106,9 +108,7 @@ vi.mock('@/data/api/index', () => ({
     cursorNext: null,
   }),
   getWebHostingAttachedDomainQueryKey: vi.fn(),
-  getWebHostingAttachedDomainDigStatus: vi.fn(() =>
-    Promise.resolve(attachedDomainDigStatusMock),
-  ),
+  getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
 

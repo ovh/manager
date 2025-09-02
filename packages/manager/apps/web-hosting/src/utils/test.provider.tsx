@@ -1,35 +1,34 @@
-import {
-  render,
-  renderHook,
-  RenderOptions,
-  RenderResult,
-} from '@testing-library/react';
-import i18n from 'i18next';
 import React, { ComponentType } from 'react';
-import { I18nextProvider, initReactI18next } from 'react-i18next';
+
 import { MemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import '@testing-library/jest-dom';
+import { RenderOptions, RenderResult, render, renderHook } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import 'element-internals-polyfill';
+import i18n from 'i18next';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
-import '@testing-library/jest-dom';
-import 'element-internals-polyfill';
 
-i18n.use(initReactI18next).init({
-  lng: 'fr',
-  fallbackLng: 'fr',
-  resources: {
-    fr: {
-      common: commonTranslation,
-      onboarding: onboardingTranslation,
+i18n
+  .use(initReactI18next)
+  .init({
+    lng: 'fr',
+    fallbackLng: 'fr',
+    resources: {
+      fr: {
+        common: commonTranslation,
+        onboarding: onboardingTranslation,
+      },
     },
-  },
-  ns: ['common', 'onboarding'],
-});
+    ns: ['common', 'onboarding'],
+  })
+  .catch(console.error);
 
 export const getShellContext = () => {
   return {
@@ -71,11 +70,7 @@ export const wrapper = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const wrapperWithI18n = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const wrapperWithI18n = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nextProvider i18n={i18n}>
@@ -87,16 +82,11 @@ export const wrapperWithI18n = ({
   );
 };
 
-const customRender = (
-  jsx: React.ReactNode,
-  options?: RenderOptions,
-): RenderResult =>
+const customRender = (jsx: React.ReactNode, options?: RenderOptions): RenderResult =>
   render(jsx, { wrapper: wrapperWithI18n as ComponentType, ...options });
 
-const customRenderHook = (
-  props: (initialsProps: unknown) => unknown,
-  options?: RenderOptions,
-) => renderHook(props, { wrapper: wrapper as ComponentType, ...options });
+const customRenderHook = (props: (initialsProps: unknown) => unknown, options?: RenderOptions) =>
+  renderHook(props, { wrapper: wrapper as ComponentType, ...options });
 
 export function setup(
   jsx: React.ReactElement,
