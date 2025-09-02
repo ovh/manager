@@ -33,14 +33,32 @@ export const getIpListQueryKey = (params: GetIpListParams) => [
  * List the ip.Ip objects : Your OVH IPs
  */
 export const getIpList = (params: GetIpListParams) =>
-  apiClient.v6.get<string[]>('/ip', { params });
+  apiClient.v6.get<string[]>('/ip', {
+    params: {
+      ...params,
+      type: params?.type === IpTypeEnum.ADDITIONAL ? undefined : params?.type,
+      isAdditionalIp: params?.type === IpTypeEnum.ADDITIONAL,
+    },
+  });
 
 export const getIcebergIpList = (params: GetIpListParams) =>
   fetchIcebergV6<IpObject>({
     route: '/ip',
-    filters: Object.entries(params).map(([key, value]) => ({
-      key,
-      value,
-      comparator: FilterComparator.IsEqual,
-    })),
+    filters: [
+      ...Object.entries(params)
+        .filter(
+          ([key, value]) =>
+            !(key === 'type' && value === IpTypeEnum.ADDITIONAL),
+        )
+        .map(([key, value]) => ({
+          key,
+          value,
+          comparator: FilterComparator.IsEqual,
+        })),
+      {
+        key: 'isAdditionalIp',
+        value: params.type === IpTypeEnum.ADDITIONAL,
+        comparator: FilterComparator.IsEqual,
+      },
+    ],
   });
