@@ -1,0 +1,7 @@
+{
+  "title": "OVHcloud Key Management Service",
+  "description": "Gardez le contrôle du chiffrement de vos données sensibles.",
+  "description_secondary": "OVHcloud KMS est le service centralisé de chiffrement entièrement managé pour sécuriser vos données dans vos applications et vos services OVHcloud",
+  "orderButtonLabel": "Commander un KMS",
+  "moreInfoButtonLabel": "En savoir plus"
+}

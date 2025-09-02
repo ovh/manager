@@ -1,0 +1,9 @@
+{
+  "key_management_service_terminate_cancel": "Cancelar",
+  "key_management_service_terminate_confirm": "Dar de baja",
+  "key_management_service_terminate_error": "Se ha producido un error: {{error}}",
+  "key_management_service_terminate_heading": "Dar de baja mi KMS",
+  "key_management_service_terminate_description": "Por favor, introduzca «{{terminateKeyword}}» para confirmar la baja de su KMS.",
+  "key_management_service_terminate_success_banner": "La solicitud de baja de su KMS {{ServiceName}} se ha enviado correctamente. Le hemos enviado un mensaje de correo electrónico con el procedimiento que debe seguir.",
+  "key_management_service_terminate_success_banner_us": "La solicitud de baja de su KMS {{ServiceName}} se ha enviado correctamente. Le hemos enviado un correo de confirmación."
+}
