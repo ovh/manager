@@ -1,12 +1,13 @@
 import React, { useContext, useMemo } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useMatches } from 'react-router-dom';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type BreadcrumbItem = {
   label?: string;
@@ -27,12 +28,13 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
       try {
         const response = await shell.navigation.getURL('web', '/hosting', {});
         setHref(response as string);
-      } catch (error) {
+      } catch {
         setHref('#');
       }
     };
-    fetchUrl();
-  }, []);
+
+    fetchUrl().catch(() => setHref('#'));
+  }, [shell]);
 
   const rootItem = {
     label: t('hosting'),
@@ -44,10 +46,7 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
       matches.reduce((crumbs, match) => {
         const handle = match.handle as Record<string, string>;
         if (handle?.breadcrumb) {
-          const breadcrumb = (handle.breadcrumb as unknown) as Record<
-            string,
-            string
-          >;
+          const breadcrumb = handle.breadcrumb as unknown as Record<string, string>;
           const label = breadcrumb?.label?.startsWith(':')
             ? match.params[breadcrumb?.label?.slice(1)]
             : t(breadcrumb?.label);
@@ -60,7 +59,7 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
 
         return crumbs;
       }, [] as BreadcrumbItem[]),
-    [matches],
+    [matches, t],
   );
 
   return (
