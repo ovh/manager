@@ -43,7 +43,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.4.0",
+    "@ovh-ux/manager-core-test-utils": "^0.6.0",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-query-devtools": "^5.51.21",

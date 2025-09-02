@@ -1,7 +1,7 @@
 import { describe, it, vi } from 'vitest';
 import {
   assertOdsModalVisibility,
-  getButtonByTestId,
+  getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -47,9 +47,7 @@ describe('Ip Upsert Description test suite', () => {
     await assertOdsModalVisibility({ container, isVisible: true });
 
     // Find and click the cancel button
-    const cancelButton = await getButtonByTestId({
-      testId: 'cancel-button',
-    });
+    const cancelButton = await getElementByTestId('cancel-button');
 
     // Click the cancel button and wait for the modal to close
     await waitFor(
