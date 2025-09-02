@@ -1,21 +1,13 @@
 import { describe, it, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import AttachStorage from './AttachStorage.page';
 import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { TAttachableInstance } from '@/api/select/instances';
+import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  useParams: vi.fn(),
-}));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn().mockReturnValue({
-    t: vi.fn().mockReturnValue('Translated text'),
-  }),
-}));
+vi.mock('react-router-dom');
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: vi.fn().mockReturnValue({
@@ -41,7 +33,7 @@ describe('AttachStorage', () => {
     vi.mocked(useAttachableInstances).mockReturnValue({
       isPending: true,
     } as UseQueryResult<TAttachableInstance[]>);
-    const { getByTestId } = render(<AttachStorage />);
+    const { getByTestId } = renderWithMockedWrappers(<AttachStorage />);
     expect(getByTestId('attach-storage-spinner')).toBeInTheDocument();
   });
   it('renders NoInstanceWarningMessage when no instances are available', async () => {
@@ -50,7 +42,7 @@ describe('AttachStorage', () => {
       isPending: false,
     } as UseQueryResult<TAttachableInstance[]>);
 
-    const { getByTestId } = render(<AttachStorage />);
+    const { getByTestId } = renderWithMockedWrappers(<AttachStorage />);
     await waitFor(() =>
       expect(
         getByTestId('AttachStorage-NoInstanceWarningMessage'),
@@ -64,7 +56,7 @@ describe('AttachStorage', () => {
       isPending: false,
     } as UseQueryResult<TAttachableInstance[]>);
 
-    const { queryByTestId } = render(<AttachStorage />);
+    const { queryByTestId } = renderWithMockedWrappers(<AttachStorage />);
     await waitFor(() =>
       expect(
         queryByTestId('AttachStorage-NoInstanceWarningMessage'),
@@ -78,7 +70,7 @@ describe('AttachStorage', () => {
       isPending: true,
     } as UseQueryResult<TAttachableInstance[]>);
 
-    render(<AttachStorage />);
+    renderWithMockedWrappers(<AttachStorage />);
     expect(
       screen.queryByText('No instances available'),
     ).not.toBeInTheDocument();
