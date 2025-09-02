@@ -1,12 +1,8 @@
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { StepId } from '@/types/formStep.type';
 import { buildSearchQuery } from '@/utils/buildSearchQuery';
+import { useSapSearchParams } from '../sapSearchParams/useSapSearchParams';
 
 const createStepUrl = (stepNumber: number, serviceName?: string) => {
   if (serviceName && stepNumber !== 1) {
@@ -19,11 +15,10 @@ const createStepUrl = (stepNumber: number, serviceName?: string) => {
 
 export const useFormSteps = () => {
   const { stepId } = useParams();
-  const [searchParams] = useSearchParams();
+  const { serviceName } = useSapSearchParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const serviceName = searchParams.get('serviceName');
   const isInitialStep = pathname.includes(subRoutes.initialStep);
   const currentStep: StepId = isInitialStep ? '1' : (stepId as StepId);
 

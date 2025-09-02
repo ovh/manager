@@ -35,3 +35,9 @@ export const createInstallation = ({
   form,
 }: TCreateInstallationParams): Promise<ApiResponse<string>> =>
   v6.post(`/dedicatedCloud/${serviceName}/sap`, form);
+
+export const deleteInstallation = ({
+  serviceName,
+  taskId,
+}: TGetInstallationTaskParams): Promise<ApiResponse<string>> =>
+  v6.delete(`/dedicatedCloud/${serviceName}/sap/${taskId}`);

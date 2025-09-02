@@ -7,7 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { TSAPInstallationWithService } from '@/types/installation.type';
 import { InstallationStatus } from '../InstallationStatus/InstallationStatus.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { buildViewInstallationRedirectUrl } from '@/utils/buildSearchQuery';
+import {
+  buildDeleteInstallationUrl,
+  buildViewInstallationRedirectUrl,
+} from '@/utils/buildSearchQuery';
 
 export const InstallationDateCell = (
   installation: TSAPInstallationWithService,
@@ -60,16 +63,18 @@ export const DetailIconCell = (installation: TSAPInstallationWithService) => {
   const { t } = useTranslation('listing');
   const navigate = useNavigate();
 
-  const taskId = installation?.taskId;
-  const reportUrl = buildViewInstallationRedirectUrl({
-    serviceName: installation?.serviceName,
-    taskId,
-  });
+  const { serviceName, taskId } = installation;
+
+  const reportUrl = buildViewInstallationRedirectUrl({ serviceName, taskId });
+  const deleteUrl = buildDeleteInstallationUrl({ serviceName, taskId });
+
+  const viewButtonId = `view-${taskId}`;
+  const deleteButtonId = `delete-${taskId}`;
 
   return (
-    <>
+    <div className="flex items-center justify-center gap-x-1">
       <OdsButton
-        id={taskId}
+        id={viewButtonId}
         size="sm"
         variant="ghost"
         label=""
@@ -77,11 +82,25 @@ export const DetailIconCell = (installation: TSAPInstallationWithService) => {
         aria-label="view-installation-report"
         onClick={() => navigate(reportUrl)}
       />
-      <OdsTooltip role="tooltip" triggerId={taskId}>
+      <OdsTooltip role="tooltip" triggerId={viewButtonId}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('sap_hub_history_installation_see_detail')}
         </OdsText>
       </OdsTooltip>
-    </>
+      <OdsButton
+        id={deleteButtonId}
+        size="sm"
+        variant="ghost"
+        label=""
+        icon="trash"
+        aria-label="delete-installation-task"
+        onClick={() => navigate(deleteUrl)}
+      />
+      <OdsTooltip role="tooltip" triggerId={deleteButtonId}>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {t('sap_hub_history_installation_delete')}
+        </OdsText>
+      </OdsTooltip>
+    </div>
   );
 };
