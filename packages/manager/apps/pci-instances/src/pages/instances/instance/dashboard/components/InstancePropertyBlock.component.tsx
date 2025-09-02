@@ -1,8 +1,15 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Link as RouterLink } from 'react-router-dom';
-import { Icon, Link, Text } from '@ovhcloud/ods-react';
+import {
+  Icon,
+  Link,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
@@ -18,6 +25,16 @@ const InstancePropertyBlock: FC = () => {
     region,
     instanceId,
   });
+
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  const [isTruncated, setIsTruncated] = useState(false);
+
+  useEffect(() => {
+    const el = linkRef.current;
+    if (el) {
+      setIsTruncated(el.scrollWidth > el.clientWidth);
+    }
+  }, [instance?.volumes]);
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_property_title')}>
@@ -40,13 +57,21 @@ const InstancePropertyBlock: FC = () => {
         <div className="flex flex-col gap-y-4">
           {instance?.volumes.length ? (
             instance.volumes.map(({ id, name }) => (
-              <Link
-                key={id}
-                href={`${projectUrl}/storages/blocks/${id}/edit`}
-                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem]"
-              >
-                {name}
-              </Link>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    ref={linkRef}
+                    key={id}
+                    href={`${projectUrl}/storages/blocks/${id}/edit`}
+                    className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem]"
+                  >
+                    {name}
+                  </Link>
+                </TooltipTrigger>
+                {isTruncated && (
+                  <TooltipContent withArrow>{name}</TooltipContent>
+                )}
+              </Tooltip>
             ))
           ) : (
             <Text className="my-4">-</Text>
