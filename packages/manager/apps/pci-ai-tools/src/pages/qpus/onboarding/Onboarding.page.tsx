@@ -1,6 +1,6 @@
 import { Button } from '@datatr-ux/uxlib';
 import Link from '@/components/links/Link.component';
-import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks.png';
+import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks-qpu.png';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 
 const Onboarding = () => {
