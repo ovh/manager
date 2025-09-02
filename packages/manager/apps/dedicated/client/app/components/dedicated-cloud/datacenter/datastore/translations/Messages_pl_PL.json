@@ -32,5 +32,6 @@
   "dedicatedCloud_tab_datastores_global_information": "Datastore globalny to datastore zamontowany na wszystkich wirtualnych klastrach/centrach danych infrastruktury VMware, czyli współdzielony przez kilka vDC. Niektóre datastores mogą nie być kompatybilne. W tym przypadku możesz zamówić nowe datastores i korzystać z usługi VMware Storage vMotion. Aby dowiedzieć się więcej, sprawdź nasze przewodniki <a href=\"{{ billingGuideUrl }}\" target=\"_blank\">Informacje o płatnościach za Dedicated Cloud</a> i <a href=\"{{ vMotionGuideUrl }}\" target=\"_blank\">VMware Storage vMotion</a>.",
   "dedicatedCloud_tab_datastores_scope": "Zakres",
   "dedicatedCloud_tab_datastores_scope_global": "Globalny",
-  "dedicatedCloud_tab_datastores_scope_not_global": "Nie globalny"
+  "dedicatedCloud_tab_datastores_scope_not_global": "Nie globalny",
+  "dedicatedCloud_tab_datastores_usage": "Wykorzystanie"
 }
