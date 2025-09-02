@@ -15,6 +15,12 @@ export const useOkmsById = (okmsId: string) => {
   });
 };
 
+/**
+ * okms list hook
+ *
+ * @description only use this hook to manage side-effects on the UI (region selector, back button, redirection).
+ * for the domain datagrid, use `useOkmsDatagridList`
+ */
 export const useOkmsList = (
   options: Partial<UseQueryOptions<OKMS[], ErrorResponse>> = {},
 ) => {
@@ -34,7 +40,7 @@ export const useOkmsDatagridList = (params: UseOkmsDatagridListParams = {}) => {
 
   return useResourcesIcebergV2<OKMS>({
     route: '/okms/resource',
-    queryKey: okmsQueryKeys.listDatagrid(),
+    queryKey: okmsQueryKeys.listDatagrid,
     pageSize,
   });
 };

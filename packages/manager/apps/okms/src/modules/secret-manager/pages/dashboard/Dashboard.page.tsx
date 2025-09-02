@@ -89,7 +89,7 @@ export default function SecretDashboardPage() {
   return (
     <BaseLayout
       header={headerProps}
-      backLinkLabel={t('back_to_list')}
+      backLinkLabel={t('back_to_secret_list')}
       message={notifications.length > 0 && <Notifications />}
       breadcrumb={
         <OdsBreadcrumb>

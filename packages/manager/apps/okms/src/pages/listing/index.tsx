@@ -52,7 +52,7 @@ export default function Listing() {
   const okmsList = flattenData || [];
 
   useAutoRefetch({
-    queryKey: okmsQueryKeys.listDatagrid(),
+    queryKey: okmsQueryKeys.listDatagrid,
     enabled: isRefetchEnabled,
     onFinish: () => setIsRefetchEnabled(false),
   });

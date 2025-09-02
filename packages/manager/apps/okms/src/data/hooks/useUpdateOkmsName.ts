@@ -54,7 +54,7 @@ export const useUpdateOkmsName = ({
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: okmsQueryKeys.listDatagrid(),
+        queryKey: okmsQueryKeys.listDatagrid,
       });
       await queryClient.invalidateQueries({
         queryKey: getServiceDetailsQueryKey(okmsId),
