@@ -10,7 +10,6 @@ import {
 import {
   isRegionInAp,
   isRegionInCa,
-  isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
 import { DEFAULT_PRICING_MODE, IpVersion } from '@/pages/order/order.constant';

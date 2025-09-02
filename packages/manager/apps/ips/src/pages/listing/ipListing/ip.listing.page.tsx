@@ -32,9 +32,8 @@ export default function IpListingPage() {
           {t('listingTabIpDescription')}
         </OdsText>
       </div>
-      <div className="flex flex-row mb-4 items-baseline">
+      <div className="flex mb-4 gap-2">
         <OdsButton
-          className="mr-2"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
@@ -48,10 +47,15 @@ export default function IpListingPage() {
           onClick={() => navigate(urls.byoip)}
           label={t('orderByoipButtonLabel')}
         />
-        <IpFilter />
-        <TypeFilter />
-        <QuickFilter />
-        <div className="ml-auto">
+      </div>
+
+      <div className="flex flex-row">
+        <div className="flex flex-col flex-1 mr-2 md:mr-8 md:flex-row gap-2">
+          <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
+          <TypeFilter className="min-w-[200px] max-w-[400px] flex-1" />
+        </div>
+
+        <div className="flex flex-col items-end ml-auto gap-2">
           <ActionMenu
             id="settings"
             icon={ODS_ICON_NAME.cog}
@@ -64,11 +68,15 @@ export default function IpListingPage() {
               },
             ]}
           />
+          <QuickFilter />
         </div>
       </div>
-      <React.Suspense fallback={<Loading />}>
-        <IpDatagrid />
-      </React.Suspense>
+
+      <div className="mt-4">
+        <React.Suspense fallback={<Loading />}>
+          <IpDatagrid />
+        </React.Suspense>
+      </div>
       <Outlet />
     </ListingContextProvider>
   );
