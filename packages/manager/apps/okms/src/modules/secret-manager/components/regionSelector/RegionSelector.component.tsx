@@ -22,7 +22,7 @@ export const RegionSelector = () => {
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
 
   // Render nothing if there is an error
-  // useRegionSelector will send and error notification
+  // useRegionSelector will send an error notification
   if (isError) {
     return null;
   }
