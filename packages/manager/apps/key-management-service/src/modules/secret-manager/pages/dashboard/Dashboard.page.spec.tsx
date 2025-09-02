@@ -98,57 +98,92 @@ describe('Secrets dashboard test suite', () => {
     });
 
     expect(revealSecretLink).toBeVisible();
-  });
 
-  it(`should navigate to the versions page on click on versions tab`, async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    await renderTestApp(mockPageUrl);
-
-    expect(
-      await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS),
-    ).toHaveLength(2);
-
-    // WHEN
-    user.click(screen.getByText(labels.secretManager.common.versions));
-
-    // THEN
-    await assertVersionDatagridVisilibity();
-  });
-
-  it('should navigate to the secret value drawer on click on action link', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
-
-    const revealSecretLink = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.common.reveal_secret,
-      isLink: true,
-    });
-
-    // WHEN
-    await act(() => user.click(revealSecretLink));
-
-    // THEN
-    await assertTextVisibility(labels.secretManager.common.values);
-  });
-
-  it('should navigate to the create version drawer on click on action link', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderTestApp(mockPageUrl);
-
-    const createNewVersionButton = await getOdsButtonByLabel({
+    const addNewVersionLink = await getOdsButtonByLabel({
       container,
       label: labels.secretManager.common.add_new_version,
       isLink: true,
     });
 
-    // WHEN
-    await act(() => user.click(createNewVersionButton));
+    expect(addNewVersionLink).toBeVisible();
 
-    // THEN
-    await assertTextVisibility(labels.secretManager.create.data_textarea_label);
+    const deleteSecretLink = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.common.delete_secret,
+      isLink: true,
+    });
+
+    expect(deleteSecretLink).toBeVisible();
+  });
+
+  /* TABS */
+  describe('dashboard tabs', () => {
+    it(`should navigate to the versions page on click on versions tab`, async () => {
+      // GIVEN
+      const user = userEvent.setup();
+      await renderTestApp(mockPageUrl);
+
+      expect(
+        await screen.findAllByText(
+          mockSecret.path,
+          {},
+          WAIT_FOR_DEFAULT_OPTIONS,
+        ),
+      ).toHaveLength(2);
+
+      // WHEN
+      user.click(screen.getByText(labels.secretManager.common.versions));
+
+      // THEN
+      await assertVersionDatagridVisilibity();
+    });
+  });
+
+  /* ACTIONS TILE */
+  type ActionCase = {
+    actionLabel: string;
+    assertion: () => Promise<void>;
+  };
+
+  const actionCases: ActionCase[] = [
+    {
+      actionLabel: labels.secretManager.common.reveal_secret,
+      assertion: () => assertTextVisibility(labels.secretManager.common.values),
+    },
+    {
+      actionLabel: labels.secretManager.common.add_new_version,
+      assertion: () =>
+        assertTextVisibility(labels.secretManager.create.data_textarea_label),
+    },
+    {
+      actionLabel: labels.secretManager.common.delete_secret,
+      assertion: () =>
+        assertTextVisibility(
+          labels.secretManager.common.delete_secret_modal_title,
+        ),
+    },
+  ];
+
+  describe('Actions tile', () => {
+    it.each(actionCases)(
+      'should correctly handle click on $actionLabel',
+      async ({ actionLabel, assertion }) => {
+        // GIVEN
+        const user = userEvent.setup();
+        const { container } = await renderTestApp(mockPageUrl);
+
+        const actionLink = await getOdsButtonByLabel({
+          container,
+          label: actionLabel,
+          isLink: true,
+        });
+
+        // WHEN
+        await act(() => user.click(actionLink));
+
+        // THEN
+        await assertion();
+      },
+    );
   });
 });

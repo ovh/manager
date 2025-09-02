@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { OKMS } from '@/types/okms.type';
 
 /**
@@ -8,10 +9,7 @@ import { OKMS } from '@/types/okms.type';
  * If neither is found, it returns undefined.
  */
 export const useCurrentRegion = (domains: OKMS[]) => {
-  const { domainId, region } = useParams() as {
-    domainId: string;
-    region: string;
-  };
+  const { domainId, region } = useParams<LocationPathParams>();
 
   if (domainId) {
     const currentDomain = domains.find((domain) => domain.id === domainId);

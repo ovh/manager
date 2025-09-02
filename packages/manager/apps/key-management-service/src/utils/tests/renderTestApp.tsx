@@ -20,12 +20,14 @@ import {
 import {
   createSecretsMock,
   CreateSecretsMockParams,
+  deleteSecretMock,
+  DeleteSecretMockParams,
   getSecretMock,
   GetSecretMockParams,
   getSecretsMock,
   GetSecretsMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
-import { getLocationsMock } from '@secret-manager/mocks/locations/secrets.handler';
+import { getLocationsMock } from '@secret-manager/mocks/locations/locations.handler';
 import {
   getVersionMock,
   GetVersionMockParams,
@@ -88,6 +90,7 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   GetSecretsMockParams &
   GetSecretMockParams &
   CreateSecretsMockParams &
+  DeleteSecretMockParams &
   GetVersionsMockParams &
   GetVersionMockParams &
   CreateVersionMockParams &
@@ -120,6 +123,7 @@ export const renderTestApp = async (
         ...getSecretsMock(mockParams),
         ...getSecretMock(mockParams),
         ...createSecretsMock(mockParams),
+        ...deleteSecretMock(mockParams),
         ...getVersionsMock(mockParams),
         ...getVersionMock(mockParams),
         ...createVersionMock(mockParams),
