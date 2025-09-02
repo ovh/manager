@@ -137,5 +137,15 @@
   "xdsl_detail_mail_sending_update_running": "Die Anfrage zur Änderung des E-Mail-Versands wird bearbeitet, bitte gedulden Sie sich einen Augenblick.",
   "xdsl_detail_mail_sending_update_succeed": "Die Anfrage zur Änderung des Versands wurde erfolgreich registriert und wird derzeit bearbeitet.",
   "xdsl_detail_mail_sending_update_failed": "Bei der Änderung des E-Mail-Versands ist ein Fehler aufgetreten. {{error}}",
-  "xdsl_detail_mail_sending_guide": "Mehr erfahren"
+  "xdsl_detail_mail_sending_guide": "Mehr erfahren",
+  "xdsl_details_mean_time_to_repair": "Garantierte Zeit bis zur Wiederherstellung (GTR)",
+  "xdsl_details_mean_time_to_repair_10ho": "10 Stunden während der Geschäftszeiten (10HO)",
+  "xdsl_details_mean_time_to_repair_20m_10ho": "10 Stunden während der Geschäftszeiten (10HO)",
+  "xdsl_details_mean_time_to_repair_20m_4ho": "4 Stunden während der Geschäftszeiten (4HO)",
+  "xdsl_details_mean_time_to_repair_4hno": "4 Stunden außerhalb der Geschäftszeiten (4HNO)",
+  "xdsl_details_mean_time_to_repair_4ho": "4 Stunden während der Geschäftszeiten (4HO)",
+  "xdsl_details_mean_time_to_repair_5m_10ho": "10 Stunden während der Geschäftszeiten (10HO)",
+  "xdsl_details_mean_time_to_repair_5m_4ho": "4 Stunden während der Geschäftszeiten (4HO)",
+  "xdsl_details_mean_time_to_repair_dplus1": "1 Arbeitstag (T+1)",
+  "xdsl_details_mean_time_to_repair_none": "Keine"
 }
