@@ -1,7 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 
 export type GetIpDetailsParams = {
-  /**  */
   ip: string;
 };
 
