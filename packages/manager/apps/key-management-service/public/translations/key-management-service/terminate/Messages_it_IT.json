@@ -1,0 +1,9 @@
+{
+  "key_management_service_terminate_cancel": "Annullare",
+  "key_management_service_terminate_confirm": "Disattivare",
+  "key_management_service_terminate_error": "Si è verificato un errore: {{error}}",
+  "key_management_service_terminate_heading": "Disattivare il tuo KMS",
+  "key_management_service_terminate_description": "Inserisci la parola \"{{terminateKeyword}}\" per confermare la disattivazione del tuo KMS.",
+  "key_management_service_terminate_success_banner": "La richiesta di disattivazione del tuo KMS {{ServiceName}} è stata presa in carico. Ti abbiamo inviato un’email con la procedura da seguire.",
+  "key_management_service_terminate_success_banner_us": "La richiesta di disattivazione del tuo KMS {{ServiceName}} è stata presa in carico. Ti abbiamo inviato un'email di conferma."
+}
