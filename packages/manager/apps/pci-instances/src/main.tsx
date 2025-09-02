@@ -9,12 +9,22 @@ import '@ovhcloud/ods-themes/default';
 import '@/vite-hmr';
 import App from './App';
 import './index.scss';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
+
+const trackingContext = {
+  chapter1: UNIVERSE,
+  chapter2: SUB_UNIVERSE,
+  chapter3: APP_NAME,
+  appName: APP_NAME,
+  level2Config: LEVEL2,
+  pageTheme: UNIVERSE,
+};
 
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName);
+  const context = await initShellContext(appName, trackingContext);
 
   const region = context.environment.getRegion();
   try {

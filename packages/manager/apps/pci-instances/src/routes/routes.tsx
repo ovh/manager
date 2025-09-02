@@ -4,6 +4,7 @@ import { getProjectQuery } from '@ovh-ux/manager-pci-common';
 import queryClient from '@/queryClient';
 import { withSuspendedMigrateRoutes } from '@/hooks/migration/useSuspendNonMigratedRoutes';
 import { instanceActionLegacyLoader } from './loaders/instanceAction/instanceActionLegacy.loader';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 const lazyRouteConfig = (importFn: CallableFunction) => ({
   lazy: async () => {
@@ -127,6 +128,12 @@ const routes: RouteObject[] = [
         ...lazyRouteConfig(() =>
           import('@/pages/instances/create/CreateInstance.page'),
         ),
+        handle: {
+          tracking: {
+            pageName: 'add_instance',
+            pageType: PageType.funnel,
+          },
+        },
       },
       {
         path: SECTIONS.instance,
