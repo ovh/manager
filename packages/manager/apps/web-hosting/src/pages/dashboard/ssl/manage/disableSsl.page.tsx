@@ -1,12 +1,15 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
-import { useTranslation } from 'react-i18next';
 import { useDeleteDomainCertificate } from '@/data/hooks/ssl/useSsl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
@@ -15,8 +18,7 @@ export default function DisableSslModal() {
 
   const { addSuccess, addWarning } = useNotifications();
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
 
   const { deleteDomainCertificate } = useDeleteDomainCertificate(
@@ -52,10 +54,7 @@ export default function DisableSslModal() {
     >
       <div className="flex flex-col space-y-8 mb-8 mt-8">
         <div className="flex flex-row">
-          <OdsText
-            preset={ODS_TEXT_PRESET.heading6}
-            className="flex justify-end mr-10 w-1/2"
-          >
+          <OdsText preset={ODS_TEXT_PRESET.heading6} className="flex justify-end mr-10 w-1/2">
             {t('hosting_domain_name')}
           </OdsText>
           <OdsText className="w-1/2">{domain}</OdsText>

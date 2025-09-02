@@ -1,9 +1,18 @@
 import React from 'react';
 
-import { useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { generateCsv, mkConfig, download } from 'export-to-csv';
+
+import { useQueryClient } from '@tanstack/react-query';
+import { download, generateCsv, mkConfig } from 'export-to-csv';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_LINK_ICON_ALIGNMENT,
+} from '@ovhcloud/ods-components';
+import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 
 import {
   Datagrid,
@@ -11,17 +20,11 @@ import {
   useNotifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
-} from '@ovhcloud/ods-components';
-import Topbar from '@/components/topBar/TopBar.component';
-import useDatagridColumn from '@/hooks/ssl/useDatagridColumn';
+
 import Loading from '@/components/loading/Loading.component';
-import { SslCertificate } from '@/types/ssl';
+import Topbar from '@/components/topBar/TopBar.component';
+import { SslCertificate } from '@/data/types/product/ssl';
+import useDatagridColumn from '@/hooks/ssl/useDatagridColumn';
 
 export default function Ssl() {
   const { serviceName } = useParams();
@@ -29,12 +32,7 @@ export default function Ssl() {
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
 
-  const {
-    flattenData,
-    hasNextPage,
-    fetchNextPage,
-    isLoading,
-  } = useResourcesIcebergV2({
+  const { flattenData, hasNextPage, fetchNextPage, isLoading } = useResourcesIcebergV2({
     route: `/webhosting/resource/${serviceName}/certificate`,
     queryKey: ['webhosting', 'resource', serviceName, 'certificate'],
   });
@@ -97,9 +95,8 @@ export default function Ssl() {
     );
 
     const csv = generateCsv(csvConfig)(csvData);
-    const blob = new Blob([csv.toString()], {
-      type: 'text/csv',
-    });
+    const csvString = csv as unknown as string;
+    const blob = new Blob([csvString], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
     const successMessage = (
@@ -144,7 +141,7 @@ export default function Ssl() {
             label=""
             icon={ODS_ICON_NAME.refresh}
             onClick={() => {
-              queryClient.invalidateQueries();
+              queryClient.invalidateQueries().catch(console.error);
             }}
           />
         </div>
