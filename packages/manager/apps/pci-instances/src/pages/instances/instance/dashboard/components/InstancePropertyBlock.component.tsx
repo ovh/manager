@@ -1,12 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Links,
-  LinkType,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
-import { useHref } from 'react-router-dom';
-import { Text } from '@ovhcloud/ods-react';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { Link as RouterLink } from 'react-router-dom';
+import { Icon, Link, Text } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
@@ -17,8 +13,6 @@ const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
   const projectUrl = useProjectUrl('public-cloud');
   const { region, instanceId } = useInstanceParams();
-  const hrefEditInstance = useHref(`../${instanceId}/edit`);
-  const hrefAttachVolume = useHref('./attach');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
     region,
@@ -46,20 +40,23 @@ const InstancePropertyBlock: FC = () => {
         <div className="flex flex-col gap-y-4">
           {instance?.volumes.length ? (
             instance.volumes.map(({ id, name }) => (
-              <Links
+              <Link
                 key={id}
-                label={name}
                 href={`${projectUrl}/storages/blocks/${id}/edit`}
-              />
+                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem]"
+              >
+                {name}
+              </Link>
             ))
           ) : (
             <Text className="my-4">-</Text>
           )}
-          <Links
-            label={t('pci_instances_dashboard_attach_volumes')}
-            type={LinkType.next}
-            href={hrefAttachVolume}
-          />
+          {instance?.isEditEnabled && (
+            <Link as={RouterLink} to="./attach">
+              {t('pci_instances_dashboard_attach_volumes')}
+              <Icon name="arrow-right" />
+            </Link>
+          )}
         </div>
       </DashboardTileBlock>
       <DashboardTileBlock
@@ -68,11 +65,10 @@ const InstancePropertyBlock: FC = () => {
       >
         <Text className="my-4">{instance?.image}</Text>
         {instance?.isEditEnabled && (
-          <Links
-            label={t('pci_instances_dashboard_edit_image')}
-            type={LinkType.next}
-            href={hrefEditInstance}
-          />
+          <Link as={RouterLink} to={`../${instanceId}/edit`}>
+            {t('pci_instances_dashboard_edit_image')}
+            <Icon name="arrow-right" />
+          </Link>
         )}
       </DashboardTileBlock>
       {instance?.sshKey && (
