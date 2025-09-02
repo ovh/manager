@@ -137,5 +137,15 @@
   "xdsl_detail_mail_sending_update_running": "La richiesta di modifica dell'invio di email è in fase di elaborazione, ti chiediamo di attendere.",
   "xdsl_detail_mail_sending_update_succeed": "La richiesta di modifica dell'invio è stata effettuata correttamente, l'elaborazione è in corso.",
   "xdsl_detail_mail_sending_update_failed": "Si è verificato un errore durante la modifica dell'invio di email: {{error}}",
-  "xdsl_detail_mail_sending_guide": "Scopri di più"
+  "xdsl_detail_mail_sending_guide": "Scopri di più",
+  "xdsl_details_mean_time_to_repair": "Garanzia di tempo di ripristino (GTR)",
+  "xdsl_details_mean_time_to_repair_10ho": "10 ore lavorative",
+  "xdsl_details_mean_time_to_repair_20m_10ho": "10 ore lavorative",
+  "xdsl_details_mean_time_to_repair_20m_4ho": "4 ore lavorative",
+  "xdsl_details_mean_time_to_repair_4hno": "4 ore non lavorative",
+  "xdsl_details_mean_time_to_repair_4ho": "4 ore lavorative",
+  "xdsl_details_mean_time_to_repair_5m_10ho": "10 ore lavorative",
+  "xdsl_details_mean_time_to_repair_5m_4ho": "4 ore lavorative",
+  "xdsl_details_mean_time_to_repair_dplus1": "1 giornata lavorativa (G+1)",
+  "xdsl_details_mean_time_to_repair_none": "Nessuno"
 }
