@@ -97,6 +97,7 @@ const BillingMonthlyActionPage = () => {
       onModalClose={closeModal}
       instance={instance}
       section={section}
+      variant="warning"
     >
       <div>
         <Trans
