@@ -1,0 +1,9 @@
+{
+  "key_management_service_terminate_cancel": "Cancel",
+  "key_management_service_terminate_confirm": "Terminate",
+  "key_management_service_terminate_error": "An error has occurred. {{error}}",
+  "key_management_service_terminate_heading": "Cancel my KMS",
+  "key_management_service_terminate_description": "Please enter the word {{terminateKeyword}} to confirm the cancellation of your KMS",
+  "key_management_service_terminate_success_banner": "Your {{ServiceName}} KMS cancellation request has been processed. You have been sent an email detailing the steps to follow.",
+  "key_management_service_terminate_success_banner_us": "Your {{ServiceName}} KMS cancellation request has been processed. A confirmation email has been sent to you."
+}
