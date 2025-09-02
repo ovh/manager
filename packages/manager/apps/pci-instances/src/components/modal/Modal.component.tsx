@@ -21,6 +21,7 @@ const Modal = ({
   handleInstanceAction,
   variant = 'primary',
   dismissible = false,
+  disabled,
 }: {
   title: string;
   onModalClose: () => void;
@@ -29,6 +30,7 @@ const Modal = ({
   handleInstanceAction: () => void;
   variant?: TModalVariant;
   dismissible?: boolean;
+  disabled?: boolean;
 }) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const id = useId();
@@ -58,7 +60,7 @@ const Modal = ({
         </div>
         <div className="flex justify-end p-8 pt-0 gap-4">
           <Button
-            disabled={isPending || undefined}
+            disabled={isPending}
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={onModalClose}
@@ -66,7 +68,7 @@ const Modal = ({
             {t('cancel')}
           </Button>
           <Button
-            disabled={isPending || undefined}
+            disabled={isPending || disabled}
             onClick={handleInstanceAction}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
