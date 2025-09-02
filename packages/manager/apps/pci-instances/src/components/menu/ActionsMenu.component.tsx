@@ -35,7 +35,7 @@ export type TActionsMenuLinkProps = DeepReadonly<{
 }>;
 
 const linkClassname =
-  'w-full box-border p-4 bg-none hover:bg-none hover:bg-[--ods-color-primary-100] hover:rounded-sm focus-visible:bg-[--ods-color-primary-100] focus-visible:rounded-sm focus-visible:outline-none text-blue-700 hover:text-blue-500 focus-visible:text-blue-500';
+  'w-full box-border p-5 bg-none hover:bg-none hover:bg-[--ods-color-primary-100] focus-visible:bg-[--ods-color-primary-100] focus-visible:rounded-sm focus-visible:outline-none text-blue-700 hover:text-blue-500 focus-visible:text-blue-500';
 
 export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
   const { t } = useTranslation('list');
@@ -77,7 +77,7 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
           <Icon name={ICON_NAME.ellipsisVertical} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent withArrow onClick={() => setOpen(false)}>
+      <PopoverContent withArrow onClick={() => setOpen(false)} className="p-0">
         {children}
       </PopoverContent>
     </Popover>
@@ -96,7 +96,7 @@ export const ActionsMenu = ({ items, actionButton }: TActionsMenuProps) => (
         {item.map((elt) => (
           <ActionMenuItem key={elt.label} item={elt} />
         ))}
-        {arr.length - 1 !== index && <Divider />}
+        {arr.length - 1 !== index && <Divider className="m-0" />}
       </div>
     ))}
   </ActionMenuContainer>
