@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.1) (2025-09-02)
+
+
+### Bug Fixes
+
+* **vcfaas:** allow fetching more than default pageSize ([ecd3497](https://github.com/ovh/manager/commit/ecd3497bafc9550667fc37f9cebb8f11e436234d)), closes [#MANAGER-19580](https://github.com/ovh/manager/issues/MANAGER-19580)
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.20.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.0) (2025-09-01)
 
 
