@@ -30,3 +30,8 @@ export const ResourceStatus = {
   UPDATING: 'UPDATING',
   SUSPENDED: 'SUSPENDED',
 } as const;
+
+export const CurrentAccountStatus = {
+  BILLINGLOCKED: 'BILLINGLOCKED',
+  BLOCKEDFORSPAM: 'BLOCKEDFORSPAM',
+} as const;
