@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account",
-  "version": "0.15.0",
+  "version": "0.17.0",
   "private": true,
   "description": "OVHcloud Account product",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.6",
     "@ovh-ux/ng-ovh-http": "^5.1.5",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.5",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.8.5",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.5",
     "@ovh-ux/ng-ovh-utils": "^14.5.3",
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.5",
     "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/shell": "^4.5.7",
+    "@ovh-ux/shell": "^4.6.0",
     "@ovh-ux/sign-up": "^3.2.2",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",

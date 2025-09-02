@@ -41,12 +41,24 @@ const testContentStep1 = async (container: HTMLElement) => {
   const inputValidity = screen.getByTestId('input-validity-period');
   const inputMethodKey = screen.getByTestId('radio-method-key');
   const inputMethodNoKey = screen.getByTestId('radio-method-no-key');
+  const inputCertificateTypeEC = screen.getByTestId(
+    'radio-certificate-type-ec',
+  );
+  const inputCertificateTypeRSA = screen.getByTestId(
+    'radio-certificate-type-rsa',
+  );
 
   expect(inputName).toBeInTheDocument();
   expect(inputDescription).toBeInTheDocument();
   expect(inputValidity).toBeInTheDocument();
   expect(inputMethodKey).toBeInTheDocument();
+  expect(inputMethodKey).toHaveAttribute('is-checked', 'false');
   expect(inputMethodNoKey).toBeInTheDocument();
+  expect(inputMethodNoKey).toHaveAttribute('is-checked', 'true');
+  expect(inputCertificateTypeEC).toBeInTheDocument();
+  expect(inputCertificateTypeEC).toHaveAttribute('is-checked', 'true');
+  expect(inputCertificateTypeRSA).toBeInTheDocument();
+  expect(inputCertificateTypeRSA).toHaveAttribute('is-checked', 'false');
 
   const buttonNextStep = await getOdsButtonByLabel({
     container,
@@ -55,7 +67,7 @@ const testContentStep1 = async (container: HTMLElement) => {
       labels.credentials
         .key_management_service_credential_create_cta_add_identities,
   });
-  expect(buttonNextStep).toHaveAttribute('disabled');
+  expect(buttonNextStep).toBeDisabled();
 
   return {
     buttonNextStep,
@@ -64,6 +76,8 @@ const testContentStep1 = async (container: HTMLElement) => {
     inputValidity,
     inputMethodKey,
     inputMethodNoKey,
+    inputCertificateTypeEC,
+    inputCertificateTypeRSA,
   };
 };
 
@@ -92,7 +106,7 @@ const testContentStep2 = async (container: HTMLElement) => {
       labels.credentials
         .key_management_service_credential_create_identities_button_create_label,
   });
-  expect(buttonCreateCredentials).toHaveAttribute('disabled');
+  expect(buttonCreateCredentials).toBeDisabled();
 
   return {
     buttonAddUsersModal,
@@ -206,7 +220,49 @@ const testStep1 = async (container: HTMLElement, user: UserEvent) => {
 
   // Check submit button is enabled
   await waitFor(() => {
-    expect(buttonNextStep).not.toHaveAttribute('disabled');
+    expect(buttonNextStep).toBeEnabled();
+  });
+
+  // Submit step 1
+  await act(() => user.click(buttonNextStep));
+};
+
+const testStep1CustomCsr = async (container: HTMLElement, user: UserEvent) => {
+  // Check and get content of step 1
+  const {
+    inputName,
+    buttonNextStep,
+    inputMethodKey,
+    inputCertificateTypeEC,
+    inputCertificateTypeRSA,
+  } = await testContentStep1(container);
+
+  // Fill the name
+  fireEvent.input(inputName, { target: { value: 'test-value-input' } });
+
+  // Check submit button is enabled
+  await waitFor(() => {
+    expect(buttonNextStep).toBeEnabled();
+  });
+
+  // choose the custom csr option
+  await act(() => user.click(inputMethodKey));
+
+  // check that the form has updated properly
+  const inputCsr = screen.getByTestId('textarea-csr');
+  expect(inputCsr).toBeVisible();
+  expect(inputCertificateTypeEC).not.toBeVisible();
+  expect(inputCertificateTypeRSA).not.toBeVisible();
+  await waitFor(() => {
+    expect(buttonNextStep).toBeDisabled();
+  });
+
+  // Fill the csr
+  fireEvent.input(inputCsr, { target: { value: 'custom-csr-value' } });
+
+  // Check submit button is enabled
+  await waitFor(() => {
+    expect(buttonNextStep).toBeEnabled();
   });
 
   // Submit step 1
@@ -246,7 +302,7 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
 
   // Check submit button is enabled
   await waitFor(() => {
-    expect(buttonCreateCredentials).not.toHaveAttribute('disabled');
+    expect(buttonCreateCredentials).toBeEnabled();
   }, WAIT_TIMEOUT);
 
   // Submit step 2
@@ -257,13 +313,13 @@ const testStep3 = async (container: HTMLElement, user: UserEvent) => {
   // Check and get step 3 content
   const { buttonFinish, checkboxConfirm } = await testContentStep3(container);
 
-  expect(buttonFinish).toHaveAttribute('disabled');
+  expect(buttonFinish).toBeDisabled();
 
   // Check confirmation checkbox
   fireEvent.click(checkboxConfirm);
 
   await waitFor(() => {
-    expect(buttonFinish).not.toHaveAttribute('disabled');
+    expect(buttonFinish).toBeEnabled();
   });
 
   // Submit step 3
@@ -276,7 +332,7 @@ describe('Create Credentials Page test suite', () => {
   it('should display the page correctly', async () => {
     const { container } = await renderPage({ fromCSR: false });
     const { buttonNextStep } = await testContentStep1(container);
-    expect(buttonNextStep).toHaveAttribute('disabled');
+    expect(buttonNextStep).toBeDisabled();
   });
 
   it('should execute the credential creation workflow correctly', async () => {
@@ -294,7 +350,7 @@ describe('Create Credentials Page test suite', () => {
     const user = userEvent.setup();
     const { container } = await renderPage({ fromCSR: true });
 
-    await testStep1(container, user);
+    await testStep1CustomCsr(container, user);
     await testStep2(container, user);
 
     await assertCredentialListPageVisibility();

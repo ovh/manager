@@ -118,7 +118,8 @@
   "server_config_error_DUPLICATED_NAME": "Jeder Anwendungsserver muss über einen eindeutigen Namen verfügen.",
   "server_config_error_DUPLICATED_IP": "Jeder Anwendungsserver muss über eine eindeutige IP-Adresse verfügen.",
   "summary_title": "Bestätigen Sie die Konfiguration der Installation",
-  "summary_subtitle": "Überprüfen Sie die eingegebenen Informationen, bevor Sie die Installation starten. Sie können auch die Konfigurationsdatei Ihrer Installation <DownloadLink label=\"ici\">{{label}}</DownloadLink> herunterladen. Sie können sie später erneut verwenden, um eine neue Installation zu initiieren.",
+  "summary_subtitle": "Überprüfen Sie die eingegebenen Informationen, bevor Sie die Installation starten. Sie können auch die Konfigurationsdatei herunterladen. Sie können sie später erneut verwenden, um eine neue Installation zu initiieren.",
+  "summary_cta_download": "Konfiguration herunterladen",
   "summary_cta_submit": "Installation starten",
   "summary_api_error": "Die Installation konnte nicht gestartet werden: {{ error }}",
   "status_SUCCESS": "Erfolgreich",
@@ -126,5 +127,6 @@
   "status_REVOKED": "Gesperrt",
   "status_FAILURE": "Fehler",
   "status_STARTED": "Wird ausgeführt",
-  "installation_error_server_message": "Fehler beim Übermitteln der Informationen. Fehlermeldung: „{{error}}“"
+  "installation_error_server_message": "Fehler beim Übermitteln der Informationen. Fehlermeldung: „{{error}}“",
+  "os_config_tooltip_update": "SUSE-Lizenzschlüssel erforderlich"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-ongoing-operations-app",
-  "version": "1.11.3",
+  "version": "1.11.6",
   "private": true,
   "description": "Domain And DNS ongoing operations",
   "repository": {
@@ -21,8 +21,8 @@
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-core-utils": "^0.3.0",
-    "@ovh-ux/manager-react-components": "^2.37.1",
-    "@ovh-ux/manager-react-core-application": "^0.11.36",
+    "@ovh-ux/manager-react-components": "^2.38.0",
+    "@ovh-ux/manager-react-core-application": "^0.11.37",
     "@ovh-ux/manager-react-shell-client": "^0.9.1",
     "@ovh-ux/request-tagger": "^0.4.1",
     "@ovhcloud/ods-components": "^18.6.2",

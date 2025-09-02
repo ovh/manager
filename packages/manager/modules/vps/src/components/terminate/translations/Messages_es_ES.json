@@ -6,13 +6,13 @@
   "vps_additional_disk_terminate_action_terminate_error": "Se ha producido un error al dar de baja la opción.",
   "vps_additional_disk_terminate_action_terminate": "Dar de baja",
   "vps_additional_disk_terminate_action_cancel": "Cancelar",
-  "vps_downgrade_option_title_automatedbackup": "Volver a la opción estándar",
-  "vps_downgrade_option_info1_automatedbackup": "Si vuelve a la opción estándar, el próximo backup eliminará los backups antiguos.",
+  "vps_downgrade_option_title_automatedbackup": "Volver a la opción Standard",
+  "vps_downgrade_option_info1_automatedbackup": "Si vuelve a la opción Standard, al realizar el siguiente backup se eliminarán las copias de seguridad anteriores.",
   "vps_downgrade_option_info2_P1M": "mes",
   "vps_downgrade_option_info2_P1Y": "año",
   "vps_downgrade_option_info2_PXM": "{{amount}} meses",
   "vps_downgrade_option_info2_PXY": "{{amount}} años",
-  "vps_downgrade_option_info2": "El servicio se facturará mensualmente al precio de <strong> {{ price }} + IVA</strong> /{{duration}}.",
-  "vps_downgrade_option_order_success": "Para finalizar el pedido, siga las instrucciones de la nueva pestaña que se ha abierto. Si no se ha abierto ninguna nueva pestaña, haga clic en <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\"> este enlace</a> .",
-  "vps_downgrade_option_order_fail": "Se ha producido un error al solicitar la modificación de la oferta. {{ error }}"
+  "vps_downgrade_option_info2": "El servicio tendrá un coste mensual de<strong> {{ price }} + IVA</strong> /{{duration}}.",
+  "vps_downgrade_option_order_success": "Para completar el pedido, siga las instrucciones que se indican en la nueva pestaña que se ha abierto. Si no se ha abierto ninguna nueva pestaña, haga clic en <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">este enlace</a>.",
+  "vps_downgrade_option_order_fail": "Se ha producido un error al solicitar la modificación del plan. {{ error }}"
 }

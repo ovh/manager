@@ -118,13 +118,15 @@
   "server_config_error_DUPLICATED_NAME": "Każdy serwer aplikacji musi mieć niepowtarzalną nazwę.",
   "server_config_error_DUPLICATED_IP": "Każdy serwer aplikacji musi mieć niepowtarzalny adres IP.",
   "summary_title": "Potwierdź konfigurację instalacji",
-  "summary_subtitle": "Przed rozpoczęciem instalacji sprawdź wprowadzone informacje. Możesz również pobrać plik konfiguracyjny instalacji <DownloadLink label=\"ici\">{{label}}</DownloadLink>. Można go użyć ponownie w celu zainicjowania nowej instalacji.",
+  "summary_subtitle": "Przed rozpoczęciem instalacji sprawdź wprowadzone informacje. Możesz również pobrać plik konfiguracyjny. Można go użyć ponownie w celu zainicjowania nowej instalacji.",
+  "summary_cta_download": "Pobierz konfigurację",
   "summary_cta_submit": "Uruchom instalację",
   "summary_api_error": "Uruchomienie instalacji nie powiodło się: {{ error }}",
   "status_SUCCESS": "Operacja zakończona pomyślnie",
   "status_PENDING": "Oczekujący",
   "status_REVOKED": "Anulowany",
   "status_FAILURE": "Błąd",
-  "status_STARTED": "W realizacji",
-  "installation_error_server_message": "Błąd podczas przesyłania informacji. Komunikat błędu: \"{{error}}\""
+  "status_STARTED": "W trakcie",
+  "installation_error_server_message": "Błąd podczas przesyłania informacji. Komunikat błędu: \"{{error}}\"",
+  "os_config_tooltip_update": "Wymaga klucza licencyjnego SUSE"
 }

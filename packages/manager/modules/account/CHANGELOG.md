@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.16.0...@ovh-ux/manager-account@0.17.0) (2025-09-01)
+
+
+### Bug Fixes
+
+* **account:** allow contacts sub routes to be defined early ([75e2728](https://github.com/ovh/manager/commit/75e27280c075bfa8621cccc17dc7c813168448da)), closes [#MANAGER-19475](https://github.com/ovh/manager/issues/MANAGER-19475)
+
+
+### Features
+
+* **container:** add a modal to invite customer to fill their information ([#15615](https://github.com/ovh/manager/issues/15615)) ([46d0363](https://github.com/ovh/manager/commit/46d0363001a39cd7443d71069534946dbb0937e0)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.15.0...@ovh-ux/manager-account@0.16.0) (2025-08-27)
+
+
+### Features
+
+* **account:** change redirection url post logout ([ecad904](https://github.com/ovh/manager/commit/ecad90417dc16bbdcb21aa45dca2251ee1a9255f)), closes [#MANAGER-19432](https://github.com/ovh/manager/issues/MANAGER-19432)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.14.6...@ovh-ux/manager-account@0.15.0) (2025-08-11)
 
 

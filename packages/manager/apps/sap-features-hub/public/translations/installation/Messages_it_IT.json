@@ -118,7 +118,8 @@
   "server_config_error_DUPLICATED_NAME": "Ogni server applicativo deve avere un nome univoco.",
   "server_config_error_DUPLICATED_IP": "Ogni server applicativo deve avere un indirizzo IP univoco.",
   "summary_title": "Conferma la configurazione dell’installazione",
-  "summary_subtitle": "Verifica le informazioni inserite prima di avviare l'installazione. Puoi anche scaricare il file di configurazione della tua installazione <DownloadLink label=\"ici\">{{label}}</DownloadLink> . Sarà possibile riutilizzarlo in seguito per avviare una nuova installazione.",
+  "summary_subtitle": "Verifica le informazioni inserite prima di avviare l'installazione. È inoltre possibile scaricare il file di configurazione. Sarà possibile riutilizzarlo in seguito per avviare una nuova installazione.",
+  "summary_cta_download": "Scarica la configurazione",
   "summary_cta_submit": "Avviare l’installazione",
   "summary_api_error": "L’avvio dell’installazione non è andato a buon fine: {{ error }}",
   "status_SUCCESS": "Completato",
@@ -126,5 +127,6 @@
   "status_REVOKED": "Revocato",
   "status_FAILURE": "Errore",
   "status_STARTED": "In corso",
-  "installation_error_server_message": "Si è verificato un errore durante l'invio delle informazioni. Messaggio di errore: \"{{error}}\""
+  "installation_error_server_message": "Si è verificato un errore durante l'invio delle informazioni. Messaggio di errore: \"{{error}}\"",
+  "os_config_tooltip_update": "Richiede una chiave di licenza SUSE"
 }

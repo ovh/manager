@@ -118,7 +118,8 @@
   "server_config_error_DUPLICATED_NAME": "Cada servidor de aplicações deve ter um nome exclusivo.",
   "server_config_error_DUPLICATED_IP": "Cada servidor de aplicações deve ter um endereço IP exclusivo.",
   "summary_title": "Valide a configuração da instalação",
-  "summary_subtitle": "Verifique as informações introduzidas antes de iniciar o processo de instalação. Também pode descarregar o ficheiro de configuração da sua instalação <DownloadLink label=\"ici\">{{label}}</DownloadLink>. Poderá usá-lo para iniciar uma nova instalação mais tarde.",
+  "summary_subtitle": "Verifique as informações introduzidas antes de iniciar o processo de instalação. Também pode descarregar o ficheiro de configuração. Poderá usá-lo para iniciar uma nova instalação mais tarde.",
+  "summary_cta_download": "Descarregar a configuração",
   "summary_cta_submit": "Iniciar a instalação",
   "summary_api_error": "Falha ao iniciar a instalação: {{ error }}",
   "status_SUCCESS": "Êxito",
@@ -126,5 +127,6 @@
   "status_REVOKED": "Revogado",
   "status_FAILURE": "Erro",
   "status_STARTED": "Em curso",
-  "installation_error_server_message": "Erro durante o envio das informações. Mensagem de erro: \"{{error}}\""
+  "installation_error_server_message": "Erro aquando da apresentação das informações. Mensagem de erro: \"{{error}}\"",
+  "os_config_tooltip_update": "Requer uma chave de licença SUSE"
 }

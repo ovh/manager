@@ -1,7 +1,8 @@
 {
   "ovhManagerPccDashboardGeneralInformation_heading": "Allgemeine Informationen",
+  "ovhManagerPccDashboardGeneralInformation_description_term": "Beschreibung",
   "ovhManagerPccDashboardGeneralInformation_name_term": "Name",
-  "ovhManagerPccDashboardGeneralInformation_name_actionMenu_update": "Namen ändern",
+  "ovhManagerPccDashboardGeneralInformation_description_actionMenu_update": "Ändern",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_term": "Softwarelösung",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_available": "Eine Aktualisierung ist verfügbar",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_planned": "Die Aktualisierung ist programmiert",
@@ -19,6 +20,7 @@
   "ovhManagerPccDashboardGeneralInformation_location_region": "Region",
   "ovhManagerPccDashboardGeneralInformation_commercial_range": "Kaufmännische Reihe",
   "ovhManagerPccDashboardGeneralInformation_numberOfDatacenters_term": "Anzahl der Rechenzentren",
+  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Name des VCD",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_term": "Anzahl der IP-Blöcke",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_ripe": "RIPE",
   "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_definition_arin": "ARIN",
@@ -28,6 +30,5 @@
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_term": "Verwaltungsinterfaces",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_vscope": "vScope",
   "ovhManagerPccDashboardGeneralInformation_managementInterfaces_definition_webInterface": "Webinterface",
-  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Öffnet einen neuen Tab",
-  "ovhManagerPccDashboardGeneralInformation_vcd_name": "Name des VCD"
+  "ovhManagerPccDashboardGeneralInformation_opensANewTab": "Öffnet einen neuen Tab"
 }

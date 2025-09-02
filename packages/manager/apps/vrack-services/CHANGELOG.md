@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.9...@ovh-ux/manager-vrack-services-app@0.22.10) (2025-08-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.22.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.8...@ovh-ux/manager-vrack-services-app@0.22.9) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-vrack-services-app
+
+
+
+
+
+## [0.22.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.7...@ovh-ux/manager-vrack-services-app@0.22.8) (2025-08-26)
+
+
+### Bug Fixes
+
+* **vrack-services:** fix sentry issue ([ccc5a92](https://github.com/ovh/manager/commit/ccc5a92094ff536554d9c2154f561c41c96a533a)), closes [#MANAGER-16981](https://github.com/ovh/manager/issues/MANAGER-16981)
+
+
+
+
+
 ## [0.22.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack-services-app@0.22.6...@ovh-ux/manager-vrack-services-app@0.22.7) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack-services-app

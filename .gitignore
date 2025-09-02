@@ -20,3 +20,4 @@ coverage
 .xtmrc.yaml
 **/migration-status-reports/**
 .ide-config
+_out

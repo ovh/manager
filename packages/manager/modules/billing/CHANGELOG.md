@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.48.0...@ovh-ux/manager-billing@0.48.1) (2025-09-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing
+
+
+
+
+
+# [0.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.5...@ovh-ux/manager-billing@0.48.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* **billing:** enable contract details route for US region ([bb80ced](https://github.com/ovh/manager/commit/bb80ced1e21bfc7d442e1186cfdee4a444270873)), closes [#MANAGER-19407](https://github.com/ovh/manager/issues/MANAGER-19407) [#PRB0042749](https://github.com/ovh/manager/issues/PRB0042749)
+
+
+### Features
+
+* **billing:** adding feature flipping to display the contract tab ([29e4c4e](https://github.com/ovh/manager/commit/29e4c4ec22fc1c5c4aa391bf13b8e5f41f9149d9)), closes [#MANAGER-19405](https://github.com/ovh/manager/issues/MANAGER-19405)
+
+
+
+
+
 ## [0.47.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.47.4...@ovh-ux/manager-billing@0.47.5) (2025-08-11)
 
 

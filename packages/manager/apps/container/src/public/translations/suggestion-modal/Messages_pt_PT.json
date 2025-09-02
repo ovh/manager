@@ -1,0 +1,9 @@
+{
+  "suggestion_modal_title": "Atualização do seu NIF / VAT",
+  "suggestion_modal_description": "No âmbito da implementação da faturação eletrónica em França, temos a obrigação de verificar a identidade da sua empresa para garantir a conformidade das suas informações fiscais. Foi efetuada uma pesquisa e encontrámos as informações correspondentes para a sua empresa.",
+  "suggestion_modal_description_sub": "Se não encontrar nenhum erro nestas informações, clique no botão “Validar estas informações”. Caso contrário, clique no botão “Atualizar no meu perfil”.",
+  "suggestion_modal_listed_type_SIRET": "NIF",
+  "suggestion_modal_listed_type_VAT": "NIF intracomunitário",
+  "suggestion_modal_action_modify": "Atualizar no meu perfil",
+  "suggestion_modal_action_confirm": "Validar estas informações"
+}

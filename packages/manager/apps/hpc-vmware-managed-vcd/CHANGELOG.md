@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.20.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.0) (2025-09-01)
+
+
+### Features
+
+* **vcd:** split compute and storage order subtitles in two lines ([1b9841a](https://github.com/ovh/manager/commit/1b9841a84bd0cb67690e2df9548413131134c4e0)), closes [#MANAGER-18257](https://github.com/ovh/manager/issues/MANAGER-18257)
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.20.0) (2025-08-29)
+
+
+### Features
+
+* **manager-legacy-tools:** delete ods 17 in utils ([cadd35b](https://github.com/ovh/manager/commit/cadd35b40256219e6b59c9b2cf8549821069d068)), closes [#MANAGER-19506](https://github.com/ovh/manager/issues/MANAGER-19506)
+
+
+
+
+
+## [0.19.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.6...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.7) (2025-08-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.19.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.6) (2025-08-25)
+
+
+### Bug Fixes
+
+* **hpc-vmware:** display name rather than profile when ordering virtual host ([65b7963](https://github.com/ovh/manager/commit/65b7963ddb3f3c7d51f29c28b18b6c9d5fe3548b)), closes [#MANAGER-19317](https://github.com/ovh/manager/issues/MANAGER-19317)
+
+
+
+
+
 ## [0.19.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.5) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
