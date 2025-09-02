@@ -52,7 +52,7 @@ function NavbarNotifications(): JSX.Element {
         aria-hidden="true"
       ></OsdsIcon>
       {notificationsCount > 0 && (
-        <span className="oui-icon__badge">{notificationsCount}</span>
+        <span className="oui-icon__badge" data-testid="notifications-count-icon">{notificationsCount}</span>
       )}
     </button>
   );
