@@ -138,6 +138,10 @@ export const productListingPages: Record<
     application: 'dedicated',
     hash: '#/nutanix',
   },
+  OKMS: {
+    application: 'okms',
+    hash: '#/key-management-service',
+  },
   OVH_CLOUD_CONNECT: {
     application: 'dedicated',
     hash: '#/cloud-connect',
