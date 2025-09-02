@@ -119,5 +119,8 @@
   "service_state_ready": "Aktywna",
   "service_state_updating": "Aktualizacja",
   "service_billing_state_cancelation_planned_tooltip": "Zakończenie umowy",
-  "service_billing_state_automatic_renewal_tooltip": "Najbliższy termin odnowienia"
+  "service_billing_state_automatic_renewal_tooltip": "Najbliższy termin odnowienia",
+  "account_state_blockedforspam": "Zablokowane",
+  "account_state_tooltip_billinglocked": "Problem z płatnością - sprawdź sekcję „Płatności” w Panelu klienta",
+  "account_state_tooltip_blockedforspam": "Wstrzymano z powodu podejrzanego działania. Skontaktuj się z pomocą techniczną."
 }
