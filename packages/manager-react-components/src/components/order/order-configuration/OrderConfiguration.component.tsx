@@ -12,8 +12,11 @@ export const OrderConfiguration: FC<OrderConfigurationProps> = ({
   onConfirm,
   isValid,
 }: OrderConfigurationProps): JSX.Element => {
-  const { isOrderInitialized, setIsOrderInitialized, error } =
-    useOrderContext();
+  const {
+    isOrderInitialized,
+    setIsOrderInitialized,
+    error,
+  } = useOrderContext();
   const { t } = useTranslation('order');
 
   if (isOrderInitialized) {
