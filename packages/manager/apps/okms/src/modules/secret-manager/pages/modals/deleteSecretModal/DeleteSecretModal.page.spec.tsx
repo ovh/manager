@@ -8,17 +8,22 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import * as router from 'react-router-dom';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { updateVersionErrorMessage } from '@secret-manager/mocks/versions/versions.handler';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
+import { kmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretVersionsModalDeleteVersion(
-  'okmsId',
-  'secretPath',
-  1,
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDashboardDeleteSecret(
+  kmsRoubaix1Mock.id,
+  mockSecret1.path,
 );
 
-describe('Secret version delete modal test suite', () => {
+const mockSecretListingPage = SECRET_MANAGER_ROUTES_URLS.secretListing(
+  kmsRoubaix1Mock.id,
+);
+
+describe('Delete secret modal test suite', () => {
   const mockNavigate = vi.fn();
 
   beforeEach(() => {
@@ -31,11 +36,14 @@ describe('Secret version delete modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const title = labels.secretManager.common.delete_version_modal_title.replace(
-      '{{versionId}}',
-      '1',
-    );
+    const title = labels.secretManager.common.delete_secret_modal_title;
+
     await assertTextVisibility(title);
+    const description = labels.secretManager.common.delete_secret_modal_description.replace(
+      '{{secretPath}}',
+      mockSecret1.path,
+    );
+    await assertTextVisibility(description);
   });
 
   it('should navigate back after successful deletion', async () => {
@@ -54,14 +62,14 @@ describe('Secret version delete modal test suite', () => {
 
     // Check navigation
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith('..');
+      expect(mockNavigate).toHaveBeenCalledWith(mockSecretListingPage);
     });
   });
 
   it('should show a notification after failed deletion', async () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(mockPageUrl, {
-      isVersionUpdateKO: true,
+      isDeleteSecretKO: true,
     });
 
     await assertOdsModalVisibility({ container, isVisible: true });
@@ -74,9 +82,9 @@ describe('Secret version delete modal test suite', () => {
 
     user.click(submitButton);
 
-    await assertTextVisibility(updateVersionErrorMessage);
+    await assertTextVisibility(deleteSecretErrorMessage);
 
     // Check blocked navigation
-    await waitFor(() => expect(mockNavigate).not.toHaveBeenCalled);
+    await waitFor(() => expect(mockNavigate).not.toHaveBeenCalled());
   });
 });

@@ -20,6 +20,11 @@ const SecretDomains = React.lazy(() =>
 const SecretListing = React.lazy(() =>
   import('@/modules/secret-manager/pages/listing/Listing.page'),
 );
+const SecretDeleteSecretModal = React.lazy(() =>
+  import(
+    '@/modules/secret-manager/pages/modals/deleteSecretModal/DeleteSecretModal.page'
+  ),
+);
 const SecretDashboard = React.lazy(() =>
   import('@/modules/secret-manager/pages/dashboard/Dashboard.page'),
 );
@@ -89,6 +94,10 @@ export default (
           path={`${SECRET_MANAGER_ROUTES_URIS.createVersion}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
           Component={SecretVersionsCreateDrawer}
         />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.secretPath}`}
+          Component={SecretDeleteSecretModal}
+        />
       </Route>
       <Route
         path={SECRET_MANAGER_URL_PARAMS.secretPath}
@@ -102,6 +111,10 @@ export default (
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.createVersion}
             Component={SecretVersionsCreateDrawer}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.delete}
+            Component={SecretDeleteSecretModal}
           />
         </Route>
         <Route

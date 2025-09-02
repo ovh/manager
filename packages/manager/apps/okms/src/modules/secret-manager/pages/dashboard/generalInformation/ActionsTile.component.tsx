@@ -38,6 +38,14 @@ export const ActionsTile = ({ secret }: ActionsTileParams) => {
           label={t('add_new_version')}
           isRouterLink
         />
+        <Link
+          href={SECRET_MANAGER_ROUTES_URLS.secretDashboardDeleteSecret(
+            domainId,
+            secret.path,
+          )}
+          label={t('delete_secret')}
+          isRouterLink
+        />
       </div>
     </ManagerTile>
   );

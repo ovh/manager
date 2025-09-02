@@ -77,3 +77,19 @@ export type UpdateSecretBody = {
   version: SecretVersionDataField;
 };
 export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
+
+// DELETE Secret
+export type DeleteSecretParams = {
+  okmsId: string;
+  secretPath: string;
+};
+
+export const deleteSecret = async ({
+  okmsId,
+  secretPath,
+}: DeleteSecretParams) => {
+  const { data } = await apiClient.v2.delete(
+    `okms/resource/${okmsId}/secret/${encodeURIComponent(secretPath)}`,
+  );
+  return data;
+};
