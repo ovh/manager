@@ -70,7 +70,8 @@ const AttachNetworkModal: FC = () => {
   return (
     <Modal
       title={t('pci_instances_actions_instance_network_network_attach_title')}
-      isPending={isPending || !networkId}
+      isPending={isPending}
+      disabled={!networkId}
       handleInstanceAction={() => attachNetwork({ networkId })}
       onModalClose={handleModalClose}
       variant="primary"
