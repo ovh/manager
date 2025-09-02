@@ -3,7 +3,7 @@ import { OKMS, OkmsPublicCa } from '@/types/okms.type';
 
 export const okmsQueryKeys = {
   list: ['okms'],
-  listDatagrid: () => ['okms', 'datagrid'],
+  listDatagrid: ['okms', 'datagrid'],
   detail: (okmsId: string) => [...okmsQueryKeys.list, okmsId],
 };
 
