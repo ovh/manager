@@ -1,6 +1,7 @@
 {
   "path": "Path",
   "secret_manager": "Secret Manager",
+  "back_to_domain_list": "Retour à la liste de domaines",
   "urn": "URN",
   "version": "Version",
   "versions": "Versions",
