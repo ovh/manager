@@ -50,4 +50,8 @@ export default class IamUsersService {
       .post(`/me/identity/user/${user.login}/disable`)
       .then(() => this.broadcast('iam.security.users.refresh', {}));
   }
+
+  getAuthDetails() {
+    return this.$http.get('/auth/details').then(({ data }) => data);
+  }
 }

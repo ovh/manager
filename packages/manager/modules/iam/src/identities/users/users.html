@@ -2,27 +2,21 @@
     <div data-ovh-alert="iam-users-alert"></div>
 
     <div>
-        <oui-message
-            data-type="info"
-            data-ng-if="$ctrl.identityProvider == null || !$ctrl.identityProvider.disableUsers"
-        >
+        <oui-message data-type="info" data-ng-if="$ctrl.authDetails">
             <span
                 class="d-block"
                 data-translate="user_users_info"
-                data-translate-values="{customerCode: $ctrl.me.customerCode}"
+                data-translate-values="{nic: $ctrl.authDetails.account}"
             >
             </span>
             <span
                 data-ng-if="$ctrl.users.length !== 0 && !$ctrl.usersLoading"
                 data-translate="user_users_info_example"
-                data-translate-values="{customerCode: $ctrl.me.customerCode, login: $ctrl.users[0].login}"
+                data-translate-values="{nic: $ctrl.authDetails.account, login: $ctrl.users[0].login}"
             >
             </span>
         </oui-message>
-        <oui-message
-            data-type="info"
-            data-ng-if="$ctrl.identityProvider.disableUsers"
-        >
+        <oui-message data-type="info" data-ng-if="$ctrl.isSSOConnection">
             <span class="d-block" data-translate="user_users_disabled"> </span>
         </oui-message>
 
