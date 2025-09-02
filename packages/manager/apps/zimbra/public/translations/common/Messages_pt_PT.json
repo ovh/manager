@@ -119,5 +119,8 @@
   "service_state_ready": "Ativo",
   "service_state_updating": "Atualização",
   "service_billing_state_cancelation_planned_tooltip": "Rescisão prevista dia",
-  "service_billing_state_automatic_renewal_tooltip": "Próxima data de vencimento a"
+  "service_billing_state_automatic_renewal_tooltip": "Próxima data de vencimento",
+  "account_state_blockedforspam": "Bloqueada",
+  "account_state_tooltip_billinglocked": "Problemas de faturação, verifique a secção Faturação da Área de Cliente",
+  "account_state_tooltip_blockedforspam": "Suspenso por atividade suspeita, contacte o suporte ao utilizador."
 }

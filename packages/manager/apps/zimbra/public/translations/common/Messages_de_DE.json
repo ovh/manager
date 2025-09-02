@@ -119,5 +119,8 @@
   "service_state_ready": "Aktiv",
   "service_state_updating": "Update",
   "service_billing_state_cancelation_planned_tooltip": "Kündigung geplant am",
-  "service_billing_state_automatic_renewal_tooltip": "Nächste Verlängerung am"
+  "service_billing_state_automatic_renewal_tooltip": "Nächste Verlängerung am",
+  "account_state_blockedforspam": "Gesperrt",
+  "account_state_tooltip_billinglocked": "Abrechnungsproblem, bitte überprüfen Sie den Bereich zur Abrechnung in Ihrem Kundencenter.",
+  "account_state_tooltip_blockedforspam": "Wegen verdächtiger Aktivität ausgesetzt, wenden Sie sich an den Nutzersupport."
 }

@@ -1,5 +1,6 @@
 export * from './badgeStatus/BadgeStatus.component';
 export * from './billingStateBadge/BillingStateBadge.component';
+export * from './accountStatusBadge/AccountStatusBadge.component';
 export * from './breadcrumb/Breadcrumb.component';
 export * from './error/Error.component';
 export * from './generatePasswordButton/GeneratePasswordButton.component';
