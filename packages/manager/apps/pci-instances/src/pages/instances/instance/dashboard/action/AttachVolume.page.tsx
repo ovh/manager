@@ -70,7 +70,8 @@ const AttachVolume: FC = () => {
   return (
     <Modal
       title={t('pci_instances_actions_instance_volume_attach_title')}
-      isPending={isPending || !volumeId}
+      isPending={isPending}
+      disabled={!volumeId}
       handleInstanceAction={() => attachVolume({ volumeId })}
       onModalClose={handleModalClose}
       variant="primary"
