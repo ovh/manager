@@ -1,22 +1,19 @@
 import React, { useMemo } from 'react';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { Badge } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  ResourceStatus,
-  ServiceStatus,
-  GitStatus,
-  DnsStatus,
-} from '@/data/type';
+
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+
+import { Badge } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { DnsStatus, GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
 import { DATAGRID_LINK, WEBSITE } from '@/utils/tracking.constants';
 
+type Status = GitStatus | ResourceStatus | ServiceStatus | DnsStatus;
+
 export type BadgeStatusProps = {
-  itemStatus: string;
+  itemStatus: Status;
   'data-testid'?: string;
   tracking?: string;
   href?: string;
@@ -24,7 +21,7 @@ export type BadgeStatusProps = {
   label?: string;
 };
 
-const getStatusColor = (status: string) => {
+const getStatusColor = (status: Status) => {
   switch (status) {
     case GitStatus.CREATED:
     case ResourceStatus.READY:

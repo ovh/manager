@@ -1,30 +1,26 @@
-import React from 'react';
 import { describe, expect, vi } from 'vitest';
-import Onboarding from './Onboarding.page';
-import { render, act, fireEvent } from '@/utils/test.provider';
+
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
+import { act, fireEvent, render } from '@/utils/test.provider';
+
+import Onboarding from './Onboarding.page';
 
 describe('Onboarding page', () => {
-  it('should display page correctly', async () => {
-    const { findByText } = render(<Onboarding />);
-
-    const title = await findByText(onboardingTranslation.title);
+  it('should display page correctly', () => {
+    const { getByText } = render(<Onboarding />);
+    const title = getByText(onboardingTranslation.title);
     expect(title).toBeVisible();
   });
 
-  it('should call window open on click', async () => {
+  it('should call window open on click', () => {
     const { container } = render(<Onboarding />);
-
     const spy = vi.spyOn(window, 'open');
-
-    const button = await container.querySelector(
+    const button = container.querySelector(
       `ods-button[label="${onboardingTranslation.order_btn}"]`,
     );
-
-    await act(() => {
+    act(() => {
       fireEvent.click(button);
     });
-
     expect(spy).toHaveBeenCalledOnce();
   });
 });

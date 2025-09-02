@@ -1,6 +1,8 @@
 import { useContext } from 'react';
+
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import * as tracking from '@/utils/tracking.constants';
 
 export type GuideUrls = {
@@ -103,18 +105,21 @@ export const GUIDE_LIST: Record<string, Guide> = {
   },
 };
 
-/* eslint-disable no-param-reassign */
 export const useGuides = () => {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
-  return Object.entries(GUIDE_LIST).reduce((list, [key, value]) => {
-    list[key] = {
-      ...value,
-      href: value.urls[ovhSubsidiary] || value.urls.DEFAULT,
-    };
-    return list;
-  }, {} as Record<string, Guide>);
+  return Object.entries(GUIDE_LIST).reduce(
+    (list, [key, value]) => {
+      return {
+        ...list,
+        [key]: {
+          ...value,
+          href: value.urls[ovhSubsidiary] || value.urls.DEFAULT,
+        },
+      };
+    },
+    {} as Record<string, Guide>,
+  );
 };
-/* eslint-enable no-param-reassign */
 
 export default useGuides;
