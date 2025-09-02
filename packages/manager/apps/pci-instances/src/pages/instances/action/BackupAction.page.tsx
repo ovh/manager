@@ -98,6 +98,7 @@ const BackupActionPage = () => {
       instance={instance}
       section={'backup'}
       isLoading={isLoading}
+      variant="warning"
     >
       <div className="flex flex-col gap-4">
         <Text>{t('pci_instances_actions_backup_instance_name_label')}</Text>
