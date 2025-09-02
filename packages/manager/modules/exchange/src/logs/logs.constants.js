@@ -49,7 +49,7 @@ export const GUIDE = {
     'https://www.ovhcloud.com/en/identity-security-operations/logs-data-platform/',
 };
 
-const logsPrefix = 'Network::exchange::logs';
+const logsPrefix = 'Web::microsoft::exchange::logs';
 
 export const EXCHANGE_LOGS_TRACKING_HITS = {
   LOGS_PAGE: logsPrefix,

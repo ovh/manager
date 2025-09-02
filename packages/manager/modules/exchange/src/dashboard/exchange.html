@@ -102,6 +102,7 @@
                     <oui-header-tabs-item
                         href="{{ ctrl.logsLink }}"
                         active="ctrl.currentActiveLink() === ctrl.logsLink"
+                        data-ng-if=":: ctrl.isLogsAvailable"
                     >
                         <span data-translate="exchange_tab_LOGS"></span>
                         <span

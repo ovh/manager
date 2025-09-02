@@ -58,8 +58,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('exchange.dashboard.task', $transition$.params()),
       logsLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('exchange.dashboard.logs', $transition$.params()),
-      features: (ovhFeatureFlipping) =>
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability(Object.values(FEATURES)),
+      isLogsAvailable: /* @ngInject */ (features) =>
+        features.isFeatureAvailable(FEATURES.LOGS),
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (productId) => productId,

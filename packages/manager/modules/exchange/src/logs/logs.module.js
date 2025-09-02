@@ -10,6 +10,8 @@ import dataStreams from './data-streams';
 import routing from './logs.routing';
 import ExchangeLogsService from './logs.service';
 
+import './logs-styles.scss';
+
 const moduleName = 'ovhManagerExchangeDashboardLogs';
 
 angular
