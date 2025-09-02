@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import { OrderContextProvider } from './Order.context';
-import { OrderConfiguration } from './OrderConfiguration.component';
-import { OrderSummary } from './OrderSummary.component';
+import { OrderConfiguration } from './order-configuration/OrderConfiguration.component';
+import { OrderSummary } from './order-summary/OrderSummary.component';
 import './translations';
 
 export const Order = ({ children }: PropsWithChildren) => {
