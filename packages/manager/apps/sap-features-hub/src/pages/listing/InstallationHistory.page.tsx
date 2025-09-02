@@ -4,10 +4,11 @@ import {
   Datagrid,
   DatagridColumn,
   HeadersProps,
+  Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
@@ -124,6 +125,7 @@ export default function HistoryPage() {
           backLinkLabel={tInstallation('backlink_label')}
           onClickReturn={() => navigate(urls.dashboard)}
           description={t('sap_hub_history_title')}
+          message={<Notifications />}
         >
           <OdsButton
             variant={ODS_BUTTON_VARIANT.outline}
@@ -142,6 +144,7 @@ export default function HistoryPage() {
               hasNextPage={false}
             />
           )}
+          <Outlet />
         </BaseLayout>
       </RedirectionGuard>
     </Suspense>
