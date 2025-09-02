@@ -10,7 +10,7 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAccounts, useSlotServices } from '@/data/hooks';
 import { useOverridePage, useDebouncedValue } from '@/hooks';
-import { LabelChip, BadgeStatus, BillingStateBadge } from '@/components';
+import { LabelChip, BillingStateBadge, AccountStatusBadge } from '@/components';
 import { ActionButtonEmailAccount } from './ActionButton.component';
 import { DatagridTopbar } from './DatagridTopBar.component';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
@@ -61,7 +61,7 @@ const columns: DatagridColumn<EmailAccountItem>[] = [
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
+    cell: (item) => <AccountStatusBadge {...item} />,
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
@@ -139,6 +139,7 @@ export const EmailAccountsDatagrid = () => {
         used: item.currentState.quota.used,
         available: item.currentState.quota.available,
         status: item.resourceStatus,
+        detailedStatus: item.currentState.detailedStatus,
         slotId: item.currentState.slotId,
         service: services?.[item.currentState.slotId],
       })) ?? []
