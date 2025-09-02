@@ -13,7 +13,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
  * @param setIpToSearch set parent ip to search
  * @returns React component
  */
-export const IpFilter = () => {
+export const IpFilter = ({ className }: { className?: string }) => {
   const { setIpToSearch } = useContext(ListingContext);
   const { t } = useTranslation('listing');
   const [inputValue, setInputValue] = useState<string>();
@@ -24,9 +24,9 @@ export const IpFilter = () => {
   };
 
   return (
-    <form onSubmit={(event) => onSubmit(event)}>
+    <form className={className} onSubmit={(event) => onSubmit(event)}>
       <OdsInput
-        className="pl-8 mx-1"
+        className="w-full"
         data-testid="search-ip"
         name="search-ip"
         type={ODS_INPUT_TYPE.search}
@@ -34,7 +34,7 @@ export const IpFilter = () => {
           setInputValue(e.target.value as string);
         }}
         placeholder={t('listingFilterIp')}
-      ></OdsInput>
+      />
     </form>
   );
 };
