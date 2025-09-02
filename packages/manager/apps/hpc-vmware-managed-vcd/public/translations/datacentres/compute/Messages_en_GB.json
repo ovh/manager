@@ -4,5 +4,5 @@
   "managed_vcd_vdc_compute_billing_MONTHLY": "Monthly",
   "managed_vcd_vdc_compute_id": "ID",
   "managed_vcd_vdc_compute_order_cta": "Order a Virtual Host",
-  "managed_vcd_vdc_compute_special_offer": "Monthly subscription valid until 31 December 2025 for any additional Managed VCD resources subscribed for by 30 November 2025. Offer cannot be used in conjunction with any other special offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions."
+  "managed_vcd_vdc_compute_special_offer": "Monthly subscription valid until 31 December 2025 for any additional {{productName}} resources subscribed to by 30 November 2025. Offer cannot be used in conjunction with any other special offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions."
 }
