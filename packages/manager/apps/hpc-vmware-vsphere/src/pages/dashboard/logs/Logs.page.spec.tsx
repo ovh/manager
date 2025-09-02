@@ -93,6 +93,19 @@ vi.mock('@ovh-ux/logs-to-customer', () => ({
   LogsToCustomerModule: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const module = await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
+  return {
+    ...module,
+    useOvhTracking: () => ({
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+    }),
+  };
+});
+
 const shellContext = {
   shell: {
     navigation: {
@@ -136,7 +149,6 @@ describe('Logs page tests suite', () => {
     } as UseFeatureAvailabilityResult);
 
     renderLogsPage();
-
     await waitFor(() => {
       expect(LogsToCustomerModule).toHaveBeenCalledWith(
         {
@@ -154,6 +166,9 @@ describe('Logs page tests suite', () => {
             deleteSubscription: ['pccVMware:apiovh:log/subscription/delete'],
           },
           resourceURN: 'urn:pcc-xxx',
+          trackingOptions: {
+            trackingSuffix: 'managed-vmware',
+          },
         },
         {},
       );
