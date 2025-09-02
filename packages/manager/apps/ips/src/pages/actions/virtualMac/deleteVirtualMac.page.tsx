@@ -91,8 +91,7 @@ export default function DeleteVirtualMac() {
   return (
     <Modal
       isOpen
-      isDismissible
-      onOdsClose={closeHandler}
+      onDismiss={closeHandler}
       heading={t('deleteVirtualMacTitle')}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       onPrimaryButtonClick={() => deleteVirtualMacHandler()}
