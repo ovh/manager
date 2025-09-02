@@ -169,7 +169,8 @@ const ReinstallActionPage: FC = () => {
     isLoading,
     onSuccess,
     onError,
-  };
+    variant: 'warning',
+  } as TReinstallActionPageProps;
 
   return instance?.isImageDeprecated ? (
     <ReinstallActionImages {...modalProps} />
