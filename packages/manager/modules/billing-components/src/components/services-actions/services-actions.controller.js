@@ -86,6 +86,7 @@ export default class ServicesActionsCtrl {
           !this.service.hasForcedRenew() &&
           !this.service.isResiliated() &&
           this.service.canHandleRenew() &&
+          this.service.serviceType !== this.SERVICE_TYPE.HOSTING_WEB_CDN &&
           !this.service.hasEngagement();
         this.canDisplayAnticipateRenewMenuEntry =
           !this.service.isOneShot() &&
