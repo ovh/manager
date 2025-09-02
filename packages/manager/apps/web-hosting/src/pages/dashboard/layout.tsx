@@ -1,12 +1,17 @@
-import React, { useEffect, useContext, useMemo, useState } from 'react';
-import {
-  Outlet,
-  useLocation,
-  useParams,
-  useNavigate,
-  useResolvedPath,
-} from 'react-router-dom';
+import { useContext, useEffect, useMemo, useState } from 'react';
+
+import { Outlet, useLocation, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_MESSAGE_COLOR,
+  ODS_TEXT_PRESET,
+} from '@ovhcloud/ods-components';
+import { OdsButton, OdsInput, OdsMessage, OdsTab, OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ActionMenu,
   ChangelogButton,
@@ -16,37 +21,22 @@ import {
   PageLayout,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
-import {
-  OdsButton,
-  OdsInput,
-  OdsMessage,
-  OdsTab,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 
-import {
-  useRouteSynchro,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
+import Tabs from '@/components/tabs/Tabs.component';
 import {
   useGetHostingService,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
-import { EmailOptionType } from '@/data/type';
-import { useHostingUrl, useEmailsUrl } from '@/hooks';
-import { GUIDE_URL } from '../websites/websites.constants';
-import { DashboardTab } from '@/types/ssl';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
-import Tabs from '@/components/tabs/Tabs.component';
+import { EmailOptionType } from '@/data/types/product/service';
+import { DashboardTab } from '@/data/types/product/ssl';
+import { useEmailsUrl, useHostingUrl } from '@/hooks';
 import { subRoutes, urls } from '@/routes/routes.constants';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+
+import { GUIDE_URL } from '../websites/websites.constants';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
@@ -65,73 +55,105 @@ export default function Layout() {
 
   const { pathname: path } = useLocation();
 
-  const tabs: DashboardTab[] = [
-    {
-      name: 'general_information',
-      title: t('hosting_tab_GENERAL_INFORMATIONS'),
-      to: useHostingUrl(serviceName),
-    },
-    {
-      name: 'multisite',
-      title: t('hosting_tab_MULTISITE'),
-      to: useHostingUrl(serviceName, 'multisite'),
-    },
-    {
-      name: 'ssl',
-      title: t('hosting_tab_SSL'),
-      to: useResolvedPath('ssl').pathname,
-    },
-    {
-      name: 'module',
-      title: t('hosting_tab_MODULE'),
-      to: useHostingUrl(serviceName, 'module'),
-    },
-    {
-      name: 'logs',
-      title: t('hosting_tab_USER_LOGS'),
-      to: useHostingUrl(serviceName, 'user-logs'),
-    },
-    {
-      name: 'ftp',
-      title: t('hosting_tab_FTP'),
-      to: useHostingUrl(serviceName, 'ftp'),
-    },
-    {
-      name: 'database',
-      title: t('hosting_tab_DATABASE'),
-      to: useHostingUrl(serviceName, 'database'),
-    },
-    {
-      name: 'task',
-      title: t('hosting_tab_TASK'),
-      to: useHostingUrl(serviceName, 'task'),
-    },
-    {
-      name: 'automated_email',
-      title: t('hosting_tab_AUTOMATED_EMAILS'),
-      to: useHostingUrl(serviceName, 'automated-emails'),
-    },
-    {
-      name: 'cron',
-      title: t('hosting_tab_CRON'),
-      to: useHostingUrl(serviceName, 'cron'),
-    },
-    {
-      name: 'seo',
-      title: t('hosting_tab_LOCAL_SEO'),
-      to: useHostingUrl(serviceName, 'localSeo'),
-    },
-    {
-      name: 'boost',
-      title: t('hosting_tab_BOOST'),
-      to: useHostingUrl(serviceName, 'boost'),
-    },
-    {
-      name: 'mails',
-      title: t('domain_tab_emails'),
-      to: useEmailsUrl(flattenData?.[0]?.domain, 'mailing-list'),
-    },
-  ];
+  const generalUrl = useHostingUrl(serviceName);
+  const multisiteUrl = useHostingUrl(serviceName, 'multisite');
+  const sslPathname = useResolvedPath('ssl').pathname;
+  const moduleUrl = useHostingUrl(serviceName, 'module');
+  const logsUrl = useHostingUrl(serviceName, 'user-logs');
+  const ftpUrl = useHostingUrl(serviceName, 'ftp');
+  const databaseUrl = useHostingUrl(serviceName, 'database');
+  const taskUrl = useHostingUrl(serviceName, 'task');
+  const automatedEmailsUrl = useHostingUrl(serviceName, 'automated-emails');
+  const cronUrl = useHostingUrl(serviceName, 'cron');
+  const seoUrl = useHostingUrl(serviceName, 'localSeo');
+  const boostUrl = useHostingUrl(serviceName, 'boost');
+  const mailsUrl = useEmailsUrl(flattenData?.[0]?.domain, 'mailing-list');
+
+  const tabs: DashboardTab[] = useMemo(
+    () => [
+      {
+        name: 'general_information',
+        title: t('hosting_tab_GENERAL_INFORMATIONS'),
+        to: generalUrl,
+      },
+      {
+        name: 'multisite',
+        title: t('hosting_tab_MULTISITE'),
+        to: multisiteUrl,
+      },
+      {
+        name: 'ssl',
+        title: t('hosting_tab_SSL'),
+        to: sslPathname,
+      },
+      {
+        name: 'module',
+        title: t('hosting_tab_MODULE'),
+        to: moduleUrl,
+      },
+      {
+        name: 'logs',
+        title: t('hosting_tab_USER_LOGS'),
+        to: logsUrl,
+      },
+      {
+        name: 'ftp',
+        title: t('hosting_tab_FTP'),
+        to: ftpUrl,
+      },
+      {
+        name: 'database',
+        title: t('hosting_tab_DATABASE'),
+        to: databaseUrl,
+      },
+      {
+        name: 'task',
+        title: t('hosting_tab_TASK'),
+        to: taskUrl,
+      },
+      {
+        name: 'automated_email',
+        title: t('hosting_tab_AUTOMATED_EMAILS'),
+        to: automatedEmailsUrl,
+      },
+      {
+        name: 'cron',
+        title: t('hosting_tab_CRON'),
+        to: cronUrl,
+      },
+      {
+        name: 'seo',
+        title: t('hosting_tab_LOCAL_SEO'),
+        to: seoUrl,
+      },
+      {
+        name: 'boost',
+        title: t('hosting_tab_BOOST'),
+        to: boostUrl,
+      },
+      {
+        name: 'mails',
+        title: t('domain_tab_emails'),
+        to: mailsUrl,
+      },
+    ],
+    [
+      t,
+      generalUrl,
+      multisiteUrl,
+      sslPathname,
+      moduleUrl,
+      logsUrl,
+      ftpUrl,
+      databaseUrl,
+      taskUrl,
+      automatedEmailsUrl,
+      cronUrl,
+      seoUrl,
+      boostUrl,
+      mailsUrl,
+    ],
+  );
 
   useRouteSynchro();
 
@@ -141,7 +163,7 @@ export default function Layout() {
 
   useEffect(() => {
     shell.ux.hidePreloader();
-  }, []);
+  }, [shell]);
 
   const { updateHostingService } = useUpdateHostingService(
     serviceName,
@@ -226,12 +248,7 @@ export default function Layout() {
                 id: 1,
                 label: t('hosting_action_add_domain'),
                 onClick: () =>
-                  navigate(
-                    urls.orderDomain.replace(
-                      subRoutes.serviceName,
-                      serviceName,
-                    ),
-                  ),
+                  navigate(urls.orderDomain.replace(subRoutes.serviceName, serviceName)),
               },
             ]}
           />

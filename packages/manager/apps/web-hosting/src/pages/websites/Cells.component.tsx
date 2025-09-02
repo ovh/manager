@@ -1,20 +1,17 @@
 import React from 'react';
-import { Links } from '@ovh-ux/manager-react-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { Links } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
-import { ServiceStatus, WebsiteType, DnsStatus, GitStatus } from '@/data/type';
+import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
+import { WebsiteType } from '@/data/types/product/website';
+import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
 import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { DATAGRID_LINK, DIAGNOSTIC, WEBSITE } from '@/utils/tracking.constants';
 
@@ -32,11 +29,7 @@ const useHostingUrlWithOptions = (
   return useHostingUrl(serviceName, option);
 };
 
-export const DiagnosticCell = ({
-  webSiteItem,
-}: {
-  webSiteItem: WebsiteType;
-}) => {
+export const DiagnosticCell = ({ webSiteItem }: { webSiteItem: WebsiteType }) => {
   const { t } = useTranslation('common');
   const hostingUrl = useHostingUrlWithOptions(
     webSiteItem?.currentState.hosting.serviceName || '',
@@ -44,12 +37,7 @@ export const DiagnosticCell = ({
     false,
   );
 
-  const {
-    data,
-    isLoading,
-    isError,
-    refetch,
-  } = useWebHostingAttachedDomaindigStatus(
+  const { data, isLoading, isError, refetch } = useWebHostingAttachedDomaindigStatus(
     webSiteItem?.currentState.hosting.serviceName,
     webSiteItem?.currentState.fqdn,
   );
@@ -61,7 +49,9 @@ export const DiagnosticCell = ({
         icon={ODS_ICON_NAME.refresh}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_BUTTON_COLOR.critical}
-        onClick={() => refetch()}
+        onClick={() => {
+          refetch().catch(console.error);
+        }}
       />
     );
   }
@@ -85,8 +75,7 @@ export const DiagnosticCell = ({
         const hasValidRecord = records.some((record) => {
           if (record.dnsConfigured && record?.isOvhIp) {
             const recordIp = Object.keys(data.records).find(
-              (ip) =>
-                data.records[ip].type === type && data.records[ip] === record,
+              (ip) => data.records[ip].type === type && data.records[ip] === record,
             );
             return recordIp && recommendedIps.includes(recordIp);
           }
@@ -96,12 +85,8 @@ export const DiagnosticCell = ({
         if (hasValidRecord) {
           status = DnsStatus.CONFIGURED;
         } else {
-          const hasExternalRecord = records.some(
-            (record) => record?.isOvhIp === false,
-          );
-          status = hasExternalRecord
-            ? DnsStatus.EXTERNAL
-            : DnsStatus.NOT_CONFIGURED;
+          const hasExternalRecord = records.some((record) => record?.isOvhIp === false);
+          status = hasExternalRecord ? DnsStatus.EXTERNAL : DnsStatus.NOT_CONFIGURED;
         }
       }
     }
@@ -140,9 +125,7 @@ export const BadgeStatusCell = ({
     withBoost,
   );
 
-  return (
-    <BadgeStatus itemStatus={status} tracking={tracking} href={hostingUrl} />
-  );
+  return <BadgeStatus itemStatus={status} tracking={tracking} href={hostingUrl} />;
 };
 
 interface LinkCellProps {

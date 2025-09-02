@@ -1,17 +1,10 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 
-import {
-  DomainServiceType,
-  ServiceInfosType,
-  TAttachedDomain,
-  TCreateAttachedDomain,
-  TExistingDomain,
-  WebHostingType,
-} from '@/data/type';
+import { TAttachedDomain, TCreateAttachedDomain, TExistingDomain } from '../types/product/domain';
+import { DomainServiceType, ServiceInfosType } from '../types/product/service';
+import { WebHostingType } from '../types/product/webHosting';
 
-export const getHostingService = async (
-  serviceName: string,
-): Promise<WebHostingType> => {
+export const getHostingService = async (serviceName: string): Promise<WebHostingType> => {
   const { data } = await v6.get<WebHostingType>(`/hosting/web/${serviceName}`);
   return data;
 };
@@ -21,18 +14,12 @@ export const getDomainZone = async (): Promise<string[]> => {
   return data;
 };
 
-export const getServiceInfos = async (
-  serviceName: string,
-): Promise<ServiceInfosType> => {
-  const { data } = await v6.get<ServiceInfosType>(
-    `/hosting/web/${serviceName}/serviceInfos`,
-  );
+export const getServiceInfos = async (serviceName: string): Promise<ServiceInfosType> => {
+  const { data } = await v6.get<ServiceInfosType>(`/hosting/web/${serviceName}/serviceInfos`);
   return data;
 };
 
-export const getDomainService = async (
-  serviceName: string,
-): Promise<DomainServiceType> => {
+export const getDomainService = async (serviceName: string): Promise<DomainServiceType> => {
   const { data } = await v6.get<DomainServiceType>(`/domain/${serviceName}`);
   return data;
 };
@@ -42,16 +29,12 @@ export const getAddDomainExisting = async (
   path: string,
 ): Promise<TExistingDomain> => {
   const { data } = await aapi.get<TExistingDomain>(
-    `/sws/hosting/web/${serviceName}/add-domain-existing?tokenNeeded=${path ===
-      'B'}`,
+    `/sws/hosting/web/${serviceName}/add-domain-existing?tokenNeeded=${path === 'B'}`,
   );
   return data;
 };
 
-export const updateHostingService = async (
-  serviceName: string,
-  displayName: string,
-) =>
+export const updateHostingService = async (serviceName: string, displayName: string) =>
   v6.put(`/hosting/web/${serviceName}`, {
     displayName,
   });
@@ -68,7 +51,7 @@ export const createAttachedDomainService = async ({
   bypassDNSConfiguration,
   ipLocation,
 }: TCreateAttachedDomain): Promise<TAttachedDomain> => {
-  const { data } = await v6.post(`/hosting/web/${serviceName}/attachedDomain`, {
+  const { data } = await v6.post<TAttachedDomain>(`/hosting/web/${serviceName}/attachedDomain`, {
     domain,
     cdn,
     firewall,
@@ -127,9 +110,11 @@ export const createAttachedDomainsService = async ({
     );
   }
   const results = await Promise.allSettled(promises);
-  const failed = results?.find((r) => r.status === 'rejected');
+  const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+
   if (failed) {
     throw failed.reason ?? new Error('Domain certificate creation failed');
   }
+
   return results;
 };

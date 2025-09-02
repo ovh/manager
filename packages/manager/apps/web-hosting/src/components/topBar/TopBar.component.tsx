@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
 
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsButton, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
-import { ServiceStatus } from '@/data/type';
+import { ServiceStatus } from '@/data/types/status';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function Topbar() {
@@ -49,19 +49,13 @@ export default function Topbar() {
         <OdsButton
           size={ODS_BUTTON_SIZE.sm}
           data-testid="order-ssl"
-          onClick={() =>
-            navigate(
-              urls.orderSectigo.replace(subRoutes.serviceName, serviceName),
-            )
-          }
+          onClick={() => navigate(urls.orderSectigo.replace(subRoutes.serviceName, serviceName))}
           label={t('order_ssl_certificate')}
         />
         <OdsButton
           size={ODS_BUTTON_SIZE.sm}
           data-testid="import-ssl"
-          onClick={() =>
-            navigate(urls.importSsl.replace(subRoutes.serviceName, serviceName))
-          }
+          onClick={() => navigate(urls.importSsl.replace(subRoutes.serviceName, serviceName))}
           variant={ODS_BUTTON_VARIANT.outline}
           label={t('import_ssl_certificate')}
         />
@@ -88,10 +82,7 @@ export default function Topbar() {
                   !item?.currentState?.isDefault,
               )
               ?.map((it) => (
-                <option
-                  value={it?.currentState?.fqdn}
-                  key={it?.currentState?.fqdn}
-                >
+                <option value={it?.currentState?.fqdn} key={it?.currentState?.fqdn}>
                   {it?.currentState?.fqdn}
                 </option>
               ))}
