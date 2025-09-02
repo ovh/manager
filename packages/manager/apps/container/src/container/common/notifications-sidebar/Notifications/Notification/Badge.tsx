@@ -27,6 +27,7 @@ const NotificationBadge = ({
         isActive ? style['oui-badge_error'] : style['oui-badge_info']
       }`}
       onClick={onNotificationBadgeClick}
+      data-testid='notification-status-badge'
     >
       <span>{t(`notification_${isActive ? 'unread' : 'read'}`)}</span>
     </button>
