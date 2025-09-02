@@ -1,5 +1,5 @@
-import punycode from 'punycode';
 import ipaddr from 'ipaddr.js';
+import punycode from 'punycode';
 
 export const isValidIpv4 = function isValidIpv4(ip: string) {
   return ipaddr.IPv4.isValid(ip);
@@ -33,9 +33,7 @@ export const isValidDomain = function isValidDomain(
     if (
       !inError &&
       punycodeVersion.indexOf('*') !== -1 &&
-      (opts?.canBeginWithWildcard
-        ? !/^(?:\*\.)[^*]+$/.test(punycodeVersion)
-        : true)
+      (opts?.canBeginWithWildcard ? !/^(?:\*\.)[^*]+$/.test(punycodeVersion) : true)
     ) {
       inError = true;
     }

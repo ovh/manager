@@ -1,6 +1,9 @@
 import React from 'react';
-import { describe, it, expect } from 'vitest';
+
+import { describe, expect, it } from 'vitest';
+
 import { render, screen } from '@/utils/test.provider';
+
 import Loading from './Loading.component';
 
 describe('Loading component', () => {
