@@ -1,0 +1,13 @@
+{
+  "key_management_service_create_title": "Commander un KMS",
+  "key_management_service_create_subtitle": "Veuillez indiquer la région dans laquelle il sera déployé. Vous pourrez ensuite créer et gérer vos propres Service Keys et certificats d’accès dans ce KMS.",
+  "key_management_service_create_region_title": "Région",
+  "key_management_service_create_region_description": "Les objets cryptographiques de ce KMS seront stockés dans la région indiquée. Ils pourront être utilisés dans tous les produits OVHcloud sans distinction de région.",
+  "key_management_service_create_cta_cancel": "Annuler",
+  "key_management_service_create_cta_order": "Commander",
+  "key_management_service_create_order_initiated_title": "Commande de votre KMS initiée",
+  "key_management_service_create_order_initiated_subtitle": "Si vous n'avez pas pu finaliser votre commande, merci de la compléter en cliquant sur le lien suivant :",
+  "key_management_service_create_order_initiated_info": "Nous vous informerons de la disponibilité de votre KMS par e-mail.",
+  "key_management_service_create_order_initiated_cta_done": "Terminer",
+  "key_management_service_create_select_placeholder": "Sélectionner une région"
+}

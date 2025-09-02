@@ -1,0 +1,9 @@
+{
+  "key_management_service_terminate_cancel": "Anuluj",
+  "key_management_service_terminate_confirm": "Rezygnacja",
+  "key_management_service_terminate_error": "Wystąpił błąd: {{error}}",
+  "key_management_service_terminate_heading": "Rezygnacja z KMS",
+  "key_management_service_terminate_description": "Wpisz słowo „{{terminateKeyword}}”, aby potwierdzić rezygnację z usługi KMS.",
+  "key_management_service_terminate_success_banner": "Rezygnacja z KMS {{ServiceName}} została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury.",
+  "key_management_service_terminate_success_banner_us": "Rezygnacja z KMS {{ServiceName}} została zarejestrowana. Wiadomość e-mail z potwierdzeniem została wysłana na Twój adres e-mail."
+}
