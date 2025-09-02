@@ -26,7 +26,7 @@ const init = async (appName: string) => {
 
   await initI18n({
     context,
-    reloadOnLocaleChange: true,
+    reloadOnLocaleChange: false,
     defaultNS: appName,
     ns: ['listing', 'home', 'onboarding'],
   });
