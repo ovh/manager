@@ -110,5 +110,6 @@
   "iam_resource_type_ldp/index": "Logs Data Platform: Indice",
   "iam_resource_type_ldp/osd": "Logs Data Platform: OpenSearch Dashboards",
   "iam_resource_type_ldp/stream": "Logs Data Platform: Flussi di dati",
-  "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant di metriche"
+  "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant di metriche",
+  "iam_resource_type_publicCloudProject/managedRancher": "Progetto Public Cloud/Managed Rancher Service (MRS)"
 }
