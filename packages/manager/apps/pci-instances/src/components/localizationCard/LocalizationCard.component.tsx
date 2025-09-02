@@ -18,6 +18,7 @@ export type TLocalizationCardProps = {
   subtitle: string;
   countryCode: TCountryIsoCode;
   deploymentMode: TDeploymentMode;
+  onSelect?: (countryCode: TCountryIsoCode) => void;
 };
 
 const getBadgeClassName = (mode: TDeploymentMode) => {
@@ -35,11 +36,14 @@ export const LocalizationCard = ({
   subtitle,
   countryCode,
   deploymentMode,
+  onSelect,
 }: TLocalizationCardProps) => {
   const [isSelected, setIsSelected] = useState<CheckboxCheckedState>(false);
 
-  const handleCheckChange = (value: CheckboxCheckedChangeDetail) =>
+  const handleCheckChange = (value: CheckboxCheckedChangeDetail) => {
     setIsSelected(value.checked);
+    onSelect?.(countryCode);
+  };
 
   return (
     <Card

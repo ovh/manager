@@ -19,6 +19,7 @@ import {
 } from '@/pages/instances/create/components/QuantitySelector';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Cart } from '@/components/cart/Cart';
+import { LocalizationSelection } from './components/localisationSelection/LocalizationSelection.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -81,6 +82,7 @@ const CreateInstance: FC = () => {
               type={quantityHintParams.type}
               region={quantityHintParams.region}
             />
+            <LocalizationSelection />
           </section>
           <aside className="min-w-[320px] w-full max-w-[640px]">
             <Cart />
