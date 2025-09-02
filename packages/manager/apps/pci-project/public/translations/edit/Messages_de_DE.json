@@ -1,0 +1,12 @@
+{
+  "pci_projects_project_edit_project_name": "Projektname",
+  "pci_projects_project_edit_default_project": "Standardprojekt",
+  "pci_projects_project_edit_default_project_description": "Standardprojekt für jeden Login im Public Cloud Kundencenter",
+  "pci_projects_project_edit_update": "Update",
+  "pci_projects_project_edit_update_success": "Das Projekt wurde aktualisiert.",
+  "pci_projects_project_edit_update_error": "Beim Update des Projekts ist ein Fehler aufgetreten ({{ error }}).",
+  "pci_projects_project_edit_remove": "Projekt löschen",
+  "pci_projects_project_edit_remove_description": "Beim Löschen Ihres Projekts werden alle vorhandenen Ressourcen gelöscht, das heißt Daten, Infrastrukturen und Dienste. Stellen Sie sicher, dass Sie alle wichtigen Daten anderweitig gesichert haben, bevor Sie diesen unwiderruflichen Vorgang starten.",
+  "pci_projects_project_edit_error_forbidden": "Sie haben nicht die nötigen Rechte, um Ihre HDS-Zertifizierungsdaten anzuzeigen. Bitte wenden Sie sich an den Inhaber des Dienstes",
+  "pci_projects_project_edit_discovery_disable_tooltip": "Die Bearbeitung ist nur in einem aktiven Projekt möglich."
+}

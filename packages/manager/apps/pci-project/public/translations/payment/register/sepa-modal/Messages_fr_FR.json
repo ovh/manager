@@ -1,0 +1,6 @@
+{
+  "ovh_payment_method_register_sepa_information_modal_title": "Comptes bancaires zone SEPA",
+  "ovh_payment_method_register_sepa_information_modal_confirm": "J'ai compris",
+  "ovh_payment_method_register_sepa_information_modal_part_1": "Pour mettre en place un prélèvement bancaire, vous devez être en possession d’un compte bancaire détenu dans un pays de l’espace unique de paiements en euros, <strong>la zone SEPA</strong>.",
+  "ovh_payment_method_register_sepa_information_modal_part_2": "Si vous ne disposez pas de ce type de compte, nous vous encourageons à choisir un autre moyen de paiement."
+}
