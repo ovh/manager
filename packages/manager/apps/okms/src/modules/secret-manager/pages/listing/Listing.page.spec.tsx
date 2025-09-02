@@ -34,16 +34,6 @@ const assertDatagridIsLoaded = async (container: HTMLElement) => {
   });
 };
 
-const getActionButton = async (container: HTMLElement) => {
-  const actionButton = await getOdsButtonByIcon({
-    container,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    iconName: 'ellipsis-vertical',
-  });
-  return actionButton;
-};
-
 describe('Secrets listing test suite', () => {
   it('should display the secrets listing page', async () => {
     await renderPage();
@@ -107,74 +97,7 @@ describe('Secrets listing test suite', () => {
     expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 
-  it('should navigate to a secret versions page on click on menu action', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
-
-    const actionButton = await getActionButton(container);
-
-    await act(() => user.click(actionButton));
-
-    const versionsButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.common.access_versions,
-    });
-
-    // WHEN
-    await act(() => user.click(versionsButton));
-
-    // THEN
-    await assertVersionDatagridVisilibity();
-  });
-
-  it('should navigate to a secret value drawer on click on menu action', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
-
-    const actionButton = await getActionButton(container);
-
-    await act(() => user.click(actionButton));
-
-    const revealSecretButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.common.reveal_secret,
-      disabled: false,
-    });
-
-    // WHEN
-    await act(() => user.click(revealSecretButton));
-
-    // THEN
-    await assertTextVisibility(labels.secretManager.common.values);
-  });
-
-  it('should navigate to a create version drawer on click on menu action', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    const { container } = await renderPage();
-    await assertDatagridIsLoaded(container);
-
-    const actionButton = await getActionButton(container);
-
-    await act(() => user.click(actionButton));
-
-    const createNewVersionButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.common.add_new_version,
-      disabled: false,
-    });
-
-    // WHEN
-    await act(() => user.click(createNewVersionButton));
-
-    // THEN
-    await assertTextVisibility(labels.secretManager.create.data_textarea_label);
-  });
-
+  /* DATAGRID ACTIONS */
   it('should navigate to create a secret page on click on datagrid CTA', async () => {
     // GIVEN
     const user = userEvent.setup();
@@ -193,6 +116,68 @@ describe('Secrets listing test suite', () => {
     await assertTextVisibility(labels.secretManager.create.title);
     await assertTextVisibility(
       labels.secretManager.create.domain_section_title,
+    );
+  });
+
+  /* ITEM MENU ACTIONS */
+  type ActionCase = {
+    actionLabel: string;
+    assertion: () => Promise<void>;
+  };
+
+  const actionCases: ActionCase[] = [
+    {
+      actionLabel: labels.secretManager.common.reveal_secret,
+      assertion: () => assertTextVisibility(labels.secretManager.common.values),
+    },
+    {
+      actionLabel: labels.secretManager.common.add_new_version,
+      assertion: () =>
+        assertTextVisibility(labels.secretManager.create.data_textarea_label),
+    },
+    {
+      actionLabel: labels.secretManager.common.access_versions,
+      assertion: () => assertVersionDatagridVisilibity(),
+    },
+    {
+      actionLabel: labels.secretManager.common.delete_secret,
+      assertion: () =>
+        assertTextVisibility(
+          labels.secretManager.common.delete_secret_modal_title,
+        ),
+    },
+  ];
+
+  describe('Menu actions', () => {
+    it.each(actionCases)(
+      'should correctly handle click on $actionLabel',
+      async ({ actionLabel, assertion }) => {
+        // GIVEN
+        const user = userEvent.setup();
+        const { container } = await renderPage();
+        await assertDatagridIsLoaded(container);
+
+        const mainActionButton = await getOdsButtonByIcon({
+          container,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          iconName: 'ellipsis-vertical',
+        });
+
+        await act(() => user.click(mainActionButton));
+
+        const actionButton = await getOdsButtonByLabel({
+          container,
+          label: actionLabel,
+          disabled: false,
+        });
+
+        // WHEN
+        await act(() => user.click(actionButton));
+
+        // THEN
+        await assertion();
+      },
     );
   });
 });

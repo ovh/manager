@@ -8,7 +8,10 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsBreadcrumb, OdsButton } from '@ovhcloud/ods-components/react';
-import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
 import { filterDomainsByRegion } from '@secret-manager/utils/domains';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
@@ -24,7 +27,7 @@ export default function SecretDomainsPage() {
   ]);
   const navigate = useNavigate();
   const { notifications } = useNotifications();
-  const { region } = useParams() as { region: string };
+  const { region } = useParams<LocationPathParams>();
 
   const { data, error, isPending, refetch } = useOkmsDatagridList({
     pageSize: 100,

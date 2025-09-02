@@ -77,6 +77,20 @@ export const DatagridAction = (secret: Secret) => {
         );
       },
     },
+    {
+      id: 4,
+      label: t('delete_secret'),
+      onClick: () => {
+        navigate(
+          SECRET_MANAGER_ROUTES_URLS.secretListingModalDeleteSecret(
+            domainId,
+            secret.path,
+          ),
+        );
+      },
+      urn: secret.iam.urn,
+      iamActions: [kmsIamActions.secretDelete],
+    },
   ];
 
   return (

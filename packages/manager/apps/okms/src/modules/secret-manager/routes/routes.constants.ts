@@ -27,6 +27,9 @@ const URLS = {
 
   secretListing: (domainId: string) => `/${URIS.root}/${domainId}`,
 
+  secretListingModalDeleteSecret: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${URIS.delete}/${encodeSecretPath(secretPath)}`,
+
   secretListingDrawerValue: (domainId: string, secretPath: string) =>
     `/${URIS.root}/${domainId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
 
@@ -45,6 +48,9 @@ const URLS = {
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
       URIS.createVersion
     }`,
+
+  secretDashboardDeleteSecret: (domainId: string, secretPath: string) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${URIS.delete}`,
 
   secretVersions: (domainId: string, secretPath: string) =>
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${

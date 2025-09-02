@@ -73,7 +73,6 @@ export const getSecretMock = ({
 ];
 
 // POST
-
 export const createSecretErrorMessage = 'create-secret-error-message';
 
 export type CreateSecretsMockParams = {
@@ -93,5 +92,28 @@ export const createSecretsMock = ({
     status: isCreateSecretKO ? 500 : 200,
     api: 'v2',
     method: 'post',
+  },
+];
+
+// DELETE
+export const deleteSecretErrorMessage = 'delete-secret-error-message';
+
+export type DeleteSecretMockParams = {
+  isDeleteSecretKO?: boolean;
+};
+
+export const deleteSecretMock = ({
+  isDeleteSecretKO,
+}: DeleteSecretMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secret/:path',
+    response: isDeleteSecretKO
+      ? {
+          message: deleteSecretErrorMessage,
+        }
+      : createSecretResponseMock,
+    status: isDeleteSecretKO ? 500 : 200,
+    api: 'v2',
+    method: 'delete',
   },
 ];

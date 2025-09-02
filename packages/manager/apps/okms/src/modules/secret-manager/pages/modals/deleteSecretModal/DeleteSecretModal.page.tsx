@@ -3,34 +3,29 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate, useParams } from 'react-router-dom';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
-import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+import { useDeleteSecret } from '@secret-manager/data/hooks/useDeleteSecret';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
 import { ConfirmationModal } from '@/common/components/confirmationModal/ConfirmationModal';
 
-const DeleteSecretVersionModal = () => {
+const DeleteSecretModal = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager/common', NAMESPACES.ACTIONS]);
-  const { domainId, secretPath, versionId } = useParams<LocationPathParams>();
+  const { domainId, secretPath } = useParams<LocationPathParams>();
 
-  const {
-    mutateAsync: updateSecretVersion,
-    isPending,
-    error,
-  } = useUpdateSecretVersion();
+  const secretPathDecoded = decodeSecretPath(secretPath);
 
-  const handleDismiss = () => {
-    navigate('..');
-  };
+  const { mutateAsync: deleteSecret, isPending, error } = useDeleteSecret();
 
   const handleConfirm = async () => {
     try {
-      await updateSecretVersion({
+      await deleteSecret({
         okmsId: domainId,
-        path: decodeSecretPath(secretPath),
-        version: Number(versionId),
-        state: 'DELETED',
+        secretPath: secretPathDecoded,
       });
-      handleDismiss();
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));
     } catch {
       // Do nothing
     }
@@ -38,11 +33,11 @@ const DeleteSecretVersionModal = () => {
 
   return (
     <ConfirmationModal
-      title={t('secret-manager/common:delete_version_modal_title', {
-        versionId,
+      title={t('secret-manager/common:delete_secret_modal_title')}
+      message={t('secret-manager/common:delete_secret_modal_description', {
+        secretPath: secretPathDecoded,
       })}
-      message={t('secret-manager/common:delete_version_modal_description')}
-      onDismiss={handleDismiss}
+      onDismiss={() => navigate('..')}
       onConfirm={handleConfirm}
       confirmButtonLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
       isConfirmButtonLoading={isPending}
@@ -51,4 +46,4 @@ const DeleteSecretVersionModal = () => {
   );
 };
 
-export default DeleteSecretVersionModal;
+export default DeleteSecretModal;

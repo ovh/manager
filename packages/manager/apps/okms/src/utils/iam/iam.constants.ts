@@ -8,6 +8,7 @@ export const kmsIamActions = {
   serviceKeyDelete: 'okms:apiovh:serviceKey/delete',
   serviceKeyUpdate: 'okms:apiovh:serviceKey/update',
   secretGet: 'okms:apiovh:secret/get',
+  secretDelete: 'okms:apiovh:secret/delete',
   secretVersionGetData: 'okms:apiovh:secret/version/getData',
   secretVersionCreate: 'okms:apiovh:secret/version/create',
   secretVersionUpdate: 'okms:apiovh:secret/version/edit',
