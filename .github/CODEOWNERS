@@ -13,7 +13,7 @@
 /packages/manager/apps/cda @ovh/dev-manager-infra-all
 /packages/manager/apps/cloud-connect @ovh/dev-manager-infra-all
 /packages/manager/apps/container @ovh/dev-manager-gcj-all
-/packages/manager/apps/dbaas-logs @ovh/dev-manager-enabler-all
+/packages/manager/apps/dbaas-logs @ovh/dev-manager-enablers-all
 /packages/manager/apps/dedicated @ovh/dev-manager-infra-all
 /packages/manager/apps/dedicated/client/*.js* @ovh/dev-manager-infra-all @ovh/dev-manager-enterprise-vmware
 /packages/manager/apps/dedicated/client/app/managedBaremetal @ovh/dev-manager-enterprise-vmware
@@ -29,8 +29,8 @@
 /packages/manager/apps/freefax @ovh/dev-manager-web-collaboration
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-enterprise-nutanixBackup
-/packages/manager/apps/iam @ovh/dev-manager-enabler-all
-/packages/manager/apps/identity-access-management @ovh/dev-manager-infra-all @ovh/dev-manager-enabler-all
+/packages/manager/apps/iam @ovh/dev-manager-enablers-all
+/packages/manager/apps/identity-access-management @ovh/dev-manager-infra-all @ovh/dev-manager-enablers-all
 /packages/manager/apps/iplb @ovh/dev-manager-infra-all
 /packages/manager/apps/key-management-service @ovh/dev-manager-enterprise-kms
 /packages/manager/apps/ips @ovh/dev-manager-infra-all
@@ -48,7 +48,7 @@
 /packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-aidatabase
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
-/packages/manager/apps/restricted @ovh/dev-manager-enabler-all
+/packages/manager/apps/restricted @ovh/dev-manager-enablers-all
 /packages/manager/apps/sap-features-hub @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/sharepoint @ovh/dev-manager-web-collaboration
 /packages/manager/apps/sign-up @ovh/dev-manager-gcj-all
@@ -90,16 +90,16 @@
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-collaboration
 /packages/manager/modules/cda @ovh/dev-manager-infra-all
 /packages/manager/modules/cloud-connect @ovh/dev-manager-infra-all
-/packages/manager/modules/dbaas-logs @ovh/dev-manager-enabler-all
+/packages/manager/modules/dbaas-logs @ovh/dev-manager-enablers-all
 /packages/manager/modules/email-domain @ovh/dev-manager-web-collaboration
 /packages/manager/modules/emailpro @ovh/dev-manager-web-collaboration
 /packages/manager/modules/exchange @ovh/dev-manager-web-collaboration
 /packages/manager/modules/freefax @ovh/dev-manager-web-collaboration
 /packages/manager/modules/gcj @ovh/dev-manager-gcj-all
-/packages/manager/modules/iam @ovh/dev-manager-enabler-all
+/packages/manager/modules/iam @ovh/dev-manager-enablers-all
 /packages/manager/modules/iplb @ovh/dev-manager-infra-all
-/packages/manager/modules/log-to-customer @ovh/dev-manager-enabler-all
-/packages/manager/modules/logs-to-customer @ovh/dev-manager-enabler-all
+/packages/manager/modules/log-to-customer @ovh/dev-manager-enablers-all
+/packages/manager/modules/logs-to-customer @ovh/dev-manager-enablers-all
 /packages/manager/modules/manager-pci-common @ovh/dev-manager-pci-common-maintenance
 /packages/manager/modules/metrics @ovh/dev-manager-infra-all
 /packages/manager/modules/nasha @ovh/dev-manager-infra-all
