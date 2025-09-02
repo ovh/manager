@@ -1,0 +1,146 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Order Snapshot Tests > should render Order with Configuration component 1`] = `
+<div>
+  <p>
+    Configuration content
+  </p>
+  <div
+    class="flex flex-row gap-4"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+      data-testid="cta-order-configuration-cancel"
+      type="button"
+    >
+      Annuler
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+      data-testid="cta-order-configuration-order"
+      type="button"
+    >
+      <span
+        class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+      />
+      Commander
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Order Snapshot Tests > should render Order with Configuration in invalid state 1`] = `
+<div>
+  <p>
+    Invalid configuration
+  </p>
+  <div
+    class="flex flex-row gap-4"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+      data-testid="cta-order-configuration-cancel"
+      type="button"
+    >
+      Annuler
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+      data-testid="cta-order-configuration-order"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+      />
+      Commander
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Order Snapshot Tests > should render Order with Summary component 1`] = `<div />`;
+
+exports[`Order Snapshot Tests > should render Order with Summary without product name 1`] = `<div />`;
+
+exports[`Order Snapshot Tests > should render Order with both Configuration and Summary components 1`] = `
+<div>
+  <p>
+    Configuration steps
+  </p>
+  <div
+    class="flex flex-row gap-4"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+      data-testid="cta-order-configuration-cancel"
+      type="button"
+    >
+      Annuler
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+      data-testid="cta-order-configuration-order"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+      />
+      Commander
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Order Snapshot Tests > should render Order with complex nested content 1`] = `
+<div>
+  <div
+    class="complex-content"
+  >
+    <h2>
+      Order Steps
+    </h2>
+    <ul>
+      <li>
+        Step 1: Choose service
+      </li>
+      <li>
+        Step 2: Configure options
+      </li>
+      <li>
+        Step 3: Review and confirm
+      </li>
+    </ul>
+  </div>
+  <div
+    class="flex flex-row gap-4"
+  >
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+      data-testid="cta-order-configuration-cancel"
+      type="button"
+    >
+      Annuler
+    </button>
+    <button
+      class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+      data-testid="cta-order-configuration-order"
+      type="button"
+    >
+      <span
+        class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+      />
+      Commander
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Order Snapshot Tests > should render basic Order component with children 1`] = `
+<div>
+  <div>
+    Test content
+  </div>
+</div>
+`;
