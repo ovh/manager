@@ -1,4 +1,4 @@
-import { useHref, useSearchParams } from 'react-router-dom';
+import { useHref } from 'react-router-dom';
 import {
   BaseLayout,
   HeadersProps,
@@ -15,17 +15,16 @@ import { useInstallationTaskDetailsOptions } from '@/hooks/installationDetails/u
 import { useWizardAvailability } from '@/hooks/wizardAvailability/useWizardAvailability';
 import { SAPInstallationStatus } from '@/types/installation.type';
 import { urls } from '@/routes/routes.constant';
+import { useSapSearchParams } from '@/hooks/sapSearchParams/useSapSearchParams';
 
 const REFECTH_INTERVAL_INSTALLATION_STATUS = 30_000;
 
 export default function InstallationDetailsPage() {
   const { t } = useTranslation('dashboard/installation');
   const hrefPrevious = useHref(urls.listing);
-  const [searchParams] = useSearchParams();
+  const { serviceName, taskId } = useSapSearchParams();
   const { isWizardAvailable, isLoading } = useWizardAvailability();
 
-  const serviceName = searchParams.get('serviceName');
-  const taskId = searchParams.get('taskId');
   const header: HeadersProps = { title: t('dashboard_installation_title') };
 
   useQuery({
