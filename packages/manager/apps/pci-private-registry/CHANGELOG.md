@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.10.2...@ovh-ux/manager-pci-private-registry-app@0.10.3) (2025-09-02)
+
+
+### Bug Fixes
+
+* **pci-rancher:** special character validation error in title ([beaaa83](https://github.com/ovh/manager/commit/beaaa833228bca31ab221df636f43a2b3b18c39b)), closes [#TAPC-4447](https://github.com/ovh/manager/issues/TAPC-4447)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.10.1...@ovh-ux/manager-pci-private-registry-app@0.10.2) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
