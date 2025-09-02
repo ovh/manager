@@ -4,7 +4,6 @@ import isObject from 'lodash/isObject';
 import set from 'lodash/set';
 
 import { EXCHANGE_CONTAINER_MESSAGING } from './exchange.constants';
-import { FEATURES } from '../exchange.constants';
 
 export default class ExchangeCtrl {
   /* @ngInject */
@@ -40,7 +39,7 @@ export default class ExchangeCtrl {
     sharedAccountLink,
     taskLink,
     logsLink,
-    features,
+    isLogsAvailable,
   ) {
     this.services = {
       $q,
@@ -60,10 +59,14 @@ export default class ExchangeCtrl {
       exchange,
       reloadDashboard,
       WucUser,
+      isLogsAvailable,
     };
     this.exchange = exchange;
     this.$routerParams = wucExchange.getParams();
 
+    this.isLogsAvailable =
+      isLogsAvailable && exchange.offer.startsWith('DEDICATED');
+    this.BETA = 'Beta';
     this.EXCHANGE_CONTAINER_MESSAGING = EXCHANGE_CONTAINER_MESSAGING;
 
     set(navigation, '$exchangeRootScope', $scope);
@@ -111,7 +114,6 @@ export default class ExchangeCtrl {
     this.sharedLink = sharedLink;
     this.taskLink = taskLink;
     this.logsLink = logsLink;
-    this.features = features;
   }
 
   $onInit() {
@@ -144,8 +146,6 @@ export default class ExchangeCtrl {
         });
       }
     });
-    this.isLogsAvailable = this.features.isFeatureAvailable(FEATURES.LOGS);
-    this.BETA = 'Beta';
   }
 
   retrievingWizardPreference() {
