@@ -1,10 +1,14 @@
 import React, { useContext, useState, useRef, useEffect } from 'react';
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { ListingContext } from '@/pages/listing/listingContext';
 
-export const QuickFilter = () => {
+export const QuickFilter = ({ className }: { className?: string }) => {
   const { t } = useTranslation('listing');
   const { apiFilter, setApiFilter } = useContext(ListingContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,17 +75,18 @@ export const QuickFilter = () => {
   }, []);
 
   return (
-    <div className="mx-1 relative" ref={menuRef}>
+    <div className={`relative ${className}`} ref={menuRef}>
       <OdsButton
         id="quick-filters"
         icon={ODS_ICON_NAME.filter}
         size={ODS_BUTTON_SIZE.sm}
+        variant={ODS_BUTTON_VARIANT.outline}
         onClick={toggleMenu}
-        aria-haspopup="true"
+        aria-haspopup
         aria-expanded={isMenuOpen}
         label={t('listingQuickFilterLabel')}
         data-testid="quick-filter"
-      ></OdsButton>
+      />
 
       {isMenuOpen && (
         <div className="absolute z-10 mt-2 w-56 bg-white rounded-md shadow-lg">

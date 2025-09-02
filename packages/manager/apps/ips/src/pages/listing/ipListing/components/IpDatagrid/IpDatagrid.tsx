@@ -117,7 +117,7 @@ export const IpDatagrid = () => {
   return (
     <RedirectionGuard
       isLoading={false}
-      condition={!isLoading && !ipList?.length}
+      condition={!isLoading && !ipList?.length && !apiFilter?.type}
       route={urls.onboarding}
       isError={isError}
       errorComponent={<ErrorBanner error={error as ApiError} />}

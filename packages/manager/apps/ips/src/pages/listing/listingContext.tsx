@@ -8,9 +8,9 @@ import { GetIpListParams } from '@/data/api';
 
 export type ListingContextType = {
   apiFilter: GetIpListParams;
-  setApiFilter: (apiFilter: GetIpListParams) => void;
+  setApiFilter: React.Dispatch<React.SetStateAction<GetIpListParams>>;
   ipToSearch: string;
-  setIpToSearch: (ipToSearch: string) => void;
+  setIpToSearch: React.Dispatch<React.SetStateAction<string>>;
   expiredIps: string[];
   addExpiredIp: (expiredIp: string) => void;
 };
