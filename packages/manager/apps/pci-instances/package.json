@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.16.0",
+    "@ovh-ux/manager-common-translations": "^0.17.0",
     "@ovh-ux/manager-config": "^8.5.1",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-pci-common": "^0.17.0",
