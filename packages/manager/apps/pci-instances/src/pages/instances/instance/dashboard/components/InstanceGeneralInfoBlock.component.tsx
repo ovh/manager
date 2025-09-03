@@ -1,20 +1,21 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
-import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Links,
   LinkType,
-  TileBlock,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
-import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import {
+  BUTTON_VARIANT,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
-import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
 import { useDashboard } from '../hooks/useDashboard';
 import {
   DashboardTileBlock,
@@ -66,14 +67,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         isLoading={isInstanceLoading}
       >
         <div className="flex flex-col">
-          <OsdsText
-            className="my-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {instance?.flavor?.name}
-          </OsdsText>
+          <Text className="my-4">{instance?.flavor?.name}</Text>
           {instance?.isEditEnabled && (
             <Links
               label={t('pci_instances_dashboard_upgrade_model')}
@@ -84,31 +78,31 @@ const InstanceGeneralInfoBlock: FC = () => {
         </div>
       </DashboardTileBlock>
       {instance && (
-        <TileBlock label={t('list:pci_instances_list_column_status')}>
+        <DashboardTileBlock
+          isLoading={isInstanceLoading}
+          label={t('list:pci_instances_list_column_status')}
+        >
           <TaskStatus
             isLoading={isInstanceLoading}
             isPolling={polling.length > 0}
             taskState={instance.task.status}
             status={instance.status}
           />
-        </TileBlock>
+        </DashboardTileBlock>
       )}
       <DashboardTileBlock
         label={t('list:pci_instances_list_column_region')}
         isLoading={isInstanceLoading}
       >
-        <OsdsText
-          className="mr-4"
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {instance?.region.availabilityZone ??
-            translateMicroRegion(instance?.region.name || '')}
-        </OsdsText>
-        {instance && (
-          <RegionChipByType type={instance.region.type} showTooltip={false} />
-        )}
+        <div className="flex">
+          <Text className="mr-4">
+            {instance?.region.availabilityZone ??
+              translateMicroRegion(instance?.region.name || '')}
+          </Text>
+          {instance && (
+            <RegionChipByType type={instance.region.type} showTooltip={false} />
+          )}
+        </div>
       </DashboardTileBlock>
       <DashboardTileText
         label={t('pci_instances_dashboard_memory_title')}
@@ -130,13 +124,9 @@ const InstanceGeneralInfoBlock: FC = () => {
           <div>
             {instance?.pricings.map(({ value, type, label }) => (
               <div className="my-4" key={type}>
-                <OsdsText
-                  size={ODS_TEXT_SIZE._400}
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+                <Text preset={TEXT_PRESET.span}>
                   {t(`pci_instances_dashboard_${label}_price_label`)}
-                </OsdsText>
+                </Text>
                 <PriceLabel value={value} type={type} />
               </div>
             ))}
@@ -153,16 +143,14 @@ const InstanceGeneralInfoBlock: FC = () => {
         </div>
       </DashboardTileBlock>
       {instance && (
-        <TileBlock>
+        <DashboardTileBlock>
           <div className="flex justify-between items-center">
-            <OsdsText
-              className="my-4"
-              size={ODS_TEXT_SIZE._100}
-              level={ODS_TEXT_LEVEL.subheading}
-              color={ODS_THEME_COLOR_INTENT.primary}
+            <Text
+              className="my-4 text-[var(--ods-color-primary-500)]"
+              preset={TEXT_PRESET.label}
             >
               {t('pci_instances_dashboard_all_actions')}
-            </OsdsText>
+            </Text>
             <ActionsMenu
               items={instance.actions}
               actionButton={{
@@ -170,17 +158,17 @@ const InstanceGeneralInfoBlock: FC = () => {
               }}
             />
           </div>
-        </TileBlock>
+        </DashboardTileBlock>
       )}
       {instance?.isDeleteEnabled && (
-        <LoadingCell isLoading={isInstanceLoading}>
+        <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.error}
             href={hrefDeleteInstance}
           >
             {t('list:pci_instances_list_action_delete')}
           </OsdsLink>
-        </LoadingCell>
+        </DashboardTileBlock>
       )}
     </DashboardCardLayout>
   );
