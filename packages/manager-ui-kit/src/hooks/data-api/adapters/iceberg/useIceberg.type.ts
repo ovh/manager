@@ -1,10 +1,11 @@
 import { IcebergFetchParams } from '@ovh-ux/manager-core-api';
-import { DatagridColumn, ColumnSort } from '../../../../components';
+import { SortingState } from '@tanstack/react-table';
+import { DatagridColumn } from '../../../../components';
 
 export type UseIcebergParams<TData = Record<string, unknown>> =
   IcebergFetchParams & {
     cacheKey: string | string[];
-    defaultSorting?: ColumnSort;
+    defaultSorting?: SortingState;
     fetchAll?: boolean;
     columns?: DatagridColumn<TData>[];
     enabled?: boolean;
