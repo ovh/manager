@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Page A",
+    "resource_1": 4000
+  },
+  {
+    "name": "Page B",
+    "resource_1": 3000
+  },
+  {
+    "name": "Page C",
+    "resource_1": 1500
+  },
+  {
+    "name": "Page D",
+    "resource_1": 2500
+  },
+  {
+    "name": "Page E",
+    "resource_1": 4700
+  }
+]

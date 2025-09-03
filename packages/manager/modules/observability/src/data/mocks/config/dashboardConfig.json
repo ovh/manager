@@ -1,0 +1,83 @@
+[
+  {
+    "id": "chart-1",
+    "title": "Display metric name 1",
+    "unit": "m²/sec",
+    "colspan": 2,
+    "tooltip": {
+      "title": "Example of tooltip - Metric Information",
+      "subTitle": "CPUUtilization"
+    },
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKey": "value"
+      },
+      "brush": {
+        "height": 50
+      }
+    }
+  },
+  {
+    "id": "chart-2",
+    "chart": {
+      "type": "Bars"
+    },
+    "title": "Display metric name 2"
+  },
+  {
+    "id": "chart-3",
+    "chart": {
+      "type": "StackedBars"
+    },
+    "title": "Space used",
+    "dataSource": "chart-3"
+  },
+  {
+    "id": "chart-4",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp"
+      },
+      "YAxis": {
+        "dataKey": "value"
+      }
+    },
+    "title": "Display metric name 4"
+  },
+  {
+    "id": "chart-5",
+    "chart": {
+      "type": "Pie"
+    },
+    "title": "Display metric name 5"
+  },
+  {
+    "id": "chart-6",
+    "chart": {
+      "type": "Counter"
+    },
+    "title": "Display metric name 6",
+    "colspan": 2
+  },
+  {
+    "id": "chart-7",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "name"
+      },
+      "YAxis": {
+        "dataKey": "resource_1"
+      }
+    },
+    "title": "Display metric name 7",
+    "colspan": 3
+  }
+]
