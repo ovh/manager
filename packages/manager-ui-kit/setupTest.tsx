@@ -1,11 +1,19 @@
-import React, { ComponentType } from 'react';
-import { RenderOptions, RenderResult, render } from '@testing-library/react';
+import * as React from 'react';
+import { ComponentType } from 'react';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+import i18n from 'i18next';
+import {
+  RenderOptions,
+  RenderResult,
+  render,
+  cleanup,
+} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
-import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import i18n from 'i18next';
+import ActionMenuTransFR from './src/components/action-menu/translations/Messages_fr_FR.json';
+import DatagridTransFR from './src/components/datagrid/translations/Messages_fr_FR.json';
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'fr_FR',
@@ -15,7 +23,10 @@ i18n.use(initReactI18next).init({
   resources: {
     fr: {
       'action-menu': {
-        common_actions: 'Actions',
+        ...ActionMenuTransFR,
+      },
+      datagrid: {
+        ...DatagridTransFR,
       },
     },
   },
@@ -46,7 +57,7 @@ const customRender = (
 ): RenderResult =>
   render(ui, { wrapper: Wrappers as ComponentType, ...options });
 
-export { customRender as render };
+export { customRender as render, cleanup };
 
 // This polyfill exists because of an issue with jsdom and the EventTarget class
 // when testing a component with an OdsDatepicker (addEventListener crashes at component initialization).

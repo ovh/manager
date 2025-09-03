@@ -51,13 +51,15 @@ const renderUseIcebergV2Hook = (props = {}) => {
             id: 'ip',
             isSearchable: true,
             label: 'IP Address',
-            cell: (data: TestData) => <div>{data.ip}</div>,
+            cell: (cellProps) => <div>{cellProps.row.original.ip}</div>,
           },
           {
             id: 'newUpgradeSystem',
             isFilterable: true,
             label: 'Upgrade System',
-            cell: (data: TestData) => <div>{data.newUpgradeSystem}</div>,
+            cell: (cellProps) => (
+              <div>{cellProps.row.original.newUpgradeSystem}</div>
+            ),
           },
         ],
         ...props,

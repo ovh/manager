@@ -1,164 +1,464 @@
-import React from 'react';
-import { withRouter } from 'storybook-addon-react-router-v6';
-import { useSearchParams } from 'react-router-dom';
-import { applyFilters } from '@ovh-ux/manager-core-api';
-import { Row } from '@tanstack/react-table';
+import React, { useState, useMemo } from 'react';
 import {
-  Datagrid,
-  useDatagridSearchParams,
-  useColumnFilters,
-  DataGridTextCell,
-} from '@ovh-ux/muk';
-import { columns as clm, columnsFilters, Item } from './datagrid.mock';
+  BUTTON_SIZE,
+  Icon,
+  ICON_NAME,
+  FormField,
+  FormFieldLabel,
+  Input,
+  Button,
+} from '@ovhcloud/ods-react';
+import { Datagrid, DatagridProps, useColumnFilters } from '@ovh-ux/muk';
+import {
+  FilterComparator,
+  applyFilters,
+  FilterCategories,
+} from '@ovh-ux/manager-core-api';
+import {
+  SortingState,
+  VisibilityState,
+  RowSelectionState,
+  ExpandedState,
+} from '@tanstack/react-table';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
-function sortItems(
-  itemList: Item[],
-  sorting: { id: string; desc: boolean },
-): Item[] {
-  if (!sorting) return itemList;
-  const order = sorting.desc ? -1 : 1;
-  if (sorting.id === 'label')
-    return itemList.sort((a, b) => order * a.label.localeCompare(b.label));
-  if (sorting.id === 'price')
-    return itemList.sort((a, b) => order * (a.price - b.price));
-  return itemList;
-}
+const columns = [
+  {
+    id: 'person',
+    label: 'Person',
+    accessorKey: 'person',
+    header: 'Person',
+    enableHiding: true,
+    comparator: FilterCategories.String,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'mostInterestIn',
+    label: 'Most interest in',
+    accessorKey: 'mostInterestIn',
+    header: 'Most interest in',
+    enableHiding: true,
+    type: FilterCategories.String,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'age',
+    label: 'Age',
+    accessorKey: 'age',
+    header: 'Age',
+    enableHiding: false,
+    type: FilterCategories.Numeric,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+];
 
-const DatagridStory = ({
-  items,
-  isPaginated,
-  isSortable,
-  isLoading = false,
-  columns = clm,
-  getRowCanExpand,
-  renderSubComponent,
-}: {
-  items: Item[];
-  isLoading: boolean;
-  isPaginated: boolean;
-  isSortable: boolean;
-  columns?: any;
-  renderSubComponent?: (props: Row<any>) => JSX.Element;
-  getRowCanExpand?: (row: Row<any>) => boolean;
-}) => {
-  const [searchParams] = useSearchParams();
-  const {
-    pagination,
-    setPagination,
+const data = [
+  {
+    person: 'John Doe',
+    mostInterestIn: '	HTML tables',
+    age: 25,
+  },
+  {
+    person: 'Jane Doe',
+    mostInterestIn: 'Web accessibility',
+    age: 26,
+  },
+  {
+    person: 'Sarah',
+    mostInterestIn: 'JavaScript frameworks',
+    age: 25,
+  },
+  {
+    person: 'Karen',
+    mostInterestIn: '	Web performance',
+    age: 26,
+  },
+];
+
+const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [searchInput, setSearchInput] = useState('');
+  const sortAttrs = {
     sorting,
     setSorting,
-  } = useDatagridSearchParams({
-    id: 'validityTo',
-    desc: false,
-  });
-  const start = isPaginated ? pagination.pageIndex * pagination.pageSize : 0;
-  const end = isPaginated ? start + pagination.pageSize : items.length;
-  const paginationAttrs = isPaginated && {
-    pagination,
-    onPaginationChange: setPagination,
+    manualSorting: false,
   };
-  const sortingAttrs = isSortable && {
-    sorting,
-    onSortChange: setSorting,
+  const [isFetchAll, setIsFetchAll] = useState(false);
+  const [items, setItems] = useState(args.data);
+  const cols = args.columns;
+  const fetchAllPages = () => {
+    const newData = Array.from({ length: 10000 }, (_, index) => ({
+      ...items[index],
+      person: `Most interest in ${items.length + index}`,
+      mostInterestIn: `Most interest in ${items.length + index}`,
+      age: index + 1,
+    }));
+    setItems([...items, ...newData]);
   };
-  const { filters, addFilter, removeFilter } = useColumnFilters();
 
+  const [containerHeightState, setContainerHeightState] = useState(
+    args.containerHeight,
+  );
+  const [containerHeightStyle, setContainerHeightStyle] = useState(
+    args.containerHeight,
+  );
+  const {
+    autoScroll,
+    renderSubComponent,
+    subComponentHeight,
+    maxRowHeight,
+    isLoading,
+    totalCount,
+    topbar,
+  } = args;
+  const { filters, addFilter, removeFilter } = useColumnFilters();
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const onSearch = (search: string) => {
+    const tmp = applyFilters(
+      args.data,
+      !search || search.length === 0
+        ? filters
+        : [
+            {
+              key: 'person',
+              value: searchInput,
+              comparator: FilterComparator.Includes,
+            },
+            ...filters,
+          ],
+    );
+    setItems(tmp);
+  };
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const colsArgs = useMemo(
+    () =>
+      cols.map((col) => ({
+        ...col,
+        ...('sorting' in args && { isSortable: true }),
+        ...('search' in args && { isSearchable: true }),
+        ...('filters' in args && { isFilterable: true }),
+      })),
+    [cols, args],
+  );
+
+  const itemsArgs = useMemo(
+    () =>
+      items?.map((col, indexItems) => ({
+        ...col,
+        ...('subRows' in args && {
+          subRows: Array.from({ length: 5 }, (_, index) => ({
+            person: `Most interest in ${index + (indexItems * 2 + 888888)}`,
+            mostInterestIn: `Most interest in ${index +
+              (indexItems * 2 + 888888)}`,
+            age: index + (indexItems * 2 + 888888),
+          })),
+        }),
+      })),
+    [items, args],
+  );
   return (
     <>
-      {`${searchParams}` && (
-        <>
-          <pre>Search params: ?{`${searchParams}`}</pre>
-          <hr />
-        </>
+      {'containerHeight' in args && (
+        <div className="py-4">
+          <div className="max-w-[200px]">
+            <FormField>
+              <FormFieldLabel>Container Height</FormFieldLabel>
+              <Input
+                value={containerHeightState}
+                onChange={(e) =>
+                  setContainerHeightState(Number(e.target.value))
+                }
+              />
+              <Button
+                onClick={() => setContainerHeightStyle(containerHeightState)}
+              >
+                Update
+              </Button>
+            </FormField>
+          </div>
+        </div>
       )}
       <Datagrid
-        columns={columns}
-        items={applyFilters(
-          sortItems(items, sorting).slice(start, end),
-          filters,
-        )}
-        totalItems={items.length}
-        isLoading={isLoading}
-        {...paginationAttrs}
-        {...sortingAttrs}
-        filters={{ filters, add: addFilter, remove: removeFilter }}
-        getRowCanExpand={getRowCanExpand}
-        renderSubComponent={renderSubComponent}
+        columns={colsArgs}
+        data={applyFilters(itemsArgs, filters)}
+        {...('containerHeight' in args && {
+          containerHeight: containerHeightStyle,
+        })}
+        {...('manualSorting' in args && { sorting: { ...sortAttrs } })}
+        {...('onFetchAllPages' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchAllPages: () => {
+              setIsFetchAll(true);
+              fetchAllPages();
+            },
+          })}
+        {...('onFetchNextPage' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchNextPage: () =>
+              setItems([
+                ...items,
+                {
+                  person: `Person ${items.length + 1}`,
+                  mostInterestIn: `Most interest in ${items.length + 1}`,
+                  age: items.length + 1,
+                },
+              ]),
+          })}
+        {...('renderSubComponent' in args && { renderSubComponent })}
+        {...('subComponentHeight' in args && { subComponentHeight })}
+        {...('maxRowHeight' in args && { maxRowHeight })}
+        {...('isLoading' in args && { isLoading })}
+        {...('totalCount' in args && { totalCount })}
+        {...('expandable' in args && {
+          expandable: {
+            expanded,
+            setExpanded,
+          },
+        })}
+        {...('autoScroll' in args && { autoScroll })}
+        {...('columnVisibility' in args && {
+          columnVisibility: {
+            columnVisibility,
+            setColumnVisibility,
+          },
+        })}
+        {...('topbar' in args && { topbar })}
+        {...('filters' in args && {
+          filters: {
+            filters,
+            add: addFilter,
+            remove: removeFilter,
+          },
+        })}
+        {...('search' in args && {
+          search: { searchInput, setSearchInput, onSearch },
+        })}
+        {...('rowSelection' in args && {
+          rowSelection: {
+            rowSelection,
+            setRowSelection,
+          },
+        })}
       />
     </>
   );
 };
 
-export const Basic = DatagridStory.bind({});
+export const Default = DatagridStory.bind({});
 
-Basic.args = {
-  columns: clm,
-  items: [...Array(50).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isPaginated: true,
-  isSortable: true,
+Default.args = {
+  columns,
+  data,
+};
+
+export const Sorting = DatagridStory.bind({});
+
+Sorting.args = {
+  columns,
+  data,
+  manualSorting: false,
+  sorting: {
+    sorting: [],
+    setSorting: () => {},
+    manualSorting: false,
+  },
 };
 
 export const Loading = DatagridStory.bind({});
 
 Loading.args = {
-  columns: clm,
-  items: [],
+  columns,
+  data: [],
   isLoading: true,
 };
 
-export const Sortable = DatagridStory.bind({});
+export const LoadMore = DatagridStory.bind({});
 
-Sortable.args = {
-  columns: clm,
-  items: [...Array(8).keys()].map((_, i) => ({
-    label: `Service #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isSortable: true,
+LoadMore.args = {
+  columns,
+  data: [...data],
+  hasNextPage: true,
+  onFetchNextPage: () => {},
 };
 
-export const Filters = DatagridStory.bind({});
+export const LoadAllAndLoading = DatagridStory.bind({});
 
-Filters.args = {
-  items: [...Array(50).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isPaginated: true,
-  isSortable: true,
-  columns: columnsFilters,
+LoadAllAndLoading.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  hasNextPage: true,
+  onFetchAllPages: () => {},
+  onFetchNextPage: () => {},
 };
 
-export const WithSubComponent = DatagridStory.bind({});
+export const ContainerHeight = DatagridStory.bind({});
 
-WithSubComponent.args = {
-  columns: clm,
-  items: [...Array(10).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  getRowCanExpand: () => true,
-  renderSubComponent: (row) => (
-    <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
+ContainerHeight.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  containerHeight: '260px',
+};
+
+export const SubComponent = DatagridStory.bind({});
+
+SubComponent.args = {
+  columns,
+  data: [...data],
+  autoScroll: false,
+  renderSubComponent: (row: any) => (
+    <>
+      <div>{row.original.person}</div>
+      <div>{row.original.mostInterestIn}</div>
+      <div>{row.original.age}</div>
+    </>
   ),
+  subComponentHeight: 80,
 };
 
-export default {
-  title: 'Manager UI Kit/Components/Datagrid Paginated',
+export const Expandable = DatagridStory.bind({});
+
+Expandable.args = {
+  columns,
+  data: [...data],
+  expandable: {
+    expanded: {},
+    setExpanded: () => {},
+  },
+  autoScroll: false,
+  subComponentHeight: 80,
+  subRows: true,
+};
+
+export const VisibilityColumns = DatagridStory.bind({});
+
+VisibilityColumns.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  columnVisibility: {
+    columnVisibility: { person: true, mostInterestIn: true, age: true },
+    setColumnVisibility: () => {},
+  },
+};
+
+export const Filtering = DatagridStory.bind({});
+
+Filtering.args = {
+  columns,
+  data: [...data],
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+};
+
+export const Search = DatagridStory.bind({});
+
+Search.args = {
+  columns,
+  data: [...data],
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+};
+
+export const RowSelection = DatagridStory.bind({});
+
+RowSelection.args = {
+  columns,
+  data: [...data],
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
+};
+
+export const Topbar = DatagridStory.bind({});
+
+Topbar.args = {
+  columns,
+  data: [...data],
+  topbar: (
+    <div>
+      <Button size={BUTTON_SIZE.sm}>
+        <Icon name={ICON_NAME.plus} />
+        Add New
+      </Button>
+    </div>
+  ),
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
+  columnVisibility: {
+    columnVisibility: { person: true, mostInterestIn: true, age: true },
+    setColumnVisibility: () => {},
+  },
+};
+
+export const TotalCount = DatagridStory.bind({});
+
+TotalCount.args = {
+  columns,
+  data: [...data],
+  totalCount: 4,
+};
+
+export const FullFooter = DatagridStory.bind({});
+
+FullFooter.args = {
+  columns,
+  data: [...data],
+  hasNextPage: true,
+  onFetchAllPages: () => {},
+  onFetchNextPage: () => {},
+  totalCount: 4,
+};
+
+const meta = {
+  title: 'Manager UI Kit/Components/Datagrid New',
   component: Datagrid,
   decorators: [withRouter],
   parameters: {
-    status: {
-      type: 'deprecated',
-    },
     docs: {
       description: {
         component:
-          'The `Datagrid` component in pagination mode is now `deprecated`. Please switch to the cursor navigation mode',
+          'The `Datagrid` component provides a powerful data table with built-in pagination controls. The footer actions section includes "Load More" and "Load All" buttons for progressive data loading.',
       },
+    },
+    preserveArgs: false,
+  },
+  args: {},
+  argTypes: {
+    hasNextPage: {
+      description: 'Controls whether pagination buttons are shown',
+      control: 'boolean',
+    },
+    isLoading: {
+      description: 'Shows loading state on pagination buttons',
+      control: 'boolean',
     },
   },
 };
+
+export default meta;
