@@ -1121,7 +1121,7 @@ export default [
               {
                 path: '',
                 id: 'qpu',
-                ...lazyRouteConfig(() => import('@/pages/qpus/Qpus.page')),
+                ...lazyRouteConfig(() => import('@/pages/qpus/Qpu.page')),
 
                 children: [
                   {
