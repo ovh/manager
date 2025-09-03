@@ -1,6 +1,8 @@
-import { ShellClientApi } from '@ovh-ux/shell';
 import { ReactNode } from 'react';
+
 import { Environment } from '@ovh-ux/manager-config';
+import { ShellClientApi } from '@ovh-ux/shell';
+
 import { ShellContext } from './ShellContext';
 
 /**
@@ -16,13 +18,5 @@ export const ShellProvider = ({
   };
   children: ReactNode;
 }) => {
-  return (
-    <>
-      {client && (
-        <ShellContext.Provider value={client}>{children}</ShellContext.Provider>
-      )}
-    </>
-  );
+  return <>{client && <ShellContext.Provider value={client}>{children}</ShellContext.Provider>}</>;
 };
-
-export default ShellProvider;
