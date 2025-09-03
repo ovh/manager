@@ -35,6 +35,10 @@ export default mergeConfig(createConfig(), {
     alias: {
       '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
       '@': path.resolve(__dirname, 'src'),
+      '@tanstack/react-virtual': path.resolve(
+        __dirname,
+        'src/__mocks__/@tanstack/react-virtual.ts',
+      ),
     },
     mainFields: ['module'],
   },
