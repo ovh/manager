@@ -506,6 +506,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('key-management-service:secret-manager') && {
           id: 'okms-secret-manager',
           title: 'Secret Manager',
+          badge: 'beta',
           href: getURL('key-management-service', `#/secret-manager`),
         },
       ],
