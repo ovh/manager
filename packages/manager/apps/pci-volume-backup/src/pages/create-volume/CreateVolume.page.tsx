@@ -79,7 +79,7 @@ export default function CreateVolumePage() {
           'pci_projects_project_storages_volume_backup_list_create_volume_request_success',
         values: { volumeName: newVolume.name },
       });
-      shell.navigation.navigateTo(
+      shell?.navigation?.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/blocks`,
         {},

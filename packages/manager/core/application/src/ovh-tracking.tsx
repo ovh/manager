@@ -38,8 +38,8 @@ const OSDS_COMPONENT = [
 
 export function OvhTracking({ shell }: ShellContextType) {
   const location = useLocation();
-  const { tracking, environment } = shell;
-  const env = environment.getEnvironment();
+  const { tracking, environment } = shell || {};
+  const env = environment?.getEnvironment();
   const [locationPath, setLocationPath] = useState(location);
   const myStateRef = useRef(locationPath);
 
@@ -52,10 +52,10 @@ export function OvhTracking({ shell }: ShellContextType) {
 
   const OvhTrackPage = (loc: Location) => {
     const path = loc.pathname.split('/')[1];
-    env.then(({ applicationName, universe }) => {
+    env?.then(({ applicationName, universe }) => {
       const page = `${applicationName}::${path || 'homepage'}`;
       const name = `${universe}::app::${applicationName}`;
-      tracking.trackPage({
+      tracking?.trackPage({
         name,
         level2: trackLevel2(universe ?? '') || '',
         complete_page_name: page,
@@ -66,11 +66,11 @@ export function OvhTracking({ shell }: ShellContextType) {
   };
 
   const ovhTrackingSendClick = (value: string) => {
-    env.then(({ applicationName, universe }) => {
+    env?.then(({ applicationName, universe }) => {
       const path = myStateRef.current.pathname.split('/')[1];
       const name = `${applicationName}::${path || 'homepage'}::${value}`;
       const page = `${universe}::app::${applicationName}`;
-      tracking.trackClick({
+      tracking?.trackClick({
         name,
         page: { name: page },
         page_category: path || 'homepage',

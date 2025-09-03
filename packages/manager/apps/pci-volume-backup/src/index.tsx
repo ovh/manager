@@ -35,8 +35,11 @@ const init = async (appName: string) => {
     ns: ['listing', 'dashboard', 'onboarding'],
   });
 
-  const region = context.environment.getRegion();
-  context.shell.tracking.setConfig(region, LEVEL2);
+  const region = context.environment?.getRegion();
+  if(region) {
+    context?.shell?.tracking.setConfig(region, LEVEL2);
+  }
+
   try {
     await import(`./config-${region}.js`);
   } catch (error) {

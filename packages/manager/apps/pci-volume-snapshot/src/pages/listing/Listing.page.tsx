@@ -135,7 +135,7 @@ export default function ListingPage() {
                 icon="plus"
                 label={t('pci_projects_project_storages_snapshots_add_label')}
                 onClick={() =>
-                  shell.navigation.navigateTo(
+                  shell?.navigation?.navigateTo?.(
                     'public-cloud',
                     `#/pci/projects/${projectId}/storages/volume-backup/create`,
                     { volumeOption: 'volume_snapshot' },

@@ -48,7 +48,7 @@ export default function CreateVolumePage() {
   const { createVolume, isPending } = useCreateVolume({
     projectId: projectId || '',
     onSuccess: () => {
-      shell.navigation.navigateTo(
+      shell?.navigation?.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/blocks`,
         {},
