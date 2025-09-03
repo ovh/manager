@@ -1,15 +1,12 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Links,
   LinkType,
-  TileBlock,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { useHref } from 'react-router-dom';
+import { Text } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
@@ -34,27 +31,13 @@ const InstancePropertyBlock: FC = () => {
         label={t('pci_instances_dashboard_storage_title')}
         isLoading={isInstanceLoading}
       >
-        <OsdsText
-          className="my-4"
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {instance?.flavor?.storage}
-        </OsdsText>
+        <Text>{instance?.flavor?.storage}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock
         label={t('pci_instances_dashboard_public_bandwidth_title')}
         isLoading={isInstanceLoading}
       >
-        <OsdsText
-          className="my-4"
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {instance?.flavor?.publicBandwidth}
-        </OsdsText>
+        <Text>{instance?.flavor?.publicBandwidth}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock
         label={t('list:pci_instances_list_column_volumes')}
@@ -70,14 +53,7 @@ const InstancePropertyBlock: FC = () => {
               />
             ))
           ) : (
-            <OsdsText
-              className="my-4"
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.body}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              -
-            </OsdsText>
+            <Text className="my-4">-</Text>
           )}
           <Links
             label={t('pci_instances_dashboard_attach_volumes')}
@@ -90,45 +66,32 @@ const InstancePropertyBlock: FC = () => {
         label={t('list:pci_instances_list_column_image')}
         isLoading={isInstanceLoading}
       >
-        <div className="flex flex-col">
-          <OsdsText
-            className="my-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {instance?.image}
-          </OsdsText>
-          {instance?.isEditEnabled && (
-            <Links
-              label={t('pci_instances_dashboard_edit_image')}
-              type={LinkType.next}
-              href={hrefEditInstance}
-            />
-          )}
-        </div>
+        <Text className="my-4">{instance?.image}</Text>
+        {instance?.isEditEnabled && (
+          <Links
+            label={t('pci_instances_dashboard_edit_image')}
+            type={LinkType.next}
+            href={hrefEditInstance}
+          />
+        )}
       </DashboardTileBlock>
       {instance?.sshKey && (
         <DashboardTileBlock
           label={t('pci_instances_dashboard_ssh_key')}
           isLoading={isInstanceLoading}
         >
-          <OsdsText
-            className="my-4"
-            size={ODS_TEXT_SIZE._400}
-            level={ODS_TEXT_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {instance.sshKey}
-          </OsdsText>
+          <Text>{instance.sshKey}</Text>
         </DashboardTileBlock>
       )}
       {instance?.login && (
-        <TileBlock label={t('pci_instances_dashboard_network_connexion')}>
+        <DashboardTileBlock
+          label={t('pci_instances_dashboard_network_connexion')}
+          withoutDivider
+        >
           <div className="flex">
             <Clipboard value={instance.login} />
           </div>
-        </TileBlock>
+        </DashboardTileBlock>
       )}
     </DashboardCardLayout>
   );
