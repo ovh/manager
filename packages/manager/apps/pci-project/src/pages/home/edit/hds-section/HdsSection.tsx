@@ -114,6 +114,7 @@ export default function HdsSection({ project }: { project: TProject }) {
 
       <OdsButton
         size="md"
+        className="w-fit"
         color="primary"
         label={t('pci_projects_project_edit_hds_btn_validate')}
         isDisabled={!isContractsChecked}
