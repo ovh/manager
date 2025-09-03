@@ -25,16 +25,16 @@ export const ErrorBoundary = () => {
   const routerError = useRouteError();
   const errorBannerError = mapUnknownErrorToBannerError(routerError);
 
-  const nav = useContext(ShellContext).shell.navigation;
+  const nav = useContext(ShellContext).shell?.navigation;
 
   const redirectionApplication = 'public-cloud';
 
   const navigateToHomePage = () => {
-    nav.navigateTo(redirectionApplication, '', {});
+    nav?.navigateTo(redirectionApplication, '', {});
   };
 
   const reloadPage = () => {
-    nav.reload();
+    nav?.reload();
   };
 
   return (

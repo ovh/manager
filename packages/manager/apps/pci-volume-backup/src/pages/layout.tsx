@@ -24,7 +24,7 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
-    shell.ux.hidePreloader();
+    shell?.ux.hidePreloader();
   }, []);
 
   return (

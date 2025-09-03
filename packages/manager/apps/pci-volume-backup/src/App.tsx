@@ -15,7 +15,7 @@ function App() {
   const router = createHashRouter(createRoutesFromElements(Routes));
 
   useEffect(() => {
-    shell.ux.hidePreloader();
+    shell?.ux.hidePreloader();
   }, []);
 
   return (

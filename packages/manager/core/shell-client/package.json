@@ -14,7 +14,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.2.1",
@@ -27,7 +29,7 @@
     "i18next-http-backend": "^2.4.2"
   },
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*"
   },
   "peerDependencies": {
     "react": "^18.2.0",

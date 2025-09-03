@@ -69,11 +69,11 @@ function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
 }
 
 function useGuideUtils() {
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment?.getUser() || {};
   const [list, setList] = useState({});
 
   useEffect(() => {
-    const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
+    const guideList = getGuideListLink({ subsidiary: ovhSubsidiary || '' });
     setList(guideList);
   }, [ovhSubsidiary]);
 

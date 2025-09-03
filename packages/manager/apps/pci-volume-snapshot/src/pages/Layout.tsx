@@ -30,16 +30,16 @@ export default function Layout() {
 
 export const ErrorBoundary = () => {
   const error = useRouteError() as ApiError;
-  const nav = useContext(ShellContext).shell.navigation;
+  const nav = useContext(ShellContext).shell?.navigation;
 
   const redirectionApplication = 'public-cloud';
 
   const navigateToHomePage = () => {
-    nav.navigateTo(redirectionApplication, '', {});
+    nav?.navigateTo(redirectionApplication, '', {});
   };
 
   const reloadPage = () => {
-    nav.reload();
+    nav?.reload();
   };
   return (
     <Suspense>

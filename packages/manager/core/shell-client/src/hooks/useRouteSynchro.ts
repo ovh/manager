@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { ShellContext } from '../ShellContext';
 
 export const useRouteSynchro = () => {

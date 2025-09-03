@@ -1,6 +1,7 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { ShellClientApi, RegionsTrackingConfig } from '@ovh-ux/shell';
 import { createContext } from 'react';
+
+import { Environment } from '@ovh-ux/manager-config';
+import { RegionsTrackingConfig, ShellClientApi } from '@ovh-ux/shell';
 
 export type TrackingContextParams = {
   chapter1?: string;
@@ -13,9 +14,9 @@ export type TrackingContextParams = {
 };
 
 export type ShellContextType = {
-  shell: ShellClientApi;
-  environment: Environment;
-  tracking?: TrackingContextParams;
+  shell?: ShellClientApi | null;
+  environment?: Environment | null;
+  tracking?: TrackingContextParams | null;
 };
 
 export const ShellContext = createContext<ShellContextType>({
@@ -23,5 +24,3 @@ export const ShellContext = createContext<ShellContextType>({
   environment: null,
   tracking: null,
 });
-
-export default ShellContext;

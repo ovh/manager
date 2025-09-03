@@ -13,7 +13,7 @@ export function useSuspendNonMigrateRoutes() {
   const { environment } = useContext(ShellContext);
   const location = useLocation();
 
-  const routes = environment.applications['pci-instances']?.container.hashes;
+  const routes = environment?.applications['pci-instances']?.container.hashes;
 
   const queryFn = useCallback(() => {
     const isRouteAvailable =

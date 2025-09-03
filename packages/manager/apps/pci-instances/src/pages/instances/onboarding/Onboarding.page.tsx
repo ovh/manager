@@ -25,7 +25,7 @@ import { Spinner } from '@/components/spinner/Spinner.component';
 const Onboarding: FC = () => {
   const { t } = useTranslation(['onboarding', 'common']);
   const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser() as {
+  const { ovhSubsidiary } = context.environment?.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
   };
   const project = useRouteLoaderData('root') as TProject | undefined;

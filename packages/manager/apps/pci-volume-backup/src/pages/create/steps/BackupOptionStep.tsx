@@ -51,7 +51,7 @@ export default function BackupOptionStep({
   backupOptions,
 }: BackupOptionStepProps) {
   const { t } = useTranslation(['create', 'pci-volume-backup']);
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment?.getUser() || {};
   const { trackClick } = useOvhTracking();
 
   const isMobileView = useMedia(`(max-width: 36em)`);

@@ -7266,20 +7266,6 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.1.tgz#5b55d7c0ca746ebf3858840cbcffaf15cc8d9084"
-  integrity sha512-4pxHJE/3vWLEcYl2dVmXURQsuf6VHlZeRKWprXSf7fP+V5SjfRDLfA2kPvT9rh/mk5LXa7+xZXY2t48+FenuHg==
-  dependencies:
-    "@ovh-ux/manager-config" "^8.2.1"
-    "@ovh-ux/ovh-at-internet" "^0.24.1"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.5.7"
-    "@ovh-ux/url-builder" "^2.0.4"
-    "@tanstack/react-query" "^5.64.1"
-    i18next "^23.8.2"
-    i18next-http-backend "^2.4.2"
-
 "@ovh-ux/manager-tests-setup@^0.2.0", "@ovh-ux/manager-tests-setup@latest":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-tests-setup/-/manager-tests-setup-0.2.0.tgz#63f3ec12e420e73072656d3cec5e7b2c4c7c15e5"
@@ -14968,7 +14954,7 @@ bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3.4.1:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
-bootstrap@^4.3.1, bootstrap@^4.4.1:
+bootstrap@^4.3.1:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
   integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==

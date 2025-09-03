@@ -29,7 +29,7 @@ export default function BadgeRegionType({
 }: Readonly<BadgeRegionTypeProps>) {
   const { t } = useTranslation('volume-edit');
   const context = useContext(ShellContext);
-  const { ovhSubsidiary } = context.environment.getUser();
+  const { ovhSubsidiary } = context.environment?.getUser() || {};
   const triggerId = useId();
 
   const regionValues: TRegionValues = {
@@ -37,7 +37,7 @@ export default function BadgeRegionType({
       label: t('pci_project_flavors_zone_localzone'),
       tooltipText: t('pci_project_flavors_zone_localzone_tooltip'),
       tooltipLink:
-        URL_INFO.LOCAL_ZONE[ovhSubsidiary] || URL_INFO.LOCAL_ZONE.DEFAULT,
+        URL_INFO.LOCAL_ZONE[ovhSubsidiary || ''] || URL_INFO.LOCAL_ZONE.DEFAULT,
     },
     region: {
       label: t('pci_project_flavors_zone_global_region'),
@@ -45,14 +45,14 @@ export default function BadgeRegionType({
         ? t('pci_project_flavors_zone_globalregions_tooltip')
         : t('pci_project_flavors_zone_globalregions_tooltip_2'),
       tooltipLink:
-        URL_INFO.GLOBAL_REGIONS[ovhSubsidiary] ||
+        URL_INFO.GLOBAL_REGIONS[ovhSubsidiary || ''] ||
         URL_INFO.GLOBAL_REGIONS.DEFAULT,
     },
     'region-3-az': {
       label: t('pci_project_flavors_zone_3az_region'),
       tooltipText: t('pci_project_flavors_zone_3az_tooltip'),
       tooltipLink:
-        URL_INFO.GLOBAL_REGIONS[ovhSubsidiary] ||
+        URL_INFO.GLOBAL_REGIONS[ovhSubsidiary || ''] ||
         URL_INFO.GLOBAL_REGIONS.DEFAULT,
     },
   };

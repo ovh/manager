@@ -5,12 +5,12 @@ import { useLocation } from 'react-router-dom';
 export default function ShellRoutingSync() {
   const location = useLocation();
 
-  const { routing } = useContext(ShellContext).shell;
+  const { routing } = useContext(ShellContext).shell || {};
   useEffect(() => {
-    routing.stopListenForHashChange();
+    routing?.stopListenForHashChange();
   }, [routing]);
   useEffect(() => {
-    routing.onHashChange();
+    routing?.onHashChange();
   }, [location, routing]);
   return null;
 }
