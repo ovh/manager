@@ -3,4 +3,4 @@ import { requiredStatusKey } from "@/identity-documents-modal/IdentityDocumentsM
 
 export const isUserConcernedWithIndiaProcedure = (user: User) => !user.kycValidated;
 
-export const isIndiaProcedureToBeDone = (data: { status: string }) => data?.status === requiredStatusKey;
+export const isIndiaProcedureToBeDone = (data: { status: string }, error?: Error) => !error && data?.status === requiredStatusKey;
