@@ -2,6 +2,7 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { createInstallation } from '@/data/api/sapInstallations';
 import { StructuredInstallationForm } from '@/types/form.type';
+import { useHistoryInvalidation } from '@/hooks/queryInvalidation/useHistoryInvalidation';
 
 type UseInstallationCreationParams = {
   serviceName: string;
@@ -12,10 +13,16 @@ type UseInstallationCreationParams = {
 export const useInstallationCreation = ({
   serviceName,
   ...options
-}: UseInstallationCreationParams) =>
-  useMutation({
-    mutationKey: ['vmwareServices'],
+}: UseInstallationCreationParams) => {
+  const invalidateInstallationHistory = useHistoryInvalidation();
+
+  return useMutation({
     mutationFn: (form: StructuredInstallationForm) =>
       createInstallation({ serviceName, form }),
     ...options,
+    onSuccess: (data, variables, context) => {
+      invalidateInstallationHistory();
+      options.onSuccess?.(data, variables, context);
+    },
   });
+};
