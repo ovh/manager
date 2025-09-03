@@ -36,12 +36,15 @@ type ConsumptionItemDetailPrice = {
   quantity: TQuantity;
   totalPrice: DetailedTotalPrice;
 };
+
+export type THourlyConsumptions = {
+  reference: string;
+  region: string;
+  details: ConsumptionItemDetailPrice[];
+};
+
 export type THourlyCurrentUsage = {
-  rancher: {
-    reference: string;
-    region: string;
-    details: ConsumptionItemDetailPrice[];
-  }[];
+  rancher: THourlyConsumptions[];
   instance: ({
     details: ({
       instanceId: string;
@@ -55,6 +58,7 @@ export type THourlyCurrentUsage = {
     region: string;
     totalPrice: number;
   }[];
+  managedKubernetesService: THourlyConsumptions[];
   snapshot: {
     instance: {
       quantity: TQuantity;
