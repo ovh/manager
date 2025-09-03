@@ -49,6 +49,7 @@ export const features = [
   'carbon-calculator',
   'network-security',
   'key-management-service',
+  'okms:key-management-service',
 ];
 
 export default function DedicatedSidebar() {
@@ -380,7 +381,7 @@ export default function DedicatedSidebar() {
         />
       );
       menu.push({
-        id: 'identity-security-operations',
+        id: 'identity-security-operations-legacy',
         label: t('sidebar_security_identity_operations'),
         icon: (
           <OsdsIcon
@@ -392,7 +393,7 @@ export default function DedicatedSidebar() {
         pathMatcher: new RegExp('^/key-management-service'),
         subItems: [
           {
-            id: 'key-management-service',
+            id: 'key-management-service-legacy',
             label: t('sidebar_key-management-service'),
             href: navigation.getURL('key-management-service', '/'),
             pathMatcher: new RegExp('^/key-management-service'),
@@ -417,6 +418,63 @@ export default function DedicatedSidebar() {
                   ...service,
                   pathMatcher: new RegExp(
                     `^/key-management-service/${service.serviceName}`,
+                  ),
+                })),
+              ];
+            },
+          },
+        ],
+      });
+    }
+
+    if (feature['okms:key-management-service']) {
+      const keyIcon = (
+        <OsdsIcon
+          name={ODS_ICON_NAME.KEY_CONCEPT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.text}
+        />
+      );
+      const app = 'okms';
+      const baseUrl = navigation.getURL(app, '/');
+
+      menu.push({
+        id: 'identity-security-operations',
+        label: t('sidebar_security_identity_operations'),
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
+        pathMatcher: new RegExp('^/okms/key-management-service'),
+        subItems: [
+          {
+            id: 'key-management-service',
+            label: t('sidebar_key-management-service'),
+            href: baseUrl,
+            pathMatcher: new RegExp('^/okms/key-management-service'),
+            icon: keyIcon,
+            async loader() {
+              const services = await loadServices(
+                '/okms/resource',
+                undefined,
+                app,
+              );
+
+              return [
+                {
+                  id: 'key-management-service-all',
+                  label: t('sidebar_service_all'),
+                  href: baseUrl,
+                  ignoreSearch: true,
+                  icon: keyIcon,
+                },
+                ...services.map((service) => ({
+                  ...service,
+                  pathMatcher: new RegExp(
+                    `^/okms/key-management-service/${service.serviceName}`,
                   ),
                 })),
               ];
