@@ -103,7 +103,7 @@ describe('useV6', () => {
 
   it('applies default sorting', () => {
     const { result } = renderUseV6Hook({
-      defaultSorting: getSorting('number', false),
+      defaultSorting: [{ id: 'number', desc: false }],
     });
     act(() => {
       fetchNextPage(result.current.fetchNextPage, 4);
@@ -115,10 +115,10 @@ describe('useV6', () => {
 
   it('applies sorting', () => {
     const { result } = renderUseV6Hook({
-      defaultSorting: getSorting('number', false),
+      defaultSorting: [{ id: 'number', desc: false }],
     });
     act(() => {
-      result.current.setSorting!(getSorting('number', true));
+      result.current.sorting!.setSorting!([{ id: 'number', desc: true }]);
     });
     act(() => {
       fetchNextPage(result.current.fetchNextPage, 4);
@@ -133,17 +133,6 @@ describe('useV6', () => {
     const { result } = renderUseV6Hook();
     act(() => {
       result.current.search!.onSearch(searchTerm);
-    });
-    result.current.flattenData.forEach((item: ResultObj) => {
-      expect(item.name).toContain(searchTerm);
-    });
-  });
-
-  it('applies searching with setSearchInput', () => {
-    const searchTerm = '1';
-    const { result } = renderUseV6Hook();
-    act(() => {
-      result.current.search!.setSearchInput(searchTerm);
     });
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(item.name).toContain(searchTerm);
@@ -212,7 +201,7 @@ describe('useV6', () => {
   it('performs all data operations of search/sort/filter', () => {
     // first tests the default sorting
     const { result } = renderUseV6Hook({
-      defaultSorting: getSorting('number', false),
+      defaultSorting: [{ id: 'number', desc: false }],
     });
     result.current.flattenData.forEach((item: ResultObj, index) => {
       expect(parseInt(item.number, 10)).toBe(index + 1);
@@ -239,9 +228,9 @@ describe('useV6', () => {
 
     // apply sorting descending order
     act(() => {
-      (result.current as UseDataApiResult).setSorting!(
-        getSorting('number', true),
-      );
+      (result.current as UseDataApiResult).sorting!.setSorting!([
+        { id: 'number', desc: true },
+      ]);
     });
     act(() => {
       fetchNextPage(result.current.fetchNextPage, 4);

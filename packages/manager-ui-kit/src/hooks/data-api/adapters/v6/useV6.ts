@@ -74,8 +74,11 @@ export const useV6 = <TData = Record<string, unknown>>({
     flattenData: flattenData?.slice(0, (pageIndex + 1) * pageSize),
     hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
     fetchNextPage,
-    sorting,
-    setSorting,
+    sorting: {
+      sorting,
+      setSorting,
+      manualSorting: true,
+    },
     filters: {
       filters,
       add: addFilter,

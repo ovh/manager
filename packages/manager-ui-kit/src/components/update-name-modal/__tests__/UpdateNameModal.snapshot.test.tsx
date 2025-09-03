@@ -1,13 +1,18 @@
 import { vitest } from 'vitest';
-import { render } from '@/setupTest';
+import { render, cleanup } from '@/setupTest';
 import { UpdateNameModal } from '../UpdateNameModal.component';
 
 const mockUpdateDisplayName = vitest.fn();
 const mockOnClose = vitest.fn();
 
 describe('UpdateNameModal Snapshot Tests', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    cleanup();
     vitest.resetAllMocks();
+    // Remove scroll lock attribute that modal adds to body
+    document.body.removeAttribute('data-scroll-lock');
+    // Wait for any pending async operations to complete
+    await new Promise((resolve) => setTimeout(resolve, 0));
   });
 
   describe('Basic Modal States', () => {
@@ -19,8 +24,6 @@ describe('UpdateNameModal Snapshot Tests', () => {
           updateDisplayName={mockUpdateDisplayName}
         />,
       );
-      console.log('container.parentElement', container.parentElement);
-
       expect(container.parentElement).toMatchSnapshot();
     });
 

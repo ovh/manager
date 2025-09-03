@@ -7256,9 +7256,9 @@
     uuid "^9.0.1"
 
 "@ovh-ux/manager-react-components@^2.42.2":
-  version "2.42.2"
-  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-2.42.2.tgz#b78eda2feed36c354a062e3c937264ccf41500f8"
-  integrity sha512-85hQoJ1mI+KMqtX7+jpu6QZ62SENk8VWRn+k2+F5eRdwyF02McbzVEZA6XZt0uCu6yNBvbpOWxdDwknsS9Th7g==
+  version "2.42.3"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-2.42.3.tgz#fe6130ad9f0f2a560aec1306c06095faabf03af0"
+  integrity sha512-SsMmA9TqVKqM5QLkceFaoMDI1S0yeZh5GHmNNRExT7TiuAJgfwkOa1vS21cxIjBtMYN5T0ykGfb3j/+Doc/HkQ==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@tanstack/react-query" "^5.51.21"

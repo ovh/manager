@@ -86,7 +86,7 @@ describe('useFilterAndSortData hook', () => {
           items,
           filters: [],
           searchFilters: [],
-          sorting: getSorting('number', false),
+          sorting: [getSorting('number', false)],
           columns,
         },
       },
@@ -100,7 +100,7 @@ describe('useFilterAndSortData hook', () => {
       items,
       filters: [],
       searchFilters: [],
-      sorting: getSorting('number', true),
+      sorting: [getSorting('number', true)],
       columns,
     });
     result.current.filteredAndSortedData.forEach((item, index) => {
@@ -129,7 +129,7 @@ describe('useFilterAndSortData hook', () => {
             managerCoreApi.FilterTypeCategories.Boolean,
           ),
         ],
-        sorting: getSorting('number', false),
+        sorting: [{ id: 'number', desc: false }],
         columns: [],
       });
     });

@@ -10,11 +10,7 @@ export * from './tiles-input-group';
 export * from './tiles-input';
 
 export * from './Link';
-export * from './datagrid/datagrid.component';
-export * from './datagrid/text-cell.component';
-export * from './datagrid/clipboard-cell.component';
 export * from './drawer';
-
 export * from './guide-menu';
 
 export * from './notifications';
@@ -43,3 +39,4 @@ export * from './update-name-modal';
 export * from './delete-modal';
 export * from './grid-layout';
 export * from './onboarding-layout';
+export * from './datagrid';
