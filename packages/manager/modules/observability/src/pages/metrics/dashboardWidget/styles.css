@@ -1,0 +1,21 @@
+/* Mobile first — applies to everything <640px */
+ods-modal::part(dialog) {
+  max-width: calc(100% - 64px) !important;
+  max-height: calc(100vh - 64px) !important;
+}
+
+/* Chart wrapper inside the modal */
+ods-modal .chart-component-wrapper {
+  height: calc(100vh - 100px); /* remove quotes */
+}
+
+@media (min-width: 1024px) {
+  ods-modal::part(dialog) {
+    max-width: calc(100% - 100px) !important;
+    max-height: calc(100vh - 200px) !important;
+  }
+
+  ods-modal .chart-component-wrapper {
+    height: calc(100vh - 400px); /* remove quotes */
+  }
+}
