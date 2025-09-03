@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       resolve: {
-        goToDeleteZertoModal: /* @ngInject */ ($state) => () =>
+        goToDeleteSiteZertoModal: /* @ngInject */ ($state) => () =>
           $state.go(
             'app.managedBaremetal.details.datacenters.datacenter.zerto.summary.deleteZerto',
           ),
