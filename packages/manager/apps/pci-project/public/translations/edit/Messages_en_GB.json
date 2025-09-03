@@ -6,7 +6,7 @@
   "pci_projects_project_edit_update_success": "Project successfully updated.",
   "pci_projects_project_edit_update_error": "An error has occurred updating the project ({{ error }}).",
   "pci_projects_project_edit_remove": "Delete project",
-  "pci_projects_project_edit_remove_description": "When you delete a project, all of the resources stored on it will be deleted. This includes data, infrastructures and services. Please ensure that you have retrieved any information you want to keep before launching this irreversible operation.",
+  "pci_projects_project_edit_remove_description": "When you delete a project, all of the resources stored on it will be deleted. This includes data, infrastructures and services. <br/><strong>Please ensure that you have retrieved any information you want to keep before launching this irreversible operation.</strong>",
   "pci_projects_project_edit_error_forbidden": "You do not have enough permissions to view your HDS certification data. Please contact the service owner.",
   "pci_projects_project_edit_discovery_disable_tooltip": "You can only edit in an active project."
 }
