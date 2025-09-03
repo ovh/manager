@@ -84,12 +84,12 @@
     "./src/components/order/**/*",
     "./src/components/grid-layout/**/*",
     "./src/hooks/data-api/**/*",
-    "./src/components/drawer/**/*"
+    "./src/components/drawer/**/*",
+    "./src/components/datagrid/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
     "./src/components/**/test.tsx",
-    "./src/components/**/__tests__/*",
     "./src/tailwind/*",
     "./src/__mocks__/*",
     "../manager-tools/manager-legacy-tools/**/*"

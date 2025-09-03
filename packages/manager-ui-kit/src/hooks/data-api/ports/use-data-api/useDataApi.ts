@@ -24,7 +24,7 @@ export const useDataApi = <TData = Record<string, unknown>>({
       pageSize,
       cacheKey,
       enabled,
-      defaultSorting,
+      defaultSorting: defaultSorting ?? [],
       fetchAll,
       columns,
       disableCache,

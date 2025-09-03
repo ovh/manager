@@ -4,7 +4,8 @@ import {
   FilterTypeCategories,
   Filter,
 } from '@ovh-ux/manager-core-api';
-import { ColumnSort, DatagridColumn } from '../../../../../components';
+import { SortingState } from '@tanstack/react-table';
+import { DatagridColumn } from '../../../../../components';
 import { compare } from './filterAndSort.utils';
 
 export const useFilterAndSortData = <TData = Record<string, unknown>>({
@@ -17,7 +18,7 @@ export const useFilterAndSortData = <TData = Record<string, unknown>>({
   items: TData[] | undefined;
   filters: Filter[];
   searchFilters: Filter[];
-  sorting: ColumnSort | undefined;
+  sorting: SortingState | undefined;
   columns: DatagridColumn<TData>[];
 }) => {
   const filteredData: TData[] = useMemo(() => {
@@ -28,14 +29,14 @@ export const useFilterAndSortData = <TData = Record<string, unknown>>({
   const filteredAndSortedData: TData[] = useMemo(() => {
     if (sorting) {
       const columnType =
-        columns.find((col) => col.id === sorting.id)?.type ||
+        columns.find((col) => col.id === sorting[0]?.id)?.type ||
         FilterTypeCategories.String;
       return [...filteredData].sort((a: TData, b: TData) =>
         compare(
           columnType,
-          `${(a as Record<string, unknown>)?.[sorting.id]}`,
-          `${(b as Record<string, unknown>)?.[sorting.id]}`,
-          sorting.desc,
+          `${(a as Record<string, unknown>)?.[sorting[0]?.id]}`,
+          `${(b as Record<string, unknown>)?.[sorting[0]?.id]}`,
+          sorting[0]?.desc,
         ),
       );
     }
