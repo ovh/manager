@@ -1,20 +1,10 @@
 import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_DIVIDER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
-import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
 import { BaseActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
@@ -118,25 +108,17 @@ const InstanceNetworkingBlock: FC = () => {
           </NetworkItem>
         ))}
       </DashboardTileBlock>
-      <LoadingCell isLoading={isInstanceLoading}>
-        <div className="flex flex-col mb-3">
-          <div className="flex items-center justify-between">
-            <OsdsText
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              hue={ODS_THEME_COLOR_HUE._800}
-              size={ODS_TEXT_SIZE._200}
-            >
-              {t('pci_instances_dashboard_network_private_title')}
-            </OsdsText>
-            <BaseActionsMenu items={privateIpActionsLinks} />
-          </div>
-          {privateIps?.map((privateIp) => (
-            <NetworkItem key={privateIp.ip} address={privateIp} />
-          ))}
-          <OsdsDivider separator size={ODS_DIVIDER_SIZE.six} />
+      <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
+        <div className="flex items-center justify-between">
+          <Text preset={TEXT_PRESET.heading6}>
+            {t('pci_instances_dashboard_network_private_title')}
+          </Text>
+          <BaseActionsMenu items={privateIpActionsLinks} />
         </div>
-      </LoadingCell>
+        {privateIps?.map((privateIp) => (
+          <NetworkItem key={privateIp.ip} address={privateIp} />
+        ))}
+      </DashboardTileBlock>
     </DashboardCardLayout>
   );
 };
