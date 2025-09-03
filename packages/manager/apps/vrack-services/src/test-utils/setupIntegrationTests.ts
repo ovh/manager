@@ -55,10 +55,6 @@ vi.mock('element-internals-polyfill/dist/utils.js', async () => {
 const mockLabels: NodeListOf<HTMLLabelElement> = {
   item: vi.fn(),
   forEach: vi.fn(),
-  entries: vi.fn(),
-  keys: vi.fn(),
-  values: vi.fn(),
-  [Symbol.iterator]: vi.fn(),
   length: 0,
 };
 
