@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-app",
-  "version": "0.4.21",
+  "version": "0.4.22",
   "private": true,
   "description": "OVHcloud Billing app",
   "repository": {
@@ -49,7 +49,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.5",
     "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/shell": "^4.6.0",
+    "@ovh-ux/shell": "^4.7.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
