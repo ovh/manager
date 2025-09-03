@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           });
       },
       resolve: {
-        goToDeleteZertoModal: /* @ngInject */ ($state) => () =>
+        goToDeleteSiteZertoModal: /* @ngInject */ ($state) => () =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.zerto.summary.deleteZerto',
           ),
