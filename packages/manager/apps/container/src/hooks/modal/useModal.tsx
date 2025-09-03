@@ -34,7 +34,7 @@ export const useCheckModalDisplaySynchronous = (
 
 export const useCheckModalDisplay = (
   queryExecutor?: (enabled: boolean) => UseQueryResult,
-  dataCheck?: (data: any) => boolean,
+  dataCheck?: (data: any, error?: Error) => boolean,
   features?: string[],
   modalPreferenceKey?: string,
   intervalInSeconds?: number,
@@ -91,11 +91,11 @@ export const useCheckModalDisplay = (
   // If synchronous checks are not OK, features are not available, user is not authorized, not enough time elapsed since the last display, or there is no data to check, we skip the check
   const hasDataToCheck = queryExecutor !== undefined;
   const isQueryExecutorEnabled = isCheckOk && isFeatureAvailable && isAccountAuthorized && isTimeToShowModal && hasDataToCheck;
-  const { data, isFetched } = queryExecutor !== undefined
+  const { data, isFetched, error } = queryExecutor !== undefined
     ? queryExecutor(Boolean(isQueryExecutorEnabled))
-    : { data: undefined, isFetched: true };
+    : { data: undefined, isFetched: true, error: null };
   
-  const isDataCheckOk = !hasDataToCheck || !dataCheck || (isFetched && dataCheck(data));
+  const isDataCheckOk = !hasDataToCheck || !dataCheck || (isFetched && dataCheck(data, error));
 
   if (!isCheckOk) {
     return false;
