@@ -425,6 +425,7 @@ export default function DedicatedSidebar() {
           feature['key-management-service:secret-manager'] && {
             id: 'okms-secret-manager',
             label: 'Secret Manager',
+            badge: 'beta',
             icon: <OsdsIcon
                     name={ODS_ICON_NAME.SHIELD_CONCEPT}
                     size={ODS_ICON_SIZE.xxs}
