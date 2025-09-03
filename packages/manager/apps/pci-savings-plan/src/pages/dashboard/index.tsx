@@ -1,7 +1,7 @@
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import ConsumptionDatagrid from '@/components/Dashboard/ConsumptionDatagrid/ConsumptionDatagrid';
@@ -13,6 +13,7 @@ import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 import Header from '@/components/Header/Header';
 import { useProjectId } from '@/hooks/useProject';
+import { isInstanceFlavor } from '@/utils/savingsPlan';
 
 const Dashboard: React.FC = () => {
   const projectId = useProjectId();
@@ -44,6 +45,7 @@ const Dashboard: React.FC = () => {
     () => consumption?.flavors?.find((f) => f.flavor === flavor),
     [consumption, flavor],
   );
+  const isInstance = useMemo(() => isInstanceFlavor(flavor), [flavor]);
 
   useEffect(() => {
     if (!isLoading && !isPending && savingsPlan?.length === 0) {
@@ -65,6 +67,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header title={t('listing:title')} />
+
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('dashboard_description')}
       </OdsText>
@@ -102,6 +105,7 @@ const Dashboard: React.FC = () => {
         />
       )}
       <ConsumptionDatagrid
+        isInstanceFlavor={isInstance}
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}
       />

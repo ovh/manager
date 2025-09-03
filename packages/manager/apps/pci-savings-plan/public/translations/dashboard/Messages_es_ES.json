@@ -28,5 +28,11 @@
   "dashboard_graph_y_axis_label_vcpu": "Número de vCPU",
   "dashboard_graph_x_axis_label": "Día",
   "dashboard_graph_included": "Incluido en los Savings Plans",
-  "dashboard_graph_excluded": "Excluido de los Savings Plans"
+  "dashboard_graph_excluded": "Excluido de los Savings Plans",
+  "dashboard_resource_list_title": "Recursos utilizados",
+  "dashboard_resource_list_search": "Buscar un ID",
+  "dashboard_resource_list_no_results": "No se han encontrado resultados para \"{{searchQuery}}\"",
+  "dashboard_resource_list_no_resources": "No hay recursos utilizados para este flavor",
+  "dashboard_resource_list_details": "Detalles",
+  "dashboard_resource_list_view_resources": "Ver los recursos"
 }
