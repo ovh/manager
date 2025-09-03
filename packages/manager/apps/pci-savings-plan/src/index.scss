@@ -33,6 +33,10 @@ ods-tag.org-tag::part(tag) {
   transform: translateY(-10%);
 }
 
+button[data-testid='drawer-backdrop'] {
+  opacity: 0.8;
+}
+
 .dns-field {
   width: 100%;
 
