@@ -34,6 +34,7 @@ export const features = [
   'ip',
   'identity-access-management',
   'identity-access-management:logs',
+  'identity-access-management:tag-management',
   'public-cloud',
   'dedicated-server:order',
   'kubernetes',
