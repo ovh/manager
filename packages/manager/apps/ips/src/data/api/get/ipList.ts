@@ -18,7 +18,7 @@ export type GetIpListParams = {
   /** Filter the value of isAdditionalIp property (&#x3D;) (alpha) */
   isAdditionalIp?: boolean;
   /** Filter the value of routedTo.serviceName property (like) */
-  routedToserviceName?: string;
+  'routedTo.serviceName'?: string;
   /** Filter the value of type property (&#x3D;) */
   type?: IpTypeEnum;
   /** Filter the value of version property (&#x3D;) (alpha) */
@@ -44,3 +44,14 @@ export const getIcebergIpList = (params: GetIpListParams) =>
       comparator: FilterComparator.IsEqual,
     })),
   });
+
+export interface ExportIpToCsvData {
+  ipBlock: string;
+  version: string;
+  type: string;
+  country: string | null;
+  routedTo: {
+    serviceName: string;
+  };
+  description: string | null;
+}
