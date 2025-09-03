@@ -4,15 +4,17 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import {
+  ActionMenu,
   Datagrid,
   DataGridTextCell,
   useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SavingsPlanFlavorConsumption,
@@ -21,10 +23,12 @@ import {
 import { toLocalDateUTC } from '@/utils/formatter/date';
 import { paginateResults } from '@/utils/paginate/utils';
 import { useProjectId } from '@/hooks/useProject';
+import ConsumptionResourceList from './ConsumptionResourceList';
 
 type ConsumptionDatagridProps = {
   isLoading: boolean;
   consumption: SavingsPlanFlavorConsumption;
+  isInstanceFlavor: boolean;
 };
 
 const CellText = ({ text }: { text: string }) => (
@@ -34,16 +38,19 @@ const CellText = ({ text }: { text: string }) => (
 const ConsumptionDatagrid = ({
   isLoading,
   consumption,
+  isInstanceFlavor,
 }: ConsumptionDatagridProps) => {
   const { pagination, setPagination } = useDataGrid();
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
   const { t } = useTranslation(['dashboard', 'listing']);
   const { trackClick } = useOvhTracking();
-
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [selectedResources, setSelectedResources] = useState<string[]>([]);
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { clearNotifications } = useNotifications();
+
   const columns = [
     {
       label: t('dashboard_columns_start'),
@@ -71,6 +78,28 @@ const ConsumptionDatagrid = ({
       id: 'cumulPlanSize',
       cell: (props: SavingsPlanPeriodConsumption) => (
         <CellText text={props.cumulPlanSize?.toString()} />
+      ),
+    },
+    {
+      label: '',
+      id: 'action',
+      cell: (props: SavingsPlanPeriodConsumption) => (
+        <ActionMenu
+          popover-position="bottom-end"
+          id={props.begin + props.end}
+          items={[
+            {
+              id: 1,
+              label: t('dashboard_resource_list_view_resources'),
+              onClick: () => {
+                setSelectedResources(props.plansIds);
+                setDrawerOpen(true);
+              },
+            },
+          ]}
+          isCompact
+          variant={ODS_BUTTON_VARIANT.ghost}
+        />
       ),
     },
   ];
@@ -102,8 +131,19 @@ const ConsumptionDatagrid = ({
     }
   }, [items]);
 
+  const handleCloseDrawer = () => {
+    setSelectedResources([]);
+    setDrawerOpen(false);
+  };
+
   return (
     <div>
+      <ConsumptionResourceList
+        isInstanceFlavor={isInstanceFlavor}
+        isDrawerOpen={isDrawerOpen}
+        resources={selectedResources}
+        handleCloseDrawer={handleCloseDrawer}
+      />
       <OdsText preset="heading-4" className="mt-8">
         {t('dashboard_table_title')}
       </OdsText>
