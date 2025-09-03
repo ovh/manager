@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.6.0...@ovh-ux/shell@4.7.0) (2025-09-03)
+
+
+### Features
+
+* **ovh-shell:** implement location plugin ([047e2f7](https://github.com/ovh/manager/commit/047e2f7be153091826280b93e5a84997106e0f0a)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341)
+
+
+
+
+
 # [4.6.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.5.7...@ovh-ux/shell@4.6.0) (2025-08-27)
 
 
