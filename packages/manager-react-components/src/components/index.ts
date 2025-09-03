@@ -11,11 +11,6 @@ export * from './tiles-input';
 export * from './templates';
 
 export * from './Link';
-export * from './datagrid/datagrid.component';
-export * from './datagrid/text-cell.component';
-export * from './datagrid/useDatagrid';
-export * from './datagrid/useDatagridSearchParams';
-export * from './datagrid/clipboard-cell.component';
 
 export * from './drawer/Drawer.component';
 export * from './drawer/DrawerCollapsible.component';
@@ -47,3 +42,4 @@ export * from './error-boundary';
 export * from './update-name-modal';
 export * from './delete-modal';
 export * from './grid-layout';
+export * from './datagrid';
