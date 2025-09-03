@@ -5,5 +5,6 @@
   "suggestion_modal_listed_type_SIRET": "SIRET",
   "suggestion_modal_listed_type_VAT": "Intra-Community VAT number",
   "suggestion_modal_action_modify": "Update profile",
-  "suggestion_modal_action_confirm": "Confirm this information"
+  "suggestion_modal_action_confirm": "Confirm this information",
+  "suggestion_modal_listed_type_NIN": "National identification number"
 }

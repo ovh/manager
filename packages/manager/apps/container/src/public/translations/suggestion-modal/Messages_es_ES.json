@@ -5,5 +5,6 @@
   "suggestion_modal_listed_type_SIRET": "SIRET:",
   "suggestion_modal_listed_type_VAT": "N.º de IVA intracomunitario",
   "suggestion_modal_action_modify": "Actualizo mi perfil",
-  "suggestion_modal_action_confirm": "Confirmo esta información"
+  "suggestion_modal_action_confirm": "Confirmo esta información",
+  "suggestion_modal_listed_type_NIN": "NIF"
 }
