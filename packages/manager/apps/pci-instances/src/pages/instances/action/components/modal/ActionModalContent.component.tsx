@@ -1,14 +1,13 @@
 import { FC, useMemo } from 'react';
 import {
-  OsdsMessage,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Skeleton,
+  Text,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { isCustomUrlSection, replaceToSnakeCase } from '@/utils';
 import { TSectionType } from '@/types/instance/action/action.type';
@@ -90,36 +89,26 @@ export const ActionModalContent: FC<TActionModalProps> = ({
     <div className="pt-6">
       {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment  */}
       {[...new Array(3)].map((_elt, index) => (
-        <OsdsSkeleton key={index} />
+        <Skeleton key={index} />
       ))}
     </div>
   ) : (
     <>
       {labels.map((label) => (
-        <OsdsText
-          key={label}
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._400}
-          className="block mt-6"
-        >
+        <Text key={label} className="block mt-6">
           {label}
-        </OsdsText>
+        </Text>
       ))}
       {children}
       {warningMessage && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.warning}
-          type={ODS_MESSAGE_TYPE.warning}
+        <Message
+          color={MESSAGE_COLOR.warning}
           className="mt-6"
+          dismissible={false}
         >
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.text}
-          >
-            {warningMessage}
-          </OsdsText>
-        </OsdsMessage>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>{warningMessage}</MessageBody>
+        </Message>
       )}
     </>
   );

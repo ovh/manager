@@ -1,15 +1,15 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { useId } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Modal as ODSModal, ModalContent, Button } from '@ovhcloud/ods-react';
+  Button,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  Modal as ODSModal,
+  ModalContent,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 
 export type TModalVariant = 'primary' | 'warning' | 'critical';
 
@@ -48,21 +48,14 @@ const Modal = ({
         dismissible={dismissible}
       >
         <div id={id} className="px-8 pt-6 pb-10">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_TEXT_SIZE._400}
-            hue={ODS_TEXT_COLOR_HUE._800}
-            level={ODS_TEXT_LEVEL.heading}
-          >
-            {title}
-          </OsdsText>
+          <Text preset={TEXT_PRESET.heading4}>{title}</Text>
           {children}
         </div>
         <div className="flex justify-end p-8 pt-0 gap-4">
           <Button
             disabled={isPending}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={BUTTON_VARIANT.ghost}
+            color={BUTTON_COLOR.primary}
             onClick={onModalClose}
           >
             {t('cancel')}
@@ -70,7 +63,7 @@ const Modal = ({
           <Button
             disabled={isPending || disabled}
             onClick={handleInstanceAction}
-            color={ODS_THEME_COLOR_INTENT.primary}
+            color={BUTTON_COLOR.primary}
           >
             {t('confirm')}
           </Button>
