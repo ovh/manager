@@ -77,7 +77,10 @@ describe('Logs page tests suite', () => {
 
     renderLogsPage();
 
-    expect(Navigate).toHaveBeenCalledWith({ to: '/okmsId' }, {});
+    expect(Navigate).toHaveBeenCalledWith(
+      { to: '/key-management-service/okmsId' },
+      {},
+    );
     expect(LogsToCustomerModule).not.toHaveBeenCalled();
   });
 });
