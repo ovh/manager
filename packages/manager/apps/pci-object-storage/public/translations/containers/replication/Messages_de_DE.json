@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_replication_list_title_description": "Legen Sie die Optionen fest, die OVHcloud Object Storage während der Replikation anwenden soll, z. B. die Auswahl qualifizierter Objekte, deren Transfer zu einer anderen Speicherklasse, den Zielcontainer oder die Replikation von Löschungsmarkern.",
-  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Zurück zu meinen Objekten",
+  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Zurück zum Dashboard",
   "pci_projects_project_storages_containers_replication_list_sub_title": "Replikation verwalten",
   "pci_projects_project_storages_containers_replication_list_description": "Replizieren Sie Ihre Daten ganz einfach in den Regionen von OVHcloud.",
   "pci_projects_project_storages_containers_replication_list_add_replication_rule": "Replikationsregel hinzufügen",
