@@ -13,7 +13,7 @@ import {
   TActionsMenuItem,
 } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
-import { DashboardClipboard } from './DashboardClipboard.component';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
@@ -29,7 +29,7 @@ const IPAddressItem: FC<{
   <div className="my-4 flex items-end w-full">
     <FormField className="flex-grow">
       <FormFieldLabel>{label}</FormFieldLabel>
-      <DashboardClipboard value={value} />
+      <Clipboard value={value} />
     </FormField>
     <div className="w-[40px] flex-shrink-0">
       {actions && <BaseActionsMenu items={actions} />}

@@ -24,7 +24,7 @@ import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
-import { DashboardClipboard } from './DashboardClipboard.component';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -58,7 +58,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         isLoading={isInstanceLoading}
       >
         <div className="flex">
-          <DashboardClipboard value={instance?.id} />
+          <Clipboard value={instance?.id ?? ''} />
         </div>
       </DashboardTileBlock>
       <DashboardTileBlock

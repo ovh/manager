@@ -14,7 +14,7 @@ import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
-import { DashboardClipboard } from './DashboardClipboard.component';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
@@ -126,7 +126,7 @@ const InstancePropertyBlock: FC = () => {
       {instance?.login && (
         <TileBlock label={t('pci_instances_dashboard_network_connexion')}>
           <div className="flex">
-            <DashboardClipboard value={instance.login} />
+            <Clipboard value={instance.login} />
           </div>
         </TileBlock>
       )}
