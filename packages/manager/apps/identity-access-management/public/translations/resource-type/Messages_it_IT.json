@@ -97,5 +97,15 @@
   "iam_resource_type_ldp/index": "Logs Data Platform: Indice",
   "iam_resource_type_ldp/osd": "Logs Data Platform: OpenSearch Dashboards",
   "iam_resource_type_ldp/stream": "Logs Data Platform: Flussi di dati",
-  "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant di metriche"
+  "iam_resource_type_ldp/tenant": "Logs Data Platform: Tenant di metriche",
+  "iam_resource_type_billingAccount": "Account di fatturazione",
+  "iam_resource_type_clusterDelivery": "Cluster Delivery",
+  "iam_resource_type_contact": "Contatto",
+  "iam_resource_type_ipUnshielded": "IP Unshielded",
+  "iam_resource_type_managedCMS": "CMS gestito",
+  "iam_resource_type_okms/secret": "Key Management System (KMS)/Secret",
+  "iam_resource_type_pccVMware/sapPreInstallation": "VMWare SAP preInstallation",
+  "iam_resource_type_publicCloudProject/managedRancher": "Managed Rancher Service",
+  "iam_resource_type_sdwan": "SDWAN",
+  "iam_resource_type_veeamCloudConnect": "Veeam Cloud Connect"
 }
