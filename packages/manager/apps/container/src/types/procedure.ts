@@ -4,6 +4,6 @@ export enum Procedures {
 }
 
 export type Procedure = {
-  status: string;
+  status: 'ok' | 'open' | 'required';
   ticketId: string;
 };
