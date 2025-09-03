@@ -6,7 +6,7 @@
   "pci_projects_project_edit_update_success": "Il progetto è stato aggiornato.",
   "pci_projects_project_edit_update_error": "Si è verificato un errore durante l'aggiornamento del progetto {{ error }}.",
   "pci_projects_project_edit_remove": "Elimina il progetto",
-  "pci_projects_project_edit_remove_description": "L’eliminazione del progetto comporta la cancellazione di tutte le risorse presenti, inclusi dati, infrastrutture e servizi. Questa operazione è irreversibile: prima di avviarla, assicurati di aver recuperato tutte le informazioni importanti.",
+  "pci_projects_project_edit_remove_description": "L'eliminazione del progetto comporta la cancellazione di tutte le risorse presenti, inclusi dati, infrastrutture e servizi. <br/><strong>Questa operazione è irreversibile: prima di avviarla, assicurati di aver recuperato tutte le informazioni importanti.</strong>",
   "pci_projects_project_edit_error_forbidden": "Non disponi di diritti sufficienti per visualizzare i dati di certificazione HDS. Contatta il proprietario del servizio",
   "pci_projects_project_edit_discovery_disable_tooltip": "La modifica è possibile solo in un progetto attivo."
 }
