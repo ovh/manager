@@ -1,23 +1,32 @@
 import { FC, PropsWithChildren } from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TileBlock } from '@ovh-ux/manager-react-components';
+import { Divider, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
 
 type TDashboardTileProps = PropsWithChildren<{
-  isLoading: boolean;
+  isLoading?: boolean;
   label?: string;
+  withoutDivider?: boolean;
 }>;
 
 export const DashboardTileBlock: FC<TDashboardTileProps> = ({
   label,
-  isLoading,
+  isLoading = false,
+  withoutDivider = false,
   children,
 }) => (
-  <TileBlock label={label}>
-    <LoadingCell isLoading={isLoading}>{children}</LoadingCell>
-  </TileBlock>
+  <dl className="flex flex-col gap-1 m-0">
+    <dt>
+      {label && (
+        <div className="flex items-center gap-2">
+          <Text preset={TEXT_PRESET.heading6}>{label}</Text>
+        </div>
+      )}
+    </dt>
+    <dd className="m-0">
+      <LoadingCell isLoading={isLoading}>{children}</LoadingCell>
+    </dd>
+    {!withoutDivider && <Divider spacing="6" className="w-full" />}
+  </dl>
 );
 
 export const DashboardTileText: FC<TDashboardTileProps> = ({
@@ -25,12 +34,6 @@ export const DashboardTileText: FC<TDashboardTileProps> = ({
   ...props
 }) => (
   <DashboardTileBlock {...props}>
-    <OsdsText
-      size={ODS_TEXT_SIZE._400}
-      level={ODS_TEXT_LEVEL.body}
-      color={ODS_THEME_COLOR_INTENT.text}
-    >
-      {children}
-    </OsdsText>
+    <Text>{children}</Text>
   </DashboardTileBlock>
 );
