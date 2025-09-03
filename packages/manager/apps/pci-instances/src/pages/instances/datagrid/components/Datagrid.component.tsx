@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
@@ -67,7 +68,13 @@ const DatagridComponent = ({
   onSortChange,
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
-  const { t } = useTranslation(['list', 'common', 'actions']);
+  const { t } = useTranslation([
+    'list',
+    'common',
+    'actions',
+    NAMESPACES.STATUS,
+    NAMESPACES.REGION,
+  ]);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const {
     addWarning,
@@ -121,7 +128,7 @@ const DatagridComponent = ({
             />
           );
         },
-        label: t('pci_instances_list_column_region'),
+        label: t(`${NAMESPACES.REGION}:localisation`),
         isSortable: false,
       },
       {
@@ -199,7 +206,7 @@ const DatagridComponent = ({
             />
           );
         },
-        label: t('pci_instances_list_column_status'),
+        label: t(`${NAMESPACES.STATUS}:status`),
         isSortable: false,
       },
       {

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useHref } from 'react-router-dom';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
@@ -27,7 +28,15 @@ import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceAct
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
-  const { t } = useTranslation(['dashboard', 'list', 'actions']);
+  const { t } = useTranslation([
+    'dashboard',
+    'list',
+    'actions',
+    NAMESPACES.FORM,
+    NAMESPACES.STATUS,
+    NAMESPACES.REGION,
+    NAMESPACES.ACTIONS,
+  ]);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { instanceId, region } = useInstanceParams();
   const hrefEditInstance = useHref(`../${instanceId}/edit`);
@@ -84,7 +93,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         </div>
       </DashboardTileBlock>
       {instance && (
-        <TileBlock label={t('list:pci_instances_list_column_status')}>
+        <TileBlock label={t(`${NAMESPACES.STATUS}:status`)}>
           <TaskStatus
             isLoading={isInstanceLoading}
             isPolling={polling.length > 0}
@@ -94,7 +103,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         </TileBlock>
       )}
       <DashboardTileBlock
-        label={t('list:pci_instances_list_column_region')}
+        label={t(`${NAMESPACES.REGION}:localisation`)}
         isLoading={isInstanceLoading}
       >
         <OsdsText
@@ -123,7 +132,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         {instance?.flavor?.cpu}
       </DashboardTileText>
       <DashboardTileBlock
-        label={t('pci_instances_dashboard_price_title')}
+        label={t(`${NAMESPACES.FORM}:price`)}
         isLoading={isInstanceLoading}
       >
         <div className="flex flex-col">
@@ -178,7 +187,7 @@ const InstanceGeneralInfoBlock: FC = () => {
             color={ODS_THEME_COLOR_INTENT.error}
             href={hrefDeleteInstance}
           >
-            {t('list:pci_instances_list_action_delete')}
+            {t(`${NAMESPACES.ACTIONS}:delete`)}
           </OsdsLink>
         </LoadingCell>
       )}
