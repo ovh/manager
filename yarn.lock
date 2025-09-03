@@ -7148,6 +7148,15 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.13.0.tgz#c8845bf1333e44db1f1d636d1222e2e777b9377c"
+  integrity sha512-ic3CLrN3crpQsIlHtc6HEmDrF4t/ciOXIUmmlrZzm3XytBLpnO72RepsAZ472Osx2gUf4IKn6pa3OK8FeS9gIA==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.2"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-core-api@^0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.16.0.tgz#a59f178b52b96af26b60c8a20f7c734c0b140160"
@@ -7272,6 +7281,20 @@
     sass "1.71.0"
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
+
+"@ovh-ux/manager-react-shell-client@^0.8.7":
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.8.7.tgz#aa40336eb8fc68458a89801d0ae24607d57c8252"
+  integrity sha512-/+FTo1KThBGRQj15gyxZgjQG4E86mdeEZ4T3a0PdY3sixqgu30b7CI3NcIkPDEPmDv/3rfCNouceXvPNoICrIg==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.2.1"
+    "@ovh-ux/ovh-at-internet" "^0.21.6"
+    "@ovh-ux/request-tagger" "^0.4.0"
+    "@ovh-ux/shell" "^4.1.0"
+    "@ovh-ux/url-builder" "^2.0.0"
+    "@tanstack/react-query" "^5.64.1"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
 
 "@ovh-ux/manager-react-shell-client@^0.9.1":
   version "0.9.1"
@@ -14970,7 +14993,7 @@ bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3.4.1:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
-bootstrap@^4.3.1, bootstrap@^4.4.1:
+bootstrap@^4.3.1:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
   integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==
