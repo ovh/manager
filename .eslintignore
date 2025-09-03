@@ -15,6 +15,6 @@ packages/manager/apps/pci-databases-analytics/src/components/ui
 !.storybook
 lint-runner.js
 lint-cli.js
-packages/manager-generator
+packages/manager-generator/
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-react-components/src/vite-env.d.ts
