@@ -1,24 +1,19 @@
 import { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
-import {
-  FormField,
-  FormFieldLabel,
-  Clipboard,
-  ClipboardControl,
-  ClipboardTrigger,
-} from '@ovhcloud/ods-react';
+import { FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 import StatusChip from '@/components/statusChip/StatusChip.component';
 import {
   BaseActionsMenu,
   TActionsMenuItem,
 } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
@@ -34,10 +29,7 @@ const IPAddressItem: FC<{
   <div className="my-4 flex items-end w-full">
     <FormField className="flex-grow">
       <FormFieldLabel>{label}</FormFieldLabel>
-      <Clipboard value={value}>
-        <ClipboardControl className="w-full" />
-        <ClipboardTrigger />
-      </Clipboard>
+      <Clipboard value={value} />
     </FormField>
     <div className="w-[40px] flex-shrink-0">
       {actions && <BaseActionsMenu items={actions} />}

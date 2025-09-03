@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   Links,
@@ -13,12 +13,8 @@ import { useHref } from 'react-router-dom';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './DashboardTile.component';
-import {
-  Clipboard,
-  ClipboardControl,
-  ClipboardTrigger,
-} from '@ovhcloud/ods-react';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
@@ -130,10 +126,7 @@ const InstancePropertyBlock: FC = () => {
       {instance?.login && (
         <TileBlock label={t('pci_instances_dashboard_network_connexion')}>
           <div className="flex">
-            <Clipboard className="flex-grow" value={instance.login}>
-              <ClipboardControl className="w-full" />
-              <ClipboardTrigger />
-            </Clipboard>
+            <Clipboard value={instance.login} />
           </div>
         </TileBlock>
       )}
