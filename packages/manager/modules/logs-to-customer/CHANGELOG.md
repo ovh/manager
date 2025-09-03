@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.3...@ovh-ux/logs-to-customer@1.6.4) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
 ## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.2...@ovh-ux/logs-to-customer@1.6.3) (2025-09-02)
 
 
