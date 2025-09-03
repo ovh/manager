@@ -1,7 +1,4 @@
-/* eslint-disable react/no-multi-comp */
-import { FC, PropsWithChildren, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+import { FC, useState } from 'react';
 import {
   Button,
   BUTTON_COLOR,
@@ -10,57 +7,22 @@ import {
   Divider,
   Icon,
   ICON_NAME,
-  Link,
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 import { DeepReadonly } from '@/types/utils.type';
-
-export type TActionsMenuItem = DeepReadonly<{
-  label: string;
-  link: {
-    path: string;
-    isExternal: boolean;
-  };
-}>;
+import { ActionMenuItem, TActionsMenuItem } from './ActionMenuItem.component';
 
 export type TActionsMenuProps = DeepReadonly<{
-  items: Map<string, TActionsMenuItem[]>;
+  items: Map<string, TActionsMenuItem[]> | TActionsMenuItem[];
   actionButton?: Pick<ButtonProp, 'variant'>;
 }>;
 
-export type TActionsMenuLinkProps = DeepReadonly<{
-  item: TActionsMenuItem;
-}>;
-
-const linkClassname =
-  'w-full box-border p-5 bg-none hover:bg-none hover:bg-[--ods-color-primary-100] focus-visible:bg-[--ods-color-primary-100] focus-visible:rounded-sm focus-visible:outline-none text-blue-700 hover:text-blue-500 focus-visible:text-blue-500';
-
-export const ActionMenuItem: FC<TActionsMenuLinkProps> = ({ item }) => {
-  const { t } = useTranslation('list');
-  const internalHref = useHref(item.link.path);
-
-  const href = item.link.isExternal ? item.link.path : internalHref;
-
-  return (
-    <div>
-      <Link
-        href={href}
-        data-testid="actions-menu-item"
-        className={linkClassname}
-      >
-        {t(item.label)}
-      </Link>
-    </div>
-  );
-};
-
-const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
-  children,
-  ...props
-}) => {
+export const ActionsMenu: FC<TActionsMenuProps> = ({ items, actionButton }) => {
   const [isOpen, setOpen] = useState(false);
+  const size =
+    items instanceof Map ? items.size : (items as TActionsMenuItem[]).length;
 
   return (
     <Popover
@@ -72,42 +34,30 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
         <Button
           data-testid="actions-menu-button"
           color={BUTTON_COLOR.primary}
-          {...props}
+          disabled={!size}
+          size="sm"
+          variant={BUTTON_VARIANT.outline}
+          {...actionButton}
         >
           <Icon name={ICON_NAME.ellipsisVertical} className="text-xl/4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent withArrow onClick={() => setOpen(false)} className="p-0">
-        {children}
+        {items instanceof Map
+          ? (Array.from(items.entries()) as [string, TActionsMenuItem[]][]).map(
+              ([group, item], index, arr) => (
+                <div key={group}>
+                  {item.map((elt: TActionsMenuItem) => (
+                    <ActionMenuItem key={elt.label} item={elt} />
+                  ))}
+                  {arr.length - 1 !== index && <Divider className="m-0" />}
+                </div>
+              ),
+            )
+          : (items as TActionsMenuItem[]).map((item) => (
+              <ActionMenuItem key={item.label} item={item} />
+            ))}
       </PopoverContent>
     </Popover>
   );
 };
-
-export const ActionsMenu = ({ items, actionButton }: TActionsMenuProps) => (
-  <ActionMenuContainer
-    size="sm"
-    disabled={!items.size}
-    variant={BUTTON_VARIANT.outline}
-    {...actionButton}
-  >
-    {Array.from(items.entries()).map(([group, item], index, arr) => (
-      <div key={group}>
-        {item.map((elt) => (
-          <ActionMenuItem key={elt.label} item={elt} />
-        ))}
-        {arr.length - 1 !== index && <Divider className="m-0" />}
-      </div>
-    ))}
-  </ActionMenuContainer>
-);
-
-type TBaseActionsMenu = { items: TActionsMenuItem[] };
-
-export const BaseActionsMenu = ({ items }: TBaseActionsMenu) => (
-  <ActionMenuContainer variant="ghost" size="sm" disabled={!items.length}>
-    {items.map((item) => (
-      <ActionMenuItem key={item.label} item={item} />
-    ))}
-  </ActionMenuContainer>
-);

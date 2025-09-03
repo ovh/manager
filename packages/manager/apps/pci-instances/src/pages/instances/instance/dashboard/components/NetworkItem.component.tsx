@@ -8,12 +8,10 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 import StatusChip from '@/components/statusChip/StatusChip.component';
-import {
-  BaseActionsMenu,
-  TActionsMenuItem,
-} from '@/components/menu/ActionsMenu.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
+import { TActionsMenuItem } from '@/components/menu/ActionMenuItem.component';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
@@ -32,7 +30,9 @@ const IPAddressItem: FC<{
       <Clipboard value={value} />
     </FormField>
     <div className="w-[40px] flex-shrink-0">
-      {actions && <BaseActionsMenu items={actions} />}
+      {actions && (
+        <ActionsMenu actionButton={{ variant: 'ghost' }} items={actions} />
+      )}
     </div>
   </div>
 );

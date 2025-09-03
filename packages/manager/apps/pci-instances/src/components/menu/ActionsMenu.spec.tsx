@@ -2,11 +2,8 @@ import { describe, expect, test, vi } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Popover, PopoverContent } from '@ovhcloud/ods-react';
-import {
-  ActionsMenu,
-  ActionMenuItem,
-  TActionsMenuItem,
-} from './ActionsMenu.component';
+import { ActionsMenu } from './ActionsMenu.component';
+import { ActionMenuItem, TActionsMenuItem } from './ActionMenuItem.component';
 
 vi.mock('react-router-dom', () => ({
   useHref: () => '/item1',
