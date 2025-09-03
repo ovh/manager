@@ -4,7 +4,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useMemo, useState } from 'react';
-import { Input, Text } from '@ovhcloud/ods-react';
+import { Input, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
 import ActionModal from '@/components/actionModal/ActionModal.component';
@@ -101,7 +101,9 @@ const BackupActionPage = () => {
       variant="warning"
     >
       <div className="flex flex-col gap-4">
-        <Text>{t('pci_instances_actions_backup_instance_name_label')}</Text>
+        <Text preset={TEXT_PRESET.label}>
+          {t('pci_instances_actions_backup_instance_name_label')}
+        </Text>
         <Input
           name="backup-name"
           value={snapshotName}
@@ -111,7 +113,7 @@ const BackupActionPage = () => {
           className="min-h-[40px]"
         />
         {!!price && !isBackupLoading && (
-          <Text>
+          <Text preset={TEXT_PRESET.caption}>
             {t('pci_instances_actions_backup_instance_price', {
               price,
             })}
