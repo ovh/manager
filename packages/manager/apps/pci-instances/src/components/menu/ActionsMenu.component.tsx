@@ -74,7 +74,7 @@ const ActionMenuContainer: FC<PropsWithChildren & ButtonProp> = ({
           color={BUTTON_COLOR.primary}
           {...props}
         >
-          <Icon name={ICON_NAME.ellipsisVertical} />
+          <Icon name={ICON_NAME.ellipsisVertical} className="text-xl/4" />
         </Button>
       </PopoverTrigger>
       <PopoverContent withArrow onClick={() => setOpen(false)} className="p-0">

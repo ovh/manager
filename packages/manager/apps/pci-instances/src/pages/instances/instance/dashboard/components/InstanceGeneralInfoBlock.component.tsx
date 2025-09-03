@@ -11,12 +11,7 @@ import {
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
-import {
-  BUTTON_VARIANT,
-  Clipboard,
-  ClipboardControl,
-  ClipboardTrigger,
-} from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { LoadingCell } from '@/pages/instances/datagrid/components/cell/LoadingCell.component';
@@ -29,6 +24,7 @@ import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const InstanceGeneralInfoBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -62,10 +58,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         isLoading={isInstanceLoading}
       >
         <div className="flex">
-          <Clipboard className="flex-grow" value={instance?.id || ''}>
-            <ClipboardControl className="w-full" />
-            <ClipboardTrigger />
-          </Clipboard>
+          <Clipboard value={instance?.id ?? ''} />
         </div>
       </DashboardTileBlock>
       <DashboardTileBlock
