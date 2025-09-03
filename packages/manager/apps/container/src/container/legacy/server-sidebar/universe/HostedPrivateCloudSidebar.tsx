@@ -468,6 +468,7 @@ export default function HostedPrivateCloudSidebar() {
           feature['okms:secret-manager'] && {
             id: 'okms-secret-manager',
             label: 'Secret Manager',
+            badge: 'beta',
             icon: <OsdsIcon
                     name={ODS_ICON_NAME.SHIELD_CONCEPT}
                     size={ODS_ICON_SIZE.xxs}

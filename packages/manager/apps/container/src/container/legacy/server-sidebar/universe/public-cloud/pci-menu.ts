@@ -481,6 +481,7 @@ export function getPciProjectMenu(
           id: 'okms-secret-manager',
           title: 'Secret Manager',
           href: getURL('okms', `#/secret-manager`),
+          badge: 'beta',
         },
       ],
     });
