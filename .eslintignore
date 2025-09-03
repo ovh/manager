@@ -1,6 +1,5 @@
 dist
 node_modules
-packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
 screenshot
@@ -10,7 +9,6 @@ custom-elements
 custom-elements-bundle
 react/src
 vue/src
-packages/manager/core/generator
 packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/container
 packages/manager/apps/pci-databases-analytics/src/components/ui
@@ -20,5 +18,6 @@ lint-cli.js
 perf-budgets-cli.js
 perf-budgets-tests-cli.js
 manager-generator
+packages/manager-tools/manager-generator/bin/manager-generator.js
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-react-components/src/vite-env.d.ts
