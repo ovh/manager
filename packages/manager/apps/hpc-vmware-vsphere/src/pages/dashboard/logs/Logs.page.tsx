@@ -19,6 +19,13 @@ const LogsPage: React.FC = () => {
     shell: { navigation },
   } = useContext(ShellContext);
 
+  console.log({
+    isLoadingVsphere,
+    vmwareVsphere,
+    isLoading,
+    isLogDisabled,
+  });
+
   const isAccessNotAllowed =
     (!isLoadingVsphere && !vmwareVsphere) || (!isLoading && isLogDisabled);
 
@@ -62,7 +69,7 @@ const LogsPage: React.FC = () => {
             deleteSubscription: ['pccVMware:apiovh:log/subscription/delete'],
           }}
           resourceURN={vmwareVsphere.data.iam.urn}
-          // trackingOptions={{ trackingSuffix: 'vsphere' }} // TODO
+          trackingOptions={{ trackingSuffix: 'managed-vmware' }}
         />
       </div>
     </LogsOnboarding>

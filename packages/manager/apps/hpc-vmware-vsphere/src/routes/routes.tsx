@@ -119,16 +119,6 @@ export default (
         {getLogsRoute()}
       </Route>
     </Route>
-    <Route
-      path={urls.onboarding}
-      id="onboarding"
-      Component={OnboardingPage}
-      handle={{
-        tracking: {
-          pageName: 'onboarding',
-          pageType: PageType.onboarding,
-        },
-      }}
-    />
+    <Route path={urls.onboarding} id="onboarding" Component={OnboardingPage} />
   </Route>
 );
