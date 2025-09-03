@@ -103,7 +103,7 @@ describe('CreateVolumePage', () => {
     act(() => fireEvent.submit(formElement as Element));
 
     await waitFor(() => {
-      expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
+      expect(shellContext?.shell?.navigation?.navigateTo).toHaveBeenCalledWith(
         'public-cloud',
         '#/pci/projects/project-id/storages/blocks',
         {},
