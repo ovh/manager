@@ -10,11 +10,14 @@ import { labels } from '@/utils/tests/init.i18n';
 import { okmsMock } from '@/mocks/kms/okms.mock';
 import { credentialMock } from '@/mocks/credentials/credentials.mock';
 import { identityUsers } from '@/mocks/identity/identityUsers.mock';
+import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
 const mockOkmsItem = okmsMock[0];
 const mockCreatedCredentials = credentialMock[1];
-const mockCredentialsCreatePageUrl = `/${mockOkmsItem.id}/credentials/create`;
+const mockCredentialsCreatePageUrl = KMS_ROUTES_URLS.credentialCreate(
+  mockOkmsItem.id,
+);
 
 /* HELPERS */
 
