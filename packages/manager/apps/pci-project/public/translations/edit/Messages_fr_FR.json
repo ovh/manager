@@ -8,6 +8,6 @@
   "pci_projects_project_edit_update_success": "Le projet a été mis à jour.",
   "pci_projects_project_edit_update_error": "Une erreur est survenue lors de la mise à jour du projet ({{ error }}).",
   "pci_projects_project_edit_remove": "Supprimer le projet",
-  "pci_projects_project_edit_remove_description": "La suppression de votre projet entraînera l’effacement de toutes les ressources présentes, qu’il s’agisse de données, d’infrastructures ou de services. Assurez-vous d'avoir récupéré vos informations importantes avant de lancer cette opération irréversible.",
+  "pci_projects_project_edit_remove_description": "La suppression de votre projet entraînera l'effacement de toutes les ressources présentes, qu'il s'agisse de données, d'infrastructures ou de services. <br/><strong>Assurez-vous d'avoir récupéré vos informations importantes avant de lancer cette opération irréversible.</strong>",
   "pci_projects_project_edit_error_forbidden": "Vous n'avez pas suffisamment de droits pour afficher vos données de certification HDS. Veuillez contacter le propriétaire du service"
 }
