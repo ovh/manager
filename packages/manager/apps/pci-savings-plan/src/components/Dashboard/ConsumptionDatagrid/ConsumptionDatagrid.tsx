@@ -4,15 +4,17 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import {
+  ActionMenu,
   Datagrid,
   DataGridTextCell,
   useDataGrid,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { OdsText, OdsButton } from '@ovhcloud/ods-components/react';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   SavingsPlanFlavorConsumption,
@@ -21,6 +23,7 @@ import {
 import { toLocalDateUTC } from '@/utils/formatter/date';
 import { paginateResults } from '@/utils/paginate/utils';
 import { useProjectId } from '@/hooks/useProject';
+import ConsumptionResourceList from './ConsumptionResourceList';
 
 type ConsumptionDatagridProps = {
   isLoading: boolean;
@@ -40,7 +43,8 @@ const ConsumptionDatagrid = ({
   const locale = environment.getUserLocale();
   const { t } = useTranslation(['dashboard', 'listing']);
   const { trackClick } = useOvhTracking();
-
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [selectedResources, setSelectedResources] = useState<string[]>([]);
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { clearNotifications } = useNotifications();
@@ -73,6 +77,28 @@ const ConsumptionDatagrid = ({
         <CellText text={props.cumulPlanSize?.toString()} />
       ),
     },
+    {
+      label: '',
+      id: 'action',
+      cell: (props: SavingsPlanPeriodConsumption) => (
+        <ActionMenu
+          popover-position="bottom-end"
+          id={props.begin + props.end}
+          items={[
+            {
+              id: 1,
+              label: t('dashboard_resource_list_view_resources'),
+              onClick: () => {
+                setSelectedResources(props.plansIds);
+                setDrawerOpen(true);
+              },
+            },
+          ]}
+          isCompact
+          variant={ODS_BUTTON_VARIANT.ghost}
+        />
+      ),
+    },
   ];
 
   const handleClick = () => {
@@ -102,8 +128,18 @@ const ConsumptionDatagrid = ({
     }
   }, [items]);
 
+  const hanldeCloseDrawer = () => {
+    setSelectedResources([]);
+    setDrawerOpen(false);
+  };
+
   return (
     <div>
+      <ConsumptionResourceList
+        isDrawerOpen={isDrawerOpen}
+        resources={selectedResources}
+        hanldeCloseDrawer={hanldeCloseDrawer}
+      />
       <OdsText preset="heading-4" className="mt-8">
         {t('dashboard_table_title')}
       </OdsText>
