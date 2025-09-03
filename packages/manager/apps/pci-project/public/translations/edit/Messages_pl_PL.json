@@ -6,7 +6,7 @@
   "pci_projects_project_edit_update_success": "Projekt został zaktualizowany.",
   "pci_projects_project_edit_update_error": "Wystąpił błąd podczas aktualizacji projektu ({{ error }}).",
   "pci_projects_project_edit_remove": "Usuń projekt",
-  "pci_projects_project_edit_remove_description": "Usunięcie projektu Public Cloud spowoduje usunięcie wszystkich istniejących zasobów, takich jak dane, infrastruktura oraz usługi. Upewnij się, że pobrałeś i zabezpieczyłeś ważne dane, zanim uruchomisz tę nieodwracalną operację.",
+  "pci_projects_project_edit_remove_description": "Usunięcie projektu Public Cloud spowoduje usunięcie wszystkich istniejących zasobów, takich jak dane, infrastruktura oraz usługi. <br/><strong>Upewnij się, że pobrałeś i zabezpieczyłeś ważne dane, zanim uruchomisz tę nieodwracalną operację.</strong>",
   "pci_projects_project_edit_error_forbidden": "Nie masz wystarczających uprawnień, aby wyświetlać dane dotyczące certyfikacji HDS. Skontaktuj się z właścicielem usługi",
   "pci_projects_project_edit_discovery_disable_tooltip": "Edycja jest możliwa tylko w przypadku aktywnych projektów."
 }
