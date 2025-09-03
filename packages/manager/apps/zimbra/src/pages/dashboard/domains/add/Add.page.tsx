@@ -17,7 +17,6 @@ export const AddDomain = () => {
   const { addError, addSuccess } = useNotifications();
 
   const goBackUrl = useGenerateUrl('..', 'path');
-  const goBack = () => navigate(goBackUrl);
 
   const onSuccess = () => {
     trackPage({
@@ -30,6 +29,7 @@ export const AddDomain = () => {
       </OdsText>,
       true,
     );
+    navigate(goBackUrl);
   };
 
   const onError = (error: ApiError) => {
@@ -51,7 +51,6 @@ export const AddDomain = () => {
     <DomainForm
       onSuccess={onSuccess}
       onError={onError}
-      onSettled={goBack}
       backUrl=".."
       pageTrackingName={ADD_DOMAIN}
     />

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.10.0...@ovh-ux/manager-wiki@0.10.1) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.9.0...@ovh-ux/manager-wiki@0.10.0) (2025-09-02)
+
+
+### Features
+
+* add optional step label to mrc modal ([2d88a93](https://github.com/ovh/manager/commit/2d88a9362063e6b01fd2c446292b66f4307d348a)), closes [#ISSUE-18727](https://github.com/ovh/manager/issues/ISSUE-18727)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.8.0...@ovh-ux/manager-wiki@0.9.0) (2025-08-29)
 
 

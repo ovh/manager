@@ -1,17 +1,11 @@
 import {
-  OsdsButton,
   OsdsModal,
   OsdsSelect,
   OsdsSelectOption,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useEffect, useRef, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
@@ -21,6 +15,9 @@ import { useAttachableInstances } from '@/api/hooks/useInstance';
 import { useAttachVolume, useVolume } from '@/api/hooks/useVolume';
 import NoInstanceWarningMessage from './NoInstanceAvailableWarningMessage';
 import { TAttachableInstance } from '@/api/select/instances';
+import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { Button } from '@/components/button/Button';
 
 export default function AttachStorage() {
   const navigate = useNavigate();
@@ -35,6 +32,7 @@ export default function AttachStorage() {
     data: instances,
     isPending: isInstancesPending,
   } = useAttachableInstances(projectId, volumeId);
+
   const [selectedInstance, setSelectedInstance] = useState<TAttachableInstance>(
     null,
   );
@@ -63,11 +61,11 @@ export default function AttachStorage() {
       setSelectedInstance((instance) => instance ?? instances[0]);
   }, [instances]);
 
-  const { attachVolume, isPending: isAttachPending } = useAttachVolume({
-    projectId,
-    volumeId,
-    instanceId: selectedInstance?.id,
-    onError(err: Error) {
+  const actionValues = [volume?.region];
+
+  const onTrackingBannerError = useTrackBanner(
+    { type: 'error' },
+    (err: Error) => {
       addError(
         <Translation ns="attach">
           {(_t) =>
@@ -84,26 +82,35 @@ export default function AttachStorage() {
       );
       onClose();
     },
-    onSuccess() {
-      addSuccess(
-        <Translation ns="attach">
-          {(_t) =>
-            _t(
-              'pci_projects_project_storages_blocks_block_attach_success_message',
-              {
-                volume: volume?.name,
-                volumeId: volume.id,
-                type: volume.type,
-                instance: selectedInstance?.name,
-                instanceId: selectedInstance?.id,
-              },
-            )
-          }
-        </Translation>,
-        true,
-      );
-      onClose();
-    },
+  );
+
+  const onTrackingBannerSuccess = useTrackBanner({ type: 'success' }, () => {
+    addSuccess(
+      <Translation ns="attach">
+        {(_t) =>
+          _t(
+            'pci_projects_project_storages_blocks_block_attach_success_message',
+            {
+              volume: volume?.name,
+              volumeId: volume.id,
+              type: volume.type,
+              instance: selectedInstance?.name,
+              instanceId: selectedInstance?.id,
+            },
+          )
+        }
+      </Translation>,
+      true,
+    );
+    onClose();
+  });
+
+  const { attachVolume, isPending: isAttachPending } = useAttachVolume({
+    projectId,
+    volumeId,
+    instanceId: selectedInstance?.id,
+    onError: onTrackingBannerError,
+    onSuccess: onTrackingBannerSuccess,
   });
 
   const isPending = isInstancesPending || isVolumePending || isAttachPending;
@@ -160,22 +167,26 @@ export default function AttachStorage() {
         )}
         {!isPending && !instances?.length && <NoInstanceWarningMessage />}
       </slot>
-      <OsdsButton
+      <ButtonLink
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        onClick={onClose}
+        color="primary"
+        variant="ghost"
+        to=".."
+        actionName="cancel"
+        actionValues={actionValues}
       >
         {t('pci_projects_project_storages_blocks_block_attach_cancel_label')}
-      </OsdsButton>
-      <OsdsButton
+      </ButtonLink>
+      <Button
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color="primary"
         onClick={attachVolume}
-        {...(canAttach ? {} : { disabled: true })}
+        disabled={!canAttach}
+        actionName="confirm"
+        actionValues={actionValues}
       >
         {t('pci_projects_project_storages_blocks_block_attach_submit_label')}
-      </OsdsButton>
+      </Button>
     </OsdsModal>
   );
 }

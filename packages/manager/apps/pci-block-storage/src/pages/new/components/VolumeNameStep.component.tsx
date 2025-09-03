@@ -2,15 +2,15 @@ import {
   OsdsFormField,
   OsdsInput,
   OsdsText,
-  OsdsButton,
 } from '@ovhcloud/ods-components/react';
 import { useMemo, useState } from 'react';
-import { ODS_INPUT_TYPE, ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepState } from '@/pages/new/hooks/useStep';
 import { TVolumeModel, useVolumePricing } from '@/api/hooks/useCatalog';
 import { EncryptionType } from '@/api/select/volume';
+import { Button } from '@/components/button/Button';
 
 interface VolumeNameStepProps {
   projectId: string;
@@ -33,6 +33,7 @@ export function VolumeNameStep({
 }: Readonly<VolumeNameStepProps>) {
   const { t } = useTranslation('add');
   const { t: tStepper } = useTranslation('stepper');
+
   const [volumeName, setVolumeName] = useState('');
   const [isInputTouched, setIsInputTouched] = useState(false);
   const missingNameError = isInputTouched && !volumeName;
@@ -77,15 +78,16 @@ export function VolumeNameStep({
       </OsdsFormField>
       <div className="mt-6">
         {!step.isLocked && (
-          <OsdsButton
+          <Button
             className="w-fit"
-            size={ODS_BUTTON_SIZE.md}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            {...(!volumeName ? { disabled: true } : {})}
+            size="md"
+            color="primary"
+            disabled={!volumeName}
             onClick={() => onSubmit(volumeName)}
+            actionName="add_name"
           >
             {tStepper('common_stepper_next_button_label')}
-          </OsdsButton>
+          </Button>
         )}
       </div>
     </>

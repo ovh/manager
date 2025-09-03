@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.22...@ovh-ux/manager-zimbra-app@0.31.23) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.21...@ovh-ux/manager-zimbra-app@0.31.22) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.20...@ovh-ux/manager-zimbra-app@0.31.21) (2025-09-01)
+
+
+### Bug Fixes
+
+* **zimbra:** keep creation page open when error occurs ([4bd794c](https://github.com/ovh/manager/commit/4bd794c4a9199ab55b43414c83a7aceeeaa87a37)), closes [#MANAGER-19328](https://github.com/ovh/manager/issues/MANAGER-19328)
+
+
+
+
+
 ## [0.31.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.19...@ovh-ux/manager-zimbra-app@0.31.20) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

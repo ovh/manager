@@ -20,6 +20,7 @@ export const getLogSubscriptionsv6 = async (
 ) => {
   const { data } = await fetchIcebergV6<LogSubscription>({
     route: `${logSubscriptionUrl}?kind=${logKind?.name}`,
+    disableCache: true,
   });
   return data;
 };

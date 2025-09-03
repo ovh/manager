@@ -105,6 +105,7 @@ export default function ComputeListingPage() {
             .replace(subRoutes.dashboard, id)
             .replace(subRoutes.vdcId, vdcId),
         }}
+        shouldFetchAll
         isEmbedded
         orderButton={
           <OdsButton

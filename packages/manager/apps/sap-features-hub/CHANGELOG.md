@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.2...@ovh-ux/manager-sap-features-hub-app@0.4.3) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.1...@ovh-ux/manager-sap-features-hub-app@0.4.2) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.0...@ovh-ux/manager-sap-features-hub-app@0.4.1) (2025-09-02)
+
+
+### Bug Fixes
+
+* **sap:** fix debug installation dashboard line hidden ([656352e](https://github.com/ovh/manager/commit/656352e9a9272b2ed11814130f5e908226641f44)), closes [#MANAGER-19523](https://github.com/ovh/manager/issues/MANAGER-19523)
+
+
+
+
+
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.3.2...@ovh-ux/manager-sap-features-hub-app@0.4.0) (2025-09-01)
+
+
+### Features
+
+* **sap-features-hub:** improve json download visibility ([cfb9e27](https://github.com/ovh/manager/commit/cfb9e274dbc52d39b5ed7581a1b977f816778846)), closes [#MANAGER-19283](https://github.com/ovh/manager/issues/MANAGER-19283)
+* **sap-features-hub:** move datastore policy on summary page ([22236ac](https://github.com/ovh/manager/commit/22236ac5d837202280291af3c803dab64fbd35d9)), closes [#MANAGER-19287](https://github.com/ovh/manager/issues/MANAGER-19287)
+
+
+
+
+
 ## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.3.1...@ovh-ux/manager-sap-features-hub-app@0.3.2) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

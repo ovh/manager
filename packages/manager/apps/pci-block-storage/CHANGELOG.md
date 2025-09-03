@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.1...@ovh-ux/manager-pci-block-storage-app@0.20.2) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.0...@ovh-ux/manager-pci-block-storage-app@0.20.1) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.13...@ovh-ux/manager-pci-block-storage-app@0.20.0) (2025-09-02)
+
+
+### Features
+
+* **pci-block-storage:** update to ods 19 components with bundler ([64dc508](https://github.com/ovh/manager/commit/64dc508bb592caf83e1b8407eca39050a41164e8)), closes [#TAPC-3354](https://github.com/ovh/manager/issues/TAPC-3354)
+* **pci-block-storage:** update tracking ([dd8126d](https://github.com/ovh/manager/commit/dd8126dfccb49a6d1b74f524e90eb3fd26864b86)), closes [#TAPC-3354](https://github.com/ovh/manager/issues/TAPC-3354)
+
+
+
+
+
 ## [0.19.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.19.12...@ovh-ux/manager-pci-block-storage-app@0.19.13) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

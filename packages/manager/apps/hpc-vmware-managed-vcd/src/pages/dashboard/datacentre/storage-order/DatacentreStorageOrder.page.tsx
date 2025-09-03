@@ -53,7 +53,10 @@ export default function StorageOrderPage() {
         orderType="storage"
         columns={columns}
         title={t('managed_vcd_vdc_order_storage_title')}
-        subtitle={t('managed_vcd_vdc_order_storage_subtitle')}
+        subtitles={[
+          t('managed_vcd_vdc_order_storage_subtitle'),
+          t('managed_vcd_vdc_order_storage_subtitle2'),
+        ]}
         backLink={`../${subRoutes.datacentreStorage}`}
         minQuantity={STORAGE_ORDER_MIN_QUANTITY}
         maxQuantity={STORAGE_ORDER_MAX_QUANTITY}

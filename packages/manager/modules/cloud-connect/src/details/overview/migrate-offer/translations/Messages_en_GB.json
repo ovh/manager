@@ -1,0 +1,18 @@
+{
+  "cloud_connect_offer_update": "Your OVHcloud Connect service upgrade",
+  "cloud_connect_apply": "Confirm",
+  "cloud_connect_migrate_provider_bandwidth": "With this upgrade, you can switch from {{prevProductName}} to {{newProductName}} at no extra cost*.",
+  "cloud_connect_migrate_provider_no_service_cut": "The operation will only last a few minutes and won’t cause any service interruptions.",
+  "cloud_connect_migrate_provider_email_confirm": "Once the upgrade is complete, you will receive a confirmation email. To take advantage of your new bandwidth, simply recreate a new circuit with {{provider}} using a new OVHcloud Connect service key.",
+  "cloud_connect_migrate_provider_launch_process": "Once you click “Confirm” the process will begin.",
+  "cloud_connect_migrate_provider_price_and_commitment": "*The upgrade won’t change the price, your subscription duration, or any related special offers.",
+  "cloud_connect_migrate_direct_bandwidth": "This upgrade is designed to boost the service’s maximum bandwidth from 1 Gbps to 10 Gbps, with no additional charge*.",
+  "cloud_connect_migrate_direct_configuration_preserved": "The operation will only take a few moments, and won’t alter your current configuration.",
+  "cloud_connect_migrate_direct_email_confirm": "Once the process is complete, you will receive a confirmation email.",
+  "cloud_connect_migrate_direct_warning_title": "Warning ",
+  "cloud_connect_migrate_direct_actions_expected": "Some actions will be required on your part. The network port on the OVHcloud edge device in the PoP will be switched from 1 Gbps to 10 Gbps. This will sever the link until your edge equipment’s network port reaches 10 Gbps. As a reminder, autoneg is not supported on OVHcloud Connect. To minimise downtime, we recommend initiating this upgrade once your infrastructure is ready. OVHcloud will only need a short time to perform the upgrade.",
+  "cloud_connect_migrate_direct_launch_process": "Once you click “Confirm” the process will begin.",
+  "cloud_connect_migrate_direct_price_and_commitment": "*The upgrade won’t change the price, your subscription duration, or any related special offers.",
+  "cloud_connect_migrate_offer_success": "Your service upgrade request has been processed. Please wait...",
+  "cloud_connect_migrate_offer_error": "Unable to upgrade your service: {{ message }}"
+}
