@@ -69,7 +69,16 @@ const URLS = {
   ) =>
     `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
       URIS.versions
-    }/${versionId}/${URIS.delete}`,
+    }/${URIS.delete}/${versionId}`,
+
+  secretVersionsDrawerRevealVersionValue: (
+    domainId: string,
+    secretPath: string,
+    versionId: number,
+  ) =>
+    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
+      URIS.versions
+    }/${URIS.value}/${versionId}`,
 };
 
 export const SECRET_MANAGER_URL_PARAMS = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import {
   SECRET_MANAGER_ROUTES_URIS,
@@ -126,10 +126,16 @@ export default (
             Component={SecretVersionsCreateDrawer}
           />
           <Route
-            path={`${SECRET_MANAGER_URL_PARAMS.versionId}/${SECRET_MANAGER_ROUTES_URIS.delete}`}
+            path={`${SECRET_MANAGER_ROUTES_URIS.delete}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
             Component={SecretVersionsDeleteModal}
           />
+          <Route
+            path={`${SECRET_MANAGER_ROUTES_URIS.value}/${SECRET_MANAGER_URL_PARAMS.versionId}`}
+            Component={SecretValueDrawer}
+          />
+          <Route path="*" element={<Navigate to={''} replace />} />
         </Route>
+        <Route path="*" element={<Navigate to={''} replace />} />
       </Route>
     </Route>
     <Route path={'*'} element={<NotFound />} />

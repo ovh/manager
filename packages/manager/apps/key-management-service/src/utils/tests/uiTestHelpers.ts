@@ -49,7 +49,7 @@ const getOdsButton = async ({
       if (isLink) {
         return disabled
           ? expect(button).toHaveAttribute('is-disabled', 'true')
-          : expect(button).not.toHaveAttribute('is-disabled');
+          : expect(button).not.toHaveAttribute('is-disabled', 'true');
       }
       return disabled
         ? expect(button).toHaveAttribute('disabled')

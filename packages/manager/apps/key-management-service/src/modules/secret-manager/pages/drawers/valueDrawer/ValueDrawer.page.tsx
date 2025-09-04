@@ -24,18 +24,17 @@ import { SecretRawValue } from './SecretRawValue.component';
 import { isErrorResponse } from '@/utils/api/api';
 
 type VersionSelectorParams = {
-  domainId: string;
-  path: string;
   currentVersion: SecretVersion;
   setCurrentVersion: React.Dispatch<React.SetStateAction<SecretVersion>>;
 };
 
 const VersionSelector = ({
-  domainId,
-  path,
   currentVersion,
   setCurrentVersion,
 }: VersionSelectorParams) => {
+  const { domainId, secretPath, versionId } = useParams<LocationPathParams>();
+  const secretPathDecoded = decodeSecretPath(secretPath);
+
   const { t } = useTranslation([
     'secret-manager/common',
     NAMESPACES.STATUS,
@@ -44,7 +43,7 @@ const VersionSelector = ({
 
   const { data, isPending, isFetching, error } = useSecretVersions({
     domainId,
-    path,
+    path: secretPathDecoded,
     pageSize: 100,
   });
 
@@ -80,6 +79,12 @@ const VersionSelector = ({
 
   if (!versions?.length) return null;
 
+  const defaultVersion = versionId
+    ? versions
+        .find((version) => version.id.toString() === versionId)
+        .id.toString()
+    : versions[0].id.toString();
+
   return (
     <div className="flex flex-col gap-3 pt-2">
       <div className="flex gap-2 items-center">
@@ -95,7 +100,7 @@ const VersionSelector = ({
               versions.find((v) => v.id === Number(value.detail.value)),
             )
           }
-          defaultValue={versions[0].id.toString()}
+          defaultValue={defaultVersion}
           isDisabled={versions.length === 1}
         >
           {versions.map((version) => (
@@ -121,9 +126,6 @@ const ValueDrawerPage = () => {
   const { t } = useTranslation('secret-manager/common');
   const navigate = useNavigate();
 
-  const { domainId, secretPath } = useParams<LocationPathParams>();
-  const secretPathDecoded = decodeSecretPath(secretPath);
-
   const [currentVersion, setCurrentVersion] = useState<
     SecretVersion | undefined
   >(undefined);
@@ -139,17 +141,11 @@ const ValueDrawerPage = () => {
     >
       <div className="flex flex-col gap-4">
         <VersionSelector
-          domainId={domainId}
-          path={secretPathDecoded}
           currentVersion={currentVersion}
           setCurrentVersion={setCurrentVersion}
         />
         {currentVersion && currentVersion.state === 'ACTIVE' && (
-          <SecretRawValue
-            domainId={domainId}
-            path={secretPathDecoded}
-            version={currentVersion}
-          />
+          <SecretRawValue version={currentVersion} />
         )}
       </div>
     </Drawer>

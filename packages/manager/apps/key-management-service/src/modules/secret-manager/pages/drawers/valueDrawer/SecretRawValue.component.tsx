@@ -9,22 +9,22 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { RAW_VALUE_TEST_ID } from '@secret-manager/utils/tests/secretValue.constants';
+import { useParams } from 'react-router-dom';
+import { LocationPathParams } from '@secret-manager/routes/routes.constants';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 
 type SecretValueParams = {
-  domainId: string;
-  path: string;
   version: SecretVersion;
 };
 
-export const SecretRawValue = ({
-  domainId,
-  path,
-  version,
-}: SecretValueParams) => {
+export const SecretRawValue = ({ version }: SecretValueParams) => {
+  const { domainId, secretPath } = useParams<LocationPathParams>();
+  const secretPathDecoded = decodeSecretPath(secretPath);
+
   const { t } = useTranslation([NAMESPACES.ERROR]);
   const { data: secretVersion, isPending, error } = useSecretVersionWithData(
     domainId,
-    path,
+    secretPathDecoded,
     version.id,
   );
 
