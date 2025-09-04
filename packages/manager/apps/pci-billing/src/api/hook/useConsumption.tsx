@@ -11,7 +11,7 @@ import {
   activateMonthlyBilling,
   getCurrentUsage,
   TCurrentUsage,
-  THourlyConsumptions,
+  THourlyConsumption,
   TQuantity,
 } from '../data/consumption';
 
@@ -191,7 +191,7 @@ const initSnapshotList = (data: TCurrentUsage) => {
 };
 
 const initConsumptionsList = (
-  consumptions: THourlyConsumptions[],
+  consumptions: THourlyConsumption[],
 ): {
   list: TResourceUsage[];
   totalPrice: number;
@@ -204,9 +204,9 @@ const initConsumptionsList = (
   }
 
   const list = consumptions.flatMap((consumption) =>
-    consumption.details.map((r) => ({
-      ...r,
-      totalPrice: roundPrice(r.totalPrice.value),
+    consumption.details.map((detail) => ({
+      ...detail,
+      totalPrice: roundPrice(detail.totalPrice.value),
       name: consumption.reference,
       region: consumption.region,
     })),
@@ -214,8 +214,11 @@ const initConsumptionsList = (
 
   const totalPrice = roundPrice(
     consumptions
-      .flatMap((rancher) => rancher.details)
-      .reduce((sum, rancher) => sum + roundPrice(rancher.totalPrice.value), 0),
+      .flatMap((consumption) => consumption.details)
+      .reduce(
+        (sum, consumption) => sum + roundPrice(consumption.totalPrice.value),
+        0,
+      ),
   );
 
   return {
@@ -454,6 +457,7 @@ export type TConsumptionDetail = {
   bandwidthByRegions: TInstanceBandWith[];
   privateRegistry: TResourceUsage[];
   rancher: TResourceUsage[];
+  quantum: TResourceUsage[];
   managedKubernetesService: TResourceUsage[];
   kubernetesLoadBalancer: TResourceUsage[];
   training: TResourceUsage[];
@@ -496,6 +500,7 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   privateRegistry: [],
   rancher: [],
   managedKubernetesService: [],
+  quantum: [],
   kubernetesLoadBalancer: [],
   training: [],
   notebooks: [],
@@ -594,6 +599,11 @@ export const getConsumptionDetails = (
     totalPrice: managedKubernetesServiceTotalPrice,
   } = initConsumptionsList(usage.hourlyUsage.managedKubernetesService);
 
+  const {
+    list: quantumList,
+    totalPrice: quantumTotalPrice,
+  } = initConsumptionsList(usage.hourlyUsage.quantum.notebook);
+
   const totals = {
     hourly: {
       ...hourlyTotals,
@@ -605,6 +615,7 @@ export const getConsumptionDetails = (
       [ResourceType.BANDWIDTH]: bandwidthTotalPrice,
       [ResourceType.RANCHER]: rancherTotalPrice,
       [ResourceType.MANAGED_KUBERNETES_SERVICE]: managedKubernetesServiceTotalPrice,
+      [ResourceType.QUANTUM]: quantumTotalPrice,
       [ResourceType.TOTAL]: 0,
     } as Partial<Record<ConsumptionKey, number>>,
     monthly: {
@@ -633,6 +644,7 @@ export const getConsumptionDetails = (
     snapshots: snapshotList,
     rancher: rancherList,
     managedKubernetesService: managedKubernetesServiceList,
+    quantum: quantumList,
     volumes: volumeList,
     bandwidthByRegions: bandwidthList,
     privateRegistry: resources.privateRegistry,
