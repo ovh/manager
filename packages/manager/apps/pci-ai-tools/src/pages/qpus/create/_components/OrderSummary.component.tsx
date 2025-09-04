@@ -147,7 +147,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 
           <div className="flex items-center pl-4">
             <Cpu className="size-4" />
-            <span>20 Qubits</span>
+            <span>20 {t('qpuQubits')}</span>
           </div>
         </div>
       )}
