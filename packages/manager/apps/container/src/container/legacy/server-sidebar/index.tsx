@@ -36,6 +36,7 @@ export default function ServerSidebarIndex() {
       '/documents',
     ],
     iam: '*',
+    'identity-access-management': '*',
     'carbon-calculator': '*',
     account: '*',
     billing: '*',
