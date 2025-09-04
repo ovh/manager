@@ -13,18 +13,12 @@ export const useSecretPathSchema = () => {
 
   const PATH_ALLOWED_CHARACTER_REGEX = /^[\w.:/=@-]*$/;
 
-  const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.FORM]);
 
   return z
     .string({ error: t('required_field', { ns: NAMESPACES.FORM }) })
-    .regex(
-      PATH_ALLOWED_CHARACTER_REGEX,
-      t('secret-manager/create:path_error_allowed_characters'),
-    )
-    .regex(
-      PATH_STRUCTURE_REGEX,
-      t('secret-manager/create:path_error_structure'),
-    )
+    .regex(PATH_ALLOWED_CHARACTER_REGEX, t('error_path_allowed_characters'))
+    .regex(PATH_STRUCTURE_REGEX, t('error_path_structure'))
     .min(PATH_MIN_CHAR, t('required_field', { ns: NAMESPACES.FORM }))
     .max(
       PATH_MAX_CHAR,

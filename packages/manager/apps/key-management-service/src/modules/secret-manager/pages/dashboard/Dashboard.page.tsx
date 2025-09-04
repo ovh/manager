@@ -30,10 +30,7 @@ import {
 export default function SecretDashboardPage() {
   const { domainId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
-  const { t } = useTranslation([
-    'secret-manager/dashboard',
-    'secret-manager/common',
-  ]);
+  const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { notifications } = useNotifications();
 
@@ -55,7 +52,7 @@ export default function SecretDashboardPage() {
     },
     {
       name: 'versions',
-      title: t('secret-manager/common:versions'),
+      title: t('versions'),
       url: SECRET_MANAGER_ROUTES_URLS.secretVersions(
         domainId,
         secretPathDecoded,
