@@ -7,11 +7,9 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import {
-  ActionEnum,
-  LifecycleCapacitiesEnum,
-} from '@/alldoms/enum/service.enum';
+import { ActionEnum } from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
+import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
 
 interface DatagridColumnActionMenuProps {
   readonly id: string;

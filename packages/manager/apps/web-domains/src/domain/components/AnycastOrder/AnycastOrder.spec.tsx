@@ -1,9 +1,9 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import AnycastOrderComponent from './AnycastOrder';
 import { useGetOrderCatalogDns } from '@/domain/hooks/data/query';
 import { DnsCatalogOrderMock } from '@/domain/__mocks__/dnsOrderCatalog';

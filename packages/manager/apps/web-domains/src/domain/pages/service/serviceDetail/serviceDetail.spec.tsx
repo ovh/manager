@@ -1,8 +1,8 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import ServiceDetail from './serviceDetail';

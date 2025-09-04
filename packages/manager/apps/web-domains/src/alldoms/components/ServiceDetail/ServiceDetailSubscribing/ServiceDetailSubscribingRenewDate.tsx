@@ -3,10 +3,8 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  ServiceInfoRenewMode,
-  LifecycleCapacitiesEnum,
-} from '@/alldoms/enum/service.enum';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 interface ServiceDetailSubscribingRenewProps {
   readonly renewDate: string;
@@ -23,7 +21,7 @@ export default function ServiceDetailSubscribingRenewDate({
 }: ServiceDetailSubscribingRenewProps) {
   const { t } = useTranslation('allDom');
   const formatDate = useFormatDate();
-  const isAutomatic = renewMode === ServiceInfoRenewMode.Automatic;
+  const isAutomatic = renewMode === ServiceInfoRenewModeEnum.Automatic;
   const isTerminated = lifecycleCapacities.includes(
     LifecycleCapacitiesEnum.TerminateAtExpirationDate,
   );

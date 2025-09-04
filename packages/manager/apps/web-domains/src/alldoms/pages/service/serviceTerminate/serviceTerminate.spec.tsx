@@ -1,7 +1,8 @@
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
-import { wrapper } from '@/alldoms/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
 import {
   useGetAllDomResource,

@@ -1,8 +1,8 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import DnsZoneOrder from './DnsZoneOrder';
 
 describe('DnsZone Order component', () => {
