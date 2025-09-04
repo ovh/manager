@@ -12,7 +12,7 @@ export default function usePageTracking() {
   const { data: project } = useProject();
   const { setPciProjectMode, trackPage } = useContext(
     ShellContext,
-  ).shell?.tracking || {};
+  )?.shell?.tracking || {};
 
   useEffect(() => {
     if (project) {

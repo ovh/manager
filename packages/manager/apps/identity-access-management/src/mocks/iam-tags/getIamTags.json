@@ -1,0 +1,47 @@
+{
+  "list": [
+    {
+      "name": "Environment:Production",
+      "count": 2,
+      "type": "predefined"
+    },
+    {
+      "name": "test:coucou",
+      "count": 3,
+      "type": "custom"
+    },
+    {
+      "name": "ovh:system",
+      "count": 1,
+      "type": "system"
+    },
+    {
+      "name": "ovh:test",
+      "count": 1,
+      "type": "system"
+    },
+    {
+      "name": "afirst:tag",
+      "count": 1,
+      "type": "custom"
+    }
+  ],
+  "groupByKeys": [
+    {
+      "key": "Environment",
+      "values": "Production"
+    },
+    {
+      "key": "test",
+      "values": ["coucou"]
+    },
+    {
+      "key": "ovh",
+      "values": ["system", "test"]
+    },
+    {
+      "key": "afirst",
+      "values": ["tag"]
+    }
+  ]
+}

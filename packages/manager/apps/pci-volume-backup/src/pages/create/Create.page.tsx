@@ -144,7 +144,7 @@ export default function CreateVolumeBackup() {
         pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_SUCCESS,
       });
 
-      shell?.navigation?.navigateTo(
+      shell?.navigation.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/volume-snapshots?notificationType=success&notificationMsg=${encodeURIComponent(
           t(
@@ -164,7 +164,7 @@ export default function CreateVolumeBackup() {
         pageName: VOLUME_BACKUP_TRACKING.CREATE.REQUEST_FAIL,
       });
 
-      shell?.navigation?.navigateTo(
+      shell?.navigation.navigateTo(
         'public-cloud',
         `#/pci/projects/${projectId}/storages/volume-snapshots?notificationType=error&notificationMsg=${encodeURIComponent(
           t(

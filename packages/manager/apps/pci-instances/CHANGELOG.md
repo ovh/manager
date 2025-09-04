@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.3.16...@ovh-ux/manager-pci-instances-app@0.4.0) (2025-09-04)
+
+
+### Features
+
+* shell client static kit integration ([607fe94](https://github.com/ovh/manager/commit/607fe945262472df09069ac8ab70b09061aaeac2)), closes [#MANAGER-17961](https://github.com/ovh/manager/issues/MANAGER-17961)
+
+
+
+
+
 ## [0.3.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.3.15...@ovh-ux/manager-pci-instances-app@0.3.16) (2025-09-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

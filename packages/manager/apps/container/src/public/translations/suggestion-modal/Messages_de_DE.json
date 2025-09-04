@@ -5,5 +5,6 @@
   "suggestion_modal_listed_type_SIRET": "SIRET",
   "suggestion_modal_listed_type_VAT": "Umsatzsteuer-Identifikationsnummer",
   "suggestion_modal_action_modify": "Ich aktualisiere in meinem Profil",
-  "suggestion_modal_action_confirm": "Ich bestätige diese Informationen"
+  "suggestion_modal_action_confirm": "Ich bestätige diese Informationen",
+  "suggestion_modal_listed_type_NIN": "Nationale Identifikationsnummer"
 }
