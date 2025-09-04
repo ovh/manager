@@ -14,11 +14,11 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
+import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 
-const mockOkmsId = '123123';
-// const mockSecretPath = mockSecret1WithData.path;
+const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecretPath = mockSecret2WithData.path;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   mockOkmsId,
