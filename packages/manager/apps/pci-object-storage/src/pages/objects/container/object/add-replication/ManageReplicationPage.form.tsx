@@ -38,7 +38,7 @@ import {
 } from './ReplicationRulePriority.component';
 import { ReplicationRuleStorageClass } from './ReplicationRuleStorageClass.component';
 import { ReplicationRuleApplication } from './ReplicationRuleApplication.component';
-import { TContainer } from '../show/Show.page';
+import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
 import { TRegion } from '@/api/data/region';
 import { useSyncStorageClass } from '@/hooks/useSyncStorageClass';
 import { ReplicationRuleTag, TTagMap } from './ReplicationRuleTag.component';

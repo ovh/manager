@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_replication_list_title_description": "Defina as opções que o Object Storage da OVHcloud deve aplicar durante a replicação, tais como a seleção dos objetos elegíveis, a sua transição para uma outra classe de armazenamento, o container de destino ou a replicação dos marcadores de eliminação.",
-  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Voltar aos meus objetos",
+  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Voltar à tabela de quadros",
   "pci_projects_project_storages_containers_replication_list_sub_title": "Gerir a replicação",
   "pci_projects_project_storages_containers_replication_list_description": "Replique facilmente os seus dados nas regiões da OVHcloud.",
   "pci_projects_project_storages_containers_replication_list_add_replication_rule": "Adicionar uma regra de replicação",

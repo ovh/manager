@@ -42,7 +42,7 @@ export const useDatagridColumn = () => {
           <OdsLink
             color="primary"
             href={useHref({
-              pathname: `./${props.id || props.name}`,
+              pathname: `./dashboard/${props.id || props.name}`,
               search: `?${createSearchParams({
                 region: props.region,
               })}`,

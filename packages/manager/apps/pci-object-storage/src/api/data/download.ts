@@ -1,7 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { addWeeks } from 'date-fns';
 import { OPENIO_PRESIGN_EXPIRE } from '@/constants';
-import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
 import { TObject } from '@/api/data/container';
 
 export const downloadObject = async (

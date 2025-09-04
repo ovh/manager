@@ -11,7 +11,7 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
-import { TContainer } from '@/pages/objects/container/object/show/Show.page';
+import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
 
 import { shouldShowVersions } from './useShouldShowVersions';
 import { NameCell } from './NameCell';

@@ -64,6 +64,17 @@ export function Actions({
   const items = [
     {
       id: 0,
+      label: t('pci_projects_project_storages_containers_view_dashboard_label'),
+      onClick: () =>
+        navigate({
+          pathname: `./dashboard/${storage.id || storage.name}`,
+          search: `?${createSearchParams({
+            region: storage.region,
+          })}`,
+        }),
+    },
+    {
+      id: 1,
       label: t('pci_projects_project_storages_containers_view_add_user_label'),
       onClick: () =>
         isEmptyUsers
@@ -80,36 +91,7 @@ export function Actions({
           storage.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE),
     },
     {
-      id: 1,
-      label: t('pci_projects_project_storages_containers_view_object_label'),
-      onClick: () =>
-        navigate({
-          pathname: `./${storage.id || storage.name}`,
-          search: `?${createSearchParams({
-            region: storage.region,
-          })}`,
-        }),
-    },
-
-    {
       id: 2,
-      label: t(
-        'pci_projects_project_storages_containers_manage_replication_label',
-      ),
-      onClick: () =>
-        navigate({
-          pathname: `./${storage.id || storage.name}/replications`,
-          search: `?${createSearchParams({
-            region: storage.region,
-          })}`,
-        }),
-      condition:
-        storage.s3StorageType &&
-        (!storage.deploymentMode ||
-          storage.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE),
-    },
-    {
-      id: 3,
       onClick: () => {
         clearNotifications();
         updateStorageType(
@@ -128,7 +110,7 @@ export function Actions({
       isDisabled: isPending,
     },
     {
-      id: 4,
+      id: 3,
       label: t('pci_projects_project_storages_containers_delete_label'),
       onClick: () => {
         const searchParams = {
