@@ -46,7 +46,10 @@ export default class {
         durations.find(
           ({ commitment }) => commitment.pricingMode === DEFAULT,
         ) || durations.find(({ duration }) => duration === P12M);
+    } else if (this.availableDurations?.length > 0) {
+      [this.duration] = this.availableDurations;
     }
+    this.onChange(this.duration);
   }
 
   onChange(duration) {

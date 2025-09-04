@@ -6,42 +6,59 @@
     ></span>
     <div class="row my-2">
         <div
-            class="col-md-4"
+            class="col-md-12 billing__commitment mb-2"
             data-ng-repeat="engagement in $ctrl.pricingModes track by engagement.commitmentType"
         >
-            <oui-select-picker
-                name="{{:: 'engagement-' + engagement.commitmentType }}"
-                model="$ctrl.pricingMode"
-                label="{{:: ('billing_commitment_payment_' + engagement.commitmentType) | translate }}"
-                values="[engagement]"
+            <oui-radio
+                data-name="{{:: 'engagement-' + engagement.commitmentType }}"
+                data-model="$ctrl.pricingMode"
+                data-value="engagement"
+                data-thumbnail
             >
-                <oui-select-picker-description
-                    data-ng-if="engagement.isUpfront()"
-                >
-                    <p
-                        data-translate="billing_commitment_payment_upfront_pay_now"
-                        data-translate-values="{ price: $ctrl.upfrontSavings.amountToPay }"
-                    ></p>
-                    <p
-                        data-ng-if="$ctrl.hasDiscount"
-                        data-translate="billing_commitment_savings"
-                        data-translate-values="{ price: $ctrl.upfrontSavings.amountSaved }"
-                    ></p>
-                </oui-select-picker-description>
-                <oui-select-picker-description
+                <div data-ng-if="engagement.isUpfront()" class="d-flex">
+                    <div class="d-flex flex-column">
+                        <span
+                            data-translate="{{:: ('billing_commitment_payment_' + engagement.commitmentType) }}"
+                        ></span>
+                        <span
+                            data-translate="billing_commitment_payment_pay_now_description"
+                            class="small oui-color-p-400 mt-2"
+                        ></span>
+                    </div>
+                    <div class="d-flex flex-column ml-auto text-right">
+                        <del class="small">{{$ctrl.periodicTotalPrice}}</del>
+                        <span class="oui-heading_6 m-0 oui-color-ae-500"
+                            >{{$ctrl.upfrontSavings.amountToPay}}</span
+                        >
+                        <span
+                            data-translate="billing_commitment_payment_total"
+                            data-translate-values="{ duration: engagement.durationInMonths}"
+                            class="small oui-color-g-500"
+                        ></span>
+                    </div>
+                </div>
+                <div
                     data-ng-if="!engagement.isUpfront()"
+                    class="d-flex align-items-center"
                 >
-                    <p
-                        data-translate="billing_commitment_payment_monthly"
-                        data-translate-values="{ price: engagement.pricing.monthlyPrice.text,  duration: engagement.durationInMonths}"
-                    ></p>
-                    <p
-                        data-ng-if="$ctrl.hasSavings() && $ctrl.hasDiscount"
-                        data-translate="billing_commitment_savings"
-                        data-translate-values="{ price: $ctrl.duration.savings.text }"
-                    ></p>
-                </oui-select-picker-description>
-            </oui-select-picker>
+                    <span
+                        data-translate="{{:: ('billing_commitment_payment_' + engagement.commitmentType) }}"
+                    ></span>
+                    <div class="d-flex flex-column ml-auto text-right">
+                        <del class="small"
+                            >{{$ctrl.defaultPrice.price.text}}</del
+                        >
+                        <span class="oui-heading_6 m-0 oui-color-ae-500"
+                            >{{engagement.pricing.monthlyPrice.text}}</span
+                        >
+                        <span
+                            data-translate="billing_commitment_payment_monthly"
+                            data-translate-values="{ duration: engagement.durationInMonths}"
+                            class="small oui-color-g-500"
+                        ></span>
+                    </div>
+                </div>
+            </oui-radio>
         </div>
     </div>
 </div>

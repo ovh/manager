@@ -35,70 +35,82 @@
         ></p>
     </div>
 
-    <oui-stepper on-finish="$ctrl.commit()">
-        <oui-step-form
-            name="duration"
-            header="{{:: 'billing_commitment_duration' | translate}}"
-            loading="$ctrl.isLoadingService"
-            valid="$ctrl.model.duration"
+    <oui-message type="info"
+        ><span data-translate="billing_commitment_info_message"></span
+    ></oui-message>
+
+    <h4
+        class="oui-heading_4 mt-4"
+        data-translate="billing_commitment_duration"
+    ></h4>
+    <div>
+        <billing-commitment-duration
+            ng-if="$ctrl.availableEngagements"
+            duration="$ctrl.model.duration"
+            pricings="$ctrl.availableEngagements"
+            on-duration-change="$ctrl.onDurationChange(duration)"
+            default-price="$ctrl.defaultPrice"
+        >
+        </billing-commitment-duration>
+    </div>
+
+    <h4
+        class="oui-heading_4 mt-4"
+        data-translate="billing_commitment_payment"
+    ></h4>
+
+    <div>
+        <billing-commitment-pricing-mode
+            ng-if="$ctrl.availableEngagements && $ctrl.pricingModes && !$ctrl.isPaymentStepLoading"
+            pricing-mode="$ctrl.model.engagement"
+            pricing-modes="$ctrl.pricingModes"
+            duration="$ctrl.model.duration"
+            has-discount="$ctrl.hasDiscountAvailable"
+            upfront-savings="$ctrl.upfrontSavings"
+            default-price="$ctrl.defaultPrice"
+            periodic-total-price="$ctrl.periodicTotalPrice"
+        >
+        </billing-commitment-pricing-mode>
+    </div>
+
+    <div class="billing__commitment__footer">
+        <oui-message
+            class="mb-2"
+            type="info"
+            data-ng-if="$ctrl.model.engagement.commitmentType"
         >
             <span
-                data-ng-if="$ctrl.defaultPrice"
-                data-translate="billing_commitment_duration_current_price"
-                data-translate-values="{ price: $ctrl.defaultPrice.price.text }"
-            ></span>
-
-            <billing-commitment-duration
-                ng-if="$ctrl.availableEngagements"
-                duration="$ctrl.model.duration"
-                pricings="$ctrl.availableEngagements"
-                on-duration-change="$ctrl.onDurationChange(duration)"
-            >
-            </billing-commitment-duration>
-        </oui-step-form>
-
-        <oui-step-form
-            name="payment"
-            header="{{:: 'billing_commitment_payment' | translate}}"
-            on-focus="$ctrl.onPaymentStepFocus()"
-            loading="$ctrl.isPaymentStepLoading"
-        >
-            <billing-commitment-pricing-mode
-                ng-if="$ctrl.pricingModes && !$ctrl.isPaymentStepLoading"
-                pricing-mode="$ctrl.model.engagement"
-                pricing-modes="$ctrl.pricingModes"
-                duration="$ctrl.model.duration"
-                has-discount="$ctrl.hasDiscountAvailable"
-            >
-            </billing-commitment-pricing-mode>
-        </oui-step-form>
-
-        <oui-step-form
-            name="summary"
-            header="{{:: 'billing_commitment_summary' | translate}}"
-            on-cancel="$ctrl.goBack()"
-            on-focus="$ctrl.getStartingDate()"
-            loading="$ctrl.isPaymentStepLoading"
-            submit-text="{{:: 'billing_commitment_summit' | translate }}"
-        >
-            <p
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType }}"
                 data-translate-values="{
-                    serviceName: '<strong>' + $ctrl.service.name + '</strong>',
-                    renewDate: $ctrl.formattedStartingDate,
-                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate),
-                    monthlyPrice: $ctrl.model.engagement.pricing.monthlyPrice.text,
-                    upfrontPrice: $ctrl.model.engagement.totalPrice.text,
-                    paymentMethodName: $ctrl.paymentMethod.description
-                }"
-            ></p>
-            <p
+                  serviceName: '<strong>' + $ctrl.service.name + '</strong>',
+                  renewDate: $ctrl.formattedStartingDate,
+                  engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate),
+                  monthlyPrice: $ctrl.model.engagement.pricing.monthlyPrice.text,
+                  upfrontPrice: $ctrl.model.engagement.totalPrice.text,
+                  paymentMethodName: $ctrl.paymentMethod.description
+              }"
+            ></span
+        ></oui-message>
+        <oui-message
+            type="info"
+            data-ng-if="$ctrl.model.engagement.commitmentType"
+            ><span
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType + '_end' }}"
                 data-translate-values="{
-                    serviceName: '<strong>' + $ctrl.service.name + '</strong>',
-                    engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
-                }"
-            ></p>
-        </oui-step-form>
-    </oui-stepper>
+                  serviceName: '<strong>' + $ctrl.service.name + '</strong>',
+                  engagementEndDate: $ctrl.model.engagement.getEndDate($ctrl.startingDate)
+              }"
+            >
+            </span
+        ></oui-message>
+        <div class="d-flex mt-4">
+            <oui-back-button></oui-back-button>
+            <oui-button
+                data-on-click="$ctrl.commit()"
+                data-variant="primary"
+                class="ml-auto"
+                ><span data-translate="billing_commitment_summit"></span
+            ></oui-button>
+        </div>
+    </div>
 </div>
