@@ -3,10 +3,25 @@ import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
 import { wrapper } from '@/wrapperRenders';
-import { TKube, TOidcProvider } from '@/types';
+import { DeploymentMode, TKube, TOidcProvider } from '@/types';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import { TRegionInformations } from '@/types/region';
+
+vi.mock('@/api/hooks/useRegionInformations', () => ({
+  useRegionInformations: vi.fn(),
+}));
 
 describe('ClusterAccessAndSecurity', () => {
+  beforeEach(() => {
+    vi.mocked(useRegionInformations).mockReturnValue({
+      data: {
+        type: DeploymentMode.MONO_ZONE,
+      },
+      isPending: false,
+    } as UseQueryResult<TRegionInformations>);
+  });
+
   it('renders access and security title with correct text', () => {
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
@@ -158,8 +173,8 @@ describe('ClusterAccessAndSecurity', () => {
     ).toBeDisabled();
   });
 
-  it('renders nodes URL with clipboard component', () => {
-    const { container } = render(
+  it('renders nodes URL with clipboard component in 1az', () => {
+    const { container, getByText } = render(
       <ClusterAccessAndSecurity
         kubeDetail={{ status: 'READY', nodesUrl: 'http://nodes.url' } as TKube}
       />,
@@ -168,6 +183,28 @@ describe('ClusterAccessAndSecurity', () => {
     const clipboardElement = container.querySelector(
       '[value="http://nodes.url"]',
     );
+    expect(
+      getByText('service:kube_service_cluster_nodes_url'),
+    ).toBeInTheDocument();
     expect(clipboardElement).toBeVisible();
+  });
+  it('renders nodes URL with clipboard component in 3az', () => {
+    vi.mocked(useRegionInformations).mockReturnValue({
+      data: {
+        type: DeploymentMode.MULTI_ZONES,
+      },
+      isPending: false,
+    });
+    const { container, queryByText } = render(
+      <ClusterAccessAndSecurity
+        kubeDetail={{ status: 'READY', nodesUrl: 'http://nodes.url' } as TKube}
+      />,
+      { wrapper },
+    );
+    const clipboardElement = container.querySelector(
+      '[value="http://nodes.url"]',
+    );
+    expect(queryByText('service:kube_service_cluster_nodes_url')).toBeNull();
+    expect(clipboardElement).toBeNull();
   });
 });
