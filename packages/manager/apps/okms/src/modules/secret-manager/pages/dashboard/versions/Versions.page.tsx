@@ -54,7 +54,8 @@ const SecretVersionsPage = () => {
   const columns = [
     {
       id: 'version',
-      cell: VersionCellID,
+      cell: (version: SecretVersion) =>
+        VersionCellID({ version, urn: secret?.iam?.urn }),
       label: t('version'),
     },
     {
@@ -76,12 +77,12 @@ const SecretVersionsPage = () => {
     {
       id: 'actions',
       cell: (version: SecretVersion) =>
-        VersionCellAction(
-          domainId,
-          secretPathDecoded,
+        VersionCellAction({
+          okmsId: domainId,
+          secretPath: secretPathDecoded,
           version,
-          secret?.iam?.urn,
-        ),
+          urn: secret?.iam?.urn,
+        }),
       label: '',
     },
   ];
