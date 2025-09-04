@@ -1,4 +1,4 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import { render } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 import React from 'react';
@@ -6,7 +6,7 @@ import {
   useGetDomainZone,
   useGetDomainResource,
 } from '@/domain/hooks/data/query';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import DnsModifyPage from './dnsModify';
 
 vi.mock('@/domain/hooks/data/query', () => ({

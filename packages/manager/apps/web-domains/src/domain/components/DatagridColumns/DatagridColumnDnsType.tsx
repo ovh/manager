@@ -10,7 +10,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
 
 interface DatagridColumnTooltipProps {
-  readonly type: keyof typeof PublicNameServerTypeEnum;
+  readonly type: PublicNameServerTypeEnum;
 }
 
 export default function DatagridColumnDnsType({
