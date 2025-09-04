@@ -1,9 +1,9 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import PriceCard from '@/domain/components/Card/PriceCard';
 
 describe('Price card component', () => {

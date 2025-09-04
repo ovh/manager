@@ -1,7 +1,6 @@
 import React from 'react';
-import { Badge } from '@ovhcloud/ods-react';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 
 interface DatagridColumnBadgeProps {
@@ -13,21 +12,21 @@ export default function DatagridColumnDnsStatus({
 }: DatagridColumnBadgeProps) {
   const { t } = useTranslation('domain');
 
-  let badgeColor: ODS_BADGE_COLOR;
+  let badgeColor: BADGE_COLOR;
 
   switch (status.toUpperCase()) {
     case NameServerStatusEnum.DELETING:
-      badgeColor = ODS_BADGE_COLOR.warning;
+      badgeColor = BADGE_COLOR.warning;
       break;
     case NameServerStatusEnum.ERROR:
-      badgeColor = ODS_BADGE_COLOR.critical;
+      badgeColor = BADGE_COLOR.critical;
       break;
     case NameServerStatusEnum.ENABLED:
-      badgeColor = ODS_BADGE_COLOR.success;
+      badgeColor = BADGE_COLOR.success;
       break;
     case NameServerStatusEnum.ACTIVATING:
     default:
-      badgeColor = ODS_BADGE_COLOR.information;
+      badgeColor = BADGE_COLOR.information;
       break;
   }
 

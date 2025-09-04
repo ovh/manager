@@ -1,14 +1,12 @@
 import { useQueries } from '@tanstack/react-query';
-import {
-  getAllDomResource,
-  getServiceInformation,
-} from '@/alldoms/data/api/web-domains';
+import { getAllDomResource } from '@/alldoms/data/api/web-domains';
 import { findContact } from '@/alldoms/utils/utils';
 import {
   ServiceInfoContactEnum,
   ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
 import { AlldomService } from '@/alldoms/types';
+import { getServiceInformation } from '@/common/data/api/common.api';
 
 interface UseGetDatagridServiceInfoProps {
   readonly serviceName: string;
@@ -48,7 +46,7 @@ export const useGetAllDom = ({
           nicAdmin: findContact(contacts, ServiceInfoContactEnum.Administrator),
           nicBilling: findContact(contacts, ServiceInfoContactEnum.Billing),
           nicTechnical: findContact(contacts, ServiceInfoContactEnum.Technical),
-          lifecyclePendingActions: lifecycle?.current.pendingActions ?? [],
+          pendingActions: lifecycle?.current.pendingActions ?? [],
           renewMode: renew?.current?.mode,
           creationDate: lifecycle?.current?.creationDate,
           expirationDate,

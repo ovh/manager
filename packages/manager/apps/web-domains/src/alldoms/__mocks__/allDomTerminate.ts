@@ -1,5 +1,5 @@
 import { TServiceInfo } from '@/alldoms/types';
-import { LifecycleActionsEnum } from '../enum/service.enum';
+import { LifecycleCapacitiesEnum } from '../enum/service.enum';
 
 export const allDomTerminate: TServiceInfo[] = [
   {
@@ -7,7 +7,7 @@ export const allDomTerminate: TServiceInfo[] = [
       expirationDate: '2025-10-10T16:48:29Z',
       lifecycle: {
         current: {
-          pendingActions: [LifecycleActionsEnum.EarlyRenewal],
+          pendingActions: [LifecycleCapacitiesEnum.EarlyRenewal],
           creationDate: '2024-10-10T16:48:29Z',
         },
       },

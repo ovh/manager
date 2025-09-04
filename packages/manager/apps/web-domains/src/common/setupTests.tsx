@@ -7,6 +7,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
     i18n: {
+      language: 'fr_FR',
       changeLanguage: () => new Promise(() => {}),
     },
   }),
@@ -52,17 +53,20 @@ const mocks = vi.hoisted(() => ({
       },
     },
   },
+  environment: {
+    getRegion: vi.fn(),
+    getUserLocale: vi.fn(() => 'fr_FR'),
+  },
 }));
+const trackClickMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useContext: vi.fn(),
   ShellContext: React.createContext({
     shell: mocks.shell,
-    environment: {
-      user: { nichandle: 'fakeNic', email: 'fake@ovh.com' },
-    },
+    environment: mocks.environment,
   }),
-
+  useOvhTracking: () => ({ trackClick: trackClickMock }),
   useNavigationGetUrl: (
     linkParams: [string, string, unknown],
   ): UseQueryResult<unknown, Error> => {

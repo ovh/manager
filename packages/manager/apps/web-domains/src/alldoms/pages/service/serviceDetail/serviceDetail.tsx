@@ -102,9 +102,7 @@ export default function ServiceDetail() {
       }
     >
       <section>
-        {hasTerminateAtExpirationDateAction(
-          alldomService.lifecyclePendingActions,
-        ) &&
+        {hasTerminateAtExpirationDateAction(alldomService.pendingActions) &&
           isManualRenewMessage && (
             <Message
               color={MESSAGE_COLOR.warning}
@@ -146,7 +144,7 @@ export default function ServiceDetail() {
         </div>
         <ServiceDetailDomains
           alldomTerminated={hasTerminateAtExpirationDateAction(
-            alldomService.lifecyclePendingActions,
+            alldomService.pendingActions,
           )}
           items={alldomService.currentState.domains}
         />
