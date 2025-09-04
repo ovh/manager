@@ -7266,15 +7266,29 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.1.tgz#5b55d7c0ca746ebf3858840cbcffaf15cc8d9084"
-  integrity sha512-4pxHJE/3vWLEcYl2dVmXURQsuf6VHlZeRKWprXSf7fP+V5SjfRDLfA2kPvT9rh/mk5LXa7+xZXY2t48+FenuHg==
+"@ovh-ux/manager-react-shell-client@*":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.10.0.tgz#24dd88cca632cafd2528bd438b041938cb54ceca"
+  integrity sha512-51D1bZqJauYAkh1bGwirs7JUzJbquhl71zR7khfD2NU3tWoj55nUBAco8v7ApndStJMstlDG86WQXYclErIuQA==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
     "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.5.7"
+    "@ovh-ux/shell" "^4.7.1"
+    "@ovh-ux/url-builder" "^2.0.4"
+    "@tanstack/react-query" "^5.64.1"
+    i18next "^23.8.2"
+    i18next-http-backend "^2.4.2"
+
+"@ovh-ux/manager-react-shell-client@^0.9.3":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.3.tgz#4f6f40ae85076390ad1c54b5c3a24207d1fab158"
+  integrity sha512-i86lAEyYPY2iCoGCpm8DVF0IuyIxYO+Iccav0/cw0ItUEexsvNHbDWRu9DLlIIS3Vknrx/ualDg0cEbPEA5lZw==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.2.1"
+    "@ovh-ux/ovh-at-internet" "^0.24.1"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    "@ovh-ux/shell" "^4.7.1"
     "@ovh-ux/url-builder" "^2.0.4"
     "@tanstack/react-query" "^5.64.1"
     i18next "^23.8.2"
@@ -7398,7 +7412,7 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-components@^18.6.4":
+"@ovhcloud/ods-components@^18.3.0", "@ovhcloud/ods-components@^18.6.4":
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-18.6.4.tgz#7fc45c501f8ea6a7dda3be41ed1d7095b9c706c3"
   integrity sha512-vC2qkHEutihuuI0gYo4fRB2Gc7m1X/tfVFzvQb6c2+DcmuzDefkz48otCvqvKX0cz+a0X7Il4yRHhgrqmsH3Tw==
@@ -7448,7 +7462,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
 
-"@ovhcloud/ods-themes@^18.3.0":
+"@ovhcloud/ods-themes@^18.3.0", "@ovhcloud/ods-themes@^18.6.4":
   version "18.6.4"
   resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
@@ -7457,11 +7471,6 @@
   version "18.4.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.4.1.tgz#1c8dfeff1ba0b829fd61e8dea41af4cdbed46912"
   integrity sha512-bezBp/Bgbo19IFPJ/+a/bFt2IArjq8wGrHPshpk/bVVZsxkgpAiUfRERmftU+l7gYU3e+yvFdopNL6eRaJDPWQ==
-
-"@ovhcloud/ods-themes@^18.6.4":
-  version "18.6.4"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
-  integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
 
 "@ovhcloud/ods-themes@^19.0.1":
   version "19.0.1"
@@ -14968,7 +14977,7 @@ bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3.4.1:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
 
-bootstrap@^4.3.1, bootstrap@^4.4.1:
+bootstrap@^4.3.1:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
   integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==
