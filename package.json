@@ -9,7 +9,6 @@
       "docs",
       "packages/components/*",
       "packages/manager-react-components",
-      "packages/manager/core/shell-client",
       "packages/manager-tools/*",
       "packages/manager-tools/manager-legacy-tools/*",
       "packages/manager-wiki",
