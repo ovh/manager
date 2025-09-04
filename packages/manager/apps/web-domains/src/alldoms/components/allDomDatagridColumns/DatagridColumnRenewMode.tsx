@@ -1,20 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
-import {
-  ServiceInfoRenewMode,
-  LifecycleActionsEnum,
-} from '@/alldoms/enum/service.enum';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 interface DatagridColumnBadgeProps {
-  readonly renewMode: ServiceInfoRenewMode | null;
-  readonly lifecyclePendingActions: LifecycleActionsEnum[];
+  readonly renewMode: ServiceInfoRenewModeEnum | null;
+  readonly pendingActions: LifecycleCapacitiesEnum[];
 }
 
 export default function DatagridColumnRenewMode({
   renewMode,
-  lifecyclePendingActions,
+  pendingActions,
 }: DatagridColumnBadgeProps) {
   const { t } = useTranslation('allDom');
 
@@ -22,7 +20,7 @@ export default function DatagridColumnRenewMode({
     return '';
   }
 
-  if (hasTerminateAtExpirationDateAction(lifecyclePendingActions)) {
+  if (hasTerminateAtExpirationDateAction(pendingActions)) {
     return (
       <Badge color={BADGE_COLOR.critical}>
         {t('allDom_table_status_terminate')}
@@ -33,7 +31,7 @@ export default function DatagridColumnRenewMode({
   return (
     <Badge
       color={
-        renewMode === ServiceInfoRenewMode.Automatic
+        renewMode === ServiceInfoRenewModeEnum.Automatic
           ? BADGE_COLOR.success
           : BADGE_COLOR.warning
       }
