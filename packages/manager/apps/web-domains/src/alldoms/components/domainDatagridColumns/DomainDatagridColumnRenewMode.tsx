@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Badge, BADGE_COLOR, Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
-import {
-  ServiceInfoRenewMode,
-  ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import { useGetServiceInformation } from '@/alldoms/hooks/data/query';
+import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
+import { useGetServiceInformation } from '@/alldoms/hooks/data/query';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 interface DomainDatagridColumnRenewModeProps {
   readonly alldomTerminated: boolean;
@@ -33,7 +31,7 @@ export default function DomainDatagridColumnRenewMode({
   let label = t(`allDom_table_status_${mode}`);
   let badgeColor;
   badgeColor =
-    mode === ServiceInfoRenewMode.Automatic
+    mode === ServiceInfoRenewModeEnum.Automatic
       ? BADGE_COLOR.success
       : BADGE_COLOR.warning;
 

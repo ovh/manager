@@ -66,5 +66,17 @@
   "domain_tab_DNS_modification_activate_dns_link": "Activer votre zone DNS",
   "domain_tab_DNS_modification_mixed_activate_dns": "Pour utiliser une configuration mixte incluant les DNS d’OVHcloud, veuillez d’abord activer une zone DNS.",
   "domain_tab_DNS_modification_mixed_dns_number": "Veuillez renseigner entre 2 et 14 DNS.",
-  "domain_tab_DNS_modification_external_dns_number": "Veuillez renseigner entre 2 et 10 DNS."
+  "domain_tab_DNS_modification_external_dns_number": "Veuillez renseigner entre 2 et 10 DNS.",
+  "domain_tab_general_information_banner_expired_to_delete": "Votre nom de domaine est suspendu, vous pouvez toujours le renouveler pendant la période de grâce. Passé ce délai, des frais supplémentaires seront appliqués, susceptibles de varier en fonction de l'extension concernée.",
+  "domain_tab_general_information_banner_restorable": "Votre nom de domaine est en cours de suppression, vous pouvez toujours le restaurer moyennant des frais supplémentaires, via le lien restaurer. Dans le cas contraire, votre nom de domaine sera supprimé définitivement. <br /><Link />",
+  "domain_tab_general_information_banner_dispute": "Votre nom de domaine fait l'objet d'une procédure. Certaines fonctionnalités peuvent être affectées. Veuillez contacter le support pour plus d'informations.",
+  "domain_tab_general_information_banner_technical_not_suspended": "Votre nom de domaine fait l'objet d'une procédure de vérification des données de contacts. Veuillez consulter les opérations en cours afin de déterminer si une action de votre part est requise.",
+  "domain_tab_general_information_banner_abuse": "Votre nom de domaine fait l'objet d'une suspicion d'utilisation frauduleuse. Certaines fonctionnalités peuvent être affectées. Veuillez consulter vos mails pour plus d'informations.",
+  "domain_tab_general_information_banner_technical_suspended": "Votre nom de domaine est suspendu dans le cadre d'une procédure de vérification des données de contacts. Veuillez consulter les opérations en cours afin de déterminer si une action de votre part est requise. <br/><Link />",
+  "domain_tab_general_information_banner_forced_delete_technical": "Votre nom de domaine fait l'objet d'une résiliation unilatérale pour manquement aux obligations contractuelles de maintien à jour des données de contact.",
+  "domain_tab_general_information_banner_forced_delete_ovh_abuse": "Votre nom de domaine fait l'objet d'une résiliation unilatérale à la suite d'une violation de nos conditions particulières d'utilisation.",
+  "domain_tab_general_information_banner_forced_delete_dgccrf_abuse": "Votre nom de domaine fait l'objet d'une résiliation unilatérale, conformément à la demande d'une autorité compétente.",
+  "domain_tab_general_information_banner_forced_delete_registry_abuse": "Votre nom de domaine fait l'objet d'une résiliation unilatérale du registre à la suite d'une violation de ses conditions générales d'utilisation.",
+  "domain_tab_general_information_banner_link_ongoing_op": "Voir les opérations",
+  "domain_tab_general_information_banner_manual_renew": "Simplifiez la gestion de votre infrastructure et utilisez le renouvellement automatique pour votre domaine. Cela mettra fin à tous les rappels et à tout risque de suppression accidentelle.<br/><Link />"
 }
