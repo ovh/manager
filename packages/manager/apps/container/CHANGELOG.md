@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.146.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.145.2...@ovh-ux/manager-container-app@0.146.0) (2025-09-04)
+
+
+### Features
+
+* **iam:** improve resource datagrid ([2f6ec2d](https://github.com/ovh/manager/commit/2f6ec2df1e7d4ff7c1ac984d3a9fd6c89fbfec4e)), closes [#MANAGER-15304](https://github.com/ovh/manager/issues/MANAGER-15304)
+* **iam:** init tag manager section ([9e5d69c](https://github.com/ovh/manager/commit/9e5d69cbb970693586b232b322096bf5197e8a91)), closes [#MANAGER-16090](https://github.com/ovh/manager/issues/MANAGER-16090)
+
+
+
+
+
 ## [0.145.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.145.1...@ovh-ux/manager-container-app@0.145.2) (2025-09-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
