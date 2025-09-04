@@ -7,26 +7,23 @@ export type PrometheusData =
   | database.mongodb.PrometheusEndpoint;
 
 export const getPrometheus = async ({
-         projectId,
-         engine,
-         serviceId,
-       }: ServiceData) =>
-         apiClient.v6
-           .get(
-             `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus`,
-           )
-           .then((res: { data: PrometheusData }) => res.data as PrometheusData);
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus`,
+    )
+    .then((res) => res.data as PrometheusData);
 
 export const resetPrometheusUserPassword = async ({
-         projectId,
-         engine,
-         serviceId,
-       }: ServiceData) =>
-         apiClient.v6
-           .post(
-             `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus/credentials/reset`,
-           )
-           .then(
-             (res: { data: database.service.PrometheusAccess }) =>
-               res.data as database.service.PrometheusAccess,
-           );
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
+  apiClient.v6
+    .post(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus/credentials/reset`,
+    )
+    .then((res) => res.data as database.service.PrometheusAccess);

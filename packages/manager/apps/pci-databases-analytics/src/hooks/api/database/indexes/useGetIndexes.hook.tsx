@@ -15,7 +15,7 @@ export function useGetIndexes(
   const queryKey = [projectId, 'database', engine, serviceId, 'index'];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getIndexes({ projectId, engine, serviceId }) as Promise<database.opensearch.Index[]>,
+    queryFn: () => getIndexes({ projectId, engine, serviceId }),
     ...options,
   });
 }

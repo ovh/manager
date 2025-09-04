@@ -12,7 +12,7 @@ export function useGetService<T extends database.Service = database.Service>(
   const queryKey = [projectId, 'database/service', serviceId];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getService<T>({ projectId, serviceId }) as Promise<T>,
+    queryFn: () => getService<T>({ projectId, serviceId }),
     ...options,
   });
 }

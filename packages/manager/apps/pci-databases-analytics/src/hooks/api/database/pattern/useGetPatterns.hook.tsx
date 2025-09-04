@@ -15,7 +15,7 @@ export function useGetPatterns(
   const queryKey = [projectId, 'database', engine, serviceId, 'pattern'];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getPatterns({ projectId, engine, serviceId }) as Promise<database.opensearch.Pattern[]>,
+    queryFn: () => getPatterns({ projectId, engine, serviceId }),
     ...options,
   });
 }

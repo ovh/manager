@@ -4,40 +4,31 @@ import { HeadersIcebergPagination, ServiceData } from '.';
 import { TopicCreation } from '@/types/cloud/project/database/kafka';
 
 export const getTopics = async ({
-         projectId,
-         engine,
-         serviceId,
-       }: ServiceData) =>
-         apiClient.v6
-           .get(
-             `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic`,
-             {
-               headers: HeadersIcebergPagination,
-             },
-           )
-           .then(
-             (res: { data: database.kafka.Topic[] }) =>
-               res.data as database.kafka.Topic[],
-           );
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
+  apiClient.v6
+    .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/topic`, {
+      headers: HeadersIcebergPagination,
+    })
+    .then((res) => res.data as database.kafka.Topic[]);
 
 export interface AddTopic extends ServiceData {
   topic: Omit<TopicCreation, 'id'>;
 }
 export const addTopic = async ({
-         projectId,
-         engine,
-         serviceId,
-         topic,
-       }: AddTopic) =>
-         apiClient.v6
-           .post(
-             `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic`,
-             topic,
-           )
-           .then(
-             (res: { data: database.kafka.Topic }) =>
-               res.data as database.kafka.Topic,
-           );
+  projectId,
+  engine,
+  serviceId,
+  topic,
+}: AddTopic) =>
+  apiClient.v6
+    .post(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic`,
+      topic,
+    )
+    .then((res) => res.data as database.kafka.Topic);
 
 export interface EditTopic extends ServiceData {
   topic: database.kafka.Topic;
@@ -55,9 +46,7 @@ export const editTopic = async ({
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic/${id}`,
       body,
     )
-    .then(
-      (res: { data: database.kafka.Topic }) => res.data as database.kafka.Topic,
-    );
+    .then((res) => res.data as database.kafka.Topic);
 };
 
 export interface DeleteTopic extends ServiceData {

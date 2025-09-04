@@ -32,5 +32,5 @@ export const getGuides = async ({ section, lang, engines }: GetGuidesProps) => {
     .get(`/guides/cloud/databases`, {
       headers,
     })
-    .then((res: { data: Guide[] }) => res.data as Guide[]);
+    .then((res) => res.data as Guide[]);
 };

@@ -17,7 +17,7 @@ export function useAddConnector({
       return addConnector(connectorInfos);
     },
     onError,
-    onSuccess: (data: database.kafkaConnect.Connector, variables) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: [
           variables.projectId,

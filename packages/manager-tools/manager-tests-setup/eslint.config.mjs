@@ -21,7 +21,8 @@ export default [
   {
     rules: {
       'check-file/no-index': 'off',
-      'check-file/folder-naming-convention': 'off'
+      'check-file/folder-naming-convention': 'off',
+      'import/no-unresolved': 'off'
     },
   },
 ];

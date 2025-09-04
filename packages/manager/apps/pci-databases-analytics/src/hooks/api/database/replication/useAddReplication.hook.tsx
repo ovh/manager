@@ -20,7 +20,7 @@ export function useAddReplication({
       return addReplication(replicationInfo);
     },
     onError,
-    onSuccess: (data: database.service.Replication, variables) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: [
           variables.projectId,

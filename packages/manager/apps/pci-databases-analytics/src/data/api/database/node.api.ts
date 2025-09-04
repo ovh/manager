@@ -6,20 +6,17 @@ export interface AddNode extends ServiceData {
   node: Partial<database.service.NodeCreation>;
 }
 export const addNode = async ({
-         projectId,
-         engine,
-         serviceId,
-         node,
-       }: AddNode) =>
-         apiClient.v6
-           .post(
-             `/cloud/project/${projectId}/database/${engine}/${serviceId}/node`,
-             node,
-           )
-           .then(
-             (res: { data: database.service.Node }) =>
-               res.data as database.service.Node,
-           );
+  projectId,
+  engine,
+  serviceId,
+  node,
+}: AddNode) =>
+  apiClient.v6
+    .post(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/node`,
+      node,
+    )
+    .then((res) => res.data as database.service.Node);
 
 export interface DeleteNode extends ServiceData {
   nodeId: string;

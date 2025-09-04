@@ -3,7 +3,6 @@ import {
   defineConfig as createConfig,
   coverageConfigDefaults as defaultCoverageConfig,
   mergeConfig,
-  // eslint-disable-next-line import/no-unresolved
 } from 'vitest/config';
 
 /**
