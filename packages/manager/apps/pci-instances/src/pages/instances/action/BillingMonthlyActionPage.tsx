@@ -28,7 +28,7 @@ const BillingMonthlyActionPage: FC<TBillingMonthlyActionPageProps> = ({
   onSuccess,
   isLoading,
 }) => {
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { ovhSubsidiary } = useContext(ShellContext).environment?.getUser() || {};
 
   const { mutationHandler, isPending } = useBaseInstanceAction(
     section,
