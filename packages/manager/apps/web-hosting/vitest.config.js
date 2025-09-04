@@ -18,6 +18,7 @@ export default mergeConfig(
           'src/**/**.constant.*',
           'src/routes/*',
           'src/api',
+          'src/types/*',
           'src/web-hosting.config.ts',
           'src/hooks/index.ts',
           'src/hooks/types.ts',

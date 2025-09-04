@@ -131,7 +131,7 @@ export default function Ssl() {
             icon={ODS_ICON_NAME.download}
             iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
             onClick={handleExportWithExportToCsv}
-            data-testid="websites-page-export-button"
+            data-testid="ssl-page-export-button"
           />
         </div>
         <div className="flex flex-wrap justify-end w-1/3">
