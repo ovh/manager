@@ -140,5 +140,6 @@
   "domain_tab_contact_management_tech_description": "Il gère les aspects techniques d'un service. Il est responsable de la définition des serveurs DNS autoritaires.",
   "domain_tab_contact_management_billing_description": "Il gère la facturation d'un service ainsi que ses prélèvements.",
   "domain_tab_contact_management_button_reassign": "Réassigner",
-  "domain_tab_contact_management_holder_placeholder_personal_informations": "Pour voir les informations du titulaire, veuillez vous connecter avec le compte administrateur."
+  "domain_tab_contact_management_holder_placeholder_personal_informations": "Pour voir les informations du titulaire, veuillez vous connecter avec le compte administrateur.",
+  "domain_tab_general_information_banner_link_ongoing_op": "Voir les opérations"
 }
