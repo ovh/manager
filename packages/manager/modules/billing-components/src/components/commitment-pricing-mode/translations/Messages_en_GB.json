@@ -3,6 +3,7 @@
   "billing_commitment_payment_periodic": "Monthly payment",
   "billing_commitment_payment_upfront": "Up-front payment",
   "billing_commitment_payment_upfront_savings": "Save an additional {{price}}",
-  "billing_commitment_payment_monthly": "{{price}}/month for {{duration}} months",
-  "billing_commitment_pricing_price_month": "{{price}}/month"
+  "billing_commitment_payment_monthly": "ex. VAT/month for {{ duration }} months",
+  "billing_commitment_pricing_price_month": "{{price}}/month",
+  "billing_commitment_payment_total": "ex. VAT/{{ duration }} months"
 }
