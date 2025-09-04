@@ -9,12 +9,7 @@ export enum ServiceInfoType {
   International = 'INTERNATIONAL',
 }
 
-export enum ServiceInfoRenewMode {
-  Automatic = 'automatic',
-  Manual = 'manual',
-}
-
-export enum LifecycleActionsEnum {
+export enum LifecycleCapacitiesEnum {
   EarlyRenewal = 'earlyRenewal',
   Terminate = 'terminate',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',

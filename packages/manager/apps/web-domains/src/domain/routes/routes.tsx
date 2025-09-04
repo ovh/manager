@@ -25,6 +25,10 @@ const DnsModifyPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dns/dnsModify'),
 );
 
+const GeneralInformationsPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/generalInformations/generalInformations'),
+);
+
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -74,7 +78,10 @@ export default (
       >
         {/* Routes used for Service Detail tabs */}
         <Route element={<RedirectToDefaultTab />} index />
-        <Route path={urls.domainTabInformation} Component={Outlet} />
+        <Route
+          path={urls.domainTabInformation}
+          Component={GeneralInformationsPage}
+        />
         <Route path={urls.domainTabZone} Component={Outlet} />
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
