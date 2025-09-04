@@ -45,6 +45,10 @@ export type TServerContainer = {
     status: string;
   };
   objectLock: {
+    rule?: {
+      mode: string;
+      period: string;
+    };
     status: string;
   };
   virtualHost: string;
