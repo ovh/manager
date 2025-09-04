@@ -18,13 +18,13 @@ describe('Secrets Informations Tile component tests suite', () => {
     const { container } = render(<InformationsTile secret={mockSecret} />);
 
     const labelList = [
-      'secret-manager/dashboard:general_information',
+      'general_information',
       'path',
       mockSecret.path,
       'urn',
       'creation_date',
       mockSecret.metadata.createdAt,
-      'secret-manager/dashboard:last_update',
+      'last_update',
       mockSecret.metadata.updatedAt,
     ];
 

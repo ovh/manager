@@ -9,10 +9,10 @@ const mockSecretPath = 'a/secret';
 
 export const assertVersionDatagridVisilibity = async () => {
   // assert datagrid column visiblity
-  await assertTextVisibility(labels.secretManager.common.version);
+  await assertTextVisibility(labels.secretManager.version);
   await assertTextVisibility(labels.common.status.status);
   await assertTextVisibility(labels.common.dashboard.creation_date);
-  await assertTextVisibility(labels.secretManager.common.expiration_date);
+  await assertTextVisibility(labels.secretManager.expiration_date);
 
   // assert we display versions rows
   versionsMock.forEach(async (version) => {

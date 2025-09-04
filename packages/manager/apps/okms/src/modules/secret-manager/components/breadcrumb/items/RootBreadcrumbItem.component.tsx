@@ -10,7 +10,7 @@ import { ROOT_BREADCRUMB_ITEM_TEST_ID } from '@secret-manager/utils/tests/breadc
 
 export const RootBreadcrumbItem = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
 
   return (
     <OdsBreadcrumbItem

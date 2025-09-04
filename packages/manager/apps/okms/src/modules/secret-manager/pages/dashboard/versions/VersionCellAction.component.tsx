@@ -55,7 +55,7 @@ export const VersionCellAction = (
   version: SecretVersion,
   urn: string,
 ) => {
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { addError } = useNotifications();
 

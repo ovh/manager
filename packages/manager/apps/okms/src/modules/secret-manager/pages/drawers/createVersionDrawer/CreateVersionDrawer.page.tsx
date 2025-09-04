@@ -35,7 +35,7 @@ const CreateVersionDrawerForm = ({
   secretPath,
   onDismiss,
 }: CreateVersionDrawerProps) => {
-  const { t } = useTranslation(['secret-manager/common', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
 
   const {
     mutateAsync: createSecretVersion,
@@ -94,7 +94,7 @@ const CreateVersionDrawerForm = ({
 
 export default function CreateVersionDrawerPage() {
   const navigate = useNavigate();
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
 
   const { domainId, secretPath } = useParams<LocationPathParams>();
 

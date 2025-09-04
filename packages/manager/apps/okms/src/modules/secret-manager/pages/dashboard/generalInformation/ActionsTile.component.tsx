@@ -15,7 +15,7 @@ type ActionsTileParams = {
 
 export const ActionsTile = ({ secret }: ActionsTileParams) => {
   const { domainId } = useParams<LocationPathParams>();
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
 
   return (
     <ManagerTile>
