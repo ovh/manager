@@ -8,23 +8,21 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 import StatusChip from '@/components/statusChip/StatusChip.component';
-import {
-  BaseActionsMenu,
-  TActionsMenuItem,
-} from '@/components/menu/ActionsMenu.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
+import { TAction } from '@/pages/instances/instance/dashboard/view-models/selectInstanceDashboard';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
   isFloatingIp?: boolean;
-  actions?: TActionsMenuItem[];
+  actions?: TAction[];
 };
 
 const IPAddressItem: FC<{
   label: string;
   value: string;
-  actions?: TActionsMenuItem[];
+  actions?: TAction[];
 }> = ({ label, value, actions }) => (
   <div className="my-4 flex items-end w-full">
     <FormField className="flex-grow">
@@ -32,7 +30,12 @@ const IPAddressItem: FC<{
       <Clipboard value={value} />
     </FormField>
     <div className="w-[40px] flex-shrink-0">
-      {actions && <BaseActionsMenu items={actions} />}
+      {actions && (
+        <ActionsMenu
+          actionButton={{ variant: 'ghost' }}
+          items={new Map([[`${label}_actions`, actions]])}
+        />
+      )}
     </div>
   </div>
 );
