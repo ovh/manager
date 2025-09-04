@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-volume-backup-app",
-  "version": "0.1.31",
+  "version": "0.2.0",
   "private": true,
   "description": "PCI volume backup react application ",
   "repository": {
