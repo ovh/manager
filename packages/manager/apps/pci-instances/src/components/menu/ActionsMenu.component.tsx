@@ -12,10 +12,13 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 import { DeepReadonly } from '@/types/utils.type';
-import { ActionMenuItem, TActionsMenuItem } from './ActionMenuItem.component';
+import {
+  ActionMenuItem,
+  TActionsMenuItemProps,
+} from './ActionMenuItem.component';
 
 export type TActionsMenuProps = DeepReadonly<{
-  items: Map<string, TActionsMenuItem[]>;
+  items: Map<string, TActionsMenuItemProps[]>;
   actionButton?: Pick<ButtonProp, 'variant'>;
 }>;
 
@@ -42,16 +45,14 @@ export const ActionsMenu: FC<TActionsMenuProps> = ({ items, actionButton }) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent withArrow onClick={() => setOpen(false)} className="p-0">
-        {(Array.from(items.entries()) as [string, TActionsMenuItem[]][]).map(
-          ([group, item], index) => (
-            <div key={group}>
-              {index !== 0 && <Divider className="m-0" />}
-              {item.map((elt: TActionsMenuItem) => (
-                <ActionMenuItem key={elt.label} item={elt} />
-              ))}
-            </div>
-          ),
-        )}
+        {Array.from(items.entries()).map(([group, item], index) => (
+          <div key={group}>
+            {index !== 0 && <Divider className="m-0" />}
+            {item.map((elt: TActionsMenuItemProps) => (
+              <ActionMenuItem key={elt.label} {...elt} />
+            ))}
+          </div>
+        ))}
       </PopoverContent>
     </Popover>
   );

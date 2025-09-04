@@ -11,18 +11,18 @@ import StatusChip from '@/components/statusChip/StatusChip.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
-import { TActionsMenuItem } from '@/components/menu/ActionMenuItem.component';
+import { TActionsMenuItemProps } from '@/components/menu/ActionMenuItem.component';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
   isFloatingIp?: boolean;
-  actions?: TActionsMenuItem[];
+  actions?: TActionsMenuItemProps[];
 };
 
 const IPAddressItem: FC<{
   label: string;
   value: string;
-  actions?: TActionsMenuItem[];
+  actions?: TActionsMenuItemProps[];
 }> = ({ label, value, actions }) => (
   <div className="my-4 flex items-end w-full">
     <FormField className="flex-grow">
