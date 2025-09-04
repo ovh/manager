@@ -1,34 +1,38 @@
 <div class="row">
     <div
-        class="col-md-4 mb-2"
+        class="col-md-12 mb-2 billing__commitment"
         data-ng-repeat="duration in $ctrl.availableDurations track by duration.duration"
     >
-        <oui-select-picker
-            name="{{:: 'duration-' + duration.duration }}"
-            model="$ctrl.duration"
-            label="{{:: (duration.monthlyDuration === 1 ? 'billing_commitment_duration_none' : 'billing_commitment_duration_monthly') | translate:{ months: duration.monthlyDuration } }}"
-            values="[duration]"
-            on-change="$ctrl.onChange(modelValue)"
+        <oui-radio
+            data-name="{{:: 'duration-' + duration.duration }}"
+            data-model="$ctrl.duration"
+            data-value="duration"
+            data-on-change="$ctrl.onChange(duration)"
+            data-thumbnail
         >
-            <oui-select-picker-description
-                data-ng-if="duration.savings.value > 0"
-            >
+            <div class="d-flex align-items-center">
                 <span
+                    data-translate="{{:: (duration.monthlyDuration === 1 ? 'billing_commitment_duration_none' : 'billing_commitment_duration_monthly') | translate:{ months: duration.monthlyDuration } }}"
+                ></span>
+                <span
+                    class="ml-auto"
+                    data-ng-if="duration.savings.value > 0"
                     data-translate="billing_commitment_duration_save"
                     data-translate-values="{
                 price: duration.savings.text
             }"
                 ></span>
-            </oui-select-picker-description>
-            <oui-select-picker-footer>
-                <span
-                    class="oui-heading_6"
-                    data-translate="billing_commitment_price_month"
-                    data-translate-values="{
-                        price: duration.monthlyPrice
-                    }"
-                ></span>
-            </oui-select-picker-footer>
-        </oui-select-picker>
+                <div class="ml-auto d-flex flex-column text-right">
+                    <del class="small">{{$ctrl.defaultPrice.price.text}}</del>
+                    <span class="oui-heading_6 m-0 oui-color-ae-500"
+                        >{{duration.monthlyPrice}}</span
+                    >
+                    <span
+                        data-translate="billing_commitment_price_month"
+                        class="oui-color-g-500 small"
+                    ></span>
+                </div>
+            </div>
+        </oui-radio>
     </div>
 </div>

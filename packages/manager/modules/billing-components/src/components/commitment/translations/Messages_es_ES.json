@@ -29,5 +29,8 @@
   "billing_commitment_commit_with_discount": "Contratar con compromiso de permanencia y disfrutar de un descuento",
   "billing_commitment_commit_again_with_discount": "Volver a contratar con compromiso de permanencia y disfrutar de un descuento",
   "billing_commitment_none_with_discount": "Actualmente no tiene ningún compromiso de permanencia en el servicio {{ serviceName }}. Disfrute ya de un descuento al contratar su {{ serviceType }} con compromiso de permanencia.",
-  "billing_commitment_commit_again_description_with_discount": "Actualmente tiene contratado el servicio {{ serviceName }} con compromiso de permanencia hasta el {{ endDate }}. Vuelva a contratar su {{ serviceType }} con compromiso de permanencia y disfrute de un descuento en el precio."
+  "billing_commitment_commit_again_description_with_discount": "Actualmente tiene contratado el servicio {{ serviceName }} con compromiso de permanencia hasta el {{ endDate }}. Vuelva a contratar su {{ serviceType }} con compromiso de permanencia y disfrute de un descuento en el precio.",
+  "billing_commitment_payment_pay_now_description": "Disfrute de un descuento adicional pagando el importe total por adelantado",
+  "billing_commitment_info_message": "Al elegir un plan con compromiso de permanencia, se compromete a utilizar el servicio durante toda la duración acordada. A cambio, obtiene un beneficio (por ejemplo: descuento en la tarifa, instalación gratuita). Podrá anular el servicio en cualquier momento, sin embargo, una cancelación anticipada puede implicar costes adicionales o el abono de las mensualidades restantes.",
+  "billing_commitment_payment_method_error": "Tenemos problemas con su forma de pago. Vamos a redirigirle a la página «Formas de pago» para que pueda solucionar el problema."
 }

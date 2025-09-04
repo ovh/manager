@@ -17,6 +17,7 @@
   "billing_commitment_payment_method": "Sélectionnez un moyen de paiement",
   "billing_commitment_payment_method_none": "Vous ne disposez pas d'un moyen de paiement valide.",
   "billing_commitment_payment_method_add": "Ajouter un nouveau moyen de paiement",
+  "billing_commitment_payment_pay_now_description": "Bénéficier d'une réduction supplémentaire en payant le montant total à l'avance",
   "billing_commitment_summary": "Finalisation",
   "billing_commitment_summary_description_periodic": "À compter du {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ monthlyPrice }} pour votre service {{ serviceName }} tous les mois jusqu’au {{ engagementEndDate }}.",
   "billing_commitment_summary_description_periodic_end": "Après le {{ engagementEndDate }}, votre service {{ serviceName }} sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
@@ -26,8 +27,10 @@
   "billing_commitment_success": "La demande d'engagement du service a bien été prise en compte. ",
   "billing_commitment_success_purchase": "Veuillez finaliser le paiement de votre <a href=\"{{url}}\" target=\"_blank\">bon de commande</a>.",
   "billing_commitment_error": "Une erreur est survenue.",
+  "billing_commitment_payment_method_error": "Nous rencontrons un problème avec votre moyen de paiement. Nous allons vous rediriger vers la page \"Moyen de paiement\" afin que vous puissiez régler le problème.",
   "billing_commitment_summit": "Valider",
   "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
   "billing_commitment_savings": "Économisez un total de {{ price }}",
-  "billing_commitment_payment_upfront_pay_now": "Payez {{ price }} maintenant"
+  "billing_commitment_payment_upfront_pay_now": "Payez {{ price }} maintenant",
+  "billing_commitment_info_message": "En choisissant une offre avec engagement, vous vous engagez à utiliser le service pendant toute la durée choisie. En contrepartie, vous bénéficiez d’un avantage (ex. : réduction de tarif, frais d’installation offerts). Vous restez libre d’arrêter le service à tout moment, mais une résiliation anticipée peut entraîner des frais ou le paiement des mois restants."
 }
