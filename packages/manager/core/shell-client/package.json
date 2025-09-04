@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-shell-client",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "OVH manager react shell client",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -14,9 +14,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc",
     "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx"
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
+    "prepare": "tsc"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.2.1",
