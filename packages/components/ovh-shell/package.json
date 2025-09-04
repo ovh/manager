@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.5.1",
+    "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-core-sso": "^0.3.3",
     "@ovh-ux/ovh-at-internet": "^0.24.1",
     "@ovh-ux/ovh-reket": "^2.1.11",
