@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
-import { getServiceInformation } from '@/alldoms/data/api/web-domains';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { getServiceInformation } from '@/common/data/api/common.api';
 
 interface UseGetDatagridServiceInfoListProps {
   readonly names: string[];

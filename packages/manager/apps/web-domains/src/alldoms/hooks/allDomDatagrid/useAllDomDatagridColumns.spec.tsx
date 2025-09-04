@@ -1,4 +1,4 @@
-import '@/alldoms/setupTests';
+import '@/common/setupTests';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
