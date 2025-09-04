@@ -73,8 +73,12 @@
         </billing-commitment-pricing-mode>
     </div>
 
-    <div style="margin-top: 4rem;">
-        <oui-message class="mb-2" type="info">
+    <div class="billing__commitment__footer">
+        <oui-message
+            class="mb-2"
+            type="info"
+            data-ng-if="$ctrl.model.engagement.commitmentType"
+        >
             <span
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType }}"
                 data-translate-values="{
@@ -87,7 +91,9 @@
               }"
             ></span
         ></oui-message>
-        <oui-message type="info"
+        <oui-message
+            type="info"
+            data-ng-if="$ctrl.model.engagement.commitmentType"
             ><span
                 data-translate="{{ 'billing_commitment_summary_description_' + $ctrl.model.engagement.commitmentType + '_end' }}"
                 data-translate-values="{
@@ -97,5 +103,14 @@
             >
             </span
         ></oui-message>
+        <div class="d-flex mt-4">
+            <oui-back-button></oui-back-button>
+            <oui-button
+                data-on-click="$ctrl.commit()"
+                data-variant="primary"
+                class="ml-auto"
+                ><span data-translate="billing_commitment_summit"></span
+            ></oui-button>
+        </div>
     </div>
 </div>
