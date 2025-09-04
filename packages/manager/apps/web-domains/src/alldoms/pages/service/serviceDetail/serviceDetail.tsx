@@ -6,7 +6,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams, Link as RouterLink } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import {
@@ -18,6 +18,7 @@ import {
   MessageIcon,
   Text,
   TEXT_PRESET,
+  Link as OdsLink,
 } from '@ovhcloud/ods-react';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
@@ -44,12 +45,6 @@ export default function ServiceDetail() {
   const { data: alldomService, isLoading } = useGetAllDom({
     serviceName,
   });
-
-  const { data: url } = useNavigationGetUrl([
-    appConfig.rootLabel,
-    `/alldoms/${serviceName}/${CANCEL_TERMINATE_URL()}`,
-    {},
-  ]);
 
   if (isLoading) {
     return <Loading />;
@@ -96,10 +91,13 @@ export default function ServiceDetail() {
                     components={{ strong: <strong /> }}
                   />
                 </Text>
-                <Link href={url as string} className="link-banner">
+                <OdsLink
+                  as={RouterLink}
+                  to={`/alldoms/${serviceName}/${CANCEL_TERMINATE_URL()}`}
+                >
                   <Icon name={ICON_NAME.arrowRight} />
                   {t('allDom_detail_page_manuel_renew_warning_link')}
-                </Link>
+                </OdsLink>
               </div>
             </Message>
           )}
