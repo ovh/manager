@@ -149,6 +149,12 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
+      key: 'quantum',
+      title: t('cpbc_hourly_quantum_title'),
+      component: <ResourceUsageList resourcesUsage={consumption.quantum} />,
+      condition: !isTrustedZone,
+    },
+    {
       key: 'dataProcessing',
       title: t('cpbc_hourly_data_processing_title'),
       component: (

@@ -125,6 +125,7 @@ export enum ResourceType {
   BANDWIDTH = 'bandwidth',
   RANCHER = 'rancher',
   MANAGED_KUBERNETES_SERVICE = 'managedKubernetesService',
+  QUANTUM = 'quantum',
   TOTAL = 'total',
 }
 
