@@ -2,7 +2,7 @@ import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
 import { useGenerateUrl } from './useGenerateUrl';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   return {

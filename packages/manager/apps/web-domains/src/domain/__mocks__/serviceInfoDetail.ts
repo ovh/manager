@@ -1,15 +1,24 @@
+import { Domain } from 'domain';
+import {
+  AdditionalDomainStateEnum,
+  DomainStateEnum,
+} from '../enum/domainState.enum';
+import { ResourceStatusEnum } from '../enum/resourceStatus.enum';
+import { SuspensionStateEnum } from '../enum/suspensionState.enum';
 import { TDomainResource } from '../types/domainResource';
+import { ProtectionStateEnum } from '../enum/protectionState.enum';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 export const serviceInfoDetail: TDomainResource = {
   id: 'example.com',
   checksum: 'b33b25a0c92de994bb085f4d3b1eee47',
-  resourceStatus: 'READY',
+  resourceStatus: ResourceStatusEnum.READY,
   currentState: {
     name: 'example.com',
     extension: 'fr',
-    mainState: 'OK',
-    protectionState: 'PROTECTED',
-    suspensionState: 'NOT_SUSPENDED',
+    mainState: DomainStateEnum.OK,
+    protectionState: ProtectionStateEnum.PROTECTED,
+    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
     additionalStates: [],
     dnsConfiguration: {
       minDNS: 2,
@@ -19,15 +28,15 @@ export const serviceInfoDetail: TDomainResource = {
       glueRecordIPv6Supported: true,
       nameServers: [
         {
-          nameServerType: 'HOSTING',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
           nameServer: 'ns103.ovh.net',
         },
         {
-          nameServerType: 'HOSTING',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
           nameServer: 'dns103.ovh.net',
         },
       ],
-      configurationType: 'HOSTING',
+      configurationType: DnsConfigurationTypeEnum.HOSTING,
     },
   },
   targetSpec: {
@@ -49,5 +58,31 @@ export const serviceInfoDetail: TDomainResource = {
       'ovh:whoisOwner': 'contact/123456',
     },
     urn: 'urn:v1:eu:resource:domain:example.com',
+  },
+};
+
+export const serviceInfoDetailSuspendedTechnical: TDomainResource = {
+  ...serviceInfoDetail,
+  currentState: {
+    ...serviceInfoDetail.currentState,
+    suspensionState: SuspensionStateEnum.SUSPENDED,
+    additionalStates: [AdditionalDomainStateEnum.TECHNICAL_SUSPENDED],
+  },
+};
+
+export const serviceInfoNotSuspendedTechnical: TDomainResource = {
+  ...serviceInfoDetail,
+  currentState: {
+    ...serviceInfoDetail.currentState,
+    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+    additionalStates: [AdditionalDomainStateEnum.TECHNICAL_SUSPENDED],
+  },
+};
+
+export const serviceInfoRestorable: TDomainResource = {
+  ...serviceInfoDetail,
+  currentState: {
+    ...serviceInfoDetail.currentState,
+    mainState: DomainStateEnum.RESTORABLE,
   },
 };
