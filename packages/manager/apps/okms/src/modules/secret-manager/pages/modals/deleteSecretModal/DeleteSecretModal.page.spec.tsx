@@ -36,10 +36,10 @@ describe('Delete secret modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const title = labels.secretManager.common.delete_secret_modal_title;
+    const title = labels.secretManager.delete_secret_modal_title;
 
     await assertTextVisibility(title);
-    const description = labels.secretManager.common.delete_secret_modal_description.replace(
+    const description = labels.secretManager.delete_secret_modal_description.replace(
       '{{secretPath}}',
       mockSecret1.path,
     );

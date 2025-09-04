@@ -244,7 +244,7 @@ describe('Domain management test suite', () => {
     // WHEN
     await renderDomainManagement();
     await assertTextVisibility(
-      labels.secretManager.create.domain_section_title,
+      labels.secretManager.create_secret_form_domain_section_title,
     );
 
     // THEN
@@ -263,7 +263,7 @@ describe('Domain management test suite', () => {
 
         await renderDomainManagement();
         await assertTextVisibility(
-          labels.secretManager.create.domain_section_title,
+          labels.secretManager.create_secret_form_domain_section_title,
         );
         await assertTextVisibility(regionWithoutOkms.region);
 
@@ -285,7 +285,7 @@ describe('Domain management test suite', () => {
 
         await renderDomainManagement('rbx');
         await assertTextVisibility(
-          labels.secretManager.create.domain_section_title,
+          labels.secretManager.create_secret_form_domain_section_title,
         );
         await assertTextVisibility(regionWithoutOkms.region);
 
@@ -306,7 +306,7 @@ describe('Domain management test suite', () => {
 
       await renderDomainManagement();
       await assertTextVisibility(
-        labels.secretManager.create.domain_section_title,
+        labels.secretManager.create_secret_form_domain_section_title,
       );
       await assertTextVisibility(regionWithOneOkms.region);
 
@@ -330,7 +330,7 @@ describe('Domain management test suite', () => {
 
       await renderDomainManagement();
       await assertTextVisibility(
-        labels.secretManager.create.domain_section_title,
+        labels.secretManager.create_secret_form_domain_section_title,
       );
       await assertTextVisibility(regionWithMultipleOkms.region);
 
@@ -372,7 +372,7 @@ describe('Domain management test suite', () => {
       // WHEN
       await renderDomainManagement();
       await assertTextVisibility(
-        labels.secretManager.create.domain_section_title,
+        labels.secretManager.create_secret_form_domain_section_title,
       );
 
       // THEN
@@ -408,7 +408,7 @@ describe('Domain management test suite', () => {
       // WHEN
       await renderDomainManagement();
       await assertTextVisibility(
-        labels.secretManager.create.domain_section_title,
+        labels.secretManager.create_secret_form_domain_section_title,
       );
 
       // THEN
