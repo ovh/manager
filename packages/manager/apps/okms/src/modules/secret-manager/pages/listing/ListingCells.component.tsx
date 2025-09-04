@@ -36,7 +36,7 @@ export const DatagridCreationDate = (secret: Secret) => {
 
 export const DatagridAction = (secret: Secret) => {
   const { domainId } = useParams<LocationPathParams>();
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
   const items: ActionMenuItem[] = [

@@ -22,7 +22,7 @@ import { isErrorResponse } from '@/utils/api/api';
 
 export default function SecretDomainsPage() {
   const { t } = useTranslation([
-    'secret-manager/domains',
+    'secret-manager',
     'key-management-service/create',
   ]);
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ export default function SecretDomainsPage() {
   return (
     <BaseLayout
       header={{
-        title: t('secret-manager/domains:domains_list'),
+        title: t('domains_list'),
       }}
       breadcrumb={
         <OdsBreadcrumb>

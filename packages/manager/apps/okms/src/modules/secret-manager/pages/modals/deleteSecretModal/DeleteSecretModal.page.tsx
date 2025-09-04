@@ -12,7 +12,7 @@ import { ConfirmationModal } from '@/common/components/confirmationModal/Confirm
 
 const DeleteSecretModal = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation(['secret-manager/common', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
   const { domainId, secretPath } = useParams<LocationPathParams>();
 
   const secretPathDecoded = decodeSecretPath(secretPath);
@@ -33,8 +33,8 @@ const DeleteSecretModal = () => {
 
   return (
     <ConfirmationModal
-      title={t('secret-manager/common:delete_secret_modal_title')}
-      message={t('secret-manager/common:delete_secret_modal_description', {
+      title={t('delete_secret_modal_title')}
+      message={t('delete_secret_modal_description', {
         secretPath: secretPathDecoded,
       })}
       onDismiss={() => navigate('..')}

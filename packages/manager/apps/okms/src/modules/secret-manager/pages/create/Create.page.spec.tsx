@@ -50,12 +50,12 @@ describe('Create secret page test suite', () => {
 
     await assertBreadcrumbItems(['RootBreadcrumbItem']);
 
-    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(
-      labels.secretManager.create.domain_section_title,
+      labels.secretManager.create_secret_form_domain_section_title,
     );
     await assertTextVisibility(
-      labels.secretManager.create.secret_section_title,
+      labels.secretManager.create_secret_form_secret_section_title,
     );
   });
 
@@ -63,7 +63,7 @@ describe('Create secret page test suite', () => {
     // GIVEN
     const user = userEvent.setup();
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate);
-    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(firstRegion);
 
     await selectRegion(user);
@@ -81,7 +81,7 @@ describe('Create secret page test suite', () => {
     // assert we have navigated to the newly created secret page
     expect(
       await screen.findAllByText(
-        labels.secretManager.dashboard.general_information,
+        labels.secretManager.general_information,
         {},
         WAIT_FOR_DEFAULT_OPTIONS,
       ),
@@ -94,7 +94,7 @@ describe('Create secret page test suite', () => {
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretCreate, {
       isCreateSecretKO: true,
     });
-    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(firstRegion);
 
     await selectRegion(user);

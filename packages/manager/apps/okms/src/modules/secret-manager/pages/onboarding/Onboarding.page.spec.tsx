@@ -14,13 +14,13 @@ describe('Secret Manager onboarding test suite', () => {
       SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
     );
 
-    await assertTextVisibility(labels.secretManager.common.secret_manager);
-    await assertTextVisibility(labels.secretManager.onboarding.description_1);
-    await assertTextVisibility(labels.secretManager.onboarding.description_2);
+    await assertTextVisibility(labels.secretManager.secret_manager);
+    await assertTextVisibility(labels.secretManager.onboarding_description_1);
+    await assertTextVisibility(labels.secretManager.onboarding_description_2);
 
     getOdsButtonByLabel({
       container,
-      label: labels.secretManager.onboarding.create_button,
+      label: labels.secretManager.create_a_secret,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
   });
@@ -33,15 +33,15 @@ describe('Secret Manager onboarding test suite', () => {
 
     const button = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.onboarding.create_button,
+      label: labels.secretManager.create_a_secret,
       ...WAIT_FOR_DEFAULT_OPTIONS,
     });
 
     await user.click(button);
 
-    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(
-      labels.secretManager.create.domain_section_title,
+      labels.secretManager.create_secret_form_domain_section_title,
     );
   });
 });

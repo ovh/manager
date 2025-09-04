@@ -46,25 +46,25 @@ describe('Secrets dashboard test suite', () => {
 
     const labelOnce = [
       // tabs
-      labels.secretManager.common.versions,
+      labels.secretManager.versions,
       // general information tile
-      labels.secretManager.common.path,
-      labels.secretManager.common.urn,
-      labels.secretManager.dashboard.last_update,
+      labels.secretManager.path,
+      labels.secretManager.urn,
+      labels.secretManager.last_update,
       // settings tile
-      labels.secretManager.dashboard.settings,
+      labels.secretManager.settings,
       mockSecret.metadata.deactivateVersionAfter,
-      labels.secretManager.dashboard.maximum_number_of_versions,
+      labels.secretManager.maximum_number_of_versions,
       mockSecret.metadata.maxVersions,
-      labels.secretManager.dashboard.cas_with_description,
-      labels.secretManager.dashboard.deactivated,
+      labels.secretManager.cas_with_description,
+      labels.secretManager.deactivated,
       // actions tile
-      labels.secretManager.common.actions,
+      labels.secretManager.actions,
     ];
 
     const labelTwice = [
       // tabs
-      labels.secretManager.dashboard.general_information,
+      labels.secretManager.general_information,
       // title & general information tile
       mockSecret.path,
     ];
@@ -93,7 +93,7 @@ describe('Secrets dashboard test suite', () => {
     // check actions
     const revealSecretLink = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.common.reveal_secret,
+      label: labels.secretManager.reveal_secret,
       isLink: true,
     });
 
@@ -101,7 +101,7 @@ describe('Secrets dashboard test suite', () => {
 
     const addNewVersionLink = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.common.add_new_version,
+      label: labels.secretManager.add_new_version,
       isLink: true,
     });
 
@@ -109,7 +109,7 @@ describe('Secrets dashboard test suite', () => {
 
     const deleteSecretLink = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.common.delete_secret,
+      label: labels.secretManager.delete_secret,
       isLink: true,
     });
 
@@ -132,7 +132,7 @@ describe('Secrets dashboard test suite', () => {
       ).toHaveLength(2);
 
       // WHEN
-      user.click(screen.getByText(labels.secretManager.common.versions));
+      user.click(screen.getByText(labels.secretManager.versions));
 
       // THEN
       await assertVersionDatagridVisilibity();
@@ -147,20 +147,17 @@ describe('Secrets dashboard test suite', () => {
 
   const actionCases: ActionCase[] = [
     {
-      actionLabel: labels.secretManager.common.reveal_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.common.values),
+      actionLabel: labels.secretManager.reveal_secret,
+      assertion: () => assertTextVisibility(labels.secretManager.values),
     },
     {
-      actionLabel: labels.secretManager.common.add_new_version,
-      assertion: () =>
-        assertTextVisibility(labels.secretManager.create.data_textarea_label),
+      actionLabel: labels.secretManager.add_new_version,
+      assertion: () => assertTextVisibility(labels.secretManager.editor),
     },
     {
-      actionLabel: labels.secretManager.common.delete_secret,
+      actionLabel: labels.secretManager.delete_secret,
       assertion: () =>
-        assertTextVisibility(
-          labels.secretManager.common.delete_secret_modal_title,
-        ),
+        assertTextVisibility(labels.secretManager.delete_secret_modal_title),
     },
   ];
 

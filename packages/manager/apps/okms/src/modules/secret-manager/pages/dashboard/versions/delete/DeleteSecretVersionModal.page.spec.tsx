@@ -31,7 +31,7 @@ describe('Secret version delete modal test suite', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
 
-    const title = labels.secretManager.common.delete_version_modal_title.replace(
+    const title = labels.secretManager.delete_version_modal_title.replace(
       '{{versionId}}',
       '1',
     );

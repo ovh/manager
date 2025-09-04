@@ -9,7 +9,7 @@ import { SecretForm } from './SecretForm.component';
 import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
 
 export default function SecretCreatePage() {
-  const { t } = useTranslation('secret-manager/create');
+  const { t } = useTranslation('secret-manager');
 
   const [selectedDomainId, setSelectedDomainId] = useState<
     string | undefined
@@ -18,7 +18,7 @@ export default function SecretCreatePage() {
   return (
     <OrderOkmsModalProvider>
       <BaseLayout
-        header={{ title: t('title') }}
+        header={{ title: t('create_a_secret') }}
         breadcrumb={
           <OdsBreadcrumb>
             <RootBreadcrumbItem />

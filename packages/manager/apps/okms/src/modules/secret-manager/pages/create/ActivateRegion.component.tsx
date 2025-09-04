@@ -18,7 +18,7 @@ export const ActivateRegion = ({
   selectedRegion,
   isOkmsOrderProcessing,
 }: ActivateRegionParams) => {
-  const { t } = useTranslation(['secret-manager/create', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
   return isOkmsOrderProcessing ? (

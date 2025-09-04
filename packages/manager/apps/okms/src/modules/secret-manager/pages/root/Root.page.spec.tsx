@@ -9,7 +9,7 @@ describe('Secret Manager root page test suite', () => {
       nbOkms: 0,
     });
 
-    await assertTextVisibility(labels.secretManager.common.secret_manager);
+    await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
   it('should navigate to the secrets list page if there is only one kms in the first region', async () => {
@@ -17,8 +17,8 @@ describe('Secret Manager root page test suite', () => {
       nbOkms: 1,
     });
 
-    await assertTextVisibility(labels.secretManager.common.path);
-    await assertTextVisibility(labels.secretManager.common.version);
+    await assertTextVisibility(labels.secretManager.path);
+    await assertTextVisibility(labels.secretManager.version);
   });
 
   it('should navigate to the domains list page if there is more than one kms in the first region', async () => {
@@ -26,6 +26,6 @@ describe('Secret Manager root page test suite', () => {
       nbOkms: 3,
     });
 
-    await assertTextVisibility(labels.secretManager.domains.domains_list);
+    await assertTextVisibility(labels.secretManager.domains_list);
   });
 });

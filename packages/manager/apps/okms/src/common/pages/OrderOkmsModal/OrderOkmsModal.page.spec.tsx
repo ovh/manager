@@ -177,9 +177,7 @@ describe('Order Okms Modal test suite', () => {
       await renderOrderOkmsModal();
 
       // THEN
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
     });
 
     it('should display a notification and a retry button on error', async () => {
@@ -214,11 +212,9 @@ describe('Order Okms Modal test suite', () => {
       await renderOrderOkmsModal();
 
       // THEN
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
       await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_description,
+        labels.secretManager.create_domain_tc_description,
       );
 
       mockedContracts.forEach(async (contract) => {
@@ -245,9 +241,7 @@ describe('Order Okms Modal test suite', () => {
     it('should enable confirm button on condition approval', async () => {
       // GIVEN
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
 
       // WHEN
       await clickOnConfirmCheckbox();
@@ -268,9 +262,7 @@ describe('Order Okms Modal test suite', () => {
       );
 
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
 
       // WHEN
       await clickOnConfirmCheckbox();
@@ -290,9 +282,7 @@ describe('Order Okms Modal test suite', () => {
 
       // GIVEN - Use fast default mock
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
 
       // WHEN
       await clickOnConfirmCheckbox();
@@ -322,9 +312,7 @@ describe('Order Okms Modal test suite', () => {
       mockedPostOrderCartCartIdCheckout.mockRejectedValueOnce(mockError);
 
       await renderOrderOkmsModal();
-      await assertTextVisibility(
-        labels.secretManager.create.create_domain_tc_title,
-      );
+      await assertTextVisibility(labels.secretManager.create_domain_tc_title);
 
       // WHEN
       await clickOnConfirmCheckbox();

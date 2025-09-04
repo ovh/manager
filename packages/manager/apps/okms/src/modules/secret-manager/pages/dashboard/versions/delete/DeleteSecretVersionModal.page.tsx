@@ -9,7 +9,7 @@ import { ConfirmationModal } from '@/common/components/confirmationModal/Confirm
 
 const DeleteSecretVersionModal = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation(['secret-manager/common', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
   const { domainId, secretPath, versionId } = useParams<LocationPathParams>();
 
   const {
@@ -38,10 +38,10 @@ const DeleteSecretVersionModal = () => {
 
   return (
     <ConfirmationModal
-      title={t('secret-manager/common:delete_version_modal_title', {
+      title={t('delete_version_modal_title', {
         versionId,
       })}
-      message={t('secret-manager/common:delete_version_modal_description')}
+      message={t('delete_version_modal_description')}
       onDismiss={handleDismiss}
       onConfirm={handleConfirm}
       confirmButtonLabel={t('delete', { ns: NAMESPACES.ACTIONS })}

@@ -11,18 +11,12 @@ type InformationTileProps = {
 };
 
 export const InformationsTile = ({ secret }: InformationTileProps) => {
-  const { t } = useTranslation([
-    'secret-manager/common',
-    'secret-manager/dashboard',
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const { formatDate } = useFormatDate();
 
   return (
     <ManagerTile>
-      <ManagerTile.Title>
-        {t('secret-manager/dashboard:general_information')}
-      </ManagerTile.Title>
+      <ManagerTile.Title>{t('general_information')}</ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('path')}</ManagerTile.Item.Label>
@@ -53,9 +47,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
 
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('secret-manager/dashboard:last_update')}
-        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">
             {formatDate(secret.metadata.updatedAt)}

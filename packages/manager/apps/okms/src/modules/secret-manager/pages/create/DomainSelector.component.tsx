@@ -40,7 +40,7 @@ export const DomainSelector = ({
   isOkmsOrderProcessing,
   onDomainSelection,
 }: DomainSelectorProps) => {
-  const { t } = useTranslation('secret-manager/create');
+  const { t } = useTranslation('secret-manager');
 
   if (!selectedRegion || domains.length === 1) return null;
 
@@ -55,7 +55,9 @@ export const DomainSelector = ({
 
   return (
     <div className="flex flex-col gap-3">
-      <OdsText preset="heading-4">{t('domain_selector_title')}</OdsText>
+      <OdsText preset="heading-4">
+        {t('create_secret_form_domain_selector_title')}
+      </OdsText>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
         {domains.map((domain) => (
           <RadioCard

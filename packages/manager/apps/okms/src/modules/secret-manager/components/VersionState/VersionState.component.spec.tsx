@@ -31,17 +31,17 @@ describe('VersionState test suite', () => {
   const testCases: TestCases[] = [
     {
       color: ODS_BADGE_COLOR.success,
-      label: labels.secretManager.common.version_state_active,
+      label: labels.secretManager.version_state_active,
       state: 'ACTIVE',
     },
     {
       color: ODS_BADGE_COLOR.warning,
-      label: labels.secretManager.common.version_state_deactivated,
+      label: labels.secretManager.version_state_deactivated,
       state: 'DEACTIVATED',
     },
     {
       color: ODS_BADGE_COLOR.critical,
-      label: labels.secretManager.common.version_state_deleted,
+      label: labels.secretManager.version_state_deleted,
       state: 'DELETED',
     },
   ];

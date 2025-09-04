@@ -37,7 +37,7 @@ const VersionSelector = ({
   setCurrentVersion,
 }: VersionSelectorParams) => {
   const { t } = useTranslation([
-    'secret-manager/common',
+    'secret-manager',
     NAMESPACES.STATUS,
     NAMESPACES.ERROR,
   ]);
@@ -118,7 +118,7 @@ const VersionSelector = ({
 };
 
 const ValueDrawerPage = () => {
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
   const { domainId, secretPath } = useParams<LocationPathParams>();

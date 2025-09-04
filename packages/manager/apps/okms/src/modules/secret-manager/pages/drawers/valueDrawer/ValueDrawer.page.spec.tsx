@@ -50,7 +50,7 @@ const renderPage = async (mockParams?: RenderTestMockParams) => {
   ).toBeInTheDocument();
 
   // wait for the content to be displayed
-  await assertTextVisibility(labels.secretManager.common.values);
+  await assertTextVisibility(labels.secretManager.values);
 
   return { user, container };
 };

@@ -9,7 +9,7 @@ type SettingsTileProps = {
 };
 
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
-  const { t } = useTranslation('secret-manager/dashboard');
+  const { t } = useTranslation('secret-manager');
 
   return (
     <ManagerTile>

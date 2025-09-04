@@ -47,7 +47,7 @@ const TermsAndConditions = ({
   onCancel: () => void;
 }) => {
   const { t } = useTranslation([
-    'secret-manager/create',
+    'secret-manager',
     NAMESPACES.ERROR,
     NAMESPACES.ACTIONS,
   ]);
@@ -119,7 +119,7 @@ const TermsAndConditions = ({
 
 const OrderOkmsModal = () => {
   const { t } = useTranslation([
-    'secret-manager/create',
+    'secret-manager',
     NAMESPACES.ERROR,
     NAMESPACES.ACTIONS,
   ]);

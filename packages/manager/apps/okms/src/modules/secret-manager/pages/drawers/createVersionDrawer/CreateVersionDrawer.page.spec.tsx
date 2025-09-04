@@ -57,8 +57,8 @@ const renderPage = async () => {
   ).toBeInTheDocument();
 
   // wait for the content to be displayed
-  await assertTextVisibility(labels.secretManager.common.add_new_version);
-  await assertTextVisibility(labels.secretManager.create.data_textarea_label);
+  await assertTextVisibility(labels.secretManager.add_new_version);
+  await assertTextVisibility(labels.secretManager.editor);
 
   return { user, container };
 };

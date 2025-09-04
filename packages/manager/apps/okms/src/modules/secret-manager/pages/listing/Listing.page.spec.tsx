@@ -21,7 +21,7 @@ const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
 
   // Check title
-  await assertTextVisibility(labels.secretManager.common.secret_manager);
+  await assertTextVisibility(labels.secretManager.secret_manager);
 
   return results;
 };
@@ -59,8 +59,8 @@ describe('Secrets listing test suite', () => {
 
     // THEN
     const tableHeaders = [
-      labels.secretManager.common.path,
-      labels.secretManager.common.version,
+      labels.secretManager.path,
+      labels.secretManager.version,
       labels.common.dashboard.creation_date,
     ];
 
@@ -90,7 +90,7 @@ describe('Secrets listing test suite', () => {
 
     // THEN
     const dashboardPageLabels = await screen.findAllByText(
-      labels.secretManager.dashboard.general_information,
+      labels.secretManager.general_information,
       {},
       WAIT_FOR_DEFAULT_OPTIONS,
     );
@@ -106,16 +106,16 @@ describe('Secrets listing test suite', () => {
 
     const createSecretButton = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.common.create_secret,
+      label: labels.secretManager.create_a_secret,
     });
 
     // WHEN
     await act(() => user.click(createSecretButton));
 
     // THEN
-    await assertTextVisibility(labels.secretManager.create.title);
+    await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(
-      labels.secretManager.create.domain_section_title,
+      labels.secretManager.create_secret_form_domain_section_title,
     );
   });
 
@@ -127,24 +127,21 @@ describe('Secrets listing test suite', () => {
 
   const actionCases: ActionCase[] = [
     {
-      actionLabel: labels.secretManager.common.reveal_secret,
-      assertion: () => assertTextVisibility(labels.secretManager.common.values),
+      actionLabel: labels.secretManager.reveal_secret,
+      assertion: () => assertTextVisibility(labels.secretManager.values),
     },
     {
-      actionLabel: labels.secretManager.common.add_new_version,
-      assertion: () =>
-        assertTextVisibility(labels.secretManager.create.data_textarea_label),
+      actionLabel: labels.secretManager.add_new_version,
+      assertion: () => assertTextVisibility(labels.secretManager.editor),
     },
     {
-      actionLabel: labels.secretManager.common.access_versions,
+      actionLabel: labels.secretManager.access_versions,
       assertion: () => assertVersionDatagridVisilibity(),
     },
     {
-      actionLabel: labels.secretManager.common.delete_secret,
+      actionLabel: labels.secretManager.delete_secret,
       assertion: () =>
-        assertTextVisibility(
-          labels.secretManager.common.delete_secret_modal_title,
-        ),
+        assertTextVisibility(labels.secretManager.delete_secret_modal_title),
     },
   ];
 
