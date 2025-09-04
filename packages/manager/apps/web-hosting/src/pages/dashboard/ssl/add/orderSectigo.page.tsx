@@ -50,6 +50,7 @@ export default function SectigoModal() {
     >
       <div className="flex flex-col space-y-8 mb-10">
         <OdsSelect
+          data-testid="ssl-select-domain"
           name="modalDomainName"
           placeholder={t('select_domain')}
           onOdsChange={(e) => setSelectedDomain(e?.detail.value)}
