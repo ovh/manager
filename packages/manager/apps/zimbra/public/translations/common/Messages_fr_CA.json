@@ -68,6 +68,8 @@
   "service_billing_state_manual_renewal": "Renouvellement manuel",
   "service_billing_state_automatic_renewal": "Renouvellement automatique",
   "service_billing_state_unhandled": "N/A",
+  "service_billing_state_cancelation_planned_tooltip": "Résiliation prévue le",
+  "service_billing_state_automatic_renewal_tooltip": "Prochaine échéance le",
   "offer": "Offre",
   "monthly": "Mensuel",
   "renewal_at": "Renouvellement le {{ date }}",
