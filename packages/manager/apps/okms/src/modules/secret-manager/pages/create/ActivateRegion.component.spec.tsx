@@ -99,7 +99,7 @@ describe('ActivateRegion test suite', () => {
       expect(Spinner).toBeVisible();
 
       await assertTextVisibility(
-        labels.secretManager.create.domain_activation_in_progress,
+        labels.secretManager.domain_activation_in_progress,
       );
     });
   });
