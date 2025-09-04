@@ -71,7 +71,7 @@ export const SlotsDatagrid = () => {
       },
       {
         id: 'renewal_type',
-        cell: (item) => <BillingStateBadge state={item.service?.state} />,
+        cell: (item) => <BillingStateBadge service={item.service} />,
         label: 'zimbra_account_datagrid_renewal_type',
       },
       {
