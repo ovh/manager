@@ -5,7 +5,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 export const DATA_MIN_CHAR = 1;
 
 export const useSecretDataSchema = () => {
-  const { t } = useTranslation(['secret-manager:create', NAMESPACES.FORM]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.FORM]);
 
   return z
     .string({ error: t('required_field', { ns: NAMESPACES.FORM }) })
@@ -20,7 +20,7 @@ export const useSecretDataSchema = () => {
         }
       },
       {
-        error: t('secret-manager/create:data_error_invalid_json'),
+        error: t('error_invalid_json'),
       },
     );
 };

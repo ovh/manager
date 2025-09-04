@@ -54,7 +54,7 @@ describe('PathSchema test suite', () => {
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
-      labels.secretManager.create.data_error_invalid_json,
+      labels.secretManager.error_invalid_json,
     );
   });
 
@@ -63,7 +63,7 @@ describe('PathSchema test suite', () => {
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
-      labels.secretManager.create.data_error_invalid_json,
+      labels.secretManager.error_invalid_json,
     );
   });
 });
