@@ -29,7 +29,7 @@ describe('Secrets listing test suite with mocked react-router-dom', () => {
 
     const createSecretButton = await getOdsButtonByLabel({
       container,
-      label: labels.secretManager.common.create_secret,
+      label: labels.secretManager.create_a_secret,
     });
 
     await act(() => user.click(createSecretButton));
