@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.38...@ovh-ux/manager-react-core-application@0.11.39) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
 ## [0.11.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.37...@ovh-ux/manager-react-core-application@0.11.38) (2025-09-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application

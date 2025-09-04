@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.0...@ovh-ux/shell@4.7.1) (2025-09-04)
+
+
+### Bug Fixes
+
+* **shell:** add manager core api dependency to the shell ([4b3dfa4](https://github.com/ovh/manager/commit/4b3dfa4ab172b08f4bdf3d32f408b2949c635708)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341)
+
+
+
+
+
 # [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.6.0...@ovh-ux/shell@4.7.0) (2025-09-03)
 
 
