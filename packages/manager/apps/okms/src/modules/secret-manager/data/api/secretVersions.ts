@@ -38,16 +38,27 @@ export type CreateSecretVersionParams = {
   okmsId: string;
   path: string;
   data: CreateSecretVersionBody;
+  cas?: number;
 };
 
 export const createSecretVersion = async ({
   okmsId,
   path,
   data,
+  cas,
 }: CreateSecretVersionParams) => {
+  const queryParams = new URLSearchParams();
+  if (cas) {
+    queryParams.set('cas', cas.toString());
+  }
+  const queryString = queryParams.toString();
+  const url = `okms/resource/${okmsId}/secret/${encodeURIComponent(
+    path,
+  )}/version${queryString ? `?${queryString}` : ''}`;
+
   const { data: response } = await apiClient.v2.post<
     CreateSecretVersionResponse
-  >(`okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version`, {
+  >(url, {
     data,
   });
   return response;
