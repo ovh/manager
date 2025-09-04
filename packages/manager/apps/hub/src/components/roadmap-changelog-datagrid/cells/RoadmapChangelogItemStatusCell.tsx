@@ -1,21 +1,22 @@
+import { FunctionComponent } from 'react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { ODS_CHIP_SIZE, ODS_TEXT_COLOR_INTENT } from '@ovhcloud/ods-components';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ROADMAP_STATUS_COLORS } from './roadmapChangelogItemStatusCell.constants';
+import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
 
-export const RoadmapChangelogItemStatusCell = ({ item }: { item: any }) => {
-  const colors: Record<string, ODS_TEXT_COLOR_INTENT> = {
-    Done: ODS_TEXT_COLOR_INTENT.success,
-    'Partially released': ODS_TEXT_COLOR_INTENT.info,
-    Planned: ODS_TEXT_COLOR_INTENT.accent,
-    Acknowledged: ODS_TEXT_COLOR_INTENT.default,
-    Prioritized: ODS_TEXT_COLOR_INTENT.warning,
-  };
+type Props = {
+  item: RoadmapChangelogItem;
+};
+export const RoadmapChangelogItemStatusCell: FunctionComponent<Props> = ({
+  item,
+}) => {
   return (
     <DataGridTextCell>
       <OsdsChip
         inline
         size={ODS_CHIP_SIZE.sm}
-        color={colors[item.status]}
+        color={ROADMAP_STATUS_COLORS[item.status]}
         className="whitespace-nowrap"
       >
         {item.status}
