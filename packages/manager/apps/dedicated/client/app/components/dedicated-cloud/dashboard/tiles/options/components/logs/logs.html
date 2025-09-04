@@ -1,0 +1,45 @@
+<div class="oui-tile__item">
+    <dl class="oui-tile__definition">
+        <dt class="oui-tile__term">
+            <span
+                data-translate="{{:: 'ovhManagerPccDashboardOptionsLogs_name' }}"
+            ></span>
+        </dt>
+        <dd>
+            <div data-ng-if="$ctrl.loading">
+                <oui-spinner size="s"></oui-spinner>
+            </div>
+            <span
+                data-ng-if="!$ctrl.loading && $ctrl.logsCompatiblity"
+                class="oui-badge"
+                data-ng-class="'oui-badge_' + $ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].badgeType"
+                data-translate="{{ 'logs_state_' + $ctrl.logsCompatiblity.state}}"
+            ></span>
+        </dd>
+    </dl>
+    <div
+        class="oui-tile__actions"
+        data-ng-if="!$ctrl.loading && $ctrl.logsCompatiblity"
+    >
+        <oui-action-menu
+            data-ng-if="$ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].actions.length > 0"
+            data-compact
+            data-placement="end"
+        >
+            <a
+                data-ng-if="$ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].actions.includes($ctrl.LOGS_ACTIONS.ACTIVATE)"
+                class="oui-dropdown-option"
+                role="menuitem"
+                data-ng-href="{{ $ctrl.logsUrl}}"
+            >
+                <span data-translate="logs_activate"></span>
+            </a>
+            <oui-action-menu-item
+                data-ng-if="$ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].actions.includes($ctrl.LOGS_ACTIONS.DEACTIVATE)"
+                data-on-click="$ctrl.onDeactivateLogs()"
+            >
+                <span data-translate="logs_deactivate"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </div>
+</div>

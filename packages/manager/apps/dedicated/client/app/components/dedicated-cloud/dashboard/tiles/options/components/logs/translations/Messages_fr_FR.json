@@ -1,0 +1,20 @@
+{
+  "ovhManagerPccDashboardOptionsLogs_name": "Logs",
+  "logs_state_creating": "Création en cours",
+  "logs_state_deleted": "Supprimé",
+  "logs_state_deleting": "Suppression en cours",
+  "logs_state_delivered": "Activé",
+  "logs_state_disabled": "Désactivé",
+  "logs_state_pending": "En attente",
+  "logs_state_toCreate": "À créer",
+  "logs_state_updating": "Mise à jour en cours",
+  "logs_get_status_error": "Une erreur est survenue lors de la récupération du statut de la collecte des logs : {{ error }}",
+  "logs_activate": "Activer",
+  "logs_deactivate": "Désactiver",
+  "logs_deactivate_modal_title": "Attention, vous allez désactiver la collecte des logs",
+  "logs_deactivate_modal_description": "La désactivation de ce service entrainera l'arrêt de la collecte et de la visualisation des logs. Voulez-vous continuer ?",
+  "logs_deactivate_modal_cancel": "Fermer",
+  "logs_deactivate_modal_confirm": "Désactiver",
+  "logs_deactivate_success": "La désactivation de la collecte des logs a été prise en compte, elle sera effective dans quelques minutes.",
+  "logs_deactivate_error": "Une erreur est survenue lors de la désactivation de la collecte des logs : {{ error }}"
+}

@@ -24,6 +24,7 @@ export default {
     onExecutionDateChange: '<',
     onMlSubscribe: '<',
     onTerminate: '<',
+    onDeactivateLogs: '<',
     onBasicOptionsUpgrade: '<',
     onCertificationUpgrade: '<',
     onConfigurationOnlyUpgrade: '<',
@@ -36,6 +37,7 @@ export default {
     dedicatedCloudDescription: '<',
     managedVCDAvailability: '<',
     dedicatedCloudPCCMigrationState: '<',
+    isLogsDisabled: '<?',
   },
   template,
 };
