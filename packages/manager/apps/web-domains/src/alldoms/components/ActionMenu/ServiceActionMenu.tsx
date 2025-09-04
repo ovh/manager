@@ -1,5 +1,8 @@
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_COLOR as BUTTON_COLOR,
+  ODS_BUTTON_VARIANT as BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,14 +10,17 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { ActionEnum, LifecycleActionsEnum } from '@/alldoms/enum/service.enum';
+import {
+  ActionEnum,
+  LifecycleCapacitiesEnum,
+} from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface DatagridColumnActionMenuProps {
   readonly id: string;
   readonly serviceName: string;
-  readonly lifecyclePendingActions: LifecycleActionsEnum[];
+  readonly pendingActions: LifecycleCapacitiesEnum[];
   readonly terminateUrl: string;
   readonly cancelTerminateUrl?: string;
   readonly whichAction: ActionEnum;
@@ -25,7 +31,7 @@ export default function ServiceActionMenu({
   serviceName,
   terminateUrl,
   cancelTerminateUrl,
-  lifecyclePendingActions,
+  pendingActions,
   whichAction,
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
@@ -55,9 +61,7 @@ export default function ServiceActionMenu({
     },
   ]);
 
-  const disableAction = hasTerminateAtExpirationDateAction(
-    lifecyclePendingActions,
-  );
+  const disableAction = hasTerminateAtExpirationDateAction(pendingActions);
 
   const renewCGIAction = {
     id: 1,
@@ -88,7 +92,7 @@ export default function ServiceActionMenu({
     id: 4,
     label: t('allDom_table_action_terminate'),
     onClick: () => navigate(terminateUrl),
-    color: ODS_BUTTON_COLOR.critical,
+    color: BUTTON_COLOR.critical,
     isDisabled: disableAction,
   };
 
@@ -125,7 +129,7 @@ export default function ServiceActionMenu({
     <ActionMenu
       id={id}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       items={items}
     />
   );

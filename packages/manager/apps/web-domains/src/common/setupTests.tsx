@@ -7,6 +7,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
     i18n: {
+      language: 'fr_FR',
       changeLanguage: () => new Promise(() => {}),
     },
   }),
@@ -20,16 +21,8 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
+    useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
-  };
-});
-
-vi.mock(import('@/domain/utils/utils'), async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    getLanguageKey: vi.fn(),
-    computeDnsDetails: vi.fn(),
   };
 });
 
@@ -45,8 +38,8 @@ vi.mock('react-router-dom', () => ({
       id: '1',
     };
   },
-  useHref: () => vi.fn(() => null),
   Outlet: vi.fn(),
+  useHref: vi.fn(),
 }));
 
 const mocks = vi.hoisted(() => ({
@@ -61,13 +54,13 @@ const mocks = vi.hoisted(() => ({
   },
   environment: {
     getRegion: vi.fn(),
-    getUser: vi.fn(() => ({ ovhSubsidiary: 'FR' })),
     getUserLocale: vi.fn(() => 'fr_FR'),
   },
 }));
 const trackClickMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useContext: vi.fn(),
   ShellContext: React.createContext({
     shell: mocks.shell,
     environment: mocks.environment,
@@ -80,4 +73,12 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
   },
+}));
+
+vi.mock('@/alldoms/hooks/nichandle/useNichandle', () => ({
+  useNichandle: vi.fn(() => {
+    return {
+      nichandle: 'aa00001-ovh',
+    };
+  }),
 }));

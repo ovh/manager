@@ -65,9 +65,7 @@ export default function ServiceDetail() {
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
     >
       <section>
-        {hasTerminateAtExpirationDateAction(
-          alldomService.lifecyclePendingActions,
-        ) &&
+        {hasTerminateAtExpirationDateAction(alldomService.pendingActions) &&
           isManualRenewMessage && (
             <Message
               color={MESSAGE_COLOR.warning}
@@ -106,7 +104,7 @@ export default function ServiceDetail() {
         </div>
         <ServiceDetailDomains
           alldomTerminated={hasTerminateAtExpirationDateAction(
-            alldomService.lifecyclePendingActions,
+            alldomService.pendingActions,
           )}
           items={alldomService.currentState.domains}
         />
