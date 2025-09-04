@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-common-api",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "private": true,
   "description": "OVHcloud manager module common API (order, services, me, ...).",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-vite-config": "*",
     "@ovh-ux/manager-core-api": "^0.17.1",
     "@ovh-ux/manager-core-test-utils": "^0.6.0",
-    "@ovh-ux/manager-react-shell-client": "^0.9.2",
+    "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "msw": "2.1.7"
   },
   "peerDependencies": {
