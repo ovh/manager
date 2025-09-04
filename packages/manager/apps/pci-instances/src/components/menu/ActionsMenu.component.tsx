@@ -15,14 +15,13 @@ import { DeepReadonly } from '@/types/utils.type';
 import { ActionMenuItem, TActionsMenuItem } from './ActionMenuItem.component';
 
 export type TActionsMenuProps = DeepReadonly<{
-  items: Map<string, TActionsMenuItem[]> | TActionsMenuItem[];
+  items: Map<string, TActionsMenuItem[]>;
   actionButton?: Pick<ButtonProp, 'variant'>;
 }>;
 
 export const ActionsMenu: FC<TActionsMenuProps> = ({ items, actionButton }) => {
   const [isOpen, setOpen] = useState(false);
-  const size =
-    items instanceof Map ? items.size : (items as TActionsMenuItem[]).length;
+  const { size } = items;
 
   return (
     <Popover
@@ -43,20 +42,16 @@ export const ActionsMenu: FC<TActionsMenuProps> = ({ items, actionButton }) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent withArrow onClick={() => setOpen(false)} className="p-0">
-        {items instanceof Map
-          ? (Array.from(items.entries()) as [string, TActionsMenuItem[]][]).map(
-              ([group, item], index, arr) => (
-                <div key={group}>
-                  {item.map((elt: TActionsMenuItem) => (
-                    <ActionMenuItem key={elt.label} item={elt} />
-                  ))}
-                  {arr.length - 1 !== index && <Divider className="m-0" />}
-                </div>
-              ),
-            )
-          : (items as TActionsMenuItem[]).map((item) => (
-              <ActionMenuItem key={item.label} item={item} />
-            ))}
+        {(Array.from(items.entries()) as [string, TActionsMenuItem[]][]).map(
+          ([group, item], index) => (
+            <div key={group}>
+              {index !== 0 && <Divider className="m-0" />}
+              {item.map((elt: TActionsMenuItem) => (
+                <ActionMenuItem key={elt.label} item={elt} />
+              ))}
+            </div>
+          ),
+        )}
       </PopoverContent>
     </Popover>
   );

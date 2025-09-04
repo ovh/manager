@@ -71,26 +71,32 @@ const InstanceNetworkingBlock: FC = () => {
   ]);
 
   const privateIpActionsLinks = useMemo(
-    () => [
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_network_settings',
-        ),
-        link: {
-          path: `${projectUrl}/private-networks`,
-          isExternal: true,
-        },
-      },
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_network_attach',
-        ),
-        link: {
-          path: 'network/private/attach',
-          isExternal: false,
-        },
-      },
-    ],
+    () =>
+      new Map([
+        [
+          'private_ip',
+          [
+            {
+              label: t(
+                'actions:pci_instances_actions_instance_network_network_settings',
+              ),
+              link: {
+                path: `${projectUrl}/private-networks`,
+                isExternal: true,
+              },
+            },
+            {
+              label: t(
+                'actions:pci_instances_actions_instance_network_network_attach',
+              ),
+              link: {
+                path: 'network/private/attach',
+                isExternal: false,
+              },
+            },
+          ],
+        ],
+      ]),
     [projectUrl, t],
   );
 

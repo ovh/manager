@@ -31,7 +31,10 @@ const IPAddressItem: FC<{
     </FormField>
     <div className="w-[40px] flex-shrink-0">
       {actions && (
-        <ActionsMenu actionButton={{ variant: 'ghost' }} items={actions} />
+        <ActionsMenu
+          actionButton={{ variant: 'ghost' }}
+          items={new Map([[`${label}_actions`, actions]])}
+        />
       )}
     </div>
   </div>
