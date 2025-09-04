@@ -35,6 +35,7 @@ export default class ResiliateModalController {
           this.resiliateOption === 'terminate' &&
           this.BillingService.shouldSkipConfirmation(this.service);
         return this.onSuccess(
+          isResiliationImmediate,
           this.$translate.instant(
             `billing_resiliate_${this.resiliateOption}${
               isResiliationImmediate ? '_immediate' : ''
