@@ -51,7 +51,7 @@ describe('PathSchema test suite', () => {
     const result = getSchemaParsingResult(path);
     expect(result.success).toBe(false);
     expect(result.error.issues[0].message).toBe(
-      labels.secretManager.create.path_error_allowed_characters,
+      labels.secretManager.error_path_allowed_characters,
     );
   });
 
@@ -65,7 +65,7 @@ describe('PathSchema test suite', () => {
       const result = getSchemaParsingResult(path);
       expect(result.success).toBe(false);
       expect(result.error.issues[0].message).toBe(
-        labels.secretManager.create.path_error_structure,
+        labels.secretManager.error_path_structure,
       );
     },
   );
