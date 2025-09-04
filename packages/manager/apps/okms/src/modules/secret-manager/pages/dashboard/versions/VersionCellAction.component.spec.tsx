@@ -1,5 +1,7 @@
+import React from 'react';
+import { i18n } from 'i18next';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -16,19 +18,18 @@ import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
 } from '@/utils/tests/uiTestHelpers';
-import { VersionCellAction } from './VersionCellAction.component';
 import {
   createErrorResponseMock,
   renderWithClient,
 } from '@/utils/tests/testUtils';
+import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { VersionCellAction } from './VersionCellAction.component';
+
+let i18nValue: i18n;
 
 // Mock dependencies
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
-}));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
@@ -54,16 +55,22 @@ const mockOkmsId = 'test-okms-id';
 const mockSecretPath = 'test/secret/path';
 
 const renderAndOpenMenu = async (versionMock: SecretVersion) => {
+  if (!i18nValue) {
+    i18nValue = await initTestI18n();
+  }
+
   const user = userEvent.setup();
 
-  const component = VersionCellAction(
-    mockOkmsId,
-    mockSecretPath,
-    versionMock,
-    '', // We do not test iam permissions
+  const { container } = renderWithClient(
+    <I18nextProvider i18n={i18nValue}>
+      <VersionCellAction
+        okmsId={mockOkmsId}
+        secretPath={mockSecretPath}
+        version={versionMock}
+        urn=""
+      />
+    </I18nextProvider>,
   );
-
-  const { container } = renderWithClient(component);
 
   const actionButton = await getOdsButtonByIcon({
     container,
@@ -80,7 +87,6 @@ describe('VersionCellAction test suite', () => {
   const mockNavigate = vi.fn();
   const mockAddError = vi.fn();
   const mockUpdateSecretVersion = vi.fn();
-  const mockT = vi.fn((key: string) => key);
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -89,7 +95,6 @@ describe('VersionCellAction test suite', () => {
     vi.mocked(useNotifications).mockReturnValue({
       addError: mockAddError,
     });
-    vi.mocked(useTranslation).mockReturnValue({ t: mockT } as any);
     vi.mocked(useUpdateSecretVersion).mockReturnValue({
       mutateAsync: mockUpdateSecretVersion,
       isPending: false,
@@ -103,11 +108,15 @@ describe('VersionCellAction test suite', () => {
         versionMock: versionActiveMock,
         buttons: [
           {
-            label: 'version_state_deactivate',
+            label: labels.secretManager.reveal_secret,
             shouldBeDisabled: false,
           },
           {
-            label: 'version_state_delete',
+            label: labels.secretManager.version_state_deactivate,
+            shouldBeDisabled: false,
+          },
+          {
+            label: labels.secretManager.version_state_delete,
             shouldBeDisabled: true,
           },
         ],
@@ -117,11 +126,15 @@ describe('VersionCellAction test suite', () => {
         versionMock: versionDeactivatedMock,
         buttons: [
           {
-            label: 'version_state_reactivate',
+            label: labels.secretManager.reveal_secret,
+            shouldBeDisabled: true,
+          },
+          {
+            label: labels.secretManager.version_state_reactivate,
             shouldBeDisabled: false,
           },
           {
-            label: 'version_state_delete',
+            label: labels.secretManager.version_state_delete,
             shouldBeDisabled: false,
           },
         ],
@@ -131,11 +144,15 @@ describe('VersionCellAction test suite', () => {
         versionMock: versionDeletedMock,
         buttons: [
           {
-            label: 'version_state_reactivate',
+            label: labels.secretManager.reveal_secret,
             shouldBeDisabled: true,
           },
           {
-            label: 'version_state_delete',
+            label: labels.secretManager.version_state_reactivate,
+            shouldBeDisabled: true,
+          },
+          {
+            label: labels.secretManager.version_state_delete,
             shouldBeDisabled: true,
           },
         ],
@@ -171,7 +188,7 @@ describe('VersionCellAction test suite', () => {
 
       const deactivateButton = await getOdsButtonByLabel({
         container,
-        label: 'version_state_deactivate',
+        label: labels.secretManager.version_state_deactivate,
       });
 
       user.click(deactivateButton);
@@ -193,7 +210,7 @@ describe('VersionCellAction test suite', () => {
 
       const reactivateButton = await getOdsButtonByLabel({
         container,
-        label: 'version_state_reactivate',
+        label: labels.secretManager.version_state_reactivate,
       });
 
       user.click(reactivateButton);
@@ -215,7 +232,7 @@ describe('VersionCellAction test suite', () => {
 
       const deleteButton = await getOdsButtonByLabel({
         container,
-        label: 'version_state_delete',
+        label: labels.secretManager.version_state_delete,
       });
 
       user.click(deleteButton);
@@ -242,7 +259,7 @@ describe('VersionCellAction test suite', () => {
 
       const deactivateButton = await getOdsButtonByLabel({
         container,
-        label: 'version_state_deactivate',
+        label: labels.secretManager.version_state_deactivate,
       });
 
       user.click(deactivateButton);
