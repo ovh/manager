@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import { describe, it, expect } from 'vitest';
 import { generateGuideLinks } from './generateGuideLinks';
 

@@ -3,14 +3,14 @@ import {
   TDomainResource,
   TNameServer,
   TNameServerWithType,
-} from '../types/domainResource';
+} from '@/domain/types/domainResource';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 import { PublicNameServerTypeEnum } from '@/domain/enum/publicNameServerType.enum';
 import {
   ActiveConfigurationTypeEnum,
   DnsConfigurationTypeEnum,
-} from '../enum/dnsConfigurationType.enum';
-import { TDomainZone } from '../types/domainZone';
+} from '@/domain/enum/dnsConfigurationType.enum';
+import { TDomainZone } from '@/domain/types/domainZone';
 
 const INTERNAL_DNS_PATTERN: Record<string, RegExp> = {
   EU: /^d?ns(?:\d{1,3})?\.ovh\.net/i,
@@ -46,9 +46,7 @@ function isDedicatedDns(value: string): boolean {
   );
 }
 
-function guessNameserverType(
-  dns: string,
-): keyof typeof PublicNameServerTypeEnum {
+function guessNameserverType(dns: string): PublicNameServerTypeEnum {
   if (isAnycastDns(dns)) {
     return PublicNameServerTypeEnum.ANYCAST;
   }
@@ -77,14 +75,19 @@ export function transformCurrent(
   dns: TNameServerWithType,
   status: NameServerStatusEnum,
 ): TDatagridDnsDetails {
-  let type: keyof typeof PublicNameServerTypeEnum;
+  let type: PublicNameServerTypeEnum;
 
   if (
     Object.values(PublicNameServerTypeEnum).includes(
-      dns.nameServerType as PublicNameServerTypeEnum,
+      PublicNameServerTypeEnum[
+        dns.nameServerType as keyof typeof PublicNameServerTypeEnum
+      ],
     )
   ) {
-    type = dns.nameServerType as keyof typeof PublicNameServerTypeEnum;
+    type =
+      PublicNameServerTypeEnum[
+        dns.nameServerType as keyof typeof PublicNameServerTypeEnum
+      ];
   } else {
     type = PublicNameServerTypeEnum.STANDARD;
   }

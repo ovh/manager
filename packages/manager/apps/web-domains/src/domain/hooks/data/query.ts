@@ -4,7 +4,6 @@ import {
   OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   getDomainAnycastOption,
   getDomainResource,
@@ -14,9 +13,13 @@ import { getDomainZone } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
-import { updateServiceOption } from '@/common/data/api/common.api';
+import {
+  getServiceInformation,
+  updateServiceOption,
+} from '@/common/data/api/common.api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TServiceInfo } from '@/common/types/common.types';
+import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -90,7 +93,6 @@ export const useTerminateAnycastMutation = (
 ) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const { addSuccess, addError } = useNotifications();
   const updateInfo = restore
     ? ServiceInfoUpdateEnum.Empty
@@ -104,7 +106,9 @@ export const useTerminateAnycastMutation = (
       });
       addSuccess(
         t('domain_dns_tab_terminate_anycast_success', {
-          action: restore ? t('domain_action_restore') : t('domain_action_terminate'),
+          action: restore
+            ? t('domain_action_restore')
+            : t('domain_action_terminate'),
         }),
       );
     },
@@ -116,5 +120,20 @@ export const useTerminateAnycastMutation = (
   return {
     terminateAnycast: mutate,
     isTerminateAnycastPending: isPending,
+  };
+};
+
+export const useGetServiceInformation = (
+  serviceName: string,
+  serviceRoute: ServiceRoutes,
+) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'service', serviceName],
+    queryFn: () => getServiceInformation(serviceName, serviceRoute),
+  });
+
+  return {
+    serviceInfo: data,
+    isServiceInfoLoading: isLoading,
   };
 };
