@@ -1,4 +1,11 @@
-import { Suspense, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   Outlet,
   useHref,
@@ -21,7 +28,7 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   ShellContext,
   useOvhTracking,
@@ -32,64 +39,35 @@ import {
   OdsBreadcrumbItem,
   OdsMessage,
   OdsSpinner,
-  OdsText,
 } from '@ovhcloud/ods-components/react';
-
-import { ColumnSort } from '@tanstack/react-table';
-import {
-  usePaginatedObjects,
-  useServerContainer,
-} from '@/api/hooks/useContainer';
-import { useDatagridColumn } from './useDatagridColumn';
 
 import {
   BACKUP_KEY,
-  NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
   STORAGE_ASYNC_REPLICATION_LINK,
   UNIVERSE,
   SUB_UNIVERSE,
   APP_NAME,
 } from '@/constants';
-import { useGetRegion } from '@/api/hooks/useRegion';
-import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
-import { TServerContainer } from '@/api/data/container';
-import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
-import { TRegion } from '@/api/data/region';
-
+import { useContainerData } from '@/hooks/useContainerData';
 import { useServerContainerObjects } from '@/api/hooks/useContainerObjects';
-import './style.scss';
+import { usePaginatedObjects } from '@/api/hooks/useContainer';
+import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
-import { ContainerInfoPanel } from './ContainerInfoPanel';
-import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
-import { useMergedContainer } from '@/hooks/useContainerMemo';
+import {
+  CommonContainerContext,
+  S3ContainerContext,
+  SwiftContainerContext,
+} from './ContainerContext';
+import { getDashboardTabs } from '@/utils/getDashboardTabs';
+import { useDatagridColumn } from './useDatagridColumn';
+import './style.scss';
 
-export type TContainer = {
-  id: string;
-  objectsCount: number;
-  usedSpace: string | number;
-  publicUrl: string;
-  s3StorageType: string;
-  staticUrl: string;
-  regionDetails?: TRegion;
-  tags?: TTags;
-} & TServerContainer;
-
-export type TTags = {
-  [key: string]: string;
-};
-
-const trackAction = (actionType: 'page' | 'funnel', specificAction: string) => {
-  let additionalActions: string[] = [];
-
-  if (actionType === 'page') {
-    additionalActions = ['page', 'button', specificAction];
-  } else if (actionType === 'funnel') {
-    additionalActions = ['funnel', 'tile-tutorial', specificAction];
-  }
+const trackAction = (actionType, specificAction) => {
+  const additionalActions =
+    actionType === 'page'
+      ? ['page', 'button', specificAction]
+      : ['funnel', 'tile-tutorial', specificAction];
 
   return {
     actions: [UNIVERSE, SUB_UNIVERSE, APP_NAME, ...additionalActions],
@@ -97,76 +75,48 @@ const trackAction = (actionType: 'page' | 'funnel', specificAction: string) => {
 };
 
 export default function ObjectPage() {
-  const { storageId } = useParams();
+  const { t } = useTranslation([
+    'objects',
+    'container',
+    'pci-common',
+    'dashboard',
+  ]);
+  const { storageId, projectId } = useParams();
   const [searchParams] = useSearchParams();
-  const { data: project } = useProject();
   const { trackClick } = useOvhTracking();
+  const navigate = useNavigate();
+  const { clearNotifications } = useNotifications();
 
-  const [search, setSearch] = useState<string | null>(null);
-  const [prefix, setPrefix] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (prefix !== null && search === '') {
-      setPrefix(null);
-    }
-  }, [search, prefix]);
-
-  const handlePrefixChange = (handleKey: string | null) => {
-    setPrefix(handleKey);
-  };
+  const [search, setSearch] = useState('');
+  const [prefix, setPrefix] = useState(null);
+  const [searchField, setSearchField] = useState('');
+  const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
+  const [sortingDatagrid, setSortingDatagrid] = useState(null);
 
   const { tracking } = useContext(ShellContext).shell;
+  const { me } = useMe();
+  const { data: project } = useProject();
+  const hrefProject = useProjectUrl('public-cloud');
+  const objectStorageHref = useHref('..');
+  const regionParam = searchParams.get('region');
+
+  const {
+    container,
+    url,
+    region,
+    showReplicationBanner,
+    isPending,
+    isLocalZone,
+    isRightOffer,
+  } = useContainerData();
+
+  const manageReplicationsHref = useHref(
+    `./replications?region=${regionParam}`,
+  );
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
   );
-
-  const { me } = useMe();
-
-  const hrefProject = useProjectUrl('public-cloud');
-
-  const { t } = useTranslation(['objects', 'container', 'pci-common']);
-
-  const objectStorageHref = useHref('..');
-  const enableVersioningHref = useHref(
-    `./enableVersioning?region=${searchParams.get('region')}`,
-  );
-  const enableEncryptionHref = useHref(
-    `./enableEncryption?region=${searchParams.get('region')}`,
-  );
-
-  const manageReplicationsHref = useHref(
-    `./replications?region=${searchParams.get('region')}`,
-  );
-
-  const { data: region } = useGetRegion(
-    project?.project_id,
-    searchParams.get('region'),
-  );
-
-  const { storage: targetContainer, storages } = useStorage(
-    project?.project_id,
-    storageId,
-    searchParams.get('region'),
-  );
-
-  const { url } = useStorageEndpoint(project?.project_id, targetContainer);
-
-  const { data: serverContainer, isPending } = useServerContainer(
-    project?.project_id,
-    searchParams.get('region'),
-    targetContainer?.name,
-    targetContainer?.id,
-  );
-
-  const container = useMergedContainer(
-    serverContainer,
-    targetContainer,
-    url,
-    region,
-  );
-
-  const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
 
   const {
     data: containerObjects,
@@ -177,7 +127,7 @@ export default function ObjectPage() {
     isFetchingNextPage,
   } = useServerContainerObjects({
     projectId: project?.project_id,
-    region: searchParams.get('region'),
+    region: regionParam,
     name: storageId,
     withVersions: enableVersionsToggle,
     isS3StorageType: container?.s3StorageType,
@@ -190,23 +140,16 @@ export default function ObjectPage() {
     }
   }, [
     storageId,
-    searchParams.get('region'),
+    regionParam,
     enableVersionsToggle,
-    storages,
     container?.s3StorageType,
     searchParams.get('refetch'),
     refetchContainerObjects,
   ]);
 
-  const handleFetchNextPage = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  };
-
-  const [sortingDatagrid, setSortingDatagrid] = useState<ColumnSort | null>(
-    null,
-  );
+  useEffect(() => {
+    clearNotifications();
+  }, [clearNotifications]);
 
   const containerObjectsWithIndex = useSortedObjects(
     containerObjects,
@@ -214,59 +157,23 @@ export default function ObjectPage() {
     container?.s3StorageType,
   );
 
-  const shouldHideButton = useMemo(() => {
-    return !container?.tags?.[BACKUP_KEY];
-  }, [container]);
-
-  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
-
-  const is = {
-    localZone: useMemo(
-      () => region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-      [region],
-    ),
-    encrypted: useMemo(() => {
-      const { sseAlgorithm } = serverContainer?.encryption || {};
-      return sseAlgorithm && sseAlgorithm !== NO_ENCRYPTION_VALUE;
-    }, [serverContainer]),
-    rightOffer: useMemo(() => !!container?.s3StorageType, [container]),
-    replicationRulesBannerShown: useMemo(() => {
-      const hasEnabledRule = container?.replication?.rules?.some(
-        (rule) => rule.status === 'enabled',
-      );
-
-      const validTypes = [
-        OBJECT_CONTAINER_MODE_MONO_ZONE,
-        OBJECT_CONTAINER_MODE_MULTI_ZONES,
-      ];
-      return (
-        !hasEnabledRule && validTypes.includes(container?.regionDetails?.type)
-      );
-    }, [container, region]),
-  };
-
-  const REPLICATION_LINK =
-    STORAGE_ASYNC_REPLICATION_LINK[me?.ovhSubsidiary] ||
-    STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
-
-  const { available: isEncryptionAvailable } = useGetEncriptionAvailability();
-
-  const displayEncryptionData = useMemo<boolean>(() => {
-    return isEncryptionAvailable && !!container?.s3StorageType;
-  }, [isEncryptionAvailable, serverContainer]);
-
-  const columns = useDatagridColumn({
-    container,
-    isLocalZone: !!is.localZone,
-  });
-
+  const columns = useDatagridColumn({ container, isLocalZone });
   const objectsColumns = useDatagridColumn({
     container,
-    isLocalZone: !!is.localZone,
+    isLocalZone,
     shouldSeeVersions: true,
     enableVersionsToggle,
     shouldSeeSearch: true,
   });
+
+  const shouldHideButton = useMemo(() => !container?.tags?.[BACKUP_KEY], [
+    container,
+  ]);
+  const hasStandardInfrequentAccess = UseStandardInfrequentAccessAvailability();
+
+  const REPLICATION_LINK =
+    STORAGE_ASYNC_REPLICATION_LINK[me?.ovhSubsidiary] ||
+    STORAGE_ASYNC_REPLICATION_LINK.DEFAULT;
 
   const filterColumns = useMemo(
     () => [
@@ -292,31 +199,24 @@ export default function ObjectPage() {
         comparators: FilterCategories.String,
       },
     ],
-    [],
+    [t],
   );
-  const navigate = useNavigate();
-  const { clearNotifications } = useNotifications();
 
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const [searchField, setSearchField] = useState('');
-
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const { paginatedObjects } = usePaginatedObjects(
     project?.project_id,
-    searchParams.get('region'),
-    targetContainer?.name,
-    targetContainer?.id,
+    regionParam,
+    container?.name,
+    container?.id,
     pagination,
     sorting,
     filters,
   );
 
-  const handleSearch = () => {
-    setPagination({
-      pageIndex: 0,
-      pageSize: pagination.pageSize,
-    });
+  const handleSearch = useCallback(() => {
+    setPagination({ pageIndex: 0, pageSize: pagination.pageSize });
     addFilter({
       key: 'search',
       value: searchField,
@@ -324,23 +224,82 @@ export default function ObjectPage() {
       label: '',
     });
     setSearchField('');
-  };
+  }, [addFilter, pagination.pageSize, searchField, setPagination]);
 
-  useEffect(() => {
+  const handleAddObjectClick = useCallback(() => {
     clearNotifications();
+    navigate(`./new?region=${regionParam}`);
+  }, [clearNotifications, navigate, regionParam]);
+
+  const handleFetchNextPage = useCallback(() => {
+    if (hasNextPage && !isFetchingNextPage) fetchNextPage();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const handlePrefixChange = useCallback((newPrefix) => {
+    setPrefix(newPrefix);
   }, []);
 
-  const onGuidesClick = () => {
-    trackClick(trackAction('funnel', 'go-to-tutorial'));
+  const setSearchWithPrefixReset = useCallback((newSearch) => {
+    setSearch(newSearch);
+    if (newSearch === '') {
+      setPrefix(null);
+    }
+  }, []);
+
+  const tabs = getDashboardTabs({
+    projectId,
+    storageId,
+    region: region?.name,
+    t,
+  });
+
+  if (!container || !url) return <OdsSpinner size="md" />;
+
+  const commonContextValue = {
+    isS3StorageType: isRightOffer,
+    isRightOffer,
+    isLocalZone,
+    versioningStatus: container.versioning?.status,
+    shouldHideButton,
+    hasStandardInfrequentAccess,
+    handleAddObjectClick,
+    trackClick,
+    trackAction,
   };
 
-  if (!container || !url) {
-    return <OdsSpinner size="md" />;
-  }
+  const s3ContextValue = {
+    ...commonContextValue,
+    enableVersionsToggle,
+    sortingDatagrid,
+    hasNextPage,
+    isObjectsLoading,
+    containerObjectsWithIndex,
+    containerObjects,
+    search,
+    setEnableVersionsToggle,
+    setSortingDatagrid,
+    setSearch: setSearchWithPrefixReset,
+    handleFetchNextPage,
+    handlePrefixChange,
+    objectsColumns,
+  };
 
-  const handleAddObjectClick = () => {
-    clearNotifications();
-    navigate(`./new?region=${searchParams.get('region')}`);
+  const swiftContextValue = {
+    ...commonContextValue,
+    searchField,
+    filters,
+    isPending,
+    columns,
+    paginatedObjects,
+    pagination,
+    sorting,
+    setSearchField,
+    setPagination,
+    setSorting,
+    handleSearch,
+    removeFilter,
+    addFilter,
+    filterColumns,
   };
 
   return (
@@ -360,24 +319,26 @@ export default function ObjectPage() {
       header={{
         title: container.name,
         headerButton: (
-          <span onClick={onGuidesClick}>
+          <span
+            onClick={() => trackClick(trackAction('funnel', 'go-to-tutorial'))}
+          >
             <PciGuidesHeader category="objectStorage" />
           </span>
         ),
       }}
-      backLinkLabel={`
-        ${t('pci-common:common_back_button_back_to')} ${t(
+      backLinkLabel={`${t('pci-common:common_back_button_back_to')} ${t(
         'container:pci_projects_project_storages_containers_container_back_button_label',
       )}`}
       hrefPrevious={objectStorageHref}
     >
       <Notifications />
+      {<TabsPanel tabs={tabs} />}
 
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
 
-      {is.replicationRulesBannerShown && (
+      {showReplicationBanner && (
         <OdsMessage
           color="information"
           className="mt-6 inline-flex items-start"
@@ -385,9 +346,7 @@ export default function ObjectPage() {
         >
           <span>
             <Trans
-              i18nKey={
-                'container:pci_projects_project_storages_containers_container_add_replication_rules_info'
-              }
+              i18nKey="container:pci_projects_project_storages_containers_container_add_replication_rules_info"
               components={{
                 1: <Links href={manageReplicationsHref} />,
                 2: (
@@ -403,65 +362,19 @@ export default function ObjectPage() {
         </OdsMessage>
       )}
 
-      {container && (
-        <>
-          <ContainerInfoPanel
-            container={container}
-            isLocalZone={is.localZone}
-            isRightOffer={is.rightOffer}
-            isEncrypted={is.encrypted}
-            displayEncryptionData={displayEncryptionData}
-            isReplicationRulesBannerShown={is.replicationRulesBannerShown}
-            region={region}
-            enableEncryptionHref={enableEncryptionHref}
-            enableVersioningHref={enableVersioningHref}
-            tracking={tracking}
-            trackClick={trackClick}
-            trackAction={trackAction}
-            manageReplicationsHref={manageReplicationsHref}
-          />
+      <CommonContainerContext.Provider value={commonContextValue}>
+        {isRightOffer ? (
+          <S3ContainerContext.Provider value={s3ContextValue}>
+            <ContainerDatagrid />
+          </S3ContainerContext.Provider>
+        ) : (
+          <SwiftContainerContext.Provider value={swiftContextValue}>
+            <ContainerDatagrid />
+          </SwiftContainerContext.Provider>
+        )}
+      </CommonContainerContext.Provider>
 
-          <ContainerDatagrid
-            isS3StorageType={!!container?.s3StorageType}
-            isRightOffer={is.rightOffer}
-            isLocalZone={!!is.localZone}
-            versioningStatus={container.versioning?.status}
-            handleAddObjectClick={handleAddObjectClick}
-            enableVersionsToggle={enableVersionsToggle}
-            setEnableVersionsToggle={setEnableVersionsToggle}
-            objectsColumns={objectsColumns}
-            sortingDatagrid={sortingDatagrid}
-            setSortingDatagrid={setSortingDatagrid}
-            hasNextPage={hasNextPage}
-            isObjectsLoading={isObjectsLoading}
-            containerObjectsWithIndex={containerObjectsWithIndex}
-            containerObjects={containerObjects}
-            handleFetchNextPage={handleFetchNextPage}
-            search={search}
-            setSearch={setSearch}
-            handlePrefixChange={handlePrefixChange}
-            filterColumns={filterColumns}
-            searchField={searchField}
-            setSearchField={setSearchField}
-            handleSearch={handleSearch}
-            filters={filters}
-            removeFilter={removeFilter}
-            isPending={isPending}
-            columns={columns}
-            paginatedObjects={paginatedObjects}
-            pagination={pagination}
-            setPagination={setPagination}
-            sorting={sorting}
-            setSorting={setSorting}
-            addFilter={addFilter}
-            shouldHideButton={shouldHideButton}
-            hasStandardInfrequentAccess={hasStandardInfrequentAccess}
-            trackClick={trackClick}
-            trackAction={trackAction}
-          />
-        </>
-      )}
-      <Suspense>
+      <Suspense fallback={<OdsSpinner size="md" />}>
         <Outlet />
       </Suspense>
     </BaseLayout>
