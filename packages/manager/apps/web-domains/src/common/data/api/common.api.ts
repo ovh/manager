@@ -2,6 +2,18 @@ import { v6 } from '@ovh-ux/manager-core-api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TServiceInfo, TServiceOption } from '@/common/types/common.types';
 
+export const getServiceInformation = async (
+  serviceName: string,
+  serviceRoutes: string,
+): Promise<TServiceInfo> => {
+  const { data: serviceNameId } = await v6.get(
+    `/services?resourceName=${serviceName}&routes=${serviceRoutes}`,
+  );
+
+  const { data } = await v6.get(`/services/${serviceNameId}`);
+  return data;
+};
+
 /**
  *  : Update the service (terminate or cancel the terminate)
  */
@@ -46,7 +58,9 @@ export const updateServiceOption = async (
     `/services/${serviceId}/options`,
   );
 
-  const optionDetails = optionsDetails.find((option) => option.billing.plan.code === planCode)
+  const optionDetails = optionsDetails.find(
+    (option) => option.billing.plan.code === planCode,
+  );
   const { data } = await v6.put(`/services/${optionDetails.serviceId}`, {
     terminationPolicy,
   });

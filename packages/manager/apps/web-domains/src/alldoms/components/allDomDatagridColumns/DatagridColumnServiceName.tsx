@@ -2,8 +2,8 @@ import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { toUnicode } from 'punycode';
-import { Link } from '@ovhcloud/ods-react';
 import config from '@/web-domains.config';
+import { Link } from '@ovhcloud/ods-react';
 
 interface DatagridColumnServiceNameProps {
   readonly allDomName: string;

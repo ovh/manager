@@ -24,6 +24,7 @@ export default mergeConfig(
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
+      mainFields: ['module'],
     },
   }),
 );
