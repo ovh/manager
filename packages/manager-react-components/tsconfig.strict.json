@@ -75,7 +75,8 @@
     "./src/components/base-layout/**/*",
     "./src/components/update-name-modal/**/*",
     "./src/components/delete-modal/**/*",
-    "./src/components/tags-list/**/*"
+    "./src/components/tags-list/**/*",
+    "./src/components/datagrid-new/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
