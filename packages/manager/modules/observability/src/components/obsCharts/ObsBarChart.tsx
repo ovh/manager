@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, ResponsiveContainer } from 'recharts';
 import { ColorScale } from './config/theme';
-import { ObsChartProps } from './base/ChartRenderer';
+import { ObsChartProps } from '../../types';
 
 export type ObsBarChartProps = ObsChartProps;
 

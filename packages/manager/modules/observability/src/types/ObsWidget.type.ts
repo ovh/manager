@@ -66,3 +66,20 @@ export type ObsChartTooltip = {
   content?: string[];
   footer?: string;
 };
+
+export interface ObsChartProps {
+  id: string;
+  title: string;
+  data: any[];
+  chart: ObsChart;
+  isLoading: boolean;
+  isFullscreen?: boolean;
+}
+export interface ChartRendererProps extends ObsChartProps {
+  type: ObsChartType;
+}
+
+// TimeSeries chart Props specific properties
+export type ObsTimeSeriesChartProps = ObsChartProps & {
+  selectedTimeOption: string;
+};

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { useDashboardConfig, useMultipleChartData } from '../data/hooks';
 import { ObsChartWithData } from '../types';
+import { DashboardState } from '../contexts';
 
 /**
  * Hook that combines dashboard configuration with chart data to create
@@ -10,9 +11,16 @@ import { ObsChartWithData } from '../types';
  *   - widgets: Array of chart widgets with data and layout properties
  *   - configLoading: Boolean indicating if dashboard config is still loading
  */
-export const useDashboardData = () => {
+export const useDashboardData = ({
+  selectedTimeOption,
+  refreshInterval,
+}: DashboardState) => {
   const { data: config, isLoading: configLoading } = useDashboardConfig();
-  const chartQueries = useMultipleChartData(config || []);
+  const chartQueries = useMultipleChartData(
+    config || [],
+    selectedTimeOption,
+    refreshInterval,
+  );
 
   const widgets = useMemo<ObsChartWithData[]>(() => {
     if (!config) return [];

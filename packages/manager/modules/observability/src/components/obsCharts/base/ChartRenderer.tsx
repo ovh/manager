@@ -1,25 +1,13 @@
 import React, { lazy, Suspense } from 'react';
 import UnknownChart from '../UnknownChart';
-import { ObsChart, ObsChartType } from '../../../types';
+import { ChartRendererProps, ObsChartType } from '../../../types';
 import { ObsSpinner } from '../../obsLoaders';
+import { useDashboard } from '../../../contexts';
 
 const LazyObsTimeSeriesChart = lazy(() => import('../ObsTimeSeriesChart'));
 const LazyObsBarChart = lazy(() => import('../ObsBarChart'));
 const LazyObsStackedBarChart = lazy(() => import('../ObsStackedBarChart'));
 const LazyObsPieChart = lazy(() => import('../ObsPieChart'));
-
-export interface ObsChartProps {
-  id: string;
-  title: string;
-  data: any[];
-  chart: ObsChart;
-  isLoading: boolean;
-  isFullscreen?: boolean;
-}
-
-export interface ChartRendererProps extends ObsChartProps {
-  type: ObsChartType;
-}
 
 const LoadingDataSpinner = ({ id }: { id: string }) => (
   <div className="w-full h-full flex items-center justify-center">
@@ -41,6 +29,7 @@ const NoDataComponent = () => (
 
 const ChartRendererBase = ({ type, ...rest }: Readonly<ChartRendererProps>) => {
   const { id, isLoading, data } = rest;
+  const { state } = useDashboard();
 
   if (isLoading) return <LoadingDataSpinner id={id} />;
 
@@ -49,7 +38,12 @@ const ChartRendererBase = ({ type, ...rest }: Readonly<ChartRendererProps>) => {
   let ChartComponent: React.ReactElement;
   switch (type) {
     case ObsChartType.TimeSeries:
-      ChartComponent = <LazyObsTimeSeriesChart {...rest} />;
+      ChartComponent = (
+        <LazyObsTimeSeriesChart
+          {...rest}
+          selectedTimeOption={state.selectedTimeOption}
+        />
+      );
       break;
     case ObsChartType.Bars:
       ChartComponent = <LazyObsBarChart {...rest} />;

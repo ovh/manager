@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { MetricsOutletContext } from '../../contexts';
+import { DashboardProvider, MetricsOutletContext } from '../../contexts';
 
 const MetricsPage = () => {
   const metricsContextValue: MetricsOutletContext = {
@@ -15,6 +15,15 @@ const MetricsPage = () => {
     },
   };
 
-  return <Outlet context={metricsContextValue} />;
+  return (
+    <DashboardProvider
+      context={{
+        selectedTimeOption: '1h',
+        refreshInterval: 15, // in seconds
+      }}
+    >
+      <Outlet context={metricsContextValue} />
+    </DashboardProvider>
+  );
 };
 export default MetricsPage;

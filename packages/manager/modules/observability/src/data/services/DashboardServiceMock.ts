@@ -3,12 +3,15 @@ import { IDashboardService } from './IDashboardService';
 import dashboardConfig from '../mocks/config/dashboardConfig.json';
 
 // Simulate delay between 3s and 6s
+const disableDelay = false;
 const configDelayInSeconds = 3;
 const configDelay = () =>
-  configDelayInSeconds * 1000 + Math.random() * configDelayInSeconds * 1000;
+  disableDelay
+    ? 0
+    : configDelayInSeconds * 1000 + Math.random() * configDelayInSeconds * 1000;
 
 // Simulate delay between 1500ms and 7000ms
-const dataDelay = () => 1500 + Math.random() * 5500;
+const dataDelay = () => (disableDelay ? 0 : 1500 + Math.random() * 5500);
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,7 +21,8 @@ const datasets = import.meta.glob('../mocks/datasets/chart-*.json', {
 });
 
 // Transform the imported datasets to match the expected format
-const getMockChartData = (chartId: string) => {
+const getMockChartData = (chartId: string, selectedTimeOption: string) => {
+  console.log(selectedTimeOption);
   const key = `../mocks/datasets/${chartId}.json`;
   return datasets[key] ? (datasets[key] as any).default || datasets[key] : [];
 };
@@ -31,8 +35,11 @@ export class DashboardServiceMock implements IDashboardService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async fetchChartData(chartId: string): Promise<any[]> {
+  async fetchChartData(
+    chartId: string,
+    selectedTimeOption: string,
+  ): Promise<any[]> {
     await delay(dataDelay());
-    return getMockChartData(chartId);
+    return getMockChartData(chartId, selectedTimeOption);
   }
 }

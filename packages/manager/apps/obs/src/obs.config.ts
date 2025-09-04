@@ -8,5 +8,5 @@ export default {
   },
   rootLabel: 'Observability',
   ObsEnabledFeatures: [ObsFeatureType.Metrics, ObsFeatureType.Logs],
-  defaultFeature: ObsFeatureType.Logs,
+  defaultFeature: ObsFeatureType.Metrics,
 };

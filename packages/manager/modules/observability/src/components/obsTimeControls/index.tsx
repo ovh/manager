@@ -7,31 +7,70 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 
-export const ObsTimeControls = (): JSX.Element => {
-  const [selectedRange, setSelectedRange] = useState('1h');
+export interface ObsTimeControlsProps {
+  timeOptions?: string[];
+  customTimeOptionHidden?: boolean;
+  onValueChange?: (range: string) => void;
+  defaultValue?: string;
+}
 
-  const timeRanges = ['1h', '12h', '1d', 'custom'];
+export const ObsTimeControls = ({
+  timeOptions = ['1h', '12h', '1d'],
+  customTimeOptionHidden = false,
+  onValueChange,
+  defaultValue = '1h',
+}: Readonly<ObsTimeControlsProps>): JSX.Element => {
+  const [value, setValue] = useState(defaultValue);
+
+  const handleClick = (range: string) => {
+    setValue(range);
+    onValueChange?.(range);
+  };
+
   return (
-    <>
+    <div className="flex items-center gap-4">
       <div className="flex items-center space-x-2">
         {/* Time range buttons */}
         <div className="inline-flex">
-          {timeRanges.map((range) => (
+          {timeOptions.map((range, index) => (
             <OdsButton
               key={range}
-              onClick={() => setSelectedRange(range)}
+              onClick={() => handleClick(range)}
               label={range}
               variant={ODS_BUTTON_VARIANT.outline}
-              {...(range === 'custom' ? { icon: ODS_ICON_NAME.calendar } : {})}
               iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-              className={`text-blue-500 font-medium
-                                ${
-                                  selectedRange === range
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-white'
-                                }`}
+              className={`font-medium
+                [&::part(button)]:w-20
+                [&::part(button)]:rounded-none
+                ${index === 0 ? '[&::part(button)]:rounded-s-md' : ''}
+                [&::part(button)]:border-r-0
+                ${
+                  value === range
+                    ? '[&::part(button)]:bg-[var(--ods-color-primary-200)] [&::part(button)]:text-initial'
+                    : ''
+                }
+              `}
             ></OdsButton>
           ))}
+          {!customTimeOptionHidden && (
+            <OdsButton
+              key={'time-option-custom'}
+              onClick={() => handleClick('custom')}
+              label={'Custom'}
+              variant={ODS_BUTTON_VARIANT.outline}
+              icon={ODS_ICON_NAME.calendar}
+              iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+              className={`font-medium 
+                [&::part(button)]:w-24
+                [&::part(button)]:rounded-s-none
+                ${
+                  value === 'custom'
+                    ? '[&::part(button)]:bg-[var(--ods-color-primary-200)] [&::part(button)]:text-initial'
+                    : ''
+                }
+                `}
+            ></OdsButton>
+          )}
         </div>
       </div>
       <div>
@@ -39,12 +78,12 @@ export const ObsTimeControls = (): JSX.Element => {
         <OdsButton
           size={ODS_BUTTON_SIZE.md}
           variant={ODS_BUTTON_VARIANT.outline}
-          label={'refresh'}
+          label={'Refresh'}
           onClick={() => {}}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.left}
           icon={ODS_ICON_NAME.refresh}
         />
       </div>
-    </>
+    </div>
   );
 };

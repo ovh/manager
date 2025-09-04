@@ -17,16 +17,15 @@ import {
   getFormatter,
 } from './config';
 import { ColorScale } from './config/theme';
-import { ObsChartProps } from './base/ChartRenderer';
-import { ObsChartTimeSeries } from '../../types';
-
-export type ObsTimeSeriesChartProps = ObsChartProps;
+import { ObsChartTimeSeries, ObsTimeSeriesChartProps } from '../../types';
 
 const ObsTimeSeriesChart = ({
   data,
   chart,
   isFullscreen = false,
+  selectedTimeOption,
 }: Readonly<ObsTimeSeriesChartProps>): JSX.Element => {
+  console.log(`${selectedTimeOption} from timeseries component`);
   const timeseriesChartConfig = chart as ObsChartTimeSeries;
   const {
     dataKey: XAxisDataKey,
