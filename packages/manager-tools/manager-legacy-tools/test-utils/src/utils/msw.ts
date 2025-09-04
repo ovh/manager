@@ -22,7 +22,7 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
         once,
       }: Handler) =>
         http[method](
-          `${baseUrl ?? apiClient[api].getUri()}${
+          `${baseUrl ?? apiClient[api]?.getUri() ?? ''}${
             url.startsWith('/') ? '' : '/'
           }${url}`,
           async ({ request, params, cookies }) => {

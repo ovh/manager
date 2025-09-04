@@ -1,16 +1,14 @@
 export const uniqBy = function uniqBy<I, U>(arr: I[], cb: (item: I) => U) {
   return [
     ...arr
-      .reduce((map: Map<U, I>, item?: I) => {
+      .reduce((map: Map<U, I>, item: I) => {
         if (!map.has(cb(item))) map.set(cb(item), item);
-
         return map;
       }, new Map())
       .values(),
   ];
 };
 
-// eslint-disable-next-line
 export const hashCode = (param: any) => {
   let h = 0;
   const s = ((p): string => {
@@ -35,7 +33,11 @@ export const hashCode = (param: any) => {
   })(param);
   const l = s?.length || 0;
   let i = 0;
-  // eslint-disable-next-line
-  if (l > 0) while (i < l) h = ((h << 5) - h + s.charCodeAt(i++)) | 0;
+  if (l > 0) {
+    while (i < l) {
+      h = (h * 32 - h + s.charCodeAt(i)) % 2147483647;
+      i += 1;
+    }
+  }
   return h;
 };
