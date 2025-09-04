@@ -10,14 +10,30 @@ import {
 } from '@secret-manager/utils/secretSmartConfig';
 import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
 import { useOkmsById } from '@/data/hooks/useOkms';
+import { ErrorResponse } from '@/types/api.type';
 
 export type UseSecretSmartConfigResult =
-  | { isPending: true; isError: false; secretConfig: undefined }
-  | { isPending: false; isError: true; secretConfig: undefined }
-  | { isPending: false; isError: false; secretConfig: SecretSmartConfig };
+  | {
+      isPending: true;
+      isError: false;
+      error: undefined;
+      secretConfig: undefined;
+    }
+  | {
+      isPending: false;
+      isError: true;
+      error: ErrorResponse;
+      secretConfig: undefined;
+    }
+  | {
+      isPending: false;
+      isError: false;
+      error: undefined;
+      secretConfig: SecretSmartConfig;
+    };
 
 export const useSecretSmartConfig = (
-  secret: Secret,
+  secret: Secret | undefined,
 ): UseSecretSmartConfigResult => {
   const { okmsId } = useParams() as LocationPathParams;
 
@@ -45,12 +61,17 @@ export const useSecretSmartConfig = (
 
   useNotificationAddErrorOnce(error);
 
-  if (isPending) {
-    return { isPending: true, isError: false, secretConfig: undefined };
+  if (isPending || !secret) {
+    return {
+      isPending: true,
+      isError: false,
+      error: undefined,
+      secretConfig: undefined,
+    };
   }
 
   if (error) {
-    return { isPending: false, isError: true, secretConfig: undefined };
+    return { isPending: false, isError: true, error, secretConfig: undefined };
   }
 
   // Get the secret config from all sources
@@ -63,6 +84,7 @@ export const useSecretSmartConfig = (
   return {
     isPending: false,
     isError: false,
+    error: undefined,
     secretConfig,
   };
 };
