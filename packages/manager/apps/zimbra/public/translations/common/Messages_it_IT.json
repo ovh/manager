@@ -117,5 +117,7 @@
   "service_state_suspended": "Sospeso",
   "service_state_error": "Errore",
   "service_state_ready": "Attivo",
-  "service_state_updating": "Aggiornamento"
+  "service_state_updating": "Aggiornamento",
+  "service_billing_state_cancelation_planned_tooltip": "Disattivazione prevista il",
+  "service_billing_state_automatic_renewal_tooltip": "Prossima scadenza il"
 }

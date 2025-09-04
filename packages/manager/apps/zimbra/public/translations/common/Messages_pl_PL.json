@@ -117,5 +117,7 @@
   "service_state_suspended": "Zawieszona",
   "service_state_error": "Błąd",
   "service_state_ready": "Aktywna",
-  "service_state_updating": "Aktualizacja"
+  "service_state_updating": "Aktualizacja",
+  "service_billing_state_cancelation_planned_tooltip": "Zakończenie umowy",
+  "service_billing_state_automatic_renewal_tooltip": "Najbliższy termin odnowienia"
 }

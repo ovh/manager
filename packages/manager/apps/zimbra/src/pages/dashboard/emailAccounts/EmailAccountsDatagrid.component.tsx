@@ -64,7 +64,7 @@ export const EmailAccountsDatagrid = () => {
       }
       setHasADeletingAccount(current);
     }
-  }, [accounts]);
+  }, [accounts, hasADeletingAccount]);
 
   const items: EmailAccountItem[] = useMemo(() => {
     return (
@@ -117,7 +117,7 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'renewal_type',
-        cell: (item) => <BillingStateBadge state={item.service?.state} />,
+        cell: (item) => <BillingStateBadge service={item.service} />,
         label: 'zimbra_account_datagrid_renewal_type',
       },
       {
@@ -126,7 +126,7 @@ export const EmailAccountsDatagrid = () => {
         label: '',
       },
     ],
-    [],
+    [formatBytes],
   );
 
   return (
