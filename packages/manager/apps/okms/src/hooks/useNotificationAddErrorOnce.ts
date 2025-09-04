@@ -8,7 +8,7 @@ import { isErrorResponse } from '@/utils/api/api';
  * Useful when you want to show a notification on a useQuery fetch error
  */
 export const useNotificationAddErrorOnce = (
-  error: Error | ErrorResponse | undefined,
+  error: Error | ErrorResponse | null,
 ) => {
   const { addError } = useNotifications();
   const errorAdded = useRef(false);
