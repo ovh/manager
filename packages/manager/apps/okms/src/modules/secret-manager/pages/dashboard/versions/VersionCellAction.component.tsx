@@ -49,12 +49,17 @@ const buttonsStateRecord: Record<SecretVersionState, ButtonGroupState> = {
 
 type VersionMenuItem = ActionMenuItem & { name: ButtonAction };
 
-export const VersionCellAction = (
-  okmsId: string,
-  secretPath: string,
-  version: SecretVersion,
-  urn: string,
-) => {
+export const VersionCellAction = ({
+  okmsId,
+  secretPath,
+  version,
+  urn,
+}: {
+  okmsId: string;
+  secretPath: string;
+  version: SecretVersion;
+  urn: string;
+}) => {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { addError } = useNotifications();
@@ -90,15 +95,26 @@ export const VersionCellAction = (
     );
   };
 
+  const handleRevealVersionValue = () => {
+    navigate({
+      pathname: SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerRevealVersionValue(
+        okmsId,
+        secretPath,
+        version.id,
+      ),
+    });
+  };
+
   const items: VersionMenuItem[] = [
-    // TODO: Uncomment to implement the show value feature
-    // {
-    //   id: 1,
-    //   name: 'show_value' as const,
-    //   label: t('reveal_secret'),
-    //   isDisabled: buttonGroupState.show_value === 'disabled',
-    //   onClick: () => {},
-    // },
+    {
+      id: 1,
+      name: 'show_value' as const,
+      label: t('reveal_secret'),
+      isDisabled: buttonGroupState.show_value === 'disabled',
+      onClick: handleRevealVersionValue,
+      urn,
+      iamActions: [kmsIamActions.secretGet, kmsIamActions.secretVersionGetData],
+    },
     {
       id: 2,
       name: 'deactivate' as const,
