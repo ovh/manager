@@ -8,7 +8,7 @@ export const SecretDataFormField = <T extends Record<string, string>>({
   name,
   control,
 }: UseControllerProps<T>) => {
-  const { t } = useTranslation(['secret-manager/create']);
+  const { t } = useTranslation('secret-manager');
   return (
     <Controller
       name={name}
@@ -16,7 +16,7 @@ export const SecretDataFormField = <T extends Record<string, string>>({
       render={({ field, fieldState }) => (
         <OdsFormField error={fieldState.error?.message} className="w-full">
           <label htmlFor={field.name} slot="label">
-            {t('data_textarea_label')}
+            {t('editor')}
           </label>
           <OdsTextarea
             id={field.name}
