@@ -29,7 +29,7 @@ export default function ServiceDetailSubscribing({
     expirationDate,
     renewMode,
     currentState,
-    lifecyclePendingActions,
+    pendingActions,
     creationDate,
     nicAdmin,
     nicBilling,
@@ -50,14 +50,14 @@ export default function ServiceDetailSubscribing({
           expirationDate={expirationDate}
           renewMode={renewMode}
           renewDate={renewalDate}
-          lifecyclePendingActions={lifecyclePendingActions}
+          pendingActions={pendingActions}
         />
 
         <ServiceActionMenu
           id={`${currentState.name}-${ActionEnum.OnlyRenew}`}
           serviceName={currentState.name}
           terminateUrl={TERMINATE_URL()}
-          lifecyclePendingActions={lifecyclePendingActions}
+          pendingActions={pendingActions}
           whichAction={ActionEnum.OnlyRenew}
           cancelTerminateUrl={CANCEL_TERMINATE_URL()}
         />
@@ -67,7 +67,7 @@ export default function ServiceDetailSubscribing({
 
       <ServiceDetailSubscribingRenewMode
         renewMode={renewMode}
-        lifecyclePendingActions={lifecyclePendingActions}
+        pendingActions={pendingActions}
       />
 
       <Divider color={DIVIDER_COLOR.primary} spacing={DIVIDER_SPACING._24} />
@@ -102,7 +102,7 @@ export default function ServiceDetailSubscribing({
           id={`${currentState.name}-${ActionEnum.OnlyContact}`}
           serviceName={currentState.name}
           terminateUrl={TERMINATE_URL()}
-          lifecyclePendingActions={lifecyclePendingActions}
+          pendingActions={pendingActions}
           whichAction={ActionEnum.OnlyContact}
         />
       </div>

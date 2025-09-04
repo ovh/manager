@@ -1,4 +1,4 @@
-import '@/alldoms/setupTests';
+import '@/common/setupTests';
 import { findContact } from '@/alldoms/utils/utils';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';

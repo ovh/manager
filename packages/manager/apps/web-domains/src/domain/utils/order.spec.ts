@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import { describe, it, expect, vi } from 'vitest';
 import { formatOrderProduct, generateOrderUrl } from './order';
 
