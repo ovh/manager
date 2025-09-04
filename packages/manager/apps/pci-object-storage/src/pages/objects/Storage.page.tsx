@@ -15,7 +15,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ROUTE_PATHS } from '@/routes';
 import { CHANGELOG_LINKS } from '@/constants';
-import './style.scss';
 
 export default function ObjectsPage() {
   const { t } = useTranslation('objects');
