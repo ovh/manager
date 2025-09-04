@@ -1,5 +1,21 @@
-import { LifecycleCapacitiesEnum, ServiceInfoRenewModeEnum } from "@/common/enum/common.enum";
-import { ActionsEnum, CapacitiesEnum, ContactTypeEnum, CurrencyCodeEnum, DefaultEndActionEnum, EngagementConfigurationTypeEnum, ModeEnum, PossibleStrategiesEnum, PricingTypeEnum, ResellingProviderEnum, ResourceStateEnum, StateEnum } from "../enum/option.enum";
+import {
+  LifecycleCapacitiesEnum,
+  ServiceInfoRenewModeEnum,
+} from '@/common/enum/common.enum';
+import {
+  ActionsEnum,
+  CapacitiesEnum,
+  ContactTypeEnum,
+  CurrencyCodeEnum,
+  DefaultEndActionEnum,
+  EngagementConfigurationTypeEnum,
+  ModeEnum,
+  PossibleStrategiesEnum,
+  PricingTypeEnum,
+  ResellingProviderEnum,
+  ResourceStateEnum,
+  StateEnum,
+} from '../enum/option.enum';
 
 export interface TServiceInfo {
   serviceId: number;
@@ -31,7 +47,6 @@ export interface TServiceInfo {
   };
 }
 
-
 export interface TServiceOption {
   billing: TBilling;
   customer: TCustomer;
@@ -45,7 +60,7 @@ export interface TServiceOption {
     }[];
   } | null;
   serviceId: number;
-  tags: string[]
+  tags: string[];
 }
 
 interface TResource {
@@ -54,16 +69,16 @@ interface TResource {
   product: {
     description: string;
     name: string;
-  }
-  resellingProvider: keyof typeof ResellingProviderEnum;
-  state: keyof typeof ResourceStateEnum;
+  };
+  resellingProvider: ResellingProviderEnum;
+  state: ResourceStateEnum;
 }
 
 interface TCustomer {
-  contacts : {
-    customerCode: string
-    type: keyof typeof ContactTypeEnum;
-  }
+  contacts: {
+    customerCode: string;
+    type: ContactTypeEnum;
+  };
 }
 
 interface TBilling {
@@ -82,10 +97,10 @@ interface TBilling {
   princing: TPricing;
   renew: {
     capacities: {
-      mode: keyof typeof ModeEnum[];
+      mode: ModeEnum[];
     };
     current: {
-      mode: keyof typeof ModeEnum;
+      mode: ModeEnum;
       nextDate: string | null;
       period: string | null;
     };
@@ -95,8 +110,8 @@ interface TBilling {
 interface TEngagement {
   endDate: string;
   endRule: {
-    possibleStrategies: keyof typeof PossibleStrategiesEnum;
-    strategy: keyof typeof PossibleStrategiesEnum[];
+    possibleStrategies: PossibleStrategiesEnum;
+    strategy: PossibleStrategiesEnum[];
   };
 }
 
@@ -107,24 +122,24 @@ interface TEngagementRequest {
 
 interface TLifecyle {
   capacities: {
-    actions: keyof typeof ActionsEnum[];
+    actions: ActionsEnum[];
   };
   current: {
     creationDate: string;
-    pendingActions: keyof typeof ActionsEnum[];
-    state: keyof typeof StateEnum;
+    pendingActions: ActionsEnum[];
+    state: StateEnum;
     terminationDate: string;
   };
 }
 
 interface TPricing {
-  capacities: keyof typeof CapacitiesEnum;
+  capacities: CapacitiesEnum;
   description: string;
   duration: string;
   engagementConfiguration: {
-    defaultEndAction: keyof typeof DefaultEndActionEnum;
+    defaultEndAction: DefaultEndActionEnum;
     duration: string;
-    type: keyof typeof EngagementConfigurationTypeEnum;
+    type: EngagementConfigurationTypeEnum;
   };
   interval: number;
   maximumQuantity: number | null;
@@ -132,12 +147,12 @@ interface TPricing {
   minimumQuantity: number;
   minimumRepeat: number;
   price: {
-    currencyCode: keyof typeof CurrencyCodeEnum;
+    currencyCode: CurrencyCodeEnum;
     priceInUcents: number;
     text: string;
     value: number;
   };
   priceInUcents: number;
   pricingMode: string;
-  pricingType: keyof typeof PricingTypeEnum;
+  pricingType: PricingTypeEnum;
 }

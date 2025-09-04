@@ -3,11 +3,11 @@ import React from 'react';
 import { ODS_BADGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import {
-  ServiceInfoRenewMode,
   LifecycleCapacitiesEnum,
   ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
 import { useGetServiceInformation } from '@/alldoms/hooks/data/query';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 interface DomainDatagridColumnRenewModeProps {
   readonly serviceName: string;
@@ -31,7 +31,7 @@ export default function DomainDatagridColumnRenewMode({
 
   let label = t(`allDom_table_status_${mode}`);
   let badgeColor =
-    mode === ServiceInfoRenewMode.Automatic
+    mode === ServiceInfoRenewModeEnum.Automatic
       ? ODS_BADGE_COLOR.success
       : ODS_BADGE_COLOR.warning;
 

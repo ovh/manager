@@ -1,10 +1,10 @@
 import {
   DomainRegistrationStateEnum,
-  ServiceInfoRenewMode,
   ServiceInfoType,
   ServiceInfoUpdateEnum,
   LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 export interface TAllDomDomains {
   currentState: {
@@ -21,7 +21,7 @@ export interface TServiceInfo {
     expirationDate: string | null;
     renew?: {
       current: {
-        mode: ServiceInfoRenewMode | null;
+        mode: ServiceInfoRenewModeEnum | null;
         nextDate: string;
       };
     } | null;
@@ -56,7 +56,7 @@ export interface AlldomService {
   nicBilling: string;
   nicTechnical: string;
   lifecycleCapacities: LifecycleCapacitiesEnum[];
-  renewMode: ServiceInfoRenewMode | null;
+  renewMode: ServiceInfoRenewModeEnum | null;
   expirationDate: string;
   creationDate: string;
   renewalDate: string;
@@ -74,7 +74,7 @@ export interface UpdateAllDomProps {
   serviceName: string;
   displayName: string;
   renew?: {
-    mode?: ServiceInfoRenewMode;
+    mode?: ServiceInfoRenewModeEnum;
     period?: number;
   };
   terminationPolicy?: ServiceInfoUpdateEnum;

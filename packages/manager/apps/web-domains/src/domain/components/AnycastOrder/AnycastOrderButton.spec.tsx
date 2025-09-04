@@ -1,8 +1,8 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { OptionStateEnum } from '@/domain/enum/optionState.enum';
 import { useGetDomainAnycastOption } from '@/domain/hooks/data/query';
 import AnycastOrderButtonComponent from './AnycastOrderButton';

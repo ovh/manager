@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   getAllDomResource,
-  getServiceInformation,
   getDomainBillingInformation,
 } from '@/alldoms/data/api/web-domains';
 import { DomainBillingInformation } from '@/alldoms/types';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { getServiceInformation } from '@/common/data/api/common.api';
 
 export const useGetServiceInformation = (
   serviceName: string,
