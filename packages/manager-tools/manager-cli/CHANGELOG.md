@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.9.1...@ovh-ux/manager-cli@0.10.0) (2025-09-04)
+
+
+### Features
+
+* include migration status for particular apps ([1707315](https://github.com/ovh/manager/commit/170731543ed0fe5a862ffcdf639b05fbe4edfc00))
+
+
+
+
+
 ## [0.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.9.0...@ovh-ux/manager-cli@0.9.1) (2025-08-26)
 
 
