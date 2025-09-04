@@ -4,11 +4,10 @@ import {
 } from '@secret-manager/types/secret.type';
 import { CreateSecretVersionResponse } from '@secret-manager/data/api/secretVersions';
 
-export const versionDeletedMock: SecretVersion = {
+export const versionActiveMock: SecretVersion = {
   id: 1,
-  createdAt: '2023-01-15T08:30:45Z',
-  state: 'DELETED',
-  deactivatedAt: '2023-01-17T08:30:45Z',
+  createdAt: '2023-01-18T08:30:45Z',
+  state: 'ACTIVE',
 };
 
 export const versionDeactivatedMock: SecretVersion = {
@@ -18,10 +17,11 @@ export const versionDeactivatedMock: SecretVersion = {
   deactivatedAt: '2023-01-17T08:30:45Z',
 };
 
-export const versionActiveMock: SecretVersion = {
+export const versionDeletedMock: SecretVersion = {
   id: 3,
-  createdAt: '2023-01-18T08:30:45Z',
-  state: 'ACTIVE',
+  createdAt: '2023-01-15T08:30:45Z',
+  state: 'DELETED',
+  deactivatedAt: '2023-01-17T08:30:45Z',
 };
 
 export const versionsMock: SecretVersion[] = [
