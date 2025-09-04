@@ -5,7 +5,7 @@ import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
-import { BaseActionsMenu } from '@/components/menu/ActionsMenu.component';
+import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
@@ -40,6 +40,7 @@ const InstanceNetworkingBlock: FC = () => {
         link: {
           path: dedicatedUrl,
           isExternal: true,
+          isTargetBlank: true,
         },
       },
       {
@@ -49,6 +50,7 @@ const InstanceNetworkingBlock: FC = () => {
         link: {
           path: `${dedicatedUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
           isExternal: true,
+          isTargetBlank: true,
         },
       },
       {
@@ -58,6 +60,7 @@ const InstanceNetworkingBlock: FC = () => {
         link: {
           path: `${dedicatedUrl}?action=toggleFirewall&${ipParams}`,
           isExternal: true,
+          isTargetBlank: true,
         },
       },
     ];
@@ -68,26 +71,32 @@ const InstanceNetworkingBlock: FC = () => {
   ]);
 
   const privateIpActionsLinks = useMemo(
-    () => [
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_network_settings',
-        ),
-        link: {
-          path: `${projectUrl}/private-networks`,
-          isExternal: true,
-        },
-      },
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_network_attach',
-        ),
-        link: {
-          path: 'network/private/attach',
-          isExternal: false,
-        },
-      },
-    ],
+    () =>
+      new Map([
+        [
+          'private_ip',
+          [
+            {
+              label: t(
+                'actions:pci_instances_actions_instance_network_network_settings',
+              ),
+              link: {
+                path: `${projectUrl}/private-networks`,
+                isExternal: true,
+              },
+            },
+            {
+              label: t(
+                'actions:pci_instances_actions_instance_network_network_attach',
+              ),
+              link: {
+                path: 'network/private/attach',
+                isExternal: false,
+              },
+            },
+          ],
+        ],
+      ]),
     [projectUrl, t],
   );
 
@@ -113,7 +122,10 @@ const InstanceNetworkingBlock: FC = () => {
           <Text preset={TEXT_PRESET.heading6}>
             {t('pci_instances_dashboard_network_private_title')}
           </Text>
-          <BaseActionsMenu items={privateIpActionsLinks} />
+          <ActionsMenu
+            actionButton={{ variant: 'ghost' }}
+            items={privateIpActionsLinks}
+          />
         </div>
         {privateIps?.map((privateIp) => (
           <NetworkItem key={privateIp.ip} address={privateIp} />

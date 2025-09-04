@@ -27,11 +27,12 @@ type TFlavor = {
   publicBandwidth: string;
 };
 
-type TAction = {
+export type TAction = {
   label: string;
   link: {
     path: string;
     isExternal: boolean;
+    isTargetBlank?: boolean;
   };
 };
 
