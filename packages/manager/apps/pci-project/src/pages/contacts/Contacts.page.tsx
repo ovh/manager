@@ -1,7 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
+import {
+  useProject,
+  isDiscoveryProject,
+  PciDiscoveryBanner,
+} from '@ovh-ux/manager-pci-common';
 import {
   ShellContext,
   ShellContextType,
@@ -41,13 +45,13 @@ const useGetContactsPageHref = (
 ) => {
   const [contactsPageHref, setContactsPageHref] = useState('#');
   useEffect(() => {
-    if (!serviceInfo) {
+    if (!serviceInfo || !serviceInfo.domain) {
       return;
     }
     context.shell.navigation
       .getURL('dedicated', '#/contacts/services', {
         tab: 'SERVICES',
-        serviceName: serviceInfo.serviceId,
+        serviceName: serviceInfo.domain,
       })
       .then((url) => setContactsPageHref(url as string));
   }, [context, serviceInfo]);
@@ -101,6 +105,7 @@ export default function ContactsPage() {
       }
     >
       <div className="flex flex-col gap-4 mb-8">
+        <PciDiscoveryBanner project={project} />
         <Notifications />
         <div className="contacts-card">
           <div className="row">
@@ -145,10 +150,11 @@ export default function ContactsPage() {
 
         {isAdmin && (
           <OdsButton
-            className="my-8"
+            className="my-8 size-fit"
             label={t('common_add')}
             variant={ODS_BUTTON_VARIANT.outline}
             onClick={openAddContactModal}
+            isDisabled={discoveryProject}
           />
         )}
 

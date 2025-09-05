@@ -21,5 +21,6 @@
   "common_confirm": "Confirm",
   "cpb_rights_note": "NB: Contacts with read/write access have certain permissions (infrastructure updates, access to storage) that may incur an additional cost. Read-only contacts cannot make any changes to the project. The billing contact's default method of payment is used for the payment of all bills.",
   "cpb_rights_table_nichandle": "Customer ID",
+  "cpb_rights_table_email": "Email address",
   "pci_projects_project_contacts_title": "Contacts &amp; Rights"
 }
