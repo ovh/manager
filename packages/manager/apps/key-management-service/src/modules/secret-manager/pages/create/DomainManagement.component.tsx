@@ -29,7 +29,7 @@ export const DomainManagement = ({
   selectedDomainId,
   setSelectedDomainId,
 }: DomainManagementProps) => {
-  const { t } = useTranslation(['secret-manager/create', NAMESPACES.ERROR]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
   const { addSuccess } = useNotifications();
   const { environment } = useContext(ShellContext);
   const {
@@ -141,7 +141,9 @@ export const DomainManagement = ({
 
   return (
     <div className="flex flex-col gap-5">
-      <OdsText preset="heading-2">{t('domain_section_title')}</OdsText>
+      <OdsText preset="heading-2">
+        {t('create_secret_form_domain_section_title')}
+      </OdsText>
       <RegionSelector
         regions={regions}
         selectedRegion={selectedRegion}

@@ -31,18 +31,19 @@ import {
   DatagridCreationDate,
 } from './ListingCells.component';
 import { isErrorResponse } from '@/utils/api/api';
+import { PATH_LABEL } from '@/constants';
 
 export default function SecretListingPage() {
   const navigate = useNavigate();
   const { notifications } = useNotifications();
-  const { t } = useTranslation(['secret-manager/common', NAMESPACES.DASHBOARD]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const { domainId } = useParams<LocationPathParams>();
 
   const columns: DatagridColumn<Secret>[] = [
     {
       id: 'path',
       cell: DatagridCellPath,
-      label: t('path'),
+      label: PATH_LABEL,
     },
     {
       id: 'version',
@@ -116,7 +117,7 @@ export default function SecretListingPage() {
           contentAlignLeft
           topbar={
             <OdsButton
-              label={t('create_secret')}
+              label={t('create_a_secret')}
               onClick={() =>
                 navigate({
                   pathname: SECRET_MANAGER_ROUTES_URLS.secretCreate,

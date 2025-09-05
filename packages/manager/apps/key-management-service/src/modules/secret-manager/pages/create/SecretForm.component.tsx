@@ -27,6 +27,7 @@ import {
 } from '@secret-manager/utils/tests/secret.constants';
 import { BackLink } from './BackLink.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
+import { PATH_LABEL } from '@/constants';
 
 type SecretFormProps = {
   domainId?: string;
@@ -34,7 +35,7 @@ type SecretFormProps = {
 
 export const SecretForm = ({ domainId }: SecretFormProps) => {
   const { t } = useTranslation([
-    'secret-manager/create',
+    'secret-manager',
     NAMESPACES.ACTIONS,
     NAMESPACES.ERROR,
   ]);
@@ -95,9 +96,11 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
       onSubmit={handleSubmit(handleConfirmClick)}
     >
       <div className="flex flex-col gap-5">
-        <OdsText preset="heading-2">{t('secret_section_title')}</OdsText>
+        <OdsText preset="heading-2">
+          {t('create_secret_form_secret_section_title')}
+        </OdsText>
         <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('path_title')}</OdsText>
+          <OdsText preset="heading-4">{PATH_LABEL}</OdsText>
           <Controller
             name="path"
             control={control}
@@ -112,14 +115,14 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
                   data-testid={PATH_INPUT_TEST_ID}
                 />
                 <OdsText slot="helper" preset="caption">
-                  {t('path_helper')}
+                  {t('path_field_helper')}
                 </OdsText>
               </OdsFormField>
             )}
           />
         </div>
         <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('data_title')}</OdsText>
+          <OdsText preset="heading-4">{t('values')}</OdsText>
           <SecretDataFormField name={'data'} control={control} />
         </div>
         {/* TEMP: waiting for metadata management */}
@@ -127,12 +130,12 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
         </div>
         <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('metadata_title')}</OdsText>
+          <OdsText preset="heading-4">{t('settings_default')}</OdsText>
         </div> */}
       </div>
       {/* TEMP: waiting for payment informations */}
       {/* <div className="flex flex-col gap-5">
-        <OdsText preset="heading-2">{t('paiement_section_title')}</OdsText>
+        <OdsText preset="heading-2">{t('create_secret_form_payment_section_title')}</OdsText>
       </div> */}
       <div className="flex justify-between items-center py-3">
         <BackLink />

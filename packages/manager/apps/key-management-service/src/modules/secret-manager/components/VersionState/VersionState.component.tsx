@@ -42,7 +42,7 @@ export const VersionState = ({
   size = ODS_BADGE_SIZE.md,
   ...rest
 }: VersionStatusParams) => {
-  const { t } = useTranslation('secret-manager/common');
+  const { t } = useTranslation('secret-manager');
 
   return (
     <OdsBadge

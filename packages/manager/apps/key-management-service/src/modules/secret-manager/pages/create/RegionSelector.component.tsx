@@ -15,11 +15,13 @@ export const RegionSelector = ({
   selectedRegion,
   setSelectedRegion,
 }: RegionSelectorProps) => {
-  const { t } = useTranslation('secret-manager/create');
+  const { t } = useTranslation('secret-manager');
 
   return (
     <div className="flex flex-col gap-3">
-      <OdsText preset="heading-4">{t('region_selector_title')}</OdsText>
+      <OdsText preset="heading-4">
+        {t('create_secret_form_region_selector_title')}
+      </OdsText>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
         {regions?.map((region) => (
           <RadioCard

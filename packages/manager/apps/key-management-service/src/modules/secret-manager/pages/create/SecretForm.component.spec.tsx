@@ -81,7 +81,7 @@ describe('Secrets creation form test suite', () => {
       // GIVEN
       await renderSecretForm(selectedDomainId);
       await assertTextVisibility(
-        labels.secretManager.create.secret_section_title,
+        labels.secretManager.create_secret_form_secret_section_title,
       );
 
       const inputPath = screen.getByTestId(PATH_INPUT_TEST_ID);

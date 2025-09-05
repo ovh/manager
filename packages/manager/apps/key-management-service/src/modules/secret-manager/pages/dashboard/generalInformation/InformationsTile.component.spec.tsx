@@ -3,6 +3,7 @@ import { describe, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { InformationsTile } from './InformationsTile.component';
+import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockSecret = secretsMock[0];
 
@@ -18,13 +19,13 @@ describe('Secrets Informations Tile component tests suite', () => {
     const { container } = render(<InformationsTile secret={mockSecret} />);
 
     const labelList = [
-      'secret-manager/dashboard:general_information',
-      'path',
+      'general_information',
+      PATH_LABEL,
       mockSecret.path,
-      'urn',
+      URN_LABEL,
       'creation_date',
       mockSecret.metadata.createdAt,
-      'secret-manager/dashboard:last_update',
+      'last_update',
       mockSecret.metadata.updatedAt,
     ];
 

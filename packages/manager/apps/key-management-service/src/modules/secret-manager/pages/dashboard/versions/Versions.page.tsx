@@ -29,7 +29,7 @@ import { VersionCellAction } from './VersionCellAction.component';
 const SecretVersionsPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation([
-    'secret-manager/common',
+    'secret-manager',
     NAMESPACES.STATUS,
     NAMESPACES.DASHBOARD,
   ]);

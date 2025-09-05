@@ -23,7 +23,7 @@ const checkDomainsPageToBeDisplayed = async (container: HTMLElement) => {
   const user = userEvent.setup();
 
   // Check the page title
-  await assertTextVisibility(labels.secretManager.domains.domains_list);
+  await assertTextVisibility(labels.secretManager.domains_list);
 
   // Check there is clipboard components displayed in the datagrid
   expect(
@@ -103,7 +103,7 @@ describe('Secret domains listing test suite', () => {
 
     user.click(okmsNameLink);
 
-    await assertTextVisibility(labels.secretManager.common.secret_manager);
+    await assertTextVisibility(labels.secretManager.secret_manager);
   });
 
   describe('should redirect to the default region page', async () => {
@@ -131,6 +131,6 @@ describe('Secret domains listing test suite', () => {
   it('should redirect to the secret list when the kms list has one item', async () => {
     await renderTestApp(mockPageUrl, { nbOkms: 1 });
 
-    await assertTextVisibility(labels.secretManager.common.secret_manager);
+    await assertTextVisibility(labels.secretManager.secret_manager);
   });
 });

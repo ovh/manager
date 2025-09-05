@@ -9,7 +9,7 @@ import {
 } from '../api/secrets';
 
 export const useDeleteSecret = () => {
-  const { t } = useTranslation(['secret-manager/common']);
+  const { t } = useTranslation('secret-manager');
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
 

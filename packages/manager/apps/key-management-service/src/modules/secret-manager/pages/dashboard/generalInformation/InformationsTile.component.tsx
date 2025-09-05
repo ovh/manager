@@ -5,27 +5,24 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Secret } from '@secret-manager/types/secret.type';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { URN_LABEL, PATH_LABEL } from '@/constants';
 
 type InformationTileProps = {
   secret: Secret;
 };
 
 export const InformationsTile = ({ secret }: InformationTileProps) => {
-  const { t } = useTranslation([
-    'secret-manager/common',
-    'secret-manager/dashboard',
-    NAMESPACES.DASHBOARD,
-  ]);
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const { formatDate } = useFormatDate();
 
   return (
     <ManagerTile>
       <ManagerTile.Title>
-        {t('secret-manager/dashboard:general_information')}
+        {t('general_information', { ns: NAMESPACES.DASHBOARD })}
       </ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('path')}</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{PATH_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">{secret.path}</OdsText>
         </ManagerTile.Item.Description>
@@ -33,7 +30,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
 
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('urn')}</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{URN_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsClipboard className="w-full" value={secret.iam.urn} />
         </ManagerTile.Item.Description>
@@ -53,9 +50,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
 
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('secret-manager/dashboard:last_update')}
-        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">
             {formatDate(secret.metadata.updatedAt)}
