@@ -1,4 +1,6 @@
 import React from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 import { OrderContext } from './order.context';
 import { IpOffer, IpVersion } from './order.constant';
@@ -10,6 +12,7 @@ import { OrderButtonSection } from './sections/OrderButtonSection.component';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceType } from '@/types';
+import { isRegionInUs } from '@/components/RegionSelector/region-selector.utils';
 
 export const Ipv4Order: React.FC = () => {
   const {
@@ -23,6 +26,8 @@ export const Ipv4Order: React.FC = () => {
     addDisabledService,
   } = React.useContext(OrderContext);
 
+  const { environment } = React.useContext(ShellContext);
+
   const { serviceStatus } = useCheckServiceAvailability({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -34,14 +39,21 @@ export const Ipv4Order: React.FC = () => {
     serviceType: selectedServiceType,
   });
 
+  const computedRegion = region ?? selectedRegion;
+
   const isOrganisationSectionVisible =
     !!selectedService &&
     serviceStatus === 'ok' &&
     selectedOffer === IpOffer.blockAdditionalIp &&
     selectedServiceType !== ServiceType.dedicatedCloud &&
     !!selectedPlanCode &&
-    !!(region || selectedRegion) &&
-    !!selectedGeolocation;
+    !!computedRegion &&
+    !!selectedGeolocation &&
+    !(
+      environment.user.ovhSubsidiary === OvhSubsidiary.US &&
+      !isRegionInUs(computedRegion) &&
+      [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType)
+    );
 
   const visibleSections = {
     service: ipVersion === IpVersion.ipv4,
