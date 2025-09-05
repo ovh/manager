@@ -7,7 +7,7 @@ import {
   useBreadcrumb,
   BreadcrumbItem,
 } from '@/hooks/breadcrumb/useBreadcrumb';
-import appConfig from '@/hpc-vmware-managed-vcd.config';
+import appConfig from '@/vmware-public-vcf-aas.config';
 
 export interface BreadcrumbProps {
   customRootLabel?: string;
