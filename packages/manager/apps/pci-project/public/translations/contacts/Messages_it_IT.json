@@ -21,5 +21,6 @@
   "common_confirm": "Conferma",
   "cpb_rights_note": "Attenzione! Alcuni permessi assegnati ai contatti in lettura/scrittura (modifica dell'infrastruttura, utilizzo dello storage) possono generare costi aggiuntivi. I contatti in sola lettura non possono eseguire operazioni sul progetto. La modalità di pagamento predefinita del contatto di fatturazione viene utilizzata per il saldo di tutte le fatture.",
   "cpb_rights_table_nichandle": "Identificativo cliente",
+  "cpb_rights_table_email": "Email",
   "pci_projects_project_contacts_title": "Contatti e diritti"
 }
