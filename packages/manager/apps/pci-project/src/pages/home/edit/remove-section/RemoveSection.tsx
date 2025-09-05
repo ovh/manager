@@ -1,5 +1,5 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 import { useServiceIds } from '@/data/hooks/useServices';
@@ -27,7 +27,7 @@ export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
 
       {!isDiscovery && (
         <OdsText preset="paragraph">
-          {t('pci_projects_project_edit_remove_description')}
+          <Trans t={t} i18nKey="pci_projects_project_edit_remove_description" />
         </OdsText>
       )}
 
