@@ -23,7 +23,7 @@ import {
 } from '@secret-manager/components/breadcrumb';
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
-import { useShouldDisplayBackToDomainListButton } from '@secret-manager/hooks/useShouldDisplayBackToDomainListButton';
+import { useBackToDomainListUrl } from '@secret-manager/hooks/useBackToDomainListUrl';
 import {
   DatagridAction,
   DatagridCellPath,
@@ -73,7 +73,7 @@ export default function SecretListingPage() {
     refetch,
   } = useSecretList({ domainId });
 
-  const shouldDisplayBackButton = useShouldDisplayBackToDomainListButton();
+  const domainListUrl = useBackToDomainListUrl();
 
   if (error)
     return (
@@ -98,10 +98,9 @@ export default function SecretListingPage() {
         </OdsBreadcrumb>
       }
       message={notifications.length > 0 && <Notifications />}
-      onClickReturn={() => {
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot);
-      }}
-      backLinkLabel={shouldDisplayBackButton ? t('back_to_domain_list') : null}
+      onClickReturn={() => navigate(domainListUrl)}
+      // if domainListUrl is not defined, we do not display the back link label
+      backLinkLabel={domainListUrl ? t('back_to_domain_list') : null}
     >
       <div className="space-y-6">
         <RegionSelector />
