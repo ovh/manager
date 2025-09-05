@@ -5,6 +5,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Secret } from '@secret-manager/types/secret.type';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
+import { URN_LABEL, PATH_LABEL } from '@/constants';
 
 type InformationTileProps = {
   secret: Secret;
@@ -16,10 +17,12 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
 
   return (
     <ManagerTile>
-      <ManagerTile.Title>{t('general_information')}</ManagerTile.Title>
+      <ManagerTile.Title>
+        {t('general_information', { ns: NAMESPACES.DASHBOARD })}
+      </ManagerTile.Title>
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('path')}</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{PATH_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">{secret.path}</OdsText>
         </ManagerTile.Item.Description>
@@ -27,7 +30,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
 
       <ManagerTile.Divider />
       <ManagerTile.Item>
-        <ManagerTile.Item.Label>{t('urn')}</ManagerTile.Item.Label>
+        <ManagerTile.Item.Label>{URN_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsClipboard className="w-full" value={secret.iam.urn} />
         </ManagerTile.Item.Description>

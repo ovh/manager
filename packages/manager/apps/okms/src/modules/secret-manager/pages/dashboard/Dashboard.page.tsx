@@ -7,6 +7,7 @@ import {
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import {
   LocationPathParams,
@@ -30,7 +31,7 @@ import {
 export default function SecretDashboardPage() {
   const { domainId, secretPath } = useParams<LocationPathParams>();
   const secretPathDecoded = decodeSecretPath(secretPath);
-  const { t } = useTranslation('secret-manager');
+  const { t } = useTranslation(['secret-manager', NAMESPACES.DASHBOARD]);
   const navigate = useNavigate();
   const { notifications } = useNotifications();
 
@@ -44,7 +45,7 @@ export default function SecretDashboardPage() {
   const tabsList: TabNavigationItem[] = [
     {
       name: 'general-information',
-      title: t('general_information'),
+      title: t('general_information', { ns: NAMESPACES.DASHBOARD }),
       url: SECRET_MANAGER_ROUTES_URLS.secretDashboard(
         domainId,
         secretPathDecoded,
