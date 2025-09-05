@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import SepaPaymentMethodIntegration from './SepaPaymentMethodIntegration';
+import SepaPaymentMethodIntegration from './RedirectPaymentMethodIntegration';
 import {
   TPaymentMethodIntegrationRef,
   TPaymentMethod,
@@ -164,10 +164,10 @@ describe('SepaPaymentMethodIntegration', () => {
       );
     });
 
-    describe('registerPaymentMethod', () => {
-      it('should return continueProcessing: true when no registerPaymentMethod URL provided', async () => {
-        if (mockPaymentHandler.current?.registerPaymentMethod) {
-          const result = await mockPaymentHandler.current.registerPaymentMethod(
+    describe('onPaymentMethodRegistered', () => {
+      it('should return continueProcessing: true when no onPaymentMethodRegistered URL provided', async () => {
+        if (mockPaymentHandler.current?.onPaymentMethodRegistered) {
+          const result = await mockPaymentHandler.current.onPaymentMethodRegistered(
             mockPaymentMethod,
             mockCart,
           );
@@ -185,8 +185,8 @@ describe('SepaPaymentMethodIntegration', () => {
           url: 'https://example.com/sepa-redirect',
         } as TRegisterPaymentMethod;
 
-        if (mockPaymentHandler.current?.registerPaymentMethod) {
-          const result = await mockPaymentHandler.current.registerPaymentMethod(
+        if (mockPaymentHandler.current?.onPaymentMethodRegistered) {
+          const result = await mockPaymentHandler.current.onPaymentMethodRegistered(
             mockPaymentMethod,
             mockCart,
             mockRegisterPaymentMethod,
@@ -209,8 +209,8 @@ describe('SepaPaymentMethodIntegration', () => {
           writable: true,
         });
 
-        if (mockPaymentHandler.current?.registerPaymentMethod) {
-          const result = await mockPaymentHandler.current.registerPaymentMethod(
+        if (mockPaymentHandler.current?.onPaymentMethodRegistered) {
+          const result = await mockPaymentHandler.current.onPaymentMethodRegistered(
             mockPaymentMethod,
             mockCart,
             mockRegisterPaymentMethod,

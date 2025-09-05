@@ -166,9 +166,9 @@ describe('BankAccountPaymentMethodIntegration', () => {
       );
     });
 
-    it('should implement registerPaymentMethod', async () => {
-      if (mockPaymentHandler.current?.registerPaymentMethod) {
-        const result = await mockPaymentHandler.current.registerPaymentMethod(
+    it('should implement onPaymentMethodRegistered', async () => {
+      if (mockPaymentHandler.current?.onPaymentMethodRegistered) {
+        const result = await mockPaymentHandler.current.onPaymentMethodRegistered(
           mockPaymentMethod,
           mockCart,
         );

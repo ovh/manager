@@ -33,7 +33,8 @@ export const getPaymentMethods = async (
 export const getPaymentMethod = async (
   methodId: number,
 ): Promise<TUserPaymentMethod> => {
-  return v6.get(`/me/payment/method/${methodId}`);
+  const { data } = await v6.get(`/me/payment/method/${methodId}`);
+  return data;
 };
 
 export const getAvailablePaymentMethods = async (): Promise<FetchResultV6<
@@ -48,6 +49,22 @@ export const addPaymentMethod = async (
   const { data } = await v6.post(`/me/payment/method`, {
     ...params,
   });
+  return data;
+};
+
+export type TPaymentDetails = {
+  transactionId: number;
+  details: string;
+};
+
+export const addPaymentDetails = async (
+  paymentMethodId: number,
+  params: TPaymentDetails,
+): Promise<TRegisterPaymentMethod> => {
+  const { data } = await v6.post(
+    `/me/payment/method/${paymentMethodId}/details`,
+    params,
+  );
   return data;
 };
 

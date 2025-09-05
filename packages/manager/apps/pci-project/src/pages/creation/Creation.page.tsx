@@ -1,5 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
+  Notifications,
   OvhSubsidiary,
   StepComponent,
   useNotifications,
@@ -241,7 +242,11 @@ export default function ProjectCreation() {
               },
               onError: (err) => {
                 setIsSubmitting(false);
-                addError(t('pci_project_new_payment_create_error'));
+                addError(
+                  t('pci_project_new_payment_create_error', {
+                    ns: 'new/payment',
+                  }),
+                );
                 reject(err);
               },
             },
@@ -249,7 +254,9 @@ export default function ProjectCreation() {
         });
       } catch (error) {
         setIsSubmitting(false);
-        addError(t('pci_project_new_payment_create_error'));
+        addError(
+          t('pci_project_new_payment_create_error', { ns: 'new/payment' }),
+        );
         return false;
       }
     },
@@ -264,7 +271,7 @@ export default function ProjectCreation() {
   );
 
   const onPaymentError = useCallback(() => {
-    addError(t('pci_project_new_payment_create_error'));
+    addError(t('pci_project_new_payment_create_error', { ns: 'new/payment' }));
   }, []);
 
   const isPageReady = !!cart && !!paymentHandlerRef.current;
@@ -278,12 +285,24 @@ export default function ProjectCreation() {
     return <FullPageSpinner />;
   }
 
+  const isPaymentStepLoading = isSubmitting;
+  const isPaymentStepDisabled = !isPaymentMethodValid || isSubmitting;
+  const paymentStepNextButton: string | JSX.Element =
+    customSubmitButton ||
+    t('pci_project_new_payment_btn_continue_default', {
+      ns: 'new/payment',
+    });
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
       <div className="bg-white min-h-screen w-full max-w-2xl p-10 shadow-lg">
         <OdsText preset={ODS_TEXT_PRESET.heading1}>
           {t('pci_project_new_config_title')}
         </OdsText>
+
+        <div className="mb-6 mt-6 flex flex-col items-stretch gap-4">
+          <Notifications />
+        </div>
 
         <StepComponent
           order={1}
@@ -330,11 +349,14 @@ export default function ProjectCreation() {
           next={{
             action: () => handlePaymentSubmit({ skipRegistration: false }),
             label:
-              customSubmitButton ||
-              t('pci_project_new_payment_btn_continue_default', {
-                ns: 'new/payment',
-              }),
-            isDisabled: !isPaymentMethodValid || isSubmitting,
+              typeof paymentStepNextButton === 'string'
+                ? paymentStepNextButton
+                : React.cloneElement(paymentStepNextButton, {
+                    isDisabled: isPaymentStepDisabled,
+                    isLoading: isPaymentStepLoading,
+                  }),
+            isDisabled: isPaymentStepDisabled,
+            isLoading: isPaymentStepLoading,
           }}
           skip={{
             action: handleCancel,
@@ -350,6 +372,7 @@ export default function ProjectCreation() {
             handleCustomSubmitButton={(btn) => setCustomSubmitButton(btn)}
             paymentHandler={paymentHandlerRef}
             onPaymentSubmit={handlePaymentSubmit}
+            onPaymentError={onPaymentError}
           />
         </StepComponent>
       </div>
