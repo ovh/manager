@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import { Guide } from '@/types/guide';
 
 interface GetGuidesProps {
@@ -7,10 +12,7 @@ interface GetGuidesProps {
   engines?: string[];
 }
 export const getGuides = async ({ section, lang, engines }: GetGuidesProps) => {
-  const headers: Record<string, string> = {
-    'X-Pagination-Mode': 'CachedObjectList-Pages',
-    'X-Pagination-Size': '50000',
-  };
+  const headers = createHeaders(NoCacheHeaders, IcebergPaginationHeaders);
   const filters = [];
   if (section) {
     filters.push(`section:eq=${section}`);

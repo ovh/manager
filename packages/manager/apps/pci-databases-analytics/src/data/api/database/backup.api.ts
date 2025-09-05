@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -7,15 +12,10 @@ export const getServiceBackups = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/backup`, {
-      headers: {
-        'X-Pagination-Mode': 'CachedObjectList-Pages',
-        'X-Pagination-Size': '50000',
-        Pragma: 'no-cache',
-      },
-    })
-    .then((res) => res.data as database.Backup[]);
+  apiClient.v6.get<database.Backup[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface RestoreBackup extends ServiceData {
   backupId?: string;
@@ -29,18 +29,14 @@ export const restoreBackup = async ({
   restore,
 }: RestoreBackup) => {
   if (backupId) {
-    return apiClient.v6
-      .post(
-        `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup/${backupId}/restore`,
-      )
-      .then((res) => res.data as database.Backup);
+    return apiClient.v6.post<database.Backup>(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/backup/${backupId}/restore`,
+    );
   }
-  return apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/restore`,
-      {
-        ...restore,
-      },
-    )
-    .then((res) => res.data as database.Backup);
+  return apiClient.v6.post<database.Backup>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/restore`,
+    {
+      ...restore,
+    },
+  );
 };

@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -9,39 +14,11 @@ export type GenericUser =
   | database.opensearch.User
   | database.m3db.User;
 
-export const getUsers = async ({
-  projectId,
-  engine,
-  serviceId,
-}: ServiceData) => {
-  const resource = `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`;
-  const headers: Record<string, string> = {
-    'X-Pagination-Mode': 'CachedObjectList-Pages',
-    'X-Pagination-Size': '50000',
-    Pragma: 'no-cache',
-  };
-  const response = await apiClient.v6.get(resource, { headers });
-  // Returned data type depends of service's engine
-  let userReturnType: GenericUser[];
-  switch (engine) {
-    case database.EngineEnum.mongodb:
-      userReturnType = response.data as database.service.UserWithRoles[];
-      break;
-    case database.EngineEnum.valkey:
-    case database.EngineEnum.redis:
-      userReturnType = response.data as database.redis.User[];
-      break;
-    case database.EngineEnum.opensearch:
-      userReturnType = response.data as database.opensearch.User[];
-      break;
-    case database.EngineEnum.m3db:
-      userReturnType = response.data as database.m3db.User[];
-      break;
-    default:
-      userReturnType = response.data as database.service.User[];
-  }
-  return userReturnType;
-};
+export const getUsers = async ({ projectId, engine, serviceId }: ServiceData) =>
+  apiClient.v6.get<GenericUser[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export type UserCreation =
   | database.service.UserCreation
@@ -58,12 +35,10 @@ export const addUser = async ({
   serviceId,
   user,
 }: AddUser) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
-      user,
-    )
-    .then((res) => res.data as GenericUser);
+  apiClient.v6.post<GenericUser>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/user`,
+    user,
+  );
 
 export interface DeleteUser extends ServiceData {
   userId: string;
@@ -87,11 +62,9 @@ export const resetUserPassword = async ({
   serviceId,
   userId,
 }: ManageUser) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
-    )
-    .then((res) => res.data as database.service.UserWithPassword);
+  apiClient.v6.post<database.service.UserWithPassword>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/credentials/reset`,
+  );
 
 export const getUserAccess = async ({
   projectId,
@@ -99,11 +72,9 @@ export const getUserAccess = async ({
   serviceId,
   userId,
 }: ManageUser) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/access`,
-    )
-    .then((res) => res.data as database.kafka.user.Access);
+  apiClient.v6.get<database.kafka.user.Access>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${userId}/access`,
+  );
 
 export const getRoles = async ({
   projectId,
@@ -115,7 +86,7 @@ export const getRoles = async ({
   if (engine === database.EngineEnum.mongodb) {
     url += '?advanced=true';
   }
-  return apiClient.v6.get(url).then((res) => res.data as string[]);
+  return apiClient.v6.get<string[]>(url);
 };
 
 export type UserEdition = Omit<GenericUser, 'createdAt' | 'status'>;
@@ -131,10 +102,8 @@ export const editUser = async ({
   user,
 }: EditUser) => {
   const { id, ...body } = user;
-  return apiClient.v6
-    .put(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${id}`,
-      body,
-    )
-    .then((res) => res.data as GenericUser);
+  return apiClient.v6.put<GenericUser>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/user/${id}`,
+    body,
+  );
 };

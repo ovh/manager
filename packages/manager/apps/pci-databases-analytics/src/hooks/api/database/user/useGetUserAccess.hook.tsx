@@ -1,6 +1,8 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '@/hooks/api/useImmediateRefetch';
 import { getUserAccess } from '@/data/api/database/user.api';
 
 export function useGetUserAccess(
@@ -8,7 +10,7 @@ export function useGetUserAccess(
   engine: database.EngineEnum,
   serviceId: string,
   userId: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getUserAccess>,
 ) {
   const queryKey = [
     projectId,
@@ -23,5 +25,5 @@ export function useGetUserAccess(
     queryKey,
     queryFn: () => getUserAccess({ projectId, engine, serviceId, userId }),
     ...options,
-  }) as UseQueryResult<database.kafka.user.Access, Error>;
+  });
 }
