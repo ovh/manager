@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { Translation } from 'react-i18next';
+import { useNotifications, Links } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useTranslation } from 'react-i18next';
 import { useGetIcebergIpReverse } from '@/data/hooks/ip';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
@@ -9,6 +9,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import { useDeleteIpReverse } from '@/data/hooks/ip/useDeleteIpReverse';
 import { useUpdateIpReverse } from '@/data/hooks/ip/useUpdateIpReverse';
 import { EditInline } from '@/components/EditInline/edit-inline.component';
+import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 
 export type IpReverseProps = {
   ip: string;
@@ -25,6 +26,12 @@ export type IpReverseProps = {
  * @returns React Component
  */
 export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
+  const { t } = useTranslation([
+    'ip-reverse',
+    TRANSLATION_NAMESPACES.error,
+    'error',
+  ]);
+  const { links } = useGuideUtils();
   const { expiredIps } = useContext(ListingContext);
   const { addError } = useNotifications();
 
@@ -42,21 +49,34 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // Add error notification
   const onError = (apiError: ApiError) => {
     addError(
-      <Translation ns="error">
-        {(_t) => (
-          <span
-            dangerouslySetInnerHTML={{
-              __html: _t('managerApiError', {
-                error:
-                  apiError?.response?.data?.message ||
-                  apiError?.message ||
-                  null,
-                ovhQueryId: apiError?.response?.headers?.['x-ovh-queryid'],
-              }),
-            }}
-          />
-        )}
-      </Translation>,
+      <span>
+        <div className="font-bold">{t('ip_reverse_update_failure_title')}</div>
+        <p>
+          <div className="mb-2">
+            {t('ip_reverse_update_failure_hint')}
+            <Links
+              href={links?.configureReverseDnsGuide}
+              label={t('ip_reverse_update_failure_hint_link')}
+              target="_blank"
+            />
+            {'.'}
+          </div>
+          <li>
+            <span className="inline-block min-w-24 font-bold">
+              {t('ip_reverse_update_failure_api_error')}
+            </span>
+            <span>
+              {apiError?.response?.data?.message || apiError?.message || null}
+            </span>
+          </li>
+          <li>
+            <span className="inline-block min-w-24 font-bold">
+              {t('ip_reverse_update_failure_request_id')}
+            </span>
+            <span>{apiError?.response?.headers?.['x-ovh-queryid']}</span>
+          </li>
+        </p>
+      </span>,
       true,
     );
   };

@@ -3,6 +3,10 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {
+  ShellContext,
+  initShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpReverse, IpReverseProps } from './IpReverse';
@@ -23,13 +27,16 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpReverseProps) => {
+const renderComponent = async (params: IpReverseProps) => {
+  const context = await initShellContext('ips');
   return render(
-    <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
-        <IpReverse {...params} />
-      </ListingContextProvider>
-    </QueryClientProvider>,
+    <ShellContext.Provider value={context}>
+      <QueryClientProvider client={queryClient}>
+        <ListingContextProvider>
+          <IpReverse {...params} />
+        </ListingContextProvider>
+      </QueryClientProvider>
+    </ShellContext.Provider>,
   );
 };
 
@@ -42,7 +49,7 @@ describe('IpReverse Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: '10.0.0.1' });
+    const { getByText } = await renderComponent({ ip: '10.0.0.1' });
     await waitFor(() => {
       expect(getByText('reverse-10.0.0.1')).toBeDefined();
     });
@@ -53,7 +60,7 @@ describe('IpReverse Component', async () => {
       isLoading: false,
       error: undefined,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[3].ip });
+    const { getByText } = await renderComponent({ ip: ipDetailsList[3].ip });
     await waitFor(() => {
       expect(getByText('-')).toBeDefined();
     });
