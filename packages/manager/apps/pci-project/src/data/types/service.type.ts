@@ -109,6 +109,7 @@ export type TService = {
   resource: TServiceResource;
   serviceId: number;
   parentServiceId: number | null;
+  domain?: string;
   contactAdmin?: string;
   contactBilling?: string;
   contactTech?: string;

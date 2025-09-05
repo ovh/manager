@@ -21,5 +21,6 @@
   "common_confirm": "Confirmar",
   "cpb_rights_note": "Importante: Los contactos en modo lectura-escritura tienen permisos (modificaciones de la infraestructura, uso del almacenamiento) que pueden generar costes adicionales. Los contactos en modo de solo lectura no pueden realizar ninguna acción en el proyecto. Para cada factura se utilizará la forma de pago por defecto del contacto de facturación.",
   "cpb_rights_table_nichandle": "Identificador de cliente",
+  "cpb_rights_table_email": "Correo electrónico",
   "pci_projects_project_contacts_title": "Contactos y permisos"
 }

@@ -21,5 +21,6 @@
   "common_confirm": "Potwierdź",
   "cpb_rights_note": "Informacja: Kontakty z uprawnieniami do odczytu/zapisu dysponują uprawnieniami (zmiany infrastruktury, korzystanie z przestrzeni dyskowej), które mogą generować dodatkowe koszty. Kontakty z uprawnieniami tylko do odczytu nie mogą wykonywać operacji w ramach projektu. Domyślny sposób płatności skonfigurowany przez kontakt księgowy jest używany do regulowania wszystkich faktur.",
   "cpb_rights_table_nichandle": "Identyfikator klienta",
+  "cpb_rights_table_email": "E-mail",
   "pci_projects_project_contacts_title": "Kontakty i uprawnienia"
 }
