@@ -10,7 +10,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: 'src/alldoms/setupTests.tsx',
+      setupFiles: 'src/common/setupTests.tsx',
       coverage: {
         exclude: [...defaultExcludedFiles, 'src/pages/layout.tsx'],
       },
@@ -24,6 +24,7 @@ export default mergeConfig(
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
+      mainFields: ['module'],
     },
   }),
 );

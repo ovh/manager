@@ -1,4 +1,3 @@
-import '@/domain/setupTests';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
@@ -7,7 +6,7 @@ import {
   useGetDomainZone,
 } from '@/domain/hooks/data/query';
 import AnycastOrder from './anycastOrder';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 
 vi.mock('@/domain/hooks/data/query', () => ({

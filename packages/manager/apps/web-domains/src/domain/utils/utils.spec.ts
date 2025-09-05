@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import { expect, it, vi } from 'vitest';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { getLanguageKey, computeDnsDetails } from './utils';
@@ -6,6 +7,8 @@ import {
   TNameServerWithType,
 } from '@/domain/types/domainResource';
 import { baseDomainResource, ns1, ns2 } from '@/domain/__mocks__/dnsDetails';
+import { TaskStatusEnum } from '../enum/taskStatus.enum';
+import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => () => '03/01/2025 10:15',
@@ -118,7 +121,7 @@ describe('computeDnsDetails', () => {
         {
           id: 'task-1',
           link: '',
-          status: 'ERROR',
+          status: TaskStatusEnum.ERROR,
           type: 'DomainDnsUpdate',
         },
       ],
@@ -202,7 +205,7 @@ describe('computeDnsDetails', () => {
   it('should fallback to "" for IP if no IP is defined', () => {
     const nsNoIP: TNameServerWithType = {
       nameServer: 'ns3.example.com',
-      nameServerType: 'EXTERNAL',
+      nameServerType: DnsConfigurationTypeEnum.EXTERNAL,
     };
     const resource: TDomainResource = {
       ...baseDomainResource,
