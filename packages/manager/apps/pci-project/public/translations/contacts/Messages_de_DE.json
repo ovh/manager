@@ -21,5 +21,6 @@
   "common_confirm": "Bestätigen",
   "cpb_rights_note": "Hinweis: Kontakte mit \"Lesen/Schreiben\" Berechtigungen verfügen über Rechte (Änderungen an der Infrastruktur, Verwendung des Storage), die zusätzliche Kosten verursachen können. Kontakte mit \"Nur Lesen\" Berechtigungen können keine Aktionen für das Projekt durchführen. Die Standardzahlungsart des Rechnungs-Kontakts wird für alle diese Rechnungen verwendet.",
   "cpb_rights_table_nichandle": "Kundenkennung ",
+  "cpb_rights_table_email": "E-Mail",
   "pci_projects_project_contacts_title": "Kontakt &amp; Rechte"
 }
