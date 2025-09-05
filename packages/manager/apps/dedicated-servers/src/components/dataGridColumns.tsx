@@ -30,197 +30,230 @@ const textByProductStatus: Record<string, string> = {
   hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
 
-export function useColumns(): DatagridColumn<DedicatedServer>[] {
+export function useColumns(): {
+  columns: DatagridColumn<DedicatedServer>[];
+  columnVisibility: Record<string, boolean>;
+  onColumnVisibilityChange: React.Dispatch<
+    React.SetStateAction<Record<string, boolean>>
+  >;
+} {
   const { t } = useTranslation('dedicated-servers');
-  return [
-    {
-      id: 'serverId',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.Numeric,
-      label: t('server_display_id'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.serverId.toString())}</DataGridTextCell>
-      ),
-    },
-    {
-      id: 'iam.displayName',
-      isSearchable: true,
-      isFilterable: true,
-      enableHiding: false,
-      type: FilterTypeCategories.String,
-      label: t('server_display_name'),
-      cell: NameCell,
-    },
-    {
-      id: 'ip',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_ip'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
-      ),
-    },
-    {
-      id: 'reverse',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_reverse'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">{t(server.reverse)}</span>
-        </DataGridTextCell>
-      ),
-    },
-    {
-      id: 'commercialRange',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_model'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">{t(server.commercialRange)}</span>
-        </DataGridTextCell>
-      ),
-    },
-    {
-      id: 'os',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_operating_system'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
-      ),
-    },
-    {
-      id: 'region',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_region'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">{t(server.region)}</span>
-        </DataGridTextCell>
-      ),
-    },
-    {
-      id: 'rack',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_rack'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.rack)}</DataGridTextCell>
-      ),
-    },
-    {
-      id: 'datacenter',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_datacentre'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
-      ),
-    },
-    {
-      id: 'state',
-      isSearchable: false,
-      isFilterable: false, // until fix
-      enableHiding: true,
-      type: FilterTypeCategories.Boolean,
-      label: t('server_display_state'),
-      cell: (server: DedicatedServer) => (
-        <OdsBadge
-          label={t(textByProductStatus[server.state])}
-          color={colorByProductStatus[server.state]}
-          className="mt-3"
-        />
-      ),
-    },
-    {
-      id: 'monitoring',
-      isSearchable: false,
-      isFilterable: false, // until fix
-      enableHiding: true,
-      type: FilterTypeCategories.Boolean,
-      label: t('server_display_monitoring'),
-      cell: MonitoringStatusChip,
-    },
-    {
-      id: 'vrack',
-      isSearchable: false,
-      isFilterable: false, // until fix
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_vrack'),
-      cell: DSVrack,
-    },
-    {
-      id: 'renew',
-      isSearchable: false,
-      isFilterable: false,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_renew'),
-      cell: RenewCell,
-    },
-    {
-      id: 'expiration',
-      isSearchable: false,
-      isFilterable: false,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_expiration'),
-      cell: ExpirationCell,
-    },
-    {
-      id: 'engagement',
-      isSearchable: false,
-      isFilterable: false,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_engagement'),
-      cell: EngagementCell,
-    },
-    {
-      id: 'price',
-      isSearchable: false,
-      isFilterable: false,
-      enableHiding: true,
-      type: FilterTypeCategories.String,
-      label: t('server_display_price'),
-      cell: PriceCell,
-    },
-    {
-      id: 'tags',
-      isSearchable: false,
-      isFilterable: true,
-      enableHiding: true,
-      type: FilterTypeCategories.Tags,
-      label: 'Tags',
-      cell: TagsCell,
-    },
-    {
-      id: 'actions',
-      isSearchable: false,
-      enableHiding: false,
-      label: '',
-      isSortable: false,
-      cell: ActionCell,
-    },
-  ];
+  const [columnVisibility, setColumnVisibility] = React.useState({
+    serverId: false,
+    'iam.displayName': true,
+    ip: true,
+    reverse: false,
+    commercialRange: true,
+    os: false,
+    region: true,
+    rack: false,
+    datacenter: false,
+    state: true,
+    monitoring: false,
+    vrack: false,
+    renew: false,
+    expiration: false,
+    engagement: false,
+    price: false,
+    tags: true,
+    actions: true,
+  });
+
+  return {
+    columnVisibility,
+    onColumnVisibilityChange: setColumnVisibility,
+    columns: [
+      {
+        id: 'serverId',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.Numeric,
+        label: t('server_display_id'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>{t(server.serverId.toString())}</DataGridTextCell>
+        ),
+      },
+      {
+        id: 'iam.displayName',
+        isSearchable: true,
+        isFilterable: true,
+        enableHiding: false,
+        type: FilterTypeCategories.String,
+        label: t('server_display_name'),
+        cell: NameCell,
+      },
+      {
+        id: 'ip',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_ip'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>{t(server.ip)}</DataGridTextCell>
+        ),
+      },
+      {
+        id: 'reverse',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_reverse'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>
+            <span className="whitespace-nowrap">{t(server.reverse)}</span>
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'commercialRange',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_model'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>
+            <span className="whitespace-nowrap">
+              {t(server.commercialRange)}
+            </span>
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'os',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_operating_system'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>{t(server.os)}</DataGridTextCell>
+        ),
+      },
+      {
+        id: 'region',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_region'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>
+            <span className="whitespace-nowrap">{t(server.region)}</span>
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'rack',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_rack'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>{t(server.rack)}</DataGridTextCell>
+        ),
+      },
+      {
+        id: 'datacenter',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_datacentre'),
+        cell: (server: DedicatedServer) => (
+          <DataGridTextCell>{t(server.datacenter)}</DataGridTextCell>
+        ),
+      },
+      {
+        id: 'state',
+        isSearchable: false,
+        isFilterable: false, // until fix
+        enableHiding: true,
+        type: FilterTypeCategories.Boolean,
+        label: t('server_display_state'),
+        cell: (server: DedicatedServer) => (
+          <OdsBadge
+            label={t(textByProductStatus[server.state])}
+            color={colorByProductStatus[server.state]}
+            className="mt-3"
+          />
+        ),
+      },
+      {
+        id: 'monitoring',
+        isSearchable: false,
+        isFilterable: false, // until fix
+        enableHiding: true,
+        type: FilterTypeCategories.Boolean,
+        label: t('server_display_monitoring'),
+        cell: MonitoringStatusChip,
+      },
+      {
+        id: 'vrack',
+        isSearchable: false,
+        isFilterable: false, // until fix
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_vrack'),
+        cell: DSVrack,
+      },
+      {
+        id: 'renew',
+        isSearchable: false,
+        isFilterable: false,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_renew'),
+        cell: RenewCell,
+      },
+      {
+        id: 'expiration',
+        isSearchable: false,
+        isFilterable: false,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_expiration'),
+        cell: ExpirationCell,
+      },
+      {
+        id: 'engagement',
+        isSearchable: false,
+        isFilterable: false,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_engagement'),
+        cell: EngagementCell,
+      },
+      {
+        id: 'price',
+        isSearchable: false,
+        isFilterable: false,
+        enableHiding: true,
+        type: FilterTypeCategories.String,
+        label: t('server_display_price'),
+        cell: PriceCell,
+      },
+      {
+        id: 'tags',
+        isSearchable: false,
+        isFilterable: true,
+        enableHiding: true,
+        type: FilterTypeCategories.Tags,
+        label: 'Tags',
+        cell: TagsCell,
+      },
+      {
+        id: 'actions',
+        isSearchable: false,
+        enableHiding: false,
+        label: '',
+        isSortable: false,
+        cell: ActionCell,
+      },
+    ],
+  };
 }
