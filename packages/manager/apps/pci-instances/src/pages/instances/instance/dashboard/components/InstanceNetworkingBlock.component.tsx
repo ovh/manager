@@ -70,35 +70,38 @@ const InstanceNetworkingBlock: FC = () => {
     instance?.addresses,
   ]);
 
-  const privateIpActionsLinks = useMemo(
-    () =>
-      new Map([
-        [
-          'private_ip',
+  const privateIpActionsLinks = useMemo(() => {
+    const hasNetworkActions = instance?.actions
+      .get('details')
+      ?.find((elt) => elt.label.includes('edit'));
+    return hasNetworkActions
+      ? new Map([
           [
-            {
-              label: t(
-                'actions:pci_instances_actions_instance_network_network_settings',
-              ),
-              link: {
-                path: `${projectUrl}/private-networks`,
-                isExternal: true,
+            'private_ip',
+            [
+              {
+                label: t(
+                  'actions:pci_instances_actions_instance_network_network_settings',
+                ),
+                link: {
+                  path: `${projectUrl}/private-networks`,
+                  isExternal: true,
+                },
               },
-            },
-            {
-              label: t(
-                'actions:pci_instances_actions_instance_network_network_attach',
-              ),
-              link: {
-                path: 'network/private/attach',
-                isExternal: false,
+              {
+                label: t(
+                  'actions:pci_instances_actions_instance_network_network_attach',
+                ),
+                link: {
+                  path: 'network/private/attach',
+                  isExternal: false,
+                },
               },
-            },
+            ],
           ],
-        ],
-      ]),
-    [projectUrl, t],
-  );
+        ])
+      : new Map();
+  }, [projectUrl, t, instance?.actions]);
 
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_network_title')}>
