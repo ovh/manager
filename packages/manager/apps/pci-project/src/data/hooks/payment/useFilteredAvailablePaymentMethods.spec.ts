@@ -50,6 +50,7 @@ vi.mock('@/payment/constants', () => ({
 
 // Import the mocked constants
 const CREDIT_PAYMENT_METHOD: TAvailablePaymentMethod = {
+  paymentMethodId: 1,
   icon: {
     data: undefined,
     name: 'credit',
@@ -85,6 +86,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
 
   const mockPaymentMethods: TAvailablePaymentMethod[] = [
     {
+      paymentMethodId: 2,
       paymentType: TPaymentMethodType.CREDIT_CARD,
       icon: {
         data: undefined,
@@ -102,6 +104,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       registerableWithTransaction: true,
     },
     {
+      paymentMethodId: 3,
       paymentType: TPaymentMethodType.SEPA_DIRECT_DEBIT,
       icon: {
         data: undefined,
@@ -119,6 +122,7 @@ describe('useFilteredAvailablePaymentMethods', () => {
       registerableWithTransaction: true,
     },
     {
+      paymentMethodId: 4,
       paymentType: TPaymentMethodType.PAYPAL,
       icon: {
         data: undefined,
