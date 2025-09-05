@@ -21,5 +21,6 @@
   "common_confirm": "Confirmar",
   "cpb_rights_note": "NB: os contactos com acesso de leitura/escrita dispõem de permissões (alterações na infraestrutura, uso do espaço de armazenamento) que podem gerar custos adicionais. Os contactos só com acesso leitura não podem efetuar nenhuma ação no projeto. O meio de pagamento predefinido pelo contacto de faturação será usado em todas as faturas.",
   "cpb_rights_table_nichandle": "Identificador de cliente",
+  "cpb_rights_table_email": "E-mail",
   "pci_projects_project_contacts_title": "Contactos e direitos"
 }
