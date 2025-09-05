@@ -1,4 +1,4 @@
-import { FieldError, FieldErrors } from 'react-hook-form';
+import { FieldErrors } from 'react-hook-form';
 
 const ErrorList = ({ error }: { error: FieldErrors }) => {
   const renderErrorMessages = (errors: FieldErrors): React.ReactNode[] => {
@@ -6,7 +6,7 @@ const ErrorList = ({ error }: { error: FieldErrors }) => {
       if (typeof value === 'object' && value !== null) {
         if ('message' in value) {
           // Direct error message
-          return <li key={key}>{(value as FieldError).message}</li>;
+          return <li key={key}>{value.message.toString()}</li>;
         }
         // Nested errors or array errors
         const nestedErrors = renderErrorMessages(value as FieldErrors);

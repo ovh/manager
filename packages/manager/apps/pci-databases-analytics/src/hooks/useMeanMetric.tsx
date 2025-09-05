@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { QueryObserverOptions } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
+import { getMetric } from '@/data/api/database/metric.api';
+import { OptionsFor } from './api/useImmediateRefetch';
 
 interface UseMeanMetricProps {
   projectId: string;
@@ -10,7 +11,7 @@ interface UseMeanMetricProps {
   metric: string;
   period?: database.service.MetricPeriodEnum;
   fn?: (val: number) => number;
-  options?: Omit<QueryObserverOptions, 'queryKey'>;
+  options?: OptionsFor<typeof getMetric>;
 }
 export function useMeanMetric({
   projectId,

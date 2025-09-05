@@ -5,14 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
-import {
-  Engine,
-  Flavor,
-  NetworkOptionValue,
-  Plan,
-  Region,
-  Version,
-} from '@/types/orderFunnel';
+import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
@@ -85,7 +78,8 @@ export function useOrderFunnel(
       .min(1)
       .max(50),
   });
-  const form = useForm({
+  type OrderFormValues = z.infer<typeof orderSchema>;
+  const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderSchema),
     defaultValues: {
       name: generateName(),
@@ -101,7 +95,7 @@ export function useOrderFunnel(
         type: database.NetworkTypeEnum.public,
         networkId: undefined,
         subnetId: undefined,
-      } as NetworkOptionValue,
+      },
     },
   });
 

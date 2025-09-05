@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -7,11 +7,9 @@ export const getMetrics = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/metric?extended=false`,
-    )
-    .then((res) => res.data as string[]);
+  apiClient.v6.get<string[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/metric?extended=false`,
+  );
 
 interface GetMetric extends ServiceData {
   metric: string;
@@ -24,8 +22,6 @@ export const getMetric = async ({
   metric,
   period,
 }: GetMetric) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/metric/${metric}?period=${period}`,
-    )
-    .then((res) => res.data as database.service.Metric);
+  apiClient.v6.get<database.service.Metric>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/metric/${metric}?period=${period}`,
+  );
