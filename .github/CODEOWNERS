@@ -12,6 +12,7 @@
 /packages/manager/apps/catalog @ovh/dev-manager-gcj-all
 /packages/manager/apps/cda @ovh/dev-manager-infra-all
 /packages/manager/apps/cloud-connect @ovh/dev-manager-infra-all
+/packages/manager/apps/communication @ovh/dev-manager-gcj-all
 /packages/manager/apps/container @ovh/dev-manager-gcj-all
 /packages/manager/apps/dbaas-logs @ovh/dev-manager-enablers-all
 /packages/manager/apps/dedicated @ovh/dev-manager-infra-all
