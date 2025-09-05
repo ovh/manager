@@ -17,7 +17,7 @@ describe('Secrets Settings Tile component tests suite', () => {
       'maximum_number_of_versions',
       mockSecret.metadata.maxVersions,
       'cas_with_description',
-      'deactivated',
+      'disabled',
     ];
 
     labelList.forEach((label) => {
