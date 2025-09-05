@@ -11,6 +11,7 @@ import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { assertVersionDatagridVisilibity } from './versions/Versions.page.spec';
+import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockOkmsId = '12345';
 const mockSecret = secretsMock[0];
@@ -48,8 +49,8 @@ describe('Secrets dashboard test suite', () => {
       // tabs
       labels.secretManager.versions,
       // general information tile
-      labels.secretManager.path,
-      labels.secretManager.urn,
+      PATH_LABEL,
+      URN_LABEL,
       labels.secretManager.last_update,
       // settings tile
       labels.secretManager.settings,
@@ -57,14 +58,14 @@ describe('Secrets dashboard test suite', () => {
       labels.secretManager.maximum_number_of_versions,
       mockSecret.metadata.maxVersions,
       labels.secretManager.cas_with_description,
-      labels.secretManager.deactivated,
+      labels.common.status.disabled,
       // actions tile
       labels.secretManager.actions,
     ];
 
     const labelTwice = [
       // tabs
-      labels.secretManager.general_information,
+      labels.common.dashboard.general_information,
       // title & general information tile
       mockSecret.path,
     ];

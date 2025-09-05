@@ -13,6 +13,7 @@ import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/te
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { assertVersionDatagridVisilibity } from '../dashboard/versions/Versions.page.spec';
+import { PATH_LABEL } from '@/constants';
 
 const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretListing(mockOkmsId);
@@ -59,7 +60,7 @@ describe('Secrets listing test suite', () => {
 
     // THEN
     const tableHeaders = [
-      labels.secretManager.path,
+      PATH_LABEL,
       labels.secretManager.version,
       labels.common.dashboard.creation_date,
     ];
@@ -90,7 +91,7 @@ describe('Secrets listing test suite', () => {
 
     // THEN
     const dashboardPageLabels = await screen.findAllByText(
-      labels.secretManager.general_information,
+      labels.common.dashboard.general_information,
       {},
       WAIT_FOR_DEFAULT_OPTIONS,
     );
