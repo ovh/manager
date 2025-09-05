@@ -1,8 +1,6 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
-import { renderHook, waitFor } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
 import {
@@ -16,6 +14,10 @@ import {
 } from '@/mocks/catalog/catalog.mock';
 import { RegionOption, useRegionSelector } from './useRegionSelector';
 import { OKMS } from '@/types/okms.type';
+import {
+  renderHookWithClient,
+  createErrorResponseMock,
+} from '@/utils/tests/testUtils';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -67,25 +69,8 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({ addError: mockAddError }),
 }));
 
-// Helper function to create a wrapper with QueryClient
-const createWrapper = () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false, // Disable retries for tests
-        gcTime: 0, // Disable caching for tests
-      },
-    },
-  });
-  return ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
-
 const renderCustomHook = async (state: 'success' | 'error') => {
-  const { result, rerender } = renderHook(() => useRegionSelector(), {
-    wrapper: createWrapper(),
-  });
+  const { result, rerender } = renderHookWithClient(() => useRegionSelector());
 
   if (state === 'success') {
     expect(result.current.isLoading).toBe(true);
@@ -128,9 +113,7 @@ describe('useRegionSelector tests suite', () => {
     it('should return loading state when API call are pending', async () => {
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_RBX);
 
-      const { result } = renderHook(() => useRegionSelector(), {
-        wrapper: createWrapper(),
-      });
+      const { result } = renderHookWithClient(() => useRegionSelector());
 
       expect(result.current.isLoading).toBe(true);
       expect(result.current.geographyGroups).toEqual([]);
@@ -206,9 +189,8 @@ describe('useRegionSelector tests suite', () => {
 
   describe('when there are errors', () => {
     it('should handle okms list error', async () => {
-      const error = {
-        response: { data: { message: 'okms list error' } },
-      };
+      const error = createErrorResponseMock('Okms list error');
+
       mockGetOkmsList.mockRejectedValue(error);
       mockUseCurrentRegion.mockReturnValue(undefined);
 
@@ -219,9 +201,8 @@ describe('useRegionSelector tests suite', () => {
     });
 
     it('should handle locations error', async () => {
-      const error = {
-        response: { data: { message: 'Locations error' } },
-      };
+      const error = createErrorResponseMock('Locations error');
+
       mockGetLocations.mockRejectedValue(error);
       mockUseCurrentRegion.mockReturnValue(undefined);
 

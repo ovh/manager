@@ -11,6 +11,10 @@ import { OKMS } from '@/types/okms.type';
 export const useCurrentRegion = (okmsList: OKMS[]) => {
   const { okmsId, region } = useParams<LocationPathParams>();
 
+  if (!region && okmsList.length === 0) {
+    return undefined;
+  }
+
   if (okmsId) {
     const currentOkms = okmsList.find((okms) => okms.id === okmsId);
     if (currentOkms) {
