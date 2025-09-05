@@ -3,13 +3,14 @@ import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Secret } from '@secret-manager/types/secret.type';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 type SettingsTileProps = {
   secret: Secret;
 };
 
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
-  const { t } = useTranslation('secret-manager');
+  const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
 
   return (
     <ManagerTile>
@@ -47,7 +48,9 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
           <OdsText preset="span">
-            {secret.metadata.casRequired ? t('activated') : t('deactivated')}
+            {secret.metadata.casRequired
+              ? t('activated')
+              : t('disabled', { ns: NAMESPACES.STATUS })}
           </OdsText>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
