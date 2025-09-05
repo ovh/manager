@@ -1,0 +1,20 @@
+{
+  "title": "Moje połączenia",
+  "description": "Znajdziesz wszystkie informacje, które od OVHcloud do Ciebie wysłaliśmy, poza zgłoszeniami do działu pomocy. Możesz się z nimi zapoznać w sekcji: <anchor>Wsparcie</anchor>",
+  "assistance_link_label": "Wsparcie",
+  "tab_communications": "Moje połączenia",
+  "tab_contacts": "Kontakty",
+  "tab_settings": "Parametry emisji",
+  "date_label": "Data",
+  "priority_high": "Wysoki",
+  "priority_medium": "Średni",
+  "priority_low": "Niski",
+  "category_product": "Produkt",
+  "category_product_lifecycle": "Życie produktu",
+  "category_billing": "System fakturowania",
+  "category_account": "Konto",
+  "category_account_lifecycle": "Życie konta",
+  "category_security": "Bezpieczeństwo",
+  "category_legal": "Informacje prawne",
+  "iam_display_content_message": "Nie masz wystarczających uprawnień do wyświetlenia danych tego zasobu. Skontaktuj się z administratorem."
+}
