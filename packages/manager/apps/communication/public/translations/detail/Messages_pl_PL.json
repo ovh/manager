@@ -1,0 +1,12 @@
+{
+  "button_go_back": "Powrót do poprzedniej strony",
+  "history_banner": "Ta wiadomość została wysłana do Ciebie dnia <strong>{{ date }}</strong> na <strong>{{ email }}</strong>. <anchor>Wyświetl historię</anchor>",
+  "button_download_attachment": "Pobierz załącznik",
+  "format_switch_short": "Krótki",
+  "format_switch_long": "Długi",
+  "format_switch_html": "Format HTML",
+  "history_overlay_headline": "Monitorowanie wysyłki",
+  "history_overlay_description": "Tutaj znajdziesz wszystkie informacje związane z wysłaniem tej wiadomości. Jeśli zauważysz problem, możesz zarządzać ustawieniami komunikacji.",
+  "history_overlay_settings_link": "Przejdź do ustawień emisji",
+  "history_overlay_close": "Zamknij"
+}

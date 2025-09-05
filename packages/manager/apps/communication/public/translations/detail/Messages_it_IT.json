@@ -1,0 +1,12 @@
+{
+  "button_go_back": "Ritorna alla pagina precedente",
+  "history_banner": "Questo messaggio ti è stato inviato il <strong> {{ date }}</strong> su <strong> {{ email }}</strong> . <anchor>Consulta lo storico</anchor>",
+  "button_download_attachment": "Scarica l'allegato",
+  "format_switch_short": "Corto",
+  "format_switch_long": "Long",
+  "format_switch_html": "Formato HTML",
+  "history_overlay_headline": "Controllo degli invii",
+  "history_overlay_description": "Qui trovi tutte le informazioni relative all'invio di questo messaggio. In caso di problemi, è possibile gestire le impostazioni di comunicazione.",
+  "history_overlay_settings_link": "Accedere alle impostazioni di distribuzione",
+  "history_overlay_close": "Chiudere"
+}

@@ -1,0 +1,8 @@
+{
+  "table_column_subject": "Subject",
+  "table_column_status": "Status",
+  "table_column_priority": "Distribution",
+  "table_column_date": "Date",
+  "table_column_categories": "Categories",
+  "contact_status_warning": "There seems to be a problem with the {{ contactType }} delivery method. You can<anchor> manage your receiving</anchor> settings to fix this problem."
+}

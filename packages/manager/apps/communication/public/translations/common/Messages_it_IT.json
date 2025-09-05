@@ -1,0 +1,20 @@
+{
+  "title": "Le tue comunicazioni",
+  "description": "Ritrova tutte le comunicazioni che OVH ti ha inviato, ad eccezione delle richieste di assistenza. Per consultarli, accedi alla sezione: <anchor>Supporto</anchor>",
+  "assistance_link_label": "Supporto",
+  "tab_communications": "Le tue comunicazioni",
+  "tab_contacts": "Contatti",
+  "tab_settings": "Impostazioni broadcast",
+  "date_label": "Data",
+  "priority_high": "Elevato",
+  "priority_medium": "Medio",
+  "priority_low": "Debole",
+  "category_product": "Prodotto",
+  "category_product_lifecycle": "Vita del prodotto",
+  "category_billing": "Fatturazione",
+  "category_account": "Account",
+  "category_account_lifecycle": "Vita dell'account",
+  "category_security": "Sicurezza",
+  "category_legal": "Informazioni legali",
+  "iam_display_content_message": "Non si dispone dei permessi necessari per visualizzare i dati della risorsa. Contattare l'amministratore."
+}

@@ -1,0 +1,12 @@
+{
+  "button_go_back": "Zur vorherigen Seite",
+  "history_banner": "Diese Nachricht wurde Ihnen am <strong> {{ date }}</strong> auf <strong>{{ email }}</strong> zugesandt. <anchor>Zur Historie</anchor>",
+  "button_download_attachment": "Anhang herunterladen",
+  "format_switch_short": "kurz",
+  "format_switch_long": "lang",
+  "format_switch_html": "HTML-Format",
+  "history_overlay_headline": "Sendungsverfolgung",
+  "history_overlay_description": "Hier finden Sie alle Informationen zum Versand dieser Nachricht. Wenn ein Problem auftritt, können Sie die Kommunikationseinstellungen verwalten.",
+  "history_overlay_settings_link": "Zu den Übertragungseinstellungen wechseln",
+  "history_overlay_close": "Schliessen"
+}
