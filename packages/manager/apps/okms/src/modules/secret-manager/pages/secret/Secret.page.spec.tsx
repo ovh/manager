@@ -5,16 +5,17 @@ import {
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { assertVersionDatagridVisilibity } from './versionList/VersionList.page.spec';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
+import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
-const mockOkmsId = '12345';
-const mockSecret = secretsMock[0];
+const mockOkmsId = okmsRoubaix1Mock.id;
+const mockSecret = mockSecret1;
 const mockSecretPath = mockSecret.path;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secret(
   mockOkmsId,
@@ -45,6 +46,8 @@ describe('Secret page test suite', () => {
       'SecretBreadcrumbItem',
     ]);
 
+    const settingDomain = labels.secretManager.setting_domain;
+
     const labelOnce = [
       // tabs
       labels.secretManager.versions,
@@ -54,11 +57,12 @@ describe('Secret page test suite', () => {
       labels.secretManager.last_update,
       // settings tile
       labels.secretManager.settings,
-      mockSecret.metadata.deactivateVersionAfter,
       labels.secretManager.maximum_number_of_versions,
-      mockSecret.metadata.maxVersions,
       labels.secretManager.cas_with_description,
-      labels.common.status.disabled,
+      // settings tile values
+      mockSecret.metadata.deactivateVersionAfter,
+      mockSecret.metadata.maxVersions,
+      `${labels.secretManager.activated} (${settingDomain})`,
       // actions tile
       labels.secretManager.actions,
     ];

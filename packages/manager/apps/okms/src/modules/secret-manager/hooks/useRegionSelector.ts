@@ -1,12 +1,12 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Location } from '@secret-manager/types/location.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useLocations } from '@secret-manager/data/hooks/useLocation';
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 import { OKMS } from '@/types/okms.type';
+import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
 
 export type RegionOption = {
   label: string;
@@ -106,7 +106,7 @@ export const useRegionSelector = (): UseRegionSelectorReturn => {
     isPending: isPendingOkmsList,
     error: errorOkmsList,
   } = useOkmsList();
-  const { addError } = useNotifications();
+
   const currentRegionId = useCurrentRegion(okmsList || []);
 
   const isLoading = isPendingLocations || isPendingOkmsList;
@@ -123,15 +123,8 @@ export const useRegionSelector = (): UseRegionSelectorReturn => {
     };
   }, [locations, okmsList, currentRegionId]);
 
-  // Handle errors from locations and Okms list
-  useEffect(() => {
-    if (errorLocations) {
-      addError(errorLocations?.response?.data?.message);
-    }
-    if (errorOkmsList) {
-      addError(errorOkmsList?.response?.data?.message);
-    }
-  }, [errorLocations, errorOkmsList]);
+  const error = errorLocations || errorOkmsList;
+  useNotificationAddErrorOnce(error);
 
   return {
     geographyGroups,

@@ -27,6 +27,14 @@ import {
   getSecretsMock,
   GetSecretsMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
+import {
+  getSecretConfigOkmsMock,
+  GetSecretConfigOkmsMockParams,
+} from '@secret-manager/mocks/secretConfigOkms/secretConfigOkms.handler';
+import {
+  getSecretConfigReferenceMock,
+  GetSecretConfigReferenceMockParams,
+} from '@secret-manager/mocks/secretReference/secretReference.handler';
 import { getLocationsMock } from '@secret-manager/mocks/locations/locations.handler';
 import {
   getVersionMock,
@@ -91,6 +99,8 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   GetSecretMockParams &
   CreateSecretsMockParams &
   DeleteSecretMockParams &
+  GetSecretConfigOkmsMockParams &
+  GetSecretConfigReferenceMockParams &
   GetVersionsMockParams &
   GetVersionMockParams &
   CreateVersionMockParams &
@@ -124,6 +134,8 @@ export const renderTestApp = async (
         ...getSecretMock(mockParams),
         ...createSecretsMock(mockParams),
         ...deleteSecretMock(mockParams),
+        ...getSecretConfigOkmsMock(mockParams),
+        ...getSecretConfigReferenceMock(mockParams),
         ...getVersionsMock(mockParams),
         ...getVersionMock(mockParams),
         ...createVersionMock(mockParams),
