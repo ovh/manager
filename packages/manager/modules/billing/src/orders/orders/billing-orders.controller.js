@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import omit from 'lodash/omit';
 import set from 'lodash/set';
 import { BILLING_ORDERS_STATUS } from './billing-orders.constant';
 
@@ -94,9 +93,7 @@ export default class BillingOrdersCtrl {
   onCriteriaChange(criteria) {
     this.criteria = criteria;
     try {
-      this.filter = encodeURIComponent(
-        JSON.stringify(criteria.map((c) => omit(c, 'title'))),
-      );
+      this.filter = encodeURIComponent(JSON.stringify(criteria));
       this.updateFilterParam(this.filter);
     } catch (err) {
       this.$log.error(err);
