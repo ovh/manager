@@ -2,6 +2,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
+import { PATH_LABEL } from '@/constants';
 
 describe('Secret Manager root page test suite', () => {
   it('should navigate to the onboarding page if no kms exists', async () => {
@@ -17,7 +18,7 @@ describe('Secret Manager root page test suite', () => {
       nbOkms: 1,
     });
 
-    await assertTextVisibility(labels.secretManager.path);
+    await assertTextVisibility(PATH_LABEL);
     await assertTextVisibility(labels.secretManager.version);
   });
 
