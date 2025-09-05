@@ -36,19 +36,19 @@ export const IpAlerts = ({ ip }: IpAlertsProps) => {
 
   return (
     <SkeletonCell isLoading={isLoading}>
-      {hasAlerts?.antihack?.length && (
+      {!!hasAlerts?.antihack?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsAntihack')}
           color={ODS_BADGE_COLOR.critical}
         ></OdsBadge>
       )}
-      {hasAlerts?.spam?.length && (
+      {!!hasAlerts?.spam?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsSpam')}
           color={ODS_BADGE_COLOR.critical}
         ></OdsBadge>
       )}
-      {hasAlerts?.mitigation?.length && (
+      {!!hasAlerts?.mitigation?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsMitigation')}
           color={ODS_BADGE_COLOR.critical}
