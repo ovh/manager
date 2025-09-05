@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -11,12 +11,10 @@ export const addNode = async ({
   serviceId,
   node,
 }: AddNode) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/node`,
-      node,
-    )
-    .then((res) => res.data as database.service.Node);
+  apiClient.v6.post<database.service.Node>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/node`,
+    node,
+  );
 
 export interface DeleteNode extends ServiceData {
   nodeId: string;
