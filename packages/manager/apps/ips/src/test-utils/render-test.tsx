@@ -19,6 +19,7 @@ import {
   toMswHandlers,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
+import { Subsidiary } from '@ovh-ux/manager-config';
 import { translations, labels } from './test-i18n';
 import { TestApp } from './TestApp';
 import {
@@ -45,6 +46,10 @@ import {
   GetIpLoadBalancingMocksParams,
 } from '../../mocks';
 
+export type GetUserMocksParams = {
+  ovhSubsidiary?: Subsidiary;
+};
+
 export type MockParams = GetIpsMocksParams &
   GetIamMocksParams &
   GetDedicatedMocksParams &
@@ -55,7 +60,8 @@ export type MockParams = GetIpsMocksParams &
   GetVpsMocksParams &
   GetOrganisationMocksParams &
   GetCatalogMocksParams &
-  GetIpLoadBalancingMocksParams;
+  GetIpLoadBalancingMocksParams &
+  GetUserMocksParams;
 
 const APP_NAME = 'ips';
 
@@ -93,6 +99,9 @@ export const renderTest = async ({
   if (!context) {
     context = await initShellContext(APP_NAME);
   }
+
+  context.environment.getUser().ovhSubsidiary =
+    mockParams.ovhSubsidiary ?? 'FR';
 
   if (!i18nState) {
     i18nState = await initTestI18n(APP_NAME, translations);
