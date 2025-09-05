@@ -1,0 +1,8 @@
+{
+  "table_column_subject": "Betreff",
+  "table_column_status": "Status",
+  "table_column_priority": "Prioritäten",
+  "table_column_date": "Datum",
+  "table_column_categories": "Kategorien",
+  "contact_status_warning": "Es scheint ein Problem mit dem Empfangsmittel {{ contactType }} zu geben. Sie können Ihre <anchor>Empfangseinstellungen</anchor> verwalten, um dieses Problem zu beheben."
+}
