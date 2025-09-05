@@ -27,6 +27,7 @@ import {
 } from '@secret-manager/utils/tests/secret.constants';
 import { BackLink } from './BackLink.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
+import { PATH_LABEL } from '@/constants';
 
 type SecretFormProps = {
   domainId?: string;
@@ -99,7 +100,7 @@ export const SecretForm = ({ domainId }: SecretFormProps) => {
           {t('create_secret_form_secret_section_title')}
         </OdsText>
         <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('path')}</OdsText>
+          <OdsText preset="heading-4">{PATH_LABEL}</OdsText>
           <Controller
             name="path"
             control={control}

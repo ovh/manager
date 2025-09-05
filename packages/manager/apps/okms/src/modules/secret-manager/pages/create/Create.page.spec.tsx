@@ -81,7 +81,7 @@ describe('Create secret page test suite', () => {
     // assert we have navigated to the newly created secret page
     expect(
       await screen.findAllByText(
-        labels.secretManager.general_information,
+        labels.common.dashboard.general_information,
         {},
         WAIT_FOR_DEFAULT_OPTIONS,
       ),

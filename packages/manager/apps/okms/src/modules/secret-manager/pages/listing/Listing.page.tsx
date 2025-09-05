@@ -31,6 +31,7 @@ import {
   DatagridCreationDate,
 } from './ListingCells.component';
 import { isErrorResponse } from '@/utils/api/api';
+import { PATH_LABEL } from '@/constants';
 
 export default function SecretListingPage() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function SecretListingPage() {
     {
       id: 'path',
       cell: DatagridCellPath,
-      label: t('path'),
+      label: PATH_LABEL,
     },
     {
       id: 'version',
