@@ -1,12 +1,15 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { Select, SelectControl, SelectContent } from '@ovhcloud/ods-react';
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Select,
+  SelectContent,
+  SelectControl,
+} from '@ovhcloud/ods-react';
 import { TUnattachedResource } from '../view-models/selectUnattachedResource';
 
 type TNetworkSelectorProps = {
@@ -33,14 +36,16 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
           <SelectContent />
         </Select>
       ) : (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="mt-6">
-          <OsdsText
-            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-            color={ODS_THEME_COLOR_INTENT.default}
-          >
+        <Message
+          color={MESSAGE_COLOR.warning}
+          className="mt-6"
+          dismissible={false}
+        >
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>
             {t('pci_instances_actions_instance_network_network_empty_message')}
-          </OsdsText>
-        </OsdsMessage>
+          </MessageBody>
+        </Message>
       )}
     </div>
   );
