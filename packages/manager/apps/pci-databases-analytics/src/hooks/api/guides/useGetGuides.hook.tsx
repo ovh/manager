@@ -1,15 +1,16 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { getGuides } from '@/data/api/guides/guides.api';
-import { Guide } from '@/types/guide';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '@/hooks/api/useImmediateRefetch';
 
 export function useGetGuides(
   section?: string,
   lang?: string,
   engines?: string[],
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getGuides>,
 ) {
-  const queryKey = ['guides/cloud/databases', section, lang, engines];
+  const queryKey = ['guides/cloud/databases', section, lang, engines.join(',')];
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
@@ -19,5 +20,5 @@ export function useGetGuides(
         lang,
       }),
     ...options,
-  }) as UseQueryResult<Guide[], Error>;
+  });
 }

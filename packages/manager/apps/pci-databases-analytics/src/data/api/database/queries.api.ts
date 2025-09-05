@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -7,11 +7,9 @@ export const getCurrentQueries = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries`,
-    )
-    .then((res) => res.data.queries as database.service.currentqueries.Query[]);
+  apiClient.v6.get<database.service.currentqueries.Query[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries`,
+  );
 
 export interface CancelQuery extends ServiceData {
   pid: number;
@@ -24,17 +22,13 @@ export const cancelCurrentQuery = async ({
   pid,
   terminate,
 }: CancelQuery) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries/cancel`,
-      {
-        pid,
-        terminate,
-      },
-    )
-    .then(
-      (res) => res.data as database.service.currentqueries.query.CancelResponse,
-    );
+  apiClient.v6.post<database.service.currentqueries.query.CancelResponse>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries/cancel`,
+    {
+      pid,
+      terminate,
+    },
+  );
 
 export type QueryStatistics =
   | database.mysql.querystatistics.Query
@@ -44,19 +38,15 @@ export const getQueryStatistics = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics`,
-    )
-    .then((res) => res.data.queries as QueryStatistics[]);
+  apiClient.v6.get<QueryStatistics[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics`,
+  );
 
 export const resetQueryStatistics = async ({
   projectId,
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics/reset`,
-    )
-    .then((res) => res.data);
+  apiClient.v6.post(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics/reset`,
+  );

@@ -9,9 +9,7 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
   const id = useId();
   const handleLabelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      const inputElement = document.getElementById(
-        id,
-      ) as HTMLInputElement | null;
+      const inputElement = document.getElementById(id);
       if (inputElement) {
         inputElement.click();
       }
