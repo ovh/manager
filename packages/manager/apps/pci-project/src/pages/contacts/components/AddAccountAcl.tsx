@@ -17,7 +17,7 @@ import { normalizeAccountId } from '@/utils/normalize-account-id';
 type AclRight = AccountAcl['type'];
 
 export default function AddAccountAcl() {
-  const { t } = useTranslation(['contacts']);
+  const { t } = useTranslation(['contacts', 'pci-common']);
   const { addSuccess, addError } = useNotifications();
 
   const projectId = useParam('projectId');
@@ -27,6 +27,7 @@ export default function AddAccountAcl() {
 
   const [accountToAdd, setAccountToAdd] = useState<string>('');
   const [accountRights, setAccountRights] = useState<AclRight>('readOnly');
+  const [isAccountInputTouched, setIsAccountInputTouched] = useState(false);
   const handleClose = () => navigate('..');
   const isUSorCA = ['US', 'CA'].includes(user.country.toUpperCase());
   const normalizedAccountId = normalizeAccountId(accountToAdd);
@@ -66,7 +67,14 @@ export default function AddAccountAcl() {
       onDismiss={handleClose}
       isOpen={true}
     >
-      <OdsFormField className="mb-6">
+      <OdsFormField
+        className="mb-6"
+        error={
+          isAccountInputTouched && !accountToAdd
+            ? t('pci-common:common_field_error_required')
+            : ''
+        }
+      >
         <label htmlFor="contactInput" slot="label">
           {isUSorCA
             ? t('cpb_rights_table_email')
@@ -76,7 +84,9 @@ export default function AddAccountAcl() {
           type={ODS_INPUT_TYPE.text}
           name="contactInput"
           value={accountToAdd}
+          onOdsBlur={() => setIsAccountInputTouched(true)}
           onOdsChange={(e) => setAccountToAdd(e.detail.value as string)}
+          hasError={isAccountInputTouched && !accountToAdd}
         />
       </OdsFormField>
       <OdsFormField>
