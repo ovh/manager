@@ -337,6 +337,10 @@ angular.module('services').service(
      * @returns {boolean}
      */
     isValidMXTarget(value) {
+      if (value === '.') {
+        // allow MX null
+        return true;
+      }
       if (/\s+\.$/.test(value)) {
         // prevent spaces before dot
         return false;
