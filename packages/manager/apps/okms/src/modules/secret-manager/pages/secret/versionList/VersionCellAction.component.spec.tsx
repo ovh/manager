@@ -95,10 +95,10 @@ describe('VersionCellAction test suite', () => {
     vi.mocked(useNotifications).mockReturnValue({
       addError: mockAddError,
     });
-    vi.mocked(useUpdateSecretVersion).mockReturnValue({
+    vi.mocked(useUpdateSecretVersion).mockReturnValue(({
       mutateAsync: mockUpdateSecretVersion,
       isPending: false,
-    } as any);
+    } as unknown) as ReturnType<typeof useUpdateSecretVersion>);
   });
 
   describe('Rendering', () => {
