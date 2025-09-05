@@ -1,0 +1,12 @@
+{
+  "button_go_back": "Back to previous page",
+  "history_banner": "This message was sent to you on <strong> {{ date }}</strong> on <strong> {{ email }}</strong> . <anchor>View history</anchor>",
+  "button_download_attachment": "Download Attachment",
+  "format_switch_short": "Short",
+  "format_switch_long": "Long",
+  "format_switch_html": "HTML format",
+  "history_overlay_headline": "Track shipments",
+  "history_overlay_description": "Here, you can find all the information related to sending this message. If you see a problem, you can manage the communication settings.",
+  "history_overlay_settings_link": "Go to broadcast settings",
+  "history_overlay_close": "Close"
+}
