@@ -1,10 +1,13 @@
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
 import { filterDomainsByRegion } from '@secret-manager/utils/domains';
+import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useOkmsList } from '@/data/hooks/useOkms';
 
-export const useShouldDisplayBackToDomainListButton = (): boolean => {
+export const useBackToDomainListUrl = () => {
+  let domainListUrl = null;
+
   // get all domains
-  const { data: OkmsList, isPending, error } = useOkmsList();
+  const { data: OkmsList } = useOkmsList();
 
   // get current domain's region
   const currentRegionId = useCurrentRegion(OkmsList || []);
@@ -15,11 +18,10 @@ export const useShouldDisplayBackToDomainListButton = (): boolean => {
       ? filterDomainsByRegion(OkmsList, currentRegionId)
       : [];
 
-  // if the okms list request is pending or in error, we should not display the button.
-  if (error || isPending) {
-    return false;
+  // if there's more than one domain on a region, we set the url
+  if (regionOkmsList.length > 1) {
+    domainListUrl = SECRET_MANAGER_ROUTES_URLS.secretDomains(currentRegionId);
   }
 
-  // if there's more than one domain on a region, we should display the back to domain list button
-  return regionOkmsList.length > 1;
+  return domainListUrl;
 };
