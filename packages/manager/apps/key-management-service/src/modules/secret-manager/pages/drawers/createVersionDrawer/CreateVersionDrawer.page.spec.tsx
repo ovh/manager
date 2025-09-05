@@ -1,7 +1,7 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { mockSecret1WithData } from '@secret-manager/mocks/secrets/secrets.mock';
+import { mockSecret2WithData } from '@secret-manager/mocks/secrets/secrets.mock';
 import { screen, act, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -13,11 +13,12 @@ import {
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
+import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 
 const mockDomainId = '123123';
-const mockSecretPath = mockSecret1WithData.path;
+const mockSecretPath = mockSecret2WithData.path;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerCreateVersion(
   mockDomainId,
   mockSecretPath,
@@ -83,12 +84,15 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     expect(dataInput).toBeInTheDocument();
     expect(dataInput).toHaveValue(
-      JSON.stringify(mockSecret1WithData.version.data),
+      JSON.stringify(mockSecret2WithData.version.data),
     );
   });
 
-  it('should close the drawer after submission', async () => {
+  it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
     const { container, user } = await renderPage();
+    vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(
+      mockSecret2WithData.version,
+    );
 
     // Get the data input
     const dataInput = await screen.findByTestId(DATA_INPUT_TEST_ID);
@@ -114,6 +118,16 @@ describe('Secret create version drawer page test suite', () => {
     expect(submitButton).toBeInTheDocument();
 
     await act(() => user.click(submitButton));
+
+    // Wait for the createSecretVersion to be called
+    await waitFor(() => {
+      expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
+        okmsId: mockDomainId,
+        path: mockSecret2WithData.path,
+        data: JSON.parse(MOCK_DATA_VALID_JSON),
+        cas: mockSecret2WithData.metadata.currentVersion,
+      });
+    });
 
     // Wait for the drawer to close
     await waitFor(() => {

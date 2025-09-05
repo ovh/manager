@@ -63,6 +63,10 @@ const CreateVersionDrawerForm = ({
       okmsId: domainId,
       path: decodeSecretPath(secretPath),
       data: JSON.parse(data.data),
+      // Add current version to cas parameter if cas is required
+      cas: secret?.metadata?.casRequired
+        ? secret?.metadata?.currentVersion
+        : undefined,
     });
     onDismiss();
   };
