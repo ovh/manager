@@ -15,7 +15,8 @@ export interface BreadcrumbProps {
 
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
   const location = useLocation();
-  const rootHref = useHref(urls.root);
+  const rootHref = useHref(`${urls.root}/`);
+  const isRootPath = (path: string) => path === urls.root.replace('/', '');
 
   const rootItem = {
     id: rootLabel,
