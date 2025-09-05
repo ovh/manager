@@ -39,9 +39,13 @@ import {
   TFeatureAvailabilityMockParams,
 } from '@/mocks/feature-availability';
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
+import { urls } from '@/routes/routes.constant';
 
 let context: ShellContextType;
 let i18nState: i18n;
+
+const formatSafePath = (url: string) =>
+  url && url.startsWith(urls.root) ? url : `${urls.root}${url ?? ''}`;
 
 export const renderTest = async ({
   initialRoute,
@@ -80,7 +84,7 @@ export const renderTest = async ({
   const result = render(
     <I18nextProvider i18n={i18nState}>
       <ShellContext.Provider value={context}>
-        <TestApp initialRoute={initialRoute} />
+        <TestApp initialRoute={formatSafePath(initialRoute)} />
       </ShellContext.Provider>
     </I18nextProvider>,
   );

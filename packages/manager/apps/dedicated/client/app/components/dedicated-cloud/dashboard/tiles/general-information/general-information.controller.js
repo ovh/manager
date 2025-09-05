@@ -33,7 +33,7 @@ export default class {
     };
     if (this.vcdMigrationState?.vcdName) {
       this.vcdDashboardRedirectURL = this.coreURLBuilder.buildURL(
-        'hpc-vmware-managed-vcd',
+        'hpc-vmware-public-vcf-aas',
         `#/${this.vcdMigrationState.vcdName}`,
       );
     }

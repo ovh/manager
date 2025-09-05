@@ -6,6 +6,7 @@ import {
   TRACKING_LABELS,
   ErrorBanner,
 } from '@ovh-ux/manager-react-components';
+import { urls } from '@/routes/routes.constant';
 
 interface ErrorObject {
   [key: string]: any;
@@ -44,7 +45,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
     <ErrorBanner
       error={error}
       onReloadPage={() => navigate(location.pathname, { replace: true })}
-      onRedirectHome={() => navigate('/', { replace: true })}
+      onRedirectHome={() => navigate(urls.root, { replace: true })}
     />
   );
 };

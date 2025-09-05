@@ -18,7 +18,7 @@ import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
-  'hpc-vmware-managed-vcd',
+  'hpc-vmware-public-vcf-aas',
   'dedicated-cloud:sapHanaOrder',
   'nutanix',
   'veeam-enterprise',
@@ -101,14 +101,14 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['hpc-vmware-managed-vcd']) {
+    if (feature['hpc-vmware-public-vcf-aas']) {
       menu.push({
         id: 'hpc-managed-vcd',
         label: t('sidebar_vmware_vcd'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-        pathMatcher: new RegExp(`^/hpc-vmware-managed-vcd`),
+        pathMatcher: new RegExp(`^/vmware/public-vcf-aas`),
         async loader() {
-          const app = 'hpc-vmware-managed-vcd';
+          const app = 'hpc-vmware-public-vcf-aas';
           const services = await loadServices(
             '/vmwareCloudDirector/organization',
             null,
@@ -127,7 +127,7 @@ export default function HostedPrivateCloudSidebar() {
               ...service,
               icon,
               pathMatcher: new RegExp(
-                `^/hpc-vmware-managed-vcd/${service.serviceName}`,
+                `^/vmware/public-vcf-aas/${service.serviceName}`,
               ),
             })),
           ];

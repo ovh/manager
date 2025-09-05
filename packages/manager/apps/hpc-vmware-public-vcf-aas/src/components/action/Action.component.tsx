@@ -14,7 +14,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 
-
 export interface ActionMenuItem {
   id: number;
   rel?: string;

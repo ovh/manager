@@ -52,4 +52,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('hpc-vmware-managed-vcd');
+init('hpc-vmware-public-vcf-aas');
