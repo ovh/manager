@@ -8,6 +8,11 @@ describe('paymentMethodHelpers', () => {
       expect(hasExpiredDefaultCreditCardAlert(response)).toEqual(false);
     });
 
+    it('should consider there is no expired credit card alert if response is undefined', () => {
+      const response: string | undefined = undefined;
+      expect(hasExpiredDefaultCreditCardAlert(response)).toEqual(false);
+    });
+
     it('should consider there is an expired credit card alert if response is not null', () => {
       const response: string | null = 'expired';
       expect(hasExpiredDefaultCreditCardAlert(response)).toEqual(true);
