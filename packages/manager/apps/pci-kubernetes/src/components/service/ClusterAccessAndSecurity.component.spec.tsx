@@ -3,10 +3,25 @@ import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
 import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
 import { wrapper } from '@/wrapperRenders';
-import { TKube, TOidcProvider } from '@/types';
+import { DeploymentMode, TKube, TOidcProvider } from '@/types';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import { TRegionInformations } from '@/types/region';
+
+vi.mock('@/api/hooks/useRegionInformations', () => ({
+  useRegionInformations: vi.fn(),
+}));
 
 describe('ClusterAccessAndSecurity', () => {
+  beforeEach(() => {
+    vi.mocked(useRegionInformations).mockReturnValue({
+      data: {
+        type: DeploymentMode.MONO_ZONE,
+      },
+      isPending: false,
+    } as UseQueryResult<TRegionInformations>);
+  });
+
   it('renders access and security title with correct text', () => {
     const { getByText } = render(
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
