@@ -34,6 +34,7 @@ export const useDomainDatagridColumns = ({
         />
       ),
       label: t('allDom_domain_table_header_status'),
+      isSortable: false,
     },
     {
       id: 'domain_renew_mode',
@@ -49,6 +50,7 @@ export const useDomainDatagridColumns = ({
         );
       },
       label: t('allDom_table_header_renewMode'),
+      isSortable: false,
     },
     {
       id: 'expiration_date',
@@ -61,6 +63,7 @@ export const useDomainDatagridColumns = ({
         );
       },
       label: t('allDom_domain_table_header_expiration_date'),
+      isSortable: false,
     },
   ];
   return columns;
