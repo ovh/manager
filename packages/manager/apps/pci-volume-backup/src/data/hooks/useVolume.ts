@@ -12,6 +12,7 @@ export type TNewVolumeFromBackupData = {
   regionName: string;
   volumeBackupId: string;
   volumeName: string;
+  type: string;
 };
 
 export type TCreateVolumeFromBackupArguments = {
@@ -51,6 +52,7 @@ export const useCreateVolumeFromBackup = ({
         data.regionName,
         data.volumeBackupId,
         data.volumeName,
+        data.type,
       ),
     onError,
     onSuccess: async (newVolume: TVolume) => {

@@ -112,7 +112,8 @@ export default function CreateVolumePage() {
     createVolumeFromBackup({
       regionName: volume.region,
       volumeBackupId: backup.id,
-      volumeName: editedVolume.name || '',
+      volumeName: editedVolume.name ?? '',
+      type: volume.type ?? 'classic',
     });
   };
 
