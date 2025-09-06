@@ -7,6 +7,7 @@ export default {
     productId: '<',
     displaySuccessMessage: '<',
     datacenterId: '<',
+    trackClick: '<',
   },
   controller,
   template,

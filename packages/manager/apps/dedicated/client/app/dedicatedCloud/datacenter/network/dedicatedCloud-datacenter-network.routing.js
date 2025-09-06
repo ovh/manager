@@ -2,7 +2,9 @@ import { NSXT_EDGE_PLAN_CODE } from '../../../components/dedicated-cloud/datacen
 import {
   NETWORK_LABEL,
   NSX_EDGE_RELOCATE_FEATURE,
+  TRACKING_PREFIX_DATACENTER,
 } from '../dedicatedCloud-datacenter.constants';
+import { TRACKING_DISPLAY_LISTING_NSX_SUFFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -13,6 +15,9 @@ export default /* @ngInject */ ($stateProvider) => {
         pccDatacenterView: {
           component: 'ovhManagerDedicatedCloudDatacenterNetwork',
         },
+      },
+      atInternet: {
+        rename: `${TRACKING_PREFIX_DATACENTER}${TRACKING_DISPLAY_LISTING_NSX_SUFFIX}`,
       },
       redirectTo: (transition) => {
         const getIsNsxtCompatible = transition
