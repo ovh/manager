@@ -1,14 +1,13 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useCreateCartWithVrack } from './useCreateCartWithVrack';
-import { createVrackOnlyCart } from '../utils/cart';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { createVrackOnlyCart } from '../utils/cart';
+import { useCreateCartWithVrack } from './useCreateCartWithVrack';
 
 vi.mock('../utils/cart', async () => {
-  const actual = await vi.importActual<typeof import('../utils/cart')>(
-    '../utils/cart',
-  );
+  const actual = await vi.importActual<typeof import('../utils/cart')>('../utils/cart');
   return {
     ...actual,
     createVrackOnlyCart: vi.fn(),
@@ -18,13 +17,7 @@ vi.mock('../utils/cart', async () => {
 const queryClient = new QueryClient();
 
 const TestComponent = ({ ovhSubsidiary }: { ovhSubsidiary: string }) => {
-  const {
-    createCart,
-    isPending,
-    isError,
-    error,
-    data,
-  } = useCreateCartWithVrack(ovhSubsidiary);
+  const { createCart, isPending, isError, error, data } = useCreateCartWithVrack(ovhSubsidiary);
 
   const handleCreateCart = () => {
     createCart();

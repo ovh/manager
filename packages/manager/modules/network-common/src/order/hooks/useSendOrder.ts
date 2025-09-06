@@ -1,10 +1,9 @@
 import { useState } from 'react';
+
 import { useMutation } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import {
-  Order,
-  postOrderCartCartIdCheckout,
-} from '@ovh-ux/manager-module-order';
+import { Order, postOrderCartCartIdCheckout } from '@ovh-ux/manager-module-order';
 
 export enum SendOrderState {
   INACTIVE = 'inactive',
@@ -17,9 +16,7 @@ export enum SendOrderState {
  * If it fails, redirect to express order
  */
 export const useSendOrder = () => {
-  const [sendOrderState, setSendOrderState] = useState<SendOrderState>(
-    SendOrderState.INACTIVE,
-  );
+  const [sendOrderState, setSendOrderState] = useState<SendOrderState>(SendOrderState.INACTIVE);
   const {
     mutate: sendOrder,
     isPending,
@@ -48,9 +45,8 @@ export const useSendOrder = () => {
       onSuccess?.(response);
     },
     onError: async (error, { cartId, onSuccess, onError }) => {
-      const {
-        request: { status },
-      } = error;
+      const status: number | undefined = (error.request as { status?: number })?.status;
+
       if (status === 400) {
         try {
           const sendOrderResponse = await postOrderCartCartIdCheckout({
@@ -59,13 +55,18 @@ export const useSendOrder = () => {
             waiveRetractationPeriod: true,
           });
           setSendOrderState(SendOrderState.DONE);
-          window.top.location.href = sendOrderResponse.data.url;
+
+          if (window.top) {
+            window.top.location.href = sendOrderResponse.data.url;
+          }
+
           onSuccess?.(sendOrderResponse);
           return Promise.resolve(sendOrderResponse);
-        } catch (e) {
+        } catch (error) {
+          const exception = error as ApiError;
           setSendOrderState(SendOrderState.ERROR);
-          onError?.(e);
-          return Promise.reject(e);
+          onError?.(exception);
+          return Promise.reject(exception);
         }
       }
       setSendOrderState(SendOrderState.ERROR);

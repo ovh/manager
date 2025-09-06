@@ -1,14 +1,8 @@
+import { Application, ApplicationId } from '../application';
+import { LangId, detectUserLocale, findAvailableLocale, saveUserLocale } from '../locale';
 import { ALLOWED_REGIONS, DEFAULT_REGION } from './environment.constants';
-import {
-  detectUserLocale,
-  findAvailableLocale,
-  saveUserLocale,
-  LangId,
-} from '../locale';
-import { User } from './user';
-import { ApplicationId, Application } from '../application';
-
 import { Region } from './region.enum';
+import { User } from './user';
 
 export type EnvMessage = {
   [key in LangId]: { description: string };
@@ -47,13 +41,13 @@ export class Environment implements IEnvironment {
 
   userLocale: string;
 
-  version: string;
+  version: string | null;
 
   user: User;
 
   applicationName: string;
 
-  universe: string;
+  universe: string | null;
 
   applicationURLs: Record<string, string>;
 
@@ -61,7 +55,7 @@ export class Environment implements IEnvironment {
 
   applications: Applications;
 
-  constructor(config: Environment = null) {
+  constructor(config?: Environment) {
     this.region = DEFAULT_REGION as Region;
     this.userLocale = findAvailableLocale(detectUserLocale(), this.region);
     this.version = null;
@@ -78,7 +72,7 @@ export class Environment implements IEnvironment {
     if (!ALLOWED_REGIONS.includes(region)) {
       throw new Error(`Region ${region} is not allowed`);
     }
-    this.region = region as Region;
+    this.region = region;
   }
 
   getRegion(): Region {
@@ -104,7 +98,7 @@ export class Environment implements IEnvironment {
   }
 
   getUserLanguage(): string {
-    return this.userLocale.split('_')[0];
+    return this.userLocale.split('_')[0] ?? '';
   }
 
   setVersion(version: string): void {
@@ -112,7 +106,7 @@ export class Environment implements IEnvironment {
   }
 
   getVersion(): string {
-    return this.version;
+    return this.version ?? '';
   }
 
   setApplicationName(name: string): void {
@@ -124,7 +118,7 @@ export class Environment implements IEnvironment {
   }
 
   getApplication(): Application {
-    return this.applications?.[this.applicationName];
+    return this.applications?.[this.applicationName] ?? ({} as Application);
   }
 
   setUniverse(universe: string): void {
@@ -133,20 +127,20 @@ export class Environment implements IEnvironment {
 
   setUniverseFromApplicationId(applicationId: ApplicationId): string {
     const app = this.applications[applicationId] || this.applications.dedicated;
-    const { universe } = app;
+    const { universe } = app ?? {};
 
     if (window.location?.hash?.endsWith('hosted-private-cloud')) {
       this.universe = 'hpc';
     } else if (this.universe === 'hpc' && universe === 'server') {
       return this.universe;
     } else {
-      this.universe = universe;
+      this.universe = universe as string;
     }
     return this.universe;
   }
 
   getUniverse(): string {
-    return this.universe;
+    return this.universe ?? '';
   }
 
   setApplicationURLs(applicationURLs: Record<string, string>): void {
@@ -158,7 +152,7 @@ export class Environment implements IEnvironment {
   }
 
   getApplicationURL(id: string): string {
-    return this.applicationURLs[id];
+    return this.applicationURLs[id] ?? '';
   }
 
   setMessage(message: EnvMessage): void {

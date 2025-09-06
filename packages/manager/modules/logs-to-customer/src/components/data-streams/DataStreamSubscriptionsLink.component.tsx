@@ -1,14 +1,15 @@
-import { useTranslation } from 'react-i18next';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React, { useContext, useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { Service, Stream } from '../../data/types/dbaas/logs';
 
-type TDataStreamSubscriptionsLink = Pick<
-  Stream,
-  'nbSubscription' | 'streamId' | 'parentStreamId'
-> &
+type TDataStreamSubscriptionsLink = Pick<Stream, 'nbSubscription' | 'streamId' | 'parentStreamId'> &
   Pick<Service, 'serviceName'>;
 
 const DataStreamSubscriptionsLink = ({
@@ -27,20 +28,13 @@ const DataStreamSubscriptionsLink = ({
 
   useEffect(() => {
     navigation
-      .getURL(
-        'dedicated',
-        `#/dbaas/logs/${serviceName}/streams/${streamId}/subscriptions`,
-        {},
-      )
-      .then(setSubscriptionsURL);
-  }, [navigation]);
+      .getURL('dedicated', `#/dbaas/logs/${serviceName}/streams/${streamId}/subscriptions`, {})
+      .then((url) => setSubscriptionsURL(url as string));
+  }, [navigation, serviceName, streamId]);
 
   return (
     <>
-      <OdsText
-        preset="span"
-        id={isSubStream ? `popover-${streamId}` : undefined}
-      >
+      <OdsText preset="span" id={isSubStream ? `popover-${streamId}` : undefined}>
         <Links
           data-testid="link-testStream"
           href={subscriptionsURL}

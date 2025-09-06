@@ -79,7 +79,7 @@ describe('Vrack Services dissociate vrack test suite', () => {
       container,
       text: labels.dissociate.modalDissociateError.replace(
         '{{error}}',
-        'Update error',
+        'Network error',
       ),
     });
   });

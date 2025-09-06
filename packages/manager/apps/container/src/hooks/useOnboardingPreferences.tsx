@@ -15,11 +15,11 @@ const onboardingPreferencesKey = 'OVH_MANAGER_NAVIGATION_GUIDED_TOUR';
 const fetchOnboardingPreferences = (): Promise<OnboardingPreferences> =>
   v6
     .get(`/me/preferences/manager/${onboardingPreferencesKey}`)
-    .then((response) => {
+    .then((response: Record<string, any>) => {
       const { data } = response;
       return JSON.parse(data.value as string) as OnboardingPreferences;
     })
-    .catch((error) => {
+    .catch((error: Record<string, any>) => {
       if (error.response.status === 404) {
         return {
           lastShowDate: undefined,

@@ -19,9 +19,11 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts"
   },
   "devDependencies": {
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*"
   }
 }

@@ -1,9 +1,12 @@
 import React from 'react';
-import { useTask } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { UseMutationResult, useMutation } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { associateVrackServices, associateVrackServicesQueryKey } from '../api';
+import { useTask } from '@ovh-ux/manager-react-components';
+
 import { Task } from '../../types';
+import { associateVrackServices, associateVrackServicesQueryKey } from '../api';
 
 export type UseAssociateVrackParams = {
   vrackServicesId: string;
@@ -11,11 +14,19 @@ export type UseAssociateVrackParams = {
   onError?: () => void;
 };
 
+export type UseAssociateVrackReturn = {
+  associateVs: UseMutationResult<ApiResponse<Task>, ApiError, { vrackId: string }>['mutate'];
+  isPending: boolean;
+  isError: boolean;
+  error: ApiError | null;
+  isSuccess: boolean;
+};
+
 export const useAssociateVrack = ({
   vrackServicesId,
   onSuccess,
   onError,
-}: UseAssociateVrackParams) => {
+}: UseAssociateVrackParams): UseAssociateVrackReturn => {
   const [vrack, setVrack] = React.useState<string>();
   const [taskId, setTaskId] = React.useState<string>();
 
@@ -33,13 +44,14 @@ export const useAssociateVrack = ({
     onFinish: () => {
       setTaskId(undefined);
     },
-  });
+  }) as UseAssociateVrackReturn;
 
-  const { mutate: associateVs, isPending, isError, error } = useMutation<
-    ApiResponse<Task>,
-    ApiError,
-    { vrackId: string }
-  >({
+  const {
+    mutate: associateVs,
+    isPending,
+    isError,
+    error,
+  } = useMutation<ApiResponse<Task>, ApiError, { vrackId: string }>({
     mutationFn: async ({ vrackId }) => {
       setVrack(vrackId);
       return associateVrackServices({
@@ -59,7 +71,7 @@ export const useAssociateVrack = ({
     associateVs,
     isPending: isPending || isTaskPending,
     isError: isError || isTaskError,
-    error: error || taskError,
+    error: error ?? taskError ?? null,
     isSuccess,
   };
 };

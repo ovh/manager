@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react';
+
 import {
-  dedicatedIcons,
-  webIcons,
-  telecomIcons,
   containerIcons,
+  dedicatedIcons,
+  telecomIcons,
+  webIcons,
 } from '@ovh-ux/ovh-product-icons/index';
+
 import OvhProductName from './OvhProductNameEnum';
 
 interface SvgIconProps {
@@ -15,16 +17,13 @@ interface SvgIconProps {
 }
 
 interface IconComponents {
-  [key: string]: FunctionComponent<
-    React.SVGProps<SVGSVGElement> & { title?: string }
-  >;
+  [key: string]: FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;
 }
 
 const isValidIconComponent = (
   icon: unknown,
-): icon is FunctionComponent<
-  React.SVGProps<SVGSVGElement> & { title?: string }
-> => typeof icon === 'function';
+): icon is FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }> =>
+  typeof icon === 'function';
 
 const iconComponents: IconComponents = Object.entries({
   ...dedicatedIcons,

@@ -1,50 +1,50 @@
-import dedicatedIcons from './icons/dedicatedIcons';
+import {
+  Exchange,
+  Headset,
+  Hosting,
+  IP,
+  LineCommunicating,
+  ManagedBM,
+  NAS,
+  Nutanix,
+  Office365,
+  ProjectCloud,
+  Server,
+  TelecomEthernet,
+  Telephony,
+  VEEAM,
+  VPS,
+  VRACK,
+  VmWare,
+  Wordpress,
+} from './assets-icon-svg/icons';
 import containerIcons from './icons/containerIcons';
+import dedicatedIcons from './icons/dedicatedIcons';
 import telecomIcons from './icons/telecomIcons';
 import webIcons from './icons/webIcons';
 import OdsIconWrapper from './utils/OdsIconWrapper';
+import OvhProductName from './utils/OvhProductNameEnum';
 import {
-  HOSTING_SVG,
-  OFFICE365_SVG,
-  WORDPRESS_SVG,
-  PROJECTCLOUD_SVG,
-  TELECOMETHERNET_SVG,
-  HEADSET_SVG,
-  TELEPHONY_SVG,
   EXCHANGE_SVG,
+  HEADSET_SVG,
+  HOSTING_SVG,
   IP_SVG,
-  VPS_SVG,
-  NUTANIX_SVG,
-  MANAGEDBM_SVG,
-  VMWARE_SVG,
-  NAS_SVG,
-  VEEAM_SVG,
-  VRACK_SVG,
   LINECOMMUNICATING_SVG,
+  MANAGEDBM_SVG,
+  NAS_SVG,
+  NUTANIX_SVG,
+  OFFICE365_SVG,
+  PROJECTCLOUD_SVG,
   SERVER_SVG,
   SvgIconWrapper,
+  TELECOMETHERNET_SVG,
+  TELEPHONY_SVG,
+  VEEAM_SVG,
+  VMWARE_SVG,
+  VPS_SVG,
+  VRACK_SVG,
+  WORDPRESS_SVG,
 } from './utils/SvgIconWrapper';
-import {
-  TelecomEthernet,
-  Headset,
-  Telephony,
-  Hosting,
-  Office365,
-  Exchange,
-  ProjectCloud,
-  Server,
-  IP,
-  VPS,
-  Nutanix,
-  ManagedBM,
-  VmWare,
-  NAS,
-  VEEAM,
-  VRACK,
-  LineCommunicating,
-  Wordpress,
-} from './assets-icon-svg/icons';
-import OvhProductName from './utils/OvhProductNameEnum';
 
 export { OvhProductName };
 export {
