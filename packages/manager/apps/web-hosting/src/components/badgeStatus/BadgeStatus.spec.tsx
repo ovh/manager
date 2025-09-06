@@ -1,38 +1,38 @@
-import React from 'react';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { render, screen, waitFor } from '@/utils/test.provider';
+
+import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
+import { render, screen } from '@/utils/test.provider';
+
 import { BadgeStatus } from '../badgeStatus/BadgeStatus.component';
 
 describe('BadgeStatus component', () => {
-  it('should render an href with the url', async () => {
-    render(
-      <BadgeStatus itemStatus="DNS_CONFIGURED" href="https://example.com" />,
-    );
-
-    await waitFor(() => {
-      const component = screen.getByTestId('badge-status-DNS_CONFIGURED');
-      expect(component.hasAttribute(ODS_BADGE_COLOR.success));
-    });
+  it('should open the href in a new tab when clicked', () => {
+    const openSpy = vi.spyOn(window, 'open').mockImplementation((): Window | null => null);
+    render(<BadgeStatus itemStatus={DnsStatus.CONFIGURED} href="https://example.com" />);
+    const component = screen.getByTestId('badge-status-DNS_CONFIGURED');
+    component.click();
+    expect(openSpy).toHaveBeenCalledWith('https://example.com', '_blank');
+    openSpy.mockRestore();
   });
 
-  it('should render with all possible colors', async () => {
+  it('should render with all possible colors', () => {
     const testCases = [
-      { status: 'DNS_CONFIGURED', color: ODS_BADGE_COLOR.success },
-      { status: 'DNS_EXTERNAL', color: ODS_BADGE_COLOR.warning },
-      { status: 'DNS_NOT_CONFIGURED', color: ODS_BADGE_COLOR.neutral },
-      { status: 'UNKNOWN_STATUS', color: ODS_BADGE_COLOR.information },
-      { status: 'CREATED', color: ODS_BADGE_COLOR.success },
-      { status: 'DELETING', color: ODS_BADGE_COLOR.warning },
-      { status: 'ERROR', color: ODS_BADGE_COLOR.critical },
-      { status: 'ACTIVE', color: ODS_BADGE_COLOR.success },
-      { status: 'NONE', color: ODS_BADGE_COLOR.critical },
+      { status: DnsStatus.CONFIGURED, color: ODS_BADGE_COLOR.success },
+      { status: DnsStatus.EXTERNAL, color: ODS_BADGE_COLOR.warning },
+      { status: DnsStatus.NOT_CONFIGURED, color: ODS_BADGE_COLOR.neutral },
+      { status: GitStatus.CREATED, color: ODS_BADGE_COLOR.success },
+      { status: GitStatus.DELETING, color: ODS_BADGE_COLOR.warning },
+      { status: GitStatus.ERROR, color: ODS_BADGE_COLOR.critical },
+      { status: ServiceStatus.ACTIVE, color: ODS_BADGE_COLOR.success },
+      { status: ServiceStatus.NONE, color: ODS_BADGE_COLOR.critical },
     ];
 
     testCases.forEach(({ status, color }) => {
       render(<BadgeStatus itemStatus={status} />);
       const badge = screen.getByTestId(`badge-status-${status}`);
-      expect(badge.hasAttribute(color));
+      expect(badge).toHaveAttribute('color', color);
     });
   });
 });

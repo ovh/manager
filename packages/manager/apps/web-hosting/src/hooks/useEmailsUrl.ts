@@ -1,5 +1,6 @@
+import { useContext, useEffect, useState } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext, useState, useEffect } from 'react';
 
 export const useEmailsUrl = (service: string, path = '') => {
   const { shell } = useContext(ShellContext);
@@ -14,7 +15,7 @@ export const useEmailsUrl = (service: string, path = '') => {
       )) as string;
       setUrl(fetchedUrl);
     };
-    fetchUrl();
+    fetchUrl().catch(console.error);
   }, [shell, service, path]);
 
   return url;
