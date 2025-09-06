@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-product-icons",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "description": "Ovh product icons",
   "license": "BSD-3-Clause",
@@ -27,6 +27,6 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "*"
+    "@ovh-ux/manager-vite-config": "^0.12.0"
   }
 }

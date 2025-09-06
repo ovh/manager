@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.5...@ovh-ux/logs-to-customer@1.7.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
 ## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.6.4...@ovh-ux/logs-to-customer@1.6.5) (2025-09-04)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

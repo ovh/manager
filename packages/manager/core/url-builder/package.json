@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/url-builder",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "OVHcloud control panel URL Builder",
   "repository": {
     "type": "git",
@@ -10,9 +10,9 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "sideEffects": false,
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "type": "module",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -30,6 +30,6 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "*"
+    "@ovh-ux/manager-vite-config": "^0.12.0"
   }
 }

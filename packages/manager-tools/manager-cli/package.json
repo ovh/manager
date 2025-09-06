@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "description": "Manager CLI automation packages",
   "bugs": {
@@ -34,7 +34,7 @@
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
     "@babel/types": "^7.27.0",
-    "@ovh-ux/manager-tests-setup": "^0.3.0",
+    "@ovh-ux/manager-tests-setup": "^0.4.0",
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
