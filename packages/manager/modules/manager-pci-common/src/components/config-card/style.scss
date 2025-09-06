@@ -1,0 +1,98 @@
+$config-card-gap: 16px;
+$config-card-padding: 16px;
+$config-card-border-width: 1px;
+$config-card-border-radius: 8px;
+
+$config-card-selected-border-width: 2px;
+
+@mixin config-card-padding($padding) {
+  & .config-card__header {
+    padding-top: $padding;
+    padding-right: $padding;
+    padding-left: $padding;
+  }
+
+  & .config-card__footer {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+
+  & .config-card__body .config-card__body-section {
+    padding-right: $padding;
+    padding-left: $padding;
+  }
+
+  & > :last-child {
+    padding-bottom: $padding;
+  }
+}
+
+.config-card {
+  width: 100%;
+  height: 100%;
+  background: var(--ods-color-form-element-background-default);
+  border: #b3b3b3 solid $config-card-border-width;
+  display: flex;
+  flex-direction: column;
+  row-gap: $config-card-gap;
+  justify-content: start;
+  overflow: hidden;
+  border-radius: $config-card-border-radius;
+  box-sizing: border-box;
+
+  & .config-card__body {
+    display: flex;
+    flex-direction: column;
+    row-gap: $config-card-gap;
+
+    & .config-card__body-section {
+      display: flex;
+      flex-direction: column;
+      row-gap: $config-card-gap;
+    }
+
+    & osds-divider {
+      margin: 0;
+    }
+  }
+
+  @include config-card-padding($config-card-padding);
+
+  &:has(:enabled) {
+    cursor: pointer;
+
+    @media (hover: hover) {
+      &:hover {
+        border: var(--ods-color-form-element-border-hover-default) solid
+          $config-card-selected-border-width;
+
+        @include config-card-padding(
+          $config-card-padding -
+            ($config-card-selected-border-width - $config-card-border-width)
+        );
+      }
+    }
+  }
+
+  &:not(:has(:checked)):has(:disabled) {
+    filter: grayscale(100%);
+    background: #f3fdff;
+  }
+
+  &:has(:checked) {
+    border: var(--ods-color-primary-500) solid
+      $config-card-selected-border-width;
+    background: #f3fdff;
+
+    @include config-card-padding(
+      $config-card-padding -
+        ($config-card-selected-border-width - $config-card-border-width)
+    );
+  }
+
+  & .config-card__footer {
+    background: var(--ods-color-background-readonly-default);
+    padding-top: $config-card-padding;
+    margin-top: auto;
+  }
+}
