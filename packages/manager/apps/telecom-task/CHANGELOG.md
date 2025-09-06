@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.0.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task-app@8.0.28...@ovh-ux/manager-telecom-task-app@8.0.29) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-task-app
+
+
+
+
+
 ## [8.0.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-task-app@8.0.27...@ovh-ux/manager-telecom-task-app@8.0.28) (2025-09-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-task-app
