@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vite-config",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "description": "OVHcloud manager vite configuration.",
   "repository": {
@@ -18,8 +18,8 @@
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js"
   },
   "dependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-dev-server-config": "^6.2.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.7",

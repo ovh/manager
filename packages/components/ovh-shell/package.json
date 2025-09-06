@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.7.1",
+  "version": "4.7.2",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -25,18 +25,18 @@
     "test:ci": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.5.1",
-    "@ovh-ux/manager-core-api": "^0.17.1",
-    "@ovh-ux/manager-core-sso": "^0.3.3",
-    "@ovh-ux/ovh-at-internet": "^0.24.1",
-    "@ovh-ux/ovh-reket": "^2.1.11",
-    "@ovh-ux/request-tagger": "^0.4.1",
-    "@ovh-ux/url-builder": "^2.0.4",
+    "@ovh-ux/manager-config": "^8.6.0",
+    "@ovh-ux/manager-core-api": "^0.18.0",
+    "@ovh-ux/manager-core-sso": "^0.4.0",
+    "@ovh-ux/ovh-at-internet": "^0.24.2",
+    "@ovh-ux/ovh-reket": "^2.1.12",
+    "@ovh-ux/request-tagger": "^0.5.0",
+    "@ovh-ux/url-builder": "^2.1.0",
     "dompurify": "^3.2.4",
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.3.0",
+    "@ovh-ux/manager-tests-setup": "^0.4.0",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
     "@typescript-eslint/parser": "^4.7.4"
   }
