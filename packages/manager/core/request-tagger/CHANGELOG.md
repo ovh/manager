@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.4.1...@ovh-ux/request-tagger@0.5.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
 ## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/request-tagger@0.4.0...@ovh-ux/request-tagger@0.4.1) (2025-04-30)
 
 **Note:** Version bump only for package @ovh-ux/request-tagger
