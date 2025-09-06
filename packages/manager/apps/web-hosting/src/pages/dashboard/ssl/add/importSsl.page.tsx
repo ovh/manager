@@ -64,6 +64,7 @@ export default function ImportModal() {
             </OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-manual-certif"
             name="manualCertif"
             isResizable
             rows={3}
@@ -78,6 +79,7 @@ export default function ImportModal() {
             </OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-mode-key"
             name="modeKey"
             isResizable
             rows={3}
@@ -92,6 +94,7 @@ export default function ImportModal() {
             </OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-mode-chain"
             name="modeChain"
             isResizable
             rows={3}

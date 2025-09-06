@@ -185,6 +185,7 @@ export default function AddDomainModal() {
                     <OdsRadio
                       {...field}
                       value="A"
+                      data-testid="radio"
                       isChecked={field.value === 'A'}
                       onOdsChange={() => field.onChange('A')}
                     />
@@ -234,6 +235,7 @@ export default function AddDomainModal() {
                     <OdsRadio
                       {...field}
                       value="B"
+                      data-testid="radio"
                       isChecked={field.value === 'B'}
                       onOdsChange={() => field.onChange('B')}
                     />
@@ -771,6 +773,7 @@ export default function AddDomainModal() {
             color={ODS_BUTTON_COLOR.primary}
             onClick={closeModal}
             variant={ODS_BUTTON_VARIANT.outline}
+            data-testid="button-cancel"
             label={t(`${NAMESPACES.ACTIONS}:cancel`)}
             type="button"
           />
@@ -779,6 +782,7 @@ export default function AddDomainModal() {
             onClick={back}
             isDisabled={isFirst}
             variant={ODS_BUTTON_VARIANT.ghost}
+            data-testid="button-previous"
             label={t(`${NAMESPACES.ACTIONS}:previous`)}
             type="button"
           />
@@ -787,6 +791,7 @@ export default function AddDomainModal() {
               type="submit"
               variant={ODS_BUTTON_VARIANT.default}
               color={ODS_BUTTON_COLOR.primary}
+              data-testid="button-validate"
               label={t(`${NAMESPACES.ACTIONS}:validate`)}
             />
           ) : (
@@ -794,6 +799,7 @@ export default function AddDomainModal() {
               type="button"
               variant={ODS_BUTTON_VARIANT.default}
               color={ODS_BUTTON_COLOR.primary}
+              data-testid="button-next"
               label={t(`${NAMESPACES.ACTIONS}:next`)}
               onClick={next}
               isDisabled={isNextButtonDisabled()}
