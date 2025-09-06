@@ -122,6 +122,18 @@ webCloudUniverse.children = [
         },
         features: ['private-database'],
       },
+      {
+        id: 'managed-wordpress',
+        idAttr: 'managed-wordpress-link',
+        universe: webCloudUniverse.id,
+        translation: 'sidebar_web_hosting_managed_wordpress',
+        serviceType: 'WEB_HOSTING',
+        routing: {
+          application: 'web-hosting',
+          hash: '#/managed-hosting-for-wordpress',
+        },
+        features: ['web-hosting:managed-wordpress'],
+      },
     ],
   },
   {
