@@ -41,7 +41,11 @@ import {
 } from '@ovh-ux/manager-pci-common';
 import { VOLUME_MIN_SIZE, VOLUME_UNLIMITED_QUOTA } from '@/constants';
 import ChipRegion from '@/components/edit/ChipRegion.component';
-import { TVolume, useUpdateVolume, useVolume } from '@/api/hooks/useVolume';
+import {
+  useUpdateVolume,
+  useVolume,
+  UseVolumeResult,
+} from '@/api/hooks/useVolume';
 import HidePreloader from '@/core/HidePreloader';
 import { useVolumeMaxSize } from '@/api/data/quota';
 import { useRegionsQuota } from '@/api/hooks/useQuota';
@@ -161,7 +165,7 @@ export default function EditPage() {
     volume?.region,
   );
 
-  const getMaxSize = (_volume: TVolume) => {
+  const getMaxSize = (_volume: UseVolumeResult) => {
     if (regionQuota) {
       if (
         regionQuota.volume &&
