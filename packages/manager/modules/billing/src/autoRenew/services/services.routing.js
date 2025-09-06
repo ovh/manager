@@ -8,8 +8,15 @@ import { NIC_ALL } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.services', {
-    url: '/services',
+    url: '/services?refresh',
     component: 'services',
+    params: {
+      refresh: {
+        value: 'false',
+        squash: true,
+        dynamic: true,
+      },
+    },
     resolve: {
       isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
         featureAvailability,
@@ -78,7 +85,12 @@ export default /* @ngInject */ ($stateProvider) => {
       selectedType: /* @ngInject */ ($transition$, queryParameters) =>
         $transition$.params().selectedType || queryParameters.selectedType,
 
+      refresh: /* @ngInject */ ($transition$, queryParameters) =>
+        $transition$.params().refresh === 'true' ||
+        queryParameters.refresh === 'true',
+
       services: /* @ngInject */ (
+        $state,
         BillingAutoRenew,
         filters,
         nicBilling,
@@ -87,6 +99,7 @@ export default /* @ngInject */ ($stateProvider) => {
         searchText,
         selectedType,
         sort,
+        refresh,
       ) =>
         BillingAutoRenew.getServices(
           pageSize,
@@ -98,6 +111,7 @@ export default /* @ngInject */ ($stateProvider) => {
           filters.state,
           sort,
           nicBilling,
+          refresh,
         ),
 
       choiceRenewDayTooltipAvailable: /* @ngInject */ (ovhFeatureFlipping) =>

@@ -2,11 +2,12 @@ import { SERVICE_TYPE, SUSPENDED_SERVICE } from './constants';
 
 export default class BillingLinksService {
   /* @ngInject */
-  constructor($injector, $q, coreConfig, coreURLBuilder) {
+  constructor($injector, $q, coreConfig, coreURLBuilder, $state) {
     this.$q = $q;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.$injector = $injector;
+    this.$state = $state;
     this.autorenewLink = null;
   }
 
@@ -137,10 +138,22 @@ export default class BillingLinksService {
           links.resiliateLink = `${autorenewLink}/services/terminate-service?id=${service.id}${serviceTypeParam}${serviceNameParam}`;
           break;
         default:
-          links.resiliateLink = service.canResiliateByEndRule()
-            ? resiliationByEndRuleLink
-            : autorenewLink &&
-              `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+          if (service.canResiliateByEndRule()) {
+            links.resiliateLink = resiliationByEndRuleLink;
+          } else if (autorenewLink) {
+            const params = Object.entries(this.$state.params).reduce(
+              (queryString, [key, value]) => {
+                if (value) {
+                  return `${queryString}&${key}=${value}`;
+                }
+                return queryString;
+              },
+              '',
+            );
+            links.resiliateLink = service.isByoipService()
+              ? `${autorenewLink}/services/resiliate?serviceId=${service.id}${params}`
+              : `${autorenewLink}/delete?serviceId=${service.serviceId}${serviceTypeParam}`;
+          }
           break;
       }
 

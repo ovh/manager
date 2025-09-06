@@ -105,4 +105,29 @@ export default class BillingService {
       .then(({ data }) => data.status === 'available')
       .catch(() => false);
   }
+
+  resiliate(option, service) {
+    switch (option) {
+      case 'deleteAtExpiration':
+      case 'terminateAtExpirationDate':
+        return this.$http.put(`/services/${service.id}`, {
+          displayName: service.displayName,
+          renew: {
+            ...service.renew,
+            mode: 'manual',
+          },
+          terminationPolicy: option,
+        });
+      case 'terminate':
+        return this.shouldSkipConfirmation(service)
+          ? this.$http.delete(`/services/${service.id}`)
+          : this.$http.post(`/services/${service.id}/terminate`);
+      default:
+        return this.$q.reject('Unsupported resiliation mode');
+    }
+  }
+
+  shouldSkipConfirmation(service) {
+    return this.coreConfig.isRegion('US') || service.domain.startsWith('byoip');
+  }
 }

@@ -2,7 +2,7 @@
     aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
     compact
     data-placement="end"
-    data-ng-if="!$ctrl.canDisplayMenu"
+    data-ng-if="!$ctrl.canDisplayMenu && $ctrl.hasActionToDisplay"
 >
     <oui-action-menu-item
         ng-if="::$ctrl.canDisplayWarnPayBillMenuEntry"
