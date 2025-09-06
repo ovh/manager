@@ -8,6 +8,7 @@
   "dedicatedCloud_tab_datastores_active_node_master": "Primaire",
   "dedicatedCloud_tab_datastores_active_node_slave": "Réplicat",
   "dedicatedCloud_tab_datastores_size": "Taille",
+  "dedicatedCloud_tab_datastores_usage": "Utilisation",
   "dedicatedCloud_tab_datastores_billing": "Paiement",
   "dedicatedCloud_tab_datastores_billing_hourly": "A l'heure",
   "dedicatedCloud_tab_datastores_billing_monthly": "Au mois",
