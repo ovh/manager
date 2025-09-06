@@ -1,6 +1,7 @@
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
+import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 
-export default class {
+export default class CommitmentCtrl {
   /* @ngInject */
   constructor(
     $q,
@@ -32,15 +33,18 @@ export default class {
       duration: null,
       engagement: null,
     };
-    return this.$q
+    this.isPaymentStepLoading = true;
+    this.$q
       .all({
         service: this.BillingService.getService(this.serviceId),
         options: this.BillingService.getOptions(this.serviceId),
+        paymentMethod: this.ovhPaymentMethod.getDefaultPaymentMethod(),
       })
-      .then(({ service, options }) => {
+      .then(({ service, options, paymentMethod }) => {
         this.service = service;
         this.service.addOptions(options);
         this.trackPage();
+        this.paymentMethod = paymentMethod;
         return this.BillingCommitmentService.getCatalogPrice(
           this.service,
           this.user,
@@ -55,6 +59,8 @@ export default class {
       })
       .finally(() => {
         this.isLoadingService = false;
+        this.isPaymentStepLoading = false;
+        this.getStartingDate();
       });
   }
 
@@ -83,10 +89,70 @@ export default class {
   }
 
   onDurationChange(duration) {
+    this.duration = duration;
     this.pricingModes = this.availableEngagements.filter(
       (commitment) => commitment.durationInMonths === duration.monthlyDuration,
     );
     [this.model.engagement] = this.pricingModes;
+    this.computeDiscount();
+  }
+
+  static roundToTwo(num) {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+    return Number.parseFloat(num).toFixed(2);
+  }
+
+  hasSavings() {
+    const { savings } = this.duration;
+
+    return this.defaultPrice && savings?.value > 0;
+  }
+
+  getPriceAsText(price, currencyCode) {
+    return Intl.NumberFormat(
+      convertLanguageFromOVHToBCP47(this.coreConfig.getUserLocale()),
+      {
+        style: 'currency',
+        currency: currencyCode,
+        // use symbol instead of narrowSymbol to support Safari < 14.1
+        currencyDisplay: 'symbol',
+      },
+    ).format(price);
+  }
+
+  computeDiscount() {
+    const upfront = this.pricingModes.find((commitment) =>
+      commitment.isUpfront(),
+    );
+    const periodic = this.pricingModes.find((commitment) =>
+      commitment.isPeriodic(),
+    );
+
+    this.periodicTotalPrice = CommitmentCtrl.roundToTwo(
+      periodic.totalPrice.value,
+    );
+
+    if (upfront && periodic) {
+      // compute discount
+      const { value: savedAmount } = periodic.getPriceDiff(
+        upfront,
+        this.selectedQuantity,
+      );
+      this.discount = CommitmentCtrl.roundToTwo(
+        (savedAmount / periodic.totalPrice.value) * 100,
+      );
+
+      // compute total saving
+      const { savings } = this.duration;
+      const totalSavings = savedAmount + (savings?.value || 0);
+      this.upfrontSavings = {
+        amountSaved: this.getPriceAsText(
+          totalSavings,
+          upfront.pricing.price.currencyCode,
+        ),
+        amountToPay: upfront.totalPrice.text,
+      };
+    }
   }
 
   getStartingDate() {
@@ -95,8 +161,8 @@ export default class {
     );
     if (
       this.service.isEngaged() &&
-      engagementConfiguration.isUpfront() &&
-      this.model.engagement.isUpfront()
+      engagementConfiguration?.isUpfront() &&
+      this.model.engagement?.isUpfront()
     ) {
       this.displayPaymentMean = false;
       this.startingDate = moment().toISOString();
@@ -107,21 +173,6 @@ export default class {
     this.startingDate = this.service.billing.nextBillingDate;
     this.displayPaymentMean = true;
     this.formattedStartingDate = this.service.nextBillingDate;
-  }
-
-  onPaymentStepFocus() {
-    this.isPaymentStepLoading = true;
-    return this.ovhPaymentMethod
-      .getDefaultPaymentMethod()
-      .then((paymentMethod) => {
-        this.paymentMethod = paymentMethod;
-      })
-      .catch((error) => {
-        this.error = error.data?.message || error.message;
-      })
-      .finally(() => {
-        this.isPaymentStepLoading = false;
-      });
   }
 
   commit() {
