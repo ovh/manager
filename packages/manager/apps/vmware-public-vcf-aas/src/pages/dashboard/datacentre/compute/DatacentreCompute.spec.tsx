@@ -44,7 +44,7 @@ describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {
     const { getByText, queryByText } = await renderTest({
       initialRoute: vdcRoute,
-      feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': false },
+      feature: { 'vmware-public-vcf-aas:compute-special-offer-banner': false },
       nbCompute: 2,
     });
 
@@ -89,7 +89,7 @@ describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page with banner info for special offer', async () => {
     const { getByText, getByTestId } = await renderTest({
       initialRoute: vdcRoute,
-      feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
+      feature: { 'vmware-public-vcf-aas:compute-special-offer-banner': true },
       nbCompute: 2,
     });
 
