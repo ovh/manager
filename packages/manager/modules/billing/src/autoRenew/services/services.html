@@ -182,6 +182,19 @@
         </oui-datagrid-column>
 
         <oui-datagrid-column
+            data-property="pendingActions"
+            data-title="::'billing_autorenew_service_pending_actions' | translate"
+        >
+            <span
+                class="oui-badge"
+                data-ng-repeat="action in $row.pendingActions"
+                data-ng-class=":: 'oui-badge_' + $ctrl.ACTION_BADGE_CLASSES[action]"
+                data-translate="{{:: 'billing_autorenew_service_pending_actions_' + action}}"
+            >
+            </span>
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
             data-title="::'billing_autorenew_service_date' | translate"
             data-property="expiration"
             data-type="options"
