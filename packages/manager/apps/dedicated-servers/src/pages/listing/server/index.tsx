@@ -16,18 +16,10 @@ import { urls } from '@/routes/routes.constant';
 import { ErrorComponent } from '@/components/errorComponent';
 
 export default function ServerListing() {
-  const columns = useColumns();
-  const [visibleColumns] = useState([
-    'name',
-    'ip',
-    'model',
-    'region',
-    'status',
-    'actions',
-    'tags',
-  ]);
+  const { columns, columnVisibility, onColumnVisibilityChange } = useColumns();
+
   const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
+    id: 'iam_displayName',
     desc: false,
   });
   const {
@@ -58,7 +50,7 @@ export default function ServerListing() {
         return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
       }
       if (key && Object.keys(s1).includes(key as string)) {
-        return (s1[key].toString() || '').localeCompare(s2[key].toString());
+        return (s1[key]?.toString() || '').localeCompare(s2[key]?.toString());
       }
       return 0;
     });
@@ -93,7 +85,8 @@ export default function ServerListing() {
                   onSortChange={setSorting}
                   isLoading={isLoading}
                   filters={filters}
-                  columnVisibility={visibleColumns}
+                  columnVisibility={columnVisibility}
+                  onColumnVisibilityChange={onColumnVisibilityChange}
                   search={search}
                   className="server-data-grid"
                   topbar={<OrderMenu />}

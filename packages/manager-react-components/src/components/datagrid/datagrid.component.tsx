@@ -12,7 +12,6 @@ import {
   OnChangeFn,
   VisibilityState,
   RowSelectionState,
-  Table,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -143,7 +142,7 @@ export interface DatagridProps<T> {
   /** Trigger the column search. In case of backend search, make sure to add this on columns on which API supports the search option. */
   search?: SearchProps;
   /** ids of the columns visible in the datagrid (optional by default all columns are visible) */
-  columnVisibility?: string[];
+  columnVisibility?: VisibilityState;
   /** callback to handle column visibility change events (optional) */
   onColumnVisibilityChange?: OnChangeFn<VisibilityState>;
   /** Add react element at left in the datagrid topbar */
@@ -288,6 +287,7 @@ export const Datagrid = <T,>({
         ...(rowSelection?.rowSelection && {
           rowSelection: rowSelection.rowSelection,
         }),
+        ...(onColumnVisibilityChange && { columnVisibility }),
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -299,26 +299,21 @@ export const Datagrid = <T,>({
         ...(rowSelection?.rowSelection && {
           rowSelection: rowSelection.rowSelection,
         }),
+        ...(onColumnVisibilityChange && { columnVisibility }),
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
           const state = updater({ ...table.getState(), ...sorting });
-          if (onSortChange) onSortChange(state.sorting[0]);
+          onSortChange?.(state.sorting[0]);
         } else if (onSortChange) {
           onSortChange(updater.sorting[0]);
         }
       },
     }),
     initialState: {
-      columnVisibility: columns.reduce(
-        (acc, { id }) => ({
-          ...acc,
-          [id]: columnVisibility?.includes(id),
-        }),
-        {},
-      ),
+      ...(!onColumnVisibilityChange && { columnVisibility }),
     },
-    ...(onColumnVisibilityChange && { onColumnVisibilityChange }),
+    onColumnVisibilityChange,
     enableRowSelection: (row) => {
       if (rowSelection?.enableRowSelection)
         return rowSelection.enableRowSelection(row);
@@ -439,20 +434,20 @@ export const Datagrid = <T,>({
                         }}
                         className={`${
                           contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                        } h-11 whitespace-nowrap `}
+                        } h-11 whitespace-nowrap ${
+                          onSortChange && header.column.getCanSort()
+                            ? 'cursor-pointer'
+                            : ''
+                        }`}
+                        {...{
+                          ...(onSortChange && {
+                            onClick: header.column.getToggleSortingHandler(),
+                          }),
+                        }}
                       >
                         {header.isPlaceholder ? null : (
                           <div
-                            {...{
-                              className:
-                                onSortChange && header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
-                              ...(onSortChange && {
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }),
-                            }}
+                            className="flex items-center select-none"
                             data-testid={`header-${header.id}`}
                           >
                             <span>
@@ -463,9 +458,7 @@ export const Datagrid = <T,>({
                                 )}
                               </>
                             </span>
-                            <span
-                              className={`align-middle inline-block h-4 -mt-6`}
-                            >
+                            <span className="inline-block ml-2 text-xs">
                               <OdsIcon
                                 className={
                                   header.column.getIsSorted() ? '' : 'invisible'
