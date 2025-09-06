@@ -53,6 +53,7 @@ export interface RancherService {
   targetSpec: {
     name: string;
     plan: string;
+    iamAuthEnabled: boolean;
     version: string;
     ipRestrictions: [
       {
@@ -64,6 +65,7 @@ export interface RancherService {
   currentState: {
     url: string;
     name: string;
+    iamAuthEnabled: boolean;
     plan: RancherPlan['name'];
     region: string;
     version: string;
