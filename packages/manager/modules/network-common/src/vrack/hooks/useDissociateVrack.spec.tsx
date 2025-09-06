@@ -1,13 +1,18 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
+import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useTask } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useDissociateVrack } from './useDissociateVrack';
-import { dissociateVrackServices } from '../api';
-import { useVrackService } from '../../vrack-services/hooks/useVrackServices';
-import { VrackServicesProductStatus, VrackServicesWithIAM } from '../../types';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { AxiosResponseHeaders, InternalAxiosRequestConfig } from 'axios';
+import { vi } from 'vitest';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useTask } from '@ovh-ux/manager-react-components';
+
+import { VrackServicesProductStatus, VrackServicesWithIAM } from '../../types';
+import { useVrackService } from '../../vrack-services';
+import { dissociateVrackServices } from '../api';
+import { useDissociateVrack } from './useDissociateVrack';
 
 vi.mock('../api', async () => {
   const actual = await vi.importActual<typeof import('../api')>('../api');
@@ -33,14 +38,14 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 const queryClient = new QueryClient();
 
-const TestComponent = ({ vrackServicesId, onSuccess, onError }: any) => {
-  const {
-    dissociateVs,
-    isPending,
-    isError,
-    error,
-    isSuccess,
-  } = useDissociateVrack({
+type TestComponentProps = {
+  vrackServicesId: string;
+  onSuccess?: () => void;
+  onError?: () => void;
+};
+
+const TestComponent: React.FC<TestComponentProps> = ({ vrackServicesId, onSuccess, onError }) => {
+  const { dissociateVs, isPending, isError, error, isSuccess } = useDissociateVrack({
     vrackServicesId,
     onSuccess,
     onError,
@@ -75,8 +80,8 @@ describe('useDissociateVrack', () => {
           subnets: [],
           region: '',
         },
-      } as VrackServicesWithIAM,
-      error: undefined,
+      } as unknown as VrackServicesWithIAM,
+      error: null,
       isError: false,
       isPending: false,
       isLoading: false,
@@ -87,7 +92,7 @@ describe('useDissociateVrack', () => {
       dataUpdatedAt: 0,
       errorUpdatedAt: 0,
       failureCount: 0,
-      failureReason: undefined,
+      failureReason: null,
       errorUpdateCount: 0,
       isFetched: false,
       isFetchedAfterMount: false,
@@ -107,30 +112,26 @@ describe('useDissociateVrack', () => {
       data: {
         id: 1231,
         function: '',
-        lastUpdate: undefined,
+        lastUpdate: null as unknown as Date,
+        todoDate: null as unknown as Date,
         serviceName: 'vrack-service-id',
         status: '',
-        todoDate: undefined,
       },
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     });
     vi.mocked(useTask).mockReturnValue({
       isPending: false,
       isError: false,
       isSuccess: true,
-      error: null,
+      error: null as unknown as ApiError,
     });
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent
-          vrackServicesId="vrack-service-id"
-          onSuccess={vi.fn()}
-          onError={vi.fn()}
-        />
+        <TestComponent vrackServicesId="vrack-service-id" onSuccess={vi.fn()} onError={vi.fn()} />
       </QueryClientProvider>,
     );
 
@@ -146,7 +147,7 @@ describe('useDissociateVrack', () => {
   });
 
   it('should handle error during dissociation', async () => {
-    const mockError = new Error('Failed to dissociate');
+    const mockError = new Error('Failed to dissociate') as ApiError;
     const mockOnSuccess = vi.fn();
     const mockOnError = vi.fn();
 
@@ -155,16 +156,12 @@ describe('useDissociateVrack', () => {
       isPending: false,
       isError: true,
       isSuccess: false,
-      error: mockError as ApiError,
+      error: mockError,
     });
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent
-          vrackServicesId="vrack-id"
-          onSuccess={mockOnSuccess}
-          onError={mockOnError}
-        />
+        <TestComponent vrackServicesId="vrack-id" onSuccess={mockOnSuccess} onError={mockOnError} />
       </QueryClientProvider>,
     );
 
@@ -184,30 +181,26 @@ describe('useDissociateVrack', () => {
       data: {
         id: 1231,
         function: '',
-        lastUpdate: undefined,
+        lastUpdate: null as unknown as Date,
+        todoDate: null as unknown as Date,
         serviceName: '',
         status: '',
-        todoDate: undefined,
       },
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     });
     vi.mocked(useTask).mockReturnValue({
       isPending: true,
       isError: false,
       isSuccess: false,
-      error: null,
+      error: null as unknown as ApiError,
     });
 
     render(
       <QueryClientProvider client={queryClient}>
-        <TestComponent
-          vrackServicesId="vrack-id"
-          onSuccess={mockOnSuccess}
-          onError={mockOnError}
-        />
+        <TestComponent vrackServicesId="vrack-id" onSuccess={mockOnSuccess} onError={mockOnError} />
       </QueryClientProvider>,
     );
 

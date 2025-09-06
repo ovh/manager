@@ -1,5 +1,6 @@
 import { AxiosError, isAxiosError } from 'axios';
-import { TApiCustomError, ApiErrorClass } from '../../../types/error.type';
+
+import { ApiErrorClass, TApiCustomError } from '../../../types/error.type.js';
 
 export const isApiCustomError = (error: unknown): error is TApiCustomError => {
   if (!isAxiosError(error)) return false;
@@ -7,7 +8,7 @@ export const isApiCustomError = (error: unknown): error is TApiCustomError => {
   const axiosError = error as AxiosError;
   const data = axiosError?.response?.data;
 
-  return typeof data === 'object' && 'message' in data && 'class' in data;
+  return typeof data === 'object' && 'message' in (data || {}) && 'class' in (data || {});
 };
 
 export const isMaxQuotaReachedError = (error: TApiCustomError) =>

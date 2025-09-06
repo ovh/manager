@@ -1,8 +1,10 @@
-import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { LogApiVersion } from '../types/apiVersion';
+
 import { ApiUrls } from '../../LogsToCustomer.module';
+import { pollLogOperation } from '../../helpers/pollLogOperation';
 import {
   deleteLogSubscriptionV2,
   deleteLogSubscriptionV6,
@@ -11,24 +13,24 @@ import {
   postLogSubscriptionV2,
   postLogSubscriptionV6,
 } from '../api/logSubscriptions';
+import { LogApiVersion } from '../types/apiVersion';
 import { LogKind, LogSubscription } from '../types/dbaas/logs';
-import { pollLogOperation } from '../../helpers/pollLogOperation';
 
 /**
  * LIST log subscriptions
  */
-export const getLogSubscriptionsQueryKey = (
-  logSubscriptionUrl: string,
-  logKind: LogKind,
-) => ['getLogSubscriptions', logSubscriptionUrl, logKind.name];
+export const getLogSubscriptionsQueryKey = (logSubscriptionUrl: string, logKind?: LogKind) => [
+  'getLogSubscriptions',
+  logSubscriptionUrl,
+  logKind?.name,
+];
 
 export const useLogSubscriptions = (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   apiVersion: LogApiVersion,
-  logKind: LogKind,
+  logKind?: LogKind,
 ) => {
-  const queryFunction =
-    apiVersion === 'v2' ? getLogSubscriptionsv2 : getLogSubscriptionsv6;
+  const queryFunction = apiVersion === 'v2' ? getLogSubscriptionsv2 : getLogSubscriptionsv6;
 
   return useQuery({
     queryKey: getLogSubscriptionsQueryKey(logSubscriptionUrl, logKind),
@@ -42,35 +44,26 @@ export const useLogSubscriptions = (
  */
 export const getPostLogSubscriptionMutationKey = (
   logSubscriptionUrl: ApiUrls['logSubscription'],
-  logKind: LogKind,
-  streamId: string,
+  logKind?: LogKind,
+  streamId?: string,
 ) => ['PostLogSubscription', logSubscriptionUrl, logKind, streamId];
 
 export const usePostLogSubscription = (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   apiVersion: LogApiVersion,
-  logKind: LogKind,
-  streamId: string,
+  logKind?: LogKind,
+  streamId?: string,
 ) => {
   const { t } = useTranslation('logSubscription');
   const queryClient = useQueryClient();
   const { addError, addSuccess } = useNotifications();
 
-  const queryFunction =
-    apiVersion === 'v2' ? postLogSubscriptionV2 : postLogSubscriptionV6;
+  const queryFunction = apiVersion === 'v2' ? postLogSubscriptionV2 : postLogSubscriptionV6;
 
   return useMutation({
-    mutationKey: getPostLogSubscriptionMutationKey(
-      logSubscriptionUrl,
-      logKind,
-      streamId,
-    ),
+    mutationKey: getPostLogSubscriptionMutationKey(logSubscriptionUrl, logKind, streamId),
     mutationFn: async () => {
-      const { data } = await queryFunction(
-        logSubscriptionUrl,
-        logKind,
-        streamId,
-      );
+      const { data } = await queryFunction(logSubscriptionUrl, logKind, streamId);
       return pollLogOperation(data.serviceName, data.operationId);
     },
     onSuccess: async () => {
@@ -83,10 +76,7 @@ export const usePostLogSubscription = (
       addSuccess(t('log_subscription_subscribe_success'), true);
     },
     onError: (e) => {
-      addError(
-        t('log_subscription_subscribe_error', { error: e.message }),
-        true,
-      );
+      addError(t('log_subscription_subscribe_error', { error: e.message }), true);
     },
   });
 };
@@ -103,21 +93,17 @@ export const useDeleteLogSubscription = (
   logSubscriptionUrl: ApiUrls['logSubscription'],
   apiVersion: LogApiVersion,
   subscriptionId: LogSubscription['subscriptionId'],
-  logKind: LogKind,
+  logKind?: LogKind,
   onSettled?: () => void,
 ) => {
   const { t } = useTranslation('logSubscription');
   const queryClient = useQueryClient();
   const { addError, addSuccess } = useNotifications();
 
-  const queryFunction =
-    apiVersion === 'v2' ? deleteLogSubscriptionV2 : deleteLogSubscriptionV6;
+  const queryFunction = apiVersion === 'v2' ? deleteLogSubscriptionV2 : deleteLogSubscriptionV6;
 
   return useMutation({
-    mutationKey: getDeleteLogSubscriptionMutationKey(
-      logSubscriptionUrl,
-      subscriptionId,
-    ),
+    mutationKey: getDeleteLogSubscriptionMutationKey(logSubscriptionUrl, subscriptionId),
     mutationFn: async () => {
       const { data } = await queryFunction(logSubscriptionUrl, subscriptionId);
       return pollLogOperation(data.serviceName, data.operationId);
@@ -132,10 +118,7 @@ export const useDeleteLogSubscription = (
       addSuccess(t('log_subscription_unsubscribe_success'), true);
     },
     onError: (e) => {
-      addError(
-        t('log_subscription_unsubscribe_error', { error: e.message }),
-        true,
-      );
+      addError(t('log_subscription_unsubscribe_error', { error: e.message }), true);
     },
     onSettled: () => {
       onSettled?.();

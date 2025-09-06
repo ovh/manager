@@ -1,13 +1,13 @@
 import React from 'react';
-import { useTask } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { UseMutateFunction, useMutation } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import {
-  dissociateVrackServices,
-  dissociateVrackServicesQueryKey,
-} from '../api';
+import { useTask } from '@ovh-ux/manager-react-components';
+
 import { VrackTask } from '../../types';
-import { useVrackService } from '../../vrack-services/hooks/useVrackServices';
+import { useVrackService } from '../../vrack-services';
+import { dissociateVrackServices, dissociateVrackServicesQueryKey } from '../api';
 
 export type UseDissociateVrackParams = {
   vrackServicesId: string;
@@ -15,11 +15,19 @@ export type UseDissociateVrackParams = {
   onError?: () => void;
 };
 
+export type UseDissociateVrackReturn = {
+  dissociateVs: UseMutateFunction<ApiResponse<VrackTask>, ApiError, void, unknown>;
+  isPending: boolean;
+  isError: boolean;
+  error: ApiError | null;
+  isSuccess: boolean;
+};
+
 export const useDissociateVrack = ({
   vrackServicesId,
   onSuccess,
   onError,
-}: UseDissociateVrackParams) => {
+}: UseDissociateVrackParams): UseDissociateVrackReturn => {
   const [taskId, setTaskId] = React.useState<string>();
   const { data: vs } = useVrackService();
 
@@ -29,7 +37,7 @@ export const useDissociateVrack = ({
     isError: isTaskError,
     isSuccess,
   } = useTask({
-    resourceUrl: `/vrack/${vs?.currentState?.vrackId}`,
+    resourceUrl: `/vrack/${vs?.currentState?.vrackId ?? ''}`,
     apiVersion: 'v6',
     taskId,
     onSuccess,
@@ -37,15 +45,17 @@ export const useDissociateVrack = ({
     onFinish: () => {
       setTaskId(undefined);
     },
-  });
+  }) as UseDissociateVrackReturn;
 
-  const { mutate: dissociateVs, isPending, isError, error } = useMutation<
-    ApiResponse<VrackTask>,
-    ApiError
-  >({
+  const {
+    mutate: dissociateVs,
+    isPending,
+    isError,
+    error,
+  } = useMutation<ApiResponse<VrackTask>, ApiError>({
     mutationFn: () =>
       dissociateVrackServices({
-        vrack: vs?.currentState?.vrackId,
+        vrack: vs?.currentState?.vrackId ?? '',
         vrackServices: vrackServicesId,
       }),
     mutationKey: dissociateVrackServicesQueryKey(vrackServicesId),
@@ -60,7 +70,7 @@ export const useDissociateVrack = ({
     dissociateVs,
     isPending: isPending || isTaskPending,
     isError: isError || isTaskError,
-    error: error || taskError,
+    error: error ?? taskError ?? null,
     isSuccess,
   };
 };

@@ -1,5 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { OrderDetail, OrderStatus, OrderData } from './order.type';
+
+import { OrderData, OrderDetail, OrderStatus } from './order.type';
 
 export const getOrderList = ({
   dateFrom,
@@ -38,10 +39,5 @@ export const getOrderDetailsList = (orderId: number) =>
 /**
  * Get details of order details
  */
-export const getOrderDetails = ({
-  orderId,
-  detailId,
-}: {
-  orderId: number;
-  detailId: number;
-}) => apiClient.v6.get<OrderDetail>(`/me/order/${orderId}/details/${detailId}`);
+export const getOrderDetails = ({ orderId, detailId }: { orderId: number; detailId: number }) =>
+  apiClient.v6.get<OrderDetail>(`/me/order/${orderId}/details/${detailId}`);

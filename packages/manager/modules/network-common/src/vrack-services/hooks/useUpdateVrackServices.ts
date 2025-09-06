@@ -1,14 +1,24 @@
 import React from 'react';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useTask } from '@ovh-ux/manager-react-components';
+
+import { Subnet, VrackServices, VrackServicesWithIAM } from '../../types';
 import {
   UpdateVrackServicesParams,
   getVrackServicesResourceListQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
 } from '../api';
-import { VrackServices, VrackServicesWithIAM } from '../../types';
+
+type UseTaskResult = {
+  isSuccess: boolean;
+  isPending: boolean;
+  isError: boolean;
+  error: ApiError | null;
+};
 
 /**
  * Get the function to mutate a vRack Services
@@ -38,27 +48,23 @@ export const useUpdateVrackServices = ({
     onError,
     onFinish: () => {
       setTaskId(undefined);
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
     },
-  });
+  }) as UseTaskResult;
 
   const {
     mutate: updateVS,
     isPending,
     isError,
     error: updateError,
-  } = useMutation<
-    ApiResponse<VrackServices>,
-    ApiError,
-    UpdateVrackServicesParams
-  >({
+  } = useMutation<ApiResponse<VrackServices>, ApiError, UpdateVrackServicesParams>({
     mutationKey: updateVrackServicesQueryKey(id),
     mutationFn: updateVrackServices,
     onSuccess: (result: ApiResponse<VrackServices>) => {
-      setTaskId(result?.data?.currentTasks[0].id);
-      queryClient.invalidateQueries({
+      setTaskId(result?.data?.currentTasks?.[0]?.id);
+      void queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceListQueryKey,
       });
     },
@@ -84,15 +90,13 @@ export const useUpdateVrackServices = ({
         vrackServicesId: id,
         checksum: vs.checksum,
         targetSpec: {
-          subnets: (vs.currentState.subnets || []).concat({
-            displayName,
+          subnets: vs.currentState.subnets.concat({
             cidr,
+            displayName: displayName ?? '',
             serviceEndpoints: [],
-            serviceRange: {
-              cidr: serviceRange,
-            },
-            vlan,
-          }),
+            serviceRange: { cidr: serviceRange },
+            vlan: vlan ?? null,
+          } satisfies Subnet),
         },
       }),
     updateSubnet: ({
@@ -118,31 +122,23 @@ export const useUpdateVrackServices = ({
             subnet.cidr === cidr
               ? {
                   ...subnet,
-                  cidr: newCidr,
-                  displayName,
+                  cidr: newCidr ?? subnet.cidr, // fallback to existing cidr
+                  displayName: displayName ?? subnet.displayName,
                   serviceRange: {
-                    cidr: serviceRange,
+                    cidr: serviceRange ?? subnet.serviceRange.cidr,
                   },
-                  vlan,
+                  vlan: vlan ?? subnet.vlan ?? null,
                 }
               : subnet,
           ),
         },
       }),
-    deleteSubnet: ({
-      vs,
-      cidrToDelete,
-    }: {
-      vs: VrackServicesWithIAM;
-      cidrToDelete: string;
-    }) =>
+    deleteSubnet: ({ vs, cidrToDelete }: { vs: VrackServicesWithIAM; cidrToDelete: string }) =>
       updateVS({
         vrackServicesId: vs.id,
         checksum: vs?.checksum,
         targetSpec: {
-          subnets: vs?.currentState.subnets.filter(
-            (subnet) => subnet.cidr !== cidrToDelete,
-          ),
+          subnets: vs?.currentState.subnets.filter((subnet) => subnet.cidr !== cidrToDelete),
         },
       }),
     createEndpoint: ({
@@ -170,13 +166,7 @@ export const useUpdateVrackServices = ({
           ),
         },
       }),
-    deleteEndpoint: ({
-      vs,
-      urnToDelete,
-    }: {
-      vs: VrackServicesWithIAM;
-      urnToDelete: string;
-    }) =>
+    deleteEndpoint: ({ vs, urnToDelete }: { vs: VrackServicesWithIAM; urnToDelete: string }) =>
       updateVS({
         vrackServicesId: vs?.id,
         checksum: vs?.checksum,
@@ -189,9 +179,9 @@ export const useUpdateVrackServices = ({
           })),
         },
       }),
-    isTaskSuccess,
-    isPending: isPending || isTaskPending,
-    isError: isError || isTaskError,
-    updateError: updateError || taskError,
+    isTaskSuccess: Boolean(isTaskSuccess),
+    isPending: Boolean(isPending) || Boolean(isTaskPending),
+    isError: Boolean(isError) || Boolean(isTaskError),
+    updateError: updateError ?? taskError ?? null,
   };
 };

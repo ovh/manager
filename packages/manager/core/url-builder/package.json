@@ -12,6 +12,7 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "type": "module",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
@@ -20,12 +21,15 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc -w",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "prepare": "tsc",
-    "test": "manager-test",
+    "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.3.0",
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*"
   }
 }

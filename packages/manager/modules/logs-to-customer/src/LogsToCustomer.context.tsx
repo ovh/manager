@@ -1,7 +1,8 @@
 import { createContext } from 'react';
-import { LogKind } from './data/types/dbaas/logs';
+
 import { ApiUrls, LogIamActions } from './LogsToCustomer.module';
 import { LogApiVersion } from './data/types/apiVersion';
+import { LogKind } from './data/types/dbaas/logs';
 
 export interface LogProviderProps {
   currentLogKind?: LogKind;
@@ -20,5 +21,5 @@ export const LogsContext = createContext<LogProviderProps>({
     logUrl: '',
   },
   logApiVersion: 'v2',
-  trackingOptions: null,
+  trackingOptions: undefined,
 });

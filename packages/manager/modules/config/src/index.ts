@@ -1,6 +1,7 @@
 import { useReket } from '@ovh-ux/ovh-reket';
 import { getHeaders } from '@ovh-ux/request-tagger';
-import Environment, { User } from './environment';
+
+import Environment from './environment';
 import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
@@ -23,9 +24,22 @@ export * from './environment';
 
 export const isTopLevelApplication = () => window.top === window.self;
 
-export const fetchConfiguration = async (
-  applicationName: string,
-): Promise<Environment> => {
+interface ApiError {
+  status: number;
+  data?: {
+    region?: string;
+    applications?: {
+      restricted?: { publicURL?: string };
+    };
+    class?: string;
+  };
+  response?: {
+    statusText?: string;
+    data?: unknown;
+  };
+}
+
+export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
     requestType: 'aapi',
@@ -39,58 +53,56 @@ export const fetchConfiguration = async (
   let configurationURL = '/configuration';
   if (applicationName) {
     environment.setApplicationName(applicationName);
-    configurationURL = `${configurationURL}?app=${encodeURIComponent(
-      applicationName,
-    )}`;
+    configurationURL = `${configurationURL}?app=${encodeURIComponent(applicationName)}`;
   }
   const Reket = useReket(true);
 
-  return Reket.get(configurationURL, configRequestOptions)
-    .then((config: Environment) => {
+  return Reket.get<Environment>(configurationURL, configRequestOptions)
+    .then((config) => {
       environment.setRegion(config.region);
       environment.setUser(config.user);
       environment.setApplicationURLs(config.applicationURLs);
-      environment.setUniverse(config.universe);
+      environment.setUniverse(config.universe || '');
       environment.setMessage(config.message);
       environment.setApplications(config.applications);
       return environment;
     })
-    .catch((err) => {
-      if (err && err.status === 401 && !isTopLevelApplication()) {
+    .catch((exception) => {
+      const apiError = exception as ApiError;
+      if (apiError && apiError.status === 401 && !isTopLevelApplication()) {
         window.parent.postMessage({
           id: 'ovh-auth-redirect',
-          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(
-            window.location.href,
-          )}`,
+          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
         });
       }
-      if (err?.status === 403) {
-        const region = err?.data?.region || RESTRICTED_DEFAULTS.region;
+      if (apiError?.status === 403) {
+        const region = apiError?.data?.region || RESTRICTED_DEFAULTS.region;
         const publicURL =
-          err?.data?.applications?.restricted?.publicURL ||
-          RESTRICTED_DEFAULTS.publicURL;
-
-        window.top.location.href = `${publicURL}?region=${region}`;
+          apiError?.data?.applications?.restricted?.publicURL || RESTRICTED_DEFAULTS.publicURL;
+        if (window?.top) {
+          window.top.location.href = `${publicURL}?region=${region}`;
+        }
       }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       if (
-        err?.status === 500 &&
-        err?.data.class ===
-          'Server::InternalServerError::ApiUnreachableMaintenance'
+        apiError?.status === 500 &&
+        apiError?.data?.class === 'Server::InternalServerError::ApiUnreachableMaintenance'
       ) {
         const errorObj = {
-          error: err.data,
+          error: apiError.data,
           environment,
         };
+        // eslint-disable-next-line @typescript-eslint/only-throw-error
         throw errorObj;
       }
-      if (err?.status >= 500) {
+      if (apiError?.status >= 500) {
         const errorObj = {
           error: {
-            message: err?.response?.data || err?.response?.statusText,
+            message: apiError?.response?.data || apiError?.response?.statusText,
           },
           environment,
         };
+        // eslint-disable-next-line @typescript-eslint/only-throw-error
         throw errorObj;
       }
       return environment;

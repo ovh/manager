@@ -1,21 +1,21 @@
-import React, { lazy, useEffect, Fragment, Suspense } from 'react';
+import React, { Fragment, Suspense, lazy, useEffect } from 'react';
+
 import {
-  useLocation,
+  ActionFunction,
+  ActionFunctionArgs,
+  LoaderFunction,
+  LoaderFunctionArgs,
+  Outlet,
+  RouteMatch,
   RouteObject,
   createHashRouter,
-  Outlet,
-  LoaderFunction,
-  ActionFunction,
-  LoaderFunctionArgs,
-  ActionFunctionArgs,
-  useRouteError,
-  useNavigate,
   matchRoutes,
+  useLocation,
+  useNavigate,
+  useRouteError,
 } from 'react-router-dom';
-import {
-  generateRegularRoutes,
-  generatePreservedRoutes,
-} from 'generouted/core';
+
+import { generatePreservedRoutes, generateRegularRoutes } from 'generouted/core';
 
 import { useShell } from '.';
 
@@ -28,29 +28,36 @@ type Module = {
   breadcrumb: () => unknown;
 };
 
-function HidePreloader(): JSX.Element {
+function HidePreloader(): JSX.Element | undefined {
   const shell = useShell();
   useEffect(() => {
-    shell.ux.hidePreloader();
+    shell?.ux?.hidePreloader?.();
   }, []);
+
   return undefined;
 }
 
-function OvhContainerRoutingSync({ routes }): JSX.Element {
+function OvhContainerRoutingSync({ routes }: { routes: RouteObject[] }): JSX.Element | undefined {
   const location = useLocation();
   const navigate = useNavigate();
-  const matches: any = matchRoutes(routes, { pathname: location.pathname });
+
+  const matches: RouteMatch[] | null = matchRoutes(routes, {
+    pathname: location.pathname,
+  });
 
   const shell = useShell();
+
   useEffect(() => {
-    shell.routing.stopListenForHashChange();
+    shell?.routing?.stopListenForHashChange();
   }, []);
+
   useEffect(() => {
-    shell.routing.onHashChange();
-    if (matches && matches[matches.length - 1].route?.element === undefined) {
+    shell?.routing?.onHashChange();
+    if (matches?.[matches.length - 1]?.route?.element === undefined) {
       navigate('/');
     }
   }, [location]);
+
   return undefined;
 }
 
@@ -92,20 +99,14 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
 }
 
 export function createAppRouter(): ReturnType<typeof createHashRouter> {
-  const preservedRoutesBlob = import.meta.glob<Module>(
-    '/pages/(_app|404).tsx',
-    { eager: true },
-  );
-  const regularRoutesBlob = import.meta.glob<Module>([
-    '/pages/**/[\\w[]*.tsx',
-    '!**/(_app|404).*',
-  ]);
+  const preservedRoutesBlob = import.meta.glob<Module>('/pages/(_app|404).tsx', { eager: true });
+  const regularRoutesBlob = import.meta.glob<Module>(['/pages/**/[\\w[]*.tsx', '!**/(_app|404).*']);
 
   const preservedRoutes = generatePreservedRoutes<Element>(preservedRoutesBlob);
-  const regularRoutes = generateRegularRoutes<
-    RouteObject,
-    () => Promise<Module>
-  >(regularRoutesBlob, buildRegularRoute);
+  const regularRoutes = generateRegularRoutes<RouteObject, () => Promise<Module>>(
+    regularRoutesBlob,
+    buildRegularRoute,
+  );
 
   const appIndex = '_app';
   const App = preservedRoutes?.[appIndex] || Fragment;
@@ -114,7 +115,7 @@ export function createAppRouter(): ReturnType<typeof createHashRouter> {
   const appBlobKey = '/pages/_app.tsx';
   const appBlob = import.meta.glob<Module>('/pages/_app.tsx', { eager: true });
 
-  const newRoutes = regularRoutes.map((route, index) => {
+  const newRoutes = regularRoutes.map((route) => {
     if (route.path === 'dashboard') {
       return {
         ...route,

@@ -110,10 +110,7 @@ describe('parseISODuration', () => {
         seconds: 0,
       },
     },
-  ])(
-    'should convert $input duration string to $expected',
-    ({ input, expected }) => {
-      expect(parseISODuration(input)).toStrictEqual(expected);
-    },
-  );
+  ])('should convert $input duration string to $expected', ({ input, expected }) => {
+    expect(parseISODuration(input)).toStrictEqual(expected);
+  });
 });
