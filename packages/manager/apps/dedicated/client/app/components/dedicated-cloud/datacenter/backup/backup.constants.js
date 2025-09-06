@@ -1,11 +1,4 @@
-export const BACKUP_PROPERTIES = [
-  'backupDurationInReport',
-  'backupSizeInReport',
-  'diskSizeInReport',
-  'fullDayInReport',
-  'restorePointInReport',
-  'backupOffer',
-];
+export const BACKUP_PROPERTIES = ['backupOffer'];
 
 export const BACKUP_PROPERTIES_MAP = {
   classic: BACKUP_PROPERTIES,
