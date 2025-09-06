@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { FC, useEffect, useState } from 'react';
-import './styles.scss';
 import {
   OsdsButton,
   OsdsModal,

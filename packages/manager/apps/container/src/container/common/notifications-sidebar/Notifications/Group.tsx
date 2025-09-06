@@ -13,7 +13,7 @@ const NotificationsGroup = ({
   title = '',
 }: Props): JSX.Element => {
   return (
-    <li>
+    <li data-testid='notifications-group'>
       <div className={style.notificationsList_group_title}>{title}</div>
       {notifications.map((notification, key) => (
         <Notification key={`notification-${key}`}>

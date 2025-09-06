@@ -76,6 +76,7 @@ const NotificationsSidebar = () => {
       className={`${
         style.notificationsSidebar
       } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
+      data-testid='notifications-sidebar'
     >
       <div className="flex justify-end">
         <OsdsIcon
@@ -85,6 +86,7 @@ const NotificationsSidebar = () => {
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_ICON_SIZE.sm}
           aria-hidden="true"
+          data-testid='notifications-sidebar-close-icon'
         ></OsdsIcon>
       </div>
       <Notifications>

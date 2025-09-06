@@ -1,0 +1,16 @@
+.contact-history-drawer::part(drawer) {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+}
+
+/* Adjust the width of the drawer when the screen is wide enough */
+@media (min-width: 640px) {
+  .contact-history-drawer::part(drawer) {
+    width: 400px;
+    max-width: calc(100% - 48px); /* default behavior from ODS Drawer */
+  }
+}

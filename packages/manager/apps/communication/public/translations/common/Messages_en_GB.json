@@ -1,0 +1,20 @@
+{
+  "title": "My communications",
+  "description": "Find all the communications that OVH has sent you, except for support requests. You can view them in the section: <anchor>Technical support</anchor>",
+  "assistance_link_label": "Technical support",
+  "tab_communications": "My communications",
+  "tab_contacts": "Contacts",
+  "tab_settings": "Broadcast Settings",
+  "date_label": "Date",
+  "priority_high": "High",
+  "priority_medium": "Medium",
+  "priority_low": "Low",
+  "category_product": "Product",
+  "category_product_lifecycle": "Product life",
+  "category_billing": "Invoicing",
+  "category_account": "Account",
+  "category_account_lifecycle": "Account life",
+  "category_security": "Security",
+  "category_legal": "Legal",
+  "iam_display_content_message": "You do not have permissions to view data for this resource. Please contact your administrator."
+}
