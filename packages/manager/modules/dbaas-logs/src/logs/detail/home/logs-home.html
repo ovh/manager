@@ -124,6 +124,7 @@
                         </a>
                         <div data-ng-if="ctrl.accountDetails">
                             <a
+                                data-ng-if="!ctrl.service.isIamEnabled"
                                 data-ng-href="{{ ctrl.accountDetails.elasticSearchApiUrl }}"
                                 class="oui-tile__button oui-button oui-link_icon oui-button_ghost"
                                 data-ng-class="{
