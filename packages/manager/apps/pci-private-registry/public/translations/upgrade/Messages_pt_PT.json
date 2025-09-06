@@ -10,5 +10,5 @@
   "private_registry_upgrade_plan_warning": "* A maioria dos softwares clientes são configurados para utilizar cinco ligações HTTP simultâneas durante o acesso a um Registry.",
   "private_registry_upgrade_plan_available_storage": "Armazenamento disponível: ",
   "private_registry_monthly_price": "{{ monthly }}/mês",
-  "private_registry_upgrade_core_registry": "{{percent}}% core &amp; registry"
+  "private_registry_upgrade_core_registry": "{{percent}}% core & registry"
 }

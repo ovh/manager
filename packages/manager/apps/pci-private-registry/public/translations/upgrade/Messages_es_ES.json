@@ -6,9 +6,9 @@
   "private_registry_upgrade_plan_traffic": "SLA 100% y tráfico ilimitado",
   "private_registry_upgrade_core_registry_99": "99,9% core &amp; registry",
   "private_registry_upgrade_core_registry_95": "99,95% core &amp; registry",
-  "private_registry_upgrade_other_components": "{{percent}}% en el resto de componentes",
+  "private_registry_upgrade_other_components": "{{percent}} % en otros componentes",
   "private_registry_upgrade_plan_warning": "* La mayoría de los programas clientes están configurados para utilizar cinco conexiones HTTP simultáneas durante el acceso a un registro.",
   "private_registry_upgrade_plan_available_storage": "Almacenamiento disponible: ",
   "private_registry_monthly_price": "{{ monthly }}/mes",
-  "private_registry_upgrade_core_registry": "{{percent}}% core &amp; registry"
+  "private_registry_upgrade_core_registry": "{{percent}} % core & registry"
 }

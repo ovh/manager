@@ -5,5 +5,6 @@
   "suggestion_modal_listed_type_SIRET": "NIF",
   "suggestion_modal_listed_type_VAT": "NIF intracomunitário",
   "suggestion_modal_action_modify": "Atualizar no meu perfil",
-  "suggestion_modal_action_confirm": "Validar estas informações"
+  "suggestion_modal_action_confirm": "Validar estas informações",
+  "suggestion_modal_listed_type_NIN": "NIF"
 }

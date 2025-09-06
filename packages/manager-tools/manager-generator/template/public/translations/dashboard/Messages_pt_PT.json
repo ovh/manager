@@ -1,17 +1,17 @@
 {
-  "home": "Início",
+  "home": "Página inicial",
   "order": "Encomendar",
-  "back": "Voltar",
-  "title": "Painel de controlo",
+  "back": "Retroceder",
+  "title": "Dashboard",
   "email": "E-mail",
-  "subject": "Assunto",
+  "subject": "Objeto",
   "message": "Mensagem",
   "submitButton": "Enviar",
   "successMessage": "O seu pedido foi enviado com sucesso.",
   "errors": {
     "emailRequired": "O e-mail é obrigatório.",
-    "emailInvalid": "Introduza um endereço de e-mail válido.",
-    "subjectRequired": "O assunto é obrigatório.",
+    "emailInvalid": "Introduza um endereço de correio eletrónico válido.",
+    "subjectRequired": "O objeto é obrigatório.",
     "messageRequired": "A mensagem é obrigatória."
   },
   "general-information": "Informações gerais",
