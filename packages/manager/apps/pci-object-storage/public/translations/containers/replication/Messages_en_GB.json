@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_replication_list_title_description": "Define the options that OVHcloud Object Storage must apply during replication, such as selecting eligible objects, migrating them to another storage class, the destination container, or replicating deletion markers.",
-  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Back to my objects",
+  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Back to dashboard",
   "pci_projects_project_storages_containers_replication_list_sub_title": "Manage replication",
   "pci_projects_project_storages_containers_replication_list_description": "Replicate your data easily in OVHcloud regions.",
   "pci_projects_project_storages_containers_replication_list_add_replication_rule": "Add a replication rule",

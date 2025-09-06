@@ -16,6 +16,8 @@ describe('HourlyConsumption', () => {
     privateRegistry: [],
     aiEndpoints: [],
     kubernetesLoadBalancer: [],
+    managedKubernetesService: [],
+    quantum: [],
     training: [],
     notebooks: [],
     rancher: [],
