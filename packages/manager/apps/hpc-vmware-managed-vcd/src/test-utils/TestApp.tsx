@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import {
   createMemoryRouter,
   RouterProvider,
@@ -16,17 +15,11 @@ export function TestApp({ initialRoute = '/' }) {
     initialIndex: 0,
   });
 
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
-  });
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <MessageContextProvider>
-        <Suspense fallback={<Loading />}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </MessageContextProvider>
-    </QueryClientProvider>
+    <MessageContextProvider>
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </MessageContextProvider>
   );
 }
