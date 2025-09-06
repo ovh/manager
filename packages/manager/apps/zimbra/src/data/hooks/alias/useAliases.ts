@@ -1,16 +1,15 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
+import { AliasType, getZimbraPlatformAliases, getZimbraPlatformAliasesQueryKey } from '@/data/api';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
-import {
-  AliasType,
-  getZimbraPlatformAliases,
-  getZimbraPlatformAliasesQueryKey,
-} from '@/data/api';
 
 type UseAliasesParams = Omit<
   UseInfiniteQueryOptions,
@@ -34,11 +33,7 @@ export const useAliases = (props: UseAliasesParams = {}) => {
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformAliasesQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
+    queryKey: getZimbraPlatformAliasesQueryKey(platformId, urlSearchParams, allPages),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformAliases({
         platformId,
@@ -50,14 +45,9 @@ export const useAliases = (props: UseAliasesParams = {}) => {
     enabled: (q) =>
       (typeof options.enabled === 'function'
         ? options.enabled(q)
-        : typeof options.enabled !== 'boolean' || options.enabled) &&
-      !!platformId,
-    getNextPageParam: (lastPage: { cursorNext?: string }) =>
-      lastPage.cursorNext,
-    select: (data) =>
-      data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<AliasType[]>) => page.data,
-      ),
+        : typeof options.enabled !== 'boolean' || options.enabled) && !!platformId,
+    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
+    select: (data) => data?.pages.flatMap((page: UseInfiniteQueryResult<AliasType[]>) => page.data),
   });
 
   const fetchAllPages = useCallback(() => {

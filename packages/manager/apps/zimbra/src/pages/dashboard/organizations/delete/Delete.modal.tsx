@@ -1,27 +1,28 @@
 import React from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
-import {
-  ODS_MESSAGE_COLOR,
-  ODS_MODAL_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useMutation } from '@tanstack/react-query';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useDomains, useOrganization } from '@/data/hooks';
+
 import {
   deleteZimbraPlatformOrganization,
   getZimbraPlatformOrganizationQueryKey,
 } from '@/data/api';
+import { useDomains, useOrganization } from '@/data/hooks';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, DELETE_ORGANIZATION } from '@/tracking.constants';
 
@@ -29,10 +30,7 @@ export const DeleteOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['organizations', 'common', NAMESPACES.ACTIONS]);
   const { platformId, organizationId } = useParams();
-  const {
-    data: organization,
-    isLoading: isOrganizationLoading,
-  } = useOrganization({
+  const { data: organization, isLoading: isOrganizationLoading } = useOrganization({
     organizationId,
   });
   const { data: domains, isLoading: isDomainsLoading } = useDomains({
@@ -46,17 +44,14 @@ export const DeleteOrganizationModal = () => {
   const onClose = () => navigate('../..');
 
   const { mutate: deleteOrganization, isPending: isSending } = useMutation({
-    mutationFn: (id: string) =>
-      deleteZimbraPlatformOrganization(platformId, id),
+    mutationFn: (id: string) => deleteZimbraPlatformOrganization(platformId, id),
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: DELETE_ORGANIZATION,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:delete_success_message')}
-        </OdsText>,
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
         true,
       );
     },
@@ -74,8 +69,8 @@ export const DeleteOrganizationModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
       });
 
@@ -113,9 +108,7 @@ export const DeleteOrganizationModal = () => {
       primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
       primaryButtonTestId="delete-btn"
       onPrimaryButtonClick={handleDeleteClick}
-      isPrimaryButtonLoading={
-        isSending || isOrganizationLoading || isDomainsLoading
-      }
+      isPrimaryButtonLoading={isSending || isOrganizationLoading || isDomainsLoading}
       isPrimaryButtonDisabled={domains?.length > 0 || !organizationId}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}

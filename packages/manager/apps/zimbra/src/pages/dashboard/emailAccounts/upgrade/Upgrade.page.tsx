@@ -1,4 +1,14 @@
 import React, { useContext } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   IconLinkAlignmentType,
   LinkType,
@@ -6,8 +16,7 @@ import {
   Subtitle,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   ButtonType,
   PageLocation,
@@ -15,21 +24,13 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { ZimbraEmailsLink, ZimbraLabsLink } from '@/constants';
+import { ZimbraPlanCodes, getZimbraPlatformAccountsQueryKey } from '@/data/api';
+import { useSlot } from '@/data/hooks';
+import { useUpgradeMutation } from '@/data/hooks/account/useUpgradeMutation';
 import { useGenerateUrl } from '@/hooks';
 import { BACK_PREVIOUS_PAGE, UPGRADE_SLOT } from '@/tracking.constants';
-import { useSlot } from '@/data/hooks';
-import { getZimbraPlatformAccountsQueryKey, ZimbraPlanCodes } from '@/data/api';
-import { ZimbraEmailsLink, ZimbraLabsLink } from '@/constants';
-import { useUpgradeMutation } from '@/data/hooks/account/useUpgradeMutation';
 
 export const UpgradeAccount = () => {
   const { platformId, slotId } = useParams();
@@ -73,17 +74,14 @@ export const UpgradeAccount = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformAccountsQueryKey(platformId),
       });
     },
   });
   return (
-    <div
-      className="flex flex-col items-start mb-6"
-      data-testid="upgrade-account-page"
-    >
+    <div className="flex flex-col items-start mb-6" data-testid="upgrade-account-page">
       <Links
         iconAlignment={IconLinkAlignmentType.left}
         type={LinkType.back}
@@ -99,17 +97,14 @@ export const UpgradeAccount = () => {
         label={t('zimbra_account_upgrade_cta_back')}
       />
       <Subtitle className="mt-5">{t('common:upgrade_account_pro')}</Subtitle>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-        {slot?.currentState.email}
-      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.paragraph}>{slot?.currentState.email}</OdsText>
       <div className="flex flex-col gap-4 my-8">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           <Trans
             t={t}
             i18nKey="zimbra_account_upgrade_new_offer"
             values={{
-              zimbra_emails_link:
-                ZimbraEmailsLink[ovhSubsidiary] || ZimbraEmailsLink.DEFAULT,
+              zimbra_emails_link: ZimbraEmailsLink[ovhSubsidiary] || ZimbraEmailsLink.DEFAULT,
             }}
             components={{
               Link: (

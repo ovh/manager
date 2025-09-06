@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { MailingListType, MailingListBodyParamsType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { MailingListBodyParamsType, MailingListType } from './type';
 
 // GET
 
@@ -29,9 +31,7 @@ export const getZimbraPlatformMailingListDetails = async (
   platformId: string,
   mailingListId: string,
 ) => {
-  const { data } = await v2.get(
-    `${getApiPath(platformId)}mailingList/${mailingListId}`,
-  );
+  const { data } = await v2.get(`${getApiPath(platformId)}mailingList/${mailingListId}`);
   return data;
 };
 
@@ -54,12 +54,9 @@ export const putZimbraPlatformMailingList = async (
   mailingListId: string,
   params: MailingListBodyParamsType,
 ) => {
-  const { data } = await v2.put(
-    `${getApiPath(platformId)}mailingList/${mailingListId}`,
-    {
-      targetSpec: params,
-    },
-  );
+  const { data } = await v2.put(`${getApiPath(platformId)}mailingList/${mailingListId}`, {
+    targetSpec: params,
+  });
   return data;
 };
 

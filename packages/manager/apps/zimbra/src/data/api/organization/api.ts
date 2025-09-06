@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { OrganizationBodyParamsType, OrganizationType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { OrganizationBodyParamsType, OrganizationType } from './type';
 
 // GET
 
@@ -29,9 +31,7 @@ export const getZimbraPlatformOrganizationDetails = async (
   platformId: string,
   organizationId: string,
 ) => {
-  const { data } = await v2.get(
-    `${getApiPath(platformId)}organization/${organizationId}`,
-  );
+  const { data } = await v2.get(`${getApiPath(platformId)}organization/${organizationId}`);
   return data;
 };
 
@@ -54,10 +54,9 @@ export const putZimbraPlatformOrganization = async (
   organizationId: string,
   params: OrganizationBodyParamsType,
 ) => {
-  const { data } = await v2.put(
-    `${getApiPath(platformId)}organization/${organizationId}`,
-    { targetSpec: params },
-  );
+  const { data } = await v2.put(`${getApiPath(platformId)}organization/${organizationId}`, {
+    targetSpec: params,
+  });
   return data;
 };
 
@@ -67,8 +66,6 @@ export const deleteZimbraPlatformOrganization = async (
   platformId: string,
   organizationId: string,
 ) => {
-  const { data } = await v2.delete(
-    `${getApiPath(platformId)}organization/${organizationId}`,
-  );
+  const { data } = await v2.delete(`${getApiPath(platformId)}organization/${organizationId}`);
   return data;
 };

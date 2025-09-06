@@ -1,50 +1,39 @@
 import React, { useEffect } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
+import { Loading } from '@/components';
 import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { useMutation } from '@tanstack/react-query';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useOrganizations } from '@/data/hooks';
-import { SimpleOrganizationSchema, simpleOrganizationSchema } from '@/utils';
-import {
-  CONFIRM,
-  ONBOARDING_CONFIGURE_ORGANIZATION,
-} from '@/tracking.constants';
-import {
-  getZimbraPlatformOrganizationQueryKey,
   OrganizationBodyParamsType,
+  OrganizationType,
+  getZimbraPlatformOrganizationQueryKey,
   postZimbraPlatformOrganization,
 } from '@/data/api';
+import { useOrganizations } from '@/data/hooks';
 import queryClient from '@/queryClient';
-import { Loading } from '@/components';
+import { CONFIRM, ONBOARDING_CONFIGURE_ORGANIZATION } from '@/tracking.constants';
+import { SimpleOrganizationSchema, simpleOrganizationSchema } from '@/utils';
 
 export const ConfigureOrganization: React.FC = () => {
-  const { t } = useTranslation([
-    'onboarding',
-    'organizations/form',
-    'common',
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation(['onboarding', 'organizations/form', 'common', NAMESPACES.ACTIONS]);
   const { trackClick, trackPage } = useOvhTracking();
   const { addError } = useNotifications();
   const { platformId } = useParams();
@@ -90,17 +79,15 @@ export const ConfigureOrganization: React.FC = () => {
         true,
       );
     },
-    onSuccess: (org) => {
-      queryClient.invalidateQueries({
+    onSuccess: async (org: OrganizationType) => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformOrganizationQueryKey(platformId),
       });
       next(org?.id);
     },
   });
 
-  const handleConfirmClick: SubmitHandler<SimpleOrganizationSchema> = (
-    data,
-  ) => {
+  const handleConfirmClick: SubmitHandler<SimpleOrganizationSchema> = (data) => {
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.button,
@@ -119,9 +106,7 @@ export const ConfigureOrganization: React.FC = () => {
       className="flex flex-col gap-4 w-full md:w-1/2"
       onSubmit={handleSubmit(handleConfirmClick)}
     >
-      <OdsText preset={ODS_TEXT_PRESET.heading4}>
-        {t('common:add_organization')}
-      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('common:add_organization')}</OdsText>
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         {t('organizations/form:zimbra_organization_add_modal_content_part1')}
       </OdsText>
@@ -132,15 +117,9 @@ export const ConfigureOrganization: React.FC = () => {
         control={control}
         name="name"
         render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField
-            data-testid="field-name"
-            error={errors?.[name]?.message}
-            className="w-full"
-          >
+          <OdsFormField data-testid="field-name" error={errors?.[name]?.message} className="w-full">
             <label htmlFor={name} slot="label">
-              {t(
-                'organizations/form:zimbra_organization_add_form_input_name_title',
-              )}
+              {t('organizations/form:zimbra_organization_add_form_input_name_title')}
               {' *'}
             </label>
             <OdsInput

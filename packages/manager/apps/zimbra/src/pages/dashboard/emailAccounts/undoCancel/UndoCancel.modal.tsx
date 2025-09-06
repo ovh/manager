@@ -1,29 +1,26 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import {
-  Modal,
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { SlotServiceRenewMode, getZimbraPlatformListQueryKey, putService } from '@/data/api';
 import { useSlotWithService } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import {
-  getZimbraPlatformListQueryKey,
-  putService,
-  SlotServiceRenewMode,
-} from '@/data/api';
 import queryClient from '@/queryClient';
 import { CANCEL, CONFIRM, UNDO_CANCEL_SLOT } from '@/tracking.constants';
 import { capitalize } from '@/utils';
@@ -73,8 +70,8 @@ export const UndoCancelSlotModal = () => {
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
 

@@ -1,12 +1,9 @@
 import { fetchIcebergV2, v2, v6 } from '@ovh-ux/manager-core-api';
-import {
-  DomainBodyParamsType,
-  DomainDiagnosisResponse,
-  DomainType,
-  ZoneWithIAM,
-} from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { DomainBodyParamsType, DomainDiagnosisResponse, DomainType, ZoneWithIAM } from './type';
 
 // GET
 
@@ -40,13 +37,8 @@ export const getDomainZoneByName = async (name: string) => {
   return data;
 };
 
-export const getZimbraPlatformDomainDetail = async (
-  platformId: string,
-  domainId: string,
-) => {
-  const { data } = await v2.get<DomainType>(
-    `${getApiPath(platformId)}domain/${domainId}`,
-  );
+export const getZimbraPlatformDomainDetail = async (platformId: string, domainId: string) => {
+  const { data } = await v2.get<DomainType>(`${getApiPath(platformId)}domain/${domainId}`);
   return data;
 };
 
@@ -63,10 +55,7 @@ export const postZimbraPlatformDomainsDiagnostic = async (
   return data;
 };
 
-export const postZimbraDomain = async (
-  platformId: string,
-  params: DomainBodyParamsType,
-) => {
+export const postZimbraDomain = async (platformId: string, params: DomainBodyParamsType) => {
   const { data } = await v2.post(`${getApiPath(platformId)}domain`, {
     targetSpec: params,
   });
@@ -88,12 +77,7 @@ export const putZimbraDomain = async (
 
 // DELETE
 
-export const deleteZimbraPlatformDomain = async (
-  platformId: string,
-  domainId: string,
-) => {
-  const { data } = await v2.delete(
-    `${getApiPath(platformId)}domain/${domainId}`,
-  );
+export const deleteZimbraPlatformDomain = async (platformId: string, domainId: string) => {
+  const { data } = await v2.delete(`${getApiPath(platformId)}domain/${domainId}`);
   return data;
 };

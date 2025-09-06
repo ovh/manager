@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
+
 import { useParams, useSearchParams } from 'react-router-dom';
+
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import {
+  SlotType,
   getZimbraPlatformSlot,
   getZimbraPlatformSlotQueryKey,
   makeSlotService,
-  SlotType,
 } from '@/data/api';
+
 import { useSlotService } from '../services/useSlotService';
 import { SlotWithService } from './useSlots';
 

@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react';
+
 import { useLocation, useMatches, useSearchParams } from 'react-router-dom';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import { useAccount, useDomain, useOrganization } from '@/data/hooks';
-import { buildURLSearchParams } from '@/utils';
 import { RouteMatch } from '@/routes/routes';
+import { buildURLSearchParams } from '@/utils';
 
 export type BreadcrumbItem = {
   label?: string;

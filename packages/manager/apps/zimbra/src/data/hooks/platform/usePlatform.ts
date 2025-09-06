@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getZimbraPlatformList,
-  getZimbraPlatformListQueryKey,
-} from '@/data/api';
+
+import { getZimbraPlatformList, getZimbraPlatformListQueryKey } from '@/data/api';
 
 export const usePlatform = () => {
   const { data, isLoading, isError, error, ...rest } = useQuery({

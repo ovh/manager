@@ -1,16 +1,16 @@
 import React from 'react';
-import 'element-internals-polyfill';
-import '@testing-library/jest-dom';
-import { vi, describe, expect } from 'vitest';
+
 import { useParams } from 'react-router-dom';
-import { render, act, waitFor, fireEvent } from '@/utils/test.provider';
-import {
-  aliasesMock,
-  accountsMock,
-  deleteZimbraPlatformAlias,
-} from '@/data/api';
-import ModalDeleteAlias from './Delete.modal';
+
+import '@testing-library/jest-dom';
+import 'element-internals-polyfill';
+import { describe, expect, vi } from 'vitest';
+
+import { accountsMock, aliasesMock, deleteZimbraPlatformAlias } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import ModalDeleteAlias from './Delete.modal';
 
 vi.mocked(useParams).mockReturnValue({
   accountId: accountsMock[0].id,
@@ -32,7 +32,8 @@ describe('Alias delete modal', () => {
 
     expect(getByTestId('delete-btn')).not.toBeDisabled();
 
-    await act(() => {
+    // eslint-disable-next-line @typescript-eslint/require-await
+    await act(async () => {
       fireEvent.click(getByTestId('delete-btn'));
     });
 

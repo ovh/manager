@@ -1,22 +1,23 @@
 import { vi } from 'vitest';
+
 import {
-  accountsMock,
-  domainsMock,
-  mailingListsMock,
-  organizationsMock,
-  platformMock,
-  taskMocks,
-  aliasesMock,
-  domainZone,
-  orderCatalogMock,
-  domainsDiagnosticMock,
-  slotMock,
-  slotsMock,
   AccountType,
   DomainType,
-  servicesMock,
-  slotServicesMock,
+  accountsMock,
+  aliasesMock,
+  domainZone,
+  domainsDiagnosticMock,
+  domainsMock,
+  mailingListsMock,
+  orderCatalogMock,
+  organizationsMock,
+  platformMock,
   serviceMock,
+  servicesMock,
+  slotMock,
+  slotServicesMock,
+  slotsMock,
+  taskMocks,
 } from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -51,9 +52,7 @@ vi.mock('axios', async (importActual) => {
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
   return {
-    ...(await importActual<
-      typeof import('@ovh-ux/manager-react-shell-client')
-    >()),
+    ...(await importActual<typeof import('@ovh-ux/manager-react-shell-client')>()),
     useOvhTracking: vi.fn(() => {
       return {
         trackClick: vi.fn(),
@@ -69,9 +68,7 @@ vi.mock('@/data/api', async (importActual) => {
     ...(await importActual<typeof import('@/data/api')>()),
     // ACCOUNT
     getZimbraPlatformAccountDetail: vi.fn((_platformId, accountId) => {
-      return Promise.resolve(
-        accountsMock.find((acc: AccountType) => acc.id === accountId),
-      );
+      return Promise.resolve(accountsMock.find((acc: AccountType) => acc.id === accountId));
     }),
     getZimbraPlatformAccounts: vi.fn(() => {
       return Promise.resolve({
@@ -83,9 +80,7 @@ vi.mock('@/data/api', async (importActual) => {
     }),
     // DOMAIN
     getZimbraPlatformDomainDetail: vi.fn((_platformId, domainId) => {
-      return Promise.resolve(
-        domainsMock.find((dom: DomainType) => dom.id === domainId),
-      );
+      return Promise.resolve(domainsMock.find((dom: DomainType) => dom.id === domainId));
     }),
     getZimbraPlatformDomains: vi.fn(() => {
       return Promise.resolve({
