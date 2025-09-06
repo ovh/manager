@@ -24,23 +24,24 @@ export interface HeadersOverrides {
   [key: string]: Partial<Headers>;
 }
 
-export const ROUTES_PREFIX = [
-  '/engine/apiv6',
-  '/engine/2api',
-  '/engine/api/v2',
-];
+export const ROUTES_PREFIX = ['/engine/apiv6', '/engine/2api', '/engine/api/v2'];
 export const DEFAULT_ROUTES_HEADERS_OVERRIDE: HeadersOverrides = {};
 
 let currentPage = 'bootstrap';
 const headersOverride: HeadersOverrides = DEFAULT_ROUTES_HEADERS_OVERRIDE;
 
 export const generateNavigationId = (): string => {
-  window.top.ovhRequestTaggerNavigationId = Date.now().toString(36);
-  return window.top.ovhRequestTaggerNavigationId;
+  if (window.top) {
+    window.top.ovhRequestTaggerNavigationId = Date.now().toString(36);
+    return window.top.ovhRequestTaggerNavigationId;
+  }
+  const fallbackId = Date.now().toString(36);
+  window.ovhRequestTaggerNavigationId = fallbackId;
+  return fallbackId;
 };
 
 export const getNavigationId = (): string => {
-  if (!window.top.ovhRequestTaggerNavigationId) return generateNavigationId();
+  if (!window?.top?.ovhRequestTaggerNavigationId) return generateNavigationId();
   return window.top.ovhRequestTaggerNavigationId;
 };
 
@@ -48,15 +49,21 @@ export const defineApplicationVersion = (version: string): void => {
   window.ovhRequestTaggerApplicationVersion = version;
 };
 
-export const getApplicationVersion = (): string =>
-  window.ovhRequestTaggerApplicationVersion;
+export const getApplicationVersion = (): string | undefined =>
+  window?.ovhRequestTaggerApplicationVersion;
 
 export const generateRequestId = (): string => {
-  window.top.ovhRequestTaggerRequestIndex =
-    window.top.ovhRequestTaggerRequestIndex || 0;
-  window.top.ovhRequestTaggerRequestIndex += 1;
+  if (window.top) {
+    window.top.ovhRequestTaggerRequestIndex = window.top.ovhRequestTaggerRequestIndex ?? 0;
+    window.top.ovhRequestTaggerRequestIndex += 1;
 
-  return `${Date.now()}-${window.top.ovhRequestTaggerRequestIndex}`;
+    return `${Date.now()}-${window.top.ovhRequestTaggerRequestIndex}`;
+  }
+
+  // fallback if no top window
+  window.ovhRequestTaggerRequestIndex = (window.ovhRequestTaggerRequestIndex ?? 0) + 1;
+
+  return `${Date.now()}-${window.ovhRequestTaggerRequestIndex}`;
 };
 
 export const defineCurrentPage = (page: string): void => {
@@ -82,14 +89,14 @@ export const isURLValid = (url: string): boolean => {
   return ROUTES_PREFIX.some((prefix) => url?.startsWith(prefix));
 };
 
-export const searchHeadersOverride = (url: string): Partial<Headers> => {
+export const searchHeadersOverride = (url: string): Partial<Headers> | undefined => {
   const overridesKey = Object.keys(headersOverride).find((routePattern) =>
     new RegExp(routePattern).test(url),
   );
   if (overridesKey) {
     return headersOverride[overridesKey];
   }
-  return {};
+  return undefined;
 };
 
 export const getHeaders = (url: string): Partial<Headers> => {

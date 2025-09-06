@@ -1,6 +1,7 @@
 import React from 'react';
-import { apiUrlMocks } from './test.constant';
+
 import { LogsToCustomerModule } from '../LogsToCustomer.module';
+import { apiUrlMocks } from './test.constant';
 
 export const MockedAppPageLabel = 'mocked app page';
 

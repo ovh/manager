@@ -107,7 +107,7 @@ export default function DissociateModal() {
           color={ODS_MESSAGE_COLOR.critical}
         >
           {t('modalDissociateError', {
-            error: error.response?.data?.message,
+            error: error.response?.data?.message || error?.message,
           })}
         </OdsMessage>
       )}

@@ -88,7 +88,8 @@ export const getPackageNameFromApp = (appName) => {
     const pkgPath = path.resolve(applicationsBasePath, appName, 'package.json');
     const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
     return pkg.name || null;
-  } catch (e) {
+    // eslint-disable-next-line no-unused-vars
+  } catch (error) {
     return null;
   }
 };

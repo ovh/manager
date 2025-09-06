@@ -2,7 +2,7 @@ import React from 'react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { order } from '../types/veeam-backup-catalog.type';
+import { order } from '../types';
 import { getVeeamBackupCatalog } from '../api';
 import { veeamBackupCatalogQueryKey } from '../utils';
 

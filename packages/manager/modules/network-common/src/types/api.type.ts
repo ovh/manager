@@ -39,21 +39,23 @@ export type Task = {
 };
 
 export type AllowedServicesResponse = {
-  cloudProject: string[];
-  dedicatedCloud: string[];
-  dedicatedCloudDatacenter: string[];
-  dedicatedConnect: string[];
-  dedicatedServer: string[];
-  dedicatedServerInterface: {
-    dedicatedServer: string;
-    dedicatedServerInterface: string;
-    name: string;
-  }[];
-  ip: string[];
-  ipLoadbalancing: string[];
-  legacyVrack: string[];
-  ovhCloudConnect: string[];
-  vrackServices: string[];
+  cloudProject: string[] | null;
+  dedicatedCloud: string[] | null;
+  dedicatedCloudDatacenter: string[] | null;
+  dedicatedConnect: string[] | null;
+  dedicatedServer: string[] | null;
+  dedicatedServerInterface:
+    | {
+        dedicatedServer: string;
+        dedicatedServerInterface: string;
+        name: string;
+      }[]
+    | null;
+  ip: string[] | null;
+  ipLoadbalancing: string[] | null;
+  legacyVrack: string[] | null;
+  ovhCloudConnect: string[] | null;
+  vrackServices: string[] | null;
 };
 
 export type AllowedService =

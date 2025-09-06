@@ -1,4 +1,4 @@
-import { formatDuration, FormatDurationOptions } from 'date-fns';
+import { FormatDurationOptions, formatDuration } from 'date-fns';
 
 export interface Duration {
   years?: number;
@@ -49,7 +49,5 @@ export const parseISODuration = (duration: string): Duration => {
  * "P3D" -> '3 days'
  */
 
-export const parseAndFormatDuration = (
-  duration: string,
-  options: FormatDurationOptions,
-) => formatDuration(parseISODuration(duration), options);
+export const parseAndFormatDuration = (duration: string, options: FormatDurationOptions) =>
+  formatDuration(parseISODuration(duration), options);

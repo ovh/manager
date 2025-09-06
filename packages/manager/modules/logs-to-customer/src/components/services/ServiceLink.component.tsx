@@ -1,11 +1,13 @@
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import {
-  ShellContext,
   ButtonType,
   PageLocation,
+  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import React, { useContext, useEffect, useState } from 'react';
+
 import { Service } from '../../data/types/dbaas/logs';
 import getServiceLabel from '../../helpers/getServiceLabel';
 import useLogTrackingActions from '../../hooks/useLogTrackingActions';
@@ -16,15 +18,13 @@ const ServiceLink = ({ service }: { service: Service }) => {
   const {
     shell: { navigation },
   } = useContext(ShellContext);
-  const goToDetailLogsAccess = useLogTrackingActions(
-    LogsActionEnum.go_to_detail_logs_access,
-  );
+  const goToDetailLogsAccess = useLogTrackingActions(LogsActionEnum.go_to_detail_logs_access);
   const { trackClick } = useOvhTracking();
 
   useEffect(() => {
     navigation
       .getURL('dedicated', `#/dbaas/logs/${service.serviceName}`, {})
-      .then(setServiceUrl);
+      .then((url) => setServiceUrl(url as string));
   }, [navigation, service]);
 
   return (

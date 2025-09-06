@@ -155,7 +155,7 @@ const Sidebar = (): JSX.Element => {
   useEffect(() => {
     aapi
       .get('/services/count')
-      .then((result) => {
+      .then((result: Record<string, any>) => {
         setServicesCount(result.data);
       })
       .catch(() => {});

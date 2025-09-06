@@ -1,4 +1,4 @@
-import { Task, IamMetadata } from './api.type';
+import { IamMetadata, Task } from './api.type';
 
 export type Region = {
   name: string;

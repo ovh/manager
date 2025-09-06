@@ -1,19 +1,11 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "lib": ["dom", "es2021"],
-    "target": "es2021",
-    "types": ["vite/client", "node"],
-    "module": "ES2020",
+    "rootDir": "src",
+    "noEmit": false,
     "outDir": "dist",
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
-    "isolatedModules": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "declarationDir": "./dist/types"
   },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

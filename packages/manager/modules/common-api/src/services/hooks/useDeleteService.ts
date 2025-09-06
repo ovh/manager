@@ -1,17 +1,11 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  MutationOptions,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
 import { useContext } from 'react';
 
-import {
-  getResourceServiceId,
-  getResourceServiceIdQueryKey,
-  deleteService,
-} from '../api';
+import { MutationOptions, useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { deleteService, getResourceServiceId, getResourceServiceIdQueryKey } from '../api';
 
 export type DeleteServiceMutationParams = {
   resourceName: string;
@@ -30,20 +24,16 @@ export const useDeleteService = ({
   ...options
 }: UseDeleteServiceParams) => {
   const queryClient = useQueryClient();
-  const { ovhSubsidiary } =
-    useContext(ShellContext)?.environment?.getUser() || {};
+  const { ovhSubsidiary } = useContext(ShellContext)?.environment?.getUser() || {};
 
   const { mutate: terminateService, ...mutation } = useMutation({
     mutationKey,
     mutationFn: async ({ resourceName }) => {
-      const { data } = await queryClient.fetchQuery<
-        ApiResponse<number[]>,
-        ApiError
-      >({
+      const { data } = await queryClient.fetchQuery<ApiResponse<number[]>, ApiError>({
         queryKey: getResourceServiceIdQueryKey({ resourceName }),
         queryFn: () => getResourceServiceId({ resourceName }),
       });
-      return deleteService({ serviceId: data[0] }, ovhSubsidiary);
+      return deleteService({ serviceId: data[0] ?? 0 }, ovhSubsidiary);
     },
     ...options,
   });

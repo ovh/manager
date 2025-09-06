@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
+
 import { useQueryClient } from '@tanstack/react-query';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { LogsContext } from '../../LogsToCustomer.context';
+import { getLogTailUrlQueryKey, useLogTailUrl } from '../../data/hooks/useLogTailUrl';
 import ApiError from '../apiError/ApiError.component';
-import {
-  getLogTailUrlQueryKey,
-  useLogTailUrl,
-} from '../../data/hooks/useLogTailUrl';
 import { LogMessages } from './logMessages/LogMessages.component';
 import './logTail.css';
 
@@ -25,10 +25,7 @@ export default function LogTail() {
         className={`h-[--tail-height] bg-slate-800 text-gray-200 flex items-center justify-center`}
       >
         {isPending && (
-          <OdsSpinner
-            data-testid="logTail-spinner"
-            className=" [&::part(spinner)]:fill-white"
-          />
+          <OdsSpinner data-testid="logTail-spinner" className=" [&::part(spinner)]:fill-white" />
         )}
         {error && (
           <ApiError
@@ -37,7 +34,7 @@ export default function LogTail() {
             onRetry={() =>
               queryClient.refetchQueries({
                 queryKey: getLogTailUrlQueryKey({
-                  logKind: currentLogKind.name,
+                  logKind: currentLogKind?.name,
                   logTailUrl: logApiUrls.logUrl,
                 }),
               })

@@ -13,7 +13,7 @@ const logActionNames = [
   'go_to_order_logs',
 ] as const;
 
-export type LogsActionName = typeof logActionNames[number];
+export type LogsActionName = (typeof logActionNames)[number];
 
 export const LogsActionEnum = Object.fromEntries(
   logActionNames.map((action) => [action, action]),

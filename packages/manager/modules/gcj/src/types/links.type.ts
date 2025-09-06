@@ -6,7 +6,5 @@ export type CanadianPolicyLinks = {
 };
 
 export type PolicyLinks = {
-  [key in OvhSubsidiary | 'LTE']: key extends 'CA'
-    ? CanadianPolicyLinks
-    : string;
+  [key in OvhSubsidiary | 'LTE']: key extends 'CA' ? CanadianPolicyLinks : string;
 };

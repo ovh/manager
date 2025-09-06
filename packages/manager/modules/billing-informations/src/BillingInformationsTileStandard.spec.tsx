@@ -1,17 +1,16 @@
 import React from 'react';
-import {
-  defaultServiceResponse,
-  ServiceDetails,
-} from '@ovh-ux/manager-module-common-api';
+
 import { render, waitFor } from '@testing-library/react';
 
+import { ServiceDetails, defaultServiceResponse } from '@ovh-ux/manager-module-common-api';
+
 import { BillingInformationsTileStandard } from './BillingInformationsTileStandard';
+import { Wrapper } from './test-utils';
 import {
   serviceEngagedAndContinueResponse,
   serviceEngagedAndEndResponse,
   serviceSuspendedResponse,
 } from './test-utils/mockUtils';
-import { Wrapper } from './test-utils';
 
 type TestParams = {
   mock: Partial<ServiceDetails>;

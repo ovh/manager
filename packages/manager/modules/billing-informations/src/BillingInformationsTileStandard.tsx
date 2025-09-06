@@ -1,12 +1,17 @@
 import React, { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsCard } from '@ovhcloud/ods-components/react';
+
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
+
+import BillingDetails from './BillingDetails.class';
+import BillingInformationsTile from './BillingInformationsTile';
 import {
   BillingInformationsTileContext,
   useBillingInformationsContextServiceDetails,
 } from './BillingInformationsTile.context';
-import BillingDetails from './BillingDetails.class';
-import BillingInformationsTile from './BillingInformationsTile';
 
 export type BillingInformationsTileProps = {
   resourceName?: string;
@@ -17,13 +22,10 @@ export const BillingInformationsTileStandardContent = ({
   onResiliateLinkClick,
 }: Pick<BillingInformationsTileProps, 'onResiliateLinkClick'>) => {
   const { t } = useTranslation('billing-informations-tile');
-  const {
-    data: serviceDetails,
-    isLoading,
-  } = useBillingInformationsContextServiceDetails();
+  const { data: serviceDetails, isLoading } = useBillingInformationsContextServiceDetails();
 
   const billingDetails = useMemo(
-    () => (isLoading ? undefined : new BillingDetails(serviceDetails)),
+    () => (isLoading ? undefined : new BillingDetails(serviceDetails || ({} as ServiceDetails))),
     [serviceDetails],
   );
 
@@ -38,15 +40,12 @@ export const BillingInformationsTileStandardContent = ({
       <BillingInformationsTile.State />
       <BillingInformationsTile.Divider />
       <BillingInformationsTile.NextBillingDate />
-      {!billingDetails?.isResiliated() &&
-        !billingDetails?.shouldDeleteAtExpiration() && (
-          <>
-            <BillingInformationsTile.Divider />
-            <BillingInformationsTile.ResiliateLink
-              onClickReturn={onResiliateLinkClick}
-            />
-          </>
-        )}
+      {!billingDetails?.isResiliated() && !billingDetails?.shouldDeleteAtExpiration() && (
+        <>
+          <BillingInformationsTile.Divider />
+          <BillingInformationsTile.ResiliateLink onClickReturn={onResiliateLinkClick} />
+        </>
+      )}
     </OdsCard>
   );
 };
@@ -62,12 +61,8 @@ export const BillingInformationsTileStandard = ({
     [resourceName],
   );
   return (
-    <BillingInformationsTileContext.Provider
-      value={BillingInformationsTileContextValues}
-    >
-      <BillingInformationsTileStandardContent
-        onResiliateLinkClick={onResiliateLinkClick}
-      />
+    <BillingInformationsTileContext.Provider value={BillingInformationsTileContextValues}>
+      <BillingInformationsTileStandardContent onResiliateLinkClick={onResiliateLinkClick} />
     </BillingInformationsTileContext.Provider>
   );
 };

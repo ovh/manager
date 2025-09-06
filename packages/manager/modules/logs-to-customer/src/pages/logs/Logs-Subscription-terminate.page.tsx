@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
-import { DeleteModal } from '@ovh-ux/manager-react-components';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import { DeleteModal } from '@ovh-ux/manager-react-components';
+
 import { LogsContext } from '../../LogsToCustomer.context';
 import { useDeleteLogSubscription } from '../../data/hooks/useLogSubscriptions';
 
@@ -14,7 +18,7 @@ export default function DataStreamsTerminate() {
   const { mutate, isPending } = useDeleteLogSubscription(
     logApiUrls.logSubscription,
     logApiVersion,
-    subscriptionId,
+    subscriptionId ?? '',
     currentLogKind,
     () => {
       navigate('..');
@@ -24,12 +28,8 @@ export default function DataStreamsTerminate() {
     <DeleteModal
       isOpen
       headline={t('log_subscription_terminate_modal_headline')}
-      deleteInputLabel={t(
-        'log_subscription_terminate_modal_delete_input_label',
-      )}
-      confirmButtonLabel={t(
-        'log_subscription_terminate_modal_confirm_button_label',
-      )}
+      deleteInputLabel={t('log_subscription_terminate_modal_delete_input_label')}
+      confirmButtonLabel={t('log_subscription_terminate_modal_confirm_button_label')}
       closeModal={() => {
         navigate('..');
       }}

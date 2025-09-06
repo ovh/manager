@@ -16,9 +16,7 @@ export const redirectToLoginPage = (onsuccessUrl = '') => {
   const params = [];
 
   if (loginUrl.indexOf('onsuccess') === -1) {
-    params.push(
-      `onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`,
-    );
+    params.push(`onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`);
   }
 
   // redirect to login url
@@ -29,9 +27,7 @@ export const redirectToLogoutPage = (onsuccessUrl = '') => {
   const params = [];
 
   if (logoutUrl.indexOf('onsuccess') === -1) {
-    params.push(
-      `onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`,
-    );
+    params.push(`onsuccess=${encodeURIComponent(onsuccessUrl || window.location.href)}`);
   }
 
   if (logoutUrl.indexOf('from') === -1 && document.referrer) {
@@ -39,9 +35,7 @@ export const redirectToLogoutPage = (onsuccessUrl = '') => {
   }
 
   // redirect to login url
-  redirectTo(
-    buildRedirectUrl(isOvhTelecom() ? euLogoutUrl : logoutUrl, params),
-  );
+  redirectTo(buildRedirectUrl(isOvhTelecom() ? euLogoutUrl : logoutUrl, params));
 };
 
 export * from './constants';

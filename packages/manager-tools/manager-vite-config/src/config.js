@@ -1,12 +1,13 @@
+import react from '@vitejs/plugin-react-swc';
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import react from '@vitejs/plugin-react-swc';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import yn from 'yn';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
-import IframeHmrPlugin from './plugin/iframe-hmr.js';
-import viteOvhDevServerPlugin from './plugin/dev-server.js';
+
 import { getCommonTranslations } from './commonTranslations.js';
+import viteOvhDevServerPlugin from './plugin/dev-server.js';
+import IframeHmrPlugin from './plugin/iframe-hmr.js';
 
 const isContainerApp = process.cwd().endsWith('container');
 const runInContainer = process.env.CONTAINER;
@@ -17,9 +18,7 @@ const getBaseConfig = (config) => {
   if (envConfig.isLABEU || process.env.LABEU) {
     const labeuHost = process.env.LABEU_HOST;
     if (!labeuHost) {
-      throw new Error(
-        'Please define the environment variable "LABEU_HOST=host" to use LABEU env',
-      );
+      throw new Error('Please define the environment variable "LABEU_HOST=host" to use LABEU env');
     }
     envConfig.host = labeuHost;
   }
@@ -64,7 +63,7 @@ const getBaseConfig = (config) => {
       viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
       svgr({
-        include: "**/*.svg",
+        include: '**/*.svg',
       }),
       viteStaticCopy({
         targets: [...getCommonTranslations()],
@@ -74,10 +73,7 @@ const getBaseConfig = (config) => {
       preprocessorOptions: {
         scss: {
           includePaths: [
-            resolve(
-              dirname(fileURLToPath(import.meta.url)),
-              '../../../../../node_modules',
-            ),
+            resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../node_modules'),
           ],
         },
       },

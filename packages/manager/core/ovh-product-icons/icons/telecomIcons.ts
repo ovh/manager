@@ -1,4 +1,4 @@
-import { TelecomEthernet, Telephony, Headset } from '../assets-icon-svg/icons';
+import { Headset, TelecomEthernet, Telephony } from '../assets-icon-svg/icons';
 
 const telecomIcons = {
   TelecomEthernet,

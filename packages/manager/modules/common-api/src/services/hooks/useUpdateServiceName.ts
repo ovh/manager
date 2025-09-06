@@ -1,14 +1,8 @@
+import { MutationOptions, useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import {
-  useQueryClient,
-  useMutation,
-  MutationOptions,
-} from '@tanstack/react-query';
-import {
-  updateServiceName,
-  getResourceServiceId,
-  getResourceServiceIdQueryKey,
-} from '../api';
+
+import { getResourceServiceId, getResourceServiceIdQueryKey, updateServiceName } from '../api';
 
 export const updateServiceNameMutationKey = ['put/services/displayName'];
 
@@ -33,13 +27,11 @@ export const useUpdateServiceDisplayName = ({
   const { mutate: updateDisplayName, ...mutation } = useMutation({
     mutationKey,
     mutationFn: async ({ resourceName, displayName }) => {
-      const { data: servicesId } = await queryClient.fetchQuery<
-        ApiResponse<number[]>
-      >({
+      const { data: servicesId } = await queryClient.fetchQuery<ApiResponse<number[]>>({
         queryKey: getResourceServiceIdQueryKey({ resourceName }),
         queryFn: () => getResourceServiceId({ resourceName }),
       });
-      return updateServiceName({ serviceId: servicesId[0], displayName });
+      return updateServiceName({ serviceId: servicesId[0] ?? 0, displayName });
     },
     ...options,
   });

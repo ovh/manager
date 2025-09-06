@@ -1,7 +1,7 @@
-import './logKind';
-import './logTail';
 import './error';
+import './logKind';
+import './logService';
 import './logStream';
 import './logStreams';
-import './logService';
 import './logSubscription';
+import './logTail';

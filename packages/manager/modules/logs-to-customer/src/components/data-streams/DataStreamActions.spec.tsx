@@ -1,11 +1,11 @@
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { logStreamsMock } from '../../data/mocks/logStream.mock';
 import { logSubscriptionsMock } from '../../data/mocks/logSubscription.mock';
 import { LogSubscription } from '../../data/types/dbaas/logs';
@@ -13,7 +13,11 @@ import DataStreamActions, {
   DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID,
 } from './DataStreamActions.component';
 
-const useLogSubscriptionsMockValue: any = {
+const useLogSubscriptionsMockValue: {
+  data: typeof logSubscriptionsMock;
+  isPending: boolean;
+  error: Error | null;
+} = {
   data: logSubscriptionsMock,
   isPending: false,
   error: null,
@@ -66,9 +70,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DataStreamActions stream={logStreamsMock[0]} />
       </ShellContext.Provider>
     </QueryClientProvider>,
@@ -87,12 +89,13 @@ describe('data-stream actions', () => {
     expect(getByTestId(DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID)).toBeVisible();
   });
 
-  it('should render error message when api return an error', () => {
+  it('should render error message when api return an error', async () => {
+    useLogSubscriptionsMockValue.isPending = false;
     useLogSubscriptionsMockValue.error = new Error();
 
     const { getByText } = renderComponent();
 
-    waitFor(() => expect(getByText('error_datagrid_cell')).toBeVisible());
+    await waitFor(() => expect(getByText('error_datagrid_cell')).toBeVisible());
   });
 
   type TTestCases = {
@@ -120,9 +123,7 @@ describe('data-stream actions', () => {
 
       const { getByText, queryByText, queryByTestId } = renderComponent();
 
-      expect(
-        queryByTestId(DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID),
-      ).not.toBeInTheDocument();
+      expect(queryByTestId(DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID)).not.toBeInTheDocument();
       expect(queryByText('error_datagrid_cell')).not.toBeInTheDocument();
 
       expect(getByText(mockRender)).toBeVisible();

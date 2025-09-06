@@ -1,39 +1,30 @@
-import {
-  OdsButton,
-  OdsSelect,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import { useQueryClient } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton, OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import ApiError from '../../components/apiError/ApiError.component';
-import {
-  getLogServicesQueryKey,
-  useLogServices,
-} from '../../data/hooks/useLogService';
-import { Service } from '../../data/types/dbaas/logs';
-import DataStreamsDatagrid from './DataStreamsDatagrid.component';
-import getServiceLabel from '../../helpers/getServiceLabel';
-import ServiceLink from '../../components/services/ServiceLink.component';
-import { LogsActionEnum } from '../../types/logsTracking';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import OrderServiceButton from '../../components/services/OrderServiceButton.component';
 import KnowMoreLink from '../../components/services/KnowMoreLink.component';
+import OrderServiceButton from '../../components/services/OrderServiceButton.component';
+import ServiceLink from '../../components/services/ServiceLink.component';
+import { getLogServicesQueryKey, useLogServices } from '../../data/hooks/useLogService';
+import { Service } from '../../data/types/dbaas/logs';
+import getServiceLabel from '../../helpers/getServiceLabel';
+import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+import { LogsActionEnum } from '../../types/logsTracking';
+import DataStreamsDatagrid from './DataStreamsDatagrid.component';
 
 const BackButton = () => {
   const { t } = useTranslation('logStreams');
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const subscribeLogsAccessAction = useLogTrackingActions(
-    LogsActionEnum.subscribe_logs_access,
-  );
+  const subscribeLogsAccessAction = useLogTrackingActions(LogsActionEnum.subscribe_logs_access);
 
   return (
     <OdsButton
@@ -64,7 +55,7 @@ export default function DataStreams() {
   const { data: logServices, isPending, error } = useLogServices();
 
   useEffect(() => {
-    if (!isPending && logServices?.length > 0) {
+    if (!isPending && logServices && logServices.length > 0) {
       setCurrentService(logServices[0]);
     }
   }, [logServices, isPending]);
@@ -82,7 +73,7 @@ export default function DataStreams() {
         testId="logServices-error"
         error={error}
         onRetry={() =>
-          queryClient.refetchQueries({
+          void queryClient.refetchQueries({
             queryKey: getLogServicesQueryKey(),
           })
         }
@@ -103,9 +94,7 @@ export default function DataStreams() {
     );
 
   if (!currentService)
-    return (
-      <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>
-    );
+    return <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>;
 
   return (
     <div className="flex flex-col gap-4">
@@ -118,9 +107,7 @@ export default function DataStreams() {
             value={currentService?.serviceName}
             isDisabled={logServices.length === 1}
             onOdsChange={(event) => {
-              const newLogService = logServices.find(
-                (k) => k.serviceName === event.detail.value,
-              );
+              const newLogService = logServices.find((k) => k.serviceName === event.detail.value);
               if (newLogService) setCurrentService(newLogService);
             }}
             data-testid={'logKindSelect'}

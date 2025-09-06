@@ -1,9 +1,13 @@
-import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
+import { AxiosResponseHeaders, InternalAxiosRequestConfig } from 'axios';
 import { vi } from 'vitest';
+
 import { ApiResponse } from '@ovh-ux/manager-core-api';
-import { useVrackServicesList } from './useVrackServicesList';
+
+import { VrackServicesWithIAM } from '../../types';
 import { getVrackServicesResourceList } from '../api';
+import { useVrackServicesList } from './useVrackServicesList';
 
 vi.mock('../api', async () => {
   const actual = await vi.importActual<typeof import('../api')>('../api');
@@ -28,15 +32,15 @@ describe('useVrackServicesList', () => {
   });
 
   it('should return data correctly when API call succeeds', async () => {
-    const mockData: ApiResponse<any[]> = {
+    const mockData: ApiResponse<VrackServicesWithIAM[]> = {
       data: [
         { id: 'service-1', currentTasks: [] },
         { id: 'service-2', currentTasks: [{ status: 'RUNNING' }] },
-      ],
+      ] as VrackServicesWithIAM[],
       status: 200,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     };
 
     vi.mocked(getVrackServicesResourceList).mockResolvedValue(mockData);
@@ -56,9 +60,7 @@ describe('useVrackServicesList', () => {
   });
 
   it('should return an error when API call fails', async () => {
-    vi.mocked(getVrackServicesResourceList).mockRejectedValue(
-      new Error('API Error'),
-    );
+    vi.mocked(getVrackServicesResourceList).mockRejectedValue(new Error('API Error'));
 
     const { result } = renderHook(() => useVrackServicesList(), {
       wrapper: createWrapper(),

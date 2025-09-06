@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Tmessage } from '../../../../data/api/logTailMessages';
-import { LogLevel } from './logLevel/LogLevel.component';
 import { HighlightSearch } from './highligthSearch/HighlightSearch.component';
+import { LogLevel } from './logLevel/LogLevel.component';
 import { LogTimestamp } from './logTimestamp/LogTimestamp.component';
 
 export const LogSeparator = () => {
@@ -16,7 +17,11 @@ const LogContent = ({ message }: { message: Tmessage['message'] }) => {
   );
 };
 
-export const Log = ({ msg }: { msg: Tmessage }) => {
+export const Log = ({ msg }: { msg?: Tmessage }) => {
+  if (!msg) {
+    return null;
+  }
+
   return (
     <div>
       <LogTimestamp timestamp={msg.timestamp} />

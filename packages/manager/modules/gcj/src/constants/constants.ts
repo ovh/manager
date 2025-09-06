@@ -1,8 +1,7 @@
 import { PolicyLinks } from '../types/links.type';
 
 export const LegalPolicyLinkByLanguage: PolicyLinks = {
-  DEFAULT:
-    'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
+  DEFAULT: 'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
   ASIA: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
   AU: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
   CA: {

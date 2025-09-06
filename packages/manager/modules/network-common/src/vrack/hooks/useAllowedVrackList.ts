@@ -1,12 +1,14 @@
 import { UseQueryOptions, useQueries, useQuery } from '@tanstack/react-query';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { AllowedServicesResponse } from '../../types';
 import {
   getVrackAllowedServices,
   getVrackAllowedServicesQueryKey,
   getVrackList,
   getVrackListQueryKey,
 } from '../api';
-import { AllowedServicesResponse } from '../../types';
 
 /**
  * @returns List of allowed vRack to be associated to a vRack Services
@@ -50,14 +52,11 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
         : [],
     combine: (result) => {
       const resultStatus = {
-        isLoading:
-          isVrackListLoading || result.some(({ isLoading }) => isLoading),
+        isLoading: isVrackListLoading || result.some(({ isLoading }) => isLoading),
         isError: isVrackListError,
         error: vrackListError,
         vrackListInError: result
-          .map(({ isError }, index) =>
-            isError ? vrackListResponse?.data?.[index] : null,
-          )
+          .map(({ isError }, index) => (isError ? vrackListResponse?.data?.[index] : null))
           .filter(Boolean),
       };
 
@@ -66,13 +65,13 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
           vrackServicesId && !resultStatus.isLoading && !resultStatus.isError
             ? result.reduce((allowedVrackList, { data }, index) => {
                 if (
-                  (data as {
-                    data: AllowedServicesResponse;
-                  })?.data.vrackServices?.includes(vrackServicesId)
+                  (
+                    data as {
+                      data: AllowedServicesResponse;
+                    }
+                  )?.data.vrackServices?.includes(vrackServicesId)
                 ) {
-                  return allowedVrackList.concat(
-                    vrackListResponse?.data[index],
-                  );
+                  return allowedVrackList.concat(vrackListResponse?.data[index] as string);
                 }
                 return allowedVrackList;
               }, [] as string[])

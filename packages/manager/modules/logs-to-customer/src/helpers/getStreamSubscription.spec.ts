@@ -12,7 +12,7 @@ describe('getStreamSubscription test', () => {
   const testcases: TTestCases[] = [
     {
       subscriptions: logSubscriptionsMock,
-      streamId: logSubscriptionsMock[0].streamId,
+      streamId: logSubscriptionsMock?.[0]?.streamId ?? '',
       result: logSubscriptionsMock[0],
     },
     {
@@ -22,10 +22,7 @@ describe('getStreamSubscription test', () => {
     },
   ];
 
-  it.each(testcases)(
-    'should return $result ',
-    ({ subscriptions, streamId, result }) => {
-      expect(getStreamSubscription(subscriptions, streamId)).toEqual(result);
-    },
-  );
+  it.each(testcases)('should return $result ', ({ subscriptions, streamId, result }) => {
+    expect(getStreamSubscription(subscriptions, streamId)).toEqual(result);
+  });
 });

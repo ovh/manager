@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-console */
-
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import path, { dirname, resolve, join } from 'path';

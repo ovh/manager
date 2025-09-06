@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
+
 import { ManagerTile } from '@ovh-ux/manager-react-components';
+
 import { BillingInformationsTileContext } from './BillingInformationsTile.context';
 import { BillingInformationsCreationDate } from './components/CreationDate/CreationDate';
 import { BillingInformationsEngagement } from './components/EngagementBadge/EngagementBadge';
 import { BillingInformationsNextBilling } from './components/NextBillingDate/NextBillingDate';
-import { BillingInformationsState } from './components/State/State';
 import { BillingInformationsResiliateLink } from './components/ResiliateLink/ResiliateLink';
+import { BillingInformationsState } from './components/State/State';
 
 export type BillingInformationsTileProps = {
   resourceName?: string;
@@ -21,10 +23,9 @@ export default function BillingInformationsTile({
     }),
     [resourceName],
   );
+
   return (
-    <BillingInformationsTileContext.Provider
-      value={BillingInformationsTileContextValues}
-    >
+    <BillingInformationsTileContext.Provider value={BillingInformationsTileContextValues}>
       <ManagerTile>{children}</ManagerTile>
     </BillingInformationsTileContext.Provider>
   );

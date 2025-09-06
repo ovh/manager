@@ -24,13 +24,16 @@
     "build": "tsc",
     "dev": "tsc",
     "dev:watch": "tsc --watch",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
     "prepare": "tsc"
   },
   "dependencies": {
     "@ovh-ux/ovh-reket": "^2.1.11"
   },
   "devDependencies": {
-    "@ovh-ux/request-tagger": "^0.4.1"
+    "@ovh-ux/request-tagger": "^0.4.1",
+    "@ovh-ux/manager-static-analysis-kit": "*"
   },
   "peerDependencies": {
     "@ovh-ux/request-tagger": "^0.4.0"
