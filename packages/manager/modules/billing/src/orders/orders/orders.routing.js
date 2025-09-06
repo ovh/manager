@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return kycValidated;
       },
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
-      criteria: /* @ngInject */ ($log, filter) => {
+      criteria: /* @ngInject */ ($log, $translate, filter) => {
         if (filter) {
           try {
             const criteria = JSON.parse(decodeURIComponent(filter));
@@ -45,7 +45,16 @@ export default /* @ngInject */ ($stateProvider) => {
             $log.error(err);
           }
         }
-        return undefined;
+        return [
+          {
+            property: 'status',
+            operator: 'isNot',
+            value: 'orderExpired',
+            title: `${$translate.instant('orders_status')} ${$translate.instant(
+              'common_criteria_adder_operator_boolean_isNot',
+            )} ${$translate.instant('orders_order_status_orderExpired')}`,
+          },
+        ];
       },
       schema: /* @ngInject */ (OvhApiMe) => OvhApiMe.v6().schema().$promise,
 
