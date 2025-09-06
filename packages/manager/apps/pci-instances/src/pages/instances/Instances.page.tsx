@@ -38,13 +38,11 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import clsx from 'clsx';
-import NotFoundPage from '../404/NotFound.page';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
-import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 
@@ -95,18 +93,13 @@ const Instances: FC = () => {
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
-  const section = useActionSection();
-  const routeLoaderData = useRouteLoaderData(section ?? '') as
-    | {
-        notFoundAction?: boolean;
-      }
-    | undefined;
 
   const {
     data,
     isFetchingNextPage,
     refresh,
     isFetching,
+    isPending,
     isRefetching,
   } = useInstances({
     limit: 20,
@@ -161,10 +154,6 @@ const Instances: FC = () => {
 
   if (data && !data.length && !filters.length && !isFetching)
     return <Navigate to={SECTIONS.onboarding} />;
-
-  if (routeLoaderData?.notFoundAction) {
-    return <NotFoundPage />;
-  }
 
   return (
     <>
@@ -279,7 +268,7 @@ const Instances: FC = () => {
           )}
         </div>
       </PageLayout>
-      {!isFetching && <Outlet />}
+      {!isPending && <Outlet />}
     </>
   );
 };

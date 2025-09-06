@@ -10,4 +10,6 @@ export type TSectionType =
   | 'rescue/start'
   | 'rescue/end'
   | 'backup'
-  | 'billing/monthly/activate';
+  | 'billing/monthly/activate'
+  | 'network/private/attach'
+  | 'attach';

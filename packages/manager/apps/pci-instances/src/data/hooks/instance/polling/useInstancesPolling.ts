@@ -5,7 +5,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { getInstance } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
@@ -81,13 +81,15 @@ export const useInstancesPolling = (
     ),
   });
 
-  polledInstances.forEach(({ id, data, error, isLoading }): void => {
-    if (isLoading) return undefined;
-    if (error && isApiErrorResponse(error)) {
-      return onError?.(error, id);
-    }
-    return onSuccess?.(data);
-  });
+  useEffect(() => {
+    polledInstances.forEach(({ id, data, error, isLoading }): void => {
+      if (isLoading) return undefined;
+      if (error && isApiErrorResponse(error)) {
+        return onError?.(error, id);
+      }
+      return onSuccess?.(data);
+    });
+  }, [onError, onSuccess, polledInstances]);
 
   return polledInstances;
 };
