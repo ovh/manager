@@ -48,6 +48,30 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
+      columnConfig: /* @ngInject */ ($q) =>
+        $q.resolve({
+          data: [
+            {
+              property: 'serviceName',
+              label: 'Service Name',
+              serviceLink: true,
+              hidden: false,
+            },
+            { property: 'displayName', label: 'Display Name', hidden: false },
+            { property: 'hostname', label: 'Hostname', hidden: false },
+            { property: 'port', label: 'Port', hidden: false },
+            { property: 'versionLabel', label: 'Version Label', hidden: false },
+            { property: 'version', label: 'Version', hidden: true },
+            { property: 'type', label: 'Type', hidden: true },
+            { property: 'state', label: 'State', hidden: true },
+            { property: 'server', label: 'Server', hidden: true },
+            { property: 'hostnameFtp', label: 'Hostname FTP', hidden: true },
+            { property: 'portFtp', label: 'Port FTP', hidden: true },
+            { property: 'guiUrl', label: 'GUI URL', hidden: true },
+            { property: 'datacenter', label: 'Datacenter', hidden: true },
+            { property: 'cpu', label: 'CPU', hidden: true },
+          ],
+        }),
     },
   });
 };
