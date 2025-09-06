@@ -1,0 +1,15 @@
+{
+  "products_all-dom": "Pack AllDom",
+  "products_cdn": "Content Delivery Network",
+  "products_dedicated-servers": "Serveurs dédiés",
+  "products_domains": "Noms de domaine",
+  "products_housing": "Serveurs Housing",
+  "products_hycu": "HYCU",
+  "products_ip": "Adresses IP Publiques",
+  "products_nutanix": "Nutanix",
+  "products_veeam-enterprise": "Veeam Enterprise",
+  "products_veeam-for-vcd": "Managed Veeam for VCD",
+  "products_vps": "Serveurs Privés Virtuels",
+  "products_vmware-vsphere": "Managed VMware vSphere",
+  "products_vmware-vcf": "Public VCF as-a-Service"
+}
