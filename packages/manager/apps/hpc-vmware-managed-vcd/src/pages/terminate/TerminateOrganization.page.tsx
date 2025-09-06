@@ -10,7 +10,9 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMessageContext } from '@/context/Message.context';
+import { APP_NAME_TRACKING, TRACKING } from '@/tracking.constants';
 
 export default function TerminateOrganization() {
   const navigate = useNavigate();
@@ -21,13 +23,14 @@ export default function TerminateOrganization() {
   const { addSuccess } = useMessageContext();
 
   const closeModal = () => {
+    trackClick(TRACKING.dashboardTerminate.cancel);
     navigate('..');
   };
 
   const onSuccess = () => {
     trackPage({
       pageType: PageType.bannerSuccess,
-      pageName: 'delete_managed-vcd_success',
+      pageName: `delete_${APP_NAME_TRACKING}_success`,
     });
     const messageKey =
       ovhSubsidiary === 'US'
@@ -39,10 +42,12 @@ export default function TerminateOrganization() {
     });
     closeModal();
   };
-  const onError = () => {
+  const onError = (error: ApiError) => {
     trackPage({
       pageType: PageType.bannerError,
-      pageName: 'delete_managed_vcd_error',
+      pageName: `delete_${APP_NAME_TRACKING}_error::${error.response.data.message
+        .toLowerCase()
+        .replaceAll(' ', '-')}`,
     });
   };
   const { terminateService, isPending, error, isError } = useDeleteService({
@@ -61,12 +66,7 @@ export default function TerminateOrganization() {
   };
 
   const confirmHandler = () => {
-    trackClick({
-      location: PageLocation.popup,
-      buttonType: ButtonType.button,
-      actionType: 'action',
-      actions: ['delete_managed-vcd', 'confirm'],
-    });
+    trackClick(TRACKING.dashboardTerminate.confirm);
     terminateService({ resourceName: id });
   };
 
