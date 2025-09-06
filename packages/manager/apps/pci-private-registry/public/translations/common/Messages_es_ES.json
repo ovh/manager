@@ -100,5 +100,5 @@
   "private_registry_common_status_DISABLE": "Desactivar",
   "private_registry_iam_authentication_confirm_label": "Introduzca «CONFIRM» en el siguiente campo para confirmar la operación",
   "private_registry_retrieving_failure": "Se ha producido un error al cargar el registro privado {{ registryId }}",
-  "private_registry_containers_deployment_mode_label": "Modo de implementación"
+  "private_registry_containers_deployment_mode_label": "Modo de despliegue"
 }

@@ -3,16 +3,16 @@
   "order": "Commander",
   "back": "Retour",
   "title": "Dashboard",
-  "email": "Courriel",
-  "subject": "Sujet",
+  "email": "E-mail",
+  "subject": "Objet",
   "message": "Message",
   "submitButton": "Envoyer",
   "successMessage": "Votre demande a été envoyée avec succès.",
   "errors": {
-    "emailRequired": "Le courriel est requis.",
-    "emailInvalid": "Veuillez entrer une adresse courriel valide.",
-    "subjectRequired": "Le sujet est requis.",
-    "messageRequired": "Le message est requis."
+    "emailRequired": "L’e-mail est obligatoire.",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+    "subjectRequired": "L’objet est obligatoire.",
+    "messageRequired": "Le message est obligatoire."
   },
   "general-information": "Informations générales",
   "help": "Aide"
