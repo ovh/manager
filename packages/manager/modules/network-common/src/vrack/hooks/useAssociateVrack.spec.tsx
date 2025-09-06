@@ -1,11 +1,14 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useTask } from '@ovh-ux/manager-react-components';
-import { useAssociateVrack } from './useAssociateVrack';
-import { associateVrackServices } from '../api';
-import { Status } from '../../types';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { AxiosResponseHeaders, InternalAxiosRequestConfig } from 'axios';
+import { vi } from 'vitest';
+
+import { useTask } from '@ovh-ux/manager-react-components';
+
+import { Status } from '../../types';
+import { associateVrackServices } from '../api';
+import { useAssociateVrack } from './useAssociateVrack';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useTask: vi.fn(),
@@ -22,21 +25,13 @@ vi.mock('../api', async () => {
 const queryClient = new QueryClient();
 
 const TestComponent = ({ vrackServicesId }: { vrackServicesId: string }) => {
-  const {
-    associateVs,
-    isPending,
-    isError,
-    error,
-    isSuccess,
-  } = useAssociateVrack({
+  const { associateVs, isPending, isError, error, isSuccess } = useAssociateVrack({
     vrackServicesId,
   });
 
   return (
     <div>
-      <button onClick={() => associateVs({ vrackId: 'test-vrack-id' })}>
-        Associate
-      </button>
+      <button onClick={() => associateVs({ vrackId: 'test-vrack-id' })}>Associate</button>
       {isPending && <p>Loading...</p>}
       {isError && <p>Error: {error?.message}</p>}
       {isSuccess && <p>Success!</p>}
@@ -57,6 +52,7 @@ describe('useAssociateVrack', () => {
       isError: false,
       error: null,
       isSuccess: true,
+      onFinish: expect.any(Function) as unknown as () => void,
     });
 
     vi.mocked(associateVrackServices).mockResolvedValue({
@@ -70,8 +66,8 @@ describe('useAssociateVrack', () => {
       },
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     });
     vi.mocked(useTask).mockImplementation(mockUseTask);
 
@@ -95,7 +91,7 @@ describe('useAssociateVrack', () => {
       taskId: 'task-id',
       onSuccess: undefined,
       onError: undefined,
-      onFinish: expect.any(Function),
+      onFinish: expect.any(Function) as unknown as () => void,
     });
   });
 
@@ -131,7 +127,7 @@ describe('useAssociateVrack', () => {
       taskId: undefined,
       onSuccess: undefined,
       onError: undefined,
-      onFinish: expect.any(Function),
+      onFinish: expect.any(Function) as unknown as () => void,
     });
   });
 
@@ -154,8 +150,8 @@ describe('useAssociateVrack', () => {
       },
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     });
     vi.mocked(useTask).mockImplementation(mockUseTask);
 
@@ -195,8 +191,8 @@ describe('useAssociateVrack', () => {
       },
       status: 0,
       statusText: '',
-      headers: undefined,
-      config: undefined,
+      headers: {} as AxiosResponseHeaders,
+      config: {} as InternalAxiosRequestConfig,
     });
     vi.mocked(useTask).mockImplementation(mockUseTask);
 

@@ -1,23 +1,23 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Contract } from '@ovh-ux/manager-module-order';
-import { useCreateVrackServicesCart } from './useCreateVrackServicesCart';
-import { createVrackServicesCart } from '../utils/cart';
-import { useSendOrder } from './useSendOrder';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { Contract } from '@ovh-ux/manager-module-order';
+
+import { createVrackServicesCart } from '../utils/cart';
+import { useCreateVrackServicesCart } from './useCreateVrackServicesCart';
+import { SendOrderState, useSendOrder } from './useSendOrder';
 
 vi.mock('../utils/cart', async () => {
-  const actual = await vi.importActual<typeof import('../utils/cart')>(
-    '../utils/cart',
-  );
+  const actual = await vi.importActual<typeof import('../utils/cart')>('../utils/cart');
   return {
     ...actual,
     createVrackServicesCart: vi.fn(),
   };
 });
 
-vi.mock('./useSendOrder', async () => ({
+vi.mock('./useSendOrder', () => ({
   useSendOrder: vi.fn().mockReturnValue({
     sendOrder: vi.fn(),
     isPending: false,
@@ -31,13 +31,7 @@ vi.mock('./useSendOrder', async () => ({
 const queryClient = new QueryClient();
 
 const TestComponent = () => {
-  const {
-    createCart,
-    isPending,
-    isError,
-    error,
-    data,
-  } = useCreateVrackServicesCart();
+  const { createCart, isPending, isError, error, data } = useCreateVrackServicesCart();
 
   const handleCreateCart = () => {
     createCart({ region: 'EU', ovhSubsidiary: 'FR' });
@@ -63,8 +57,8 @@ describe('useCreateVrackServicesCart', () => {
       sendOrder: vi.fn(),
       isPending: false,
       isError: false,
-      sendOrderState: null,
-      error: undefined,
+      sendOrderState: {} as SendOrderState,
+      error: null,
       data: undefined,
     });
   });
@@ -73,15 +67,13 @@ describe('useCreateVrackServicesCart', () => {
     const mockCreateCartResponse = { cartId: 'cart-id', contractList: [] };
     const mockSendOrder = vi.fn().mockResolvedValue({});
 
-    vi.mocked(createVrackServicesCart).mockResolvedValue(
-      mockCreateCartResponse,
-    );
+    vi.mocked(createVrackServicesCart).mockResolvedValue(mockCreateCartResponse);
     vi.mocked(useSendOrder).mockReturnValue({
       sendOrder: mockSendOrder,
       isPending: false,
       isError: false,
-      sendOrderState: null,
-      error: undefined,
+      sendOrderState: {} as SendOrderState,
+      error: null,
       data: undefined,
     });
 
@@ -137,8 +129,8 @@ describe('useCreateVrackServicesCart', () => {
 
       isPending: true,
       isError: false,
-      sendOrderState: null,
-      error: undefined,
+      sendOrderState: {} as SendOrderState,
+      error: null,
       data: undefined,
     });
 
@@ -156,15 +148,13 @@ describe('useCreateVrackServicesCart', () => {
   it('should call sendOrder only if contractList is empty', async () => {
     const mockCreateCartResponse = { cartId: 'cart-id', contractList: [] };
     const mockSendOrder = vi.fn().mockResolvedValue({});
-    vi.mocked(createVrackServicesCart).mockResolvedValue(
-      mockCreateCartResponse,
-    );
+    vi.mocked(createVrackServicesCart).mockResolvedValue(mockCreateCartResponse);
     vi.mocked(useSendOrder).mockReturnValue({
       sendOrder: mockSendOrder,
       isPending: false,
       isError: false,
-      sendOrderState: null,
-      error: undefined,
+      sendOrderState: {} as SendOrderState,
+      error: null,
       data: undefined,
     });
 
@@ -182,21 +172,17 @@ describe('useCreateVrackServicesCart', () => {
   });
 
   it('should not call sendOrder if contractList is not empty', async () => {
-    const mockCreateCartResponse = {
-      cartId: 'cart-id',
-      contractList: ['contract-1'],
-    };
     const mockSendOrder = vi.fn().mockResolvedValue({});
     vi.mocked(createVrackServicesCart).mockResolvedValue({
       cartId: 'cart-id',
-      contractList: [('contract-1' as unknown) as Contract],
+      contractList: ['contract-1' as unknown as Contract],
     });
     vi.mocked(useSendOrder).mockReturnValue({
       sendOrder: mockSendOrder,
       isPending: false,
       isError: false,
-      sendOrderState: null,
-      error: undefined,
+      sendOrderState: {} as SendOrderState,
+      error: null,
       data: undefined,
     });
 

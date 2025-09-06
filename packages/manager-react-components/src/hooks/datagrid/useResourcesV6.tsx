@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import isDate from 'lodash.isdate';
 import {
   applyFilters,
@@ -69,16 +69,15 @@ function sortColumn(
 function applySearch<T>(items: T[], filters: Filter[], searchInput: string) {
   if (searchInput.length === 0 || !filters.length) return items;
 
-  return items?.filter(
-    (item) =>
-      filters?.some(({ key }) => {
-        const value = item[key];
-        if (value === null || value === undefined) return false;
-        return value
-          ?.toString()
-          ?.toLowerCase()
-          ?.includes(searchInput?.toLowerCase());
-      }),
+  return items?.filter((item) =>
+    filters?.some(({ key }) => {
+      const value = item[key];
+      if (value === null || value === undefined) return false;
+      return value
+        ?.toString()
+        ?.toLowerCase()
+        ?.includes(searchInput?.toLowerCase());
+    }),
   );
 }
 
@@ -93,7 +92,9 @@ export function useResourcesV6<T extends Record<string, unknown>>({
 }: ResourcesV6Params<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilters, setSearchFilters] = useState<Filter[]>([]);
-  const { data, isError, isLoading, error, status } = useQuery({
+  const { data, isError, isLoading, error, status } = useQuery<
+    FetchResultV6<T>
+  >({
     queryKey: [queryKey],
     queryFn: queryFn ? () => queryFn(route) : () => v6.get(route),
     refetchInterval: refetchInterval || false,

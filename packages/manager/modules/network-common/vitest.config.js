@@ -1,29 +1,28 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import {
+  createConfig,
+  defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
+} from '@ovh-ux/manager-tests-setup';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    coverage: {
-      include: ['src'],
-      exclude: [],
-    },
-    testTimeout: 60_000,
-    fileParallelism: false,
-    maxWorkers: 1,
-    pollOptions: {
-      forks: {
-        singleFork: true,
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      coverage: {
+        exclude: [...defaultExcludedFiles],
       },
-      threads: {
-        singleThread: true,
+      fileParallelism: false,
+      maxWorkers: 1,
+      pollOptions: {
+        forks: {
+          singleFork: true,
+        },
+        threads: {
+          singleThread: true,
+        },
       },
     },
-  },
-  resolve: {
-    mainFields: ['module'],
-  },
-});
+  }),
+);

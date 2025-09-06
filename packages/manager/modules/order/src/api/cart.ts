@@ -1,5 +1,6 @@
-import apiClient from '@ovh-ux/manager-core-api';
-import { Cart, Order, ConfigurationItem, Item, Contract } from './order.type';
+import { apiClient } from '@ovh-ux/manager-core-api';
+
+import { Cart, ConfigurationItem, Contract, Item, Order } from './order.type';
 
 export type PostOrderCartCartIdCheckoutParams = {
   cartId: string;
@@ -32,10 +33,7 @@ export const postConfigureCartItem = async ({
   label: string;
   value: string;
 }) =>
-  apiClient.v6.post<ConfigurationItem>(
-    `/order/cart/${cartId}/item/${itemId}/configuration`,
-    data,
-  );
+  apiClient.v6.post<ConfigurationItem>(`/order/cart/${cartId}/item/${itemId}/configuration`, data);
 
 export type CartItem = {
   itemEndpoint: string;
@@ -87,9 +85,7 @@ export const createCart = async ({
     cartId: data?.cartId,
   });
 
-  const orderContractsQuery = await apiClient.v6.get<Order>(
-    `/order/cart/${data?.cartId}/checkout`,
-  );
+  const orderContractsQuery = await apiClient.v6.get<Order>(`/order/cart/${data?.cartId}/checkout`);
   return {
     cartId: data?.cartId,
     contractList: orderContractsQuery.data.contracts,

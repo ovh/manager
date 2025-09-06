@@ -1,24 +1,23 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
+import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
 import {
-  getServicesMocks,
-  GetServicesMocksParams,
-} from '@ovh-ux/manager-module-common-api';
-import {
-  getCartMocks,
   GetCartMocksParams,
-  getOrderDetailsMocks,
   GetOrderDetailsMocksParams,
+  getCartMocks,
+  getOrderDetailsMocks,
 } from '@ovh-ux/manager-module-order/__mocks__';
 import {
-  getFeatureAvailabilityMocks,
   GetFeatureAvailabilityMocksParams,
+  getFeatureAvailabilityMocks,
 } from '@ovh-ux/manager-react-components';
+
+import { GetVrackMocksParams, getVrackMocks } from './vrack';
 import {
-  getVrackServicesMocks,
+  GetRegionMocksParams,
   GetVrackServicesMocksParams,
-} from './vrack-services/vrack-services';
-import { getVrackMocks, GetVrackMocksParams } from './vrack';
-import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
+  getRegionMocks,
+  getVrackServicesMocks,
+} from './vrack-services';
 
 export type NetworkConfigParams = GetVrackServicesMocksParams &
   GetOrderDetailsMocksParams &

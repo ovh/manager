@@ -33,7 +33,7 @@ export const createVrackServicesCart = async ({
         configurations: [{ label: 'region_name', value: region }],
       },
       hasVrack && vrackItem,
-    ].filter(Boolean),
+    ].filter(Boolean) as CartItem[],
   });
 
 export const createVrackOnlyCart = async (ovhSubsidiary: string) =>

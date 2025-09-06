@@ -70,9 +70,7 @@ export const getVcdProductSettings = ({
     productId: 'vmwareCloudDirector',
     duration: 'P1M',
     pricingMode: 'default',
-    configuration: vdcOrgId
-      ? [{ label: 'vdc-org-id', value: vdcOrgId }]
-      : undefined,
+    configuration: vdcOrgId ? [{ label: 'vdc-org-id', value: vdcOrgId }] : undefined,
   });
 
 export const getHYCUProductSettings = ({
@@ -93,7 +91,7 @@ export const getHYCUProductSettings = ({
     configuration: [{ label: 'region', value: region }],
   });
 
-export const ORDER_URLS = {
+export const ORDER_URLS: Record<'EU' | 'CA' | 'US', Record<string, Record<string, string>>> = {
   EU: {
     DEDICATED: {
       FR: 'https://www.ovh.com/manager/dedicated/',
@@ -567,8 +565,7 @@ export const ORDER_URLS = {
       IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
-      CA:
-        'https://ca.ovh.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+      CA: 'https://ca.ovh.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
     },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
@@ -624,8 +621,7 @@ export const ORDER_URLS = {
     },
     veeam: {},
     veeam_enterprise: {
-      US:
-        'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-enterprise/',
+      US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/veeam-enterprise/',
     },
     vrack: {
       US: `https://us.ovhcloud.com/order/express/#/express/review?products=~(~${vrackProductSettings})`,
@@ -646,8 +642,7 @@ export const ORDER_URLS = {
       US: 'https://us.ovhcloud.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
-      US:
-        'https://us.ovhcloud.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
+      US: 'https://us.ovhcloud.com/manager/#/public-cloud/pci/projects/default/kubernetes/new',
     },
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
@@ -694,27 +689,32 @@ export const EXPRESS_ORDER_URLS = {
   },
 };
 
-export function getOrderURL(
-  product: string,
-  region: string,
+export type Regions = keyof typeof ORDER_URLS; // "EU" | "CA" | "US"
+export type Products<R extends Regions> = keyof (typeof ORDER_URLS)[R]; // e.g. "DEDICATED" | "vrack"
+export type Subsidiaries<
+  R extends Regions,
+  P extends Products<R>,
+> = keyof (typeof ORDER_URLS)[R][P]; // e.g. "FR" | "DE" | "US" | "CA"
+
+export function getOrderURL<R extends Regions, P extends Products<R>>(
+  product: P,
+  region: R,
   subsidiary: string,
-) {
-  const urls = (ORDER_URLS as any)[region]?.[product];
+): string {
+  const urls = ORDER_URLS[region]?.[product] as Record<string, string> | undefined;
   if (urls) {
-    const fallback = {
+    const fallbackMap: Partial<Record<Regions, string>> = {
       EU: 'FR',
       CA: 'CA',
       US: 'US',
-    }[region];
-    return urls[subsidiary] || urls[fallback as string];
+    };
+    const fallback = fallbackMap[region];
+    return urls[subsidiary] ?? (fallback ? (urls[fallback] ?? '') : '');
   }
   return '';
 }
 
 export function getExpressOrderURL(region: string, subsidiary: string): string {
-  const regionURLs =
-    EXPRESS_ORDER_URLS[region as keyof typeof EXPRESS_ORDER_URLS];
-  return (
-    regionURLs?.[subsidiary as keyof typeof regionURLs] || regionURLs?.DEFAULT
-  );
+  const regionURLs = EXPRESS_ORDER_URLS[region as keyof typeof EXPRESS_ORDER_URLS];
+  return regionURLs?.[subsidiary as keyof typeof regionURLs] || regionURLs?.DEFAULT;
 }
