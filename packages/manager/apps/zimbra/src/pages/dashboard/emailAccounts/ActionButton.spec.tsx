@@ -18,6 +18,13 @@ describe('EmailAccounts datagrid action menu', () => {
           available: 2,
           status: 'READY',
           slotId: '123-123',
+          detailedStatus: [
+            {
+              details: 'string',
+              link: 'string',
+              status: 'BILLINGLOCKED',
+            },
+          ],
         }}
       />,
     );

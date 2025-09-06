@@ -30,7 +30,7 @@ const getStatusColor = (status: keyof typeof ResourceStatus) => {
 };
 
 export const BadgeStatus: React.FC<BadgeStatusProps> = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
   const statusColor = useMemo(() => getStatusColor(props.status), [
     props.status,
   ]);
