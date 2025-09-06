@@ -1,7 +1,7 @@
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import ConsumptionDatagrid from '@/components/Dashboard/ConsumptionDatagrid/ConsumptionDatagrid';
@@ -65,6 +65,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
       <Header title={t('listing:title')} />
+
       <OdsText preset="span" className="inline-block mb-4 w-[750px]">
         {t('dashboard_description')}
       </OdsText>
