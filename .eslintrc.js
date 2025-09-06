@@ -123,6 +123,7 @@ module.exports = {
         '**/vite.config.{js,ts,mjs,mts}',
         '**/tests-setup/src/index.js',
         '**/__tests__/**/*.{ts,tsx}',
+        '**/test-utils/**/*.{ts,tsx}',
         '**/*.{test,spec,step}.{ts,tsx}',
         '**/*.{mock,Mock,MOCK,Mocked,Mocking}*.{ts,tsx}',
         '**/*Test*.{ts,tsx}',
