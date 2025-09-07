@@ -179,13 +179,10 @@ function main() {
       logInfo(`Running in single-app mode for ${appName}`);
     } else {
       // discover all React apps
-      selectedApps = fs
-        .readdirSync(appsDir)
-        .filter((directory) => {
-          const pkgPath = path.join(appsDir, directory, 'package.json');
-          return fs.existsSync(pkgPath) && isReactApp(pkgPath);
-        })
-        .slice(0, 3);
+      selectedApps = fs.readdirSync(appsDir).filter((directory) => {
+        const pkgPath = path.join(appsDir, directory, 'package.json');
+        return fs.existsSync(pkgPath) && isReactApp(pkgPath);
+      });
 
       if (selectedApps.length === 0) {
         logWarn('No React apps found to analyze.');
