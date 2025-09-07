@@ -13,8 +13,8 @@ It provides:
 - **Per-app reports**: HTML + JSON with bundle breakdowns.
 - **Combined reports**: A global JSON + HTML dashboard with medians and status.
 - **Color-coded status**:
-  - 🟢 OK – below threshold
-  - 🟠 Near – >= 80% of median
+  - 🟢 OK – below threshold 
+  - 🟠 Near – >= 80% of median 
   - 🔴 Exceed – above 100% of median
 - **Inline asset insights**: Shows total size **and heaviest asset per type** (JS, CSS, HTML, Images).
 - **Details dropdown**: Top N assets per app (default: 5).
