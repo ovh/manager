@@ -35,7 +35,7 @@ export default [
     },
   },
   {
-    files: ['**/prettier-config.ts', '**/*.config.{ts,js,mjs}'],
+    files: ['**/*.{ts,js,mjs}'],
     rules: {
       'import/no-nodejs-modules': 'off',
     },
