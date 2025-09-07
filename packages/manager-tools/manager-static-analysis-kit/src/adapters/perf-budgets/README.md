@@ -13,9 +13,9 @@ It provides:
 - **Per-app reports**: HTML + JSON with bundle breakdowns.
 - **Combined reports**: A global JSON + HTML dashboard with medians and status.
 - **Color-coded status**:
-  - 🟢 OK – below threshold 
-  - 🟠 Near – >= 80% of median 
-  - 🔴 Exceed – above 100% of median
+  * 🟢 OK: below threshold 
+  * 🟠 Near: >= 80% of median 
+  * 🔴 Exceed: above 100% of median
 - **Inline asset insights**: Shows total size **and heaviest asset per type** (JS, CSS, HTML, Images).
 - **Details dropdown**: Top N assets per app (default: 5).
 - **Optimization tips**: Actionable best practices with references.
@@ -36,8 +36,8 @@ This will:
 1. Run **Turbo** build for all apps under `packages/manager/apps`.
 2. Run **vite-bundle-analyzer** for each app (HTML + JSON reports).
 3. Generate **combined reports**:
-  - `perf-budgets-reports/perf-budgets-combined-report.json`
-  - `perf-budgets-reports/perf-budgets-combined-report.html`
+- `perf-budgets-reports/perf-budgets-combined-report.json`
+- `perf-budgets-reports/perf-budgets-combined-report.html`
 
 ### Analyze a single app
 
