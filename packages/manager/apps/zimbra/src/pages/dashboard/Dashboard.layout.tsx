@@ -1,53 +1,54 @@
 import React, { Suspense, useContext, useMemo } from 'react';
+
 import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
+import { OdsTag } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
+  ChangelogButton,
   GuideButton,
   GuideItem,
   Notifications,
-  useNotifications,
-  ChangelogButton,
   useFeatureAvailability,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { OdsTag } from '@ovhcloud/ods-components/react';
-import { ODS_TAG_COLOR, ODS_TAG_SIZE } from '@ovhcloud/ods-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import {
   Breadcrumb,
   Loading,
+  ProBetaBanner,
+  TabItemProps,
   TabsPanel,
   useComputePathMatchers,
-  TabItemProps,
-  ProBetaBanner,
 } from '@/components';
-import { GUIDES_LIST, CHANGELOG_LINKS } from '@/guides.constants';
-import { urls } from '@/routes/routes.constants';
-import { FEATURE_FLAGS } from '@/utils';
 import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
-import {
-  useAccountsStatistics,
-  useGenerateUrl,
-  useOverridePage,
-} from '@/hooks';
 import { useOrganization } from '@/data/hooks';
+import { CHANGELOG_LINKS, GUIDES_LIST } from '@/guides.constants';
+import { useAccountsStatistics, useGenerateUrl, useOverridePage } from '@/hooks';
+import { urls } from '@/routes/routes.constants';
 import {
   AUTO_REPLY,
-  EMAIL_ACCOUNT,
   DOMAIN,
+  EMAIL_ACCOUNT,
   GENERAL_INFORMATIONS,
+  GO_TO,
   MAILING_LIST,
   ORGANIZATION,
   REDIRECTION,
-  GO_TO,
   UNSELECT_ORGANIZATION,
 } from '@/tracking.constants';
+import { FEATURE_FLAGS } from '@/utils';
 
 export const DashboardLayout: React.FC = () => {
   const { trackClick } = useOvhTracking();
@@ -64,22 +65,19 @@ export const DashboardLayout: React.FC = () => {
   const basePath = useResolvedPath('').pathname;
   const { proCount } = useAccountsStatistics();
 
-  const { data: availability } = useFeatureAvailability([
-    FEATURE_AVAILABILITY.PRO_BETA,
-  ]);
+  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
 
   const showProBetaBanner = useMemo(
-    () =>
-      proCount < MAX_PRO_ACCOUNTS &&
-      availability?.[FEATURE_AVAILABILITY.PRO_BETA],
+    () => proCount < MAX_PRO_ACCOUNTS && availability?.[FEATURE_AVAILABILITY.PRO_BETA],
     [availability, proCount],
   );
 
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: (GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
-        GUIDES_LIST.administrator_guide.url.DEFAULT) as string,
+      href:
+        GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
+        GUIDES_LIST.administrator_guide.url.DEFAULT,
       target: '_blank',
       label: t('zimbra_dashboard_administrator_guide'),
       onClick: () => {
@@ -106,10 +104,7 @@ export const DashboardLayout: React.FC = () => {
       trackingName: ORGANIZATION,
       title: t('common:organization'),
       to: useGenerateUrl(`${basePath}/organizations`, 'path'),
-      pathMatchers: useComputePathMatchers([
-        urls.organizations,
-        urls.organizationsDelete,
-      ]),
+      pathMatchers: useComputePathMatchers([urls.organizations, urls.organizationsDelete]),
       hidden: selectedOrganizationId !== null,
     },
     {
@@ -139,10 +134,7 @@ export const DashboardLayout: React.FC = () => {
       trackingName: MAILING_LIST,
       title: t('common:mailing_list'),
       to: useGenerateUrl(`${basePath}/mailing_lists`, 'path'),
-      pathMatchers: useComputePathMatchers([
-        urls.mailing_lists,
-        urls.mailing_lists_delete,
-      ]),
+      pathMatchers: useComputePathMatchers([urls.mailing_lists, urls.mailing_lists_delete]),
       hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
@@ -178,7 +170,7 @@ export const DashboardLayout: React.FC = () => {
       subtitle={
         selectedOrganizationId &&
         organization &&
-        (((
+        ((
           <>
             <span>{organization.currentState.name}</span>
             <OdsTag
@@ -200,7 +192,7 @@ export const DashboardLayout: React.FC = () => {
               label={organization.currentState.label}
             />
           </>
-        ) as unknown) as string) // subtitle should accept a ReactElement
+        ) as unknown as string) // subtitle should accept a ReactElement
       }
       message={
         // temporary fix margin even if empty

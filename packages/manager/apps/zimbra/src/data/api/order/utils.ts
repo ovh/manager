@@ -28,7 +28,5 @@ export const generateOrderURL = ({
   baseURL: string;
   products: OrderProduct[];
 }) => {
-  return `${baseURL}?products=${JSURL.stringify(
-    products.map(formatOrderProduct),
-  )}`;
+  return `${baseURL}?products=${JSURL.stringify(products.map(formatOrderProduct))}`;
 };

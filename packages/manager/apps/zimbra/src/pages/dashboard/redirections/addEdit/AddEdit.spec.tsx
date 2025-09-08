@@ -1,21 +1,25 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
-import AddEditRedirectionModal from './AddEdit.modal';
-import { render, fireEvent, act } from '@/utils/test.provider';
 
-describe('AddEditRedirection modal', async () => {
+import { describe, expect, it } from 'vitest';
+
+import { act, fireEvent, render } from '@/utils/test.provider';
+import { OdsHTMLElement } from '@/utils/test.utils';
+
+import AddEditRedirectionModal from './AddEdit.modal';
+
+describe('AddEditRedirection modal', () => {
   // @TODO: this test can fail randomly for no apparent reason, I think there's
   // an issue in ODS that cause `has-error` to be empty randomly so let's
   // unskip this test when it is fixed
-  it.skip('should render and enable the confirm button when form is valid', async () => {
+  it.skip('should render and enable the confirm button when form is valid', () => {
     const { getByTestId } = render(<AddEditRedirectionModal />);
 
     const confirmButton = getByTestId('confirm-btn');
-    const inputAccount = getByTestId('input-account') as any;
-    const inputTo = getByTestId('input-to') as any;
-    const selectDomain = getByTestId('select-domain') as any;
+    const inputAccount = getByTestId('input-account') as OdsHTMLElement;
+    const inputTo = getByTestId('input-to') as OdsHTMLElement;
+    const selectDomain = getByTestId('select-domain') as OdsHTMLElement;
 
-    await act(() => {
+    act(() => {
       fireEvent.blur(inputAccount);
       inputAccount.odsBlur.emit({});
       fireEvent.blur(selectDomain);
@@ -30,21 +34,21 @@ describe('AddEditRedirection modal', async () => {
 
     expect(confirmButton).toHaveAttribute('is-disabled', 'true');
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputAccount, {
         target: { value: 'account' },
       });
       inputAccount.odsChange.emit({ name: 'account', value: 'account' });
     });
 
-    await act(() => {
+    act(() => {
       fireEvent.change(selectDomain, {
         target: { value: 'domain.fr' },
       });
       selectDomain.odsChange.emit({ name: 'domain', value: 'domain.fr' });
     });
 
-    await act(() => {
+    act(() => {
       fireEvent.change(inputTo, {
         target: { value: 'test@test.fr' },
       });
