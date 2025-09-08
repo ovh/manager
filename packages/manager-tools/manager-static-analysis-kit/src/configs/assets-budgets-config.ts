@@ -17,7 +17,7 @@ export const assetsBudgetsConfig = {
    * Threshold factors for budget evaluation.
    */
   thresholds: {
-    nearFactor: 0.8,
+    nearFactor: 0.7,
     exceedFactor: 1.0,
   },
 
