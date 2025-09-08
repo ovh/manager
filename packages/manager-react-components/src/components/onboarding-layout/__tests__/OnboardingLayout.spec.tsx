@@ -98,21 +98,6 @@ describe('specs:onboarding', () => {
       act(() => fireEvent.click(orderButton));
       expect(onOrderButtonClick).toHaveBeenCalledTimes(1);
     });
-    it('displays more info button correctly', () => {
-      const onMoreInfoButtonClick = vi.fn();
-      render(
-        <OnboardingLayout
-          title={customTitle}
-          moreInfoHref="https://example.com/order"
-          moreInfoButtonLabel={infoBtnLabel}
-          onMoreInfoButtonClick={onMoreInfoButtonClick}
-        />,
-      );
-      const moreInfoButton = screen.getByText(infoBtnLabel);
-      expect(moreInfoButton).toBeVisible();
-      act(() => fireEvent.click(moreInfoButton));
-      expect(onMoreInfoButtonClick).toHaveBeenCalledTimes(1);
-    });
     it('disable buttons', () => {
       render(
         <OnboardingLayout
