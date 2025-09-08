@@ -92,10 +92,10 @@ export const buildHeaders = () => {
       if (filters?.length) {
         const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
-          .map(
-            ({ comparator, key, value }) =>
-              `${encodeURIComponent(key)}:${icebergFilter(comparator, String(value || ''))}`,
-          )
+          .map(({ comparator, key, value }) => {
+            const correctedValue = typeof value === 'object' ? value : String(value || '');
+            return `${encodeURIComponent(key)}:${icebergFilter(comparator, correctedValue)}`;
+          })
           .join('&');
         if (filtersJoin) {
           headers['x-pagination-filter'] = filtersJoin;
