@@ -75,7 +75,10 @@
     "./src/components/base-layout/**/*",
     "./src/components/update-name-modal/**/*",
     "./src/components/delete-modal/**/*",
-    "./src/components/tags-list/**/*"
+    "./src/components/tags-list/**/*",
+    "./src/components/onboarding-layout/**/*",
+    "./src/components/order/**/*",
+    "./src/components/grid-layout/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
