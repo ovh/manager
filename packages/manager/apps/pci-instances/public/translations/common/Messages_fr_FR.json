@@ -8,5 +8,6 @@
   "pci_instances_common_confirm": "Confirmer",
   "pci_instances_common_404_error_message": "Une erreur 404 « File Not Found » a été rencontrée.",
   "pci_instances_common_pending": "En cours...",
-  "pci_instances_common_search": "Rechercher"
+  "pci_instances_common_search": "Rechercher",
+  "pci_instances_common_show_more": "Voir plus"
 }

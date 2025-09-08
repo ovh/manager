@@ -1,8 +1,10 @@
 import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
+import { TAction, TActionLink } from '@/types/instance/action/action.type';
 import { TActionName } from '@/types/instance/common.type';
 import {
   TInstance,
   TInstanceAction,
+  TInstanceAddress,
   TInstanceAddresses,
   TInstanceFlavor,
   TInstancePrice,
@@ -27,23 +29,20 @@ type TFlavor = {
   publicBandwidth: string;
 };
 
-export type TAction = {
-  label: string;
-  link: {
-    path: string;
-    isExternal: boolean;
-    isTargetBlank?: boolean;
-  };
-};
-
 type TInstanceActions = Map<string, TAction[]>;
+
+type TPublicNetwork = {
+  isFloatingIp: boolean;
+  networks: TInstanceAddress[];
+};
 
 export type TInstanceDashboardViewModel = {
   id: string;
   name: string;
   flavor: TFlavor | null;
   region: TInstanceRegion;
-  addresses: TInstanceAddresses;
+  publicNetwork: TPublicNetwork;
+  privateNetwork: TInstanceAddress[];
   pricings: TPrice[];
   status: {
     label: TInstanceStatus;
@@ -93,7 +92,7 @@ const getActionHrefByName = (
   projectUrl: string,
   name: TActionName,
   { region: { name: region }, id }: Pick<TInstance, 'id' | 'region'>,
-): TAction['link'] => {
+): TActionLink => {
   if (name === 'edit') {
     return {
       path: `../${id}/edit`,
@@ -186,6 +185,11 @@ const mapActions = (
       return acc;
     }, new Map() as TInstanceActions);
 
+const mapPublicNetwork = (addresses: TInstanceAddresses) => ({
+  isFloatingIp: !!addresses.get('floating'),
+  networks: (addresses.get('floating') ?? addresses.get('public')) || [],
+});
+
 export const selectInstanceDashboard = (
   projectUrl: string,
   instance?: TInstance,
@@ -197,7 +201,8 @@ export const selectInstanceDashboard = (
     name: instance.name,
     flavor: instance.flavor ? mapFlavor(instance.flavor) : null,
     region: instance.region,
-    addresses: instance.addresses,
+    publicNetwork: mapPublicNetwork(instance.addresses),
+    privateNetwork: instance.addresses.get('private') || [],
     pricings: mapPricings(instance.pricings || []),
     task: instance.task,
     status: getInstanceStatus(instance.status),

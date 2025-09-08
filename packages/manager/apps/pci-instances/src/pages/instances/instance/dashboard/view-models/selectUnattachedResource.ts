@@ -1,6 +1,6 @@
 import { TNetwork } from '@/types/network/entity.type';
 import {
-  TInstanceAddresses,
+  TInstanceAddress,
   TInstanceVolume,
 } from '@/types/instance/entity.type';
 import { TVolume } from '@/types/volume/common.type';
@@ -12,15 +12,13 @@ export type TUnattachedResource = {
 
 export const selectUnattachedPrivateNetworks = (
   networks: TNetwork[],
-  addresses: TInstanceAddresses,
+  addresses: TInstanceAddress[],
 ): TUnattachedResource[] =>
   networks
     .filter(
       ({ id, visibility }) =>
         visibility === 'private' &&
-        !addresses
-          .get('private')
-          ?.find((address) => address.subnet?.network.id === id),
+        !addresses.find((address) => address.subnet?.network.id === id),
     )
     .map((network) => ({ label: network.name, value: network.id }));
 

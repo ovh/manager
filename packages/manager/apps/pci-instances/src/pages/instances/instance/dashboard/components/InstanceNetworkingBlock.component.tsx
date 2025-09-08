@@ -6,11 +6,12 @@ import DashboardCardLayout from './DashboardCardLayout.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
-import NetworkItem from './NetworkItem.component';
+import NetworkItem from './network/NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
-import ReverseDNS from './ReverseDNS.component';
+import ReverseDNS from './network/ReverseDNS.component';
+import ExpandedNetwork from './network/ExpandedNetwork.component';
 
 const InstanceNetworkingBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
@@ -24,14 +25,10 @@ const InstanceNetworkingBlock: FC = () => {
     instanceId,
   });
 
-  const publicIPs = useMemo(
-    () =>
-      instance?.addresses.get('floating') ?? instance?.addresses.get('public'),
-    [instance?.addresses],
-  );
-
   const publicIpActionsLinks = useMemo(() => {
-    const ipV4 = publicIPs?.find((publicIp) => publicIp.version === 4)?.ip;
+    const ipV4 = instance?.publicNetwork.networks.find(
+      (publicIp) => publicIp.version === 4,
+    )?.ip;
     const ipParams = `ip=${ipV4}&ipBlock=${ipV4}`;
 
     return [
@@ -64,11 +61,7 @@ const InstanceNetworkingBlock: FC = () => {
         },
       },
     ];
-  }, [publicIPs, dedicatedUrl, projectId, t]);
-
-  const privateIps = useMemo(() => instance?.addresses.get('private'), [
-    instance?.addresses,
-  ]);
+  }, [instance?.publicNetwork, dedicatedUrl, projectId, t]);
 
   const privateIpActionsLinks = useMemo(
     () =>
@@ -102,20 +95,22 @@ const InstanceNetworkingBlock: FC = () => {
     [projectUrl, t, instance?.isEditEnabled],
   );
 
+  const expandedNetworks = instance?.privateNetwork.slice(2);
+
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_network_title')}>
       <DashboardTileBlock
         label={t('pci_instances_dashboard_public_network_title')}
         isLoading={isInstanceLoading}
       >
-        {publicIPs?.map((publicIp) => (
+        {instance?.publicNetwork.networks.map((network) => (
           <NetworkItem
-            key={publicIp.ip}
-            address={publicIp}
-            isFloatingIp={!!instance?.addresses.get('floating')}
+            key={network.ip}
+            address={network}
+            isFloatingIp={instance.publicNetwork.isFloatingIp}
             actions={publicIpActionsLinks}
           >
-            <ReverseDNS ip={publicIp.ip} />
+            <ReverseDNS ip={network.ip} />
           </NetworkItem>
         ))}
       </DashboardTileBlock>
@@ -129,9 +124,10 @@ const InstanceNetworkingBlock: FC = () => {
             items={privateIpActionsLinks}
           />
         </div>
-        {privateIps?.map((privateIp) => (
-          <NetworkItem key={privateIp.ip} address={privateIp} />
+        {instance?.privateNetwork.slice(0, 2).map((network) => (
+          <NetworkItem key={network.ip} address={network} />
         ))}
+        {expandedNetworks && <ExpandedNetwork networks={expandedNetworks} />}
       </DashboardTileBlock>
     </DashboardCardLayout>
   );
