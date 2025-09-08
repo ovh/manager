@@ -1,0 +1,9 @@
+{
+  "unblockAntiHackTitle": "Anti-hack",
+  "antiHackStatus": "Status",
+  "antiHackBlockedSince": "Bloquée depuis",
+  "antiHackTime": "Temps restant (s)",
+  "unblockAntiHackIP_action": "Débloquer l'IP",
+  "unblockAntiHackIP_success": "L'adresse IP {{ipBlocked}} a été débloquée avec succès",
+  "unblockAntiHackIP_error": "Une erreur a eu lieu au cours du débloquage de {{ipBlocked}}: {{error}}"
+}

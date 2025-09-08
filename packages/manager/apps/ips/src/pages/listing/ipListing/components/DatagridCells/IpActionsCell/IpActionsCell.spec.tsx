@@ -51,6 +51,17 @@ const useGetIpGameFirewallMock = vi.hoisted(() =>
   vi.fn(() => ({ ipGameFirewall: {} })),
 );
 
+const useIpHasAlertsMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    isLoading: false,
+    hasAlerts: {
+      antihack: [],
+      spam: [],
+      mitigation: [],
+    },
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
@@ -61,6 +72,7 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpMitigationWithoutIceberg: useGetIpMitigationWithoutIcebergMock,
   useGetAttachedServices: useGetAttachedServicesMock,
   useIpHasVmac: useIpHasVmacMock,
+  useIpHasAlerts: useIpHasAlertsMock,
 }));
 
 const mockShell = {
