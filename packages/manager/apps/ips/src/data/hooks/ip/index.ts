@@ -8,6 +8,7 @@ export * from './useGetIpMitigation';
 export * from './useGetIpEdgeFirewall';
 export * from './useGetIpGameFirewall';
 export * from './useIpHasAlerts';
+export * from './useGetIpAntihack';
 export * from './useUpdateIpReverse';
 export * from './useDeleteIpReverse';
 export * from './useUpdateIpGameFirewall';
