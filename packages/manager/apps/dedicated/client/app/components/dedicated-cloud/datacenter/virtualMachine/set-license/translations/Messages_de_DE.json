@@ -3,7 +3,7 @@
   "set_license_modal_confirm": "Aktivieren",
   "set_license_modal_cancel": "Abbrechen",
   "set_license_error_api": "Beim Aktivieren der Lizenz ist ein Fehler aufgetreten.",
-  "set_license_success_api": "Ihre Lizenz wird aktiviert. Es kann einige Minuten dauern, bis der Vorgang abgeschlossen ist.",
+  "set_license_success_api": "Ihre Lizenz wird aktiviert. Es kann etwas dauern, bis der Vorgang abgeschlossen ist.",
   "set_license_modal_select_placeholder": "Mehr erfahren",
   "set_license_modal_select_label": "Lizenz auswählen"
 }
