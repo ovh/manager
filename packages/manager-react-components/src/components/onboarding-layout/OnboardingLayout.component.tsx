@@ -18,7 +18,6 @@ export const OnboardingLayout: FC<OnboardingLayoutProps> = ({
   moreInfoButtonLabel,
   moreInfoButtonIcon,
   isMoreInfoButtonDisabled,
-  onMoreInfoButtonClick,
   img = {},
   children,
 }) => {
@@ -48,7 +47,6 @@ export const OnboardingLayout: FC<OnboardingLayoutProps> = ({
             isActionDisabled={isActionDisabled}
             orderHref={orderHref}
             onOrderButtonClick={onOrderButtonClick}
-            onMoreInfoButtonClick={onMoreInfoButtonClick}
             orderButtonLabel={orderButtonLabel}
             moreInfoHref={moreInfoHref}
             moreInfoButtonLabel={moreInfoButtonLabel}
