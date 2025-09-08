@@ -9,6 +9,7 @@ import {
 } from '../../iam.constants';
 import { URL } from '../../iam.service';
 import { CREATE_POLICY_TAG } from './createPolicy.constants';
+import { OPERATORS } from '../conditions/operator/operator.constants';
 
 export default class CreatePolicyController {
   /* @ngInject */
@@ -67,6 +68,7 @@ export default class CreatePolicyController {
       identities: [],
       resources: { selection: [], types: [] },
       resourceGroups: [],
+      conditions: [],
     };
 
     /**
@@ -201,6 +203,7 @@ export default class CreatePolicyController {
       this.model.name = this.policy.name;
       this.model.description = this.policy.description;
       this.model.identities = this.policy.identities;
+      this.model.conditions = this.policy.conditions?.conditions || [];
       this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
         .map(({ urn, resource }) => ({ ...resource, urn }));
@@ -420,6 +423,13 @@ export default class CreatePolicyController {
     return {
       name: this.model.name,
       description: this.model.description,
+      conditions: {
+        operator: OPERATORS.AND,
+        conditions: this.model.conditions.map(({ values }) => ({
+          operator: OPERATORS.MATCH,
+          values,
+        })),
+      },
       identities: this.model.identities,
       permissions: {
         allow: this.model.actions.isWildcardActive
