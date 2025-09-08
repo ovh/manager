@@ -1,0 +1,50 @@
+<div class="modal d-block" tabindex="-1">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <oui-modal
+                data-heading="{{:: 'iam_create_condition_configuration' | translate }}"
+                data-primary-action="$ctrl.addCondition()"
+                data-primary-label="{{:: 'iam_create_condition_configure' | translate }}"
+                data-primary-disabled="$ctrl.conditionForm.$invalid"
+                data-secondary-action="$ctrl.onClose()"
+                data-secondary-label="{{:: 'iam_create_condition_cancel' | translate }}"
+                data-on-dismiss="$ctrl.onClose()"
+            >
+                <form name="$ctrl.conditionForm">
+                    <oui-field
+                        data-label="{{:: 'iam_create_condition_type' | translate}}"
+                    >
+                        <oui-select
+                            data-items=":: $ctrl.conditionTypes"
+                            data-match="label"
+                            data-model="$ctrl.conditionType"
+                            data-name="conditionType"
+                            data-on-change="$ctrl.onChangeConditionType(modelValue)"
+                            data-required="true"
+                            data-placeholder="{{:: 'iam_create_condition_type_placeholder' | translate}}"
+                        ></oui-select>
+                    </oui-field>
+                    <oui-field
+                        data-label="{{:: 'iam_create_condition_operator' | translate }}"
+                    >
+                        <oui-select
+                            data-items="$ctrl.criteria"
+                            data-match="label"
+                            data-model="$ctrl.criterion"
+                            data-name="tagCriterion"
+                            data-required="true"
+                            data-disabled="!$ctrl.currentConditionType"
+                            data-placeholder="{{:: 'iam_create_condition_operator_placeholder' | translate}}"
+                        ></oui-select>
+                    </oui-field>
+                    <iam-condition-tag
+                        data-ng-if="$ctrl.currentConditionType === $ctrl.CONDITION_TYPES.TAG"
+                        data-ng-model="$ctrl.condition"
+                        data-criterion="$ctrl.criterion"
+                    ></iam-condition-tag>
+                </form>
+            </oui-modal>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
