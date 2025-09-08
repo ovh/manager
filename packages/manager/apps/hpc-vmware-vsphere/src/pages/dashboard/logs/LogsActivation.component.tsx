@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useEnableLogForwarder } from '@/data/hooks/useVmwareVsphereLogForwarder';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { LANDING_URL } from '@/hooks/guide/guidesLinks.constants';
@@ -17,6 +18,7 @@ import { getDedicatedCloudServiceDatacenterQueryKey } from '@/data/api/hpc-vmwar
 import { useVmwareDedicatedCloudTask } from '@/data/hooks/useVmwareDedicatedCloudTask';
 import LogsActivationInProgress from './LogsActivationInProgress.component';
 import { getDedicatedCloudServiceCompatibilityMatrixQueryKey } from '@/data/api/hpc-vmware-vsphere-compatibilityMatrix';
+import { TRACKING } from '@/tracking.constant';
 
 type LogsActivationProps = {
   datacenterId: number;
@@ -33,6 +35,7 @@ const LogsActivation = ({
 }: LogsActivationProps) => {
   const { t } = useTranslation('onboarding');
   const { addInfo } = useNotifications();
+  const { trackPage, trackClick } = useOvhTracking();
   const [taskId, setTaskId] = useState<number | null>(null);
   const {
     mutate: enableLogForwarder,
@@ -46,6 +49,20 @@ const LogsActivation = ({
   const guides = useGuideUtils(LANDING_URL);
 
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (isUserTrusted) {
+      trackPage({
+        pageType: PageType.onboarding,
+        pageName: 'logs-activation-logs-transfer-via-syslog-in-progress',
+      });
+    } else {
+      trackPage({
+        pageType: PageType.onboarding,
+        pageName: 'logs-activation-in-progress',
+      });
+    }
+  }, [isUserTrusted]);
 
   useEffect(() => {
     if (
@@ -82,6 +99,11 @@ const LogsActivation = ({
     }
   }, [currentStatus]);
 
+  const handleActivateLog = () => {
+    trackClick(TRACKING.logsOnboarding.activateLogsTransfert);
+    enableLogForwarder();
+  };
+
   if (
     (taskData &&
       !['done', 'error', 'canceled'].includes(taskData?.data.state)) ||
@@ -95,7 +117,8 @@ const LogsActivation = ({
       description={
         <>
           <OdsText preset="paragraph" className="text-center">
-            {t('logs_onboarding_default_description')}{' '}
+            {t('logs_onboarding_default_description')}
+            {'COUCOUC '}
           </OdsText>
           <div className="flex flex-row gap-4 align-center">
             <OdsButton
@@ -104,9 +127,7 @@ const LogsActivation = ({
                   ? t('logs_onboarding_primary_cta_activate_snc')
                   : t('logs_onboarding_primary_cta_activate')
               }
-              onClick={() => {
-                enableLogForwarder();
-              }}
+              onClick={handleActivateLog}
               isDisabled={currentStatus === VMWareStatus.MIGRATING}
             ></OdsButton>
             <Links
@@ -114,6 +135,10 @@ const LogsActivation = ({
               label={t('logs_onboarding_secondary_cta')}
               target="_blank"
               href={guides?.logs_data_platform}
+              rel="noopener noreferrer"
+              onClickReturn={() =>
+                trackClick(TRACKING.logsOnboarding.goToSeeMoreLogs)
+              }
             />
           </div>
         </>
