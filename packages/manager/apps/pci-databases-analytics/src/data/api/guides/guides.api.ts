@@ -31,8 +31,7 @@ export const getGuides = async ({ section, lang, engines }: GetGuidesProps) => {
     headers['X-Pagination-Filter'] = filters.join('&');
   }
   return apiClient.v2
-    .get(`/guides/cloud/databases`, {
+    .get<Guide[]>(`/guides/cloud/databases`, {
       headers,
-    })
-    .then((res) => res.data as Guide[]);
+    });
 };

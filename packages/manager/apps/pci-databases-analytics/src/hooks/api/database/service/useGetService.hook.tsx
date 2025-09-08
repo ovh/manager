@@ -8,7 +8,7 @@ import {
 export function useGetService<T extends database.Service = database.Service>(
   projectId: string,
   serviceId: string,
-  options?: OptionsFor<typeof getService>,
+  options?: OptionsFor<typeof getService<T>>,
 ) {
   const queryKey = [projectId, 'database/service', serviceId];
   return useQueryImmediateRefetch({
