@@ -9,6 +9,8 @@
   "iam_create_policy_deletion_actions_one": "1 action sera supprimée",
   "iam_create_policy_deletion_resources_many": "{{ count }} ressources seront supprimées",
   "iam_create_policy_deletion_resources_one": "1 ressource sera supprimée",
+  "iam_create_policy_form_conditions_description": "Les actions sur les ressources sont autorisées lorsque toutes les conditions sont remplies.",
+  "iam_create_policy_form_conditions_heading": "Conditions",
   "iam_create_policy_form_actions_description": "Sélectionnez les actions autorisées aux identités sur les ressources choisies.",
   "iam_create_policy_form_actions_heading": "Actions",
   "iam_create_policy_form_name_error_pattern": "Le nom de la politique ne peut contenir que des caractères alphanumériques et \"-\", \"/\", \"_\", \"+\"",
