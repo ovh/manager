@@ -1,0 +1,12 @@
+{
+  "deletionProtectionTitle": "Protezione contro l'eliminazione",
+  "deletionProtectionDescription": "Questa opzione permette di proteggere l’istanza da eliminazioni accidentali.",
+  "activateProtection": "Attivare la protezione contro l'eliminazione?",
+  "deactivateProtection": "Vuoi davvero disattivare la protezione contro la cancellazione per questo servizio?",
+  "deletionProtectionButtonCancel": "Annulla",
+  "activateDeletionProtection": "Attiva",
+  "deactivateDeletionProtection": "Disattiva",
+  "updateServiceToastErrorTitle": "Errore",
+  "updateServiceToastSuccessTitle": "Risultato",
+  "updateServiceToastSuccessDescription": "Il servizio è stato aggiornato correttamente"
+}

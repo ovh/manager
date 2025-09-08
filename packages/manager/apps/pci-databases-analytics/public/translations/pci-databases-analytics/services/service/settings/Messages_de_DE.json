@@ -48,5 +48,8 @@
   "kafkaSettingsRestApiTitle": "Kafka-REST-API",
   "kafkaSettingsRestApiDescription": "HTTP-REST-Interface für einen Kafka-Cluster (basierend auf dem <anchor>Karapace</anchor>-Projekt)",
   "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
-  "kafkaSettingsSchemaRegistryDescription": "HTTP-REST-Interface zum Speichern von Apache-Kafka-Schemas (basierend auf dem <anchor>Karapace</anchor>-Projekt)"
+  "kafkaSettingsSchemaRegistryDescription": "HTTP-REST-Interface zum Speichern von Apache-Kafka-Schemas (basierend auf dem <anchor>Karapace</anchor>-Projekt)",
+  "serviceConfigurationServiceDeletionProtection": " Löschschutz",
+  "serviceDeletionProtectionActivated": "Aktiviert",
+  "serviceDeletionProtectionActivatedDeactivated": "Deaktiviert"
 }
