@@ -19,6 +19,7 @@ import {
   useGetAttachedServices,
   useIpHasVmac,
   useGetIpMitigationWithoutIceberg,
+  useIpHasAlerts,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -127,6 +128,11 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     serviceName,
     ip,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
+  });
+
+  const { hasAlerts } = useIpHasAlerts({
+    ip,
+    enabled: expiredIps.indexOf(ip) === -1,
   });
 
   useEffect(() => {
@@ -311,6 +317,18 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         onClick: () =>
           navigate(urls.listingMoveIp.replace(urlDynamicParts.id, id)),
+      },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !!hasAlerts?.antihack?.length && {
+        id: 11,
+        label: t('listingActionUnblockHackedIP'),
+        onClick: () =>
+          navigate(
+            urls.unblockAntiHack
+              .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.service, serviceName),
+          ),
       },
   ].filter(Boolean);
 
