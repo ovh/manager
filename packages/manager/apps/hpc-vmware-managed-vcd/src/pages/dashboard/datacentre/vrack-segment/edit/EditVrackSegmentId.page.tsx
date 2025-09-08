@@ -13,9 +13,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useQuery } from '@tanstack/react-query';
 import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
+import { TRACKING } from '@/tracking.constants';
 
 const VLAN_MIN = 1;
 const VLAN_MAX = 4095;
@@ -29,10 +31,15 @@ const VLAN_ID_FORM_SCHEMA = z.object({
 
 export default function EditVrackSegmentId() {
   const { id, vdcId, vrackSegmentId } = useParams();
+  const { trackPage, trackClick } = useOvhTracking();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
+  const cancelModal = () => {
+    trackClick(TRACKING.vrackDeleteSegment.cancel);
+    closeModal();
+  };
   const { addSuccess } = useMessageContext();
   const defaultOptions = useVcdVrackSegmentOptions({
     id,
@@ -61,6 +68,10 @@ export default function EditVrackSegmentId() {
     vdcId,
     vrackSegmentId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'modify_id-vlan_success',
+      });
       addSuccess({
         content: t('managed_vcd_dashboard_vrack_edit_success'),
         includedSubRoutes: [vdcId],
@@ -70,6 +81,14 @@ export default function EditVrackSegmentId() {
         ],
       });
       closeModal();
+    },
+    onError: (error) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: `modify_id-vlan_error::${error.message
+          .replaceAll(' ', '-')
+          .toLowerCase()}`,
+      });
     },
   });
 
@@ -96,6 +115,7 @@ export default function EditVrackSegmentId() {
   const onSubmit: SubmitHandler<z.infer<typeof VLAN_ID_FORM_SCHEMA>> = ({
     vlanId,
   }) => {
+    trackClick(TRACKING.vrackModifyVlanId.confirm);
     updateVrackSegment({
       ...vrackSegment,
       vlanId: vlanId.toString(),
@@ -117,8 +137,8 @@ export default function EditVrackSegmentId() {
         }
         onPrimaryButtonClick={handleSubmit(onSubmit)}
         secondaryLabel={tActions('cancel')}
-        onSecondaryButtonClick={closeModal}
-        onDismiss={closeModal}
+        onSecondaryButtonClick={cancelModal}
+        onDismiss={cancelModal}
       >
         <div className="flex flex-col gap-2">
           {updateError && (
