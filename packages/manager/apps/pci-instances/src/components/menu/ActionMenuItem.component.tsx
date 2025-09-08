@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { Icon, Link } from '@ovhcloud/ods-react';
-import { TAction } from '@/pages/instances/instance/dashboard/view-models/selectInstanceDashboard';
+import { TAction } from '@/types/instance/action/action.type';
 
 const linkClassname =
   'w-full box-border p-5 bg-none hover:bg-none hover:bg-[--ods-color-primary-100] focus-visible:bg-[--ods-color-primary-100] focus-visible:rounded-sm focus-visible:outline-none text-blue-700 hover:text-blue-500 focus-visible:text-blue-500';

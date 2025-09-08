@@ -11,7 +11,7 @@ import StatusChip from '@/components/statusChip/StatusChip.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
-import { TAction } from '@/pages/instances/instance/dashboard/view-models/selectInstanceDashboard';
+import { TAction } from '@/types/instance/action/action.type';
 
 type TNetworkItemProps = {
   address: TInstanceAddress;
