@@ -14,8 +14,7 @@ interface PaypalPaymentMethodIntegrationProps {
   handleCustomSubmitButton?: (btn: string | JSX.Element) => void;
   paymentHandler: React.Ref<TPaymentMethodIntegrationRef>;
   isSetAsDefault?: boolean;
-  onSuccess?: () => void;
-  onPaymentError: (err: string | undefined) => void;
+  onPaymentError?: (error: string | undefined) => void;
   onPaymentSubmit: ({
     paymentMethodId,
     skipRegistration,
@@ -26,18 +25,9 @@ interface PaypalPaymentMethodIntegrationProps {
   handleValidityChange: (isValid: boolean) => void;
 }
 
-/**
- * Refactored PayPal component with modular architecture
- *
- * Architecture:
- * - usePayPalSDK: SDK loading management
- * - usePayPalPayment: Payment logic
- * - PayPalButton: Button rendering
- */
 const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationProps> = ({
   handleCustomSubmitButton,
   paymentHandler,
-  onSuccess,
   onPaymentError,
   onPaymentSubmit,
   handleValidityChange,
@@ -49,8 +39,7 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
   // Payment logic management
   const { handlePayment, handleAuthorize, handleError } = usePayPalPayment({
     onPaymentSubmit,
-    onSuccess,
-    onError: (err) => onPaymentError(err.message),
+    onError: (err) => onPaymentError && onPaymentError(err.message),
   });
 
   // PayPal button configuration
@@ -93,21 +82,9 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
         _cart: TCart,
         registerPaymentMethod?: TRegisterPaymentMethod,
       ) => {
-        if (
-          !registerPaymentMethod?.formSessionId ||
-          !registerPaymentMethod?.paymentMethodId
-        ) {
-          throw new Error('Missing payment registration data');
-        }
-
-        setPaymentData({
-          paymentMethodId: registerPaymentMethod.paymentMethodId,
-          formSessionId: registerPaymentMethod.formSessionId,
-        });
-
         return {
           continueProcessing: false,
-          dataToReturn: registerPaymentMethod.formSessionId,
+          dataToReturn: registerPaymentMethod,
         };
       },
       checkPaymentMethod: async () => {
@@ -122,17 +99,6 @@ const PaypalPaymentMethodIntegration: React.FC<PaypalPaymentMethodIntegrationPro
     }),
     [],
   );
-
-  // Default render only if no custom submit button is provided
-  if (!handleCustomSubmitButton && scriptLoaded) {
-    return (
-      <PayPalButton
-        isSDKReady={scriptLoaded}
-        config={paymentConfig}
-        disabled={!isSetAsDefault}
-      />
-    );
-  }
 
   return null;
 };

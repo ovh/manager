@@ -134,7 +134,6 @@ describe('payment-method API', () => {
       paymentType: TPaymentMethodType.CREDIT_CARD,
       registerable: true,
       registerableWithTransaction: false,
-      paymentMethodId: 0,
     };
 
     it('should fetch available payment methods', async () => {

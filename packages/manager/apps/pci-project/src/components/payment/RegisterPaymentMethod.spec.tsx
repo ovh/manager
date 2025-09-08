@@ -120,7 +120,6 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
-      paymentMethodId: 0,
     },
     {
       paymentMethodId: 2,
@@ -139,7 +138,6 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
-      paymentMethodId: 0,
     },
     {
       paymentMethodId: 3,
@@ -158,7 +156,6 @@ describe('RegisterPaymentMethod', () => {
       oneshot: false,
       registerable: true,
       registerableWithTransaction: false,
-      paymentMethodId: 0,
     },
   ];
 
@@ -191,7 +188,7 @@ describe('RegisterPaymentMethod', () => {
       isLoading: false,
     });
 
-    vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+    vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue(({
       data: { data: mockAvailablePaymentMethods },
       error: null,
       isError: false,
@@ -216,7 +213,7 @@ describe('RegisterPaymentMethod', () => {
       isRefetching: false,
       isStale: false,
       refetch: vi.fn(),
-    });
+    } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
   });
 
   describe('Loading states', () => {
@@ -233,7 +230,7 @@ describe('RegisterPaymentMethod', () => {
     });
 
     it('should render spinner when payment methods are loading', () => {
-      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue({
+      vi.mocked(useFilteredAvailablePaymentMethods).mockReturnValue(({
         data: undefined,
         error: null,
         isError: false,
@@ -258,7 +255,7 @@ describe('RegisterPaymentMethod', () => {
         isRefetching: false,
         isStale: false,
         refetch: vi.fn(),
-      });
+      } as unknown) as ReturnType<typeof useFilteredAvailablePaymentMethods>);
 
       const Wrapper = createWrapper(mockShellContext);
       render(<RegisterPaymentMethod {...defaultProps} />, { wrapper: Wrapper });
@@ -637,7 +634,6 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: true,
           registerableWithTransaction: false,
-          paymentMethodId: 0,
         },
       ];
 
@@ -672,7 +668,6 @@ describe('RegisterPaymentMethod', () => {
           oneshot: false,
           registerable: false,
           registerableWithTransaction: false,
-          paymentMethodId: 0,
         },
       ];
 
