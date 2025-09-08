@@ -1,13 +1,10 @@
-import {
-  OsdsFormField,
-  OsdsText,
-  OsdsTile,
-  OsdsLink,
-  OsdsIcon,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
@@ -15,12 +12,18 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { UPGRADE_POLICIES } from '@/constants';
+import {
+  OsdsChip,
+  OsdsFormField,
+  OsdsIcon,
+  OsdsLink,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { UPGRADE_POLICIES } from '@/constants';
 import { DOCUMENTATION_LINK } from '@/pages/upgrade-policy/UpgradePolicy.constant';
 import { UpdatePolicy } from '@/types';
 

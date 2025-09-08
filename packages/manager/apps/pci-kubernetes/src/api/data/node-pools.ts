@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {

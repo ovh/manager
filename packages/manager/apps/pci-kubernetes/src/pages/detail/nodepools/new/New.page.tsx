@@ -1,3 +1,13 @@
+import { useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -7,47 +17,42 @@ import {
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
   OsdsButton,
   OsdsFormField,
   OsdsInput,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
+
+import {
+  useCatalog,
+  useParam as useSafeParams,
+} from '@ovh-ux/manager-pci-common';
 import {
   Notifications,
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import {
-  useCatalog,
-  useParam as useSafeParams,
-} from '@ovh-ux/manager-pci-common';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
-import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
 import { createNodePool } from '@/api/data/node-pools';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import BillingStep, {
   TBillingStepProps,
 } from '@/components/create/BillingStep.component';
-import queryClient from '@/queryClient';
-import { useTrack } from '@/hooks/track';
-import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
 import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
-import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
-import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
 import { isMultiDeploymentZones } from '@/helpers';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import { useTrack } from '@/hooks/track';
 import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from '@/hooks/useMergedFlavorById';
-import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
+import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
+import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
+import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
+import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
+import queryClient from '@/queryClient';
 import { TCreateNodePoolParam } from '@/types';
 
 export default function NewPage(): JSX.Element {

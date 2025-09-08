@@ -1,5 +1,13 @@
-import { Outlet, useHref, useParams } from 'react-router-dom';
 import { useMemo, useRef, useState } from 'react';
+
+import { Outlet, useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -9,10 +17,6 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
   OsdsButton,
   OsdsIcon,
   OsdsLink,
@@ -21,7 +25,8 @@ import {
   OsdsSearchBar,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
@@ -32,15 +37,16 @@ import {
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+
 import { useClusterNodePools } from '@/api/hooks/node-pools';
-import { useDatagridColumns } from './useDatagridColumns';
 import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
-import queryClient from '@/queryClient';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 import { isMultiDeploymentZones } from '@/helpers';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import queryClient from '@/queryClient';
+
+import { useDatagridColumns } from './useDatagridColumns';
 
 export default function NodesPage(): JSX.Element {
   const { projectId, kubeId, poolId } = useParams();

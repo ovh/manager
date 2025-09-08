@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -9,32 +9,36 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import {
-  convertHourlyPriceToMonthly,
   Datagrid,
+  convertHourlyPriceToMonthly,
 } from '@ovh-ux/manager-react-components';
-import { TScalingState, NodePoolState } from '@/types';
-import { NODE_RANGE, TAGS_BLOB } from '@/constants';
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
-import BillingStep from '@/components/create/BillingStep.component';
-import { getDatagridColumns } from './node-pool/getDataGridColumns';
-import NodePoolToggle from './node-pool/NodePoolToggle.component';
-import NodePoolName from './node-pool/NodePoolName.component';
-import NodePoolType from './node-pool/NodePoolType.component';
-import NodePoolSize from './node-pool/NodePoolSize.component';
-import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
-import { NodePoolPrice } from '@/api/data/kubernetes';
-import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
+import { NodePoolPrice } from '  @/api/data/kubernetes';
+
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import DeploymentZone from './node-pool/DeploymentZone.component';
+import BillingStep from '@/components/create/BillingStep.component';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
+import { NODE_RANGE, TAGS_BLOB } from '@/constants';
+import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
+import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
+import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from '@/hooks/useMergedFlavorById';
-import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
-import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import { NodePoolState, TScalingState } from '@/types';
+
+import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import DeploymentZone from './node-pool/DeploymentZone.component';
+import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
+import NodePoolName from './node-pool/NodePoolName.component';
+import NodePoolSize from './node-pool/NodePoolSize.component';
+import NodePoolToggle from './node-pool/NodePoolToggle.component';
+import NodePoolType from './node-pool/NodePoolType.component';
+import { getDatagridColumns } from './node-pool/getDataGridColumns';
 
 const NodePoolStep = ({
   stepper,

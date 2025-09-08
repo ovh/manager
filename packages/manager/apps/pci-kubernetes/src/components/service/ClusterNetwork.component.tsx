@@ -1,3 +1,7 @@
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -13,14 +17,14 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
-import { TKube } from '@/types';
-import { PROCESSING_STATUS } from '@/constants';
-import { useRegionSubnets } from '@/api/hooks/useSubnets';
-import TileLine from './TileLine.component';
-import { isMonoDeploymentZone } from '@/helpers';
+
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { PROCESSING_STATUS } from '@/constants';
+import { isMonoDeploymentZone } from '@/helpers';
+import { TKube } from '@/types';
+
+import TileLine from './TileLine.component';
 
 export type ClusterNetworkProps = {
   projectId: string;

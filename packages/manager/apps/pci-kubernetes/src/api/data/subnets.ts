@@ -1,4 +1,4 @@
-import { v6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
 export type TGateway = {
   externalInformation: {

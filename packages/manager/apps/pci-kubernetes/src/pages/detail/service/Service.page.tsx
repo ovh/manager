@@ -1,4 +1,9 @@
-import { Notifications, useMe } from '@ovh-ux/manager-react-components';
+import { useMemo } from 'react';
+
+import { Outlet, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_SPINNER_SIZE,
@@ -6,26 +11,26 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
+
+import { Notifications, useMe } from '@ovh-ux/manager-react-components';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
+import ClusterBeta3AZBanner from '@/components/service/ClusterBeta3AZBanner.component';
 import ClusterInformation from '@/components/service/ClusterInformation.component';
 import ClusterManagement from '@/components/service/ClusterManagement.component';
+import ClusterNetwork from '@/components/service/ClusterNetwork.component';
 import ClusterSecurityUpgradeBanner from '@/components/service/ClusterSecurityUpgradeBanner.component';
 import ClusterVersionUpgradeBanner from '@/components/service/ClusterVersionUpgradeBanner.component';
-import ClusterNetwork from '@/components/service/ClusterNetwork.component';
 import {
-  KUBE_INSTALL_URL,
   KUBECTL_URL,
+  KUBE_INSTALL_URL,
   PROCESSING_STATUS,
   STATUS,
 } from '@/constants';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones, REFETCH_INTERVAL_DURATION } from '@/helpers';
-import ClusterBeta3AZBanner from '@/components/service/ClusterBeta3AZBanner.component';
+import { REFETCH_INTERVAL_DURATION, isMultiDeploymentZones } from '@/helpers';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 export default function ServicePage() {

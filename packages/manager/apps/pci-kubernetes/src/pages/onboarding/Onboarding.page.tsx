@@ -1,3 +1,9 @@
+import { Suspense, useContext, useMemo } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -13,20 +19,20 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Card,
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import { Suspense, useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { GUIDES } from './constants';
+
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';
 import { useAllKube } from '@/api/hooks/useKubernetes';
+
+import { GUIDES } from './constants';
 
 export default function OnBoardingPage() {
   const { t: tOnBoarding } = useTranslation('onboarding');

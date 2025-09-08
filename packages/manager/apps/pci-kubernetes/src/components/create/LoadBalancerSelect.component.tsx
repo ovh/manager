@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -6,11 +10,11 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SubnetSelector } from '../network/SubnetSelector.component';
+
 import { TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+
+import { SubnetSelector } from '../network/SubnetSelector.component';
 
 export type LoadBalancerSelectProps = {
   projectId: string;

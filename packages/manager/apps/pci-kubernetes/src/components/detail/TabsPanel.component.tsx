@@ -1,10 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import { NavLink, useLocation } from 'react-router-dom';
+
 import {
-  OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
+  OsdsTabs,
 } from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 

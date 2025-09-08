@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { useMe } from '@ovh-ux/manager-react-components';
+
 import { getAvailableRegions } from '@/api/data/available-regions';
 
 export const useAvailableRegions = (projectId: string) => {

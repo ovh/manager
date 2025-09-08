@@ -1,16 +1,17 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, Mock } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Mock, describe, expect, it, vi } from 'vitest';
+
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { PROCESSING_STATUS } from '@/constants';
+import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
+
 import ClusterNetwork, {
   ClusterNetworkProps,
 } from './ClusterNetwork.component';
-import { wrapper } from '@/wrapperRenders';
-import { PROCESSING_STATUS } from '@/constants';
-
-import { TRegionInformations } from '@/types/region';
-import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 
 vi.mock('@/api/hooks/useSubnets', () => ({
   useRegionSubnets: vi.fn(),

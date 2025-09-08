@@ -1,14 +1,15 @@
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
 type ResetKubeConfigContentProps = {
   isClusterReady: boolean;

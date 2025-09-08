@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { BreakPoints } from '@/types';
 
 const getPopup = () =>

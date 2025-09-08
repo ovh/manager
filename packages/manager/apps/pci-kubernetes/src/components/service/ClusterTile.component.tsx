@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -15,8 +15,9 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 
-import PopoverTrigger from '../input/PopoverTrigger.component';
 import { QUOTA_ERROR_URL } from '@/helpers';
+
+import PopoverTrigger from '../input/PopoverTrigger.component';
 
 const ClusterTile = () => {
   const { t } = useTranslation(['service', 'logs']);

@@ -1,17 +1,21 @@
 import { useState } from 'react';
-import { TabsComponent } from '@ovh-ux/manager-react-components';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+
+import clsx from 'clsx';
 
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import clsx from 'clsx';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { TabsComponent } from '@ovh-ux/manager-react-components';
+
 import {
-  useMergedKubeFlavors,
   KUBE_FLAVOR_CATEGORIES,
+  useMergedKubeFlavors,
 } from '@/hooks/useFlavors';
+
 import { FlavorTile } from './FlavorTile.component';
 
 export type TComputedKubeFlavor = ReturnType<

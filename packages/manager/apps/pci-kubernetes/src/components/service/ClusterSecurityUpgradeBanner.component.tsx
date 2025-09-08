@@ -1,3 +1,7 @@
+import { useHref } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -8,8 +12,6 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
 
 export default function ClusterSecurityUpgradeBanner({
   isDisabled,

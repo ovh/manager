@@ -1,10 +1,12 @@
 import { render } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import Estimation from './Estimation.component';
-import { wrapper } from '@/wrapperRenders';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import { wrapper } from '@/wrapperRenders';
+
+import Estimation from './Estimation.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({

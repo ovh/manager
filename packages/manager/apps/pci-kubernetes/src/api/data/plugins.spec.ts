@@ -1,6 +1,8 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { vi } from 'vitest';
-import { updateAdmissionPlugin, mapPluginsFromArrayToObject } from './plugins';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
+import { mapPluginsFromArrayToObject, updateAdmissionPlugin } from './plugins';
 
 describe('updateAdmissionPlugin', () => {
   it('calls v6.put with the correct parameters', async () => {

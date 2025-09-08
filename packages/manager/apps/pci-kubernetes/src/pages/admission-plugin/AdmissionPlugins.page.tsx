@@ -1,23 +1,13 @@
-import {
-  OsdsSwitch,
-  OsdsSwitchItem,
-  OsdsButton,
-  OsdsModal,
-  OsdsPopoverContent,
-  OsdsDivider,
-  OsdsText,
-  OsdsMessage,
-  OsdsPopover,
-  OsdsSpinner,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
 import { useCallback, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -31,10 +21,24 @@ import {
   OdsSwitchChangedEventDetail,
   OsdsSwitchCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsIcon,
+  OsdsMessage,
+  OsdsModal,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSpinner,
+  OsdsSwitch,
+  OsdsSwitchItem,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
 import { useUpdateAdmissionPlugin } from '@/api/hooks/useAdmissionPlugin/useAdmissionPlugin';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useResponsiveModal } from '@/hooks/useResizeOsdsModal';
 
 const AdmissionPluginsModal = () => {

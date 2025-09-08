@@ -1,8 +1,13 @@
+import { useMemo, useState } from 'react';
+
+import { Button } from '@datatr-ux/uxlib';
+import { Check, Clock12 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 import {
-  OsdsMessage,
-  OsdsText,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_MESSAGE_TYPE,
@@ -10,19 +15,16 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { Check, Clock12 } from 'lucide-react';
-import { Button } from '@datatr-ux/uxlib';
-import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+  OsdsChip,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import RadioTile from '@/components/radio-tile/RadioTile.component';
+import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode, TClusterPlan } from '@/types';
 
 import { StepState } from '../useStep';
-import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-
-import { DeploymentMode, TClusterPlan } from '@/types';
 
 type Plan = {
   title: string;

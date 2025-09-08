@@ -1,10 +1,12 @@
-import {
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
+
+import {
+  DataGridTextCell,
+  DatagridColumn,
+} from '@ovh-ux/manager-react-components';
+
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 import { MonthlyBilled } from '@/pages/detail/nodepools/useDatagridColumn';

@@ -1,8 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { TQuota } from '@ovh-ux/manager-pci-common';
-import { describe, it, vi, beforeEach, expect } from 'vitest';
+
 import { getProjectQuotaByRegion } from '@/api/data/quota';
 import { wrapper } from '@/wrapperRenders';
+
 import { useProjectQuotaByRegion } from './useProjectQuota';
 
 vi.mock('@/api/data/quota', async (importOriginal) => {
@@ -30,7 +33,9 @@ describe('useProjectQuotaByRegion', () => {
 
     const { result } = renderHook(
       () => useProjectQuotaByRegion(projectId, regionName),
-      { wrapper },
+      {
+        wrapper,
+      },
     );
 
     await waitFor(() => result.current.isSuccess);
@@ -46,7 +51,9 @@ describe('useProjectQuotaByRegion', () => {
 
     const { result } = renderHook(
       () => useProjectQuotaByRegion(projectId, regionName),
-      { wrapper },
+      {
+        wrapper,
+      },
     );
 
     await waitFor(() => result.current.isError);

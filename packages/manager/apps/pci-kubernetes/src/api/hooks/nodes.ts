@@ -1,12 +1,15 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
+import { TNode, deleteNode, getNodes } from '@/api/data/nodes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
-import { deleteNode, getNodes, TNode } from '@/api/data/nodes';
 import { useInstances } from '@/api/hooks/instances';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { paginateResults } from '@/helpers';
 
 export const getNodesQueryKey = (

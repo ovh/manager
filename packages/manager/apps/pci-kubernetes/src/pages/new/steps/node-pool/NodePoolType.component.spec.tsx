@@ -1,7 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import NodePoolType from './NodePoolType.component';
+
 import { wrapper } from '@/wrapperRenders';
+
+import NodePoolType from './NodePoolType.component';
 
 vi.mock('@/components/flavor-selector/FlavorSelector.component', () => ({
   FlavorSelector: ({ onSelect }: { onSelect: (flavor: string) => void }) => (

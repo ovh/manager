@@ -1,17 +1,21 @@
 // versionSelector.test.ts
-import { render, screen, waitFor } from '@testing-library/react';
+import { useEffect, useState } from 'react';
+
 import {
   QueryObserverBaseResult,
   QueryObserverSuccessResult,
 } from '@tanstack/react-query';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
-import { useEffect, useState } from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
   OdsSelectValueChangeEventDetail,
   OsdsSelect,
 } from '@ovhcloud/ods-components';
-import { VersionSelector } from './VersionSelector.component';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
+
+import { VersionSelector } from './VersionSelector.component';
 
 const TestComponent = () => {
   const [version, setVersion] = useState('');

@@ -1,9 +1,10 @@
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import ListPage from '@/pages/list/List.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
+import ListPage from '@/pages/list/List.page';
 import { TClusterPlan, TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
 type TKubesPaginated = {
   data: { rows: TKube[]; pageCount: number; totalRows: number };

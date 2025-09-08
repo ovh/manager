@@ -1,5 +1,7 @@
 import { describe, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { getAvailableRegions } from '@/api/data/available-regions';
 
 describe('available-regions', () => {

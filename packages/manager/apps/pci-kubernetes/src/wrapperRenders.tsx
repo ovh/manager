@@ -1,9 +1,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { vi } from 'vitest';
+
 import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { vi } from 'vitest';
 
 export const shellContext = {
   environment: {

@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getAllPrivateNetworks,
-  getAllPrivateNetworksByRegion,
-  TNetworkRegion,
-} from '../data/network';
 
 import {
-  getListGateways,
+  TNetworkRegion,
+  getAllPrivateNetworks,
+  getAllPrivateNetworksByRegion,
+} from '../data/network';
+import {
   TGateway,
   TPrivateNetworkSubnet,
+  getListGateways,
 } from '../data/subnets';
 
 export const getListGatewaysQueryKey = (

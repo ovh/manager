@@ -1,5 +1,7 @@
-import { OsdsTile } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
+
+import { OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { TLocation } from '@/types/region';
 
 export type RegionListProps = {

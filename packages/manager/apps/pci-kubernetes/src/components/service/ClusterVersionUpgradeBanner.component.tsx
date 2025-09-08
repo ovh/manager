@@ -1,3 +1,7 @@
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -8,8 +12,7 @@ import {
   OsdsMessage,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+
 import { VERSIONS_GUIDE_URL } from '@/constants';
 
 export default function ClusterVersionUpgradeBanner() {

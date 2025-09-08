@@ -1,19 +1,19 @@
-import {
-  OsdsText,
-  OsdsInput,
-  OsdsFormField,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_INPUT_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsFormField,
+  OsdsInput,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 type NodeNameProps = {
   hasError: boolean;

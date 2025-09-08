@@ -1,7 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import * as ApiNetworksModule from '@/api/data/network';
+import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
 import {
   useAllKube,
   useGetClusterEtcdUsage,
@@ -11,8 +15,6 @@ import {
   useResetKubeConfig,
   useUpdateKubePolicy,
 } from './useKubernetes';
-import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
 
 describe('useAllKube', () => {
   it('fetches all Kubernetes clusters successfully', async () => {
@@ -205,7 +207,9 @@ describe('useGetClusterEtcdUsage', () => {
 
     const { result } = renderHook(
       () => useGetClusterEtcdUsage('project-valid', 'kube1'),
-      { wrapper },
+      {
+        wrapper,
+      },
     );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
@@ -219,7 +223,9 @@ describe('useGetClusterEtcdUsage', () => {
 
     const { result } = renderHook(
       () => useGetClusterEtcdUsage('project-error', 'kube1'),
-      { wrapper },
+      {
+        wrapper,
+      },
     );
     await waitFor(() => expect(result.current.isError).toBe(true));
   });

@@ -1,3 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -5,17 +10,15 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsChip,
-  OsdsText,
-  OsdsLink,
   OsdsIcon,
+  OsdsLink,
   OsdsPopover,
   OsdsPopoverContent,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { pluginData } from '@/api/data/plugins';
 
 export type AdmissionPluginsProps = {

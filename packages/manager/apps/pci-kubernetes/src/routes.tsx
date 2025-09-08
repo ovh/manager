@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useAppStore } from './store';
+
 import HidePreloader from './core/HidePreloader';
+import { useAppStore } from './store';
 
 interface LazyRouteOptions {
   disabledRegions: string | string[];

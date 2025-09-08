@@ -1,9 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
 import {
+  TPrivateNetworkSubnet,
   getPrivateNetworkSubnets,
   getRegionSubnets,
-  TPrivateNetworkSubnet,
 } from '@/api/data/subnets';
 
 export const getPrivateNetworkSubnetsQuery = (

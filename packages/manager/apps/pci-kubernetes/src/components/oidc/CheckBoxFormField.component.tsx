@@ -1,13 +1,15 @@
+import { useCallback } from 'react';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   OsdsCheckbox,
   OsdsCheckboxButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useCallback } from 'react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+
 import { SigningAlgorithms } from '@/types';
 
 type TCheckboxFormFieldProps = {

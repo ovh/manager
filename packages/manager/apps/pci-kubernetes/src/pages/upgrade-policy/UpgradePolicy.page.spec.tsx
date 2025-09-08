@@ -1,18 +1,22 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import UpgradePolicyPage from './UpgradePolicy.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { UPGRADE_POLICIES } from '@/constants';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import UpgradePolicyPage from './UpgradePolicy.page';
 
 type UseUpdateKubePolicyReturnType = UseMutationResult<
   never,
   Error,
   void,
   unknown
-> & { updateKubePolicy: () => void };
+> & {
+  updateKubePolicy: () => void;
+};
 
 describe('UpgradePolicyPage', () => {
   it('renders loading spinner when data is pending', () => {

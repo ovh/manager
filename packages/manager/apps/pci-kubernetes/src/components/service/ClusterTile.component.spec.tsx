@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import ClusterTile from '@/components/service/ClusterTile.component';
 
 describe('ClusterTile', () => {

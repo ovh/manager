@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiAvailableRegionsModule from '@/api/data/available-regions';
 import { TAvailableRegionsResponse } from '@/api/data/available-regions';
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';

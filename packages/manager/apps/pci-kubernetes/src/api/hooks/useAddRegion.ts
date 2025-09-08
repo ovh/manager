@@ -1,5 +1,7 @@
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
+
 import { addProjectRegion } from '../data/regions';
 
 export type TUseAddProjectRegionArgs = {

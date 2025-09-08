@@ -1,13 +1,13 @@
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -18,19 +18,24 @@ import {
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useContext, useEffect, useState } from 'react';
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   useKubernetesCluster,
   useRenameKubernetesCluster,
 } from '@/api/hooks/useKubernetes';
-import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 import { isClusterNameValid } from '@/helpers/matchers/matchers';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');

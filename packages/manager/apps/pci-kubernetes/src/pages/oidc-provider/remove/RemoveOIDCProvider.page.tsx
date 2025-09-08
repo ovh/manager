@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import { useContext } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -14,9 +11,17 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useContext } from 'react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   useOidcProvider,
   useRemoveOidcProvider,
@@ -47,7 +52,9 @@ export default function RemoveOIDCProvider() {
       addError(
         t(
           `pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error`,
-          { message: error?.response?.data?.message || error?.message || null },
+          {
+            message: error?.response?.data?.message || error?.message || null,
+          },
         ),
         true,
       );

@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -14,10 +18,10 @@ import {
   OsdsInput,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { StepState } from '../useStep';
+
 import { isClusterNameValid } from '@/helpers/matchers/matchers';
+
+import { StepState } from '../useStep';
 
 export interface ClusterNameStepProps {
   step: StepState;

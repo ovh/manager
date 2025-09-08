@@ -1,25 +1,29 @@
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { TabsComponent } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   RegionTile,
+  TProject,
   isDiscoveryProject,
   useProject,
-  TProject,
 } from '@ovh-ux/manager-pci-common';
-import { useRegionSelector } from './useRegionSelector';
-import { RegionList } from './RegionList.component';
+import { TabsComponent } from '@ovh-ux/manager-react-components';
+
 import { TLocation } from '@/types/region';
+
+import { RegionList } from './RegionList.component';
+import { useRegionSelector } from './useRegionSelector';
 
 export type RegionSelectorProps = {
   projectId: string;

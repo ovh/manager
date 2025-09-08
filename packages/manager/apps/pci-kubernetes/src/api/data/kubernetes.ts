@@ -1,4 +1,5 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
+
 import {
   TClusterPlan,
   TKube,
@@ -320,7 +321,9 @@ export async function editNetwork(
     todo.push(
       v6.put(
         `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
-        { loadBalancersSubnetId },
+        {
+          loadBalancersSubnetId,
+        },
       ),
     );
   }

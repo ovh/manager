@@ -1,13 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import ClusterInformation from '@/components/service/ClusterInformation.component';
-import { wrapper } from '@/wrapperRenders';
-import { DeploymentMode, TKube } from '@/types';
+
 import * as ApiKube from '@/api/data/kubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import ClusterInformation from '@/components/service/ClusterInformation.component';
+import { DeploymentMode, TKube } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useRegionInformations');
 

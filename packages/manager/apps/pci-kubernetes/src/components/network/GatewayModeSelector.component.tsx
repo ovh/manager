@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_INPUT_TYPE,
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsInput,
@@ -8,13 +17,6 @@ import {
   OsdsRadioGroup,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
 

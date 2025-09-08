@@ -1,8 +1,10 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import PlanTile from './PlanStep.component';
-import { StepState } from '../useStep';
+
 import { DeploymentMode, TClusterPlan } from '@/types';
+
+import { StepState } from '../useStep';
+import PlanTile from './PlanStep.component';
 
 describe('PlanTile Component', () => {
   const mockOnSubmit = vi.fn();

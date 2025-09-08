@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiFlavorModule from '@/api/data/flavors';
 import { useRegionFlavors } from '@/api/hooks/flavors';
 import { wrapper } from '@/wrapperRenders';

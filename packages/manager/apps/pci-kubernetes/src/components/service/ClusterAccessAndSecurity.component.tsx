@@ -1,10 +1,9 @@
-import {
-  ActionMenu,
-  Clipboard,
-  Links,
-  LinkType,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useMemo, useState } from 'react';
+
+import { useHref } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -17,8 +16,6 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
-import { isApiCustomError } from '@ovh-ux/manager-core-api';
-import { useParam } from '@ovh-ux/manager-pci-common';
 import {
   OsdsAccordion,
   OsdsButton,
@@ -31,30 +28,38 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useMemo, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
-import { TKube } from '@/types';
 
+import { isApiCustomError } from '@ovh-ux/manager-core-api';
+import { useParam } from '@ovh-ux/manager-pci-common';
+import {
+  ActionMenu,
+  Clipboard,
+  LinkType,
+  Links,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import {
+  useClusterRestrictions,
+  useKubeConfig,
+  useOidcProvider,
+} from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import {
+  CONFIG_FILENAME,
+  KUBECONFIG_URL,
+  KUBE_INSTALLING_STATUS,
+  PROCESSING_STATUS,
+} from '@/constants';
 import {
   downloadContent,
   getValidOptionalKeys,
   isMultiDeploymentZones,
   isOptionalValue,
 } from '@/helpers';
-import {
-  CONFIG_FILENAME,
-  KUBE_INSTALLING_STATUS,
-  KUBECONFIG_URL,
-  PROCESSING_STATUS,
-} from '@/constants';
-import {
-  useClusterRestrictions,
-  useKubeConfig,
-  useOidcProvider,
-} from '@/api/hooks/useKubernetes';
+import { TKube } from '@/types';
+
 import TileLine from './TileLine.component';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 export type ClusterAccessAndSecurityProps = {
   kubeDetail: TKube;

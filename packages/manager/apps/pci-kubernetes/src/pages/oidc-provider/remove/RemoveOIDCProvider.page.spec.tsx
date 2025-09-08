@@ -1,17 +1,20 @@
-import { describe, it, vi } from 'vitest';
-import { fireEvent, render } from '@testing-library/react';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import RemoveOIDCProvider from '@/pages/oidc-provider/remove/RemoveOIDCProvider.page';
-import { wrapper } from '@/wrapperRenders';
-import { TOidcProvider } from '@/types';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import RemoveOIDCProvider from '@/pages/oidc-provider/remove/RemoveOIDCProvider.page';
+import { TOidcProvider } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
 type RemoveOIDCProviderPageReturnType = UseMutationResult<
   never,
   Error,
   void,
   unknown
-> & { removeOidcProvider: () => void };
+> & {
+  removeOidcProvider: () => void;
+};
 
 describe('RemoveOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {

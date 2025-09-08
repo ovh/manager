@@ -1,10 +1,11 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
-import { wrapper } from '@/wrapperRenders';
-import { TKube, TOidcProvider } from '@/types';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
+import { TKube, TOidcProvider } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
 describe('ClusterAccessAndSecurity', () => {
   it('renders access and security title with correct text', () => {

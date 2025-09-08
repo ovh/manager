@@ -1,5 +1,6 @@
+import { fireEvent, render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+
 import DeploymentZone from './DeploymentZone.component';
 
 describe('DeploymentZone component', () => {

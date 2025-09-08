@@ -1,14 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import NodePoolStep from './NodePoolStep.component';
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { wrapper } from '@/wrapperRenders';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { DeploymentMode } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
+
+import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import NodePoolStep from './NodePoolStep.component';
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '12345' }),
@@ -19,7 +20,7 @@ vi.mock('../useCusterCreationStepper', () => ({
 }));
 //
 vi.mock('@ovh-ux/manager-react-components', async (original) => ({
-  ...((await original()) as Record<string, unknown>),
+  ...(await original()),
   useProjectUrl: vi.fn(),
 }));
 

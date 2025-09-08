@@ -1,16 +1,18 @@
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { UPGRADE_POLICIES } from '@/constants';
+import { UpdatePolicy } from '@/types';
+
 import {
   UpdatePolicySelector,
   selectedTileClass,
 } from './UpdatePolicySelector.component';
-
-import { UPGRADE_POLICIES } from '@/constants';
-import { UpdatePolicy } from '@/types';
 
 let setPolicyMock: Mock;
 

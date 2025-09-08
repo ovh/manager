@@ -1,10 +1,11 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 
 export default function ClusterBeta3AZ() {
   const { t } = useTranslation('service');

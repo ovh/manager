@@ -1,24 +1,25 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import ResetClusterPage from './ResetCluster.page';
+import { render, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { TCloudSchema } from '@/api/data/cloud';
+import { TNetworkRegion } from '@/api/data/network';
+import { TGateway } from '@/api/data/subnets';
+import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import {
   useKubernetesCluster,
   useResetCluster,
 } from '@/api/hooks/useKubernetes';
-import { useGetCloudSchema } from '@/api/hooks/useCloud';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import {
   useAvailablePrivateNetworks,
   useListGateways,
 } from '@/api/hooks/useNetwork';
-
-import { wrapper } from '@/wrapperRenders';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { DeploymentMode, TKube } from '@/types';
-import { TNetworkRegion } from '@/api/data/network';
-import { TGateway } from '@/api/data/subnets';
 import { TRegionInformations } from '@/types/region';
-import { TCloudSchema } from '@/api/data/cloud';
+import { wrapper } from '@/wrapperRenders';
+
+import ResetClusterPage from './ResetCluster.page';
 
 vi.mock('@/api/hooks/useKubernetes', () => ({
   useKubernetesCluster: vi.fn(),

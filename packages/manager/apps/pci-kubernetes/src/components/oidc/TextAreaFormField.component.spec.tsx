@@ -1,8 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, vi, expect } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
-  TextAreaFormField,
   TTextAreaFormFieldProps,
+  TextAreaFormField,
 } from './TextAreaFormField.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({

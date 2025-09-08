@@ -1,4 +1,7 @@
-import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -11,25 +14,26 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  OsdsButton,
   OsdsFormField,
   OsdsIcon,
   OsdsLink,
   OsdsSelect,
   OsdsSelectOption,
   OsdsText,
-  OsdsButton,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { TNetwork, TNetworkRegion } from '@/api/data/network';
-import { isMonoDeploymentZone } from '@/helpers';
-import queryClient from '@/queryClient';
-import { DeploymentMode } from '@/types';
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import {
   getListGatewaysQueryKey,
   getQueryKeyPrivateNetworksByRegion,
 } from '@/api/hooks/useNetwork';
-import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+import { isMonoDeploymentZone } from '@/helpers';
+import queryClient from '@/queryClient';
+import { DeploymentMode } from '@/types';
 
 export type PrivateNetworkSelectProps = {
   network: TNetworkRegion;

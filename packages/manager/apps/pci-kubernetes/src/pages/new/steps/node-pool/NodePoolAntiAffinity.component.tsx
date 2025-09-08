@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
@@ -8,11 +10,11 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  OsdsText,
   OsdsFormField,
+  OsdsText,
   OsdsToggle,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 type NodePoolAntiAffinityProps = {

@@ -1,8 +1,12 @@
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
-import queryClient from '@/queryClient';
+
+import { useMutation } from '@tanstack/react-query';
+
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { paginateResults } from '@/helpers';
+import queryClient from '@/queryClient';
+
 import { deleteRestriction, updateRestriction } from '../data/restriction';
 import {
   getClusterRestrictionsQuery,

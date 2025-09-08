@@ -1,8 +1,11 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TLocalisation } from '@ovh-ux/manager-pci-common';
-import { describe, it, expect, vi } from 'vitest';
-import { useClusterCreationStepper } from './useCusterCreationStepper';
+
 import { UpdatePolicy } from '@/types';
+
+import { useClusterCreationStepper } from './useCusterCreationStepper';
 
 vi.mock('./useStep', () => ({
   useStep: vi.fn().mockReturnValue({

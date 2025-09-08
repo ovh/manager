@@ -1,4 +1,5 @@
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
+
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 const Mode = ({ projectId, region }: { projectId: string; region: string }) => {

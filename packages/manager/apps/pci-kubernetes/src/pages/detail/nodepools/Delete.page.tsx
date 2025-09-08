@@ -1,10 +1,9 @@
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useMemo, useState } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -14,14 +13,20 @@ import {
   ODS_INPUT_TYPE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+import {
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useClusterNodePools, useDeleteNodePool } from '@/api/hooks/node-pools';
-import queryClient from '@/queryClient';
-import { useTrack } from '@/hooks/track';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
+import { useTrack } from '@/hooks/track';
+import queryClient from '@/queryClient';
 
 const CONFIRMATION_TEXT = 'DELETE';
 

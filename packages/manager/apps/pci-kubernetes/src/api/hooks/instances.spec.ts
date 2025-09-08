@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiInstanceModule from '@/api/data/instance';
 import { useInstances, useSwitchToMonthlyBilling } from '@/api/hooks/instances';
 import { wrapper } from '@/wrapperRenders';

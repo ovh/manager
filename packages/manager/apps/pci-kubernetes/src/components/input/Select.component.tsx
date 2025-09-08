@@ -1,6 +1,7 @@
-import { OsdsSelect } from '@ovhcloud/ods-components/react';
 import { HTMLAttributes, RefAttributes, useEffect, useRef } from 'react';
+
 import { JSX as OdsJSX } from '@ovhcloud/ods-components';
+import { OsdsSelect } from '@ovhcloud/ods-components/react';
 import { StyleReactProps } from '@ovhcloud/ods-components/react/dist/types/react-component-lib/interfaces';
 
 type TSelectProps = OdsJSX.OsdsSelect &

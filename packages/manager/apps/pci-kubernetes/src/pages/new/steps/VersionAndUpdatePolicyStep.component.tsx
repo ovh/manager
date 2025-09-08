@@ -1,17 +1,21 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import clsx from 'clsx';
-import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepState } from '../useStep';
-import { VersionSelector } from './VersionSelector.component';
-import { UpdatePolicySelector } from './UpdatePolicySelector.component';
+import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { UpdatePolicy } from '@/types';
+
+import { StepState } from '../useStep';
+import { UpdatePolicySelector } from './UpdatePolicySelector.component';
+import { VersionSelector } from './VersionSelector.component';
 
 export interface VersionStepProps {
   onSubmit: (version: string, policy: UpdatePolicy) => void;

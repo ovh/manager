@@ -1,10 +1,11 @@
 import React, { FormEvent } from 'react';
-import { OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_INPUT_TYPE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
+import { OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
 
 export type TInputFormFieldProps = React.ComponentProps<typeof OsdsInput> & {
   name: string;

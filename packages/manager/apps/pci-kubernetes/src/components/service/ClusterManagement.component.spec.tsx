@@ -1,13 +1,14 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import ClusterManagement from '@/components/service/ClusterManagement.component';
-import { wrapper } from '@/wrapperRenders';
-import { DeploymentMode, TKube } from '@/types';
-import * as useCloudModule from '@/api/hooks/useCloud';
+
 import { TCloudSchema } from '@/api/data/cloud';
+import * as useCloudModule from '@/api/hooks/useCloud';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import ClusterManagement from '@/components/service/ClusterManagement.component';
+import { DeploymentMode, TKube } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useRegionInformations', () => ({
   useRegionInformations: vi.fn(),

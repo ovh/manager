@@ -1,5 +1,6 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 import { TRegion } from '@ovh-ux/manager-pci-common';
+
 import { TLocation } from '@/types/region';
 
 export const getProjectRegions = async (

@@ -1,9 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import NoGatewayLinkedMessage from './NoGatewayLinkedWarning.component';
-import { DeploymentMode } from '@/types';
-import { TGateway } from '@/api/data/subnets';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TNetworkRegion } from '@/api/data/network';
+import { TGateway } from '@/api/data/subnets';
+import { DeploymentMode } from '@/types';
+
+import NoGatewayLinkedMessage from './NoGatewayLinkedWarning.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: () => 'https://project-url',

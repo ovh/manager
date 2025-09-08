@@ -1,7 +1,8 @@
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
-import { isMonoDeploymentZone } from '.';
 import { NodePoolState } from '@/types';
 import { TRegionInformations } from '@/types/region';
+
+import { isMonoDeploymentZone } from '.';
 
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 

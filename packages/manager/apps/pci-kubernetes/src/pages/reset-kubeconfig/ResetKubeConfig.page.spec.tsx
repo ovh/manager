@@ -1,18 +1,21 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import ResetKubeConfigPage from './ResetKubeConfig.page';
-import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 
+import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { TKube } from '@/types';
 import { wrapper } from '@/wrapperRenders';
+
+import ResetKubeConfigPage from './ResetKubeConfig.page';
 
 type UseResetKubeConfigReturnType = UseMutationResult<
   never,
   Error,
   void,
   unknown
-> & { resetKubeConfig: () => void };
+> & {
+  resetKubeConfig: () => void;
+};
 
 describe('ResetKubeConfigPage', () => {
   it('renders loading spinner when data is pending', () => {

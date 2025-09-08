@@ -1,42 +1,46 @@
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovh-ux/manager-react-components';
+import { useMemo } from 'react';
+
 import {
   UndefinedInitialDataOptions,
   useMutation,
   useQuery,
 } from '@tanstack/react-query';
-import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TKube, TOidcProvider } from '@/types';
-import queryClient from '@/queryClient';
-import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { STATUS } from '@/constants';
+import { REFETCH_INTERVAL_DURATION, paginateResults } from '@/helpers';
+import queryClient from '@/queryClient';
+import { TKube, TOidcProvider } from '@/types';
+
 import {
+  KubeClusterCreationParams,
+  TResetClusterParams,
   addOidcProvider,
+  createKubernetesCluster,
   createSubscription,
   deleteSubscription,
-  createKubernetesCluster,
   getAllKube,
   getClusterRestrictions,
+  getKubeEtcdUsage,
   getKubernetesCluster,
   getOidcProvider,
   getSubscribedLogs,
-  KubeClusterCreationParams,
   postKubeConfig,
   removeOidcProvider,
   resetCluster,
   resetKubeConfig,
   terminateCluster,
-  TResetClusterParams,
   updateKubePolicy,
-  updateKubernetesCluster,
   updateKubeVersion,
+  updateKubernetesCluster,
   updateOidcProvider,
-  getKubeEtcdUsage,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
-import { useAllPrivateNetworks } from './useNetwork';
 import { mapPluginsFromArrayToObject } from '../data/plugins';
+import { useAllPrivateNetworks } from './useNetwork';
 
 export const getAllKubeQueryKey = (projectId: string) => [
   'project',

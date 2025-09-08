@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_SELECT_SIZE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsMessage,
@@ -8,14 +18,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_SELECT_SIZE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import { SelectComponent } from '@/components/input/Select.component';

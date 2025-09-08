@@ -1,11 +1,14 @@
-import { render, waitFor } from '@testing-library/react';
-import * as manager from '@ovh-ux/manager-react-components';
-import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import ClusterEtcd from './ClusterETCD.component';
-import { wrapper } from '@/wrapperRenders';
+import { render, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import * as manager from '@ovh-ux/manager-react-components';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { getColorByPercentage } from '@/helpers';
+import { wrapper } from '@/wrapperRenders';
+
+import ClusterEtcd from './ClusterETCD.component';
 
 describe('ClusterEtcd', () => {
   it('renders progress bar and usage text correctly', async () => {

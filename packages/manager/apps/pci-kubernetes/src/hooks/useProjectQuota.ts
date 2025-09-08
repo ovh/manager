@@ -1,5 +1,7 @@
+import { QueryKey, UseQueryOptions, useQuery } from '@tanstack/react-query';
+
 import { ResponseAPIError, TQuota } from '@ovh-ux/manager-pci-common';
-import { QueryKey, useQuery, UseQueryOptions } from '@tanstack/react-query';
+
 import { getProjectQuotaByRegion } from '@/api/data/quota';
 
 export const getProjectQuotaQuery = <T = TQuota>(

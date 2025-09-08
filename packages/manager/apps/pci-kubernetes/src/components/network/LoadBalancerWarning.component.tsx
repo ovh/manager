@@ -1,15 +1,19 @@
 import { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { LOAD_BALANCER_DOC } from '@/constants';
 
 export function LoadBalancerWarning() {

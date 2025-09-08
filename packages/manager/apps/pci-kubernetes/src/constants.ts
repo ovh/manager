@@ -1,4 +1,5 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 import { UrlRecord } from './types';
 
 export const ANTI_AFFINITY_MAX_NODES = 5;

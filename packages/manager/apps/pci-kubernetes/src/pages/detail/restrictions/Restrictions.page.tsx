@@ -1,10 +1,7 @@
-import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
-import {
-  Datagrid,
-  Notifications,
-  useDataGrid,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -21,14 +18,22 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { formatIP } from '@/helpers';
+
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
+import {
+  Datagrid,
+  Notifications,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
 import {
   useDeleteRestriction,
   useMappedRestrictions,
   useUpdateRestriction,
 } from '@/api/hooks/useRestriction';
+import { formatIP } from '@/helpers';
+
 import { useRestrictionColumns } from '../../../components/restriction/useRestrictionColumns';
 
 export default function RestrictionsPage() {

@@ -1,4 +1,10 @@
+import { useContext, useState } from 'react';
+
 import { useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -7,27 +13,26 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsButton,
   OsdsIcon,
   OsdsLink,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
-import {
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   DbaasLogsAccountSelector,
   StreamsList,
   TDbaasLog,
 } from '@ovh-ux/manager-pci-common';
-import { LOG_LIST_TRACKING_HITS } from './constants';
+import {
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { KubeLogsProvider } from './KubeLogsProvider';
+import { LOG_LIST_TRACKING_HITS } from './constants';
 
 export default function StreamsPage() {
   const { kubeId, projectId } = useParams();

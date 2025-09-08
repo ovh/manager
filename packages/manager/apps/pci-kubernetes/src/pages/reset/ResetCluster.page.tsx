@@ -1,3 +1,24 @@
+import { useContext, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_CHIP_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  OdsRadioGroupValueChangeEventDetail,
+  OsdsRadioGroupCustomEvent,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsChip,
@@ -13,55 +34,40 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_CHIP_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  OdsRadioGroupValueChangeEventDetail,
-  OsdsRadioGroupCustomEvent,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useContext, useState } from 'react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { TNetwork } from '@/api/data/network';
+import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import {
   useKubernetesCluster,
   useResetCluster,
 } from '@/api/hooks/useKubernetes';
+import {
+  useAvailablePrivateNetworks,
+  useListGateways,
+} from '@/api/hooks/useNetwork';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { SelectComponent } from '@/components/input/Select.component';
+import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
+import {
+  GatewaySelector,
+  GatewaySelectorState,
+} from '@/components/network/GatewaySelector.component';
+import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
+import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
+import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
+import { SubnetSelector } from '@/components/network/SubnetSelector.component';
 import { WORKER_NODE_POLICIES } from '@/constants';
-import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import {
   getFormatedKubeVersion,
   isMonoDeploymentZone,
   isMultiDeploymentZones,
 } from '@/helpers';
-import {
-  useAvailablePrivateNetworks,
-  useListGateways,
-} from '@/api/hooks/useNetwork';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
-import { TNetwork } from '@/api/data/network';
-import { SubnetSelector } from '@/components/network/SubnetSelector.component';
-import {
-  GatewaySelector,
-  GatewaySelectorState,
-} from '@/components/network/GatewaySelector.component';
-import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
-import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
-import { SelectComponent } from '@/components/input/Select.component';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
-import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
+
 import { isValidGateway3AZ } from '../new/steps/NetworkClusterStep.component';
 
 export default function ResetClusterPage() {

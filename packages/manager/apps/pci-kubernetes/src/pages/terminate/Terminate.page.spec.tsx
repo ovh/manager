@@ -1,14 +1,17 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
+
 import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
 } from '@ovhcloud/ods-components';
-import TerminatePage from './Terminate.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import TerminatePage from './Terminate.page';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({
@@ -22,7 +25,9 @@ type UseTerminateClusterReturnType = UseMutationResult<
   Error,
   void,
   unknown
-> & { terminateCluster: () => void };
+> & {
+  terminateCluster: () => void;
+};
 
 describe('TerminatePage', () => {
   it('renders loading spinner when data is pending', () => {

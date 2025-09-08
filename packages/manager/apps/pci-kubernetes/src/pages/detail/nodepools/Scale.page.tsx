@@ -1,25 +1,30 @@
+import { useEffect, useMemo, useState } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsModal,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import {
   useClusterNodePools,
   useUpdateNodePoolSize,
 } from '@/api/hooks/node-pools';
-import queryClient from '@/queryClient';
 import { Autoscaling } from '@/components/Autoscaling.component';
-import { useTrack } from '@/hooks/track';
 import { NODE_RANGE } from '@/constants';
-import { TScalingState } from '@/types';
 import { isScalingValid } from '@/helpers/node-pool';
+import { useTrack } from '@/hooks/track';
+import queryClient from '@/queryClient';
+import { TScalingState } from '@/types';
 
 export default function ScalePage(): JSX.Element {
   const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');

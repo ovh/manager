@@ -1,22 +1,25 @@
 import { useEffect, useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  OsdsSelectOption,
-  OsdsSpinner,
-  OsdsSelect,
-  OsdsChip,
-  OsdsText,
-  OsdsFormField,
-} from '@ovhcloud/ods-components/react';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_SELECT_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+  OsdsChip,
+  OsdsFormField,
+  OsdsSelect,
+  OsdsSelectOption,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 
 export interface VersionSelectorProps {

@@ -1,9 +1,11 @@
+import { describe, it, vi } from 'vitest';
+
 import {
-  fetchIcebergV6,
   IcebergFetchResultV6,
+  fetchIcebergV6,
   v6,
 } from '@ovh-ux/manager-core-api';
-import { describe, it, vi } from 'vitest';
+
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import {
   addOidcProvider,
@@ -21,8 +23,8 @@ import {
   resetKubeConfig,
   terminateCluster,
   updateKubePolicy,
-  updateKubernetesCluster,
   updateKubeVersion,
+  updateKubernetesCluster,
   updateOidcProvider,
 } from '@/api/data/kubernetes';
 import { TKube, TOidcProvider } from '@/types';

@@ -1,12 +1,12 @@
 import { useClusterCreationStepper } from '../useCusterCreationStepper';
 import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
 import { ClusterNameStep } from './ClusterNameStep.component';
+import Loader from './Loader';
 import { LocationStep } from './LocationStep.component';
 import { NetworkStep } from './NetworkStep.component';
 import NodePoolStep from './NodePoolStep.component';
 import PlanStep from './PlanStep.component';
 import { VersionAndUpdatePolicyStep } from './VersionAndUpdatePolicyStep.component';
-import Loader from './Loader';
 
 type StepComponentProps = Record<string, unknown>;
 

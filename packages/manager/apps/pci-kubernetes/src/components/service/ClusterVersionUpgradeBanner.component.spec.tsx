@@ -1,6 +1,8 @@
-import { describe, it, vi } from 'vitest';
-import { render } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
+
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
 import ClusterVersionUpgradeBanner from '@/components/service/ClusterVersionUpgradeBanner.component';
 
 describe('ClusterVersionUpgradeBanner', () => {

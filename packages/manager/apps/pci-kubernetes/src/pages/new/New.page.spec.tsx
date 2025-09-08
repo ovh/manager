@@ -1,12 +1,15 @@
-import { render, screen } from '@testing-library/react';
-
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useClusterCreationStepper } from './useCusterCreationStepper';
+
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import NewPage from './New.page';
 import { wrapper } from '@/wrapperRenders';
+
+import NewPage from './New.page';
+import { useClusterCreationStepper } from './useCusterCreationStepper';
 
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
@@ -15,7 +18,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-pci-common', async (actual) => ({
-  ...((await actual()) as Record<string, unknown>),
+  ...(await actual()),
   isDiscoveryProject: vi.fn(),
   useProject: vi.fn(),
 }));

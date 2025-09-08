@@ -1,10 +1,12 @@
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -13,18 +15,19 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import clsx from 'clsx';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+  OsdsIcon,
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
 import {
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
 import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 
 const checkedClass =
@@ -50,7 +53,9 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
   const {
     getFormattedMonthlyCatalogPrice,
     getFormattedHourlyCatalogPrice,
-  } = useCatalogPrice(4, { exclVat: true });
+  } = useCatalogPrice(4, {
+    exclVat: true,
+  });
 
   const projectURL = useProjectUrl('public-cloud');
   const savingsPlanUrl = `${projectURL}/savings-plan`;

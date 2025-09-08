@@ -1,15 +1,19 @@
 import { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
+import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode } from '@/types';
+
 import { StepState } from '../useStep';
 import NetworkClusterStep, {
   TNetworkFormState,
 } from './NetworkClusterStep.component';
-import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
-import { DeploymentMode } from '@/types';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 
 export interface NetworkStepProps {
   region: string;

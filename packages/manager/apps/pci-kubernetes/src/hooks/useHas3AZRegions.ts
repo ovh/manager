@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+
 import { useParams } from 'react-router-dom';
+
 import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 
 export enum RegionType {

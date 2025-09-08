@@ -1,11 +1,12 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
-import {
-  OsdsAccordion,
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useCallback, useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
@@ -13,28 +14,33 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { useForm, FormProvider } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  OsdsAccordion,
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useParams, useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import useFormFields from '@/hooks/useFormField';
+
 import {
   useOidcProvider,
   useUpsertOidcProvider,
 } from '@/api/hooks/useKubernetes';
+import { parseCommaSeparated, transformKey } from '@/helpers';
+import useFormFields from '@/hooks/useFormField';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 import {
   PlaceHolder,
   SigningAlgorithms,
   TOidcFormValues,
   oidcSchema,
 } from '@/types';
-import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+
 import { OptionalFormField } from './OptionalFormField.component';
-import { parseCommaSeparated, transformKey } from '@/helpers';
 import RenderFormField from './RenderFormField.component';
 
 export function OidcProviderModal() {
@@ -104,7 +110,9 @@ export function OidcProviderModal() {
       addError(
         t(
           `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_error`,
-          { message: error?.response?.data?.message || error?.message || null },
+          {
+            message: error?.response?.data?.message || error?.message || null,
+          },
         ),
         true,
       );

@@ -1,5 +1,7 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import { deleteRestriction, updateRestriction } from '@/api/data/restriction';
 
 describe('deleteRestriction', () => {
@@ -24,11 +26,11 @@ describe('updateRestriction', () => {
     const ips = ['192.168.1.1', '192.168.1.2'];
     vi.mocked(v6.put).mockResolvedValue({});
     await updateRestriction('project1', 'kube1', ips);
-    expect(
-      v6.put,
-    ).toHaveBeenCalledWith(
+    expect(v6.put).toHaveBeenCalledWith(
       '/cloud/project/project1/kube/kube1/ipRestrictions',
-      { ips },
+      {
+        ips,
+      },
     );
   });
 

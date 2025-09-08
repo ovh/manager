@@ -1,10 +1,8 @@
 import { useMemo } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  getMacroRegion,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
+
 import {
   TContinent,
   TProductAvailabilityRegion,
@@ -12,9 +10,15 @@ import {
   TRegionType,
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
-import { getProjectRegions } from '../../api/data/regions';
+import {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+} from '@ovh-ux/manager-react-components';
+
 import { isLocalDeploymentZone } from '@/helpers';
-import { TProjectLocation, TLocation } from '@/types/region';
+import { TLocation, TProjectLocation } from '@/types/region';
+
+import { getProjectRegions } from '../../api/data/regions';
 
 export const getRegionQueryKey = (projectId: string) => [
   'project',

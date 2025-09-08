@@ -1,6 +1,8 @@
-import { describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, expect } from 'vitest';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
 describe('Loadable', () => {

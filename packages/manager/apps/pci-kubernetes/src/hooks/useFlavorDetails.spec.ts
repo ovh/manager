@@ -1,9 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useMergedKubeFlavors } from './useFlavors';
 import useMergedFlavorById, {
   getPriceByDesiredScale,
 } from './useMergedFlavorById';
-import { useMergedKubeFlavors } from './useFlavors';
 
 const mockFlavors = [
   { id: 'flavor-1', name: 'Small', cpu: 2 },

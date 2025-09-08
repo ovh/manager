@@ -1,10 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { useUpdateAdmissionPlugin } from './useAdmissionPlugin';
-import { wrapper } from '@/wrapperRenders';
 import { TClusterCustomization } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import { useUpdateAdmissionPlugin } from './useAdmissionPlugin';
 
 const customization = {
   apiServer: {

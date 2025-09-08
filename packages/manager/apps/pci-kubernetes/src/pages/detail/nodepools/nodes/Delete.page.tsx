@@ -1,11 +1,9 @@
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useMemo, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -16,10 +14,17 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+import {
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { getNodesQueryKey, useDeleteNode, useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
 import queryClient from '@/queryClient';

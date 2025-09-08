@@ -1,14 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
-import {
-  exceedsMaxNodes,
-  zoneAZisChecked,
-  isScalingValid,
-  hasMax5NodesAntiAffinity,
-  hasInvalidScalingOrAntiAffinityConfig,
-} from './node-pool';
-import * as deploymentUtils from '.';
+import { describe, expect, it, vi } from 'vitest';
+
 import { DeploymentMode, NodePoolState } from '@/types';
 import { TRegionInformations } from '@/types/region';
+
+import * as deploymentUtils from '.';
+import {
+  exceedsMaxNodes,
+  hasInvalidScalingOrAntiAffinityConfig,
+  hasMax5NodesAntiAffinity,
+  isScalingValid,
+  zoneAZisChecked,
+} from './node-pool';
 
 vi.mock('@/constants', () => ({
   NODE_RANGE: { MAX: 10 },

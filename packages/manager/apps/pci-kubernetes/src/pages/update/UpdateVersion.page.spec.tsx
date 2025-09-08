@@ -1,10 +1,12 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import UpdateVersionPage from './UpdateVersion.page';
+
 import * as useKubernetesClusterModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import UpdateVersionPage from './UpdateVersion.page';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({
@@ -18,7 +20,9 @@ type UseUpdateKubeVersionReturnType = UseMutationResult<
   Error,
   void,
   unknown
-> & { updateKubeVersion: () => void };
+> & {
+  updateKubeVersion: () => void;
+};
 
 describe('UpdateVersionPage', () => {
   it('renders loading spinner when data is pending', () => {

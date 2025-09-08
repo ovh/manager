@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { Control, useFormContext, UseFormReturn } from 'react-hook-form';
+import { Control, UseFormReturn, useFormContext } from 'react-hook-form';
+import { describe, expect, it, vi } from 'vitest';
+
 import RenderFormField from './RenderFormField.component';
 
 vi.mock('react-hook-form', () => ({

@@ -1,9 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
 } from '@ovhcloud/ods-components';
-import { render, fireEvent, waitFor, act } from '@testing-library/react';
+
 import RestrictionLine from './RestrictionLine.component';
 
 const mockProps = {

@@ -1,17 +1,19 @@
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { render, screen, fireEvent } from '@testing-library/react';
-
 import { useParams } from 'react-router-dom';
-import RestrictionsPage from './Restrictions.page';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import {
   useDeleteRestriction,
   useMappedRestrictions,
   useUpdateRestriction,
 } from '@/api/hooks/useRestriction';
+import { paginateResults } from '@/helpers';
 import { wrapper } from '@/wrapperRenders';
 
-import { paginateResults } from '@/helpers';
+import RestrictionsPage from './Restrictions.page';
 
 vi.mock('@ovh-ux/manager-react-components', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-react-components');

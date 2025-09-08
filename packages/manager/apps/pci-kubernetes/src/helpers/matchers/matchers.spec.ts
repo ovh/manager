@@ -1,8 +1,8 @@
 import {
   CLUSTER_NAME_CONSTRAINTS,
+  NODE_POOL_NAME_CONSTRAINTS,
   isClusterNameValid,
   isNodePoolNameValid,
-  NODE_POOL_NAME_CONSTRAINTS,
 } from './matchers';
 
 const commonInvalidNames = [

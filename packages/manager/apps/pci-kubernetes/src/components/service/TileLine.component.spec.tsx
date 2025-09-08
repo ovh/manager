@@ -1,7 +1,9 @@
-import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { describe, it } from 'vitest';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
 import TileLine from '@/components/service/TileLine.component';
 
 describe('TileLine', () => {

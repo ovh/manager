@@ -1,9 +1,11 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getPrivateNetworkSubnets,
-  getListGateways,
   TGateway,
+  getListGateways,
+  getPrivateNetworkSubnets,
 } from '@/api/data/subnets';
 
 describe('getPrivateNetworkSubnets', () => {

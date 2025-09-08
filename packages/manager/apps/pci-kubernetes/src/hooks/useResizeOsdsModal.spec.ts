@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
-import { describe, it, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, it, vi } from 'vitest';
+
 import { useResponsiveModal } from './useResizeOsdsModal';
 
 describe('useResponsiveModal', () => {

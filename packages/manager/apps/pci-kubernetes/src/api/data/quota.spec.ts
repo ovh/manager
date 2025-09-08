@@ -1,5 +1,7 @@
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { describe, it, vi, expect } from 'vitest';
+
 import { getProjectQuotaByRegion } from './quota';
 
 vi.mocked(v6.get).mockClear();

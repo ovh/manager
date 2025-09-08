@@ -1,9 +1,6 @@
-import {
-  OsdsChip,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -14,13 +11,19 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
+import {
+  OsdsChip,
+  OsdsLink,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
+import { RegionChipByType, useBytes } from '@ovh-ux/manager-pci-common';
 import {
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { RegionChipByType, useBytes } from '@ovh-ux/manager-pci-common';
+
 import { DeploymentMode } from '@/types';
 
 export interface FlavorDiskType {

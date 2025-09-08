@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { TAdmissionPlugin, TKube } from '@/types';
 
 type PluginsData = {

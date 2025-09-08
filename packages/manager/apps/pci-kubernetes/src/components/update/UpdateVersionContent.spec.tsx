@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, it } from 'vitest';
+
 import UpdateVersionContent from '@/components/update/UpdateVersionContent';
 
 describe('UpdateVersionContent', () => {

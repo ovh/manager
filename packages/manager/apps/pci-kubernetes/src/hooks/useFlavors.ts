@@ -1,15 +1,18 @@
 import { useMemo } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
+
 import {
-  useCatalog,
-  useProductAvailability,
   TFlavor,
   TQuota,
   getFlavors,
+  useCatalog,
+  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 
 import { getKubeFlavors } from '@/api/data/flavors';
 import { DeploymentMode } from '@/types';
+
 import { useProjectQuotaByRegion } from './useProjectQuota';
 
 export const FLAVOR_CATEGORIES = [

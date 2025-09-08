@@ -1,16 +1,21 @@
+import { useContext } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsModal,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useContext } from 'react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   useKubernetesCluster,
   useResetKubeConfig,

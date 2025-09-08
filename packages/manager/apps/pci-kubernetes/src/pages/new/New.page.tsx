@@ -1,7 +1,18 @@
 import { useContext } from 'react';
+
 import { useHref, useNavigate } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import {
+  OsdsBreadcrumb,
+  OsdsIcon,
+  OsdsLink,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
@@ -10,15 +21,6 @@ import {
   useProject,
   useParam as useSafeParams,
 } from '@ovh-ux/manager-pci-common';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-
-import {
-  OsdsBreadcrumb,
-  OsdsIcon,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
 import {
   Headers,
   Notifications,
@@ -26,19 +28,21 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import { PAGE_PREFIX } from '@/tracking.constants';
+import { DeploymentMode } from '@/types';
+
+import stepsConfig from './steps/stepsConfig';
 import {
   TClusterCreationForm,
   TNonNullableForm,
   useClusterCreationStepper,
 } from './useCusterCreationStepper';
-
-import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { PAGE_PREFIX } from '@/tracking.constants';
-import stepsConfig from './steps/stepsConfig';
-import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-import { DeploymentMode } from '@/types';
 
 const formIsNonNullable = (
   form: TClusterCreationForm,
@@ -150,6 +154,7 @@ export default function NewPage() {
         updatePolicy: stepper.form.updatePolicy,
         ...(stepper.form.nodePools && {
           nodepools: stepper.form.nodePools.map(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
           ),
         }),
@@ -206,37 +211,30 @@ export default function NewPage() {
       <div className="mt-8">
         {allSteps
           .filter((step) => step.condition ?? true)
-          .map(
-            (
-              {
-                key,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                component: StepComponent,
-                titleKey,
-                extraProps = {},
-              },
-              index,
-            ) => (
-              <StepComponentLayout
-                key={key}
-                order={index + 1}
-                {...stepper[key].step}
-                title={t(titleKey)}
-                edit={{
-                  action: stepper[key].edit,
-                  label: t('stepper:common_stepper_modify_this_step'),
-                  isDisabled:
-                    isCreationPending || (key === 'location' && isDiscovery),
-                }}
-              >
-                <StepComponent
-                  step={stepper[key].step}
-                  onSubmit={stepper[key].submit}
-                  {...extraProps}
-                />
-              </StepComponentLayout>
-            ),
-          )}
+          .map((
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            { key, component: StepComponent, titleKey, extraProps = {} },
+            index,
+          ) => (
+            <StepComponentLayout
+              key={key}
+              order={index + 1}
+              {...stepper[key].step}
+              title={t(titleKey)}
+              edit={{
+                action: stepper[key].edit,
+                label: t('stepper:common_stepper_modify_this_step'),
+                isDisabled:
+                  isCreationPending || (key === 'location' && isDiscovery),
+              }}
+            >
+              <StepComponent
+                step={stepper[key].step}
+                onSubmit={stepper[key].submit}
+                {...extraProps}
+              />
+            </StepComponentLayout>
+          ))}
       </div>
     </>
   );

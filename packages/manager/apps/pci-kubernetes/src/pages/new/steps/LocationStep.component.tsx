@@ -1,41 +1,45 @@
 import { useContext, useEffect, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 
+import clsx from 'clsx';
+import { Translation, useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsDivider,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import clsx from 'clsx';
-import {
-  Links,
   LinkType,
+  Links,
   Notifications,
   Subtitle,
   TRegion,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
-import { StepState } from '../useStep';
+
+import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
+import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
+import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { DEPLOYMENT_URL } from '@/constants';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
-import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
-import Loader from './Loader';
 import { TLocation } from '@/types/region';
+
+import { StepState } from '../useStep';
+import Loader from './Loader';
 
 export interface LocationStepProps {
   projectId: string;

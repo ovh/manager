@@ -1,5 +1,6 @@
-import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
 import TileButton from '@/components/service/TileButton.component';
 
 describe('TileButton', () => {

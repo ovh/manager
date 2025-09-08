@@ -1,5 +1,6 @@
 import { LogProvider } from '@ovh-ux/manager-pci-common';
 import { useMe } from '@ovh-ux/manager-react-components';
+
 import {
   DATA_PLATFORM_GUIDE,
   LOG_LIST_TRACKING_HITS,

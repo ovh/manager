@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_SELECT_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsSelect,
@@ -7,14 +15,10 @@ import {
   OsdsSkeleton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SELECT_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useKubeNetwork } from './useKubeNetwork';
+
 import { TNetworkRegion } from '@/api/data/network';
+
+import { useKubeNetwork } from './useKubeNetwork';
 
 export interface PrivateNetworkSelectorProps {
   projectId: string;

@@ -1,3 +1,9 @@
+import { useMemo } from 'react';
+
+import { useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_DIVIDER_SIZE,
@@ -10,15 +16,14 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
-import { TKube } from '@/types';
-import { PROCESSING_STATUS, STATUS } from '@/constants';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
-import TileButton from './TileButton.component';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { PROCESSING_STATUS, STATUS } from '@/constants';
 import { isMultiDeploymentZones } from '@/helpers';
+import { TKube } from '@/types';
+
+import TileButton from './TileButton.component';
 
 export type ClusterManagementProps = {
   kubeDetail: TKube;

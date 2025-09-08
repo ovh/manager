@@ -1,9 +1,12 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { OsdsSwitch } from '@ovhcloud/ods-components';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import AdmissionPluginsModal from './AdmissionPlugins.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
+
+import AdmissionPluginsModal from './AdmissionPlugins.page';
 
 const navigate = vi.fn();
 

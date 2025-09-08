@@ -1,29 +1,28 @@
 import { useEffect, useState } from 'react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { useParams } from 'react-router-dom';
 
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { TNetworkRegion } from '@/api/data/network';
+import { TGateway, TPrivateNetworkSubnet } from '@/api/data/subnets';
 import {
   useAvailablePrivateNetworks,
   useListGateways,
 } from '@/api/hooks/useNetwork';
-import { TGateway, TPrivateNetworkSubnet } from '@/api/data/subnets';
-import { TNetworkRegion } from '@/api/data/network';
-
+import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component';
+import PrivateNetworkSelect from '@/components/create/PrivateNetworkSelect.component';
+import SubnetSelect from '@/components/create/SubnetSelect.component';
 import {
   GatewaySelector,
   GatewaySelectorState,
 } from '@/components/network/GatewaySelector.component';
-import PrivateNetworkSelect from '@/components/create/PrivateNetworkSelect.component';
-import SubnetSelect from '@/components/create/SubnetSelect.component';
-import LoadBalancerSelect from '@/components/create/LoadBalancerSelect.component';
 import { LoadBalancerWarning } from '@/components/network/LoadBalancerWarning.component';
-
-import { DeploymentMode } from '@/types';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
 import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode } from '@/types';
 
 export type TNetworkFormState = {
   privateNetwork?: TNetworkRegion;

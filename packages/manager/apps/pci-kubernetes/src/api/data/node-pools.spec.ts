@@ -1,5 +1,7 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   deleteNodePool,
   getClusterNodePools,

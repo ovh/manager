@@ -1,11 +1,14 @@
 import { Dispatch, SetStateAction } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   FlavorSelector,
   TComputedKubeFlavor,

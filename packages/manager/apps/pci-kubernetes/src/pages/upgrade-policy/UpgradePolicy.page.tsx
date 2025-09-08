@@ -1,13 +1,9 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -17,16 +13,25 @@ import {
   OdsRadioGroupValueChangeEventDetail,
   OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useContext, useEffect, useState } from 'react';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsRadio,
+  OsdsRadioButton,
+  OsdsRadioGroup,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { UPGRADE_POLICIES } from '@/constants';
+
 import {
   useKubernetesCluster,
   useUpdateKubePolicy,
 } from '@/api/hooks/useKubernetes';
+import { UPGRADE_POLICIES } from '@/constants';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function UpgradePolicyPage() {

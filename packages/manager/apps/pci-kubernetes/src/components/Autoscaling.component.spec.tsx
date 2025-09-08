@@ -1,7 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { Autoscaling } from './Autoscaling.component';
+
 import { wrapper } from '@/wrapperRenders';
+
+import { Autoscaling } from './Autoscaling.component';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   QuantitySelector: ({

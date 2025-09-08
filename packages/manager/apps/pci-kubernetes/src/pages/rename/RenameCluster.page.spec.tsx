@@ -1,21 +1,26 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
+
 import {
   OdsInputValueChangeEventDetail,
   OsdsInput,
 } from '@ovhcloud/ods-components';
-import RenameClusterPage from './RenameCluster.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import RenameClusterPage from './RenameCluster.page';
 
 type UseRenameClusterReturnType = UseMutationResult<
   never,
   Error,
   void,
   unknown
-> & { renameCluster: () => void };
+> & {
+  renameCluster: () => void;
+};
 
 describe('RenameClusterPage', () => {
   it('renders loading spinner when data is pending', () => {

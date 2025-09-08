@@ -1,5 +1,7 @@
-import clsx from 'clsx';
 import { ReactNode } from 'react';
+
+import clsx from 'clsx';
+
 import RadioTile from '../radio-tile/RadioTile.component';
 
 export interface KubeDeploymentTileProps {

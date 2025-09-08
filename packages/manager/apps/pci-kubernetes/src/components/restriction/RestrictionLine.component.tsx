@@ -1,12 +1,16 @@
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { useState } from 'react';
+
 import {
   ODS_ICON_NAME,
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import { OsdsInput } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { isIPValid } from '@/helpers';
+
 import RestrictionAction from './RestrictionAction.component';
 
 type TRestrictionLine = {

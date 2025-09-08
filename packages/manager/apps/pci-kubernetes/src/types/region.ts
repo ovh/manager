@@ -2,6 +2,7 @@ import {
   TContinent,
   TLocalisation as TLocPCI,
 } from '@ovh-ux/manager-pci-common';
+
 import { DeploymentMode } from '.';
 
 export type TAvailabilityZone = string;

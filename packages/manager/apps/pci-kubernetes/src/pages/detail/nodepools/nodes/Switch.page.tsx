@@ -1,9 +1,9 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useMemo } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -13,12 +13,17 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useNodes } from '@/api/hooks/nodes';
+
 import { useSwitchToMonthlyBilling } from '@/api/hooks/instances';
+import { useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
 
 export default function SwitchPage(): JSX.Element {

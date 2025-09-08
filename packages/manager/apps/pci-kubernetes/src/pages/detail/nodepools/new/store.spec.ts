@@ -1,10 +1,11 @@
-import { describe } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
+import { describe } from 'vitest';
+
+import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import {
   TFormStore,
   useNewPoolStore,
 } from '@/pages/detail/nodepools/new/store';
-import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 
 describe('NewPoolStore', () => {
   describe('set', () => {
