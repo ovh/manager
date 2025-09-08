@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Scale > should render correctly 1`] = `
+<div>
+  <osds-modal
+    headline="kube_common_node_pool_autoscaling_title"
+  >
+    <slot
+      name="content"
+    >
+      <osds-spinner
+        class="block text-center"
+        inline="true"
+        size="md"
+      />
+    </slot>
+    <osds-button
+      color="primary"
+      slot="actions"
+      variant="ghost"
+    >
+      kube_common_cancel
+    </osds-button>
+    <osds-button
+      color="primary"
+      slot="actions"
+    >
+      kube_common_save
+    </osds-button>
+  </osds-modal>
+</div>
+`;

@@ -1,38 +1,32 @@
 import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import {
+  sharedConfig,
+  mergeConfig,
+  createConfig,
+  defaultExcludedFiles,
+} from '@ovh-ux/manager-tests-setup';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/interface',
-        'src/__tests__',
-        'src/**/*constants.ts',
-        'src/**/*enum.ts',
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/core/ShellRoutingSync.tsx',
-        'src/core/HidePreloader.tsx',
-        'src/i18n.ts',
-        'src/main.tsx',
-        'src/pages/Layout.tsx',
-        'src/routes.tsx',
-        'src/queryClient.ts',
-        'src/wrapperRenders.tsx',
-      ],
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: './src/setupTests.ts',
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
+          'src/core/ShellRoutingSync.tsx',
+          'src/core/HidePreloader.tsx',
+          'src/pages/Layout.tsx',
+          'src/queryClient.ts',
+          'src/wrapperRenders.tsx',
+        ],
+      },
     },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
     },
-    mainFields: ['module'],
-  },
-});
+  }),
+);
