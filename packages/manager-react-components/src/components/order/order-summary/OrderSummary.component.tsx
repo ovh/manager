@@ -23,7 +23,7 @@ export const OrderSummary: FC<OrderSummaryProps> = ({
   }, [orderLink, isOrderInitialized]);
 
   if (!isOrderInitialized) {
-    return null;
+    return <></>;
   }
 
   // set default label if no product name provided
