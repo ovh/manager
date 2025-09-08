@@ -1,20 +1,22 @@
 import {
-  Column,
   ColumnDef,
   ColumnSort as TanstackColumnSort,
 } from '@tanstack/react-table';
-import { Option } from '../filters/filter-add.component';
 import {
   FilterComparator,
   FilterTypeCategories as DatagridColumnTypes,
 } from '@ovh-ux/manager-core-api';
+import { Option } from '../filters/filter-add.component';
 
 export type ColumnSort = TanstackColumnSort;
 
-export type DatagridProps<T> = {
+export type DatagridProps<T extends Record<string, unknown>> = {
   columns: ColumnDef<T>[];
   data: T[];
-  onSortChange?: (column: Column<T>) => void;
+  sorting?: ColumnSort[];
+  onSortChange?: (sorting: ColumnSort[]) => void;
+  manualSorting?: boolean;
+  contentAlignLeft?: boolean;
 };
 
 /** It is use by different hooks to define the columns of the datagrid

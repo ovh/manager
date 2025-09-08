@@ -1,0 +1,96 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+import meta, { Default } from './Datagrid.stories';
+import Datagrid from '../../../../components/external-links';
+
+<Meta title="Manager React Components/Components/Datagrid New/Documentation" />
+
+<StoryBookBanner of={meta} />
+
+<Canvas layout="centered" of={Default} sourceState="none" />
+
+<StorybookHeading label="Overview" level={2} />
+
+<StorybookIdentityCard
+  name="Datagrid"
+  relatedComponents={[
+    { name: 'Table', href: Datagrid.ods.table },
+  ]}
+>
+The Datagrid component is a powerful data table built on top of TanStack Table, providing advanced features for displaying and interacting with tabular data. It supports sorting, filtering, pagination, and customizable column definitions.
+</StorybookIdentityCard>
+
+<StorybookHeading label="Features" level={3} />
+
+<StorybookTable
+  columns={[
+    { label: 'Feature', key: 'feature' },
+    { label: 'Description', key: 'description' },
+    { label: 'Status', key: 'status' },
+  ]}
+  rows={[
+    {
+      feature: 'Column Sorting',
+      description: 'Client-side and server-side sorting with TanStack Table integration',
+      status: '✅ Available',
+    },
+    {
+      feature: 'Manual Sorting',
+      description: 'Server-side sorting control with manualSorting prop',
+      status: '✅ Available',
+    },
+    {
+      feature: 'Custom Columns',
+      description: 'Flexible column definitions with custom cell renderers',
+      status: '✅ Available',
+    },
+    {
+      feature: 'Pagination',
+      description: 'Built-in pagination with load more functionality',
+      status: '✅ Available',
+    },
+    {
+      feature: 'Responsive Design',
+      description: 'Mobile-friendly table layout',
+      status: '✅ Available',
+    },
+  ]}
+/>
+
+<StorybookHeading label="Sorting Configuration" level={3} />
+
+The Datagrid supports two sorting modes:
+
+**Client-side Sorting (Default)**
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  sorting={sorting}
+  onSortChange={setSorting}
+  manualSorting={false} // Default
+/>
+```
+
+**Server-side Sorting (Manual)**
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  sorting={sorting}
+  onSortChange={setSorting}
+  manualSorting={true} // Server handles sorting
+/>
+```
+
+<StorybookHeading label="External Resources" level={3} />
+
+- **TanStack Table**: [Official Documentation](https://tanstack.com/table/latest)
+- **ODS Table Component**: [Design System Table]({Datagrid.ods.table})
+- **React Table Examples**: [GitHub Examples](https://github.com/TanStack/table/tree/main/examples/react/sorting)
