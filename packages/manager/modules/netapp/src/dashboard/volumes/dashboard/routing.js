@@ -13,6 +13,11 @@ export default /* @ngInject */ ($stateProvider) => {
           name: `netapp::dashboard::volumes::dashboard::${tracker}`,
         });
       },
+      volumeCapacityInfos: /* @ngInject */ (
+        NetAppDashboardService,
+        serviceName,
+        volumeId,
+      ) => NetAppDashboardService.getVolumeCapacity(serviceName, volumeId),
       goToVolumeDashboard: /* @ngInject */ (
         $state,
         Alerter,
