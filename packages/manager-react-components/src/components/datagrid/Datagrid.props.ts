@@ -14,7 +14,9 @@ export type ColumnSort = TanstackColumnSort;
 export type DatagridProps<T> = {
   columns: ColumnDef<T>[];
   data: T[];
-  onSortChange?: (column: Column<T>) => void;
+  sorting?: ColumnSort[];
+  onSortChange?: (sorting: ColumnSort[]) => void;
+  manualSorting?: boolean;
 };
 
 /** It is use by different hooks to define the columns of the datagrid

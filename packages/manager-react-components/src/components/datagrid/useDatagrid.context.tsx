@@ -1,5 +1,4 @@
-import { createContext, useContext, useState, useRef } from 'react';
-import { Column, ColumnDef } from '@tanstack/react-table';
+import { createContext, useContext, useRef } from 'react';
 import {
   DatagridProviderProps,
   DatagridContextType,
@@ -13,15 +12,18 @@ export const DatagridProvider = <T,>({
   children,
   data = [],
   columns = [],
+  sorting,
   onSortChange,
+  manualSorting,
 }: DatagridProviderProps<T>) => {
   const headerRefs = useRef({});
-
   const contextValue: DatagridContextType<T> = {
     data,
     columns,
     headerRefs,
+    sorting,
     onSortChange,
+    manualSorting,
   };
 
   return (

@@ -8,10 +8,20 @@ import { Text } from '../../text';
 
 export const DatagridContent = <T,>() => {
   const { t } = useTranslation('datagrid');
-  const { isContextError, columns, data } = useDatagridContext<T>();
+  const {
+    isContextError,
+    columns,
+    data,
+    sorting,
+    onSortChange,
+    manualSorting,
+  } = useDatagridContext<T>();
   const table = useDatagridTable({
     columns: columns,
     data: data,
+    sorting,
+    onSortChange,
+    manualSorting,
   });
 
   if (isContextError) {
