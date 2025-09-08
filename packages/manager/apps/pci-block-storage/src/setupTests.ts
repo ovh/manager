@@ -12,5 +12,12 @@ vi.mock('react-i18next', async (importOriginal) => {
         changeLanguage: () => new Promise(() => {}),
       },
     }),
+    Trans: (params) => params.i18nKey,
   };
 });
+
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => vi.fn(),
+  useParams: vi.fn(),
+  useHref: vi.fn(),
+}));
