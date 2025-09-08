@@ -24,7 +24,9 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
     href: rootHref,
   };
 
-  const pathnames = location.pathname.split('/').filter(Boolean);
+  const pathnames = location.pathname
+    .split('/')
+    .filter((path) => !isRootPath(path) && Boolean(path));
   const pathsTab = pathnames.map((value, index) => {
     const item = items?.find(({ id }) => id === value);
 
