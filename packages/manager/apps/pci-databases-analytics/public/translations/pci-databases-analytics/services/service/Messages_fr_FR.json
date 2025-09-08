@@ -34,5 +34,6 @@
   "deleteServiceButtonCancel": "Annuler",
   "deleteServiceButtonConfirm": "Supprimer",
   "deleteServiceIntegrationDescription": "Supprimer ce service entrainera la suppression de l'association d'intégration suivante :",
-  "deleteServiceIntegrationsDescription": "Supprimer ce service entrainera la suppression des associations d'intégration suivantes :"
+  "deleteServiceIntegrationsDescription": "Supprimer ce service entrainera la suppression des associations d'intégration suivantes :",
+  "deletionProtectionBadgeLabel": "Protection contre suppression"
 }
