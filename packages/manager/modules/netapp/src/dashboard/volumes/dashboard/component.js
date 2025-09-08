@@ -9,6 +9,7 @@ export default {
     volumeDashboardAclLink: '<',
     volumeDashboardSnapshotsLink: '<',
     volumeDashboardActivesNFSLink: '<',
+    volumeCapacityInfos: '<',
     volume: '<',
     updateVolume: '<',
     goToVolumeDashboard: '<',
