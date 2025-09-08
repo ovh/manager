@@ -13,3 +13,14 @@ export type TSectionType =
   | 'billing/monthly/activate'
   | 'network/private/attach'
   | 'attach';
+
+export type TActionLink = {
+  path: string;
+  isExternal: boolean;
+  isTargetBlank?: boolean;
+};
+
+export type TAction = {
+  label: string;
+  link: TActionLink;
+};

@@ -7,7 +7,7 @@ import Modal from '@/components/modal/Modal.component';
 import { useAttachNetwork } from '@/data/hooks/instance/useInstance';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { isApiErrorResponse } from '@/utils';
-import NetworkSelector from '../components/NetworkSelector.component';
+import NetworkSelector from '../components/network/NetworkSelector.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useUnattachedPrivateNetworks } from '../hooks/useDashboardAction';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
