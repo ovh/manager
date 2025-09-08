@@ -1,7 +1,9 @@
-import { HeaderGroup, Column } from '@tanstack/react-table';
+import { HeaderGroup, ColumnSort } from '@tanstack/react-table';
 
-export type TableHeaderContentProps<T> = {
-  headerGroups: HeaderGroup<T>[];
+export type TableHeaderContentProps<T = unknown> = {
   contentAlignLeft?: boolean;
-  onSortChange?: (column: Column<T>) => void;
+  headerGroups: HeaderGroup<T>[];
+  onSortChange?: (sorting: ColumnSort[]) => void;
+  sorting?: ColumnSort[];
+  headerRefs: Record<string, HTMLTableCellElement>;
 };
