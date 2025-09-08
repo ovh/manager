@@ -100,7 +100,7 @@ const DefaultPaymentMethod: React.FC<DefaultPaymentMethodProps> = ({
               label={t(
                 'pci_project_new_payment_default_method_expiration_date',
                 {
-                  formatData: getFormatExpirationDate(method, formatDate),
+                  formatDate: getFormatExpirationDate(method, formatDate),
                 },
               )}
             />
