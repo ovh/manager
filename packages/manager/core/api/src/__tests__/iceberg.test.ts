@@ -504,6 +504,92 @@ describe('fetchIcebergV6', () => {
     );
   });
 
+  it('should fetch data with a single value isIn filter comparator', async () => {
+    mockV6Response([{ id: 1, name: 'test' }], {
+      'x-pagination-elements': '1',
+    });
+
+    const filters = [
+      {
+        key: 'name',
+        value: ['test'],
+        comparator: FilterComparator.IsIn,
+        type: FilterTypeCategories.String,
+      },
+    ];
+
+    const result = await fetchIcebergV6({
+      route: '/test',
+      page: 2,
+      pageSize: 20,
+      filters,
+      sortBy: 'name',
+      sortReverse: true,
+      disableCache: true,
+    });
+
+    expect(result).toEqual({
+      data: [{ id: 1, name: 'test' }],
+      totalCount: 1,
+      status: 200,
+    });
+
+    expect(mockApiClient.v6.get).toHaveBeenCalledWith('/test', {
+      headers: expectHeaders({
+        'x-pagination-mode': 'CachedObjectList-Pages',
+        'x-pagination-number': '2',
+        'X-Pagination-Size': '20',
+        'x-pagination-sort': 'name',
+        'x-pagination-sort-order': 'DESC',
+        'x-pagination-filter': 'name:eq=test',
+        Pragma: 'no-cache',
+      }),
+    });
+  });
+
+  it('should fetch data with an array value isIn filter comparator', async () => {
+    mockV6Response([{ id: 1, name: 'test' }], {
+      'x-pagination-elements': '1',
+    });
+
+    const filters = [
+      {
+        key: 'name',
+        value: ['test', 'otherTest'],
+        comparator: FilterComparator.IsIn,
+        type: FilterTypeCategories.String,
+      },
+    ];
+
+    const result = await fetchIcebergV6({
+      route: '/test',
+      page: 2,
+      pageSize: 20,
+      filters,
+      sortBy: 'name',
+      sortReverse: true,
+      disableCache: true,
+    });
+
+    expect(result).toEqual({
+      data: [{ id: 1, name: 'test' }],
+      totalCount: 1,
+      status: 200,
+    });
+
+    expect(mockApiClient.v6.get).toHaveBeenCalledWith('/test', {
+      headers: expectHeaders({
+        'x-pagination-mode': 'CachedObjectList-Pages',
+        'x-pagination-number': '2',
+        'X-Pagination-Size': '20',
+        'x-pagination-sort': 'name',
+        'x-pagination-sort-order': 'DESC',
+        'x-pagination-filter': 'name:in=test,otherTest',
+        Pragma: 'no-cache',
+      }),
+    });
+  });
+
   it('should handle missing x-pagination-elements header', async () => {
     mockV6Response([{ id: 1, name: 'test' }], {
       // Missing x-pagination-elements header
