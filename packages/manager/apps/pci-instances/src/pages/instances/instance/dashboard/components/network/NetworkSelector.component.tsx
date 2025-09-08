@@ -11,7 +11,7 @@ import {
   SelectControl,
 } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TUnattachedResource } from '../view-models/selectUnattachedResource';
+import { TUnattachedResource } from '../../view-models/selectUnattachedResource';
 
 type TNetworkSelectorProps = {
   networks: TUnattachedResource[];
