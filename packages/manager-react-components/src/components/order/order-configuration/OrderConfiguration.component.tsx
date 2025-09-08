@@ -17,7 +17,7 @@ export const OrderConfiguration: FC<OrderConfigurationProps> = ({
   const { t } = useTranslation('order');
 
   if (isOrderInitialized) {
-    return null;
+    return <></>;
   }
 
   if (error) {
