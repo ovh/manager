@@ -31,7 +31,10 @@ export const getService = async <
 };
 
 interface AddService extends Omit<ServiceData, 'serviceId'> {
-  serviceInfo: Partial<database.ServiceCreation>;
+  serviceInfo: Omit<Partial<database.ServiceCreation>, 'ipRestrictions'| 'disk'> & {
+    ipRestrictions?: Omit<database.service.IpRestriction, 'status'>[];
+    disk?: Partial<database.service.Disk>;
+  };
 }
 export const addService = async ({
   projectId,
