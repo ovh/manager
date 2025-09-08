@@ -1,9 +1,10 @@
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
-import { wrapper } from '@/alldoms/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { useGetAllDoms } from '@/alldoms/hooks/data/useGetAllDoms';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';

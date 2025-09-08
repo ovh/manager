@@ -1,3 +1,4 @@
+import { ParamValueType } from '@ovh-ux/url-builder';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import {
   AdditionalDomainStateEnum,
@@ -9,9 +10,7 @@ import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
-import {
-  OptionEnum,
-} from '../../common/enum/option.enum';
+import { OptionEnum } from '../../common/enum/option.enum';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -20,18 +19,18 @@ export interface TNameServer {
 }
 
 export interface TNameServerWithType extends TNameServer {
-  nameServerType: keyof typeof DnsConfigurationTypeEnum;
+  nameServerType: DnsConfigurationTypeEnum;
 }
 
 export interface TDatagridDnsDetails {
   name: string;
   ip: string;
   status: string;
-  type: keyof typeof PublicNameServerTypeEnum;
+  type: PublicNameServerTypeEnum;
 }
 
 interface DNSConfiguration {
-  configurationType: keyof typeof DnsConfigurationTypeEnum;
+  configurationType: DnsConfigurationTypeEnum;
   glueRecordIPv6Supported: boolean;
   hostSupported: boolean;
   maxDNS: number;
@@ -43,7 +42,7 @@ interface DNSConfiguration {
 interface Task {
   id: string; // UUID
   link: string;
-  status: keyof typeof TaskStatusEnum;
+  status: TaskStatusEnum;
   type: string;
 }
 
@@ -57,18 +56,18 @@ interface IAMResource {
 export interface TDomainResource {
   checksum: string;
   currentState: {
-    additionalStates: keyof typeof AdditionalDomainStateEnum[] | [];
+    additionalStates: AdditionalDomainStateEnum[] | [];
     dnsConfiguration: DNSConfiguration;
     extension: string;
-    mainState: keyof typeof DomainStateEnum;
+    mainState: DomainStateEnum;
     name: string;
-    protectionState: keyof typeof ProtectionStateEnum;
-    suspensionState: keyof typeof SuspensionStateEnum;
+    protectionState: ProtectionStateEnum;
+    suspensionState: SuspensionStateEnum;
   };
   currentTasks: Task[];
   iam: IAMResource | null;
   id: string;
-  resourceStatus: keyof typeof ResourceStatusEnum;
+  resourceStatus: ResourceStatusEnum;
   targetSpec?: {
     dnsConfiguration?: {
       nameServers: TNameServer[];
@@ -77,7 +76,23 @@ export interface TDomainResource {
 }
 
 export interface TDomainOption {
-  option: keyof typeof OptionEnum;
+  option: OptionEnum;
   expirationDate: string;
-  state: keyof typeof OptionStateEnum;
+  state: OptionStateEnum;
 }
+
+export type ComboRule = {
+  requiresAll: string[];
+  result: BannerResultDetails;
+};
+export type BannerType = 'error' | 'warning';
+export type BannerResult = BannerResultDetails | undefined;
+export type BannerResultDetails = {
+  type: BannerType;
+  i18nKey: string;
+  link?: {
+    linkDetails?: [string, string, Record<string, ParamValueType>];
+    linki18n: string;
+    orderFunnel?: boolean;
+  };
+};

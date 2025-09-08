@@ -1,9 +1,9 @@
-import '@/domain/setupTests';
+import '@/common/setupTests';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import ServiceList from './serviceList';
-import { wrapper } from '@/domain/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { serviceList } from '@/domain/__mocks__/serviceList';
 
 describe('Domains datagrid', () => {

@@ -3,12 +3,12 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ServiceInfoRenewMode,
   LifecycleCapacitiesEnum,
 } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 interface ServiceDetailSubscribingRenewModeProps {
-  readonly renewMode: ServiceInfoRenewMode;
+  readonly renewMode: ServiceInfoRenewModeEnum;
   readonly lifecycleCapacities: LifecycleCapacitiesEnum[];
 }
 

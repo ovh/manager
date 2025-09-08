@@ -6,30 +6,15 @@ import {
   UpdateAllDomProps,
 } from '@/alldoms/types';
 import {
-  ServiceInfoRenewMode,
   ServiceInfoUpdateEnum,
 } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
 
 /**
  *  : List available AllDom services
  */
 export const getAllDomList = async (): Promise<string[]> => {
   const { data } = await v6.get('/allDom');
-  return data;
-};
-
-/**
- *  : Get this AllDom properties
- */
-export const getServiceInformation = async (
-  serviceName: string,
-  serviceRoutes: string,
-): Promise<TServiceInfo> => {
-  const { data: serviceNameId } = await v6.get(
-    `/services?resourceName=${serviceName}&routes=${serviceRoutes}`,
-  );
-
-  const { data } = await v6.get(`/services/${serviceNameId}`);
   return data;
 };
 
@@ -70,7 +55,7 @@ export const updateDomainServiceInfo = async (
       const { data } = await v6.put(`/services/${id}&routes=/domain`, {
         displayName: domainName,
         renew: {
-          mode: ServiceInfoRenewMode.Manual,
+          mode: ServiceInfoRenewModeEnum.Manual,
         },
         terminationPolicy: ServiceInfoUpdateEnum.TerminateAtExpirationDate,
       });
