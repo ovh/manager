@@ -56,7 +56,7 @@ export default function ProjectHeader() {
         changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
       }}
       tabs={
-        <nav aria-label={t('pci_project_project_main_navigation')}>
+        <nav aria-label={t('pci_projects_project_main_navigation')}>
           <TabsPanel tabs={tabs} />
         </nav>
       }

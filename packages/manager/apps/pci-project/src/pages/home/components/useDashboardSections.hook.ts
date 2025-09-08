@@ -47,14 +47,14 @@ export function useDashboardSections(projectId: string) {
     if (!isLoading) {
       items.push(
         ...vouchersCreditDetails.slice(0, 3).map((credit) => ({
-          label: t('pci_project_project_voucher_credit', {
+          label: t('pci_projects_project_voucher_credit', {
             voucher: credit.voucher,
           }),
           description: credit.description,
           link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
           price: credit.balance,
           validUntil: credit.expirationDate
-            ? t('pci_project_project_expires_on', {
+            ? t('pci_projects_project_expires_on', {
                 date: formatDate({
                   date: credit.expirationDate,
                   format: 'PPpp',
@@ -69,7 +69,7 @@ export function useDashboardSections(projectId: string) {
     items.push(
       ...BILLING_LINKS.map((link) => ({
         label: '',
-        description: `pci_project_project_${link.descriptionKey}`,
+        description: `pci_projects_project_${link.descriptionKey}`,
         link: link.link.replace('{projectId}', projectId),
         icon: link.icon,
         target: link.target,
@@ -87,8 +87,8 @@ export function useDashboardSections(projectId: string) {
     const documentationLinks = getDocumentationLinks(user.ovhSubsidiary);
 
     return documentationLinks.map((link) => ({
-      label: t(`pci_project_project_${link.labelKey}`),
-      description: t(`pci_project_project_${link.descriptionKey}`),
+      label: t(`pci_projects_project_${link.labelKey}`),
+      description: t(`pci_projects_project_${link.descriptionKey}`),
       link: link.link,
     }));
   }, [t, environment]);
@@ -98,14 +98,14 @@ export function useDashboardSections(projectId: string) {
       if ('items' in link && link.items) {
         // Handle items structure - create title item and sub-items
         const titleItem = {
-          label: t(`pci_project_project_${link.labelKey}`),
+          label: t(`pci_projects_project_${link.labelKey}`),
           description: '',
           link: '',
         };
 
         const subItems = link.items.map((item) => ({
           label: '',
-          description: t(`pci_project_project_${item.descriptionKey}`),
+          description: t(`pci_projects_project_${item.descriptionKey}`),
           link: item.link,
         }));
 
@@ -114,8 +114,8 @@ export function useDashboardSections(projectId: string) {
       // Handle single link structure
       return [
         {
-          label: t(`pci_project_project_${link.labelKey}`),
-          description: t(`pci_project_project_${link.descriptionKey}`),
+          label: t(`pci_projects_project_${link.labelKey}`),
+          description: t(`pci_projects_project_${link.descriptionKey}`),
           link: link.link,
         },
       ];
@@ -125,17 +125,17 @@ export function useDashboardSections(projectId: string) {
   const sections: BottomSection[] = useMemo(
     () => [
       {
-        title: t('pci_project_project_billing_section'),
+        title: t('pci_projects_project_billing_section'),
         type: 'billing' as const,
         items: createBillingItems(),
       },
       {
-        title: t('pci_project_project_documentation_section'),
+        title: t('pci_projects_project_documentation_section'),
         type: 'documentation' as const,
         items: createDocumentationItems(),
       },
       {
-        title: t('pci_project_project_community_section'),
+        title: t('pci_projects_project_community_section'),
         type: 'community' as const,
         items: createCommunityItems(),
       },
