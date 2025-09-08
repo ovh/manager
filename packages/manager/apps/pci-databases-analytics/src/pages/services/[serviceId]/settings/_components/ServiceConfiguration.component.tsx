@@ -2,6 +2,7 @@ import { Pen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
+  Badge,
   Button,
   Table,
   TableBody,
@@ -89,7 +90,7 @@ const ServiceConfiguration = () => {
             {service.capabilities.service?.update && (
               <TableCell className="text-right">
                 <Button
-                  data-testid="service-confi-rename-button"
+                  data-testid="service-config-rename-button"
                   disabled={
                     service.capabilities.service?.update ===
                     database.service.capability.StateEnum.disabled
@@ -140,11 +141,40 @@ const ServiceConfiguration = () => {
               />
             </TableRow>
           )}
+          {service.capabilities.deletionProtection?.read && (
+            <TableRow>
+              <TableCell className="font-semibold">
+                {t('serviceConfigurationServiceDeletionProtection')}
+              </TableCell>
+              <TableCell>
+                <Badge
+                  variant={service.deletionProtection ? 'success' : 'neutral'}
+                >
+                  {service.deletionProtection
+                    ? t('serviceDeletionProtectionActivated')
+                    : t('serviceDeletionProtectionActivatedDeactivated')}
+                </Badge>
+              </TableCell>
+              <TableCell className="text-right">
+                <Button
+                  data-testid="service-config-deletion-protection-button"
+                  disabled={
+                    service.capabilities.deletionProtection?.update ===
+                    database.service.capability.StateEnum.disabled
+                  }
+                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+                  onClick={() => navigate('./deletion-protection')}
+                >
+                  <Pen />
+                </Button>
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
       {service.capabilities.service?.delete && (
         <Button
-          data-testid="service-confi-delete-button"
+          data-testid="service-config-delete-button"
           disabled={
             service.capabilities.service?.delete ===
             database.service.capability.StateEnum.disabled

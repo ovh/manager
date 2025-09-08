@@ -42,6 +42,7 @@ export const mockedService: database.Service = {
   },
   category: database.engine.CategoryEnum.all,
   createdAt: '12/12/2022',
+  deletionProtection: false,
   description: 'serviceDescription',
   disk: {
     size: 1,

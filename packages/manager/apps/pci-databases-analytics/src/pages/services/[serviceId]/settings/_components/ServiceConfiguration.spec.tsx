@@ -38,6 +38,10 @@ const mockedService = {
       update: database.service.capability.StateEnum.enabled,
       delete: database.service.capability.StateEnum.enabled,
     },
+    deletionProtection: {
+      read: database.service.capability.StateEnum.enabled,
+      update: database.service.capability.StateEnum.enabled,
+    },
     maintenanceTime: {
       read: database.service.capability.StateEnum.enabled,
       update: database.service.capability.StateEnum.enabled,
@@ -164,10 +168,13 @@ describe('Service configuration page', () => {
     expect(screen.getByTestId('maintenance-time-cell')).toBeInTheDocument();
     expect(screen.getByTestId('backup-time-cell')).toBeInTheDocument();
     expect(
-      screen.getByTestId('service-confi-rename-button'),
+      screen.getByTestId('service-config-rename-button'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('service-confi-delete-button'),
+      screen.getByTestId('service-config-delete-button'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId('service-config-deletion-protection-button'),
     ).toBeInTheDocument();
   });
 
@@ -192,10 +199,13 @@ describe('Service configuration page', () => {
       ).not.toBeInTheDocument();
       expect(screen.queryByTestId('backup-time-cell')).not.toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-confi-rename-button'),
+        screen.queryByTestId('service-config-rename-button'),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-confi-delete-button'),
+        screen.queryByTestId('service-config-delete-button'),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId('service-config-deletion-protection-button'),
       ).not.toBeInTheDocument();
     });
   });
@@ -221,6 +231,10 @@ describe('Service configuration page', () => {
           maintenanceApply: {
             create: database.service.capability.StateEnum.enabled,
           },
+          deletionProtection: {
+            read: database.service.capability.StateEnum.enabled,
+            update: database.service.capability.StateEnum.disabled,
+          },
         },
       },
       category: 'operational',
@@ -231,16 +245,22 @@ describe('Service configuration page', () => {
       expect(screen.queryByTestId('maintenance-time-cell')).toBeInTheDocument();
       expect(screen.queryByTestId('backup-time-cell')).toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-confi-rename-button'),
+        screen.queryByTestId('service-config-rename-button'),
       ).toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-confi-rename-button'),
+        screen.queryByTestId('service-config-rename-button'),
       ).toBeDisabled();
       expect(
-        screen.queryByTestId('service-confi-delete-button'),
+        screen.queryByTestId('service-config-delete-button'),
       ).toBeInTheDocument();
       expect(
-        screen.queryByTestId('service-confi-delete-button'),
+        screen.queryByTestId('service-config-delete-button'),
+      ).toBeDisabled();
+      expect(
+        screen.queryByTestId('service-config-deletion-protection-button'),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByTestId('service-config-deletion-protection-button'),
       ).toBeDisabled();
     });
   });
@@ -265,16 +285,27 @@ describe('Open modals', () => {
 
   it('open rename service Modal', async () => {
     act(() => {
-      fireEvent.click(screen.getByTestId('service-confi-rename-button'));
+      fireEvent.click(screen.getByTestId('service-config-rename-button'));
     });
     await waitFor(() => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./rename');
     });
   });
 
+  it('open deletion protection Modal', async () => {
+    act(() => {
+      fireEvent.click(
+        screen.getByTestId('service-config-deletion-protection-button'),
+      );
+    });
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('./deletion-protection');
+    });
+  });
+
   it('open delete service Modal', async () => {
     act(() => {
-      fireEvent.click(screen.getByTestId('service-confi-delete-button'));
+      fireEvent.click(screen.getByTestId('service-config-delete-button'));
     });
     await waitFor(() => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./delete');

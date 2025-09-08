@@ -1,0 +1,12 @@
+{
+  "deletionProtectionTitle": "Ochrona przed usunięciem",
+  "deletionProtectionDescription": "Ta opcja pozwala chronić instancję przed przypadkowym usunięciem.",
+  "activateProtection": "Czy chcesz włączyć ochronę przed usunięciem?",
+  "deactivateProtection": "Czy na pewno chcesz wyłączyć ochronę przed usunięciem dla tej usługi?",
+  "deletionProtectionButtonCancel": "Anuluj",
+  "activateDeletionProtection": "Włącz",
+  "deactivateDeletionProtection": "Wyłącz",
+  "updateServiceToastErrorTitle": "Błąd",
+  "updateServiceToastSuccessTitle": "Sukces",
+  "updateServiceToastSuccessDescription": "Twoja usługa została poprawnie zaktualizowana"
+}
