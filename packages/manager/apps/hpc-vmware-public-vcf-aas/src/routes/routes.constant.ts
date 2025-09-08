@@ -22,6 +22,7 @@ export const subRoutes = {
 } as const;
 
 export const urls = {
+  vmwareRoot: `/vmware`,
   root: `/${subRoutes.root}`,
   listing: `/${subRoutes.root}`,
   onboarding: `/${subRoutes.root}/${subRoutes.onboarding}`,
