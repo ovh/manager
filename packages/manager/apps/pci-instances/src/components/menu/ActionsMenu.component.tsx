@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { DeepReadonly } from '@/types/utils.type';
 import { ActionMenuItem } from './ActionMenuItem.component';
-import { TAction } from '@/pages/instances/instance/dashboard/view-models/selectInstanceDashboard';
+import { TAction } from '@/types/instance/action/action.type';
 
 export type TActionsMenuProps = DeepReadonly<{
   items: Map<string, TAction[]>;
