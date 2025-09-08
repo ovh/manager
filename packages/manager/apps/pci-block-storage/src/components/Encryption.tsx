@@ -1,20 +1,16 @@
-import React, { PropsWithChildren, useMemo } from 'react';
-import {
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { Subtitle } from '@ovh-ux/manager-react-components';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Badge } from '@ovh-ux/manager-pci-common';
-import clsx from 'clsx';
+import { PropsWithChildren, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  Badge,
+  BADGE_COLOR,
+  BADGE_SIZE,
+  Radio as OdsRadio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { EncryptionType } from '@/api/select/volume';
 import { useVolumeEncryptions } from '@/api/hooks/useCatalog';
 
@@ -23,25 +19,14 @@ const Radio = ({
   value,
   disabled,
 }: PropsWithChildren<{ value: string; disabled?: boolean }>) => (
-  <OsdsRadio
+  <OdsRadio
     value={value}
-    name="encryption"
+    aria-label="encryption"
     {...(disabled ? { disabled: true } : {})}
   >
-    <OsdsRadioButton
-      size={ODS_RADIO_BUTTON_SIZE.xs}
-      color={ODS_THEME_COLOR_INTENT.primary}
-    >
-      <OsdsText
-        color={ODS_THEME_COLOR_INTENT.text}
-        size={ODS_TEXT_SIZE._400}
-        slot="end"
-        className={clsx(!disabled && 'cursor-pointer')}
-      >
-        {children}
-      </OsdsText>
-    </OsdsRadioButton>
-  </OsdsRadio>
+    <RadioControl />
+    <RadioLabel>{children}</RadioLabel>
+  </OdsRadio>
 );
 
 interface Props {
@@ -83,64 +68,49 @@ export const Encryption = ({
 
   return (
     <fieldset className="border-0 p-0" role="radiogroup">
-      <legend className="flex items-baseline p-0">
-        <Subtitle>{title}</Subtitle>
+      <legend className="flex items-center p-0 mb-4 gap-4">
+        <Text preset={TEXT_PRESET.heading3}>{title}</Text>
         {isNew && (
-          <Badge
-            color="new"
-            label={t('common:pci_projects_project_storages_blocks_new')}
-            className="ml-4"
-          />
+          <Badge color={BADGE_COLOR.new}>
+            {t('common:pci_projects_project_storages_blocks_new')}
+          </Badge>
         )}
       </legend>
 
-      {description && (
-        <OsdsText
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {description}
-        </OsdsText>
-      )}
+      {description && <Text>{description}</Text>}
 
-      <div>
-        <OsdsRadioGroup
-          name="encryption"
-          value={encryptionType ?? 'none'}
-          onOdsValueChange={({ detail }) =>
-            onChange(
-              detail.newValue === 'none'
-                ? null
-                : (detail.newValue as EncryptionType),
-            )
-          }
-        >
-          {enabledEncryptions.map(({ value, label }) => (
-            <Radio value={value} key={value}>
-              {label}
-            </Radio>
-          ))}
-        </OsdsRadioGroup>
+      <RadioGroup
+        name="encryption"
+        className="pl-6 mt-4"
+        value={encryptionType ?? 'none'}
+        onValueChange={({ value }) =>
+          onChange(value === 'none' ? null : (value as EncryptionType))
+        }
+      >
+        {enabledEncryptions.map(({ value, label }) => (
+          <Radio value={value} key={value}>
+            {label}
+          </Radio>
+        ))}
         {/* We need to put it outside radio group because ODS does weird things with disable */}
         {disabledEncryptions.map(({ value, label, comingSoon }) => (
-          <div key={value} className="flex items-baseline">
+          <div key={value} className="flex items-center">
             <Radio value={value} disabled>
               {label}
             </Radio>
 
             {comingSoon && (
               <Badge
-                label={t(
-                  'common:pci_projects_project_storages_blocks_coming_soon',
-                )}
-                color="neutral"
+                color={BADGE_COLOR.neutral}
                 className="ml-5"
-              />
+                size={BADGE_SIZE.sm}
+              >
+                {t('common:pci_projects_project_storages_blocks_coming_soon')}
+              </Badge>
             )}
           </div>
         ))}
-      </div>
+      </RadioGroup>
     </fieldset>
   );
 };
