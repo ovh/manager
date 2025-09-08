@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       debtLink: /* @ngInject */ (coreURLBuilder) =>
         coreURLBuilder.buildURL('billing', '#/history/debt/all/pay'),
       goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
+      hideBreadcrumb: () => true,
     },
     atInternet: {
       ignore: true,
