@@ -9,6 +9,7 @@ export enum CapabilityEnum {
   'currentQueries' = 'currentQueries',
   'currentQueriesCancel' = 'currentQueriesCancel',
   'databases' = 'databases',
+  'deletionProtection' = 'deletionProtection',
   'enableWrites' = 'enableWrites',
   'fork' = 'fork',
   'indexes' = 'indexes',
