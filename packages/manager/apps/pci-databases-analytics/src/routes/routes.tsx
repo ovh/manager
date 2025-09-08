@@ -580,6 +580,15 @@ export default [
                     ),
                   },
                   {
+                    path: 'deletion-protection',
+                    id: 'service.{service.engine}.settings.deletion-protection',
+                    ...lazyRouteConfig(() =>
+                      import(
+                        '@/pages/services/[serviceId]/settings/_components/deletionProtection/DeletionProtection.modal'
+                      ),
+                    ),
+                  },
+                  {
                     path: 'update-version',
                     id: 'service.{service.engine}.settings.update-version',
                     ...lazyRouteConfig(() =>
