@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.15.12...@ovh-ux/manager-pci-object-storage-app@0.16.0) (2025-09-08)
+
+
+### Features
+
+* **pci-object-storage:** create bucket dashboard v1 ([#18980](https://github.com/ovh/manager/issues/18980)) ([539dcd5](https://github.com/ovh/manager/commit/539dcd55b651669dc739e714681b235cf81070d5)), closes [#TAPC-4441](https://github.com/ovh/manager/issues/TAPC-4441) [#TAPC-4844](https://github.com/ovh/manager/issues/TAPC-4844)
+
+
+
+
+
 ## [0.15.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.15.11...@ovh-ux/manager-pci-object-storage-app@0.15.12) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
