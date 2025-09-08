@@ -1,24 +1,16 @@
-import {
-  Badge,
-  Card,
-  Checkbox,
-  CheckboxCheckedChangeDetail,
-  CheckboxCheckedState,
-  CheckboxControl,
-  Text,
-} from '@ovhcloud/ods-react';
-import { useState } from 'react';
+import { Badge, Card, Radio, RadioControl, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
 import { Flag } from '../flag/Flag';
 import { TCountryIsoCode } from '../flag/country-iso-code';
 import { TDeploymentMode } from '@/types/instance/common.type';
+import { Controller, useFormContext } from 'react-hook-form';
 
 export type TLocalizationCardProps = {
   title: string;
-  subtitle: string;
+  region: string;
   countryCode: TCountryIsoCode;
   deploymentMode: TDeploymentMode;
-  onSelect?: (countryCode: TCountryIsoCode) => void;
+  onSelect?: (region: string) => void;
 };
 
 const getBadgeClassName = (mode: TDeploymentMode) => {
@@ -33,42 +25,52 @@ const getBadgeClassName = (mode: TDeploymentMode) => {
 };
 export const LocalizationCard = ({
   title,
-  subtitle,
+  region,
   countryCode,
   deploymentMode,
   onSelect,
 }: TLocalizationCardProps) => {
-  const [isSelected, setIsSelected] = useState<CheckboxCheckedState>(false);
-
-  const handleCheckChange = (value: CheckboxCheckedChangeDetail) => {
-    setIsSelected(value.checked);
-    onSelect?.(countryCode);
-  };
+  const { control } = useFormContext<{ region: string }>();
 
   return (
-    <Card
-      color={isSelected ? 'primary' : 'neutral'}
-      className={clsx('px-6 py-4', {
-        'bg-[--ods-color-information-050]': isSelected,
-      })}
-    >
-      <div className="flex gap-5">
-        <Checkbox onCheckedChange={handleCheckChange}>
-          <CheckboxControl />
-        </Checkbox>
-        <Flag isoCode={countryCode} />
-        <Text preset="heading-6" className="text-nowrap">
-          {title}
-        </Text>
-      </div>
-      <div className="flex justify-between gap-4">
-        <Text className="text-[--ods-color-heading] text-nowrap">
-          {subtitle}
-        </Text>
-        <Badge className={getBadgeClassName(deploymentMode)}>
-          {deploymentMode}
-        </Badge>
-      </div>
-    </Card>
+    <Controller
+      name="region"
+      control={control}
+      render={({ field }) => {
+        const isSelected = field.value === region;
+        const handleSelectChange = () => {
+          field.onChange(region);
+          onSelect?.(region);
+        };
+
+        return (
+          <Radio value={region} className="w-full">
+            <Card
+              color={isSelected ? 'primary' : 'neutral'}
+              className={clsx('px-6 py-4 hover:cursor-pointer w-full', {
+                'bg-[--ods-color-information-050]': isSelected,
+              })}
+              onClick={handleSelectChange}
+            >
+              <div className="flex gap-5">
+                <RadioControl />
+                <Flag isoCode={countryCode} />
+                <Text preset="heading-6" className="text-nowrap">
+                  {title}
+                </Text>
+              </div>
+              <div className="flex justify-between gap-4">
+                <Text className="text-[--ods-color-heading] text-nowrap">
+                  {region}
+                </Text>
+                <Badge className={getBadgeClassName(deploymentMode)}>
+                  {deploymentMode}
+                </Badge>
+              </div>
+            </Card>
+          </Radio>
+        );
+      }}
+    />
   );
 };

@@ -19,12 +19,17 @@ import {
 } from '@/pages/instances/create/components/QuantitySelector';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Cart } from '@/components/cart/Cart';
-import { LocalizationSelection } from './components/localisationSelection/LocalizationSelection.component';
+import {
+  localizationDefaultValue,
+  LocalizationSelection,
+  localizationSelectionSchema,
+} from './components/localisationSelection/LocalizationSelection.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
   name: nameSchema,
   quantity: quantitySchema,
+  region: localizationSelectionSchema,
 });
 
 const quantityHintParams = {
@@ -42,6 +47,7 @@ const CreateInstance: FC = () => {
     defaultValues: {
       name: nameDefaultValue,
       quantity: quantityDefaultValue,
+      region: localizationDefaultValue,
     },
     mode: 'onChange',
   });
