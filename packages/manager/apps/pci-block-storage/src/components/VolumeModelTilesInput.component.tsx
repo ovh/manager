@@ -1,6 +1,7 @@
 import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 
@@ -10,6 +11,7 @@ type Props<T = TVolumeModel | TVolumeRetypeModel> = {
   onChange: (value: T) => void;
   label: string;
   locked?: boolean;
+  horizontal?: boolean;
 };
 
 export const VolumeModelTilesInput = ({
@@ -18,22 +20,61 @@ export const VolumeModelTilesInput = ({
   onChange,
   label = '',
   locked = false,
+  horizontal = false,
 }: Props) => {
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
+
+  const getDescription = useCallback(
+    (model: TVolumeModel | TVolumeRetypeModel) => {
+      const zoneText = model.availabilityZonesCount
+        ? t(
+            'add:pci_projects_project_storages_blocks_add_type_availability_zone',
+            { count: model.availabilityZonesCount },
+          )
+        : undefined;
+
+      const capacityMax = t(
+        'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+        {
+          capacity: formatBytes(model.capacity.max),
+        },
+      );
+
+      if (horizontal) {
+        const zoneDescription = zoneText ? `${zoneText}.\n` : '';
+        return `${zoneDescription}${model.iops}, ${capacityMax}`;
+      }
+
+      return zoneText;
+    },
+    [t, formatBytes],
+  );
+
+  const getFeatures = useCallback(
+    (m: TVolumeModel | TVolumeRetypeModel) => {
+      if (horizontal) return [];
+
+      return [
+        m.iops,
+        t(
+          'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+          {
+            capacity: formatBytes(m.capacity.max),
+          },
+        ),
+        ...(m.bandwidth ? [m.bandwidth] : []),
+      ];
+    },
+    [t, formatBytes],
+  );
 
   const volumeTypes = useMemo(
     () =>
       volumeModels.map((m) => ({
         ...m,
         label: m.displayName,
-        description:
-          m.availabilityZonesCount !== null
-            ? t(
-                'add:pci_projects_project_storages_blocks_add_type_availability_zone',
-                { count: m.availabilityZonesCount },
-              )
-            : undefined,
+        description: getDescription(m),
         badges: [
           m.encrypted
             ? {
@@ -53,18 +94,10 @@ export const VolumeModelTilesInput = ({
                 icon: 'lock' as const,
               },
         ],
-        features: [
-          m.iops,
-          t(
-            'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-            {
-              capacity: formatBytes(m.capacity.max),
-            },
-          ),
-        ].concat(m.bandwidth ? [m.bandwidth] : []),
+        features: getFeatures(m),
         price: m.hourlyPrice,
       })),
-    [volumeModels, t, formatBytes],
+    [volumeModels, t, getDescription, getFeatures],
   );
 
   const volumeTypeValue = useMemo(
@@ -73,13 +106,20 @@ export const VolumeModelTilesInput = ({
   );
 
   return (
-    <TilesInput
-      name="volume-type"
-      label={label}
-      value={volumeTypeValue}
-      elements={volumeTypes}
-      onChange={(e) => onChange(e)}
-      locked={locked}
-    />
+    <div
+      className={clsx(
+        horizontal && '[&_.config-card\\_\\_badges]:w-full whitespace-pre-line',
+      )}
+    >
+      <TilesInput
+        name="volume-type"
+        label={label}
+        value={volumeTypeValue}
+        elements={volumeTypes}
+        onChange={(e) => onChange(e)}
+        locked={locked}
+        horizontal={horizontal}
+      />
+    </div>
   );
 };
