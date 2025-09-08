@@ -1,25 +1,21 @@
-import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsModal,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_TYPE,
-  ODS_SKELETON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Subtitle, Title } from '@ovh-ux/manager-react-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  Button,
+  BUTTON_VARIANT,
+  Drawer,
+  DRAWER_POSITION,
+  DrawerBody,
+  DrawerContent,
+  Message,
+  MESSAGE_COLOR,
+  Skeleton,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
@@ -40,7 +36,6 @@ export const RetypePage = () => {
     preselectedEncryptionType,
     isPending,
   } = useCatalogWithPreselection(projectId, volumeId);
-  const onClose = () => navigate('..');
 
   const currentModel = useMemo(
     () => volumeModelData?.find((model) => model.isPreselected),
@@ -68,6 +63,13 @@ export const RetypePage = () => {
   const isDirty =
     dirtyFields.encryptionType || selectedModel?.name !== currentModel?.name;
 
+  const [isOpen, setIsOpen] = useState(true);
+
+  const onClose = () => {
+    setIsOpen(false);
+    navigate('..');
+  };
+
   const onSubmit: SubmitHandler<FormValues> = () => {
     // TODO Change this when backend is ready
   };
@@ -86,6 +88,7 @@ export const RetypePage = () => {
               label={t(
                 'retype:pci_projects_project_storages_blocks_retype_change_type_title',
               )}
+              horizontal
             />
           )}
         />
@@ -106,72 +109,71 @@ export const RetypePage = () => {
             />
           ) : (
             <div>
-              <Subtitle>
+              <Text preset={TEXT_PRESET.heading2}>
+                {t('retype:pci_projects_project_storages_blocks_retype_title')}
+              </Text>
+              <Text>
                 {t(
-                  'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
+                  'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
                 )}
-              </Subtitle>
-              <div>
-                <OsdsText
-                  size={ODS_TEXT_SIZE._400}
-                  level={ODS_TEXT_LEVEL.body}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t(
-                    'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
-                  )}
-                </OsdsText>
-              </div>
+              </Text>
             </div>
           )}
         </div>
       </div>
     ) : (
-      <OsdsMessage type={ODS_MESSAGE_TYPE.warning}>
+      <Message
+        color={MESSAGE_COLOR.warning}
+        dismissible={false}
+        className="max-w-80"
+      >
         {t('retype:pci_projects_project_storages_blocks_retype_cant_retype')}
-      </OsdsMessage>
+      </Message>
     );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <OsdsModal onOdsModalClose={onClose}>
-        <slot>
-          <legend>
-            <Title>
-              {t('retype:pci_projects_project_storages_blocks_retype_title')}
-            </Title>
-          </legend>
-          {!isPending ? (
-            displayedData
-          ) : (
-            <div>
-              <OsdsSkeleton
-                size={ODS_SKELETON_SIZE.lg}
-                className="h-20"
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-[var(--ods-color-primary-500)] opacity-75 w-full h-full absolute top-0 left-0"
+    >
+      <Drawer open={isOpen}>
+        <DrawerContent
+          position={DRAWER_POSITION.right}
+          className="w-fit flex flex-col justify-between h-[unset]"
+        >
+          <DrawerBody className="flex flex-col gap-8">
+            <legend>
+              <Text preset={TEXT_PRESET.heading2}>
+                {t('retype:pci_projects_project_storages_blocks_retype_title')}
+              </Text>
+            </legend>
+            {isPending ? (
+              <div
+                className="flex flex-col gap-8"
                 data-testid="retypePage-loader"
-              />
-              <OsdsSkeleton size={ODS_SKELETON_SIZE.lg} className="h-10" />
-            </div>
-          )}
-        </slot>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={onClose}
-          type={ODS_BUTTON_TYPE.button}
-        >
-          {t(`${NAMESPACES.ACTIONS}:cancel`)}
-        </OsdsButton>
-        <OsdsButton
-          slot="actions"
-          color={ODS_THEME_COLOR_INTENT.primary}
-          disabled={!isDirty || undefined}
-          type={ODS_BUTTON_TYPE.submit}
-        >
-          {t(`${NAMESPACES.ACTIONS}:modify`)}
-        </OsdsButton>
-      </OsdsModal>
+              >
+                <Skeleton className="h-10" />
+                <Skeleton className="h-10" />
+              </div>
+            ) : (
+              displayedData
+            )}
+          </DrawerBody>
+          <div className="flex gap-8">
+            <Button
+              slot="actions"
+              variant={BUTTON_VARIANT.ghost}
+              onClick={onClose}
+              type="button"
+            >
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
+            </Button>
+            <Button slot="actions" disabled={!isDirty} type="submit">
+              {t(`${NAMESPACES.ACTIONS}:modify`)}
+            </Button>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </form>
   );
 };
