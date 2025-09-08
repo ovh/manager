@@ -1,4 +1,10 @@
-import React, { Fragment, useEffect, useMemo, useRef } from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ColumnDef,
@@ -9,10 +15,8 @@ import {
   useReactTable,
   getSortedRowModel,
   Row,
-  OnChangeFn,
   VisibilityState,
   RowSelectionState,
-  Table,
 } from '@tanstack/react-table';
 import {
   ODS_ICON_NAME,
@@ -145,7 +149,7 @@ export interface DatagridProps<T> {
   /** ids of the columns visible in the datagrid (optional by default all columns are visible) */
   columnVisibility?: string[];
   /** callback to handle column visibility change events (optional) */
-  onColumnVisibilityChange?: OnChangeFn<VisibilityState>;
+  setColumnVisibility?: React.Dispatch<React.SetStateAction<string[]>>;
   /** Add react element at left in the datagrid topbar */
   topbar?: React.ReactNode;
   /** Function to render sub component as row child */
@@ -172,7 +176,7 @@ export interface DatagridProps<T> {
 export const Datagrid = <T,>({
   columns,
   columnVisibility,
-  onColumnVisibilityChange,
+  setColumnVisibility,
   items,
   filters,
   search,
@@ -205,6 +209,25 @@ export const Datagrid = <T,>({
   const pageCount = pagination
     ? Math.ceil(totalItems / pagination.pageSize)
     : 1;
+
+  const columnVisibilityState = useMemo<VisibilityState>(() => {
+    if (columnVisibility) {
+      return columns.reduce((acc, col) => {
+        acc[col.id] = columnVisibility.includes(col.id);
+        return acc;
+      }, {} as VisibilityState);
+    }
+    return undefined;
+  }, [columnVisibility?.join(','), JSON.stringify(columns)]);
+
+  const onColumnVisibilityChange = useCallback((getToggledColumn) => {
+    const colName = Object.keys(getToggledColumn())?.[0];
+    setColumnVisibility?.((prev) =>
+      prev.includes(colName)
+        ? prev.filter((c) => c !== colName)
+        : [...prev, colName],
+    );
+  }, []);
 
   const headerRefs = useRef({});
 
@@ -288,6 +311,9 @@ export const Datagrid = <T,>({
         ...(rowSelection?.rowSelection && {
           rowSelection: rowSelection.rowSelection,
         }),
+        ...(setColumnVisibility && {
+          columnVisibility: columnVisibilityState,
+        }),
       },
       getSortedRowModel: getSortedRowModel(),
     }),
@@ -299,26 +325,25 @@ export const Datagrid = <T,>({
         ...(rowSelection?.rowSelection && {
           rowSelection: rowSelection.rowSelection,
         }),
+        ...(setColumnVisibility && {
+          columnVisibility: columnVisibilityState,
+        }),
       },
       onStateChange: (updater) => {
         if (typeof updater === 'function') {
           const state = updater({ ...table.getState(), ...sorting });
-          if (onSortChange) onSortChange(state.sorting[0]);
+          onSortChange?.(state.sorting[0]);
         } else if (onSortChange) {
           onSortChange(updater.sorting[0]);
         }
       },
     }),
     initialState: {
-      columnVisibility: columns.reduce(
-        (acc, { id }) => ({
-          ...acc,
-          [id]: columnVisibility?.includes(id),
-        }),
-        {},
-      ),
+      ...(!setColumnVisibility && {
+        columnVisibility: columnVisibilityState,
+      }),
     },
-    ...(onColumnVisibilityChange && { onColumnVisibilityChange }),
+    onColumnVisibilityChange,
     enableRowSelection: (row) => {
       if (rowSelection?.enableRowSelection)
         return rowSelection.enableRowSelection(row);
@@ -439,20 +464,20 @@ export const Datagrid = <T,>({
                         }}
                         className={`${
                           contentAlignLeft ? 'text-left pl-4' : 'text-center'
-                        } h-11 whitespace-nowrap `}
+                        } h-11 whitespace-nowrap ${
+                          onSortChange && header.column.getCanSort()
+                            ? 'cursor-pointer'
+                            : ''
+                        }`}
+                        {...{
+                          ...(onSortChange && {
+                            onClick: header.column.getToggleSortingHandler(),
+                          }),
+                        }}
                       >
                         {header.isPlaceholder ? null : (
                           <div
-                            {...{
-                              className:
-                                onSortChange && header.column.getCanSort()
-                                  ? 'cursor-pointer select-none'
-                                  : '',
-                              ...(onSortChange && {
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }),
-                            }}
+                            className="flex items-center select-none"
                             data-testid={`header-${header.id}`}
                           >
                             <span>
@@ -463,9 +488,7 @@ export const Datagrid = <T,>({
                                 )}
                               </>
                             </span>
-                            <span
-                              className={`align-middle inline-block h-4 -mt-6`}
-                            >
+                            <span className="inline-block ml-2 text-xs">
                               <OdsIcon
                                 className={
                                   header.column.getIsSorted() ? '' : 'invisible'
