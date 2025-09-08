@@ -20,16 +20,16 @@ const TileItemContent = memo(function TileItemContent({
 
   const getAriaLabel = () => {
     if (section.type === 'billing') {
-      return t('pci_project_project_billing_item_aria', {
+      return t('pci_projects_project_billing_item_aria', {
         label: item.label || item.description,
       });
     }
 
     const ariaLabelMap = {
-      documentation: t('pci_project_project_documentation_link_aria', {
+      documentation: t('pci_projects_project_documentation_link_aria', {
         label: item.label || item.description,
       }),
-      community: t('pci_project_project_community_link_aria', {
+      community: t('pci_projects_project_community_link_aria', {
         label: item.label || item.description,
       }),
     };

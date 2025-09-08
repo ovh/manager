@@ -9,7 +9,7 @@ const BillingItemSkeleton = memo(function BillingItemSkeleton() {
     <div
       className="flex flex-col gap-4 flex-1"
       role="status"
-      aria-label={t('pci_project_project_loading_billing_info')}
+      aria-label={t('pci_projects_project_loading_billing_info')}
     >
       <OdsSkeleton className="w-1/3" />
       <OdsSkeleton className="w-1/2" />
