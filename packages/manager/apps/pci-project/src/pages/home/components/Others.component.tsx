@@ -19,7 +19,7 @@ export function Others({ items }: { items: OtherActionItem[] }) {
           preset={ODS_TEXT_PRESET.heading3}
           className="whitespace-nowrap mr-4"
         >
-          {t('pci_project_project_others')}
+          {t('pci_projects_project_others')}
         </OdsText>
         {items.map((action, idx) => (
           <Link to={action.link} style={{ textDecoration: 'none' }} key={idx}>
