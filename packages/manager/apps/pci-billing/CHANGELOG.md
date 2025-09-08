@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.11...@ovh-ux/manager-pci-billing-app@0.11.0) (2025-09-08)
+
+
+### Features
+
+* **billing:** add managed kubernetes service consumption ([#18861](https://github.com/ovh/manager/issues/18861)) ([9c828f4](https://github.com/ovh/manager/commit/9c828f434ac86208384373bbeed0e2ff83654f36)), closes [#TAPC-4169](https://github.com/ovh/manager/issues/TAPC-4169)
+* **billing:** add quantum billing ([#18923](https://github.com/ovh/manager/issues/18923)) ([e629bf9](https://github.com/ovh/manager/commit/e629bf9b81c95793c79ebb747d52f4d846d7afcf)), closes [#TAPC-4243](https://github.com/ovh/manager/issues/TAPC-4243)
+
+
+
+
+
 ## [0.10.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.10.10...@ovh-ux/manager-pci-billing-app@0.10.11) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
