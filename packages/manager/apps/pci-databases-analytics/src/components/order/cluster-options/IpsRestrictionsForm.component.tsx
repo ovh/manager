@@ -25,8 +25,8 @@ import { useQuery } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 
 interface IpsRestrictionsFormProps {
-  value: database.IpRestrictionCreation[];
-  onChange: (newIps: database.IpRestrictionCreation[]) => void;
+  value: Omit<database.service.IpRestriction, 'status'>[];
+  onChange: (newIps: Omit<database.service.IpRestriction, 'status'>[]) => void;
   disabled?: boolean;
 }
 
@@ -85,7 +85,10 @@ const IpsRestrictionsForm = React.forwardRef<
       ip: formatIpMask(ip),
       description,
     };
-    const newIps = [...value, formattedIp];
+    const newIps = [...value, formattedIp].map((ipRestriction) => ({
+      ip: ipRestriction.ip,
+      description: ipRestriction.description || '',
+    }));
     onChange(newIps);
     form.reset();
   };

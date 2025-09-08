@@ -16,10 +16,8 @@ export const DATABASE_CREATION_GUIDES =
   'https://github.com/ovh/public-cloud-databases-examples';
 
 export function getDocumentationUrl(
-  documentation: typeof LINKS[keyof typeof LINKS],
+  documentation: Record<string, string>,
   locale: string,
 ): string {
-  return (
-    documentation[locale as keyof typeof documentation] || documentation.default
-  );
+  return documentation[locale] ?? documentation.default;
 }
