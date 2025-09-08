@@ -1,5 +1,3 @@
-import { PerfBudgetResult } from './PerfBudget';
-
 /**
  * Numeric score levels for statuses.
  * - ok = 0
@@ -7,14 +5,6 @@ import { PerfBudgetResult } from './PerfBudget';
  * - exceed = 2
  */
 export type PerfBudgetScoreLevel = 0 | 1 | 2;
-
-/**
- * A scored performance budget for an app.
- */
-export interface PerfBudgetScore extends PerfBudgetResult {
-  /** Numeric score for each status (0–2). */
-  score: PerfBudgetScoreLevel;
-}
 
 /**
  * Summary of scores for an app across all assets.

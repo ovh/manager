@@ -42,7 +42,7 @@ This will:
 ### Analyze a single app
 
 ```bash
-yarn manager-perf-budgets --app manager-catalog-app
+yarn manager-perf-budgets --app zimbra
 ```
 
 ---

@@ -5,7 +5,7 @@ import { assetsBudgetsConfig } from '../../../configs/assets-budgets-config';
 import { evaluatePerfBudgets } from '../rules/perfs-budgets-rules';
 import { scoreAllPerfBudgets } from '../rules/perfs-budgets-scoring';
 import { PerfBudgetResult, PerfBudgetsSummary } from '../types/PerfBudget';
-import { ParsedAsset, ParsedBundle } from '../types/PerfBudgetBundle';
+import { ParsedAsset, ParsedBundle } from '../types/PerfBudgetAssets';
 
 const perfBudgetsReportDirName = 'perf-budgets-reports';
 
@@ -22,18 +22,19 @@ export function escapeHtml(str: string): string {
 }
 
 /**
- * Parse vite-bundle-analyzer JSON output to extract KB totals
- * and per-asset details.
+ * Builds normalized asset information from a list of parsed assets.
  *
- * @param raw - The parsed JSON from bundle-report.json
- * @returns Aggregated bundle info with asset breakdown
+ * Each asset is mapped to an object containing:
+ * - `filename`: The asset's name, or `"unknown"` if not provided.
+ * - `sizeKb`: The asset size in kilobytes, derived from `parsedSize` if numeric.
+ * - `type`: The asset type inferred from the file extension
+ *   (`"js"`, `"css"`, `"html"`, `"img"`, or `"other"`).
+ *
+ * @param {ParsedAsset[]} data - List of parsed assets to transform.
+ * @returns {ParsedAsset[]} A new array of assets enriched with filename, size, and type.
  */
-export function parseAnalyzerJson(raw: unknown): ParsedBundle {
-  if (!Array.isArray(raw)) {
-    return { jsKb: 0, cssKb: 0, htmlKb: 0, imgKb: 0, assets: [] };
-  }
-
-  const assets: ParsedAsset[] = raw.map((entry: any): ParsedAsset => {
+const buildAssetsInfos = (data: ParsedAsset[]): ParsedAsset[] =>
+  data.map((entry: any): ParsedAsset => {
     const filename: string = entry?.filename ?? 'unknown';
     const sizeKb: number = typeof entry?.parsedSize === 'number' ? entry.parsedSize / 1024 : 0;
 
@@ -46,6 +47,19 @@ export function parseAnalyzerJson(raw: unknown): ParsedBundle {
     return { filename, type, sizeKb };
   });
 
+/**
+ * Parse vite-bundle-analyzer JSON output to extract KB totals
+ * and per-asset details.
+ *
+ * @param raw - The parsed JSON from bundle-report.json
+ * @returns Aggregated bundle info with asset breakdown
+ */
+export function parseAnalyzerJson(raw: ParsedAsset[]): ParsedBundle {
+  if (!Array.isArray(raw)) {
+    return { jsKb: 0, cssKb: 0, htmlKb: 0, imgKb: 0, assets: [] };
+  }
+
+  const assets: ParsedAsset[] = buildAssetsInfos(raw);
   const sumByType = (type: ParsedAsset['type']) =>
     assets.filter((a) => a.type === type).reduce((sum, a) => sum + a.sizeKb, 0);
 
@@ -81,7 +95,7 @@ export function collectPerfBudgets(rootDir: string): PerfBudgetsSummary {
 
   for (const app of apps) {
     const jsonPath = path.join(reportsRoot, app, 'bundle-report.json');
-    const raw = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+    const raw: ParsedAsset[] = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
     const { jsKb, cssKb, htmlKb, imgKb, assets } = parseAnalyzerJson(raw);
 

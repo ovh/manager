@@ -1,5 +1,5 @@
 import { assetsBudgetsConfig } from '../../../configs/assets-budgets-config';
-import { ParsedAsset } from './PerfBudgetBundle';
+import { ParsedAsset } from './PerfBudgetAssets';
 import { PerfBudgetScoreSummary } from './PerfBudgetScore';
 
 /**
