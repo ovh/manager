@@ -12,5 +12,5 @@
   "ovhManagerPccResourceUpgrade_cancelButton": "Abbrechen",
   "dedicatedCloud_order_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
   "ovhManagerPccResourceUpgrade_plan_not_found": "Die Option {{ planCode }} ist nicht verfügbar.",
-  "ovhManagerPccResourceUpgrade_plan_success_message": "Ihre Bestellung, um Ihr {{type}} auf das monatliche Abo umzustellen, wurde initiiert. Wenn Sie die Bestellung noch nicht abgeschlossen haben, können Sie sie durch Klicken auf <a href=\"{{url}}\" target=\"_blank\"> Bestellung</a> abschließen vervollständigen."
+  "ovhManagerPccResourceUpgrade_plan_success_message": "Ihre Bestellung, um Ihr {{type}} auf das monatliche Abo umzustellen, wurde initiiert. Wenn Sie die Bestellung noch nicht abgeschlossen haben, können Sie sie durch Klicken auf <a href=\"{{url}}\" target=\"_blank\">Bestellung abschließen</a> vervollständigen."
 }
