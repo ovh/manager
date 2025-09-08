@@ -9,7 +9,7 @@ export function QuickAccess({ items }: { items: QuickAccessItem[] }) {
   return (
     <>
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t('pci_project_project_quick_access')}
+        {t('pci_projects_project_quick_access')}
       </OdsText>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5 m-6">
         {items.map((item, idx) => (
