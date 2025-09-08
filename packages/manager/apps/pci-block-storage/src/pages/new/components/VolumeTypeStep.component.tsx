@@ -90,7 +90,9 @@ export function VolumeTypeStep({
         <Encryption
           encryptionType={encryptionType}
           onChange={setEncryptionType}
-          title={t('common:pci_projects_project_storages_blocks_new')}
+          title={t(
+            'common:pci_projects_project_storages_blocks_encrypted_label',
+          )}
           description={t(
             'add:pci_projects_project_storages_blocks_add_encryption_description',
           )}
@@ -110,7 +112,7 @@ export function VolumeTypeStep({
               )
             }
             actionName="select_volume_add"
-            actionValues={[volumeType.name]}
+            actionValues={[volumeModel.name]}
             className="w-fit"
           >
             {t('common_stepper_next_button_label')}
