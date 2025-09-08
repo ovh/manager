@@ -1,252 +1,162 @@
-import { render, within } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { describe, vi } from 'vitest';
-import { userEvent } from '@testing-library/user-event';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import RetypePage from '@/pages/retype/Retype.page';
+import { useParams } from 'react-router-dom';
+import RetypePage from './Retype.page';
 import {
   TVolumeRetypeModel,
   useCatalogWithPreselection,
 } from '@/api/hooks/useCatalogWithPreselection';
+import { useAttachedInstances } from '@/api/hooks/useInstance';
+import { TAttachedInstance } from '@/api/select/instances';
 
 const PROJECT_ID = '123';
 const VOLUME_ID = '1';
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(),
-  useParams: () => ({ projectId: PROJECT_ID, volumeId: VOLUME_ID }),
-}));
 
 vi.mock('@/api/hooks/useCatalogWithPreselection', () => ({
   useCatalogWithPreselection: vi.fn(),
 }));
 
-const selectedCatalogOption = {
+vi.mock('@/api/hooks/useInstance', () => ({
+  useAttachedInstances: vi.fn(),
+}));
+
+vi.mock('./Retype.component', () => ({
+  Retype: () => <div>Retype instance</div>,
+}));
+
+vi.mock('./RetypeDetachInstance.component', () => ({
+  RetypeDetachInstance: () => <div>Detach instance</div>,
+}));
+
+vi.mocked(useParams).mockReturnValue({
+  projectId: PROJECT_ID,
+  volumeId: VOLUME_ID,
+});
+
+const volumeRetypeModel = {
   name: 'volume model',
   displayName: 'display volume model',
   isPreselected: true,
   capacity: { max: 5 },
 } as TVolumeRetypeModel;
 
-const otherCatalogOption = {
-  name: 'other volume model',
-  displayName: 'display other volume model',
-  isPreselected: false,
-  capacity: { max: 5 },
-} as TVolumeRetypeModel;
+const instance = {
+  id: '213',
+  name: 'instance',
+} as TAttachedInstance;
 
 describe('RetypePage', () => {
-  beforeEach(() => vi.restoreAllMocks());
-
-  it('should render spinner while fetching', () => {
+  it('should render spinner while fetching volumeRetypeModel', () => {
     vi.mocked(useCatalogWithPreselection).mockReturnValue({
       isPending: true,
     } as ReturnType<typeof useCatalogWithPreselection>);
 
-    const { getByTestId } = render(<RetypePage />);
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      data: [],
+      isPending: false,
+    } as ReturnType<typeof useAttachedInstances>);
 
-    expect(useCatalogWithPreselection).toHaveBeenCalledWith(
-      PROJECT_ID,
-      VOLUME_ID,
-    );
+    const { getByTestId, queryByText } = render(<RetypePage />);
+
     expect(getByTestId('retypePage-loader')).toBeVisible();
+    expect(
+      queryByText(
+        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+      ),
+    ).toBeNull();
+    expect(queryByText('Detach instance')).toBeNull();
+    expect(queryByText('Retype instance')).toBeNull();
   });
 
-  it('should render warning message if data is an empty array', () => {
+  it('should render spinner while fetching instances', () => {
     vi.mocked(useCatalogWithPreselection).mockReturnValue({
       data: [],
       isPending: false,
     } as ReturnType<typeof useCatalogWithPreselection>);
 
-    const { getByText } = render(<RetypePage />);
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      isPending: true,
+    } as ReturnType<typeof useAttachedInstances>);
 
-    expect(useCatalogWithPreselection).toHaveBeenCalledWith(
-      PROJECT_ID,
-      VOLUME_ID,
-    );
+    const { getByTestId, queryByText } = render(<RetypePage />);
+
+    expect(getByTestId('retypePage-loader')).toBeVisible();
     expect(
-      getByText(
+      queryByText(
         'retype:pci_projects_project_storages_blocks_retype_cant_retype',
       ),
-    ).toBeVisible();
+    ).toBeNull();
+    expect(queryByText('Detach instance')).toBeNull();
+    expect(queryByText('Retype instance')).toBeNull();
   });
 
-  it('should render unavailable message message if selected volume is not encrypted', () => {
+  it('should render warning message if volumeRetypeModel data is an empty array', () => {
     vi.mocked(useCatalogWithPreselection).mockReturnValue({
       data: [],
       isPending: false,
     } as ReturnType<typeof useCatalogWithPreselection>);
 
-    const { getByText } = render(<RetypePage />);
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      data: [instance],
+      isPending: false,
+    } as ReturnType<typeof useAttachedInstances>);
 
-    expect(useCatalogWithPreselection).toHaveBeenCalledWith(
-      PROJECT_ID,
-      VOLUME_ID,
-    );
+    const { getByText, queryByText, queryByTestId } = render(<RetypePage />);
+
     expect(
       getByText(
         'retype:pci_projects_project_storages_blocks_retype_cant_retype',
       ),
     ).toBeVisible();
+    expect(queryByTestId('retypePage-loader')).toBeNull();
+    expect(queryByText('Detach instance')).toBeNull();
+    expect(queryByText('Retype instance')).toBeNull();
   });
 
-  describe('modify button', () => {
-    it('should be disabled if nothing has changed', () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [selectedCatalogOption, otherCatalogOption],
-        isPending: false,
-      } as ReturnType<typeof useCatalogWithPreselection>);
+  it('should render RetypeDetachInstance if there is an instance', () => {
+    vi.mocked(useCatalogWithPreselection).mockReturnValue({
+      data: [volumeRetypeModel],
+      isPending: false,
+    } as ReturnType<typeof useCatalogWithPreselection>);
 
-      const { getByText } = render(<RetypePage />);
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      data: [instance],
+      isPending: false,
+    } as ReturnType<typeof useAttachedInstances>);
 
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
-    });
+    const { getByText, queryByText, queryByTestId } = render(<RetypePage />);
 
-    it('should be enabled if volume type has changed', async () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [selectedCatalogOption, otherCatalogOption],
-        isPending: false,
-      } as ReturnType<typeof useCatalogWithPreselection>);
-
-      const { getByText, getByRole } = render(<RetypePage />);
-
-      await userEvent.click(
-        getByRole('radio', { name: otherCatalogOption.displayName }),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
-    });
-
-    it('should be disabled if volume type has changed and back to original value', async () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [selectedCatalogOption, otherCatalogOption],
-        isPending: false,
-      } as ReturnType<typeof useCatalogWithPreselection>);
-
-      const { getByText, getByRole } = render(<RetypePage />);
-
-      await userEvent.click(
-        getByRole('radio', { name: otherCatalogOption.displayName }),
-      );
-      await userEvent.click(
-        getByRole('radio', { name: selectedCatalogOption.displayName }),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
-    });
-
-    it('should be enabled if encryption has changed', async () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [
-          {
-            ...selectedCatalogOption,
-            encrypted: true,
-          },
-        ],
-        isPending: false,
-        preselectedEncryptionType: null,
-      } as ReturnType<typeof useCatalogWithPreselection>);
-
-      const { getByRole, getByText } = render(<RetypePage />);
-
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('OVHcloud Managed Key'),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
-    });
-
-    it('should be disabled if encryption has changed and back to original value', async () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [
-          {
-            ...selectedCatalogOption,
-            encrypted: true,
-          },
-        ],
-        isPending: false,
-        preselectedEncryptionType: null,
-      } as ReturnType<typeof useCatalogWithPreselection>);
-
-      const { getByRole, getByText } = render(<RetypePage />);
-
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('OVHcloud Managed Key'),
-      );
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('common:pci_projects_project_storages_blocks_status_NONE'),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
-    });
+    expect(getByText('Detach instance')).toBeVisible();
+    expect(
+      queryByText(
+        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+      ),
+    ).toBeNull();
+    expect(queryByTestId('retypePage-loader')).toBeNull();
+    expect(queryByText('Retype instance')).toBeNull();
   });
 
-  describe('encryption', () => {
-    it('should render option given volume is encrypted', () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [
-          {
-            ...selectedCatalogOption,
-            encrypted: true,
-          },
-        ],
-        isPending: false,
-      } as ReturnType<typeof useCatalogWithPreselection>);
+  it('should render Retype if there is no instance and a volumeRetypeModel', () => {
+    vi.mocked(useCatalogWithPreselection).mockReturnValue({
+      data: [volumeRetypeModel],
+      isPending: false,
+    } as ReturnType<typeof useCatalogWithPreselection>);
 
-      const { getByRole, queryByText } = render(<RetypePage />);
+    vi.mocked(useAttachedInstances).mockReturnValue({
+      data: [],
+      isPending: false,
+    } as ReturnType<typeof useAttachedInstances>);
 
-      expect(
-        getByRole('radiogroup', {
-          name:
-            'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-        }),
-      ).toBeVisible();
-      expect(
-        queryByText(
-          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
-        ),
-      ).toBeNull();
-    });
+    const { getByText, queryByText, queryByTestId } = render(<RetypePage />);
 
-    it('should not render option given and render information message given volume is not encrypted', () => {
-      vi.mocked(useCatalogWithPreselection).mockReturnValue({
-        data: [
-          {
-            ...selectedCatalogOption,
-            encrypted: false,
-          },
-        ],
-        isPending: false,
-      } as ReturnType<typeof useCatalogWithPreselection>);
-
-      const { queryByRole, getByText } = render(<RetypePage />);
-
-      expect(
-        queryByRole('radiogroup', {
-          name:
-            'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-        }),
-      ).toBeNull();
-      expect(
-        getByText(
-          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
-        ),
-      ).toBeVisible();
-    });
+    expect(getByText('Retype instance')).toBeVisible();
+    expect(
+      queryByText(
+        'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+      ),
+    ).toBeNull();
+    expect(queryByTestId('retypePage-loader')).toBeNull();
+    expect(queryByText('Detach instance')).toBeNull();
   });
 });
