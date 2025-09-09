@@ -21,34 +21,33 @@ const URIS = {
 const URLS = {
   kmsOnboarding: URIS.kmsOnboarding,
   kmsListing: URIS.root,
-  kmsListingTerminate: (domainId: string) =>
-    `/${URIS.kmsTerminate}/${domainId}`,
+  kmsListingTerminate: (okmsId: string) => `/${URIS.kmsTerminate}/${okmsId}`,
   kmsCreate: `/${URIS.kmsCreate}`,
-  kmsDashboard: (domainId: string) => `/${domainId}`,
-  kmsDashboardTerminate: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.kmsTerminate}`,
-  kmsEditName: (domainId: string) => `/${domainId}/${URIS.kmsEditName}`,
-  kmsLogs: (domainId: string) => `/${domainId}/${URIS.kmsLogs}`,
-  serviceKeyListing: (domainId: string) => `/${domainId}/${URIS.serviceKeys}`,
-  serviceKeyListingDeactivate: (domainId: string, serviceKeyId: string) =>
-    `/${domainId}/${URIS.serviceKeys}/deactivate/${serviceKeyId}`,
-  serviceKeyDashboard: (domainId: string, serviceKeyId: string) =>
-    `/${domainId}/${URIS.serviceKeys}/${serviceKeyId}`,
-  serviceKeyDashboardDeactivate: (domainId: string, serviceKeyId: string) =>
-    `/${domainId}/${URIS.serviceKeys}/${serviceKeyId}/deactivate`,
-  serviceKeyEditName: (domainId: string, serviceKeyId: string) =>
-    `/${domainId}/${URIS.serviceKeys}/${serviceKeyId}/${URIS.serviceKeyEditName}`,
-  serviceKeyCreate: (domainId: string) =>
-    `/${domainId}/${URIS.serviceKeys}/${URIS.serviceKeyCreate}`,
-  credentialListing: (domainId: string) => `/${domainId}/${URIS.credentials}`,
-  credentialDashboard: (domainId: string, credentialId: string) =>
-    `/${domainId}/${URIS.credentials}/${credentialId}`,
-  credentialDashboardDelete: (domainId: string, credentialId: string) =>
-    `/${domainId}/${URIS.credentials}/${credentialId}/${URIS.credentialDelete}`,
-  credentialIdentitiesList: (domainId: string, credentialId: string) =>
-    `/${domainId}/${URIS.credentials}/${credentialId}/${URIS.credentialIdentities}`,
-  credentialCreate: (domainId: string) =>
-    `/${domainId}/${URIS.credentials}/${URIS.credentialCreate}`,
+  kmsDashboard: (okmsId: string) => `/${okmsId}`,
+  kmsDashboardTerminate: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.kmsTerminate}`,
+  kmsEditName: (okmsId: string) => `/${okmsId}/${URIS.kmsEditName}`,
+  kmsLogs: (okmsId: string) => `/${okmsId}/${URIS.kmsLogs}`,
+  serviceKeyListing: (okmsId: string) => `/${okmsId}/${URIS.serviceKeys}`,
+  serviceKeyListingDeactivate: (okmsId: string, serviceKeyId: string) =>
+    `/${okmsId}/${URIS.serviceKeys}/deactivate/${serviceKeyId}`,
+  serviceKeyDashboard: (okmsId: string, serviceKeyId: string) =>
+    `/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}`,
+  serviceKeyDashboardDeactivate: (okmsId: string, serviceKeyId: string) =>
+    `/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}/deactivate`,
+  serviceKeyEditName: (okmsId: string, serviceKeyId: string) =>
+    `/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}/${URIS.serviceKeyEditName}`,
+  serviceKeyCreate: (okmsId: string) =>
+    `/${okmsId}/${URIS.serviceKeys}/${URIS.serviceKeyCreate}`,
+  credentialListing: (okmsId: string) => `/${okmsId}/${URIS.credentials}`,
+  credentialDashboard: (okmsId: string, credentialId: string) =>
+    `/${okmsId}/${URIS.credentials}/${credentialId}`,
+  credentialDashboardDelete: (okmsId: string, credentialId: string) =>
+    `/${okmsId}/${URIS.credentials}/${credentialId}/${URIS.credentialDelete}`,
+  credentialIdentitiesList: (okmsId: string, credentialId: string) =>
+    `/${okmsId}/${URIS.credentials}/${credentialId}/${URIS.credentialIdentities}`,
+  credentialCreate: (okmsId: string) =>
+    `/${okmsId}/${URIS.credentials}/${URIS.credentialCreate}`,
 };
 
 export const KMS_URL_PARAMS = {
