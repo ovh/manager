@@ -12,15 +12,15 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { kmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDashboardDeleteSecret(
-  kmsRoubaix1Mock.id,
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
+  okmsRoubaix1Mock.id,
   mockSecret1.path,
 );
 
-const mockSecretListingPage = SECRET_MANAGER_ROUTES_URLS.secretListing(
-  kmsRoubaix1Mock.id,
+const mockSecretListingPage = SECRET_MANAGER_ROUTES_URLS.secretList(
+  okmsRoubaix1Mock.id,
 );
 
 describe('Delete secret modal test suite', () => {
