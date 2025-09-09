@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.0...@ovh-ux/manager-core-api@0.18.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* fix incorrect pagination params in iceberg fetch ([ace6ae7](https://github.com/ovh/manager/commit/ace6ae7e04209bcefaab67b5323b0ae8667b73e8)), closes [#PRDCOL-182](https://github.com/ovh/manager/issues/PRDCOL-182)
+
+
+
+
+
 # [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.17.1...@ovh-ux/manager-core-api@0.18.0) (2025-09-06)
 
 
