@@ -1,0 +1,19 @@
+<oui-field data-label="{{:: 'iam_create_condition_date_label' | translate }}">
+    <oui-calendar
+        data-mode="multiple"
+        data-required="true"
+        data-name="conditionDate"
+        data-id="conditionDate"
+        data-model="$ctrl.dates"
+        data-on-close="$ctrl.updateConditionValues()"
+        data-alt-format="Y-m-d"
+        data-placeholder="{{:: 'iam_create_condition_date_placeholder' | translate}}"
+        class="mb-3"
+    >
+    </oui-calendar>
+    <iam-condition-timezone
+        data-ng-model="$ctrl.timezone"
+        data-on-change="$ctrl.updateConditionValues()"
+    >
+    </iam-condition-timezone>
+</oui-field>
