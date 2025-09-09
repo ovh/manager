@@ -1,0 +1,20 @@
+<oui-field
+    data-label="{{:: 'iam_create_condition_hour_label' | translate }}"
+    data-help-text="{{:: 'iam_create_condition_hour_helper' | translate }}"
+>
+    <input
+        type="text"
+        class="oui-input"
+        name="hourValue"
+        id="hourValue"
+        data-ng-model="$ctrl.hour"
+        data-ng-required="true"
+        data-ng-change="$ctrl.updateConditionValues()"
+        placeholder="{{:: 'iam_create_condition_hour_placeholder' | translate}}"
+    />
+</oui-field>
+<iam-condition-timezone
+    data-ng-model="$ctrl.timezone"
+    data-on-change="$ctrl.updateConditionValues()"
+>
+</iam-condition-timezone>
