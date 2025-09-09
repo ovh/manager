@@ -1,3 +1,11 @@
+<ovh-manager-dedicated-cloud-datacenter-zerto-alerts
+    current-zerto="$ctrl.currentZerto"
+    current-user="$ctrl.currentUser"
+    current-state="$ctrl.currentZerto.state"
+    go-to-vpn-configuration="$ctrl.goToVpnConfiguration"
+    pcc-type="$ctrl.pccType"
+/>
+
 <section
     data-ui-view
     class="d-flex flex-column gap-8"
@@ -7,7 +15,9 @@
 
     <oui-datagrid rows="$ctrl.zertoMultiSites" data-page-size="25">
         <oui-datagrid-topbar>
-            <oui-button data-on-click="$ctrl.goToAddSite()"
+            <oui-button
+                data-on-click="$ctrl.goToAddSite()"
+                data-disabled="$ctrl.isDelivering"
                 ><span
                     data-translate="dedicatedCloud_datacenter_drp_listing_add_site"
                 ></span
