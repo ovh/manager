@@ -11,6 +11,7 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
+import { THost, THostsconfiguration } from './hostResource';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -63,6 +64,7 @@ export interface TDomainResource {
     name: string;
     protectionState: ProtectionStateEnum;
     suspensionState: SuspensionStateEnum;
+    hostsConfiguration: THostsconfiguration;
   };
   currentTasks: Task[];
   iam: IAMResource | null;

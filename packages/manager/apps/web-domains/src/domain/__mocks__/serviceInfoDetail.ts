@@ -1,4 +1,3 @@
-import { Domain } from 'domain';
 import {
   AdditionalDomainStateEnum,
   DomainStateEnum,

@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v2, v6 } from '@ovh-ux/manager-core-api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TServiceInfo, TServiceOption } from '@/common/types/common.types';
 

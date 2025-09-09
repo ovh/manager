@@ -11,6 +11,7 @@ import {
   DnsConfigurationTypeEnum,
 } from '@/domain/enum/dnsConfigurationType.enum';
 import { TDomainZone } from '@/domain/types/domainZone';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 
 const INTERNAL_DNS_PATTERN: Record<string, RegExp> = {
   EU: /^d?ns(?:\d{1,3})?\.ovh\.net/i,
@@ -130,4 +131,30 @@ export function computeActiveConfiguration(
     default:
       return ActiveConfigurationTypeEnum.INTERNAL;
   }
+}
+
+export function getIpsSupported(
+  ipv4Supported: boolean,
+  ipv6Supported: boolean,
+  multipleIPsSupported: boolean,
+): IpsSupportedEnum {
+  if (ipv4Supported && ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.All
+      : IpsSupportedEnum.OnlyIPv4IPv6;
+  }
+
+  if (ipv4Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv4
+      : IpsSupportedEnum.OnlyIPv4;
+  }
+
+  if (ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv6
+      : IpsSupportedEnum.OnlyIPv6;
+  }
+
+  throw new Error('Unsupported combination: no IP version supported');
 }
