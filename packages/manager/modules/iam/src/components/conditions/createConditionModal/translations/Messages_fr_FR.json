@@ -3,6 +3,8 @@
   "iam_create_condition_type": "Type de condition",
   "iam_create_condition_type_placeholder": "Sélectionnez un type de condition",
   "iam_create_condition_type_tag": "Tag",
+  "iam_create_condition_type_name": "Nom",
+  "iam_create_condition_type_ip": "Adresse IP",
   "iam_create_condition_operator": "Opérateur",
   "iam_create_condition_operator_placeholder": "Sélectionnez un opérateur",
   "iam_create_condition_cancel": "Annuler",

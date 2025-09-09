@@ -1,14 +1,13 @@
 import {
   CONDITION_TYPE_CRITERIA,
   CONDITION_TYPES,
-} from './createConditionModal.constants';
+} from '../conditionType/conditionType.constants';
 
 export default class IAMCreateConditionModalController {
   /* @ngInject */
   constructor($translate, iamConditionOperatorService) {
     this.$translate = $translate;
     this.iamConditionOperatorService = iamConditionOperatorService;
-    this.CONDITION_TYPES = CONDITION_TYPES;
   }
 
   $onInit() {
@@ -30,6 +29,7 @@ export default class IAMCreateConditionModalController {
     this.currentConditionType = value;
     this.clearCondition();
     this.updateCriteria(value);
+    this.criterion = null;
   }
 
   addCondition() {
