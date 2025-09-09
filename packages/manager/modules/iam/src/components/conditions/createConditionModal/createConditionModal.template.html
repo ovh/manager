@@ -37,11 +37,11 @@
                             data-placeholder="{{:: 'iam_create_condition_operator_placeholder' | translate}}"
                         ></oui-select>
                     </oui-field>
-                    <iam-condition-tag
-                        data-ng-if="$ctrl.currentConditionType === $ctrl.CONDITION_TYPES.TAG"
-                        data-ng-model="$ctrl.condition"
+                    <iam-condition-type
+                        data-condition-type="$ctrl.currentConditionType"
+                        data-condition="$ctrl.condition"
                         data-criterion="$ctrl.criterion"
-                    ></iam-condition-tag>
+                    ></iam-condition-type>
                 </form>
             </oui-modal>
         </div>

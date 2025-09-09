@@ -1,0 +1,15 @@
+<iam-condition-tag
+    data-ng-if="$ctrl.conditionType === $ctrl.CONDITION_TYPES.TAG"
+    data-ng-model="$ctrl.condition"
+    data-criterion="$ctrl.criterion"
+></iam-condition-tag>
+<iam-condition-name
+    data-ng-if="$ctrl.conditionType === $ctrl.CONDITION_TYPES.NAME"
+    data-ng-model="$ctrl.condition"
+    data-criterion="$ctrl.criterion"
+></iam-condition-name>
+<iam-condition-ip
+    data-ng-if="$ctrl.conditionType === $ctrl.CONDITION_TYPES.IP"
+    data-ng-model="$ctrl.condition"
+    data-criterion="$ctrl.criterion"
+></iam-condition-ip>
