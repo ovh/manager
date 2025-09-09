@@ -4,7 +4,7 @@ const URIS = {
   root: 'secret-manager',
   onboarding: 'onboarding',
   region: 'region',
-  versions: 'versions',
+  versionList: 'versions',
   create: 'create',
   createVersion: 'create-version',
   order: 'order',
@@ -13,83 +13,82 @@ const URIS = {
 };
 
 const URLS = {
-  secretManagerRoot: `/${URIS.root}`,
+  root: `/${URIS.root}`,
 
-  secretManagerOnboarding: `/${URIS.root}/${URIS.onboarding}`,
+  onboarding: `/${URIS.root}/${URIS.onboarding}`,
 
-  secretCreate: `/${URIS.root}/${URIS.create}`,
+  createSecret: `/${URIS.root}/${URIS.create}`,
 
-  secretCreateOrderOkms: (regionId: string) =>
+  createSecretOrderOkms: (regionId: string) =>
     `/${URIS.root}/${URIS.create}/${URIS.order}/${regionId}`,
 
-  secretDomains: (regionId: string) =>
-    `/${URIS.root}/${URIS.region}/${regionId}`,
+  okmsList: (regionId: string) => `/${URIS.root}/${URIS.region}/${regionId}`,
 
-  secretListing: (domainId: string) => `/${URIS.root}/${domainId}`,
+  secretList: (okmsId: string) => `/${URIS.root}/${okmsId}`,
 
-  secretListingModalDeleteSecret: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${URIS.delete}/${encodeSecretPath(secretPath)}`,
+  secretListDeleteSecretModal: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.delete}/${encodeSecretPath(secretPath)}`,
 
-  secretListingDrawerValue: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
+  secretListSecretValueDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.value}/${encodeSecretPath(secretPath)}`,
 
-  secretListingDrawerCreateVersion: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${URIS.createVersion}/${encodeSecretPath(
+  secretListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.createVersion}/${encodeSecretPath(
       secretPath,
     )}`,
 
-  secretDashboard: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}`,
+  secret: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}`,
 
-  secretDashboardDrawerValue: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
+  secretSecretValueDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.value}`,
 
-  secretDashboardDrawerCreateVersion: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
+  secretCreateVersionDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
       URIS.createVersion
     }`,
 
-  secretDashboardDeleteSecret: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${URIS.delete}`,
+  secretDeleteSecret: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${URIS.delete}`,
 
-  secretVersions: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
-      URIS.versions
+  versionList: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.versionList
     }`,
 
-  secretVersionsDrawerCreateVersion: (domainId: string, secretPath: string) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
-      URIS.versions
+  versionListCreateVersionDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.versionList
     }/${URIS.create}`,
 
-  secretVersionsModalDeleteVersion: (
-    domainId: string,
+  versionListDeleteVersionModal: (
+    okmsId: string,
     secretPath: string,
     versionId: number,
   ) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
-      URIS.versions
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.versionList
     }/${URIS.delete}/${versionId}`,
 
-  secretVersionsDrawerRevealVersionValue: (
-    domainId: string,
+  versionListSecretValueDrawer: (
+    okmsId: string,
     secretPath: string,
     versionId: number,
   ) =>
-    `/${URIS.root}/${domainId}/${encodeSecretPath(secretPath)}/${
-      URIS.versions
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.versionList
     }/${URIS.value}/${versionId}`,
 };
 
 export const SECRET_MANAGER_URL_PARAMS = {
   region: ':region',
-  domainId: ':domainId',
+  okmsId: ':okmsId',
   secretPath: ':secretPath',
   versionId: ':versionId',
 };
 
 export const SECRET_MANAGER_SEARCH_PARAMS = {
-  domainId: 'domainId',
+  okmsId: 'okmsId',
 };
 
 export const SECRET_MANAGER_ROUTES_URIS = URIS;

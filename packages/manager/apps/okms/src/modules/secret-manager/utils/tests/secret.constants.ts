@@ -1,6 +1,6 @@
-/* ACTIVATE DOMAIN */
-export const ACTIVATE_DOMAIN_BTN_TEST_ID = 'secret-activate-domain-button';
-export const ACTIVATE_DOMAIN_SPINNER_TEST_ID = 'secret-activate-domain-spinner';
+/* ACTIVATE OKMS */
+export const ACTIVATE_OKMS_BTN_TEST_ID = 'secret-activate-okms-button';
+export const ACTIVATE_OKMS_SPINNER_TEST_ID = 'secret-activate-okms-spinner';
 
 /* PATH input */
 export const PATH_INPUT_TEST_ID = 'secret-input-path';

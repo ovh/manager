@@ -13,7 +13,7 @@ import { ConfirmationModal } from '@/common/components/confirmationModal/Confirm
 const DeleteSecretModal = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
-  const { domainId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useParams<LocationPathParams>();
 
   const secretPathDecoded = decodeSecretPath(secretPath);
 
@@ -22,10 +22,10 @@ const DeleteSecretModal = () => {
   const handleConfirm = async () => {
     try {
       await deleteSecret({
-        okmsId: domainId,
+        okmsId,
         secretPath: secretPathDecoded,
       });
-      navigate(SECRET_MANAGER_ROUTES_URLS.secretListing(domainId));
+      navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId));
     } catch {
       // Do nothing
     }

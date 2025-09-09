@@ -17,7 +17,7 @@ export const RootBreadcrumbItem = () => {
       data-testid={ROOT_BREADCRUMB_ITEM_TEST_ID}
       key={SECRET_MANAGER_ROUTES_URIS.root}
       label={t('secret_manager')}
-      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot)}
+      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
       href={null}
     />
   );

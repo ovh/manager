@@ -11,7 +11,7 @@ import { labels } from '@/utils/tests/init.i18n';
 describe('Secret Manager onboarding test suite', () => {
   it('should display the onboarding page', async () => {
     const { container } = await renderTestApp(
-      SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
+      SECRET_MANAGER_ROUTES_URLS.onboarding,
     );
 
     await assertTextVisibility(labels.secretManager.secret_manager);
@@ -28,7 +28,7 @@ describe('Secret Manager onboarding test suite', () => {
   it('should navigate to the secrets creation page', async () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(
-      SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding,
+      SECRET_MANAGER_ROUTES_URLS.onboarding,
     );
 
     const button = await getOdsButtonByLabel({
@@ -41,7 +41,7 @@ describe('Secret Manager onboarding test suite', () => {
 
     await assertTextVisibility(labels.secretManager.create_a_secret);
     await assertTextVisibility(
-      labels.secretManager.create_secret_form_domain_section_title,
+      labels.secretManager.create_secret_form_region_section_title,
     );
   });
 });

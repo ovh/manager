@@ -66,9 +66,11 @@ const TermsAndConditions = ({
   return (
     <>
       <div className="flex flex-col gap-3 pb-6">
-        <OdsText preset="heading-4">{t('create_domain_tc_title')}</OdsText>
+        <OdsText preset="heading-4">
+          {t('create_okms_terms_and_conditions_title')}
+        </OdsText>
         <OdsText preset="paragraph">
-          {t('create_domain_tc_description')}
+          {t('create_okms_terms_and_conditions_description')}
         </OdsText>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (
@@ -91,7 +93,7 @@ const TermsAndConditions = ({
           />
           <label className="cursor-pointer" htmlFor="confirm-contract">
             <OdsText preset="span">
-              {t('create_domain_tc_confirm_label')}
+              {t('create_okms_terms_and_conditions_confirm_label')}
             </OdsText>
           </label>
         </div>

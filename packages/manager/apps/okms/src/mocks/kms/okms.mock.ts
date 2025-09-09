@@ -10,7 +10,7 @@ type OkmsByRegion = {
   okmsMock?: OKMS[];
 };
 
-export const kmsRoubaix1Mock: OKMS = {
+export const okmsRoubaix1Mock: OKMS = {
   iam: {
     displayName: 'kms-roubaix-1',
     id: '5c7d984a-e0c9-4d40-942a-2b6c1a3b11b5',
@@ -26,7 +26,7 @@ export const kmsRoubaix1Mock: OKMS = {
   secretCount: 2,
 };
 
-export const kmsRoubaix2Mock: OKMS = {
+export const okmsRoubaix2Mock: OKMS = {
   iam: {
     displayName: 'kms-roubaix-2',
     id: '1b4e7c8e-d1b8-4b46-a584-52c8b4b0225c',
@@ -42,7 +42,7 @@ export const kmsRoubaix2Mock: OKMS = {
   secretCount: 2,
 };
 
-export const kmsStrasbourg1Mock: OKMS = {
+export const okmsStrasbourg1Mock: OKMS = {
   iam: {
     displayName: 'kms-strasbourg-1',
     id: '331b05a0-2963-4f42-9e85-0474e4a5b265',
@@ -60,18 +60,18 @@ export const kmsStrasbourg1Mock: OKMS = {
 
 export const regionWithMultipleOkms: OkmsByRegion = {
   region: REGION_EU_WEST_RBX,
-  okmsMock: [kmsRoubaix1Mock, kmsRoubaix2Mock],
+  okmsMock: [okmsRoubaix1Mock, okmsRoubaix2Mock],
 };
 
 export const regionWithOneOkms: OkmsByRegion = {
   region: REGION_EU_WEST_SBG,
-  okmsMock: [kmsStrasbourg1Mock],
+  okmsMock: [okmsStrasbourg1Mock],
 };
 
 export const regionWithoutOkms: OkmsByRegion = { region: REGION_CA_EAST_BHS };
 
 export const okmsMock: OKMS[] = [
-  kmsRoubaix1Mock,
-  kmsRoubaix2Mock,
-  kmsStrasbourg1Mock,
+  okmsRoubaix1Mock,
+  okmsRoubaix2Mock,
+  okmsStrasbourg1Mock,
 ];
