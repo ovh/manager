@@ -78,5 +78,20 @@
   "domain_tab_general_information_banner_forced_delete_dgccrf_abuse": "Votre nom de domaine fait l'objet d'une résiliation unilatérale, conformément à la demande d'une autorité compétente.",
   "domain_tab_general_information_banner_forced_delete_registry_abuse": "Votre nom de domaine fait l'objet d'une résiliation unilatérale du registre à la suite d'une violation de ses conditions générales d'utilisation.",
   "domain_tab_general_information_banner_link_ongoing_op": "Voir les opérations",
-  "domain_tab_general_information_banner_manual_renew": "Simplifiez la gestion de votre infrastructure et utilisez le renouvellement automatique pour votre domaine. Cela mettra fin à tous les rappels et à tout risque de suppression accidentelle.<br/><Link />"
+  "domain_tab_general_information_banner_manual_renew": "Simplifiez la gestion de votre infrastructure et utilisez le renouvellement automatique pour votre domaine. Cela mettra fin à tous les rappels et à tout risque de suppression accidentelle.<br/><Link />",
+  "domain_tab_general_information_tile_title": "Information Générales",
+  "domain_tab_general_information_tile_title_domain_state": "Statut du nom de domaine",
+  "domain_tab_general_information_tile_title_tech_state": "Etat technique",
+  "domain_tab_general_information_tooltip_domain_state": "En fonction du cycle de vie (enregistrement, renouvellement,transfert...)",
+  "domain_tab_general_information_tooltip_domain_tech_state": "Confirmation de l'état technique du nom de domaine",
+  "domain_tab_general_information_registered": "Enregistré",
+  "domain_tab_general_information_expired": "Expiré",
+  "domain_tab_general_information_restorable": "Restaurable",
+  "domain_tab_general_information_registration_progress": "Enregistrement en cours",
+  "domain_tab_general_information_incoming_transfer": "Transfert entrant",
+  "domain_tab_general_information_outgoing_transfer": "Transfert sortant",
+  "domain_tab_general_information_pending_deletion": "Suppression en cours",
+  "domain_tab_general_information_deleted": "Supprimé",
+  "domain_tab_general_not_suspended": "Actif",
+  "domain_tab_general_suspended": "Suspendu"
 }

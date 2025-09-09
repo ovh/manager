@@ -1,13 +1,18 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 import { ParamValueType } from '@ovh-ux/url-builder';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
 import {
   AdditionalDomainStateEnum,
   DomainStateEnum,
 } from '../enum/domainState.enum';
 import { SuspensionStateEnum } from '../enum/suspensionState.enum';
-import { BannerResult, ComboRule } from '../types/domainResource';
+import {
+  BannerResult,
+  ComboRule,
+  StatusDetails,
+} from '../types/domainResource';
 
 export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   {
@@ -171,5 +176,55 @@ export const DIRECT_FLAGS: Record<string, BannerResult> = {
   [AdditionalDomainStateEnum.REGISTRY_ABUSE]: {
     type: 'warning',
     i18nKey: 'domain_tab_general_information_banner_abuse',
+  },
+};
+
+export const DOMAIN_STATUS: Record<string, StatusDetails> = {
+  [DomainStateEnum.OK]: {
+    i18nKey: 'domain_tab_general_information_registered',
+    statusColor: BADGE_COLOR.success,
+  },
+  [DomainStateEnum.EXPIRED]: {
+    i18nKey: 'domain_tab_general_information_expired',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.RESTORABLE]: {
+    i18nKey: 'domain_tab_general_information_restorable',
+    statusColor: BADGE_COLOR.warning,
+  },
+  [DomainStateEnum.PENDING_CREATE]: {
+    i18nKey: 'domain_tab_general_information_registration_progress',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.PENDING_INTERNAL_TRANSFER]: {
+    i18nKey: 'domain_tab_general_information_incoming_transfer',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.PENDING_OUTGOING_TRANSFER]: {
+    i18nKey: 'domain_tab_general_information_outgoing_transfer',
+    statusColor: BADGE_COLOR.information,
+  },
+  [DomainStateEnum.PENDING_DELETE]: {
+    i18nKey: 'domain_tab_general_information_pending_deletion',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.TO_DELETE]: {
+    i18nKey: 'domain_tab_general_information_pending_deletion',
+    statusColor: BADGE_COLOR.critical,
+  },
+  [DomainStateEnum.DELETED]: {
+    i18nKey: 'domain_tab_general_information_deleted',
+    statusColor: BADGE_COLOR.critical,
+  },
+};
+
+export const SUSPENSION_STATUS: Record<string, StatusDetails> = {
+  [SuspensionStateEnum.NOT_SUSPENDED]: {
+    i18nKey: 'domain_tab_general_not_suspended',
+    statusColor: BADGE_COLOR.success,
+  },
+  [SuspensionStateEnum.SUSPENDED]: {
+    i18nKey: 'domain_tab_general_suspended',
+    statusColor: BADGE_COLOR.critical,
   },
 };
