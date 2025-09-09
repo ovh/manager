@@ -5,10 +5,14 @@ import {
   useQueryImmediateRefetch,
 } from '@/hooks/api/useImmediateRefetch';
 
+type GetServiceFn<T extends database.Service> = (
+  args: Parameters<typeof getService>[0],
+) => Promise<T>;
+
 export function useGetService<T extends database.Service = database.Service>(
   projectId: string,
   serviceId: string,
-  options?: OptionsFor<typeof getService<T>>,
+  options?: OptionsFor<GetServiceFn<T>>,
 ) {
   const queryKey = [projectId, 'database/service', serviceId];
   return useQueryImmediateRefetch({

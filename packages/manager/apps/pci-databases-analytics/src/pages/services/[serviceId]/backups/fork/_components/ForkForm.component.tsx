@@ -117,9 +117,9 @@ const ForkForm = ({
   const onSubmit = model.form.handleSubmit(
     (data) => {
       // data has been validated, create payload and submit post request
-      const serviceInfos: Omit<ServiceCreationWithEngine, 'disk'>& {
+      const serviceInfos: Omit<ServiceCreationWithEngine, 'disk'> & {
         disk?: Partial<database.service.Disk>;
-      }  = {
+      } = {
         description: data.name,
         engine: data.engine as database.EngineEnum,
         nodesPattern: {
@@ -146,7 +146,7 @@ const ForkForm = ({
         const disk: Partial<database.service.Disk> = {
           size:
             model.result.flavor.storage.minimum.value + data.additionalStorage,
-        }
+        };
         serviceInfos.disk = disk;
       }
       switch (data.forkFrom.type) {

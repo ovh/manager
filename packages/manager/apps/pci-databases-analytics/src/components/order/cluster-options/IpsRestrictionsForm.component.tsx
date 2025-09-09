@@ -113,7 +113,7 @@ const IpsRestrictionsForm = React.forwardRef<
               <Button
                 className="px-2"
                 mode={'outline'}
-                size={'s'}
+                size={'sm'}
                 onClick={() =>
                   addIp({
                     ip: dataplatformIp,
@@ -130,7 +130,7 @@ const IpsRestrictionsForm = React.forwardRef<
               <Button
                 className="px-2"
                 mode={'outline'}
-                size={'s'}
+                size={'sm'}
                 onClick={() =>
                   addIp({ ip: ipQuery.data?.ip, description: 'current ip' })
                 }

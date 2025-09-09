@@ -74,7 +74,7 @@ export const getColumns = ({
           {row.original.topics.map((topic) => (
             <Badge
               key={topic}
-              variant="ghost"
+              variant="outline"
               className="border border-border text-xs w-fit"
             >
               {topic}
@@ -96,7 +96,7 @@ export const getColumns = ({
           {row.original.topicExcludeList.map((excludedTopic) => (
             <Badge
               key={excludedTopic}
-              variant="ghost"
+              variant="outline"
               className="border border-border text-xs w-fit"
             >
               {excludedTopic}

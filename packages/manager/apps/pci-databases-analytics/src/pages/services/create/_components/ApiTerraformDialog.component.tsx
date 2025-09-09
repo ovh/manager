@@ -119,8 +119,8 @@ const ApiTerraformDialog = ({
           plan: dialogData.availability.plan,
           version: `${dialogData.availability.version}`,
           ipRestrictions: dialogData.ipRestrictions.map((r) => ({
-            ip: r.ip ?? "",
-            description: r.description ?? "",
+            ip: r.ip ?? '',
+            description: r.description ?? '',
           })),
         },
         pathParams: {

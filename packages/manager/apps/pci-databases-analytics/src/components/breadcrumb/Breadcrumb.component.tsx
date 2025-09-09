@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Params, useParams, useLocation, useMatches, UIMatch } from 'react-router-dom';
+import {
+  Params,
+  useParams,
+  useLocation,
+  useMatches,
+  UIMatch,
+} from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Skeleton } from '@datatr-ux/uxlib';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
@@ -11,7 +17,10 @@ export type BreadcrumbHandleParams = {
   params: Params<string>;
 };
 type BreadcrumbHandle = {
-  breadcrumb?: (args: { params: Params<string>; data: unknown }) => React.ReactElement | null;
+  breadcrumb?: (args: {
+    params: Params<string>;
+    data: unknown;
+  }) => React.ReactElement | null;
 };
 
 function Breadcrumb(): JSX.Element {
