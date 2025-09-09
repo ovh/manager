@@ -2,17 +2,17 @@
   "home": "Strona główna",
   "order": "Zamów",
   "back": "Powrót",
-  "title": "Panel",
-  "email": "E-mail",
+  "title": "Dashboard",
+  "email": "Adres e-mail",
   "subject": "Temat",
   "message": "Wiadomość",
   "submitButton": "Wyślij",
-  "successMessage": "Twoje zgłoszenie zostało pomyślnie wysłane.",
+  "successMessage": "Twoja wiadomość została wysłana.",
   "errors": {
-    "emailRequired": "Adres e-mail jest wymagany.",
-    "emailInvalid": "Podaj prawidłowy adres e-mail.",
-    "subjectRequired": "Temat jest wymagany.",
-    "messageRequired": "Wiadomość jest wymagana."
+    "emailRequired": "Wpisz adres e-mail.",
+    "emailInvalid": "Wpisz poprawny adres e-mail.",
+    "subjectRequired": "Wpisz tytuł wiadomości.",
+    "messageRequired": "Wpisz wiadomość."
   },
   "general-information": "Informacje ogólne",
   "help": "Pomoc"

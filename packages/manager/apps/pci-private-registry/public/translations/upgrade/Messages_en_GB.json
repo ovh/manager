@@ -10,5 +10,5 @@
   "private_registry_upgrade_plan_warning": "*Most software clients are configured to use 5 concurrent HTTP connections when accessing a Registry.",
   "private_registry_upgrade_plan_available_storage": "Available storage: ",
   "private_registry_monthly_price": "{{ monthly }}/month",
-  "private_registry_upgrade_core_registry": "{{percent}}% core &amp; registry"
+  "private_registry_upgrade_core_registry": "{{percent}}% core & registry"
 }

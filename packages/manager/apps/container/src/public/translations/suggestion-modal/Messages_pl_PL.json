@@ -1,9 +1,10 @@
 {
   "suggestion_modal_title": "Aktualizacja numeru SIRET / VAT",
-  "suggestion_modal_description": "W związku z wprowadzeniem systemu fakturowania elektronicznego we Francji mamy obowiązek zweryfikować tożsamość Twojej firmy, aby zagwarantować zgodność Twoich informacji podatkowych. Przeszukaliśmy i znaleźliśmy pasujące informacje o Twojej firmie.",
-  "suggestion_modal_description_sub": "Jeśli nie widzisz błędów w tych informacjach, kliknij przycisk Zatwierdź te informacje. W przeciwnym razie kliknij przycisk Aktualizuj w moim profilu.",
+  "suggestion_modal_description": "W związku z wprowadzeniem we Francji systemu elektronicznych faktur mamy obowiązek zweryfikować tożsamość Twojej firmy, aby potwierdzić poprawność Twoich danych podatkowych. Znaleźliśmy w bazach odpowiednie informacje o Twojej firmie.",
+  "suggestion_modal_description_sub": "Jeśli są one prawidłowe, kliknij przycisk „Potwierdzam te informacje”. W przeciwnym razie kliknij przycisk „Aktualizuję w moim profilu”.",
   "suggestion_modal_listed_type_SIRET": "SIRET",
   "suggestion_modal_listed_type_VAT": "VAT UE",
-  "suggestion_modal_action_modify": "Aktualizuję w profilu",
-  "suggestion_modal_action_confirm": "Potwierdzam te informacje"
+  "suggestion_modal_action_modify": "Aktualizuję w moim profilu",
+  "suggestion_modal_action_confirm": "Potwierdzam te informacje",
+  "suggestion_modal_listed_type_NIN": "Krajowy numer identyfikacyjny"
 }
