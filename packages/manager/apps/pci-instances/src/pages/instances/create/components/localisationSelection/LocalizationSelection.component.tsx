@@ -1,4 +1,3 @@
-import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import {
   PageLocation,
   ButtonType,
@@ -6,10 +5,11 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { RadioGroup, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { localizations } from './fakeData';
 import z from 'zod';
 import { useFormContext, useWatch } from 'react-hook-form';
+import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
+import { mockedLocalizations } from '@/__mocks__/instance/constants';
 
 export const localizationSelectionSchema = z.string();
 export const localizationDefaultValue = 'eu-west-par';
@@ -18,7 +18,7 @@ export const LocalizationSelection = () => {
   const { t } = useTranslation(['creation']);
   const { trackClick } = useOvhTracking();
   const { control } = useFormContext<TInstanceCreationForm>();
-  const region = useWatch({ control, name: 'region' });
+  const selectedRegion = useWatch({ control, name: 'region' });
 
   const handleSelect = (region: string) => {
     trackClick({
@@ -39,9 +39,9 @@ export const LocalizationSelection = () => {
           {t('pci_instance_creation_select_localization_informations')}
         </Text>
       </div>
-      <RadioGroup value={region}>
+      <RadioGroup value={selectedRegion}>
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(225px,_1fr))] gap-6">
-          {localizations.map(
+          {mockedLocalizations.map(
             ({ countryCode, title, region, deploymentMode }) => (
               <LocalizationCard
                 key={region}
