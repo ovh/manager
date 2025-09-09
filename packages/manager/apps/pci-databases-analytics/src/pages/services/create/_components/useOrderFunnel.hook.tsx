@@ -79,11 +79,11 @@ export function useOrderFunnel(
       .max(50),
   });
   type OrderFormValues = Omit<z.infer<typeof orderSchema>, 'ipRestrictions'> & {
-  ipRestrictions: {
-  ip: string;
-  description: string;
-}[];
-};
+    ipRestrictions: {
+      ip: string;
+      description: string;
+    }[];
+  };
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderSchema),
     defaultValues: {
@@ -95,7 +95,7 @@ export function useOrderFunnel(
       flavor: '',
       nbNodes: 0,
       additionalStorage: 0,
-      ipRestrictions: [] satisfies { ip: string; description: string }[],
+      ipRestrictions: [] as { ip: string; description: string }[],
       network: {
         type: database.NetworkTypeEnum.public,
         networkId: undefined,

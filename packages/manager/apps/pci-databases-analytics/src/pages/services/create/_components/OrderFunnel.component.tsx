@@ -109,8 +109,8 @@ const OrderFunnel = ({
         plan: data.plan,
         version: data.version,
         ipRestrictions: data.ipRestrictions.map((r) => ({
-          ip: r.ip ?? "",
-          description: r.description ?? "",
+          ip: r.ip ?? '',
+          description: r.description ?? '',
         })),
       };
       if (data.network.type === database.NetworkTypeEnum.private) {

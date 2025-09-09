@@ -104,7 +104,7 @@ export function useTrackPageAuto() {
     }
 
     // replace . by ::
-    injectedTrackingKey = injectedTrackingKey.replaceAll('.', '::');
+    injectedTrackingKey = injectedTrackingKey.replace(/\./g, '::');
     trackPage({
       name: injectedTrackingKey,
       level2: PCI_LEVEL2,
