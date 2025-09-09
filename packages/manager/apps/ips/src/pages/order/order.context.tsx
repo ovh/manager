@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  DEFAULT_PRICING_MODE,
-  IpOffer,
-  IpVersion,
-  Ipv6Options,
-} from './order.constant';
+import { DEFAULT_PRICING_MODE, IpOffer, Ipv6Options } from './order.constant';
 import { getCountryCode } from '@/components/RegionSelector/region-selector.utils';
-import { ServiceType } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 
 export type OrderContextType = Partial<{
