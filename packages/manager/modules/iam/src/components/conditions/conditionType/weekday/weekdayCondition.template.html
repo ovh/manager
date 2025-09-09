@@ -1,0 +1,21 @@
+<oui-field
+    data-label="{{:: 'iam_create_condition_weekday_label' | translate }}"
+>
+    <oui-select
+        class="mr-2"
+        data-multiple
+        data-inline
+        data-items="$ctrl.weekdays"
+        data-match="label"
+        data-model="$ctrl.weekday"
+        data-name="weekday"
+        data-on-change="$ctrl.updateConditionValues()"
+        data-required="true"
+        data-placeholder="{{:: 'iam_create_condition_weekday_placeholder' | translate}}"
+    ></oui-select>
+    <iam-condition-timezone
+        data-ng-model="$ctrl.timezone"
+        data-on-change="$ctrl.updateConditionValues()"
+    >
+    </iam-condition-timezone>
+</oui-field>
