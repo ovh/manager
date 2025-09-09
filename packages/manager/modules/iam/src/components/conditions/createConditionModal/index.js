@@ -1,12 +1,12 @@
 import angular from 'angular';
 
-import tagCondition from '../tag';
+import conditionType from '../conditionType';
 import component, { name } from './createConditionModal.component';
 
 const moduleName = 'ovhManagerIAMCreateConditionModal';
 
 angular
-  .module(moduleName, [tagCondition])
+  .module(moduleName, [conditionType])
   .component(name, component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
