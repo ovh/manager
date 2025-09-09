@@ -4,6 +4,7 @@ import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
 import { DomainManagement } from './DomainManagement.component';
 import { SecretForm } from './SecretForm.component';
 import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
@@ -18,7 +19,10 @@ export default function SecretCreatePage() {
   return (
     <OrderOkmsModalProvider>
       <BaseLayout
-        header={{ title: t('create_a_secret') }}
+        header={{
+          title: t('create_a_secret'),
+          changelogButton: <SecretManagerChangelogButton />,
+        }}
         breadcrumb={
           <OdsBreadcrumb>
             <RootBreadcrumbItem />
