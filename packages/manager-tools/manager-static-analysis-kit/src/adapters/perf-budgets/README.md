@@ -37,8 +37,8 @@ This will:
 2. Run **Turbo** build for them.
 3. Run **vite-bundle-analyzer** for each app (HTML + JSON reports).
 4. Generate **combined reports**:
-  - `perf-budgets-reports/perf-budgets-combined-report.json`
-  - `perf-budgets-reports/perf-budgets-combined-report.html`
+- `perf-budgets-reports/perf-budgets-combined-report.json`
+- `perf-budgets-reports/perf-budgets-combined-report.html`
 
 ---
 
