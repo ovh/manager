@@ -25,6 +25,14 @@ const DnsModifyPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dns/dnsModify'),
 );
 
+const HostConfigurationPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/hosts/hostsConfiguration'),
+);
+
+const HostConfigurationDeletePage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/hosts/hostDelete'),
+);
+
 const GeneralInformationsPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/generalInformations/generalInformations'),
 );
@@ -86,7 +94,12 @@ export default (
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
-        <Route path={urls.domainTabHost} Component={Outlet} />
+        <Route path={urls.domainTabHost} Component={HostConfigurationPage}>
+          <Route
+            path={urls.domainTabHostDelete}
+            Component={HostConfigurationDeletePage}
+          />
+        </Route>
         <Route path={urls.domainTabDnssec} Component={Outlet} />
         <Route path={urls.domainTabContactManagement} Component={Outlet} />
       </Route>
