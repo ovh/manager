@@ -6,9 +6,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
 import {
-  kmsStrasbourg1Mock,
-  kmsRoubaix1Mock,
-  kmsRoubaix2Mock,
+  okmsStrasbourg1Mock,
+  okmsRoubaix1Mock,
+  okmsRoubaix2Mock,
 } from '@/mocks/kms/okms.mock';
 import {
   REGION_EU_WEST_RBX,
@@ -44,8 +44,8 @@ vi.mock('@/data/api/okms', async () => {
 
 const mockUseParams = vi.mocked(useParams);
 
-// 2 domains in Roubaix, 1 in Strasbourg
-const okmsMock = [kmsRoubaix1Mock, kmsRoubaix2Mock, kmsStrasbourg1Mock];
+// 2 okms in Roubaix, 1 in Strasbourg
+const okmsMock = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];
 
 // eslint-disable-next-line import/first, import/newline-after-import
 import { getOkmsList } from '@/data/api/okms';
@@ -58,7 +58,7 @@ const mockGetLocations = vi.mocked(getLocations);
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
 vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
-  useCurrentRegion: (domains: OKMS) => mockUseCurrentRegion(domains),
+  useCurrentRegion: (okmsList: OKMS[]) => mockUseCurrentRegion(okmsList),
 }));
 
 // Mock the useNotifications hook
@@ -105,14 +105,14 @@ const rbxRegionOptionMock: RegionOption = {
   label: 'Europe (France - Roubaix)',
   region: REGION_EU_WEST_RBX,
   geographyLabel: 'Europe',
-  href: SECRET_MANAGER_ROUTES_URLS.secretDomains(REGION_EU_WEST_RBX),
+  href: SECRET_MANAGER_ROUTES_URLS.okmsList(REGION_EU_WEST_RBX),
 };
 
 const sbgRegionOptionMock: RegionOption = {
   label: 'Europe (France - Strasbourg)',
   region: REGION_EU_WEST_SBG,
   geographyLabel: 'Europe',
-  href: SECRET_MANAGER_ROUTES_URLS.secretListing(kmsStrasbourg1Mock.id),
+  href: SECRET_MANAGER_ROUTES_URLS.secretList(okmsStrasbourg1Mock.id),
 };
 
 describe('useRegionSelector tests suite', () => {
@@ -205,9 +205,9 @@ describe('useRegionSelector tests suite', () => {
   });
 
   describe('when there are errors', () => {
-    it('should handle domains error', async () => {
+    it('should handle okms list error', async () => {
       const error = {
-        response: { data: { message: 'Domains error' } },
+        response: { data: { message: 'okms list error' } },
       };
       mockGetOkmsList.mockRejectedValue(error);
       mockUseCurrentRegion.mockReturnValue(undefined);
@@ -248,8 +248,8 @@ describe('useRegionSelector tests suite', () => {
   });
 
   describe('edge cases', () => {
-    it('should handle empty domains array', async () => {
-      mockGetOkmsList.mockResolvedValue([]); // No OKMS domains
+    it('should handle empty okms list', async () => {
+      mockGetOkmsList.mockResolvedValue([]); // No OKMS
       mockUseCurrentRegion.mockReturnValue(REGION_EU_WEST_RBX);
 
       const { result } = await renderCustomHook('success');

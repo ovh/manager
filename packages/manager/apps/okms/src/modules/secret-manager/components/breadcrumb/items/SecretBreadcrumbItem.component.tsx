@@ -10,10 +10,10 @@ import { SECRET_BREADCRUMB_ITEM_TEST_ID } from '@secret-manager/utils/tests/brea
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
 
 const Item = ({
-  domainId,
+  okmsId,
   secretPath,
 }: {
-  domainId: string;
+  okmsId: string;
   secretPath: string;
 }) => {
   const navigate = useNavigate();
@@ -21,12 +21,10 @@ const Item = ({
   return (
     <OdsBreadcrumbItem
       data-testid={SECRET_BREADCRUMB_ITEM_TEST_ID}
-      key={domainId}
+      key={okmsId}
       label={decodeSecretPath(secretPath)}
       onClick={() =>
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.secretDashboard(domainId, secretPath),
-        )
+        navigate(SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secretPath))
       }
       href={null}
     />
@@ -34,9 +32,9 @@ const Item = ({
 };
 
 export const SecretBreadcrumbItem = () => {
-  const { domainId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useParams<LocationPathParams>();
 
-  return isLocationParamsDefined([domainId, secretPath]) ? (
-    <Item domainId={domainId} secretPath={secretPath} />
+  return isLocationParamsDefined([okmsId, secretPath]) ? (
+    <Item okmsId={okmsId} secretPath={secretPath} />
   ) : null;
 };

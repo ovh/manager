@@ -6,7 +6,7 @@ import { PATH_LABEL } from '@/constants';
 
 describe('Secret Manager root page test suite', () => {
   it('should navigate to the onboarding page if no kms exists', async () => {
-    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot, {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.root, {
       nbOkms: 0,
     });
 
@@ -14,7 +14,7 @@ describe('Secret Manager root page test suite', () => {
   });
 
   it('should navigate to the secrets list page if there is only one kms in the first region', async () => {
-    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot, {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.root, {
       nbOkms: 1,
     });
 
@@ -22,11 +22,11 @@ describe('Secret Manager root page test suite', () => {
     await assertTextVisibility(labels.secretManager.version);
   });
 
-  it('should navigate to the domains list page if there is more than one kms in the first region', async () => {
-    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretManagerRoot, {
+  it('should navigate to the okms list page if there is more than one kms in the first region', async () => {
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.root, {
       nbOkms: 3,
     });
 
-    await assertTextVisibility(labels.secretManager.domains_list);
+    await assertTextVisibility(labels.secretManager.okms_list);
   });
 });

@@ -26,7 +26,7 @@ export default function SecretManagerOnboardingPage() {
       }
       orderButtonLabel={t('create_a_secret')}
       onOrderButtonClick={() =>
-        navigate(SECRET_MANAGER_ROUTES_URLS.secretCreate)
+        navigate(SECRET_MANAGER_ROUTES_URLS.createSecret)
       }
     />
   );

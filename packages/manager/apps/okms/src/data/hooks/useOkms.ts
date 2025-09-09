@@ -19,7 +19,7 @@ export const useOkmsById = (okmsId: string) => {
  * okms list hook
  *
  * @description only use this hook to manage side-effects on the UI (region selector, back button, redirection).
- * for the domain datagrid, use `useOkmsDatagridList`
+ * for the okms list datagrid, use `useOkmsDatagridList`
  */
 export const useOkmsList = (
   options: Partial<UseQueryOptions<OKMS[], ErrorResponse>> = {},

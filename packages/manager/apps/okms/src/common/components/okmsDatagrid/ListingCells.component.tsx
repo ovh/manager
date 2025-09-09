@@ -31,7 +31,7 @@ export const DatagridCellName = (
 
   const urls: Record<OkmsDatagridType, string> = {
     kms: KMS_ROUTES_URLS.kmsDashboard(okms.id),
-    'secret-manager': SECRET_MANAGER_ROUTES_URLS.secretListing(okms.id),
+    'secret-manager': SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
   };
   const tracking: Record<OkmsDatagridType, string> = {
     kms: 'go-to-kms',

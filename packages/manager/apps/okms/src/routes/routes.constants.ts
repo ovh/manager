@@ -21,37 +21,37 @@ const URIS = {
 const URLS = {
   kmsOnboarding: `/${URIS.root}/${URIS.kmsOnboarding}`,
   kmsListing: `/${URIS.root}`,
-  kmsListingTerminate: (domainId: string) =>
-    `/${URIS.root}/${URIS.kmsTerminate}/${domainId}`,
+  kmsListingTerminate: (okmsId: string) =>
+    `/${URIS.root}/${URIS.kmsTerminate}/${okmsId}`,
   kmsCreate: `/${URIS.root}/${URIS.kmsCreate}`,
-  kmsDashboard: (domainId: string) => `/${URIS.root}/${domainId}`,
-  kmsDashboardTerminate: (domainId: string) =>
-    `/${URIS.root}/${URIS.root}/${domainId}/${URIS.kmsTerminate}`,
-  kmsEditName: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.kmsEditName}`,
-  kmsLogs: (domainId: string) => `/${URIS.root}/${domainId}/${URIS.kmsLogs}`,
-  serviceKeyListing: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}`,
-  serviceKeyListingDeactivate: (domainId: string, serviceKeyId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}/deactivate/${serviceKeyId}`,
-  serviceKeyDashboard: (domainId: string, serviceKeyId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}/${serviceKeyId}`,
-  serviceKeyDashboardDeactivate: (domainId: string, serviceKeyId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}/${serviceKeyId}/deactivate`,
-  serviceKeyEditName: (domainId: string, serviceKeyId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}/${serviceKeyId}/${URIS.serviceKeyEditName}`,
-  serviceKeyCreate: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.serviceKeys}/${URIS.serviceKeyCreate}`,
-  credentialListing: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.credentials}`,
-  credentialDashboard: (domainId: string, credentialId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.credentials}/${credentialId}`,
-  credentialDashboardDelete: (domainId: string, credentialId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.credentials}/${credentialId}/${URIS.credentialDelete}`,
-  credentialIdentitiesList: (domainId: string, credentialId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.credentials}/${credentialId}/${URIS.credentialIdentities}`,
-  credentialCreate: (domainId: string) =>
-    `/${URIS.root}/${domainId}/${URIS.credentials}/${URIS.credentialCreate}`,
+  kmsDashboard: (okmsId: string) => `/${URIS.root}/${okmsId}`,
+  kmsDashboardTerminate: (okmsId: string) =>
+    `/${URIS.root}/${URIS.root}/${okmsId}/${URIS.kmsTerminate}`,
+  kmsEditName: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.kmsEditName}`,
+  kmsLogs: (okmsId: string) => `/${URIS.root}/${okmsId}/${URIS.kmsLogs}`,
+  serviceKeyListing: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}`,
+  serviceKeyListingDeactivate: (okmsId: string, serviceKeyId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}/deactivate/${serviceKeyId}`,
+  serviceKeyDashboard: (okmsId: string, serviceKeyId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}`,
+  serviceKeyDashboardDeactivate: (okmsId: string, serviceKeyId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}/deactivate`,
+  serviceKeyEditName: (okmsId: string, serviceKeyId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}/${serviceKeyId}/${URIS.serviceKeyEditName}`,
+  serviceKeyCreate: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.serviceKeys}/${URIS.serviceKeyCreate}`,
+  credentialListing: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.credentials}`,
+  credentialDashboard: (okmsId: string, credentialId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.credentials}/${credentialId}`,
+  credentialDashboardDelete: (okmsId: string, credentialId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.credentials}/${credentialId}/${URIS.credentialDelete}`,
+  credentialIdentitiesList: (okmsId: string, credentialId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.credentials}/${credentialId}/${URIS.credentialIdentities}`,
+  credentialCreate: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.credentials}/${URIS.credentialCreate}`,
 };
 
 export const KMS_URL_PARAMS = {

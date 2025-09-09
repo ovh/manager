@@ -24,14 +24,14 @@ import {
 
 type CreateVersionDrawerProps = {
   secret: SecretWithData;
-  domainId: string;
+  okmsId: string;
   secretPath: string;
   onDismiss: () => void;
 };
 
 const CreateVersionDrawerForm = ({
   secret,
-  domainId,
+  okmsId,
   secretPath,
   onDismiss,
 }: CreateVersionDrawerProps) => {
@@ -60,7 +60,7 @@ const CreateVersionDrawerForm = ({
 
   const handleSubmitForm = async (data: FormSchema) => {
     await createSecretVersion({
-      okmsId: domainId,
+      okmsId,
       path: decodeSecretPath(secretPath),
       data: JSON.parse(data.data),
       // Add current version to cas parameter if cas is required
@@ -100,14 +100,14 @@ export default function CreateVersionDrawerPage() {
   const navigate = useNavigate();
   const { t } = useTranslation('secret-manager');
 
-  const { domainId, secretPath } = useParams<LocationPathParams>();
+  const { okmsId, secretPath } = useParams<LocationPathParams>();
 
   const {
     data: secret,
     isPending: isSecretPending,
     error: secretError,
     refetch,
-  } = useSecretWithData(domainId, decodeSecretPath(secretPath));
+  } = useSecretWithData(okmsId, decodeSecretPath(secretPath));
 
   const handleDismiss = () => {
     navigate('..');
@@ -117,9 +117,7 @@ export default function CreateVersionDrawerPage() {
     return (
       <ErrorBanner
         error={secretError.response}
-        onRedirectHome={() =>
-          navigate(SECRET_MANAGER_ROUTES_URLS.secretManagerOnboarding)
-        }
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}
       />
     );
@@ -137,7 +135,7 @@ export default function CreateVersionDrawerPage() {
         {secret && (
           <CreateVersionDrawerForm
             secret={secret}
-            domainId={domainId}
+            okmsId={okmsId}
             secretPath={secretPath}
             onDismiss={handleDismiss}
           />

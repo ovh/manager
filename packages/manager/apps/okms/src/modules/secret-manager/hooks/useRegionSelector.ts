@@ -28,34 +28,32 @@ type UseRegionSelectorReturn = {
 };
 
 /**
- * Builds a list of regions with an available domain
+ * Builds a list of regions with an available okms
  * Locations are used to get the region name and geography label
  */
 const buildRegionOptions = (
   locations: Location[],
-  domains: OKMS[],
+  okmsList: OKMS[],
 ): RegionOption[] => {
   // Deduplicate regions
-  const uniqueRegions = [...new Set(domains.map((domain) => domain.region))];
+  const uniqueRegions = [...new Set(okmsList.map((okms) => okms.region))];
 
   return uniqueRegions
     .map((region) => {
       const location = findLocationByRegion(locations, region);
       if (!location) return null;
 
-      const regionDomains = domains.filter(
-        (domain) => domain.region === region,
-      );
+      const regionOkmsList = okmsList.filter((okms) => okms.region === region);
 
       return {
         label: location.location,
         region: location.name,
         geographyLabel: location.geographyName,
         href:
-          // If only one domain is available, redirect to the secrets listing page
-          regionDomains.length === 1
-            ? SECRET_MANAGER_ROUTES_URLS.secretListing(regionDomains[0].id)
-            : SECRET_MANAGER_ROUTES_URLS.secretDomains(region),
+          // If only one okms is available, redirect to the secrets listing page
+          regionOkmsList.length === 1
+            ? SECRET_MANAGER_ROUTES_URLS.secretList(regionOkmsList[0].id)
+            : SECRET_MANAGER_ROUTES_URLS.okmsList(region),
       };
     })
     .filter((option) => option !== null);
@@ -104,41 +102,41 @@ export const useRegionSelector = (): UseRegionSelectorReturn => {
     error: errorLocations,
   } = useLocations();
   const {
-    data: domains,
-    isPending: isPendingDomains,
-    error: errorDomains,
+    data: okmsList,
+    isPending: isPendingOkmsList,
+    error: errorOkmsList,
   } = useOkmsList();
   const { addError } = useNotifications();
-  const currentRegionId = useCurrentRegion(domains || []);
+  const currentRegionId = useCurrentRegion(okmsList || []);
 
-  const isLoading = isPendingLocations || isPendingDomains;
+  const isLoading = isPendingLocations || isPendingOkmsList;
 
   const { geographyGroups, currentRegion } = useMemo(() => {
-    if (!locations || !domains) {
+    if (!locations || !okmsList) {
       return { geographyGroups: [], currentRegion: undefined };
     }
 
-    const regionOptions = buildRegionOptions(locations, domains);
+    const regionOptions = buildRegionOptions(locations, okmsList);
     return {
       geographyGroups: groupRegionOptions(regionOptions),
       currentRegion: findCurrentRegionOption(regionOptions, currentRegionId),
     };
-  }, [locations, domains, currentRegionId]);
+  }, [locations, okmsList, currentRegionId]);
 
-  // Handle errors from locations and domains
+  // Handle errors from locations and Okms list
   useEffect(() => {
     if (errorLocations) {
       addError(errorLocations?.response?.data?.message);
     }
-    if (errorDomains) {
-      addError(errorDomains?.response?.data?.message);
+    if (errorOkmsList) {
+      addError(errorOkmsList?.response?.data?.message);
     }
-  }, [errorLocations, errorDomains]);
+  }, [errorLocations, errorOkmsList]);
 
   return {
     geographyGroups,
     currentRegion,
     isLoading,
-    isError: !!errorLocations || !!errorDomains,
+    isError: !!errorLocations || !!errorOkmsList,
   };
 };

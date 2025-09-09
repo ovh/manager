@@ -2,11 +2,10 @@ import { renderHook } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useCurrentRegion } from './useCurrentRegion';
-import { OKMS } from '@/types/okms.type';
 import {
   okmsMock,
-  kmsRoubaix1Mock,
-  kmsStrasbourg1Mock,
+  okmsRoubaix1Mock,
+  okmsStrasbourg1Mock,
 } from '@/mocks/kms/okms.mock';
 
 // Mock react-router-dom
@@ -17,99 +16,97 @@ vi.mock('react-router-dom', () => ({
 const mockUseParams = vi.mocked(useParams);
 
 describe('useCurrentRegion tests suite', () => {
-  const mockDomains: OKMS[] = okmsMock;
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('when domainId is provided in URL params', () => {
-    it('should return the region of the matching domain', () => {
+  describe('when okmsId is provided in URL params', () => {
+    it('should return the region of the matching okms', () => {
       mockUseParams.mockReturnValue({
-        domainId: kmsRoubaix1Mock.id,
+        okmsId: okmsRoubaix1Mock.id,
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
-      expect(result.current).toBe(kmsRoubaix1Mock.region);
+      expect(result.current).toBe(okmsRoubaix1Mock.region);
     });
 
-    it('should return undefined when domainId does not match any domain', () => {
+    it('should return undefined when okmsId does not match any okms', () => {
       mockUseParams.mockReturnValue({
-        domainId: 'non-existent-domain',
+        okmsId: 'non-existent-okms',
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBeUndefined();
     });
 
-    it('should prioritize domainId over region parameter when both are present', () => {
+    it('should prioritize okmsId over region parameter when both are present', () => {
       mockUseParams.mockReturnValue({
-        domainId: kmsRoubaix1Mock.id,
+        okmsId: okmsRoubaix1Mock.id,
         region: 'some-other-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
-      expect(result.current).toBe(kmsRoubaix1Mock.region);
+      expect(result.current).toBe(okmsRoubaix1Mock.region);
     });
   });
 
   describe('when only region is provided in URL params', () => {
-    it('should return the region parameter when no domainId is present', () => {
+    it('should return the region parameter when no okmsId is present', () => {
       mockUseParams.mockReturnValue({
-        domainId: undefined,
+        okmsId: undefined,
         region: 'custom-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBe('custom-region');
     });
 
-    it('should return the region parameter when domainId is empty string', () => {
+    it('should return the region parameter when okmsId is empty string', () => {
       mockUseParams.mockReturnValue({
-        domainId: '',
+        okmsId: '',
         region: 'another-region',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBe('another-region');
     });
   });
 
-  describe('when neither domainId nor region are provided', () => {
+  describe('when neither okmsId nor region are provided', () => {
     it('should return undefined when both parameters are undefined', () => {
       mockUseParams.mockReturnValue({
-        domainId: undefined,
+        okmsId: undefined,
         region: undefined,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBeUndefined();
     });
 
     it('should return undefined when both parameters are empty strings', () => {
       mockUseParams.mockReturnValue({
-        domainId: '',
+        okmsId: '',
         region: '',
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBeUndefined();
     });
   });
 
   describe('edge cases', () => {
-    it('should handle empty domains array', () => {
+    it('should handle empty okms list', () => {
       mockUseParams.mockReturnValue({
-        domainId: 'domain-1',
+        okmsId: 'okms-1',
         region: undefined,
       });
 
@@ -120,66 +117,64 @@ describe('useCurrentRegion tests suite', () => {
 
     it('should handle when useParams returns null values', () => {
       mockUseParams.mockReturnValue({
-        domainId: (null as unknown) as string,
+        okmsId: (null as unknown) as string,
         region: (null as unknown) as string,
       });
 
-      const { result } = renderHook(() => useCurrentRegion(mockDomains));
+      const { result } = renderHook(() => useCurrentRegion(okmsMock));
 
       expect(result.current).toBeUndefined();
     });
   });
 
   describe('hook reactivity', () => {
-    it('should update when domains array changes', () => {
+    it('should update when okms list changes', () => {
       mockUseParams.mockReturnValue({
-        domainId: kmsRoubaix1Mock.id,
+        okmsId: okmsRoubaix1Mock.id,
         region: undefined,
       });
 
       const { result, rerender } = renderHook(
-        ({ domains }) => useCurrentRegion(domains),
+        ({ okmsList }) => useCurrentRegion(okmsList),
         {
-          initialProps: { domains: mockDomains },
+          initialProps: { okmsList: okmsMock },
         },
       );
 
-      expect(result.current).toBe(kmsRoubaix1Mock.region);
+      expect(result.current).toBe(okmsRoubaix1Mock.region);
 
-      // Update domains array
-      const newDomains = [
+      // Update okms list
+      const newOkmsList = [
         {
-          ...mockDomains[0],
+          ...okmsMock[0],
           region: 'updated-region',
         },
       ];
 
-      rerender({ domains: newDomains });
+      rerender({ okmsList: newOkmsList });
 
       expect(result.current).toBe('updated-region');
     });
 
     it('should update when URL parameters change', () => {
       mockUseParams.mockReturnValue({
-        domainId: kmsRoubaix1Mock.id,
+        okmsId: okmsRoubaix1Mock.id,
         region: undefined,
       });
 
-      const { result, rerender } = renderHook(() =>
-        useCurrentRegion(mockDomains),
-      );
+      const { result, rerender } = renderHook(() => useCurrentRegion(okmsMock));
 
-      expect(result.current).toBe(kmsRoubaix1Mock.region);
+      expect(result.current).toBe(okmsRoubaix1Mock.region);
 
       // Change URL parameters
       mockUseParams.mockReturnValue({
-        domainId: kmsStrasbourg1Mock.id,
+        okmsId: okmsStrasbourg1Mock.id,
         region: undefined,
       });
 
       rerender();
 
-      expect(result.current).toBe(kmsStrasbourg1Mock.region);
+      expect(result.current).toBe(okmsStrasbourg1Mock.region);
     });
   });
 });

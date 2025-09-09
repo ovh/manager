@@ -17,10 +17,11 @@ import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 
-const mockDomainId = '123123';
+const mockOkmsId = '123123';
+// const mockSecretPath = mockSecret1WithData.path;
 const mockSecretPath = mockSecret2WithData.path;
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretVersionsDrawerCreateVersion(
-  mockDomainId,
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
+  mockOkmsId,
   mockSecretPath,
 );
 
@@ -122,7 +123,7 @@ describe('Secret create version drawer page test suite', () => {
     // Wait for the createSecretVersion to be called
     await waitFor(() => {
       expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
-        okmsId: mockDomainId,
+        okmsId: mockOkmsId,
         path: mockSecret2WithData.path,
         data: JSON.parse(MOCK_DATA_VALID_JSON),
         cas: mockSecret2WithData.metadata.currentVersion,
