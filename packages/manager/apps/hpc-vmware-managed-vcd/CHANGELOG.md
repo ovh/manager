@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0) (2025-09-08)
 
 
