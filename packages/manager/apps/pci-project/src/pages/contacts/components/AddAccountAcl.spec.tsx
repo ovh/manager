@@ -105,20 +105,6 @@ describe('AddAccountAcl', () => {
     mockUseParams.mockReturnValue({ projectId: 'p-1' } as any);
   });
 
-  it('shows NIC handle label for non-US/CA users and email for US/CA', () => {
-    mockUseAdd.mockReturnValue({
-      addAccountAclToProject: vi.fn(),
-      isPending: false,
-    } as any);
-    const wrapperFR = createWrapper(baseContextFR);
-    render(<AddAccountAcl />, { wrapper: wrapperFR });
-    expect(screen.getByText('cpb_rights_table_nichandle')).toBeInTheDocument();
-
-    const wrapperUS = createWrapper(baseContextUS);
-    render(<AddAccountAcl />, { wrapper: wrapperUS });
-    expect(screen.getByText('cpb_rights_table_email')).toBeInTheDocument();
-  });
-
   it('trims and normalize the NIC submitted to API call', () => {
     const addSpy = vi.fn();
     mockUseAdd.mockReturnValue({

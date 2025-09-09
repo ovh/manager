@@ -14,6 +14,7 @@ import {
   BaseLayout,
   Notifications,
   ChangelogButton,
+  RedirectionGuard,
   PciGuidesHeader,
   Datagrid,
   useProjectUrl,
@@ -65,7 +66,11 @@ export default function ContactsPage() {
   const context = useContext(ShellContext);
   const user = context.environment.getUser();
   const projectId = useParam('projectId');
-  const { data: project } = useProject();
+  const {
+    data: project,
+    isLoading: isProjectLoading,
+    isError: isProjectError,
+  } = useProject();
   const { data: serviceInfo } = useProjectService(projectId);
   const { data: aclAccountIds } = useProjectAcl(projectId);
   const userAcls = useProjectAclAccountsInfo(projectId, aclAccountIds || []);
@@ -78,96 +83,111 @@ export default function ContactsPage() {
   const openAddContactModal = () => {
     navigate(`./${urls.contactAndRightsAdd}`);
   };
+  const isUsRegion = context.environment.getRegion() === 'US';
   const isEuRegion = context.environment.getRegion() === 'EU';
   const discoveryProject = isDiscoveryProject(project);
   const canChangeContacts = isEuRegion && !discoveryProject;
   const contactsPageHref = useGetContactsPageHref(context, serviceInfo);
+  const redirectToProjects = isProjectError || isUsRegion;
 
   if (!project || !serviceInfo || !userAcls) {
-    return <OdsSpinner size="md" />;
+    return (
+      <RedirectionGuard
+        condition={redirectToProjects}
+        isLoading={isProjectLoading}
+        route={urls.root}
+      >
+        <OdsSpinner size="md" />
+      </RedirectionGuard>
+    );
   }
 
   return (
-    <BaseLayout
-      header={{
-        title: t('pci_projects_project_contacts_title'),
-        changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
-        headerButton: <PciGuidesHeader category="instances" />,
-      }}
-      breadcrumb={
-        <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
-          <OdsBreadcrumbItem
-            href={'#'}
-            label={t('pci_projects_project_contacts_title')}
-          />
-        </OdsBreadcrumb>
-      }
+    <RedirectionGuard
+      condition={redirectToProjects}
+      isLoading={isProjectLoading}
+      route={urls.root}
     >
-      <div className="flex flex-col gap-4 mb-8">
-        <PciDiscoveryBanner project={project} />
-        <Notifications />
-        <div className="contacts-card">
-          <div className="row">
-            <OdsText className="contacts-card-info text-right">
-              {t('cpb_rights_owner')}
-            </OdsText>
-            <OdsText className="contacts-card-info text-left">
-              {serviceInfo.contactAdmin}
-            </OdsText>
-            <div className="contacts-card-info">
-              {canChangeContacts && (
-                <OdsLink
-                  href={contactsPageHref}
-                  label={t('cpb_rights_modify')}
-                  icon={ODS_ICON_NAME.externalLink}
-                  target="_blank"
-                />
-              )}
+      <BaseLayout
+        header={{
+          title: t('pci_projects_project_contacts_title'),
+          changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
+          headerButton: <PciGuidesHeader category="instances" />,
+        }}
+        breadcrumb={
+          <OdsBreadcrumb>
+            <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+            <OdsBreadcrumbItem
+              href={'#'}
+              label={t('pci_projects_project_contacts_title')}
+            />
+          </OdsBreadcrumb>
+        }
+      >
+        <div className="flex flex-col gap-4 mb-8">
+          <PciDiscoveryBanner project={project} />
+          <Notifications />
+          <div className="contacts-card">
+            <div className="row">
+              <OdsText className="contacts-card-info text-right">
+                {t('cpb_rights_owner')}
+              </OdsText>
+              <OdsText className="contacts-card-info text-left">
+                {serviceInfo.contactAdmin}
+              </OdsText>
+              <div className="contacts-card-info">
+                {canChangeContacts && (
+                  <OdsLink
+                    href={contactsPageHref}
+                    label={t('cpb_rights_modify')}
+                    icon={ODS_ICON_NAME.externalLink}
+                    target="_blank"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="row mt-4">
+              <OdsText className="contacts-card-info text-right">
+                {t('cpb_rights_billing_contact')}
+              </OdsText>
+              <OdsText className="contacts-card-info text-left">
+                {serviceInfo.contactBilling}
+              </OdsText>
+              <div className="contacts-card-info">
+                {canChangeContacts && (
+                  <OdsLink
+                    href={contactsPageHref}
+                    label={t('cpb_rights_modify')}
+                    icon={ODS_ICON_NAME.externalLink}
+                    target="_blank"
+                  />
+                )}
+              </div>
             </div>
           </div>
-          <div className="row mt-4">
-            <OdsText className="contacts-card-info text-right">
-              {t('cpb_rights_billing_contact')}
-            </OdsText>
-            <OdsText className="contacts-card-info text-left">
-              {serviceInfo.contactBilling}
-            </OdsText>
-            <div className="contacts-card-info">
-              {canChangeContacts && (
-                <OdsLink
-                  href={contactsPageHref}
-                  label={t('cpb_rights_modify')}
-                  icon={ODS_ICON_NAME.externalLink}
-                  target="_blank"
-                />
-              )}
-            </div>
-          </div>
-        </div>
-        <OdsText>{t('cpb_rights_expl2')}</OdsText>
-        <OdsText>{t('cpb_rights_note')}</OdsText>
+          <OdsText>{t('cpb_rights_expl2')}</OdsText>
+          <OdsText>{t('cpb_rights_note')}</OdsText>
 
-        {isAdmin && (
-          <OdsButton
-            className="my-8 size-fit"
-            label={t('common_add')}
-            variant={ODS_BUTTON_VARIANT.outline}
-            onClick={openAddContactModal}
-            isDisabled={discoveryProject}
+          {isAdmin && (
+            <OdsButton
+              className="my-8 size-fit"
+              label={t('common_add')}
+              variant={ODS_BUTTON_VARIANT.outline}
+              onClick={openAddContactModal}
+              isDisabled={discoveryProject}
+            />
+          )}
+
+          <Datagrid
+            columns={columns}
+            items={flattenData as AccountAcl[]}
+            totalItems={userAcls.length}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={fetchNextPage}
           />
-        )}
-
-        <Datagrid
-          columns={columns}
-          items={flattenData as AccountAcl[]}
-          totalItems={userAcls.length}
-          hasNextPage={hasNextPage}
-          onFetchNextPage={fetchNextPage}
-        />
-      </div>
-
-      <Outlet />
-    </BaseLayout>
+        </div>
+        <Outlet />
+      </BaseLayout>
+    </RedirectionGuard>
   );
 }
