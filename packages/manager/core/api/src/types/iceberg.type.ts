@@ -32,6 +32,6 @@ export type IcebergFetchResultV6<T> = {
 
 export type IcebergFetchResultV2<T> = {
   data: T[];
-  cursorNext: string;
+  cursorNext?: string;
   status: number;
 };
