@@ -86,3 +86,12 @@ export const serviceInfoRestorable: TDomainResource = {
     mainState: DomainStateEnum.RESTORABLE,
   },
 };
+
+export const serviceInfoOK: TDomainResource = {
+  ...serviceInfoDetail,
+  currentState: {
+    ...serviceInfoDetail.currentState,
+    mainState: DomainStateEnum.OK,
+    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+  },
+};
