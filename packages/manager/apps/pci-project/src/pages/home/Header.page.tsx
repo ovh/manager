@@ -7,7 +7,11 @@ import {
   useProject,
   usePciUrl,
 } from '@ovh-ux/manager-pci-common';
-import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  ChangelogButton,
+  RedirectionGuard,
+} from '@ovh-ux/manager-react-components';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsBreadcrumb,
@@ -18,51 +22,60 @@ import {
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
+import { urls } from '@/routes/routes.constant';
 
 export default function ProjectHeader() {
   const { t } = useTranslation('project');
 
   const hrefProject = usePciUrl();
-  const { data: project, isLoading, error } = useProject();
+  const {
+    data: project,
+    isLoading: isProjectLoading,
+    isError: isProjectError,
+  } = useProject();
   const tabs = useProjectTabs();
 
   const isDiscovery = isDiscoveryProject(project);
 
-  if (error) throw error;
-
   return (
-    <BaseLayout
-      breadcrumb={
-        isLoading ? (
-          <OdsSkeleton className="w-48 h-6" />
-        ) : (
-          <OdsBreadcrumb>
-            <OdsBreadcrumbItem
-              href={hrefProject}
-              label={project?.description}
-            />
-          </OdsBreadcrumb>
-        )
-      }
-      header={{
-        title: project?.description,
-        badge: isDiscovery
-          ? {
-              color: ODS_BADGE_COLOR.information,
-              size: ODS_BADGE_SIZE.md,
-              label: t('pci_projects_project_label_discovery'),
-            }
-          : undefined,
-        changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
-      }}
-      tabs={
-        <nav aria-label={t('pci_projects_project_main_navigation')}>
-          <TabsPanel tabs={tabs} />
-        </nav>
-      }
+    <RedirectionGuard
+      condition={isProjectError}
+      isLoading={isProjectLoading}
+      route={urls.root}
     >
-      <QuotaAlert />
-      <Outlet />
-    </BaseLayout>
+      <BaseLayout
+        breadcrumb={
+          isProjectLoading ? (
+            <OdsSkeleton className="w-48 h-6" />
+          ) : (
+            <OdsBreadcrumb>
+              <OdsBreadcrumbItem
+                href={hrefProject}
+                label={project?.description}
+              />
+            </OdsBreadcrumb>
+          )
+        }
+        header={{
+          title: project?.description,
+          badge: isDiscovery
+            ? {
+                color: ODS_BADGE_COLOR.information,
+                size: ODS_BADGE_SIZE.md,
+                label: t('pci_projects_project_label_discovery'),
+              }
+            : undefined,
+          changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
+        }}
+        tabs={
+          <nav aria-label={t('pci_projects_project_main_navigation')}>
+            <TabsPanel tabs={tabs} />
+          </nav>
+        }
+      >
+        <QuotaAlert />
+        <Outlet />
+      </BaseLayout>
+    </RedirectionGuard>
   );
 }

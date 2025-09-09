@@ -29,7 +29,6 @@ export default function AddAccountAcl() {
   const [accountRights, setAccountRights] = useState<AclRight>('readOnly');
   const [isAccountInputTouched, setIsAccountInputTouched] = useState(false);
   const handleClose = () => navigate('..');
-  const isUSorCA = ['US', 'CA'].includes(user.country.toUpperCase());
   const normalizedAccountId = normalizeAccountId(accountToAdd);
 
   const { addAccountAclToProject, isPending } = useAddAccountAclToProject({
@@ -76,9 +75,7 @@ export default function AddAccountAcl() {
         }
       >
         <label htmlFor="contactInput" slot="label">
-          {isUSorCA
-            ? t('cpb_rights_table_email')
-            : t('cpb_rights_table_nichandle')}
+          {t('cpb_rights_table_nichandle')}
         </label>
         <OdsInput
           type={ODS_INPUT_TYPE.text}

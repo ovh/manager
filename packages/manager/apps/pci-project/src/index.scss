@@ -65,3 +65,16 @@ ods-text.disabled::part(text) {
   flex-grow: 1;
   max-width: 33.3333%;
 }
+
+@media (max-width: 35rem) {
+  .contacts-card .row {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .contacts-card .contacts-card-info {
+    max-width: 100%;
+    &:first-child {
+      align-self: flex-end;
+    }
+  }
+}
