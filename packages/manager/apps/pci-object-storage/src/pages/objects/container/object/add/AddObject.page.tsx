@@ -17,9 +17,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   STORAGE_CLASSES_LINK,
   STORAGE_PRICES_LINK,
   TRACKING_PREFIX,
@@ -122,9 +120,9 @@ export default function AddObjectPage() {
 
   const is = useMemo(
     () => ({
-      localZone: containerRegion?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-      oneAZ: containerRegion?.type === OBJECT_CONTAINER_MODE_MONO_ZONE,
-      multiAZ: containerRegion?.type === OBJECT_CONTAINER_MODE_MULTI_ZONES,
+      localZone: containerRegion?.type === ObjectContainerMode.LOCAL_ZONE,
+      oneAZ: containerRegion?.type === ObjectContainerMode.MONO_ZONE,
+      multiAZ: containerRegion?.type === ObjectContainerMode.MULTI_ZONES,
     }),
     [region],
   );
