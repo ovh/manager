@@ -1,4 +1,5 @@
 import { ParamValueType } from '@ovh-ux/url-builder';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import {
   AdditionalDomainStateEnum,
@@ -95,4 +96,9 @@ export type BannerResultDetails = {
     linki18n: string;
     orderFunnel?: boolean;
   };
+};
+
+export type StatusDetails = {
+  statusColor: BADGE_COLOR;
+  i18nKey: string;
 };
