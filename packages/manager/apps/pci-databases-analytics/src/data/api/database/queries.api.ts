@@ -7,9 +7,13 @@ export const getCurrentQueries = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6.get<database.service.currentqueries.Query[]>(
-    `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries`,
-  );
+  (
+    await apiClient.v6.get<{
+      queries: database.service.currentqueries.Query[];
+    }>(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/currentQueries`,
+    )
+  ).queries;
 
 export interface CancelQuery extends ServiceData {
   pid: number;
@@ -38,9 +42,11 @@ export const getQueryStatistics = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6.get<QueryStatistics[]>(
-    `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics`,
-  );
+  (
+    await apiClient.v6.get<{ queries: QueryStatistics[] }>(
+      `/cloud/project/${projectId}/database/${engine}/${serviceId}/queryStatistics`,
+    )
+  ).queries;
 
 export const resetQueryStatistics = async ({
   projectId,
