@@ -26,6 +26,7 @@ import { okmsQueryKeys } from '@/data/api/okms';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { GeneralInformationTile } from './GeneralInformationTile.component';
 import { CryptoPropertiesTile } from './CryptoPropertiesTile.component';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 
 export default function ServiceKeyDashboard() {
   const { okmsId, keyId } = useParams() as {
@@ -114,6 +115,7 @@ export default function ServiceKeyDashboard() {
         header={{
           title: kmsKey.name || kmsKey.id,
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
         }}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));

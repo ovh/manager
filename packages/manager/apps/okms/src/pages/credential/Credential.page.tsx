@@ -20,6 +20,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 import {
   getOkmsCredentialQueryKey,
   useOkmsCredentialById,
@@ -108,6 +109,7 @@ const CredentialDashboard = () => {
         header={{
           title: credential.name || credential.id,
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
         }}
         backLinkLabel={t(
           'key_management_service_credential_dashboard_backlink',

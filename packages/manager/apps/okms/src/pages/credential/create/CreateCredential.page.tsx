@@ -19,6 +19,7 @@ import CreateGeneralInformations from '@/pages/credential/create/CreateGeneralIn
 import CreateAddIdentities from '@/pages/credential/create/CreateAddIdentities.component';
 import CreateCredentialConfirmation from '@/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
 import { CertificateType, OkmsCredential } from '@/types/okmsCredential.type';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
@@ -100,6 +101,7 @@ const CreateCredential = () => {
           title: t('key_management_service_credential_create_title'),
           description: t('key_management_service_credential_create_subtitle'),
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
         }}
         message={<Notifications />}
       >

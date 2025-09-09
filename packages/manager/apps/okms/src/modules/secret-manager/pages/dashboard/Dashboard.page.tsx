@@ -21,6 +21,7 @@ import {
   RootBreadcrumbItem,
   SecretBreadcrumbItem,
 } from '@secret-manager/components/breadcrumb';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
 import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 import Loading from '@/components/Loading/Loading';
 import {
@@ -63,6 +64,7 @@ export default function SecretDashboardPage() {
 
   const headerProps: HeadersProps = {
     title: secretPathDecoded,
+    changelogButton: <SecretManagerChangelogButton />,
   };
 
   if (isSecretPending) {
