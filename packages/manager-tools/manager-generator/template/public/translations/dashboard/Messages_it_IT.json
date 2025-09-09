@@ -1,13 +1,13 @@
 {
-  "home": "Home",
-  "order": "Ordina",
+  "home": "Home page",
+  "order": "Ordinare",
   "back": "Indietro",
   "title": "Dashboard",
   "email": "Email",
   "subject": "Oggetto",
   "message": "Messaggio",
-  "submitButton": "Invia",
-  "successMessage": "La tua richiesta è stata inviata con successo.",
+  "submitButton": "Inviare",
+  "successMessage": "La richiesta è stata inviata correttamente.",
   "errors": {
     "emailRequired": "L'email è obbligatoria.",
     "emailInvalid": "Inserisci un indirizzo email valido.",

@@ -1,24 +1,24 @@
 {
   "title_fallback": "Witamy w app-gen-test",
   "description_part1": "Dowiedz się, jak najlepiej wykorzystać app-gen-test, ddd.",
-  "description_part2": "Postępuj zgodnie z naszymi przewodnikami, aby szybko rozpocząć.",
+  "description_part2": "Zapoznaj się z naszymi przewodnikami, aby szybko wystartować.",
   "guides": {
     "guide1": {
-      "category": "Odkryj",
-      "title": "Pierwsze kroki z app-gen-test",
-      "description": "Poznaj podstawy, aby rozpocząć.",
-      "cta": "Odkryj"
+      "category": "Pierwsze kroki",
+      "title": "Rozpocznij pracę z app-gen-test",
+      "description": "Poznaj podstawy i przejdź do działania.",
+      "cta": "Sprawdź"
     },
     "guide2": {
-      "category": "Samouczki",
-      "title": "Skonfiguruj swoje środowisko",
-      "description": "Postępuj zgodnie z naszym przewodnikiem krok po kroku.",
-      "cta": "Zobacz samouczek"
+      "category": "Tutoriale",
+      "title": "Konfiguracja środowiska",
+      "description": "Postępuj zgodnie z instrukcjami z naszego przewodnika",
+      "cta": "Sprawdź tutorial"
     },
     "guide3": {
       "category": "FAQ",
       "title": "Najczęściej zadawane pytania",
-      "description": "Znajdź odpowiedzi na najczęściej zadawane pytania.",
+      "description": "Znajdź odpowiedzi na często zadawane pytania.",
       "cta": "Przeczytaj FAQ"
     }
   }

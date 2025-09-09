@@ -117,17 +117,17 @@ exports[`QuotaPage > should render 1`] = `
             <thead>
               <tr>
                 <th
-                  class="text-left pl-4 h-11 whitespace-nowrap "
+                  class="text-left pl-4 h-11 whitespace-nowrap cursor-pointer"
                 >
                   <div
-                    class="cursor-pointer select-none"
+                    class="flex items-center select-none"
                     data-testid="header-region"
                   >
                     <span>
                       pci_projects_project_quota_region
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -140,14 +140,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-servers"
                   >
                     <span>
                       pci_projects_project_quota_instance
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -160,14 +160,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-vCpu"
                   >
                     <span>
                       pci_projects_project_quota_core
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -180,14 +180,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-ram"
                   >
                     <span>
                       pci_projects_project_quota_ram
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -200,14 +200,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-disk"
                   >
                     <span>
                       pci_projects_project_quota_add_disk
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -220,14 +220,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-ips"
                   >
                     <span>
                       Floating IPs
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -240,14 +240,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-gateways"
                   >
                     <span>
                       Gateways
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
@@ -260,14 +260,14 @@ exports[`QuotaPage > should render 1`] = `
                   class="text-left pl-4 h-11 whitespace-nowrap "
                 >
                   <div
-                    class=""
+                    class="flex items-center select-none"
                     data-testid="header-lbs"
                   >
                     <span>
                       LB Octavia
                     </span>
                     <span
-                      class="align-middle inline-block h-4 -mt-6"
+                      class="inline-block ml-2 text-xs"
                     >
                       <ods-icon
                         class="invisible"
