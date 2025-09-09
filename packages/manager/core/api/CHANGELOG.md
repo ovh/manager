@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.1...@ovh-ux/manager-core-api@0.18.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* fixing the iceberg pagination filter processing ([4749aca](https://github.com/ovh/manager/commit/4749acaa65c6cd7e14dbee33d7830e37ca8a7769)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.0...@ovh-ux/manager-core-api@0.18.1) (2025-09-09)
 
 
