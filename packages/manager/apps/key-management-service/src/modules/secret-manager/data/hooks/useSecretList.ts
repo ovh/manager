@@ -3,15 +3,15 @@ import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { secretQueryKeys } from '@/modules/secret-manager/data/api/secrets';
 
 export const useSecretList = ({
-  domainId,
+  okmsId,
   pageSize = 25,
 }: {
-  domainId: string;
+  okmsId: string;
   pageSize?: number;
 }) => {
   return useResourcesIcebergV2<Secret>({
-    route: `okms/resource/${domainId}/secret`,
-    queryKey: secretQueryKeys.list(domainId),
+    route: `okms/resource/${okmsId}/secret`,
+    queryKey: secretQueryKeys.list(okmsId),
     pageSize,
   });
 };

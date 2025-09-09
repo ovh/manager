@@ -17,7 +17,7 @@ export const CreateSecretBreadcrumbItem = () => {
       data-testid={CREATE_SECRET_BREADCRUMB_ITEM_TEST_ID}
       key={SECRET_MANAGER_ROUTES_URIS.root}
       label={t('create_a_secret')}
-      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretCreate)}
+      onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecret)}
       href={null}
     />
   );
