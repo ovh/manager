@@ -1,10 +1,11 @@
+import { existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { existsSync } from 'fs';
+
+import { applicationsBasePath } from '../../utils/AppUtils.mjs';
+import { updateConfiguration } from './steps/updateConfiguration.mjs';
 import { updateDependencies } from './steps/updateDependencies.mjs';
 import { updateTestScripts } from './steps/updateScripts.mjs';
-import { updateConfiguration } from './steps/updateConfiguration.mjs';
-import { applicationsBasePath } from '../../utils/AppUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

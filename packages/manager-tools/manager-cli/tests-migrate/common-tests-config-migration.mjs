@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
 // Supported test types for validation
@@ -22,18 +21,14 @@ const isDryRun = args.includes('--dry-run');
 // Extract framework (e.g. --framework vitest)
 const frameworkIndex = args.findIndex((arg) => arg === '--framework');
 const framework =
-  frameworkIndex !== -1 &&
-  args[frameworkIndex + 1] &&
-  !args[frameworkIndex + 1].startsWith('--')
+  frameworkIndex !== -1 && args[frameworkIndex + 1] && !args[frameworkIndex + 1].startsWith('--')
     ? args[frameworkIndex + 1]
     : 'vitest';
 
 // Extract test type (e.g. --type unit, --type integration)
 const typeIndex = args.findIndex((arg) => arg === '--testType');
 const testType =
-  typeIndex !== -1 &&
-  args[typeIndex + 1] &&
-  !args[typeIndex + 1].startsWith('--')
+  typeIndex !== -1 && args[typeIndex + 1] && !args[typeIndex + 1].startsWith('--')
     ? args[typeIndex + 1]
     : null;
 
@@ -43,7 +38,9 @@ if (!testType) {
 }
 
 if (!validTestTypes.includes(testType)) {
-  console.error(`❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`);
+  console.error(
+    `❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`,
+  );
   process.exit(1);
 }
 

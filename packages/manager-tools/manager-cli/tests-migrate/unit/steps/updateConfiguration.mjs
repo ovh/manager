@@ -1,9 +1,10 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import path from 'path';
-import prettier from 'prettier';
 import { parse } from '@babel/parser';
 import traverseModule from '@babel/traverse';
 import * as t from '@babel/types';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import path from 'path';
+import prettier from 'prettier';
+
 import { defaultExcludedFiles } from '@ovh-ux/manager-tests-setup';
 
 const traverse = traverseModule.default;
@@ -101,7 +102,7 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     },
   });
 
-  coverageExclude = coverageExclude.filter(value => !defaultExcludedFiles.includes(value));
+  coverageExclude = coverageExclude.filter((value) => !defaultExcludedFiles.includes(value));
 
   const lines = [
     `import path from 'path';`,
@@ -117,9 +118,9 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     `          ...defaultExcludedFiles,`,
     ...(coverageExclude.length > 0
       ? [
-        `          // App-specific exclusions (not in shared config):`,
-        ...coverageExclude.map((e) => `          ${JSON.stringify(e)},`),
-      ]
+          `          // App-specific exclusions (not in shared config):`,
+          ...coverageExclude.map((e) => `          ${JSON.stringify(e)},`),
+        ]
       : []),
     `        ],`,
     `      },`,
@@ -127,7 +128,8 @@ export const updateConfiguration = async (appPath, dryRun = false) => {
     `    resolve: {`,
     `      alias: {`,
     ...Object.entries(aliases).map(
-      ([key, value]) => `        ${JSON.stringify(key)}: path.resolve(__dirname, ${JSON.stringify(value)}),`
+      ([key, value]) =>
+        `        ${JSON.stringify(key)}: path.resolve(__dirname, ${JSON.stringify(value)}),`,
     ),
     `      },`,
     `    },`,

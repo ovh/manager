@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
-import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
 import { applicationsBasePath, modulesBasePath } from '../../utils/AppUtils.mjs';
 
 // Helpers to get dirname equivalent in ESM
@@ -18,10 +18,7 @@ const commonFolder = path.resolve(
 const args = process.argv.slice(2);
 const appName = args[0];
 const projectRoot = process.cwd();
-const appFolder = path.resolve(
-  dirname,
-  `${applicationsBasePath}/${appName}/public/translations/`,
-);
+const appFolder = path.resolve(dirname, `${applicationsBasePath}/${appName}/public/translations/`);
 const targetFileName = 'Messages_fr_FR.json';
 
 /**
@@ -38,7 +35,7 @@ const readJSONFileIfExists = (filepath) => {
     console.error(`Failed to read/parse JSON: ${filepath}`, err.message);
     return null;
   }
-}
+};
 
 /**
  * Recursively collect all target JSON files named `Messages_fr_FR.json`.
@@ -58,7 +55,7 @@ const getAllTargetJsonFiles = (folderPath) => {
   });
 
   return results;
-}
+};
 
 /**
  * Load all values from matching common translation files.
@@ -81,7 +78,7 @@ const loadCommonValueMap = (folder) => {
   });
 
   return valueMap;
-}
+};
 
 /**
  * Scan source folder for duplicate values, mapped to common file locations.
@@ -98,9 +95,7 @@ const findDuplicatesGroupedByCommonFiles = (sourceDir, commonValueMap) => {
     Object.entries(data).forEach(([key, value]) => {
       const commonFiles = commonValueMap.get(value);
       if (commonFiles) {
-        const commonFilesKey = Array.from(commonFiles)
-          .sort()
-          .join(', ');
+        const commonFilesKey = Array.from(commonFiles).sort().join(', ');
         if (!grouped.has(commonFilesKey)) {
           grouped.set(commonFilesKey, []);
         }
@@ -111,25 +106,20 @@ const findDuplicatesGroupedByCommonFiles = (sourceDir, commonValueMap) => {
     if (grouped.size > 0) {
       report.push({
         sourceFile: path.relative(projectRoot, file),
-        groups: Array.from(grouped.entries()).map(
-          ([commonFilesKey, entries]) => ({
-            commonFilesKey,
-            entries,
-          }),
-        ),
+        groups: Array.from(grouped.entries()).map(([commonFilesKey, entries]) => ({
+          commonFilesKey,
+          entries,
+        })),
       });
     }
   });
 
   return report;
-}
+};
 
 // -------------------- Main Script --------------------
 const checkDuplicatedTranslations = async () => {
-  if (
-    !existsSync(commonFolder) ||
-    !statSync(commonFolder).isDirectory()
-  ) {
+  if (!existsSync(commonFolder) || !statSync(commonFolder).isDirectory()) {
     console.error('❌ Common folder path is invalid or does not exist.');
     return false;
   }
@@ -160,7 +150,6 @@ const checkDuplicatedTranslations = async () => {
 
   return true;
 };
-
 
 // Start script
 checkDuplicatedTranslations().catch((err) => {

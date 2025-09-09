@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
+import path, { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import path, { dirname, resolve, join } from 'path';
-import { isCodeFileExistsSync } from './CodeTransformUtils.mjs';
+
 import { applicationsBasePath } from './AppUtils.mjs';
+import { isCodeFileExistsSync } from './CodeTransformUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -60,9 +61,7 @@ export const runMigration = ({
           `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${
             framework ? '[--framework <name>] ' : ''
           }${
-            commandLabel.includes('tests-migrate')
-              ? '--testType <unit|integration> '
-              : ''
+            commandLabel.includes('tests-migrate') ? '--testType <unit|integration> ' : ''
           }[--dry-run]`,
         ].join('\n'),
       );
@@ -75,9 +74,7 @@ export const runMigration = ({
       } for app: ${appName}${framework ? ` using ${framework}` : ''}`,
     );
   } else {
-    console.log(
-      `🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`,
-    );
+    console.log(`🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`);
   }
 
   try {
@@ -134,14 +131,7 @@ export const runMigration = ({
 
   if (dryRun || !appName || statusOnly) return;
 
-  const appFullPath = join(
-    'packages',
-    'manager',
-    'apps',
-    appName,
-    '**',
-    formatGlob,
-  );
+  const appFullPath = join('packages', 'manager', 'apps', appName, '**', formatGlob);
 
   try {
     console.log('📦 Running yarn install to apply dependency changes...');
@@ -154,7 +144,7 @@ export const runMigration = ({
     console.error(error);
   }
 
-  if(enablePrettier){
+  if (enablePrettier) {
     try {
       console.log('🎨 Formatting code with Prettier...');
       execSync(`yarn prettier --write "${appFullPath}"`, {
@@ -167,7 +157,7 @@ export const runMigration = ({
     }
   }
 
-  if(enableLintFix){
+  if (enableLintFix) {
     try {
       console.log('🧹 Applying ESLint fixes...');
       execSync(`yarn eslint "${appFullPath}" --fix --quiet`, {
@@ -182,9 +172,7 @@ export const runMigration = ({
 
   if (testCommand) {
     try {
-      console.log(
-        `🧪 Running tests for app "${appName}" to verify migration...`,
-      );
+      console.log(`🧪 Running tests for app "${appName}" to verify migration...`);
       execSync(`yarn workspace @ovh-ux/manager-${appName}-app ${testCommand}`, {
         stdio: 'inherit',
         cwd: resolve(__dirname, '../..'),

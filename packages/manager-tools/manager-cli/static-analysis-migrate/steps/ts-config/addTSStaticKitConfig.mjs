@@ -1,13 +1,11 @@
 #!/usr/bin/env node
-
-import path from 'path';
 import { readFileSync } from 'fs';
-import { unlink, copyFile, writeFile } from 'fs/promises';
-import { readPackageJson, writePackageJson } from '../../../utils/DependenciesUtils.mjs';
-import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+import { copyFile, unlink, writeFile } from 'fs/promises';
+import path from 'path';
 
-// eslint-disable-next-line
 import reactTSBaseConfig from '../../../../../manager-tools/manager-static-analysis-kit/dist/tsconfig/react.json' with { type: 'json' };
+import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+import { readPackageJson, writePackageJson } from '../../../utils/DependenciesUtils.mjs';
 
 const appName = process.argv[2];
 const isDryRun = process.argv.includes('--dry-run');
@@ -21,7 +19,14 @@ const appPath = path.resolve(applicationsBasePath, appName);
 const tsconfigPath = path.join(appPath, 'tsconfig.json');
 const tsconfigStrictPath = path.join(appPath, 'tsconfig.strict.json');
 
-const basePriorAttributes = new Set(['strict', 'jsx', 'lib', 'module', 'target', 'moduleResolution']);
+const basePriorAttributes = new Set([
+  'strict',
+  'jsx',
+  'lib',
+  'module',
+  'target',
+  'moduleResolution',
+]);
 
 /**
  *
@@ -37,7 +42,7 @@ const readJSONFileIfExists = (filepath) => {
     console.error(`Failed to read/parse JSON: ${filepath}`, err.message);
     return null;
   }
-}
+};
 
 /**
  * Backups a file to `<filename>.backup` if it exists.
