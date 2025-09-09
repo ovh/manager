@@ -5,7 +5,7 @@ import {
   isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
-import { IpVersion } from '@/pages/order/order.constant';
+import { IpVersion } from '@/types';
 
 export const useIpv6PlanCode = ({
   region,
