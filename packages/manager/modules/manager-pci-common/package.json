@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-common",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "private": false,
   "description": "Public Cloud Common components",
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager/modules/manager-pci-common/README.md",
@@ -41,8 +41,8 @@
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.0",
-    "@ovh-ux/manager-react-components": "^2.40.0",
+    "@ovh-ux/manager-core-api": "^0.18.1",
+    "@ovh-ux/manager-react-components": "^2.40.1",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-vite-config": "^0.12.0",
     "@ovhcloud/ods-components": "^18.6.2",
