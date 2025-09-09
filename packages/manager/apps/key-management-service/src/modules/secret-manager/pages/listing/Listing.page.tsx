@@ -24,6 +24,7 @@ import {
 import { useSecretList } from '@secret-manager/data/hooks/useSecretList';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import { useBackToDomainListUrl } from '@secret-manager/hooks/useBackToDomainListUrl';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
 import {
   DatagridAction,
   DatagridCellPath,
@@ -90,7 +91,10 @@ export default function SecretListingPage() {
 
   return (
     <BaseLayout
-      header={{ title: t('secret_manager') }}
+      header={{
+        title: t('secret_manager'),
+        changelogButton: <SecretManagerChangelogButton />,
+      }}
       breadcrumb={
         <OdsBreadcrumb>
           <RootBreadcrumbItem />
