@@ -1,7 +1,7 @@
 import React from 'react';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 import { OrderContext } from './order.context';
-import { IpVersion } from './order.constant';
+import { IpVersion } from '@/types';
 import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
 import { OrderButtonSection } from './sections/OrderButtonSection.component';
 import { AdditionalOptionsSection } from './sections/AdditionalOptionsSection.component';

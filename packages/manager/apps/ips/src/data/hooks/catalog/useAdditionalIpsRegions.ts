@@ -2,11 +2,13 @@ import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { DATACENTER_TO_REGION } from './catalog.utils';
 import { useCatalogIps } from './useCatalogIps';
-import { ServiceType } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
 
 export const useAdditionalIpsRegions = ({
+  ipVersion,
   serviceType,
 }: {
+  ipVersion: IpVersion;
   serviceType: ServiceType;
 }) => {
   const { environment } = React.useContext(ShellContext);
@@ -15,7 +17,10 @@ export const useAdditionalIpsRegions = ({
   });
 
   const configurationName =
-    serviceType === ServiceType.vrack ? 'ip_region' : 'datacenter';
+    serviceType === ServiceType.vrack &&
+    (environment.user.ovhSubsidiary !== 'US' || ipVersion !== IpVersion.ipv4)
+      ? 'ip_region'
+      : 'datacenter';
 
   return {
     ...query,
@@ -28,7 +33,10 @@ export const useAdditionalIpsRegions = ({
                   case ServiceType.ipParking:
                     return planCode.includes('failover');
                   case ServiceType.vrack:
-                    return planCode.includes('ip-v6');
+                    return environment.user.ovhSubsidiary === 'US' &&
+                      ipVersion === IpVersion.ipv4
+                      ? planCode.includes('failover')
+                      : planCode.includes('ip-v6');
                   default:
                     return planCode.includes('ip-v4');
                 }
