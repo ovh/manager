@@ -47,7 +47,7 @@ export const useBreadcrumb = ({
       const parentPaths = pathnames.slice(0, index + 1);
       return {
         label: value,
-        href: `/#/${appName}/${parentPaths.join('/')}`,
+        href: `#/${parentPaths.join('/')}`,
         hideLabel: false,
       };
     });
