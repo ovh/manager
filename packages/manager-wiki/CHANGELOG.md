@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.1...@ovh-ux/manager-wiki@0.12.0) (2025-09-09)
+
+
+### Features
+
+* **manager-wiki:** correct storybook build ([35dce84](https://github.com/ovh/manager/commit/35dce84fc278a076fa25f11edfc4c622a29fd659)), closes [#MANAGER-19370](https://github.com/ovh/manager/issues/MANAGER-19370)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.0...@ovh-ux/manager-wiki@0.11.1) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki

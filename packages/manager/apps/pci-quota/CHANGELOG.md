@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.34...@ovh-ux/manager-pci-quota-app@0.1.35) (2025-09-09)
+
+
+### Bug Fixes
+
+* **mrc:** mrc datagrid column visibility and filter ([fa92068](https://github.com/ovh/manager/commit/fa92068a67823c60d17c9ab134e1e70d7a05c432)), closes [#ISSUE-19038](https://github.com/ovh/manager/issues/ISSUE-19038)
+
+
+
+
+
 ## [0.1.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.33...@ovh-ux/manager-pci-quota-app@0.1.34) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

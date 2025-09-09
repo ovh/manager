@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "2.40.1",
+  "version": "2.40.2",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
@@ -48,8 +48,8 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-common-translations": "^0.18.0",
-    "@ovh-ux/manager-core-api": "^0.18.1",
+    "@ovh-ux/manager-common-translations": "^0.18.1",
+    "@ovh-ux/manager-core-api": "^0.18.2",
     "@ovh-ux/manager-core-utils": "^0.4.0",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-tailwind-config": "^0.5.0",

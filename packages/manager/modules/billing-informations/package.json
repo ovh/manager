@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/billing-informations",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -18,10 +18,10 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-common-translations": "^0.18.0",
-    "@ovh-ux/manager-core-api": "^0.18.1",
-    "@ovh-ux/manager-module-common-api": "^0.5.1",
-    "@ovh-ux/manager-react-components": "^2.40.1",
+    "@ovh-ux/manager-common-translations": "^0.18.1",
+    "@ovh-ux/manager-core-api": "^0.18.2",
+    "@ovh-ux/manager-module-common-api": "^0.5.2",
+    "@ovh-ux/manager-react-components": "^2.40.2",
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.12.0",
