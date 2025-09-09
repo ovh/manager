@@ -53,7 +53,7 @@ export default function BannerErrorWarning({
     <Message
       color={bannerDetails.type === 'warning' ? bannerDetails.type : 'critical'}
       dismissible={false}
-      className="w-full"
+      className="w-full pb-6"
       data-testid={`banner-${bannerDetails.type}`}
     >
       <MessageIcon
