@@ -18,6 +18,7 @@ export const RegionSelectionSection: React.FC = () => {
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
+    ipVersion,
     serviceType: selectedServiceType,
   });
   const {

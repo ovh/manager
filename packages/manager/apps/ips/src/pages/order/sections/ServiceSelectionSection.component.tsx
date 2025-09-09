@@ -14,8 +14,7 @@ import { useServiceList } from '@/data/hooks/useServiceList';
 import { OrderContext } from '../order.context';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
-import { IpVersion } from '../order.constant';
-import { ipParkingOptionValue } from '@/types';
+import { IpVersion, ipParkingOptionValue } from '@/types';
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
