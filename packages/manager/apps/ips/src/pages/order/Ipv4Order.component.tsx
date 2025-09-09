@@ -3,7 +3,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
 import { OrderContext } from './order.context';
-import { IpOffer, IpVersion } from './order.constant';
+import { IpOffer } from './order.constant';
 import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
 import { OfferSelectionSection } from './sections/OfferSelectionSection.component';
 import { GeolocationSection } from './sections/GeolocationSection.component';
@@ -11,7 +11,7 @@ import { OrganisationSection } from './sections/OrganisationSection.component';
 import { OrderButtonSection } from './sections/OrderButtonSection.component';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
-import { ServiceType } from '@/types';
+import { IpVersion, ServiceType } from '@/types';
 import { isRegionInUs } from '@/components/RegionSelector/region-selector.utils';
 
 export const Ipv4Order: React.FC = () => {

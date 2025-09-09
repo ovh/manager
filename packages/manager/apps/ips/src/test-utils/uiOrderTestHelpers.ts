@@ -9,7 +9,8 @@ import {
   getComboboxByName,
   getSelectByName,
 } from '@/test-utils';
-import { IpOffer, IpVersion } from '../pages/order/order.constant';
+import { IpOffer } from '../pages/order/order.constant';
+import { IpVersion } from '../types';
 import { urls } from '@/routes/routes.constant';
 import { MockParams } from './render-test';
 

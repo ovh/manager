@@ -1,9 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
 import { getIcebergIpList } from '@/data/api';
-import { IpVersion } from '@/pages/order/order.constant';
 import { useAdditionalIpsRegions } from './catalog/useAdditionalIpsRegions';
-import { ServiceType } from '@/types';
+import { ServiceType, IpVersion } from '@/types';
 import { IpObject } from '@/types/ipObject';
 
 /**
@@ -53,7 +52,7 @@ export const useIpv6Availability = ({
     isLoading: isRegionListLoading,
     isError: isRegionListError,
     error: regionListError,
-  } = useAdditionalIpsRegions({ serviceType });
+  } = useAdditionalIpsRegions({ ipVersion, serviceType });
   const { data, isLoading, isError, error } = useQuery<
     IcebergFetchResultV6<IpObject>,
     ApiError
