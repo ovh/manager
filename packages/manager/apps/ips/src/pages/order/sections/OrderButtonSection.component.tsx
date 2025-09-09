@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
-import { MIN_IP_QUANTITY, MAX_IP_QUANTITY, IpVersion } from '../order.constant';
+import { MIN_IP_QUANTITY, MAX_IP_QUANTITY } from '../order.constant';
 import { urls } from '@/routes/routes.constant';
-import { ServiceType } from '@/types';
+import { ServiceType, IpVersion } from '@/types';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { useIpv6PlanCode } from '@/data/hooks/catalog/useIpv6PlanCode';
 
