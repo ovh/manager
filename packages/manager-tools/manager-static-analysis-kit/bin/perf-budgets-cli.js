@@ -24,14 +24,14 @@ const perfBudgetCombinedHtmlReportName = 'perf-budgets-combined-report.html';
 /**
  * Run vite-bundle-analyzer for given mode (html or json).
  */
-function runAnalyzer(appDir, appShort, mode) {
+function runBundleAnalyzer(appDirectory, appShortName, mode) {
   const reportFile = `${bundleAnalysisConfig?.reportFile || 'bundle-report'}${
     mode === 'json' ? '.json' : '.html'
   }`;
-  const outputDir = path.join(outputRootDir, perfBudgetsReportDirName, appShort);
+  const outputDir = path.join(outputRootDir, perfBudgetsReportDirName, appShortName);
   fs.mkdirSync(outputDir, { recursive: true });
 
-  logInfo(`Running bundle analyzer (${mode}) for ${appShort} → ${outputDir}`);
+  logInfo(`Running bundle analyzer (${mode}) for ${appShortName} → ${outputDir}`);
 
   const analyzerArgs = [
     '--mode',
@@ -42,17 +42,17 @@ function runAnalyzer(appDir, appShort, mode) {
   ];
 
   const result = spawnSync(bundleAnalyzerBin, analyzerArgs, {
-    cwd: appDir,
+    cwd: appDirectory,
     stdio: 'inherit',
     shell: true,
   });
 
   if (result.status !== 0) {
-    logError(`Analyzer (${mode}) failed for ${appShort}`);
+    logError(`Analyzer (${mode}) failed for ${appShortName}`);
     return;
   }
 
-  const distReport = path.join(appDir, 'dist', reportFile);
+  const distReport = path.join(appDirectory, 'dist', reportFile);
   const targetReport = path.join(outputDir, reportFile);
 
   if (fs.existsSync(distReport)) {
@@ -65,16 +65,11 @@ function runAnalyzer(appDir, appShort, mode) {
 }
 
 /**
- * Build all selected apps with Turbo in one go.
+ * Build selected targets with Turbo.
  */
-function buildApps(apps) {
-  const filters = apps.map((d) => {
-    const pkg = JSON.parse(fs.readFileSync(path.join(appsDir, d, 'package.json'), 'utf-8'));
-    return pkg.name;
-  });
-
-  const turboArgs = ['run', 'build', ...filters.flatMap((f) => ['--filter', f])];
-  logInfo(`Building apps with Turbo (filters: ${filters.join(', ')})`);
+function runTurboBuild(filters) {
+  const turboArgs = ['run', 'build', ...filters.flatMap((pkgName) => ['--filter', pkgName])];
+  logInfo(`Building with Turbo (filters: ${filters.join(', ')})`);
 
   const buildResult = spawnSync('turbo', turboArgs, {
     cwd: rootDir,
@@ -83,24 +78,24 @@ function buildApps(apps) {
   });
 
   if (buildResult.status !== 0) {
-    logError('Turbo build failed for one or more apps. Aborting analysis.');
+    logError('Turbo build failed for one or more targets. Aborting analysis.');
     process.exit(1);
   }
 }
 
 /**
- * Analyze apps (assumes build is already done).
+ * Analyze all given app folders.
  */
-function analyzeApps(apps) {
+function analyzeAppFolders(appFolders) {
   const analyzed = [];
-  for (const app of apps) {
-    const appDir = path.join(appsDir, app);
+  for (const appFolder of appFolders) {
+    const appDir = path.join(appsDir, appFolder);
     const pkg = JSON.parse(fs.readFileSync(path.join(appDir, 'package.json'), 'utf-8'));
     const appName = pkg.name;
-    const appShort = appName.replace(/^@ovh-ux\//, '');
+    const appShortName = appName.replace(/^@ovh-ux\//, '');
 
-    runAnalyzer(appDir, appShort, 'static');
-    runAnalyzer(appDir, appShort, 'json');
+    runBundleAnalyzer(appDir, appShortName, 'static');
+    runBundleAnalyzer(appDir, appShortName, 'json');
 
     analyzed.push(appName);
   }
@@ -108,21 +103,21 @@ function analyzeApps(apps) {
 }
 
 /**
- * Remove old combined perf budget reports before regeneration.
+ * Remove old combined perf budget reports.
  */
-function cleanOldCombinedReports() {
-  const combinedJsonFilePath = path.join(
+function removeOldCombinedReports() {
+  const combinedJsonPath = path.join(
     outputRootDir,
     perfBudgetsReportDirName,
     perfBudgetCombinedJsonReportName,
   );
-  const combinedHtmlFilePath = path.join(
+  const combinedHtmlPath = path.join(
     outputRootDir,
     perfBudgetsReportDirName,
     perfBudgetCombinedHtmlReportName,
   );
 
-  [combinedJsonFilePath, combinedHtmlFilePath].forEach((file) => {
+  [combinedJsonPath, combinedHtmlPath].forEach((file) => {
     if (fs.existsSync(file)) {
       fs.unlinkSync(file);
       logInfo(`🗑️ Removed old report: ${file}`);
@@ -134,25 +129,118 @@ function cleanOldCombinedReports() {
  * Collect budgets and regenerate combined reports.
  */
 function generateCombinedReports(root) {
-  cleanOldCombinedReports();
+  removeOldCombinedReports();
 
   const summary = collectPerfBudgets(root);
 
-  const combinedJsonFilePath = path.join(
+  const combinedJsonPath = path.join(
     root,
     perfBudgetsReportDirName,
     perfBudgetCombinedJsonReportName,
   );
-  fs.writeFileSync(combinedJsonFilePath, JSON.stringify(summary, null, 2));
-  logInfo(`✅ Combined JSON report written to ${combinedJsonFilePath}`);
+  fs.writeFileSync(combinedJsonPath, JSON.stringify(summary, null, 2));
+  logInfo(`✅ Combined JSON report written to ${combinedJsonPath}`);
 
-  const combinedHtmlFilePath = path.join(
+  const combinedHtmlPath = path.join(
     root,
     perfBudgetsReportDirName,
     perfBudgetCombinedHtmlReportName,
   );
-  fs.writeFileSync(combinedHtmlFilePath, generatePerfBudgetsHtml(summary));
-  logInfo(`✅ Combined HTML report written to ${combinedHtmlFilePath}`);
+  fs.writeFileSync(combinedHtmlPath, generatePerfBudgetsHtml(summary));
+  logInfo(`✅ Combined HTML report written to ${combinedHtmlPath}`);
+}
+
+/**
+ * Guess app folder name from package name.
+ * Example: @ovh-ux/manager-zimbra-app -> zimbra
+ */
+function extractAppFolderFromPackageName(packageName) {
+  const match = packageName.match(/^@ovh-ux\/manager-(.+)-app$/);
+  if (!match) {
+    logError(`Invalid package name format: ${packageName}`);
+    process.exit(1);
+  }
+  return match[1];
+}
+
+/**
+ * Convert app folders to Turbo filters (package names).
+ */
+function resolveTurboFiltersFromAppFolders(appFolders) {
+  return appFolders.map((appFolder) => {
+    const pkgPath = path.join(appsDir, appFolder, 'package.json');
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+    return pkg.name;
+  });
+}
+
+/**
+ * Parse CLI args and resolve selected apps/packages.
+ */
+function parseCliTargets() {
+  const appsArg = process.argv.find((arg) => arg === '--apps' || arg === '--app');
+  const packagesArg = process.argv.find((arg) => arg === '--packages' || arg === '--package');
+
+  if (appsArg) {
+    const index = process.argv.indexOf(appsArg);
+    const rawValue = process.argv[index + 1] || '';
+    const appFolders = rawValue
+      .split(',')
+      .map((name) => name.trim())
+      .filter(Boolean);
+
+    appFolders.forEach((folder) => {
+      if (!fs.existsSync(path.join(appsDir, folder))) {
+        logError(`App not found: ${folder}`);
+        process.exit(1);
+      }
+    });
+
+    logInfo(`Running in apps mode for: ${appFolders.join(', ')}`);
+    return { appFolders, packageNames: [] };
+  }
+
+  if (packagesArg) {
+    const index = process.argv.indexOf(packagesArg);
+    const rawValue = process.argv[index + 1] || '';
+    const packageNames = rawValue
+      .split(',')
+      .map((name) => name.trim())
+      .filter(Boolean);
+
+    const mappedFolders = packageNames.map(extractAppFolderFromPackageName);
+    logInfo(
+      `Running in packages mode for: ${packageNames.join(', ')} → apps: ${mappedFolders.join(', ')}`,
+    );
+    return { appFolders: mappedFolders, packageNames };
+  }
+
+  // fallback auto-discovery
+  const discoveredAppFolders = fs.readdirSync(appsDir).filter((dir) => {
+    const pkgPath = path.join(appsDir, dir, 'package.json');
+    return fs.existsSync(pkgPath) && isReactApp(pkgPath);
+  });
+
+  if (discoveredAppFolders.length === 0) {
+    logWarn('No React apps found to analyze.');
+    return { appFolders: [], packageNames: [] };
+  }
+
+  logInfo(`Running in auto-discovery mode (${discoveredAppFolders.length} apps).`);
+  return { appFolders: discoveredAppFolders, packageNames: [] };
+}
+
+/**
+ * Resolve Turbo filters (package names) depending on mode.
+ */
+function resolveTurboFilters({ appFolders, packageNames }) {
+  if (appFolders.length > 0 && packageNames.length === 0) {
+    return resolveTurboFiltersFromAppFolders(appFolders);
+  }
+  if (packageNames.length > 0) {
+    return packageNames;
+  }
+  return [];
 }
 
 /**
@@ -165,39 +253,16 @@ function main() {
       return;
     }
 
-    // CLI options: --app <name>
-    const appArgIndex = process.argv.indexOf('--app');
-    let selectedApps = [];
+    const { appFolders, packageNames } = parseCliTargets();
+    const turboFilters = resolveTurboFilters({ appFolders, packageNames });
 
-    if (appArgIndex !== -1 && process.argv[appArgIndex + 1]) {
-      const appName = process.argv[appArgIndex + 1];
-      if (!fs.existsSync(path.join(appsDir, appName))) {
-        logError(`App not found: ${appName}`);
-        process.exit(1);
-      }
-      selectedApps = [appName];
-      logInfo(`Running in single-app mode for ${appName}`);
-    } else {
-      // discover all React apps
-      selectedApps = fs.readdirSync(appsDir).filter((directory) => {
-        const pkgPath = path.join(appsDir, directory, 'package.json');
-        return fs.existsSync(pkgPath) && isReactApp(pkgPath);
-      });
+    // Step 1: build
+    runTurboBuild(turboFilters);
 
-      if (selectedApps.length === 0) {
-        logWarn('No React apps found to analyze.');
-        return;
-      }
-      logInfo(`Running in multi-app mode (${selectedApps.length} apps).`);
-    }
+    // Step 2: analyze
+    const analyzedApps = analyzeAppFolders(appFolders);
 
-    // Step 1: build selected apps
-    buildApps(selectedApps);
-
-    // Step 2: analyze apps
-    const analyzedApps = analyzeApps(selectedApps);
-
-    // Step 3: generate combined reports
+    // Step 3: combined reports
     if (analyzedApps.length > 0) {
       generateCombinedReports(outputRootDir);
     }
