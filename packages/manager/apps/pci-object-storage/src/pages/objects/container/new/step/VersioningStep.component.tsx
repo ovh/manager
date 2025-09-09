@@ -9,7 +9,7 @@ import {
 import clsx from 'clsx';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useContainerCreationStore } from '../useContainerCreationStore';
-import { OBJECT_CONTAINER_MODE_MULTI_ZONES } from '@/constants';
+import { ObjectContainerMode } from '@/constants';
 
 export function VersioningStep() {
   const { t } = useTranslation([
@@ -72,7 +72,7 @@ export function VersioningStep() {
       isOpen={stepper.versioning.isOpen || stepper.versioning.isLocked}
       isChecked={stepper.versioning.isChecked}
       isLocked={stepper.versioning.isLocked}
-      order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 5 : 4}
+      order={form.deploymentMode === ObjectContainerMode.MULTI_ZONES ? 5 : 4}
       next={{
         action: handleNext,
         label: t('pci-common:common_stepper_next_button_label'),

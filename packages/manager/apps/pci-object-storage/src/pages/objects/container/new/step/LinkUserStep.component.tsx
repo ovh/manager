@@ -8,7 +8,7 @@ import LinkUserSelector from './LinkUserSelector.component';
 import { TUser } from '@/api/data/user';
 import {
   CONTAINER_USER_ASSOCIATION_MODES,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
 } from '@/constants';
 
 export function LinkUserStep() {
@@ -44,7 +44,7 @@ export function LinkUserStep() {
       isOpen={stepper.ownerId.isOpen || stepper.ownerId.isLocked}
       isChecked={stepper.ownerId.isChecked}
       isLocked={stepper.ownerId.isLocked}
-      order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 6 : 5}
+      order={form.deploymentMode === ObjectContainerMode.MULTI_ZONES ? 6 : 5}
       next={{
         action: submitOwnerId,
         label: t('pci-common:common_stepper_next_button_label'),

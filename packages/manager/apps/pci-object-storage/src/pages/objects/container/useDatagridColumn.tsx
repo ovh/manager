@@ -7,11 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { OdsBadge, OdsLink } from '@ovhcloud/ods-components/react';
 import { TStorage } from '@/api/data/storages';
-import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-} from '@/constants';
+import { ObjectContainerMode } from '@/constants';
 import { Actions } from './Actions';
 import { useUsers } from '@/api/hooks/useUser';
 import { useStorageFeatures } from '@/hooks/useStorageFeatures';
@@ -63,7 +59,7 @@ export const useDatagridColumn = () => {
     {
       id: 'mode',
       cell: (props: TStorage) => {
-        if (props.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
+        if (props.deploymentMode === ObjectContainerMode.MULTI_ZONES) {
           return (
             <DataGridTextCell>
               <OdsBadge
@@ -76,7 +72,7 @@ export const useDatagridColumn = () => {
             </DataGridTextCell>
           );
         }
-        if (props.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE) {
+        if (props.deploymentMode === ObjectContainerMode.MONO_ZONE) {
           return (
             <DataGridTextCell>
               <OdsBadge
@@ -93,7 +89,7 @@ export const useDatagridColumn = () => {
             </DataGridTextCell>
           );
         }
-        if (props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
+        if (props.deploymentMode === ObjectContainerMode.LOCAL_ZONE) {
           return (
             <DataGridTextCell>
               <OdsBadge
@@ -123,7 +119,7 @@ export const useDatagridColumn = () => {
       id: 'containerCount',
       cell: (props: TStorage) => (
         <DataGridTextCell>
-          {props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE
+          {props.deploymentMode === ObjectContainerMode.LOCAL_ZONE
             ? 'n/a'
             : props.containerCount}
         </DataGridTextCell>
@@ -140,7 +136,7 @@ export const useDatagridColumn = () => {
             </DataGridTextCell>
           );
         }
-        if (props.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
+        if (props.deploymentMode === ObjectContainerMode.LOCAL_ZONE) {
           return <DataGridTextCell>n/a</DataGridTextCell>;
         }
         return <DataGridTextCell>-</DataGridTextCell>;

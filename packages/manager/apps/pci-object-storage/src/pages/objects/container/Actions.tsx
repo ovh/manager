@@ -6,7 +6,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { TStorage } from '@/api/data/storages';
-import { OBJECT_CONTAINER_MODE_LOCAL_ZONE } from '@/constants';
+import { ObjectContainerMode } from '@/constants';
 import { isSwiftType } from '@/helpers';
 import { useUpdateStorageType } from '@/api/hooks/useStorages';
 
@@ -88,7 +88,7 @@ export function Actions({
       condition:
         storage.s3StorageType &&
         (!storage.deploymentMode ||
-          storage.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE),
+          storage.deploymentMode !== ObjectContainerMode.LOCAL_ZONE),
     },
     {
       id: 2,

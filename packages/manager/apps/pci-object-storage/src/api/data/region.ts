@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { ObjectContainerMode } from '@/constants';
 
 export type TRegion = {
   continentCode: string;
@@ -7,7 +8,7 @@ export type TRegion = {
   name: string;
   services: { name: string; status: 'UP'; endpoint: string }[];
   status: 'UP';
-  type: 'region' | 'localzone' | 'region-3-az';
+  type: ObjectContainerMode;
 };
 
 export const getRegion = async (

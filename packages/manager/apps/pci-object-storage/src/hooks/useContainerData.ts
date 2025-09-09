@@ -8,9 +8,7 @@ import { useMergedContainer } from '@/hooks/useContainerMemo';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import {
   NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   MUMBAI_REGION_NAME,
 } from '@/constants';
 
@@ -44,7 +42,7 @@ export const useContainerData = () => {
     region,
   );
 
-  const isLocalZone = region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE;
+  const isLocalZone = region?.type === ObjectContainerMode.LOCAL_ZONE;
   const isRightOffer = !!container?.s3StorageType;
 
   const { available: isEncryptionAvailable } = useGetEncriptionAvailability();
@@ -70,10 +68,9 @@ export const useContainerData = () => {
     );
     return (
       !hasEnabledRule &&
-      [
-        OBJECT_CONTAINER_MODE_MONO_ZONE,
-        OBJECT_CONTAINER_MODE_MULTI_ZONES,
-      ].includes(container?.regionDetails?.type)
+      [ObjectContainerMode.MONO_ZONE, ObjectContainerMode.MULTI_ZONES].includes(
+        container?.regionDetails?.type,
+      )
     );
   }, [container?.replication?.rules, container?.regionDetails?.type]);
 

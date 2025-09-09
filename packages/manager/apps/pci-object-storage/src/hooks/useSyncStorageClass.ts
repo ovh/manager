@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
-import {
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  ReplicationStorageClass,
-} from '@/constants';
+import { ObjectContainerMode, ReplicationStorageClass } from '@/constants';
 import { TReplicationDestination } from '@/pages/objects/container/object/add-replication/ReplicationRuleDestination.component';
 import { TRegion } from '@/api/data/region';
 import { TReplicationRule } from '@/api/hooks/useStorages';
@@ -29,7 +26,7 @@ export const useSyncStorageClass = ({
       setUseStorageclass(!!existingRule.destination?.storageClass);
 
       if (
-        destinationRegion?.type === OBJECT_CONTAINER_MODE_MULTI_ZONES &&
+        destinationRegion?.type === ObjectContainerMode.MULTI_ZONES &&
         existingRule.destination?.storageClass ===
           ReplicationStorageClass.HIGH_PERF
       ) {

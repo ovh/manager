@@ -2,10 +2,9 @@ import { create } from 'zustand';
 import { TRegionAvailability } from '@ovh-ux/manager-pci-common';
 import {
   NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+  ObjectContainerMode,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 
 export interface ContainerCreationForn {
@@ -248,9 +247,9 @@ export const useContainerCreationStore = create<ContainerStore>()(
         const { form } = get();
         if (form.offer === OBJECT_CONTAINER_OFFER_SWIFT) {
           submitStep('region', 'containerType');
-        } else if (form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE) {
+        } else if (form.deploymentMode === ObjectContainerMode.LOCAL_ZONE) {
           submitStep('region', 'containerName');
-        } else if (form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
+        } else if (form.deploymentMode === ObjectContainerMode.MULTI_ZONES) {
           submitStep('region', 'offsiteReplication');
         } else {
           submitStep('region', 'versioning');

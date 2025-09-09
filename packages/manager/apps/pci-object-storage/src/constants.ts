@@ -3,21 +3,18 @@ export const TRACKING_PREFIX =
 
 export const MEGA_BYTES = 1024;
 
-export const OBJECT_CONTAINER_MODE_MULTI_ZONES = 'region-3-az';
-export const OBJECT_CONTAINER_MODE_MONO_ZONE = 'region';
-export const OBJECT_CONTAINER_MODE_LOCAL_ZONE = 'localzone';
+export enum ObjectContainerMode {
+  MULTI_ZONES = 'region-3-az',
+  MONO_ZONE = 'region',
+  LOCAL_ZONE = 'localzone',
+}
+
 export const OBJECT_CONTAINER_S3_STATIC_URL_INFO = 'Virtual Hosted-Style :';
 
 export const OFFSITE_REPLICATION_CODE = 'storage-standard-ia.consumption';
 
-export const OBJECT_CONTAINER_DEPLOYMENT_MODES = [
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-];
-
 export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
-  [OBJECT_CONTAINER_MODE_MULTI_ZONES]: {
+  [ObjectContainerMode.MULTI_ZONES]: {
     beta: false,
     new: false,
     isMultiZone: true,
@@ -25,7 +22,7 @@ export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
     isLocalZone: false,
     price: null,
   },
-  [OBJECT_CONTAINER_MODE_MONO_ZONE]: {
+  [ObjectContainerMode.MONO_ZONE]: {
     beta: false,
     new: false,
     isMultiZone: false,
@@ -33,7 +30,7 @@ export const OBJECT_CONTAINER_DEPLOYMENT_MODES_LABELS = {
     isLocalZone: false,
     price: null,
   },
-  [OBJECT_CONTAINER_MODE_LOCAL_ZONE]: {
+  [ObjectContainerMode.LOCAL_ZONE]: {
     beta: false,
     new: false,
     isMultiZone: false,

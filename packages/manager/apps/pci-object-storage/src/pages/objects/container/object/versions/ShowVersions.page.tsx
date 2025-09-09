@@ -22,12 +22,7 @@ import { ColumnSort } from '@tanstack/react-table';
 
 import { useServerContainer } from '@/api/hooks/useContainer';
 import { useDatagridColumn } from '../show/useDatagridColumn';
-import {
-  NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-} from '@/constants';
+import { NO_ENCRYPTION_VALUE, ObjectContainerMode } from '@/constants';
 import { useGetRegion } from '@/api/hooks/useRegion';
 import { useStorage, useStorageEndpoint } from '@/api/hooks/useStorages';
 
@@ -126,7 +121,7 @@ export default function ObjectPage() {
 
   const is = useMemo(
     () => ({
-      localZone: region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+      localZone: region?.type === ObjectContainerMode.LOCAL_ZONE,
       encrypted: (() => {
         const { sseAlgorithm } = serverContainer?.encryption || {};
         return sseAlgorithm && sseAlgorithm !== NO_ENCRYPTION_VALUE;
@@ -138,8 +133,8 @@ export default function ObjectPage() {
         );
 
         const validTypes = [
-          OBJECT_CONTAINER_MODE_MONO_ZONE,
-          OBJECT_CONTAINER_MODE_MULTI_ZONES,
+          ObjectContainerMode.MONO_ZONE,
+          ObjectContainerMode.MULTI_ZONES,
         ];
         return (
           !hasEnabledRule && validTypes.includes(container?.regionDetails?.type)
