@@ -1,9 +1,10 @@
-import { Badge, Card, Radio, RadioControl, Text } from '@ovhcloud/ods-react';
+import { Card, Radio, RadioControl, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
+import { Controller, useFormContext } from 'react-hook-form';
 import { Flag } from '../flag/Flag';
 import { TCountryIsoCode } from '../flag/country-iso-code';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { Controller, useFormContext } from 'react-hook-form';
+import { DeploymentModeBadge } from '../deploymentModeBadge/DeploymentModeBadge.component';
 
 export type TLocalizationCardProps = {
   title: string;
@@ -13,16 +14,6 @@ export type TLocalizationCardProps = {
   onSelect?: (region: string) => void;
 };
 
-const getBadgeClassName = (mode: TDeploymentMode) => {
-  switch (mode) {
-    case '1AZ':
-      return 'bg-[--ods-color-information-400] text-[--ods-color-information-000]';
-    case '3AZ':
-      return 'bg-[--ods-color-information-700] text-[--ods-color-information-000]';
-    case 'LZ':
-      return 'bg-[--ods-color-information-100] text-[--ods-color-information-700]';
-  }
-};
 export const LocalizationCard = ({
   title,
   region,
@@ -63,9 +54,7 @@ export const LocalizationCard = ({
                 <Text className="text-[--ods-color-heading] text-nowrap">
                   {region}
                 </Text>
-                <Badge className={getBadgeClassName(deploymentMode)}>
-                  {deploymentMode}
-                </Badge>
+                <DeploymentModeBadge mode={deploymentMode} />
               </div>
             </Card>
           </Radio>
