@@ -1,0 +1,12 @@
+<oui-field data-label="{{:: 'iam_create_condition_name_label' | translate }}">
+    <input
+        type="text"
+        class="oui-input"
+        name="nameValue"
+        id="nameValue"
+        data-ng-model="$ctrl.nameValue"
+        data-ng-required="true"
+        data-ng-change="$ctrl.updateConditionValues()"
+        placeholder="{{:: 'iam_create_condition_name_placeholder' | translate}}"
+    />
+</oui-field>
