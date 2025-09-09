@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "7.4.7",
+  "version": "7.4.8",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -57,7 +57,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.5",
     "@ovh-ux/request-tagger": "^0.5.0",
-    "@ovh-ux/shell": "^4.7.3",
+    "@ovh-ux/shell": "^4.7.4",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
