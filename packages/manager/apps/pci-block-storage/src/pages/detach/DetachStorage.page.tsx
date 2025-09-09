@@ -187,7 +187,6 @@ export default function DetachStorage() {
         </Translation>,
         true,
       );
-      console.info('ERROR');
       onClose();
     },
   );
@@ -205,8 +204,6 @@ export default function DetachStorage() {
       </Translation>,
       true,
     );
-    console.info('SUCCESS');
-
     onClose();
   });
   const { detachVolume, isPending: isDetachPending } = useDetachVolume({
@@ -220,8 +217,6 @@ export default function DetachStorage() {
   useEffect(() => {
     if (!isPending && !!volume) {
       if (volume.attachedTo.length === 0) {
-        console.info('USE EFFECT');
-
         onClose();
       }
     }
@@ -231,7 +226,6 @@ export default function DetachStorage() {
     <Form
       schema={DETACH_SCHEMA}
       onSubmit={(formData) =>
-        // console.log({ formData })
         detachVolume({
           ...formData,
           projectId,
