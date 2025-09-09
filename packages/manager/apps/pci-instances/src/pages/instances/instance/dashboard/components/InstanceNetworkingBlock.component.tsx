@@ -3,12 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
-import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './network/NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
-import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import ReverseDNS from './network/ReverseDNS.component';
 import ExpandedNetwork from './network/ExpandedNetwork.component';
@@ -16,8 +14,6 @@ import ExpandedNetwork from './network/ExpandedNetwork.component';
 const InstanceNetworkingBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
   const { region, instanceId } = useInstanceParams();
-  const dedicatedUrl = useDedicatedUrl();
-  const projectId = useProjectId();
   const projectUrl = useProjectUrl('public-cloud');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
@@ -25,43 +21,16 @@ const InstanceNetworkingBlock: FC = () => {
     instanceId,
   });
 
-  const publicIpActionsLinks = useMemo(() => {
-    const ipV4 = instance?.publicNetwork.networks.find(
-      (publicIp) => publicIp.version === 4,
-    )?.ip;
-    const ipParams = `ip=${ipV4}&ipBlock=${ipV4}`;
-
-    return [
-      {
-        label: t('actions:pci_instances_actions_instance_network_change_dns'),
-        link: {
-          path: dedicatedUrl,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-      {
+  const publicIpActionsLinks = useMemo(
+    () =>
+      instance?.publicNetwork.actionsLinks.map((action) => ({
+        ...action,
         label: t(
-          'actions:pci_instances_actions_instance_network_activate_mitigation',
+          `actions:pci_instances_actions_instance_network_${action.label}`,
         ),
-        link: {
-          path: `${dedicatedUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_firewall_settings',
-        ),
-        link: {
-          path: `${dedicatedUrl}?action=toggleFirewall&${ipParams}`,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-    ];
-  }, [instance?.publicNetwork, dedicatedUrl, projectId, t]);
+      })) ?? [],
+    [instance?.publicNetwork, t],
+  );
 
   const privateIpActionsLinks = useMemo(
     () =>
@@ -95,8 +64,6 @@ const InstanceNetworkingBlock: FC = () => {
     [projectUrl, t, instance?.isEditEnabled],
   );
 
-  const expandedNetworks = instance?.privateNetwork.slice(2);
-
   return (
     <DashboardCardLayout title={t('pci_instances_dashboard_network_title')}>
       <DashboardTileBlock
@@ -124,10 +91,12 @@ const InstanceNetworkingBlock: FC = () => {
             items={privateIpActionsLinks}
           />
         </div>
-        {instance?.privateNetwork.slice(0, 2).map((network) => (
+        {instance?.privateNetwork.previews.map((network) => (
           <NetworkItem key={network.ip} address={network} />
         ))}
-        {expandedNetworks && <ExpandedNetwork networks={expandedNetworks} />}
+        {instance?.privateNetwork.otherNetworks && (
+          <ExpandedNetwork networks={instance.privateNetwork.otherNetworks} />
+        )}
       </DashboardTileBlock>
     </DashboardCardLayout>
   );

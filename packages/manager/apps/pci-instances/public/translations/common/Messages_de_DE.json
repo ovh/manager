@@ -7,5 +7,6 @@
   "pci_instances_common_cancel": "Abbrechen",
   "pci_instances_common_confirm": "Bestätigen",
   "pci_instances_common_404_error_message": "Ein Fehler 404 („File Not Found“) ist aufgetreten.",
-  "pci_instances_common_pending": "Wird ausgeführt..."
+  "pci_instances_common_pending": "Wird ausgeführt...",
+  "pci_instances_common_show_more": "Mehr erfahren "
 }

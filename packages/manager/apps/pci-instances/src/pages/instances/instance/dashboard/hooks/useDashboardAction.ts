@@ -32,7 +32,10 @@ export const useUnattachedPrivateNetworks = ({
       instance: instance?.name ?? '',
       networks:
         instance?.privateNetwork && networks
-          ? selectUnattachedPrivateNetworks(networks, instance.privateNetwork)
+          ? selectUnattachedPrivateNetworks(networks, [
+              ...instance.privateNetwork.previews,
+              ...instance.privateNetwork.otherNetworks,
+            ])
           : [],
       isPending: isInstancePending || isNetworkPending,
     }),
