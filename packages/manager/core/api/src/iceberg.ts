@@ -78,7 +78,7 @@ export const buildHeaders = () => {
       return builder;
     },
     setDisabledCache: (disableCache: boolean | undefined) => {
-      if (disableCache) headers['Pragma'] = 'no-cache';
+      if (disableCache) headers.Pragma = 'no-cache';
       return builder;
     },
     setPaginationSort: (sortBy: string | undefined, sortOrder = 'ASC') => {
@@ -153,7 +153,7 @@ export async function fetchIcebergV2<T>({
 
   return {
     data: response.data,
-    cursorNext: headers['x-pagination-cursor-next'] ?? '',
+    cursorNext: headers['x-pagination-cursor-next'],
     status: response.status,
   };
 }
