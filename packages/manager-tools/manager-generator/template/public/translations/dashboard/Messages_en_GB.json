@@ -3,17 +3,17 @@
   "order": "Order",
   "back": "Back",
   "title": "Dashboard",
-  "email": "Email",
+  "email": "Email address",
   "subject": "Subject",
   "message": "Message",
   "submitButton": "Send",
-  "successMessage": "Your request has been sent successfully.",
+  "successMessage": "Your request has been sent.",
   "errors": {
-    "emailRequired": "Email is required.",
+    "emailRequired": "You need to enter an email address",
     "emailInvalid": "Please enter a valid email address.",
-    "subjectRequired": "Subject is required.",
-    "messageRequired": "Message is required."
+    "subjectRequired": "You need to enter a subject.",
+    "messageRequired": "You need to write a message."
   },
-  "general-information": "General Information",
+  "general-information": "General information",
   "help": "Help"
 }
