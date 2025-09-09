@@ -1,7 +1,7 @@
 import JSURL from 'jsurl';
-import { DEFAULT_PRICING_MODE, IpOffer, IpVersion } from './order.constant';
+import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
 import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
-import { ServiceType } from '@/types';
+import { ServiceType, IpVersion } from '@/types';
 
 export type OrderParams = {
   serviceName: string;

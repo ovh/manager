@@ -12,10 +12,10 @@ import {
   isRegionInCa,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
-import { DEFAULT_PRICING_MODE, IpVersion } from '@/pages/order/order.constant';
+import { DEFAULT_PRICING_MODE } from '@/pages/order/order.constant';
 import { useCatalogIps } from './useCatalogIps';
 import { usePccCatalog } from './usePccCatalog';
-import { ServiceType } from '@/types';
+import { ServiceType, IpVersion } from '@/types';
 import {
   CatalogIpPlan,
   CatalogIpsResponse,
