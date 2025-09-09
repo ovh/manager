@@ -17,7 +17,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
           >
             <span
               aria-current="page"
-              href="/#/Test-App/foo"
+              href="#/foo"
             >
               foo
             </span>
