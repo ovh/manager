@@ -53,6 +53,7 @@ export const useAdditionalIpPricings = ({
     subsidiary: environment.user.ovhSubsidiary,
     enabled: !!region && serviceType !== ServiceType.dedicatedCloud,
   });
+
   const { data: pccData, ...pccQuery } = usePccCatalog({
     serviceName,
     enabled: serviceType === ServiceType.dedicatedCloud,
@@ -99,7 +100,8 @@ export const useAdditionalIpPricings = ({
           return plan.invoiceName.includes('CANADA');
         }
         return isApac
-          ? plan.invoiceName.includes('APAC')
+          ? plan.invoiceName.includes('APAC') ||
+              plan.invoiceName.includes('ASIA')
           : plan.invoiceName.includes('EUROPE');
       })
       .sort((planA: CatalogIpPlan, planB: CatalogIpPlan) =>
