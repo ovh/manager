@@ -14,6 +14,7 @@ import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
 import {
+  getDomainHosts,
   getServiceInformation,
   updateServiceOption,
 } from '@/common/data/api/common.api';
@@ -136,4 +137,13 @@ export const useGetServiceInformation = (
     serviceInfo: data,
     isServiceInfoLoading: isLoading,
   };
+};
+
+export const useGetDomainHosts = (domainName: string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['domain', 'host', domainName],
+    queryFn: () => getDomainHosts(domainName),
+  });
+
+  return { data, isLoading, error };
 };
