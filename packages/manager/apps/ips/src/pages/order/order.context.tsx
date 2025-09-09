@@ -91,6 +91,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedRegion: (newRegion: string) => {
         setSelectedRegion(newRegion);
         setSelectedOffer(null);
+        setSelectedPlanCode(null);
       },
       selectedOffer,
       setSelectedOffer: (newOffer: IpOffer) => {
