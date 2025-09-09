@@ -1,5 +1,6 @@
-import { readFileSync, existsSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+
 import { applicationsBasePath } from './AppUtils.mjs';
 
 export const babelConfigurationFiles = ['.babelrc', 'babel.config.js'];
@@ -23,7 +24,7 @@ export const EXCLUDED_TESTS_DEPS = [
   '@testing-library/jest-dom',
   '@testing-library/dom',
   '@testing-library/react',
-  '@testing-library/user-event'
+  '@testing-library/user-event',
 ];
 
 export const EXCLUDED_ESLINT_FILES = [
@@ -35,7 +36,8 @@ export const EXCLUDED_ESLINT_FILES = [
   '.eslintignore',
 ];
 
-export const ESLINT_DEP_REGEX = /^(eslint|@typescript-eslint|eslint-plugin|@html-eslint|@vitest\/eslint-plugin|@tanstack\/eslint-plugin|prettier|globals|tailwind-csstree|typescript-eslint)/;
+export const ESLINT_DEP_REGEX =
+  /^(eslint|@typescript-eslint|eslint-plugin|@html-eslint|@vitest\/eslint-plugin|@tanstack\/eslint-plugin|prettier|globals|tailwind-csstree|typescript-eslint)/;
 
 /**
  * Read package json content
@@ -70,7 +72,10 @@ export const writePackageJson = (appPath, pkg) => {
 export const satisfiesVersion = (required, actual) => {
   if (!actual || !required.startsWith('>=')) return false;
   const reqParts = required.replace('>=', '').split('.').map(Number);
-  const actParts = actual.replace(/[^0-9.]/g, '').split('.').map(Number);
+  const actParts = actual
+    .replace(/[^0-9.]/g, '')
+    .split('.')
+    .map(Number);
   for (let i = 0; i < reqParts.length; i++) {
     if ((actParts[i] || 0) > reqParts[i]) return true;
     if ((actParts[i] || 0) < reqParts[i]) return false;

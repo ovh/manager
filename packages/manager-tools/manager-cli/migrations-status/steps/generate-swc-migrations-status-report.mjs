@@ -1,16 +1,20 @@
 #!/usr/bin/env node
-
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
+
 import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
-import { babelConfigurationFiles, REQUIRED_DEP_VERSIONS, satisfiesVersion } from '../../utils/DependenciesUtils.mjs';
-import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
+import {
+  REQUIRED_DEP_VERSIONS,
+  babelConfigurationFiles,
+  satisfiesVersion,
+} from '../../utils/DependenciesUtils.mjs';
 import { buildSwcReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
+import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
 
-const formatArgIndex = args.findIndex(arg => arg === '--format');
+const formatArgIndex = args.findIndex((arg) => arg === '--format');
 const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
 
 /**
@@ -56,9 +60,14 @@ const getSwcMigrationStatus = (appName) => {
     });
 
     const managerVite = allDeps['@ovh-ux/manager-vite-config'];
-    if (!managerVite || !satisfiesVersion(REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config'], managerVite)) {
+    if (
+      !managerVite ||
+      !satisfiesVersion(REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config'], managerVite)
+    ) {
       depsOk = false;
-      depsErrors.push(`🟥 @ovh-ux/manager-vite-config required: ${REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config']}, found: ${managerVite || 'not installed'}`);
+      depsErrors.push(
+        `🟥 @ovh-ux/manager-vite-config required: ${REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config']}, found: ${managerVite || 'not installed'}`,
+      );
     } else if (isDryRun) {
       console.log(`   - @ovh-ux/manager-vite-config version: ✅ ${managerVite}`);
     }
@@ -81,7 +90,7 @@ const getSwcMigrationStatus = (appName) => {
   if (isDryRun) {
     if (!babelFilesCleaned) console.log(`❌ ${appName}: Babel config files not removed`);
     if (!babelDepsRemoved) console.log(`❌ ${appName}: Babel dependencies not cleaned`);
-    if (!depsOk) depsErrors.forEach(e => console.log(e));
+    if (!depsOk) depsErrors.forEach((e) => console.log(e));
     if (isMigrated) console.log(`✅ ${appName}: SWC migration complete`);
   }
 

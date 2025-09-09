@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-
+import parser from '@babel/parser';
+import traverseModule from '@babel/traverse';
 import { readFile, writeFile } from 'fs/promises';
 import path from 'path';
 import prettier from 'prettier';
-import parser from '@babel/parser';
-import traverseModule from '@babel/traverse';
+
 import { traverseRoutesExportNodes } from '../../utils/ASTUtils.mjs';
+import { resolveRoutePath } from '../../utils/AppUtils.mjs';
 import {
   buildUniqueComponentName,
   extractPreservedBlocks,
@@ -13,7 +14,6 @@ import {
   isCodeFileExists,
   splitImportsAndBody,
 } from '../../utils/CodeTransformUtils.mjs';
-import { resolveRoutePath } from '../../utils/AppUtils.mjs';
 
 const traverse = traverseModule.default;
 
@@ -185,10 +185,7 @@ const buildRouteComponent = (node, code, depth = 2, importsMap, isRoot = false) 
         children = (prop.value.elements || [])
           .map((child) => buildRouteComponent(child, code, depth + 1, importsMap))
           .filter(Boolean);
-      } else if (
-        typeof prop.value?.start === 'number' &&
-        typeof prop.value?.end === 'number'
-      ) {
+      } else if (typeof prop.value?.start === 'number' && typeof prop.value?.end === 'number') {
         props[key] = code.slice(prop.value.start, prop.value.end);
       } else {
         console.warn(`⚠️ Missing start/end for property "${key}", skipping`);
@@ -298,9 +295,7 @@ const generateTransformedRoutes = (code) => {
   return {
     routesPreservedBlocks: extractPreservedBlocks({
       imports: injectNamedImport(importBlocks, { from: 'react-router-dom', name: 'Route' }),
-      requiredImports: [
-        "import { ErrorBoundary } from '@ovh-ux/manager-react-components';",
-      ],
+      requiredImports: ["import { ErrorBoundary } from '@ovh-ux/manager-react-components';"],
       excludedModules: ['@ovh-ux/manager-react-components', 'ErrorBoundary'],
       extraLines: body?.join?.('\n')?.split?.('\n\r'),
     }),
@@ -321,9 +316,8 @@ const transformRoutesToJsx = async () => {
   }
 
   const actualSourceCode = await readFile(applicationRoutePath, 'utf-8');
-  const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } = generateTransformedRoutes(
-    removeLazyRouteConfig(actualSourceCode),
-  );
+  const { routesTransformedBlock, lazyRoutesBlock, routesPreservedBlocks } =
+    generateTransformedRoutes(removeLazyRouteConfig(actualSourceCode));
 
   if (!routesTransformedBlock.length) {
     console.warn('⚠️ Warning: No JSX routes generated.');

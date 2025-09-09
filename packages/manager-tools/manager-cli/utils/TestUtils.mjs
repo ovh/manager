@@ -1,5 +1,6 @@
-import { existsSync, readFileSync, } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import path from 'path';
+
 import { applicationsBasePath } from './AppUtils.mjs';
 import { EXCLUDED_TESTS_DEPS, readPackageJson } from './DependenciesUtils.mjs';
 
@@ -19,9 +20,12 @@ export const getTestMigrationStatus = (appName, { verbose }) => {
 
   if (existsSync(vitestConfigPath)) {
     const content = readFileSync(vitestConfigPath, 'utf-8');
-    configMigrated = content.includes('mergeConfig') && content.includes('@ovh-ux/manager-tests-setup');
+    configMigrated =
+      content.includes('mergeConfig') && content.includes('@ovh-ux/manager-tests-setup');
     if (verbose) {
-      console.log(`📄 ${appName}: vitest.config.js → ${configMigrated ? '✅ uses shared config' : '📝 legacy config'}`);
+      console.log(
+        `📄 ${appName}: vitest.config.js → ${configMigrated ? '✅ uses shared config' : '📝 legacy config'}`,
+      );
     }
   }
 
@@ -30,14 +34,18 @@ export const getTestMigrationStatus = (appName, { verbose }) => {
   const packageContent = readPackageJson(appPath);
   if (packageContent) {
     const scripts = packageContent.scripts || {};
-    scriptsMigrated = Object.values(scripts).some(cmd => cmd.includes('manager-test'));
+    scriptsMigrated = Object.values(scripts).some((cmd) => cmd.includes('manager-test'));
 
     const allDeps = { ...packageContent.dependencies, ...packageContent.devDependencies };
-    depsCleaned = !EXCLUDED_TESTS_DEPS.some(dep => dep in allDeps);
+    depsCleaned = !EXCLUDED_TESTS_DEPS.some((dep) => dep in allDeps);
 
     if (verbose) {
-      console.log(`📦 ${appName}: scripts → ${scriptsMigrated ? '✅ manager-test used' : '📝 vitest still used'}`);
-      console.log(`📦 ${appName}: dependencies → ${depsCleaned ? '✅ no deprecated deps' : '📝 still has vitest deps'}`);
+      console.log(
+        `📦 ${appName}: scripts → ${scriptsMigrated ? '✅ manager-test used' : '📝 vitest still used'}`,
+      );
+      console.log(
+        `📦 ${appName}: dependencies → ${depsCleaned ? '✅ no deprecated deps' : '📝 still has vitest deps'}`,
+      );
     }
   }
 

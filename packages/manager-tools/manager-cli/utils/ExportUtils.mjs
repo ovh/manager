@@ -1,33 +1,37 @@
-import { existsSync, writeFileSync, mkdirSync, readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export const reportOutputBasePath = resolve(__dirname, '../../../../migration-status-reports');
 
-export const buildRoutesReportFileName = (outputFormat) => outputFormat === 'json'
-  ? `${reportOutputBasePath}/routes-migration-report.json`
-  : outputFormat === 'html'
-    ? `${reportOutputBasePath}/routes-migration-report.html`
-    : null;
+export const buildRoutesReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/routes-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/routes-migration-report.html`
+      : null;
 
-export const buildSwcReportFileName = (outputFormat) => outputFormat === 'json'
-  ? `${reportOutputBasePath}/swc-migration-report.json`
-  : outputFormat === 'html'
-    ? `${reportOutputBasePath}/swc-migration-report.html`
-    : null;
+export const buildSwcReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/swc-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/swc-migration-report.html`
+      : null;
 
-export const buildTestsReportFileName = (outputFormat) => outputFormat === 'json'
-  ? `${reportOutputBasePath}/tests-migration-report.json`
-  : outputFormat === 'html'
-    ? `${reportOutputBasePath}/tests-migration-report.html`
-    : null;
+export const buildTestsReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/tests-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/tests-migration-report.html`
+      : null;
 
-export const buildStaticKitReportFileName = (outputFormat) => outputFormat === 'json'
-  ? `${reportOutputBasePath}/static-kit-migration-report.json`
-  : outputFormat === 'html'
-    ? `${reportOutputBasePath}/static-kit-migration-report.html`
-    : null;
+export const buildStaticKitReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/static-kit-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/static-kit-migration-report.html`
+      : null;
 
 export const buildMergedReportFileName = (outputFormat) =>
   outputFormat === 'json'
@@ -51,8 +55,10 @@ const ensureDirectory = (filePath) => {
  */
 const renderHtml = (title, data) => {
   const headers = Object.keys(data[0] || {});
-  const rows = data.map(row => `<tr>${headers.map(h => `<td>${row[h]}</td>`).join('')}</tr>`).join('\n');
-  const thead = headers.map(h => `<th>${h}</th>`).join('');
+  const rows = data
+    .map((row) => `<tr>${headers.map((h) => `<td>${row[h]}</td>`).join('')}</tr>`)
+    .join('\n');
+  const thead = headers.map((h) => `<th>${h}</th>`).join('');
   return `<!DOCTYPE html>
 <html>
 <head>

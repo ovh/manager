@@ -10,10 +10,7 @@ const extractArrayNode = (node) => {
 
   if (node.type === 'ArrayExpression') return node;
 
-  if (
-    node.type === 'TSAsExpression' &&
-    node.expression?.type === 'ArrayExpression'
-  ) {
+  if (node.type === 'TSAsExpression' && node.expression?.type === 'ArrayExpression') {
     return node.expression;
   }
 
@@ -29,10 +26,7 @@ const extractArrayNode = (node) => {
  */
 export const traverseRoutesExportNodes = (
   ast,
-  {
-    onArrayExpression,
-    isTargetNode = (node) => node?.id?.name?.match(/^routes?$/i),
-  } = {},
+  { onArrayExpression, isTargetNode = (node) => node?.id?.name?.match(/^routes?$/i) } = {},
 ) => {
   if (typeof onArrayExpression !== 'function') {
     console.warn('⚠️ Missing or invalid onArrayExpression callback in traverseRoutesExportNodes');

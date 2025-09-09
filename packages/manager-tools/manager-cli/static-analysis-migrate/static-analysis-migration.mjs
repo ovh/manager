@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
 const args = process.argv.slice(2);
@@ -7,7 +6,9 @@ const appName = args[0];
 const isDryRun = args.includes('--dry-run');
 
 if (!appName || appName.startsWith('--')) {
-  console.error('❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]');
+  console.error(
+    '❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]',
+  );
   process.exit(1);
 }
 

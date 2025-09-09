@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-
-import path from 'path';
 import { rm } from 'fs/promises';
+import path from 'path';
+
+import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+import { isCodeFileExistsSync } from '../../../utils/CodeTransformUtils.mjs';
 import {
   ESLINT_DEP_REGEX,
   EXCLUDED_ESLINT_FILES,
   readPackageJson,
   writePackageJson,
 } from '../../../utils/DependenciesUtils.mjs';
-import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
-import { isCodeFileExistsSync } from '../../../utils/CodeTransformUtils.mjs';
 
 /**
  * Extract CLI arguments
@@ -19,7 +19,9 @@ const isDryRun = process.argv.includes('--dry-run');
 
 // Application validation
 if (!appName || appName.startsWith('--')) {
-  console.error('❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]');
+  console.error(
+    '❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]',
+  );
   process.exit(1);
 }
 

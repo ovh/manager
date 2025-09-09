@@ -1,11 +1,15 @@
 #!/usr/bin/env node
-
-import path, { dirname } from 'path';
-import { writeFile, access } from 'fs/promises';
-import { getPackageNameFromApp, readPackageJson, writePackageJson } from '../../../utils/DependenciesUtils.mjs';
-import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+import { access, writeFile } from 'fs/promises';
 import { spawn } from 'node:child_process';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+
+import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
+import {
+  getPackageNameFromApp,
+  readPackageJson,
+  writePackageJson,
+} from '../../../utils/DependenciesUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -58,7 +62,8 @@ export const runLintTSCli = (appName, { fix = false } = {}) => {
  * Generates a prefilled eslint.config.mjs file scaffold with full options commented.
  * @returns {string}
  */
-const getEslintConfigContent = () => `
+const getEslintConfigContent = () =>
+  `
 // Full adoption
 /*import { eslintSharedConfig } from '@ovh-ux/manager-static-analysis-kit';
 
@@ -66,19 +71,23 @@ export default eslintSharedConfig;
 */
 
 // Progressive adoption
-/*import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
-import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
-import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
-import { complexityJsxTsxConfig, complexityTsJsConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
-import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
+/*import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
+import {
+  complexityJsxTsxConfig,
+  complexityTsJsConfig,
+} from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
 import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
+import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
+import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
+import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
-import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
-import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
+
 // import { storybookEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/storybook';
 
 export default [
@@ -98,7 +107,7 @@ export default [
   {
     ...cssEslintConfig,
     files: ['**\\/*.css', '**\\/*.scss'],
-  }
+  },
 ];*/
 
 // Progressive and disable some rules
@@ -140,7 +149,9 @@ const addEslintStaticKitConfig = async () => {
   } catch {
     const content = getEslintConfigContent();
     if (isDryRun) {
-      console.log(`🧪 [dry-run] Would create eslint.config.mjs with:\n\n${content.slice(0, 1000)}\n...`);
+      console.log(
+        `🧪 [dry-run] Would create eslint.config.mjs with:\n\n${content.slice(0, 1000)}\n...`,
+      );
     } else {
       await writeFile(eslintConfigPath, content, 'utf-8');
       console.log(`✅ Created eslint.config.mjs`);
@@ -148,11 +159,13 @@ const addEslintStaticKitConfig = async () => {
   }
 
   // 2. Run the build script using yarn workspace command
-  console.log(`🛠 Running build script inside 'manager/packages/manager-tools/manager-static-analysis-kit'...`);
+  console.log(
+    `🛠 Running build script inside 'manager/packages/manager-tools/manager-static-analysis-kit'...`,
+  );
   const buildProc = spawn('yarn', ['workspace', '@ovh-ux/manager-static-analysis-kit', 'build'], {
     shell: true,
     stdio: 'inherit',
-    cwd: path.resolve(__dirname, '../../../..'),  // Run from the root directory
+    cwd: path.resolve(__dirname, '../../../..'), // Run from the root directory
   });
 
   buildProc.on('close', (code) => {
