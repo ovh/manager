@@ -82,7 +82,8 @@
   "types": "./dist/code-analysis.d.ts",
   "bin": {
     "manager-lint": "./bin/lint-cli.js",
-    "manager-perf-budgets": "./bin/perf-budgets-cli.js"
+    "manager-perf-budgets": "./bin/perf-budgets-cli.js",
+    "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js"
   },
   "files": [
     "dist",
@@ -91,9 +92,9 @@
   ],
   "scripts": {
     "build": "tsx scripts/build.ts",
-    "postinstall": "tsx scripts/build.ts",
     "lint:modern": "manager-lint --config eslint.config.mts ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src",
+    "postinstall": "tsx scripts/build.ts",
     "prepare": "tsx scripts/build.ts",
     "test": "echo \"No tests yet.\" && exit 0"
   },

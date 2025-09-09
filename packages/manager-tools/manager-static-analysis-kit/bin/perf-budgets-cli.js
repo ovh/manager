@@ -48,7 +48,7 @@ function runBundleAnalyzer(appDirectory, appShortName, mode) {
   });
 
   if (result.status !== 0) {
-    logError(`Analyzer (${mode}) failed for ${appShortName}`);
+    logError(`❌ Analyzer (${mode}) failed for ${appShortName}`);
     return;
   }
 
@@ -68,6 +68,11 @@ function runBundleAnalyzer(appDirectory, appShortName, mode) {
  * Build selected targets with Turbo.
  */
 function runTurboBuild(filters) {
+  if (filters.length === 0) {
+    logWarn('⚠️ No Turbo build filters provided, skipping build step.');
+    return;
+  }
+
   const turboArgs = ['run', 'build', ...filters.flatMap((pkgName) => ['--filter', pkgName])];
   logInfo(`Building with Turbo (filters: ${filters.join(', ')})`);
 
@@ -78,8 +83,7 @@ function runTurboBuild(filters) {
   });
 
   if (buildResult.status !== 0) {
-    logError('Turbo build failed for one or more targets. Aborting analysis.');
-    process.exit(1);
+    logWarn('⚠️ Turbo build failed for one or more targets. Will still try to analyze apps.');
   }
 }
 
@@ -89,15 +93,24 @@ function runTurboBuild(filters) {
 function analyzeAppFolders(appFolders) {
   const analyzed = [];
   for (const appFolder of appFolders) {
-    const appDir = path.join(appsDir, appFolder);
-    const pkg = JSON.parse(fs.readFileSync(path.join(appDir, 'package.json'), 'utf-8'));
-    const appName = pkg.name;
-    const appShortName = appName.replace(/^@ovh-ux\//, '');
+    try {
+      const appDir = path.join(appsDir, appFolder);
+      if (!fs.existsSync(appDir)) {
+        logError(`❌ App folder not found: ${appFolder} → skipping`);
+        continue;
+      }
 
-    runBundleAnalyzer(appDir, appShortName, 'static');
-    runBundleAnalyzer(appDir, appShortName, 'json');
+      const pkg = JSON.parse(fs.readFileSync(path.join(appDir, 'package.json'), 'utf-8'));
+      const appName = pkg.name;
+      const appShortName = appName.replace(/^@ovh-ux\//, '');
 
-    analyzed.push(appName);
+      runBundleAnalyzer(appDir, appShortName, 'static');
+      runBundleAnalyzer(appDir, appShortName, 'json');
+
+      analyzed.push(appName);
+    } catch (err) {
+      logError(`❌ Failed to analyze ${appFolder}: ${err.message}`);
+    }
   }
   return analyzed;
 }
@@ -157,8 +170,8 @@ function generateCombinedReports(root) {
 function extractAppFolderFromPackageName(packageName) {
   const match = packageName.match(/^@ovh-ux\/manager-(.+)-app$/);
   if (!match) {
-    logError(`Invalid package name format: ${packageName}`);
-    process.exit(1);
+    logError(`❌ Invalid package name format: ${packageName}`);
+    return null;
   }
   return match[1];
 }
@@ -167,11 +180,17 @@ function extractAppFolderFromPackageName(packageName) {
  * Convert app folders to Turbo filters (package names).
  */
 function resolveTurboFiltersFromAppFolders(appFolders) {
-  return appFolders.map((appFolder) => {
-    const pkgPath = path.join(appsDir, appFolder, 'package.json');
-    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
-    return pkg.name;
-  });
+  return appFolders
+    .map((appFolder) => {
+      const pkgPath = path.join(appsDir, appFolder, 'package.json');
+      if (!fs.existsSync(pkgPath)) {
+        logError(`❌ No package.json for app folder ${appFolder}, skipping`);
+        return null;
+      }
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+      return pkg.name;
+    })
+    .filter(Boolean);
 }
 
 /**
@@ -184,31 +203,35 @@ function parseCliTargets() {
   if (appsArg) {
     const index = process.argv.indexOf(appsArg);
     const rawValue = process.argv[index + 1] || '';
-    const appFolders = rawValue
-      .split(',')
-      .map((name) => name.trim())
-      .filter(Boolean);
+    const appFolders = rawValue.split(',').map((n) => n.trim()).filter(Boolean);
 
-    appFolders.forEach((folder) => {
+    const validFolders = appFolders.filter((folder) => {
       if (!fs.existsSync(path.join(appsDir, folder))) {
-        logError(`App not found: ${folder}`);
-        process.exit(1);
+        logError(`❌ App not found: ${folder} → skipping`);
+        return false;
       }
+      return true;
     });
 
-    logInfo(`Running in apps mode for: ${appFolders.join(', ')}`);
-    return { appFolders, packageNames: [] };
+    logInfo(`Running in apps mode for: ${validFolders.join(', ')}`);
+    return { appFolders: validFolders, packageNames: [] };
   }
 
   if (packagesArg) {
     const index = process.argv.indexOf(packagesArg);
     const rawValue = process.argv[index + 1] || '';
-    const packageNames = rawValue
-      .split(',')
-      .map((name) => name.trim())
-      .filter(Boolean);
+    const packageNames = rawValue.split(',').map((n) => n.trim()).filter(Boolean);
 
-    const mappedFolders = packageNames.map(extractAppFolderFromPackageName);
+    const mappedFolders = [];
+    for (const pkgName of packageNames) {
+      const folder = extractAppFolderFromPackageName(pkgName);
+      if (folder && fs.existsSync(path.join(appsDir, folder))) {
+        mappedFolders.push(folder);
+      } else {
+        logError(`❌ Package ${pkgName} → app folder ${folder} not found, skipping`);
+      }
+    }
+
     logInfo(
       `Running in packages mode for: ${packageNames.join(', ')} → apps: ${mappedFolders.join(', ')}`,
     );
@@ -222,7 +245,7 @@ function parseCliTargets() {
   });
 
   if (discoveredAppFolders.length === 0) {
-    logWarn('No React apps found to analyze.');
+    logWarn('⚠️ No React apps found to analyze.');
     return { appFolders: [], packageNames: [] };
   }
 
@@ -249,7 +272,7 @@ function resolveTurboFilters({ appFolders, packageNames }) {
 function main() {
   try {
     if (!fs.existsSync(bundleAnalyzerBin)) {
-      logError(`Analyzer binary not found at ${bundleAnalyzerBin}`);
+      logError(`❌ Analyzer binary not found at ${bundleAnalyzerBin}`);
       return;
     }
 
@@ -265,6 +288,9 @@ function main() {
     // Step 3: combined reports
     if (analyzedApps.length > 0) {
       generateCombinedReports(outputRootDir);
+    } else {
+      logError('❌ No apps successfully analyzed. Exiting.');
+      process.exit(1);
     }
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);

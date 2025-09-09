@@ -146,6 +146,107 @@ Example (`perf-budgets-combined-report.json`):
 
 ---
 
+## ✅ Validation Tests
+
+To ensure the CLI behaves correctly in different scenarios, you can run the following commands.  
+Assume these apps exist under `manager/apps`: **zimbra**, **pci-ai-tools**, **pci-workflow**, **container**.
+
+### 1. Auto-discovery (all apps)
+```bash
+yarn manager-perf-budgets
+```
+- Should analyze all React apps under `manager/apps`.
+
+### 2. Single app (folder)
+```bash
+yarn manager-perf-budgets --app zimbra
+```
+- Should analyze only `zimbra`.
+
+### 3. Multiple apps (folders)
+```bash
+yarn manager-perf-budgets --apps container,zimbra
+```
+- Should analyze `container` and `zimbra`.
+
+### 4. Single package
+```bash
+yarn manager-perf-budgets --package @ovh-ux/manager-container-app
+```
+- Resolves to `container` and analyzes it.
+
+### 5. Multiple packages
+```bash
+yarn manager-perf-budgets --packages @ovh-ux/manager-zimbra-app,@ovh-ux/manager-pci-workflow-app
+```
+- Resolves to `zimbra` and `pci-workflow`.
+
+### 6. Mixed valid + invalid apps
+```bash
+yarn manager-perf-budgets --apps zimbra,unknown-app,container
+```
+- Logs error for `unknown-app`, continues with `zimbra` and `container`.
+
+### 7. Mixed valid + invalid packages
+```bash
+yarn manager-perf-budgets --packages @ovh-ux/manager-zimbra-app,@ovh-ux/manager-ghost-app
+```
+- Logs error for `manager-ghost-app`, continues with `zimbra`.
+
+### 8. All invalid apps
+```bash
+yarn manager-perf-budgets --apps doesnotexist1,doesnotexist2
+```
+- Logs errors, exits with status `1`.
+
+### 9. All invalid packages
+```bash
+yarn manager-perf-budgets --packages @ovh-ux/manager-ghost-app,@ovh-ux/manager-missing-app
+```
+- Logs errors, exits with status `1`.
+
+### 10. Turbo build failure simulation
+(break one app’s build, e.g. remove `package.json` temporarily)
+```bash
+yarn manager-perf-budgets --app pci-ai-tools
+```
+- Logs Turbo build failure warning.
+- Analyzer still runs if possible.
+
+---
+
+
+---
+
+## 🧪 Automated Validation CLI
+
+In addition to manual commands, you can run **all validation tests automatically** using the provided CLI:
+
+```bash
+yarn perf-budgets:tests
+```
+
+This will execute a series of predefined scenarios:
+
+- Auto-discovery of all apps
+- Single app analysis
+- Multiple apps analysis
+- Single/multiple package analysis
+- Mixed valid + invalid inputs
+- All invalid inputs (expected to fail)
+- Turbo build failure simulation
+
+Each test runs `yarn manager-perf-budgets ...` with different arguments and validates exit codes.
+
+If all tests succeed, you’ll see:
+
+```
+🎉 All perf-budgets CLI validation tests passed!
+```
+
+If one or more fail, the script will list them and exit with a non-zero status code.
+
+
 ## 🤝 Contribution
 
 - Use clear, descriptive naming (e.g., `appFolders`, `packageNames`, `parseCliTargets`).
