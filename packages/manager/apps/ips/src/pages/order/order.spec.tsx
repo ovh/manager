@@ -16,8 +16,8 @@ import {
   getOrganisationSelect,
 } from '@/test-utils';
 import { resourceMockList, organisationMockList } from '../../../mocks';
-import { IpOffer, IpVersion } from './order.constant';
-import { ipParkingOptionValue } from '@/types';
+import { IpOffer } from './order.constant';
+import { IpVersion, ipParkingOptionValue } from '@/types';
 
 describe('Order', async () => {
   it.each([
