@@ -1,8 +1,7 @@
-import { OdsIcon, OdsText, OdsButton } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
+import { Button, Icon, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { urls } from '@/routes/routes.constant';
 
 export default function TrackingFinalized() {
@@ -14,18 +13,17 @@ export default function TrackingFinalized() {
       data-testid="done"
     >
       <div className="flex flex-col gap-y-3 items-center justify-center mb-4">
-        <OdsIcon name="check" className="text-success text-2xl mb-4" />
-        <OdsText preset={ODS_TEXT_PRESET.heading3}>
+        <Icon name="check" className="text-success text-2xl mb-4" />
+        <Text preset={TEXT_PRESET.heading3}>
           {t('tracking_transfert_finalized')}
-        </OdsText>
+        </Text>
       </div>
-      <OdsText className="mb-8" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text className="mb-8" preset={TEXT_PRESET.paragraph}>
         {t('tracking_transfert_sub_finalized')}
-      </OdsText>
-      <OdsButton
-        label={t('tracking_transfert_back_to_domain')}
-        onClick={() => navigate(urls.root)}
-      />
+      </Text>
+      <Button onClick={() => navigate(urls.root)}>
+        {t('tracking_transfert_back_to_domain')}
+      </Button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { toUnicode } from 'punycode';
+import { Link } from '@ovhcloud/ods-react';
 import { OngoingOperationDatagridDomainProps } from '@/types';
 import { useDatagridColumnUrl } from '@/hooks/url/useDatagridColumnUrl';
 import { DomainOperationsEnum } from '@/constants';
@@ -14,9 +14,8 @@ export default function OngoingOperationDatagridDomain({
 
   return (
     <DataGridTextCell>
-      <OdsLink
+      <Link
         href={url}
-        label={toUnicode(value)}
         data-testid={value}
         isDisabled={
           !url ||
@@ -26,7 +25,9 @@ export default function OngoingOperationDatagridDomain({
             DomainOperationsEnum.DomainResourceDelete,
           ].includes(props.function as DomainOperationsEnum)
         }
-      />
+      >
+        {toUnicode(value)}
+      </Link>
     </DataGridTextCell>
   );
 }
