@@ -1,12 +1,21 @@
 import { URL } from '../../../../iam.service';
+import { CONDITION_TYPES } from '../conditionType.constants';
 
-const productTypeKeyTemplate = 'resource.Type';
+const productTypeKeyTemplate = `resource.${CONDITION_TYPES.PRODUCT_TYPE}`;
 
 export default class IAMConditionProductTypeController {
   /* @ngInject */
   constructor(iamResourceTypeService) {
     this.iamResourceTypeService = iamResourceTypeService;
     this.URL = URL.RESOURCE_TYPE;
+  }
+
+  $onInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.productTypes = this.condition?.value?.split(',');
   }
 
   updateConditionValues() {

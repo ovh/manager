@@ -1,4 +1,6 @@
-const weekdayKeyTemplate = 'date({{timezone}}).WeekDay';
+import { CONDITION_TYPES } from '../conditionType.constants';
+
+const weekdayKeyTemplate = `date({{timezone}}).${CONDITION_TYPES.WEEKDAY}`;
 
 export default class IAMConditionWeekdayController {
   /* @ngInject */
@@ -8,6 +10,15 @@ export default class IAMConditionWeekdayController {
 
   $onInit() {
     this.weekdays = this.iamConditionWeekdayService.getWeekdays();
+    this.initForm();
+  }
+
+  initForm() {
+    if (this.condition?.value) {
+      this.weekday = this.condition.value
+        .split(',')
+        .map((day) => this.weekdays.find(({ value }) => value === day));
+    }
   }
 
   updateConditionValues() {
