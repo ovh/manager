@@ -160,10 +160,6 @@ export const getColumns = ({
                   <Zap className="size-4 shrink-0" />
                   <span>{`${gpu} GPU ${gpuModel}`}</span>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <Cpu className="size-4 shrink-0" />
-                  <span>{`${gpu} GPU ${gpuModel}`} QPUTest</span>
-                </div>
               </>
             ) : (
               <>
@@ -171,12 +167,12 @@ export const getColumns = ({
                   <Cpu className="size-4 shrink-0" />
                   <span>{`${cpu} CPU`}</span>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <Cpu className="size-4 shrink-0" />
-                  <span>{`${gpu} GPU ${gpuModel}`} QPUTest</span>
-                </div>
               </>
             )}
+            <div className="flex gap-2 items-center">
+              <Cpu className="size-4 shrink-0" />
+              <span>{`${gpu} GPU ${gpuModel}`} QPUTest</span>
+            </div>
           </div>
         );
       },
