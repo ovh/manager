@@ -7,6 +7,7 @@ export const CONDITION_TYPES = {
   WEEKDAY: 'weekday',
   DATE: 'date',
   HOUR: 'hour',
+  PRODUCT_TYPE: 'product_type',
 };
 
 export const CONDITION_TYPE_CRITERIA = {
@@ -16,6 +17,12 @@ export const CONDITION_TYPE_CRITERIA = {
     CRITERIA.ENDS_WITH,
   ],
   [CONDITION_TYPES.NAME]: [
+    CRITERIA.EQ,
+    CRITERIA.STARTS_WITH,
+    CRITERIA.ENDS_WITH,
+    CRITERIA.IN,
+  ],
+  [CONDITION_TYPES.PRODUCT_TYPE]: [
     CRITERIA.EQ,
     CRITERIA.STARTS_WITH,
     CRITERIA.ENDS_WITH,

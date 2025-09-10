@@ -28,3 +28,8 @@
     data-ng-model="$ctrl.condition"
     data-criterion="$ctrl.criterion"
 ></iam-condition-hour>
+<iam-condition-product-type
+    data-ng-if="$ctrl.conditionType === $ctrl.CONDITION_TYPES.PRODUCT_TYPE"
+    data-ng-model="$ctrl.condition"
+    data-criterion="$ctrl.criterion"
+></iam-condition-product-type>
