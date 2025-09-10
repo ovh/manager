@@ -3,5 +3,6 @@
   "crumb-notebook": "AI Notebooks",
   "crumb-training": "AI Training",
   "crumb-quantum": "Emulatori",
-  "crumb-deploy": "AI Deploy"
+  "crumb-deploy": "AI Deploy",
+  "crumb-qpu": "QPU"
 }
