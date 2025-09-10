@@ -9,5 +9,6 @@
   "temporaryLocalStorageField": "Lokalna krótkotrwała przestrzeń dyskowa: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Wydajna, ale nie zapisana lokalna przestrzeń dyskowa",
   "modifyLabel": "Zmodyfikuj",
-  "disabledButtonTooltip": "Notebook musi mieć status „zatrzymany”"
+  "disabledButtonTooltip": "Notebook musi mieć status „zatrzymany”",
+  "qpuQubits": "Qubits: "
 }

@@ -9,5 +9,6 @@
   "temporaryLocalStorageField": "Armazenamento local temporário: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Armazenamento local eficiente, mas sem backup",
   "modifyLabel": "Alterar",
-  "disabledButtonTooltip": "O notebook deve encontrar-se no estado «parado»"
+  "disabledButtonTooltip": "O notebook deve encontrar-se no estado «parado»",
+  "qpuQubits": "Qubits: "
 }
