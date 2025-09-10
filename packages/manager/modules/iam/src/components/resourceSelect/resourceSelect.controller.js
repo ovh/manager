@@ -5,10 +5,10 @@ import { URL } from '../../iam.service';
 
 export default class ResourceSelectController {
   /* @ngInject */
-  constructor($filter, $timeout, $transclude, $translate) {
-    this.$filter = $filter;
+  constructor($timeout, $transclude, $translate, iamResourceTypeService) {
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.iamResourceTypeService = iamResourceTypeService;
 
     this.URL = URL;
 
@@ -231,17 +231,6 @@ export default class ResourceSelectController {
    * @param {Array} resourceTypes
    */
   transformResourceTypes(resourceTypes) {
-    const resourceTypeFilter = this.$filter('iamResourceType');
-    resourceTypes.forEach((resourceType, i) => {
-      Object.assign(resourceTypes, {
-        [i]: {
-          label: resourceTypeFilter(resourceType),
-          value: resourceTypes[i],
-        },
-      });
-    });
-    resourceTypes.sort(({ label: labelA }, { label: labelB }) =>
-      labelA.toLowerCase() > labelB.toLowerCase() ? 1 : -1,
-    );
+    this.iamResourceTypeService.transformResourceTypes(resourceTypes);
   }
 }
