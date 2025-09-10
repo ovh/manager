@@ -1,5 +1,5 @@
 import React from 'react';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 interface NotificationProps {
   readonly label: string;
@@ -13,12 +13,12 @@ export default function Notification({
   removeMessage,
 }: NotificationProps) {
   return (
-    <OdsMessage
+    <Message
       color={label as 'information' | 'success' | 'warning'}
       className="mb-4 w-full"
-      onOdsRemove={removeMessage}
+      onRemove={removeMessage}
     >
       {message}
-    </OdsMessage>
+    </Message>
   );
 }

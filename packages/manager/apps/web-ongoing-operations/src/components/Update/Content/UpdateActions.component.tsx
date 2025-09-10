@@ -1,15 +1,20 @@
-import {
-  OdsButton,
-  OdsMessage,
-  OdsRadio,
-} from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
+  Button,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  RadioValueChangeDetail,
+} from '@ovhcloud/ods-react';
 import { TOngoingOperations } from '@/types';
 import { ActionNameEnum } from '@/enum/actionName.enum';
 import { urls } from '@/routes/routes.constant';
@@ -20,7 +25,7 @@ interface UpdateActionsProps {
   readonly disabled: boolean;
   readonly isActionLoading: boolean;
   readonly onValidate: () => void;
-  readonly updateActionName: (label: ActionNameEnum) => void;
+  readonly setActionName: (label: ActionNameEnum) => void;
 }
 
 export default function UpdateActions({
@@ -29,99 +34,84 @@ export default function UpdateActions({
   disabled,
   isActionLoading,
   onValidate,
-  updateActionName,
+  setActionName,
 }: UpdateActionsProps) {
   const { t } = useTranslation('dashboard');
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col gap-y-2 mt-8">
-      <div className="flex items-center gap-x-2">
-        <OdsRadio
-          inputId="radio-relaunch"
-          name="radio-format"
-          onOdsChange={() => {
-            updateActionName(ActionNameEnum.CanRelaunch);
-          }}
-          isDisabled={!data.canRelaunch}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-relaunch"
-          className={
-            !data?.canRelaunch
-              ? 'text-[var(--ods-color-text-disabled-default)]'
-              : 'text-[var(--ods-color-text)]'
-          }
+    <section className="flex flex-col gap-y-6">
+      <RadioGroup
+        orientation="vertical"
+        onValueChange={(detail: RadioValueChangeDetail) =>
+          setActionName(detail.value as ActionNameEnum)
+        }
+      >
+        <Radio value={ActionNameEnum.CanRelaunch} disabled={!data.canRelaunch}>
+          <RadioControl />
+          <RadioLabel
+            className={
+              !data?.canRelaunch
+                ? 'text-[var(--ods-color-text-disabled-default)]'
+                : 'text-[var(--ods-color-text)]'
+            }
+          >
+            {t('domain_operations_relaunch_title')}
+          </RadioLabel>
+        </Radio>
+        <Radio
+          value={ActionNameEnum.CanAccelerate}
+          disabled={!data.canAccelerate}
         >
-          {t('domain_operations_relaunch_title')}
-        </label>
-      </div>
-
-      <div className="flex items-center gap-x-2">
-        <OdsRadio
-          inputId="radio-accelerate"
-          name="radio-format"
-          isDisabled={!data.canAccelerate}
-          onOdsChange={() => {
-            updateActionName(ActionNameEnum.CanAccelerate);
-          }}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-accelerate"
-          className={
-            !data?.canAccelerate
-              ? 'text-[var(--ods-color-text-disabled-default)]'
-              : 'text-[var(--ods-color-text)]'
-          }
-        >
-          {t('domain_operations_accelerate_title')}
-        </label>
-      </div>
-
-      <div className="flex items-center gap-x-2">
-        <OdsRadio
-          inputId="radio-cancel"
-          name="radio-format"
-          isDisabled={!data.canCancel}
-          onOdsChange={() => {
-            updateActionName(ActionNameEnum.CanCancel);
-          }}
-        ></OdsRadio>
-        <label
-          htmlFor="radio-cancel"
-          className={
-            !data?.canCancel
-              ? 'text-[var(--ods-color-text-disabled-default)]'
-              : 'text-[var(--ods-color-text)]'
-          }
-        >
-          {t('domain_operations_cancel_title')}
-        </label>
-      </div>
-
+          <RadioControl />
+          <RadioLabel
+            className={
+              !data?.canAccelerate
+                ? 'text-[var(--ods-color-text-disabled-default)]'
+                : 'text-[var(--ods-color-text)]'
+            }
+          >
+            {t('domain_operations_accelerate_title')}
+          </RadioLabel>
+        </Radio>
+        <Radio value={ActionNameEnum.CanCancel} disabled={!data.canCancel}>
+          <RadioControl />
+          <RadioLabel
+            className={
+              !data?.canCancel
+                ? 'text-[var(--ods-color-text-disabled-default)]'
+                : 'text-[var(--ods-color-text)]'
+            }
+          >
+            {t('domain_operations_cancel_title')}
+          </RadioLabel>
+        </Radio>
+      </RadioGroup>
       {actionName === ActionNameEnum.CanAccelerate && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
-          {t('domain_operations_accelerate_warning')}
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.warning} dismissible={false}>
+          <MessageIcon name={ICON_NAME.diamondExclamation}></MessageIcon>
+          <MessageBody>{t('domain_operations_accelerate_warning')}</MessageBody>
+        </Message>
       )}
-
-      <div className="flex gap-x-2 mt-8">
-        <OdsButton
-          label={t('wizard_cancel')}
+      <div className="flex gap-x-2">
+        <Button
           slot="actions"
           onClick={() => {
             navigate(urls.root);
           }}
-          variant={ODS_BUTTON_VARIANT.ghost}
-        />
-        <OdsButton
-          label={t('wizard_confirm')}
+          variant={BUTTON_VARIANT.ghost}
+        >
+          {t('wizard_cancel')}
+        </Button>
+        <Button
           slot="actions"
           onClick={() => onValidate()}
-          isDisabled={disabled}
-          isLoading={isActionLoading}
-        />
+          disabled={disabled}
+          loading={isActionLoading}
+        >
+          {t('wizard_confirm')}
+        </Button>
       </div>
-    </div>
+    </section>
   );
 }

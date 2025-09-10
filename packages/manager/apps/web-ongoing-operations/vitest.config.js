@@ -18,6 +18,11 @@ export default mergeConfig(
           'src/pages/layout.tsx',
         ],
       },
+      server: {
+        deps: {
+          inline: ['@ovhcloud/ods-react'],
+        },
+      },
     },
     resolve: {
       alias: {
