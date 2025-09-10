@@ -1,0 +1,9 @@
+{
+  "iam_condition_list_empty_placeholder": "Aucune condition",
+  "iam_condition_list_type": "Type",
+  "iam_condition_list_actions": "Actions",
+  "iam_condition_list_actions_add": "Ajouter une condition",
+  "iam_condition_list_actions_delete": "Supprimer la condition",
+  "iam_condition_list_actions_edit": "Modifier la condition",
+  "iam_condition_list_condition": "Condition"
+}

@@ -12,11 +12,24 @@ export default class IAMCreateConditionModalController {
 
   $onInit() {
     this.initConditionTypes();
-    this.clearCondition();
+    this.initForm();
   }
 
   clearCondition() {
     this.condition = {};
+  }
+
+  initForm() {
+    if (this.condition?.value) {
+      this.isModeEdition = true;
+      const { type, criterion } = this.condition;
+      this.conditionType = this.conditionTypes.find(
+        ({ value }) => value === type,
+      );
+      this.currentConditionType = type;
+      this.updateCriteria(type);
+      this.criterion = this.criteria.find(({ value }) => value === criterion);
+    }
   }
 
   updateCriteria(type) {

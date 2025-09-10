@@ -1,4 +1,41 @@
-<p>/!\ Condition List placeholder /!\</p>
-<p data-ng-repeat="condition in $ctrl.conditions track by $index">
-    {{condition.values}}
-</p>
+<section>
+    <iam-create-condition-modal
+        data-ng-if="$ctrl.modalOpen"
+        data-on-close="$ctrl.closeModal()"
+        data-on-confirm="$ctrl.onConfirm"
+        data-ng-model="$ctrl.condition"
+    ></iam-create-condition-modal>
+    <oui-datagrid
+        data-rows="$ctrl.conditions"
+        data-pagination-mode="arrows"
+        data-empty-placeholder="{{:: 'iam_condition_list_empty_placeholder' | translate}}"
+        data-page-size="5"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                data-on-click="$ctrl.openModal()"
+                data-disabled=":: $ctrl.readOnly"
+            >
+                <span data-translate="iam_condition_list_actions_add"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title="'iam_condition_list_type' | translate"
+            data-property="type"
+            data-sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'iam_condition_list_condition' | translate"
+            data-property="label"
+        ></oui-datagrid-column>
+        <oui-action-menu data-disabled=":: $ctrl.readOnly">
+            <oui-action-menu-item data-on-click="$ctrl.editCondition($row)">
+                <span data-translate="iam_condition_list_actions_edit"> </span>
+            </oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.removeCondition($row)">
+                <span data-translate="iam_condition_list_actions_delete">
+                </span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

@@ -7,7 +7,9 @@ export default {
   bindings: {
     onClose: '&',
     onConfirm: '<',
+    condition: '=ngModel',
   },
+  require: '^ngModel',
   controller,
   template,
 };

@@ -1,13 +1,13 @@
 import { CRITERIA } from '../operator/operator.constants';
 
 export const CONDITION_TYPES = {
-  TAG: 'tag',
-  NAME: 'name',
-  IP: 'ip',
-  WEEKDAY: 'weekday',
-  DATE: 'date',
-  HOUR: 'hour',
-  PRODUCT_TYPE: 'product_type',
+  TAG: 'Tag',
+  NAME: 'Name',
+  IP: 'IP',
+  WEEKDAY: 'WeekDay',
+  DATE: 'Date',
+  HOUR: 'Hour',
+  PRODUCT_TYPE: 'Type',
 };
 
 export const CONDITION_TYPE_CRITERIA = {

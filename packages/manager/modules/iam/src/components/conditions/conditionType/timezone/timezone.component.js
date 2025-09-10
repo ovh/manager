@@ -6,6 +6,7 @@ export const name = 'iamConditionTimezone';
 export default {
   bindings: {
     timezone: '=ngModel',
+    defaultTimezone: '<',
     onChange: '&',
   },
   require: '^ngModel',
