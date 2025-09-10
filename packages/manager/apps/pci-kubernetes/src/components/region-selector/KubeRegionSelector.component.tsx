@@ -15,7 +15,7 @@ import { TLocation } from '@/types/region';
 export interface KubeRegionSelectorProps {
   projectId: string;
   onSelectRegion: RegionSelectorProps['onSelectRegion'];
-  selectedDeployment: TRegion['type'];
+  selectedDeployment?: TRegion['type'];
 }
 
 export function KubeRegionSelector({
