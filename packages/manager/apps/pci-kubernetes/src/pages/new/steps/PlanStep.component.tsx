@@ -305,7 +305,7 @@ PlanTile.Footer = function PlanTileFooter({
           <strong>{t(content)}</strong>
         </p>
       ) : (
-        <div className="p-4 ">
+        <div className="px-4 pb-4">
           {hourlyPrice && (
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}

@@ -1,4 +1,5 @@
 {
   "pci_project_versions_list_version": "Version {{ version }}",
-  "pci_project_versions_recommended_version": "Recommandée"
+  "pci_project_versions_recommended_version_female": "Recommandée",
+  "pci_project_versions_recommended_version_male": "Recommandé"
 }

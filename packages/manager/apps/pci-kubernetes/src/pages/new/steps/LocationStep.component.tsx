@@ -4,6 +4,7 @@ import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 
 import {
   OsdsButton,
+  OsdsChip,
   OsdsDivider,
   OsdsText,
   OsdsTile,
@@ -11,6 +12,7 @@ import {
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
+  ODS_CHIP_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -36,10 +38,11 @@ import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
 import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
 import Loader from './Loader';
 import { TLocation } from '@/types/region';
+import { DeploymentMode } from '@/types';
 
 export interface LocationStepProps {
   projectId: string;
-  onSubmit?: (region: TLocation) => void;
+  onSubmit: (region: TLocation) => void;
   step: StepState;
 }
 
@@ -54,20 +57,34 @@ export function LocationStep({
   onSubmit,
   step,
 }: Readonly<LocationStepProps>) {
-  const { t } = useTranslation(['stepper', 'add', 'region-selector']);
+  const { t } = useTranslation([
+    'stepper',
+    'add',
+    'region-selector',
+    'versions',
+  ]);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const [region, setRegion] = useState<TLocation | undefined>();
-  const [selectedDeployment, setSelectedDeployment] = useState<TRegion['type']>(
-    undefined,
-  );
   const featureFlipping3az = use3AZPlanAvailable();
 
   const { uniqueRegions, contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
+  const [selectedDeployment, setSelectedDeployment] = useState<
+    TRegion['type'] | undefined
+  >(undefined);
 
   const tilesData = uniqueRegions.map((regionType: TRegion['type']) => ({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
+    badge: () =>
+      DeploymentMode.MULTI_ZONES === regionType ? (
+        <OsdsChip
+          color={ODS_THEME_COLOR_INTENT.success}
+          size={ODS_CHIP_SIZE.sm}
+        >
+          {t('versions:pci_project_versions_recommended_version_male')}
+        </OsdsChip>
+      ) : null,
     pillLabel: <RegionChipByType type={regionType} showTooltip={false} />,
     description: t(`add:kubernetes_add_region_description_${regionType}`),
     regionType,
@@ -88,6 +105,12 @@ export function LocationStep({
     return clearNotifications;
   }, [clearNotifications, step.isLocked]);
 
+  useEffect(() => {
+    if (has3AZ) {
+      setSelectedDeployment(DeploymentMode.MULTI_ZONES);
+    }
+  }, [has3AZ]);
+
   const {
     isPending,
     addRegion,
@@ -103,7 +126,7 @@ export function LocationStep({
         }),
       );
       onSubmit(data);
-      setRegion((reg) => ({ ...reg, enabled: true }));
+      setRegion((reg) => reg && { ...reg, enabled: true });
     },
     onError: (error: ApiError) =>
       addError(
@@ -122,6 +145,13 @@ export function LocationStep({
         true,
       ),
   });
+
+  const handleClick = () => {
+    if (region) {
+      return !region.enabled ? addRegion(region.name) : onSubmit(region);
+    }
+    return null;
+  };
 
   return (
     <>
@@ -144,7 +174,11 @@ export function LocationStep({
               </OsdsText>{' '}
               <Links
                 target={OdsHTMLAnchorElementTarget._blank}
-                href={DEPLOYMENT_URL[ovhSubsidiary] ?? DEPLOYMENT_URL.DEFAULT}
+                href={
+                  DEPLOYMENT_URL[
+                    ovhSubsidiary as keyof typeof DEPLOYMENT_URL
+                  ] ?? DEPLOYMENT_URL.DEFAULT
+                }
                 label={t('add:kubernetes_add_find_out_more')}
                 type={LinkType.next}
               />
@@ -152,10 +186,11 @@ export function LocationStep({
 
             <div className="grid md:grid-cols-4 gap-4 my-5">
               {tilesData.map(
-                ({ title, pillLabel, description, regionType }) => (
+                ({ title, pillLabel, description, regionType, badge }) => (
                   <KubeDeploymentTile
                     key={regionType}
                     title={title}
+                    badge={badge}
                     description={description}
                     pillLabel={pillLabel}
                     onSelectedDeployment={() => {
@@ -210,9 +245,7 @@ export function LocationStep({
           size={ODS_BUTTON_SIZE.md}
           color={ODS_THEME_COLOR_INTENT.primary}
           disabled={region ? undefined : true}
-          onClick={() =>
-            !region.enabled ? addRegion(region.name) : onSubmit(region)
-          }
+          onClick={handleClick}
         >
           {t('stepper:common_stepper_next_button_label')}
         </OsdsButton>
