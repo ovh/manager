@@ -21,6 +21,15 @@ const perfBudgetsReportDirName = 'perf-budgets-reports';
 const perfBudgetCombinedJsonReportName = 'perf-budgets-combined-report.json';
 const perfBudgetCombinedHtmlReportName = 'perf-budgets-combined-report.html';
 
+// Shared packages that must always be built
+const sharedPackages = [
+  {
+    name: '@ovh-ux/manager-react-components',
+    folder: 'manager-react-components',
+    path: path.join(rootDir, 'packages/manager-react-components'),
+  },
+];
+
 /**
  * Run vite-bundle-analyzer for given mode (html or json).
  */
@@ -194,51 +203,76 @@ function resolveTurboFiltersFromAppFolders(appFolders) {
 }
 
 /**
- * Parse CLI args and resolve selected apps/packages.
+ * Parse CLI arguments for `--apps` or `--app` flags.
+ *
+ * @returns {{appFolders: string[], packageNames: string[]} | null}
+ *   An object with valid app folder names and an empty packageNames array,
+ *   or null if the flag is not present.
  */
-function parseCliTargets() {
+function parseAppsArg() {
   const appsArg = process.argv.find((arg) => arg === '--apps' || arg === '--app');
-  const packagesArg = process.argv.find((arg) => arg === '--packages' || arg === '--package');
+  if (!appsArg) return null;
 
-  if (appsArg) {
-    const index = process.argv.indexOf(appsArg);
-    const rawValue = process.argv[index + 1] || '';
-    const appFolders = rawValue.split(',').map((n) => n.trim()).filter(Boolean);
+  const index = process.argv.indexOf(appsArg);
+  const rawValue = process.argv[index + 1] || '';
+  const appFolders = rawValue
+    .split(',')
+    .map((n) => n.trim())
+    .filter(Boolean);
 
-    const validFolders = appFolders.filter((folder) => {
-      if (!fs.existsSync(path.join(appsDir, folder))) {
-        logError(`❌ App not found: ${folder} → skipping`);
-        return false;
-      }
-      return true;
-    });
-
-    logInfo(`Running in apps mode for: ${validFolders.join(', ')}`);
-    return { appFolders: validFolders, packageNames: [] };
-  }
-
-  if (packagesArg) {
-    const index = process.argv.indexOf(packagesArg);
-    const rawValue = process.argv[index + 1] || '';
-    const packageNames = rawValue.split(',').map((n) => n.trim()).filter(Boolean);
-
-    const mappedFolders = [];
-    for (const pkgName of packageNames) {
-      const folder = extractAppFolderFromPackageName(pkgName);
-      if (folder && fs.existsSync(path.join(appsDir, folder))) {
-        mappedFolders.push(folder);
-      } else {
-        logError(`❌ Package ${pkgName} → app folder ${folder} not found, skipping`);
-      }
+  const validFolders = appFolders.filter((folder) => {
+    if (!fs.existsSync(path.join(appsDir, folder))) {
+      logError(`❌ App not found: ${folder} → skipping`);
+      return false;
     }
+    return true;
+  });
 
-    logInfo(
-      `Running in packages mode for: ${packageNames.join(', ')} → apps: ${mappedFolders.join(', ')}`,
-    );
-    return { appFolders: mappedFolders, packageNames };
+  logInfo(`Running in apps mode for: ${validFolders.join(', ')}`);
+  return { appFolders: validFolders, packageNames: [] };
+}
+
+/**
+ * Parse CLI arguments for `--packages` or `--package` flags.
+ *
+ * @returns {{appFolders: string[], packageNames: string[]} | null}
+ *   An object mapping package names to their corresponding app folders,
+ *   or null if the flag is not present.
+ */
+function parsePackagesArg() {
+  const packagesArg = process.argv.find((arg) => arg === '--packages' || arg === '--package');
+  if (!packagesArg) return null;
+
+  const index = process.argv.indexOf(packagesArg);
+  const rawValue = process.argv[index + 1] || '';
+  const packageNames = rawValue
+    .split(',')
+    .map((n) => n.trim())
+    .filter(Boolean);
+
+  const mappedFolders = [];
+  for (const pkgName of packageNames) {
+    const folder = extractAppFolderFromPackageName(pkgName);
+    if (folder && fs.existsSync(path.join(appsDir, folder))) {
+      mappedFolders.push(folder);
+    } else {
+      logError(`❌ Package ${pkgName} → app folder ${folder} not found, skipping`);
+    }
   }
 
-  // fallback auto-discovery
+  logInfo(
+    `Running in packages mode for: ${packageNames.join(', ')} → apps: ${mappedFolders.join(', ')}`,
+  );
+  return { appFolders: mappedFolders, packageNames };
+}
+
+/**
+ * Discover all React apps automatically when no CLI flags are provided.
+ *
+ * @returns {{appFolders: string[], packageNames: string[]}}
+ *   An object containing discovered React app folders and an empty packageNames array.
+ */
+function discoverApps() {
   const discoveredAppFolders = fs.readdirSync(appsDir).filter((dir) => {
     const pkgPath = path.join(appsDir, dir, 'package.json');
     return fs.existsSync(pkgPath) && isReactApp(pkgPath);
@@ -254,16 +288,40 @@ function parseCliTargets() {
 }
 
 /**
+ * Parse CLI arguments to resolve which apps or packages should be analyzed.
+ *
+ * Priority:
+ *  1. Explicit `--apps`
+ *  2. Explicit `--packages`
+ *  3. Auto-discovery fallback
+ *
+ * @returns {{appFolders: string[], packageNames: string[]}}
+ *   Object containing app folder names and package names for analysis.
+ */
+function parseCliTargets() {
+  return parseAppsArg() || parsePackagesArg() || discoverApps();
+}
+
+/**
  * Resolve Turbo filters (package names) depending on mode.
  */
 function resolveTurboFilters({ appFolders, packageNames }) {
+  let filters = [];
   if (appFolders.length > 0 && packageNames.length === 0) {
-    return resolveTurboFiltersFromAppFolders(appFolders);
+    filters = resolveTurboFiltersFromAppFolders(appFolders);
+  } else if (packageNames.length > 0) {
+    filters = packageNames;
   }
-  if (packageNames.length > 0) {
-    return packageNames;
+
+  // Always include shared packages for build
+  for (const pkg of sharedPackages) {
+    if (fs.existsSync(pkg.path) && !filters.includes(pkg.name)) {
+      filters.push(pkg.name);
+      logInfo(`Including shared dependency in build: ${pkg.name}`);
+    }
   }
-  return [];
+
+  return filters;
 }
 
 /**
