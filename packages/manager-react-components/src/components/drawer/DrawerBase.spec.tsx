@@ -13,11 +13,11 @@ it('should display the drawer', async () => {
   const dismissButton = screen.getByTestId('drawer-dismiss-button');
   const primaryButton = await getOdsButtonByLabel({
     container,
-    label: mockedProps.primaryButtonLabel,
+    label: mockedProps.primaryButtonLabel || '',
   });
   const secondaryButton = await getOdsButtonByLabel({
     container,
-    label: mockedProps.secondaryButtonLabel,
+    label: mockedProps.secondaryButtonLabel || '',
   });
 
   expect(dismissButton).toHaveAttribute('aria-label', 'close');

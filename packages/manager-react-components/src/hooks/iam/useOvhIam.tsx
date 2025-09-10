@@ -12,18 +12,19 @@ export const fetchAuthorizationsCheck = async ({
   actions: string[];
   urns: string[];
 }) => {
-  const { data } = await apiClient.v2.post(`/iam/authorization/check`, {
+  const response = await apiClient.v2?.post(`/iam/authorization/check`, {
     actions,
     resourceURNs: urns,
   });
-  return data;
+  return response?.data;
 };
 
 export function useAuthorizationsIam({ actions, urns }: IamInterface) {
   const { data } = useQuery({
     queryKey: ['iam-authorization', urns, actions],
-    queryFn: () => fetchAuthorizationsCheck({ actions, urns }),
-    enabled: urns.length > 0 && actions.length > 0,
+    queryFn: () =>
+      fetchAuthorizationsCheck({ actions: actions || [], urns: urns || [] }),
+    enabled: (urns?.length || 0) > 0 && (actions?.length || 0) > 0,
     placeholderData: keepPreviousData,
   });
 
@@ -38,10 +39,10 @@ export const fetchAuthorizationCheck = async (
   actions: string[],
   urn: string,
 ): Promise<IamCheckResponse> => {
-  const { data } = await apiClient.v2.post(getAuthorizationCheckUrl(urn), {
+  const response = await apiClient.v2?.post(getAuthorizationCheckUrl(urn), {
     actions,
   });
-  return data;
+  return response?.data;
 };
 export function useAuthorizationIam(
   actions: string[],
@@ -87,7 +88,7 @@ export function useGetResourceTags({
     isLoading: isTagsLoading,
   } = useResourcesIcebergV2<IamObject>({
     route,
-    queryKey: ['iam/resource', resourceType],
+    queryKey: ['iam/resource', resourceType || ''],
     enabled,
     shouldFetchAll: true,
   });
