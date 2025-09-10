@@ -123,15 +123,13 @@ export default function ClusterManagement({
           />
         )}
 
-        {parseFloat(clusterMinorVersion) !== highestVersion &&
-          regionInformations?.type &&
-          !isMultiDeploymentZones(regionInformations.type) && (
-            <TileButton
-              title={t('kube_service_minor_version_upgrade')}
-              isDisabled={isProcessing(kubeDetail?.status)}
-              href={hrefMinorUpdate}
-            />
-          )}
+        {parseFloat(clusterMinorVersion) !== highestVersion && (
+          <TileButton
+            title={t('kube_service_minor_version_upgrade')}
+            isDisabled={isProcessing(kubeDetail?.status)}
+            href={hrefMinorUpdate}
+          />
+        )}
 
         <TileButton
           title={t('kube_service_terminate')}
