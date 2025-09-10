@@ -10,6 +10,17 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.services', {
     url: '/services',
     component: 'services',
+    redirectTo: (transition) => {
+      const injector = transition.injector();
+      return injector
+        .getAsync('isAutorenewManagementAvailable')
+        .then((isAutorenewManagementAvailable) => {
+          if (!isAutorenewManagementAvailable) {
+            return 'billing.autorenew';
+          }
+          return null;
+        });
+    },
     resolve: {
       isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
         featureAvailability,
