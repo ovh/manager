@@ -133,6 +133,10 @@ export default function Update() {
   const isButtonDisabled = useMemo(() => {
     if (!actionName || !operationArguments) return true;
 
+    if (actionName === ActionNameEnum.CanCancel) {
+      return false;
+    }
+
     let isValid = true;
 
     operationArguments.data.forEach((arg) => {
