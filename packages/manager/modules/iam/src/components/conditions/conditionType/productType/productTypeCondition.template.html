@@ -1,0 +1,17 @@
+<oui-field
+    data-label="{{:: 'iam_create_condition_product_type_label' | translate }}"
+>
+    <oui-select
+        data-load="{{:: $ctrl.URL }}"
+        data-load-options="{ global: { serviceType: 'apiv2' }, size: 0 }"
+        data-match="label"
+        data-model="$ctrl.productTypes"
+        data-multiple="true"
+        data-name="productTypes"
+        data-on-change="$ctrl.updateConditionValues()"
+        data-on-load="$ctrl.transformResourceTypes(response.data)"
+        data-required="true"
+        data-placeholder="{{:: 'iam_create_condition_product_type_placeholder' | translate}}"
+        data-searchable
+    ></oui-select>
+</oui-field>
