@@ -75,6 +75,10 @@ export function Redirections(
         />
         <Route index element={<Rewrite to="/telecom/overTheBox/" />} />
       </Route>
+      <Route path="/key-management-service/">
+        <Route path="*" element={<Rewrite to="/okms/key-management-service/*" />} />
+        <Route index element={<Rewrite to="/okms/key-management-service/" />} />
+      </Route>
     </>
   );
 }
