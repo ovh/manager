@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.147.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.2...@ovh-ux/manager-container-app@0.147.3) (2025-09-10)
+
+
+### Bug Fixes
+
+* **container:** add error management for modal display check ([76c02af](https://github.com/ovh/manager/commit/76c02af709d95dd16b4502f6fa459a4347763c89)), closes [#MANAGER-19604](https://github.com/ovh/manager/issues/MANAGER-19604)
+* **container:** remove payment modal style overriding pnr font ([6262ed5](https://github.com/ovh/manager/commit/6262ed59ffeb1d44822ecb392b7dfaa20b0d2a66)), closes [#MANAGER-19597](https://github.com/ovh/manager/issues/MANAGER-19597)
+
+
+
+
+
 ## [0.147.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.1...@ovh-ux/manager-container-app@0.147.2) (2025-09-09)
 
 
