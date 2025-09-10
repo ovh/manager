@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.56.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.55.11...@ovh-ux/manager-dedicated@20.56.0) (2025-09-10)
+
+
+### Features
+
+* **dedicated-cloud.datastores:** adding datastores usage ([d037a5e](https://github.com/ovh/manager/commit/d037a5eb8ceb0f9c81a9e44b67e9908f89d21dcc)), closes [#MANAGER-19549](https://github.com/ovh/manager/issues/MANAGER-19549)
+
+
+
+
+
 ## [20.55.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.55.10...@ovh-ux/manager-dedicated@20.55.11) (2025-09-09)
 
 
