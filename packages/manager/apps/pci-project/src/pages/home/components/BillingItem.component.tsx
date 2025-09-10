@@ -1,11 +1,11 @@
+import { memo } from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import { BottomSectionItem } from './useDashboardSections.hook';
+import { DashboardTileItem } from '../DashboardTile.types';
 import BillingItemSkeleton from './BillingItemSkeleton.component';
 
 type BillingItemProps = {
-  item: BottomSectionItem;
+  item: DashboardTileItem;
   isLoading: boolean;
 };
 
@@ -26,13 +26,13 @@ const BillingItem = memo(function BillingItem({
       aria-labelledby={t('billing-item-title')}
     >
       <div className="flex-1 text-[var(--ods-color-text)]">
-        {item.description && (
+        {item.descriptionTranslationKey && (
           <OdsText
             preset="paragraph"
             className="mb-2"
             aria-label={t('pci_projects_project_voucher_description_aria')}
           >
-            {item.description}
+            {t(item.descriptionTranslationKey)}
           </OdsText>
         )}
         {item.price && (
