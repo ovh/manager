@@ -8,6 +8,7 @@
   "iam_create_condition_type_weekday": "Jour de la semaine",
   "iam_create_condition_type_date": "Date",
   "iam_create_condition_type_hour": "Heure",
+  "iam_create_condition_type_product_type": "Type de produit",
   "iam_create_condition_operator": "Opérateur",
   "iam_create_condition_operator_placeholder": "Sélectionnez un opérateur",
   "iam_create_condition_cancel": "Annuler",
