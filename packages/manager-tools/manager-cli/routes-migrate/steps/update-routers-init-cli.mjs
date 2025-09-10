@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-
-import path from 'path';
 import fs from 'fs/promises';
+import path from 'path';
 import prettier from 'prettier';
+
 import { applicationsBasePath } from '../../utils/AppUtils.mjs';
 
 const appName = process.argv[2];
@@ -83,10 +83,7 @@ const updateRouterInitialization = (code) => {
     /import\s+\{\s*(routes|appRoutes)\s*\}\s+from\s+['"][^'"]+['"];\n?/g,
     '',
   );
-  transformed = transformed.replace(
-    /import\s+(routes|appRoutes)\s+from\s+['"][^'"]+['"];\n?/g,
-    '',
-  );
+  transformed = transformed.replace(/import\s+(routes|appRoutes)\s+from\s+['"][^'"]+['"];\n?/g, '');
 
   // Update React import to include Suspense
   transformed = transformed.replace(
@@ -128,7 +125,7 @@ const updateRouterInitialization = (code) => {
 
   transformed = transformed.replace(
     /import\s+\{\s*Routes\s*\}\s+from\s+['"](@\/|(\.{1,2}\/)+)routes\/routes['"];?\n?/g,
-    ''
+    '',
   );
 
   // Add `import Routes from './routes/routes'` if missing

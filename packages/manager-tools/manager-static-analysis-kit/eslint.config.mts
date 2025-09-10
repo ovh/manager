@@ -1,12 +1,16 @@
-import { javascriptEslintConfig } from './src/adapters/eslint/rules/eslint-javascript'
-import { typescriptEslintConfig } from './src/adapters/eslint/rules/eslint-typescript';
+/* eslint-disable import/no-unresolved */
+import {
+  complexityJsxTsxConfig,
+  complexityTsJsConfig,
+} from './src/adapters/eslint/rules/eslint-complexity';
+import { importEslintConfig } from './src/adapters/eslint/rules/eslint-imports';
+import { javascriptEslintConfig } from './src/adapters/eslint/rules/eslint-javascript';
+import { checkFileEslintConfig } from './src/adapters/eslint/rules/eslint-naming-conventions';
+import { prettierEslintConfig } from './src/adapters/eslint/rules/eslint-prettier';
 import { reactEslintConfig } from './src/adapters/eslint/rules/eslint-react';
 import { tanStackQueryEslintConfig } from './src/adapters/eslint/rules/eslint-tanstack';
-import { importEslintConfig } from './src/adapters/eslint/rules/eslint-imports';
-import { checkFileEslintConfig } from './src/adapters/eslint/rules/eslint-naming-conventions';
 import { vitestEslintConfig } from './src/adapters/eslint/rules/eslint-tests';
-import { prettierEslintConfig } from './src/adapters/eslint/rules/eslint-prettier';
-import { complexityJsxTsxConfig, complexityTsJsConfig } from './src/adapters/eslint/rules/eslint-complexity';
+import { typescriptEslintConfig } from './src/adapters/eslint/rules/eslint-typescript';
 
 export default [
   javascriptEslintConfig,
@@ -20,12 +24,7 @@ export default [
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
-    ignores: [
-      '**/*.md',
-      '**/coverage/**',
-      '**/dist/**',
-      '**/*.d.ts',
-    ],
+    ignores: ['**/*.md', '**/coverage/**', '**/dist/**', '**/*.d.ts'],
   },
   {
     rules: {
@@ -35,7 +34,7 @@ export default [
     },
   },
   {
-    files: ['**/prettier-config.ts', '**/*.config.{ts,js,mjs}'],
+    files: ['**/*.{ts,js,mjs}'],
     rules: {
       'import/no-nodejs-modules': 'off',
     },
@@ -49,5 +48,5 @@ export default [
       'check-file/folder-match-with-fex': 'off',
       'check-file/filename-naming-convention': 'off',
     },
-  }
+  },
 ];

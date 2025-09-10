@@ -42,6 +42,7 @@ export const checkFileEslintConfig: Linter.FlatConfig[] = [
         {
           errorMessage:
             'Folder "{{ target }}" must follow the "{{ pattern }}" naming convention. See µ-app guidelines.',
+          ignoreWords: ['__tests__', '__mocks__'],
         },
       ],
     },

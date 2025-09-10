@@ -1,9 +1,9 @@
 import {
-  readPackageJson,
-  writePackageJson,
   EXCLUDED_TESTS_DEPS,
   UNIT_TEST_CONFIG_PKG,
   UNIT_TEST_CONFIG_VERSION,
+  readPackageJson,
+  writePackageJson,
 } from '../../../utils/DependenciesUtils.mjs';
 
 /**
@@ -65,8 +65,12 @@ export const updateDependencies = async (appPath, dryRun, versionOverride) => {
     console.log(`✅ Removed from devDependencies: ${removedFromDevDeps.join(', ') || 'None'}`);
     console.log(`✅ Added to devDependencies: ${added.join(', ') || 'None'}`);
   } else {
-    console.log(`🧪 [dry-run] Would remove from dependencies: ${removedFromDeps.join(', ') || 'None'}`);
-    console.log(`🧪 [dry-run] Would remove from devDependencies: ${removedFromDevDeps.join(', ') || 'None'}`);
+    console.log(
+      `🧪 [dry-run] Would remove from dependencies: ${removedFromDeps.join(', ') || 'None'}`,
+    );
+    console.log(
+      `🧪 [dry-run] Would remove from devDependencies: ${removedFromDevDeps.join(', ') || 'None'}`,
+    );
     console.log(`🧪 [dry-run] Would add to devDependencies: ${added.join(', ') || 'None'}`);
   }
 
