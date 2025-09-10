@@ -1,10 +1,11 @@
 import { CountryCode } from '@ovh-ux/manager-config';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
-const DOC_BASE_URL = 'https://docs.ovh.com';
+export const DOC_BASE_URL = 'https://docs.ovh.com';
 
-const DOCUMENTATION_GUIDE_LINKS: {
+export const DOCUMENTATION_GUIDE_LINKS: {
   [guideName: string]: Partial<GuideLinks>;
 } = {
   getting_started: {
@@ -59,87 +60,65 @@ const DOCUMENTATION_GUIDE_LINKS: {
   },
 };
 
-export const getDocumentationLinks = (subsidiary: CountryCode | string) => {
-  return [
-    {
-      labelKey: 'getting_started',
-      descriptionKey: 'essential_to_start',
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS.getting_started[subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS.getting_started.DEFAULT),
-    },
-    {
-      labelKey: 'public_cloud',
-      descriptionKey: 'get_familiar',
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS.public_cloud[subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS.public_cloud.DEFAULT),
-    },
-    {
-      labelKey: 'instances',
-      descriptionKey: 'manage_instances',
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS.instances[subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS.instances.DEFAULT),
-    },
-    {
-      labelKey: 'billing',
-      descriptionKey: 'understand_manage',
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS.billing[subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS.billing.DEFAULT),
-    },
-    {
-      labelKey: 'guides',
-      descriptionKey: 'see_all_guides',
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS.guides[subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS.guides.DEFAULT),
-    },
-  ];
-};
+export const DOCUMENTATION_LINKS_TEMPLATE = [
+  {
+    labelTranslationKey: 'pci_projects_project_getting_started',
+    linkLabelTranslationKey: 'pci_projects_project_essential_to_start',
+    guideKey: 'getting_started',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_public_cloud',
+    linkLabelTranslationKey: 'pci_projects_project_get_familiar',
+    guideKey: 'public_cloud',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_instances',
+    linkLabelTranslationKey: 'pci_projects_project_manage_instances',
+    guideKey: 'instances',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_billing',
+    linkLabelTranslationKey: 'pci_projects_project_understand_manage',
+    guideKey: 'billing',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_guides',
+    linkLabelTranslationKey: 'pci_projects_project_see_all_guides',
+    guideKey: 'guides',
+  },
+];
 
 export const COMMUNITY_LINKS = [
   {
-    labelKey: 'roadmap',
-    descriptionKey: 'discover_participate',
+    labelTranslationKey: 'pci_projects_project_roadmap',
+    linkLabelTranslationKey: 'pci_projects_project_discover_participate',
     link: 'https://github.com/ovh/public-cloud-roadmap',
   },
   {
-    labelKey: 'developer_center',
-    descriptionKey: 'start_with_products',
+    labelTranslationKey: 'pci_projects_project_developer_center',
+    linkLabelTranslationKey: 'pci_projects_project_start_with_products',
     link: 'https://developer.ovh.com/',
   },
   {
-    labelKey: 'community',
-    items: [
-      {
-        descriptionKey: 'discuss_discord',
-        link: 'https://discord.gg/ovhcloud',
-      },
-      {
-        descriptionKey: 'discuss_community',
-        link: 'https://community.ovh.com/',
-      },
-    ],
+    labelTranslationKey: 'pci_projects_project_community',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_discord',
+    link: 'https://discord.gg/ovhcloud',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_community',
+    link: 'https://community.ovh.com/',
   },
 ];
 
-// Add billing section links including voucher link
-export const BILLING_LINKS = [
-  {
-    labelKey: 'credits_vouchers',
-    descriptionKey: 'credits_vouchers',
-    link: '/public-cloud/pci/projects/{projectId}/billing/credits',
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    color: 'primary',
-    icon: 'arrow-right',
-    ariaLabelKey: 'link_credits_vouchers_aria',
-  },
-];
+export const CREDIT_VOUCHER_LINK = {
+  linkLabelTranslationKey: 'pci_projects_project_credits_vouchers',
+  link: '/public-cloud/pci/projects/{projectId}/billing/credits',
+  color: 'primary',
+  iconODS: ODS_ICON_NAME.arrowRight,
+  ariaLabelTranslationKey: 'pci_projects_project_link_credits_vouchers_aria',
+  hideTileIfNoOtherItems: true,
+};
