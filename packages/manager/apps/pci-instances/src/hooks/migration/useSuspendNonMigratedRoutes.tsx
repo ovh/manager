@@ -11,6 +11,11 @@ export const suspendNonMigratedRoutesLoader = (
 
   return (loaderParams, ...restArgs) => {
     const { pathname } = new URL(loaderParams.request.url);
+
+    if (pathname.endsWith('/new')) {
+      return { routeMigrated: false };
+    }
+
     const isRouteAvailable =
       !routes || routes.some((r) => matchPath(r, pathname) !== null);
 
