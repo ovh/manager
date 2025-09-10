@@ -224,5 +224,6 @@
   "sidebar_network_services": "Usługi sieciowe",
   "sidebar_sap_features_hub": "SAP Features Hub",
   "sidebar_alldom": "Pakiety Alldom",
-  "sidebar_alldom_list": "Moje pakiety Alldom"
+  "sidebar_alldom_list": "Moje pakiety Alldom",
+  "sidebar_pci_quantum_qpu": "QPUs"
 }

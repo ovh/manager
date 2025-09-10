@@ -1,0 +1,7 @@
+{
+  "Title": "QPUs",
+  "createNotebookButton": "Create a Notebook",
+  "Description1": "Dive into quantum computing with complete freedom using our turnkey, cloud-based notebooks.",
+  "Description2": "Run 20-qubit simulations in seconds—no installation or configuration needed.",
+  "Description3": "Access a preconfigured environment compatible with the main frameworks (Pulser, Mimiq, Perceval, Callisto, Qleo, Qiskit, MyQLM) and easily collaborate with your teams via a shared, secure interface"
+}
