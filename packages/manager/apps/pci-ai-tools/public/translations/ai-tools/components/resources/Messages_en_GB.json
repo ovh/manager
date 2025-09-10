@@ -9,5 +9,6 @@
   "temporaryLocalStorageField": "Temporary local storage: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "High-performance local storage, but not backed up",
   "modifyLabel": "Edit",
-  "disabledButtonTooltip": "Make sure the notebook is in ‘Stopped’ status"
+  "disabledButtonTooltip": "Make sure the notebook is in ‘Stopped’ status",
+  "qpuQubits": "Qubits: "
 }

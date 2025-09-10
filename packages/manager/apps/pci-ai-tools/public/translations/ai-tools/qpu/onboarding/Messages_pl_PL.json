@@ -1,0 +1,7 @@
+{
+  "Title": "QPUs",
+  "createNotebookButton": "Stwórz notebook",
+  "Description1": "Realizuj projekty z zakresu informatyki kwantowej, korzystając z gotowych notebooków w chmurze",
+  "Description2": "Symuluj do 20 kubitów w kilka sekund - bez instalacji i konfiguracji.",
+  "Description3": "Zyskaj dostęp do wstępnie skonfigurowanego środowiska kompatybilnego z głównymi frameworkami (Pulser, Mimiq, Perceval, Callisto, Qleo, Qiskit, MyQLM, ...) i współpracuj łatwo dzięki wspólnemu i bezpiecznemu interfejsowi"
+}
