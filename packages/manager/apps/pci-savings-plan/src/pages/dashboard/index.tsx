@@ -13,6 +13,7 @@ import GenericChart from '@/components/Chart/Chart';
 import { useFilteredConsumption } from '@/hooks/useFilteredConsumption';
 import Header from '@/components/Header/Header';
 import { useProjectId } from '@/hooks/useProject';
+import { isInstanceFlavor } from '@/utils/savingsPlan';
 
 const Dashboard: React.FC = () => {
   const projectId = useProjectId();
@@ -44,6 +45,7 @@ const Dashboard: React.FC = () => {
     () => consumption?.flavors?.find((f) => f.flavor === flavor),
     [consumption, flavor],
   );
+  const isInstance = useMemo(() => isInstanceFlavor(flavor), [flavor]);
 
   useEffect(() => {
     if (!isLoading && !isPending && savingsPlan?.length === 0) {
@@ -103,6 +105,7 @@ const Dashboard: React.FC = () => {
         />
       )}
       <ConsumptionDatagrid
+        isInstanceFlavor={isInstance}
         isLoading={isConsumptionLoading}
         consumption={currentConsumption}
       />

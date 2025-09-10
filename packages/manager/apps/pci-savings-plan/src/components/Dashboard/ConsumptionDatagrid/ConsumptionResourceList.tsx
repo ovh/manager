@@ -8,13 +8,15 @@ import { useTranslation } from 'react-i18next';
 type ConsumptionResourceListProps = {
   isDrawerOpen: boolean;
   resources: string[];
-  hanldeCloseDrawer: () => void;
+  handleCloseDrawer: () => void;
+  isInstanceFlavor: boolean;
 };
 
 const ConsumptionResourceList = ({
   isDrawerOpen,
   resources,
-  hanldeCloseDrawer,
+  isInstanceFlavor,
+  handleCloseDrawer,
 }: ConsumptionResourceListProps) => {
   const pciUrl = usePciUrl();
   const { t } = useTranslation('dashboard');
@@ -36,8 +38,14 @@ const ConsumptionResourceList = ({
 
   const onClose = () => {
     setSearchQuery('');
-    hanldeCloseDrawer();
+    handleCloseDrawer();
   };
+
+  const getResourceUrl = (planId: string) =>
+    isInstanceFlavor
+      ? `${pciUrl}/instances/${planId}`
+      : `${pciUrl}/rancher/${planId}`;
+
   return (
     <Drawer
       heading={t('dashboard_resource_list_details')}
@@ -70,7 +78,7 @@ const ConsumptionResourceList = ({
                   <div key={planId} className="py-2">
                     <OdsLink
                       icon={ODS_ICON_NAME.arrowRight}
-                      href={`${pciUrl}/instances/${planId}`}
+                      href={getResourceUrl(planId)}
                       label={planId}
                       target="_blank"
                     />

@@ -28,6 +28,7 @@ import ConsumptionResourceList from './ConsumptionResourceList';
 type ConsumptionDatagridProps = {
   isLoading: boolean;
   consumption: SavingsPlanFlavorConsumption;
+  isInstanceFlavor: boolean;
 };
 
 const CellText = ({ text }: { text: string }) => (
@@ -37,6 +38,7 @@ const CellText = ({ text }: { text: string }) => (
 const ConsumptionDatagrid = ({
   isLoading,
   consumption,
+  isInstanceFlavor,
 }: ConsumptionDatagridProps) => {
   const { pagination, setPagination } = useDataGrid();
   const { environment } = useContext(ShellContext);
@@ -48,6 +50,7 @@ const ConsumptionDatagrid = ({
   const navigate = useNavigate();
   const projectId = useProjectId();
   const { clearNotifications } = useNotifications();
+
   const columns = [
     {
       label: t('dashboard_columns_start'),
@@ -128,7 +131,7 @@ const ConsumptionDatagrid = ({
     }
   }, [items]);
 
-  const hanldeCloseDrawer = () => {
+  const handleCloseDrawer = () => {
     setSelectedResources([]);
     setDrawerOpen(false);
   };
@@ -136,9 +139,10 @@ const ConsumptionDatagrid = ({
   return (
     <div>
       <ConsumptionResourceList
+        isInstanceFlavor={isInstanceFlavor}
         isDrawerOpen={isDrawerOpen}
         resources={selectedResources}
-        hanldeCloseDrawer={hanldeCloseDrawer}
+        handleCloseDrawer={handleCloseDrawer}
       />
       <OdsText preset="heading-4" className="mt-8">
         {t('dashboard_table_title')}
