@@ -36,6 +36,7 @@ import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 import { TService } from '@/data/types/service.type';
 import { usePaginatedItems } from '@/hooks/usePaginatedItems';
 import { useParam } from '@/hooks/useParam';
+import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 
 const CONTACTS_DATAGRID_PAGINATION = 10;
 
@@ -84,90 +85,96 @@ export default function ContactsPage() {
   const contactsPageHref = useGetContactsPageHref(context, serviceInfo);
 
   if (!project || !serviceInfo || !userAcls) {
-    return <OdsSpinner size="md" />;
+    return (
+      <ProjectValidationGuard>
+        <OdsSpinner size="md" />
+      </ProjectValidationGuard>
+    );
   }
 
   return (
-    <BaseLayout
-      header={{
-        title: t('pci_projects_project_contacts_title'),
-        changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
-        headerButton: <PciGuidesHeader category="instances" />,
-      }}
-      breadcrumb={
-        <OdsBreadcrumb>
-          <OdsBreadcrumbItem href={hrefProject} label={project.description} />
-          <OdsBreadcrumbItem
-            href={'#'}
-            label={t('pci_projects_project_contacts_title')}
+    <ProjectValidationGuard>
+      <BaseLayout
+        header={{
+          title: t('pci_projects_project_contacts_title'),
+          changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
+          headerButton: <PciGuidesHeader category="instances" />,
+        }}
+        breadcrumb={
+          <OdsBreadcrumb>
+            <OdsBreadcrumbItem href={hrefProject} label={project.description} />
+            <OdsBreadcrumbItem
+              href={'#'}
+              label={t('pci_projects_project_contacts_title')}
+            />
+          </OdsBreadcrumb>
+        }
+      >
+        <div className="flex flex-col gap-4 mb-8">
+          <PciDiscoveryBanner project={project} />
+          <Notifications />
+          <div className="contacts-card">
+            <div className="row">
+              <OdsText className="contacts-card-info text-right">
+                {t('cpb_rights_owner')}
+              </OdsText>
+              <OdsText className="contacts-card-info text-left">
+                {serviceInfo.contactAdmin}
+              </OdsText>
+              <div className="contacts-card-info">
+                {canChangeContacts && (
+                  <OdsLink
+                    href={contactsPageHref}
+                    label={t('cpb_rights_modify')}
+                    icon={ODS_ICON_NAME.externalLink}
+                    target="_blank"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="row mt-4">
+              <OdsText className="contacts-card-info text-right">
+                {t('cpb_rights_billing_contact')}
+              </OdsText>
+              <OdsText className="contacts-card-info text-left">
+                {serviceInfo.contactBilling}
+              </OdsText>
+              <div className="contacts-card-info">
+                {canChangeContacts && (
+                  <OdsLink
+                    href={contactsPageHref}
+                    label={t('cpb_rights_modify')}
+                    icon={ODS_ICON_NAME.externalLink}
+                    target="_blank"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+          <OdsText>{t('cpb_rights_expl2')}</OdsText>
+          <OdsText>{t('cpb_rights_note')}</OdsText>
+
+          {isAdmin && (
+            <OdsButton
+              className="my-8 size-fit"
+              label={t('common_add')}
+              variant={ODS_BUTTON_VARIANT.outline}
+              onClick={openAddContactModal}
+              isDisabled={discoveryProject}
+            />
+          )}
+
+          <Datagrid
+            columns={columns}
+            items={flattenData as AccountAcl[]}
+            totalItems={userAcls.length}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={fetchNextPage}
           />
-        </OdsBreadcrumb>
-      }
-    >
-      <div className="flex flex-col gap-4 mb-8">
-        <PciDiscoveryBanner project={project} />
-        <Notifications />
-        <div className="contacts-card">
-          <div className="row">
-            <OdsText className="contacts-card-info text-right">
-              {t('cpb_rights_owner')}
-            </OdsText>
-            <OdsText className="contacts-card-info text-left">
-              {serviceInfo.contactAdmin}
-            </OdsText>
-            <div className="contacts-card-info">
-              {canChangeContacts && (
-                <OdsLink
-                  href={contactsPageHref}
-                  label={t('cpb_rights_modify')}
-                  icon={ODS_ICON_NAME.externalLink}
-                  target="_blank"
-                />
-              )}
-            </div>
-          </div>
-          <div className="row mt-4">
-            <OdsText className="contacts-card-info text-right">
-              {t('cpb_rights_billing_contact')}
-            </OdsText>
-            <OdsText className="contacts-card-info text-left">
-              {serviceInfo.contactBilling}
-            </OdsText>
-            <div className="contacts-card-info">
-              {canChangeContacts && (
-                <OdsLink
-                  href={contactsPageHref}
-                  label={t('cpb_rights_modify')}
-                  icon={ODS_ICON_NAME.externalLink}
-                  target="_blank"
-                />
-              )}
-            </div>
-          </div>
         </div>
-        <OdsText>{t('cpb_rights_expl2')}</OdsText>
-        <OdsText>{t('cpb_rights_note')}</OdsText>
 
-        {isAdmin && (
-          <OdsButton
-            className="my-8 size-fit"
-            label={t('common_add')}
-            variant={ODS_BUTTON_VARIANT.outline}
-            onClick={openAddContactModal}
-            isDisabled={discoveryProject}
-          />
-        )}
-
-        <Datagrid
-          columns={columns}
-          items={flattenData as AccountAcl[]}
-          totalItems={userAcls.length}
-          hasNextPage={hasNextPage}
-          onFetchNextPage={fetchNextPage}
-        />
-      </div>
-
-      <Outlet />
-    </BaseLayout>
+        <Outlet />
+      </BaseLayout>
+    </ProjectValidationGuard>
   );
 }
