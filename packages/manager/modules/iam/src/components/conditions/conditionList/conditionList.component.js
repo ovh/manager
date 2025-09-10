@@ -6,6 +6,7 @@ export const name = 'iamConditionList';
 export default {
   bindings: {
     conditions: '=',
+    readOnly: '<',
   },
   controller,
   template,

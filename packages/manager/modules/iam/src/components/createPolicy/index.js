@@ -4,7 +4,6 @@ import actionSelect from '../actionSelect';
 import deleteEntity from '../deleteEntity';
 import resourceSelect from '../resourceSelect';
 import identities from '../identities';
-import createCondition from '../conditions/createCondition';
 import conditionList from '../conditions/conditionList';
 import conditionOperator from '../conditions/operator';
 
@@ -18,7 +17,6 @@ angular
     deleteEntity,
     resourceSelect,
     identities,
-    createCondition,
     conditionList,
     conditionOperator,
   ])
