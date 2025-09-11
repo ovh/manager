@@ -10,7 +10,7 @@ import {
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
-  versionsMock,
+  versionListMock,
 } from '@secret-manager/mocks/versions/versions.mock';
 import {
   RAW_VALUE_TEST_ID,
@@ -19,7 +19,7 @@ import {
   VERSION_SELECTOR_SPINNER_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from '@secret-manager/utils/tests/secretValue.constants';
-import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
 import {
   renderTestApp,
@@ -28,7 +28,7 @@ import {
 import { labels } from '@/utils/tests/init.i18n';
 
 const mockOkmsId = '12345';
-const mockSecret = secretsMock[0];
+const mockSecret = secretListMock[0];
 const mockSecretPath = mockSecret.path;
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(
@@ -96,7 +96,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionsMock[0].id.toString(),
+          versionListMock[0].id.toString(),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -104,7 +104,7 @@ describe('ValueDrawer test suite', () => {
 
     it('should display the version selector with the url version pre-selected', async () => {
       // GIVEN
-      const lastVersion = versionsMock.length;
+      const lastVersion = versionListMock.length;
 
       // WHEN
       await renderPage({
@@ -121,7 +121,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionsMock[lastVersion - 1].id.toString(),
+          versionListMock[lastVersion - 1].id.toString(),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
