@@ -1,6 +1,7 @@
 {
   "step1Description": "Sélectionnez le service de destination pour l'IP <b>{{ip}}</b> :",
   "step1CurrentServiceLabel": "De",
+  "step1EmptyCurrentServiceValue": "Parking des IP",
   "step1DestinationServiceLabel": "Vers",
   "step1NextHopLabel": "Sur",
   "step1VrackMessage": "Veuillez d'abord détacher votre bloc IP de vRack <Link>(ici)</Link> pour pouvoir le connecter ailleurs.",
