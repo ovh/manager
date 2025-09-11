@@ -1,8 +1,0 @@
-{
-  "pci_ai_apps_delete_success": "Twoja aplikacja została usunięta",
-  "pci_ai_apps_delete_error": "Wystąpił błąd podczas usuwania aplikacji: {{message}}",
-  "pci_ai_apps_delete": "Usuwanie aplikacji",
-  "pci_ai_apps_delete_warning": "Czy na pewno chcesz usunąć aplikację {{appId}}?",
-  "pci_ai_apps_delete_common_delete": "Zatwierdź",
-  "pci_ai_apps_delete_common_cancel": "Anuluj"
-}

@@ -1,6 +1,0 @@
-{
-  "pci_app_command_title": "Automatyczne tworzenie równoważnej aplikacji",
-  "pci_app_command_description": "Możesz utworzyć taką samą aplikację, używając tych wierszy poleceń w CLI.",
-  "pci_app_command_help": "Dowiedz się więcej.",
-  "pci_app_command_error": "Wystąpił błąd podczas próby pobrania odpowiedniego polecenia: {{message}}"
-}
