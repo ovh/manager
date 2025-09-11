@@ -1,8 +1,0 @@
-{
-  "pci_app_stop_app_title": "Zatrzymanie aplikacji",
-  "pci_app_stop_app_content": "Czy na pewno chcesz zatrzymać aplikację {{appName}}?",
-  "pci_app_stop_app_success": "Twoja aplikacja została zatrzymana.",
-  "pci_app_stop_app_error": "Wystąpił błąd podczas zatrzymywania Twojej aplikacji {{appName}}: {{message}}",
-  "pci_app_stop_app_submit_label": "Zatwierdź",
-  "pci_app_stop_app_cancel_label": "Anuluj"
-}

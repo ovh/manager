@@ -1,6 +1,0 @@
-{
-  "pci_notebook_add_editors_title": "Wybierz live-code editor",
-  "pci_notebook_add_editors_editor_vscode": "Visual Studio Code",
-  "pci_notebook_add_editors_editor_jupyterlab": "JupyterLab",
-  "pci_notebook_add_editors_editor_jupyterlabcollaborative": "JupyterLab + Real Time Collaboration"
-}
