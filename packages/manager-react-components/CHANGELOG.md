@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.2...@ovh-ux/manager-react-components@2.40.3) (2025-09-11)
+
+### Bug Fixes
+
+- **manager-react-components:** correct breadcrumb href ([2b348f9](https://github.com/ovh/manager/commit/2b348f980f97e21615cb7f8aa143135bcba9115d)), closes [#MANAGER-19686](https://github.com/ovh/manager/issues/MANAGER-19686)
+
 ## [2.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.1...@ovh-ux/manager-react-components@2.40.2) (2025-09-09)
 
 ### Bug Fixes
