@@ -2,7 +2,6 @@ import {
   Links,
   LinkType,
   Notifications,
-  Title,
 } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
@@ -18,7 +17,9 @@ export default function ImportPage() {
   const goBackUrl = useGenerateUrl('..', 'href');
   return (
     <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
-      <Title>{t('import_website')}</Title>
+      <OdsText preset={ODS_TEXT_PRESET.heading1} className="mb-4">
+        {t('import_website')}
+      </OdsText>
       <Links
         type={LinkType.back}
         href={goBackUrl}
