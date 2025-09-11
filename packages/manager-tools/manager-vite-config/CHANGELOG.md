@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.12.0...@ovh-ux/manager-vite-config@0.13.0) (2025-09-11)
+
+
+### Features
+
+* integrate and configure bundle analysis ([514d424](https://github.com/ovh/manager/commit/514d4247b6b6e4b37379e64e5260636b5d1c7c4d)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.11.0...@ovh-ux/manager-vite-config@0.12.0) (2025-09-06)
 
 

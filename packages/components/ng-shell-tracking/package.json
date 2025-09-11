@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-shell-tracking",
-  "version": "0.7.17",
+  "version": "0.7.18",
   "private": true,
   "description": "ATInternet tracking library wrapper for AngularJS",
   "keywords": [
@@ -34,7 +34,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/ovh-at-internet": "^0.24.2"
+    "@ovh-ux/ovh-at-internet": "^0.24.3"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.1.0"

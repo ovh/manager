@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.11.0...@ovh-ux/manager-cli@0.11.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* static kit integration status ([9a49e4f](https://github.com/ovh/manager/commit/9a49e4f992311de0ec2ac2876720dc46202ed118)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.10.0...@ovh-ux/manager-cli@0.11.0) (2025-09-06)
 
 

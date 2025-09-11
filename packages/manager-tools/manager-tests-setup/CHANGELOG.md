@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.4.0...@ovh-ux/manager-tests-setup@0.4.1) (2025-09-11)
+
+
+### Bug Fixes
+
+* static kit integration status ([9a49e4f](https://github.com/ovh/manager/commit/9a49e4f992311de0ec2ac2876720dc46202ed118)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.3.0...@ovh-ux/manager-tests-setup@0.4.0) (2025-09-06)
 
 
