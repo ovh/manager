@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 export default function Loading() {
