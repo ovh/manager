@@ -46,8 +46,6 @@ describe('Secret page test suite', () => {
       'SecretBreadcrumbItem',
     ]);
 
-    const settingDomain = labels.secretManager.setting_domain;
-
     const labelOnce = [
       // tabs
       labels.secretManager.versions,
@@ -62,7 +60,7 @@ describe('Secret page test suite', () => {
       // settings tile values
       mockSecret.metadata.deactivateVersionAfter,
       mockSecret.metadata.maxVersions,
-      `${labels.secretManager.activated} (${settingDomain})`,
+      labels.secretManager.activated,
       // actions tile
       labels.secretManager.actions,
     ];

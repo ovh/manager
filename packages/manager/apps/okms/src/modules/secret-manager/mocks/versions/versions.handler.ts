@@ -1,11 +1,8 @@
 import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import {
-  versionsMock,
-  versionsMockwithData,
-  createVersionResponseMock,
-} from './versions.mock';
+import { versionListMock, createVersionResponseMock } from './versions.mock';
 import { createHandlerResponseMock } from '@/utils/tests/testUtils';
+import { findVersionMockById } from './versionsMock.utils';
 
 // LIST VERSION
 export type GetVersionsMockParams = {
@@ -15,7 +12,7 @@ export type GetVersionsMockParams = {
 
 export const getVersionsMock = ({
   isVersionsKO,
-  nbVersions = versionsMock.length,
+  nbVersions = versionListMock.length,
 }: GetVersionsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version',
@@ -26,18 +23,11 @@ export const getVersionsMock = ({
             message: 'versions error',
           },
         }
-      : versionsMock.slice(0, nbVersions),
+      : versionListMock.slice(0, nbVersions),
     status: isVersionsKO ? 500 : 200,
     api: 'v2',
   },
 ];
-
-const findVersionById = (request: Request, params: PathParams) => {
-  const url = new URL(request.url);
-  const includeData = url.searchParams.get('includeData');
-  const mock = includeData ? versionsMockwithData : versionsMock;
-  return mock.find(({ id }) => id.toString() === params.versionId);
-};
 
 // GET VERSION
 export type GetVersionMockParams = {
@@ -57,7 +47,7 @@ export const getVersionMock = ({
           },
         }
       : (request: Request, params: PathParams) =>
-          findVersionById(request, params),
+          findVersionMockById(versionListMock, request, params),
     status: isVersionKO ? 500 : 200,
     api: 'v2',
   },
