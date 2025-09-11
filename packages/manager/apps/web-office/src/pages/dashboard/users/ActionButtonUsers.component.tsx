@@ -1,34 +1,27 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { UserStateEnum } from '@/data/api/api.type';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { APP_NAME, DELETE_ACCOUNT, EDIT_ACCOUNT, EDIT_PASSWORD } from '@/Tracking.constants';
+import { UserStateEnum } from '@/data/api/ApiType';
+import { LicensePrepaidType, LicenseType } from '@/data/api/license/type';
 import { UserNativeType } from '@/data/api/users/type';
-import { LicenseType } from '@/data/api/license/type';
-import { useGenerateUrl } from '@/hooks';
-import {
-  APP_NAME,
-  DELETE_ACCOUNT,
-  EDIT_ACCOUNT,
-  EDIT_PASSWORD,
-} from '@/tracking.constants';
+import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
+import { IAM_ACTIONS } from '@/utils/IamAction.constants';
 
 interface ActionButtonUsersProps {
-  usersItem: UserNativeType;
-  licenceDetail: LicenseType;
+  usersItem: UserNativeType | LicensePrepaidType;
+  licenceDetail: LicenseType | LicensePrepaidType;
 }
-const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({
-  usersItem,
-  licenceDetail,
-}) => {
+const ActionButtonUsers: React.FC<ActionButtonUsersProps> = ({ usersItem, licenceDetail }) => {
   const { t } = useTranslation(['dashboard/users', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
