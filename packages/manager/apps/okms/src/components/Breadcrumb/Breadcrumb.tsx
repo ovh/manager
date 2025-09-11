@@ -1,30 +1,35 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
 } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
 import {
   BreadcrumbItem,
   useBreadcrumb,
 } from '@/hooks/breadcrumb/useBreadcrumb';
 
-export interface BreadcrumbProps {
-  items?: BreadcrumbItem[];
-}
+export type BreadcrumbProps = {
+  items: BreadcrumbItem[];
+};
 
-function Breadcrumb({ items }: Readonly<BreadcrumbProps>): JSX.Element {
-  const { t } = useTranslation('key-management-service/listing');
-
-  const breadcrumbItems = useBreadcrumb({
-    rootLabel: t('key_management_service_listing_title'),
-    items,
-  });
+function Breadcrumb({ items }: BreadcrumbProps) {
+  const navigate = useNavigate();
+  const breadcrumbItems = useBreadcrumb({ items });
 
   return (
     <OdsBreadcrumb>
-      {breadcrumbItems.map(({ label, ...props }) => (
-        <OdsBreadcrumbItem key={label} label={label} {...props} />
+      {breadcrumbItems.map(({ id, label, navigateTo }) => (
+        <OdsBreadcrumbItem
+          key={id}
+          label={label}
+          onOdsClick={() => {
+            if (navigateTo) {
+              navigate(navigateTo);
+            }
+          }}
+          href={undefined}
+        />
       ))}
     </OdsBreadcrumb>
   );
