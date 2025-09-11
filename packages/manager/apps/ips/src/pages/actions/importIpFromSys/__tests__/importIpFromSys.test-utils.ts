@@ -42,9 +42,9 @@ export async function fillStep4(container: HTMLElement) {
   });
 
   await waitFor(() => {
-    const checkbox = container.querySelector(
-      'ods-checkbox',
-    ) as HTMLOdsCheckboxElement;
+    const checkbox = container
+      .querySelector('ods-modal')
+      .querySelector('ods-checkbox') as HTMLOdsCheckboxElement;
     checkbox.setAttribute('is-checked', '');
     return fireEvent(checkbox, event);
   }, WAIT_FOR_DEFAULT_OPTIONS);
