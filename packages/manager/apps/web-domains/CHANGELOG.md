@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.1.12...@ovh-ux/manager-web-domains-app@1.2.0) (2025-09-11)
+
+
+### Features
+
+* **web-domains:** implement back link ([#19027](https://github.com/ovh/manager/issues/19027)) ([a71f5e1](https://github.com/ovh/manager/commit/a71f5e1e449db0b62626c5fa9c8f7c3940359e1e)), closes [#MANAGER-19644](https://github.com/ovh/manager/issues/MANAGER-19644)
+* **web-domains:** static kit migration ([#18782](https://github.com/ovh/manager/issues/18782)) ([ef30b28](https://github.com/ovh/manager/commit/ef30b280facea58f55a700e827427f230c338c05)), closes [#MANAGER-19137](https://github.com/ovh/manager/issues/MANAGER-19137)
+
+
+
+
+
 ## [1.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.1.11...@ovh-ux/manager-web-domains-app@1.1.12) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
