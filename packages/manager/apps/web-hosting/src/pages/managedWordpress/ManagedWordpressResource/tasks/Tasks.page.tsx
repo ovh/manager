@@ -4,43 +4,53 @@ import {
   DatagridColumn,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { OdsBadge, OdsProgressBar } from '@ovhcloud/ods-components/react';
+import {
+  OdsBadge,
+  OdsButton,
+  OdsProgressBar,
+} from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
 import { ManagedWordpressResourceTask, ResourceStatus } from '@/data/type';
-import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
 import { getStatusColor } from '@/utils/getStatusColor';
-
-function extractIdsFromLink(link: string) {
-  const match = link.match(
-    /\/v2\/managedCMS\/resource\/([^/]+)\/website\/([^/]+)/,
-  );
-  if (!match) return null;
-  return { websiteId: match[2] };
-}
+import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
 
 export default function TasksPage() {
   const { serviceName } = useParams();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', NAMESPACES.DASHBOARD]);
 
-  const { data } = useManagedWordpressResourceTasks(serviceName);
+  const { data, refetch, isFetching } = useManagedWordpressResourceTasks(
+    serviceName,
+  );
   const formatDate = useFormatDate();
+
   const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
     () => [
       {
         id: 'defaultFqdn',
         cell: (item) => {
-          const ids = extractIdsFromLink(item.link);
-          if (!ids) return <div>Waiting fqdn by api</div>;
-
-          const { data: websiteDetails } = useManagedWordpressWebsiteDetails(
+          const id = item?.link?.split('/').pop();
+          const { data: websitesList } = useManagedWordpressWebsites(
             serviceName,
-            ids.websiteId,
           );
-          return <>{websiteDetails?.currentState?.defaultFQDN}</>;
+
+          const matchingItem = websitesList?.find(
+            (website) => website.id === id,
+          );
+
+          return <>{matchingItem?.currentState.defaultFQDN}</>;
         },
         label: t('web_hosting_status_header_fqdn'),
+      },
+      {
+        id: 'type',
+        cell: (item) => {
+          return t(`common:web_hosting_common_type_${item.type.toLowerCase()}`);
+        },
+        label: t(`${NAMESPACES.DASHBOARD}:type`),
       },
       {
         id: 'status',
@@ -101,12 +111,26 @@ export default function TasksPage() {
     ],
     [t],
   );
-
+  const handleRefreshClick = () => {
+    refetch();
+  };
   return (
-    <Datagrid
-      columns={columns}
-      items={data || []}
-      totalItems={data?.length || 0}
-    />
+    <>
+      <div className="mb-4 mt-4 flex justify-end">
+        <OdsButton
+          onClick={() => handleRefreshClick()}
+          data-testid="refresh"
+          label={''}
+          icon={ODS_ICON_NAME.refresh}
+          variant={ODS_BUTTON_VARIANT.outline}
+          isLoading={isFetching}
+        ></OdsButton>
+      </div>
+      <Datagrid
+        columns={columns}
+        items={data || []}
+        totalItems={data?.length || 0}
+      />
+    </>
   );
 }

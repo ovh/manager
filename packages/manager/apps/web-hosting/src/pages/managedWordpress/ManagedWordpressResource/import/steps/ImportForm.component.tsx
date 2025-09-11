@@ -1,7 +1,6 @@
 import {
   ManagerButton,
   ManagerTile,
-  Subtitle,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -237,11 +236,18 @@ export default function ImportForm() {
     },
     onSuccess: () => {
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            'managedWordpress:web_hosting_managed_wordpress_import_success_message',
-          )}
-        </OdsText>,
+        <div>
+          <span className="block font-bold">
+            {t(
+              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1',
+            )}
+          </span>
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
+            {t(
+              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2',
+            )}
+          </OdsText>
+        </div>,
         true,
       );
       queryClient.invalidateQueries({
@@ -270,13 +276,15 @@ export default function ImportForm() {
     <>
       {step === 1 && (
         <form onSubmit={handleSubmit(onStep1Submit)}>
-          <Subtitle>{t('common:web_hosting_common_url_connexion')}</Subtitle>
+          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+            {t('common:web_hosting_common_url_connexion')}
+          </OdsText>
           <Controller
             name="adminURL"
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
               <OdsFormField
-                className="w-full"
+                className="w-full mb-4"
                 error={errors?.adminURL?.message}
               >
                 <label slot="label">
@@ -295,13 +303,15 @@ export default function ImportForm() {
               </OdsFormField>
             )}
           />
-          <Subtitle>{t('common:web_hosting_common_wordpress_login')}</Subtitle>
+          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+            {t('common:web_hosting_common_wordpress_login')}
+          </OdsText>
           <Controller
             name="adminLogin"
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
               <OdsFormField
-                className="w-full"
+                className="w-full mb-4"
                 error={errors?.adminLogin?.message}
               >
                 <label slot="label">
@@ -325,7 +335,7 @@ export default function ImportForm() {
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
               <OdsFormField
-                className="w-full"
+                className="w-full mb-4"
                 error={errors?.adminPassword?.message}
               >
                 <label slot="label">
@@ -360,11 +370,11 @@ export default function ImportForm() {
       )}
       {step === 2 && (
         <form onSubmit={handleSubmitStep2(onStep2Submit)}>
-          <Subtitle>
+          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
             {t(
               'managedWordpress:web_hosting_managed_wordpress_import_select_element',
             )}
-          </Subtitle>
+          </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.span}>
             {t(
               'managedWordpress:web_hosting_managed_wordpress_import_select_element_description',
@@ -540,7 +550,9 @@ export default function ImportForm() {
                       htmlFor="import-media"
                       className="ml-4 cursor-pointer"
                     >
-                      <OdsText>{t('common:web_hosting_common_media')}</OdsText>
+                      <OdsText>
+                        {t('common:web_hosting_common_media_all')}
+                      </OdsText>
                     </label>
                   </div>
                 )}
@@ -624,7 +636,7 @@ export default function ImportForm() {
             </div>
             <OdsText preset={ODS_TEXT_PRESET.span}>
               {t(
-                'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
+                'managedWordpress:web_hosting_managed_wordpress_import_select_category_description',
               )}
             </OdsText>
             <div className="flex flex-row mt-4">
