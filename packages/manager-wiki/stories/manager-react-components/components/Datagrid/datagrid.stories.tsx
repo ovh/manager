@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Datagrid, DatagridProps } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  DatagridProps,
+  Text,
+} from '@ovh-ux/manager-react-components';
+import { FormField, FormFieldLabel, Input, Button } from '@ovhcloud/ods-react';
 import { SortingState } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
@@ -61,38 +66,82 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [isFetchAll, setIsFetchAll] = useState(false);
   const [items, setItems] = useState(args.data);
   const cols = args.columns;
+  // const containerHeight = args.containerHeight;
+  const fetchAllPages = () => {
+    const newData = Array.from({ length: 10000 }, (_, index) => ({
+      ...items[index],
+      person: `Most interest in ${items.length + index}`,
+      mostInterestIn: `Most interest in ${items.length + index}`,
+      age: index + 1,
+    }));
+    setItems([...items, ...newData]);
+  };
+
+  const [containerHeightState, setContainerHeightState] = useState(
+    args.containerHeight,
+  );
+  const [containerHeightStyle, setContainerHeightStyle] = useState(
+    args.containerHeight,
+  );
+
   return (
-    <Datagrid
-      columns={cols}
-      data={items}
-      {...('manualSorting' in args && { ...sortAttrs })}
-      {...('onFetchAllPages' in args &&
-        !isFetchAll && {
-          hasNextPage: true,
-          onFetchAllPages: () => {
-            setIsFetchAll(true);
-            const newItems = Array.from({ length: 20 }, () => ({
-              person: `Person ${items.length + 1}`,
-              mostInterestIn: `Most interest in ${items.length + 1}`,
-              age: items.length + 1,
-            }));
-            setItems([...items, ...newItems]);
-          },
-        })}
-      {...('onFetchNextPage' in args &&
-        !isFetchAll && {
-          hasNextPage: true,
-          onFetchNextPage: () =>
-            setItems([
-              ...items,
-              {
-                person: `Person ${items.length + 1}`,
-                mostInterestIn: `Most interest in ${items.length + 1}`,
-                age: items.length + 1,
-              },
-            ]),
-        })}
-    />
+    <>
+      {'onFetchNextPage' in args && (
+        <div className="py-4">
+          <Text>
+            <b>Notice:</b> You are currently running React in development mode.
+            Virtualized rendering performance will be slightly degraded until
+            this application is built for production. ({items?.length} of 10000
+            rows fetched)
+          </Text>
+        </div>
+      )}
+      {'containerHeight' in args && (
+        <div className="py-4">
+          <div className="max-w-[200px]">
+            <FormField>
+              <FormFieldLabel>Container Height</FormFieldLabel>
+              <Input
+                value={containerHeightState}
+                onChange={(e) => setContainerHeightState(e.target.value)}
+              />
+              <Button
+                onClick={() => setContainerHeightStyle(containerHeightState)}
+              >
+                Update
+              </Button>
+            </FormField>
+          </div>
+        </div>
+      )}
+      <Datagrid
+        columns={cols}
+        data={items}
+        {...(containerHeightStyle && { containerHeight: containerHeightStyle })}
+        {...('manualSorting' in args && { ...sortAttrs })}
+        {...('onFetchAllPages' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchAllPages: () => {
+              setIsFetchAll(true);
+              fetchAllPages();
+            },
+          })}
+        {...('onFetchNextPage' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchNextPage: () =>
+              setItems([
+                ...items,
+                {
+                  person: `Person ${items.length + 1}`,
+                  mostInterestIn: `Most interest in ${items.length + 1}`,
+                  age: items.length + 1,
+                },
+              ]),
+          })}
+      />
+    </>
   );
 };
 
@@ -103,30 +152,12 @@ Default.args = {
   data,
 };
 
-Default.parameters = {
-  docs: {
-    description: {
-      story:
-        'Basic datagrid without pagination controls. Shows a simple table with data.',
-    },
-  },
-};
-
 export const DatagridWithSorting = DatagridStory.bind({});
 
 DatagridWithSorting.args = {
   columns,
   data,
   manualSorting: false,
-};
-
-DatagridWithSorting.parameters = {
-  docs: {
-    description: {
-      story:
-        'Datagrid with client-side sorting enabled. Click on column headers to sort the data.',
-    },
-  },
 };
 
 export const DatagridWithLoadMore = DatagridStory.bind({});
@@ -139,15 +170,6 @@ DatagridWithLoadMore.args = {
   onFetchNextPage: () => {},
 };
 
-DatagridWithLoadMore.parameters = {
-  docs: {
-    description: {
-      story:
-        'Datagrid with "Load More" pagination. Click the "Load More" button to fetch additional data incrementally.',
-    },
-  },
-};
-
 export const DatagridWithLoadAll = DatagridStory.bind({});
 
 DatagridWithLoadAll.args = {
@@ -156,15 +178,6 @@ DatagridWithLoadAll.args = {
   manualSorting: false,
   hasNextPage: true,
   onFetchAllPages: () => {},
-};
-
-DatagridWithLoadAll.parameters = {
-  docs: {
-    description: {
-      story:
-        'Datagrid with "Load All" pagination. Click the "Load All" button to fetch all remaining data at once.',
-    },
-  },
 };
 
 export const DatagridWithLoadAllAndLoading = DatagridStory.bind({});
@@ -178,34 +191,16 @@ DatagridWithLoadAllAndLoading.args = {
   onFetchNextPage: () => {},
 };
 
-DatagridWithLoadAllAndLoading.parameters = {
-  docs: {
-    description: {
-      story:
-        'Complete pagination example with both "Load More" and "Load All" buttons. Toggle the `isLoading` control to see loading states on the buttons.',
-    },
-  },
-};
+export const DatagridWithContainerHeight = DatagridStory.bind({});
 
-export const DatagridWithLoadingState = DatagridStory.bind({});
-
-DatagridWithLoadingState.args = {
+DatagridWithContainerHeight.args = {
   columns,
   data,
   manualSorting: false,
   hasNextPage: true,
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
-  isLoading: true,
-};
-
-DatagridWithLoadingState.parameters = {
-  docs: {
-    description: {
-      story:
-        'Datagrid with loading state active. Both pagination buttons are disabled and show loading indicators.',
-    },
-  },
+  containerHeight: '240px',
 };
 
 const meta = {

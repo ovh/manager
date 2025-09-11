@@ -84,6 +84,10 @@ The Datagrid supports two sorting modes:
 />
 ```
 
+<StorybookHeading label="Virtualization" level={3} />
+
+The Datagrid uses row virtualization (TanStack Virtual) to render only the visible rows, ensuring smooth scrolling and performance with large datasets. The container height is auto-calculated, and you can override it with the `containerHeight` prop if needed.
+
 <StorybookHeading label="Footer Actions" level={3} />
 
 The Datagrid includes built-in pagination controls in the footer for progressive data loading.

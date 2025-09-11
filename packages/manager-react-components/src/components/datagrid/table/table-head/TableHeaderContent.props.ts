@@ -5,5 +5,4 @@ export type TableHeaderContentProps<T = unknown> = {
   headerGroups: HeaderGroup<T>[];
   onSortChange?: (sorting: ColumnSort[]) => void;
   sorting?: ColumnSort[];
-  headerRefs: Record<string, HTMLTableCellElement>;
 };

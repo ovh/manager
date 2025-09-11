@@ -7,24 +7,32 @@ const TableHeaderContentComponent = <T,>({
   contentAlignLeft = true,
   headerGroups,
   onSortChange,
-  headerRefs,
-}: TableHeaderContentProps<T>) => {
-  return (
-    <thead>
-      {headerGroups?.map((headerGroup) => (
-        <tr key={headerGroup.id}>
-          {headerGroup.headers.map((header) => (
+}: TableHeaderContentProps<T>) => (
+  <thead
+    style={{
+      display: 'grid',
+      position: 'sticky',
+      top: 0,
+      zIndex: 1,
+    }}
+  >
+    {headerGroups?.map((headerGroup) => (
+      <tr key={headerGroup.id} style={{ display: 'flex', width: '100%' }}>
+        {headerGroup.headers.map((header) => {
+          return (
             <th
               key={header.id}
-              ref={(el) => {
-                if (headerRefs && el) {
-                  // eslint-disable-next-line no-param-reassign
-                  headerRefs[header?.id ?? ''] = el;
-                }
-              }}
               className={`${
                 contentAlignLeft ? 'text-left pl-4' : 'text-center'
               } h-11 whitespace-nowrap `}
+              style={{
+                display: 'flex',
+                ...(header?.column?.columnDef?.maxSize && {
+                  maxWidth: header?.column?.columnDef?.maxSize,
+                }),
+                flex: 1,
+                minWidth: 0,
+              }}
             >
               {!header.isPlaceholder &&
                 (onSortChange ? (
@@ -41,12 +49,12 @@ const TableHeaderContentComponent = <T,>({
                   </>
                 ))}
             </th>
-          ))}
-        </tr>
-      ))}
-    </thead>
-  );
-};
+          );
+        })}
+      </tr>
+    ))}
+  </thead>
+);
 
 export const TableHeaderContent = memo(TableHeaderContentComponent) as <
   T = unknown,
