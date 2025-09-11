@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.1.18...@ovh-ux/manager-support@2.1.19) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-support
+
+
+
+
+
 ## [2.1.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@2.1.17...@ovh-ux/manager-support@2.1.18) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-support
