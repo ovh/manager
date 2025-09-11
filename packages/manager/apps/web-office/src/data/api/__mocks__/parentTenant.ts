@@ -1,5 +1,5 @@
-import { UserStateEnum } from '../api.type';
-import { ParentTenantType } from '../parentTenant';
+import { UserStateEnum } from '../ApiType';
+import { ParentTenantType } from '../parent-tenant/type';
 
 export const parentTenantMock: ParentTenantType = {
   address: '123 Main Street',

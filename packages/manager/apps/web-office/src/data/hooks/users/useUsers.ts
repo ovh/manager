@@ -1,12 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { getOfficeUsers, getOfficeUsersQueryKey } from '@/data/api/users';
-import { useServiceType } from '../serviceType/useServiceType';
-import {
-  getOfficePrepaidLicenses,
-  getOfficeLicenseQueryKey,
-  getOfficePrepaidLicenseDetails,
-} from '@/data/api/license';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { getOfficePrepaidLicenseDetails, getOfficePrepaidLicenses } from '@/data/api/license/api';
+import { getOfficeLicenseQueryKey } from '@/data/api/license/key';
+import { LicensePrepaidType } from '@/data/api/license/type';
+import { getOfficeUsers } from '@/data/api/users/api';
+import { getOfficeUsersQueryKey } from '@/data/api/users/key';
+
+import { useServiceType } from '../service-type/useServiceType';
 
 export const useUsers = () => {
   const { serviceName } = useParams();
@@ -16,6 +18,7 @@ export const useUsers = () => {
       isPostpaidLicence
         ? getOfficeUsersQueryKey(serviceName)
         : getOfficeLicenseQueryKey(serviceName),
+      serviceName,
     ],
     queryFn: isPostpaidLicence
       ? () => getOfficeUsers(serviceName)
@@ -34,7 +37,7 @@ export const useUsers = () => {
                     result.value !== null &&
                     result.value !== undefined,
                 )
-                .map((result) => (result as PromiseFulfilledResult<any>).value),
+                .map((result) => (result as PromiseFulfilledResult<LicensePrepaidType>).value),
             );
           }),
     enabled: !!serviceName,

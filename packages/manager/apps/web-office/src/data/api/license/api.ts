@@ -1,11 +1,14 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
+
+import { UserParamsType } from '../ApiType';
+import { PendingTaskType } from '../users/type';
 import { getApiPath, getApiPathWithoutServiceName } from '../utils/apiPath';
-import { UserParamsType } from '../api.type';
+import { LicensePrepaidType, LicenseType, OfficeServiceListType } from './type';
 
 // GET
 
 export const getOfficeGlobalLicenses = async () => {
-  const { data } = await aapi.get('service', {
+  const { data } = await aapi.get<OfficeServiceListType[]>('service', {
     params: {
       external: false,
       type: '/license/office',
@@ -15,26 +18,22 @@ export const getOfficeGlobalLicenses = async () => {
 };
 
 export const getOfficeLicenseDetails = async (serviceName: string) => {
-  const { data } = await v6.get(getApiPath(serviceName));
+  const { data } = await v6.get<LicenseType>(getApiPath(serviceName));
   return data;
 };
 
 export const getOfficePrepaidLicenseDetails = async (serviceName: string) => {
-  const { data } = await v6.get(getApiPath(serviceName));
+  const { data } = await v6.get<LicensePrepaidType>(getApiPath(serviceName));
   return data;
 };
 
 export const getOfficeLicenses = async (serviceName: string) => {
-  const { data } = await v6.get<string[]>(
-    getApiPathWithoutServiceName(serviceName),
-  );
+  const { data } = await v6.get<string[]>(getApiPathWithoutServiceName(serviceName));
   return data;
 };
 
 export const getOfficePrepaidLicenses = async (serviceName: string) => {
-  const { data } = await v6.get<string[]>(
-    getApiPathWithoutServiceName(serviceName),
-  );
+  const { data } = await v6.get<string[]>(getApiPathWithoutServiceName(serviceName));
   return data;
 };
 
@@ -44,21 +43,16 @@ export const postOfficePrepaidLicenseUnconfigure = async (
   serviceName: string,
   activationEmail: string,
 ) => {
-  const { data } = await v6.post(
-    `${getApiPathWithoutServiceName(
-      serviceName,
-    )}${activationEmail}/unconfigure`,
+  const { data } = await v6.post<PendingTaskType>(
+    `${getApiPathWithoutServiceName(serviceName)}${activationEmail}/unconfigure`,
   );
   return data;
 };
 
 // PUT
 
-export const putOfficeLicenseDetails = async (
-  serviceName: string,
-  params: UserParamsType,
-) => {
-  const { data } = await v6.put(getApiPath(serviceName), params);
+export const putOfficeLicenseDetails = async (serviceName: string, params: UserParamsType) => {
+  const { data } = await v6.put<void>(getApiPath(serviceName), params);
   return data;
 };
 
