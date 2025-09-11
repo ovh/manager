@@ -1,8 +1,0 @@
-{
-  "pci_app_stop_app_title": "Arresto dell'App",
-  "pci_app_stop_app_content": "Vuoi davvero arrestare l'app {{ appName }}?",
-  "pci_app_stop_app_success": "La tua App è stata arrestata correttamente.",
-  "pci_app_stop_app_error": "Si è verificato un errore durante l'arresto dell’App {{ appName }}: {{ message }}",
-  "pci_app_stop_app_submit_label": "Confermare",
-  "pci_app_stop_app_cancel_label": "Annullare"
-}

@@ -1,8 +1,0 @@
-{
-  "pci_ai_dashboard_delete_token_confirm": "Confermare",
-  "pci_ai_dashboard_delete_token_cancel": "Annullare",
-  "pci_ai_dashboard_delete_token": "Eliminare un token",
-  "pci_ai_dashboard_delete_token_description": "Vuoi davvero eliminare questo token?",
-  "pci_ai_dashboard_delete_token_success_message": "Il token è stato eliminato correttamente.",
-  "pci_ai_dashboard_delete_token_error_message": "Si è verificato un errore durante l'eliminazione del token: {{message}}"
-}
