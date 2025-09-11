@@ -1,7 +1,4 @@
-import {
-  SecretVersion,
-  SecretVersionWithData,
-} from '@secret-manager/types/secret.type';
+import { SecretVersion } from '@secret-manager/types/secret.type';
 import { CreateSecretVersionResponse } from '@secret-manager/data/api/secretVersions';
 
 export const versionActiveMock: SecretVersion = {
@@ -24,22 +21,11 @@ export const versionDeletedMock: SecretVersion = {
   deactivatedAt: '2023-01-17T08:30:45Z',
 };
 
-export const versionsMock: SecretVersion[] = [
+export const versionListMock: SecretVersion[] = [
   versionActiveMock,
   versionDeactivatedMock,
   versionDeletedMock,
 ];
-
-export const getVersionMockWithData = (
-  version: SecretVersion,
-): SecretVersionWithData => ({
-  ...version,
-  data: { a: 'json' },
-});
-
-export const versionsMockwithData: SecretVersionWithData[] = versionsMock.map(
-  (version) => getVersionMockWithData(version),
-);
 
 export const createVersionResponseMock: CreateSecretVersionResponse = {
   id: 1,
