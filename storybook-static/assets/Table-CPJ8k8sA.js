@@ -1,4 +1,0 @@
-import{j as e}from"./jsx-runtime-BRNY0I4F.js";import{u as r}from"./index-BO2v397F.js";import{M as a}from"./index-D5LANOOU.js";import"./index-Bnop-kX6.js";import"./iframe-Ufz7B27p.js";import"./index-D0sJu8id.js";import"./index-DOoWsluG.js";import"./index-DrFu-skq.js";function o(t){const n={p:"p",...r(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(a,{title:"Manager React Components/Components/Table/Documentation",parameters:{status:{type:"deprecated"}}}),`
-`,e.jsx(n.p,{children:"Table - migrate from 1.X.0 from 2.X.0"}),`
-`,e.jsx(n.p,{children:"Table has been removed from Manager react components library."}),`
-`,e.jsxs(n.p,{children:["You should use ",e.jsx("a",{href:"/?path=/docs/components-datagrid-cursor--empty",children:"datagrid components"})]})]})}function x(t={}){const{wrapper:n}={...r(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(o,{...t})}):o(t)}export{x as default};
