@@ -40,4 +40,11 @@ export const PROJECTS_TRACKING = {
   PROJECT_HOME: {
     PAGE_NAME: 'project-detail',
   },
+  CREATING: {
+    PAGE_NAME: 'projects-creating',
+    CTA_GUIDE: ['page', 'button', 'guide'],
+    CTA_OTHER_PROJECTS: ['page', 'button', 'other_projects'],
+    PROJECT_DELIVERED: 'project_created',
+    PROJECT_DELIVERY_FAILED: 'project_creation_error',
+  },
 };
