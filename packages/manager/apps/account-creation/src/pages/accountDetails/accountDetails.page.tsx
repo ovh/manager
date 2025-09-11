@@ -14,6 +14,7 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsInput,
+  OdsLink,
   OdsPhoneNumber,
   OdsRadio,
   OdsSelect,
@@ -23,6 +24,8 @@ import {
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_LINK_ICON_ALIGNMENT,
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
   OdsPhoneNumberChangeEventDetail,
@@ -40,6 +43,7 @@ import {
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
+import { urls } from '@/routes/routes.constant';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -686,6 +690,8 @@ function AccountDetailsForm({
 
 export default function AccountDetailsPage() {
   const { t } = useTranslation('account-details');
+  const { t: tCommon } = useTranslation('common');
+  const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { legalForm, organisation } = useUserContext();
   const { data: currentUser } = useMe();
 
@@ -726,6 +732,18 @@ export default function AccountDetailsPage() {
 
   return (
     <>
+      <OdsLink
+        icon={ODS_ICON_NAME.arrowLeft}
+        iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
+        href={`#${
+          legalForm === 'individual' ? urls.accountType : urls.company
+        }`}
+        label={tAction('back')}
+        className="flex mb-6"
+      />
+      <OdsText preset={ODS_TEXT_PRESET.caption}>
+        {tCommon('step', { current: 2, total: 2 })}
+      </OdsText>
       <BaseLayout header={header}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
           {t('account_details_info_message')}
