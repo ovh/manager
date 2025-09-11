@@ -17,6 +17,10 @@ export type DatagridProps<T extends Record<string, unknown>> = {
   onSortChange?: (sorting: ColumnSort[]) => void;
   manualSorting?: boolean;
   contentAlignLeft?: boolean;
+  hasNextPage?: boolean;
+  onFetchAllPages?: () => void;
+  onFetchNextPage?: () => void;
+  isLoading?: boolean;
 };
 
 /** It is use by different hooks to define the columns of the datagrid
