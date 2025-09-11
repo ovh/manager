@@ -9,6 +9,7 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
 import { IpDatagrid } from './components';
@@ -23,6 +24,7 @@ export type DashboardTabItemProps = {
 };
 
 export default function IpListingPage() {
+  const { environment } = React.useContext(ShellContext);
   const navigate = useNavigate();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
   return (
@@ -64,6 +66,7 @@ export default function IpListingPage() {
               {
                 id: 0,
                 label: t('listingSettingsImportIpFromSys'),
+                isDisabled: environment.user.ovhSubsidiary === 'US',
                 onClick: () => navigate(urls.listingImportIpFromSys),
               },
             ]}
