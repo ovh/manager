@@ -1,16 +1,15 @@
-import { QueryObserverOptions } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 import { getIndexes } from '@/data/api/database/indexes.api';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '@/hooks/api/useImmediateRefetch';
 
 export function useGetIndexes(
   projectId: string,
   engine: database.EngineEnum,
   serviceId: string,
-  options: Omit<
-    QueryObserverOptions<database.opensearch.Index[], Error>,
-    'queryKey'
-  > = {},
+  options?: OptionsFor<typeof getIndexes>,
 ) {
   const queryKey = [projectId, 'database', engine, serviceId, 'index'];
   return useQueryImmediateRefetch({

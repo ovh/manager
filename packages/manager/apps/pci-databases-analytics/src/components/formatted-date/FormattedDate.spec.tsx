@@ -39,7 +39,7 @@ describe('FormattedDate component', () => {
     });
   });
   it('should render the date with PT locale', async () => {
-    vi.mocked(useShell().i18n.getLocale).mockResolvedValue(() => Locale.pt_PT);
+    vi.mocked(useShell().i18n.getLocale).mockResolvedValue(Locale.pt_PT);
     const date = new Date(2024, 5, 8, 12, 42, 50, 151);
     render(
       <FormattedDate
@@ -58,7 +58,7 @@ describe('FormattedDate component', () => {
   });
 
   it('should render the date with EN locale', async () => {
-    vi.mocked(useShell().i18n.getLocale).mockResolvedValue(() => Locale.en_GB);
+    vi.mocked(useShell().i18n.getLocale).mockResolvedValue(Locale.en_GB);
     const date = new Date(2024, 5, 8, 12, 42, 50, 151);
     render(
       <FormattedDate

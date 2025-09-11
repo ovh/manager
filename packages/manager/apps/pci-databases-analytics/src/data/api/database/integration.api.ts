@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -7,36 +12,20 @@ export const getServiceIntegrations = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.service.Integration[]);
+  apiClient.v6.get<database.service.Integration[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export const getServiceCapabilitiesIntegrations = async ({
   projectId,
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/integration`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.capabilities.Integration[]);
+  apiClient.v6.get<database.capabilities.Integration[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/capabilities/integration`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface AddIntegration extends ServiceData {
   integration: Omit<database.service.Integration, 'id' | 'status'>;
@@ -47,12 +36,10 @@ export const addIntegration = async ({
   serviceId,
   integration,
 }: AddIntegration) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
-      integration,
-    )
-    .then((res) => res.data as database.service.Integration);
+  apiClient.v6.post<database.service.Integration>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/integration`,
+    integration,
+  );
 
 export interface DeleteIntegration extends ServiceData {
   integrationId: string;
