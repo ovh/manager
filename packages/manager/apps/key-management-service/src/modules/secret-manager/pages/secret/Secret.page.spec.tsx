@@ -5,7 +5,7 @@ import {
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -14,7 +14,7 @@ import { assertVersionDatagridVisilibity } from './versionList/VersionList.page.
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockOkmsId = '12345';
-const mockSecret = secretsMock[0];
+const mockSecret = secretListMock[0];
 const mockSecretPath = mockSecret.path;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secret(
   mockOkmsId,
@@ -58,7 +58,6 @@ describe('Secret page test suite', () => {
       labels.secretManager.maximum_number_of_versions,
       mockSecret.metadata.maxVersions,
       labels.secretManager.cas_with_description,
-      labels.common.status.disabled,
       // actions tile
       labels.secretManager.actions,
     ];

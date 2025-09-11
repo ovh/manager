@@ -1,49 +1,29 @@
 import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import {
-  createSecretResponseMock,
-  mockSecret1,
-  secretsMock,
-  secretsMockWithData,
-} from './secrets.mock';
+import { createSecretResponseMock, secretListMock } from './secrets.mock';
+import { findSecretMockByPath } from './secretsMock.utils';
 
 // LIST
 export type GetSecretsMockParams = {
-  isSecretKO?: boolean;
-  nbSecret?: number;
-};
-
-const findSecretByPath = (request: Request, params: PathParams) => {
-  const url = new URL(request.url);
-  const includeData = url.searchParams.get('includeData');
-  const mock = includeData ? secretsMockWithData : secretsMock;
-  return mock.find(({ path }) => path === params.secretPath);
+  isSecretListKO?: boolean;
+  nbSecrets?: number;
 };
 
 export const getSecretsMock = ({
-  isSecretKO,
-  nbSecret = secretsMock.length,
+  isSecretListKO,
+  nbSecrets = secretListMock.length,
 }: GetSecretsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret',
-    response: isSecretKO
+    response: isSecretListKO
       ? {
           status: 500,
           data: {
             message: 'secrets error',
           },
         }
-      : secretsMock.slice(0, nbSecret),
-    status: isSecretKO ? 500 : 200,
-    api: 'v2',
-  },
-  {
-    url: '/okms/resource/:okmsId/secret/:secretPath',
-    response: isSecretKO
-      ? { message: 'secret error' }
-      : (request: Request, params: PathParams) =>
-          findSecretByPath(request, params),
-    status: isSecretKO ? 500 : 200,
+      : secretListMock.slice(0, nbSecrets),
+    status: isSecretListKO ? 500 : 200,
     api: 'v2',
   },
 ];
@@ -51,14 +31,13 @@ export const getSecretsMock = ({
 // GET
 export type GetSecretMockParams = {
   isSecretKO?: boolean;
-  nbSecret?: number;
 };
 
 export const getSecretMock = ({
   isSecretKO,
-}: GetSecretsMockParams): Handler[] => [
+}: GetSecretMockParams): Handler[] => [
   {
-    url: '/okms/resource/:okmsId/secret/:path',
+    url: '/okms/resource/:okmsId/secret/:secretPath',
     response: isSecretKO
       ? {
           status: 500,
@@ -66,7 +45,8 @@ export const getSecretMock = ({
             message: 'secrets error',
           },
         }
-      : mockSecret1,
+      : (request: Request, params: PathParams) =>
+          findSecretMockByPath(secretListMock, request, params),
     status: isSecretKO ? 500 : 200,
     api: 'v2',
   },
@@ -111,7 +91,7 @@ export const deleteSecretMock = ({
       ? {
           message: deleteSecretErrorMessage,
         }
-      : createSecretResponseMock,
+      : null,
     status: isDeleteSecretKO ? 500 : 200,
     api: 'v2',
     method: 'delete',
