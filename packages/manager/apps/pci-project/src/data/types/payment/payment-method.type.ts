@@ -67,6 +67,7 @@ export type TPaymentMethod = {
   integration: TPaymentMethodIntegration;
   paymentSubType?: TPaymentSubType | null;
   paymentType: TPaymentMethodType;
+  paymentMethodId: number;
 };
 
 export type TUserPaymentMethod = TPaymentMethod & {
@@ -82,8 +83,17 @@ export type TUserPaymentMethod = TPaymentMethod & {
   merchantId: string | null;
   oneclick: boolean | null;
   paymentMeanId: number | null;
-  paymentMethodId: number;
   status: TPaymentMethodStatus;
+};
+
+export type TRegisterPaymentMethod = {
+  formSessionId: string;
+  merchantId: string;
+  organizationId: string;
+  paymentMethodId: number;
+  transactionId: number;
+  url: string;
+  validationType: string;
 };
 
 export type TAvailablePaymentMethod = TPaymentMethod & {
@@ -96,11 +106,50 @@ export type TAvailablePaymentMethod = TPaymentMethod & {
   readableName?: { key: string; ns: string };
 };
 
+export type TPaymentCallbackReturnType = {
+  continueProcessing: boolean;
+  dataToReturn?: unknown;
+};
+
+export type TPaymentCallbackRegisterReturnType = {
+  paymentMethod?: TRegisterPaymentMethod;
+} & TPaymentCallbackReturnType;
+
 export type TPaymentMethodIntegrationRef = {
   registerPaymentMethod?: (
     paymentMethod: TPaymentMethod,
     cart: TCart,
-  ) => Promise<boolean>;
-  onCheckoutRetrieved?: (cart: TCart) => Promise<boolean>;
-  onCartFinalized?: (cart: TCart) => Promise<boolean>;
+    registerPaymentMethod?: TRegisterPaymentMethod,
+  ) => Promise<TPaymentCallbackRegisterReturnType>;
+  checkPaymentMethod?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+  onCheckoutRetrieved?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+  onCartFinalized?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+};
+
+export type TPaymentMethodRegisterRef = {
+  registerPaymentMethod?: (
+    paymentMethod: TPaymentMethod,
+    cart: TCart,
+  ) => Promise<TPaymentCallbackRegisterReturnType>;
+  checkPaymentMethod?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+  onCheckoutRetrieved?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
+  onCartFinalized?: (
+    cart: TCart,
+    paymentMethodId?: number,
+  ) => Promise<TPaymentCallbackReturnType>;
 };
