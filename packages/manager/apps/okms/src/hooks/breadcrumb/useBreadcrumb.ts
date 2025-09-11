@@ -1,52 +1,53 @@
-import { useEffect, useState } from 'react';
-import { OdsBreadcrumbItem as OdsBreadcrumbItemType } from '@ovhcloud/ods-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
 export type BreadcrumbItem = {
   id: string;
   label: string;
-  navigateTo: string;
+  navigateTo?: string;
 };
 
-export interface BreadcrumbProps {
-  rootLabel: string;
-  items?: BreadcrumbItem[];
-}
+type UseBreadcrumbParams = {
+  items: BreadcrumbItem[];
+};
 
-export interface KmsBreadcrumbItemType extends OdsBreadcrumbItemType {
-  onOdsClick: () => void;
-}
+export const useBreadcrumb = ({
+  items,
+}: UseBreadcrumbParams): BreadcrumbItem[] => {
+  const { t } = useTranslation('key-management-service/listing');
 
-export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
-  const [pathItems, setPathItems] = useState<KmsBreadcrumbItemType[]>([]);
   const location = useLocation();
-  const navigate = useNavigate();
-  const pathnames = location.pathname.split('/').filter((x) => x);
 
-  const rootItem = ({
-    label: rootLabel,
-    onOdsClick: () => navigate(KMS_ROUTES_URLS.kmsListing),
-  } as unknown) as KmsBreadcrumbItemType;
+  // Split the url path and remove the first element ('key-management-service')
+  const pathnames = location.pathname
+    .split('/')
+    .filter((x) => x)
+    .slice(1);
 
-  useEffect(() => {
-    const pathNamesItems = pathnames.map((value) => {
-      const item = items?.find(({ id }) => id === value);
+  const rootItem: BreadcrumbItem = {
+    id: 'root',
+    label: t('key_management_service_listing_title'),
+    navigateTo: KMS_ROUTES_URLS.kmsListing,
+  };
 
-      if (!item) {
-        return {
-          label: value,
-        };
-      }
+  const pathItems: BreadcrumbItem[] = pathnames.map((pathname) => {
+    // Search all pathnames in the items
+    const itemFound = items?.find(({ id }) => id === pathname);
 
+    if (!itemFound) {
       return {
-        label: item.label,
-        onOdsClick: () => navigate(item.navigateTo),
+        id: pathname,
+        label: pathname,
       };
-    });
+    }
 
-    setPathItems(pathNamesItems as KmsBreadcrumbItemType[]);
-  }, [location, items]);
+    return {
+      id: itemFound.id,
+      label: itemFound.label,
+      navigateTo: itemFound.navigateTo,
+    };
+  });
 
   return [rootItem, ...pathItems];
 };
