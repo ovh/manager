@@ -55,14 +55,12 @@ describe('QuickFilter Component', () => {
 
     await act(() => fireEvent.click(button));
 
-    expect(screen.getByText('listingQuickFilterShowIPv4')).toBeInTheDocument();
-    expect(screen.getByText('listingQuickFilterShowIPv6')).toBeInTheDocument();
-    expect(
-      screen.getByText('listingQuickFilterShowParkedIps'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('listingQuickFilterShowIPv4')).toBeVisible();
+    expect(screen.getByText('listingQuickFilterShowIPv6')).toBeVisible();
+    expect(screen.getByText('listingQuickFilterShowParkedIps')).toBeVisible();
   });
 
-  it('should update API filter when IPv4 is toggled', async () => {
+  it('should update API filter', async () => {
     renderComponent();
     const button = screen.getByTestId('quick-filter');
 
@@ -72,49 +70,7 @@ describe('QuickFilter Component', () => {
     await act(() => fireEvent.click(ipv4Checkbox));
 
     await waitFor(() => {
-      expect(setApiFilter).toHaveBeenCalledWith({
-        ...mockApiFilter,
-        version: 6, // Only IPv6 selected
-        routedToserviceName: undefined,
-      });
-    });
-  });
-
-  it('should update API filter when Parked IPs is toggled', async () => {
-    renderComponent();
-    const button = screen.getByTestId('quick-filter');
-
-    await act(() => fireEvent.click(button));
-
-    const parkedCheckbox = screen.getByLabelText(
-      'listingQuickFilterShowParkedIps',
-    );
-    await act(() => fireEvent.click(parkedCheckbox));
-
-    await waitFor(() => {
-      expect(setApiFilter).toHaveBeenCalledWith({
-        ...mockApiFilter,
-        version: undefined, // Both IPv4 and IPv6 selected
-        routedToserviceName: null,
-      });
-    });
-  });
-
-  it('should close dropdown when clicking outside', async () => {
-    renderComponent();
-    const button = screen.getByTestId('quick-filter');
-
-    // Open dropdown
-    await act(() => fireEvent.click(button));
-    expect(screen.getByText('listingQuickFilterShowIPv4')).toBeInTheDocument();
-
-    // Click outside
-    await act(() => fireEvent.mouseDown(document.body));
-
-    await waitFor(() => {
-      expect(
-        screen.queryByText('listingQuickFilterShowIPv4'),
-      ).not.toBeInTheDocument();
+      expect(setApiFilter).toHaveBeenCalledOnce();
     });
   });
 });

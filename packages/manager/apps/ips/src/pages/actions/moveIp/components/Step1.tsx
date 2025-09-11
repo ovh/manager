@@ -51,7 +51,11 @@ export default function Step1({
         <label htmlFor="service" slot="label">
           {t('step1CurrentServiceLabel')}
         </label>
-        <OdsInput name="from" isReadonly value={currentService} />
+        <OdsInput
+          name="from"
+          isReadonly
+          value={currentService || t('step1EmptyCurrentServiceValue')}
+        />
       </OdsFormField>
 
       <OdsFormField className="w-full">
