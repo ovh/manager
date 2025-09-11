@@ -2,8 +2,6 @@ import {
   Links,
   LinkType,
   ManagerButton,
-  Subtitle,
-  Title,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -131,7 +129,9 @@ export default function CreatePage() {
 
   return (
     <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
-      <Title>{t('common:create_website')}</Title>
+      <OdsText preset={ODS_TEXT_PRESET.heading1} className="mb-4">
+        {t('common:create_website')}
+      </OdsText>
       <Links
         type={LinkType.back}
         href={goBackUrl}
@@ -142,16 +142,16 @@ export default function CreatePage() {
         {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
       <form onSubmit={handleSubmit(onCreateSubmit)}>
-        <Subtitle>
+        <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
           {t(
             'managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login',
           )}
-        </Subtitle>
+        </OdsText>
         <Controller
           name="cmsSpecific.wordPress.language"
           control={control}
           render={({ field }) => (
-            <OdsFormField className="w-full">
+            <OdsFormField className="w-full mb-4">
               <label slot="label">
                 {t(
                   'managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin',
@@ -182,7 +182,7 @@ export default function CreatePage() {
           control={control}
           render={({ field }) => (
             <OdsFormField
-              className="w-full"
+              className="w-full mb-4"
               error={errors?.adminLogin?.message}
             >
               <label slot="label">
@@ -209,7 +209,7 @@ export default function CreatePage() {
           control={control}
           render={({ field }) => (
             <OdsFormField
-              className="w-full"
+              className="w-full mb-4"
               error={errors?.adminPassword?.message}
             >
               <label slot="label">

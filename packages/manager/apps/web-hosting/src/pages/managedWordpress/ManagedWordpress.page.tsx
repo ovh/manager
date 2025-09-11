@@ -81,7 +81,7 @@ export default function ManagedWordpressPage() {
             </span>
           );
         },
-        label: t('common:web_hosting_status_header_quota'),
+        label: t('common:web_hosting_status_header_websites_installed'),
       },
     ],
     [t],
