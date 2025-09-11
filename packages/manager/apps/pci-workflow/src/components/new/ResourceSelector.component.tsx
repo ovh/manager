@@ -1,7 +1,5 @@
 import { useRef, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -27,57 +25,55 @@ import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   DataGridTextCell,
   Datagrid,
+  DatagridColumn,
   FilterAdd,
   FilterList,
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 
-import { usePaginatedInstances } from '@/api/hooks/useInstances';
+import { TInstance, isSameInstanceId } from '@/api/hooks/instance/selector/instances.selector';
+import { usePaginatedInstances } from '@/api/hooks/instance/useInstances';
 import NotSupportedTooltipComponent from '@/components/new/NotSupportedTooltip.component';
 import StatusComponent from '@/components/new/Status.component';
-import { useRegionsWithAutomaticBackup } from '@/hooks/useRegionsWithAutomaticBackup';
-import { TWorkflowInstance } from '@/types';
+import { useSafeParam } from '@/hooks/useSafeParam';
 
 const useDatagridColumn = (
-  selectedInstance: TWorkflowInstance,
-  onSelectInstance: (instance: TWorkflowInstance) => void,
+  selectedInstance: TInstance | null,
+  onSelectInstance: (instance: TInstance) => void,
 ) => {
   const { t } = useTranslation('new');
-  const { projectId } = useParams();
-  const regions = useRegionsWithAutomaticBackup(projectId);
-
   return [
     {
       id: 'actions',
-      cell: (instance: TWorkflowInstance) => {
-        const isRegionSupportingAutomaticBackup = regions.includes(instance.region);
-        return (
-          <div className="text-center">
-            <NotSupportedTooltipComponent supported={isRegionSupportingAutomaticBackup}>
-              <OsdsRadioButton
-                checked={selectedInstance?.id === instance?.id || undefined}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_RADIO_BUTTON_SIZE.xs}
-                data-testid={`radio-button-${instance.id}`}
-                disabled={!isRegionSupportingAutomaticBackup || undefined}
-                className="mx-auto"
-                onClick={() => {
-                  if (isRegionSupportingAutomaticBackup) {
-                    onSelectInstance(instance);
-                  }
-                }}
-              />
-            </NotSupportedTooltipComponent>
-          </div>
-        );
-      },
+      cell: (instance) => (
+        <div className="text-center">
+          <NotSupportedTooltipComponent supported={instance.autoBackup}>
+            <OsdsRadioButton
+              checked={
+                (!!selectedInstance && isSameInstanceId(selectedInstance.id, instance.id)) ||
+                undefined
+              }
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_RADIO_BUTTON_SIZE.xs}
+              data-testid={`radio-button-${instance.label}`}
+              disabled={!instance.autoBackup || undefined}
+              className="mx-auto"
+              onClick={() => {
+                if (instance.autoBackup) {
+                  onSelectInstance(instance);
+                }
+              }}
+            />
+          </NotSupportedTooltipComponent>
+        </div>
+      ),
       label: '',
     },
     {
       id: 'name',
-      cell: (instance: TWorkflowInstance) => (
-        <NotSupportedTooltipComponent supported={regions.includes(instance.region)}>
+      cell: (instance) => (
+        <NotSupportedTooltipComponent supported={instance.autoBackup}>
           <DataGridTextCell>{instance.name}</DataGridTextCell>
         </NotSupportedTooltipComponent>
       ),
@@ -85,43 +81,40 @@ const useDatagridColumn = (
     },
     {
       id: 'region',
-      cell: (instance: TWorkflowInstance) => (
-        <DataGridTextCell>{instance.regionName}</DataGridTextCell>
-      ),
+      cell: (instance) => <DataGridTextCell>{instance.region.label}</DataGridTextCell>,
       label: t('pci_projects_project_workflow_instance_region_label'),
     },
     {
       id: 'flavorName',
-      cell: (instance: TWorkflowInstance) => (
-        <DataGridTextCell>{instance?.flavorName}</DataGridTextCell>
-      ),
+      cell: (instance) => <DataGridTextCell>{instance.flavor.label}</DataGridTextCell>,
       label: t('pci_projects_project_workflow_instance_flavor_label'),
     },
     {
       id: 'status',
-      cell: (instance: TWorkflowInstance) => (
+      cell: (instance) => (
         <StatusComponent
-          statusGroup={instance.statusGroup}
+          statusGroup={instance.status.group}
           className="mx-auto"
-          status={instance.status}
+          status={instance.status.name}
         />
       ),
       label: t('pci_projects_project_workflow_instance_status_label'),
       isSortable: false,
     },
-  ];
+  ] satisfies DatagridColumn<TInstance>[];
 };
 
 export type ResourceSelectorComponentProps = {
-  onSelectInstance: (instance: TWorkflowInstance) => void;
+  selectedInstance: TInstance | null;
+  onSelectInstance: (instance: TInstance) => void;
 };
 export default function ResourceSelectorComponent({
+  selectedInstance,
   onSelectInstance,
 }: Readonly<ResourceSelectorComponentProps>) {
-  const [selectedInstance, setSelectedInstance] = useState<TWorkflowInstance>(null);
   const { t } = useTranslation('new');
   const { t: tFilter } = useTranslation('filter');
-  const { projectId } = useParams();
+  const projectId = useSafeParam('projectId');
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const { data: instances, isPending } = usePaginatedInstances(
@@ -134,10 +127,7 @@ export default function ResourceSelectorComponent({
   );
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(undefined);
   const [searchField, setSearchField] = useState('');
-  const columns = useDatagridColumn(selectedInstance, (instance) => {
-    setSelectedInstance(instance);
-    onSelectInstance(instance);
-  });
+  const columns = useDatagridColumn(selectedInstance, onSelectInstance);
   return (
     <>
       {!isPending && (
