@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /**
  * @file Patch VSCode settings.json to enable ESLint Flat Config integration
  * with the Static Analysis Kit in an app-specific, non-intrusive way.
@@ -10,8 +9,7 @@
  * It avoids modifying developer-specific `.vscode` settings.
  * Not intended for standalone execution.
  */
-
-import { mkdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -38,10 +36,7 @@ const workspaceRootPath = path.resolve(__dirname, '../../../../../..');
 const vscodeInputPath = path.join(workspaceRootPath, '.vscode/settings.json');
 
 // Path to the output .ide-config/vscode/settings.json
-const vscodeOutputPath = path.join(
-  workspaceRootPath,
-  '.ide-config/vscode/settings.json',
-);
+const vscodeOutputPath = path.join(workspaceRootPath, '.ide-config/vscode/settings.json');
 
 // Ensure output directory exists
 if (!isDryRun) {

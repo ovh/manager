@@ -1,4 +1,4 @@
-import { sharedConfig, createConfig, mergeConfig, } from '../index.js';
+import { createConfig, mergeConfig, sharedConfig } from '../index.js';
 
 export default mergeConfig(
   sharedConfig,

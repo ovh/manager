@@ -21,3 +21,4 @@ coverage
 **/migration-status-reports/**
 .ide-config
 _out
+perf-budgets-reports/**

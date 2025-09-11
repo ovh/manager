@@ -1,15 +1,14 @@
 #!/usr/bin/env node
-
 import { getReactApplications } from '../../utils/AppUtils.mjs';
-import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 import { buildTestsReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
+import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
-const formatArgIndex = args.findIndex(arg => arg === '--format');
+const formatArgIndex = args.findIndex((arg) => arg === '--format');
 const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
 
-const appArgIndex = args.findIndex(arg => arg === '--app');
+const appArgIndex = args.findIndex((arg) => arg === '--app');
 const appFilter = appArgIndex !== -1 ? args[appArgIndex + 1] : null;
 
 /**

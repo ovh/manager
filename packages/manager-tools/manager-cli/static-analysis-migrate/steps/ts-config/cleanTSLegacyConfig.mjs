@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-
 import path from 'path';
+
+import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
 import {
-  readPackageJson,
   TS_EXCLUDED_DEPENDENCIES,
+  readPackageJson,
   writePackageJson,
 } from '../../../utils/DependenciesUtils.mjs';
-import { applicationsBasePath } from '../../../utils/AppUtils.mjs';
 
 /**
  * Extract CLI arguments
@@ -16,7 +16,9 @@ const isDryRun = process.argv.includes('--dry-run');
 
 // Application validation
 if (!appName || appName.startsWith('--')) {
-  console.error('❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]');
+  console.error(
+    '❌ Missing required <app-name> argument.\nUsage: yarn manager-cli static-analysis-migrate --app <name> [--dry-run]',
+  );
   process.exit(1);
 }
 
@@ -59,7 +61,7 @@ const cleanTSLegacyConfig = async () => {
   } else {
     console.log('✅ No legacy TypeScript dependencies found.');
   }
-}
+};
 
 // Run main
 cleanTSLegacyConfig().catch((err) => {

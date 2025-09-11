@@ -46,6 +46,8 @@
     "list-dependents": "node scripts/list-dependents.js",
     "manager-cli": "yarn workspace @ovh-ux/manager-cli run manager-cli",
     "packages:publish": "scripts/publish.js",
+    "perf-budgets:report": "yarn manager-perf-budgets",
+    "perf-budgets:tests": "yarn manager-perf-budgets-tests",
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",

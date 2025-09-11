@@ -1,5 +1,6 @@
-import { access } from 'fs/promises';
 import { accessSync, constants } from 'fs';
+import { access } from 'fs/promises';
+
 import { dedupeWords, normalizeName, toPascalCase } from './StringUtils.mjs';
 
 const importPathToComponent = new Map();
@@ -81,12 +82,12 @@ export const injectNamedImport = (importBlocks, { from, name }) => {
  * Build a preserved file header from imports + extra lines.
  */
 export const extractPreservedBlocks = ({
-   imports = [],
-   requiredImports = [],
-   excludedModules = [],
-   extraLines = [],
-   headerComment = '',
- }) => {
+  imports = [],
+  requiredImports = [],
+  excludedModules = [],
+  extraLines = [],
+  headerComment = '',
+}) => {
   const cleanedImports = (imports || []).filter(
     (block) => !excludedModules.some((mod) => block.includes(mod)),
   );
@@ -98,16 +99,11 @@ export const extractPreservedBlocks = ({
     }
   }
 
-  const extraBodyLines = (extraLines || []).filter((line) => typeof line === 'string' && line.trim());
+  const extraBodyLines = (extraLines || []).filter(
+    (line) => typeof line === 'string' && line.trim(),
+  );
 
-  return [
-    headerComment,
-    ...cleanedImports,
-    '',
-    ...extraBodyLines,
-  ]
-    .filter(Boolean)
-    .join('\n');
+  return [headerComment, ...cleanedImports, '', ...extraBodyLines].filter(Boolean).join('\n');
 };
 
 /**
@@ -115,11 +111,7 @@ export const extractPreservedBlocks = ({
  */
 export const splitImportsAndBody = (
   code,
-  {
-    findImportsEndLine = () => -1,
-    excludedImports = [],
-    requiredImports = [],
-  } = {},
+  { findImportsEndLine = () => -1, excludedImports = [], requiredImports = [] } = {},
 ) => {
   if (!code || typeof code !== 'string') {
     console.warn('⚠️ Invalid code input in splitImportsAndBody');
@@ -147,11 +139,7 @@ export const splitImportsAndBody = (
     } else if (currentImport) {
       currentImport.push(line);
 
-      if (
-        trimmed.endsWith(';') ||
-        trimmed.endsWith('}') ||
-        trimmed.endsWith(')')
-      ) {
+      if (trimmed.endsWith(';') || trimmed.endsWith('}') || trimmed.endsWith(')')) {
         importBlocks.push(currentImport.join('\n'));
         currentImport = null;
       }

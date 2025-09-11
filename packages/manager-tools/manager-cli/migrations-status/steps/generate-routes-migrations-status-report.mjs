@@ -1,13 +1,13 @@
 #!/usr/bin/env node
+import { existsSync } from 'fs';
+import { readFile } from 'fs/promises';
 
 import { getReactApplications, resolveRoutePath } from '../../utils/AppUtils.mjs';
-import { readFile } from 'fs/promises';
-import { existsSync } from 'fs';
 import { buildRoutesReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes('--dry-run');
-const formatArgIndex = args.findIndex(arg => arg === '--format');
+const formatArgIndex = args.findIndex((arg) => arg === '--format');
 const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
 
 /**

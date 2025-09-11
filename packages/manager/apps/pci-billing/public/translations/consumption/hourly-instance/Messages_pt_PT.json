@@ -21,6 +21,6 @@
   "cpbc_hourly_rancher_title": "Managed Rancher Service",
   "cpbc_hourly_ai_endpoints_title": "AI Endpoints",
   "cpbc_hourly_data_platform_title": "Data Platform",
-  "cpbc_hourly_managed_kubernetes_service_title": "Managed Kubernetes Service",
-  "cpbc_hourly_quantum_title": "Emulators"
+  "cpbc_hourly_managed_kubernetes_service_title": "Managed Kubernetes",
+  "cpbc_hourly_quantum_title": "Emuladores"
 }

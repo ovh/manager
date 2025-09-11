@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { runMigration } from '../utils/ScriptUtils.mjs';
 
 const appName = process.argv[2];
