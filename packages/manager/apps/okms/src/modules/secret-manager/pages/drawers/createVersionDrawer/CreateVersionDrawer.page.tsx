@@ -20,6 +20,7 @@ import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
+import { VersionStatusMessage } from './VersionStatusMessage.component';
 
 type CreateVersionDrawerProps = {
   secret: SecretWithData;
@@ -82,6 +83,7 @@ const CreateVersionDrawerForm = ({
                 t('add_new_version_error')}
             </OdsMessage>
           )}
+          <VersionStatusMessage state={secret.version.state} />
           <SecretDataFormField name="data" control={control} />
         </form>
       </DrawerContent>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { mockSecret2WithData } from '@secret-manager/mocks/secrets/secrets.mock';
+import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { screen, act, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -14,15 +14,16 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
+import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
 import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
-const mockSecretPath = mockSecret2WithData.path;
+const mockedSecret = mockSecret1;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   mockOkmsId,
-  mockSecretPath,
+  mockedSecret.path,
 );
 
 // Mocking ODS Input component
@@ -45,9 +46,9 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
   };
 });
 
-const renderPage = async () => {
+const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   const user = userEvent.setup();
-  const { container } = await renderTestApp(mockPageUrl);
+  const { container } = await renderTestApp(url);
 
   // Check if the drawer is open
   expect(
@@ -85,14 +86,14 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     expect(dataInput).toBeInTheDocument();
     expect(dataInput).toHaveValue(
-      JSON.stringify(mockSecret2WithData.version.data),
+      JSON.stringify(getSecretMockWithData(mockedSecret).version.data),
     );
   });
 
   it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
     const { container, user } = await renderPage();
     vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(
-      mockSecret2WithData.version,
+      getSecretMockWithData(mockedSecret).version,
     );
 
     // Get the data input
@@ -124,9 +125,9 @@ describe('Secret create version drawer page test suite', () => {
     await waitFor(() => {
       expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
         okmsId: mockOkmsId,
-        path: mockSecret2WithData.path,
+        path: mockedSecret.path,
         data: JSON.parse(MOCK_DATA_VALID_JSON),
-        cas: mockSecret2WithData.metadata.currentVersion,
+        cas: mockedSecret.metadata.currentVersion,
       });
     });
 
