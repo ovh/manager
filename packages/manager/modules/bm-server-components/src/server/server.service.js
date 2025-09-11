@@ -602,16 +602,36 @@ export default class Server {
   }
 
   getFtpBackupOrderDetail(serviceName, capacity) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/order/{capacity}/details',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          capacity,
-        },
+    const options = {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
       },
-    );
+      params: {
+        capacity,
+      },
+    };
+
+    return this.OvhHttp.get(
+      '/order/dedicated/server/{serviceName}/backupStorage',
+      options,
+    ).then((durations) => {
+      if (durations[0]) {
+        return this.OvhHttp.get(
+          '/order/dedicated/server/{serviceName}/backupStorage/{duration}',
+          {
+            ...options,
+            urlParams: {
+              ...options.urlParams,
+              duration: durations[0],
+            },
+          },
+        ).then((data) => {
+          return { ...data, duration: durations[0] };
+        });
+      }
+      throw new Error('durations not found');
+    });
   }
 
   postFtpBackupOrderDetail(serviceName, duration, capacity) {
