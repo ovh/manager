@@ -14,12 +14,11 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
 import { ManagedWordpressWebsites, ResourceStatus } from '@/data/type';
 import { useGenerateUrl } from '@/hooks';
 import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
-import { getStatusColor } from '@/utils/getStatusColor';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -96,22 +95,6 @@ export default function MyWebsitesPage() {
         isSortable: true,
       },
       {
-        id: 'resourceStatus',
-        cell: (item) => {
-          const statusColor = getStatusColor(item.resourceStatus);
-          return (
-            <OdsBadge
-              color={statusColor}
-              label={t(
-                `common:web_hosting_status_${item.resourceStatus.toLocaleLowerCase()}`,
-              )}
-            />
-          );
-        },
-        label: t(`${NAMESPACES.STATUS}:status`),
-        isSortable: true,
-      },
-      {
         id: 'delete',
         cell: (item) => (
           <ActionMenu
@@ -150,57 +133,62 @@ export default function MyWebsitesPage() {
         items={data || []}
         totalItems={data?.length || 0}
         topbar={
-          <div className="flex items-center justify-between">
-            <div className="flex gap-4 m-4">
-              <ManagerButton
-                id={'my-websites-create'}
-                label={t(`${NAMESPACES.ACTIONS}:create`)}
-                onClick={handleCreateClick}
-              ></ManagerButton>
-              <ManagerButton
-                id={'my-websites-import'}
-                label={t('common:web_hosting_action_import')}
-                variant={ODS_BUTTON_VARIANT.outline}
-                onClick={handleImportClick}
-              ></ManagerButton>
-              <ManagerButton
-                id={'my-websites-manage'}
-                label={t('common:web_hosting_action_manage_my_sites')}
-                variant={ODS_BUTTON_VARIANT.outline}
-                icon={ODS_ICON_NAME.externalLink}
-                onClick={handleManageClick}
-                isDisabled={!data}
-              />
-              {Object.keys(rowSelection).length > 0 && (
+          <>
+            <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4">
+              {t('dashboard:hosting_managed_wordpress_websites_description')}
+            </OdsText>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-4 m-4">
                 <ManagerButton
-                  id={'my-websites-delete-all'}
-                  label={
-                    Object.keys(rowSelection).length > 1
-                      ? t('common:delete_my_websites')
-                      : t('common:delete_my_website')
-                  }
-                  color={ODS_BUTTON_COLOR.critical}
+                  id={'my-websites-create'}
+                  label={t(`${NAMESPACES.ACTIONS}:create`)}
+                  onClick={handleCreateClick}
+                ></ManagerButton>
+                <ManagerButton
+                  id={'my-websites-import'}
+                  label={t('common:web_hosting_action_import')}
                   variant={ODS_BUTTON_VARIANT.outline}
-                  onClick={handleDeleteModalClick}
-                  icon={ODS_ICON_NAME.trash}
+                  onClick={handleImportClick}
+                ></ManagerButton>
+                <ManagerButton
+                  id={'my-websites-manage'}
+                  label={t('common:web_hosting_action_manage_my_sites')}
+                  variant={ODS_BUTTON_VARIANT.outline}
+                  icon={ODS_ICON_NAME.externalLink}
+                  onClick={handleManageClick}
+                  isDisabled={!data}
                 />
-              )}
-
-              <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_quota_used',
-                  {
-                    used:
-                      dataResourceDetails?.currentState.quotas.websites
-                        .totalUsage,
-                    total:
-                      dataResourceDetails?.currentState.quotas.websites
-                        .totalQuota,
-                  },
+                {Object.keys(rowSelection).length > 0 && (
+                  <ManagerButton
+                    id={'my-websites-delete-all'}
+                    label={
+                      Object.keys(rowSelection).length > 1
+                        ? t('common:delete_my_websites')
+                        : t('common:delete_my_website')
+                    }
+                    color={ODS_BUTTON_COLOR.critical}
+                    variant={ODS_BUTTON_VARIANT.outline}
+                    onClick={handleDeleteModalClick}
+                    icon={ODS_ICON_NAME.trash}
+                  />
                 )}
-              </OdsText>
+
+                <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
+                  {t(
+                    'managedWordpress:web_hosting_managed_wordpress_quota_used',
+                    {
+                      used:
+                        dataResourceDetails?.currentState.quotas.websites
+                          .totalUsage,
+                      total:
+                        dataResourceDetails?.currentState.quotas.websites
+                          .totalQuota,
+                    },
+                  )}
+                </OdsText>
+              </div>
             </div>
-          </div>
+          </>
         }
       />
       <Outlet />
