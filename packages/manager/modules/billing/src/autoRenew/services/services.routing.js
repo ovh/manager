@@ -17,6 +17,17 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
       },
     },
+    redirectTo: (transition) => {
+      const injector = transition.injector();
+      return injector
+        .getAsync('isAutorenewManagementAvailable')
+        .then((isAutorenewManagementAvailable) => {
+          if (!isAutorenewManagementAvailable) {
+            return 'billing.autorenew';
+          }
+          return null;
+        });
+    },
     resolve: {
       isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
         featureAvailability,
