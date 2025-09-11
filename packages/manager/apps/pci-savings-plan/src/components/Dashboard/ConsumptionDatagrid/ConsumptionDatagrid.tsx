@@ -92,7 +92,7 @@ const ConsumptionDatagrid = ({
               id: 1,
               label: t('dashboard_resource_list_view_resources'),
               onClick: () => {
-                setSelectedResources(props.plansIds);
+                setSelectedResources(props.resourceIds);
                 setDrawerOpen(true);
               },
             },
