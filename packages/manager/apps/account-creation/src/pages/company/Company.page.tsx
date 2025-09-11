@@ -17,6 +17,8 @@ import {
   ODS_TEXT_PRESET,
   ODS_LINK_COLOR,
   ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_LINK_ICON_ALIGNMENT,
 } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useUserContext } from '@/context/user/useUser';
@@ -36,6 +38,7 @@ type SearchFormData = {
 
 export default function CompanyPage() {
   const { t } = useTranslation('company');
+  const { t: tCommon } = useTranslation('common');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { t: tError } = useTranslation(NAMESPACES.ERROR);
@@ -103,6 +106,16 @@ export default function CompanyPage() {
 
   return (
     <>
+      <OdsLink
+        icon={ODS_ICON_NAME.arrowLeft}
+        iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
+        href={`#${urls.accountType}`}
+        label={tAction('back')}
+        className="flex mb-6"
+      />
+      <OdsText preset={ODS_TEXT_PRESET.caption}>
+        {tCommon('step', { current: 1, total: 2 })}
+      </OdsText>
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-5">
           <OdsText preset={ODS_TEXT_PRESET.heading1}>
