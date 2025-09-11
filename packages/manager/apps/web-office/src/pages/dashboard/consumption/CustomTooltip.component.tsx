@@ -1,8 +1,11 @@
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { formatDistanceToNow, Locale } from 'date-fns';
+import React from 'react';
+
+import { formatDistanceToNow } from 'date-fns';
+import type { Locale } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 interface CustomTooltipProps {
   payload?: {

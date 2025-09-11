@@ -1,6 +1,6 @@
-import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../ApiType';
 import { LicensePrepaidType, LicenseType } from '../license/type';
-import { PendingTaskType } from '../users';
+import { PendingTaskType } from '../users/type';
 
 export const licensesMock: LicenseType[] = [
   {
@@ -60,8 +60,7 @@ export const licensesPrepaidExpandedMock: LicensePrepaidType[] = [
     usageLocation: 'fr',
     iam: {
       id: '96faec97-1257-4ae8-b2f5-49d8bc74bdd2',
-      urn:
-        'urn:v1:eu:resource:licenseOfficePrepaid:office5678.o365.ovh.com-1234',
+      urn: 'urn:v1:eu:resource:licenseOfficePrepaid:office5678.o365.ovh.com-1234',
     },
   },
   {
@@ -77,8 +76,7 @@ export const licensesPrepaidExpandedMock: LicensePrepaidType[] = [
     usageLocation: 'fr',
     iam: {
       id: 'da75876b-cc2a-429d-8942-ef0e26fced73',
-      urn:
-        'urn:v1:eu:resource:licenseOfficePrepaid:office1234.o365.ovh.com-5678',
+      urn: 'urn:v1:eu:resource:licenseOfficePrepaid:office1234.o365.ovh.com-5678',
     },
   },
 ];

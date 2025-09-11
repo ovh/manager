@@ -1,8 +1,4 @@
-import {
-  OfficeLicenseServiceInfosType,
-  RenewalTypeEnum,
-  StateEnum,
-} from '../serviceInfos/type';
+import { OfficeLicenseServiceInfosType, RenewalTypeEnum, StateEnum } from '../service-infos/type';
 
 export const mockOfficeLicenseServiceInfos: OfficeLicenseServiceInfosType = {
   canDeleteAtExpiration: true,

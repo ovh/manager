@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { order } from './type';
 
 // GET

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getOfficeGlobalLicenses } from '@/data/api/license';
+
+import { getOfficeGlobalLicenses } from '@/data/api/license/api';
 
 export const useLicenses = () => {
   return useQuery({

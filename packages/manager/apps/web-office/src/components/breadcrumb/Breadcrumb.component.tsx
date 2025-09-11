@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { useParentTenant } from '@/data/hooks/parentTenant/useParentTenant';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
+import { useParentTenant } from '@/data/hooks/parent-tenant/useParentTenant';
 
 export type BreadcrumbProps = {
   items?: { label: string; href?: string }[];
@@ -19,9 +20,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = () => {
   const { t } = useTranslation('common');
   const location = useLocation();
 
-  const rootUrl = serviceName
-    ? '#/license/:serviceName'.replace(':serviceName', '')
-    : '#/';
+  const rootUrl = serviceName ? '#/license/:serviceName'.replace(':serviceName', '') : '#/';
 
   const breadcrumbItems = useMemo(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);

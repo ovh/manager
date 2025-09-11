@@ -1,26 +1,30 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { getOfficeUsers, getOfficeUsersQueryKey } from '@/data/api/users';
-import { useServiceType } from '../serviceType/useServiceType';
-import {
-  getOfficePrepaidLicenses,
-  getOfficeLicenseQueryKey,
-  getOfficePrepaidLicenseDetails,
-} from '@/data/api/license';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { getOfficePrepaidLicenseDetails, getOfficePrepaidLicenses } from '@/data/api/license/api';
+import { getOfficeLicenseQueryKey } from '@/data/api/license/key';
+import { LicensePrepaidType } from '@/data/api/license/type';
+import { getOfficeUsers } from '@/data/api/users/api';
+import { getOfficeUsersQueryKey } from '@/data/api/users/key';
+import { UserNativeType } from '@/data/api/users/type';
+import { ServiceType } from '@/utils/ServiceType.utils';
 
 export const useUsers = () => {
   const { serviceName } = useParams();
-  const isPostpaidLicence = useServiceType(serviceName) === 'payAsYouGo';
+  const isPostpaidLicence = ServiceType(serviceName) === 'payAsYouGo';
   return useQuery({
     queryKey: [
       isPostpaidLicence
         ? getOfficeUsersQueryKey(serviceName)
         : getOfficeLicenseQueryKey(serviceName),
+      serviceName,
+      isPostpaidLicence,
     ],
-    queryFn: isPostpaidLicence
-      ? () => getOfficeUsers(serviceName)
-      : () =>
-          getOfficePrepaidLicenses(serviceName).then((data) => {
+    queryFn: (): Promise<UserNativeType[] | LicensePrepaidType[]> =>
+      isPostpaidLicence
+        ? getOfficeUsers(serviceName)
+        : getOfficePrepaidLicenses(serviceName).then((data) => {
             const [tenant] = serviceName.split('-');
             return Promise.allSettled(
               data
@@ -34,7 +38,7 @@ export const useUsers = () => {
                     result.value !== null &&
                     result.value !== undefined,
                 )
-                .map((result) => (result as PromiseFulfilledResult<any>).value),
+                .map((result) => (result as PromiseFulfilledResult<LicensePrepaidType>).value),
             );
           }),
     enabled: !!serviceName,

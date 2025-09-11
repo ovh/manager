@@ -1,10 +1,7 @@
+/* eslint-disable max-lines */
 // TODO: Dupilicate of packages/manager/apps/pci-databases-analytics/src/types/catalog.ts
 // share it across projects and remove this
-import {
-  IntervalUnitType,
-  OvhSubsidiary,
-  CurrencyCode,
-} from '@ovh-ux/manager-react-components';
+import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
 export enum OfficePrepaidPlanCodes {
   OFFICE_365_BUSINESS = 'microsoft-365-apps-for-business-pp-nce',

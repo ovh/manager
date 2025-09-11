@@ -1,4 +1,4 @@
-import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../ApiType';
 import { PendingTaskType, UserNativeType } from '../users/type';
 
 export const usersMock: UserNativeType[] = [
