@@ -21,6 +21,7 @@ export type DatagridProps<T extends Record<string, unknown>> = {
   onFetchAllPages?: () => void;
   onFetchNextPage?: () => void;
   isLoading?: boolean;
+  containerHeight?: string;
 };
 
 /** It is use by different hooks to define the columns of the datagrid
