@@ -1,11 +1,15 @@
 import React from 'react';
 import { describe, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
-import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { InformationsTile } from './InformationsTile.component';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
+import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 
-const mockSecret = secretsMock[0];
+let i18nValue: i18n;
+const mockSecret = secretListMock[0];
 
 const mockFormatDate = vi.fn((date: string) => date);
 vi.mock('@/common/hooks/useFormatDate', () => ({
@@ -14,18 +18,32 @@ vi.mock('@/common/hooks/useFormatDate', () => ({
   }),
 }));
 
+const renderInformationTile = async () => {
+  if (!i18nValue) {
+    i18nValue = await initTestI18n();
+  }
+
+  const { container } = render(
+    <I18nextProvider i18n={i18nValue}>
+      <InformationsTile secret={mockSecret} />
+    </I18nextProvider>,
+  );
+
+  return { container };
+};
+
 describe('Secrets Informations Tile component tests suite', () => {
   test('Should display settings tile with all data', async () => {
-    const { container } = render(<InformationsTile secret={mockSecret} />);
+    const { container } = await renderInformationTile();
 
     const labelList = [
-      'general_information',
+      labels.common.dashboard.general_information,
       PATH_LABEL,
       mockSecret.path,
       URN_LABEL,
-      'creation_date',
+      labels.common.dashboard.creation_date,
       mockSecret.metadata.createdAt,
-      'last_update',
+      labels.secretManager.last_update,
       mockSecret.metadata.updatedAt,
     ];
 

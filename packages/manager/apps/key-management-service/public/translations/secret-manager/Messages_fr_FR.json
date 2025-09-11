@@ -3,6 +3,7 @@
   "actions": "Actions",
   "activated": "Activé",
   "add_new_version": "Ajouter une nouvelle version",
+  "add_new_version_no_value_message": "La version la plus récente de ce secret n'est pas active et ne peut pas être utilisée comme modèle. Veuillez récupérer la valeur d'une version active antérieure pour créer votre nouvelle version.",
   "add_new_version_error": "Une erreur est survenue lors de la création de la version",
   "back_to_okms_list": "Retour à la liste des domaines OKMS",
   "back_to_secret_list": "Retour à la liste des secrets",
