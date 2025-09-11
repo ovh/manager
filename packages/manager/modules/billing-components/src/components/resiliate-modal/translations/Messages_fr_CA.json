@@ -1,0 +1,17 @@
+{
+  "billing_resiliate_mode_label": "Mode de résiliation",
+  "billing_resiliate_deleteAtExpiration": "Résilier le service à la date d'expiration.",
+  "billing_resiliate_terminate": "Résilier le service immédiatement.",
+  "billing_resiliate_terminateAtEngagementDate": "Résilier le service à la date de fin d'engagement",
+  "billing_resiliate_terminateAtExpirationDate": "Résilier le service à la date d'expiration.",
+  "billing_resiliate_deleteAtExpiration_success": "La demande de résiliation de ce service à la date d'expiration a bien été prise en compte.",
+  "billing_resiliate_deleteAtExpiration_error": "Une erreur est survenue lors de la demande de résiliation à expiration de ce service :",
+  "billing_resiliate_terminate_success": "La demande de résiliation de ce service a bien été prise en compte, vous recevrez un e-mail de confirmation pour valider la résiliation.",
+  "billing_resiliate_terminate_immediate_success": "La demande de résiliation de ce service a bien été prise en compte.",
+  "billing_resiliate_terminate_error": "Une erreur est survenue lors de la demande de résiliation de ce service :",
+  "billing_resiliate_terminateAtEngagementDate_success": "La demande de résiliation de ce service à la date de fin d'engagement a bien été suspendue.",
+  "billing_resiliate_terminateAtEngagementDate_error": "Une erreur est survenue lors de la demande de résiliation à la date de fin d'engagement de ce service :",
+  "billing_resiliate_terminateAtExpirationDate_success": "La demande de résiliation de ce service à la date d'expiration a bien été prise en compte.",
+  "billing_resiliate_terminateAtExpirationDate_error": "Une erreur est survenue lors de la demande de résiliation à expiration de ce service :",
+  "billing_resiliate_error": "Une erreur est survenue lors de la demande de résiliation :"
+}

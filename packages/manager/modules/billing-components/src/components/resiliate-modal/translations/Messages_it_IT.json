@@ -1,0 +1,17 @@
+{
+  "billing_resiliate_mode_label": "Modalità di disattivazione",
+  "billing_resiliate_deleteAtExpiration": "Disattivare il servizio alla data di scadenza",
+  "billing_resiliate_terminate": "Disattivare il servizio immediatamente",
+  "billing_resiliate_terminateAtEngagementDate": "Disattivare il servizio alla data di scadenza dell'impegno contrattuale",
+  "billing_resiliate_terminateAtExpirationDate": "Disattivare il servizio alla data di scadenza",
+  "billing_resiliate_deleteAtExpiration_success": "La richiesta di disattivazione del servizio alla data di scadenza è stata presa in carico.",
+  "billing_resiliate_deleteAtExpiration_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio alla data di scadenza:",
+  "billing_resiliate_terminate_success": "La richiesta di disattivazione di questo servizio è stata presa in carico. Riceverai un’email di conferma per convalidare la disattivazione.",
+  "billing_resiliate_terminate_immediate_success": "La richiesta di disattivazione di questo servizio è stata presa in carico.",
+  "billing_resiliate_terminate_error": "Si è verificato un errore durante la richiesta di disattivazione di questo servizio:",
+  "billing_resiliate_terminateAtEngagementDate_success": "La richiesta di disattivazione di questo servizio alla data di scadenza dell'impegno contrattuale è stata sospesa.",
+  "billing_resiliate_terminateAtEngagementDate_error": "Si è verificato un errore durante la richiesta di disattivazione alla data di scadenza di questo servizio:",
+  "billing_resiliate_terminateAtExpirationDate_success": "La richiesta di disattivazione del servizio alla data di scadenza è stata presa in carico.",
+  "billing_resiliate_terminateAtExpirationDate_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio alla data di scadenza:",
+  "billing_resiliate_error": "Si è verificato un errore durante la richiesta di disattivazione:"
+}
