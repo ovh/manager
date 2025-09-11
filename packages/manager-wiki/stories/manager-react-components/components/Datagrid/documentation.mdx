@@ -6,14 +6,9 @@ import {
   StorybookTable,
 } from '../../../../components/';
 import { Meta, Canvas, Source } from '@storybook/blocks';
-import meta, { Default } from './Datagrid.stories';
 import Datagrid from '../../../../components/external-links';
 
 <Meta title="Manager React Components/Components/Datagrid New/Documentation" />
-
-<StoryBookBanner of={meta} />
-
-<Canvas layout="centered" of={Default} sourceState="none" />
 
 <StorybookHeading label="Overview" level={2} />
 
@@ -88,6 +83,53 @@ The Datagrid supports two sorting modes:
   manualSorting={true} // Server handles sorting
 />
 ```
+
+<StorybookHeading label="Footer Actions" level={3} />
+
+The Datagrid includes built-in pagination controls in the footer for progressive data loading.
+
+**Load More Button**
+Incrementally loads additional data when clicked.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchNextPage={() => {
+    // Fetch next page of data
+  }}
+/>
+```
+
+**Load All Button**
+Loads all remaining data at once.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchAllPages={() => {
+    // Fetch all remaining data
+  }}
+/>
+```
+
+**Loading State**
+Both buttons can show loading indicators when data is being fetched.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchNextPage={handleFetchNext}
+  onFetchAllPages={handleFetchAll}
+  isLoading={true} // Shows loading state
+/>
+```
+
 
 <StorybookHeading label="External Resources" level={3} />
 

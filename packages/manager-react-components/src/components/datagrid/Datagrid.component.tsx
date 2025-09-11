@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Table } from '@ovhcloud/ods-react';
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
+import { FooterActions } from './table/table-footer/footer-actions/FooterActions.component';
 import { useDatagrid } from './useDatagrid';
 import { DatagridProps } from './Datagrid.props';
 import './translations';
@@ -13,6 +14,10 @@ export const Datagrid = <T extends Record<string, unknown>>({
   sorting,
   manualSorting = false,
   contentAlignLeft = true,
+  hasNextPage,
+  onFetchAllPages,
+  onFetchNextPage,
+  isLoading,
 }: DatagridProps<T>) => {
   const headerRefs = useRef<Record<string, HTMLTableCellElement>>({});
   const { getHeaderGroups, getRowModel } = useDatagrid({
@@ -27,15 +32,23 @@ export const Datagrid = <T extends Record<string, unknown>>({
   const headerGroups = getHeaderGroups();
 
   return (
-    <Table>
-      <TableHeaderContent<T>
-        headerGroups={headerGroups}
-        onSortChange={onSortChange}
-        sorting={sorting}
-        headerRefs={headerRefs.current}
-        contentAlignLeft={contentAlignLeft}
+    <>
+      <Table>
+        <TableHeaderContent<T>
+          headerGroups={headerGroups}
+          onSortChange={onSortChange}
+          sorting={sorting}
+          headerRefs={headerRefs.current}
+          contentAlignLeft={contentAlignLeft}
+        />
+        <TableBody rowModel={rowModel} />
+      </Table>
+      <FooterActions
+        hasNextPage={hasNextPage}
+        onFetchAllPages={onFetchAllPages}
+        onFetchNextPage={onFetchNextPage}
+        isLoading={isLoading}
       />
-      <TableBody rowModel={rowModel} />
-    </Table>
+    </>
   );
 };
