@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Country, LegalForm, Subsidiary, User } from '@ovh-ux/manager-config';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import userContext from '@/context/user/user.context';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
+
+const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -16,6 +19,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const navigate = useNavigate();
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
+  const { data: availability } = useFeatureAvailability(
+    [NEW_ACCOUNT_CREATION_ACCESS_FEATURE],
+    { enabled: Boolean(isFetched && me) },
+  );
   const redirectToLegacySignup = useLegacySignupRedirection();
   // We will need to add states for language to prefill the /details form
   const [legalForm, setLegalForm] = useState<LegalForm | undefined>(undefined);
@@ -39,16 +46,21 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
         navigate(urls.preferences);
         return;
       }
-      /* if (me?.ovhSubsidiary !== 'GB') {
-        redirectToLegacySignup();
-        return;
-      } */
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
       setCountry(me?.country as Country);
-      navigate(urls.accountType);
     }
   }, [isFetched]);
+
+  useEffect(() => {
+    if (availability) {
+      if (!availability[NEW_ACCOUNT_CREATION_ACCESS_FEATURE]) {
+        redirectToLegacySignup();
+      } else {
+        navigate(urls.accountType);
+      }
+    }
+  }, [availability]);
 
   useEffect(() => {
     // TODO: add currency to dependencies (MANAGER-17334)
