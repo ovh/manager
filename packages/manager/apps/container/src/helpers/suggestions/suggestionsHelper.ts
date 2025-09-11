@@ -1,6 +1,6 @@
 import { User } from '@ovh-ux/manager-config';
 import { Suggestion } from '@/types/suggestion';
-import { SUGGESTION_TYPE_USER_FIELD_MAP } from '@/components/SuggestionModal/SuggestionModal.constants';
+import { SUGGESTION_TYPE_USER_FIELD_MAP } from '@/components/suggestion-modal/suggestionModal.constants';
 
 export const isUserConcernedBySuggestion = (user: User) =>
   user.legalform === 'corporation' &&

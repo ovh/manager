@@ -17,7 +17,7 @@ import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 import { ContainerProps } from '@/types/container';
 
-const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
+const ModalContainer = lazy(() => import('@/components/modal-container/ModalContainer.component'));
 
 function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
@@ -61,7 +61,7 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
   return (
     <div className={style.navReshuffle}>
       <div ref={skipToTheMainContentSlot} />
-      {isCookiePolicyModalClosed && <ModalsContainer isPreloaderVisible={preloaderVisible} />}
+      {isCookiePolicyModalClosed && <ModalContainer isPreloaderVisible={preloaderVisible} />}
       <div
         className={`${style.sidebar} ${
           isNavigationSidebarOpened ? '' : style.hidden

@@ -4,9 +4,9 @@ import { QueryClient, QueryClientProvider, useQuery, UseQueryResult } from '@tan
 import { User } from '@ovh-ux/manager-config';
 import * as MRC from '@ovh-ux/manager-react-components';
 import * as Context from '@/context';
-import * as useAccountUrnModule from '@/hooks/accountUrn/useAccountUrn';
-import * as usePreferencesModule from '@/hooks/preferences/usePreferences';
-import * as useTimeModule from '@/hooks/time/useTime';
+import * as useAccountUrnModule from '@/data/hooks/authorizations/useAccountUrn';
+import * as usePreferencesModule from '@/data/hooks/preferences/usePreferences';
+import * as useTimeModule from '@/data/hooks/time/useTime';
 import { useCheckModalDisplay, useCheckModalDisplaySynchronous } from './useModal';
 import { ApplicationContextType } from '@/context/application.context';
 import { Shell } from '@ovh-ux/shell';

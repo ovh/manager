@@ -19,7 +19,7 @@ import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 import { ContainerProps } from '@/types/container';
 
-const ModalsContainer = lazy(() => import('@/components/ModalContainer/ModalsContainer'));
+const ModalContainer = lazy(() => import('@/components/modal-container/ModalContainer.component'));
 
 function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
@@ -62,7 +62,7 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
     <LegacyContainerProvider>
       <>
         <Progress isAnimating={isProgressAnimating}></Progress>
-        {isCookiePolicyModalClosed && <ModalsContainer isPreloaderVisible={preloaderVisible} />}
+        {isCookiePolicyModalClosed && <ModalContainer isPreloaderVisible={preloaderVisible} />}
 
         <div className={style.managerShell}>
           <Suspense fallback="">
