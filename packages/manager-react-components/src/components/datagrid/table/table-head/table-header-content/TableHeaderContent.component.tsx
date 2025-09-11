@@ -10,21 +10,27 @@ const TableHeaderContentComponent = <T,>({
   headerRefs,
 }: TableHeaderContentProps<T>) => {
   return (
-    <thead>
+    <thead
+      style={{
+        display: 'grid',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1,
+      }}
+    >
       {headerGroups?.map((headerGroup) => (
-        <tr key={headerGroup.id}>
+        <tr key={headerGroup.id} style={{ display: 'flex', width: '100%' }}>
           {headerGroup.headers.map((header) => (
             <th
               key={header.id}
-              ref={(el) => {
-                if (headerRefs && el) {
-                  // eslint-disable-next-line no-param-reassign
-                  headerRefs[header?.id ?? ''] = el;
-                }
-              }}
               className={`${
                 contentAlignLeft ? 'text-left pl-4' : 'text-center'
               } h-11 whitespace-nowrap `}
+              style={{
+                display: 'flex',
+                flex: 1, // This will make each header cell take equal width
+                minWidth: 0, // Allows flex items to shrink below their content size
+              }}
             >
               {!header.isPlaceholder &&
                 (onSortChange ? (
