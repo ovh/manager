@@ -6,7 +6,7 @@ import {
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { secretsMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
@@ -69,7 +69,7 @@ describe('Secret list page test suite', () => {
       expect(screen.queryAllByText(header)).toHaveLength(1);
     });
 
-    secretsMock.forEach(async (secret) => {
+    secretListMock.forEach(async (secret) => {
       await assertTextVisibility(secret.path);
     });
   });
@@ -82,7 +82,7 @@ describe('Secret list page test suite', () => {
 
     const secretPageLink = await getOdsButtonByLabel({
       container,
-      label: secretsMock[0].path,
+      label: secretListMock[0].path,
       isLink: true,
     });
 
