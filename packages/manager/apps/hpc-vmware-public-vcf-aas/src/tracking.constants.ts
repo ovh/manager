@@ -24,7 +24,7 @@ export const LEVEL2 = {
 export const UNIVERSE = 'Enterprise';
 export const SUB_UNIVERSE = 'HostedPrivatedCloud';
 export const APP_NAME_TRACKING = 'vcfaas';
-export const APP_NAME = 'hpc-vmware-managed-vcd';
+export const APP_NAME = 'hpc-vmware-public-vcf-aas';
 
 type GetTrackingParams = (param: string | string[]) => TrackingClickParams;
 type AppTracking = Record<

@@ -167,7 +167,7 @@ export const productListingPages: Record<
     hash: '#/veeam-enterprise',
   },
   VMWARE_CLOUD_DIRECTOR: {
-    application: 'hpc-vmware-managed-vcd',
+    application: 'hpc-vmware-public-vcf-aas',
     hash: '#',
   },
   VMWARE_CLOUD_DIRECTOR_BACKUP: {

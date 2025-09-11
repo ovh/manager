@@ -15,7 +15,8 @@ export interface BreadcrumbProps {
 
 export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
   const location = useLocation();
-  const rootHref = useHref(urls.root);
+  const rootHref = useHref(`${urls.vmwareRoot}${urls.root}/`);
+  const isRootPath = (path: string) => path === urls.root.replace('/', '');
 
   const rootItem = {
     id: rootLabel,
@@ -23,7 +24,9 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
     href: rootHref,
   };
 
-  const pathnames = location.pathname.split('/').filter(Boolean);
+  const pathnames = location.pathname
+    .split('/')
+    .filter((path) => !isRootPath(path) && Boolean(path));
   const pathsTab = pathnames.map((value, index) => {
     const item = items?.find(({ id }) => id === value);
 
