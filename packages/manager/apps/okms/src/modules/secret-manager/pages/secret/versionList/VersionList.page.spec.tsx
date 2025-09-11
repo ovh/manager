@@ -4,7 +4,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
   versionActiveMock,
-  versionsMock,
+  versionListMock,
 } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { labels } from '@/utils/tests/init.i18n';
@@ -22,7 +22,7 @@ export const assertVersionDatagridVisilibity = async () => {
   await assertTextVisibility(labels.secretManager.expiration_date);
 
   // assert we display versions rows
-  versionsMock.forEach(async (version) => {
+  versionListMock.forEach(async (version) => {
     await assertTextVisibility(version.id.toString());
   });
 };
