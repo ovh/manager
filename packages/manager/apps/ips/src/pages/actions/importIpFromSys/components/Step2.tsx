@@ -62,19 +62,20 @@ export default function Step2({
         >
           {t('step2Description')}
         </OdsMessage>
-        <OdsFormField className="block mb-7">
+        <OdsFormField className="block mb-12">
           <label htmlFor="destination-server" slot="label">
             {t('step2ServerLabel')}
           </label>
           {isServerListLoading && <OdsSpinner />}
           {serverList?.length && (
             <OdsSelect
-              className="w-full"
+              className="mt-1"
               name="destination-server"
               id="destination-server"
               value={destinationServer}
               onOdsChange={(e) => setDestinationServer(e.detail.value)}
               placeholder={t('step2ServerPlaceholder')}
+              strategy="fixed"
             >
               {serverList?.map((server) => (
                 <option key={server} value={server}>
