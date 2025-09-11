@@ -1,21 +1,17 @@
 import React, { Suspense } from 'react';
+
 import { Outlet } from 'react-router-dom';
-import {
-  BaseLayout,
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { Loading } from '@/components';
 import { usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { setOnboarded } from '@/utils';
-import { Loading } from '@/components';
 import { EXIT, ONBOARDING_CONFIGURE } from '@/tracking.constants';
+import { setOnboarded } from '@/utils';
 
 export const ConfigureLayout: React.FC = () => {
   const { trackClick } = useOvhTracking();

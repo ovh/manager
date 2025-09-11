@@ -15,10 +15,12 @@
   "cpbc_hourly_notebooks_title": "AI Notebooks",
   "cpbc_hourly_ai_deploy_title": "AI Deploy",
   "cpbc_hourly_ai_endpoints_title": "AI Endpoints",
+  "cpbc_hourly_quantum_title": "Emulators",
   "cpbc_hourly_data_processing_title": "Data processing",
   "cpbc_hourly_data_platform_title": "Data Platform",
   "cpbc_hourly_databases_title": "Databases",
   "cpbc_hourly_floating_ip_title": "Floating IP",
   "cpbc_hourly_gateway_title": "Gateway",
-  "cpbc_hourly_public_ip_title": "Public IP"
+  "cpbc_hourly_public_ip_title": "Public IP",
+  "cpbc_hourly_managed_kubernetes_service_title": "Managed Kubernetes Service"
 }

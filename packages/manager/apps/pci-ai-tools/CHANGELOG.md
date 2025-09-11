@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.3...@ovh-ux/manager-pci-ai-tools-app@1.10.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.2...@ovh-ux/manager-pci-ai-tools-app@1.10.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.1...@ovh-ux/manager-pci-ai-tools-app@1.10.2) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.0...@ovh-ux/manager-pci-ai-tools-app@1.10.1) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.9.4...@ovh-ux/manager-pci-ai-tools-app@1.10.0) (2025-09-03)
+
+
+### Features
+
+* adjust shell mock after plugin update ([cb20047](https://github.com/ovh/manager/commit/cb2004712f303691ec9fd537b5d8cdcbf768cfc9)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341)
+
+
+
+
+
 ## [1.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.9.3...@ovh-ux/manager-pci-ai-tools-app@1.9.4) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-sso",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -14,12 +14,15 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "prepare": "tsc",
-    "test": "manager-test",
+    "test": "manager-test run",
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.3.0",
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "^0.12.0"
   }
 }

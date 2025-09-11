@@ -1,45 +1,39 @@
 import React from 'react';
+
+import { render, screen, waitFor } from '@testing-library/react';
 import { SetupServer } from 'msw/node';
+
 import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
-import { render, waitFor, screen } from '@testing-library/react';
-import { TestApp } from './TestApp';
-import { MockedAppPageLabel } from './MockedAppPage';
+
+import { GetLogKindsMocksParams, getLogKindsMocks } from '../data/mocks/logKind.handler';
+import { GetLogMessageParams, getLogMessageMocks } from '../data/mocks/logMessage.handler';
 import {
-  getLogKindsMocks,
-  GetLogKindsMocksParams,
-} from '../data/mocks/logKind.handler';
+  GetLogRetentionMocksParams,
+  getLogRetentionMocks,
+} from '../data/mocks/logRetention.handler';
 import {
-  getLogMessageMocks,
-  GetLogMessageParams,
-} from '../data/mocks/logMessage.handler';
+  GetLogServiceMocksParams,
+  GetLogServicesMocksParams,
+  getLogServiceMocks,
+  getLogServicesMocks,
+} from '../data/mocks/logService.handler';
 import {
-  PostLogTailUrlParams,
-  postLogTailUrlMocks,
-} from '../data/mocks/logTailUrl.handler';
-import {
-  GetLogSubscriptionsMocksParams,
-  getLogSubscriptionsMocks,
-} from '../data/mocks/logSubscription.handler';
+  GetLogStreamMocksParams,
+  GetLogStreamsMocksParams,
+  getLogStreamMocks,
+  getLogStreamsMocks,
+} from '../data/mocks/logStream.handler';
 import {
   GetLogStreamUrlMocksParams,
   getLogStreamUrlMocks,
 } from '../data/mocks/logStreamUrl.handler';
 import {
-  GetLogStreamMocksParams,
-  getLogStreamMocks,
-  getLogStreamsMocks,
-  GetLogStreamsMocksParams,
-} from '../data/mocks/logStream.handler';
-import {
-  GetLogServiceMocksParams,
-  getLogServiceMocks,
-  getLogServicesMocks,
-  GetLogServicesMocksParams,
-} from '../data/mocks/logService.handler';
-import {
-  getLogRetentionMocks,
-  GetLogRetentionMocksParams,
-} from '../data/mocks/logRetention.handler';
+  GetLogSubscriptionsMocksParams,
+  getLogSubscriptionsMocks,
+} from '../data/mocks/logSubscription.handler';
+import { PostLogTailUrlParams, postLogTailUrlMocks } from '../data/mocks/logTailUrl.handler';
+import { MockedAppPageLabel } from './MockedAppPage';
+import { TestApp } from './TestApp';
 
 export const renderTest = async ({
   initialRoute,
@@ -56,7 +50,7 @@ export const renderTest = async ({
   GetLogServiceMocksParams &
   GetLogRetentionMocksParams &
   GetLogServicesMocksParams = {}) => {
-  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+  (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getLogKindsMocks(mockParams),
       ...postLogTailUrlMocks(mockParams),

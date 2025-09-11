@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0) (2025-09-08)
+
+
+### Features
+
+* **vcd:** add tracking feature implementation ([4d44658](https://github.com/ovh/manager/commit/4d446583c09740de07ac36d049deb2731bc4cae6)), closes [#MANAGER-18459](https://github.com/ovh/manager/issues/MANAGER-18459)
+
+
+
+
+
+## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.5) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.21.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.4) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.3) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.2) (2025-09-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4303] ([3727ec9](https://github.com/ovh/manager/commit/3727ec94bb58a63b8a845926e2741ad631c86b7b))
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.1) (2025-09-02)
+
+
+### Bug Fixes
+
+* **vcfaas:** allow fetching more than default pageSize ([ecd3497](https://github.com/ovh/manager/commit/ecd3497bafc9550667fc37f9cebb8f11e436234d)), closes [#MANAGER-19580](https://github.com/ovh/manager/issues/MANAGER-19580)
+
+
+
+
+
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.20.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.0) (2025-09-01)
+
+
+### Features
+
+* **vcd:** split compute and storage order subtitles in two lines ([1b9841a](https://github.com/ovh/manager/commit/1b9841a84bd0cb67690e2df9548413131134c4e0)), closes [#MANAGER-18257](https://github.com/ovh/manager/issues/MANAGER-18257)
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.19.7...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.20.0) (2025-08-29)
 
 

@@ -1,10 +1,13 @@
+import { useCallback, useEffect, useState } from 'react';
+
+import { useParams, useSearchParams } from 'react-router-dom';
+
 import {
-  useInfiniteQuery,
   UseInfiniteQueryOptions,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
   AccountType,
   getZimbraPlatformAccounts,
@@ -37,11 +40,7 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
   const query = useInfiniteQuery({
     ...options,
     initialPageParam: null,
-    queryKey: getZimbraPlatformAccountsQueryKey(
-      platformId,
-      urlSearchParams,
-      allPages,
-    ),
+    queryKey: getZimbraPlatformAccountsQueryKey(platformId, urlSearchParams, allPages),
     queryFn: ({ pageParam }) =>
       getZimbraPlatformAccounts({
         platformId,
@@ -53,14 +52,10 @@ export const useAccounts = (props: UseAccountsParams = {}) => {
     enabled: (q) =>
       (typeof options.enabled === 'function'
         ? options.enabled(q)
-        : typeof options.enabled !== 'boolean' || options.enabled) &&
-      !!platformId,
-    getNextPageParam: (lastPage: { cursorNext?: string }) =>
-      lastPage.cursorNext,
+        : typeof options.enabled !== 'boolean' || options.enabled) && !!platformId,
+    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
     select: (data) =>
-      data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<AccountType[]>) => page.data,
-      ),
+      data?.pages.flatMap((page: UseInfiniteQueryResult<AccountType[]>) => page.data),
   });
 
   const fetchAllPages = useCallback(() => {

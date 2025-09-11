@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import ActionButtonDomain from './ActionButton.component';
-import { render } from '@/utils/test.provider';
+
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import ActionButtonDomain from './ActionButton.component';
 
 describe('Domains datagrid action menu', () => {
   it('we have good number of item with good content', () => {
@@ -25,10 +28,7 @@ describe('Domains datagrid action menu', () => {
 
     expect(menuItems[0]).toHaveAttribute('label', 'configure');
 
-    expect(menuItems[1]).toHaveAttribute(
-      'label',
-      commonTranslation.diagnostics,
-    );
+    expect(menuItems[1]).toHaveAttribute('label', commonTranslation.diagnostics);
 
     expect(menuItems[2]).toHaveAttribute('label', 'delete');
   });

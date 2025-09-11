@@ -3,6 +3,106 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.147.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.2...@ovh-ux/manager-container-app@0.147.3) (2025-09-10)
+
+
+### Bug Fixes
+
+* **container:** add error management for modal display check ([76c02af](https://github.com/ovh/manager/commit/76c02af709d95dd16b4502f6fa459a4347763c89)), closes [#MANAGER-19604](https://github.com/ovh/manager/issues/MANAGER-19604)
+* **container:** remove payment modal style overriding pnr font ([6262ed5](https://github.com/ovh/manager/commit/6262ed59ffeb1d44822ecb392b7dfaa20b0d2a66)), closes [#MANAGER-19597](https://github.com/ovh/manager/issues/MANAGER-19597)
+
+
+
+
+
+## [0.147.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.1...@ovh-ux/manager-container-app@0.147.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4310] ([faec10f](https://github.com/ovh/manager/commit/faec10f8b8817f6a19ffa8d626554911d4d63b2e))
+* **i18n:** add missing translations [CDS 4314] ([9a4c8b3](https://github.com/ovh/manager/commit/9a4c8b332f86e7d8922432b9a8749ea620cc6624))
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
+## [0.147.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.0...@ovh-ux/manager-container-app@0.147.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.147.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.146.1...@ovh-ux/manager-container-app@0.147.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [0.146.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.146.0...@ovh-ux/manager-container-app@0.146.1) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.146.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.145.2...@ovh-ux/manager-container-app@0.146.0) (2025-09-04)
+
+
+### Features
+
+* **iam:** improve resource datagrid ([2f6ec2d](https://github.com/ovh/manager/commit/2f6ec2df1e7d4ff7c1ac984d3a9fd6c89fbfec4e)), closes [#MANAGER-15304](https://github.com/ovh/manager/issues/MANAGER-15304)
+* **iam:** init tag manager section ([9e5d69c](https://github.com/ovh/manager/commit/9e5d69cbb970693586b232b322096bf5197e8a91)), closes [#MANAGER-16090](https://github.com/ovh/manager/issues/MANAGER-16090)
+
+
+
+
+
+## [0.145.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.145.1...@ovh-ux/manager-container-app@0.145.2) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.145.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.145.0...@ovh-ux/manager-container-app@0.145.1) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.145.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.144.4...@ovh-ux/manager-container-app@0.145.0) (2025-09-01)
+
+
+### Bug Fixes
+
+* **container:** remove obsolete url build and incorrect type ([4bd490e](https://github.com/ovh/manager/commit/4bd490ecab1bb612434529293eb3ffc9bd67360f)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** use native js object name property for modal name ([9b5f5ba](https://github.com/ovh/manager/commit/9b5f5ba3c6cd1465fba5083db0a2c09e43381e73)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+### Features
+
+* **container:** add a modal to invite customer to fill their information ([#15615](https://github.com/ovh/manager/issues/15615)) ([46d0363](https://github.com/ovh/manager/commit/46d0363001a39cd7443d71069534946dbb0937e0)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** add tracking for new siret modal ([303f6a5](https://github.com/ovh/manager/commit/303f6a5db03d41e457bf87691217a18c592868f6)), closes [#MANAGER-16618](https://github.com/ovh/manager/issues/MANAGER-16618)
+* **container:** handle nin type in suggestion modal logic ([#18516](https://github.com/ovh/manager/issues/18516)) ([cdad670](https://github.com/ovh/manager/commit/cdad6704d765708386cf449ceef12ff5d71b75f3)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+* **container:** remove hub css references ([a20ff66](https://github.com/ovh/manager/commit/a20ff66f2355b7f8469b758d0fe1eba09f1cd79e)), closes [#MANAGER-18164](https://github.com/ovh/manager/issues/MANAGER-18164)
+
+
+
+
+
 ## [0.144.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.144.3...@ovh-ux/manager-container-app@0.144.4) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

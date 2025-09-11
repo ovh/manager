@@ -100,3 +100,58 @@ export const PCI_FEATURES_FREE_LOCAL_ZONES_BANNER =
   'public-cloud:project:free-local-zones-banner';
 export const PCI_FEATURES_BILLING_POST_PAID = 'billing:postPaid';
 export const TRUSTED_ZONE = 'public-cloud:trusted-zone';
+
+export enum ResourceType {
+  REGISTRY = 'registry',
+  LOADBALANCER = 'loadbalancer',
+  AI_NOTEBOOK = 'ai-notebook',
+  AI_SERVING_ENGINE = 'ai-serving-engine',
+  AI_TRAINING = 'ai-training',
+  AI_ENDPOINTS = 'ai-endpoints',
+  DATA_PROCESSING_JOB = 'data-processing-job',
+  DATABASES = 'databases',
+  COLD_ARCHIVE = 'coldarchive',
+  FLOATING_IP = 'floatingip',
+  GATEWAY = 'gateway',
+  OCTAVIA_LOADBALANCER = 'octavia-loadbalancer',
+  AI_APP = 'ai-app',
+  PUBLIC_IP = 'publicip',
+  DATAPLATFORM = 'dataplatform',
+  INSTANCE = 'instance',
+  SNAPSHOT = 'snapshot',
+  VOLUME = 'volume',
+  OBJECT_STORAGE = 'objectStorage',
+  ARCHIVE_STORAGE = 'archiveStorage',
+  BANDWIDTH = 'bandwidth',
+  RANCHER = 'rancher',
+  MANAGED_KUBERNETES_SERVICE = 'managedKubernetesService',
+  QUANTUM = 'quantum',
+  TOTAL = 'total',
+}
+
+export const RESOURCE_DISPLAY_NAMES: Partial<Record<ResourceType, string>> = {
+  [ResourceType.REGISTRY]: 'privateRegistry',
+  [ResourceType.LOADBALANCER]: 'kubernetesLoadBalancer',
+  [ResourceType.AI_NOTEBOOK]: 'notebooks',
+  [ResourceType.AI_SERVING_ENGINE]: 'serving',
+  [ResourceType.AI_TRAINING]: 'training',
+  [ResourceType.AI_ENDPOINTS]: 'aiEndpoints',
+  [ResourceType.DATA_PROCESSING_JOB]: 'dataProcessing',
+  [ResourceType.DATABASES]: 'databases',
+  [ResourceType.COLD_ARCHIVE]: 'coldArchive',
+  [ResourceType.FLOATING_IP]: 'floatingIP',
+  [ResourceType.GATEWAY]: 'gateway',
+  [ResourceType.OCTAVIA_LOADBALANCER]: 'octaviaLoadBalancer',
+  [ResourceType.AI_APP]: 'aiDeploy',
+  [ResourceType.PUBLIC_IP]: 'publicIP',
+  [ResourceType.DATAPLATFORM]: 'dataplatform',
+};
+
+export const getResourceDisplayKey = (resourceType: ResourceType): string =>
+  RESOURCE_DISPLAY_NAMES[resourceType] || resourceType;
+
+type DisplayNameValues = NonNullable<
+  typeof RESOURCE_DISPLAY_NAMES[keyof typeof RESOURCE_DISPLAY_NAMES]
+>;
+
+export type ConsumptionKey = ResourceType | DisplayNameValues;

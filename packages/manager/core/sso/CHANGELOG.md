@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.3.3...@ovh-ux/manager-core-sso@0.4.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
 ## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.3.2...@ovh-ux/manager-core-sso@0.3.3) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-sso

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.13.0...@ovh-ux/manager-restricted-app@0.13.1) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-restricted-app
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.12.5...@ovh-ux/manager-restricted-app@0.13.0) (2025-09-01)
+
+
+### Features
+
+* **restricted:** remove hub css references ([96a2725](https://github.com/ovh/manager/commit/96a272513bc5d620f5e45b23a6851599d932c216)), closes [#MANAGER-18164](https://github.com/ovh/manager/issues/MANAGER-18164)
+
+
+
+
+
 ## [0.12.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.12.4...@ovh-ux/manager-restricted-app@0.12.5) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app

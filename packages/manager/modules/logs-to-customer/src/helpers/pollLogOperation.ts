@@ -1,9 +1,5 @@
 import { getLogOperation } from '../data/api/logOperation';
-import {
-  Operation,
-  OperationStateEnum,
-  Service,
-} from '../data/types/dbaas/logs';
+import { Operation, OperationStateEnum, Service } from '../data/types/dbaas/logs';
 
 export const pollLogOperation = async (
   serviceName: Service['serviceName'],

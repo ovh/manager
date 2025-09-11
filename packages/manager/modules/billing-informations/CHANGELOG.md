@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.1...@ovh-ux/billing-informations@1.3.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.0...@ovh-ux/billing-informations@1.3.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.26...@ovh-ux/billing-informations@1.3.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [1.2.26](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.25...@ovh-ux/billing-informations@1.2.26) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.2.25](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.24...@ovh-ux/billing-informations@1.2.25) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.2.24](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.23...@ovh-ux/billing-informations@1.2.24) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
 ## [1.2.23](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.2.22...@ovh-ux/billing-informations@1.2.23) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/billing-informations

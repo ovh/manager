@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { SlotType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { SlotType } from './type';
 
 // GET
 
@@ -22,12 +24,7 @@ export const getZimbraPlatformSlots = ({
     cursor: pageParam as string,
   });
 
-export const getZimbraPlatformSlot = async (
-  platformId: string,
-  slotId: string,
-) => {
-  const { data } = await v2.get<SlotType>(
-    `${getApiPath(platformId)}slot/${slotId}`,
-  );
+export const getZimbraPlatformSlot = async (platformId: string, slotId: string) => {
+  const { data } = await v2.get<SlotType>(`${getApiPath(platformId)}slot/${slotId}`);
   return data;
 };

@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.34...@ovh-ux/manager-pci-quota-app@0.1.35) (2025-09-09)
+
+
+### Bug Fixes
+
+* **mrc:** mrc datagrid column visibility and filter ([fa92068](https://github.com/ovh/manager/commit/fa92068a67823c60d17c9ab134e1e70d7a05c432)), closes [#ISSUE-19038](https://github.com/ovh/manager/issues/ISSUE-19038)
+
+
+
+
+
+## [0.1.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.33...@ovh-ux/manager-pci-quota-app@0.1.34) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.32...@ovh-ux/manager-pci-quota-app@0.1.33) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.31...@ovh-ux/manager-pci-quota-app@0.1.32) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.30...@ovh-ux/manager-pci-quota-app@0.1.31) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.29...@ovh-ux/manager-pci-quota-app@0.1.30) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
 ## [0.1.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.28...@ovh-ux/manager-pci-quota-app@0.1.29) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.18.0...@ovh-ux/manager-common-translations@0.18.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.17.0...@ovh-ux/manager-common-translations@0.18.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.16.0...@ovh-ux/manager-common-translations@0.17.0) (2025-09-02)
+
+
+### Features
+
+* add optional step label to mrc modal ([2d88a93](https://github.com/ovh/manager/commit/2d88a9362063e6b01fd2c446292b66f4307d348a)), closes [#ISSUE-18727](https://github.com/ovh/manager/issues/ISSUE-18727)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.15.0...@ovh-ux/manager-common-translations@0.16.0) (2025-08-14)
 
 

@@ -1,10 +1,17 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { COLD_ARCHIVE_GRID_DATA } from '@/constants';
+import {
+  COLD_ARCHIVE_GRID_DATA,
+  ResourceType,
+  getResourceDisplayKey,
+  ConsumptionKey,
+  RESOURCE_DISPLAY_NAMES,
+} from '@/constants';
 import queryClient from '@/queryClient';
 import {
   activateMonthlyBilling,
   getCurrentUsage,
   TCurrentUsage,
+  THourlyConsumption,
   TQuantity,
 } from '../data/consumption';
 
@@ -77,11 +84,12 @@ const initMonthlySavingsPlanList = (
 };
 
 const initHourlyInstanceList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { instance: instanceData } = data.hourlyUsage;
+  if (!instanceData.length) {
     return { hourlyInstanceList: [], hourlyInstanceTotalPrice: 0 };
   }
 
-  const hourlyInstanceList = data.hourlyUsage.instance.flatMap((instance) =>
+  const hourlyInstanceList = instanceData.flatMap((instance) =>
     instance.details.map((detail) => ({
       ...detail,
       totalPrice: roundPrice(detail.totalPrice),
@@ -104,14 +112,15 @@ const initHourlyInstanceList = (data: TCurrentUsage) => {
 };
 
 const initObjectStorageList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { storage: storageData } = data.hourlyUsage;
+  if (!storageData.length) {
     return {
       objectStorageList: [],
       objectStorageTotalPrice: 0,
     };
   }
 
-  const objectStorageList = data.hourlyUsage.storage?.filter(
+  const objectStorageList = storageData.filter(
     (storage) => storage.type !== 'pca',
   );
 
@@ -129,14 +138,15 @@ const initObjectStorageList = (data: TCurrentUsage) => {
 };
 
 const initArchiveStorageList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { storage: storageData } = data.hourlyUsage;
+  if (!storageData.length) {
     return {
       archiveStorageList: [],
       archiveStorageTotalPrice: 0,
     };
   }
 
-  const archiveStorageList = data.hourlyUsage.storage?.filter(
+  const archiveStorageList = storageData.filter(
     (storage) => storage.type === 'pca',
   );
 
@@ -154,21 +164,22 @@ const initArchiveStorageList = (data: TCurrentUsage) => {
 };
 
 const initSnapshotList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { snapshot } = data.hourlyUsage;
+  if (!snapshot.length) {
     return {
       snapshotList: [],
       snapshotsTotalPrice: 0,
     };
   }
 
-  const snapshotList = data.hourlyUsage.snapshot.map((snapshot) => ({
-    ...snapshot,
-    totalPrice: roundPrice(snapshot.totalPrice),
+  const snapshotList = snapshot.map((snap) => ({
+    ...snap,
+    totalPrice: roundPrice(snap.totalPrice),
   }));
 
   const snapshotsTotalPrice = roundPrice(
     data.hourlyUsage.snapshot.reduce(
-      (sum, snapshot) => sum + roundPrice(snapshot.totalPrice),
+      (sum, snap) => sum + roundPrice(snap.totalPrice),
       0,
     ),
   );
@@ -179,42 +190,45 @@ const initSnapshotList = (data: TCurrentUsage) => {
   };
 };
 
-const initRancherList = (
-  data: TCurrentUsage,
+const initConsumptionsList = (
+  consumptions: THourlyConsumption[],
 ): {
-  rancherList: TResourceUsage[];
-  rancherTotalPrice: number;
+  list: TResourceUsage[];
+  totalPrice: number;
 } => {
-  if (!data.hourlyUsage.rancher.length) {
+  if (!consumptions.length) {
     return {
-      rancherList: [],
-      rancherTotalPrice: 0,
+      list: [],
+      totalPrice: 0,
     };
   }
 
-  const rancherList = data.hourlyUsage.rancher.flatMap((rancher) =>
-    rancher.details.map((r) => ({
-      ...r,
-      totalPrice: roundPrice(r.totalPrice.value),
-      name: rancher.reference,
-      region: rancher.region,
+  const list = consumptions.flatMap((consumption) =>
+    consumption.details.map((detail) => ({
+      ...detail,
+      totalPrice: roundPrice(detail.totalPrice.value),
+      name: consumption.reference,
+      region: consumption.region,
     })),
   );
 
-  const rancherTotalPrice = roundPrice(
-    data.hourlyUsage.rancher
-      .flatMap((rancher) => rancher.details)
-      .reduce((sum, rancher) => sum + roundPrice(rancher.totalPrice.value), 0),
+  const totalPrice = roundPrice(
+    consumptions
+      .flatMap((consumption) => consumption.details)
+      .reduce(
+        (sum, consumption) => sum + roundPrice(consumption.totalPrice.value),
+        0,
+      ),
   );
 
   return {
-    rancherList,
-    rancherTotalPrice,
+    list,
+    totalPrice,
   };
 };
 
 const initVolumeList = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  if (!data.hourlyUsage.volume.length) {
     return {
       volumeList: [],
       volumesTotalPrice: 0,
@@ -244,28 +258,27 @@ const initVolumeList = (data: TCurrentUsage) => {
 };
 
 const initInstanceBandwidth = (data: TCurrentUsage) => {
-  if (!data?.hourlyUsage) {
+  const { instanceBandwidth } = data.hourlyUsage;
+  if (!instanceBandwidth.length) {
     return {
       bandwidthList: [],
       bandwidthTotalPrice: 0,
     };
   }
 
-  const bandwidthList = data.hourlyUsage.instanceBandwidth.map(
-    (bandwidthByRegion) => ({
-      ...bandwidthByRegion,
-      outgoingBandwidth: {
-        ...bandwidthByRegion.outgoingBandwidth,
-        totalPrice: roundPrice(bandwidthByRegion.outgoingBandwidth.totalPrice),
-        quantity: {
-          ...bandwidthByRegion.outgoingBandwidth.quantity,
-          value: roundPrice(
-            bandwidthByRegion.outgoingBandwidth.quantity.value || 0,
-          ),
-        },
+  const bandwidthList = instanceBandwidth.map((bandwidthByRegion) => ({
+    ...bandwidthByRegion,
+    outgoingBandwidth: {
+      ...bandwidthByRegion.outgoingBandwidth,
+      totalPrice: roundPrice(bandwidthByRegion.outgoingBandwidth.totalPrice),
+      quantity: {
+        ...bandwidthByRegion.outgoingBandwidth.quantity,
+        value: roundPrice(
+          bandwidthByRegion.outgoingBandwidth.quantity.value || 0,
+        ),
       },
-    }),
-  );
+    },
+  }));
 
   const bandwidthTotalPrice = roundPrice(
     bandwidthList.reduce(
@@ -286,7 +299,7 @@ const sumColdArchiveTotalPriceByName = (
 ) =>
   coldArchives.reduce((sum, object) => {
     if (object.name === name) {
-      return sum + object?.totalPrice;
+      return sum + object.totalPrice;
     }
     return sum;
   }, 0);
@@ -297,7 +310,7 @@ const sumColdArchiveBillingQuantitiesByName = (
 ) =>
   coldArchives.reduce((sum, object) => {
     if (object.name === name) {
-      return sum + object?.quantity?.value;
+      return sum + object.quantity.value;
     }
     return sum;
   }, 0);
@@ -321,18 +334,18 @@ const reduceColdArchiveBillingInfo = (
     };
   });
 
-const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
-  let resources = (data?.resourcesUsage || [])
+const initResourceUsage = (data: TCurrentUsage, resourceType: ResourceType) => {
+  let resources = data.resourcesUsage
     .filter((resource) => resource.type === resourceType)
-    .flatMap((resource) => resource.resources || [])
+    .flatMap((resource) => resource.resources)
     .flatMap((resourceDetail) =>
-      (resourceDetail.components || []).map((resourceComponent) => ({
+      resourceDetail.components.map((resourceComponent) => ({
         ...resourceComponent,
         region: resourceDetail.region,
       })),
     );
 
-  if (resourceType === 'coldarchive') {
+  if (resourceType === ResourceType.COLD_ARCHIVE) {
     resources = reduceColdArchiveBillingInfo(resources);
   }
 
@@ -341,7 +354,7 @@ const initResourceUsage = (data: TCurrentUsage, resourceType: string) => {
   );
 
   return {
-    resources: resources || [],
+    resources,
     totalPrice: totalPrice || 0,
   };
 };
@@ -444,6 +457,8 @@ export type TConsumptionDetail = {
   bandwidthByRegions: TInstanceBandWith[];
   privateRegistry: TResourceUsage[];
   rancher: TResourceUsage[];
+  quantum: TResourceUsage[];
+  managedKubernetesService: TResourceUsage[];
   kubernetesLoadBalancer: TResourceUsage[];
   training: TResourceUsage[];
   aiEndpoints: TResourceUsage[];
@@ -459,31 +474,7 @@ export type TConsumptionDetail = {
   octaviaLoadBalancer: TResourceUsage[];
   totals: {
     total: number;
-    hourly: {
-      total: number;
-      instance: number;
-      objectStorage: number;
-      archiveStorage: number;
-      snapshot: number;
-      volume: number;
-      rancher: number;
-      dataplatform: number;
-      bandwidth: number;
-      privateRegistry: number;
-      kubernetesLoadBalancer: number;
-      notebooks: number;
-      coldArchive: number;
-      serving: number;
-      training: number;
-      aiEndpoints: number;
-      aiDeploy: number;
-      dataProcessing: number;
-      databases: number;
-      floatingIP: number;
-      gateway: number;
-      octaviaLoadBalancer: number;
-      publicIP: number;
-    };
+    hourly: Partial<Record<ConsumptionKey, number>>;
     monthly: {
       total: number;
       instance: number;
@@ -491,6 +482,11 @@ export type TConsumptionDetail = {
     };
   };
 };
+
+const hourlyItems = [
+  ...Object.values(ResourceType),
+  ...Object.values(RESOURCE_DISPLAY_NAMES),
+];
 
 export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   hourlyInstances: [],
@@ -503,6 +499,8 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   bandwidthByRegions: [],
   privateRegistry: [],
   rancher: [],
+  managedKubernetesService: [],
+  quantum: [],
   kubernetesLoadBalancer: [],
   training: [],
   notebooks: [],
@@ -519,29 +517,10 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   totals: {
     total: 0,
     hourly: {
-      total: 0,
-      instance: 0,
-      objectStorage: 0,
-      archiveStorage: 0,
-      snapshot: 0,
-      volume: 0,
-      rancher: 0,
-      bandwidth: 0,
-      privateRegistry: 0,
-      kubernetesLoadBalancer: 0,
-      notebooks: 0,
-      coldArchive: 0,
-      serving: 0,
-      training: 0,
-      aiDeploy: 0,
-      aiEndpoints: 0,
-      dataProcessing: 0,
-      databases: 0,
-      floatingIP: 0,
-      gateway: 0,
-      octaviaLoadBalancer: 0,
-      publicIP: 0,
-      dataplatform: 0,
+      ...hourlyItems.reduce(
+        (acc, key) => ({ ...acc, [key]: 0 }),
+        {} as Partial<Record<ConsumptionKey, number>>,
+      ),
     },
     monthly: {
       total: 0,
@@ -554,26 +533,27 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
 export const getConsumptionDetails = (
   usage: TCurrentUsage,
 ): TConsumptionDetail => {
-  const resourceMap = [
-    { type: 'registry', key: 'privateRegistry' },
-    { type: 'loadbalancer', key: 'kubernetesLoadBalancer' },
-    { type: 'ai-notebook', key: 'notebooks' },
-    { type: 'ai-serving-engine', key: 'serving' },
-    { type: 'ai-training', key: 'training' },
-    { type: 'ai-endpoints', key: 'aiEndpoints' },
-    { type: 'data-processing-job', key: 'dataProcessing' },
-    { type: 'databases', key: 'databases' },
-    { type: 'coldarchive', key: 'coldArchive' },
-    { type: 'floatingip', key: 'floatingIP' },
-    { type: 'gateway', key: 'gateway' },
-    { type: 'octavia-loadbalancer', key: 'octaviaLoadBalancer' },
-    { type: 'ai-app', key: 'aiDeploy' },
-    { type: 'publicip', key: 'publicIP' },
-    { type: 'dataplatform', key: 'dataplatform' },
+  const apiResourceTypes = [
+    ResourceType.REGISTRY,
+    ResourceType.LOADBALANCER,
+    ResourceType.AI_NOTEBOOK,
+    ResourceType.AI_SERVING_ENGINE,
+    ResourceType.AI_TRAINING,
+    ResourceType.AI_ENDPOINTS,
+    ResourceType.DATA_PROCESSING_JOB,
+    ResourceType.DATABASES,
+    ResourceType.COLD_ARCHIVE,
+    ResourceType.FLOATING_IP,
+    ResourceType.GATEWAY,
+    ResourceType.OCTAVIA_LOADBALANCER,
+    ResourceType.AI_APP,
+    ResourceType.PUBLIC_IP,
+    ResourceType.DATAPLATFORM,
   ];
 
-  const { resources, totals: hourlyTotals } = resourceMap.reduce(
-    (acc, { type, key }) => {
+  const { resources, totals: hourlyTotals } = apiResourceTypes.reduce(
+    (acc, type) => {
+      const key = getResourceDisplayKey(type);
       const { resources: result, totalPrice } = initResourceUsage(usage, type);
       acc.resources[key] = result;
       acc.totals[key] = totalPrice;
@@ -610,20 +590,34 @@ export const getConsumptionDetails = (
   const { snapshotList, snapshotsTotalPrice } = initSnapshotList(usage);
   const { volumeList, volumesTotalPrice } = initVolumeList(usage);
   const { bandwidthList, bandwidthTotalPrice } = initInstanceBandwidth(usage);
-  const { rancherList, rancherTotalPrice } = initRancherList(usage);
+  const {
+    list: rancherList,
+    totalPrice: rancherTotalPrice,
+  } = initConsumptionsList(usage.hourlyUsage.rancher);
+  const {
+    list: managedKubernetesServiceList,
+    totalPrice: managedKubernetesServiceTotalPrice,
+  } = initConsumptionsList(usage.hourlyUsage.managedKubernetesService);
+
+  const {
+    list: quantumList,
+    totalPrice: quantumTotalPrice,
+  } = initConsumptionsList(usage.hourlyUsage.quantum.notebook);
 
   const totals = {
     hourly: {
-      total: 0,
       ...hourlyTotals,
-      instance: hourlyInstanceTotalPrice,
-      objectStorage: objectStorageTotalPrice,
-      archiveStorage: archiveStorageTotalPrice,
-      snapshot: snapshotsTotalPrice,
-      volume: volumesTotalPrice,
-      rancher: rancherTotalPrice,
-      bandwidth: bandwidthTotalPrice,
-    },
+      [ResourceType.INSTANCE]: hourlyInstanceTotalPrice,
+      [ResourceType.OBJECT_STORAGE]: objectStorageTotalPrice,
+      [ResourceType.ARCHIVE_STORAGE]: archiveStorageTotalPrice,
+      [ResourceType.SNAPSHOT]: snapshotsTotalPrice,
+      [ResourceType.VOLUME]: volumesTotalPrice,
+      [ResourceType.BANDWIDTH]: bandwidthTotalPrice,
+      [ResourceType.RANCHER]: rancherTotalPrice,
+      [ResourceType.MANAGED_KUBERNETES_SERVICE]: managedKubernetesServiceTotalPrice,
+      [ResourceType.QUANTUM]: quantumTotalPrice,
+      [ResourceType.TOTAL]: 0,
+    } as Partial<Record<ConsumptionKey, number>>,
     monthly: {
       total: monthlyInstanceTotalPrice + monthlySavingsPlanTotalPrice,
       instance: monthlyInstanceTotalPrice,
@@ -631,11 +625,15 @@ export const getConsumptionDetails = (
     },
   };
 
-  totals.hourly.total = roundPrice(
-    Object.values(totals.hourly).reduce((sum, price) => sum + price, 0),
+  totals.hourly[ResourceType.TOTAL] = roundPrice(
+    Object.entries(totals.hourly)
+      .filter(([key]) => key !== ResourceType.TOTAL)
+      .reduce((sum, [, price]) => sum + (price ?? 0), 0),
   );
 
-  const finalTotal = roundPrice(totals.hourly.total + totals.monthly.total);
+  const finalTotal = roundPrice(
+    (totals.hourly[ResourceType.TOTAL] ?? 0) + totals.monthly.total,
+  );
 
   return {
     hourlyInstances: hourlyInstanceList,
@@ -645,17 +643,32 @@ export const getConsumptionDetails = (
     archiveStorages: archiveStorageList,
     snapshots: snapshotList,
     rancher: rancherList,
+    managedKubernetesService: managedKubernetesServiceList,
+    quantum: quantumList,
     volumes: volumeList,
     bandwidthByRegions: bandwidthList,
-    ...resources,
+    privateRegistry: resources.privateRegistry,
+    kubernetesLoadBalancer: resources.kubernetesLoadBalancer,
+    training: resources.training,
+    aiEndpoints: resources.aiEndpoints,
+    aiDeploy: resources.aiDeploy,
+    notebooks: resources.notebooks,
+    coldArchive: resources.coldArchive,
+    dataProcessing: resources.dataProcessing,
+    databases: resources.databases,
+    floatingIP: resources.floatingIP,
+    gateway: resources.gateway,
+    octaviaLoadBalancer: resources.octaviaLoadBalancer,
+    publicIP: resources.publicIP,
+    dataplatform: resources.dataplatform,
     totals: {
       ...totals,
       total: finalTotal,
     },
-  } as TConsumptionDetail;
+  };
 };
 
-export const useGeTCurrentUsage = (projectId: string) =>
+export const useCurrentUsage = (projectId: string) =>
   useQuery({
     queryKey: [projectId, 'current', 'usage'],
     queryFn: async () => {

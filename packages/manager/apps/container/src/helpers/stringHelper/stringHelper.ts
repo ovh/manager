@@ -23,3 +23,17 @@ export const capitalize = (str: string) => {
   }
   return `${str.charAt(0).toUpperCase()}${str.slice(1).toLowerCase()}`;
 };
+
+/**
+ * Split the string when finding a uppercases and insert underscores before and uppercase the resulting string.
+ * @param str string to be formatted to screaming snake case (eg: SCREAMING_SNAKE_CASE)
+ * @returns string in screaming snake case format
+ */
+export const toScreamingSnakeCase = (str: string) => {
+  if (!str) {
+    return '';
+  }
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2')
+    .toUpperCase();
+};

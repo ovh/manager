@@ -12,11 +12,11 @@ export default function usePageTracking() {
   const { data: project } = useProject();
   const { setPciProjectMode, trackPage } = useContext(
     ShellContext,
-  ).shell.tracking;
+  )?.shell?.tracking || {};
 
   useEffect(() => {
     if (project) {
-      setPciProjectMode({
+      setPciProjectMode?.({
         projectId: project.project_id,
         isDiscoveryProject: project.planCode === DISCOVERY_PLANCODE,
       });
@@ -26,7 +26,7 @@ export default function usePageTracking() {
   useEffect(() => {
     const matchedRoute = matches[matches.length - 1];
 
-    trackPage({
+    trackPage?.({
       name: `${PAGE_PREFIX}::${matchedRoute?.id}`,
       level2: PCI_LEVEL2,
     });

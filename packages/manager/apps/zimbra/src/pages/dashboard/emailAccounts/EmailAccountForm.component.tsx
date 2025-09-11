@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import {
+  ODS_BUTTON_COLOR,
+  ODS_ICON_NAME,
+  ODS_INPUT_TYPE,
+  ODS_MESSAGE_COLOR,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
+  OdsSelectChangeEvent,
+} from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsCheckbox,
@@ -18,41 +28,32 @@ import {
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_COLOR,
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsSelectChangeEvent,
-} from '@ovhcloud/ods-components';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation } from '@tanstack/react-query';
+import { useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  SlotWithService,
-  useAccount,
-  useDomains,
-  useSlotsWithService,
-} from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+
+import { GeneratePasswordButton, Loading } from '@/components';
 import {
   AccountBodyParamsType,
-  formatAccountPayload,
-  postZimbraPlatformAccount,
-  putZimbraPlatformAccount,
-  getZimbraPlatformListQueryKey,
+  DomainType,
   ResourceStatus,
   ZimbraOffer,
+  formatAccountPayload,
+  getZimbraPlatformListQueryKey,
+  postZimbraPlatformAccount,
+  putZimbraPlatformAccount,
 } from '@/data/api';
+import { SlotWithService, useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
+import { useGenerateUrl } from '@/hooks';
+import queryClient from '@/queryClient';
+import { ADD_EMAIL_ACCOUNT, CONFIRM, EDIT_EMAIL_ACCOUNT } from '@/tracking.constants';
 import {
   AddEmailAccountSchema,
   addEmailAccountSchema,
@@ -60,22 +61,10 @@ import {
   editEmailAccountSchema,
   groupBy,
 } from '@/utils';
-import queryClient from '@/queryClient';
-import {
-  ADD_EMAIL_ACCOUNT,
-  CONFIRM,
-  EDIT_EMAIL_ACCOUNT,
-} from '@/tracking.constants';
-import { Loading, GeneratePasswordButton } from '@/components';
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
-  const { t } = useTranslation([
-    'accounts/form',
-    'common',
-    NAMESPACES.ACTIONS,
-    NAMESPACES.FORM,
-  ]);
+  const { t } = useTranslation(['accounts/form', 'common', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, accountId } = useParams();
@@ -98,9 +87,7 @@ export const EmailAccountForm = () => {
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackGroupedSlots, setHackGroupedSlots] = useState<
-    Record<string, SlotWithService[]>
-  >({});
+  const [hackGroupedSlots, setHackGroupedSlots] = useState<Record<string, SlotWithService[]>>({});
   const [hackKeyGroupedSlots, setHackKeyGroupedSlots] = useState(Date.now());
 
   useEffect(() => {
@@ -122,9 +109,7 @@ export const EmailAccountForm = () => {
     setHackKeyGroupedSlots(Date.now());
   }, [slots]);
 
-  const [selectedDomainOrganization, setSelectedDomainOrganization] = useState(
-    '',
-  );
+  const [selectedDomainOrganization, setSelectedDomainOrganization] = useState('');
 
   const goBackUrl = useGenerateUrl(accountId ? '../..' : '..', 'path');
 
@@ -139,14 +124,12 @@ export const EmailAccountForm = () => {
   });
 
   // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState([]);
+  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
   const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
   useEffect(() => {
     setHackDomains(
-      (domains || []).filter(
-        (domain) => domain.resourceStatus === ResourceStatus.READY,
-      ),
+      (domains || []).filter((domain) => domain.resourceStatus === ResourceStatus.READY),
     );
     setHackKeyDomains(Date.now());
   }, [domains]);
@@ -172,6 +155,7 @@ export const EmailAccountForm = () => {
         </OdsText>,
         true,
       );
+      onClose();
     },
     onError: (error: ApiError) => {
       trackPage({
@@ -180,23 +164,17 @@ export const EmailAccountForm = () => {
       });
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            accountId
-              ? 'zimbra_account_edit_error_message'
-              : 'zimbra_account_add_error_message',
-            {
-              error: error?.response?.data?.message,
-            },
-          )}
+          {t(accountId ? 'zimbra_account_edit_error_message' : 'zimbra_account_add_error_message', {
+            error: error?.response?.data?.message,
+          })}
         </OdsText>,
         true,
       );
     },
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getZimbraPlatformListQueryKey(),
       });
-      onClose();
     },
   });
 
@@ -233,9 +211,7 @@ export const EmailAccountForm = () => {
       offer: emailAccount?.currentState?.offer,
     },
     mode: 'onTouched',
-    resolver: zodResolver(
-      accountId ? editEmailAccountSchema : addEmailAccountSchema,
-    ),
+    resolver: zodResolver(accountId ? editEmailAccountSchema : addEmailAccountSchema),
   });
 
   useEffect(() => {
@@ -261,7 +237,6 @@ export const EmailAccountForm = () => {
   const slotId = watch('slotId');
   useEffect(() => {
     const selectedSlot = slots?.find((slot) => slot.id === slotId);
-
     if (selectedSlot) {
       setValue('offer', selectedSlot.offer);
       trigger('offer');
@@ -276,10 +251,7 @@ export const EmailAccountForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(handleSaveClick)}
-      className="w-full md:w-3/4 space-y-4"
-    >
+    <form onSubmit={handleSubmit(handleSaveClick)} className="w-full md:w-3/4 space-y-4">
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
         {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
@@ -340,10 +312,7 @@ export const EmailAccountForm = () => {
                       ))}
                     </OdsSelect>
                     {(isLoadingDomains || !domains) && (
-                      <Loading
-                        className="flex justify-center"
-                        size={ODS_SPINNER_SIZE.sm}
-                      />
+                      <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                     )}
                   </div>
                 )}
@@ -361,11 +330,7 @@ export const EmailAccountForm = () => {
         ))}
       </OdsText>
       {selectedDomainOrganization && (
-        <OdsMessage
-          className="w-full"
-          isDismissible={false}
-          color={ODS_MESSAGE_COLOR.information}
-        >
+        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.information}>
           <OdsText preset={ODS_TEXT_PRESET.paragraph}>
             {t('zimbra_account_add_message_organization', {
               organizationLabel: selectedDomainOrganization,
@@ -378,10 +343,7 @@ export const EmailAccountForm = () => {
           control={control}
           name="lastName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="w-full md:w-1/2 pr-6"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField className="w-full md:w-1/2 pr-6" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_lastName_label')}
               </label>
@@ -403,18 +365,13 @@ export const EmailAccountForm = () => {
           control={control}
           name="firstName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="w-full md:w-1/2 pl-6"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField className="w-full md:w-1/2 pl-6" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_firstName_label')}
               </label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
-                placeholder={t(
-                  'zimbra_account_add_input_firstName_placeholder',
-                )}
+                placeholder={t('zimbra_account_add_input_firstName_placeholder')}
                 name={name}
                 hasError={!!errors[name]}
                 value={value}
@@ -431,18 +388,13 @@ export const EmailAccountForm = () => {
           control={control}
           name="displayName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="w-full md:w-1/2 md:pr-6"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField className="w-full md:w-1/2 md:pr-6" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_displayName_label')}
               </label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
-                placeholder={t(
-                  'zimbra_account_add_input_displayName_placeholder',
-                )}
+                placeholder={t('zimbra_account_add_input_displayName_placeholder')}
                 name={name}
                 hasError={!!errors[name]}
                 value={value}
@@ -466,7 +418,7 @@ export const EmailAccountForm = () => {
                   inputId={name}
                   id={name}
                   name={name}
-                  value={(value as unknown) as string}
+                  value={value as unknown as string}
                   isChecked={value}
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>
@@ -478,11 +430,7 @@ export const EmailAccountForm = () => {
                       className="ml-3 text-xs"
                       name={ODS_ICON_NAME.circleQuestion}
                     ></OdsIcon>
-                    <OdsTooltip
-                      role="tooltip"
-                      strategy="fixed"
-                      triggerId="tooltip-hide-in-gal"
-                    >
+                    <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-hide-in-gal">
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                         {t('zimbra_account_add_checkbox_hide_in_gal_tooltip')}
                       </OdsText>
@@ -499,10 +447,7 @@ export const EmailAccountForm = () => {
           control={control}
           name="password"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField
-              className="w-full md:w-1/2 md:pr-6"
-              error={errors?.[name]?.message}
-            >
+            <OdsFormField className="w-full md:w-1/2 md:pr-6" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_password_label')}
                 {!emailAccount && ' *'}
@@ -546,7 +491,7 @@ export const EmailAccountForm = () => {
                   inputId={name}
                   id={name}
                   name={name}
-                  value={(value as unknown) as string}
+                  value={value as unknown as string}
                   isChecked={value}
                   onClick={() => onChange(!value)}
                 ></OdsCheckbox>
@@ -558,15 +503,9 @@ export const EmailAccountForm = () => {
                       className="ml-3 text-xs"
                       name={ODS_ICON_NAME.circleQuestion}
                     ></OdsIcon>
-                    <OdsTooltip
-                      role="tooltip"
-                      strategy="fixed"
-                      triggerId="tooltip-trigger"
-                    >
+                    <OdsTooltip role="tooltip" strategy="fixed" triggerId="tooltip-trigger">
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        {t(
-                          'zimbra_account_add_checkbox_force_change_password_tooltip',
-                        )}
+                        {t('zimbra_account_add_checkbox_force_change_password_tooltip')}
                       </OdsText>
                     </OdsTooltip>
                   </OdsText>
@@ -577,9 +516,7 @@ export const EmailAccountForm = () => {
         />
       </div>
       <OdsText preset={ODS_TEXT_PRESET.caption} className="flex flex-col">
-        <span className="block">
-          {t('zimbra_account_add_input_password_helper')}
-        </span>
+        <span className="block">{t('zimbra_account_add_input_password_helper')}</span>
         {[1, 2, 3].map((elm) => (
           <span key={elm} className="block">
             - {t(`zimbra_account_add_input_password_helper_rule_${elm}`)}
@@ -592,10 +529,7 @@ export const EmailAccountForm = () => {
             control={control}
             name="slotId"
             render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField
-                className="w-full md:pr-6"
-                error={errors?.[name]?.message}
-              >
+              <OdsFormField className="w-full md:pr-6" error={errors?.[name]?.message}>
                 <label htmlFor={name} slot="label">
                   {t('common:offer')}
                   {' *'}
@@ -617,30 +551,23 @@ export const EmailAccountForm = () => {
                     {Object.keys(hackGroupedSlots).map((offer) => (
                       <optgroup
                         key={offer}
-                        label={`${capitalize(offer.toLowerCase())} - ${t(
-                          'common:monthly',
-                        )}`}
+                        label={`${capitalize(offer.toLowerCase())} - ${t('common:monthly')}`}
                       >
-                        {hackGroupedSlots[offer].map(
-                          (slot: SlotWithService) => (
-                            <option key={slot.id} value={slot.id}>
-                              {t('common:renewal_at', {
-                                date: format({
-                                  date: slot.service?.nextBillingDate,
-                                  format: 'P',
-                                }),
-                              })}
-                            </option>
-                          ),
-                        )}
+                        {hackGroupedSlots[offer].map((slot: SlotWithService) => (
+                          <option key={slot.id} value={slot.id}>
+                            {t('common:renewal_at', {
+                              date: format({
+                                date: slot.service?.nextBillingDate,
+                                format: 'P',
+                              }),
+                            })}
+                          </option>
+                        ))}
                       </optgroup>
                     ))}
                   </OdsSelect>
                   {isLoadingSlots && (
-                    <Loading
-                      className="flex justify-center"
-                      size={ODS_SPINNER_SIZE.sm}
-                    />
+                    <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
                   )}
                 </div>
               </OdsFormField>
@@ -655,11 +582,7 @@ export const EmailAccountForm = () => {
         isDisabled={!isDirty || !isValid}
         isLoading={isSending}
         data-testid="confirm-btn"
-        label={
-          accountId
-            ? t(`${NAMESPACES.ACTIONS}:save`)
-            : t(`${NAMESPACES.ACTIONS}:confirm`)
-        }
+        label={accountId ? t(`${NAMESPACES.ACTIONS}:save`) : t(`${NAMESPACES.ACTIONS}:confirm`)}
       />
     </form>
   );

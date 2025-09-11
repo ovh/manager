@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.1...@ovh-ux/manager-module-vcd-api@0.8.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.8.0...@ovh-ux/manager-module-vcd-api@0.8.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.9...@ovh-ux/manager-module-vcd-api@0.8.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [0.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.8...@ovh-ux/manager-module-vcd-api@0.7.9) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.7...@ovh-ux/manager-module-vcd-api@0.7.8) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.6...@ovh-ux/manager-module-vcd-api@0.7.7) (2025-09-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
 ## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.7.5...@ovh-ux/manager-module-vcd-api@0.7.6) (2025-08-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-vcd-api

@@ -1,6 +1,7 @@
 import { PathParams } from 'msw';
-import { vrackServicesListMocks } from '../vrack-services/get-vrack-services';
+
 import { AllowedServicesResponse, Status, Task } from '../../types';
+import { vrackServicesListMocks } from '../vrack-services';
 
 export const getAllowedServicesResponseMocks = (
   nbEligibleVrackServices: number,
@@ -15,9 +16,7 @@ export const getAllowedServicesResponseMocks = (
   dedicatedServer: null,
   dedicatedConnect: null,
   ovhCloudConnect: null,
-  vrackServices: vrackServicesListMocks
-    .map(({ id }) => id)
-    .slice(0, nbEligibleVrackServices),
+  vrackServices: vrackServicesListMocks.map(({ id }) => id).slice(0, nbEligibleVrackServices),
 });
 
 export const getAssociationResponseMocks = async (
@@ -39,7 +38,7 @@ export const getAssociationResponseMocks = async (
     finishedAt: dateString,
     id: 'string',
     link: 'string',
-    message: `vRack: ${vrackId} vRackServices: ${vrackServices}`,
+    message: vrackId ? `vRack: ${vrackId} vRackServices: ${vrackServices}` : '',
     progress: [
       {
         name: 'string',

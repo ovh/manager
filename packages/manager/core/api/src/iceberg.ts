@@ -1,50 +1,18 @@
+import { AxiosResponse } from 'axios';
+
+import { apiClient } from './client.js';
+import { transformTagsFiltersToQuery } from './filters.js';
+import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type.js';
 import {
-  Filter,
-  FilterComparator,
-  FilterTypeCategories,
-  transformTagsFiltersToQuery,
-} from './filters';
-import apiClient from './client';
-
-export type IcebergCommonOptions = {
-  route: string;
-  pageSize?: number;
-  disableCache?: boolean;
-  search?: {
-    key: string;
-    value: string;
-  };
-};
-
-export type IcebergFetchParamsV6 = {
-  page?: number;
-  filters?: Filter[];
-  sortBy?: string;
-  sortReverse?: boolean;
-} & IcebergCommonOptions;
-
-export type IcebergFetchParamsV2 = {
-  cursor?: string;
-  filters?: Filter[];
-  sortBy?: string;
-  sortOrder?: 'ASC' | 'DESC';
-} & IcebergCommonOptions;
-
-export type IcebergFetchResultV6<T> = {
-  data: T[];
-  totalCount: number;
-  status: number;
-};
-
-export type IcebergFetchResultV2<T> = {
-  data: T[];
-  cursorNext: string;
-  status: number;
-};
+  IcebergFetchParamsV2,
+  IcebergFetchParamsV6,
+  IcebergFetchResultV2,
+  IcebergFetchResultV6,
+} from './types/iceberg.type.js';
 
 export const appendIamTags = (
   params: URLSearchParams,
-  filters: Filter[],
+  filters: Filter[] | undefined,
   paramName = 'iamTags',
 ) => {
   if (filters?.length) {
@@ -56,11 +24,8 @@ export const appendIamTags = (
   return params;
 };
 
-export function icebergFilter(
-  comparator: FilterComparator,
-  value: string | string[],
-) {
-  const v = encodeURIComponent(`${value}`);
+export function icebergFilter(comparator: FilterComparator, value: string | string[]) {
+  const v = encodeURIComponent(String(value || ''));
   switch (comparator) {
     case FilterComparator.Includes:
       return `like=%25${v}%25`;
@@ -93,7 +58,7 @@ export function icebergFilter(
 }
 
 export const buildHeaders = () => {
-  const headers = {};
+  const headers: Record<string, string> = {};
 
   const builder = {
     setPaginationMode: (mode = 'CachedObjectList-Pages') => {
@@ -108,30 +73,29 @@ export const buildHeaders = () => {
       headers['X-Pagination-Size'] = `${encodeURIComponent(pageSize || 5000)}`;
       return builder;
     },
-    setPaginationCursor: (cursor: string) => {
+    setPaginationCursor: (cursor: string | undefined) => {
       if (cursor) headers['X-Pagination-Cursor'] = cursor;
       return builder;
     },
     setDisabledCache: (disableCache: boolean | undefined) => {
-      // eslint-disable-next-line
-      if (disableCache) headers['Pragma'] = 'no-cache';
+      if (disableCache) headers.Pragma = 'no-cache';
       return builder;
     },
-    setPaginationSort: (sortBy: string, sortOrder = 'ASC') => {
+    setPaginationSort: (sortBy: string | undefined, sortOrder = 'ASC') => {
       if (sortBy) {
         headers['x-pagination-sort'] = encodeURIComponent(sortBy);
         headers['x-pagination-sort-order'] = sortOrder;
       }
       return builder;
     },
-    setPaginationFilter: (filters: Filter[]) => {
+    setPaginationFilter: (filters: Filter[] | undefined) => {
       if (filters?.length) {
         const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
-          .map(
-            ({ comparator, key, value }) =>
-              `${encodeURIComponent(key)}:${icebergFilter(comparator, value)}`,
-          )
+          .map(({ comparator, key, value }) => {
+            const correctedValue = typeof value === 'object' ? value : String(value || '');
+            return `${encodeURIComponent(key)}:${icebergFilter(comparator, correctedValue)}`;
+          })
           .join('&');
         if (filtersJoin) {
           headers['x-pagination-filter'] = filtersJoin;
@@ -143,11 +107,7 @@ export const buildHeaders = () => {
       headers[key] = value;
       return builder;
     },
-    setIamTags: (
-      params: URLSearchParams,
-      filters: Filter[],
-      paramName = 'iamTags',
-    ) => {
+    setIamTags: (params: URLSearchParams, filters: Filter[] | undefined, paramName = 'iamTags') => {
       appendIamTags(params, filters, paramName);
       return builder;
     },
@@ -181,21 +141,21 @@ export async function fetchIcebergV2<T>({
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortOrder)
     .setPaginationFilter(filters)
-    .setIamTags(
-      params,
-      filters,
-      route.includes('/iam/resource') ? 'tags' : 'iamTags',
-    )
+    .setIamTags(params, filters, route.includes('/iam/resource') ? 'tags' : 'iamTags')
     .build();
 
-  const { data, headers, status } = await apiClient.v2.get(
+  const response: AxiosResponse<T[]> = await apiClient.v2.get<T[]>(
     getRouteWithParams(route, params),
-    {
-      headers: requestHeaders,
-    },
+    { headers: requestHeaders },
   );
 
-  return { data, cursorNext: headers['x-pagination-cursor-next'], status };
+  const headers = response.headers as Record<string, string | undefined>;
+
+  return {
+    data: response.data,
+    cursorNext: headers['x-pagination-cursor-next'],
+    status: response.status,
+  };
 }
 
 export async function fetchIcebergV6<T>({
@@ -218,13 +178,16 @@ export async function fetchIcebergV6<T>({
     .setIamTags(params, filters)
     .build();
 
-  const { data, headers, status } = await apiClient.v6.get(
+  const response: AxiosResponse<T[]> = await apiClient.v6.get<T[]>(
     getRouteWithParams(route, params),
-    {
-      headers: requestHeaders,
-    },
+    { headers: requestHeaders },
   );
-  const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
 
-  return { data, totalCount, status };
+  const totalCount = Number(response.headers['x-pagination-elements']) || 0;
+
+  return {
+    data: response.data,
+    totalCount,
+    status: response.status,
+  };
 }

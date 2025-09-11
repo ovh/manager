@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-core-application",
-  "version": "0.11.37",
+  "version": "0.12.2",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -14,13 +14,15 @@
   ],
   "scripts": {
     "build": "tsc",
-    "dev": "tsc"
+    "dev": "tsc",
+    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.5.1",
-    "@ovh-ux/manager-core-api": "^0.17.1",
-    "@ovh-ux/ovh-at-internet": "^0.24.1",
-    "@ovh-ux/shell": "^4.6.0",
+    "@ovh-ux/manager-config": "^8.6.0",
+    "@ovh-ux/manager-core-api": "^0.18.2",
+    "@ovh-ux/ovh-at-internet": "^0.24.2",
+    "@ovh-ux/shell": "^4.7.4",
     "@tanstack/react-query": "^5.51.21",
     "generouted": "1.6.4",
     "i18next": "^23.8.2",
@@ -31,7 +33,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@tanstack/react-query-devtools": "^5.51.21",
-    "typescript": "^5.1.6"
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@tanstack/react-query-devtools": "^5.51.21"
   }
 }

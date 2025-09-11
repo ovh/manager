@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.12.1...@ovh-ux/manager-react-core-application@0.12.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.12.0...@ovh-ux/manager-react-core-application@0.12.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.39...@ovh-ux/manager-react-core-application@0.12.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [0.11.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.38...@ovh-ux/manager-react-core-application@0.11.39) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
+## [0.11.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.37...@ovh-ux/manager-react-core-application@0.11.38) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
 ## [0.11.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.11.36...@ovh-ux/manager-react-core-application@0.11.37) (2025-08-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application

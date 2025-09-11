@@ -1,28 +1,21 @@
-import React, {
-  createContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { createContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import { useVirtualizer } from '@tanstack/react-virtual';
+import { useTranslation } from 'react-i18next';
+
 import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
 
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
-import { Log } from './log/Log.component';
 import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
+import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
 import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
 import { LogsActionEnum } from '../../../types/logsTracking';
-import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
+import { Log } from './log/Log.component';
 
 interface ISearchContext {
-  query: string;
+  query?: string;
 }
 
 export const searchContext = createContext<ISearchContext>({
@@ -30,9 +23,7 @@ export const searchContext = createContext<ISearchContext>({
 });
 
 const BlinkingCursor = () => {
-  return (
-    <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />
-  );
+  return <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />;
 };
 
 interface ILogTailMessageUrl {
@@ -46,18 +37,10 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
   const { isZoomedIn, toggleZoom } = useZoomedInOut();
-  const clearSessionLogsAccess = useLogTrackingActions(
-    LogsActionEnum.clear_session_logs_access,
-  );
+  const clearSessionLogsAccess = useLogTrackingActions(LogsActionEnum.clear_session_logs_access);
   const { trackClick } = useOvhTracking();
-  const {
-    messages,
-    error,
-    isPending,
-    isPolling,
-    togglePolling,
-    clearLogs,
-  } = useLogTailMessages(logTailMessageUrl);
+  const { messages, error, isPending, isPolling, togglePolling, clearLogs } =
+    useLogTailMessages(logTailMessageUrl);
 
   const virtualizer = useVirtualizer({
     count: messages?.length,
@@ -70,7 +53,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
     virtualizer.scrollToIndex(messages.length - 1, { align: 'center' });
   };
 
-  const resetSession = async () => {
+  const resetSession = () => {
     setAutoScroll(true);
     clearLogs();
     trackClick({
@@ -187,10 +170,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
                 ))}
               </searchContext.Provider>
               {error && (
-                <div
-                  className="text-red-400"
-                  data-testid="logTail-message-error"
-                >
+                <div className="text-red-400" data-testid="logTail-message-error">
                   {t('log_tail_error_get_logs')}
                 </div>
               )}

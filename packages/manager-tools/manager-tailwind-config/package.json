@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tailwind-config",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "description": "OVHcloud manager tailwind configuration.",
   "repository": {
@@ -15,6 +15,11 @@
   "scripts": {
     "build": "echo tailwind",
     "dev": "echo tailwind",
-    "dev:watch": "echo tailwind"
+    "dev:watch": "echo tailwind",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./**.*js",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**.*js"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*"
   }
 }

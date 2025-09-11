@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.1...@ovh-ux/manager-module-order@0.11.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.0...@ovh-ux/manager-module-order@0.11.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.10...@ovh-ux/manager-module-order@0.11.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [0.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.9...@ovh-ux/manager-module-order@0.10.10) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.8...@ovh-ux/manager-module-order@0.10.9) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
 ## [0.10.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.7...@ovh-ux/manager-module-order@0.10.8) (2025-08-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-module-order

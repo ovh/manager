@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_alert_close": "Informationsnachricht schließen",
-  "dedicatedCloud_dashboard_nameModifying_success": "Die Namensänderung Ihres Dienstes ist in wenigen Augenblicken wirksam.",
+  "dedicatedCloud_dashboard_editing_description_success": "Die Änderung der Beschreibung Ihres Dienstes wird in wenigen Augenblicken wirksam.",
   "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
   "dedicatedCloud_coming_soon": "In Kürze",
   "dedicatedCloud_banner_hdc_ready_label": "OVHcloud bietet Ihnen neuerdings auch das Hosting von Gesundheitsdaten an: mit Private Cloud Healthcare. Ihre Infrastruktur ist mit diesem neuen Angebot kompatibel.",
@@ -12,6 +12,8 @@
   "dedicatedCloud_discount_AMD": "Profitieren Sie von einer Preissenkung von 35 % für die XL und XL+ Hosts der 2014v2 Entreprise Reihe. Nur solange der Vorrat reicht.",
   "dedicatedCloud_description": "Beschreibung",
   "dedicatedCloud_description_modify_title": "Beschreibung bearbeiten",
+  "dedicatedCloud_name": "Name",
+  "dedicatedCloud_name_modify_title": "Namen ändern",
   "dedicatedCloud_connection_policy": "Verbindungseinstellungen",
   "dedicatedCloud_billing": "Abrechnung",
   "dedicatedCloud_connection_policy_LAST": "Neueste trennen",
@@ -246,8 +248,5 @@
   "ip_order_renew_MBM": "Ihre IP-Adressen werden automatisch mit Ihrer Managed Bare Metal Infrastruktur verlängert.",
   "dedicatedCloud_premier_sbg_order_warning": "Wir können auf unserer SBG-Website keine neuen Bestellungen annehmen. Unsere Teams sind voll im Einsatz und wir tun alles, um diese Bestellmöglichkeit in naher Zukunft wiederherzustellen.",
   "dedicatedCloud_banner_new_product": "Ab sofort können Sie Datacenter bestellen, die unterschiedlichen VMware-Softwarepaketen in einer einzigen Private Cloud Umgebung entsprechen.",
-  "dedicatedCloud_banner_new_product_link": "Mehr erfahren",
-  "dedicatedCloud_dashboard_editing_description_success": "Die Änderung der Beschreibung Ihrer Dienstleistung wird in wenigen Augenblicken wirksam.",
-  "dedicatedCloud_name": "Name",
-  "dedicatedCloud_name_modify_title": "Namen ändern"
+  "dedicatedCloud_banner_new_product_link": "Mehr erfahren"
 }

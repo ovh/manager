@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.1...@ovh-ux/manager-react-components@2.40.2) (2025-09-09)
+
+### Bug Fixes
+
+- **mrc:** mrc datagrid column visibility and filter ([fa92068](https://github.com/ovh/manager/commit/fa92068a67823c60d17c9ab134e1e70d7a05c432)), closes [#ISSUE-19038](https://github.com/ovh/manager/issues/ISSUE-19038)
+
+## [2.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.0...@ovh-ux/manager-react-components@2.40.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.39.2...@ovh-ux/manager-react-components@2.40.0) (2025-09-06)
+
+### Features
+
+- static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+## [2.39.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.39.1...@ovh-ux/manager-react-components@2.39.2) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.39.0...@ovh-ux/manager-react-components@2.39.1) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.38.0...@ovh-ux/manager-react-components@2.39.0) (2025-09-02)
+
+### Features
+
+- add optional step label to mrc modal ([2d88a93](https://github.com/ovh/manager/commit/2d88a9362063e6b01fd2c446292b66f4307d348a)), closes [#ISSUE-18727](https://github.com/ovh/manager/issues/ISSUE-18727)
+- **mrc:** add loading and custom element in stepper next button ([ebfdb16](https://github.com/ovh/manager/commit/ebfdb169bae48a309eb6461cd6d2f2fbb6ca4404)), closes [#18754](https://github.com/ovh/manager/issues/18754)
+
 # [2.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.37.1...@ovh-ux/manager-react-components@2.38.0) (2025-08-29)
 
 ### Bug Fixes

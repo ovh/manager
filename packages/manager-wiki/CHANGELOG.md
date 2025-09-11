@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.1...@ovh-ux/manager-wiki@0.12.0) (2025-09-09)
+
+
+### Features
+
+* **manager-wiki:** correct storybook build ([35dce84](https://github.com/ovh/manager/commit/35dce84fc278a076fa25f11edfc4c622a29fd659)), closes [#MANAGER-19370](https://github.com/ovh/manager/issues/MANAGER-19370)
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.0...@ovh-ux/manager-wiki@0.11.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.10.2...@ovh-ux/manager-wiki@0.11.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.10.1...@ovh-ux/manager-wiki@0.10.2) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.10.0...@ovh-ux/manager-wiki@0.10.1) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.9.0...@ovh-ux/manager-wiki@0.10.0) (2025-09-02)
+
+
+### Features
+
+* add optional step label to mrc modal ([2d88a93](https://github.com/ovh/manager/commit/2d88a9362063e6b01fd2c446292b66f4307d348a)), closes [#ISSUE-18727](https://github.com/ovh/manager/issues/ISSUE-18727)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.8.0...@ovh-ux/manager-wiki@0.9.0) (2025-08-29)
 
 

@@ -1,0 +1,10 @@
+{
+  "suggestion_modal_title": "Aggiornamento del tuo numero SIRET/IVA",
+  "suggestion_modal_description": "Nell'ambito dell’implementazione della fatturazione elettronica in Francia, dobbiamo verificare l'identità della tua azienda per garantire la conformità delle tue informazioni fiscali. Abbiamo effettuato alcune ricerche e trovato le informazioni corrispondenti alla tua impresa.",
+  "suggestion_modal_description_sub": "Se tutte queste informazioni sono corrette, clicca su “Confermo queste informazioni”. In caso contrario, seleziona l’opzione “Aggiorno il mio profilo”.",
+  "suggestion_modal_listed_type_SIRET": "SIRET",
+  "suggestion_modal_listed_type_VAT": "Partita IVA comunitaria",
+  "suggestion_modal_action_modify": "Aggiorno il mio profilo",
+  "suggestion_modal_action_confirm": "Confermo queste informazioni",
+  "suggestion_modal_listed_type_NIN": "Codice fiscale"
+}

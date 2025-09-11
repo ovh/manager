@@ -1,11 +1,8 @@
 // TODO: Dupilicate of packages/manager/apps/pci-databases-analytics/src/types/catalog.ts
 // share it across projects and remove this
-import {
-  IntervalUnitType,
-  OvhSubsidiary,
-  CurrencyCode,
-} from '@ovh-ux/manager-react-components';
 import { Order } from '@ovh-ux/manager-module-order';
+import { CurrencyCode, IntervalUnitType, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { ZimbraPlanCodes } from '../type';
 
 /* eslint-disable @typescript-eslint/no-namespace */

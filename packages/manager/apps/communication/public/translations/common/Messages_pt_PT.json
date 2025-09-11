@@ -1,0 +1,20 @@
+{
+  "title": "As minhas comunicações",
+  "description": "Encontre o conjunto das comunicações que a OVHcloud lhe enviou, exceto os pedidos de assistência. Pode consultá-los através da secção: <anchor>Assistência</anchor>",
+  "assistance_link_label": "Assistência",
+  "tab_communications": "As minhas comunicações",
+  "tab_contacts": "Contactos",
+  "tab_settings": "Definições de difusão",
+  "date_label": "Data",
+  "priority_high": "Elevado",
+  "priority_medium": "Médio",
+  "priority_low": "Baixo",
+  "category_product": "Produto",
+  "category_product_lifecycle": "Vida do produto",
+  "category_billing": "Faturação",
+  "category_account": "Conta",
+  "category_account_lifecycle": "Vida da conta",
+  "category_security": "Segurança",
+  "category_legal": "Legal",
+  "iam_display_content_message": "Não dispõe das permissões necessárias para apresentar os dados deste recurso. Contacte o administrador."
+}

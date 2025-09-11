@@ -142,6 +142,9 @@ export const RouterWithQueryClientWrapper = ({
         trackPage: vi.fn(),
         trackMixCommanderS3: vi.fn(),
       },
+      location: {
+        getLocations: vi.fn(),
+      },
       logger: {
         log: vi.fn(),
         info: vi.fn(),

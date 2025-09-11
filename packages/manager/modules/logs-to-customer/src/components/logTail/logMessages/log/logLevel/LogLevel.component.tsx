@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { TMessageLevel } from '../../../../../data/api/logTailMessages';
 import { HighlightSearch } from '../highligthSearch/HighlightSearch.component';
 
 export const LogLevel = ({ level }: { level: TMessageLevel }) => {
-  let label: string;
-  let colorClass: string;
+  let label = 'UNKNOWN';
+  let colorClass = 'text-gray-400';
 
   switch (level) {
     case 0:
@@ -38,9 +39,6 @@ export const LogLevel = ({ level }: { level: TMessageLevel }) => {
     case 7:
       label = 'DEBUG';
       colorClass = 'text-blue-400';
-      break;
-
-    default:
       break;
   }
 

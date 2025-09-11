@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.1...@ovh-ux/manager-core-api@0.18.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* fixing the iceberg pagination filter processing ([4749aca](https://github.com/ovh/manager/commit/4749acaa65c6cd7e14dbee33d7830e37ca8a7769)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.0...@ovh-ux/manager-core-api@0.18.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* fix incorrect pagination params in iceberg fetch ([ace6ae7](https://github.com/ovh/manager/commit/ace6ae7e04209bcefaab67b5323b0ae8667b73e8)), closes [#PRDCOL-182](https://github.com/ovh/manager/issues/PRDCOL-182)
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.17.1...@ovh-ux/manager-core-api@0.18.0) (2025-09-06)
+
+
+### Features
+
+* static kit integration in core, tools and modules modules ([bddbe5e](https://github.com/ovh/manager/commit/bddbe5e07453c8a657f2ca216d48d1f6f2bc0ca5))
+
+
+
+
+
 ## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.17.0...@ovh-ux/manager-core-api@0.17.1) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-api

@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import './styles.scss';
+import { FC, useEffect, useState } from 'react';
 import {
   OsdsButton,
   OsdsModal,
@@ -12,7 +11,11 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
-import { useModals } from '@/context/modals';
+import { useCheckModalDisplay } from '@/hooks/modal/useModal';
+import {
+  useExpiredDefaultCreditCardAlert,
+} from '@/hooks/paymentMethod/usePaymentMethod';
+import { hasExpiredDefaultCreditCardAlert } from '@/helpers/paymentMethod/paymentMethodHelper';
 
 export interface IPaymentMethod {
   icon?: {
@@ -35,11 +38,18 @@ export interface IPaymentMethod {
   paymentMethodId: number;
 }
 
-const PaymentModal = (): JSX.Element => {
+const PaymentModal: FC = () => {
   const { t } = useTranslation('payment-modal');
-  const [showPaymentModal, setShowPaymentModal] = useState(true);
   const { shell } = useApplication();
-  const { data: alert } = useModals();
+  const ux = shell.getPlugin('ux');
+  
+  const shouldDisplayModal = useCheckModalDisplay(
+    useExpiredDefaultCreditCardAlert,
+    hasExpiredDefaultCreditCardAlert,
+  );
+
+  const [showPaymentModal, setShowPaymentModal] = useState(shouldDisplayModal);
+  const { data: alert } = useExpiredDefaultCreditCardAlert(Boolean(shouldDisplayModal));
 
   const paymentMethodURL = shell
     .getPlugin('navigation')
@@ -47,12 +57,21 @@ const PaymentModal = (): JSX.Element => {
 
   const closeHandler = () => {
     setShowPaymentModal(false);
-    shell.getPlugin('ux').notifyModalActionDone('PaymentModal');
+    ux.notifyModalActionDone(PaymentModal.name);
   };
   const validateHandler = () => {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
   };
+  
+  useEffect(() => {
+    if (shouldDisplayModal !== undefined) {
+      setShowPaymentModal(shouldDisplayModal);
+      if (!shouldDisplayModal) {
+        ux.notifyModalActionDone(PaymentModal.name);
+      }
+    }
+  }, [shouldDisplayModal]);
 
   return (
     showPaymentModal && (

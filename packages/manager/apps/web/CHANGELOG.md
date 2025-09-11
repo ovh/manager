@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.23.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.8...@ovh-ux/manager-web@19.23.9) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.7...@ovh-ux/manager-web@19.23.8) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.6...@ovh-ux/manager-web@19.23.7) (2025-09-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.5...@ovh-ux/manager-web@19.23.6) (2025-09-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.4...@ovh-ux/manager-web@19.23.5) (2025-09-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.3...@ovh-ux/manager-web@19.23.4) (2025-08-29)
 
 
