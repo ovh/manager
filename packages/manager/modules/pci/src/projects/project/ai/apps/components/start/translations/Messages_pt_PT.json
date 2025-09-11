@@ -1,8 +1,0 @@
-{
-  "pci_app_start_app_title": "Início da app",
-  "pci_app_start_app_content": "Quer mesmo iniciar a app {{ appName }}?",
-  "pci_app_start_app_success": "A sua app foi corretamente iniciada.",
-  "pci_app_start_app_error": "Ocorreu um erro ao iniciar a sua app {{ appName }}: {{ message }}.",
-  "pci_app_start_app_submit_label": "Confirmar",
-  "pci_app_start_app_cancel_label": "Anular"
-}

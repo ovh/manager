@@ -1,8 +1,0 @@
-{
-  "pci_app_stop_app_title": "Interrupção da app",
-  "pci_app_stop_app_content": "Quer mesmo parar a app {{ appName }}?",
-  "pci_app_stop_app_success": "A sua app foi corretamente interrompida.",
-  "pci_app_stop_app_error": "Ocorreu um erro aquando da interrupção da sua app {{ appName }}: {{ message }}.",
-  "pci_app_stop_app_submit_label": "Confirmar",
-  "pci_app_stop_app_cancel_label": "Anular"
-}
