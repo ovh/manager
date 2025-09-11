@@ -6,6 +6,7 @@ import { ApplicationProvider } from '@/context';
 import NotificationsSidebar from './NotificationsSidebar';
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
+import * as helpers from '@/helpers';
 
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
@@ -52,6 +53,7 @@ vi.mock('@ovh-ux/ovh-reket');
 
 describe('NotificationsSidebar', () => {
   beforeAll(() => {
+      vi.spyOn(helpers, 'fromNow').mockResolvedValue('today');
       vi.mocked(useReket).mockReturnValue({
         get: () => Promise.resolve([{
           date: '2025-09-01',
@@ -108,7 +110,7 @@ describe('NotificationsSidebar', () => {
       await waitFor(() => {
         const notificationsGroup = screen.getByTestId('notifications-group');
         expect(notificationsGroup).toBeInTheDocument();
-      }, {timeout: 10000});
+      });
 
       const notificationStatusBadge = screen.getByTestId('notification-status-badge');
       await waitFor(() => {
@@ -146,7 +148,7 @@ describe('NotificationsSidebar', () => {
       await waitFor(() => {
         const notificationsGroup = screen.getByTestId('notifications-group');
         expect(notificationsGroup).toBeInTheDocument();
-      }, {timeout: 10000});
+      });
 
       const notificationStatusBadge = screen.getByTestId('notification-status-badge');
       await waitFor(() => {

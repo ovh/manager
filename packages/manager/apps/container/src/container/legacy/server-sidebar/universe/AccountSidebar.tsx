@@ -10,7 +10,7 @@ import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
 import constants from '../../account-sidebar/UsefulLinks/constants';
-import { useProcedureStatus } from '@/hooks/procedure/useProcedure';
+import { useProcedureStatus } from '@/data/hooks/procedure/useProcedure';
 import { Procedures } from '@/types/procedure';
 
 const kycIndiaFeature = 'identity-documents';
