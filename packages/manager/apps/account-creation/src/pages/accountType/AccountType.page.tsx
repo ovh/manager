@@ -17,6 +17,7 @@ import { useLegalFormRules } from '@/data/hooks/useRules';
 import { AVERAGE_NUMBER_OF_LEGAL_FORMS } from './accountType.constants';
 import AccountTypeTooltipContent from './tooltip-content/TooltipContent.component';
 import { urls } from '@/routes/routes.constant';
+import { shouldAccessCompanySearch } from '@/helpers/flowHelper';
 
 export default function AccountType() {
   const { t } = useTranslation('account-type');
@@ -33,7 +34,7 @@ export default function AccountType() {
   const validateStep = useCallback(() => {
     if (!legalForm) {
       setLegalFormError(true);
-    } else if (country === 'FR' && legalForm !== 'individual') {
+    } else if (shouldAccessCompanySearch(country, legalForm)) {
       navigate(urls.company);
     } else {
       navigate(urls.accountDetails);
