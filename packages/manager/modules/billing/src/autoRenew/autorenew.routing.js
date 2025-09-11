@@ -98,8 +98,16 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
-        homeLink: /* @ngInject */ ($state) =>
-          $state.href('billing.autorenew.services', {}, { inherit: false }),
+        homeLink: /* @ngInject */ ($state, isAutorenewManagementAvailable) => {
+          if (isAutorenewManagementAvailable) {
+            return $state.href(
+              'billing.autorenew.services',
+              {},
+              { inherit: false },
+            );
+          }
+          return null;
+        },
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('billing_title'),
         defaultPaymentMean: /* @ngInject */ (ovhPaymentMethod) =>
@@ -114,7 +122,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
           }
           return null;
         },
-
       },
       !coreConfigProvider.isRegion('US')
         ? {
@@ -138,7 +145,18 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         page_category: TRACKING_PAGE_CATEGORY,
       });
     },
-    redirectTo: () => 'billing.autorenew.services',
+    redirectTo: (transition) =>
+      transition
+        .injector()
+        .getAsync('isAutorenewManagementAvailable')
+        .then((isAutorenewManagementAvailable) => {
+          if (!isAutorenewManagementAvailable) {
+            return 'billing.autorenew.ssh';
+          }
+          return transition.to()?.name === 'billing.autorenew'
+            ? 'billing.autorenew.services'
+            : null;
+        }),
   });
 
   $stateProvider.state('billing.autorenew.service', {
