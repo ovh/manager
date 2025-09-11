@@ -1,8 +1,0 @@
-{
-  "pci_app_stop_app_title": "Die App anhalten",
-  "pci_app_stop_app_content": "Sind Sie sicher, dass Sie die App {{ appName }} anhalten möchten?",
-  "pci_app_stop_app_success": "Ihre App wurde angehalten.",
-  "pci_app_stop_app_error": "Beim Anhalten Ihrer {{ appName }} App ist ein Fehler aufgetreten: {{ message }}",
-  "pci_app_stop_app_submit_label": "Bestätigen",
-  "pci_app_stop_app_cancel_label": "Abbrechen"
-}

@@ -689,24 +689,6 @@ export const GUIDES_LIST = {
       tracking: '::guides::go_to_creating_and_using_a_private_image',
     },
   },
-  ai_machine_learning: {
-    ...DEFAULT_GUIDES,
-    differences_between_ai_notebooks_ai_training_ai_apps: {
-      url: DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS,
-      key: 'differences_between_ai_notebooks_ai_training_ai_apps',
-      tracking: '::guides::go_to_ai_comparative_tables',
-    },
-    ai_apps_capabilities_and_limitations: {
-      url: AI_APPS_CAPABILITIES_AND_LIMITATIONS,
-      key: 'ai_apps_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    accessing_your_ai_apps_with_tokens: {
-      url: ACCESSING_YOUR_AI_APPS_WITH_TOKENS,
-      key: 'accessing_your_ai_apps_with_tokens',
-      tracking: '::guides::go_to_ai_apps_tokens',
-    },
-  },
   data_processing: {
     ...DEFAULT_GUIDES,
     presentation_of_data_processing: {
@@ -723,60 +705,6 @@ export const GUIDES_LIST = {
       url: SUBMIT_A_JAVA_SCALA_JOB,
       key: 'submit_a_java_scala_job',
       tracking: '::guides::go_to_submit_javascala',
-    },
-  },
-  ai_notenooks: {
-    ...DEFAULT_GUIDES,
-    ai_notebooks_startup: {
-      url: AI_NOTEBOOKS_STARTUP,
-      key: 'ai_notebooks_startup',
-      tracking: '::guides::go_to_getting_started_cli',
-    },
-    ai_notebooks_definition: {
-      url: AI_NOTEBOOKS_DEFINITION,
-      key: 'ai_notebooks_definition',
-      tracking: '::guides::go_to_definition',
-    },
-    using_data_form_object_storage: {
-      url: USING_DATA_FORM_OBJECT_STORAGE,
-      key: 'using_data_form_object_storage',
-      tracking: '::guides::go_to_access_object_storage_data',
-    },
-  },
-  ai_training: {
-    ...DEFAULT_GUIDES,
-    ai_training_capabilities_and_limitations: {
-      url: AI_TRAINING_CAPABILITIES_AND_LIMITATIONS,
-      key: 'ai_training_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    submit_a_job_via_the_user_interface: {
-      url: SUBMIT_A_JOB_VIA_THE_USER_INTERFACE,
-      key: 'submit_a_job_via_the_user_interface',
-      tracking: '::guides::go_to_submit_job',
-    },
-    managing_a_custom_image: {
-      url: MANAGING_A_CUSTOM_IMAGE,
-      key: 'managing_a_custom_image',
-      tracking: '::guides::go_to_build_use_custom_image',
-    },
-  },
-  ml_serving: {
-    ...DEFAULT_GUIDES,
-    deploying_a_custom_model: {
-      url: DEPLOYING_A_CUSTOM_MODEL,
-      key: 'deploying_a_custom_model',
-      tracking: '::guides::go_to_deploy_serialized_models',
-    },
-    models_definition: {
-      url: MODELS_DEFINITION,
-      key: 'models_definition',
-      tracking: '::guides::go_to_models',
-    },
-    exporting_a_tensorflow_model: {
-      url: EXPORTING_A_TENSORFLOW_MODEL,
-      key: 'exporting_a_tensorflow_model',
-      tracking: '::guides::go_to_export_tensorflow_models',
     },
   },
   private_network: {

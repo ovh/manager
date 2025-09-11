@@ -1,8 +1,0 @@
-{
-  "pci_notebook_delete_notebook_title": "Löschen des Notebooks",
-  "pci_notebook_delete_notebook_submit_label": "Bestätigen",
-  "pci_notebook_delete_notebook_cancel_label": "Abbrechen",
-  "pci_notebook_delete_notebook_content": "Möchten Sie das Notebook {{ notebookName }} wirklich löschen?",
-  "pci_notebook_delete_notebook_success": "Ihr Notebook wurde gelöscht.",
-  "pci_notebook_delete_notebook_error": "Beim Löschen des Notebooks {{notebookName}} ist ein Fehler aufgetreten: {{message}}."
-}

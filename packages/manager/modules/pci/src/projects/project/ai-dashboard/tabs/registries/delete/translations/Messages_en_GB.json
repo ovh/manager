@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_ai_dashboard_registries_delete": "Delete your private Docker Registry",
-  "pci_projects_project_ai_dashboard_registries_delete_common_delete": "Delete",
-  "pci_projects_project_ai_dashboard_registries_delete_common_cancel": "Exit",
-  "pci_projects_project_ai_dashboard_registries_delete_warning": "You are about to delete the Docker Registry from your AI Training project. You will no longer be able to launch jobs from this.",
-  "pci_projects_project_ai_dashboard_registries_delete_success": "Your Docker Registry has been deleted",
-  "pci_projects_project_ai_dashboard_registries_delete_error": "An error occurred while deleting your Private Docker Registry: "
-}

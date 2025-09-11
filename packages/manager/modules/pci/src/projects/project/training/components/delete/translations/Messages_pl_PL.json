@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_training_delete_job_title": "Usunięcie zadania",
-  "pci_projects_project_training_delete_job_description": "Czy na pewno chcesz usunąć zadanie {{name}}?",
-  "pci_projects_project_training_delete_job_action_delete": "Zatwierdź",
-  "pci_projects_project_training_delete_job_action_cancel": "Anuluj",
-  "pci_projects_project_training_delete_job_action_delete_success": "Zadanie zostało usunięte",
-  "pci_projects_project_training_delete_job_action_delete_fail": "Wystąpił błąd podczas usuwania zadania {{name}}: {{message}}."
-}
