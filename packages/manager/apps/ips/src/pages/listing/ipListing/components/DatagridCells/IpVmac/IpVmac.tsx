@@ -37,8 +37,9 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
     isVmacEnabled(ipDetails);
 
   // get vmacs if ip is routed to a dedicated server
+  const serviceName = ipDetails?.routedTo?.serviceName;
   const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
-    serviceName: ipDetails?.routedTo?.serviceName,
+    serviceName,
     enabled,
   });
 
