@@ -22,10 +22,11 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { getOkmsServiceKeyResourceQueryKey } from '@/data/api/okmsServiceKey';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import { useOkmsById } from '@/data/hooks/useOkms';
-import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { okmsQueryKeys } from '@/data/api/okms';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { GeneralInformationTile } from './GeneralInformationTile.component';
 import { CryptoPropertiesTile } from './CryptoPropertiesTile.component';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 
 export default function ServiceKeyDashboard() {
   const { okmsId, keyId } = useParams() as {
@@ -61,7 +62,7 @@ export default function ServiceKeyDashboard() {
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
-            queryKey: getOkmsResourceQueryKey(okmsId),
+            queryKey: okmsQueryKeys.detail(okmsId),
           })
         }
       />
@@ -114,6 +115,7 @@ export default function ServiceKeyDashboard() {
         header={{
           title: kmsKey.name || kmsKey.id,
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
         }}
         onClickReturn={() => {
           navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));

@@ -100,6 +100,18 @@ sioUniverse.children = [
           hash: '#/',
         },
       },
+      {
+        id: 'security-identity-operations-secret-manager',
+        idAttr: 'security-identity-operations-secret-manager-link',
+        translation: 'sidebar_security_identity_operations_secret_manager',
+        universe: sioUniverse.id,
+        tag: NodeTag.BETA,
+        features: ['key-management-service:secret-manager'],
+        routing: {
+          application: 'key-management-service',
+          hash: '#/secret-manager',
+        },
+      },
     ],
   },
   {

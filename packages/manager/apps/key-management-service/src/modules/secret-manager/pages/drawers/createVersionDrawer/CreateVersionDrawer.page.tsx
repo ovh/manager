@@ -1,0 +1,146 @@
+import React, { Suspense } from 'react';
+import z from 'zod';
+import { Drawer, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { useSecretDataSchema } from '@secret-manager/validation';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { SecretWithData } from '@secret-manager/types/secret.type';
+import { useSecretWithData } from '@secret-manager/data/hooks/useSecret';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
+import { SecretDataFormField } from '@secret-manager/components/form/SecretDataFormField.component';
+import {
+  DrawerContent,
+  DrawerFooter,
+} from '@/common/components/drawer/DrawerInnerComponents.component';
+
+type CreateVersionDrawerProps = {
+  secret: SecretWithData;
+  okmsId: string;
+  secretPath: string;
+  onDismiss: () => void;
+};
+
+const CreateVersionDrawerForm = ({
+  secret,
+  okmsId,
+  secretPath,
+  onDismiss,
+}: CreateVersionDrawerProps) => {
+  const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+
+  const {
+    mutateAsync: createSecretVersion,
+    isPending: isCreating,
+    error: createError,
+  } = useCreateSecretVersion();
+
+  const dataSchema = useSecretDataSchema();
+  const formSchema = z.object({ data: dataSchema });
+  type FormSchema = z.infer<typeof formSchema>;
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useForm({
+    mode: 'onChange', // Validation on all changes to show errors immediately
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      data: JSON.stringify(secret?.version?.data),
+    },
+  });
+
+  const handleSubmitForm = async (data: FormSchema) => {
+    await createSecretVersion({
+      okmsId,
+      path: decodeSecretPath(secretPath),
+      data: JSON.parse(data.data),
+      // Add current version to cas parameter if cas is required
+      cas: secret?.metadata?.casRequired
+        ? secret?.metadata?.currentVersion
+        : undefined,
+    });
+    onDismiss();
+  };
+
+  return (
+    <div className="flex flex-col h-full">
+      <DrawerContent>
+        <form>
+          {createError && (
+            <OdsMessage color="danger" className="mb-4">
+              {createError?.response?.data?.message ||
+                t('add_new_version_error')}
+            </OdsMessage>
+          )}
+          <SecretDataFormField name="data" control={control} />
+        </form>
+      </DrawerContent>
+      <DrawerFooter
+        primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:add`)}
+        isPrimaryButtonDisabled={!isDirty || !isValid}
+        isPrimaryButtonLoading={isCreating}
+        onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
+        secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
+        onSecondaryButtonClick={onDismiss}
+      />
+    </div>
+  );
+};
+
+export default function CreateVersionDrawerPage() {
+  const navigate = useNavigate();
+  const { t } = useTranslation('secret-manager');
+
+  const { okmsId, secretPath } = useParams<LocationPathParams>();
+
+  const {
+    data: secret,
+    isPending: isSecretPending,
+    error: secretError,
+    refetch,
+  } = useSecretWithData(okmsId, decodeSecretPath(secretPath));
+
+  const handleDismiss = () => {
+    navigate('..');
+  };
+
+  if (secretError) {
+    return (
+      <ErrorBanner
+        error={secretError.response}
+        onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
+        onReloadPage={refetch}
+      />
+    );
+  }
+
+  return (
+    <Drawer
+      isOpen
+      heading={t('add_new_version')}
+      onDismiss={handleDismiss}
+      isLoading={isSecretPending}
+      data-testid="create-version-drawer"
+    >
+      <Suspense>
+        {secret && (
+          <CreateVersionDrawerForm
+            secret={secret}
+            okmsId={okmsId}
+            secretPath={secretPath}
+            onDismiss={handleDismiss}
+          />
+        )}
+      </Suspense>
+    </Drawer>
+  );
+}
