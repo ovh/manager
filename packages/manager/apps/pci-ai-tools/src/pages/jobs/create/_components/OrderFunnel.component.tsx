@@ -89,7 +89,7 @@ const OrderFunnel = ({
         TRACKING.training.banner.errorBannerInfo(
           model.result.region.id,
           model.result.flavor.type,
-          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.unsecureHttp ? PrivacyEnum.private : PrivacyEnum.public,
         ),
         'banner',
       );
@@ -104,7 +104,7 @@ const OrderFunnel = ({
         TRACKING.training.banner.successBannerInfo(
           model.result.region.id,
           model.result.flavor.type,
-          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.unsecureHttp ? PrivacyEnum.private : PrivacyEnum.public,
         ),
         'banner',
       );
@@ -142,7 +142,7 @@ const OrderFunnel = ({
         TRACKING.training.funnel.createTrainingConfirmClick(
           model.result.region.id,
           model.result.flavor.type,
-          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.unsecureHttp ? PrivacyEnum.private : PrivacyEnum.public,
         ),
         'funnel',
       );
@@ -369,9 +369,9 @@ const OrderFunnel = ({
                     <FormItem className="flex flex-col gap-1">
                       <PrivacyRadioInput
                         value={field.value}
-                        onChange={(newPrivacyValue: PrivacyEnum) =>
-                          model.form.setValue('privacy', newPrivacyValue)
-                        }
+                        onChange={(newPrivacyValue: PrivacyEnum) => {
+                          model.form.setValue('privacy', newPrivacyValue);
+                        }}
                       />
                     </FormItem>
                   )}

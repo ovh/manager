@@ -173,7 +173,7 @@ export function useOrderFunnel(
   }, [datastoreQuery.isSuccess, containersQuery.data]);
 
   const unsecureHttpObject: boolean = useMemo(
-    () => unsecureHttp === PrivacyEnum.public,
+    () => unsecureHttp === PrivacyEnum.private,
     [unsecureHttp],
   );
 
