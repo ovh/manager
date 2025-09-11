@@ -1,3 +1,4 @@
+// import { v2 } from '@ovh-ux/manager-core-api';
 import { proxyV2 } from '../../../../../core/api'; // @todo: to change soon we have prod api
 
 import {

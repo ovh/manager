@@ -51,9 +51,6 @@ export default function ManagedWordpressResourcePage() {
           title: serviceName,
           headerButton: <GuideButton items={useGuideItems(t)} />,
           changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-          description: t(
-            'dashboard:hosting_managed_wordpress_websites_description',
-          ),
         }
       }
       message={<Notifications />}
