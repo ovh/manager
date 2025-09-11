@@ -55,6 +55,7 @@ export const OrganisationSection: React.FC = () => {
           value={selectedOrganisation}
           placeholder={t('organisation_select_placeholder')}
         >
+          <option value={undefined}>{t('organisation_select_none')}</option>
           {organisations
             .filter(isAvailableOrganisation(selectedPlanCode))
             .map((orgId) => (

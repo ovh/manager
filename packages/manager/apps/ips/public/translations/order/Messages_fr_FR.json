@@ -34,6 +34,7 @@
   "organisation_selection_description_no_organisation_RIPE": "Attention : si vous ne liez pas d'organisation, les informations de la société OVHcloud seront utilisées dans la base de données WHOIS publique RIPE pour ce bloc IP.",
   "organisation_selection_info": "Le nom de l'organisation associée à votre bloc d'adresse IP ainsi que les informations de contact correspondantes figureront dans la base de données publique Whois",
   "organisation_select_placeholder": "Sélectionnez...",
+  "organisation_select_none": "Aucune organisation",
   "go_to_organisation_list_link_label": "Cliquez ici pour accéder à la gestion des organisations.",
   "order_button_label": "Continuer ma commande",
   "cancel_button_label": "Retour",
