@@ -18,6 +18,7 @@ import {
   OdsFormField,
   OdsCombobox,
   OdsComboboxItem,
+  OdsComboboxGroup,
 } from '@ovhcloud/ods-components/react';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import {
@@ -439,24 +440,31 @@ export function OffsiteReplication() {
                           'pci_projects_project_storages_containers_offsite_replication_location_select_placeholder',
                         )}
                         name="replicationRegion"
-                        className="w-full max-w-[35rem]"
+                        className="w-full max-w-[29rem]"
                         value={form.offsiteReplicationRegion || ''}
                         onOdsChange={handleRegionSelectChange}
                         isDisabled={isRegionsPending || !hasRegions}
                         allowNewElement={false}
                       >
                         {hasRegions ? (
-                          Object.entries(groupedRegions).map(([_, regions]) =>
-                            regions.map((region) => (
-                              <OdsComboboxItem
-                                key={region.name}
-                                value={region.name}
-                              >
-                                <div className="flex flex-col">
-                                  <span>{region.microName || region.name}</span>
-                                </div>
-                              </OdsComboboxItem>
-                            )),
+                          Object.entries(groupedRegions).map(
+                            ([continent, regions]) => (
+                              <OdsComboboxGroup key={continent}>
+                                <span slot="title">{continent}</span>
+                                {regions.map((region) => (
+                                  <OdsComboboxItem
+                                    key={region.name}
+                                    value={region.name}
+                                  >
+                                    <div className="flex flex-col">
+                                      <span>
+                                        {region.microName || region.name}
+                                      </span>
+                                    </div>
+                                  </OdsComboboxItem>
+                                ))}
+                              </OdsComboboxGroup>
+                            ),
                           )
                         ) : (
                           <OdsComboboxItem value="">
@@ -473,11 +481,7 @@ export function OffsiteReplication() {
             )}
 
             {form.offsiteReplication && (
-              <OdsMessage
-                className="my-3"
-                color="information"
-                isDismissible={false}
-              >
+              <OdsMessage color="information" isDismissible={false}>
                 <OdsText preset="paragraph">
                   {t(
                     'pci_projects_project_storages_containers_offsite_replication_versionning_warning',
