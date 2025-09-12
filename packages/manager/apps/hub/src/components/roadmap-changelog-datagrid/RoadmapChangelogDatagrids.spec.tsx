@@ -13,7 +13,7 @@ vi.mock('@/data/hooks/roadmapChangelog/useRoadmapChangelog', () => ({
       cloud: [
         {
           title: 'Cloud title',
-          description: 'Cloud description',
+          url: 'Cloud url',
           changelog: 'Cloud changelog',
           product: 'Cloud product',
           releaseDate: '2025-01-01',
@@ -23,8 +23,7 @@ vi.mock('@/data/hooks/roadmapChangelog/useRoadmapChangelog', () => ({
       hostingCollab: [
         {
           title: 'Hosting title',
-          description:
-            'This is a very long description with **bold text** and ## heading and [link](https://example.com) to test the chevron functionality properly',
+          url: 'Hosting url',
           changelog: 'Hosting Changelog',
           product: 'Hosting product',
           releaseDate: '2025-01-15',
@@ -72,7 +71,7 @@ describe('Roadmap Changelog Datagrids', () => {
 
     expect(screen.getByText('datagrid_tab_title_hosting')).toBeInTheDocument();
     expect(screen.getByText('datagrid_tab_title_cloud')).toBeInTheDocument();
-    expect(screen.getByText('Hosting title')).toBeInTheDocument();
+    expect(screen.getByText('Hosting Changelog')).toBeInTheDocument();
   });
 
   it('should change panel when clicked', () => {
@@ -81,43 +80,7 @@ describe('Roadmap Changelog Datagrids', () => {
     const cloudTab = screen.getByText('datagrid_tab_title_cloud');
     fireEvent.click(cloudTab);
 
-    expect(screen.getByText('Cloud title')).toBeInTheDocument();
-  });
-
-  it('should display chevron if description exist', () => {
-    renderComponent();
-
-    const chevronIcon = screen.getAllByTestId('chevron-icon');
-    expect(chevronIcon?.length).toBe(2);
-    expect(chevronIcon[0]).toBeInTheDocument();
-  });
-
-  it('chevron should be clickable', () => {
-    renderComponent();
-
-    const chevronIcon = screen.getAllByTestId('chevron-icon');
-    const chevronButton = screen.getAllByTestId('chevron-button');
-
-    expect(chevronIcon?.length).toBe(2);
-    expect(chevronButton?.length).toBe(2);
-    expect(chevronIcon[0]).toHaveAttribute('name', 'chevron-right');
-    fireEvent.click(chevronButton[0]);
-    expect(chevronIcon[0]).toHaveAttribute('name', 'chevron-down');
-  });
-
-  it('markdown should be rendered when expanded', () => {
-    renderComponent();
-
-    const hostingTab = screen.getByText('datagrid_tab_title_hosting');
-    fireEvent.click(hostingTab);
-
-    const chevronButton = screen.getAllByTestId('chevron-button');
-    expect(chevronButton?.length).toBe(2);
-
-    fireEvent.click(chevronButton[1]);
-
-    expect(screen.getByText('bold text')).toBeInTheDocument();
-    expect(screen.getByText('link')).toBeInTheDocument();
+    expect(screen.getByText('Cloud changelog')).toBeInTheDocument();
   });
 
   it('date should be in the correct language format', () => {
