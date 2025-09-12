@@ -1,0 +1,213 @@
+<section class="telecom-sms-configure-time2chat">
+    <header>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="sms.service.senders"
+            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
+        >
+        </tuc-section-back-link>
+        <h1 data-translate="sms_senders_configure_time2chat"></h1>
+    </header>
+
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.isLoading">
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-md-6 widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_senders_configure_auto_response"
+                    ></h2>
+                </header>
+
+                <h4
+                    data-translate="sms_senders_configure_contact_info_title"
+                ></h4>
+                <p
+                    data-translate="sms_senders_configure_contact_info_subtitle"
+                ></p>
+                <form name="contactInfoForm" id="contactInfoForm" novalidate>
+                    <!-- COMMERCIAL_NAME  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            name="commercial_name"
+                            placeholder="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }}"
+                            data-ng-model="$ctrl.contactInfoData.name"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- PHONENUMBER  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_contact_info_label_phonenumber' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="phonenumber"
+                            name="phonenumber"
+                            placeholder="{{ 'sms_senders_configure_contact_info_label_phonenumber' | translate }}"
+                            data-ng-model="$ctrl.contactInfoData.phonenumber"
+                            data-ng-pattern="$ctrl.PHONE_NUMBER_FOR_TIME2CHAT_REGEX"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- WEBSITE  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="website"
+                            name="website"
+                            placeholder="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
+                            data-ng-model="$ctrl.contactInfoData.website"
+                            required
+                        />
+                    </oui-field>
+
+                    <oui-form-actions
+                        class="mb-3"
+                        data-submit-text="{{ 'sms_modify' | translate }}"
+                        data-on-submit="$ctrl.updateContactInfo()"
+                        data-disabled="contactInfoForm.$invalid || contactInfoForm.$pristine"
+                    >
+                    </oui-form-actions>
+                </form>
+
+                <h4
+                    data-translate="sms_senders_configure_auto_response_message_title"
+                ></h4>
+                <p
+                    data-translate="sms_senders_configure_auto_response_message_subtitle"
+                ></p>
+                <form
+                    name="autoResponseMessageForm"
+                    id="autoResponseMessageForm"
+                    novalidate
+                >
+                    <!-- AUTO_MESSAGE  -->
+                    <oui-field>
+                        <oui-textarea
+                            name="message"
+                            model="$ctrl.autoResponseData.autoResponse"
+                            rows="4"
+                            required
+                        >
+                        </oui-textarea>
+                    </oui-field>
+
+                    <oui-form-actions
+                        class="mb-3"
+                        data-submit-text="{{ 'sms_modify' | translate }}"
+                        data-on-submit="$ctrl.updateAutoResponseMessage()"
+                        data-disabled="autoResponseMessageForm.$invalid || autoResponseMessageForm.$pristine"
+                    >
+                    </oui-form-actions>
+                </form>
+            </div>
+            <div class="col-md-6 widget-presentation">
+                <header class="widget-presentation-header">
+                    <h2
+                        class="widget-presentation-title"
+                        data-translate="sms_senders_configure_kyc"
+                    ></h2>
+                </header>
+                <form name="kycForm" id="kycForm" novalidate>
+                    <!-- COMPANY_NAME  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_kyc_label_company_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="company_name"
+                            name="company_name"
+                            placeholder="{{ 'sms_senders_configure_kyc_label_company_name' | translate }}"
+                            data-ng-model="$ctrl.kycData.companyName"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- BRAND_BRAND  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_kyc_label_brand_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="brand_name"
+                            name="brand_name"
+                            placeholder="{{ 'sms_senders_configure_kyc_label_brand_name' | translate }}"
+                            data-ng-model="$ctrl.kycData.brandUsingService"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- PRIMARY_USE_case  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_kyc_label_primary_use_case' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="primary_use_case"
+                            name="primary_use_case"
+                            placeholder="{{ 'sms_senders_configure_kyc_label_primary_use_case' | translate }}"
+                            data-ng-model="$ctrl.kycData.primaryUseCase"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- CONTACT_NAME  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_kyc_label_operational_contact_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="text"
+                            id="contact_name"
+                            name="contact_name"
+                            placeholder="{{ 'sms_senders_configure_kyc_label_operational_contact_name' | translate }}"
+                            data-ng-model="$ctrl.kycData.operationalContactName"
+                            required
+                        />
+                    </oui-field>
+
+                    <!-- CONTACT_EMAIL  -->
+                    <oui-field
+                        data-label="{{ 'sms_senders_configure_kyc_label_contact_email' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            type="email"
+                            id="contact_email"
+                            name="contact_email"
+                            placeholder="{{ 'sms_senders_configure_kyc_label_contact_email' | translate }}"
+                            data-ng-model="$ctrl.kycData.operationalContactEmail"
+                            required
+                        />
+                    </oui-field>
+
+                    <oui-form-actions
+                        class="mb-3"
+                        data-submit-text="{{ 'sms_modify' | translate }}"
+                        data-on-submit="$ctrl.updateKyc()"
+                        data-disabled="kycForm.$invalid || kycForm.$pristine"
+                    >
+                    </oui-form-actions>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
