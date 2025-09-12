@@ -39,7 +39,6 @@ export const features = [
   'notebooks',
   'training',
   'ai-apps',
-  'data-processing',
   'logs-data-platform',
   'horizon',
   'pci-rancher',
@@ -264,7 +263,6 @@ export function getPciProjectMenu(
       'pci-databases-analytics-operational',
       'databases-streaming',
       'pci-databases-analytics-streaming',
-      'data-processing',
       'databases-analysis',
       'pci-databases-analytics-analysis',
       'pci-dataplatform',
@@ -310,14 +308,6 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
-          ),
-        },
-        isFeaturesAvailable('data-processing') && {
-          id: 'data-processing',
-          title: 'Data Processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
           ),
         },
         // Entry menu for PCI Data Analysis for Angular
