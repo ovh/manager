@@ -235,6 +235,17 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      redirectToNewInstance: /* @ngInject */ (
+        getUAppUrl,
+        instance,
+        projectId,
+      ) => () =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/instances/region/${instance.region}/instance/${instance.id}`,
+        ).then((url) => {
+          window.location.href = url;
+        }),
     },
   });
 };
