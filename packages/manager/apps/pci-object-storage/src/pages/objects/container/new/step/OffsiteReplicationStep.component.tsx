@@ -18,6 +18,7 @@ import {
   OdsFormField,
   OdsCombobox,
   OdsComboboxItem,
+  OdsComboboxGroup,
 } from '@ovhcloud/ods-components/react';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import {
@@ -446,17 +447,24 @@ export function OffsiteReplication() {
                         allowNewElement={false}
                       >
                         {hasRegions ? (
-                          Object.entries(groupedRegions).map(([_, regions]) =>
-                            regions.map((region) => (
-                              <OdsComboboxItem
-                                key={region.name}
-                                value={region.name}
-                              >
-                                <div className="flex flex-col">
-                                  <span>{region.microName || region.name}</span>
-                                </div>
-                              </OdsComboboxItem>
-                            )),
+                          Object.entries(groupedRegions).map(
+                            ([continent, regions]) => (
+                              <OdsComboboxGroup key={continent}>
+                                <span slot="title">{continent}</span>
+                                {regions.map((region) => (
+                                  <OdsComboboxItem
+                                    key={region.name}
+                                    value={region.name}
+                                  >
+                                    <div className="flex flex-col">
+                                      <span>
+                                        {region.microName || region.name}
+                                      </span>
+                                    </div>
+                                  </OdsComboboxItem>
+                                ))}
+                              </OdsComboboxGroup>
+                            ),
                           )
                         ) : (
                           <OdsComboboxItem value="">
