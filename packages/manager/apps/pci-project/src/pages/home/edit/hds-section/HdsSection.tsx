@@ -3,7 +3,7 @@ import { TProject } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsButton, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useGetCartSummary } from '@/data/hooks/useCart';
 import HdsOption from '@/components/hds-option/HdsOption';
 import Contracts from '@/components/contracts/Contracts';
@@ -70,16 +70,24 @@ export default function HdsSection({ project }: { project: TProject }) {
       setIsHdsCertifiedProject(true);
       setIsContractsChecked(false);
       addSuccess(
-        t('pci_projects_project_edit_hds_btn_validate_status_success', {
-          projectName: project?.description,
-        }),
+        <Translation ns="hds">
+          {(_t) =>
+            _t('pci_projects_project_edit_hds_btn_validate_status_success', {
+              projectName: project?.description,
+            })
+          }
+        </Translation>,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        t('pci_projects_project_edit_hds_btn_validate_status_error', {
-          error: error.message,
-        }),
+        <Translation ns="hds">
+          {(_t) =>
+            _t('pci_projects_project_edit_hds_btn_validate_status_error', {
+              error: error.message,
+            })
+          }
+        </Translation>,
       );
     },
   });
