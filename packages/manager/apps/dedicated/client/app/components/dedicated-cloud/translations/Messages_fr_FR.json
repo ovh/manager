@@ -248,5 +248,6 @@
   "ip_order_renew_MBM": "Vos IPs seront automatiquement renouvellées avec votre infrastructure Managed Bare Metal.",
   "dedicatedCloud_premier_sbg_order_warning": "Nous ne sommes pas en mesure de prendre de nouvelles commandes sur notre site de SBG. Nos équipes sont pleinement mobilisées et nous mettons tout en œuvre pour rétablir cette possibilité de commande dans un avenir proche.",
   "dedicatedCloud_banner_new_product": "Vous pouvez désormais commander des datacenters correspondants à des packs logiciels VMware différents au sein d'un même environnement Private Cloud.",
-  "dedicatedCloud_banner_new_product_link": "En savoir plus"
+  "dedicatedCloud_banner_new_product_link": "En savoir plus",
+  "dedicatedCloud_go_back_to_list": "Retour à la liste"
 }

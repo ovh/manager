@@ -1,0 +1,54 @@
+<section
+    data-ui-view
+    class="d-flex flex-column gap-8"
+    aria-labelledby="zerto-datagrid-title"
+>
+    <h2 id="zerto-datagrid-title" data-ng-bind="$ctrl.ZERTO"></h2>
+
+    <oui-datagrid rows="$ctrl.zertoMultiSites" data-page-size="25">
+        <oui-datagrid-topbar>
+            <oui-button data-on-click="$ctrl.goToAddSite()"
+                ><span
+                    data-translate="dedicatedCloud_datacenter_drp_listing_add_site"
+                ></span
+            ></oui-button>
+        </oui-datagrid-topbar>
+
+        <oui-datagrid-column
+            data-title="'dedicatedCloud_datacenter_drp_listing_column_label' | translate"
+            data-property="label"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'dedicatedCloud_datacenter_drp_listing_column_ip_public' | translate"
+            data-property="remoteEndpointPublicIp"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title="'dedicatedCloud_datacenter_drp_listing_column_vra_datacenter' | translate"
+            data-property="remoteVraNetwork"
+        >
+        </oui-datagrid-column>
+
+        <oui-datagrid-column
+            data-title="'dedicatedCloud_datacenter_drp_listing_column_ip_zvm' | translate"
+            data-property="remoteZvmInternalIp"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <oui-button
+                size="s"
+                variant="link"
+                data-on-click="$ctrl.openDeleteSiteModal($row.id)"
+            >
+                <span class="oui-icon oui-icon-bin"></span>
+            </oui-button>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</section>
