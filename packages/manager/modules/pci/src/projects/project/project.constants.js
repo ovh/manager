@@ -9,7 +9,6 @@ import ASSET_BLOCKSTORAGE from './assets/blockstorage.png';
 import ASSET_IPFAILOVER from './assets/ipfailover.png';
 import ASSET_PRIVATENETWORK from './assets/privatenetwork.png';
 import ASSET_DATAPLATFORM from './assets/dataplatform.png';
-import { ENGINES_TYPES } from './storages/databases/databases.constants';
 
 export const PCI_FEATURES = IMPORT_PCI_FEATURES;
 
@@ -64,13 +63,6 @@ export const ACTIONS = [
     state: 'pci.projects.project.storages.blocks.add',
     feature: PCI_FEATURES.PRODUCTS.BLOCK_STORAGE,
     name: 'blockstorage',
-  },
-  {
-    translation: 'pci_projects_project_create_cluster_database',
-    state: 'pci.projects.project.storages.databases.add',
-    feature: PCI_FEATURES.PRODUCTS.DATABASES,
-    name: 'databases',
-    stateParams: { type: ENGINES_TYPES.databases.label },
   },
   {
     translation: 'pci_projects_project_activate_private_networks',

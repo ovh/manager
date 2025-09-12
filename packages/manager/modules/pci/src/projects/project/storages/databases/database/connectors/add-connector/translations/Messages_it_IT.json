@@ -1,6 +1,0 @@
-{
-  "pci_databases_connectors_add_back": "Connector",
-  "pci_databases_connectors_add_button": "Aggiungi un connector",
-  "pci_databases_connectors_add_success_message": "Il connector è stato creato correttamente.",
-  "pci_databases_connectors_add_error_message": "Si è verificato un errore durante la creazione del connector: {{details}}"
-}

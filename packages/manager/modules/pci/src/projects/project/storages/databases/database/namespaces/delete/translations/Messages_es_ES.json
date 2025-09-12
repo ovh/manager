@@ -1,8 +1,0 @@
-{
-  "pci_databases_namespaces_delete_namespace_confirm": "Confirmar",
-  "pci_databases_namespaces_delete_namespace_cancel": "Cancelar",
-  "pci_databases_namespaces_delete_namespace": "Eliminar un namespace",
-  "pci_databases_namespaces_delete_namespace_description": "¿Seguro que quiere eliminar este namespace?",
-  "pci_databases_namespaces_delete_namespace_success_message": "El namespace se ha eliminado correctamente.",
-  "pci_databases_namespaces_delete_namespace_error_message": "Se ha producido un error al eliminar el namespace: {{message}}"
-}
