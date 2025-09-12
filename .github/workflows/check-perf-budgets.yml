@@ -1,0 +1,65 @@
+name: Perf Budgets
+on: [push]
+
+jobs:
+  check-perf-budgets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+      - name: Restore/create node_modules cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: GetChangedPackages
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          get_changed_packages() {
+            CURRENT_BRANCH=$(git branch --show-current)
+            if [[ "$CURRENT_BRANCH" == "master" ]]; then
+              echo "My branch is master and no unit test to run, exit..."
+              exit 0
+            fi
+            BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+            yarn turbo run build --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+      
+            # Clean JSON
+            tail -n +3 output.json > tmpfile.json && mv tmpfile.json output.json
+            head -n -1 output.json > temp.json && mv temp.json output.json
+      
+            # Extract packages
+            jq -r '.packages[]' output.json
+          }
+          echo "[INFO] Dry run to determine which packages will be built..."
+          CHANGED_PACKAGES=$(get_changed_packages)
+          echo "Changed packages:"
+          echo "$CHANGED_PACKAGES"
+      
+          # Safe multiline output for next step
+          echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Show Perf Budgets
+        run: |
+          echo "Changed packages:"
+          echo "Output was: ${{ steps.changed.outputs.changed_packages }}"
+          # Convert the list into a single line with commas
+          changed_pkgs=$(echo "${{ steps.changed.outputs.changed_packages }}" | tr '\n' ',')
+          
+          # Remove the trailing comma
+          changed_pkgs=${changed_pkgs%,}
+          changed_pkgs="${changed_pkgs#//,}"
+          echo "Changed packages: $changed_pkgs"
