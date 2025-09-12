@@ -17,6 +17,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useForm, Controller } from 'react-hook-form';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useGenerateUrl } from '@/hooks';
 import { useLicenseDetail, useOrderCatalog } from '@/data/hooks';
 import { generateOrderURL } from '@/data/api/order';
@@ -28,7 +29,11 @@ type FormData = {
 };
 
 export default function ModalOrderLicenses() {
-  const { t } = useTranslation(['dashboard/users/order-licenses', 'common']);
+  const { t } = useTranslation([
+    'dashboard/users/order-licenses',
+    'common',
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const context = useContext(ShellContext);
@@ -98,10 +103,10 @@ export default function ModalOrderLicenses() {
       heading={t('dashboard_users_order_licences_title')}
       type={ODS_MODAL_COLOR.information}
       isOpen={true}
-      secondaryLabel={t('common:cta_cancel')}
+      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={handleCancelClick}
       onDismiss={handleCancelClick}
-      primaryLabel={t('common:cta_confirm')}
+      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       isPrimaryButtonDisabled={!watch('productType')}
       onPrimaryButtonClick={handleSubmit(onSubmit)}
     >
