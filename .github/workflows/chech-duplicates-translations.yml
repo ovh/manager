@@ -13,30 +13,66 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22
+      - name: GetGitVars
+        id: gate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          CURRENT_BRANCH=$(git branch --show-current)
+          echo "My branch is $CURRENT_BRANCH"
+          if [[ "$CURRENT_BRANCH" == "master" ]]; then
+            echo "My branch is master and no unit test to run, exit..."
+            echo "should_continue=false" >> $GITHUB_OUTPUT
+          fi
+          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+          echo "Base Branch is $BASE_BRANCH"
+
+          PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
+          NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
+          labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
+
+          if echo "$labels" | grep -wq "translation required "; then
+            echo "✅ Translation required: Check the duplicate translation pls!..."
+  
+          else
+            echo "❌ Translation label does not exist, exit..."
+            SHOULD_CONTINUE=false
+            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
+            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+          # Safe multiline output for next step
+          echo "current_branch<<EOF" >> $GITHUB_OUTPUT
+          echo "$CURRENT_BRANCH" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "base_branch<<EOF" >> $GITHUB_OUTPUT
+          echo "$BASE_BRANCH" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Restore/create node_modules cache
+        if: steps.gate.outputs.should_continue == 'true'
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
       - name: Install dependencies
+        if: steps.gate.outputs.should_continue == 'true'
         run: yarn install --frozen-lockfile
+        
       - name: GetChangedPackages
+        if: steps.gate.outputs.should_continue == 'true'
         id: changed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           get_changed_packages() {
-            CURRENT_BRANCH=$(git branch --show-current)
-            echo "My branch is $CURRENT_BRANCH"
-            if [[ "$CURRENT_BRANCH" == "master" ]]; then
-              echo "My branch is master and no unit test to run, exit..."
-              exit 0
-            fi
-            BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
-            echo "Base Branch is $BASE_BRANCH"
-            echo "current Branch: ${CURRENT_BRANCH}"
-            echo "[INFO] Dry run to determine which packages will be built..."
+            BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
+            CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
             yarn turbo run build --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
       
             # Clean JSON
@@ -46,6 +82,7 @@ jobs:
             # Extract packages
             jq -r '.packages[]' output.json
           }
+          echo "[INFO] Dry run to determine which packages will be built..."
           CHANGED_PACKAGES=$(get_changed_packages)
           echo "Changed packages:"
           echo "$CHANGED_PACKAGES"
@@ -56,6 +93,7 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Show duplicate translations
+        if: steps.gate.outputs.should_continue == 'true'
         run: |
           echo "Changed packages:"
           echo "Output was: ${{ steps.changed.outputs.changed_packages }}"
