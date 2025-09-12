@@ -1,6 +1,6 @@
 export type RoadmapChangelogItem = {
   title: string;
-  description: string;
+  url: string;
   product: string;
   releaseDate: string;
   status: string;
