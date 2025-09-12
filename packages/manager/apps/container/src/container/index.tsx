@@ -7,7 +7,7 @@ import useContainer from '@/core/container';
 import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
-import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
+import SSOAuthModal from '@/components/sso-auth-modal/SSOAuthModal.component';
 import LiveChat from '@/container/livechat/LiveChat.component';
 
 export default function Container(): JSX.Element {

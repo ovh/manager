@@ -2,9 +2,9 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { User } from "@ovh-ux/manager-config";
 import { useAuthorizationIam, useFeatureAvailability } from "@ovh-ux/manager-react-components";
 import { useApplication } from '@/context';
-import { useAccountUrn } from "@/hooks/accountUrn/useAccountUrn";
-import { usePreferences } from "@/hooks/preferences/usePreferences";
-import { useTime } from "@/hooks/time/useTime";
+import { useAccountUrn } from "@/data/hooks/authorizations/useAccountUrn";
+import { usePreferences } from "@/data/hooks/preferences/usePreferences";
+import { useTime } from "@/data/hooks/time/useTime";
 
 export const useCheckModalDisplaySynchronous = (
   userCheck?: (user: User) => boolean,
