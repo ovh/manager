@@ -10,6 +10,8 @@ export default class PciInstanceController {
     PciProjectsProjectInstanceService,
     PciProject,
     CHANGELOG,
+    $rootScope,
+    $location,
   ) {
     this.$translate = $translate;
     this.coreConfig = coreConfig;
@@ -19,6 +21,8 @@ export default class PciInstanceController {
     this.PciProject = PciProject;
     this.THREE_AZ_REGION = THREE_AZ_REGION;
     this.CHANGELOG = CHANGELOG;
+    this.$rootScope = $rootScope;
+    this.$location = $location;
   }
 
   $onInit() {
@@ -31,6 +35,12 @@ export default class PciInstanceController {
 
     this.regionsTypesAvailability = {};
     this.fetchRegionsTypesAvailability();
+
+    this.redirectToNewInstance();
+
+    this.$rootScope.$on('$locationChangeSuccess', () =>
+      this.redirectToNewInstance(),
+    );
   }
 
   fetchRegionsTypesAvailability() {
@@ -59,5 +69,21 @@ export default class PciInstanceController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  redirectToNewInstance() {
+    const { id, region } = this.instance;
+
+    if (
+      this.$location.path() ===
+      `/pci/projects/${this.projectId}/instances/${id}`
+    ) {
+      this.getUAppUrl(
+        'public-cloud',
+        `#/pci/projects/${this.projectId}/instances/region/${region}/instance/${id}`,
+      ).then((url) => {
+        window.location.href = url;
+      });
+    }
   }
 }
