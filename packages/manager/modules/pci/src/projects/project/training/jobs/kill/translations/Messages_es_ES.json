@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_training_job_kill": "Interrumpir el job",
-  "pci_projects_project_training_jobs_kill_message": "Va a interrumpir el siguiente job:",
-  "pci_projects_project_training_jobs_common_cancel": "Cancelar",
-  "pci_projects_project_training_jobs_common_kill": "Confirmar la interrupción",
-  "pci_projects_project_training_job_kill_success": "La orden de interrupción del job se ha registrado correctamente.",
-  "pci_projects_project_training_job_kill_error": "Se ha producido un error al enviar la orden de interrupción del job."
-}

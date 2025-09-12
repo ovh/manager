@@ -1,8 +1,0 @@
-{
-  "pci_app_start_app_title": "Uruchomienie aplikacji",
-  "pci_app_start_app_content": "Czy na pewno chcesz uruchomić aplikację {{appName}}?",
-  "pci_app_start_app_success": "Twoja aplikacja została uruchomiona.",
-  "pci_app_start_app_error": "Wystąpił błąd podczas uruchamiania Twojej aplikacji {{appName}}: {{message}}",
-  "pci_app_start_app_submit_label": "Zatwierdź",
-  "pci_app_start_app_cancel_label": "Anuluj"
-}

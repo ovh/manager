@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_training_job_kill": "Stop the job",
-  "pci_projects_project_training_jobs_kill_message": "You are about to stop the following job:",
-  "pci_projects_project_training_jobs_common_cancel": "Cancel",
-  "pci_projects_project_training_jobs_common_kill": "Confirm stop",
-  "pci_projects_project_training_job_kill_success": "The job stop order has been processed successfully",
-  "pci_projects_project_training_job_kill_error": "An error has occurred processing the job stop order"
-}

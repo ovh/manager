@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_training_job_kill": "Arresta il job",
-  "pci_projects_project_training_jobs_kill_message": "Stai per arrestare questo job:",
-  "pci_projects_project_training_jobs_common_cancel": "Annulla",
-  "pci_projects_project_training_jobs_common_kill": "Conferma l’arresto",
-  "pci_projects_project_training_job_kill_success": "La richiesta di arresto del job è stata presa in carico",
-  "pci_projects_project_training_job_kill_error": "Si è verificato un errore durante l'invio della richiesta di arresto del job"
-}

@@ -1,8 +1,0 @@
-{
-  "pci_projects_project_training_delete_job_title": "Eliminazione del job",
-  "pci_projects_project_training_delete_job_description": "Vuoi davvero eliminare il job {{ name }}?",
-  "pci_projects_project_training_delete_job_action_delete": "Confermare",
-  "pci_projects_project_training_delete_job_action_cancel": "Annullare",
-  "pci_projects_project_training_delete_job_action_delete_success": "Il job è stato eliminato correttamente",
-  "pci_projects_project_training_delete_job_action_delete_fail": "Si è verificato un errore durante l'eliminazione del job {{ name }}: {{ message }}."
-}

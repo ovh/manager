@@ -1,6 +1,0 @@
-{
-  "pci_app_command_title": "Automatische Erstellung einer entsprechenden App",
-  "pci_app_command_description": "Erstellen Sie dieselbe App mit diesen Befehlszeilen in Ihrem OVHAI CLI.",
-  "pci_app_command_help": "Mehr erfahren.",
-  "pci_app_command_error": "Beim Abruf der entsprechenden Bestellung ist ein Fehler aufgetreten: {{message}}"
-}
