@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager React Components/Hooks/useLocationByName" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useLocationByName` hook is a data filtering utility designed to get a location coming from the API v2 endpoint `/location` with a matching name.
+
+<StorybookHeading label="Api" level={2} />
+
+<StorybookHeading label="Parameters" level={3} />
+
+The hook accept a single `string` parameter representing the name of the searched location
+
+<StorybookHeading label="Return Value" level={3} />
+
+The hook returns a `UseQueryResult` object with:
+- `data`: a `Location` object matching the name given in parameter
+
+```tsx
+type Location = {
+  availabilityZones: string[];
+  cardinalPoint: CardinalPoint;
+  cityCode: string;
+  cityLatitude: number;
+  cityLongitude: number;
+  cityName: string;
+  code: string;
+  countryCode: string;
+  countryName: string;
+  geographyCode: string;
+  geographyName: string;
+  location: string;
+  name: string;
+  openingYear: number;
+  specificType: SpecificType;
+  type: Type;
+};
+
+// The following types are not exposed by Manager React Components, but by @ovh-ux/shell
+export type CardinalPoint =
+  | 'CENTRAL'
+  | 'EAST'
+  | 'NORTH'
+  | 'NORTHEAST'
+  | 'NORTHWEST'
+  | 'SOUTH'
+  | 'SOUTHEAST'
+  | 'SOUTHWEST'
+  | 'WEST';
+export type SpecificType = 'BACKUP' | 'LZ' | 'SNC' | 'STANDARD';
+export type Type = 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ';
+```
+
+<StorybookHeading label="Example Usage" level={3} />
+
+```tsx
+import { useLocationByName } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { data: myLocation } = useLocationByName('myLocationName');
+}
+```
+
+<StorybookHeading label="Notes" level={3} />
+
+- The hook uses React Query under the hood for efficient data caching and state management
+- The hook use the same `queryFn` and `queryKey` as `useAllCountries`, `useAllLocationsByType` and `useCityByCode` for efficiency
