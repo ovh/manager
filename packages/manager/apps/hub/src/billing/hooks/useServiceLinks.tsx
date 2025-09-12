@@ -101,7 +101,8 @@ export const useServiceLinks = (
           if (
             !service.isResiliated() &&
             !service.hasForcedRenew() &&
-            !service.hasEngagement()
+            !service.hasEngagement() &&
+            service.serviceType !== SERVICE_TYPE.HOSTING_WEB_CDN
           ) {
             availableLinks.configureRenewal = `${autoRenewLink}/update?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
