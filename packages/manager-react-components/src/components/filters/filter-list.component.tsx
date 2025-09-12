@@ -33,7 +33,7 @@ export function FilterList({
           label={`${
             filter.label ? `${filter.label} ${tComp(filter.comparator)} ` : ''
           }
-          ${formatFilter(filter, locale)}`}
+          ${filter.tagLabel || formatFilter(filter, locale)}`}
         />
       ))}
     </>
