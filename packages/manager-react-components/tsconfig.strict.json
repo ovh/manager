@@ -78,7 +78,8 @@
     "./src/components/tags-list/**/*",
     "./src/components/onboarding-layout/**/*",
     "./src/components/order/**/*",
-    "./src/components/grid-layout/**/*"
+    "./src/components/grid-layout/**/*",
+    "./src/hooks/data-api/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
