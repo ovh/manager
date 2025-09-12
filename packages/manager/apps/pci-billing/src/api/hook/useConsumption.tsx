@@ -540,7 +540,6 @@ export const getConsumptionDetails = (
     ResourceType.AI_SERVING_ENGINE,
     ResourceType.AI_TRAINING,
     ResourceType.AI_ENDPOINTS,
-    ResourceType.DATA_PROCESSING_JOB,
     ResourceType.DATABASES,
     ResourceType.COLD_ARCHIVE,
     ResourceType.FLOATING_IP,
