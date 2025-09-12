@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Stai per sospendere l'istanza {{ name }}. Le risorse dedicate all'istanza Public Cloud verranno liberate ma l’IP verrà mantenuto. I dati del disco locale saranno salvati e la fatturazione verrà applicata solo allo storage utilizzato per questo fine. La durata dell'operazione varia in base alla dimensione del disco locale. È possibile riattivare l'istanza in qualsiasi momento.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Attenzione: per le istanze con fatturazione mensile, la fatturazione classica continuerà a essere applicata indipendentemente dallo stato del servizio.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Questa azione non è disponibile per l’istanza {{ name }}",
-  "pci_instances_actions_instance_success_message": "Lo stato della tua istanza {{ name }} è stato aggiornato correttamente."
+  "pci_instances_actions_instance_success_message": "Lo stato della tua istanza {{ name }} è stato aggiornato correttamente.",
+  "pci_instances_actions_instance_network_change_dns": "Modifica il reverse DNS ",
+  "pci_instances_actions_instance_network_activate_mitigation": "Attiva/Disattiva la mitigazione",
+  "pci_instances_actions_instance_network_firewall_settings": "Configura il firewall",
+  "pci_instances_actions_instance_network_network_settings": "Gestisci le reti private",
+  "pci_instances_actions_instance_network_network_attach": "Associa una rete",
+  "pci_instances_actions_instance_network_network_attach_title": "Associa una o più reti private alla tua istanza",
+  "pci_instances_actions_instance_network_network_empty_message": "Al momento non sono presenti reti private compatibili a cui associare questa istanza.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "La rete privata {{ network }} è stata associata all’istanza {{ instance }}.",
+  "pci_instances_actions_instance_attach_error_message": "Si è verificato un errore durante l’aggiornamento dell’istanza: {{ message }} ",
+  "pci_instances_actions_instance_volume_attach_title": "Associa un volume alla tua istanza",
+  "pci_instances_actions_instance_volume_attach_empty_message": "Nessun volume disponibile nella Region della tua istanza.",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Associare una risorsa",
+  "pci_instances_actions_instance_volume_attach_select": "Selezionare un volume esistente",
+  "pci_instances_actions_instance_volume_attach_information": "Puoi associare un volume esistente o creare un nuovo volume da associare alla tua istanza. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Creare un volume",
+  "pci_instances_actions_instance_volume_attach_success_message": "Il volume {{ volume }} è stato associato all’istanza {{ instance }}."
 }

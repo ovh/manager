@@ -20,6 +20,7 @@
 
   "pci_projects_project_instances_add_image_title": "Sélectionnez une image",
   "pci_projects_project_instances_add_image_not_available": "Ces images sont disponibles sur d'autre modèles.",
+  "pci_projects_project_instances_add_image_distant_warning": "La création de votre instance à partir d’un backup distant nécessitera une copie locale de l’image distante qui sera facturée au tarif habituel.",
 
   "pci_projects_project_instances_add_instance_is_iops": "La sauvegarde automatique s’applique strictement aux données du disque local de votre instance. Les données des disques NVMe ne seront pas sauvegardées.",
   "pci_projects_project_instances_add_instance_title": "Configurez votre instance",

@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "Sie sind im Begriff, Ihre Instanz {{ name }} auszusetzen. Die Ihrer Public Cloud Instanz vorbehaltenen Ressourcen werden freigegeben, ihre IP bleibt jedoch erhalten. Die Daten Ihrer lokalen Festplatte werden gespeichert. Nur der dafür verwendete Speicher wird Ihnen in Rechnung gestellt (1). Die Dauer des Vorgangs hängt von der Größe Ihrer lokalen Festplatte ab. Sie können Ihre Instanz jederzeit erneut aktivieren.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Bitte beachten Sie: Für monatlich berechnete Instanzen wird die übliche Abrechnung fortgesetzt, unabhängig vom Status der Dienstleistung.",
   "pci_instances_actions_instance_unavailable_action_error_message": "Diese Aktion ist für Ihre Instanz {{ name }} nicht verfügbar",
-  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert."
+  "pci_instances_actions_instance_success_message": "Der Status Ihrer Instanz {{ name }} wurde aktualisiert.",
+  "pci_instances_actions_instance_network_change_dns": "DNS Reverse ändern",
+  "pci_instances_actions_instance_network_activate_mitigation": "Schutz aktivieren/deaktivieren",
+  "pci_instances_actions_instance_network_firewall_settings": "Firewall konfigurieren",
+  "pci_instances_actions_instance_network_network_settings": "Private Netzwerke verwalten",
+  "pci_instances_actions_instance_network_network_attach": "Netzwerk hinzufügen",
+  "pci_instances_actions_instance_network_network_attach_title": "Ein oder mehrere private Netzwerke mit Ihrer Instanz verbinden",
+  "pci_instances_actions_instance_network_network_empty_message": "Sie verfügen über kein kompatibles privates Netzwerk, mit dem Sie diese Instanz verbinden können.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "Das private Netzwerk {{ network }} wurde mit der Instanz {{ instance }} verbunden.",
+  "pci_instances_actions_instance_attach_error_message": "Bei der Aktualisierung der Instanz ist ein Fehler aufgetreten: {{ message }}",
+  "pci_instances_actions_instance_volume_attach_title": "Ein Volume mit Ihrer Instanz verbinden",
+  "pci_instances_actions_instance_volume_attach_empty_message": "In der Region, in der sich Ihre Instanz befindet, ist kein Volumen verfügbar.",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Ressource anfügen",
+  "pci_instances_actions_instance_volume_attach_select": "Vorhandenes Volume auswählen",
+  "pci_instances_actions_instance_volume_attach_information": "Sie können ein vorhandenes Volume anhängen oder ein neues Volume erstellen, das an Ihre Instanz angehängt werden soll. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Volume erstellen",
+  "pci_instances_actions_instance_volume_attach_success_message": "Das Volume {{ volume }} wurde mit der Instanz {{ instance }} verbunden."
 }

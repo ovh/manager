@@ -1,0 +1,12 @@
+{
+  "deletionProtectionTitle": "Löschschutz",
+  "deletionProtectionDescription": "Mit dieser Option können Sie Ihre Instanz vor versehentlichem Löschen schützen.",
+  "activateProtection": "Soll der Löschschutz aktiviert werden?",
+  "deactivateProtection": "Sind Sie sicher, dass Sie den Löschschutz für diesen Dienst deaktivieren möchten?",
+  "deletionProtectionButtonCancel": "Abbrechen",
+  "activateDeletionProtection": "Aktivieren",
+  "deactivateDeletionProtection": "Deaktivieren",
+  "updateServiceToastErrorTitle": "Fehler",
+  "updateServiceToastSuccessTitle": "Erfolg",
+  "updateServiceToastSuccessDescription": "Ihr Dienst wurde erfolgreich aktualisiert"
+}

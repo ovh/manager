@@ -437,6 +437,16 @@
                 </button>
             </div>
         </pci-project-images-list>
+
+        <oui-message
+            data-ng-if="$ctrl.model.image && $ctrl.model.image.isBackup() && !$ctrl.model.image.isAvailableInRegion($ctrl.model.datacenter.name)"
+            data-type="warning"
+        >
+            <p
+                data-translate="pci_projects_project_instances_add_image_distant_warning"
+            ></p>
+        </oui-message>
+
         <oui-spinner data-ng-if="$ctrl.isAddingNewRegion" data-size="s" />
 
         <pci-project-instance-ssh-keys
@@ -1238,7 +1248,7 @@
         </pci-trusted-zone-banner>
     </oui-step-form>
     <div
-        data-ng-if="$ctrl.isLoading && !$ctrl.isPrivateMode()  && $ctrl.currentStep > 4 && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
+        data-ng-if="$ctrl.isLoading && $ctrl.currentStep > 4 && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
         class="d-flex flex-wrap flex-md-nowrap align-items-center"
     >
         <oui-spinner></oui-spinner>
@@ -1252,45 +1262,3 @@
         ></span>
     </div>
 </oui-stepper>
-
-<div
-    data-ng-if="$ctrl.confirmPrivateInstanceCreation && !$ctrl.isAddingPrivateNetwork && !$ctrl.isAddingPrivateNetworkError"
->
-    <div class="modal d-block">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <oui-modal
-                    data-heading="{{ 'pci_projects_project_instances_add_title' | translate }}"
-                    data-on-dismiss="$ctrl.onCancelCreateInstanceConfirmation()"
-                    data-primary-label="{{:: 'pci_projects_project_instances_add_instance_confirmation_create' | translate }}"
-                    data-primary-action="$ctrl.create()"
-                    data-secondary-label="{{:: 'pci_projects_project_instances_add_instance_confirmation_cancel' | translate }}"
-                    data-secondary-action="$ctrl.onCancelCreateInstanceConfirmation()"
-                    data-primary-disabled="$ctrl.isLoading"
-                >
-                    <div
-                        data-ng-if="$ctrl.isLoading  && $ctrl.currentStep > 4"
-                        class="d-flex flex-wrap flex-md-nowrap align-items-center"
-                    >
-                        <oui-spinner data-size="m"></oui-spinner>
-                        <p>
-                            <span
-                                data-translate="pci_projects_project_instances_add_private_mode1"
-                            ></span>
-                            <span
-                                data-translate="pci_projects_project_instances_add_private_mode2"
-                            ></span>
-                        </p>
-                    </div>
-
-                    <div data-ng-if="!$ctrl.isLoading">
-                        <p
-                            data-translate="pci_projects_project_instances_add_instance_confirmation_info"
-                        ></p>
-                    </div>
-                </oui-modal>
-            </div>
-        </div>
-    </div>
-    <div class="oui-modal-backdrop"></div>
-</div>

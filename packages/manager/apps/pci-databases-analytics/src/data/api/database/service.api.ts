@@ -65,6 +65,8 @@ export interface EditService extends ServiceData {
       restApi?: boolean;
     } & {
       schemaRegistry?: boolean;
+    } & {
+      deletionProtection?: boolean;
     }
   >;
 }

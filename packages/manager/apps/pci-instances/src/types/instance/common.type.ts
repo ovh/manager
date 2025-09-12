@@ -63,7 +63,7 @@ export type TPrice = {
   status: 'enabled' | 'available' | 'eligible';
   value: number;
   text: string;
-  priceInUCents: number;
+  priceInUcents: number;
   currencyCode: string;
   includeVat: boolean;
 };
@@ -95,4 +95,11 @@ export type TBackup = {
   id: string;
   name: string;
   createdAt: string;
+};
+
+export type TSeverity = 'success' | 'error' | 'warning' | 'info';
+
+export type TStatusSeverity = {
+  label: TStatus;
+  severity: TSeverity;
 };
