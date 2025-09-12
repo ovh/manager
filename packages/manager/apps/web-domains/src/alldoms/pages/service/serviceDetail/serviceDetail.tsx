@@ -1,5 +1,6 @@
 import {
   BaseLayout,
+  Breadcrumb,
   Notifications,
   useFormatDate,
   useNotifications,
@@ -59,6 +60,13 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
       onClickReturn={() => navigate(urls.alldomsRoot)}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
+      }
     >
       <section>
         {hasTerminateAtExpirationDateAction(
