@@ -3,7 +3,6 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
 import reduce from 'lodash/reduce';
-import set from 'lodash/set';
 import values from 'lodash/values';
 
 import { BillingService } from '@ovh-ux/manager-models';
@@ -15,6 +14,8 @@ import {
   SERVICE_STATUS,
   SERVICE_RENEW_MODES,
   SERVICE_TYPES,
+  SERVICE_INFOS_URLS_BY_TYPE,
+  SERVICE_NAME_PLACEHOLDER,
 } from './autorenew.constants';
 
 export default class {
@@ -50,6 +51,19 @@ export default class {
     this.events = {
       AUTORENEW_CHANGES: AUTORENEW_EVENT,
     };
+  }
+
+  static getServiceInfosUrl(service) {
+    if (service.route) {
+      return `${service.route}/serviceInfos`;
+    }
+
+    const pattern = SERVICE_INFOS_URLS_BY_TYPE[service.serviceType];
+    if (!pattern) {
+      return null;
+    }
+
+    return pattern.replace(SERVICE_NAME_PLACEHOLDER, service.serviceId);
   }
 
   getAllServices() {
@@ -115,16 +129,20 @@ export default class {
   }
 
   getStatusTypes() {
-    return reduce(
-      SERVICE_STATUS,
-      (translatedStatus, status) => ({
+    const isUSRegion = this.coreConfig.isRegion('US');
+
+    return Object.values(SERVICE_STATUS).reduce((translatedStatus, status) => {
+      if (isUSRegion && status === SERVICE_STATUS.MANUAL) {
+        return translatedStatus;
+      }
+
+      return {
         ...translatedStatus,
         [status]: this.$translate.instant(
           `billing_autorenew_service_status_${status}`,
         ),
-      }),
-      {},
-    );
+      };
+    }, {});
   }
 
   getStatesTypes() {
@@ -153,37 +171,55 @@ export default class {
     );
   }
 
-  updateServices(updateList) {
-    return this.OvhApiBillingAutorenewServices.Aapi()
-      .put(
-        {},
-        {
-          updateList,
+  updateService(service) {
+    const url = this.constructor.getServiceInfosUrl(service);
+
+    if (!url) {
+      return this.$q.reject({
+        data: {
+          message: 'Unsupported serviceType',
         },
-      )
-      .$promise.then((result) => {
-        if (result.state === 'OK') {
-          return result;
-        }
-        set(result, 'state', 'ERROR');
-        return this.$q.reject(result);
       });
+    }
+
+    return this.OvhHttp.put(url, {
+      rootPath: 'apiv6',
+      data: {
+        renew: service.renew,
+      },
+    }).catch((error) => {
+      return this.$q.reject({
+        data: {
+          message: error.message,
+        },
+      });
+    });
   }
 
-  updateService(service) {
-    return this.OvhApiBillingAutorenewServices.Aapi()
-      .put(
-        {},
-        {
-          updateList: [service],
-        },
-      )
-      .$promise.then((result) => {
-        if (result.state === 'OK') {
-          return result;
-        }
-        return this.$q.reject(result);
-      });
+  updateServices(updateList) {
+    const updatePromises = updateList.map((service) =>
+      this.updateService(service).catch((error) => ({
+        id: service.serviceId,
+        message: error?.data?.message || error.message || 'Unknown error',
+        type: 'ERROR',
+      })),
+    );
+
+    return this.$q.all(updatePromises).then((results) => {
+      const errors = results.filter((result) => result?.type === 'ERROR');
+
+      if (errors.length > 0) {
+        return this.$q.reject({
+          messages: errors,
+          state: 'PARTIAL',
+        });
+      }
+
+      return {
+        messages: [],
+        state: 'OK',
+      };
+    });
   }
 
   getAutorenew() {
