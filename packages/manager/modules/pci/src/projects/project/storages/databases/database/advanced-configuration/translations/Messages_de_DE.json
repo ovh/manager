@@ -1,8 +1,0 @@
-{
-  "pci_databases_advanced_configuration_tab_title": "Erweiterte Konfiguration",
-  "pci_databases_advanced_configuration_update_success_message": "Die erweiterte Konfiguration wurde aktualisiert.",
-  "pci_databases_advanced_configuration_update_error_message": "Bei der Aktualisierung der erweiterten Konfiguration ist ein Fehler aufgetreten: {{message}}",
-  "pci_databases_advanced_configuration_update": "Erweiterte Konfiguration aktualisieren",
-  "pci_databases_advanced_configuration_add": "Erweiterte Konfiguration hinzufügen",
-  "pci_databases_advanced_configuration_restart_info": "Änderungen an der erweiterten Konfiguration können zu einem Neustart des Dienstes führen."
-}

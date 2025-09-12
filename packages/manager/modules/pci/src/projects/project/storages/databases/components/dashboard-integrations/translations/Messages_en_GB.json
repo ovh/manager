@@ -1,6 +1,0 @@
-{
-  "pci_databases_dashboard_integrations_title": "Service integrations",
-  "pci_databases_dashboard_integrations_integration_type": "{{type}}:",
-  "pci_databases_dashboard_integrations_none": "None",
-  "pci_databases_dashboard_integrations_link": "Manage integrations"
-}

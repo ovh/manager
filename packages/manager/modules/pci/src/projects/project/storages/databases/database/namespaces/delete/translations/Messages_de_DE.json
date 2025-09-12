@@ -1,8 +1,0 @@
-{
-  "pci_databases_namespaces_delete_namespace_confirm": "Bestätigen",
-  "pci_databases_namespaces_delete_namespace_cancel": "Abbrechen",
-  "pci_databases_namespaces_delete_namespace": "Namespace entfernen",
-  "pci_databases_namespaces_delete_namespace_description": "Sind Sie sicher, dass Sie diesen Namespace entfernen möchten?",
-  "pci_databases_namespaces_delete_namespace_success_message": "Der Namespace wurde entfernt.",
-  "pci_databases_namespaces_delete_namespace_error_message": "Beim Entfernen Ihres Namespace ist ein Fehler aufgetreten: {{message}}"
-}
