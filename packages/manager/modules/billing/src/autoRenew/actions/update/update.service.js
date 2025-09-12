@@ -1,20 +1,26 @@
-import { SERVICE_RENEW_MODES } from './update.constants';
-import { SERVICE_TYPES_USING_V6_SERVICES } from '../../autorenew.constants';
+import {
+  SERVICE_RENEW_MODES,
+  SERVICE_TYPES_USING_V6_SERVICES,
+} from '../../autorenew.constants';
 
 export default class AutoUpdateRenewServiceModalService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, coreConfig) {
     this.$http = $http;
+    this.coreConfig = coreConfig;
   }
 
   getAvailableRenewPeriods(service) {
+    const isUSRegion = this.coreConfig.getRegion() === 'US';
+    const manualRenewMode = isUSRegion ? [] : [SERVICE_RENEW_MODES.MANUAL];
+
     const fetchPeriods = SERVICE_TYPES_USING_V6_SERVICES.includes(
       service.serviceType,
     )
       ? this.$http
           .get(`/services/${service.id}/renewPeriodCapacities`)
           .then(({ data }) => [
-            SERVICE_RENEW_MODES.MANUAL,
+            ...manualRenewMode,
             ...data.map(
               (period) => Number(period.match(/\d+/)?.[0]) || 'to_be_defined',
             ),
@@ -22,7 +28,7 @@ export default class AutoUpdateRenewServiceModalService {
       : this.$http
           .get(`${service.route.url}/serviceInfos`)
           .then(({ data }) => [
-            SERVICE_RENEW_MODES.MANUAL,
+            ...manualRenewMode,
             ...data.possibleRenewPeriod,
           ]);
 

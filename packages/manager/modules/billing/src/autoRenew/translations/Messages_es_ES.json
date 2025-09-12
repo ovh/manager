@@ -1,6 +1,6 @@
 {
   "billing_title": "Mis soluciones y servicios",
-  "billing_description": "Bienvenido/a a la sección para la gestión de servicios. Gestione la renovación, el pago y la baja de sus servicios desde esta página.",
+  "billing_description": "Bienvenido/a a la sección para la gestión de servicios.",
   "billing_home_title": "Todos los servicios",
   "billing_agreements_title": "Contratos",
   "billing_ssh_title": "Llaves SSH",
@@ -51,7 +51,7 @@
   "autorenew_service_renew_years_frequency_value": "Automática: cada {{t0}} años",
   "autorenew_service_renew_paid": "Pagado",
   "autorenew_empty": "No hay servicios",
-  "autorenew_service_action_title": "Acciones",
+  "autorenew_service_action_title": "Acción",
   "autorenew_service_autorenew_day": "Día de renovación automática:",
   "autorenew_service_autorenew_day_tooltip": "Si tiene servicios con renovación automática, puede elegir el día de su renovación.",
   "autorenew_service_select_intro": "Seleccionar todas:",
@@ -166,5 +166,12 @@
   "billing_autorenew_engagement_none": "Sin compromiso",
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
   "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra SQL Personal",
-  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN"
+  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
+  "billing_description_details": "Gestione la renovación, el pago y la baja de sus servicios desde esta página.",
+  "billing_autorenew_service_date_us": "Fecha de expiración",
+  "autorenew_service_actions_title": "Acciones",
+  "billing_autorenew_service_every_month": "Todos los meses",
+  "billing_autorenew_service_every_x_months": "Cada {{ months }} meses",
+  "billing_autorenew_service_every_year": "Todos los años",
+  "billing_autorenew_service_every_x_years": "Cada {{ years }} años"
 }

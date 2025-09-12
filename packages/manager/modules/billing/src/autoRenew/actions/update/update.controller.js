@@ -1,5 +1,5 @@
 import { BillingService } from '@ovh-ux/manager-models';
-import { SERVICE_RENEW_MODES } from './update.constants';
+import { SERVICE_RENEW_MODES } from '../../autorenew.constants';
 
 export default class AutoRenewServiceModalController {
   /* @ngInject */
@@ -51,13 +51,11 @@ export default class AutoRenewServiceModalController {
 
         this.periods = mappedPeriods;
         this.model = {
-          period: this.billingService.renew.automatic
-            ? mappedPeriods.find(
-                (p) => this.billingService.renew.period === p.period,
-              )
-            : mappedPeriods.find(
-                (p) => SERVICE_RENEW_MODES.MANUAL === p.period,
-              ),
+          period: mappedPeriods.find((p) =>
+            this.billingService.renew.automatic
+              ? this.billingService.renew.period === p.period
+              : SERVICE_RENEW_MODES.MANUAL === p.period,
+          ),
         };
       })
       .finally(() => {

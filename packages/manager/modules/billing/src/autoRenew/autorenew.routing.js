@@ -98,6 +98,20 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
+        homeLink: /* @ngInject */ ($state, isAutorenewManagementAvailable) => {
+          if (isAutorenewManagementAvailable) {
+            return $state.href(
+              'billing.autorenew.services',
+              {},
+              { inherit: false },
+            );
+          }
+          return null;
+        },
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('billing_title'),
+        defaultPaymentMean: /* @ngInject */ (ovhPaymentMethod) =>
+          ovhPaymentMethod.getDefaultPaymentMethod(),
         agreementsLink: /* @ngInject */ ($state, isAgreementsAvailable) => {
           if (isAgreementsAvailable) {
             return $state.href(
@@ -111,24 +125,15 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
       },
       !coreConfigProvider.isRegion('US')
         ? {
-            homeLink: /* @ngInject */ ($state) =>
-              $state.href('billing.autorenew.services', {}, { inherit: false }),
-
-            breadcrumb: /* @ngInject */ ($translate) =>
-              $translate.instant('billing_title'),
-
-            endStrategyEnum: /* @ngInject */ ($http) =>
-              $http
-                .get('/services.json')
-                .then(
-                  ({ data }) =>
-                    data.models['services.billing.engagement.EndStrategyEnum']
-                      ?.enum,
-                ),
-            /* @ngInject */
-            defaultPaymentMean: (ovhPaymentMethod) =>
-              ovhPaymentMethod.getDefaultPaymentMethod(),
-          }
+          endStrategyEnum: /* @ngInject */ ($http) =>
+            $http
+              .get('/services.json')
+              .then(
+                ({ data }) =>
+                  data.models['services.billing.engagement.EndStrategyEnum']
+                    ?.enum,
+              ),
+        }
         : {},
     ),
     atInternet: {
