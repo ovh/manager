@@ -19,7 +19,7 @@ export const useVolumeSnapshots = (projectId: string, volumeId: string) => {
   );
 
   return useQuery({
-    queryKey: getVolumeSnapshotsQueryKey(projectId, volume?.region),
+    queryKey: getVolumeSnapshotsQueryKey(projectId, volumeId),
     queryFn: () => getSnapshotsByRegion(projectId, volume?.region),
     enabled: !!volume,
     select,
