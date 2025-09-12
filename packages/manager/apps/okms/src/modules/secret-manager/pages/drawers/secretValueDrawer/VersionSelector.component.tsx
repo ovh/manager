@@ -36,7 +36,7 @@ export const VersionSelector = ({
   const secretPathDecoded = decodeSecretPath(secretPath);
 
   const { t } = useTranslation([
-    'secret-manager/common',
+    'secret-manager',
     NAMESPACES.STATUS,
     NAMESPACES.ERROR,
   ]);
