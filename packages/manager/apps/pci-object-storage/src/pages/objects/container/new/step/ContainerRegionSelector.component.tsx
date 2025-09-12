@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,15 +6,13 @@ import {
   TRegion,
   TRegionAvailability,
   TileInputChoice,
-  useGetProjectRegions,
-  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 import { useMedia } from 'react-use';
 
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
-import { OBJECT_CONTAINER_OFFER_STORAGE_STANDARD } from '@/constants';
 import { RegionLabel } from './RegionLabel.component';
 import { useColumnsCount } from '@/hooks/useColumnsCount';
+import { useAllowedRegions } from '@/hooks/useAllowedRegions';
 
 interface RegionSelectorProps {
   offer: string;
@@ -37,15 +34,8 @@ export function ContainerRegionSelector({
   canActivateRegion,
 }: Readonly<RegionSelectorProps>) {
   const { t } = useTranslation(['containers/add', 'pci-common']);
-
-  const { projectId } = useParams();
   const columnsCount = useColumnsCount();
   const isMobileView = useMedia(`(max-width: 768px)`);
-
-  const {
-    data: availability,
-    isPending: isAvailabilityPending,
-  } = useProductAvailability(projectId);
 
   const {
     translateContinentRegion,
@@ -53,57 +43,29 @@ export function ContainerRegionSelector({
     translateMicroRegion,
   } = useTranslatedMicroRegions();
 
-  const {
-    data: projectRegions,
-    isPending: isProjectRegionsPending,
-  } = useGetProjectRegions(projectId);
-
-  const isPending = isAvailabilityPending || isProjectRegionsPending;
+  const { allowedRegions: regions, isPending } = useAllowedRegions({
+    offer,
+    deploymentMode,
+    onlyEnabled: !isSwiftOffer,
+    removeMacroIfMicroAvailable: true,
+  });
 
   const allowedRegions = useMemo(() => {
-    if (isPending) return [];
-
-    const allRegions = availability?.plans
-      ?.filter(({ code }) => code.startsWith('storage'))
-      .reduce((acc, { regions }) => [...acc, ...regions], []);
-
-    const uniqueRegions = [
-      ...new Set(allRegions?.map(({ name }) => name)),
-    ].map((regionName) => allRegions?.find(({ name }) => name === regionName));
-
-    const filteredRegions = uniqueRegions
-      .filter(({ enabled }) => !isSwiftOffer || enabled === true)
-      .filter(({ type }) => type === (deploymentMode || 'region'))
-      .filter(({ name }) => {
-        if (offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) return true;
-        return (
-          !projectRegions?.find((pr) => pr.name === name) ||
-          projectRegions
-            ?.find((pr) => pr.name === name)
-            ?.services.some(({ name: serviceName }) => serviceName === offer)
-        );
-      });
-
-    return (
-      filteredRegions
-        // remove macro regions if a micro region is available
-        .filter(({ name, datacenter }) => {
-          if (
-            name === datacenter &&
-            filteredRegions.filter(({ datacenter: dc }) => dc === datacenter)
-              .length > 1
-          )
-            return false;
-          return true;
-        })
-        .map((reg) => ({
-          ...reg,
-          microName: translateMicroRegion(reg.name),
-          macroName: translateMacroRegion(reg.name),
-          continentName: translateContinentRegion(reg.name),
-        }))
-    );
-  }, [availability, projectRegions, deploymentMode, isPending, t]);
+    return regions.map((reg) => ({
+      ...reg,
+      microName: translateMicroRegion(reg.name),
+      macroName: translateMacroRegion(reg.name),
+      continentName: translateContinentRegion(reg.name),
+      status: 'UP',
+      services: [],
+      datacenterLocation: reg.datacenter || reg.name,
+    }));
+  }, [
+    regions,
+    translateMicroRegion,
+    translateMacroRegion,
+    translateContinentRegion,
+  ]);
 
   const selectedRegion = useMemo(() => {
     const selected = allowedRegions.find(({ name }) => name === region?.name);

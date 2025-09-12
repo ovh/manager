@@ -313,7 +313,7 @@ export type TReplicationRule = {
   filter?: { prefix: string; tags: { [key: string]: string } };
 
   destination?: {
-    name: string;
+    name?: string;
     region: string;
     storageClass?: ReplicationStorageClass;
   };
@@ -387,6 +387,7 @@ export interface UseCreateContainerArgs {
   versioning?: boolean;
   containerType?: string;
   offsiteReplication?: boolean;
+  offsiteReplicationRegion?: string;
   replication?: Replication;
 }
 
@@ -423,6 +424,11 @@ export const useCreateContainer = ({
               rules: [
                 {
                   id: '',
+                  ...(args.offsiteReplicationRegion && {
+                    destination: {
+                      region: args.offsiteReplicationRegion,
+                    },
+                  }),
                   status: 'enabled',
                   priority: 1,
                   deleteMarkerReplication: 'enabled',

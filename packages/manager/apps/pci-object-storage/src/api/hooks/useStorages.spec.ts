@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { TRegion, useGetProjectRegions } from '@ovh-ux/manager-pci-common';
 import { UseQueryResult } from '@tanstack/react-query';
-import { applyFilters } from '@ovh-ux/manager-core-api';
 import {
   useAllStorages,
   useMappedStorages,
@@ -33,7 +32,6 @@ import {
   OBJECT_CONTAINER_MODE_MULTI_ZONES,
   OBJECT_CONTAINER_OFFER_SWIFT,
 } from '@/constants';
-import { paginateResults, sortResults } from '@/helpers';
 
 vi.mock('../data/storages');
 vi.mock('../data/objects');
