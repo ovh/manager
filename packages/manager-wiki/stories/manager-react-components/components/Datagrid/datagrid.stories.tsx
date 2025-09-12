@@ -1,159 +1,92 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Datagrid, DatagridProps } from '@ovh-ux/manager-react-components';
+import { SortingState } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { useSearchParams } from 'react-router-dom';
-import { applyFilters } from '@ovh-ux/manager-core-api';
-import { Row } from '@tanstack/react-table';
-import {
-  Datagrid,
-  useDatagridSearchParams,
-  useColumnFilters,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
-import { columns as clm, columnsFilters, Item } from './datagrid.mock';
 
-function sortItems(
-  itemList: Item[],
-  sorting: { id: string; desc: boolean },
-): Item[] {
-  if (!sorting) return itemList;
-  const order = sorting.desc ? -1 : 1;
-  if (sorting.id === 'label')
-    return itemList.sort((a, b) => order * a.label.localeCompare(b.label));
-  if (sorting.id === 'price')
-    return itemList.sort((a, b) => order * (a.price - b.price));
-  return itemList;
-}
+const columns = [
+  {
+    id: 'person',
+    label: 'Person',
+    accessorKey: 'person',
+    header: 'Person',
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'mostInterestIn',
+    label: 'Most interest in',
+    accessorKey: 'mostInterestIn',
+    header: 'Most interest in',
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'age',
+    label: 'Age',
+    accessorKey: 'age',
+    header: 'Age',
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+];
 
-const DatagridStory = ({
-  items,
-  isPaginated,
-  isSortable,
-  isLoading = false,
-  columns = clm,
-  getRowCanExpand,
-  renderSubComponent,
-}: {
-  items: Item[];
-  isLoading: boolean;
-  isPaginated: boolean;
-  isSortable: boolean;
-  columns?: any;
-  renderSubComponent?: (props: Row<any>) => JSX.Element;
-  getRowCanExpand?: (row: Row<any>) => boolean;
-}) => {
-  const [searchParams] = useSearchParams();
-  const {
-    pagination,
-    setPagination,
-    sorting,
-    setSorting,
-  } = useDatagridSearchParams({
-    id: 'validityTo',
-    desc: false,
-  });
-  const start = isPaginated ? pagination.pageIndex * pagination.pageSize : 0;
-  const end = isPaginated ? start + pagination.pageSize : items.length;
-  const paginationAttrs = isPaginated && {
-    pagination,
-    onPaginationChange: setPagination,
-  };
-  const sortingAttrs = isSortable && {
+const data = [
+  {
+    person: 'John Doe',
+    mostInterestIn: '	HTML tables',
+    age: 25,
+  },
+  {
+    person: 'Jane Doe',
+    mostInterestIn: 'Web accessibility',
+    age: 26,
+  },
+  {
+    person: 'Sarah',
+    mostInterestIn: 'JavaScript frameworks',
+    age: 25,
+  },
+  {
+    person: 'Karen',
+    mostInterestIn: '	Web performance',
+    age: 26,
+  },
+];
+
+const DatagridStory = (args: DatagridProps<any>) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+
+  const sortAttrs = {
     sorting,
     onSortChange: setSorting,
+    manualSorting: args.manualSorting,
   };
-  const { filters, addFilter, removeFilter } = useColumnFilters();
-
   return (
-    <>
-      {`${searchParams}` && (
-        <>
-          <pre>Search params: ?{`${searchParams}`}</pre>
-          <hr />
-        </>
-      )}
-      <Datagrid
-        columns={columns}
-        items={applyFilters(
-          sortItems(items, sorting).slice(start, end),
-          filters,
-        )}
-        totalItems={items.length}
-        isLoading={isLoading}
-        {...paginationAttrs}
-        {...sortingAttrs}
-        filters={{ filters, add: addFilter, remove: removeFilter }}
-        getRowCanExpand={getRowCanExpand}
-        renderSubComponent={renderSubComponent}
-      />
-    </>
+    <Datagrid
+      {...args}
+      data={data}
+      {...('manualSorting' in args && { ...sortAttrs })}
+    />
   );
 };
 
-export const Basic = DatagridStory.bind({});
+export const Default = DatagridStory.bind({});
 
-Basic.args = {
-  columns: clm,
-  items: [...Array(50).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isPaginated: true,
-  isSortable: true,
+Default.args = {
+  columns,
+  data,
 };
 
-export const Loading = DatagridStory.bind({});
+export const DatagridWithSorting = DatagridStory.bind({});
 
-Loading.args = {
-  columns: clm,
-  items: [],
-  isLoading: true,
+DatagridWithSorting.args = {
+  columns,
+  data,
+  manualSorting: false,
 };
 
-export const Sortable = DatagridStory.bind({});
-
-Sortable.args = {
-  columns: clm,
-  items: [...Array(8).keys()].map((_, i) => ({
-    label: `Service #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isSortable: true,
-};
-
-export const Filters = DatagridStory.bind({});
-
-Filters.args = {
-  items: [...Array(50).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  isPaginated: true,
-  isSortable: true,
-  columns: columnsFilters,
-};
-
-export const WithSubComponent = DatagridStory.bind({});
-
-WithSubComponent.args = {
-  columns: clm,
-  items: [...Array(10).keys()].map((_, i) => ({
-    label: `Item #${i}`,
-    price: Math.floor(1 + Math.random() * 100),
-  })),
-  getRowCanExpand: () => true,
-  renderSubComponent: (row) => (
-    <DataGridTextCell>{JSON.stringify(row.original)}</DataGridTextCell>
-  ),
-};
-
-export default {
-  title: 'Manager React Components/Components/Datagrid Paginated',
+const meta = {
+  title: 'Manager React Components/Components/Datagrid New',
   component: Datagrid,
   decorators: [withRouter],
   parameters: {
-    status: {
-      type: 'deprecated',
-    },
     docs: {
       description: {
         component:
@@ -162,3 +95,5 @@ export default {
     },
   },
 };
+
+export default meta;
