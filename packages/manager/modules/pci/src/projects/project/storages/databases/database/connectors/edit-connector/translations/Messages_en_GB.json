@@ -1,5 +1,0 @@
-{
-  "pci_databases_connectors_edit_button": "Modify the connector",
-  "pci_databases_connectors_edit_success_message": "The connector configuration has been modified.",
-  "pci_databases_connectors_edit_error_message": "An error has occurred modifying your connector: {{details}}"
-}
