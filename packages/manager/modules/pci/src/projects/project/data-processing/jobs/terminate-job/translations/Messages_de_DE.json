@@ -1,7 +1,0 @@
-{
-  "data_processing_terminate_job_title": "Auftrag anhalten",
-  "data_processing_terminate_job_description_1": "Sie sind dabei, den Auftrag anzuhalten.",
-  "data_processing_terminate_job_description_2": "Daten, die gerade verarbeitet werden, können verlorengehen.",
-  "data_processing_terminate_job_delete_button": "Auftrag anhalten",
-  "data_processing_terminate_job_cancel_button": "Abbrechen"
-}

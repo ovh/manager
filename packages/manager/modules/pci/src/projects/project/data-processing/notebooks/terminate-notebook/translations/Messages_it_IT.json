@@ -1,9 +1,0 @@
-{
-  "data_processing_terminate_notebook_title": "Interruzione del notebook",
-  "data_processing_terminate_notebook_description_1": "Quando arresti uno Spark Notebook: ",
-  "data_processing_terminate_notebook_description_list_1": "le risorse di calcolo vengono liberate",
-  "data_processing_terminate_notebook_description_list_2": "i job avviati tramite il notebook non vengono interrotti",
-  "data_processing_terminate_notebook_description_2": "Una volta eseguito l’arresto, è possibile <b>eliminare</b> lo Spark Notebook o <b>riavviarlo</b>. ",
-  "data_processing_terminate_notebook_delete_button": "Arrestare il notebook",
-  "data_processing_terminate_notebook_cancel_button": "Annullare"
-}

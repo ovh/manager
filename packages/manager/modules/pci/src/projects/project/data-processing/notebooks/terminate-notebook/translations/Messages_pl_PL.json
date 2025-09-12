@@ -1,9 +1,0 @@
-{
-  "data_processing_terminate_notebook_title": "Zatrzymanie notebooka",
-  "data_processing_terminate_notebook_description_1": "Po zatrzymaniu Spark Notebook: ",
-  "data_processing_terminate_notebook_description_list_1": "Zasoby obliczeniowe zostają zwolnione.",
-  "data_processing_terminate_notebook_description_list_2": "Zadania uruchamiane przy użyciu notebooka nie zostają zatrzymane.",
-  "data_processing_terminate_notebook_description_2": "Po zatrzymaniu Spark Notebook możesz go albo<b>usunąć</b>, albo <b>ponownie uruchomić</b>. ",
-  "data_processing_terminate_notebook_delete_button": "Zatrzymaj notebook",
-  "data_processing_terminate_notebook_cancel_button": "Anuluj"
-}

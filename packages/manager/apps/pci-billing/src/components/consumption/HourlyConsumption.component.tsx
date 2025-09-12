@@ -155,14 +155,6 @@ export default function HourlyConsumption({
       condition: !isTrustedZone,
     },
     {
-      key: 'dataProcessing',
-      title: t('cpbc_hourly_data_processing_title'),
-      component: (
-        <ResourceUsageList resourcesUsage={consumption.dataProcessing} />
-      ),
-      condition: !isTrustedZone,
-    },
-    {
       key: ResourceType.DATAPLATFORM,
       title: t('cpbc_hourly_data_platform_title'),
       component: (

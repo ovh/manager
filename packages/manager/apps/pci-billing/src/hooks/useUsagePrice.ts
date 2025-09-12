@@ -89,8 +89,6 @@ export const useUsagePrice = (
           return getResourcePrice('ai-training');
         case 'aiDeploy':
           return getResourcePrice('ai-app');
-        case 'dataProcessing':
-          return getResourcePrice('data-processing-job');
         case 'databases':
           return getResourcePrice('databases');
         case 'floatingIP':

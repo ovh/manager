@@ -352,7 +352,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_analytics',
     features: [
-      'data-processing',
       'logs-data-platform',
       'databases-analysis',
       'databases-operational',
@@ -419,19 +418,6 @@ pciNode.children = [
             '#/pci/projects/{projectId}/databases-analytics/streaming/services',
         },
         features: ['pci-databases-analytics-streaming'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-data-processing',
-        idAttr: 'pci-data-processing-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_data_processing',
-        serviceType: 'CLOUD_PROJECT_DATAPROCESSING_JOBS',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/data-processing',
-        },
-        features: ['data-processing'],
         forceVisibility: true,
       },
       // Entry menu for PCI Data Analysis for Angular
