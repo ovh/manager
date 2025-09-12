@@ -32,11 +32,3 @@ export const useCheckoutWithFidelityAccount = ({
     onSuccess,
     onError,
   });
-
-export const useCheckoutCart = () =>
-  useMutation({
-    mutationFn: async ({ cartId }: { cartId: string }) => {
-      const cart = await checkoutCart(cartId);
-      return cart;
-    },
-  });
