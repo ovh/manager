@@ -10,6 +10,21 @@ export type IcebergCommonOptions = {
   };
 };
 
+export type IcebergFetchParams = {
+  version: 'v6' | 'v2';
+  page?: number;
+  filters?: Filter[];
+  sortBy?: string;
+  sortOrder?: 'ASC' | 'DESC';
+} & IcebergCommonOptions;
+
+export type IcebergFetchResult<TData> = {
+  data: TData;
+  totalCount: number;
+  status: number;
+};
+
+// @deprecated Use IcebergFetchParams
 export type IcebergFetchParamsV6 = {
   page?: number;
   filters?: Filter[];
@@ -17,6 +32,7 @@ export type IcebergFetchParamsV6 = {
   sortReverse?: boolean;
 } & IcebergCommonOptions;
 
+// @deprecated Use IcebergFetchParams
 export type IcebergFetchParamsV2 = {
   cursor?: string;
   filters?: Filter[];
@@ -24,12 +40,14 @@ export type IcebergFetchParamsV2 = {
   sortOrder?: 'ASC' | 'DESC';
 } & IcebergCommonOptions;
 
+// @deprecated Use IcebergFetchResult
 export type IcebergFetchResultV6<T> = {
   data: T[];
   totalCount: number;
   status: number;
 };
 
+// @deprecated Use IcebergFetchResult
 export type IcebergFetchResultV2<T> = {
   data: T[];
   cursorNext?: string;
