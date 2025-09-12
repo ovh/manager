@@ -1,55 +1,57 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { FC } from 'react';
-import { useHref, useNavigate } from 'react-router-dom';
+import { FC, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Link } from '@ovhcloud/ods-react';
 import { useForm } from 'react-hook-form';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { TAttachedInstance } from '@/api/select/instances';
-import { useDetachVolume } from '@/api/hooks/useVolume';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { TVolumeSnapshot } from '@/api/data/snapshot';
+import { useDeleteVolumeSnapshots } from '@/api/hooks/useSnapshot';
 import { RetypeConfirmActionForm } from '@/pages/retype/RetypeConfirmActionForm.component';
 
-type RetypeDetachInstanceProps = {
-  instance: TAttachedInstance;
+type RetypeDeleteSnapshotsProps = {
+  snapshots: TVolumeSnapshot[];
   projectId: string;
   volumeId: string;
 };
 
-export const RetypeDetachInstance: FC<RetypeDetachInstanceProps> = ({
-  instance,
+export const RetypeDeleteSnapshots: FC<RetypeDeleteSnapshotsProps> = ({
+  snapshots,
   projectId,
   volumeId,
 }) => {
   const { t } = useTranslation(['retype', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
-  const blockListingHref = useHref('..');
+  const projectUrl = useProjectUrl('public-cloud');
+  const hrefCreateBackup = `${projectUrl}/storages/volume-snapshots`;
+
+  const snapshotsIds = useMemo(() => snapshots.map((snap) => snap.id), [
+    snapshots,
+  ]);
 
   const {
-    detachVolume,
-    isPending: isDetachPending,
-    isError: isDetachingError,
-  } = useDetachVolume();
+    deleteVolumeSnapshots,
+    isPending: isDeleteSnapshotsPending,
+    isError: isDeleteSnapshotsError,
+  } = useDeleteVolumeSnapshots({
+    projectId,
+    volumeId,
+    snapshotsIds,
+  });
 
   const handleOnClose = () => {
     navigate('..');
   };
 
-  const handleOnSubmit = () =>
-    detachVolume({
-      projectId,
-      volumeId,
-      instanceId: instance.id,
-    });
+  const handleOnSubmit = () => deleteVolumeSnapshots();
 
   return (
     <RetypeConfirmActionForm
       warningMessage={t(
-        'retype:pci_projects_project_storages_blocks_retype_detach_volume',
-        {
-          instance: instance.name,
-        },
+        'retype:pci_projects_project_storages_blocks_retype_delete_snapshots',
       )}
-      confirmWord="DETACH"
+      confirmWord="DELETE"
       errorElement={
         <Trans
           i18nKey="pci_projects_project_storages_blocks_retype_detach_volume_error"
@@ -58,7 +60,7 @@ export const RetypeDetachInstance: FC<RetypeDetachInstanceProps> = ({
             <Link
               key="0"
               color={ODS_THEME_COLOR_INTENT.primary}
-              href={blockListingHref}
+              href={hrefCreateBackup}
               className="inline"
             />,
           ]}
@@ -66,8 +68,8 @@ export const RetypeDetachInstance: FC<RetypeDetachInstanceProps> = ({
       }
       onSubmit={handleOnSubmit}
       onClose={handleOnClose}
-      isPending={isDetachPending}
-      isError={isDetachingError}
+      isPending={isDeleteSnapshotsPending}
+      isError={isDeleteSnapshotsError}
     />
   );
 };
