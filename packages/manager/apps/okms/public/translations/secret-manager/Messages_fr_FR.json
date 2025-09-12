@@ -28,7 +28,7 @@
   "delete_version_modal_title": "Supprimer la version {{versionId}}",
   "okms_activation_in_progress": "Veuillez patienter, création en cours.",
   "okms_list": "Liste de domaines OKMS",
-  "editor": "Éditeur",
+  "editor": "Éditeur JSON",
   "error_invalid_json": "JSON non valide",
   "error_path_allowed_characters": "Le path ne peut contenir que les caractères suivants: A-Z a-z 0-9 . _ : / = @ et -",
   "error_path_structure": "Le path ne peut commencer ou finir par '/', ni contenir deux '/' à la suite.",
