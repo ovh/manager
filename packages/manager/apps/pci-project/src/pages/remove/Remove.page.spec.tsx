@@ -26,12 +26,16 @@ const createMockQueryResult = <T,>(
   return baseResult;
 };
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useNotifications: vi.fn(),
-  useFeatureAvailability: () => ({
-    data: { 'savings-plan': true },
-  }),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const mod = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...mod,
+    useNotifications: vi.fn(),
+    useFeatureAvailability: () => ({
+      data: { 'savings-plan': true },
+    }),
+  };
+});
 
 vi.mock('@/data/hooks/useSavingsPlans', () => ({
   useHasActiveOrPendingSavingsPlan: vi.fn(),
@@ -86,13 +90,15 @@ describe('RemovePage', () => {
 
   it('should render the deletion modal', () => {
     render(<RemovePage />, { wrapper: createWrapper() });
-    expect(screen.getByTestId('pciModal-modal')).toBeInTheDocument();
+    expect(
+      screen.getByText('pci_projects_project_edit_remove_title'),
+    ).toBeInTheDocument();
   });
 
   it('should handle project removal', async () => {
     render(<RemovePage />, { wrapper: createWrapper() });
 
-    const confirmButton = screen.getByTestId('pciModal-button_submit');
+    const confirmButton = screen.getByTestId('primary-button');
     await confirmButton.click();
 
     await waitFor(() => {
@@ -112,7 +118,7 @@ describe('RemovePage', () => {
     );
     expect(modalContent).toBeVisible();
 
-    const confirmButton = screen.getByTestId('pciModal-button_submit');
+    const confirmButton = screen.getByTestId('primary-button');
     await confirmButton.click();
 
     await waitFor(() => {
@@ -142,16 +148,14 @@ describe('RemovePage', () => {
 
     render(<RemovePage />, { wrapper: createWrapper() });
 
-    const modalSpinner = screen.getByTestId('pciModal-spinner');
-    const confirmButton = screen.getByTestId('pciModal-button_submit');
-    expect(confirmButton).toHaveAttribute('is-disabled', 'true');
-    expect(modalSpinner).toBeVisible();
+    const spinner = screen.getByTestId('spinner');
+    expect(spinner).toBeVisible();
   });
 
   it('should handle cancel action', async () => {
     render(<RemovePage />, { wrapper: createWrapper() });
 
-    const cancelButton = screen.getByTestId('pciModal-button_cancel');
+    const cancelButton = screen.getByTestId('secondary-button');
     await cancelButton.click();
 
     expect(mockNavigate).toHaveBeenCalledWith('..');
