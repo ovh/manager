@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.1.4...@ovh-ux/manager-identity-access-management-app@0.1.5) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.1.3...@ovh-ux/manager-identity-access-management-app@0.1.4) (2025-09-11)
 
 

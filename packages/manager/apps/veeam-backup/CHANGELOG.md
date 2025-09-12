@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.20.7...@ovh-ux/manager-veeam-backup-app@0.20.8) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
+
+
+
+
+
 ## [0.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.20.6...@ovh-ux/manager-veeam-backup-app@0.20.7) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
