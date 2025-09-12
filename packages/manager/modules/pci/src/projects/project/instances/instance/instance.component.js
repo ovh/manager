@@ -49,5 +49,6 @@ export default {
     trackClick: '<',
     vncDisabled: '<',
     snapshotAvailability: '<',
+    getUAppUrl: '<',
   },
 };

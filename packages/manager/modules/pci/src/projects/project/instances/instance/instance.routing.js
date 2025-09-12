@@ -61,11 +61,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ (instance) => instance.name,
 
-      instanceLink: /* @ngInject */ ($state, instance, projectId) =>
-        $state.href('pci.projects.project.instances.instance', {
-          projectId,
-          instanceId: instance.id,
-        }),
+      instanceLink: /* @ngInject */ (getUAppUrl, instance, projectId) =>
+        getUAppUrl(
+          'public-cloud',
+          `#/pci/projects/${projectId}/instances/region/${instance.region}/instance/${instance.id}`,
+        ).then((url) => url),
       consoleLink: /* @ngInject */ ($state, instance, projectId) =>
         $state.href('pci.projects.project.instances.instance.vnc', {
           projectId,
@@ -204,36 +204,23 @@ export default /* @ngInject */ ($stateProvider) => {
             instanceId: instance.id,
           },
         ),
-      goToInstance: /* @ngInject */ (
-        $rootScope,
-        CucCloudMessage,
-        $state,
-        instanceId,
-        projectId,
-      ) => (message = false, type = 'success') => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(
-          'pci.projects.project.instances.instance',
-          {
-            projectId,
-            instanceId,
-          },
-          {
-            reload,
-          },
-        );
+      goToInstance: /* @ngInject */ (projectId, instance, getUAppUrl) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const searchParams = new URLSearchParams();
 
         if (message) {
-          promise.then(() =>
-            CucCloudMessage[type](
-              message,
-              'pci.projects.project.instances.instance',
-            ),
-          );
+          searchParams.set(`${type}Messages`, message);
         }
 
-        return promise;
+        const queryString = searchParams.toString();
+        const hashPath = `#/pci/projects/${projectId}/instances/region/${instance.region}/instance/${instance.id}`;
+        const fullPath = queryString ? `${hashPath}?${queryString}` : hashPath;
+
+        getUAppUrl('public-cloud', fullPath).then((url) => {
+          window.location.href = url;
+        });
       },
     },
   });
