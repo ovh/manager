@@ -177,16 +177,27 @@ export const SUPPORT_URL =
 export const PCI_PROJECT_ORDER_CART = {
   productName: 'cloud',
   planCode: 'project.2018',
-  infraConfigValue: 'public-cloud',
+  infraConfigValue: 'production',
   creditPlanCode: 'credit',
 };
 
 export const PCI_PROJECT_DISCOVERY_ORDER_CART = {
   productName: 'cloud',
   planCode: 'project.discovery',
-  infraConfigValue: 'public-cloud',
+  infraConfigValue: 'production',
   creditPlanCode: 'credit',
 };
+
+export const ANTI_FRAUD = {
+  CASE_FRAUD_REFUSED: '(error 906)',
+  POLLING_INTERVAL: 2000,
+};
+
+export enum AntiFraudError {
+  NEED_CUSTOMER_INFO_CHECK = 'antifraud_customer_info_check_needed',
+  CASE_FRAUD_REFUSED = 'antifraud_refused',
+  UNKNOWN = 'antifraud_unknown',
+}
 
 export const STARTUP_PROGRAM_GUIDE_URL =
   'https://community.ovhcloud.com/community/en/what-products-are-available-to-use-with-startup-program-credits?id=community_question&sys_id=99d01d508d61d2902d4cc9575bde90ae&view_source=featuredList';
