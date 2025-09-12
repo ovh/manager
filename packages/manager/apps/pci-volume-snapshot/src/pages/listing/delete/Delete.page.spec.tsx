@@ -52,6 +52,7 @@ describe('DeletePage', () => {
       ),
     ).toBeInTheDocument();
     // Buttons should be disabled in loading state
+    expect(getByTestId('pciModal-spinner')).toBeInTheDocument();
     const submitButton = getByTestId('pciModal-button_submit');
     expect(submitButton).toBeDisabled();
   });
