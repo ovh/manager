@@ -380,42 +380,6 @@ export const ACCESSING_YOUR_AI_APPS_WITH_TOKENS = {
   IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-apps-tokens/',
 };
 
-export const PRESENTATION_OF_DATA_PROCESSING = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/overview/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/overview/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/overview/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/overview/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/overview/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/overview/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/overview/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/overview/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/overview/',
-};
-
-export const DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/capabilities/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/capabilities/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/capabilities/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/capabilities/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/capabilities/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/capabilities/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/capabilities/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/capabilities/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/capabilities/',
-};
-
-export const SUBMIT_A_JAVA_SCALA_JOB = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/submit-javascala/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/submit-javascala/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/submit-javascala/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/submit-javascala/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/submit-javascala/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/submit-javascala/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/submit-javascala/',
-};
-
 export const AI_NOTEBOOKS_STARTUP = {
   GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/cli/getting-started-cli/',
   IE: 'https://docs.ovh.com/ie/en/publiccloud/ai/cli/getting-started-cli/',
@@ -687,24 +651,6 @@ export const GUIDES_LIST = {
       url: CREATE_AND_USE_A_PRIVATE_IMAGE,
       key: 'create_and_use_a_private_image',
       tracking: '::guides::go_to_creating_and_using_a_private_image',
-    },
-  },
-  data_processing: {
-    ...DEFAULT_GUIDES,
-    presentation_of_data_processing: {
-      url: PRESENTATION_OF_DATA_PROCESSING,
-      key: 'presentation_of_data_processing',
-      tracking: '::guides::go_to_overview',
-    },
-    data_processing_capabilities_and_limitations: {
-      url: DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS,
-      key: 'data_processing_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    submit_a_java_scala_job: {
-      url: SUBMIT_A_JAVA_SCALA_JOB,
-      key: 'submit_a_java_scala_job',
-      tracking: '::guides::go_to_submit_javascala',
     },
   },
   private_network: {

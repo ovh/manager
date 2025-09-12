@@ -1,6 +1,0 @@
-{
-  "data_processing_delete_notebook_title": "Usuwanie notebooka",
-  "data_processing_delete_notebook_description": "Czy na pewno chcesz usunąć notebooka {{ notebookName }}?",
-  "data_processing_delete_notebook_delete_button": "Usuń notebook",
-  "data_processing_delete_notebook_cancel_button": "Anuluj"
-}
