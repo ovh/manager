@@ -11,9 +11,10 @@ import {
   useAuthorizationIam,
   useGetResourceTags,
 } from './useOvhIam';
+import { useDataApi } from '../data-api';
 
 const mocks = vi.hoisted(() => ({
-  fetchIcebergV2: vi.fn(),
+  useDataApi: vi.fn(),
 }));
 
 const shellContext = {
@@ -36,17 +37,9 @@ const wrapper = ({ children }: { children: ReactNode }) => (
   </QueryClientProvider>
 );
 
-vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
-  const original =
-    await importOriginal<typeof import('@ovh-ux/manager-core-api')>();
+vi.mock('../data-api', () => {
   return {
-    ...original,
-    apiClient: {
-      v2: {
-        get: vi.fn(),
-      },
-    },
-    fetchIcebergV2: mocks.fetchIcebergV2,
+    useDataApi: mocks.useDataApi,
   };
 });
 
@@ -81,8 +74,8 @@ describe('useAuthorizationIam', () => {
 
 describe('useGetResourceTags', () => {
   it('should get and format iam tags for resourceType', async () => {
-    mocks.fetchIcebergV2.mockResolvedValue({
-      data: [
+    mocks.useDataApi.mockReturnValue({
+      flattenData: [
         {
           tags: {
             test: 'value1',
@@ -95,6 +88,7 @@ describe('useGetResourceTags', () => {
           },
         },
       ],
+      isLoading: false,
     });
     const { result } = renderHook(
       () => useGetResourceTags({ resourceType: 'dedicatedServer' }),
