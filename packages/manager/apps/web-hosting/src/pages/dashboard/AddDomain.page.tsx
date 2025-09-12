@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation, Trans } from 'react-i18next';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useEffect, useState } from 'react';
 
-import {
-  OdsButton,
-  OdsCard,
-  OdsModal,
-  OdsInput,
-  OdsRadio,
-  OdsText,
-  OdsCheckbox,
-  OdsFormField,
-  OdsSelect,
-  OdsTooltip,
-  OdsMessage,
-  OdsIcon,
-} from '@ovhcloud/ods-components/react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { Trans, useTranslation } from 'react-i18next';
+import { z } from 'zod';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -28,6 +15,22 @@ import {
   ODS_MODAL_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCard,
+  OdsCheckbox,
+  OdsFormField,
+  OdsIcon,
+  OdsInput,
+  OdsMessage,
+  OdsModal,
+  OdsRadio,
+  OdsSelect,
+  OdsText,
+  OdsTooltip,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import {
@@ -36,13 +39,10 @@ import {
   useGetDomainZone,
   useGetHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
-import { isValidDomain } from '@/utils/validator';
-import {
-  HostingCountries,
-  HostingDomainStatus,
-  TExistingDomain,
-} from '@/data/type';
+import { TExistingDomain } from '@/data/types/product/domain';
+import { HostingCountries, HostingDomainStatus } from '@/data/types/product/webHosting';
 import { subRoutes, urls } from '@/routes/routes.constants';
+import { isValidDomain } from '@/utils/validator';
 
 const formSchema = z.object({
   path: z.enum(['A', 'B']),
@@ -63,8 +63,7 @@ type FormData = z.infer<typeof formSchema>;
 export default function AddDomainModal() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const hostingService = useGetHostingService(serviceName);
   const domainZone = useGetDomainZone();
   const { addSuccess, addWarning } = useNotifications();
@@ -91,11 +90,7 @@ export default function AddDomainModal() {
 
   const formValues = watch();
 
-  const existingDomain = useGetAddDomainExisting(
-    serviceName,
-    formValues?.path,
-    step === 1,
-  );
+  const existingDomain = useGetAddDomainExisting(serviceName, formValues?.path, step === 1);
 
   useEffect(() => {
     if (existingDomain !== undefined) {
@@ -106,8 +101,7 @@ export default function AddDomainModal() {
   const existingCompleteDomain = formValues?.subDomain
     ? `${formValues?.subDomain}.${formValues?.domain}`
     : formValues?.domain;
-  const completeDomain =
-    formValues?.path === 'A' ? existingCompleteDomain : formValues?.subDomain;
+  const completeDomain = formValues?.path === 'A' ? existingCompleteDomain : formValues?.subDomain;
 
   const displayedDomain = `www.${completeDomain}`;
   const ovhControl = `ovhcontrol.${formValues.subDomain}`;
@@ -116,10 +110,7 @@ export default function AddDomainModal() {
   const { createAttachedDomainsService } = useCreateAttachedDomainsService(
     serviceName,
     () => {
-      addSuccess(
-        t('hosting_tab_DOMAINS_configuration_add_success_finish'),
-        true,
-      );
+      addSuccess(t('hosting_tab_DOMAINS_configuration_add_success_finish'), true);
     },
     () => {
       addWarning(t('hosting_tab_DOMAINS_configuration_add_failure'), true);
@@ -155,9 +146,7 @@ export default function AddDomainModal() {
       path: `./${data?.folder}`,
       cdn: HostingDomainStatus.NONE,
       ownLog: data?.logs ? data?.domainLogs : null,
-      firewall: data?.firewall
-        ? HostingDomainStatus.ACTIVE
-        : HostingDomainStatus.NONE,
+      firewall: data?.firewall ? HostingDomainStatus.ACTIVE : HostingDomainStatus.NONE,
       wwwNeeded: data?.wwwNeeded,
       bypassDNSConfiguration: data?.automaticConfiguration,
       ipLocation: data?.selectedIp as HostingCountries,
@@ -189,9 +178,7 @@ export default function AddDomainModal() {
                       onOdsChange={() => field.onChange('A')}
                     />
                     <label>
-                      <OdsText preset={ODS_TEXT_PRESET.span}>
-                        {t('hosting_add_step1_ovh')}
-                      </OdsText>
+                      <OdsText preset={ODS_TEXT_PRESET.span}>{t('hosting_add_step1_ovh')}</OdsText>
                     </label>
                   </div>
                   {field.value === 'A' && (
@@ -204,20 +191,14 @@ export default function AddDomainModal() {
                             <OdsInput
                               type={ODS_INPUT_TYPE.search}
                               name="search-domain"
-                              onOdsChange={(e) =>
-                                domField.onChange(e.target.value)
-                              }
-                              placeholder={t(
-                                'hosting_add_step1_search_placeholder',
-                              )}
+                              onOdsChange={(e) => domField.onChange(e.target.value)}
+                              placeholder={t('hosting_add_step1_search_placeholder')}
                             />
                             <select
                               className="mt-3 w-full"
                               value={domField.value}
                               size={6}
-                              onChange={(e) =>
-                                domField.onChange(e.target.value)
-                              }
+                              onChange={(e) => domField.onChange(e.target.value)}
                             >
                               {domainZone?.data?.map((item) => (
                                 <option key={item} value={item}>
@@ -267,9 +248,7 @@ export default function AddDomainModal() {
                       type="text"
                       value={field.value}
                       onOdsChange={(e) => field.onChange(e.target.value)}
-                      placeholder={t(
-                        'hosting_add_step2_mode_OVH_domain_name_placeholder',
-                      )}
+                      placeholder={t('hosting_add_step2_mode_OVH_domain_name_placeholder')}
                     />
                   )}
                 />
@@ -281,11 +260,7 @@ export default function AddDomainModal() {
               </div>
               {existingDomains?.existingDomains?.includes(completeDomain) ? (
                 <div className="flex flex-row mt-4">
-                  <OdsCheckbox
-                    isDisabled={true}
-                    isChecked={true}
-                    name="www-needed"
-                  />
+                  <OdsCheckbox isDisabled={true} isChecked={true} name="www-needed" />
                   <label className="ml-4 cursor-pointer">
                     <OdsText preset={ODS_TEXT_PRESET.span}>
                       {t('hosting_add_step2_common_domain_exists_with_name', {
@@ -310,10 +285,9 @@ export default function AddDomainModal() {
                     />
                     <label className="ml-4 cursor-pointer">
                       <OdsText preset={ODS_TEXT_PRESET.span}>
-                        {t(
-                          'hosting_add_step2_mode_OVH_domain_name_www_question',
-                          { t0: existingCompleteDomain },
-                        )}
+                        {t('hosting_add_step2_mode_OVH_domain_name_www_question', {
+                          t0: existingCompleteDomain,
+                        })}
                       </OdsText>
                     </label>
                   </OdsFormField>
@@ -325,11 +299,7 @@ export default function AddDomainModal() {
                 {t('hosting_multisite_domain_configuration_home')}
               </OdsText>
               <div className="flex items-center space-x-2">
-                <OdsButton
-                  size="sm"
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  label="./"
-                />
+                <OdsButton size="sm" variant={ODS_BUTTON_VARIANT.outline} label="./" />
                 <Controller
                   name="folder"
                   control={control}
@@ -340,9 +310,7 @@ export default function AddDomainModal() {
                       name="file-folder"
                       value={field.value}
                       onOdsChange={(e) => field.onChange(e.target.value)}
-                      placeholder={t(
-                        'hosting_multisite_domain_configuration_myfolder',
-                      )}
+                      placeholder={t('hosting_multisite_domain_configuration_myfolder')}
                     />
                   )}
                 />
@@ -375,11 +343,7 @@ export default function AddDomainModal() {
                   className="color-disabled cursor-pointer"
                 />
                 <OdsTooltip triggerId="ip-tooltip-trigger">
-                  <OdsText>
-                    {t(
-                      'hosting_multisite_domain_configuration_country_ip_help',
-                    )}
-                  </OdsText>
+                  <OdsText>{t('hosting_multisite_domain_configuration_country_ip_help')}</OdsText>
                 </OdsTooltip>
               </OdsFormField>
               {formValues.ip && (
@@ -395,9 +359,7 @@ export default function AddDomainModal() {
                       {hostingService?.data?.countriesIp?.map((item) => (
                         <optgroup
                           key={item.country}
-                          label={t(
-                            `${NAMESPACES.COUNTRIES}:country_${item.country}`,
-                          )}
+                          label={t(`${NAMESPACES.COUNTRIES}:country_${item.country}`)}
                         >
                           <option value={item.country}>{item.ip}</option>
                         </optgroup>
@@ -481,9 +443,7 @@ export default function AddDomainModal() {
                       name="sub-domain"
                       value={field.value}
                       onOdsChange={(e) => field.onChange(e.target.value)}
-                      placeholder={t(
-                        'hosting_add_step2_mode_EXTERNAL_domain_name_placeholder',
-                      )}
+                      placeholder={t('hosting_add_step2_mode_EXTERNAL_domain_name_placeholder')}
                     />
                   </div>
                 )}
@@ -517,11 +477,7 @@ export default function AddDomainModal() {
                 {t('hosting_multisite_domain_configuration_home')}
               </OdsText>
               <div className="w-2/3 flex items-center space-x-2">
-                <OdsButton
-                  size="sm"
-                  variant={ODS_BUTTON_VARIANT.outline}
-                  label="./"
-                />
+                <OdsButton size="sm" variant={ODS_BUTTON_VARIANT.outline} label="./" />
                 <Controller
                   name="folder"
                   control={control}
@@ -544,30 +500,21 @@ export default function AddDomainModal() {
           <div className="flex flex-col space-y-8 mb-10 mt-5">
             <OdsText>{t('hosting_add_step3_summary')}</OdsText>
             <div className="flex">
-              <OdsText
-                preset={ODS_TEXT_PRESET.heading6}
-                className="w-1/2 text-right pr-4"
-              >
+              <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                 {t('hosting_add_step3_domain_name')}
               </OdsText>
               <OdsText className="w-1/2">{completeDomain}</OdsText>
             </div>
             {formValues.wwwNeeded && (
               <div className="flex">
-                <OdsText
-                  preset={ODS_TEXT_PRESET.heading6}
-                  className="w-1/2 text-right pr-4"
-                >
+                <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                   {t('hosting_add_step3_domain_name')}
                 </OdsText>
                 <OdsText className="w-1/2">{displayedDomain}</OdsText>
               </div>
             )}
             <div className="flex">
-              <OdsText
-                preset={ODS_TEXT_PRESET.heading6}
-                className="w-1/2 text-right pr-4"
-              >
+              <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                 {t('hosting_add_step3_home')}
               </OdsText>
               <OdsText className="w-1/2">{domainFolder}</OdsText>
@@ -576,10 +523,7 @@ export default function AddDomainModal() {
               <>
                 {formValues.ip && (
                   <div className="flex">
-                    <OdsText
-                      preset={ODS_TEXT_PRESET.heading6}
-                      className="w-1/2 text-right pr-4"
-                    >
+                    <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                       {t('hosting_multisite_domain_configuration_countriesIp')}
                     </OdsText>
                     <OdsText className="w-1/2">
@@ -588,10 +532,7 @@ export default function AddDomainModal() {
                   </div>
                 )}
                 <div className="flex">
-                  <OdsText
-                    preset={ODS_TEXT_PRESET.heading6}
-                    className="w-1/2 text-right pr-4"
-                  >
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                     {t('hosting_multisite_domain_configuration_cdn')}
                   </OdsText>
                   <OdsText className="w-1/2">
@@ -599,10 +540,7 @@ export default function AddDomainModal() {
                   </OdsText>
                 </div>
                 <div className="flex">
-                  <OdsText
-                    preset={ODS_TEXT_PRESET.heading6}
-                    className="w-1/2 text-right pr-4"
-                  >
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                     {t('hosting_multisite_domain_configuration_ssl')}
                   </OdsText>
                   <OdsText className="w-1/2">
@@ -610,35 +548,25 @@ export default function AddDomainModal() {
                   </OdsText>
                 </div>
                 <div className="flex">
-                  <OdsText
-                    preset={ODS_TEXT_PRESET.heading6}
-                    className="w-1/2 text-right pr-4"
-                  >
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                     {t('hosting_add_step3_firewall')}
                   </OdsText>
                   <OdsText className="w-1/2">
                     {t(
                       `${NAMESPACES.SERVICE}:${
-                        formValues.firewall
-                          ? 'service_state_enabled'
-                          : 'service_state_disabled'
+                        formValues.firewall ? 'service_state_enabled' : 'service_state_disabled'
                       }`,
                     )}
                   </OdsText>
                 </div>
                 <div className="flex">
-                  <OdsText
-                    preset={ODS_TEXT_PRESET.heading6}
-                    className="w-1/2 text-right pr-4"
-                  >
+                  <OdsText preset={ODS_TEXT_PRESET.heading6} className="w-1/2 text-right pr-4">
                     {t('hosting_add_step3_ownlog')}
                   </OdsText>
                   <OdsText className="w-1/2">
                     {t(
                       `${NAMESPACES.SERVICE}:${
-                        formValues.firewall
-                          ? 'service_state_enabled'
-                          : 'service_state_disabled'
+                        formValues.firewall ? 'service_state_enabled' : 'service_state_disabled'
                       }`,
                     )}
                   </OdsText>
@@ -662,17 +590,13 @@ export default function AddDomainModal() {
                       </OdsText>
                     </label>
                   </OdsFormField>
-                  <OdsText
-                    preset={ODS_TEXT_PRESET.caption}
-                    className="ml-8 m-4"
-                  >
+                  <OdsText preset={ODS_TEXT_PRESET.caption} className="ml-8 m-4">
                     {t('hosting_add_step3_mode_OVH_autoconfigure_text')}
                   </OdsText>
                 </OdsCard>
               </>
             )}
-            {(formValues.path === 'B' ||
-              !formValues.automaticConfiguration) && (
+            {(formValues.path === 'B' || !formValues.automaticConfiguration) && (
               <>
                 <OdsText preset={ODS_TEXT_PRESET.heading6}>
                   {t(
@@ -738,10 +662,7 @@ export default function AddDomainModal() {
                     </li>
                   ))}
                 </ul>
-                <OdsMessage
-                  color={ODS_MESSAGE_COLOR.warning}
-                  isDismissible={false}
-                >
+                <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
                   {t('hosting_add_step2_mode_EXTERNAL_attention')}
                 </OdsMessage>
               </>
@@ -761,7 +682,11 @@ export default function AddDomainModal() {
       onOdsClose={closeModal}
       isOpen
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={() => {
+          handleSubmit(onSubmit);
+        }}
+      >
         <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
           {t('hosting_add_title')}
         </OdsText>

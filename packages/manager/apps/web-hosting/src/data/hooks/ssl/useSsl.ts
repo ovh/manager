@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
   createCertificate,
   createDomainCertificate,
@@ -38,8 +40,7 @@ export const useCreateDomainCertificate = (
   onError: (error: ApiError) => void,
 ) => {
   const mutation = useMutation({
-    mutationFn: (domain: string) =>
-      createDomainCertificate(serviceName, domain),
+    mutationFn: (domain: string) => createDomainCertificate(serviceName, domain),
     onSuccess,
     onError,
   });
@@ -56,8 +57,7 @@ export const useCreateDomainCertificates = (
   onError: (error: ApiError) => void,
 ) => {
   const mutation = useMutation({
-    mutationFn: (domains: string[]) =>
-      createDomainCertificates(serviceName, domains),
+    mutationFn: (domains: string[]) => createDomainCertificates(serviceName, domains),
     onSuccess,
     onError,
   });
@@ -74,8 +74,7 @@ export const useDeleteDomainCertificate = (
   onError: (error: ApiError) => void,
 ) => {
   const mutation = useMutation({
-    mutationFn: (domain: string) =>
-      deleteDomainCertificate(serviceName, domain),
+    mutationFn: (domain: string) => deleteDomainCertificate(serviceName, domain),
     onSuccess,
     onError,
   });

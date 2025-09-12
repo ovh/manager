@@ -1,47 +1,36 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { Route } from 'react-router-dom';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
 import { urls } from '@/routes/routes.constants';
 import {
   ADD_DOMAIN,
   DASHBOARD,
-  IMPORT_SSL,
   DISABLE_SSL,
+  IMPORT_SSL,
   ONBOARDING,
-  ORDER_SECTIGO,
   ORDER_DOMAIN,
+  ORDER_SECTIGO,
+  SAN_SSL,
   SSL,
   WEBSITE,
-  SAN_SSL,
 } from '@/utils/tracking.constants';
 
 const RootPage = React.lazy(() => import('@/pages/layout'));
 const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
-const OnboardingPage = React.lazy(() =>
-  import('@/pages/onboarding/Onboarding.page'),
-);
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
 const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
-const ImportSslPage = React.lazy(() =>
-  import('@/pages/dashboard/ssl/add/importSsl.page'),
-);
-const OrderSectigoPage = React.lazy(() =>
-  import('@/pages/dashboard/ssl/add/orderSectigo.page'),
-);
-const DisableSslPage = React.lazy(() =>
-  import('@/pages/dashboard/ssl/manage/disableSsl.page'),
-);
-const SanSslPage = React.lazy(() =>
-  import('@/pages/dashboard/ssl/manage/sanSsl.page'),
-);
-const AddDomainPage = React.lazy(() =>
-  import('@/pages/dashboard/AddDomain.page'),
-);
-const OrderDomainPage = React.lazy(() =>
-  import('@/pages/dashboard/OrderDomain.page'),
-);
+const ImportSslPage = React.lazy(() => import('@/pages/dashboard/ssl/add/importSsl.page'));
+const OrderSectigoPage = React.lazy(() => import('@/pages/dashboard/ssl/add/orderSectigo.page'));
+const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/disableSsl.page'));
+const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
+const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
+const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
 
 export default (
   <Route
