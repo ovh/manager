@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceActionDto } from '@/types/instance/api.type';
@@ -11,8 +11,11 @@ import {
   selectInstanceForActionModal,
   TInstanceActionModalViewModel,
 } from '../view-models/selectInstanceForActionModal';
-import { getInstanceById } from '@/data/hooks/instance/useInstances';
 import { useInstance } from '@/data/hooks/instance/useInstance';
+import {
+  selectAggregatedInstanceById,
+  selectInstanceById,
+} from '@/adapters/tanstack-query/store/instances/selectors';
 
 const formatSection = (section: TSectionType | null): string | null => {
   if (!section) return null;
@@ -51,7 +54,9 @@ export const useInstanceActionModal = (
   const { t } = useTranslation('actions');
 
   const aggregatedInstance = useMemo(
-    () => getInstanceById(projectId, instanceId, queryClient),
+    () =>
+      selectAggregatedInstanceById(projectId, instanceId, queryClient) ??
+      selectInstanceById(projectId, instanceId || '', queryClient),
     [instanceId, projectId, queryClient],
   );
 
@@ -113,5 +118,23 @@ export const useInstanceActionModal = (
   return {
     instance: useMemo(() => selectInstanceForActionModal(instance), [instance]),
     isLoading,
+  };
+};
+
+/**
+ * This allows to retrieve the correct parameters depending on the route we are
+ */
+export const useInstanceParams = () => {
+  const { instanceId: paramInstanceId, region: paramRegion } = useParams();
+  const [searchParams] = useSearchParams();
+
+  const instanceId = paramInstanceId ?? searchParams.get('instanceId');
+  const region = paramRegion ?? searchParams.get('region') ?? 'null';
+
+  if (!instanceId) throw new Error('instanceId is required');
+
+  return {
+    instanceId,
+    region,
   };
 };

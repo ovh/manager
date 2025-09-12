@@ -7,6 +7,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Navigate, useHref, useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -23,7 +24,7 @@ import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Spinner } from '@/components/spinner/Spinner.component';
 
 const Onboarding: FC = () => {
-  const { t } = useTranslation(['onboarding', 'common']);
+  const { t } = useTranslation(['onboarding', 'common', NAMESPACES.ONBOARDING]);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser() as {
     ovhSubsidiary: OvhSubsidiary;
@@ -104,7 +105,7 @@ const Onboarding: FC = () => {
                 },
               ),
 
-              category: t('pci_instances_onboarding_guide_title'),
+              category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
             }}
           />
         ))}

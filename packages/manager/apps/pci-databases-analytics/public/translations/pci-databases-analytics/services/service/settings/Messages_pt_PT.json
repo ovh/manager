@@ -48,5 +48,8 @@
   "kafkaSettingsRestApiTitle": "Kafka API REST",
   "kafkaSettingsRestApiDescription": "Interface HTTP REST para um cluster Kafka (baseado no projeto <anchor>Karapace</anchor>)",
   "kafkaSettingsSchemaRegistryTitle": "Schema Registry",
-  "kafkaSettingsSchemaRegistryDescription": "Interface de serviço HTTP REST para armazenar os esquemas Apache Kafka (baseado no projeto <anchor>Karapace</anchor>)"
+  "kafkaSettingsSchemaRegistryDescription": "Interface de serviço HTTP REST para armazenar os esquemas Apache Kafka (baseado no projeto <anchor>Karapace</anchor>)",
+  "serviceConfigurationServiceDeletionProtection": " Proteção contra eliminação",
+  "serviceDeletionProtectionActivated": "Ativada",
+  "serviceDeletionProtectionActivatedDeactivated": "Desativado"
 }

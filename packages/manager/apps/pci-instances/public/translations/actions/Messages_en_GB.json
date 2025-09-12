@@ -58,5 +58,21 @@
   "pci_instances_actions_shelve_instance_confirmation_message": "You are about to suspend the {{ name }} instance. The resources dedicated to your Public Cloud instance will be removed, but the IP address will remain. The data on your local disk will be stored, and only the storage used for this will be billed (1). The duration of the operation depends on the size of your local disk. You can reactivate your instance at any time.",
   "pci_instances_actions_shelve_instance_nota_message": "(1) Warning: For instances billed monthly, standard billing will continue regardless of the service status.",
   "pci_instances_actions_instance_unavailable_action_error_message": "This action is not available for the {{ name }} instance.",
-  "pci_instances_actions_instance_success_message": "The status of your {{ name }} instance has been updated"
+  "pci_instances_actions_instance_success_message": "The status of your {{ name }} instance has been updated",
+  "pci_instances_actions_instance_network_change_dns": "Change reverse DNS",
+  "pci_instances_actions_instance_network_activate_mitigation": "Enable/Disable mitigation ",
+  "pci_instances_actions_instance_network_firewall_settings": "Configure the firewall ",
+  "pci_instances_actions_instance_network_network_settings": "Manage private networks",
+  "pci_instances_actions_instance_network_network_attach": "Attach a network ",
+  "pci_instances_actions_instance_network_network_attach_title": "Attach one or more private networks to your instance",
+  "pci_instances_actions_instance_network_network_empty_message": "You do not currently have any compatible private networks to attach to this instance.",
+  "pci_instances_actions_instance_network_network_attach_success_message": "The {{ network }} private network has been attached to the {{ instance }} instance.",
+  "pci_instances_actions_instance_attach_error_message": "An error has occurred updating the instance: {{ message }}",
+  "pci_instances_actions_instance_volume_attach_title": "Attach a volume to your instance",
+  "pci_instances_actions_instance_volume_attach_empty_message": "No volumes available in your instance’s region.",
+  "pci_instances_actions_instance_volume_attach_selector_label": "Link a resource",
+  "pci_instances_actions_instance_volume_attach_select": "Select an existing volume",
+  "pci_instances_actions_instance_volume_attach_information": "You can link an existing volume or create a new volume to link to your instance. ",
+  "pci_instances_actions_instance_volume_attach_create_link": "Create a volume ",
+  "pci_instances_actions_instance_volume_attach_success_message": "The {{ volume }} has been attached to the {{ instance }} instance."
 }
