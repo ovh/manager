@@ -17,6 +17,7 @@ import ExpirationCell from './cells/expirationCell';
 import EngagementCell from './cells/engagementCell';
 import PriceCell from './cells/priceCell';
 import TagsCell from './cells/tagsCell';
+import OsCell from './cells/osCell';
 
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
@@ -98,9 +99,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('server_display_operating_system'),
-      cell: (server: DedicatedServer) => (
-        <DataGridTextCell>{t(server.os)}</DataGridTextCell>
-      ),
+      cell: OsCell,
     },
     {
       id: 'region',
