@@ -182,6 +182,48 @@ export default class NetAppDashboardService {
   }
 
   /**
+   * Get VolumeCapacity
+   * @param {*} serviceName
+   * @param {*} volumeId
+   * @returns capacity info for a volume
+   */
+  getVolumeCapacity(serviceName, volumeId) {
+    const octetsToGigaoctets = (octets) => {
+      if (octets === 0) return 0;
+      const giga = octets / 1024 ** 3;
+      return Number(giga.toFixed(2));
+    };
+
+    return this.$http
+      .get(`/storage/netapp/${serviceName}/metricsToken`)
+      .then(({ data }) => {
+        const CLUSTER = data.endpoint;
+        const SERVICE_ID = serviceName;
+        const SHARE_ID = volumeId;
+        const TOKEN = data.token;
+        const ENDPOINT = `${CLUSTER}/prometheus/api/v1`;
+        // eslint-disable-next-line no-useless-escape
+        const QUERY = `\{__name__=~"volume_size|volume_size_used|volume_snapshot_reserve_overflow|volume_size_available|volume_snapshot_reserve_size|volume_snapshot_reserve_used|volume_snapshot_reserve_available",service_id="${SERVICE_ID}",share_id="${SHARE_ID}"\}`;
+        return this.$http.get(`${ENDPOINT}/query?query=${QUERY}`, {
+          headers: {
+            Authorization: `Bearer ${TOKEN}`,
+          },
+        });
+      })
+      .then(({ data }) => {
+        const { result } = data.data;
+        const capacity = {};
+        result.forEach(({ metric, value }) => {
+          // eslint-disable-next-line no-underscore-dangle
+          capacity[metric.__name__] = value[1]
+            ? octetsToGigaoctets(Number.parseInt(value[1], 10))
+            : 0;
+        });
+        return capacity;
+      });
+  }
+
+  /**
    * Update the EFS name
    * @param {string} storageId
    * @param {string} name
