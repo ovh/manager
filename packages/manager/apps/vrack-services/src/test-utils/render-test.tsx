@@ -2,7 +2,6 @@ import React from 'react';
 import { SetupServer } from 'msw/node';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { expect } from 'vitest';
 import {
   ShellContext,
   ShellContextType,
