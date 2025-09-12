@@ -65,6 +65,8 @@
   "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})",
   "network_security_dashboard_traffic_breadcrumb": "Traffic graphs",
   "network_security_dashboard_filter_custom": "Custom",
-  "network_security_dashboard_warning_period": "Warning: the requested data is unavailable. Keep in mind that traffic data is only stored for 14 days.",
-  "network_security_dashboard_warning_default": "Instead of the selected IP address, the recent traffic graph will be shown."
+  "network_security_dashboard_warning_period": "Warning: the requested data is no longer available, as the retention period for traffic data has ended.",
+  "network_security_dashboard_warning_default": "Instead of the selected IP address, the recent traffic graph will be shown.",
+  "network_security_dashboard_filter_1_month": "1 month",
+  "network_security_dashboard_filter_2_months": "2 months"
 }
