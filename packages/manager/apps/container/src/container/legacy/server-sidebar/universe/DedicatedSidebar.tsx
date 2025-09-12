@@ -416,6 +416,8 @@ export default function DedicatedSidebar() {
                 },
                 ...services.map((service) => ({
                   ...service,
+                  // This is a temporary fix intended to exist only during the migration to the new /okms app.
+                  href: service.href.replace('key-management-service/key-management-service', 'key-management-service'),
                   pathMatcher: new RegExp(
                     `^/key-management-service/${service.serviceName}`,
                   ),
