@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { describe, it, vi, expect, beforeEach } from 'vitest';
 import NodePoolStep from './NodePoolStep.component';
-import { useClusterCreationStepper } from '../useCusterCreationStepper';
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 
 import { wrapper } from '@/wrapperRenders';
@@ -14,7 +14,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '12345' }),
 }));
 
-vi.mock('../useCusterCreationStepper', () => ({
+vi.mock('../hooks/useCusterCreationStepper', () => ({
   useClusterCreationStepper: vi.fn(),
 }));
 //

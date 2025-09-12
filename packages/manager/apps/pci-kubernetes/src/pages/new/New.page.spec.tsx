@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { useHref, useNavigate, useParams } from 'react-router-dom';
 import { vi } from 'vitest';
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useClusterCreationStepper } from './useCusterCreationStepper';
+import { useClusterCreationStepper } from './hooks/useCusterCreationStepper';
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
 import NewPage from './New.page';
 import { wrapper } from '@/wrapperRenders';
@@ -20,7 +20,7 @@ vi.mock('@ovh-ux/manager-pci-common', async (actual) => ({
   useProject: vi.fn(),
 }));
 
-vi.mock('./useCusterCreationStepper', () => ({
+vi.mock('./hooks/useCusterCreationStepper', () => ({
   useClusterCreationStepper: vi.fn(),
 }));
 
@@ -32,7 +32,7 @@ describe('NewPage', () => {
   const mockNavigate = vi.fn();
   const mockUseHref = vi.fn();
   const mockUseParams = vi.fn();
-  const mockUseTranslation = vi.fn();
+
   const mockUseProject = vi.fn();
   const mockUseClusterCreationStepper = vi.fn();
   const mockUseCreateKubernetesCluster = vi.fn();
@@ -40,9 +40,7 @@ describe('NewPage', () => {
   beforeEach(() => {
     mockUseHref.mockReturnValue('..');
     mockUseParams.mockReturnValue({ projectId: '123' });
-    mockUseTranslation.mockReturnValue({
-      t: (key) => key,
-    });
+
     mockUseProject.mockReturnValue({
       data: { project_id: '123', description: 'Test Project' },
     });
