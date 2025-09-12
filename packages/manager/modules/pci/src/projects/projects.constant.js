@@ -37,7 +37,6 @@ export const PCI_FEATURES = {
     TRAINING: 'pci-ai-training',
     SERVING: 'serving',
     ANALYTICS_DATA_PLATFORM: 'analytics-data-platform',
-    DATA_PROCESSING: 'data-processing',
     LOGS_DATA_PLATFORM: 'logs-data-platform',
     HORIZON: 'horizon',
     PUBLIC_GATEWAYS: 'public-gateways',
@@ -158,10 +157,6 @@ export const PCI_FEATURES_STATES = {
   SERVING: {
     LIST: 'pci.projects.project.serving',
     ADD: 'pci.projects.project.serving.add',
-  },
-  DATA_PROCESSING: {
-    LIST: 'pci.projects.project.data-processing.jobs',
-    ADD: 'pci.projects.project.data-processing.jobs.submit-job',
   },
   PROJECT_MANAGEMENT: {
     QUOTA_AND_REGIONS: 'pci.projects.project.quota',

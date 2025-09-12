@@ -1,7 +1,0 @@
-{
-  "data_processing_terminate_job_title": "Stop job",
-  "data_processing_terminate_job_description_1": "You are about to stop the job",
-  "data_processing_terminate_job_description_2": "You are at risk of losing data that is currently processing.",
-  "data_processing_terminate_job_delete_button": "Stop job",
-  "data_processing_terminate_job_cancel_button": "Exit"
-}
