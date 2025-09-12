@@ -12,7 +12,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useIsDefaultProject } from '@/data/hooks/useProjects';
 import { useEditProject } from '../useEditProject';
@@ -60,11 +60,23 @@ export default function GeneralInformationSection({
   } = useEditProject(
     project.project_id,
     () => {
-      addSuccess(t('pci_projects_project_edit_update_success'));
+      addSuccess(
+        <Translation ns="edit">
+          {(_t) => _t('pci_projects_project_edit_update_success')}
+        </Translation>,
+        true,
+      );
     },
     (error: ApiError) => {
       addError(
-        t('pci_projects_project_edit_update_error', { error: error.message }),
+        <Translation ns="edit">
+          {(_t) =>
+            _t('pci_projects_project_edit_update_error', {
+              error: error.message,
+            })
+          }
+        </Translation>,
+        true,
       );
     },
   );
