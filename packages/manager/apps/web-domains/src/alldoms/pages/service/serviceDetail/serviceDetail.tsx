@@ -1,5 +1,6 @@
 import {
   BaseLayout,
+  Breadcrumb,
   Notifications,
   useFormatDate,
   useNotifications,
@@ -31,6 +32,7 @@ import Loading from '@/alldoms/components/loading/Loading';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
+import appConfig from '@/web-domains.config';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -60,6 +62,13 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
       onClickReturn={() => navigate(urls.alldomsRoot)}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
+      }
     >
       <section>
         {hasTerminateAtExpirationDateAction(
