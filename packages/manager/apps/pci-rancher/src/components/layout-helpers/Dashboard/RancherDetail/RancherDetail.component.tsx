@@ -152,6 +152,7 @@ const RancherDetail = ({
 
   const displayDate = useCallback(
     (value: string) =>
+      dateUsage &&
       format(new Date(dateUsage), value, {
         locale:
           userLocale in locales
@@ -162,6 +163,9 @@ const RancherDetail = ({
   );
 
   const isEligibleForUpgrade = plan === RancherPlanName.OVHCLOUD_EDITION;
+
+  const iamEnabled =
+    rancher.currentState.iamAuthEnabled || rancher.targetSpec.iamAuthEnabled;
 
   return (
     <div className="max-w-4xl">
@@ -254,12 +258,35 @@ const RancherDetail = ({
                 >
                   {t('rancher_button_acces')}
                 </OsdsButton>
-                <LinkIcon
-                  iconName={ODS_ICON_NAME.ARROW_RIGHT}
-                  href={hrefGenerateAccess}
-                  text={t('generate_access')}
-                  isDisabled={!isReadyStatus}
-                />
+                <div>
+                  {!isReadyStatus || iamEnabled ? (
+                    <OsdsTooltip>
+                      <LinkIcon
+                        iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                        href={hrefGenerateAccess}
+                        text={t('generate_access')}
+                        isDisabled
+                      />
+                      <OsdsTooltipContent slot="tooltip-content">
+                        <OsdsText
+                          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                          color={ODS_THEME_COLOR_INTENT.text}
+                          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+                          hue={ODS_THEME_COLOR_HUE._500}
+                          className="break-normal whitespace-normal"
+                        >
+                          {t('iamTemporaryAccessUnavailable')}
+                        </OsdsText>
+                      </OsdsTooltipContent>
+                    </OsdsTooltip>
+                  ) : (
+                    <LinkIcon
+                      iconName={ODS_ICON_NAME.ARROW_RIGHT}
+                      href={hrefGenerateAccess}
+                      text={t('generate_access')}
+                    />
+                  )}
+                </div>
               </TileBlock>
               <div className="flex flex-col mb-3">
                 <div className="flex">
