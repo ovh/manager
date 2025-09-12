@@ -1,4 +1,4 @@
-import { EngagementConfiguration } from '@ovh-ux/manager-models';
+import { EngagementConfiguration, Pricing } from '@ovh-ux/manager-models';
 
 export default class {
   /* @ngInject */
@@ -6,6 +6,7 @@ export default class {
     $q,
     $translate,
     $window,
+    $state,
     atInternet,
     BillingService,
     BillingCommitmentService,
@@ -16,6 +17,7 @@ export default class {
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.$state = $state;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.BillingCommitmentService = BillingCommitmentService;
@@ -32,7 +34,17 @@ export default class {
       duration: null,
       engagement: null,
     };
-    return this.$q
+    this.isPaymentStepLoading = true;
+    this.ovhPaymentMethod
+      .getDefaultPaymentMethod()
+      .then((paymentMethod) => {
+        this.paymentMethod = paymentMethod;
+      })
+      .catch((error) => {
+        if (error) this.$state.go('billing.payment.method');
+      });
+
+    this.$q
       .all({
         service: this.BillingService.getService(this.serviceId),
         options: this.BillingService.getOptions(this.serviceId),
@@ -55,6 +67,8 @@ export default class {
       })
       .finally(() => {
         this.isLoadingService = false;
+        this.isPaymentStepLoading = false;
+        this.getStartingDate();
       });
   }
 
@@ -83,10 +97,57 @@ export default class {
   }
 
   onDurationChange(duration) {
+    this.duration = duration;
     this.pricingModes = this.availableEngagements.filter(
       (commitment) => commitment.durationInMonths === duration.monthlyDuration,
     );
     [this.model.engagement] = this.pricingModes;
+    this.computeDiscount();
+  }
+
+  hasSavings() {
+    const { savings } = this.duration;
+
+    return this.defaultPrice && savings?.value > 0;
+  }
+
+  computeDiscount() {
+    const upfront = this.pricingModes.find((commitment) =>
+      commitment.isUpfront(),
+    );
+    const periodic = this.pricingModes.find((commitment) =>
+      commitment.isPeriodic(),
+    );
+
+    this.periodicTotalPrice = Pricing.roundToTwo(periodic.totalPrice.value);
+
+    if (upfront && periodic) {
+      // compute discount
+      const { value: savedAmount } = periodic.getPriceDiff(
+        upfront,
+        this.selectedQuantity,
+      );
+      this.discount = Pricing.roundToTwo(
+        (savedAmount / periodic.totalPrice.value) * 100,
+      );
+
+      // compute total saving
+      const { savings } = this.duration;
+      const totalSavings = savedAmount + (savings?.value || 0);
+      this.upfrontSavings = {
+        amountSaved: new Pricing(
+          {
+            duration: periodic.duration,
+            price: {
+              currencyCode: upfront.pricing.price.currencyCode,
+              value: totalSavings,
+            },
+          },
+          this.coreConfig.getUserLocale(),
+        ).getPriceAsText(),
+        amountToPay: upfront.totalPrice.text,
+      };
+    }
   }
 
   getStartingDate() {
@@ -95,8 +156,8 @@ export default class {
     );
     if (
       this.service.isEngaged() &&
-      engagementConfiguration.isUpfront() &&
-      this.model.engagement.isUpfront()
+      engagementConfiguration?.isUpfront() &&
+      this.model.engagement?.isUpfront()
     ) {
       this.displayPaymentMean = false;
       this.startingDate = moment().toISOString();
@@ -107,21 +168,6 @@ export default class {
     this.startingDate = this.service.billing.nextBillingDate;
     this.displayPaymentMean = true;
     this.formattedStartingDate = this.service.nextBillingDate;
-  }
-
-  onPaymentStepFocus() {
-    this.isPaymentStepLoading = true;
-    return this.ovhPaymentMethod
-      .getDefaultPaymentMethod()
-      .then((paymentMethod) => {
-        this.paymentMethod = paymentMethod;
-      })
-      .catch((error) => {
-        this.error = error.data?.message || error.message;
-      })
-      .finally(() => {
-        this.isPaymentStepLoading = false;
-      });
   }
 
   commit() {

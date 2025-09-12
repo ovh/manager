@@ -25,6 +25,11 @@ export default class Pricing {
     }).format(price);
   }
 
+  static roundToTwo(num) {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+    return Number.parseFloat(num).toFixed(2);
+  }
+
   format(price = this.price.value) {
     return {
       currencyCode: this.price.currencyCode,
