@@ -5,7 +5,7 @@ import {
   StepComponent,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
@@ -24,10 +24,15 @@ import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
 import { useStepper } from './hooks/useStepper';
 import { TPaymentMethodRef } from '@/components/payment/PaymentMethods';
-import { getCartCheckout } from '@/data/api/cart';
-import { useCheckoutCart } from '@/hooks/useCheckout/useCheckout';
+import {
+  checkoutCart,
+  getCartCheckout,
+  attachConfigurationToCartItem as postAttachConfigurationToCartItem,
+} from '@/data/api/cart';
 import { CartSummary } from '@/data/types/cart.type';
 import { usePaymentRedirect } from '@/hooks/payment/usePaymentRedirect';
+import { AntiFraudError, PCI_PROJECT_ORDER_CART } from '@/constants';
+import useAntiFraud from './hooks/useAntiFraud';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -38,7 +43,10 @@ export default function ProjectCreation() {
 
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { environment } = useContext(ShellContext);
+  const {
+    environment,
+    shell: { navigation },
+  } = useContext(ShellContext);
   const user = environment.getUser();
   const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
   const [hasInitialCart] = useState<boolean>(!!searchParams.get('cartId'));
@@ -50,7 +58,22 @@ export default function ProjectCreation() {
   const [customSubmitButton, setCustomSubmitButton] = useState<
     string | JSX.Element | null
   >(null);
-  const { addError } = useNotifications();
+  const [needToCheckCustomerInfo, setNeedToCheckCustomerInfo] = useState<
+    boolean
+  >(false);
+  const [billingHref, setBillingHref] = React.useState<string>('');
+  const [orderId, setOrderId] = React.useState<number | null>(null);
+  const { checkAntiFraud } = useAntiFraud();
+
+  useEffect(() => {
+    if (orderId) {
+      navigation
+        .getURL('dedicated', '#/billing/orders/:orderId', { orderId })
+        .then((url) => setBillingHref(`${url}`));
+    }
+  }, [navigation, orderId]);
+
+  const { addError, addWarning } = useNotifications();
 
   const {
     mutate: createAndAssignCart,
@@ -85,7 +108,6 @@ export default function ProjectCreation() {
   const {
     mutate: attachConfigurationToCartItem,
   } = useAttachConfigurationToCartItem();
-  const { mutate: checkoutCart } = useCheckoutCart();
 
   const {
     currentStep,
@@ -164,9 +186,11 @@ export default function ProjectCreation() {
       }
 
       setIsSubmitting(true);
+
       try {
         let currentPaymentMethodId: number | undefined = paymentMethodId;
 
+        // Step 1 : Register payment method
         if (!skipRegistration) {
           const resultRegister = await paymentHandlerRef.current.submitPaymentMethod(
             cart,
@@ -183,6 +207,7 @@ export default function ProjectCreation() {
           }
         }
 
+        // Step 2: Check payment method
         if (paymentHandlerRef.current.checkPaymentMethod) {
           const resultCheck = await paymentHandlerRef.current.checkPaymentMethod(
             cart,
@@ -195,8 +220,24 @@ export default function ProjectCreation() {
           }
         }
 
+        if (!projectItem) {
+          throw new Error('Project item not found');
+        }
+
+        // Step 3: Attach configuration to cart item
+        await postAttachConfigurationToCartItem(
+          cart.cartId,
+          projectItem.itemId,
+          {
+            label: 'infrastructure',
+            value: PCI_PROJECT_ORDER_CART.infraConfigValue,
+          },
+        );
+
+        // Step 4: Get checkout info
         const cartCheckoutInfo = await getCartCheckout(cart.cartId);
 
+        // Step 5: Callback after checkout received
         if (paymentHandlerRef.current.onCheckoutRetrieved) {
           const resultCheckout = await paymentHandlerRef.current.onCheckoutRetrieved(
             {
@@ -212,46 +253,91 @@ export default function ProjectCreation() {
           }
         }
 
-        return new Promise((resolve, reject) => {
-          checkoutCart(
+        // Step 6: Finalize cart
+        const cartFinalized: CartSummary = await checkoutCart(cart.cartId);
+
+        setOrderId(cartFinalized.orderId);
+
+        // Step 7: Callback after cart is finalized
+        if (
+          paymentHandlerRef.current &&
+          paymentHandlerRef.current.onCartFinalized
+        ) {
+          const resultFinalize = await paymentHandlerRef.current.onCartFinalized(
             {
+              ...cartFinalized,
               cartId: cart.cartId,
             },
-            {
-              onSuccess: async (cartFinalized: CartSummary) => {
-                if (
-                  paymentHandlerRef.current &&
-                  paymentHandlerRef.current.onCartFinalized
-                ) {
-                  const resultFinalize = await paymentHandlerRef.current.onCartFinalized(
-                    {
-                      ...cartFinalized,
-                      cartId: cart.cartId,
-                    },
-                    paymentMethodId,
-                  );
-
-                  if (!resultFinalize.continueProcessing) {
-                    setIsSubmitting(false);
-                    resolve(resultFinalize.dataToReturn);
-                    return;
-                  }
-                }
-                setIsSubmitting(false);
-                resolve(true);
-              },
-              onError: (err) => {
-                setIsSubmitting(false);
-                addError(
-                  t('pci_project_new_payment_create_error', {
-                    ns: 'new/payment',
-                  }),
-                );
-                reject(err);
-              },
-            },
+            paymentMethodId,
           );
-        });
+
+          if (!resultFinalize.continueProcessing) {
+            setIsSubmitting(false);
+            return resultFinalize.dataToReturn;
+          }
+        }
+
+        // Step 8: Anti-fraud check
+        try {
+          await checkAntiFraud(cartFinalized);
+        } catch (err) {
+          const antiFraudError = err as AntiFraudError;
+
+          setIsSubmitting(false);
+
+          switch (antiFraudError) {
+            case AntiFraudError.CASE_FRAUD_REFUSED:
+              addError(
+                t(
+                  'pci_project_new_payment_check_anti_fraud_case_fraud_refused',
+                  {
+                    ns: 'new/payment',
+                  },
+                ),
+              );
+              break;
+            case AntiFraudError.NEED_CUSTOMER_INFO_CHECK:
+              setNeedToCheckCustomerInfo(true);
+              addWarning(
+                t('pci_project_new_payment_create_error_fraud_suspect', {
+                  ns: 'new/payment',
+                }),
+              );
+              break;
+            default:
+              addError(
+                t('pci_project_new_payment_create_error', {
+                  ns: 'new/payment',
+                }),
+              );
+              break;
+          }
+
+          return false;
+        }
+
+        // Step 9: Redirect to the project creation finalization page
+        setIsSubmitting(false);
+
+        if (cartFinalized.orderId) {
+          const voucherCode = searchParams.get('voucher');
+
+          if (voucherCode) {
+            navigation.navigateTo(
+              'public-cloud',
+              '#/pci/projects/creating/:orderId/:voucherCode',
+              { orderId: cartFinalized.orderId, voucherCode },
+            );
+          } else {
+            navigation.navigateTo(
+              'public-cloud',
+              '#/pci/projects/creating/:orderId',
+              { orderId: cartFinalized.orderId },
+            );
+          }
+        }
+
+        return true;
       } catch (error) {
         setIsSubmitting(false);
         addError(
@@ -260,7 +346,14 @@ export default function ProjectCreation() {
         return false;
       }
     },
-    [paymentHandlerRef, cart, isSubmitting],
+    [
+      paymentHandlerRef,
+      cart,
+      isSubmitting,
+      projectItem,
+      needToCheckCustomerInfo,
+      searchParams,
+    ],
   );
 
   const onPaymentSuccess = useCallback(
@@ -286,12 +379,39 @@ export default function ProjectCreation() {
   }
 
   const isPaymentStepLoading = isSubmitting;
-  const isPaymentStepDisabled = !isPaymentMethodValid || isSubmitting;
-  const paymentStepNextButton: string | JSX.Element =
+  const isPaymentStepDisabled =
+    !isPaymentMethodValid || isSubmitting || needToCheckCustomerInfo;
+  const paymentStepNextCustomButton: string | JSX.Element =
     customSubmitButton ||
     t('pci_project_new_payment_btn_continue_default', {
       ns: 'new/payment',
     });
+
+  const paymentStepNextCustomButtonWithProps: string | JSX.Element =
+    typeof paymentStepNextCustomButton === 'string'
+      ? paymentStepNextCustomButton
+      : React.cloneElement(paymentStepNextCustomButton, {
+          isDisabled: isPaymentStepDisabled,
+          isLoading: isPaymentStepLoading,
+        });
+
+  const paymentStepNextButton:
+    | string
+    | JSX.Element = needToCheckCustomerInfo ? (
+    <OdsLink
+      label={t(
+        'pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link',
+        {
+          ns: 'new/payment',
+        },
+      )}
+      href={billingHref}
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  ) : (
+    paymentStepNextCustomButtonWithProps
+  );
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[var(--ods-color-primary-050)]">
@@ -348,13 +468,7 @@ export default function ProjectCreation() {
           })}
           next={{
             action: () => handlePaymentSubmit({ skipRegistration: false }),
-            label:
-              typeof paymentStepNextButton === 'string'
-                ? paymentStepNextButton
-                : React.cloneElement(paymentStepNextButton, {
-                    isDisabled: isPaymentStepDisabled,
-                    isLoading: isPaymentStepLoading,
-                  }),
+            label: paymentStepNextButton,
             isDisabled: isPaymentStepDisabled,
             isLoading: isPaymentStepLoading,
           }}
