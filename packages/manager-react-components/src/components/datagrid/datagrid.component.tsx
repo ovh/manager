@@ -221,12 +221,22 @@ export const Datagrid = <T,>({
   }, [columnVisibility?.join(','), JSON.stringify(columns)]);
 
   const onColumnVisibilityChange = useCallback((getToggledColumn) => {
-    const colName = Object.keys(getToggledColumn())?.[0];
-    setColumnVisibility?.((prev) =>
-      prev.includes(colName)
-        ? prev.filter((c) => c !== colName)
-        : [...prev, colName],
-    );
+    // Toggling one column
+    if (typeof getToggledColumn === 'function') {
+      const colName = Object.keys(getToggledColumn())?.[0];
+      setColumnVisibility?.((prev) =>
+        prev.includes(colName)
+          ? prev.filter((c) => c !== colName)
+          : [...prev, colName],
+      );
+    }
+    // Toggling all columns
+    else if (typeof getToggledColumn === 'object') {
+      const newVisibility = Object.entries(getToggledColumn)
+        .filter(([_, isVisible]) => isVisible)
+        .map(([colName, _]) => colName);
+      setColumnVisibility?.(newVisibility);
+    }
   }, []);
 
   const headerRefs = useRef({});
@@ -339,11 +349,12 @@ export const Datagrid = <T,>({
       },
     }),
     initialState: {
-      ...(!setColumnVisibility && {
-        columnVisibility: columnVisibilityState,
-      }),
+      ...(!setColumnVisibility &&
+        columnVisibility && {
+          columnVisibility: columnVisibilityState,
+        }),
     },
-    onColumnVisibilityChange,
+    ...(setColumnVisibility && { onColumnVisibilityChange }),
     enableRowSelection: (row) => {
       if (rowSelection?.enableRowSelection)
         return rowSelection.enableRowSelection(row);
