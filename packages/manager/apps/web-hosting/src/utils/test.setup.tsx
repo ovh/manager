@@ -1,6 +1,16 @@
 import { vi } from 'vitest';
 import React from 'react';
-import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
+import {
+  attachedDomainDigStatusMock,
+  managedWordpressResourceMock,
+  websitesMocks,
+  managedWordpressWebsitesMock,
+  managedWordpressWebsitesDetailsMock,
+  managedWordpressResourceDetailsMock,
+  managedWordpressWebsitesDeleteMock,
+  managedWordpressWebsitesTaskMock,
+  managedWordpressRerefenceAvailableLanguageMock,
+} from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -97,6 +107,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
     useMatches: vi.fn(() => []),
     useHref: vi.fn((url) => url),
+    useParams: vi.fn(() => []),
   };
 });
 
@@ -111,7 +122,29 @@ vi.mock('@/data/api/index', () => ({
   ),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
-
+vi.mock('@/data/api/managedWordpress', () => ({
+  getManagedCmsResource: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceMock),
+  ),
+  getManagedCmsResourceDetails: vi.fn(() =>
+    Promise.resolve(managedWordpressResourceDetailsMock),
+  ),
+  getManagedCmsResourceWebsites: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesMock),
+  ),
+  getManagedCmsResourceWebsiteDetails: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesDetailsMock),
+  ),
+  deleteManagedCmsResourceWebsite: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesDeleteMock),
+  ),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesTaskMock),
+  ),
+  getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
+    Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
+  ),
+}));
 afterEach(() => {
   vi.clearAllMocks();
 });
