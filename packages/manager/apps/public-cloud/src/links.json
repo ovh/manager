@@ -353,16 +353,6 @@
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-data-processing"
-    },
-    "redirect": {
-      "application": "public-cloud",
-      "path": "/pci/projects/{project}/data-processing/onboarding"
-    }
-  },
-  {
-    "public": {
-      "application": "public-cloud",
       "path": "/create-kafka-data-streaming"
     },
     "redirect": {

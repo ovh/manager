@@ -1,9 +1,0 @@
-{
-  "data_processing_terminate_notebook_title": "Arrêt du notebook",
-  "data_processing_terminate_notebook_description_1": "Lorsque vous stoppez un Spark Notebook : ",
-  "data_processing_terminate_notebook_description_list_1": "Les ressources de calculs sont libérées.",
-  "data_processing_terminate_notebook_description_list_2": "Les jobs lancés en utilisant le notebook ne seront pas stoppés.",
-  "data_processing_terminate_notebook_description_2": "Une fois stoppé, vous pourrez soit <b>supprimer</b> votre Spark Notebook soit le <b>relancer</b>. ",
-  "data_processing_terminate_notebook_delete_button": "Stopper le notebook",
-  "data_processing_terminate_notebook_cancel_button": "Annuler"
-}

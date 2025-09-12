@@ -1,7 +1,0 @@
-{
-  "data_processing_terminate_job_title": "Interrompi il job",
-  "data_processing_terminate_job_description_1": "Il job verrà interrotto",
-  "data_processing_terminate_job_description_2": "I dati in corso di elaborazione potrebbero andare persi.",
-  "data_processing_terminate_job_delete_button": "Interrompi il job",
-  "data_processing_terminate_job_cancel_button": "Annullare"
-}
