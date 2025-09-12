@@ -1,11 +1,12 @@
 import {
   BaseLayout,
+  Breadcrumb,
   Notifications,
   useFormatDate,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -14,7 +15,6 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import appConfig from '@/web-domains.config';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
@@ -23,17 +23,15 @@ import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/loading/Loading';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
-import { urls } from '@/alldoms/routes/routes.constant';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
     true,
   );
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['allDom']);
   const { notifications } = useNotifications();
   const formatDate = useFormatDate();
-  const navigate = useNavigate();
 
   const header = {
     title: serviceName,
@@ -57,8 +55,13 @@ export default function ServiceDetail() {
     <BaseLayout
       header={header}
       message={notifications.length ? <Notifications /> : null}
-      onClickReturn={() => navigate(urls.alldomsRoot)}
-      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
+      }
     >
       <section>
         {hasTerminateAtExpirationDateAction(
