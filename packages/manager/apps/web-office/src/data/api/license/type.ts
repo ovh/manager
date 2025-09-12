@@ -1,4 +1,4 @@
-import { LicenseEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, UserStateEnum } from '../ApiType';
 
 export type LicenseType = {
   address: string;
@@ -39,4 +39,22 @@ export type LicensePrepaidType = {
 
 export type GetOfficeLicenseServiceParams = {
   serviceName?: string;
+};
+
+export type OfficeServiceListType = {
+  displayName: string;
+  extraParams: string[];
+  serviceName: string;
+  stateParams: string[];
+  url: string;
+  address: string;
+  city: string;
+  creationDate: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  serviceType: string;
+  status: UserStateEnum;
+  tenantServiceName: string;
+  zipCode: string;
 };

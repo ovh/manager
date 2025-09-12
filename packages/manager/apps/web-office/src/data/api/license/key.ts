@@ -6,7 +6,4 @@ export const getOfficeLicenseDetailsQueryKey = (serviceName: string) => [
   serviceName,
 ];
 
-export const getOfficeLicenseQueryKey = (serviceName: string) => [
-  'get',
-  getApiPath(serviceName),
-];
+export const getOfficeLicenseQueryKey = (serviceName: string) => ['get', getApiPath(serviceName)];
