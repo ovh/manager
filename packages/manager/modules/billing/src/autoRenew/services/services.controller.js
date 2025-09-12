@@ -15,6 +15,7 @@ import {
   TRACKING_PAGE,
   TRACKING_ACTIONS_PREFIX,
 } from '../autorenew.constants';
+import { ACTION_BADGE_CLASSES } from './services.constants';
 
 export default class ServicesCtrl {
   /* @ngInject */
@@ -36,6 +37,7 @@ export default class ServicesCtrl {
     this.renewHelper = billingRenewHelper;
     this.coreConfig = coreConfig;
     this.ouiDatagridService = ouiDatagridService;
+    this.ACTION_BADGE_CLASSES = ACTION_BADGE_CLASSES;
   }
 
   $onInit() {
