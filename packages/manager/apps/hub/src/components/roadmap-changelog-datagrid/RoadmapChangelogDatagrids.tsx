@@ -82,8 +82,8 @@ const RoadmapChangelogDatagrids = () => {
         ),
     },
     {
-      id: 'description',
-      label: t('datagrid_table_head_description'),
+      id: 'link',
+      label: t('datagrid_table_head_link'),
       cell: (item: RoadmapChangelogItem) =>
         isLoadingItems ? (
           <OsdsSkeleton />
