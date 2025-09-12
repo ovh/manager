@@ -1,30 +1,28 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import {
-  DeletionModal,
-  isDiscoveryProject,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
+  Modal,
+  useFeatureAvailability,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
+  PageType,
   ShellContext,
   useOvhTracking,
-  PageType,
 } from '@ovh-ux/manager-react-shell-client';
+import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import {
-  useFeatureAvailability,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useHasActiveOrPendingSavingsPlan } from '@/data/hooks/useSavingsPlans';
-import {
-  useRemoveProjectMutation,
-  useIsDefaultProject,
-} from '@/data/hooks/useProjects';
-import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import { useHasActiveOrPendingSavingsPlan } from '@/data/hooks/useSavingsPlans';
+import {
+  useIsDefaultProject,
+  useRemoveProjectMutation,
+} from '@/data/hooks/useProjects';
+import { FEATURE_AVAILABILITY, SUPPORT_URL } from '@/constants';
 
 export default function RemovePage() {
   const { trackClick, trackPage } = useOvhTracking();
@@ -53,7 +51,7 @@ export default function RemovePage() {
 
   const {
     data: hasActiveOrPendingSavingPlan,
-    isLoading: isSavingsPlansLoading,
+    isPending: isSavingsPlansPending,
   } = useHasActiveOrPendingSavingsPlan(serviceId, isSavingPlansAvailable);
 
   const {
@@ -137,24 +135,28 @@ export default function RemovePage() {
   }, [project, hasActiveOrPendingSavingPlan, t]);
 
   const isPending =
-    isSavingsPlansLoading || isDefaultProjectLoading || isRemovePending;
+    isSavingsPlansPending || isDefaultProjectLoading || isRemovePending;
 
+  console.log('isSavingPlansLoading', isSavingsPlansPending);
   return (
-    <DeletionModal
-      title={t('pci_projects_project_edit_remove_title')}
-      submitText={t(
+    <Modal
+      type={ODS_MODAL_COLOR.warning}
+      primaryLabel={t(
         hasActiveOrPendingSavingPlan
           ? 'pci_projects_project_edit_remove_submit_client_service'
           : 'pci_projects_project_edit_remove_submit',
       )}
-      cancelText={t('pci_projects_project_edit_remove_cancel')}
-      isPending={isPending}
-      isDisabled={isPending}
-      onCancel={handleCancel}
-      onClose={goBack}
-      onConfirm={handleConfirm}
+      onPrimaryButtonClick={handleConfirm}
+      secondaryLabel={t('pci_projects_project_edit_remove_cancel')}
+      onSecondaryButtonClick={handleCancel}
+      isLoading={isPending}
+      onDismiss={goBack}
+      isOpen={true}
     >
+      <OdsText preset="heading-3" className="mb-6">
+        {t('pci_projects_project_edit_remove_title')}
+      </OdsText>
       <OdsText preset="paragraph">{modalContentMessage}</OdsText>
-    </DeletionModal>
+    </Modal>
   );
 }
