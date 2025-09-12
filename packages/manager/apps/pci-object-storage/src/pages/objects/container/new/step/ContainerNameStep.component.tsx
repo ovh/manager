@@ -19,9 +19,7 @@ import {
   useContainerCreationStore,
 } from '../useContainerCreationStore';
 import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   STORAGE_ASYNC_REPLICATION_LINK,
@@ -61,11 +59,11 @@ export function ContainerNameStep({
     if (
       form.offer === OBJECT_CONTAINER_OFFER_SWIFT ||
       (form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
-        form.deploymentMode === OBJECT_CONTAINER_MODE_LOCAL_ZONE)
+        form.deploymentMode === ObjectContainerMode.LOCAL_ZONE)
     ) {
       return 4;
     }
-    if (form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) {
+    if (form.deploymentMode === ObjectContainerMode.MULTI_ZONES) {
       return 8;
     }
     return 7;
@@ -139,8 +137,8 @@ export function ContainerNameStep({
         </OdsText>
       </OdsFormField>
 
-      {(form.deploymentMode === OBJECT_CONTAINER_MODE_MONO_ZONE ||
-        form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES) &&
+      {(form.deploymentMode === ObjectContainerMode.MONO_ZONE ||
+        form.deploymentMode === ObjectContainerMode.MULTI_ZONES) &&
         !form.offsiteReplication && (
           <OdsMessage
             className="my-8"
