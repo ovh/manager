@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-quota-app",
-  "version": "0.1.36",
+  "version": "0.1.37",
   "private": true,
   "description": "PCI Quota and Regions react app",
   "type": "module",
@@ -19,8 +19,8 @@
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-config": "^8.6.1",
     "@ovh-ux/manager-core-api": "^0.18.3",
-    "@ovh-ux/manager-pci-common": "^2.7.8",
-    "@ovh-ux/manager-react-components": "^2.40.3",
+    "@ovh-ux/manager-pci-common": "^2.7.9",
+    "@ovh-ux/manager-react-components": "^2.40.4",
     "@ovh-ux/manager-react-core-application": "^0.12.3",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-tailwind-config": "^0.5.1",

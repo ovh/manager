@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-components",
-  "version": "2.40.3",
+  "version": "2.40.4",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "types": "dist/types/src/lib.d.ts",
