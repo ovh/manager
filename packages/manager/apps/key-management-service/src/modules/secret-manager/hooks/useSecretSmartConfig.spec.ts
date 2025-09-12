@@ -204,10 +204,11 @@ describe('useSecretSmartConfig', () => {
 
   describe('when there are errors', () => {
     it('should return error state when OKMS data has error', () => {
+      const mockError = createErrorResponseMock('OKMS error');
       mockUseOkmsById.mockReturnValue({
         data: null,
         isPending: false,
-        error: createErrorResponseMock('OKMS error'),
+        error: mockError,
       });
 
       const { result } = renderHookWithClient(() =>
@@ -217,16 +218,18 @@ describe('useSecretSmartConfig', () => {
       expect(result.current).toEqual({
         isPending: false,
         isError: true,
+        error: mockError,
         secretConfig: undefined,
       });
       expect(mockAddError).toHaveBeenCalledWith('OKMS error');
     });
 
     it('should return error state when secret config OKMS has error', () => {
+      const mockError = createErrorResponseMock('Secret config OKMS error');
       mockUseOkmsSecretConfig.mockReturnValue({
         data: null,
         isPending: false,
-        error: createErrorResponseMock('Secret config OKMS error'),
+        error: mockError,
       });
 
       const { result } = renderHookWithClient(() =>
@@ -236,16 +239,20 @@ describe('useSecretSmartConfig', () => {
       expect(result.current).toEqual({
         isPending: false,
         isError: true,
+        error: mockError,
         secretConfig: undefined,
       });
       expect(mockAddError).toHaveBeenCalledWith('Secret config OKMS error');
     });
 
     it('should return error state when secret config reference has error', () => {
+      const mockError = createErrorResponseMock(
+        'Secret config reference error',
+      );
       mockUseSecretConfigReference.mockReturnValue({
         data: null,
         isPending: false,
-        error: createErrorResponseMock('Secret config reference error'),
+        error: mockError,
       });
 
       const { result } = renderHookWithClient(() =>
@@ -255,6 +262,7 @@ describe('useSecretSmartConfig', () => {
       expect(result.current).toEqual({
         isPending: false,
         isError: true,
+        error: mockError,
         secretConfig: undefined,
       });
       expect(mockAddError).toHaveBeenCalledWith(
@@ -263,15 +271,16 @@ describe('useSecretSmartConfig', () => {
     });
 
     it('should return error state when any data has error', () => {
+      const mockError = createErrorResponseMock('OKMS error');
       mockUseOkmsById.mockReturnValue({
         data: null,
         isPending: false,
-        error: createErrorResponseMock('OKMS error'),
+        error: mockError,
       });
       mockUseOkmsSecretConfig.mockReturnValue({
         data: null,
         isPending: false,
-        error: createErrorResponseMock('Secret config error'),
+        error: mockError,
       });
 
       const { result } = renderHookWithClient(() =>
@@ -281,6 +290,7 @@ describe('useSecretSmartConfig', () => {
       expect(result.current).toEqual({
         isPending: false,
         isError: true,
+        error: mockError,
         secretConfig: undefined,
       });
       expect(mockAddError).toHaveBeenCalledWith('OKMS error');
