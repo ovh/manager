@@ -13,6 +13,8 @@ export * from './typography';
 
 export * from './datagrid/datagrid.component';
 export * from './datagrid/text-cell.component';
+export * from './datagrid/tags-cell.component';
+
 export * from './datagrid/useDatagrid';
 export * from './datagrid/useDatagridSearchParams';
 export * from './datagrid/clipboard-cell.component';
