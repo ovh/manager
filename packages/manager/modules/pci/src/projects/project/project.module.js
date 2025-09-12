@@ -1,5 +1,4 @@
 import angular from 'angular';
-
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'angular-translate';
@@ -7,11 +6,9 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
-
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import contacts from './contacts';
 import creating from './creating';
-import dataProcessing from './data-processing';
 import edit from './edit';
 import activate from './activate';
 import components from './components';
@@ -44,7 +41,6 @@ angular
     trustedNic,
     contacts,
     creating,
-    dataProcessing,
     edit,
     activate,
     components,

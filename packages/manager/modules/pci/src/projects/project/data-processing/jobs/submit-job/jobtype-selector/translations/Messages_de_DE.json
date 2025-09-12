@@ -1,5 +1,0 @@
-{
-  "data_processing_submit_job_spark_description": "Starten Sie einen Auftrag mit Apache Spark unter Verwendung einer JAR Java/Scala oder mit Python-Code und Conda-Abhängigkeiten.",
-  "data_processing_submit_job_soon_deprecated": "Bald veraltet",
-  "data_processing_submit_job_deprecated": "Veraltet"
-}
