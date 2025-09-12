@@ -1,5 +1,8 @@
 import { CONDITION_TYPES } from '../components/conditions/conditionType/conditionType.constants';
-import { OPERATORS } from '../components/conditions/operator/operator.constants';
+import {
+  CRITERIA,
+  OPERATORS,
+} from '../components/conditions/operator/operator.constants';
 
 export default class IAMConditionsUtils {
   static parseFromAPI(conditions) {
@@ -21,7 +24,7 @@ export default class IAMConditionsUtils {
 
     return {
       type,
-      criterion,
+      criterion: criterion ?? CRITERIA.EQ, // empty criterion means "equal"
       conditionType,
       value: entries[1],
       label: entries.join(': '),
