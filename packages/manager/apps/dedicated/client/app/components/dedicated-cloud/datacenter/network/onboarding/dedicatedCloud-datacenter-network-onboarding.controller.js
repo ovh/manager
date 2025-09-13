@@ -6,6 +6,10 @@ import {
   NETWORK_LABEL,
   DATACENTER_NETWORK_SITE_WEB_LINK,
 } from '../../../../../dedicatedCloud/datacenter/dedicatedCloud-datacenter.constants';
+import { TRACKING_DISPLAY_LISTING_NSX_SUFFIX } from '../../../../../dedicatedCloud/datacenter/network/constants.js';
+
+import { TRACKING_ACTION_PREFIX } from '../dedicatedCloud-datacenter-network.constants.js';
+
 import NETWORK_LOGO from './assets/network.png';
 
 export default class {
@@ -73,11 +77,19 @@ export default class {
   }
 
   handleOrderClick() {
+    this.trackAction('activate_nsx-edge-nodes');
     this.displaySuccessMessage(
       this.$translate.instant(
         'dedicatedCloud_datacenter_network_onboarding_order_success',
         { link: this.orderLink },
       ),
+    );
+  }
+
+  trackAction(hit) {
+    this.trackClick(
+      `${TRACKING_ACTION_PREFIX}${hit}`,
+      TRACKING_DISPLAY_LISTING_NSX_SUFFIX,
     );
   }
 }

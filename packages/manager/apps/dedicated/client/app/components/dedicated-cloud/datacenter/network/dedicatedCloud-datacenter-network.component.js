@@ -15,6 +15,7 @@ export default {
     hasOnlyMinimumNsx: '<',
     goToAddNsx: '<',
     isNsxEdgeRelocateAvailable: '<',
+    trackClick: '<',
   },
   controller,
   template,
