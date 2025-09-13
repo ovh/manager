@@ -39,10 +39,10 @@ hostedPrivateCloudUniverse.children = [
         serviceType: 'MANAGED_VCD',
         tag: NodeTag.NEW,
         routing: {
-          application: 'hpc-vmware-managed-vcd',
+          application: 'hpc-vmware-public-vcf-aas',
           hash: '#/',
         },
-        features: ['hpc-vmware-managed-vcd'],
+        features: ['hpc-vmware-public-vcf-aas'],
       },
       {
         id: 'nutanix',
