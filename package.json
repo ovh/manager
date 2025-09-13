@@ -52,7 +52,9 @@
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",
     "test": "turbo run test --concurrency=1",
-    "test:scripts": "make test"
+    "test:scripts": "make test",
+    "types-coverage:report": "yarn manager-types-coverage",
+    "types-coverage:tests": "yarn manager-types-coverage-tests"
   },
   "resolutions": {
     "@babel/runtime": "^7.22.15",

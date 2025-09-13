@@ -22,3 +22,5 @@ coverage
 .ide-config
 _out
 perf-budgets-reports/**
+types-coverage-reports/**
+**/.type-coverage/result.json
