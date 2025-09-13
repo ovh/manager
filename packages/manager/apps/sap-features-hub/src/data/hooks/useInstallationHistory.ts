@@ -4,6 +4,11 @@ import { getSAPInstallations } from '@/data/api/sapInstallations';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
 import { TSAPInstallationWithService } from '@/types/installation.type';
 
+export const installationHistoryQueryKeys = [
+  'sap-features-hub',
+  `/dedicatedCloud/sap`,
+];
+
 export default function useInstallationHistory() {
   const {
     data: services,
@@ -15,7 +20,7 @@ export default function useInstallationHistory() {
   const installations = useQueries({
     queries:
       services?.map(({ serviceName }) => ({
-        queryKey: ['sap-features-hub', `/dedicatedCloud/sap`, serviceName],
+        queryKey: [...installationHistoryQueryKeys, serviceName],
         queryFn: async () => {
           const res = await getSAPInstallations(serviceName);
           const extendedInstallations: TSAPInstallationWithService[] = res.data.map(

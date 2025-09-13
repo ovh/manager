@@ -25,3 +25,14 @@ export const buildViewInstallationRedirectUrl = ({
   serviceName && taskId
     ? `${urls.installationReport}${buildSearchQuery({ serviceName, taskId })}`
     : urls.listing;
+
+export const buildDeleteInstallationUrl = ({
+  serviceName,
+  taskId,
+}: {
+  serviceName: string;
+  taskId: string;
+}) =>
+  serviceName && taskId
+    ? `${urls.deleteInstallation}${buildSearchQuery({ serviceName, taskId })}`
+    : urls.listing;

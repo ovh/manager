@@ -17,6 +17,9 @@ const InstallationHistoryPage = React.lazy(() =>
 const InstallationDetailsPage = React.lazy(() =>
   import('@/pages/dashboard/installationDetails/InstallationDetails.page'),
 );
+const DeleteInstallationPage = React.lazy(() =>
+  import('@/pages/dashboard/deleteInstallation/DeleteInstallation.page'),
+);
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding'));
 const InstallationDashboardPage = React.lazy(() =>
   import('@/pages/installation/InstallationDashboard.page'),
@@ -67,7 +70,19 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    />
+    >
+      <Route
+        id={'dashboard.deleteInstallation'}
+        path={urls.deleteInstallation}
+        Component={DeleteInstallationPage}
+        handle={{
+          tracking: {
+            pageName: 'delete-installation',
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
     <Route
       id={'dashboard.installationDashboard'}
       path={urls.installationReport}
