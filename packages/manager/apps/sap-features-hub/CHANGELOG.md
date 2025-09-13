@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.8...@ovh-ux/manager-sap-features-hub-app@0.4.9) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.7...@ovh-ux/manager-sap-features-hub-app@0.4.8) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
+## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.6...@ovh-ux/manager-sap-features-hub-app@0.4.7) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.5...@ovh-ux/manager-sap-features-hub-app@0.4.6) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
 ## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.4.4...@ovh-ux/manager-sap-features-hub-app@0.4.5) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

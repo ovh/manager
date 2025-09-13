@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.13.0...@ovh-ux/manager-wiki@0.13.1) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.12.0...@ovh-ux/manager-wiki@0.13.0) (2025-09-11)
+
+
+### Features
+
+* **manager-wiki:** correct core generator changelog ([16b071c](https://github.com/ovh/manager/commit/16b071cc6a752f934913b2d5db18e0855527c56b)), closes [#MANAGER-19633](https://github.com/ovh/manager/issues/MANAGER-19633)
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.1...@ovh-ux/manager-wiki@0.12.0) (2025-09-09)
+
+
+### Features
+
+* **manager-wiki:** correct storybook build ([35dce84](https://github.com/ovh/manager/commit/35dce84fc278a076fa25f11edfc4c622a29fd659)), closes [#MANAGER-19370](https://github.com/ovh/manager/issues/MANAGER-19370)
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.11.0...@ovh-ux/manager-wiki@0.11.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.10.2...@ovh-ux/manager-wiki@0.11.0) (2025-09-06)
 
 

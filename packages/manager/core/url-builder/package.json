@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/url-builder",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "OVHcloud control panel URL Builder",
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
     "test:ci": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "^0.8.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.12.0"
+    "@ovh-ux/manager-vite-config": "^0.13.0"
   }
 }

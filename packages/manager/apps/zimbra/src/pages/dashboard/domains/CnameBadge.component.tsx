@@ -1,19 +1,17 @@
 import React from 'react';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BADGE_COLOR,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { Trans, useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_BADGE_COLOR, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGenerateUrl } from '@/hooks';
 import { VERIFY_DOMAIN } from '@/tracking.constants';
+
 import { DomainItem } from './Domains.types';
 
 export type CnameBadgeProps = {

@@ -1,14 +1,8 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import {
-  AliasType,
-  getZimbraPlatformAlias,
-  getZimbraPlatformAliasQueryKey,
-} from '@/data/api';
+
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { AliasType, getZimbraPlatformAlias, getZimbraPlatformAliasQueryKey } from '@/data/api';
 
 type UseAliasParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
   aliasId?: string;

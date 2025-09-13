@@ -18,4 +18,5 @@ packages/manager/apps/pci-databases-analytics/src/components/ui
 lint-runner.js
 lint-cli.js
 perf-budgets-cli.js
+perf-budgets-tests-cli.js
 manager-generator

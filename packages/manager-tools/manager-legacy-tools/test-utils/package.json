@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-test-utils",
-  "version": "0.7.0",
+  "version": "0.7.3",
   "private": true,
   "description": "OVHcloud manager core test utils for vitest and jest",
   "repository": {
@@ -19,7 +19,7 @@
     "dev": "tsc"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.0",
+    "@ovh-ux/manager-core-api": "^0.18.3",
     "@ovhcloud/ods-components": "^18.6.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",

@@ -98,8 +98,18 @@ export default function HourlyConsumption({
       title: t('cpbc_hourly_rancher_title'),
       component: (
         <ResourceUsageList
-          resourcesUsage={consumption?.rancher}
+          resourcesUsage={consumption.rancher}
           disabledColumns={[ResourcesColumn.region]}
+        />
+      ),
+      condition: !isTrustedZone,
+    },
+    {
+      key: ResourceType.MANAGED_KUBERNETES_SERVICE,
+      title: t('cpbc_hourly_managed_kubernetes_service_title'),
+      component: (
+        <ResourceUsageList
+          resourcesUsage={consumption.managedKubernetesService}
         />
       ),
       condition: !isTrustedZone,
@@ -136,6 +146,12 @@ export default function HourlyConsumption({
       key: 'aiEndpoints',
       title: t('cpbc_hourly_ai_endpoints_title'),
       component: <AiEndpointList resourcesUsage={consumption.aiEndpoints} />,
+      condition: !isTrustedZone,
+    },
+    {
+      key: 'quantum',
+      title: t('cpbc_hourly_quantum_title'),
+      component: <ResourceUsageList resourcesUsage={consumption.quantum} />,
       condition: !isTrustedZone,
     },
     {

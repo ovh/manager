@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/billing-informations",
-  "version": "1.3.0",
+  "version": "1.3.4",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -18,13 +18,13 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-common-translations": "^0.18.0",
-    "@ovh-ux/manager-core-api": "^0.18.0",
-    "@ovh-ux/manager-module-common-api": "^0.5.0",
-    "@ovh-ux/manager-react-components": "^2.40.0",
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-common-translations": "^0.18.2",
+    "@ovh-ux/manager-core-api": "^0.18.3",
+    "@ovh-ux/manager-module-common-api": "^0.5.3",
+    "@ovh-ux/manager-react-components": "^2.40.4",
+    "@ovh-ux/manager-static-analysis-kit": "^0.8.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.12.0",
+    "@ovh-ux/manager-vite-config": "^0.13.0",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "axios-mock-adapter": "^2.1.0",

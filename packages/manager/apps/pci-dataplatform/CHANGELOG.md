@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.4...@ovh-ux/manager-pci-dataplatform-app@1.6.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
+## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.3...@ovh-ux/manager-pci-dataplatform-app@1.6.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.2...@ovh-ux/manager-pci-dataplatform-app@1.6.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.1...@ovh-ux/manager-pci-dataplatform-app@1.6.2) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

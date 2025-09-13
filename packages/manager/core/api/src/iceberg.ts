@@ -78,7 +78,7 @@ export const buildHeaders = () => {
       return builder;
     },
     setDisabledCache: (disableCache: boolean | undefined) => {
-      if (disableCache) headers['Pragma'] = 'no-cache';
+      if (disableCache) headers.Pragma = 'no-cache';
       return builder;
     },
     setPaginationSort: (sortBy: string | undefined, sortOrder = 'ASC') => {
@@ -92,10 +92,10 @@ export const buildHeaders = () => {
       if (filters?.length) {
         const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
-          .map(
-            ({ comparator, key, value }) =>
-              `${encodeURIComponent(key)}:${icebergFilter(comparator, String(value || ''))}`,
-          )
+          .map(({ comparator, key, value }) => {
+            const correctedValue = typeof value === 'object' ? value : String(value || '');
+            return `${encodeURIComponent(key)}:${icebergFilter(comparator, correctedValue)}`;
+          })
           .join('&');
         if (filtersJoin) {
           headers['x-pagination-filter'] = filtersJoin;
@@ -153,7 +153,7 @@ export async function fetchIcebergV2<T>({
 
   return {
     data: response.data,
-    cursorNext: headers['x-pagination-cursor-next'] ?? '',
+    cursorNext: headers['x-pagination-cursor-next'],
     status: response.status,
   };
 }

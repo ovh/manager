@@ -1,15 +1,9 @@
-import {
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+
+import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
+
+import { TaskType, getZimbraPlatformTask, getZimbraPlatformTaskQueryKey } from '@/data/api';
 import { useOrganization } from '@/data/hooks';
-import {
-  getZimbraPlatformTask,
-  getZimbraPlatformTaskQueryKey,
-  TaskType,
-} from '@/data/api';
 
 type UseTasksParams = Omit<UseQueryOptions, 'queryKey' | 'queryFn' | 'select'>;
 
@@ -24,7 +18,6 @@ export const useTasks = (options: UseTasksParams = {}) => {
     enabled: (query) =>
       (typeof options.enabled === 'function'
         ? options.enabled(query)
-        : typeof options.enabled !== 'boolean' || options.enabled) &&
-      !!platformId,
+        : typeof options.enabled !== 'boolean' || options.enabled) && !!platformId,
   }) as UseQueryResult<TaskType[]>;
 };

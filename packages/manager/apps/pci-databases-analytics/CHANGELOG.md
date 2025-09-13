@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.4...@ovh-ux/manager-pci-databases-analytics-app@1.27.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.3...@ovh-ux/manager-pci-databases-analytics-app@1.27.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.2...@ovh-ux/manager-pci-databases-analytics-app@1.27.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
 ## [1.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.1...@ovh-ux/manager-pci-databases-analytics-app@1.27.2) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

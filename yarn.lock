@@ -7063,6 +7063,11 @@
   resolved "https://registry.yarnpkg.com/@orchidjs/unicode-variants/-/unicode-variants-1.1.2.tgz#1fd71791a67fdd1591ebe0dcaadd3964537a824e"
   integrity sha512-5DobW1CHgnBROOEpFlEXytED5OosEWESFvg/VYmH0143oXcijYTprRYJTs+55HzGM4IqxiLFSuqEzu9mPNwVsA==
 
+"@ovh-ux/manager-common-translations@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.10.0.tgz#b135fbf4c9fd64a6c2045ad54091a1982fbad2d0"
+  integrity sha512-f4o6TSBloE1VfZQigkulEjPU7IlsMj1VqhKD+VETOIroHMmD0JUaLkWXNQWRlRZ+lFHZmDvSQGdqYwFWmQfNdw==
+
 "@ovh-ux/manager-common-translations@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"

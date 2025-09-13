@@ -1,7 +1,9 @@
 import { fetchIcebergV2, v2 } from '@ovh-ux/manager-core-api';
-import { AliasBodyParamsType, AliasType } from './type';
+
 import { getApiPath } from '@/data/api';
 import { APIV2_DEFAULT_PAGESIZE } from '@/utils';
+
+import { AliasBodyParamsType, AliasType } from './type';
 
 // GET
 
@@ -25,22 +27,14 @@ export const getZimbraPlatformAliases = ({
     disableCache,
   });
 
-export const getZimbraPlatformAlias = async (
-  platformId: string,
-  id: string,
-) => {
-  const { data } = await v2.get<AliasType>(
-    `${getApiPath(platformId)}alias/${id}`,
-  );
+export const getZimbraPlatformAlias = async (platformId: string, id: string) => {
+  const { data } = await v2.get<AliasType>(`${getApiPath(platformId)}alias/${id}`);
   return data;
 };
 
 // POST
 
-export const postZimbraPlatformAlias = async (
-  platformId: string,
-  params: AliasBodyParamsType,
-) => {
+export const postZimbraPlatformAlias = async (platformId: string, params: AliasBodyParamsType) => {
   const { data } = await v2.post(`${getApiPath(platformId)}alias`, {
     targetSpec: params,
   });
@@ -49,10 +43,7 @@ export const postZimbraPlatformAlias = async (
 
 // DELETE
 
-export const deleteZimbraPlatformAlias = async (
-  platformId: string,
-  aliasId: string,
-) => {
+export const deleteZimbraPlatformAlias = async (platformId: string, aliasId: string) => {
   const { data } = await v2.delete(`${getApiPath(platformId)}alias/${aliasId}`);
   return data;
 };

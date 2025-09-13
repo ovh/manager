@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.3...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.4) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.22.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.2...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.3) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.1...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.5...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.22.0) (2025-09-08)
+
+
+### Features
+
+* **vcd:** add tracking feature implementation ([4d44658](https://github.com/ovh/manager/commit/4d446583c09740de07ac36d049deb2731bc4cae6)), closes [#MANAGER-18459](https://github.com/ovh/manager/issues/MANAGER-18459)
+
+
+
+
+
 ## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.4...@ovh-ux/manager-hpc-vmware-managed-vcd-app@0.21.5) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-managed-vcd-app

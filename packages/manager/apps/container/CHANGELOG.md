@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.147.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.3...@ovh-ux/manager-container-app@0.147.4) (2025-09-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4322] ([58414eb](https://github.com/ovh/manager/commit/58414eb3f25845b473e4cf23c23c33f2f0d2e423))
+
+
+
+
+
+## [0.147.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.2...@ovh-ux/manager-container-app@0.147.3) (2025-09-10)
+
+
+### Bug Fixes
+
+* **container:** add error management for modal display check ([76c02af](https://github.com/ovh/manager/commit/76c02af709d95dd16b4502f6fa459a4347763c89)), closes [#MANAGER-19604](https://github.com/ovh/manager/issues/MANAGER-19604)
+* **container:** remove payment modal style overriding pnr font ([6262ed5](https://github.com/ovh/manager/commit/6262ed59ffeb1d44822ecb392b7dfaa20b0d2a66)), closes [#MANAGER-19597](https://github.com/ovh/manager/issues/MANAGER-19597)
+
+
+
+
+
+## [0.147.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.1...@ovh-ux/manager-container-app@0.147.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4310] ([faec10f](https://github.com/ovh/manager/commit/faec10f8b8817f6a19ffa8d626554911d4d63b2e))
+* **i18n:** add missing translations [CDS 4314] ([9a4c8b3](https://github.com/ovh/manager/commit/9a4c8b332f86e7d8922432b9a8749ea620cc6624))
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
+## [0.147.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.0...@ovh-ux/manager-container-app@0.147.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 # [0.147.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.146.1...@ovh-ux/manager-container-app@0.147.0) (2025-09-06)
 
 

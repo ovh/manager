@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.33.2...@ovh-ux/manager-generator@0.34.0) (2025-09-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4323] ([9cb2711](https://github.com/ovh/manager/commit/9cb271116b07691e7cc53b4997654fac3b8b7c49))
+* static kit integration status ([9a49e4f](https://github.com/ovh/manager/commit/9a49e4f992311de0ec2ac2876720dc46202ed118)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
+## [0.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.33.1...@ovh-ux/manager-generator@0.33.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4314] ([9a4c8b3](https://github.com/ovh/manager/commit/9a4c8b332f86e7d8922432b9a8749ea620cc6624))
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
 ## [0.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.33.0...@ovh-ux/manager-generator@0.33.1) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-generator

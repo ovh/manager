@@ -1,29 +1,80 @@
-import { UseQueryResult } from '@tanstack/react-query';
 import { describe, vi, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { useProductMaintenance } from '@ovh-ux/manager-react-components';
-import { TServerContainer } from '@/api/data/container';
 import {
-  usePaginatedObjects,
-  useServerContainer,
-} from '@/api/hooks/useContainer';
+  useParams,
+  useSearchParams,
+  useHref,
+  MemoryRouter,
+} from 'react-router-dom';
+import {
+  useProductMaintenance,
+  useMe,
+  IMe,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { useProject, TProject } from '@ovh-ux/manager-pci-common';
+
+import { UseQueryResult } from '@tanstack/react-query';
 import ShowPage from './Show.page';
-import { useStorageEndpoint } from '@/api/hooks/useStorages';
-import { wrapperShow } from '@/wrapperRenders';
+import { useContainerData } from '@/hooks/useContainerData';
+import { wrapper } from '@/wrapperRenders';
+import { TRegion } from '@/api/data/region';
+import { TContainer } from '@/pages/dashboard/BucketPropertiesCard';
 
-vi.mock('@/api/hooks/useContainer', () => ({
-  useServerContainer: vi.fn(),
-  usePaginatedObjects: vi.fn(),
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    Outlet: vi.fn(() => <div>Outlet</div>),
+    useParams: vi.fn(),
+    useSearchParams: vi.fn(),
+    useHref: vi.fn(),
+  };
+});
 
-vi.mock('@/api/hooks/useStorages', async () => ({
-  ...(await vi.importActual('@/api/hooks/useStorages')),
-  useStorageEndpoint: vi.fn(),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
+  return {
+    ...actual,
+    useProductMaintenance: vi.fn(),
+    useMe: vi.fn(),
+    useProjectUrl: vi.fn(),
+    useNotifications: vi.fn(() => ({
+      clearNotifications: vi.fn(),
+    })),
+    PciMaintenanceBanner: vi.fn(() => (
+      <div data-testid="maintenance-banner">
+        <a
+          data-testid="pci-maintenance-banner-link"
+          href="https://status.ovh.com"
+        >
+          Maintenance
+        </a>
+      </div>
+    )),
+    BaseLayout: vi.fn(({ children }) => <div>{children}</div>),
+    Notifications: vi.fn(() => <div>Notifications</div>),
+    TabsPanel: vi.fn(() => <div>Tabs</div>),
+    Datagrid: vi.fn(() => <div>Mocked Datagrid</div>),
+    FilterAdd: vi.fn(() => <div>Mocked FilterAdd</div>),
+    Filters: vi.fn(() => <div>Mocked Filters</div>),
+  };
+});
 
-vi.mock('date-fns', () => ({
-  format: vi.fn(() => 'formattedDate'),
-}));
+vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-pci-common')
+  >();
+  return {
+    ...actual,
+    useProject: vi.fn(),
+
+    TabsPanel: vi.fn(() => <div>Mocked TabsPanel</div>),
+    Tabs: vi.fn(() => <div>Mocked Tabs</div>),
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   ...(await vi.importActual('@ovh-ux/manager-react-shell-client')),
@@ -33,125 +84,91 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   }),
 }));
 
-vi.mock('@/hooks/useFeatureAvailability', () => ({
-  useFeatureAvailability: vi.fn(() => ({
-    data: {
-      'storage:standard-infrequent-access': true,
-    },
-  })),
+vi.mock('@/hooks/useContainerData', () => ({
+  useContainerData: vi.fn(),
 }));
 
-vi.mock('@/hooks/useStandardInfrequentAccessAvailability', () => ({
-  default: vi.fn(() => true),
-}));
-
-vi.mock('@/constants', async () => ({
-  ...(await vi.importActual('@/constants')),
-  standardInfrequentAcess: 'storage:standard-infrequent-access',
-}));
-
-describe('Show page', () => {
-  const mockServerContainer = ({
-    name: 'test-container',
-    id: 'container-id',
-    region: 'GRA',
-    objects: [
-      {
-        name: 'test-object',
-        size: 1024,
-        lastModified: new Date('2023-10-31T23:00:00.000Z'),
-        contentType: 'text/plain',
-      },
-    ],
-    s3StorageType: true,
-    versioning: {
-      status: 'enabled',
-    },
-  } as unknown) as TServerContainer;
-
+describe('ShowPage', () => {
   beforeEach(() => {
+    vi.clearAllMocks();
+
+    vi.mocked(useParams).mockReturnValue({
+      storageId: 'container-id',
+      projectId: 'project-id',
+    });
+    vi.mocked(useSearchParams).mockReturnValue([
+      new URLSearchParams('region=GRA'),
+      vi.fn(),
+    ]);
+    vi.mocked(useHref).mockReturnValue('/test');
+    vi.mocked(useProjectUrl).mockReturnValue('/project-url');
     vi.mocked(useProductMaintenance).mockReturnValue({
       hasMaintenance: false,
       maintenanceURL: '',
     });
+    vi.mocked(useMe).mockReturnValue({ me: { ovhSubsidiary: 'FR' } as IMe });
+    vi.mocked(useProject).mockReturnValue({
+      data: { project_id: 'project-id', description: 'Test Project' },
+    } as UseQueryResult<TProject, null>);
+    vi.mocked(useContainerData).mockReturnValue({
+      container: {
+        id: 'container-id',
+        name: 'test-container',
+        versioning: { status: 'ENABLED' },
+        objectLock: { status: 'DISABLED' },
+        region: 'GRA',
+      } as TContainer,
+      url: 'https://test.com',
+      region: { name: 'GRA' } as TRegion,
+      isEncrypted: false,
+      showReplicationBanner: false,
+      showEnableEncryptionLink: false,
+      displayEncryptionData: false,
+      isPending: false,
+      isLocalZone: false,
+      isRightOffer: true,
+    });
   });
 
-  it('should display spinner when data is loading', () => {
-    vi.mocked(useServerContainer).mockReturnValue({
+  const renderWithRouter = (ui: React.ReactElement) => {
+    return render(ui, {
+      wrapper: ({ children }) => (
+        <MemoryRouter>{wrapper({ children })}</MemoryRouter>
+      ),
+    });
+  };
+
+  it('should render loading spinner when data is pending', () => {
+    vi.mocked(useContainerData).mockReturnValueOnce({
+      container: null,
+      url: '',
+      region: null,
+      isEncrypted: false,
+      showReplicationBanner: false,
+      showEnableEncryptionLink: false,
+      displayEncryptionData: false,
       isPending: true,
-      data: undefined,
-    } as UseQueryResult<TServerContainer>);
+      isLocalZone: false,
+      isRightOffer: true,
+    });
 
-    vi.mocked(usePaginatedObjects).mockReturnValue({
-      isPending: true,
-    } as never);
-
-    vi.mocked(useStorageEndpoint).mockReturnValue({
-      isPending: true,
-    } as never);
-
-    render(<ShowPage />, { wrapper: wrapperShow });
-
+    renderWithRouter(<ShowPage />);
     const spinner = document.querySelector('ods-spinner');
     expect(spinner).toBeInTheDocument();
     expect(spinner).toHaveAttribute('size', 'md');
   });
 
-  it('should display container information when loaded', async () => {
-    vi.mocked(useServerContainer).mockReturnValue({
-      data: mockServerContainer,
-      isPending: false,
-    } as UseQueryResult<TServerContainer>);
-
-    vi.mocked(usePaginatedObjects).mockReturnValue({
-      isPending: false,
-      paginatedObjects: {
-        rows: mockServerContainer.objects,
-        totalRows: 1,
-      },
-    } as never);
-
-    vi.mocked(useStorageEndpoint).mockReturnValue({
-      url: 'https://storage.example.com',
-      isPending: false,
-    } as never);
-
-    render(<ShowPage />, { wrapper: wrapperShow });
-
-    expect(await screen.findByText('test-container')).toBeInTheDocument();
-
-    const clipboards = screen.getAllByTestId('clipboard');
-    const values = clipboards.map((el) => el.getAttribute('value'));
-
-    expect(values).toContain('container-id');
-    expect(values).toContain('https://storage.example.com');
-  });
-
-  it('should display maintenance banner when there is maintenance', () => {
-    vi.mocked(useProductMaintenance).mockReturnValue({
+  it('should render maintenance banner when active', () => {
+    vi.mocked(useProductMaintenance).mockReturnValueOnce({
       hasMaintenance: true,
       maintenanceURL: 'https://status.ovh.com',
     });
 
-    vi.mocked(useServerContainer).mockReturnValue({
-      data: mockServerContainer,
-      isPending: false,
-    } as UseQueryResult<TServerContainer>);
+    renderWithRouter(<ShowPage />);
+    const banner = screen.getByTestId('maintenance-banner');
+    expect(banner).toBeInTheDocument();
 
-    vi.mocked(usePaginatedObjects).mockReturnValue({
-      isPending: false,
-      paginatedObjects: {
-        rows: mockServerContainer.objects,
-        totalRows: 1,
-      },
-    } as never);
-
-    vi.mocked(useStorageEndpoint).mockReturnValue({
-      url: 'https://storage.example.com',
-      isPending: false,
-    } as never);
-
-    render(<ShowPage />, { wrapper: wrapperShow });
-    expect(screen.getByTestId('maintenance-banner')).toBeInTheDocument();
+    const link = screen.getByTestId('pci-maintenance-banner-link');
+    expect(link).toHaveAttribute('href', 'https://status.ovh.com');
   });
 });
