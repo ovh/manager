@@ -1,34 +1,6 @@
 import fs from 'node:fs';
 
-/**
- * Log an informational message with a standard prefix.
- *
- * @param {string} msg - The message to log.
- * @returns {void}
- */
-export function logInfo(msg) {
-  console.log(`[manager-perf-budget] ${msg}`);
-}
-
-/**
- * Log a warning message with a standard prefix.
- *
- * @param {string} msg - The message to log.
- * @returns {void}
- */
-export function logWarn(msg) {
-  console.warn(`⚠️  [manager-perf-budget] ${msg}`);
-}
-
-/**
- * Log an error message with a standard prefix.
- *
- * @param {string} msg - The message to log.
- * @returns {void}
- */
-export function logError(msg) {
-  console.error(`❌ [manager-perf-budget] ${msg}`);
-}
+import { logWarn } from './log-utils.js';
 
 /**
  * Check if a given package.json belongs to a React app.
