@@ -51,7 +51,7 @@ describe('Datacentre Compute Listing Page', () => {
     // access compute tab
     await assertTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check page title
     await assertTextVisibility(VHOSTS_LABEL);
@@ -96,7 +96,7 @@ describe('Datacentre Compute Listing Page', () => {
     // access compute tab
     await assertTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check banner info for special offer
     await waitFor(() => {
