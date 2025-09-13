@@ -1,0 +1,7 @@
+{
+  "key_management_service_terminate_cancel": "Annuler",
+  "key_management_service_terminate_confirm": "Résilier",
+  "key_management_service_terminate_error": "Une erreur est survenue. {{error}}",
+  "key_management_service_terminate_success_banner": "Votre demande de résiliation de votre KMS {{ServiceName}} a été prise en compte. Un e-mail contenant la procédure vous a été envoyé.",
+  "key_management_service_terminate_success_banner_us": "Votre demande de résiliation de votre KMS {{ServiceName}} a été prise en compte. Un e-mail de confirmation vous a été envoyé."
+}

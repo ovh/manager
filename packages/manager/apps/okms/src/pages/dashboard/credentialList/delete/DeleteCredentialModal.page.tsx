@@ -1,0 +1,60 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { DeleteModal } from '@ovh-ux/manager-react-components';
+import { useDeleteOkmsCredential } from '@/data/hooks/useDeleteOkmsCredential';
+
+const DeleteCredentialPage = () => {
+  const navigate = useNavigate();
+  const { trackPage } = useOvhTracking();
+  const { okmsId, credentialId } = useParams() as {
+    okmsId: string;
+    credentialId: string;
+  };
+  const { t } = useTranslation('key-management-service/credential');
+
+  const { mutate, isPending } = useDeleteOkmsCredential({
+    okmsId,
+    credentialId,
+    onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_access_certificate',
+      });
+      navigate('..', {
+        state: { deletingCredentialId: credentialId },
+      });
+    },
+    onError: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'delete_access_certificate',
+      });
+      navigate('..');
+    },
+  });
+
+  const onClose = () => {
+    navigate('..');
+  };
+
+  const onConfirm = () => {
+    mutate();
+  };
+
+  return (
+    <DeleteModal
+      isOpen
+      headline={t('key_management_service_credential_delete_modal_headline')}
+      deleteInputLabel={t(
+        'key_management_service_credential_delete_modal_input_label',
+      )}
+      closeModal={onClose}
+      onConfirmDelete={onConfirm}
+      isLoading={isPending}
+    />
+  );
+};
+
+export default DeleteCredentialPage;
