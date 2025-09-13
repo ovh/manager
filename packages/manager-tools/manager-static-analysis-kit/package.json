@@ -123,13 +123,16 @@
     "eslint-plugin-tailwindcss": "^3.18.0",
     "globals": "^16.2.0",
     "jiti": "^2.5.1",
+    "jscpd": "^4.0.5",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "semantic-ui-react": "^2.1.5",
     "tailwind-csstree": "^0.1.1",
     "tailwindcss": "^3.4.4",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
+    "typescript-coverage-report": "^1.1.1",
     "typescript-eslint": "^8.35.0",
     "vite-bundle-analyzer": "^1.2.3"
   }
