@@ -67,7 +67,6 @@ import '../webhosting/order/steps/module/domain-webhosting-order-steps-module.co
 import '../webhosting/order/steps/module/domain-webhosting-order-steps-module.constants';
 import '../webhosting/order/steps/module/domain-webhosting-order-steps-module.controller';
 import '../zone/default-ttl/domain-zone-default-ttl.controller';
-import '../zone/delete-all/domain-zone-delete-all.controller';
 import '../zone/domain-zone-dns.controller';
 import '../zone/import-text/domain-zone-import-text.controller';
 import '../zone/record/delete/domain-zone-record-delete.controller';
