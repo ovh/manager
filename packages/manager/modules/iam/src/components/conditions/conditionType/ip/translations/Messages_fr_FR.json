@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_ip_label": "Adresse IP",
+  "iam_create_condition_ip_placeholder": "Saisissez une adresse IP",
+  "iam_create_condition_ip_helper": "Séparez chaque adresse IP par une virgule (127.0.0.1/32,10.23.0.0/16)"
+}

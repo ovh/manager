@@ -1,0 +1,16 @@
+{
+  "iam_create_condition_configuration": "Configurez vos conditions",
+  "iam_create_condition_type": "Type de condition",
+  "iam_create_condition_type_placeholder": "Sélectionnez un type de condition",
+  "iam_create_condition_type_Tag": "Tag",
+  "iam_create_condition_type_Name": "Nom",
+  "iam_create_condition_type_IP": "Adresse IP",
+  "iam_create_condition_type_WeekDay": "Jour de la semaine",
+  "iam_create_condition_type_Date": "Date",
+  "iam_create_condition_type_Hour": "Heure",
+  "iam_create_condition_type_Type": "Type de produit",
+  "iam_create_condition_operator": "Opérateur",
+  "iam_create_condition_operator_placeholder": "Sélectionnez un opérateur",
+  "iam_create_condition_cancel": "Annuler",
+  "iam_create_condition_configure": "Configurer"
+}
