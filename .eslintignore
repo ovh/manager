@@ -16,7 +16,11 @@ packages/manager/apps/container
 packages/manager/apps/pci-databases-analytics/src/components/ui
 !.storybook
 lint-runner.js
+code-duplication-cli.js
+code-duplication-tests-cli.js
 lint-cli.js
 perf-budgets-cli.js
 perf-budgets-tests-cli.js
+types-coverage-cli.js
+types-coverage-tests-cli.js
 manager-generator
