@@ -31,6 +31,8 @@ export const folderMatchWithFex: Record<string, string> = {
   // ─────────── TESTS ───────────
   '**/*.test.{ts,tsx}': '**/__tests__/',
   '**/*.spec.{ts,tsx}': '**/__tests__/',
+  '**/*.w3c.spec.{ts,tsx}': '**/__tests__/',
+  '**/*.a11y.spec.{ts,tsx}': '**/__tests__/',
 
   // ─────────── CONSTANTS ───────────
   '**/*.constants.{ts,js}': 'src/**/',

@@ -55,6 +55,8 @@
     "start": "node scripts/start-application.mjs",
     "test": "turbo run test --concurrency=1",
     "test:scripts": "make test",
+    "tests-coverage:report": "yarn manager-tests-coverage",
+    "tests-coverage:tests": "yarn manager-tests-coverage-tests",
     "types-coverage:report": "yarn manager-types-coverage",
     "types-coverage:tests": "yarn manager-types-coverage-tests"
   },
