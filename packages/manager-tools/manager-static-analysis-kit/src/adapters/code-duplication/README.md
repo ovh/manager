@@ -39,8 +39,8 @@ This will:
 1. Discover all **React apps** under `manager/apps`.
 2. Run **jscpd** for them.
 3. Generate **combined reports**:
-  - `code-duplication-reports/code-duplication-combined-report.json`
-  - `code-duplication-reports/code-duplication-combined-report.html`
+- `code-duplication-reports/code-duplication-combined-report.json`
+- `code-duplication-reports/code-duplication-combined-report.html`
 
 ---
 
