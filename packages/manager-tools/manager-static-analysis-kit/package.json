@@ -94,6 +94,8 @@
     "manager-lint": "./bin/lint-cli.js",
     "manager-perf-budgets": "./bin/perf-budgets-cli.js",
     "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js",
+    "manager-tests-coverage": "./bin/tests-coverage-cli.js",
+    "manager-tests-coverage-tests": "./bin/tests-coverage-cli-tests.js",
     "manager-types-coverage": "./bin/types-coverage-cli.js",
     "manager-types-coverage-tests": "./bin/types-coverage-tests-cli.js"
   },
@@ -107,8 +109,7 @@
     "postinstall": "tsx scripts/build.ts",
     "lint:modern": "manager-lint --config eslint.config.mts ./src/**/*.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src/**/*.ts",
-    "prepare": "tsx scripts/build.ts",
-    "test": "echo \"No tests yet.\" && exit 0"
+    "prepare": "tsx scripts/build.ts"
   },
   "dependencies": {
     "axe-core": "^4.10.3",

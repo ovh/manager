@@ -24,4 +24,5 @@ _out
 perf-budgets-reports/**
 types-coverage-reports/**
 code-duplication-reports/**
+tests-coverage-reports/**
 **/.type-coverage/result.json
