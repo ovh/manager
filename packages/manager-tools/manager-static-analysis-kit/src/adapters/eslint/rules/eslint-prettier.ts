@@ -1,8 +1,8 @@
 import { Linter } from 'eslint';
 import prettier from 'eslint-plugin-prettier';
 
+import { prettierConfig, prettierIgnorePatterns } from '../../../configs/code-formatter-config';
 import { commonTextFiles } from '../../../configs/file-globs-config';
-import { prettierConfig, prettierIgnorePatterns } from '../../../configs/prettier-config';
 
 /**
  * ESLint Flat Config for Prettier integration.

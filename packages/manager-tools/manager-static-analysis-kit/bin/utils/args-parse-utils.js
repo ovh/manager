@@ -2,8 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
+import { codeDuplicationConfig } from '../../dist/configs/code-duplication-config.js';
 import { typesCoverageConfig } from '../../dist/configs/types-coverage-config.js';
-import { isReactApp } from './cli-utils.js';
+import { isReactApp } from './apps-utils.js';
 import { logError, logInfo, logWarn } from './log-utils.js';
 
 /**
@@ -145,7 +146,7 @@ export function parseCliTargets(appsDir) {
  * @param {string} outputDir - Output directory for the report.
  * @returns {string[]} Array of CLI arguments.
  */
-export function buildArgsFromConfig(outputDir) {
+export function buildTypesCoverageArgs(outputDir) {
   const args = ['--outputDir', outputDir];
 
   const mapping = {
@@ -173,6 +174,48 @@ export function buildArgsFromConfig(outputDir) {
     for (const pattern of typesCoverageConfig.ignoreFiles) {
       args.push('--ignore-files', pattern);
     }
+  }
+
+  return args;
+}
+
+/**
+ * Translate our config → jscpd CLI flags.
+ * @param {string} outputDir - output directory for jscpd reports
+ * @returns {string[]}
+ */
+export function buildCodeDuplicationArgs(outputDir) {
+  const cfg = codeDuplicationConfig;
+  const args = [
+    '--output',
+    outputDir,
+    '--reporters',
+    Array.isArray(cfg.reporters) ? cfg.reporters.join(',') : String(cfg.reporters || 'console'),
+    '--mode',
+    cfg.mode,
+    '--min-lines',
+    String(cfg.minLines),
+    '--min-tokens',
+    String(cfg.minTokens),
+    '--max-lines',
+    String(cfg.maxLines),
+    '--max-size',
+    String(cfg.maxSize),
+  ];
+
+  if (cfg.threshold !== null && cfg.threshold !== undefined) {
+    args.push('--threshold', String(cfg.threshold));
+  }
+  if (cfg.absolute) {
+    args.push('--absolute');
+  }
+  if (Array.isArray(cfg.formats) && cfg.formats.length > 0) {
+    args.push('--format', cfg.formats.join(','));
+  }
+  if (Array.isArray(cfg.ignore) && cfg.ignore.length > 0) {
+    // jscpd accepts comma-separated ignore globs
+    // https://github.com/kucherenko/jscpd/blob/master/apps/jscpd/README.md#ignore
+    args.push('--ignore', cfg.ignore.join(','));
   }
 
   return args;

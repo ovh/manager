@@ -27,7 +27,7 @@ export const sharedExclusionPatterns = [
   '**/test*/**',
   '**/**test.*',
   '**/**Test**',
-  '**/spec*.*',
+  '**/**spec*.*',
   '**/mock*/**',
   '**/mocks/**',
   '**/_mock_/**',
@@ -38,4 +38,6 @@ export const sharedExclusionPatterns = [
   '**/**hmr**',
   '**/**config**',
   '**/**cucumber**',
+  '**/Messages_*_*.json',
+  '**/**.md',
 ];

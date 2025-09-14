@@ -28,6 +28,8 @@
     "build:turbo": "turbo run build --concurrency=5",
     "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
+    "code-duplication:report": "yarn manager-code-duplication",
+    "code-duplication:tests": "yarn manager-code-duplication-tests",
     "commit": "node scripts/commit.js",
     "dev": "turbo run dev",
     "format": "run-p format:*",
