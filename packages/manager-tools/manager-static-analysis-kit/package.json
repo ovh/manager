@@ -81,6 +81,8 @@
   "main": "./dist/code-analysis.js",
   "types": "./dist/code-analysis.d.ts",
   "bin": {
+    "manager-code-duplication": "./bin/code-duplication-cli.js",
+    "manager-code-duplication-tests": "./bin/code-duplication-tests-cli.js",
     "manager-lint": "./bin/lint-cli.js",
     "manager-perf-budgets": "./bin/perf-budgets-cli.js",
     "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js",
@@ -125,6 +127,7 @@
     "eslint-plugin-storybook": "^9.0.13",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "globals": "^16.2.0",
+    "jscpd": "^4.0.5",
     "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",

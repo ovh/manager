@@ -4,6 +4,17 @@ import path from 'node:path';
 import { logError, logInfo } from './log-utils.js';
 
 /**
+ * Safe JSON read.
+ */
+export function readJsonSafe(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf-8'));
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Remove old combined report files (JSON & HTML).
  */
 export function removeOldCombinedReports(root, dirName, jsonFile, htmlFile) {

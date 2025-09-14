@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -12,22 +11,30 @@ import {
 import { bundleAnalysisConfig } from '../dist/configs/bundle-analysis-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { generateCombinedReports } from './utils/reports-utils.js';
+import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
 import { resolveTurboFilters, runTurboBuild } from './utils/turbo-utils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '../../..');
 const outputRootDir = path.resolve(__dirname, '../../../..');
 const appsDir = path.join(rootDir, 'manager/apps');
+
 const bundleAnalyzerBin = path.resolve(__dirname, '../node_modules/.bin/analyze');
+
+// reports
 const perfBudgetsReportDirName = 'perf-budgets-reports';
 const perfBudgetCombinedJsonReportName = 'perf-budgets-combined-report.json';
 const perfBudgetCombinedHtmlReportName = 'perf-budgets-combined-report.html';
 
 /**
- * Run vite-bundle-analyzer for given mode (html or json).
+ * Run vite-bundle-analyzer for a given mode (html or json).
+ *
+ * @param {string} appDir - Absolute app directory
+ * @param {string} appShortName - Shortened app name
+ * @param {"static"|"json"} mode - Analyzer mode
+ * @returns {boolean} True if analyzer produced output, false otherwise
  */
-function runAppBundleAnalyzer(appDirectory, appShortName, mode) {
+function runAppBundleAnalyzer(appDir, appShortName, mode) {
   const reportFile = `${bundleAnalysisConfig?.reportFile || 'bundle-report'}${
     mode === 'json' ? '.json' : '.html'
   }`;
@@ -44,66 +51,49 @@ function runAppBundleAnalyzer(appDirectory, appShortName, mode) {
     bundleAnalysisConfig?.reportFile || 'bundle-report',
   ];
 
-  const result = spawnSync(bundleAnalyzerBin, analyzerArgs, {
-    cwd: appDirectory,
-    stdio: 'inherit',
-    shell: true,
-  });
-
-  if (result.status !== 0) {
+  const ok = runCommand(bundleAnalyzerBin, analyzerArgs, appDir);
+  if (!ok) {
     logError(`❌ Analyzer (${mode}) failed for ${appShortName}`);
-    return;
+    return false;
   }
 
-  const distReport = path.join(appDirectory, 'dist', reportFile);
+  const distReport = path.join(appDir, 'dist', reportFile);
   const targetReport = path.join(outputDir, reportFile);
 
   if (fs.existsSync(distReport)) {
     fs.copyFileSync(distReport, targetReport);
     logInfo(`✅ ${mode.toUpperCase()} report copied to ${targetReport}`);
-    return targetReport;
+    return true;
   } else {
     logWarn(`⚠️ Expected ${mode} report not found at ${distReport}`);
+    return false;
   }
 }
 
 /**
- * Analyze all given app folders.
+ * Run perf budgets analysis for one app (both static + json).
+ *
+ * @param {string} appDir
+ * @param {string} appShortName
+ * @returns {boolean} True if at least one report succeeded
  */
-function runAppsBundleAnalyzer(appFolders) {
-  const analyzed = [];
-  for (const appFolder of appFolders) {
-    try {
-      const appDir = path.join(appsDir, appFolder);
-      if (!fs.existsSync(appDir)) {
-        logError(`❌ App folder not found: ${appFolder} → skipping`);
-        continue;
-      }
-
-      const pkg = JSON.parse(fs.readFileSync(path.join(appDir, 'package.json'), 'utf-8'));
-      const appName = pkg.name;
-      const appShortName = appName.replace(/^@ovh-ux\//, '');
-
-      runAppBundleAnalyzer(appDir, appShortName, 'static');
-      runAppBundleAnalyzer(appDir, appShortName, 'json');
-
-      analyzed.push(appName);
-    } catch (err) {
-      logError(`❌ Failed to analyze ${appFolder}: ${err.message}`);
-    }
-  }
-  return analyzed;
+function runAppPerfBudgets(appDir, appShortName) {
+  const okStatic = runAppBundleAnalyzer(appDir, appShortName, 'static');
+  const okJson = runAppBundleAnalyzer(appDir, appShortName, 'json');
+  return okStatic || okJson;
 }
 
 /**
- * Main CLI entrypoint.
+ * Main CLI entrypoint for perf budgets analysis.
+ *
+ * - Ensures analyzer binary is available
+ * - Runs a turbo build for the selected apps
+ * - Executes analyzer per app via {@link runAppPerfBudgets}
+ * - Generates combined JSON + HTML reports
  */
 function main() {
   try {
-    if (!fs.existsSync(bundleAnalyzerBin)) {
-      logError(`❌ Analyzer binary not found at ${bundleAnalyzerBin}`);
-      return;
-    }
+    ensureBinExists(bundleAnalyzerBin, 'vite-bundle-analyzer');
 
     const { appFolders, packageNames } = parseCliTargets(appsDir);
     const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });
@@ -111,22 +101,20 @@ function main() {
     // Step 1: build
     runTurboBuild(rootDir, turboFilters);
 
-    // Step 2: analyze
-    const analyzedApps = runAppsBundleAnalyzer(appFolders);
-
-    // Step 3: combined reports
-    if (analyzedApps.length > 0) {
-      generateCombinedReports(
-        path.join(outputRootDir, perfBudgetsReportDirName),
-        perfBudgetCombinedJsonReportName,
-        perfBudgetCombinedHtmlReportName,
-        collectPerfBudgets,
-        generatePerfBudgetsHtml,
-      );
-    } else {
-      logError('❌ No apps successfully analyzed. Exiting.');
-      process.exit(1);
-    }
+    // Step 2: analyze apps + combined
+    runAppsAnalysis({
+      appsDir,
+      appFolders,
+      requireReact: false,
+      binaryLabel: 'Perf budgets',
+      appRunner: runAppPerfBudgets,
+      reportsRootDirName: perfBudgetsReportDirName,
+      combinedJson: perfBudgetCombinedJsonReportName,
+      combinedHtml: perfBudgetCombinedHtmlReportName,
+      collectFn: collectPerfBudgets,
+      generateHtmlFn: generatePerfBudgetsHtml,
+      outputRootDir,
+    });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);
     process.exit(1);
