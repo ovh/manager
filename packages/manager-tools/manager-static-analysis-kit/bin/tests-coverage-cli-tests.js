@@ -22,7 +22,7 @@ const cases = [
   // { name: 'Auto-discovery (all apps)', cmd: 'yarn manager-tests-coverage', expect: 0 },
 
   { name: 'Single app (zimbra)', cmd: 'yarn manager-tests-coverage --app zimbra', expect: 0 },
-  /*{
+  {
     name: 'Multiple apps (container,zimbra,web-ongoing-operations,key-management-service)',
     cmd: 'yarn manager-tests-coverage --apps container,zimbra,web-ongoing-operations,key-management-service',
     expect: 0,
@@ -56,7 +56,7 @@ const cases = [
     name: 'All invalid packages',
     cmd: 'yarn manager-tests-coverage --packages @ovh-ux/manager-ghost-app,@ovh-ux/manager-missing-app',
     expect: 1,
-  },*/
+  },
 ];
 
 let failed = 0;
