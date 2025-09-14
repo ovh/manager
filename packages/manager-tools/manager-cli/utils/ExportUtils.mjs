@@ -40,6 +40,20 @@ export const buildMergedReportFileName = (outputFormat) =>
       ? `${reportOutputBasePath}/migration-status-full-report.html`
       : null;
 
+export const buildW3CReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/w3c-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/w3c-migration-report.html`
+      : null;
+
+export const buildA11yReportFileName = (outputFormat) =>
+  outputFormat === 'json'
+    ? `${reportOutputBasePath}/a11y-migration-report.json`
+    : outputFormat === 'html'
+      ? `${reportOutputBasePath}/a11y-migration-report.html`
+      : null;
+
 /**
  * Ensure directory exists.
  */
@@ -133,6 +147,8 @@ const buildMergedMigrationReport = () => {
     'SWC Migration': buildSwcReportFileName('json'),
     'ESLint Migration': buildStaticKitReportFileName('json'),
     'TypeScript Migration': buildStaticKitReportFileName('json'),
+    'W3C Migration': buildW3CReportFileName('json'),
+    'A11y Migration': buildA11yReportFileName('json'),
   };
 
   const mergedMap = new Map();
@@ -163,7 +179,13 @@ export const renderMergedReport = ({ format }) => {
 
   renderReport(mergedReport, {
     title: 'Follow Up All Manager Migration Status',
-    statusKeys: ['Routes Migration', 'Tests Migration', 'SWC Migration'],
+    statusKeys: [
+      'Routes Migration',
+      'Tests Migration',
+      'SWC Migration',
+      'W3C Migration',
+      'A11y Migration',
+    ],
     format,
     filename,
   });
