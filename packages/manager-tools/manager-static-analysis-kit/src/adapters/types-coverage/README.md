@@ -36,8 +36,8 @@ This will:
 1. Discover all **React apps** under `manager/apps`.
 2. Run **type-coverage** for them.
 3. Generate **combined reports**:
-  - `types-coverage-reports/types-coverage-combined-report.json`
-  - `types-coverage-reports/types-coverage-combined-report.html`
+- `types-coverage-reports/types-coverage-combined-report.json`
+- `types-coverage-reports/types-coverage-combined-report.html`
 
 ---
 
