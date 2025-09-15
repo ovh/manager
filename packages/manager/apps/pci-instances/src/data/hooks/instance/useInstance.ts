@@ -143,20 +143,18 @@ type TUseAttachVolumeCallbacks = DeepReadonly<{
 export const useAttachVolume = ({
   projectId,
   instanceId,
-  region,
   callbacks = {},
-}: TInstanceArgs & { callbacks: TUseAttachVolumeCallbacks }) => {
-  const queryClient = useQueryClient();
+}: {
+  projectId: string;
+  instanceId: string;
+  callbacks: TUseAttachVolumeCallbacks;
+}) => {
   const { onSuccess, onError } = callbacks;
 
   return useMutation({
     mutationFn: ({ volumeId }: TAttachVolumeMutationFnVariables) =>
       attachVolume({ projectId, instanceId, volumeId }),
-    onSuccess: (data, variables) => {
-      void resetInstanceCache(queryClient, { projectId, region, instanceId });
-
-      onSuccess?.(data, variables);
-    },
+    onSuccess,
     onError,
   });
 };
