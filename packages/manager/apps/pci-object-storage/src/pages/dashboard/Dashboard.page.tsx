@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useCallback } from 'react';
+import { Suspense, useEffect, useMemo, useCallback, useState } from 'react';
 import { Outlet, useHref, useParams, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
@@ -18,9 +18,12 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsText,
+  OdsLink,
   OdsMessage,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -37,8 +40,11 @@ import { ContainerInfoCard } from './ContainerInfoCard';
 import { BucketPropertiesCard } from './BucketPropertiesCard';
 import { StorageManagementCard } from './StorageManagementCard';
 import { SecurityPermissionsCard } from './SecurityPermissionsCard';
+import { HelpDrawer } from './HelpDrawer';
 import { getStatusColor, TStatusColor } from '@/utils/getStatusColor';
 import { getDashboardTabs } from '@/utils/getDashboardTabs';
+import { CommonCard } from '@/components/CommonCard';
+import { CardSection } from '@/components/CardSection';
 
 const statusMap: Record<string, TStatusColor> = {
   [STATUS_ENABLED]: 'success',
@@ -70,6 +76,7 @@ export default function DashboardPage() {
   const [searchParams] = useSearchParams();
   const { data: project } = useProject();
   const { trackClick } = useOvhTracking();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const { t } = useTranslation([
     'objects',
@@ -157,6 +164,12 @@ export default function DashboardPage() {
     return <OdsSpinner size="md" />;
   }
 
+  const getStorageHelpDrawerMode = () => {
+    if (!isRightOffer) return 'swift';
+    if (isLocalZone) return 'local-zone';
+    return 's3-standard';
+  };
+
   return (
     <BaseLayout
       breadcrumb={
@@ -228,7 +241,7 @@ export default function DashboardPage() {
           <BucketPropertiesCard
             container={container}
             isLocalZone={isLocalZone}
-            isRightOffer={isRightOffer}
+            isRightOffer
             getVersioningBadgeColor={versioningBadgeColor}
             getObjectLockBadgeColor={objectLockBadgeColor}
             enableVersioningHref={enableVersioningHref}
@@ -240,7 +253,7 @@ export default function DashboardPage() {
           {isRightOffer && (
             <StorageManagementCard
               isLocalZone={isLocalZone}
-              isRightOffer={isRightOffer}
+              isRightOffer
               showReplicationBanner={showReplicationBanner}
               manageReplicationsHref={manageReplicationsHref}
             />
@@ -254,12 +267,39 @@ export default function DashboardPage() {
               isLocalZone={isLocalZone}
             />
           )}
+          <CommonCard
+            title={t(
+              'dashboard:pci_projects_project_storages_dashboard_helper_drawer_title',
+            )}
+          >
+            <div className="flex flex-col my-4 gap-4 ">
+              <OdsText>
+                {t(
+                  'dashboard:pci_projects_project_storages_dashboard_helper_drawer_description',
+                )}
+              </OdsText>
+              <OdsLink
+                label={t(
+                  'dashboard:pci_projects_project_storages_dashboard_helper_drawer_title',
+                )}
+                href={null}
+                onClick={() => setIsDrawerOpen(true)}
+                icon={ODS_ICON_NAME.arrowRight}
+              />
+            </div>
+          </CommonCard>
         </div>
       </div>
 
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
+
+      <HelpDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        storageMode={getStorageHelpDrawerMode()}
+      />
     </BaseLayout>
   );
 }
