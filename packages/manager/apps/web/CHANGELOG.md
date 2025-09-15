@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.10...@ovh-ux/manager-web@19.24.0) (2025-09-15)
+
+
+### Features
+
+* **web-hosting:** update phpmyadmin url ([776bbee](https://github.com/ovh/manager/commit/776bbeee1474c7d2e117a5e89df5766a73db658e)), closes [#MANAGER-19414](https://github.com/ovh/manager/issues/MANAGER-19414)
+
+
+
+
+
 ## [19.23.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.9...@ovh-ux/manager-web@19.23.10) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
