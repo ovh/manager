@@ -7,6 +7,13 @@ import { urls } from '@/routes/routes.constant';
 const RootLayout = lazy(() => import('@/pages/layout'));
 const DashboardLayout = lazy(() => import('@/pages/dashboardLayout'));
 const ContactsPage = lazy(() => import('@/pages/contacts/Contacts.page'));
+const CreateContactPage = lazy(() =>
+  import('@/pages/contacts/create/Create.page'),
+);
+const EditContactPage = lazy(() => import('@/pages/contacts/edit/Edit.page'));
+const ValidateContactPage = lazy(() =>
+  import('@/pages/contacts/validate/Validate.page'),
+);
 const CommunicationsPage = lazy(() =>
   import('@/pages/communications/Communications.page'),
 );
@@ -51,7 +58,38 @@ export default (
             pageType: PageType.funnel,
           },
         }}
-      />
+      >
+        <Route
+          path={urls.contactsAdd}
+          Component={CreateContactPage}
+          handle={{
+            tracking: {
+              pageName: 'contacts::add',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          path={urls.contactsEdit}
+          Component={EditContactPage}
+          handle={{
+            tracking: {
+              pageName: 'contacts::edit',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          path={urls.contactsValidate}
+          Component={ValidateContactPage}
+          handle={{
+            tracking: {
+              pageName: 'contacts::validate',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
       <Route
         path={urls.SettingsTab}
         Component={SettingsPage}
