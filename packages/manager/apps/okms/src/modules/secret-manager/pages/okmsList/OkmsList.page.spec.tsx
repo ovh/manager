@@ -77,20 +77,20 @@ describe('Okms List page test suite', () => {
     expect(await screen.findAllByText(status)).toHaveLength(1);
   });
 
-  it(`should navigate to the kms creation form on click on order kms button`, async () => {
+  it(`should navigate to the secret creation page on click on create a secret button`, async () => {
     const { container } = await renderTestApp(mockPageUrl);
 
     const { user } = await checkOkmsListPageToBeDisplayed(container);
 
     const button = await getOdsButtonByLabel({
       container,
-      label: labels.create.key_management_service_create_title,
+      label: labels.secretManager.create_a_secret,
     });
 
     user.click(button);
 
     await assertTextVisibility(
-      labels.create.key_management_service_create_subtitle,
+      labels.secretManager.create_secret_form_region_section_title,
     );
   });
 
