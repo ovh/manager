@@ -215,7 +215,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       </li>
       {selectedPciProject !== null &&
         rootNode.children
-          ?.filter((childNode) => !shouldHideElement(childNode, true))
+          ?.filter((childNode) => !shouldHideElement(childNode, childNode.hasService ?? true))
           .map((node) => (
             <li
               key={node.id}
