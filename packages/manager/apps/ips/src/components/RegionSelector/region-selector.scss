@@ -1,4 +1,9 @@
+.region_selector {
+  border-color: var(--ods-color-primary-100);
+}
+
 .region_selector_selected {
   border: 2px solid #0050d7;
+  background-color: var(--ods-color-primary-050);
   margin: 0;
 }
