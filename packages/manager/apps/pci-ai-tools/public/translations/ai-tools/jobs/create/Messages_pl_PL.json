@@ -45,5 +45,6 @@
   "successCreatingJobTitle": "Operacja zakończona pomyślnie",
   "successCreatingJobDescription": "Zadanie zostało utworzone",
   "fieldDockerCommandLabel": "Polecenia Docker:",
-  "summaryFieldVolumesLabel": "Wolumeny:"
+  "summaryFieldVolumesLabel": "Wolumeny:",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }
