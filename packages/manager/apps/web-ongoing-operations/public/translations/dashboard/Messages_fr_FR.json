@@ -1,6 +1,5 @@
 {
   "title": "Dashboard page",
-  "back_link": "Retour à la liste",
   "domain_operations": "Opération",
   "domain_operation_comment": "Commentaire de l'opération : <strong>{{t0}}</strong>",
   "domain_operation_data": "Vous pouvez modifier les données relatives à l'opération : <strong>{{t0}}</strong>",
@@ -8,13 +7,11 @@
   "domain_operations_relaunch_title": "Relancer l'opération",
   "domain_operations_cancel_title": "Annuler l'opération",
   "domain_operations_table_header_comment": "Commentaire",
-  "domain_operations_table_header_creationDate": "Date de création",
   "domain_operations_table_header_lastUpdate": "Date de mise à jour",
   "domain_operations_table_header_doneDate": "Date de fin",
   "domain_operations_table_header_status": "État",
   "domain_operations_table_header_domain": "Domaine",
   "domain_operations_table_header_allDom": "Alldom",
-  "domain_operations_table_header_name": "Nom",
   "domain_operations_dashboard_title": "Opérations en cours",
   "domain_operations_dashboard_info": "Vous trouverez ci-dessous l'ensemble des opérations en cours. Selon l'opération, une action de votre part peut être nécessaire.",
   "domain_operations_tab_popover_update": "Modifier l'opération",
@@ -130,8 +127,5 @@
   "domain_operations_update_nicbilling_click": "Changez les informations du contact facturation en cliquant ici",
   "domain_operations_accelerate_success": "L'opération a été accélérée avec succès.",
   "domain_operations_cancel_success": "L'opération a été annulée avec succès.",
-  "domain_operations_relaunch_success": "L'opération a été relancée avec succès.",
-  "wizard_confirm": "Confirmer",
-  "wizard_cancel": "Annuler",
-  "domain_operations_guides": "Informations générales"
+  "domain_operations_relaunch_success": "L'opération a été relancée avec succès."
 }
