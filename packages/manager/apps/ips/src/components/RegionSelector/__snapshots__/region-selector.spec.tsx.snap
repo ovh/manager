@@ -37,14 +37,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
     >
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-par"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -52,14 +60,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-par
+              region-selector-country-name_FR - region-selector-city-name_eu-west-par
             </ods-text>
             <ods-text
               preset="span"
@@ -71,14 +74,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-gra"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -86,14 +97,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-gra
+              region-selector-country-name_FR - region-selector-city-name_eu-west-gra
             </ods-text>
             <ods-text
               preset="span"
@@ -105,14 +111,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -120,14 +134,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-rbx
+              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
             </ods-text>
             <ods-text
               preset="span"
@@ -139,14 +148,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -154,14 +171,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-sbg
+              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
             </ods-text>
             <ods-text
               preset="span"
@@ -173,14 +185,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lim"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/de.svg);"
           />
           <div
@@ -188,14 +208,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_DE
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lim
+              region-selector-country-name_DE - region-selector-city-name_eu-west-lim
             </ods-text>
             <ods-text
               preset="span"
@@ -207,14 +222,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-central-waw"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/pl.svg);"
           />
           <div
@@ -222,14 +245,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_PL
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-central-waw
+              region-selector-country-name_PL - region-selector-city-name_eu-central-waw
             </ods-text>
             <ods-text
               preset="span"
@@ -241,14 +259,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-eri"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/gb.svg);"
           />
           <div
@@ -256,14 +282,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_GB
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-eri
+              region-selector-country-name_GB - region-selector-city-name_eu-west-eri
             </ods-text>
             <ods-text
               preset="span"
@@ -275,14 +296,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-vin"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -290,14 +319,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-vin
+              region-selector-country-name_US - region-selector-city-name_us-east-vin
             </ods-text>
             <ods-text
               preset="span"
@@ -309,14 +333,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-hil"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -324,14 +356,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-hil
+              region-selector-country-name_US - region-selector-city-name_us-west-hil
             </ods-text>
             <ods-text
               preset="span"
@@ -343,14 +370,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ca-east-bhs"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/ca.svg);"
           />
           <div
@@ -358,14 +393,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_CA
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ca-east-bhs
+              region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
             </ods-text>
             <ods-text
               preset="span"
@@ -377,14 +407,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-southeast-sgp"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/sg.svg);"
           />
           <div
@@ -392,14 +430,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_SG
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-southeast-sgp
+              region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
             </ods-text>
             <ods-text
               preset="span"
@@ -411,14 +444,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-southeast-syd"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/au.svg);"
           />
           <div
@@ -426,14 +467,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_AU
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-southeast-syd
+              region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
             </ods-text>
             <ods-text
               preset="span"
@@ -445,14 +481,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -460,14 +504,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-rbx-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -479,14 +518,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -494,14 +541,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-sbg-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -520,14 +562,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           test
         </ods-popover>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] opacity-40"
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] opacity-40"
           color="neutral"
           id="ca-east-tor"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/ca.svg);"
           />
           <div
@@ -535,14 +585,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_CA
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ca-east-tor
+              region-selector-country-name_CA - region-selector-city-name_ca-east-tor
             </ods-text>
             <ods-text
               preset="span"
@@ -554,14 +599,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-south-mum"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/in.svg);"
           />
           <div
@@ -569,14 +622,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_IN
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-south-mum
+              region-selector-country-name_IN - region-selector-city-name_ap-south-mum
             </ods-text>
             <ods-text
               preset="span"
@@ -588,14 +636,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-preprod"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -603,14 +659,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-preprod
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
             </ods-text>
             <ods-text
               preset="span"
@@ -622,14 +673,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-2"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -637,14 +696,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-dev-2
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
             </ods-text>
             <ods-text
               preset="span"
@@ -656,14 +710,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-1"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -671,14 +733,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-dev-1
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
             </ods-text>
             <ods-text
               preset="span"
@@ -690,14 +747,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-bru"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/be.svg);"
           />
           <div
@@ -705,14 +770,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_BE
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-bru
+              region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
             </ods-text>
             <ods-text
               preset="span"
@@ -724,14 +784,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mad"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/es.svg);"
           />
           <div
@@ -739,14 +807,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_ES
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-mad
+              region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
             </ods-text>
             <ods-text
               preset="span"
@@ -758,14 +821,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-gra-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -773,14 +844,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-gra-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -792,14 +858,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-dal"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -807,14 +881,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-dal
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
             </ods-text>
             <ods-text
               preset="span"
@@ -826,14 +895,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-lax"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -841,14 +918,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-lax
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
             </ods-text>
             <ods-text
               preset="span"
@@ -860,14 +932,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-chi"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -875,14 +955,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-chi
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
             </ods-text>
             <ods-text
               preset="span"
@@ -894,14 +969,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-nyc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -909,14 +992,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-nyc
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
             </ods-text>
             <ods-text
               preset="span"
@@ -928,14 +1006,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-mia"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -943,14 +1029,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-mia
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
             </ods-text>
             <ods-text
               preset="span"
@@ -962,14 +1043,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-pao"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -977,14 +1066,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-pao
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
             </ods-text>
             <ods-text
               preset="span"
@@ -996,14 +1080,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-den"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1011,14 +1103,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-den
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-den
             </ods-text>
             <ods-text
               preset="span"
@@ -1030,14 +1117,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-atl"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1045,14 +1140,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-atl
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
             </ods-text>
             <ods-text
               preset="span"
@@ -1064,14 +1154,22 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mrs"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1079,14 +1177,9 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-mrs
+              region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
             </ods-text>
             <ods-text
               preset="span"
@@ -1148,14 +1241,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
     >
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-par"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1163,14 +1264,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-par
+              region-selector-country-name_FR - region-selector-city-name_eu-west-par
             </ods-text>
             <ods-text
               preset="span"
@@ -1182,14 +1278,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer region_selector_selected w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector_selected w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-gra"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="true"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1197,14 +1301,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-gra
+              region-selector-country-name_FR - region-selector-city-name_eu-west-gra
             </ods-text>
             <ods-text
               preset="span"
@@ -1216,14 +1315,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1231,14 +1338,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-rbx
+              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
             </ods-text>
             <ods-text
               preset="span"
@@ -1250,14 +1352,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1265,14 +1375,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-sbg
+              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
             </ods-text>
             <ods-text
               preset="span"
@@ -1284,14 +1389,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lim"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/de.svg);"
           />
           <div
@@ -1299,14 +1412,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_DE
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lim
+              region-selector-country-name_DE - region-selector-city-name_eu-west-lim
             </ods-text>
             <ods-text
               preset="span"
@@ -1318,14 +1426,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-central-waw"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/pl.svg);"
           />
           <div
@@ -1333,14 +1449,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_PL
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-central-waw
+              region-selector-country-name_PL - region-selector-city-name_eu-central-waw
             </ods-text>
             <ods-text
               preset="span"
@@ -1352,14 +1463,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-eri"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/gb.svg);"
           />
           <div
@@ -1367,14 +1486,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_GB
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-eri
+              region-selector-country-name_GB - region-selector-city-name_eu-west-eri
             </ods-text>
             <ods-text
               preset="span"
@@ -1386,14 +1500,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-vin"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1401,14 +1523,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-vin
+              region-selector-country-name_US - region-selector-city-name_us-east-vin
             </ods-text>
             <ods-text
               preset="span"
@@ -1420,14 +1537,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-hil"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1435,14 +1560,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-hil
+              region-selector-country-name_US - region-selector-city-name_us-west-hil
             </ods-text>
             <ods-text
               preset="span"
@@ -1454,14 +1574,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ca-east-bhs"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/ca.svg);"
           />
           <div
@@ -1469,14 +1597,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_CA
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ca-east-bhs
+              region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
             </ods-text>
             <ods-text
               preset="span"
@@ -1488,14 +1611,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-southeast-sgp"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/sg.svg);"
           />
           <div
@@ -1503,14 +1634,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_SG
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-southeast-sgp
+              region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
             </ods-text>
             <ods-text
               preset="span"
@@ -1522,14 +1648,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-southeast-syd"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/au.svg);"
           />
           <div
@@ -1537,14 +1671,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_AU
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-southeast-syd
+              region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
             </ods-text>
             <ods-text
               preset="span"
@@ -1556,14 +1685,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1571,14 +1708,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-rbx-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -1590,14 +1722,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1605,14 +1745,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-sbg-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -1624,14 +1759,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ca-east-tor"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/ca.svg);"
           />
           <div
@@ -1639,14 +1782,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_CA
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ca-east-tor
+              region-selector-country-name_CA - region-selector-city-name_ca-east-tor
             </ods-text>
             <ods-text
               preset="span"
@@ -1658,14 +1796,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="ap-south-mum"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/in.svg);"
           />
           <div
@@ -1673,14 +1819,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_IN
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_ap-south-mum
+              region-selector-country-name_IN - region-selector-city-name_ap-south-mum
             </ods-text>
             <ods-text
               preset="span"
@@ -1692,14 +1833,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-preprod"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1707,14 +1856,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-preprod
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
             </ods-text>
             <ods-text
               preset="span"
@@ -1726,14 +1870,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-2"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1741,14 +1893,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-dev-2
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
             </ods-text>
             <ods-text
               preset="span"
@@ -1760,14 +1907,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-1"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1775,14 +1930,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_labeu-west-1-dev-1
+              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
             </ods-text>
             <ods-text
               preset="span"
@@ -1794,14 +1944,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-bru"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/be.svg);"
           />
           <div
@@ -1809,14 +1967,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_BE
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-bru
+              region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
             </ods-text>
             <ods-text
               preset="span"
@@ -1828,14 +1981,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mad"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/es.svg);"
           />
           <div
@@ -1843,14 +2004,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_ES
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-mad
+              region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
             </ods-text>
             <ods-text
               preset="span"
@@ -1862,14 +2018,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-gra-snc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -1877,14 +2041,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-gra-snc
+              region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
             </ods-text>
             <ods-text
               preset="span"
@@ -1896,14 +2055,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-dal"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1911,14 +2078,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-dal
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
             </ods-text>
             <ods-text
               preset="span"
@@ -1930,14 +2092,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-lax"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1945,14 +2115,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-lax
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
             </ods-text>
             <ods-text
               preset="span"
@@ -1964,14 +2129,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-chi"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -1979,14 +2152,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-chi
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
             </ods-text>
             <ods-text
               preset="span"
@@ -1998,14 +2166,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-nyc"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -2013,14 +2189,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-nyc
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
             </ods-text>
             <ods-text
               preset="span"
@@ -2032,14 +2203,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-mia"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -2047,14 +2226,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-mia
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
             </ods-text>
             <ods-text
               preset="span"
@@ -2066,14 +2240,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-pao"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -2081,14 +2263,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-pao
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
             </ods-text>
             <ods-text
               preset="span"
@@ -2100,14 +2277,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-west-lz-den"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -2115,14 +2300,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-west-lz-den
+              region-selector-country-name_US - region-selector-city-name_us-west-lz-den
             </ods-text>
             <ods-text
               preset="span"
@@ -2134,14 +2314,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="us-east-lz-atl"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/us.svg);"
           />
           <div
@@ -2149,14 +2337,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_US
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_us-east-lz-atl
+              region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
             </ods-text>
             <ods-text
               preset="span"
@@ -2168,14 +2351,22 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </div>
       <div>
         <ods-card
-          class="flex items-center p-3 transition-shadow cursor-pointer m-[1px] hover:shadow-md w-full sm:w-[245px] "
+          class="flex p-3 transition-shadow cursor-pointer region_selector hover:shadow-md w-full sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mrs"
           tab-index="0"
           tabindex="0"
         >
           <span
-            class="w-[44px] h-[32px] shadow-md shadow-[#000E9C33] mr-3"
+            class="flex h-full mr-3"
+          >
+            <ods-radio
+              is-checked="false"
+              name=""
+            />
+          </span>
+          <span
+            class="w-[24px] h-[17px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
             style="background-image: url(flags/fr.svg);"
           />
           <div
@@ -2183,14 +2374,9 @@ exports[`RegionSelector component > renders correctly 1`] = `
           >
             <ods-text
               class="block"
-              preset="heading-4"
+              preset="heading-5"
             >
-              region-selector-country-name_FR
-            </ods-text>
-            <ods-text
-              preset="span"
-            >
-              region-selector-city-name_eu-west-lz-mrs
+              region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
             </ods-text>
             <ods-text
               preset="span"
