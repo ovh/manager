@@ -51,5 +51,6 @@
   "fieldFlavorDescription": "Selezionare il tipo di risorse",
   "fieldFrameworkVersionDescription": "Selezionare la versione",
   "fieldConfigurationPrivacyLabel": "Privacy",
-  "sshKeyConfigurationHelperBis": "Utilizza il menu a tendina qui sotto per associare chiavi SSH al tuo notebook"
+  "sshKeyConfigurationHelperBis": "Utilizza il menu a tendina qui sotto per associare chiavi SSH al tuo notebook",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }

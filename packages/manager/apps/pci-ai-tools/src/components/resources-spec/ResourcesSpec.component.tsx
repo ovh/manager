@@ -106,6 +106,14 @@ const ResourcesSpec = ({
             memory: bytesConverter(resources.memory, false, 0),
           })}
         </span>
+        {resources?.gpuMemory && (
+          <span>
+            V
+            {t('memoryField', {
+              memory: bytesConverter(resources?.gpuMemory, false, 0),
+            })}
+          </span>
+        )}
         <span>
           {t('publicNetworkField', {
             network: bytesConverter(resources.publicNetwork, true, 2),

@@ -51,5 +51,6 @@
   "fieldFlavorDescription": "Ressourcentyp auswählen",
   "fieldFrameworkVersionDescription": "Version auswählen",
   "fieldConfigurationPrivacyLabel": "Privacy",
-  "sshKeyConfigurationHelperBis": "Verwenden Sie die untenstehende Dropdown-Liste, um SSH-Schlüssel mit Ihrem Notebook zu verknüpfen"
+  "sshKeyConfigurationHelperBis": "Verwenden Sie die untenstehende Dropdown-Liste, um SSH-Schlüssel mit Ihrem Notebook zu verknüpfen",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }
