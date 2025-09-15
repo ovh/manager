@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.5...@ovh-ux/manager-pci-databases-analytics-app@1.28.0) (2025-09-15)
+
+
+### Features
+
+* **pci-databases-analyticts:** add deletion protection feature ([ee5a558](https://github.com/ovh/manager/commit/ee5a558a545bd15dd0c93d99f2339dd61a325b3a)), closes [#DATATR-2340](https://github.com/ovh/manager/issues/DATATR-2340)
+
+
+
+
+
 ## [1.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.4...@ovh-ux/manager-pci-databases-analytics-app@1.27.5) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
