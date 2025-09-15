@@ -2,6 +2,7 @@ import '@/setupTests';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOngoingOperationDatagridColumns } from '@/hooks/useOngoingOperationDatagridColumns';
 import { ParentEnum } from '@/enum/parent.enum';
 
@@ -30,7 +31,7 @@ describe('useDatagridColumn', () => {
       domain: 'domain_operations_table_header_domain',
       function: 'domain_operations',
       comment: 'domain_operations_table_header_comment',
-      created_on: 'domain_operations_table_header_creationDate',
+      created_on: `${NAMESPACES.DASHBOARD}:creation_date`,
       last_updated: 'domain_operations_table_header_lastUpdate',
       status: 'domain_operations_table_header_status',
     };

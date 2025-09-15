@@ -15,6 +15,7 @@ import {
   RadioLabel,
   RadioValueChangeDetail,
 } from '@ovhcloud/ods-react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TOngoingOperations } from '@/types';
 import { ActionNameEnum } from '@/enum/actionName.enum';
 import { urls } from '@/routes/routes.constant';
@@ -36,7 +37,7 @@ export default function UpdateActions({
   onValidate,
   setActionName,
 }: UpdateActionsProps) {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
   return (
@@ -93,7 +94,8 @@ export default function UpdateActions({
           <MessageBody>{t('domain_operations_accelerate_warning')}</MessageBody>
         </Message>
       )}
-      <div className="flex gap-x-2">
+
+      <div className="flex gap-x-2 mt-8">
         <Button
           slot="actions"
           onClick={() => {
@@ -101,7 +103,7 @@ export default function UpdateActions({
           }}
           variant={BUTTON_VARIANT.ghost}
         >
-          {t('wizard_cancel')}
+          t(`${NAMESPACES.ACTIONS}:cancel`)
         </Button>
         <Button
           slot="actions"
@@ -109,7 +111,7 @@ export default function UpdateActions({
           disabled={disabled}
           loading={isActionLoading}
         >
-          {t('wizard_confirm')}
+          t(`${NAMESPACES.ACTIONS}:confirm`)
         </Button>
       </div>
     </section>
