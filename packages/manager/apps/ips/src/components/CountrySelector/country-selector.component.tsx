@@ -5,6 +5,7 @@ import {
   OdsSelectCustomEvent,
   OdsSelectChangeEventDetail,
   ODS_SPINNER_SIZE,
+  OdsSelectCustomRendererData,
 } from '@ovhcloud/ods-components';
 
 export type CountrySelectorProps = {
@@ -38,6 +39,15 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
     );
   }
 
+  const optionRenderingFunction = (data: OdsSelectCustomRendererData) => `
+  <div style="display:flex; gap: 8px; align-items: center;">
+    <span style="width: 22px; height: 16px; background-size: cover; background-image: url('flags/${data.value.toLowerCase()}.svg')"></span>
+    <span>${t(
+      `region-selector-country-name_${data.value.toUpperCase()}`,
+    )}</span>
+  </div>
+  `;
+
   return (
     <OdsSelect
       key={countryCodeList.join('-')}
@@ -46,12 +56,8 @@ export const CountrySelector: React.FC<CountrySelectorProps> = ({
       onOdsBlur={onBlur}
       isReadonly={isReadyOnly}
       customRenderer={{
-        option: (data) => `<div style="display: flex">
-            <span>${t(
-              `region-selector-country-name_${data.value.toUpperCase()}`,
-            )}</span>
-            <span style="width: 32px; height: 24px; margin: auto 15px auto auto; background-image: url('flags/${data.value.toLowerCase()}.svg')"></span>
-          </div>`,
+        item: optionRenderingFunction,
+        option: optionRenderingFunction,
       }}
       {...props}
     >
