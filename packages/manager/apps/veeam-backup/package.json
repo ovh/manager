@@ -48,8 +48,7 @@
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.0",
     "msw": "2.1.7",
-    "typescript": "^5.1.6",
-    "vitest": "^2.1.9"
+    "typescript": "^5.1.6"
   },
   "regions": [
     "CA",
