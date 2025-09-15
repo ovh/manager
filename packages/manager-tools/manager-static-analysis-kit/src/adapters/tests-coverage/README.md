@@ -1,7 +1,8 @@
-# Tests Coverage CLI — Combined Coverage Reports for Manager Apps
+# Tests Coverage Analysis — Combined Coverage Reports for Manager Apps
 
-Generate **per-app** and **combined** test coverage reports across Manager apps/packages with a single command.  
-This CLI builds selected apps, **runs tests with coverage** (Vitest/Jest), harvests each app’s
+A developer and CI/CD utility for generating **per-app** and **combined** test coverage reports across Manager apps/packages.  
+
+This tool builds selected apps, **runs tests with coverage** (Vitest/Jest), harvests each app’s
 `coverage-summary.json` / `lcov.info`, and produces:
 
 - Per-app folders under `tests-coverage-reports/<app>/`
@@ -58,7 +59,7 @@ The CLI will:
 ## Output Layout
 
 ```
-tests-coverage-reports/
+<root>/tests-coverage-reports/
 ├── container/
 │   ├── coverage-summary.json
 │   └── lcov.info

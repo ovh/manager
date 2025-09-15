@@ -1,6 +1,7 @@
 # 🧬 Code Duplication Analysis
 
 A developer and CI/CD utility for analyzing **code duplication** across Manager React apps using **jscpd**.  
+
 It generates **per-app reports** and a **combined JSON + HTML dashboard** with detailed duplication stats and worst duplicated files.
 
 ---
@@ -102,7 +103,7 @@ yarn manager-code-duplication --packages @ovh-ux/manager-ghost-app,@ovh-ux/manag
 ## 📂 Output Structure
 
 ```
-code-duplication-reports/
+<root>/code-duplication-reports/
 ├── manager-container-app/
 │   ├── jscpd-report.json
 │   └── index.html
