@@ -1,5 +1,10 @@
 import React from 'react';
-import { OdsCard, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  OdsCard,
+  OdsPopover,
+  OdsText,
+  OdsRadio,
+} from '@ovhcloud/ods-components/react';
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { handleClick } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
@@ -72,10 +77,10 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
             const disabledMessage = disabledRegions.find(
               (item) => item.region === region,
             )?.message;
-            const borderStyle =
-              selectedRegion === region && !disabledMessage
-                ? `region_selector_selected`
-                : `m-[1px] hover:shadow-md`;
+            const isSelected = selectedRegion === region && !disabledMessage;
+            const cardStyle = isSelected
+              ? `region_selector_selected`
+              : `region_selector hover:shadow-md`;
 
             return (
               <div key={region}>
@@ -87,7 +92,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
                 <OdsCard
                   id={region}
                   tabIndex={0}
-                  className={`flex items-center p-3 transition-shadow cursor-pointer ${borderStyle} w-full sm:w-[245px] ${
+                  className={`flex p-3 transition-shadow cursor-pointer ${cardStyle} w-full sm:w-[311px] ${
                     disabledMessage ? 'opacity-40' : ''
                   }`}
                   {...handleClick(
@@ -95,24 +100,25 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
                   )}
                   color={ODS_CARD_COLOR.neutral}
                 >
+                  <span className="flex h-full mr-3">
+                    <OdsRadio name="" is-checked={isSelected}></OdsRadio>
+                  </span>
                   <span
                     style={{
                       backgroundImage: `url('flags/${getCountryCode(
                         region,
                       )}.svg')`,
                     }}
-                    className={`w-[44px] h-[32px] shadow-md shadow-[${shadowColor}] mr-3`}
+                    className={`w-[24px] h-[17px] shadow-md shadow-[${shadowColor}] mr-3 bg-cover`}
                   />
                   <div className="flex flex-col">
                     <OdsText
                       className="block"
-                      preset={ODS_TEXT_PRESET.heading4}
+                      preset={ODS_TEXT_PRESET.heading5}
                     >
-                      {t(getCountryKey(region))}
+                      {t(getCountryKey(region))} - {t(getCityNameKey(region))}
                     </OdsText>
-                    <OdsText preset={ODS_TEXT_PRESET.span}>
-                      {t(getCityNameKey(region))}
-                    </OdsText>
+
                     <OdsText preset={ODS_TEXT_PRESET.span}>{region}</OdsText>
                   </div>
                 </OdsCard>
