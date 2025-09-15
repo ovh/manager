@@ -7,41 +7,113 @@ import {
   DatagridColumn,
   DataGridTextCell,
   ManagerButton,
+  Notifications,
+  useNotifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAuthorization } from '@/hooks';
 import { ContactMean } from '@/data/types/contact-mean.type';
 import ContactMeanStatusChip from '@/components/contactMeanStatus/contactMeanStatus.component';
 import { useAccountUrn } from '@/data';
+import { urls } from '@/routes/routes.constant';
+import {
+  useDeleteContactMean,
+  useChangeContactMeanStatus,
+  useRestartValidationContactMean,
+} from '@/data/hooks/useContactMean/useContactMean';
+import { getContactMeanListQueryKey } from '@/data/api/contacts';
 
 function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
-  const { t } = useTranslation('contacts');
+  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS]);
+  const { addSuccess, addError } = useNotifications();
+  const { data: accountUrn } = useAccountUrn();
+  const { mutate: deleteContactMean } = useDeleteContactMean({
+    id: contactMean.id,
+    onSuccess: () => {
+      addSuccess(t('delete_contact_success_message'));
+    },
+    onError: () => {
+      addError(t('delete_contact_error_message'));
+    },
+  });
+  const { mutate: disableContactMean } = useChangeContactMeanStatus({
+    contactMeanId: contactMean.id,
+    onSuccess: () => {
+      addSuccess(t('deactivate_contact_success_message'));
+    },
+    onError: () => {
+      addError(t('deactivate_contact_error_message'));
+    },
+  });
+
+  const {
+    mutate: restartValidationContactMean,
+  } = useRestartValidationContactMean({
+    contactMeanId: contactMean.id,
+    onSuccess: () => {
+      addSuccess(t('restart_validation_contact_success_message'));
+    },
+    onError: () => {
+      addError(t('restart_validation_contact_error_message'));
+    },
+  });
+  const navigate = useNavigate();
 
   const items = useMemo(
     () =>
       [
-        {
+        contactMean.status === 'VALID' && {
           id: 1,
           label: t('table_action_edit'),
-          onClick: () => {},
+          onClick: () => navigate(urls.ContactsEditTo(contactMean.id)),
+          iamActions: ['account:apiovh:notification/contactMean/edit'],
+          urn: accountUrn,
+          isDisabled: contactMean.default,
         },
-        contactMean.type !== 'EMAIL' &&
+        contactMean.status === 'TO_VALIDATE' && {
+          id: 2,
+          label: t('table_action_enter_verification_code'),
+          onClick: () => navigate(urls.ContactsValidateTo(contactMean.id)),
+          iamActions: ['account:apiovh:notification/contactMean/validate'],
+          urn: accountUrn,
+        },
+        contactMean.type === 'EMAIL' &&
           contactMean.status === 'TO_VALIDATE' && {
-            id: 2,
+            id: 3,
             label: t('table_action_resend_verification_code'),
-            onClick: () => {},
+            onClick: () => restartValidationContactMean(),
+            iamActions: [
+              'account:apiovh:notification/contactMean/restartValidation',
+            ],
+            urn: accountUrn,
           },
-        {
-          id: 3,
+        contactMean.status === 'VALID' && {
+          id: 4,
           label: t('table_action_deactivate'),
-          onClick: () => {},
+          onClick: () => disableContactMean('DISABLED'),
+          iamActions: ['account:apiovh:notification/contactMean/edit'],
+          urn: accountUrn,
+          isDisabled: contactMean.default,
+        },
+        contactMean.status === 'DISABLED' && {
+          id: 5,
+          label: t('activate', { ns: NAMESPACES.ACTIONS }),
+          onClick: () => disableContactMean('VALID'),
+          iamActions: ['account:apiovh:notification/contactMean/edit'],
+          urn: accountUrn,
+          isDisabled: contactMean.default,
         },
         {
-          id: 4,
-          label: t('table_action_delete'),
-          onClick: () => {},
+          id: 6,
+          label: t('delete', { ns: NAMESPACES.ACTIONS }),
+          onClick: () => deleteContactMean(),
+          iamActions: ['account:apiovh:notification/contactMean/delete'],
+          urn: accountUrn,
+          isDisabled: contactMean.default,
         },
       ].filter(Boolean) as ActionMenuItem[],
     [t, contactMean],
@@ -61,6 +133,7 @@ function ContactsPage() {
   const { t } = useTranslation('contacts');
   const { t: tCommon } = useTranslation('common');
   const { data: accountUrn } = useAccountUrn();
+  const navigate = useNavigate();
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/get',
   ]);
@@ -127,21 +200,20 @@ function ContactsPage() {
   } = useResourcesIcebergV2<ContactMean>({
     columns,
     route: '/notification/contactMean',
-    queryKey: ['/notification/contactMean'],
+    queryKey: getContactMeanListQueryKey(),
+    enabled: isAuthorized,
   });
 
   const isLoading = isLoadingContactMeans || isLoadingAuthorization;
   return (
-    <>
+    <div className="flex flex-col gap-4">
       {!isLoading && !isAuthorized && (
-        <OdsMessage
-          color="warning"
-          isDismissible={false}
-          className="mb-8 w-full"
-        >
+        <OdsMessage color="warning" isDismissible={false} className="w-full">
           {tCommon('iam_display_content_message')}
         </OdsMessage>
       )}
+
+      <Notifications clearAfterRead />
 
       <Datagrid
         items={flattenData}
@@ -158,7 +230,7 @@ function ContactsPage() {
             label={t('add_contact_button')}
             aria-label={t('add_contact_button')}
             size="sm"
-            onClick={() => {}}
+            onClick={() => navigate(urls.contactsAdd)}
           />
         }
         totalItems={flattenData?.length || 0}
@@ -166,7 +238,9 @@ function ContactsPage() {
         onFetchNextPage={fetchNextPage}
         manualSorting={true}
       />
-    </>
+
+      <Outlet />
+    </div>
   );
 }
 
