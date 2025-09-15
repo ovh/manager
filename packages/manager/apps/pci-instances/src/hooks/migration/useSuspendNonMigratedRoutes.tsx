@@ -1,49 +1,69 @@
-import { ComponentType, useCallback, useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { matchPath, useLocation } from 'react-router-dom';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { ComponentType, ReactNode } from 'react';
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { LoaderFunction, matchPath, useLoaderData } from 'react-router-dom';
 
-const getPromise = () => {
-  // We need to have 42 because tanstack query needs data to be returned
-  // 1000 is an arbitrary time, we just need to wait for the container to accept the hash change and do its thing
-  return new Promise((resolve) => setTimeout(resolve, 1000, 42));
+const DASHBOARD_HASH = '/pci/projects/:projectId/instances/:instanceId';
+
+export const suspendNonMigratedRoutesLoader = (
+  shell: ShellContextType,
+  loaderCallback?: LoaderFunction,
+): LoaderFunction => {
+  const containerHashes =
+    shell.environment.applications['pci-instances']?.container.hashes;
+
+  const routes = new Set(containerHashes);
+
+  const hasAccessToDashboard = Array.from(routes).some((hash) =>
+    hash.includes(':instanceId'),
+  );
+  const dashboardHashAlreadyExists = Array.from(routes).find(
+    (elt) => elt === DASHBOARD_HASH,
+  );
+
+  return (loaderParams, ...restArgs) => {
+    const { pathname } = new URL(loaderParams.request.url);
+
+    if (!pathname.endsWith('/new') && !dashboardHashAlreadyExists) {
+      if (hasAccessToDashboard) routes.add(DASHBOARD_HASH);
+    }
+
+    const isRouteAvailable =
+      !routes.size ||
+      Array.from(routes).some((r) => matchPath(r, pathname) !== null);
+
+    // We send an object to trigger the redirection and handle it inside the `WithSuspendedMigratedRoutes` HOC
+    if (!isRouteAvailable) return { routeMigrated: false };
+
+    return loaderCallback?.(loaderParams, ...restArgs) ?? null;
+  };
 };
 
-export function useSuspendNonMigrateRoutes() {
-  const { environment } = useContext(ShellContext);
-  const location = useLocation();
-
-  const routes = environment.applications['pci-instances']?.container.hashes;
-
-  const queryFn = useCallback(() => {
-    const isRouteAvailable =
-      !routes || routes.some((r) => matchPath(r, location.pathname) !== null);
-
-    // We need to have 42 because tanstack query needs data to be returned
-    return !isRouteAvailable ? getPromise() : Promise.resolve(42);
-  }, [routes, location.pathname]);
-
-  return useSuspenseQuery({
-    // Here we use the window one to have the latest hash value
-    queryKey: ['suspense-promise-to-allow-rerender', window.location.hash],
-    queryFn,
-  });
-}
-
 export const withSuspendedMigrateRoutes = (
-  Component: ComponentType<Record<string, never>>,
+  Component?: ComponentType<Record<string, never>>,
 ): {
-  (): JSX.Element;
+  (): ReactNode;
   displayName: string;
 } => {
   function WithSuspendedMigratedRoutes() {
-    useSuspendNonMigrateRoutes();
+    const loaderData = useLoaderData();
 
-    return <Component />;
+    const needsSuspense =
+      typeof loaderData === 'object' &&
+      loaderData !== null &&
+      'routeMigrated' in loaderData &&
+      loaderData.routeMigrated === false;
+
+    // If we need to move to angular app we suspend with a 1s promise to let the container receive the event and display a loader
+    if (needsSuspense)
+      // eslint-disable-next-line @typescript-eslint/only-throw-error
+      throw new Promise((resolve) => setTimeout(resolve, 1000, 42));
+    return !!Component && <Component />;
   }
 
-  WithSuspendedMigratedRoutes.displayName = `withSuspendedMigratedRoutesHoC(${Component.displayName ??
-    Component.name})`;
+  WithSuspendedMigratedRoutes.displayName = Component
+    ? `withSuspendedMigratedRoutesHoC(${Component.displayName ??
+        Component.name})`
+    : 'withSuspendedMigratedRoutesHoC';
 
   return WithSuspendedMigratedRoutes;
 };
