@@ -11,7 +11,7 @@ export const OrderSection: React.FC<React.PropsWithChildren<{
   description?: string;
   isLoading?: boolean;
 }>> = ({ title, description, isLoading, children }) => (
-  <section className="max-w-[784px] mb-8">
+  <section className="max-w-[1368px] mb-8">
     <OdsText className="block mb-3" preset={ODS_TEXT_PRESET.heading2}>
       {title}
     </OdsText>
