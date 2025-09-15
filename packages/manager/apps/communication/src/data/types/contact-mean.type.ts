@@ -1,4 +1,7 @@
-export type ContactMeanType = 'EMAIL';
+export enum ContactMeanType {
+  EMAIL = 'EMAIL',
+  // PHONE = 'PHONE',
+}
 export type ContactMeanStatus = 'DISABLED' | 'ERROR' | 'VALID' | 'TO_VALIDATE';
 export type ContactMeanTaskStatus =
   | 'ERROR'
@@ -24,4 +27,20 @@ export type ContactMean = {
   id: string;
   status: ContactMeanStatus;
   type: ContactMeanType;
+};
+
+// currently only email is supported
+export type CreateContactMean = {
+  description: string | null;
+  email: string;
+  type: ContactMeanType;
+};
+
+export type UpdateContactMean = {
+  description: string | null;
+  status: ContactMeanStatus;
+};
+
+export type ValidateContactMean = {
+  otp: string;
 };
