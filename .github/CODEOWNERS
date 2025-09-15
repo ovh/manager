@@ -61,7 +61,7 @@
 /packages/manager/apps/telecom-task @ovh/dev-manager-web-collaboration
 /packages/manager/apps/veeam-cloud-connect @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/apps/veeam-enterprise @ovh/dev-manager-infrastructure-baremetalstorage
-/packages/manager/apps/vps @ovh/dev-manager-pci-all
+/packages/manager/apps/vps @ovh/dev-manager-web-collaboration
 /packages/manager/apps/vrack @ovh/dev-manager-infrastructure-network
 /packages/manager/apps/vrack-services @ovh/dev-manager-infrastructure-network
 /packages/manager/apps/web @ovh/dev-manager-web-hosting
@@ -125,7 +125,7 @@
 /packages/manager/modules/vcd-api @ovh/dev-manager-enterprise-vmware
 /packages/manager/modules/veeam-cloud-connect @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/modules/veeam-enterprise @ovh/dev-manager-infrastructure-baremetalstorage
-/packages/manager/modules/vps @ovh/dev-manager-pci-all
+/packages/manager/modules/vps @ovh/dev-manager-web-collaboration
 /packages/manager/modules/vrack @ovh/dev-manager-infrastructure-network
 /packages/manager/modules/web-universe-components @ovh/dev-manager-web-collaboration @ovh/dev-manager-web-domain @ovh/dev-manager-web-hosting
 
