@@ -63,8 +63,9 @@ export const IpGroupDatagrid = ({
     ipGameFirewall,
     isLoading: isGameFirewallLoading,
   } = useGetIpGameFirewall({ ip: row.original.ip });
+  const serviceName: string = ipDetails?.routedTo?.serviceName;
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
-    serviceName: ipDetails?.routedTo?.serviceName,
+    serviceName,
     enabled: !!ipDetails,
   });
 

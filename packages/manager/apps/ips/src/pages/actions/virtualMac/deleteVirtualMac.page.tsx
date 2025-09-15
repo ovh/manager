@@ -13,9 +13,17 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { deleteVirtualMACs, getdedicatedServerVmacQueryKey } from '@/data/api';
+import {
+  createDedicatedServerTasksQueryKeyPredicate,
+  deleteVirtualMACs,
+} from '@/data/api';
 import { useIpHasVmac } from '@/data/hooks/ip';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+import {
+  fromIdToIp,
+  ipFormatter,
+  TRANSLATION_NAMESPACES,
+  VMAC_UPDATE_FUNCTION_LIST,
+} from '@/utils';
 
 export default function DeleteVirtualMac() {
   const navigate = useNavigate();
@@ -27,7 +35,7 @@ export default function DeleteVirtualMac() {
 
   const queryClient = useQueryClient();
 
-  const { ipvmac, isLoading: isVmacLoading } = useIpHasVmac({
+  const { ipvmac } = useIpHasVmac({
     serviceName: service,
     ip,
     enabled: Boolean(service),
@@ -57,9 +65,14 @@ export default function DeleteVirtualMac() {
       ipvmac.forEach((vmac) =>
         addSuccess(t('deleteVirtualMacSuccess', { ip, vmac: vmac.macAddress })),
       );
-      await queryClient.invalidateQueries({
-        queryKey: getdedicatedServerVmacQueryKey({ serviceName: service }),
-      });
+      if (service) {
+        await queryClient.invalidateQueries({
+          predicate: createDedicatedServerTasksQueryKeyPredicate(
+            service,
+            VMAC_UPDATE_FUNCTION_LIST,
+          ),
+        });
+      }
       closeModal();
     },
     onError: (err: ApiError) => {
