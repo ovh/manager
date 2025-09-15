@@ -67,7 +67,7 @@ export default defineConfig({
 ```tsx
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { render } from "@/utils/test.provider"; // or @testing-library/react
+import { render } from "@testing-library/react";
 
 function SaveButton() {
   return <button aria-label="Save changes" type="button" />; // accessible name provided

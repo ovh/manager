@@ -1,6 +1,7 @@
 # 📊 TypeScript Types Coverage
 
 A developer and CI/CD utility for analyzing **TypeScript type coverage** of Manager React apps.  
+
 It generates **per-app reports** and a **combined JSON + HTML dashboard** with detailed coverage stats and worst covered files.
 
 ---
@@ -100,7 +101,7 @@ yarn manager-types-coverage --packages @ovh-ux/manager-ghost-app,@ovh-ux/manager
 ## 📂 Output Structure
 
 ```
-types-coverage-reports/
+<root>/types-coverage-reports/
 ├── manager-container-app/
 │   ├── typescript-coverage.json
 │   ├── index.html

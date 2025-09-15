@@ -1,6 +1,7 @@
 # HTML W3C Validation Matcher — Vitest + React Testing Library
 
 Validate the HTML produced by your React components **inside RTL/jsdom tests** using the W3C **[Nu Html Checker](https://github.com/validator/validator)** ([`vnu.jar` on npm](https://www.npmjs.com/package/vnu-jar)).  
+
 Under the hood, this matcher spawns `java -jar vnu.jar` safely via `child_process.spawn` (no `execa`), so it works reliably in jsdom.
 
 ---
@@ -73,7 +74,7 @@ import "@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup";
 ```tsx
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { render } from "@/utils/test.provider"; // or @testing-library/react
+import { render } from "@testing-library/react";
 import BillingStateBadge from "./BillingStateBadge.component";
 
 describe("BillingStateBadge W3C Validation", () => {
