@@ -21,7 +21,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.14.0",
+    "@ovh-ux/manager-common-translations": "^0.18.2",
     "@ovh-ux/manager-config": "^8.6.1",
     "@ovh-ux/manager-core-api": "^0.16.0",
     "@ovh-ux/manager-core-utils": "^0.4.1",
