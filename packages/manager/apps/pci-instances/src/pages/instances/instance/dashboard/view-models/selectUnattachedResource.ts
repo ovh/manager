@@ -27,11 +27,15 @@ export const selectUnattachedPrivateNetworks = (
 export const selectUnattachedVolumes = (
   volumes: TVolume[],
   instanceVolumes: TInstanceVolume[],
+  instanceAvailabilityZone: string | null,
 ): TUnattachedResource[] =>
   volumes
     .filter(
-      ({ id }) =>
-        !instanceVolumes.some((instanceVolume) => id === instanceVolume.id),
+      ({ id, availabilityZone }) =>
+        !instanceVolumes.some((instanceVolume) => id === instanceVolume.id) &&
+        (availabilityZone === 'any' ||
+          availabilityZone === null ||
+          availabilityZone === instanceAvailabilityZone),
     )
     .map(({ id, name }) => ({
       label: name,
