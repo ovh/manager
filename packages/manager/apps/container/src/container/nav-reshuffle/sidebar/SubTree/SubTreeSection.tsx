@@ -63,7 +63,7 @@ const SubTreeSection: React.FC<ComponentProps<SubTreeSectionProps>> = ({
           </li>
 
           {node.children
-            ?.filter((childNode) => !shouldHideElement(childNode, true))
+            ?.filter((childNode) => !shouldHideElement(childNode, childNode.hasService ?? true))
             .map((childNode, index) => (
               <li
                 key={childNode.id + index}
