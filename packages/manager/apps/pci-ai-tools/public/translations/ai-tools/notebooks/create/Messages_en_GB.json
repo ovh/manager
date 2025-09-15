@@ -51,5 +51,6 @@
   "fieldFlavorDescription": "Select resource type",
   "fieldFrameworkVersionDescription": "Select version",
   "fieldConfigurationPrivacyLabel": "Privacy",
-  "sshKeyConfigurationHelperBis": "Use the dropdown list below to link SSH keys to your notebook"
+  "sshKeyConfigurationHelperBis": "Use the dropdown list below to link SSH keys to your notebook",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }
