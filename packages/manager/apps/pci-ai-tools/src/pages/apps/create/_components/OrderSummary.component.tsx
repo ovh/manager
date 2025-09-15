@@ -1,5 +1,6 @@
 import {
   Cpu,
+  Gpu,
   Globe,
   HardDrive,
   Hash,
@@ -119,6 +120,21 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
               })}
             </span>
           </div>
+          {order.flavor.type === ai.capabilities.FlavorTypeEnum.gpu && (
+            <div className="flex items-center pl-4 gap-2">
+              <Gpu className="size-4" />
+              <span>
+                {t('summaryFieldFlavorVMemory', {
+                  memory: bytesConverter(
+                    order.resourcesQuantity *
+                      order.flavor.gpuInformation?.gpuMemory,
+                    false,
+                    0,
+                  ),
+                })}
+              </span>
+            </div>
+          )}
           <div className="flex items-center pl-4 gap-2">
             <HardDrive className="size-4" />
             <span>
