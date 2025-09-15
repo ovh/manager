@@ -74,6 +74,9 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
             <TableHead className="h-10 px-2 border font-semibold text-primary-800">
               {t('tableHeadMemory')}
             </TableHead>
+            <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              V{t('tableHeadMemory')}
+            </TableHead>
             {!isUpdate && (
               <TableHead className="h-10 px-2 border font-semibold text-primary-800">
                 {t('tableHeadStorage')}
@@ -134,6 +137,19 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
                   0,
                 )}
               </TableCell>
+              {flavor.type === ai.capabilities.FlavorTypeEnum.cpu ? (
+                <TableCell className="text-[#4d5592] border capitalize text-center">
+                  -
+                </TableCell>
+              ) : (
+                <TableCell className="text-[#4d5592] border capitalize">
+                  {bytesConverter(
+                    resourcesQuantity * flavor.gpuInformation?.gpuMemory,
+                    false,
+                    0,
+                  )}
+                </TableCell>
+              )}
               {!isUpdate && (
                 <TableCell className="text-[#4d5592] border capitalize">
                   {bytesConverter(

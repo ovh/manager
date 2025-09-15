@@ -51,5 +51,6 @@
   "fieldFlavorDescription": "Escolher o tipo de recursos",
   "fieldFrameworkVersionDescription": "Escolher a versão",
   "fieldConfigurationPrivacyLabel": "Confidencialidade",
-  "sshKeyConfigurationHelperBis": "Use a lista pendente abaixo para associar chaves SSH ao seu notebook"
+  "sshKeyConfigurationHelperBis": "Use a lista pendente abaixo para associar chaves SSH ao seu notebook",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }
