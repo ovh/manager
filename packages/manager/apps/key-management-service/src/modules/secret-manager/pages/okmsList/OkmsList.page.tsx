@@ -16,16 +16,12 @@ import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
-import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsDatagrid } from '@/common/components/okmsDatagrid/OkmsDatagrid.component';
 import { useOkmsDatagridList } from '@/data/hooks/useOkms';
 import { isErrorResponse } from '@/utils/api/api';
 
 export default function OkmsListPage() {
-  const { t } = useTranslation([
-    'secret-manager',
-    'key-management-service/create',
-  ]);
+  const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { region } = useParams<LocationPathParams>();
@@ -91,11 +87,9 @@ export default function OkmsListPage() {
           okmsList={okmsList}
           topbar={
             <OdsButton
-              label={t(
-                'key-management-service/create:key_management_service_create_title',
-              )}
+              label={t('create_a_secret')}
               onClick={() => {
-                navigate(KMS_ROUTES_URLS.kmsCreate);
+                navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
               }}
             />
           }
