@@ -846,6 +846,16 @@ import union from 'lodash/union';
           )
           .then(({ data }) => data);
       }
+
+      /**
+       * Get abuse state info
+       * @param {string} serviceName
+       */
+      getAbuseState(serviceName) {
+        return this.$http
+          .get(`/hosting/web/${serviceName}/abuseState`)
+          .then(({ data }) => data);
+      }
     },
   );
 }

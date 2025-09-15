@@ -1,0 +1,21 @@
+{
+  "hosting_dashboard_service_abuse_state_modal_title": "Activité anormale sur votre hébergement",
+  "hosting_dashboard_service_abuse_state_modal_info_malwares": "Nous avons détecté <strong>la présence de fichiers malveillants (malwares)</strong> sur votre hébergement. <br/>Par mesure de sécurité, nous avons temporairement bloqué les requêtes sortantes ainsi que l'envoi d'e-mails via les fonctions PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_mailsout": "Nous avons détecté un <strong>volume anormalement élevé d'e-mails expédiés</strong> depuis votre hébergement. <br/>Par mesure de sécurité, nous avons temporairement bloqué leur envoi via les fonctions PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_outstate": "Nous avons détecté un <strong>volume anormalement élevé de requêtes sortantes</strong> depuis votre hébergement. <br/>Par mesure de sécurité, nous avons temporairement bloqué ces requêtes.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_malwares": "Vos sites ne peuvent actuellement plus envoyer d'e-mails ni communiquer avec des services externes, le temps que la situation soit résolue.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_mailsout": "Vos sites ne peuvent actuellement plus envoyer d'e-mails, le temps que la situation soit résolue.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_outstate": "Vos sites ne peuvent actuellement plus communiquer avec des services externes, le temps que la situation soit résolue.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_title": "Ce que vous devez faire :",
+  "hosting_dashboard_service_abuse_state_modal_button_action_first": "Consultez notre guide pour vous aider à stopper cette activité anormale.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_second": "Une fois la situation résolue, cochez la case ci-dessous pour demander la levée des mesures de sécurité sur votre hébergement.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_guideline": "Guide pour résoudre une activité anormale",
+  "hosting_dashboard_service_abuse_state_modal_button_action_checkbox": "Je confirme avoir effectué toutes les actions nécessaires pour résoudre le problème.",
+  "hosting_dashboard_service_abuse_state_modal_button_later": "Plus tard",
+  "hosting_dashboard_service_abuse_state_modal_button_unblock": "Lever les mesures de sécurité",
+  "hosting_dashboard_service_abuse_state_banner_alert_message": "<strong>Activité anormale détectée</strong><br />Par mesure de sécurité, nous avons temporairement bloqué certaines fonctionnalités de votre hébergement.<br/><a href=\"{{ href }}\">En savoir plus</a>",
+  "hosting_dashboard_service_abuse_state_banner_alert_link": "En savoir plus",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Votre hébergement est en cours d'analyse afin de lever les mesures de sécurité.</strong><br/><a href=\"{{ href }}\">Voir les tâches en cours</a>",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "Voir les tâches en cours",
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "Une erreur est survenue : {{ error }}."
+}
