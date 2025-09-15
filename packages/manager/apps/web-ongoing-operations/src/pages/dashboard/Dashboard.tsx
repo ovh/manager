@@ -17,6 +17,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { GUIDES_LIST } from '@/guides.constants';
 import { getLanguageKey } from '@/utils/utils';
 import { urls } from '@/routes/routes.constant';
@@ -42,7 +43,7 @@ export default function DashboardPage() {
   const [displayAllDom, setDisplayAllDom] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation('dashboard');
+  const { t, i18n } = useTranslation(['dashboard', NAMESPACES.DASHBOARD]);
   const { notifications } = useNotifications();
   const langCode = getLanguageKey(i18n.language);
 
@@ -51,7 +52,7 @@ export default function DashboardPage() {
       id: 1,
       href: GUIDES_LIST.domains.url[langCode],
       target: '_blank',
-      label: t('domain_operations_guides'),
+      label: t(`${NAMESPACES.DASHBOARD}:general_information`),
     },
   ];
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
