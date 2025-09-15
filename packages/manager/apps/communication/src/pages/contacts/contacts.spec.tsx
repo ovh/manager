@@ -25,6 +25,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   BaseLayout: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),
+  Notifications: vi.fn().mockReturnValue(() => <></>),
   useFormatDate: vi.fn().mockReturnValue(() => '2025-01-01'),
   useResourcesIcebergV2: vi.fn().mockReturnValue({
     flattenData: [],
@@ -59,6 +60,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
+  Outlet: vi.fn().mockReturnValue(() => <></>),
   useLocation: vi.fn(() => ({
     hash: '',
     key: 'default',
