@@ -1,23 +1,25 @@
 import React, { useContext, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
-import { Modal } from '@ovh-ux/manager-react-components';
 
-import { subRoutes, urls } from '@/routes/routes.constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { DOMAIN_ORDER_OPTIONS_SERVICE } from '@/constants';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function SectigoModal() {
   const context = useContext(ShellContext);
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const { data } = useWebHostingAttachedDomain({ shouldFetchAll: true });
 
   const { ovhSubsidiary } = context.environment.getUser();
@@ -25,9 +27,8 @@ export default function SectigoModal() {
   const { t } = useTranslation(['ssl', NAMESPACES.ACTIONS]);
 
   const rawOrderFormURL =
-    DOMAIN_ORDER_OPTIONS_SERVICE[
-      ovhSubsidiary as keyof typeof DOMAIN_ORDER_OPTIONS_SERVICE
-    ] ?? DOMAIN_ORDER_OPTIONS_SERVICE.FR;
+    DOMAIN_ORDER_OPTIONS_SERVICE[ovhSubsidiary as keyof typeof DOMAIN_ORDER_OPTIONS_SERVICE] ??
+    DOMAIN_ORDER_OPTIONS_SERVICE.FR;
 
   const onConfirm = () => {
     const certificateLink = rawOrderFormURL
@@ -51,7 +52,7 @@ export default function SectigoModal() {
         <OdsSelect
           name="modalDomainName"
           placeholder={t('select_domain')}
-          onOdsChange={(e) => setSelectedDomain(e?.detail.value as string)}
+          onOdsChange={(e) => setSelectedDomain(e?.detail.value)}
         >
           {data?.map((item) => (
             <option value={item?.currentState?.fqdn} key={item?.id}>

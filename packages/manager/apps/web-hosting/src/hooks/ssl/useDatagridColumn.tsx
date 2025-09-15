@@ -1,24 +1,21 @@
 import React from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router-dom';
+
+import { ODS_BADGE_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   ActionMenu,
   ActionMenuItem,
   Badge,
   DataGridTextCell,
-  DateFormat,
-  useFormattedDate,
+  useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-
-import { SslCertificate } from '@/types/ssl';
+import { SslCertificate } from '@/data/types/product/ssl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export const DatagridActionCell = (props: SslCertificate) => {
@@ -58,7 +55,7 @@ export default function useDatagridColumn() {
   const navigate = useNavigate();
   const { serviceName } = useParams();
   const { t } = useTranslation('ssl');
-
+  const formatDate = useFormatDate();
   const StatusColor = {
     ACTIVE: ODS_BADGE_COLOR.success,
     CREATING: ODS_BADGE_COLOR.warning,
@@ -109,9 +106,7 @@ export default function useDatagridColumn() {
     {
       id: 'type',
       cell: (props: SslCertificate) => (
-        <DataGridTextCell>
-          {t(props?.currentState?.certificateType)}
-        </DataGridTextCell>
+        <DataGridTextCell>{t(props?.currentState?.certificateType)}</DataGridTextCell>
       ),
       label: t('cell_certificate_type'),
     },
@@ -132,9 +127,9 @@ export default function useDatagridColumn() {
       id: 'creationDate',
       cell: (props: SslCertificate) => (
         <DataGridTextCell>
-          {useFormattedDate({
-            dateString: props?.currentState?.createdAt,
-            format: DateFormat.compact,
+          {formatDate({
+            date: props?.currentState?.createdAt,
+            format: 'dd/MM/yyyy',
           })}
         </DataGridTextCell>
       ),
@@ -145,9 +140,9 @@ export default function useDatagridColumn() {
       cell: (props: SslCertificate) => (
         <DataGridTextCell>
           {props?.currentState?.expiredAt
-            ? useFormattedDate({
-                dateString: props?.currentState?.expiredAt,
-                format: DateFormat.compact,
+            ? formatDate({
+                date: props?.currentState?.expiredAt,
+                format: 'dd/MM/yyyy',
               })
             : '-'}
         </DataGridTextCell>

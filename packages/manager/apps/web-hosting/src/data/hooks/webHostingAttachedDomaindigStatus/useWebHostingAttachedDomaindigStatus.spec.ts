@@ -1,9 +1,11 @@
-import { describe, expect, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, vi } from 'vitest';
+
 import { attachedDomainDigStatusMock } from '@/data/__mocks__';
-import { useWebHostingAttachedDomaindigStatus } from './useWebHostingAttachedDomaindigStatus';
 import { wrapper } from '@/utils/test.provider';
+
+import { useWebHostingAttachedDomaindigStatus } from './useWebHostingAttachedDomaindigStatus';
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
   v6: {
@@ -18,8 +20,7 @@ describe('useWebHostingAttachedDomaindigStatus', () => {
 
   it('should return webhosting attached domain dig status ', async () => {
     const { result } = renderHook(
-      () =>
-        useWebHostingAttachedDomaindigStatus('testServiceName', 'testDomain'),
+      () => useWebHostingAttachedDomaindigStatus('testServiceName', 'testDomain'),
       { wrapper },
     );
 

@@ -1,5 +1,7 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
+import { WebSiteAttachedDomainDigStatusType } from '../types/product/website';
+
 export const getWebHostingAttachedDomainDigStatusQueryKey = (
   serviceName: string,
   domain: string,
@@ -8,8 +10,8 @@ export const getWebHostingAttachedDomainDigStatusQueryKey = (
 export const getWebHostingAttachedDomainDigStatus = async (
   serviceName: string,
   domain: string,
-) => {
-  const { data } = await v6.get(
+): Promise<WebSiteAttachedDomainDigStatusType> => {
+  const { data } = await v6.get<WebSiteAttachedDomainDigStatusType>(
     `/hosting/web/${serviceName}/attachedDomain/${domain}/digStatus`,
   );
   return data;
