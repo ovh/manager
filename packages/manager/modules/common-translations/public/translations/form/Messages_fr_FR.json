@@ -1,4 +1,5 @@
 {
+  "step_number": "Étape {{step}}",
   "stepPlaceholder": "Étape {{current}} sur {{total}}",
   "mandatory_fields": "Les champs mentionnés avec un astérisque * sont obligatoires.",
   "max_chars": "{{ value }} caractères maximum",
@@ -27,5 +28,9 @@
   "change_password_label_confirm_password": "Confirmation du nouveau mot de passe",
   "change_password_helper1": "Attention, le mot de passe doit respecter les conditions suivantes :",
   "change_password_helper2": "Au moins 1 lettre minuscule, 1 lettre majuscule, 1 chiffre ou 1 caractère spécial",
-  "price": "Prix"
+  "price": "Prix",
+  "yes": "Oui",
+  "no": "Non",
+  "ok": "OK",
+  "optional": "facultatif"
 }

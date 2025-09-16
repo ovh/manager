@@ -20,4 +20,7 @@ export const NAMESPACES = {
   COUNTRY: `${NAMESPACE_PREFIX}/country`,
   LANGUAGE: `${NAMESPACE_PREFIX}/language`,
   UPLOAD: `${NAMESPACE_PREFIX}/upload`,
+  RESOURCES: `${NAMESPACE_PREFIX}/resources`,
+  SYSTEM: `${NAMESPACE_PREFIX}/system`,
+  TIME: `${NAMESPACE_PREFIX}/time`,
 };

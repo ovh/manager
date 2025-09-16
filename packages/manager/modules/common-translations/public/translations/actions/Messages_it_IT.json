@@ -49,9 +49,13 @@
   "start": "Comincia ora",
   "renew": "Rinnovare",
   "restore": "Ripristinare",
-  "see_details": "Andare ai dettagli",
+  "see_details": "Visualizza dettagli",
   "order_users": "Aggiungere un utente",
   "edit_account": "Modificare l'account",
   "change_password": "Modificare la password",
-  "delete_account": "Elimina l’account"
+  "delete_account": "Elimina l’account",
+  "copy": "Copiare",
+  "select_imperative": "Seleziona",
+  "go_to_details": "Andare ai dettagli",
+  "display_recap": "Visualizzare il riepilogo"
 }

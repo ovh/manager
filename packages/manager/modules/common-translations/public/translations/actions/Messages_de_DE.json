@@ -49,9 +49,13 @@
   "start": "Starten",
   "renew": "Verlängern",
   "restore": "Wiederherstellen",
-  "see_details": "Zu den Details",
+  "see_details": "Details anzeigen",
   "order_users": "User hinzufügen",
   "edit_account": "Account bearbeiten",
   "change_password": "Passwort ändern",
-  "delete_account": "Account löschen"
+  "delete_account": "Account löschen",
+  "copy": "Kopieren",
+  "select_imperative": "Auswahl",
+  "go_to_details": "Zu den Details",
+  "display_recap": "Infobox anzeigen"
 }
