@@ -42,7 +42,9 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
         >
           <MessageIcon name={ICON_NAME.triangleExclamation} />
           <MessageBody>
-            {t('pci_instances_actions_instance_network_network_empty_message')}
+            {t(
+              'actions:pci_instances_actions_instance_network_network_empty_message',
+            )}
           </MessageBody>
         </Message>
       )}
