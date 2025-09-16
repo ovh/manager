@@ -72,24 +72,32 @@ export const DashboardLayout: React.FC = () => {
     [availability, proCount],
   );
 
-  const guideItems: GuideItem[] = [
-    {
-      id: 1,
-      href:
-        GUIDES_LIST.administrator_guide.url[ovhSubsidiary] ||
-        GUIDES_LIST.administrator_guide.url.DEFAULT,
+  const TopButtonGuidesListEnum = {
+    ADMINISTRATOR_GUIDE: 'administrator_guide',
+    USER_GUIDE: 'user_guide',
+    MAIL_CONFIGURE_GUIDE: 'mail_configure_guide',
+    MAIL_MIGRATE_GUIDE: 'mail_migrate_guide',
+  } as const;
+
+  const guideItems: GuideItem[] = Object.values(TopButtonGuidesListEnum).map(
+    (
+      value: (typeof TopButtonGuidesListEnum)[keyof typeof TopButtonGuidesListEnum],
+      key: number,
+    ) => ({
+      id: key,
+      href: GUIDES_LIST[value].url[ovhSubsidiary] || GUIDES_LIST[value].url.DEFAULT,
       target: '_blank',
-      label: t('zimbra_dashboard_administrator_guide'),
+      label: t(GUIDES_LIST[value].key),
       onClick: () => {
         trackClick({
           location: PageLocation.tile,
           buttonType: ButtonType.externalLink,
           actionType: 'navigation',
-          actions: [GO_TO(GUIDES_LIST.administrator_guide.tracking)],
+          actions: [GO_TO(GUIDES_LIST[value].tracking)],
         });
       },
-    },
-  ];
+    }),
+  );
 
   const tabsList: TabItemProps[] = [
     {
