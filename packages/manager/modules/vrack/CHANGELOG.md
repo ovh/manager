@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.21.0...@ovh-ux/manager-vrack@1.21.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4313] ([0734b8c](https://github.com/ovh/manager/commit/0734b8c0837540d558e041fc18675183cb47ba70))
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.20.6...@ovh-ux/manager-vrack@1.21.0) (2025-08-11)
 
 

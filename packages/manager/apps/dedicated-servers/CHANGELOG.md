@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.8...@ovh-ux/manager-dedicated-servers-app@0.4.9) (2025-09-16)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** fix column visibility when filtering ([318abda](https://github.com/ovh/manager/commit/318abdaa376b164430ff6a0689934ffea2da12ca)), closes [#MANAGER-18957](https://github.com/ovh/manager/issues/MANAGER-18957)
+
+
+
+
+
 ## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.7...@ovh-ux/manager-dedicated-servers-app@0.4.8) (2025-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
