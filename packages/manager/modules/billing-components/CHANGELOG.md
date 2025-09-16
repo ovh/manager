@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.5...@ovh-ux/manager-billing-components@4.24.0) (2025-09-16)
+
+
+### Features
+
+* **billing-components:** add resiliate modal with strategy choice ([60d08a5](https://github.com/ovh/manager/commit/60d08a5a6a931e7a6830ba834f45959faa602dc1)), closes [#MANAGER-19171](https://github.com/ovh/manager/issues/MANAGER-19171)
+* **billing:** add resiliate modal with choice for byiop ([bdbb232](https://github.com/ovh/manager/commit/bdbb2323575086e2469c745bc863b42a6743cd7f)), closes [#MANAGER-19171](https://github.com/ovh/manager/issues/MANAGER-19171)
+* **billing:** update actions menu in my services page for us manager ([#18403](https://github.com/ovh/manager/issues/18403)) ([e7e26e9](https://github.com/ovh/manager/commit/e7e26e9362b4ddfe51c2d5ca0e3c775242a4afa6)), closes [#MANAGER-18779](https://github.com/ovh/manager/issues/MANAGER-18779)
+
+
+
+
+
 ## [4.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.4...@ovh-ux/manager-billing-components@4.23.5) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

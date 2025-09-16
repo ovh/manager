@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.48.1...@ovh-ux/manager-billing@0.49.0) (2025-09-16)
+
+
+### Features
+
+* **billing:** add featureavailability for my services access ([#19074](https://github.com/ovh/manager/issues/19074)) ([4e80969](https://github.com/ovh/manager/commit/4e80969d0ab7861bba093b4981685c9c57a850a9)), closes [#MANAGER-19651](https://github.com/ovh/manager/issues/MANAGER-19651)
+* **billing:** add resiliate modal with choice for byiop ([bdbb232](https://github.com/ovh/manager/commit/bdbb2323575086e2469c745bc863b42a6743cd7f)), closes [#MANAGER-19171](https://github.com/ovh/manager/issues/MANAGER-19171)
+* **billing:** my services datagrid add renew frequency column ([#18227](https://github.com/ovh/manager/issues/18227)) ([504b455](https://github.com/ovh/manager/commit/504b455a045d60f7ed1a34741b8b37f901c1a7df)), closes [#MANAGER-18780](https://github.com/ovh/manager/issues/MANAGER-18780)
+* **billing:** my services delete tips block for us region ([#17967](https://github.com/ovh/manager/issues/17967)) ([6ab4f82](https://github.com/ovh/manager/commit/6ab4f824d3bb2263ac4868c5f0b317c3e085bebd)), closes [#MANAGER-17643](https://github.com/ovh/manager/issues/MANAGER-17643)
+* **billing:** my services grid rename "effective date" column to "expiration date" ([#18404](https://github.com/ovh/manager/issues/18404)) ([32b0ebd](https://github.com/ovh/manager/commit/32b0ebd6095dde52e6e4df6530799bd7ce5fbd0c)), closes [#MANAGER-19216](https://github.com/ovh/manager/issues/MANAGER-19216)
+* **billing:** my services hide manual status filter for us ([#17990](https://github.com/ovh/manager/issues/17990)) ([69ac4bd](https://github.com/ovh/manager/commit/69ac4bdf202d36bb7e2edbe8aa4e89c6fb410e19)), closes [#MANAGER-18772](https://github.com/ovh/manager/issues/MANAGER-18772)
+* **billing:** my services page add us description ([#17934](https://github.com/ovh/manager/issues/17934)) ([8bbebc1](https://github.com/ovh/manager/commit/8bbebc1f57c09dd56e64271f59da0b141893f37d)), closes [#MANAGER-18769](https://github.com/ovh/manager/issues/MANAGER-18769)
+* **billing:** remove manual renewal option from services renewal modal ([#18147](https://github.com/ovh/manager/issues/18147)) ([74b3d69](https://github.com/ovh/manager/commit/74b3d6911697379d48f54638258ac6d093335a82)), closes [#MANAGER-18950](https://github.com/ovh/manager/issues/MANAGER-18950)
+* **billing:** show my services datagrid for us ([#17916](https://github.com/ovh/manager/issues/17916)) ([17fddba](https://github.com/ovh/manager/commit/17fddbae2bc7292e8cc28bdf17db719046b29db0)), closes [#MANAGER-18770](https://github.com/ovh/manager/issues/MANAGER-18770)
+* **billing:** update actions menu in my services page for us manager ([#18403](https://github.com/ovh/manager/issues/18403)) ([e7e26e9](https://github.com/ovh/manager/commit/e7e26e9362b4ddfe51c2d5ca0e3c775242a4afa6)), closes [#MANAGER-18779](https://github.com/ovh/manager/issues/MANAGER-18779)
+* **billing:** update my services actions menu content & labels for us ([#18157](https://github.com/ovh/manager/issues/18157)) ([f45356b](https://github.com/ovh/manager/commit/f45356b96c77852b176aba6f7d290400279ef2a7)), closes [#MANAGER-17637](https://github.com/ovh/manager/issues/MANAGER-17637)
+* **billing:** use us local for date format in expiration dates column ([#18617](https://github.com/ovh/manager/issues/18617)) ([2c4e77b](https://github.com/ovh/manager/commit/2c4e77bfaa775b4fda344b8c0fce134a626767b6)), closes [#MANAGER-19086](https://github.com/ovh/manager/issues/MANAGER-19086)
+
+
+
+
+
 ## [0.48.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.48.0...@ovh-ux/manager-billing@0.48.1) (2025-09-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing
