@@ -1,0 +1,17 @@
+{
+  "billing_resiliate_mode_label": "Modo de rescisão",
+  "billing_resiliate_deleteAtExpiration": "Rescindir serviço na data de expiração",
+  "billing_resiliate_terminate": "Rescindir o serviço imediatamente",
+  "billing_resiliate_terminateAtEngagementDate": "Rescindir o serviço na data de fim do compromisso",
+  "billing_resiliate_terminateAtExpirationDate": "Rescindir serviço na data de expiração",
+  "billing_resiliate_deleteAtExpiration_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
+  "billing_resiliate_deleteAtExpiration_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
+  "billing_resiliate_terminate_success": "O pedido de rescisão deste serviço foi registado. Receberá um e-mail de confirmação para validar a rescisão.",
+  "billing_resiliate_terminate_immediate_success": "O pedido de rescisão deste serviço foi registado.",
+  "billing_resiliate_terminate_error": "Ocorreu um erro aquando do pedido de rescisão deste serviço:",
+  "billing_resiliate_terminateAtEngagementDate_success": "O pedido de rescisão do serviço na data de fim do compromisso foi suspenso.",
+  "billing_resiliate_terminateAtEngagementDate_error": "Ocorreu um erro aquando do pedido de rescisão à data de fim do compromisso deste serviço:",
+  "billing_resiliate_terminateAtExpirationDate_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
+  "billing_resiliate_terminateAtExpirationDate_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
+  "billing_resiliate_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão:"
+}

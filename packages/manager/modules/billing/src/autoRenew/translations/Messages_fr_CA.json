@@ -1,6 +1,7 @@
 {
   "billing_title": "Mes offres et services",
-  "billing_description": "Bienvenue dans votre section gestion des services. Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
+  "billing_description": "Bienvenue dans votre section gestion des services.",
+  "billing_description_details": "Administrez le renouvellement, le paiement et la résiliation de vos services depuis cette page.",
   "billing_home_title": "Tous les services",
   "billing_agreements_title": "Contrats",
   "billing_ssh_title": "Clés SSH",
@@ -39,6 +40,7 @@
   "billing_autorenew_service_state_OK": "Payé",
   "billing_autorenew_service_state_UN_PAID": "Non payé",
   "billing_autorenew_service_date": "Date d'effet",
+  "billing_autorenew_service_date_us": "Date d'expiration",
   "billing_autorenew_service_date_now": "Immédiatement",
   "billing_autorenew_service_date_before": "Avant le {{ date }}",
   "billing_autorenew_service_date_renew": "Le {{ date }}",
@@ -57,7 +59,8 @@
   "autorenew_service_renew_paid": "Payé",
 
   "autorenew_empty": "Vous n'avez aucun service",
-  "autorenew_service_action_title": "Actions",
+  "autorenew_service_action_title": "Action",
+  "autorenew_service_actions_title": "Actions",
   "autorenew_service_autorenew_day": "Jour de renouvellement automatique:",
   "autorenew_service_autorenew_day_tooltip": "Si vous avez des services en renouvellement automatique, vous pouvez choisir leur jour de renouvellement",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Si vous avez des services en renouvellement automatique, vous pouvez choisir leur jour de renouvellement (option non compatible avec les produits Bare Metal et VPS dont la date de renouvellement est définie au 1er du mois par défaut pour cette catégorie de produit).",
@@ -170,9 +173,9 @@
   "billing_autorenew_service_frequency": "Fréquence de renouvellement",
 
   "billing_autorenew_service_none": "Aucun",
-  "billing_autorenew_service_every_1_month": "Tous les mois",
-  "billing_autorenew_service_every_3_month": "Tous les 3 mois",
-  "billing_autorenew_service_every_6_month": "Tous les 6 mois",
-  "billing_autorenew_service_every_12_month": "Tous les ans",
+  "billing_autorenew_service_every_month": "Tous les mois",
+  "billing_autorenew_service_every_x_months": "Tous les {{ months }} mois",
+  "billing_autorenew_service_every_year": "Tous les ans",
+  "billing_autorenew_service_every_x_years": "Tous les {{ years }} ans",
   "billing_autorenew_engagement_none": "Sans engagement"
 }
