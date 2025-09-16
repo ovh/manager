@@ -44,7 +44,9 @@ describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page without banner info for special offer', async () => {
     const { getByText, queryByText } = await renderTest({
       initialRoute: vdcRoute,
-      feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': false },
+      feature: {
+        'hpc-vmware-public-vcf-aas:compute-special-offer-banner': false,
+      },
       nbCompute: 2,
     });
 
@@ -89,14 +91,16 @@ describe('Datacentre Compute Listing Page', () => {
   it('access and display compute listing page with banner info for special offer', async () => {
     const { getByText, getByTestId } = await renderTest({
       initialRoute: vdcRoute,
-      feature: { 'hpc-vmware-managed-vcd:compute-special-offer-banner': true },
+      feature: {
+        'hpc-vmware-public-vcf-aas:compute-special-offer-banner': true,
+      },
       nbCompute: 2,
     });
 
     // access compute tab
     await assertTextVisibility(COMPUTE_LABEL);
     const tab = getByText(COMPUTE_LABEL);
-    await waitFor(() => userEvent.click(tab));
+    await act(() => userEvent.click(tab));
 
     // check banner info for special offer
     await waitFor(() => {

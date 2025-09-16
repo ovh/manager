@@ -102,7 +102,7 @@ describe('pccDashboardLight component tests suite', () => {
     expect(mockDedicatedCloud.getLocation).toHaveBeenCalledTimes(1);
     expect(mockCoreURLBuilder.buildURL).toHaveBeenCalledTimes(1);
     expect(mockCoreURLBuilder.buildURL).toHaveBeenCalledWith(
-      'hpc-vmware-managed-vcd',
+      'hpc-vmware-public-vcf-aas',
       '#/VCD_name',
     );
     expect($ctrl.vcdDashboardRedirectURL).toBe('https://vcdurl');
