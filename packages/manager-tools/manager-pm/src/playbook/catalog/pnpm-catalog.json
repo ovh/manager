@@ -1,5 +1,6 @@
 [
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
+  "packages/manager/apps/pci-contacts",
   "packages/manager/apps/pci-instances"
 ]
