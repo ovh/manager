@@ -11,6 +11,8 @@
   "billing_payment_method_table_top_add_method": "Ajouter un moyen de paiement",
   "billing_payment_method_autorenew_guide_help": "Besoin d'aide pour vos renouvellements ?",
   "billing_payment_method_autorenew_guide_help_link": "En savoir plus",
+  "billing_payment_method_payment_by_cheque_information": "Le paiement par chèque ne sera plus accepté à partir du 1er décembre 2025. Pour simplifier vos règlements, nous vous proposons d'autres alternatives. Merci de cliquer sur le bouton d'action ",
+  "billing_payment_method_payment_by_cheque_information_button": "\"Ajouter un moyen de paiement\"",
   "billing_payment_method_bank_account_pending_validation": "Merci d’avoir renseigné vos coordonnées bancaires. Vous recevrez rapidement un e-mail de notre partenaire Yousign, vous permettant de signer électroniquement votre mandat de prélèvement. Votre compte bancaire sera ainsi validé et actif.",
   "billing_payment_method_bank_account_processing_delay": "Votre compte bancaire sera validé dans les 24h à 48h à compter de la réception de votre autorisation de prélèvement.",
   "billing_payment_method_table_action_download_procedure": "Télécharger la procédure à retourner par voie postale",
