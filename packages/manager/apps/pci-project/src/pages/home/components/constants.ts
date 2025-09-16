@@ -1,5 +1,9 @@
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  DashboardTileItem,
+  DashboardTileItemTemplate,
+} from '../DashboardTile.types';
 
 type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
@@ -60,35 +64,35 @@ export const DOCUMENTATION_GUIDE_LINKS: {
   },
 };
 
-export const DOCUMENTATION_LINKS_TEMPLATE = [
+export const DOCUMENTATION_LINKS_TEMPLATE: DashboardTileItemTemplate[] = [
   {
     labelTranslationKey: 'pci_projects_project_getting_started',
     linkLabelTranslationKey: 'pci_projects_project_essential_to_start',
-    guideKey: 'getting_started',
+    documentationGuideKey: 'getting_started',
   },
   {
     labelTranslationKey: 'pci_projects_project_public_cloud',
     linkLabelTranslationKey: 'pci_projects_project_get_familiar',
-    guideKey: 'public_cloud',
+    documentationGuideKey: 'public_cloud',
   },
   {
     labelTranslationKey: 'pci_projects_project_instances',
     linkLabelTranslationKey: 'pci_projects_project_manage_instances',
-    guideKey: 'instances',
+    documentationGuideKey: 'instances',
   },
   {
     labelTranslationKey: 'pci_projects_project_billing',
     linkLabelTranslationKey: 'pci_projects_project_understand_manage',
-    guideKey: 'billing',
+    documentationGuideKey: 'billing',
   },
   {
     labelTranslationKey: 'pci_projects_project_guides',
     linkLabelTranslationKey: 'pci_projects_project_see_all_guides',
-    guideKey: 'guides',
+    documentationGuideKey: 'guides',
   },
 ];
 
-export const COMMUNITY_LINKS = [
+export const COMMUNITY_LINKS: DashboardTileItem[] = [
   {
     labelTranslationKey: 'pci_projects_project_roadmap',
     linkLabelTranslationKey: 'pci_projects_project_discover_participate',
@@ -114,7 +118,7 @@ export const COMMUNITY_LINKS = [
   },
 ];
 
-export const CREDIT_VOUCHER_LINK = {
+export const CREDIT_VOUCHER_LINK: DashboardTileItem = {
   linkLabelTranslationKey: 'pci_projects_project_credits_vouchers',
   link: '/public-cloud/pci/projects/{projectId}/billing/credits',
   color: 'primary',
