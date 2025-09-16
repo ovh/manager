@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.149.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.148.0...@ovh-ux/manager-container-app@0.149.0) (2025-09-16)
+
+
+### Features
+
+* **vcf:** rename vcd by public vcf ([c53d86a](https://github.com/ovh/manager/commit/c53d86aa368c5fd802cfd4e3285fac713ab373b7)), closes [#MANAGER-19106](https://github.com/ovh/manager/issues/MANAGER-19106)
+
+
+
+
+
 # [0.148.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.4...@ovh-ux/manager-container-app@0.148.0) (2025-09-16)
 
 
