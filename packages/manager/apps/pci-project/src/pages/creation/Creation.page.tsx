@@ -1,16 +1,11 @@
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import FullPageSpinner from '@/components/FullPageSpinner';
+import { TPaymentMethodRef } from '@/components/payment/PaymentMethods';
+import { AntiFraudError, PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
-  Notifications,
-  OvhSubsidiary,
-  StepComponent,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+  checkoutCart,
+  getCartCheckout,
+  attachConfigurationToCartItem as postAttachConfigurationToCartItem,
+} from '@/data/api/cart';
 import {
   useAttachConfigurationToCartItem,
   useCreateAndAssignCart,
@@ -18,21 +13,26 @@ import {
   useGetOrderProjectId,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
-import FullPageSpinner from '@/components/FullPageSpinner';
-import { useConfigForm } from './hooks/useConfigForm';
-import ConfigStep from './steps/ConfigStep';
-import PaymentStep from './steps/PaymentStep';
-import { useStepper } from './hooks/useStepper';
-import { TPaymentMethodRef } from '@/components/payment/PaymentMethods';
-import {
-  checkoutCart,
-  getCartCheckout,
-  attachConfigurationToCartItem as postAttachConfigurationToCartItem,
-} from '@/data/api/cart';
 import { CartSummary } from '@/data/types/cart.type';
 import { usePaymentRedirect } from '@/hooks/payment/usePaymentRedirect';
-import { AntiFraudError, PCI_PROJECT_ORDER_CART } from '@/constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  Notifications,
+  OvhSubsidiary,
+  StepComponent,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import useAntiFraud from './hooks/useAntiFraud';
+import { useConfigForm } from './hooks/useConfigForm';
+import { useStepper } from './hooks/useStepper';
+import ConfigStep from './steps/ConfigStep';
+import PaymentStep from './steps/PaymentStep';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
