@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import PaymentMethods, {
   TPaymentMethodRef,
 } from '@/components/payment/PaymentMethods';
+import { useCallback, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   useIsStartupProgramAvailable,
@@ -14,6 +14,8 @@ import {
   OrderedProduct,
 } from '@/data/types/cart.type';
 import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useContext } from 'react';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';
 
@@ -54,6 +56,9 @@ export default function PaymentStep({
     paymentMethod: undefined,
     isAsDefault: false,
   });
+
+  const { environment } = useContext(ShellContext);
+  const user = environment.getUser();
 
   const handleVoucherConfigurationChange = (
     voucherConfiguration: CartConfiguration | undefined,
@@ -104,6 +109,16 @@ export default function PaymentStep({
         onPaymentSubmit={onPaymentSubmit}
         onPaymentError={onPaymentError}
       />
+
+      {/* <WillPaymentComponent
+      //   config={{
+      //     baseUrl: window.location.href,
+      //     onChange: handlePaymentMethodChange,
+      //     subsidiary: user.ovhSubsidiary,
+      //     language: user.language,
+      //     hostApp: 'pci',
+      //   }}
+      // /> */}
 
       {isStartupProgramAvailable && startupProgramAmountText && (
         <StartupProgram value={startupProgramAmountText} />
