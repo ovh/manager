@@ -16,6 +16,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
     params: ['withBackups', 'withImage', 'withNetworks', 'withVolumes'],
     queryOptions: {
       gcTime: 0,
+      refetchOnWindowFocus: 'always',
     },
   });
 
