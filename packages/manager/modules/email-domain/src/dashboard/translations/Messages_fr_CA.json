@@ -280,6 +280,7 @@
   "email_tab_modal_migrate_confirmation_delay": "La migration du contenu peut prendre plusieurs heures selon la taille de la boîte e-mail.",
   "email_tab_modal_migrate_cant_cancel_or_access": "Pendant ce temps, il ne vous sera pas possible d’annuler le processus ni accéder à votre ancienne boîte e-mail.",
   "email_tab_modal_migrate_alert_dont_change_password": "Veuillez ne pas modifier le mot de passe de votre compte e-mail source tant que sa migration n’est pas terminée.",
+  "email_tab_modal_migrate_alert_dont_rollback_available": "Attention, un retour vers l'offre précédente sera impossible une fois la migration du compte lancée",
   "email_tab_modal_migrate_informations_after_title": "Après",
   "email_tab_modal_migrate_remaining_available_emails": "Après la migration, il vous restera <strong>{{t0}}</strong> compte(s) libre(s).",
   "email_tab_modal_migrate_no_remaining_available_emails": "Après la migration, il ne vous restera plus de compte libre.",
