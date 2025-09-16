@@ -1,5 +1,5 @@
 {
-  "billing_autorenew_service_pending_actions": "Actions en attente",
+  "billing_autorenew_service_pending_actions": "Actions en cours",
   "billing_autorenew_service_pending_actions_autorenewInProgress": "Renouvellement en cours",
   "billing_autorenew_service_pending_actions_deleteAtExpiration": "Résiliation demandée",
   "billing_autorenew_service_pending_actions_earlyRenewal": "Renouvellement",

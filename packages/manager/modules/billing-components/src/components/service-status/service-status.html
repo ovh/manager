@@ -1,40 +1,23 @@
 <p>
     <span
-        class="oui-badge oui-badge_error"
-        data-ng-if="$ctrl.service.hasDebt()"
-        data-translate="manager_billing_service_status_pending_debt"
-    >
-    </span>
-    <span
-        data-ng-if="$ctrl.shouldHideAutorenewStatus() && !$ctrl.service.isResiliated()"
-        >-</span
-    >
-    <span
-        data-ng-if="$ctrl.shouldHideAutorenewStatus() && $ctrl.service.isResiliated()"
-        class="oui-badge oui-badge_error"
-        data-translate="manager_billing_service_status_expired"
-    >
-    </span>
-    <span
         class="oui-badge text-wrap"
-        data-ng-class="{
-        'oui-badge_error': $ctrl.SERVICE_STATES.error.includes($ctrl.service.getRenew()),
-        'oui-badge_warning': $ctrl.SERVICE_STATES.warning.includes($ctrl.service.getRenew()),
-        'oui-badge_success': $ctrl.SERVICE_STATES.success.includes($ctrl.service.getRenew()),
-        'oui-badge_info': $ctrl.SERVICE_STATES.info.includes($ctrl.service.getRenew()),
-    }"
-        data-ng-if="!$ctrl.service.hasDebt() && !$ctrl.shouldHideAutorenewStatus() && $ctrl.service.getRenew()"
-        data-translate="{{:: 'manager_billing_service_status_' + $ctrl.service.getRenew() | translate }}"
+        data-ng-if="::$ctrl.statusBadge.className"
+        data-ng-class="::$ctrl.statusBadge.className"
+        data-ng-bind="::$ctrl.statusBadge.label"
     ></span>
     <span
-        data-ng-if="$ctrl.service.isRestorable"
+        data-ng-if="::($ctrl.statusBadge && !$ctrl.statusBadge.className)"
+        data-ng-bind="::$ctrl.statusBadge.label"
+    ></span>
+    <span
+        data-ng-if="::$ctrl.service.isRestorable"
         class="oui-badge text-wrap oui-badge_warning"
         data-translate="{{:: 'manager_billing_service_status_restorable' | translate }}"
     ></span>
     <button
         type="button"
         class="oui-popover-button"
-        data-ng-if="$ctrl.service.statusHelp"
+        data-ng-if="::$ctrl.service.statusHelp"
         data-oui-popover="{{ $ctrl.service.statusHelp }}"
         data-oui-popover-placement="bottom"
     ></button>
