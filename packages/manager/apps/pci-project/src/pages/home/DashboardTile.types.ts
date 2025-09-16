@@ -1,7 +1,7 @@
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export type DashboardTileItem = {
-  labelTranslationKey: string;
+  labelTranslationKey?: string;
   descriptionTranslationKey?: string;
   link?: string;
   linkLabelTranslationKey?: string;
@@ -14,6 +14,11 @@ export type DashboardTileItem = {
   price?: string;
   validUntil?: string | null;
   hideTileIfNoOtherItems?: boolean;
+};
+
+// Template type for items that need transformation before becoming DashboardTileItem
+export type DashboardTileItemTemplate = DashboardTileItem & {
+  documentationGuideKey?: string;
 };
 
 export type DashboardTile = {

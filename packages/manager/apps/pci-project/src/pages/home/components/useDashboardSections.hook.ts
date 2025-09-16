@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useContext } from 'react';
+import { useMemo, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { CountryCode } from '@ovh-ux/manager-config';
@@ -17,6 +17,9 @@ import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 export function useDashboardSections(projectId: string) {
   const { t } = useTranslation('project');
   const { environment } = useContext(ShellContext);
+  const subsidiary = useMemo(() => environment.getUser().ovhSubsidiary, [
+    environment,
+  ]);
   const formatDate = useFormatDate();
   const {
     data: vouchersCreditDetails = [],
@@ -25,7 +28,7 @@ export function useDashboardSections(projectId: string) {
     error,
   } = useCreditDetails(projectId);
 
-  const createBillingItems = useCallback(() => {
+  const createBillingItems = useMemo(() => {
     const items = [];
 
     // Add voucher credits from API
@@ -52,36 +55,35 @@ export function useDashboardSections(projectId: string) {
 
     items.push({
       ...CREDIT_VOUCHER_LINK,
-      link: CREDIT_VOUCHER_LINK.link.replace('{projectId}', projectId),
+      link: CREDIT_VOUCHER_LINK.link?.replace('{projectId}', projectId),
     });
 
     return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
-  const createDocumentationItems = useCallback(() => {
-    const user = environment.getUser();
-    const subsidiary = user.ovhSubsidiary;
-
+  const createDocumentationItems = useMemo(() => {
     return DOCUMENTATION_LINKS_TEMPLATE.map((item) => ({
       ...item,
-      link:
-        DOC_BASE_URL +
-        (DOCUMENTATION_GUIDE_LINKS[item.guideKey][subsidiary as CountryCode] ||
-          DOCUMENTATION_GUIDE_LINKS[item.guideKey].DEFAULT),
+      link: item.documentationGuideKey
+        ? DOC_BASE_URL +
+          (DOCUMENTATION_GUIDE_LINKS[item.documentationGuideKey][
+            subsidiary as CountryCode
+          ] || DOCUMENTATION_GUIDE_LINKS[item.documentationGuideKey].DEFAULT)
+        : item.link,
     }));
-  }, [environment]);
+  }, [subsidiary]);
 
   const tiles: DashboardTile[] = useMemo(
     () => [
       {
         titleTranslationKey: 'pci_projects_project_billing_section',
         type: 'billing' as const,
-        items: createBillingItems(),
+        items: createBillingItems,
       },
       {
         titleTranslationKey: 'pci_projects_project_documentation_section',
         type: 'documentation' as const,
-        items: createDocumentationItems(),
+        items: createDocumentationItems,
       },
       {
         titleTranslationKey: 'pci_projects_project_community_section',
