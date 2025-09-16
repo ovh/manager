@@ -25,7 +25,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"]
+      "react": ["./node_modules/@types/react"],
+      "willPayment/WillPayment": ["./src/types/module-federation.d.ts"]
     }
   },
   "include": ["src"],
