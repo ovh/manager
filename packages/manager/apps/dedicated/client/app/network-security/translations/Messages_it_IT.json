@@ -65,6 +65,8 @@
   "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})",
   "network_security_dashboard_traffic_breadcrumb": "Grafici di traffico",
   "network_security_dashboard_filter_custom": "Personalizzato",
-  "network_security_dashboard_warning_period": "Attenzione: i dati richiesti non sono disponibili. Ti ricordiamo che la durata di conservazione dei dati del traffico è di 14 giorni.",
-  "network_security_dashboard_warning_default": "Il grafico del traffico recente verrà mostrato per l'indirizzo IP selezionato."
+  "network_security_dashboard_warning_period": "Attenzione: i dati richiesti non sono disponibili perché la durata di conservazione dei dati di traffico è scaduta.",
+  "network_security_dashboard_warning_default": "Il grafico del traffico recente verrà mostrato per l'indirizzo IP selezionato.",
+  "network_security_dashboard_filter_1_month": "1 mese",
+  "network_security_dashboard_filter_2_months": "2 mesi"
 }

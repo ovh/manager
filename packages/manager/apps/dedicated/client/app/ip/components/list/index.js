@@ -8,7 +8,6 @@ import block from './block/block.module';
 import byoip from './byoip/byoip.module';
 import exportCsv from './export-csv/export-csv.module';
 import firewall from './firewall/firewall.module';
-import mitigation from './mitigation/mitigation.module';
 import organisation from './organisation/organisation.module';
 import reverse from './reverse/reverse.module';
 import virtualMac from './virtual-mac/virtual-mac.module';
@@ -31,7 +30,6 @@ angular
     byoip,
     exportCsv,
     firewall,
-    mitigation,
     ngOvhFeatureFlipping,
     organisation,
     reverse,

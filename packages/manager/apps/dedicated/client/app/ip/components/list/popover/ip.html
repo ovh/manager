@@ -127,29 +127,6 @@
             role="separator"
         ></li>
 
-        <!-- MITIGATION::SWITCH DEFAULT > PERMANENT -->
-        <li
-            data-ng-if="(!ip.mitigation || ip.mitigation == 'DEFAULT') && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip,tracking : tracking['enable-permanent-mitigation']})"
-                data-translate="ip_table_manage_mitigation_DEFAULT_to_PERMANENT"
-            ></button>
-        </li>
-        <!-- MITIGATION::SWITCH PERMANENT > DEFAULT -->
-        <li
-            data-ng-if="ip.mitigation == 'PERMANENT' && ipBlock.service.category !== 'HOUSING' && isPermanentMitigationAvailable"
-        >
-            <button
-                type="button"
-                class="btn btn-link"
-                data-ng-click="setAction('ip/mitigation/update/ip-ip-mitigation-update', { ipBlock: ipBlock, ip: ip ,tracking : tracking['switch-auto-mitigation']})"
-                data-translate="ip_table_manage_mitigation_PERMANENT_to_AUTO"
-            ></button>
-        </li>
-
         <!-- MITIGATION::STATS -->
         <li
             data-ng-if="(ip.mitigation == 'PERMANENT' || ip.mitigation == 'FORCED')"
