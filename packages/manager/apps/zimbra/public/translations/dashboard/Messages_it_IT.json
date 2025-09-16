@@ -61,5 +61,7 @@
   "zimbra_dashboard_email_accounts_order": "Ordina account email",
   "zimbra_dashboard_tile_status_ongoingTask_none": "Nessun task in corso",
   "zimbra_dashboard_domains_verify": "Verifica",
-  "zimbra_dashboard_domains_diagnostics": "Diagnostica"
+  "zimbra_dashboard_domains_diagnostics": "Diagnostica",
+  "zimbra_mail_configure_guide": "Connettere un account email",
+  "zimbra_mail_migrate_guide": "Migrare un account email"
 }
