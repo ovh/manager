@@ -57,6 +57,7 @@ export default function OngoingOperationDatagridBadge({
         icon-alignment="right"
         tabIndex={0}
       >
+        {t(`domain_operations_statusOperation_${props.status}`)}
         {printIconAndTooltip && (
           <Tooltip>
             <TooltipTrigger asChild>
@@ -73,8 +74,6 @@ export default function OngoingOperationDatagridBadge({
             </TooltipContent>
           </Tooltip>
         )}
-
-        {t(`domain_operations_statusOperation_${props.status}`)}
       </Badge>
     </div>
   );
