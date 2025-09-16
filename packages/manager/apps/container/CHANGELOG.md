@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.148.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.4...@ovh-ux/manager-container-app@0.148.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* **container:** fix hideIfEmpty props ([d11cc6d](https://github.com/ovh/manager/commit/d11cc6d3f921c9f671c4961fa8a0ab7c4c5b10de)), closes [#MANAGER-19760](https://github.com/ovh/manager/issues/MANAGER-19760)
+
+
+### Features
+
+* **billing:** add my services shortcuts in account sidebar for us ([#18181](https://github.com/ovh/manager/issues/18181)) ([161b42b](https://github.com/ovh/manager/commit/161b42bc265fc844e0db5a52ecaf67eeed85908c)), closes [#MANAGER-18897](https://github.com/ovh/manager/issues/MANAGER-18897)
+* **container:** add tracking to changelog in pnr ([776c895](https://github.com/ovh/manager/commit/776c895364182b5faf8897ec8bc3da0b5c4be3ce)), closes [#MANAGER-18953](https://github.com/ovh/manager/issues/MANAGER-18953)
+
+
+
+
+
 ## [0.147.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.3...@ovh-ux/manager-container-app@0.147.4) (2025-09-11)
 
 
