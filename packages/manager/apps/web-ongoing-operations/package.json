@@ -48,8 +48,7 @@
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.0",
     "@tanstack/react-query-devtools": "^5.81.2",
-    "element-internals-polyfill": "^3.0.2",
-    "typescript": "^5.1.6"
+    "element-internals-polyfill": "^3.0.2"
   },
   "regions": [
     "CA",
