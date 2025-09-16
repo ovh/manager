@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.7...@ovh-ux/manager-vps@2.50.8) (2025-09-16)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue for upgrade backup if no contract ([f857bc9](https://github.com/ovh/manager/commit/f857bc940a74fe7d5ea0d95a1d14d3107db39be9)), closes [#INC0153633](https://github.com/ovh/manager/issues/INC0153633)
+
+
+
+
+
 ## [2.50.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.6...@ovh-ux/manager-vps@2.50.7) (2025-09-10)
 
 
