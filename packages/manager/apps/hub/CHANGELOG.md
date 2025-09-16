@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.7...@ovh-ux/manager-hub-app@0.22.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 654] ([a142e50](https://github.com/ovh/manager/commit/a142e504fe2115679df456e4552cf7333048cf46))
+
+
+### Features
+
+* **vcf:** rename vcd by public vcf ([c53d86a](https://github.com/ovh/manager/commit/c53d86aa368c5fd802cfd4e3285fac713ab373b7)), closes [#MANAGER-19106](https://github.com/ovh/manager/issues/MANAGER-19106)
+
+
+
+
+
 ## [0.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.6...@ovh-ux/manager-hub-app@0.21.7) (2025-09-16)
 
 

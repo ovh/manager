@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.20.8...@ovh-ux/manager-veeam-backup-app@0.21.0) (2025-09-16)
+
+
+### Features
+
+* **vcf:** rename vcd by public vcf ([c53d86a](https://github.com/ovh/manager/commit/c53d86aa368c5fd802cfd4e3285fac713ab373b7)), closes [#MANAGER-19106](https://github.com/ovh/manager/issues/MANAGER-19106)
+
+
+
+
+
 ## [0.20.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-backup-app@0.20.7...@ovh-ux/manager-veeam-backup-app@0.20.8) (2025-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-veeam-backup-app
