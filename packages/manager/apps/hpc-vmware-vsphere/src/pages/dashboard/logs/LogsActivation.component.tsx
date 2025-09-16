@@ -1,10 +1,8 @@
 import {
-  Links,
-  LinkType,
   OnboardingLayout,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -92,32 +90,20 @@ const LogsActivation = ({
   return (
     <OnboardingLayout
       title={t('logs_onboarding_default_title')}
-      description={
-        <>
-          <OdsText preset="paragraph" className="text-center">
-            {t('logs_onboarding_default_description')}{' '}
-          </OdsText>
-          <div className="flex flex-row gap-4 align-center">
-            <OdsButton
-              label={
-                isUserTrusted
-                  ? t('logs_onboarding_primary_cta_activate_snc')
-                  : t('logs_onboarding_primary_cta_activate')
-              }
-              onClick={() => {
-                enableLogForwarder();
-              }}
-              isDisabled={currentStatus === VMWareStatus.MIGRATING}
-            ></OdsButton>
-            <Links
-              type={LinkType.external}
-              label={t('logs_onboarding_secondary_cta')}
-              target="_blank"
-              href={guides?.logs_data_platform}
-            />
-          </div>
-        </>
+      orderButtonLabel={
+        isUserTrusted
+          ? t('logs_onboarding_primary_cta_activate_snc')
+          : t('logs_onboarding_primary_cta_activate')
       }
+      isActionDisabled={currentStatus === VMWareStatus.MIGRATING}
+      onOrderButtonClick={enableLogForwarder}
+      description={
+        <OdsText preset="paragraph" className="text-center">
+          {t('logs_onboarding_default_description')}
+        </OdsText>
+      }
+      moreInfoButtonLabel={t('logs_onboarding_secondary_cta')}
+      moreInfoHref={guides?.logs_data_platform}
     />
   );
 };
