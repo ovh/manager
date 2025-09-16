@@ -63,6 +63,8 @@ export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   },
 ];
 
+export const legacyTabs = ['zone', 'redirection', 'dynhost'];
+
 export const changelogLinks: ChangelogLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/18/views/2?sliceBy%5Bvalue%5D=Domain+Names&pane=info',
