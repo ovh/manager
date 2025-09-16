@@ -26,19 +26,24 @@
                 value="{{$ctrl.model.key}}"
                 has-error="{{$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid}}"
             >
-                <ods-combobox-item
-                    data-ng-repeat="(_, tag) in $ctrl.tags"
-                    value="{{tag.key}}"
+                <ods-combobox-group
+                    data-ng-repeat="(type, tagsList) in $ctrl.tags"
                 >
-                    <!-- Check render with <p> -->
-                    <p data-ng-bind-html="tag.key"></p>
-                    <p
-                        data-translate="{{'manager_components_resource_tagging_manager_tag_type_' + tag.type }}"
-                    ></p>
-                </ods-combobox-item>
+                    <span
+                        slot="title"
+                        data-translate="{{'manager_components_resource_tagging_manager_tag_type_' + type}}"
+                        class="bold"
+                    ></span>
+                    <ods-combobox-item
+                        data-ng-repeat="tag in tagsList"
+                        value="{{tag.key}}"
+                    >
+                        <span data-ng-bind-html="tag.key"></span>
+                    </ods-combobox-item>
+                </ods-combobox-group>
             </ods-combobox>
             <span
-                class="text-error"
+                class="text-danger"
                 data-ng-if="$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid"
                 data-translate="manager_components_resource_tagging_assign_modal_field_error"
             >
@@ -69,7 +74,7 @@
                 </ods-combobox-item>
             </ods-combobox>
             <span
-                class="text-error"
+                class="text-danger"
                 data-ng-if="$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.VALUE].$invalid"
                 data-translate="manager_components_resource_tagging_assign_modal_field_error"
             >
