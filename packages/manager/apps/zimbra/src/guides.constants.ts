@@ -4,6 +4,8 @@ import {
   GUIDE_ADMINISTRATOR,
   GUIDE_CNAME,
   GUIDE_DNS_CONFIG,
+  GUIDE_MAIL_CONFIGURE,
+  GUIDE_MAIL_MIGRATE,
   GUIDE_USER,
   GUIDE_WEBMAIL,
 } from '@/tracking.constants';
@@ -112,6 +114,39 @@ export const ZIMBRA_WEBMAIL_GUIDE: GuideLinks = {
   SN: `${helpRoot}fr-mx-plan-zimbra?id=kb_article_view&sysparm_article=KB0062063`,
 };
 
+const ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE =
+  '?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955&kb_category=fdd910752d245e141e11b9195534e0d8&spa=1';
+
+export const ZIMBRA_MAIL_CONFIGURE_GUIDE: GuideLinks = {
+  FR: `${helpRoot}fr-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  GB: `${helpRoot}en-gb-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  DE: `${helpRoot}de-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  ES: `${helpRoot}es-es-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  IT: `${helpRoot}it-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  PL: `${helpRoot}pl-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  PT: `${helpRoot}pt-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  IE: `${helpRoot}en-ie-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  DEFAULT: `${helpRoot}en-ie-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  MA: `${helpRoot}fr-ma-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  TN: `${helpRoot}fr-tn-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+  SN: `${helpRoot}fr-sn-documentation-web-cloud-email-collaborative-solutions-zimbra${ZIMBRA_MAIL_CONFIGURE_SUFFIXE_GUIDE}`,
+};
+
+export const ZIMBRA_MAIL_MIGRATE_GUIDE: GuideLinks = {
+  FR: `${helpRoot}fr-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053498`,
+  GB: `${helpRoot}en-gb-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053481`,
+  DE: `${helpRoot}de-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0041577`,
+  ES: `${helpRoot}es-es-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053485`,
+  IT: `${helpRoot}it-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053493`,
+  PL: `${helpRoot}pl-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053514`,
+  PT: `${helpRoot}pt-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053512`,
+  IE: `${helpRoot}en-ie-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053494`,
+  DEFAULT: `${helpRoot}en-ie-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053494`,
+  MA: `${helpRoot}fr-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053498`,
+  TN: `${helpRoot}fr-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053498`,
+  SN: `${helpRoot}fr-email-omm-migrate-email-account-to-ovhcloud?id=kb_article_view&sysparm_article=KB0053498`,
+};
+
 export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
   FR: `${helpRoot}`,
   GB: `${helpRoot}`,
@@ -152,6 +187,16 @@ export const GUIDES_LIST = {
     key: 'zimbra_dns_configuration_guide',
     url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
     tracking: GUIDE_DNS_CONFIG,
+  },
+  mail_configure_guide: {
+    key: 'zimbra_mail_configure_guide',
+    url: ZIMBRA_MAIL_CONFIGURE_GUIDE,
+    tracking: GUIDE_MAIL_CONFIGURE,
+  },
+  mail_migrate_guide: {
+    key: 'zimbra_mail_migrate_guide',
+    url: ZIMBRA_MAIL_MIGRATE_GUIDE,
+    tracking: GUIDE_MAIL_MIGRATE,
   },
 };
 
