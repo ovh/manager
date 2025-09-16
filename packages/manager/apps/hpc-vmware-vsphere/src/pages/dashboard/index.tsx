@@ -174,18 +174,24 @@ export default function DashboardPage() {
           {tabsList.map((tab: DashboardTabItem) => {
             const { isRedirectLegacy, name, title, to } = tab;
             const isSelected = activePanel?.name === name;
-            return (
-              <OdsTab key={`osds-tab-bar-item-${name}`} isSelected={isSelected}>
-                {isRedirectLegacy ? (
-                  <a className="no-underline" href={to}>
-                    {title}
-                  </a>
-                ) : (
-                  <NavLink to={to} className="no-underline">
-                    {title}
-                  </NavLink>
-                )}
-              </OdsTab>
+            return isRedirectLegacy ? (
+              <a className="no-underline" href={to}>
+                <OdsTab
+                  key={`osds-tab-bar-item-${name}`}
+                  isSelected={isSelected}
+                >
+                  {title}
+                </OdsTab>
+              </a>
+            ) : (
+              <NavLink to={to} className="no-underline">
+                <OdsTab
+                  key={`osds-tab-bar-item-${name}`}
+                  isSelected={isSelected}
+                >
+                  {title}
+                </OdsTab>
+              </NavLink>
             );
           })}
         </OdsTabs>
