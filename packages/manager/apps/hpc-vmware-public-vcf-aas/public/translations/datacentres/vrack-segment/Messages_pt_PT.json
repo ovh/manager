@@ -8,7 +8,7 @@
   "managed_vcd_dashboard_vrack_network_address": "Endereço da sub-rede no formato endereço gateway / máscara",
   "managed_vcd_dashboard_vrack_network": "Sub-rede",
   "managed_vcd_dashboard_vrack_vlan_id": "ID da VLAN",
-  "managed_vcd_dashboard_vrack_vlan_id_helper": "O ID da VLAN deve estar compreendida entre 1 e 4095",
+  "managed_vcd_dashboard_vrack_vlan_id_helper": "O ID da VLAN deve estar compreendida entre {{minId}} e {{maxId}}",
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Para facilitar as suas implementações cloud híbrida, poderá ter de utilizar o mesmo identificador VLAN tanto no seu servidor dedicado como no seu projeto Public Cloud.",
   "managed_vcd_dashboard_vrack_edit_success": "O pedido de modificação do ID da VLAN foi registado.",
   "managed_vcd_dashboard_vrack_edit_error": "Ocorreu um erro durante a modificação do ID da VLAN: {{errorApi}}",
