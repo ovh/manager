@@ -17,7 +17,7 @@
             >
             </label>
             <ods-combobox
-                class="tag-combobox"
+                class="w-100"
                 name="{{:: $ctrl.TAG_ASSIGN_FORM.KEY }}"
                 add-new-element-label="{{:: 'manager_components_resource_tagging_assign_modal_add' | translate}}"
                 no-result-label="{{:: 'manager_components_resource_tagging_assign_modal_no_result' | translate}}"
@@ -27,10 +27,14 @@
                 has-error="{{$ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$touched && $ctrl.addTagForm[$ctrl.TAG_ASSIGN_FORM.KEY].$invalid}}"
             >
                 <ods-combobox-item
-                    data-ng-repeat="key in $ctrl.keys"
-                    value="{{key}}"
+                    data-ng-repeat="(_, tag) in $ctrl.tags"
+                    value="{{tag.key}}"
                 >
-                    <span data-ng-bind-html="key"></span>
+                    <!-- Check render with <p> -->
+                    <p data-ng-bind-html="tag.key"></p>
+                    <p
+                        data-translate="{{'manager_components_resource_tagging_manager_tag_type_' + tag.type }}"
+                    ></p>
                 </ods-combobox-item>
             </ods-combobox>
             <span
@@ -47,7 +51,7 @@
             >
             </label>
             <ods-combobox
-                class="tag-combobox"
+                class="w-100"
                 name="{{:: $ctrl.TAG_ASSIGN_FORM.VALUE}}"
                 add-new-element-label="{{:: 'manager_components_resource_tagging_assign_modal_add' | translate}}"
                 no-result-label="{{:: 'manager_components_resource_tagging_assign_modal_no_result' | translate}}"
