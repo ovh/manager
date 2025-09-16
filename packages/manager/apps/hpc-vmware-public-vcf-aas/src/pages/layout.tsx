@@ -16,7 +16,7 @@ export default function Layout() {
 
   useEffect(() => {
     const match = matches.slice(-1);
-    defineCurrentPage(`app.hpc-vmware-managed-vcd-${match[0]?.id}`);
+    defineCurrentPage(`app.hpc-vmware-public-vcf-aas-${match[0]?.id}`);
   }, [location]);
 
   useEffect(() => {
