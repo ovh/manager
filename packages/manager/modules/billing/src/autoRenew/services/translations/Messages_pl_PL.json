@@ -1,0 +1,10 @@
+{
+  "billing_autorenew_service_pending_actions": "Operacje w toku",
+  "billing_autorenew_service_pending_actions_autorenewInProgress": "Trwa odnawianie",
+  "billing_autorenew_service_pending_actions_deleteAtExpiration": "Złożona rezygnacja",
+  "billing_autorenew_service_pending_actions_earlyRenewal": "Odnowienie",
+  "billing_autorenew_service_pending_actions_pendingCreate": "Dostarczanie w trakcie",
+  "billing_autorenew_service_pending_actions_terminate": "Rozwiązana",
+  "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Złożona rezygnacja",
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Złożona rezygnacja"
+}
