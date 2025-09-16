@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Rescindido",
   "manager_billing_service_status_billing_suspended": "Faturação diferida",
   "manager_billing_service_status_forced_manual": "Renovação manual",
-  "manager_billing_service_status_restorable": "Restaurável"
+  "manager_billing_service_status_restorable": "Restaurável",
+  "manager_billing_service_status_unpaid": "Pagamento falhado",
+  "manager_billing_service_status_terminated": "Rescindido",
+  "manager_billing_service_status_unrenewed": "Expirado",
+  "manager_billing_service_status_active": "Ativo",
+  "manager_billing_service_status_error": "Erro",
+  "manager_billing_service_status_in_creation": "Instalação em curso",
+  "manager_billing_service_status_rupture": "Rescindido",
+  "manager_billing_service_status_to_renew": "A renovar"
 }

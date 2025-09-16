@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Anulowany",
   "manager_billing_service_status_billing_suspended": "Faktura odroczona",
   "manager_billing_service_status_forced_manual": "Odnowienie ręczne",
-  "manager_billing_service_status_restorable": "Możliwe przywrócenie"
+  "manager_billing_service_status_restorable": "Możliwe przywrócenie",
+  "manager_billing_service_status_unpaid": "Brak płatności",
+  "manager_billing_service_status_terminated": "Rozwiązana",
+  "manager_billing_service_status_unrenewed": "Wygasła",
+  "manager_billing_service_status_active": "Aktywna",
+  "manager_billing_service_status_error": "Błąd",
+  "manager_billing_service_status_in_creation": "Instalacja w toku",
+  "manager_billing_service_status_rupture": "Rozwiązana",
+  "manager_billing_service_status_to_renew": "Do odnowienia"
 }
