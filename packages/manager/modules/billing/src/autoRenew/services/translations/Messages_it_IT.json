@@ -1,0 +1,10 @@
+{
+  "billing_autorenew_service_pending_actions": "Azioni in corso",
+  "billing_autorenew_service_pending_actions_autorenewInProgress": "Rinnovo in corso",
+  "billing_autorenew_service_pending_actions_deleteAtExpiration": "Disattivazione richiesta",
+  "billing_autorenew_service_pending_actions_earlyRenewal": "Rinnovo",
+  "billing_autorenew_service_pending_actions_pendingCreate": "Consegna in corso...",
+  "billing_autorenew_service_pending_actions_terminate": "Disattivato",
+  "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Disattivazione richiesta",
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Disattivazione richiesta"
+}

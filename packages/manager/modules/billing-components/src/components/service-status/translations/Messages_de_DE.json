@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Gekündigt",
   "manager_billing_service_status_billing_suspended": "Rechnungsstellung verschoben",
   "manager_billing_service_status_forced_manual": "Manuelle Verlängerung",
-  "manager_billing_service_status_restorable": "Wiederherstellbar"
+  "manager_billing_service_status_restorable": "Wiederherstellbar",
+  "manager_billing_service_status_unpaid": "Zahlungsausfall",
+  "manager_billing_service_status_terminated": "Gekündigt",
+  "manager_billing_service_status_unrenewed": "Abgelaufen",
+  "manager_billing_service_status_active": "Aktiv",
+  "manager_billing_service_status_error": "Fehler",
+  "manager_billing_service_status_in_creation": "Installation läuft",
+  "manager_billing_service_status_rupture": "Gekündigt",
+  "manager_billing_service_status_to_renew": "Anstehende Verlängerung"
 }
