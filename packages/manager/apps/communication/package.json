@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-communication-app",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "An app for customer communication",
   "repository": {
