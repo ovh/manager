@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Cancelled",
   "manager_billing_service_status_billing_suspended": "Deferred billing",
   "manager_billing_service_status_forced_manual": "Manual renewal",
-  "manager_billing_service_status_restorable": "Restorable"
+  "manager_billing_service_status_restorable": "Restorable",
+  "manager_billing_service_status_unpaid": "Non-payment",
+  "manager_billing_service_status_terminated": "Cancelled",
+  "manager_billing_service_status_unrenewed": "Expired",
+  "manager_billing_service_status_active": "Active",
+  "manager_billing_service_status_error": "Error",
+  "manager_billing_service_status_in_creation": "Installing...",
+  "manager_billing_service_status_rupture": "Cancelled",
+  "manager_billing_service_status_to_renew": "To be renewed"
 }

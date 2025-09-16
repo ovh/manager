@@ -1,0 +1,10 @@
+{
+  "billing_autorenew_service_pending_actions": "Ongoing operations",
+  "billing_autorenew_service_pending_actions_autorenewInProgress": "Renewal in progress",
+  "billing_autorenew_service_pending_actions_deleteAtExpiration": "Termination requested",
+  "billing_autorenew_service_pending_actions_earlyRenewal": "Renewal",
+  "billing_autorenew_service_pending_actions_pendingCreate": "Delivery in progress",
+  "billing_autorenew_service_pending_actions_terminate": "Cancelled",
+  "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Termination requested",
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Termination requested"
+}
