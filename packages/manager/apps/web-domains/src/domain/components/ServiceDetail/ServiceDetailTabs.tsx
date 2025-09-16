@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Icon,
   ICON_NAME,
@@ -14,7 +15,10 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ServiceDetailTabsProps } from '@/domain/constants/serviceDetail';
+import {
+  ServiceDetailTabsProps,
+  legacyTabs,
+} from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
 
@@ -27,12 +31,25 @@ export default function ServiceDetailsTabs({
 }: ServiceDetailsTabsProps) {
   const { t } = useTranslation(['domain']);
   const location = useLocation();
+  const { shell } = useContext(ShellContext);
+  const { serviceName } = useParams<{ serviceName: string }>();
+
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
-  const handleValueChange = (event: TabsValueChangeEvent) => {
-    navigate(`${event.value}`, { replace: true });
-    setValue(event.value);
+
+  const handleValueChange = async (event: TabsValueChangeEvent) => {
+    if (legacyTabs.includes(event.value)) {
+      const fetchedUrl = (await shell.navigation?.getURL(
+        'web',
+        `/domain/${serviceName}/${event.value}`,
+        {},
+      )) as string;
+      window.location.href = fetchedUrl;
+    } else {
+      navigate(`${event.value}`, { replace: true });
+      setValue(event.value);
+    }
   };
 
   useEffect(() => {
