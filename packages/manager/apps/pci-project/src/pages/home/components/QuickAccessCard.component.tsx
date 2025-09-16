@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { OdsCard, OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
 
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
-import { DashboardTileItem } from '../DashboardTile.types';
+import { DashboardItem } from '@/constants';
 
 type QuickAccessCardProps = {
-  item: DashboardTileItem;
+  item: DashboardItem;
   index: number;
 };
 

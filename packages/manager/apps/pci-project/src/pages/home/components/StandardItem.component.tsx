@@ -1,10 +1,10 @@
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 
-import { DashboardTileItem } from '../DashboardTile.types';
+import { DashboardItem } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
-function StandardItem(item: DashboardTileItem) {
+function StandardItem(item: DashboardItem) {
   const { t } = useTranslation('project');
 
   return (

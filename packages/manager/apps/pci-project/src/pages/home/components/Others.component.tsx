@@ -2,10 +2,10 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { Link } from 'react-router-dom';
 
-import { DashboardTileItem } from '../DashboardTile.types';
+import { DashboardItem } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
-const otherActionsItems: DashboardTileItem[] = [
+const otherActionsItems: DashboardItem[] = [
   {
     iconODS: ODS_ICON_NAME.book,
     labelTranslationKey: 'pci_projects_project_create_ai_notebook',
