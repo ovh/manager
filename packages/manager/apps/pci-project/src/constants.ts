@@ -1,4 +1,6 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CountryCode } from '@ovh-ux/manager-config';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const QUOTA_THRESHOLD = 80;
 
@@ -244,3 +246,188 @@ export const PAYPAL_SCRIPT = {
   src: 'https://www.paypalobjects.com/api/checkout.js',
   id: 'paypal_checkout_script',
 };
+
+// Dashboard Tile Types and Constants
+export type DashboardItem = {
+  labelTranslationKey?: string;
+  descriptionTranslationKey?: string;
+  link?: string;
+  linkLabelTranslationKey?: string;
+  iconODS?: ODS_ICON_NAME;
+  iconImage?: string;
+  target?: string;
+  rel?: string;
+  color?: string;
+  ariaLabelTranslationKey?: string;
+  price?: string;
+  validUntil?: string | null;
+  hideTileIfNoOtherItems?: boolean;
+};
+
+// Config type for items that need transformation before becoming DashboardItem
+export type DashboardItemConfig = DashboardItem & {
+  documentationGuideKey?: string;
+};
+
+export type DashboardTile = {
+  titleTranslationKey: string;
+  type: 'billing' | 'documentation' | 'community';
+  items: DashboardItem[];
+};
+
+export const DOC_BASE_URL = 'https://docs.ovh.com';
+export const DOC_PUBLIC_CLOUD_PATH = '/public-cloud';
+
+type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
+
+export const DOCUMENTATION_GUIDE_LINKS: {
+  [guideName: string]: Partial<GuideLinks>;
+} = {
+  getting_started: {
+    DEFAULT: `${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    DE: `/de${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    ES: `/es${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    FR: `/fr${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    GB: `/gb${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    CA: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    QC: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+    US: `/us${DOC_PUBLIC_CLOUD_PATH}/premiers-pas-instance-public-cloud/`,
+  },
+  public_cloud: {
+    DEFAULT: `${DOC_PUBLIC_CLOUD_PATH}/`,
+    DE: `/de${DOC_PUBLIC_CLOUD_PATH}/`,
+    ES: `/es${DOC_PUBLIC_CLOUD_PATH}/`,
+    FR: `/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    GB: `/gb${DOC_PUBLIC_CLOUD_PATH}/`,
+    CA: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    QC: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    US: `/us${DOC_PUBLIC_CLOUD_PATH}/`,
+  },
+  instances: {
+    DEFAULT: `${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    DE: `/de${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    ES: `/es${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    FR: `/fr${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    GB: `/gb${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    CA: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    QC: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+    US: `/us${DOC_PUBLIC_CLOUD_PATH}/creer-instance-espace-client/`,
+  },
+  billing: {
+    DEFAULT: `${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    DE: `/de${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    ES: `/es${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    FR: `/fr${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    GB: `/gb${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    CA: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    QC: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+    US: `/us${DOC_PUBLIC_CLOUD_PATH}/comprendre-facturation-cloud/`,
+  },
+  guides: {
+    DEFAULT: `${DOC_PUBLIC_CLOUD_PATH}/`,
+    DE: `/de${DOC_PUBLIC_CLOUD_PATH}/`,
+    ES: `/es${DOC_PUBLIC_CLOUD_PATH}/`,
+    FR: `/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    GB: `/gb${DOC_PUBLIC_CLOUD_PATH}/`,
+    CA: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    QC: `/ca/fr${DOC_PUBLIC_CLOUD_PATH}/`,
+    US: `/us${DOC_PUBLIC_CLOUD_PATH}/`,
+  },
+};
+
+export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_getting_started',
+    linkLabelTranslationKey: 'pci_projects_project_essential_to_start',
+    documentationGuideKey: 'getting_started',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_public_cloud',
+    linkLabelTranslationKey: 'pci_projects_project_get_familiar',
+    documentationGuideKey: 'public_cloud',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_instances',
+    linkLabelTranslationKey: 'pci_projects_project_manage_instances',
+    documentationGuideKey: 'instances',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_billing',
+    linkLabelTranslationKey: 'pci_projects_project_understand_manage',
+    documentationGuideKey: 'billing',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_guides',
+    linkLabelTranslationKey: 'pci_projects_project_see_all_guides',
+    documentationGuideKey: 'guides',
+  },
+];
+
+export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_roadmap',
+    linkLabelTranslationKey: 'pci_projects_project_discover_participate',
+    link: ROADMAP_CHANGELOG_LINKS.roadmap,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_developer_center',
+    linkLabelTranslationKey: 'pci_projects_project_start_with_products',
+    link: 'https://developer.ovh.com/',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_community',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_discord',
+    link: 'https://discord.gg/ovhcloud',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_community',
+    link: 'https://community.ovh.com/',
+  },
+];
+
+export const DASHBOARD_CREDIT_VOUCHER_LINK: DashboardItem = {
+  linkLabelTranslationKey: 'pci_projects_project_credits_vouchers',
+  link: '/vouchers',
+  color: 'primary',
+  iconODS: ODS_ICON_NAME.arrowRight,
+  ariaLabelTranslationKey: 'pci_projects_project_link_credits_vouchers_aria',
+  hideTileIfNoOtherItems: true,
+};
+
+// Quick Access Items - Base configuration without iconImage (will be added in component)
+export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_instances',
+    descriptionTranslationKey: 'pci_projects_project_create_instance',
+    link: `instances/new`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_kubernetes',
+    descriptionTranslationKey: 'pci_projects_project_create_cluster',
+    link: `kubernetes/new`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_object_storage',
+    descriptionTranslationKey: 'pci_projects_project_create_container',
+    link: `storages/objects/new`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_block_storage',
+    descriptionTranslationKey: 'pci_projects_project_create_volume',
+    link: `storages/blocks`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_network',
+    descriptionTranslationKey: 'pci_projects_project_manage_vrack',
+    link: `private-networks`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_database',
+    descriptionTranslationKey: 'pci_projects_project_create_database',
+    link: `databases-analytics/operational/services/new`,
+  },
+];

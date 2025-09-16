@@ -1,11 +1,11 @@
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
-import { DashboardTileItem } from '../DashboardTile.types';
+import { DashboardItem } from '@/constants';
 import StandardItem from './StandardItem.component';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 type DashboardTileProps = {
-  items: DashboardTileItem[];
+  items: DashboardItem[];
   titleTranslationKey: string;
   isUSRegion?: boolean;
 };

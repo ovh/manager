@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 
-import { DashboardTile, DashboardTileItem } from '../DashboardTile.types';
+import { DashboardTile, DashboardItem } from '@/constants';
 import BillingItem from './BillingItem.component';
 import StandardItem from './StandardItem.component';
 
 type TileItemProps = {
-  item: DashboardTileItem;
+  item: DashboardItem;
   tile: DashboardTile;
   itemIdx: number;
   totalItems: number;

@@ -5,13 +5,14 @@ import { CountryCode } from '@ovh-ux/manager-config';
 
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import {
-  DOCUMENTATION_LINKS_TEMPLATE,
+  DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
   DOCUMENTATION_GUIDE_LINKS,
-  COMMUNITY_LINKS,
-  CREDIT_VOUCHER_LINK,
+  DASHBOARD_COMMUNITY_LINKS,
+  DASHBOARD_CREDIT_VOUCHER_LINK,
   DOC_BASE_URL,
-} from './constants';
-import { DashboardTile } from '../DashboardTile.types';
+  BASE_PROJECT_PATH,
+  DashboardTile,
+} from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 export function useDashboardSections(projectId: string) {
@@ -30,6 +31,7 @@ export function useDashboardSections(projectId: string) {
 
   const createBillingItems = useMemo(() => {
     const items = [];
+    const baseProjectPath = BASE_PROJECT_PATH.replace(':projectId', projectId);
 
     // Add voucher credits from API
     if (!isLoading) {
@@ -39,7 +41,7 @@ export function useDashboardSections(projectId: string) {
             voucher: credit.voucher,
           }),
           descriptionTranslationKey: credit.description,
-          link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
+          link: `${baseProjectPath}/billing/credits`,
           price: credit.balance,
           validUntil: credit.expirationDate
             ? t('pci_projects_project_expires_on', {
@@ -54,15 +56,15 @@ export function useDashboardSections(projectId: string) {
     }
 
     items.push({
-      ...CREDIT_VOUCHER_LINK,
-      link: CREDIT_VOUCHER_LINK.link?.replace('{projectId}', projectId),
+      ...DASHBOARD_CREDIT_VOUCHER_LINK,
+      link: baseProjectPath + DASHBOARD_CREDIT_VOUCHER_LINK.link,
     });
 
     return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
   const createDocumentationItems = useMemo(() => {
-    return DOCUMENTATION_LINKS_TEMPLATE.map((item) => ({
+    return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
       ...item,
       link: item.documentationGuideKey
         ? DOC_BASE_URL +
@@ -88,7 +90,7 @@ export function useDashboardSections(projectId: string) {
       {
         titleTranslationKey: 'pci_projects_project_community_section',
         type: 'community' as const,
-        items: COMMUNITY_LINKS,
+        items: DASHBOARD_COMMUNITY_LINKS,
       },
     ],
     [createBillingItems, createDocumentationItems],
