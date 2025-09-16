@@ -69,6 +69,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_vmware_vsphere'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
+        pathMatcher: new RegExp('^(/vmware/vsphere/)'),
         async loader() {
           const mbm = await loadServices('/dedicatedCloud', 'EPCC');
           return [
@@ -85,6 +86,7 @@ export default function HostedPrivateCloudSidebar() {
               routeMatcher: new RegExp(
                 `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
               ),
+              pathMatcher: new RegExp(`^(/vmware/vsphere/${service.serviceName})`),
               async loader() {
                 const datacenters = await loadServices(
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
