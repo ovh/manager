@@ -19,7 +19,7 @@ import { resetInstanceCache } from '@/adapters/tanstack-query/store/instances/up
 
 export type TUseInstanceQueryOptions = Pick<
   UseQueryOptions<TInstance>,
-  'enabled' | 'retry' | 'gcTime'
+  'enabled' | 'retry' | 'gcTime' | 'refetchOnWindowFocus'
 >;
 
 type TUseInstanceArgs = DeepReadonly<{
