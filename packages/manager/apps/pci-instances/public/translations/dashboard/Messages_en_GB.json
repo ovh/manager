@@ -26,5 +26,9 @@
   "pci_instances_dashboard_licence_price_label": "Licence price: ",
   "pci_instances_dashboard_public_network_title": "Public networks",
   "pci_instances_dashboard_network_floating_title": "Floating IP",
-  "pci_instances_dashboard_network_name_label": "Network name: "
+  "pci_instances_dashboard_network_name_label": "Network name: ",
+  "pci_instances_dashboard_backup_empty_message": "You do not have a backup",
+  "pci_instances_dashboard_backup_title": "Backup management",
+  "pci_instances_dashboard_backup_number_of_backups": "Instance backup count",
+  "pci_instances_dashboard_backup_last_updated_backups": "Date of last backup"
 }
