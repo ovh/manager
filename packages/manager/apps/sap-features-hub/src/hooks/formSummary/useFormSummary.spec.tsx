@@ -5,41 +5,42 @@ import { mockedValues } from '@/mocks/installationForm.mock';
 import { useFormSummary } from '@/hooks/formSummary/useFormSummary';
 import { mockedFormSummary } from '@/mocks/formSummary.mock';
 import { InstallationFormContextProvider } from '@/context/InstallationForm.context';
-import translations from '../../../public/translations/installation/Messages_fr_FR.json';
 import { InstallationFormValues } from '@/types/form.type';
 import { labels } from '@/test-utils';
 import { FORM_LABELS } from '@/constants/form.constants';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 
-type TranslationKey = keyof typeof translations;
 type ProviderProps = {
   children: React.ReactNode;
 };
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: vi.fn((key: TranslationKey) => translations[key]),
-  }),
-}));
 vi.mock('@/context/InstallationForm.context', () => ({
   InstallationFormContextProvider: (props: ProviderProps) => (
     <>{props.children}</>
   ),
 }));
 
-const renderTest = (values: InstallationFormValues) =>
-  renderHook(() => useFormSummary(values), {
+const renderTest = async (values: InstallationFormValues) => {
+  const CustomWrapper = await testWrapperBuilder()
+    .withI18next()
+    .build();
+
+  return renderHook(() => useFormSummary(values), {
     wrapper: ({ children }) => (
-      <InstallationFormContextProvider>
-        {children}
-      </InstallationFormContextProvider>
+      <CustomWrapper>
+        <InstallationFormContextProvider>
+          {children}
+        </InstallationFormContextProvider>
+      </CustomWrapper>
     ),
   });
+};
 
 describe('useFormSummary hook test suite', () => {
-  const l = labels.installation;
+  const { installation: l, system: lSystem } = labels;
   it('should return the full StepSummary list when everything is filled', async () => {
     // when
-    const { result } = renderTest(mockedValues);
+    const { result } = await renderTest(mockedValues);
 
     // then
     expect(result.current).toEqual(mockedFormSummary);
@@ -47,7 +48,7 @@ describe('useFormSummary hook test suite', () => {
 
   it('should remove optional fields when the parent object is undefined', async () => {
     // when
-    const { result } = renderTest({
+    const { result } = await renderTest({
       ...mockedValues,
       bucketBackint: undefined,
       logsDataPlatform: undefined,
@@ -73,8 +74,8 @@ describe('useFormSummary hook test suite', () => {
         ![
           l.common_input_container,
           FORM_LABELS.endpoint,
-          l.common_input_access_key, // replace here
-          l.common_input_secret_key, // replace here
+          lSystem.key_access,
+          lSystem.key_secret,
           l.enablement_input_logstash_entrypoint,
           l.enablement_input_logstash_certificat,
         ].includes(field.label),
