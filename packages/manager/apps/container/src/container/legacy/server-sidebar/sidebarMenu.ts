@@ -2,7 +2,7 @@ export type SidebarMenuItem = {
   id: string | number;
   label?: string;
   title?: string;
-  icon?: JSX.Element;
+  icon?: React.ReactNode;
   href?: string;
   badge?: string;
   isExternal?: boolean;
