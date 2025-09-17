@@ -151,7 +151,7 @@ const DistantSnapshotSection = ({
         </p>
       )}
       {showActivateRegionWarning && (
-        <Message color={'warning'} dismissible={false}>
+        <Message color="warning" dismissible={false}>
           <MessageBody>
             {t('pci_instances_actions_backup_instance_region_enable_warning')}
           </MessageBody>
@@ -263,7 +263,7 @@ const BackupActionPage = () => {
       isPending={isPending}
       onModalClose={closeModal}
       instance={instance}
-      section={'backup'}
+      section="backup"
       isLoading={isLoading}
       variant="warning"
       wrapper={({ children }: PropsWithChildren) => (
@@ -284,7 +284,7 @@ const BackupActionPage = () => {
       <div className="flex flex-col gap-4">
         <InputField<TFormFieldsValues>
           label={t('pci_instances_actions_backup_instance_name_label')}
-          name={'snapshotName'}
+          name="snapshotName"
           type="text"
         />
         {!!price && !isBackupLoading && (

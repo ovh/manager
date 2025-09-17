@@ -8,6 +8,7 @@ import {
   SelectControl,
   SelectGroupItem,
   SelectItem,
+  SelectValueChangeDetail,
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
@@ -36,22 +37,25 @@ export const SelectField = <
         render={({
           field: { value, onChange },
           fieldState: { error, invalid },
-        }) => (
-          <>
-            <Select
-              value={value ? [value] : []}
-              items={items}
-              onValueChange={(changeDetails) =>
-                onChange(changeDetails.value?.[0])
-              }
-              invalid={invalid}
-            >
-              <SelectControl />
-              <SelectContent />
-            </Select>
-            {!!error && <ErrorText>{error.message}</ErrorText>}
-          </>
-        )}
+        }) => {
+          const handleChange = (changeDetails: SelectValueChangeDetail) =>
+            onChange(changeDetails.value[0]);
+
+          return (
+            <>
+              <Select
+                value={value ? [value] : []}
+                items={items}
+                onValueChange={handleChange}
+                invalid={invalid}
+              >
+                <SelectControl />
+                <SelectContent />
+              </Select>
+              {!!error && <ErrorText>{error.message}</ErrorText>}
+            </>
+          );
+        }}
         name={name}
       />
     </FormField>
