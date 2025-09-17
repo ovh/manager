@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useVMwareServices } from '@/hooks/vmwareServices/useVMwareServices';
 import { useVMwareDatacentres } from '@/hooks/vmwareServices/useDatacentres';
 import { useClusters } from '@/hooks/vmwareServices/useClusters';
@@ -36,7 +37,11 @@ type ClusterData = {
 };
 
 export default function InstallationInitialStep() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation([
+    'installation',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.SYSTEM,
+  ]);
   const { initializeAndProceed } = useFormSteps();
   const {
     values: {
@@ -159,7 +164,7 @@ export default function InstallationInitialStep() {
       <SelectField
         name="serviceName"
         label={t('service_input_vmware')}
-        placeholder={t('select_label')}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={services}
         optionValueKey="serviceName"
         optionLabelKey="displayName"
@@ -191,8 +196,8 @@ export default function InstallationInitialStep() {
       />
       <SelectField
         name="datacenterId"
-        label={t('service_input_vdc')}
-        placeholder={t('select_label')}
+        label={t(`${NAMESPACES.SYSTEM}:datacentre`)}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={datacentres}
         optionValueKey="datacenterId"
         optionLabelKey="name"
@@ -223,8 +228,8 @@ export default function InstallationInitialStep() {
       />
       <SelectField
         name="clusterName"
-        label={t('service_input_cluster')}
-        placeholder={t('select_label')}
+        label={t(`${NAMESPACES.SYSTEM}:cluster`)}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={clusters}
         optionValueKey="name"
         isDisabled={

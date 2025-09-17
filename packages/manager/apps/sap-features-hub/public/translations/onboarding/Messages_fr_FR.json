@@ -3,7 +3,6 @@
   "description": "Découvrez des services de stockage managés qui s’appuient sur le système de fichiers OpenZFS. Bénéficiez en quelques clics d’espaces de stockage centralisés pour entreposer ou sauvegarder vos données et fichiers.",
   "orderButtonLabel": "Commander un sap-features-hub",
   "moreInfoButtonLabel": "En savoir plus sur sap-features-hub",
-  "guideCategory": "Tutoriel",
   "guide1Title": "Premiers pas avec un sap-features-hub",
   "guide1Description": "Découvrez comment gérer un NAS-HA depuis l'espace-client OVHcloud",
   "guide2Title": "Monter votre NAS via un partage NFS",
