@@ -25,7 +25,7 @@
   "managed_vcd_dashboard_coming_soon": "Próximamente disponible",
   "managed_vcd_dashboard_data_protection": "Protección de datos",
   "managed_vcd_dashboard_backup_status_error": "Estado no disponible",
-  "managed_vcd_dashboard_backup_status_subscribed": "Contratado",
+  "managed_vcd_dashboard_backup_status_subscribed": "Suscrito",
   "managed_vcd_dashboard_backup_status_unsubscribed": "No suscrito",
   "managed_vcd_dashboard_backup_status_creating": "Activando...",
   "managed_vcd_dashboard_backup_status_updating": "Modificando...",

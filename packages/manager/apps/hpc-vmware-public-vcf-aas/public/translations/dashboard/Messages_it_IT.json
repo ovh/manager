@@ -17,7 +17,7 @@
   "managed_vcd_dashboard_service_management": "Gestisci il servizio",
   "managed_vcd_dashboard_mailing_list": "Mailing list",
   "managed_vcd_dashboard_service_renew": "Rinnovo",
-  "managed_vcd_dashboard_service_cancellation": "Disattiva il servizio",
+  "managed_vcd_dashboard_service_cancellation": "Disattivare il servizio",
   "managed_vcd_dashboard_password": "Password",
   "managed_vcd_dashboard_password_renew": "Rinnovare la password admin",
   "managed_vcd_dashboard_password_tooltip": "Per modificare la password amministratore, contatta il supporto",

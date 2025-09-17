@@ -1,10 +1,10 @@
 {
-  "title": "Mis comunicaciones",
-  "description": "Descubra todas las comunicaciones que OVH le ha enviado, excepto las solicitudes de asistencia. Puede consultarlos en la sección: <anchor>Servicio de soporte</anchor>",
-  "assistance_link_label": "Servicio de soporte",
-  "tab_communications": "Mis comunicaciones",
+  "title": "Mis mensajes",
+  "description": "Descubra todas las comunicaciones que OVH le ha enviado, excepto las solicitudes de asistencia. Puede consultarlos en la sección: <anchor>Soporte</anchor>",
+  "assistance_link_label": "Soporte",
+  "tab_communications": "Mis mensajes",
   "tab_contacts": "Contactos",
-  "tab_settings": "Configuración de difusión",
+  "tab_settings": "Parámetros de envío",
   "date_label": "Fecha",
   "priority_high": "Alto",
   "priority_medium": "Medio",
@@ -16,5 +16,5 @@
   "category_account_lifecycle": "Vida de la cuenta",
   "category_security": "Seguridad",
   "category_legal": "Legal",
-  "iam_display_content_message": "No tiene los permisos necesarios para ver los datos de este recurso. Póngase en contacto con su administrador."
+  "iam_display_content_message": "No tiene los permisos necesarios para visualizar los datos de este recurso. Por favor, póngase en contacto con su administrador."
 }

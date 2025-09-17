@@ -1,5 +1,5 @@
 {
-  "pci_instances_dashboard_edit_name_error_message": "A alteração do nome da instância falhou, agradecemos que comece de novo dentro de alguns instantes",
+  "pci_instances_dashboard_edit_name_error_message": "A alteração do nome da instância falhou, agradecemos que tente novamente dentro de alguns instantes",
   "pci_instances_dashboard_tab_info_title": "Informações gerais",
   "pci_instances_dashboard_tab_vnc_title": "Consola VNC",
   "pci_instances_dashboard_info_title": "Informações",
@@ -22,7 +22,7 @@
   "pci_instances_dashboard_network_private_title": "Redes privadas",
   "pci_instances_dashboard_network_connexion": "Informações de ligação",
   "pci_instances_dashboard_all_actions": "Ações suplementares",
-  "pci_instances_dashboard_instance_price_label": "Preço da instância ",
+  "pci_instances_dashboard_instance_price_label": "Preço da instância: ",
   "pci_instances_dashboard_licence_price_label": "Preço da licença: ",
   "pci_instances_dashboard_public_network_title": "Redes públicas",
   "pci_instances_dashboard_network_floating_title": "IP flutuante"

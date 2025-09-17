@@ -33,7 +33,7 @@
   "managed_vcd_dashboard_backup_link": "Zarządzanie kopiami zapasowymi",
   "managed_vcd_dashboard_edit_modal_error": "Wystąpił błąd: {{error}}",
   "managed_vcd_dashboard_edit_modal_cta_cancel": "Anuluj",
-  "managed_vcd_dashboard_edit_modal_cta_edit": "Zmień",
+  "managed_vcd_dashboard_edit_modal_cta_edit": "Zmodyfikuj",
   "managed_vcd_dashboard_edit_name_modal_title": "Zmień nazwę",
   "managed_vcd_dashboard_edit_name_modal_label": "Nazwa",
   "managed_vcd_dashboard_edit_name_modal_success": "Nazwa została zmodyfikowana.",

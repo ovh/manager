@@ -1,12 +1,12 @@
 {
-  "deletionProtectionTitle": "Protezione contro l'eliminazione",
-  "deletionProtectionDescription": "Questa opzione permette di proteggere l’istanza da eliminazioni accidentali.",
-  "activateProtection": "Attivare la protezione contro l'eliminazione?",
-  "deactivateProtection": "Vuoi davvero disattivare la protezione contro la cancellazione per questo servizio?",
-  "deletionProtectionButtonCancel": "Annulla",
-  "activateDeletionProtection": "Attiva",
-  "deactivateDeletionProtection": "Disattiva",
+  "deletionProtectionTitle": "Protezione da eliminazione",
+  "deletionProtectionDescription": "Questa opzione permette di proteggere la tua istanza da eliminazioni accidentali.",
+  "activateProtection": "Vuoi attivare la protezione da eliminazione?",
+  "deactivateProtection": "Vuoi davvero disattivare la protezione da eliminazione per questo servizio?",
+  "deletionProtectionButtonCancel": "Annullare",
+  "activateDeletionProtection": "Attivare",
+  "deactivateDeletionProtection": "Disattivare",
   "updateServiceToastErrorTitle": "Errore",
-  "updateServiceToastSuccessTitle": "Risultato",
-  "updateServiceToastSuccessDescription": "Il servizio è stato aggiornato correttamente"
+  "updateServiceToastSuccessTitle": "Completato",
+  "updateServiceToastSuccessDescription": "Il tuo servizio è stato aggiornato correttamente"
 }

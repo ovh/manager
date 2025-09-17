@@ -72,7 +72,7 @@
   "pci_instances_actions_instance_volume_attach_empty_message": "Nenhum volume disponível na região da sua instância.",
   "pci_instances_actions_instance_volume_attach_selector_label": "Associar um recurso",
   "pci_instances_actions_instance_volume_attach_select": "Selecionar um volume existente",
-  "pci_instances_actions_instance_volume_attach_information": "Pode associar um volume existente ou criar um novo volume a associar à sua instância. ",
+  "pci_instances_actions_instance_volume_attach_information": "Pode associar um volume existente ou criar um novo para associar à sua instância. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Criar um volume",
   "pci_instances_actions_instance_volume_attach_success_message": "O volume {{ volume }} foi associado à instância {{ instance }}."
 }
