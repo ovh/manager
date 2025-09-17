@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   useAttachConfigurationToCartItem,
@@ -11,12 +11,14 @@ export function useVoucher({
   cartId,
   itemId,
   setVoucherConfiguration,
+  initialVoucher,
 }: {
   cartId: string;
   itemId: number;
   setVoucherConfiguration: (
     voucherConfiguration: CartConfiguration | undefined,
   ) => void;
+  initialVoucher?: string | null;
 }) {
   const [voucher, setVoucher] = useState('');
   const [error, setError] = useState<string | undefined>(undefined);
@@ -62,6 +64,13 @@ export function useVoucher({
     if (!configurationId) return;
     deleteConfig({ cartId, itemId, configurationId });
   };
+
+  useEffect(() => {
+    if (initialVoucher) {
+      setVoucher(initialVoucher);
+      checkEligibility(initialVoucher);
+    }
+  }, [initialVoucher]);
 
   return {
     voucher,

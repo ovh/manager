@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   useIsStartupProgramAvailable,
   useStartupProgramAmountText,
@@ -21,6 +22,7 @@ export type PaymentStepProps = {
   onPaymentStatusChange?: (willPaymentStatus: GlobalStateStatus) => void;
   onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
   onRequiredChallengeEvent: (event: CustomEvent) => void;
+  onVoucherChange?: (voucher: string | null) => void;
 };
 
 type PaymentForm = {
@@ -35,7 +37,9 @@ export default function PaymentStep({
   onPaymentStatusChange,
   onRegisteredPaymentMethodSelected,
   onRequiredChallengeEvent,
+  onVoucherChange,
 }: Readonly<PaymentStepProps>) {
+  const [searchParams] = useSearchParams();
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
     paymentMethod: undefined,
@@ -46,6 +50,8 @@ export default function PaymentStep({
     onPaymentStatusChange,
   });
 
+  const initialVoucher = searchParams.get('voucher') ?? null;
+
   const handleVoucherConfigurationChange = (
     voucherConfiguration: CartConfiguration | undefined,
   ) => {
@@ -53,6 +59,14 @@ export default function PaymentStep({
       ...prev,
       voucherConfiguration,
     }));
+    if (voucherConfiguration) {
+      // Needed because the voucher configuration might be empty but attached
+      if (voucherConfiguration?.value !== '') {
+        onVoucherChange?.(voucherConfiguration?.value);
+      }
+    } else {
+      onVoucherChange?.(null);
+    }
   };
 
   const { data: isStartupProgramAvailable } = useIsStartupProgramAvailable();
@@ -67,6 +81,7 @@ export default function PaymentStep({
         itemId={cartProjectItem.itemId}
         voucherConfiguration={paymentForm.voucherConfiguration}
         setVoucherConfiguration={handleVoucherConfigurationChange}
+        initialVoucher={initialVoucher}
       />
 
       <WillPaymentComponent
