@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.150.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.149.1...@ovh-ux/manager-container-app@0.150.0) (2025-09-17)
+
+
+### Bug Fixes
+
+* **okms:** kms legacy menu with services ([bfa90e7](https://github.com/ovh/manager/commit/bfa90e7c42c5ed8ca78c92b66b6620d79f6fa714)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+### Features
+
+* **okms:** adapt menus for okms app ([6f35133](https://github.com/ovh/manager/commit/6f35133b3a1f90bbd5329ca8d643b32653a3d0c4)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+
+
+
 ## [0.149.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.149.0...@ovh-ux/manager-container-app@0.149.1) (2025-09-16)
 
 

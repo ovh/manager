@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.33.10...@ovh-ux/manager-okms-app@0.33.11) (2025-09-17)
+
+
+### Bug Fixes
+
+* **okms:** kms breadcrumb ([445708f](https://github.com/ovh/manager/commit/445708fb01e61433e62df300bd5e9ffba6f2362a)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+
+
+
 ## [0.33.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-key-management-service-app@0.33.9...@ovh-ux/manager-key-management-service-app@0.33.10) (2025-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-key-management-service-app
