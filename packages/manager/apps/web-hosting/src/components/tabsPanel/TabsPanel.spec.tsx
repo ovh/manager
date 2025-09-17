@@ -1,7 +1,11 @@
 import React from 'react';
-import { describe, expect, vi } from 'vitest';
+
 import { useLocation } from 'react-router-dom';
+
+import { describe, expect, vi } from 'vitest';
+
 import { render, waitFor } from '@/utils/test.provider';
+
 import TabsPanel from './TabsPanel.component';
 
 const tabs = [
@@ -10,17 +14,19 @@ const tabs = [
     title: '1',
     to: '/1',
     pathMatchers: [/1/],
+    trackingName: 'tab-1',
   },
   {
     name: '2',
     title: '2',
     to: '/2',
     pathMatchers: [/2/],
+    trackingName: 'tab-2',
   },
 ];
 
 describe('TabsPanel component', () => {
-  it('should render correctly with first tab active', async () => {
+  it('should render correctly with first tab active', () => {
     vi.mocked(useLocation).mockReturnValue({
       pathname: '/1',
       search: '',
@@ -36,11 +42,11 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    return waitFor(() => {
       expect(link1).toHaveAttribute('is-selected', 'true');
+    }).then(() => {
+      expect(link2).toHaveAttribute('is-selected', 'false');
     });
-
-    expect(link2).toHaveAttribute('is-selected', 'false');
   });
 
   it('should render correctly with second tab active', async () => {
@@ -59,10 +65,10 @@ describe('TabsPanel component', () => {
     const link1 = getByText('1');
     const link2 = getByText('2');
 
-    await waitFor(async () => {
+    return waitFor(() => {
+      expect(link1).toHaveAttribute('is-selected', 'false');
+    }).then(() => {
       expect(link2).toHaveAttribute('is-selected', 'true');
     });
-
-    expect(link1).toHaveAttribute('is-selected', 'false');
   });
 });

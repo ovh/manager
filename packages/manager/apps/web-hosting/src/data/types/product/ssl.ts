@@ -42,6 +42,7 @@ export enum State {
 }
 
 export enum Status {
+  DONE = 'DONE',
   ERROR = 'ERROR',
   PENDING = 'PENDING',
   RUNNING = 'RUNNING',

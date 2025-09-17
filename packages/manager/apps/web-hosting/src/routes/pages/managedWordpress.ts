@@ -19,3 +19,9 @@ export const ManagedWordpressServiceTasksPage = React.lazy(() =>
 export const ManagedWordpressServiceDelete = React.lazy(
   () => import('@/pages/managedWordpress/ManagedWordpressResource/delete/Delete.modal'),
 );
+export const ManagedWordpressServiceCreatePage = React.lazy(
+  () => import('@/pages/managedWordpress/ManagedWordpressResource/create/Create.page'),
+);
+export const ManagedWordpressServiceImportPage = React.lazy(
+  () => import('@/pages/managedWordpress/ManagedWordpressResource/import/Import.page'),
+);
