@@ -718,6 +718,7 @@ export default class PciProjectInstanceService {
       autobackup,
       flavorId,
       imageId,
+      imageRegionName,
       monthlyBilling,
       name,
       network,
@@ -736,6 +737,7 @@ export default class PciProjectInstanceService {
         },
         bootFrom: {
           imageId,
+          imageRegionName,
         },
         billingPeriod: monthlyBilling ? 'monthly' : 'hourly',
         name,

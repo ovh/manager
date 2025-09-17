@@ -797,12 +797,15 @@ export default class PciInstancesAddController {
 
   onImageChange() {
     this.displaySelectedImage = true;
+
     if (this.model.image.isBackup()) {
       this.instance.imageId = this.model.image.id;
+      this.instance.imageRegionName = this.model.image.region;
     } else {
       this.instance.imageId = this.model.image.getIdByRegion(
         this.instance.region,
       );
+      this.instance.imageRegionName = this.instance.region;
     }
 
     this.onFlexChange(false);
