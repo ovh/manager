@@ -26,5 +26,9 @@
   "pci_instances_dashboard_licence_price_label": "Prezzo della licenza: ",
   "pci_instances_dashboard_public_network_title": "Reti pubbliche",
   "pci_instances_dashboard_network_floating_title": "Floating IP",
-  "pci_instances_dashboard_network_name_label": "Nome della rete: "
+  "pci_instances_dashboard_network_name_label": "Nome della rete: ",
+  "pci_instances_dashboard_backup_empty_message": "Non hai backup",
+  "pci_instances_dashboard_backup_title": "Gestione del backup",
+  "pci_instances_dashboard_backup_number_of_backups": "Numero di backup dell’istanza",
+  "pci_instances_dashboard_backup_last_updated_backups": "Data dell'ultimo backup"
 }
