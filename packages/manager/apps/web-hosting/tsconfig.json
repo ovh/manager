@@ -12,9 +12,6 @@
     },
     "baseUrl": "."
   },
-   "include": [
-    "src",
-    "public/translations/**/*.json"
-  ],
+  "include": ["src", "public/**/*.json"], 
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

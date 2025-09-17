@@ -1,9 +1,11 @@
-import { describe, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, vi } from 'vitest';
+
 import { managedWordpressResourceMock } from '@/data/__mocks__';
-import { useManagedWordpressResource } from './useManagedWordpressResource';
 import { wrapper } from '@/utils/test.provider';
+
+import { useManagedWordpressResource } from './useManagedWordpressResource';
 
 describe('useManagedWordpressResource', () => {
   beforeEach(() => {

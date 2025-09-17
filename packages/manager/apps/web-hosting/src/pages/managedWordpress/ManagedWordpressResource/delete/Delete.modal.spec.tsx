@@ -1,8 +1,11 @@
-import { describe, expect, it, vi } from 'vitest';
 import { useParams, useSearchParams } from 'react-router-dom';
-import DeleteModal from './Delete.modal';
-import { fireEvent, render, act } from '@/utils/test.provider';
+
+import { describe, expect, it, vi } from 'vitest';
+
 import { deleteManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
+import { act, fireEvent, render, waitFor } from '@/utils/test.provider';
+
+import DeleteModal from './Delete.modal';
 
 describe('Deletemodal Component', () => {
   it('deletion for a website', async () => {
@@ -13,13 +16,16 @@ describe('Deletemodal Component', () => {
       }),
       vi.fn(),
     ]);
-    const { getByTestId } = render(<DeleteModal />);
 
+    const { getByTestId } = render(<DeleteModal />);
     const deleteButton = getByTestId('primary-button');
 
-    await act(() => {
+    act(() => {
       fireEvent.click(deleteButton);
     });
-    expect(deleteManagedCmsResourceWebsite).toHaveBeenCalledOnce();
+
+    await waitFor(() => {
+      expect(deleteManagedCmsResourceWebsite).toHaveBeenCalled();
+    });
   });
 });

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 
 import { useMatches } from 'react-router-dom';
 
@@ -21,9 +21,9 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
   const { t } = useTranslation(namespace);
   const matches = useMatches();
   const { shell } = useContext(ShellContext);
-  const [href, setHref] = React.useState('');
+  const [href, setHref] = React.useState('#');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchUrl = async () => {
       try {
         const response = await shell.navigation.getURL('web', '/hosting', {});
@@ -32,35 +32,45 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
         setHref('#');
       }
     };
-
-    fetchUrl().catch(() => setHref('#'));
-  }, [shell]);
+    void fetchUrl();
+  }, [shell.navigation]);
 
   const rootItem = {
     label: t('hosting'),
     href,
   };
 
-  const items = useMemo(
-    () =>
-      matches.reduce((crumbs, match) => {
-        const handle = match.handle as Record<string, string>;
-        if (handle?.breadcrumb) {
-          const breadcrumb = handle.breadcrumb as unknown as Record<string, string>;
-          const label = breadcrumb?.label?.startsWith(':')
-            ? match.params[breadcrumb?.label?.slice(1)]
-            : t(breadcrumb?.label);
-          crumbs.push({
-            href: `#${match.pathname}`,
-            ...breadcrumb,
-            label,
-          });
-        }
+  const items = useMemo(() => {
+    let crumbs = matches.reduce((acc, match) => {
+      const handle = match.handle as Record<string, string>;
+      if (handle?.breadcrumb) {
+        const breadcrumb = handle.breadcrumb as unknown as Record<string, string>;
+        const label = breadcrumb?.label?.startsWith(':')
+          ? match.params[breadcrumb?.label?.slice(1)]
+          : t(breadcrumb?.label);
+        acc.push({
+          href: `#${match.pathname}`,
+          ...breadcrumb,
+          label,
+        });
+      }
+      return acc;
+    }, [] as BreadcrumbItem[]);
 
-        return crumbs;
-      }, [] as BreadcrumbItem[]),
-    [matches, t],
-  );
+    if (
+      window.location.hash.match(/^#\/?managed-hosting-for-wordpress\/[^/]+/) &&
+      !crumbs.some((c) => c.label === t('managed_wordpress'))
+    ) {
+      crumbs = [
+        {
+          label: t('managed_wordpress'),
+          href: '#/managed-hosting-for-wordpress',
+        },
+        ...crumbs,
+      ];
+    }
+    return crumbs;
+  }, [matches, t]);
 
   return (
     <OdsBreadcrumb data-testid="breadcrumb">
