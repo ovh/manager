@@ -21,7 +21,7 @@ export type TFormStore = {
     hasError: boolean;
   };
   flavor?: TComputedKubeFlavor;
-  selectedAvailabilityZone: string;
+  selectedAvailabilityZone: string | null;
   scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
@@ -105,7 +105,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
-  selectedAvailabilityZone: '',
+  selectedAvailabilityZone: null,
   steps: initialSteps(),
   set: {
     selectedAvailabilityZone: (val: string) => {
@@ -254,6 +254,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       flavor: undefined,
       scaling: initScale,
       antiAffinity: false,
+      selectedAvailabilityZone: null,
       isMonthlyBilling: false,
       steps: initialSteps(),
     }));
