@@ -26,13 +26,13 @@ const BillingItem = memo(function BillingItem({
       aria-labelledby={t('billing-item-title')}
     >
       <div className="flex-1 text-[var(--ods-color-text)]">
-        {item.descriptionTranslationKey && (
+        {item.description && (
           <OdsText
             preset="paragraph"
             className="mb-2"
             aria-label={t('pci_projects_project_voucher_description_aria')}
           >
-            {t(item.descriptionTranslationKey)}
+            {item.description}
           </OdsText>
         )}
         {item.price && (

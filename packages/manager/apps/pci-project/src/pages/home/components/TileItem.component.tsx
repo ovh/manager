@@ -49,6 +49,9 @@ const TileItem = memo(function TileItem({
   return (
     <>
       <ManagerTile.Item>
+        {item.label && (
+          <ManagerTile.Item.Label>{item.label}</ManagerTile.Item.Label>
+        )}
         {item.labelTranslationKey && (
           <ManagerTile.Item.Label>
             {t(item.labelTranslationKey)}

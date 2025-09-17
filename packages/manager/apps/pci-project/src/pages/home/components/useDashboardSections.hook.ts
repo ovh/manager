@@ -1,6 +1,6 @@
 import { useMemo, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { useFormatDate, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { CountryCode } from '@ovh-ux/manager-config';
 
 import { useCreditDetails } from '@/data/hooks/useCredit';
@@ -9,9 +9,11 @@ import {
   DOCUMENTATION_GUIDE_LINKS,
   DASHBOARD_COMMUNITY_LINKS,
   DASHBOARD_CREDIT_VOUCHER_LINK,
+  buildDeveloperCenterUrl,
   DOC_BASE_URL,
   BASE_PROJECT_PATH,
   DashboardTile,
+  DashboardItem,
 } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
@@ -29,30 +31,27 @@ export function useDashboardSections(projectId: string) {
     error,
   } = useCreditDetails(projectId);
 
-  const createBillingItems = useMemo(() => {
-    const items = [];
+  const billingItems = useMemo((): DashboardItem[] => {
+    let items: DashboardItem[] = [];
     const baseProjectPath = BASE_PROJECT_PATH.replace(':projectId', projectId);
 
     // Add voucher credits from API
     if (!isLoading) {
-      items.push(
-        ...vouchersCreditDetails.slice(0, 3).map((credit) => ({
-          labelTranslationKey: t('pci_projects_project_voucher_credit', {
-            voucher: credit.voucher,
-          }),
-          descriptionTranslationKey: credit.description,
-          link: `${baseProjectPath}/billing/credits`,
-          price: credit.balance,
-          validUntil: credit.expirationDate
-            ? t('pci_projects_project_expires_on', {
-                date: formatDate({
-                  date: credit.expirationDate,
-                  format: 'PP',
-                }),
-              })
-            : null,
-        })),
-      );
+      items = vouchersCreditDetails.slice(0, 3).map((credit) => ({
+        label: t('pci_projects_project_voucher_credit', {
+          voucher: credit.voucher,
+        }),
+        description: credit.description,
+        price: credit.balance,
+        validUntil: credit.expirationDate
+          ? t('pci_projects_project_expires_on', {
+              date: formatDate({
+                date: credit.expirationDate,
+                format: 'PP',
+              }),
+            })
+          : null,
+      }));
     }
 
     items.push({
@@ -63,7 +62,7 @@ export function useDashboardSections(projectId: string) {
     return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
-  const createDocumentationItems = useMemo(() => {
+  const documentationItems = useMemo((): DashboardItem[] => {
     return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
       ...item,
       link: item.documentationGuideKey
@@ -75,25 +74,42 @@ export function useDashboardSections(projectId: string) {
     }));
   }, [subsidiary]);
 
+  const communityItems = useMemo((): DashboardItem[] => {
+    return DASHBOARD_COMMUNITY_LINKS.map((item) => {
+      // Dynamically construct Developer Center URL based on subsidiary
+      if (
+        item.labelTranslationKey === 'pci_projects_project_developer_center'
+      ) {
+        const developerCenterUrl = buildDeveloperCenterUrl(
+          subsidiary as OvhSubsidiary,
+        );
+
+        return {
+          ...item,
+          link: developerCenterUrl,
+        };
+      }
+      return item;
+    });
+  }, [subsidiary]);
+
   const tiles: DashboardTile[] = useMemo(
     () => [
       {
         titleTranslationKey: 'pci_projects_project_billing_section',
         type: 'billing' as const,
-        items: createBillingItems,
+        items: billingItems,
       },
       {
         titleTranslationKey: 'pci_projects_project_documentation_section',
-        type: 'documentation' as const,
-        items: createDocumentationItems,
+        items: documentationItems,
       },
       {
         titleTranslationKey: 'pci_projects_project_community_section',
-        type: 'community' as const,
-        items: DASHBOARD_COMMUNITY_LINKS,
+        items: communityItems,
       },
     ],
-    [createBillingItems, createDocumentationItems],
+    [billingItems, documentationItems, communityItems],
   );
 
   return { tiles, isLoading, isError, error };
