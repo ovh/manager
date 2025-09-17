@@ -4,7 +4,7 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistTroubleshootin
   $q,
   troubleshootingProcess,
   tucValidator,
-  OvhApiMyIp,
+  TelephonyLineAssistTroubleshootingService,
 ) {
   const self = this;
 
@@ -70,11 +70,11 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistTroubleshootin
 
     return $q
       .all({
-        myIp: OvhApiMyIp.Aapi().get().$promise,
+        myIp: TelephonyLineAssistTroubleshootingService.myIp(),
         lineIp: self.process.line.getIps(),
       })
       .then((responses) => {
-        self.myIpInfos = get(responses, 'myIp[0]');
+        self.myIpInfos = responses.myIp;
         self.model.ip = get(responses, 'lineIp[0].ip');
       })
       .finally(() => {
