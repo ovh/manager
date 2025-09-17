@@ -95,6 +95,7 @@ export default function ProjectCreation() {
     billingHref,
     handleProjectCreation,
     handleCreditAndPay,
+    setVoucherCode,
   } = useProjectCreation({ t, cart, projectItem, goToCreditConfirmation });
 
   const {
@@ -136,7 +137,10 @@ export default function ProjectCreation() {
           orderProjectItem({
             cartId: justCreatedCart.cartId,
           });
-          setSearchParams({ cartId: justCreatedCart.cartId });
+          setSearchParams({
+            ...Object.fromEntries(searchParams.entries()),
+            cartId: justCreatedCart.cartId,
+          });
         },
       },
     );
@@ -293,6 +297,7 @@ export default function ProjectCreation() {
               handleRegisteredPaymentMethodSelected
             }
             onRequiredChallengeEvent={handleChallengeRequired}
+            onVoucherChange={setVoucherCode}
           />
         </StepComponent>
 
