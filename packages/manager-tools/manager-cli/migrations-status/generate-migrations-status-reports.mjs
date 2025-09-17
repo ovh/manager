@@ -28,9 +28,9 @@ const allSteps = {
   tests: 'node ./migrations-status/steps/generate-tests-migrations-status-report.mjs',
   swc: 'node ./migrations-status/steps/generate-swc-migrations-status-report.mjs',
   'static-kit': 'node ./migrations-status/steps/generate-static-kit-migrations-status-report.mjs',
-  w3c: 'node ./migrations-status/steps/generate-w3c-migrations-status-report.mjs',
-  a11y: 'node ./migrations-status/steps/generate-a11y-migrations-status-report.mjs',
-  all: 'ALL_TYPES', // virtual only
+  w3c: 'node ./migrations-status/steps/generate-w3c-a11y-migrations-status-report.mjs --type=w3c',
+  a11y: 'node ./migrations-status/steps/generate-w3c-a11y-migrations-status-report.mjs --type=a11y',
+  all: 'ALL_TYPES',
 };
 
 if (selectedType && !Object.keys(allSteps).includes(selectedType)) {
