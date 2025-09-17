@@ -14,10 +14,8 @@ import { BUTTON_VARIANT, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { useDashboard } from '../hooks/useDashboard';
-import {
-  DashboardTileBlock,
-  DashboardTileText,
-} from './DashboardTile.component';
+import { DashboardTileBlock } from './tile/DashboardTile.component';
+import { DashboardTileText } from './tile/DashboardTileText.component';
 import { useDashboardPolling } from '../hooks/useDashboardPolling';
 import { TaskStatus } from '@/pages/instances/task/TaskStatus.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
@@ -166,7 +164,7 @@ const InstanceGeneralInfoBlock: FC = () => {
         </DashboardTileBlock>
       )}
       {instance?.isDeleteEnabled && (
-        <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
+        <DashboardTileBlock isLoading={isInstanceLoading}>
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.error}
             href={hrefDeleteInstance}
